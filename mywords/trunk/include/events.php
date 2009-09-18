@@ -28,3 +28,8 @@ $rmc_methods['mywords_left_widgets_controller'] = array(
     'event'    =>    'rmcevent_load_left_widgets',
     'file'    =>    '/modules/mywords/include/widgets.php'
 );
+
+$rmc_methods['mywords_gui_output'] = array(
+	'event'	=> 'rmevent_admin_output',
+	'file'	=>    '/modules/mywords/include/widgets.php'
+);

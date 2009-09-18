@@ -229,5 +229,81 @@ $(document).ready( function($) {
 			$("div#tags-container span.tip_legends").show();
 		
     });
+    
+    $("a.mw_show_metaname").click(function(){
+		$("select#meta-name-sel").hide();
+		$("input#meta-name").show();
+		$("input#meta-name").focus();
+		$("a.mw_show_metaname").hide();
+		$("a.mw_hide_metaname").show();
+    });
+    
+    $("a.mw_hide_metaname").click(function(){
+    	$("input#meta-name").hide();
+		$("select#meta-name-sel").show();
+		$("select#meta-name-sel").focus();
+		$("a.mw_hide_metaname").hide();
+		$("a.mw_show_metaname").show();
+    });
+    
+    $("input#mw-addmeta").click(function(){
+		if ($("select#meta-name-sel").is(":visible")){
+			var name = $("select#meta-name-sel").val();
+		} else {
+			var name = $("input#meta-name").val()
+		}
+		
+		if (name==''){
+			$("label#error-metaname").slideDown('fast');
+			return;
+		}
+		
+		var value = $("textarea#meta-value").val();
+		if (value==''){
+			$("label#error-metavalue").slideDown('fast');
+			return;
+		}
+		
+		$("label#error-metaname").hide();
+		$("label#error-metavalue").hide();
+		
+		var exit = false;
+		if ($("table#metas-container input").length>0){
+			$("table#metas-container input").each(function(){
+				if ($(this).val()==name){
+					alert('<?php _e('There is already a meta with same name','admin_mywords'); ?>');
+					exit = true;
+					return;
+				}
+			});
+		}
+		
+		if (exit) return;
+		
+		var count = $("table#metas-container tr").length;
+		
+		$("table#metas-container").show();
+		var html = '<tr class="even">';
+		html += '<td valign="top"><input type="text" name="meta[][key]" id="meta[][key]" value="'+name+'" class="mw_large" style="width: 95%;" />';
+		html += '<a href="javascript:;" onclick="remove_meta($(this));"><?php _e('Remove','admin_mywords'); ?></td>';
+		html += '<td><textarea name="meta[][value]" id="meta[][value]" class="mw_large">'+value+'</textarea></td></tr>';
+		$("table#metas-container").append(html);
+		
+		$("select#meta-name-sel option[selected='selected']").removeAttr('selected');
+		$("select#meta-name-sel option[value='']").attr("selected",'selected');
+		$("textarea#meta-value").val('');
+		$("input#meta-name").val('');
+		
+		$("tr#row-"+count).effect('highlight',{},'2000');
+		
+    });
 
  })(jQuery);
+ 
+ function remove_meta(id){
+	 
+	 var parent = $(id).parent();
+	 parent = $(parent).parent();
+	 $(parent).remove();
+	 
+ }

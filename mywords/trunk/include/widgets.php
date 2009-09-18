@@ -31,3 +31,11 @@ function mywords_right_widgets_controller($widgets){
 function mywords_left_widgets_controller($widgets){
 	return $widgets;
 }
+
+function mywords_gui_output($output){
+
+	$output = str_replace('<div id="rmc-container">','<form name="mwposts" id="mw-form-posts" action="posts.php" method="post"><div id="rmc-container">',$output);
+	$output = str_replace('<div id="rmc-footer">','</form><div id="rmc-footer">',$output);
+	return $output;
+	
+}

@@ -5,17 +5,22 @@ h1.mw_titles{
 }
 
 /** Forms **/
-input.mw_biginput{
-    width: 99%;
-    font-size: 1.8em;
-    -moz-border-radius: 5px;
+div.mw_permacont{
+	padding: 6px 0;
+	color: #666;
+	margin: 4px 0;
+}
+div.mw_permainfo{
+	border: 1px solid #FED79C;
+	background: #FFF9CE;
+	color: #000;
+	padding: 6px;
+	-moz-border-radius: 5px;
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    color: #000;
-}
-div.mw_permacont{
-	padding: 4px 0;
+    font-size: 0.9em;
+    text-align:center;
 }
 div.mw_bcontent{
 	padding: 8px;
@@ -66,6 +71,15 @@ div#form_options input[type='text'],
 div#form_options select,
 div#form_options textarea{
 	width: 95%;
+}
+form#mw-form-posts input.mw_biginput{
+    width: 99%;
+    font-size: 1.8em;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #000;
 }
 
 #tableItems{
