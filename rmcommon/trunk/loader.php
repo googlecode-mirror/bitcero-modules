@@ -1,0 +1,78 @@
+<?php
+// $Id: loader.php 22 2009-09-13 07:42:57Z i.bitcero $
+// --------------------------------------------------------------
+// Red México Common Utilities
+// A framework for Red México Modules
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
+
+define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
+define("RMCURL",XOOPS_URL.'/modules/rmcommon');
+define('RMCVERSION','2.0');
+
+/**
+* This file contains the autoloader function files from RMCommon Utilities
+*/
+function rmc_autoloader($class){
+	global $xoopsModule;
+	
+	$class = strtolower($class);
+	
+	if (substr($class, 0, 2)=='rm') $class = substr($class, 2);
+
+	if (substr($class, strlen($class) - strlen('handler'))=='handler'){
+		$class = substr($class, 0, strlen($class) - 7);
+	}
+      
+    $paths = array(
+    	'/api',
+        '/class/',
+        '/kernel',
+        '/fields'
+        //'/rmcommon' /* @Todo: Eliminar este directorio */
+    );
+
+    if (is_a($xoopsModule, 'XoopsModule')){
+    	$paths[] = '/modules/'.$xoopsModule->dirname().'/class';
+    }
+	
+    foreach ($paths as $path){
+    	if (file_exists(RMCPATH.$path.'/'.$class.'.php')){
+        	include_once RMCPATH.$path.'/'.$class.'.php';
+        } elseif(file_exists(RMCPATH.$path.'/'.$class.'.class.php')){
+        	include_once RMCPATH.$path.'/'.$class.'.class.php';
+        } elseif (file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.php')){
+        	include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.php';
+        } elseif(file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php')){
+            	include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php';
+        }
+    }
+	
+}
+
+spl_autoload_register('rmc_autoloader');
+
+require_once 'api/events.php';
+require_once 'api/l10n.php';
+
+// Check if module has been installed
+$rmc_config = RMUtilities::get()->module_config('rmcommon');
+
+load_mod_locale('rmcommon','');
+
+if (!$rmc_config){
+    _e('Sorry, Red Mexico Common Utilities has not been installed yet!');
+    die();
+}
+
+// Check if Events has been created
+if (!RMEventsApi::get()->get_object('rmcommon', 'module')){
+    $eo = RMEventsApi::get()->register_object('rmcommon', 'module', '/modules/rmcommon');
+    include_once 'include/events_setup.php';
+    RMEventsApi::get()->register_events($rmc_events, $eo);
+    unset($rmc_events);
+}
+
+define('RMCLANG','en_US');

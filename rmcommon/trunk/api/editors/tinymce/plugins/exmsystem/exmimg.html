@@ -1,0 +1,304 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#exmsystem.tab_name}</title>
+	<script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="../../utils/mctabs.js"></script>
+    <script type="text/javascript">
+        <!--
+        var xipage = '<{$xipage}>';
+        
+        -->
+    </script>
+    <script language="javascript" type="text/javascript" src="js/images.js"></script>
+	<script type="text/javascript">
+		<!--
+		function gotoCat(){
+			var sel = document.forms[0].cat;
+			limite = document.forms[0].limite;
+			<{if $catego.thumbnails && $catego.thh<=0 && $cat>0}>cols = document.forms[0].cols;<{/if}>
+			document.location = '?cat='+sel.options[sel.selectedIndex].value+'&pag=<{$pactual}>&limite='+limite.value<{if $catego.thumbnails && $catego.thh<=0 && $cat>0}>+'&cols='+cols.value<{/if}>;
+		}
+		-->
+	</script>
+	<link href="css/exmimg.css" rel="stylesheet" type="text/css" />
+	<base target="_self" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body onLoad="tinyMCEPopup.executeOnLoad('init(\'<{$exm_url}>/imgdesc.php\');');">
+<form action="#" name="frmThis" method="post" enctype="multipart/form-data">
+	<div class="tabs">
+		<ul>
+			<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','xiPanel');" onMouseDown="return false;">{#exmsystem.tab_name}</a></span></li>
+			<li id="props_tab"><span><a href="javascript:mcTabs.displayTab('props_tab','xiProps');" onMouseDown="return false;">{#exmsystem.tab_props}</a></span></li>
+			<li id="upload_tab"><span><a href="javascript:mcTabs.displayTab('upload_tab','xiUpload');" onMouseDown="return false;">{#exmsystem.tab_upload}</a></span></li>
+		</ul>
+	</div>
+
+	<div class="panel_wrapper">
+		<div id="xiPanel" class="panel current">
+			<div class="xiSelectCat">
+				{#exmsystem.select_catego}
+				<select name="cat" id="cat" onChange="gotoCat();">
+					<{if $cat==0}> selected="selected"<{/if}>>{#exmsystem.select_option}<option value="0"<{if $cat==0}> selected="selected"<{/if}>>{#exmsystem.select_option}</option>
+					<{foreach item=fcat from=$categos}>
+						<{if $fcat.id==$cat}> selected="selected"<{/if}>><{$fcat.title}><option value="<{$fcat.id}>"<{if $fcat.id==$cat}> selected="selected"<{/if}>><{$fcat.title}></option>
+					<{/foreach}>
+				</select> &nbsp;
+				{#exmsystem.show_results} <input type="text" name="limite" id="limite" value="<{$limite}>" size="5" />
+				<{if $catego.thumbnails && $catego.thh<=0}>
+					{#exmsystem.cols_number} <input type="text" name="cols" id="cols" value="<{$cols}>" size="5" />
+				<{/if}>
+				<input type="button" name="change" class="xiButtonChange" value="{#exmsystem.change}" onClick="gotoCat();" />
+				<input type="hidden" name="pag" value="<{$pactual}>" />
+			</div>
+			<{if $catego.thumbnails}>
+				<{if $catego.thh<=0}>
+					<table class="outer" width="100%" cellspacing="1">
+						<tr class="even">
+						<{assign var="i" value=1}>
+						<{foreach item=img from=$images}>
+							<{if $i>$cols}>
+								</tr><tr class="<{cycle values="odd,even"}>">
+								<{assign var="i" value=1}>
+							<{/if}>
+							<td colspan="3" valign="top" class="xiImagesThumb">
+							<span id="th">
+							<a href="javascript:;" onClick="selectThumb('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_thumb_tip}"><img src="<{$img.file}>" alt="<{$img.title}>" title="<{$img.title}>" /></a><br />
+							<a href="javascript:;" onClick="selectThumb('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_thumb_tip}"><img src="img/thumb.png" border="0" alt="{#exmsystem.insert_thumb_tip}" class="options" /></a>
+							<a href="javascript:;" onClick="selectNormal('<{$img.big}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_img_tip}"><img src="img/big.png" border="0" alt="{#exmsystem.insert_img_tip}" class="options" /></a>
+							<a href="javascript:;" onClick="selectWithLinks('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_link_tip}"><img src="img/link.png" border="0" alt="{#exmsystem.insert_link_tip}" class="options" /></a>
+							</span>
+							<{assign var="i" value=$i+1}>
+							</td>
+						<{/foreach}>
+						</tr>
+					</table>
+				<{else}>
+					<table class="outer" width="100%" cellspacing="1">
+						<tr class="even"><td colspan="3" valign="top" class="xiImagesThumb">
+						<{foreach item=img from=$images}>
+							<span id="th">
+							<a href="javascript:;" onClick="selectThumb('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_thumb_tip}"><img src="<{$img.file}>" alt="<{$img.title}>" title="<{$img.title}>" /></a><br />
+							<a href="javascript:;" onClick="selectThumb('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_thumb_tip}"><img src="img/thumb.png" border="0" alt="{#exmsystem.insert_thumb_tip}" class="options" /></a>
+							<a href="javascript:;" onClick="selectNormal('<{$img.big}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_img_tip}"><img src="img/big.png" border="0" alt="{#exmsystem.insert_img_tip}" class="options" /></a>
+							<a href="javascript:;" onClick="selectWithLinks('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="{#exmsystem.insert_link_tip}"><img src="img/link.png" border="0" alt="{#exmsystem.insert_link_tip}" class="options" /></a>
+							</span>
+						<{/foreach}>
+						</td></tr>
+					</table>
+				<{/if}>
+			<{else}>
+				<div id="xiPreview" onClick="xiHidePreview();">
+					
+				</div>
+				<table id="xiTableBigs" cellspacing="0" cellpadding="4" border="0">
+					<{foreach item=img from=$images}>
+						<tr class="<{cycle values="even,odd"}>">
+							<td align="center" width="28">
+								<a href="javascript:;" onClick="selectNormal('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" title="<{$img.title}>"><img src="img/icon24.png" alt="0" border="0" /></a>
+							</td>
+							<td>
+								<a href="javascript:;" onClick="selectNormal('<{$img.file}>','<{$img.title}>',<{$img.desc}>, <{$img.id}>);" onMouseOver="xiPreviewImage('<{$img.file}>','<{$img.title}>');"><{if $img.title!=''}><{$img.title}><{else}>{#exmsystem.no_title}<{/if}></a>
+							</td>
+							<td align="center">
+								<{$img.date}>
+							</td>
+						</tr>
+					<{/foreach}>
+				</table>
+                <div style="clear:both;">&nbsp;</div>
+			<{/if}>
+			<div class="xiPagesNumber">
+				<{foreach item=page from=$pages}>
+					<{if $page.id=='siguiente'}>
+						<a href="?cat=<{$catego.id}>&amp;cols=<{$cols}>&amp;pag=<{$page.num}>&amp;limite=<{$limite}>" title="{#exmsystem.next_page}"><img src="img/next.png" border="0" alt="" align="absmiddle" /></a>
+					<{elseif $page.id=='ultima'}>
+						<a href="?cat=<{$catego.id}>&amp;cols=<{$cols}>&amp;pag=<{$page.num}>&amp;limite=<{$limite}>" title="{#exmsystem.last_page}"><img src="img/last.png" border="0" alt="" align="absmiddle" /></a>
+					<{elseif $page.id=='primera'}>
+						<a href="?cat=<{$catego.id}>&amp;cols=<{$cols}>&amp;pag=<{$page.num}>&amp;limite=<{$limite}>" title="{#exmsystem.first_page}"><img src="img/first.png" border="0" alt="" align="absmiddle" /></a>
+					<{elseif $page.id=='anterior'}>
+						<a href="?cat=<{$catego.id}>&amp;cols=<{$cols}>&amp;pag=<{$page.num}>&amp;limite=<{$limite}>" title="{#exmsystem.prev_page}"><img src="img/back.png" border="0" alt="" align="absmiddle" /></a>
+					<{else}>
+						<{if $pactual==$page.id}>
+							<span class="pageCurrent"><{$page.id}></span>
+						<{else}>
+							<{if $page.salto==2}> &middot;&middot;&middot; <{/if}> <a href="?op=images&amp;cat=<{$catego.id}>&amp;cols=<{$cols}>&amp;pag=<{$page.num}>&amp;limite=<{$limite}>&amp;showas=<{$showas}>&amp;cols=<{$cols}>" class="pageLink"><{$page.id}></a> <{if $page.salto==1}>  &middot;&middot;&middot; <{/if}>
+						<{/if}>
+					<{/if}>
+				<{/foreach}>
+			</div>
+		</div>
+		<div id="xiProps" class="panel">
+			<table width="100%" cellspacing="0" cellpadding="3" border="0">
+				<tr>
+					<td>{#exmsystem.sel_image}</td>
+					<td><span id="imgtitle"></span></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.image_title}</td>
+					<td><input type="text" id="titulo" name="titulo" value="" size="50" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.image_desc}</td>
+					<td><input type="text" id="desc" name="desc" value="" size="50" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.image_width}</td>
+					<td><input type="text" id="width" name="imgwidth" value="" size="10" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.image_height}</td>
+					<td><input type="text" id="height" name="imgheight" value="" size="10" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.class_name}</td>
+					<td><input type="text" id="imgclass" name="imgclass" value="" size="50" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.css_style}</td>
+					<td><input type="text" id="imgstyle" name="imgstyle" value="" size="50" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.img_align}</td>
+					<td><select name="imgalign" id="imgalign">
+						<option value="" selected="selected">{#exmsystem.not_set}</option>
+						<option value="baseline">Baseline</option>
+						<option value="top">Top</option>
+						<option value="middle">Middle</option>
+						<option value="bottom">Bottom</option>
+						<option value="texttop">TextTop</option>
+						<option value="absmiddle">Absolute Middle</option>
+						<option value="absbottom">Absolute Bottom</option>
+						<option value="left">Left</option>
+						<option value="right">Right</option>
+					</select></td>
+				</tr>
+                <tr>
+                    <td>{#exmsystem.image_border}</td>
+                    <td><input type="text" id="imgborder" name="imgborder" value="0" size="5" /></td>
+                </tr>
+                <tr>
+                    <td>{#exmsystem.xi_vspace}</td>
+                    <td><input type="text" id="vspace" name="vspace" value="" size="5" /></td>
+                </tr>
+                <tr>
+                    <td>{#exmsystem.xi_hspace}</td>
+                    <td><input type="text" id="hspace" name="hspace" value="" size="5" /></td>
+                </tr>
+                <tr>
+                    <td>{#exmsystem.xi_target}</td>
+                    <td>
+                        <select name="itarget" id="itarget">
+                            <option value="">--</option>
+                            <option value="_blank">_blank</option>
+                            <option value="_self">_self</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{#exmsystem.xi_showas}</td>
+                    <td>
+                        <select name="showas" id="target">
+                            <option value="0" selected="selected">{#exmsystem.xi_showaspage}</option>
+                            <option value="1">{#exmsystem.xi_showasimg}</option>
+                        </select>
+                    </td>
+                </tr>
+			</table>
+		</div>
+		<div id="xiUpload" class="panel">
+			<script type="text/JavaScript">
+			<!--
+			function rmsoftFrameFindObj(obj, doc) {
+  				var position,i,ret;
+				if(!doc) doc=document;
+				if((position=obj.indexOf("?"))>0&&parent.frames.length){
+    				doc=parent.frames[obj.substring(position+1)].document;
+					obj=obj.substring(0,position);
+				}
+  				if(!(ret=doc[obj])&&doc.all) ret=doc.all[obj];
+				for (i=0;!ret&&i<doc.forms.length;i++) ret=doc.forms[i][obj];
+  				for(i=0;!ret&&doc.layers&&i<doc.layers.length;i++) ret=rmsoftFrameFindObj(obj,doc.layers[i].document);
+  				if(!ret && doc.getElementById) ret=doc.getElementById(obj);
+				return ret;
+			}
+
+			function rmsoftFrameValidate() { 
+  				var i,position,nombre,q,nm,test,num,min,max,errors='',args=rmsoftFrameValidate.arguments;
+ 				for (i=0; i<(args.length-2); i+=3) {
+					test=args[i+2];
+					nombre=args[i+1];
+					val=rmsoftFrameFindObj(args[i]);
+    				if (val) {
+						nm=args[i+1];
+						if ((val=val.value)!="") {
+      						if (test.indexOf('isEmail')!=-1) {
+								position=val.indexOf('@');
+        						if (position<1 || position==(val.length-1)) errors+='- "'+nm+'" ' + tinyMCE.getLang('lang_validate_email') + '\n';
+      						} else if (test!='R') {
+								if (test.indexOf('isSelect')!=-1){
+									p=test.indexOf(':');
+       								min=test.substring(test.length,p+1);
+       								if (val==min) errors+='- "' + nm + '" ' + tinyMCE.getLang('lang_validate_option') + '\n';
+								} else {
+									num = parseFloat(val);
+        							if (isNaN(val)) errors+='- '+nm+' debe contener un número.\n';
+        							if (test.indexOf('inRange') != -1) {
+										p=test.indexOf(':');
+          								min=test.substring(8,p);
+										max=test.substring(p+1);
+          								if (num<min || max<num) errors+='- '+nm+' debe contener un número entre '+min+' and '+max+'.\n';
+    								}
+								}
+							}
+						} else if (test.charAt(0) == 'R') errors += '- "' + nm + '" ' + tinyMCE.getLang('lang_validate_req') + '\n';
+					}
+  				} 
+				if (errors) alert(tinyMCE.getLang('lang_validate_errors') + ' \n\n' + errors);
+  				document.rmsoftFrameReturnValue = (errors == '');
+			}
+			//-->
+			</script>
+			<br /><br />
+			<table width="100%" cellspacing="0" cellpadding="4" border="0">
+				<tr>
+					<td>{#exmsystem.form_title}</td>
+					<td><input type="text" size="50" name="ititulo" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.form_file}</td>
+					<td><input type="file" size="45" name="iarchivo" /></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.form_catego}</td>
+					<td><select name="icat" id="icat">
+					<option value="0" selected="selected">{#exmsystem.select_option}</option>
+					<{foreach item=fcat from=$wcategos}>
+						<option value="<{$fcat.id}>"><{$fcat.title}></option>
+					<{/foreach}>
+				</select></td>
+				</tr>
+				<tr>
+					<td>{#exmsystem.form_desc}</td>
+					<td><textarea name="idesc" rows="6" cols="45"></textarea></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type="submit" value="{#exmsystem.form_button}" class="xiButtonChange" onClick="document.forms['frmThis'].action='<{$exm_url}>/uploadimage.php'; rmsoftFrameValidate('ititulo','Título de la Imágen','R','iarchivo','Archivo de Imágen','R','icat','Categoría','RisSelect:0');return document.rmsoftFrameReturnValue;" /></td>
+				</tr>
+			</table>
+			<input type="hidden" name="op" value="uploadimg" />
+		</div>
+	</div>
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="button" id="insert" name="insert" value="{#exmsystem.insert}" onClick="doInsert(); tinyMCEPopup.close();" />
+		</div>
+		<div style="float: right">
+			<input type="button" id="cancel" name="cancel" value="{#exmsystem.cancel}" onClick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<?php
+// $Id: template.php 51 2009-09-17 20:37:03Z i.bitcero $
+// --------------------------------------------------------------
+// Red México Common Utilities
+// A framework for Red México Modules
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
+
+include_once RMCPATH.'/include/tpl_functions.php';
+
+/**
+* This file can handle templates for all modules and themes
+*/
+class RMTemplate
+{
+    private $type = 'front';
+    /**
+    * Stores the information for 'HEAD' section of template
+    */
+    public $tpl_head = array();
+    /**
+    * Stores the scripts information to include in theme
+    */
+    public $tpl_scripts = array();
+    /**
+    * Stores all styles for HEAD section
+    */
+    public $tpl_styles = array();
+    /**
+    * Menu options for current element
+    */
+    private $tpl_menus = array();
+    /**
+     * Template Vars
+     */
+    private $tpl_vars = array();
+    /**
+    * Messages for template
+    */
+    private $messages = array();
+    /**
+    * Menus for admin gui
+    */
+    private $menus = array();
+    /**
+    * Toolbar for admin gui
+    */
+    private $toolbar = array();
+
+    /**
+     * At this moment this method do nothing
+     * Maybe later i will add some functionality... i must to think ;)
+     */
+    function __construct(){
+        $this->add_script(RMCURL.'/include/js/jquery.min.js');
+        $this->add_script(RMCURL.'/include/js/jquery-ui.min.js');
+    }
+
+    /**
+     * Use this method to instantiate EXMTemplate
+     * @staticvar <type> $instance
+     * @return object EXMTemplate
+     */
+    public function get(){
+        static $instance;
+
+        if (!isset($instance)) {
+            $instance = new RMTemplate();
+	}
+
+        return $instance;
+        
+    }
+
+    /**
+    * 
+    */
+    public function header(){
+		ob_start();
+    }
+    
+    public function footer(){
+        global $xoopsModule, $rmc_config, $xoopsConfig, $xoopsModuleConfig;
+		$content = ob_get_clean();
+		
+		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+		
+		if (!file_exists(RMCPATH.'/templates/'.$theme.'/admin_gui.php')){
+			$theme = 'default';
+		}
+		
+		$rm_theme_url = RMCURL.'/templates/'.$theme;
+        
+        // Check if there are redirect messages
+        $rmc_messages = array();
+        if (isset($_SESSION['rmMsg'])){
+            foreach ($_SESSION['rmMsg'] as $msg){
+                $rmc_messages[] = $msg;
+            }
+            unset($_SESSION['rmMsg']);
+        }
+		
+		include_once RMCPATH.'/templates/'.$theme.'/admin_gui.php';
+    }
+    
+    /**
+    * Get a template from Current RMCommon Theme
+    */
+    public function get_template($file, $type='module',$module=''){
+		global $rmc_config;
+		
+		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+		
+		$where = $type=='module' ? 'modules/'.$module : ($type=='plugin' ? 'plugins/'.$module : 'rmcommon');
+		$lpath = RMCPATH.'/templates/'.$theme.'/templates/'.$where.'/'.$file;
+		
+		if (!is_dir(RMCPATH.'/templates/'.$theme)){
+			$theme = 'default';
+		}
+		
+		if (file_exists($lpath))
+			return $lpath;
+		
+		if ($type=='plugin'){
+			return RMCPATH.'/plugins/templates/'.$file;
+		} else {
+			return XOOPS_ROOT_PATH.'/'.$where.'/templates/'.$file;
+		}
+		
+    }
+    
+    /**
+    * Set the location identifier for current page
+    * This identifier will help to RMCommon to find widgets, forms, etc
+    */
+    public function location_id($id){
+		
+    }
+    
+    /**
+    * Add a message to show in theme
+    * @param string Message to show
+    * @param int Level of message (1 will show error)
+    */
+    public function add_message($message, $level=0){
+		$this->messages[] = array('text'=>$message, 'level'=>$level);
+    }
+    /**
+    * Get all messages
+    * @return array
+    */
+    public function get_messages(){
+		return $this->messages;
+    }
+
+    /**
+    * Add elements to "HEAD" section of the page
+    * @param string|array Elementos de HEAD
+    * @return null
+    */
+    public function add_head($head){
+	// Dynamic header (It must be be an array)
+        if (is_array($head)):
+            array_merge($this->tpl_head, $head);
+        else:
+            $this->tpl_head[] = $head;
+        endif;
+    }
+    /**
+    * Get all items in head
+    * @return array
+    */
+    public function get_head(){
+		return $this->tpl_head;
+    }
+    
+    /**
+    * Add scripts to theme.
+    * Scripts can be added trough method {@link add_head} passing all "script" tag as parameter
+    * but this method offers a shortest way.
+    * @param string Script URL
+    * @param string Script Type (text/javascript)
+    * @return null
+    */
+    public function add_script($url,$type='text/javascript'){
+   
+            if (strpos($url, "?")>1){
+				if (strpos($url, 'ver=')===FALSE){
+					$url .= "&ver=".RMCVERSION;
+				}
+            } else {
+				$url .= "?ver=".RMCVERSION;
+            }
+            
+            $id = crc32($url);
+            if (isset($this->tpl_scripts[$id])) return;
+            
+            $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type);
+    }
+    /**
+   	* Get all scripts stored in class
+   	*/
+    public function get_scripts(){
+        return $this->tpl_scripts;
+    }
+    /**
+   	* Clear all scripts stores
+   	*/
+    public function clear_scripts(){
+        $this->tpl_scripts = array();
+    }
+    /**
+   	* Assign an array of scripts with values pairs url, type
+   	*/
+    public function add_scripts_array($scripts){
+		if (!is_array($scripts)) return;
+		
+		foreach ($scripts as $script){
+			// Why? becouse we need to add an id to script
+			$this->add_script($script['url'], $script['type']);
+		}
+    }
+    
+    /**
+    * Add CSS style sheet to HEAD section of the HTMl page
+    * Note: must be used when stylesheet is an absolute url (or remote url)
+    * @param 
+    */
+    public function add_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more=''){
+        global $rmc_config;
+        
+		$id = crc32($sheet.$element.$subfolder);
+		
+		if (isset($this->tpl_styles[$id])) return;
+    
+        $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+        $themepath = RMCPATH.'/templates/'.$theme;
+        $themeurl = RMCURL.'/templates/'.$theme;
+
+        $theme_file = $themepath.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+        if (is_file($theme_file)){
+            $url = $themeurl.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+        } else {
+            $url = XOOPS_URL.'/'.($element!='' ? 'modules/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'css/'.$sheet;
+        }        
+        
+		if (strpos($url, "?")>1){
+		    if (strpos($url, 'ver=')===FALSE){
+				$url .= "&ver=".RMCVERSION;
+		 	}
+        } else {
+		    $url .= "?ver=".RMCVERSION;
+        }
+         
+         $this->tpl_styles[$id] = array(
+         	'url'=>$url,
+	        'rel'=>'stylesheet',
+	        'media'=>$media,
+	        'more'=>$more
+         );
+		
+    }
+	/**
+   	* Get all styles stored in class
+   	*/
+    public function get_styles(){
+        return $this->tpl_styles;
+    }
+    /**
+   	* Clear all styles stores
+   	*/
+    public function clear_styles(){
+        $this->tpl_styles = array();
+    }
+    /**
+   	* Assign an array of scripts with values pairs url, type
+   	*/
+    public function add_styles_array($styles){
+		if (!is_array($styles)) return;
+		
+		foreach ($styles as $style){
+			// Why? becouse we need to add an id to style
+			$this->add_style($style['sheet'], $style['system'], $style['subfolder'], $style['media'], $style['more']);
+		}
+    }
+
+    /**
+    * Devuelve la url correcta para la inclusión de un estilo.
+    * Esta función es útil para los diseñadores de temas para la administración
+    */
+    function style_url($sheet, $element='system', $subfolder=''){
+		$theme_file = THEMEPATH.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+    	if (is_file($theme_file)){
+	    	$url = THEMEURL.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet.'?ver='.RMCVERSION;
+		} else {
+	    	$url = ABSURL.'/'.($element!='' ? 'apps/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'css/'.$sheet.'?ver='.RMCVERSION;
+		}
+		return $url;
+    }
+
+    /**
+   * Assign template vars
+   * @param string Var name
+   * @param any Var value
+   */
+    public function assign($varname, $value){
+        $this->tpl_vars[$varname] = $value;
+    }
+    /**
+   * Get all template vars as an array
+   */
+    public function vars(){
+        return $this->tpl_vars;
+    }
+    /**
+    * Get a single template var
+    * 
+    * @param string Var name
+    * @return any
+    */
+    public function get_var($varname){
+		if (isset($this->tpl_vars[$varname])){
+			return $this->tpl_vars[$varname];
+		}
+		return false;
+    }
+    
+    /**
+    * Add option to menu. This method is only functionall in admin section or with the themes
+    * that support this feature
+    * 
+    * @param string Menu parent name
+    * @param string Caption
+    * @param string Option link url
+    * @param string Option icon url
+    * @param string Target window (_clank, _self, etc.)
+    */
+    public function add_menu_option($caption, $link, $icon='', $target=''){
+        if ($caption=='' || $link=='') return;
+        
+        $id = crc32($link);
+        
+        if (isset($this->tpl_menus[$id])) return;
+        
+        $this->tpl_menus[$id] = array('caption'=>$caption,'link'=>$link,'icon'=>$icon,'target'=>$target, 'type'=>'normal');
+    }
+    
+    public function add_separator(){
+		$this->tpl_menus = array('type'=>'separator');
+    }
+    /**
+    * Get all menu options
+    */
+    public function menu_options(){
+    	
+    	$this->tpl_menus = EXMEventsApi::get()->run_event('exmevent_menus_options',$this->tpl_menus, $this);
+    	
+		return $this->tpl_menus;
+    }
+    
+    /**
+    * Menu Widgets
+    */
+    public function add_menu($title, $link, $icon='', $location='', $options=array()){
+        $this->menus[] = array(
+            'title'     => $title,
+            'link'      => $link,
+            'icon'      => $icon,
+            'location'  => $location,
+            'options'   => $options
+        );
+    }
+    
+    public function get_menus(){
+        return $this->menus;
+    }
+    
+    public function add_tool($title, $link, $icon='', $location=''){
+		$this->toolbar[] = array(
+			'title'		=> $title,
+			'link'		=> $link,
+			'icon'		=> $icon,
+			'location'	=> $location
+		);
+    }
+    
+    public function get_toolbar(){
+		return $this->toolbar;
+    }
+    
+}
