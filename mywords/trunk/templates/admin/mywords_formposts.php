@@ -77,3 +77,4 @@
 </div>
 <?php RMEventsApi::get()->run_event('mw_posts_form', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="xoops-token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
+<input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />

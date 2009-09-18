@@ -132,8 +132,9 @@ function savePost($state=0){
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
+		echo "$k = $v<br />";
 	}
-	
+	die();
 	/*if (!$util->validateToken()){
 		redirectMsg('posts.php?op=new', _AS_MW_ERRTOKEN, 1);
 		die();
