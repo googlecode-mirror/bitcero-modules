@@ -1,0 +1,43 @@
+<form name="frmRem" action="configs.php" method="post" style="margin:0;">
+<table class="outer" cellspacing="1" cellpadding="0">
+	<tr><th colspan="3">
+		<{$lang_newreplacement}>
+	</th></tr>
+	<tr>
+		<td class="odd">
+			<{$lang_tosearch}><br />
+			<input type="text" size="50" style="font-size: 13px; font-family:'Courier New', Courier, monospace;" name="buscar" maxlength="255" value="<{$buscar}>" />
+		</td>
+		<td class="odd">
+			<{$lang_toreplace}><br />
+			<input type="text" name="reemplazar" style="font-size: 13px; font-family:'Courier New', Courier, monospace;" size="50" maxlength="255" value="<{$reemplazar}>" />
+		</td>
+		<td class="odd" valign="bottom">
+			<input type="submit" name="sbt" value="<{$lang_button}>" />
+			<{if $lang_cancel!=''}>
+				<input type="button" name="cancel" value="<{$lang_cancel}>" onclick="history.go(-1);" />
+			<{/if}>
+			<input type="hidden" name="op" value="<{$opvalue}>" />
+		</td>
+	</tr>
+</table>
+</form><br />
+<table class="outer" width="100%" border="0" cellspacing="1" cellpadding="0">
+  <tr>
+    <th colspan="5"><{$lang_replacements}></th>
+  </tr>
+  <tr class="head" align="center">
+    <td width="50"><{$lang_id}></td>
+    <td><{$lang_tosearch}></td>
+    <td><{$lang_toreplace}></td>
+    <td><{$lang_options}></td>
+  </tr>
+  <{foreach item=rem from=$replacements}>
+  <tr class="<{cycle values="even,odd"}>">
+    <td align="center"><strong><{$rem.id}></strong></td>
+    <td><{$rem.buscar}></td>
+    <td><{$rem.reemplazar}></td>
+    <td align="center"><a href="?op=delete&amp;id=<{$rem.id}>"><{$lang_delete}></a></td>
+  </tr>
+  <{/foreach}>
+</table>

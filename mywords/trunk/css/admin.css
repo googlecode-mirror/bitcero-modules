@@ -1,0 +1,102 @@
+h1.mw_titles{
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 3px 0 3px 36px;
+}
+
+/** Forms **/
+input.mw_biginput{
+    width: 99%;
+    font-size: 1.8em;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #000;
+}
+div.mw_permacont{
+	padding: 4px 0;
+}
+div.mw_bcontent{
+	padding: 8px;
+}
+div.mw_bcontent label{
+	display: block;
+	margin-bottom: 3px;
+}
+input.mw_large, textarea.mw_large, select.mw_large{
+	width: 98%;
+	display: block;
+	margin: 3px 0 5px 0;
+}
+textare.mw_large{
+	height: 60px;
+}
+.mw_hidden{
+	display: none;
+}
+#form_options{
+	float: left;
+	padding: 0 10px 0 0;
+	width: 350px;
+}
+h3.form_titles{
+	font-size: 1.3em;
+	margin: 0 0 20px 0;
+	color: #2E2E2E;
+}
+#form_options form{
+	padding: 0 10px;
+}
+#form_options label{
+	cursor: pointer;
+}
+#form_options label span{
+	display: block;
+	margin: 20px 0 2px 0;
+}
+#form_options label em{
+	font-size: 0.85em;
+	font-style: italic;
+	color: #666666;
+	display: block;
+	margin-top: 3px;
+}
+div#form_options input[type='text'],
+div#form_options select,
+div#form_options textarea{
+	width: 95%;
+}
+
+#tableItems{
+    margin-left: 370px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 10px;
+    overflow: hidden;
+}
+
+div.mw_all_container{
+	overflow: hidden;
+	padding: 0 10px 0 10px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+span.mw_options{
+    display: block;
+    margin: 4px 0;
+    font-size: 0.9em;
+    visibility: hidden;
+}
+tr.even:hover span.mw_options,
+tr.odd:hover span.mw_options,
+div.even:hover span.mw_options,
+div.odd:hover span.mw_options{
+    visibility: visible;
+}
+
+div.rmc_pages_navigation_container{
+    float: right;
+}
+td.mw_cat_description{
+	font-size: 0.9em;
+	color: #333;
+}

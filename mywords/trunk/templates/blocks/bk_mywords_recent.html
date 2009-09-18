@@ -1,0 +1,23 @@
+<{if $block.showimage==0}>
+<ul style="margin: 0.6em; padding: 0;">
+<{foreach item=post from=$block.posts}>
+	<li style="margin-left: 0.5em; margin-bottom: 6px;"><{if $post.fecha!=''}><strong><{$post.fecha}></strong><br /><{/if}>
+		<a href="<{$post.link}>"><{$post.titulo}></a>
+		<{if $post.texto!=''}><br /><{$post.texto}><{/if}>
+	</li>
+<{/foreach}>
+</ul>
+<{else}>
+<table class="outer" cellspacing="0">
+<{foreach item=post from=$block.posts}>
+	<tr class="<{cycle values="even,odd"}>">
+		<td valign="top"><img src="<{$post.image}>" width="<{$block.size}>" height="<{$block.size}>" alt="" /></td>
+		<td valign="top">
+			<a href="<{$post.link}>"><{$post.titulo}></a><br />
+			<{if $post.texto!=''}><{$post.texto}><br /><{/if}>
+			<{if $post.fecha!=''}><strong><{$post.fecha}></strong><br /><{/if}>
+		</td>
+	</tr>
+<{/foreach}>
+</table>
+<{/if}>

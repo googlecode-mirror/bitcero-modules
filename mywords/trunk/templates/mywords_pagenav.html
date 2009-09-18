@@ -1,0 +1,15 @@
+<div class="nppages">
+	<{foreach item=pag from=$pages}>
+		<{if $pag.id=='anterior'}>
+			<a href="<{$pag.link}>">&laquo; <{$lang_prev}></a>
+		<{elseif $pag.id=='siguiente'}>
+			<a href="<{$pag.link}>"><{$lang_next}> &raquo;</a>
+		<{else}>
+			<{if $pag.id==$pactual}>
+				<span class="nppageactual"><{$pag.id}></span>
+			<{else}>
+			<a href="<{$pag.link}>"><{$pag.id}></a>
+			<{/if}>
+		<{/if}>
+	<{/foreach}>
+</div>

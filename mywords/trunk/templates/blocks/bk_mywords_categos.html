@@ -1,0 +1,5 @@
+<{foreach item=cat from=$block.categos}>
+	<div class="<{cycle values="even,odd"}>">
+		<a href="<{$cat.link}>" title="<{$cat.nombre}>"><{$cat.nombre}></a> (<strong><{$cat.numposts}></strong>)
+	</div>
+<{/foreach}>

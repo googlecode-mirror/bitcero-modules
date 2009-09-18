@@ -1,0 +1,9 @@
+<div class="npitem">
+	<h2><a href="<{$post.link}>" title="<{$post.lang_permalink}>"><{$post.titulo}></a></h2>
+	<{if $post.categos!=''}><div class="categos"><{$post.categos}></div><{/if}>
+	<div class="text">
+		<{$post.text}>
+	</div>
+	<{if $post.continue!=''}><a href="<{$post.link}>"><{$post.continue}></a><{/if}>
+	<p class="npfoot"><{if $post.publicado!=''}><span class="npauthor"><{$post.publicado}></span><{/if}><{if $post.comments!=''}><strong><a href="<{$post.link}>#comments" title="<{$post.lang_comment}>"><{$post.comments}></a></strong><{/if}></p>
+</div>
