@@ -84,7 +84,7 @@ class RMTemplate
     public function footer(){
         global $xoopsModule, $rmc_config, $xoopsConfig, $xoopsModuleConfig;
 		$content = ob_get_clean();
-		
+		ob_start();
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
 		if (!file_exists(RMCPATH.'/templates/'.$theme.'/admin_gui.php')){
@@ -103,6 +103,11 @@ class RMTemplate
         }
 		
 		include_once RMCPATH.'/templates/'.$theme.'/admin_gui.php';
+		$output = ob_get_clean();
+		
+		$output = RMEventsApi::get()->run_event('rmevent_admin_output', $output);
+		
+		echo $output;
     }
     
     /**

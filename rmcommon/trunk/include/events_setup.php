@@ -18,6 +18,7 @@ $rmc_events = array(
     'rmcevent_get_emotions',
     'rmcevent_clean_url',
     'rmcevent_get_replace_patterns',
-    'rmcevent_text_todisplay'
+    'rmcevent_text_todisplay',
+    'rmevent_admin_output'
 );
 
