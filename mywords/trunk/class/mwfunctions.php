@@ -106,8 +106,41 @@ class MWFunctions
         
         if ($post->getVar('title','n')=='') return false;
         
+        // Determines the pubdate
+        if ($post->getVar('pubdate')<=0){
+        	
+			$day = date('j', $post->getVar('schedule'));
+			$month = date('n', $post->getVar('schedule'));
+			$year = $day = date('Y', $post->getVar('schedule'));
+			
+			$bdate = mktime(0, 0, 0, $month, $day, $year);
+			$tdate = mktime(23, 59, 59, $month, $day, $year);
+			
+        } else {
+			
+			$day = date('j', $post->getVar('pubdate'));
+			$month = date('n', $post->getVar('pubdate'));
+			$year = $day = date('Y', $post->getVar('pubdate'));
+			
+			$bdate = mktime(0, 0, 0, $month, $day, $year);
+			$tdate = mktime(23, 59, 59, $month, $day, $year);
+			
+        }
+        
         $db = Database::getInstance();
-        //$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE pubdate='".
+        $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE (pubdate>=$bdate && pubdate<=$tdate) AND 
+        		(title=='".$post->getVar('title','n')."' OR shortname='".$post->getVar('shortname','n')."')";
+        
+        if ($post->isNew()){
+			$sql .= " AND id_post<>".$post->id();
+        }
+        
+        list($num) = $db->fetchRow($db->query($sql));
+        if ($num>0){
+			return true;
+        }
+        
+        return false;
         
     }
     

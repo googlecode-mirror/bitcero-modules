@@ -98,14 +98,19 @@ if ($visibility=='password' && $vis_password==''){
 $time = explode("-", $schedule);
 $schedule = mktime($time[3], $time[4], 0, $time[0], $time[1], $time[2]);
 if ($schedule<=time())
-    $schedule = time();
+    $schedule = 0;
 
-// Check if already exists other post with same title for this date
-
+$author = !isset($author) || $author<=0 ? $xoopsUser->uid() : $author;
 
 // Add Data
 $post->setVar('title', $title);
 $post->setVar('shortname', $title);
+$post->setVar('content', $content);
+$post->setVar('status', $status);
+$post->setVar('visibility', $visibility);
+$post->setVar('schedule', $content);
+$post->setVar('password', $password);
+$post->setVar('author', $author);
 
 die();
 if ($post->save()){

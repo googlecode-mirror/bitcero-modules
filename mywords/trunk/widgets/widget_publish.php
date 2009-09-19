@@ -13,9 +13,14 @@
 * @return array
 */
 function mw_widget_publish(){
+	global $xoopsUser;
+	
 	RMTemplate::get()->add_style('publish_widget.css','mywords');
+	RMTemplate::get()->add_style('forms.css','rmcommon');
+	RMTemplate::get()->add_style('jquery.css','rmcommon');
 	RMTemplate::get()->add_script('../include/js/scripts.php?file=posts.js');
 	RMTemplate::get()->add_script('../include/js/mktime.js');
+	RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 	$widget['title'] = __('Publish','admin_mywords');
 	$widget['icon']	 = '';
 	ob_start();
@@ -66,7 +71,7 @@ function mw_widget_publish(){
 </div>
 <!-- /Visibilidad -->
 <!-- Schedule -->
-<div class="publish_options no_border">
+<div class="publish_options">
 <?php _e('Publish','admin_mywords'); ?> <strong id="schedule-caption"><?php _e('Inmediatly','admin_mywords'); ?></strong> &nbsp; <a href="#" class="edit-schedule"><?php _e('Edit','admin_mywords'); ?></a>
     <div class="schedule-options" style="display: none;">
         <?php
@@ -107,10 +112,21 @@ function mw_widget_publish(){
         <input type="hidden" name="schedule" id="schedule" value="<?php _e("$day-$month-$year-$hour-$minute") ?>" />
     </div>
 </div>
+<!-- /Shedule -->
+<div class="publish_options no_border">
+<?php _e('Author:','admin_mywords'); ?>
+<?php 
+	$user = new RMFormUser('', 'author', 0, array($xoopsUser->uid()));
+	echo $user->render();
+?>
+</div>
 <div class="widget_button">
+
+
 <input type="submit" value="<?php _e('Publish','admin_mywords'); ?>" class="button default" id="publish-submit" />
 </div>
-<!-- /Shedule -->
+
+
 </form>
 </div>
 <?php
