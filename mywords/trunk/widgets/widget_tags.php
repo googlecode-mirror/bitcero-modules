@@ -22,7 +22,7 @@ function mw_widget_addtags(){
 <div class="rmc_widget_content_reduced">
 <form id="mw-post-tags-form">
 <div class="tags_box">
-<input type="text" name="tags" id="tags" class="formInput wtLeftInput" />
+<input type="text" name="tagsm" id="tags-m" class="formInput wtLeftInput" />
 <input type="button" name="tags-button" id="tags-button" class="button" value="<?php _e('+ Add','admin_mywords'); ?>" /><br />
 <span class="descriptions"><em><?php _e('Separate multiple tags with commas','admin_mywords'); ?></em></span>
 </div>

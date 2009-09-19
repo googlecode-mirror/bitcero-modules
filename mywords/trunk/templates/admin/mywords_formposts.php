@@ -1,8 +1,11 @@
+<div id="mw-messages-post" class="mw_messages_post">
+
+</div>
 <form name="mwposts" id="mw-form-posts" action="posts.php" method="post">
 <h1 class="rmc_titles mw_titles" style="background-image: url(../images/post32.png);"><?php $edit ? _e('Edit Post','admin_mywords') : _e('Create Post','admin_mywords'); ?></h1>
 <label class="error" for ="post-title" style="display: none;"><?php _e('You must specify the title for this post!','admin_mywords'); ?></label>
 <input type="text" name="title" id="post-title" class="mw_biginput required" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
-<div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>">
+<div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>" id="mw-perma-link">
 	<?php if($edit): ?>
 		<?php echo $post->permalink(); ?>
 	<?php else: ?>

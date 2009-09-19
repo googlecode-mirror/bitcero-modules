@@ -166,7 +166,7 @@ $(document).ready( function($) {
     
     // Tags
     $("input#tags-button").click(function(){
-		tag = $("input#tags").val();
+		tag = $("input#tags-m").val();
 		if (tag=='') return;
 		tags = tag.split(',');
 		
@@ -191,9 +191,9 @@ $(document).ready( function($) {
 		for (j=0;j<tags.length;j++){
             if (tags[j]=='') continue;
             total_tags++;
-			$("div#tags-container").append("<label><input type='checkbox' name='tags[]' checked='checked' /> "+tags[j]+"</label>");
+			$("div#tags-container").append("<label><input type='checkbox' name='tags[]' checked='checked' value='"+tags[j]+"' /> "+tags[j]+"</label>");
 		}
-		$("input#tags").val('');
+		$("input#tags-m").val('');
         
         if (total_tags>0 && !tip_tag_visible){
 			$("div#tags-container span.tip_legends").show();
@@ -310,6 +310,10 @@ $(document).ready( function($) {
     
     $("input#publish-submit").click(function(){
         
+        $('div#mw-messages-post').slideUp('slow',function(){
+            $('div#mw-messages-post').html('');
+        });
+        
         if($("input#post-title").val()==''){
             $("label[for='post-title']").slideDown();
             return false;
@@ -332,8 +336,21 @@ $(document).ready( function($) {
         
         // Send Post data
         $.post('ajax/ax-posts.php', params, function(data){
-            alert(data);
-        },'html');
+            if(data['error']!=undefined && data['error']!=''){
+                $('div#mw-messages-post').addClass('messages_error');
+                $('div#mw-messages-post').html(data['error']);
+                $('div#mw-messages-post').slideDown();
+                if(data['token'])
+                    $('#XOOPS_TOKEN_REQUEST').val(data['token']);
+                return;
+            }
+            $('div#mw-messages-post').html(data['message']);
+            $('div#mw-messages-post').slideDown();
+            $('#XOOPS_TOKEN_REQUEST').val(data['token']);
+            $("#mw-perma-link").html(data['link']);
+            $("#mw-perma-link").removeClass('mw_permainfo');
+            
+        },'json');
         
         return false;
         

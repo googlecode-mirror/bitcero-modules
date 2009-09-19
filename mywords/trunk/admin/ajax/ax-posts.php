@@ -77,7 +77,7 @@ if (!isset($shortname) || $shortname==''){
 } else {
     $shortname = TextCleaner::getInstance()->sweetstring($shortname);
 }
-    
+
 // Check content
 if ($content==''){
     return_error(__('Content for this post has not been provided!','admin_mywords'), true);
@@ -96,7 +96,7 @@ if ($visibility=='password' && $vis_password==''){
 }
     
 $time = explode("-", $schedule);
-$schedule = mktime($time[3], $time[4], 0, $time[0], $time[1], $time[2]);
+$schedule = mktime($time[3], $time[4], 0, $time[1], $time[0], $time[2]);
 if ($schedule<=time())
     $schedule = 0;
 
@@ -105,11 +105,11 @@ $authorname = !isset($author) || $author<=0 ? $xoopsUser->uname() : MWFunctions:
 
 // Add Data
 $post->setVar('title', $title);
-$post->setVar('shortname', $title);
+$post->setVar('shortname', $shortname);
 $post->setVar('content', $content);
 $post->setVar('status', $status);
 $post->setVar('visibility', $visibility);
-$post->setVar('schedule', $content);
+$post->setVar('schedule', $schedule);
 $post->setVar('password', $password);
 $post->setVar('author', $author);
 $post->setVar('comstatus', isset($comstatus) ? $comstatus : 1);
@@ -127,9 +127,27 @@ if (MWFunctions::post_exists($post)){
     die();
 }
 
+// Add categories
+$post->add_categories($categories);
+
+// Add tags
+$post->add_tags($tags);
+
+foreach($meta as $data){
+    $post->add_meta($data['key'], $data['value']);
+}
+
+
 if ($post->save()){
-    $xoopsUser->incrementPost();
-    redirectMsg($state==0 ? 'posts.php?op=edit&post='.$post->getID() : 'posts.php', _AS_MW_DBOK, 0);
+    if (!$edit) $xoopsUser->incrementPost();
+    $rtn = array(
+        'message' => $edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'),
+        'token' => $xoopsSecurity->createToken(),
+        'link' => '<strong>'.__('Permalink:','admin_mywords').'</strong> '.$post->permalink()
+    );
+    echo json_encode($rtn);
+    die();
 } else {
-    redirectMsg('posts.php?op=new', _AS_MW_DBERROR . "<br />" . $post->errors(), 1);
+    return_error(__('Errors happened while trying to save this post.','admin_mywords').'<br />'.$post->errors(), true);
+    die();
 }

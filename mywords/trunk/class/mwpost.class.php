@@ -17,13 +17,13 @@ class MWPost extends RMObject
 	private $categos = array();
 	private $lcats = array();
 	/**
-	 * Inidica si continua el texto
-	 */
-	private $homenext = false;
-	/**
 	* Meta data container
 	*/
 	private $metas = array();
+    /**
+    * Tags container
+    */
+    private $tags = array();
 	/**
 	 * Constructor de la clase
 	 * Carga los valores de un post específico o prepara
@@ -122,7 +122,7 @@ class MWPost extends RMObject
 		$tbl2 = $this->db->prefix("mw_catpost");
 		
 		if (empty($this->categos)){	
-			$result = $this->db->query("SELECT a.* FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->getID()."' AND a.id_cat=b.cat GROUP BY b.cat");
+			$result = $this->db->query("SELECT a.* FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
 			$rtn = array();
 			while ($row = $this->db->fetchArray($result)){
 				$this->lcats[] = $row;
@@ -141,7 +141,7 @@ class MWPost extends RMObject
 	 * @param int|array Category ID or array with categories ID
 	 */
 	public function add_categories($cat){
-		if (empty($this->categos)) $this->categos();
+		if (empty($this->categos)) $this->get_categos();
         
         if (!is_array($cat)) $cat = array($cat);
         
@@ -171,15 +171,26 @@ class MWPost extends RMObject
 		}
 		return $rtn;
 	}
+    
+    /**
+    * Add Tags
+    * @param array|string Tags to add
+    */
+    public function add_tags($tags){
+        $tags = MWFunctions::add_tags($tags);
+
+        $this->tags = $tags;
+    }
+    
 	/**
 	 * Obtiene el enlace permanente al artículo
 	 */
 	public function permalink(){
 		global $mc;
-		$day = date('d', $this->getDate());
-		$month = date('m', $this->getDate());
-		$year = date('Y', $this->getDate());
-		$rtn = mw_get_url();
+		$day = date('d', $this->getVar('pubdate'));
+		$month = date('m', $this->getVar('pubdate'));
+		$year = date('Y', $this->getVar('pubdate'));
+		$rtn = MWFunctions::get_url();
 		$rtn .= $mc['permalinks']==1 ? '?post='.$this->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$this->getVar('shortname','n')."/" : "post/".$this->id());
 		return $rtn;
 	}
@@ -250,8 +261,9 @@ class MWPost extends RMObject
 		
 		if (!$this->saveToTable()) return false;
 		$this->setVar('id_post', $this->db->getInsertId());
-		$this->saveCategos();
-		$this->saveMetas();
+		$this->save_categories();
+		$this->save_metas();
+        $this->save_tags();
 		return true;
 	}
 	
@@ -259,12 +271,12 @@ class MWPost extends RMObject
 	* Save existing meta
 	*/
 	private function save_metas(){
-		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->getID()."'");
+		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->id()."'");
 		if (empty($this->metas)) return true;
 		$sql = "INSERT INTO ".$this->db->prefix("mw_meta")." (`name`,`value`,`post`) VALUES ";
 		$values = '';
 		foreach ($this->metas as $name => $value){
-			$values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->getID()."')";
+			$values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->id()."')";
 		}
 		
 		if ($this->db->queryF($sql.$values)){
@@ -279,10 +291,10 @@ class MWPost extends RMObject
 	 */
 	public function save_categories(){
 		if (empty($this->categos)) return true;
-		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->getID()."'");
+		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->id()."'");
 		$sql = "INSERT INTO ".$this->db->prefix("mw_catpost")." (`post`,`cat`) VALUES ";
 		foreach ($this->categos as $k){
-			$sql .= "('".$this->getID()."','$k'), ";
+			$sql .= "('".$this->id()."','$k'), ";
 		}
 		$sql = substr($sql, 0, strlen($sql) - 2);
 		if ($this->db->queryF($sql)){
@@ -292,6 +304,29 @@ class MWPost extends RMObject
 			return false;
 		}
 	}
+    
+    /**
+    * Save tags
+    * @return bool
+    */
+    public function save_tags(){
+        if (!$this->isNew()){
+            $this->db->queryF("DELETE FROM ".$this->db->prefix("mw_tagspost")." WHERE post='".$this->id()."'");
+        }
+        $sql = "INSERT INTO ".$this->db->prefix("mw_tagspost")." (`post`,`tag`) VALUES ";
+        $sa = '';
+        foreach ($this->tags as $tag){
+            $sa .= $sa=='' ? "('$tag','".$this->id()."')" : ",('$tag','".$this->id()."')";
+        }
+
+        if ($this->db->queryF($sql.$sa)){
+            return true;
+        } else {
+            $this->addError($this->db->error());
+            return false;
+        }
+    
+    }
 	/**
 	 * Elimina un artículo y todos sus comentarios de
 	 * la base de datos.

@@ -106,7 +106,7 @@ class MWFunctions
         
         if ($post->getVar('title','n')=='') return false;
         
-        // Determines the pubdate
+        // the pubdate
         if ($post->getVar('pubdate')<=0){
         	
 			$day = date('j', $post->getVar('schedule'));
@@ -120,22 +120,23 @@ class MWFunctions
 			
 			$day = date('j', $post->getVar('pubdate'));
 			$month = date('n', $post->getVar('pubdate'));
-			$year = $day = date('Y', $post->getVar('pubdate'));
+			$year = date('Y', $post->getVar('pubdate'));
 			
 			$bdate = mktime(0, 0, 0, $month, $day, $year);
-			$tdate = mktime(23, 59, 59, $month, $day, $year);
+			$tdate = $bdate + 86400;
 			
         }
         
         $db = Database::getInstance();
-        $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE (pubdate>=$bdate && pubdate<=$tdate) AND 
-        		(title=='".$post->getVar('title','n')."' OR shortname='".$post->getVar('shortname','n')."')";
+        $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE (pubdate>=$bdate AND pubdate<=$tdate) AND 
+        		(title='".$post->getVar('title','n')."' OR shortname='".$post->getVar('shortname','n')."')";
         
-        if ($post->isNew()){
+        if (!$post->isNew()){
 			$sql .= " AND id_post<>".$post->id();
         }
-        
+
         list($num) = $db->fetchRow($db->query($sql));
+        
         if ($num>0){
 			return true;
         }
@@ -218,6 +219,69 @@ class MWFunctions
         
         list($uname) = $db->fetchRow($result);
         return $uname;
+        
+    }
+    
+    /**
+    * Add tags to database
+    * @param string|array Tags names
+    * @return array Tags saved ID
+    */
+    public function add_tags($tags){
+        
+        if (!is_array($tags))
+            $tags = array($tags);
+        
+        if(empty($tags)) return;
+        
+        $db = Database::getInstance();
+        
+        $sql = "SELECT id_tag, shortname FROM ".$db->prefix('mw_tags')." WHERE ";
+        $sa = '';
+        foreach($tags as $tag){
+            $sa .= $sa=='' ? "shortname='".TextCleaner::sweetstring($tag)."'" : " OR shortname='".TextCleaner::sweetstring($tag)."'";
+        }
+
+        $result = $db->query($sql.$sa);
+        $existing = array();
+        $ids = array();
+        
+        while($row = $db->fetchArray($result)){
+            $existing[$row['shortname']] = $row['id_tag'];
+            $ids[] = $row['id_tag'];
+        }
+
+        $sa = '';
+        
+        foreach ($tags as $tag){
+            
+            $short = TextCleaner::sweetstring($tag);
+            
+            if (isset($existing[$short])) continue;
+            $sql = "INSERT INTO ".$db->prefix("mw_tags")." (`tag`,`shortname`,`posts`) VALUES ('$tag','$short','0')";
+            if ($db->queryF($sql)){
+                $ids[] = $db->getInsertId();
+            }
+            
+        }
+
+        return $ids;
+        
+    }
+    
+    /**
+    * Get correct base url for links
+    */
+    function get_url(){
+        global $xoopsModuleConfig;
+        
+        if ($xoopsModuleConfig['permalinks']>1){
+            
+            return XOOPS_URL.rtrim($xoopsModuleConfig['basepath'], "/").'/';
+            
+        } else {
+            return XOOPS_URL.'/modules/mywords/';
+        }
         
     }
 	

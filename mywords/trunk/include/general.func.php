@@ -222,18 +222,4 @@ function mw_get_bookmarks(){
 	return $socials;
 }
 
-/**
-* Get correct base url for links
-*/
-function mw_get_url(){
-    global $xoopsModuleConfig;
-    
-    if ($xoopsModuleConfig['permalinks']>1){
-        
-        return XOOPS_URL.rtrim($xoopsModuleConfig['basepath'], "/").'/';
-        
-    } else {
-        return XOOPS_URL.'/modules/mywords/';
-    }
-    
-}
+

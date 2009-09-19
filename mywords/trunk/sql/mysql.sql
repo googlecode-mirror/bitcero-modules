@@ -91,3 +91,9 @@ CREATE TABLE `mw_tags` (
 `posts` INT(11) NOT NULL,
 INDEX ( `shortname` )
 ) ENGINE = MYISAM ;
+
+CREATE TABLE `mw_tagspost` (
+`post` INT NOT NULL ,
+`tag` INT NOT NULL ,
+INDEX ( `post` , `tag` )
+) ENGINE = MYISAM ;
