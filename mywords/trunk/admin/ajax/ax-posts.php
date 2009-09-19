@@ -101,6 +101,7 @@ if ($schedule<=time())
     $schedule = 0;
 
 $author = !isset($author) || $author<=0 ? $xoopsUser->uid() : $author;
+$authorname = !isset($author) || $author<=0 ? $xoopsUser->uname() : MWFunctions::author_name($author);
 
 // Add Data
 $post->setVar('title', $title);
@@ -111,8 +112,21 @@ $post->setVar('visibility', $visibility);
 $post->setVar('schedule', $content);
 $post->setVar('password', $password);
 $post->setVar('author', $author);
+$post->setVar('comstatus', isset($comstatus) ? $comstatus : 1);
+$post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 1);
+$post->setVar('authorname', $authorname);
 
-die();
+if ($schedule<=time()){
+    $post->setVar('pubdate', time());
+} else {
+    $post->setVar('pubdate', 0);
+}
+
+if (MWFunctions::post_exists($post)){
+    return_error(__('There is already another post with same title for same date','admin_mywords'), $xoopsSecurity->createToken());
+    die();
+}
+
 if ($post->save()){
     $xoopsUser->incrementPost();
     redirectMsg($state==0 ? 'posts.php?op=edit&post='.$post->getID() : 'posts.php', _AS_MW_DBOK, 0);

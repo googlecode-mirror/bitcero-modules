@@ -76,6 +76,22 @@
 		<label><?php _e('Custom fields can be used to add extra metadata to a post that you can use in your theme.','admin_mywords'); ?></label>
 	</div>
 </div>
+
+<div class="outer">
+    <div class="th"><?php _e('Comments and Trackbacks','admin_mywords'); ?></div>
+    <div class="mw_bcontent">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr class="outer">
+                <td width="50%">
+                    <label><input type="checkbox" name="comstatus" value="1" /> <?php _e('Enable comments for this post','admin_mywords'); ?></label>
+                </td>
+                <td>
+                    <label><input type="checkbox" name="pingstatus" value="1" /> <?php _e('Allow trackbacks for this post','admin_mywords'); ?></label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 <?php RMEventsApi::get()->run_event('mw_posts_form', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="XOOPS_TOKEN_REQUEST" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />

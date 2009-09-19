@@ -196,12 +196,28 @@ class MWFunctions
     */
     public function default_category_id(){
         
-        $db = EXMDatabase::get();
+        $db = Database::getInstance();
         $result = $db->query("SELECT id_cat FROM ".$db->prefix("mw_categories")." WHERE id_cat='1'");
         if ($db->getRowsNum($result)<=0) return false;
         
         list($id) = $db->fetchRow($result);
         return $id;
+        
+    }
+    
+    /**
+    * Get author name
+    * @param int Author (XoopsUser) ID
+    * @return string
+    */
+    public function author_name($uid){
+        
+        $db = Database::getInstance();
+        $result = $db->query("SELECT uname FROM ".$db->prefix("users")." WHERE uid='$uid'");
+        if ($db->getRowsNum($result)<=0) return false;
+        
+        list($uname) = $db->fetchRow($result);
+        return $uname;
         
     }
 	
