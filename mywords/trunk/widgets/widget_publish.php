@@ -21,6 +21,7 @@ function mw_widget_publish(){
 	ob_start();
 ?>
 <div class="rmc_widget_content_reduced publish_container">
+<form id="mw-post-publish-form">
 <div style="overflow: hidden;">
 <div class="save_how"><input type="submit" id="saveas" name="saveas" value="<?php _e('Save as draft','adin_mywords'); ?>" class="button bold" /></div>
 <div class="preview_button"><input type="button" id="saveas" value="<?php _e('Preview','admin_mywords'); ?>" class="button" /></div>
@@ -43,22 +44,22 @@ function mw_widget_publish(){
 <div class="publish_options">
 <?php _e('Visibility:','admin_mywords'); ?> <strong id="visibility-caption"><?php _e('Public','admin_mywords'); ?></strong> &nbsp; <a href="#" id="visibility-edit"><?php _e('Edit','admin_mywords'); ?></a>
 <?php
-    if ($post==null){
+    if (!isset($post)){
         $visibility = 'public';
     } else {
         $visibility = $post->status()=='private' ? 'private' : ($post->status()=='publish' && $post->password()!='' ? 'password' : 'public');
     }
 ?>
     <div id="visibility-options">
-        <input type="radio" name="visibility" value="public" id="visibility-public" checked="<?php _e($visibility=='public' ? 'checked' : '') ?>" /> <label for="visibility-public"><?php _e('Public','admin_mywords'); ?></label><br />
-        <input type="radio" name="visibility" value="password" id="visibility-password" checked="<?php _e($visibility=='password' ? 'checked' : '') ?>" /> <label for="visibility-password"><?php _e('Password protected','admin_mywords'); ?></label><br />
+        <input type="radio" name="visibility" value="public" id="visibility-public"<?php echo $visibility=='public' ? ' checked="checked"' : ''; ?> /> <label for="visibility-public"><?php _e('Public','admin_mywords'); ?></label><br />
+        <input type="radio" name="visibility" value="password" id="visibility-password"<?php echo $visibility=='password' ? ' checked="checked"' : ''; ?> /> <label for="visibility-password"><?php _e('Password protected','admin_mywords'); ?></label><br />
         <span id="vis-password-text" style="<?php _e($visibility=='password' ? '' : 'display: none') ?>">
             <label>
             <?php _e('Password:','admin_mywords') ?>
-            <input type="text" name="vis-password" id="vis-password" value="" class="options_input" checked="<?php _e($visibility=='private' ? 'checked' : '') ?>" />
+            <input type="text" name="vis_password" id="vis-password" value="" class="options_input" />
             </label>
         <br /></span>
-        <input type="radio" name="visibility" value="private" id="visibility-private" /> <label for="visibility-private"><?php _e('Private','admin_mywords') ?></label><br /><br />
+        <input type="radio" name="visibility" value="private" id="visibility-private"<?php echo $visibility=='private' ? ' checked="checked"' : ''; ?> /> <label for="visibility-private"><?php _e('Private','admin_mywords') ?></label><br /><br />
         <input type="button" name="vis-button" id="vis-button" value="<?php _e('Apply','admin_mywords') ?>" class="button" />
         <a href="#" id="vis-cancel"><?php _e('Cancel','admin_mywords') ?></a>
     </div>
@@ -92,15 +93,15 @@ function mw_widget_publish(){
             	__('admin_mywords')
             );
         ?>
-        <input type="text" name="schedule-day" id="schedule-day" size="2" maxlength="2" value="<?php _e($day) ?>" />
-        <select name="schedule-month" id="schedule-month">
+        <input type="text" name="schedule_day" id="schedule-day" size="2" maxlength="2" value="<?php _e($day) ?>" />
+        <select name="schedule_month" id="schedule-month">
             <?php for($i=1;$i<=12;$i++){ ?>
                 <option value="<?php _e($i) ?>" "<?php if ($month==$i) _e('selected="selected"') ?>"><?php _e($months[$i-1]) ?></option>
             <?php } ?>
         </select>
-        <input type="text" name="schedule-year" id="schedule-year" size="2" maxlength="4" value="<?php _e($year) ?>" /> @
-        <input type="text" name="schedule-hour" id="schedule-hour" size="2" maxlength="2" value="<?php _e($hour) ?>" /> :
-        <input type="text" name="schedule-minute" id="schedule-minute" size="2" maxlength="2" value="<?php _e($minute) ?>" /><br /><br />
+        <input type="text" name="schedule_year" id="schedule-year" size="2" maxlength="4" value="<?php _e($year) ?>" /> @
+        <input type="text" name="schedule_hour" id="schedule-hour" size="2" maxlength="2" value="<?php _e($hour) ?>" /> :
+        <input type="text" name="schedule_minute" id="schedule-minute" size="2" maxlength="2" value="<?php _e($minute) ?>" /><br /><br />
         <input type="button" class="button" name="schedule-ok" id="schedule-ok" value="<?php _e('Apply','admin_mywords') ?>" />
         <a href="#" class="schedule-cancel"><?php _e('Cancel','admin_mywords') ?></a>
         <input type="hidden" name="schedule" id="schedule" value="<?php _e("$day-$month-$year-$hour-$minute") ?>" />
@@ -110,7 +111,7 @@ function mw_widget_publish(){
 <input type="submit" value="<?php _e('Publish','admin_mywords'); ?>" class="button default" id="publish-submit" />
 </div>
 <!-- /Shedule -->
-<input type="hidden" name="action" id="action" value="save" />
+</form>
 </div>
 <?php
 	$widget['content'] = ob_get_clean();

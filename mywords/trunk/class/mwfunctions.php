@@ -98,6 +98,20 @@ class MWFunctions
     }
     
     /**
+    * Check if given post already exists
+    * @param object MWPost object
+    * @return bool
+    */
+    public function post_exists(MWPost $post){
+        
+        if ($post->getVar('title','n')=='') return false;
+        
+        $db = Database::getInstance();
+        //$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE pubdate='".
+        
+    }
+    
+    /**
     * Get the tags list based on given parameters
     * @param string SQL Select
     * @param string SQL Where
@@ -140,6 +154,21 @@ class MWFunctions
         if ($ret<0.85) return 0.85;
         
         return number_format($ret, 2);
+        
+    }
+    
+    /**
+    * @desc Devuelve la categoría "uncategorized"
+    * @return array
+    */
+    public function default_category_id(){
+        
+        $db = EXMDatabase::get();
+        $result = $db->query("SELECT id_cat FROM ".$db->prefix("mw_categories")." WHERE id_cat='1'");
+        if ($db->getRowsNum($result)<=0) return false;
+        
+        list($id) = $db->fetchRow($result);
+        return $id;
         
     }
 	

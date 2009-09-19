@@ -119,110 +119,15 @@ function newForm($edit = 0){
     
     // Get current metas
     $meta_names = MWFunctions::get()->get_metas();
+    //RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
+    //RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
+    //RMTemplate::get()->add_head('<script type="text/javascript">$("form#mw-form-posts").validate();</script>');
     
 	include '../templates/admin/mywords_formposts.php';
 	
 	xoops_cp_footer();
 }
-/**
- * Esta función permite guardar y publicar un envío
- */
-function savePost($state=0){
-	global $db, $util, $xoopsUser, $myts, $mc;
-	
-	foreach ($_POST as $k => $v){
-		$$k = $v;
-		echo "$k = $v<br />";
-	}
-	die();
-	/*if (!$util->validateToken()){
-		redirectMsg('posts.php?op=new', _AS_MW_ERRTOKEN, 1);
-		die();
-	}*/
-	
-	if ($titulo==''){
-		redirectMsg('posts.php?op=new', _AS_MW_ERRTITLE, 1);
-		die();
-	}
-	$titulo = $myts->addSlashes($titulo);
-	
-	if ($texto==''){
-		redirectMsg('posts.php?op=new', _AS_MW_ERRTEXT, 1);
-		die();
-	}
-	
-	if (empty($categos)){
-		redirectMsg('posts.php?op=new', _AS_MW_ERRCATS, 1);
-		die();
-	}
-	
-	if (!is_dir(XOOPS_ROOT_PATH.'/uploads/mywords')){
-        mkdir(XOOPS_ROOT_PATH.'/uploads/mywords');
-        chmod(XOOPS_ROOT_PATH.'/uploads/mywords',0777);
-    }
-	$up = new RMUploader(true);
-	$folder = XOOPS_ROOT_PATH.'/uploads/mywords';
-	$filename = '';
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $mc['filesize'] * 1024);
-	
-	if ($up->fetchMedia('blockimg')){
-		if ($up->upload()){
-			$filename = $up->getSavedFileName();
-			$fullpath = $up->getSavedDestination();
-			
-			$ext = substr($filename, strlen($filename) - 3);
-			$redim = new RMImageControl($fullpath, $fullpath);
-			$redim->setTargetFile(XOOPS_ROOT_PATH.'/uploads/mywords/'.$filename);
-			$redim->resizeAndCrop($mc['imgsize'][0],$mc['imgsize'][1]);
-			$imgfile = $filename;
-		} else {
-			$imgfile = '';
-		}
-	} else {
-		$imgfile = '';
-	}
-	
-	#Guardamos los datos del Post
-	$post = new MWPost();
-	$post->setTitle($titulo);
-	$post->setFriendTitle($util->sweetstring($titulo));
-	$post->setAuthor($xoopsUser->uid());
-	$post->setAuthorName($xoopsUser->uname());
-	$post->setDate(time());
-	$post->setModDate(time());
-	$post->setText($texto);
-	$post->setComments(0);
-	$post->addToCategos($categos);
-	$post->setAllowPings(1);
-	$post->setExcerpt(isset($excerpt) ? $excerpt : '');
-	$post->setApproved(1);
-	$post->setBlockImage($imgfile);
-	if ($state==0 || $state==1){
-		$post->setStatus(0);
-	} else {
-		$post->setStatus(1);
-	}
-	$post->setTrackBacks($trackbacks);
-	$post->setHTML(isset($dohtml) ? 1 : 0);
-	$post->setXCode(isset($doxcode) ? 1 : 0);
-	$post->setBR(isset($dobr) ? 1 : 0);
-	$post->setDoImage(isset($doimage) ? 1 : 0);
-	$post->setSmiley(isset($dosmilye) ? 1 : 0);
-	
-	// Add Metas
-	foreach($meta_name as $k => $v){
-		$post->add_meta($v, $meta_value[$k]);
-	}
-	
-	if ($post->save()){
-		$xoopsUser->incrementPost();
-		redirectMsg($state==0 ? 'posts.php?op=edit&post='.$post->getID() : 'posts.php', _AS_MW_DBOK, 0);
-	} else {
-		redirectMsg('posts.php?op=new', _AS_MW_DBERROR . "<br />" . $post->errors(), 1);
-	}
-	
-	
-}
+
 /**
  * Almacena la información de un artículo editado
  */
@@ -426,7 +331,7 @@ switch ($op){
 		savePost(0);
 		break;
 	case 'save':
-		savePost(1);
+		savePost(0);
 		break;
 	case 'publish':
 		savePost(2);

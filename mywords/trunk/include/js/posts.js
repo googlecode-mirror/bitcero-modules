@@ -280,13 +280,23 @@ $(document).ready( function($) {
 		
 		if (exit) return;
 		
-		var count = $("table#metas-container tr").length;
+        var count = 0;
+        $("table#metas-container input").each(function(){
+            id = $(this).attr("id").substring(0, 8);
+            if (id=='meta-key'){
+                num = $(this).attr("id").replace("meta-key-","");
+                if (count <= num)
+                    count = num;
+            }
+        });
+        
+        count++;
 		
 		$("table#metas-container").show();
 		var html = '<tr class="even">';
-		html += '<td valign="top"><input type="text" name="meta[][key]" id="meta[][key]" value="'+name+'" class="mw_large" style="width: 95%;" />';
+		html += '<td valign="top"><input type="text" name="meta['+count+'][key]" id="meta-key-'+count+'" value="'+name+'" class="mw_large" style="width: 95%;" />';
 		html += '<a href="javascript:;" onclick="remove_meta($(this));"><?php _e('Remove','admin_mywords'); ?></td>';
-		html += '<td><textarea name="meta[][value]" id="meta[][value]" class="mw_large">'+value+'</textarea></td></tr>';
+		html += '<td><textarea name="meta['+count+'][value]" id="meta['+count+'][value]" class="mw_large">'+value+'</textarea></td></tr>';
 		$("table#metas-container").append(html);
 		
 		$("select#meta-name-sel option[selected='selected']").removeAttr('selected');
@@ -296,6 +306,37 @@ $(document).ready( function($) {
 		
 		$("tr#row-"+count).effect('highlight',{},'2000');
 		
+    });
+    
+    $("input#publish-submit").click(function(){
+        
+        if($("input#post-title").val()==''){
+            $("label[for='post-title']").slideDown();
+            return false;
+        }
+        
+        if(tinyMCE){
+            tinyMCE.activeEditor.save();
+        }
+        
+        if ($("#content").val()==''){
+            alert('<?php _e('Add content before to save this post','admin_mywords'); ?>');
+            return false;
+        }
+        
+        // Serialize all data
+        var params = $("form#mw-form-posts").serialize();
+        params += "&"+$("form#mw-post-publish-form").serialize();
+        params += "&"+$("form#mw-post-categos-form").serialize();
+        params += "&"+$("form#mw-post-tags-form").serialize();
+        
+        // Send Post data
+        $.post('ajax/ax-posts.php', params, function(data){
+            alert(data);
+        },'html');
+        
+        return false;
+        
     });
 
  })(jQuery);

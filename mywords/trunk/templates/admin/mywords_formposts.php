@@ -1,6 +1,7 @@
-
+<form name="mwposts" id="mw-form-posts" action="posts.php" method="post">
 <h1 class="rmc_titles mw_titles" style="background-image: url(../images/post32.png);"><?php $edit ? _e('Edit Post','admin_mywords') : _e('Create Post','admin_mywords'); ?></h1>
-<input type="text" name="title" id="post-title" class="mw_biginput" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
+<label class="error" for ="post-title" style="display: none;"><?php _e('You must specify the title for this post!','admin_mywords'); ?></label>
+<input type="text" name="title" id="post-title" class="mw_biginput required" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
 <div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>">
 	<?php if($edit): ?>
 		<?php echo $post->permalink(); ?>
@@ -32,7 +33,7 @@
 			<?php if($edit || (isset($post) && $post->fields())): ?>
 			<?php foreach($post->fields() as $field): ?>
 				<tr class="<?php echo cycle("even,odd"); ?>">
-					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta[<?php echo $field->id(); ?>][key]" value="<?php echo $field->name(); ?>" class="mw_large" /></td>
+					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta-key-<?php echo $field->id(); ?>" value="<?php echo $field->name(); ?>" class="mw_large" /></td>
 					<td><textarea name="meta[<?php echo $field->id(); ?>][value]" id="meta[<?php echo $field->id(); ?>][value]" class="mw_large"><?php echo $field->value(); ?></textarea></td>
 				</tr>
 			<?php endforeach; ?>
@@ -58,7 +59,7 @@
 					<a href="javascript:;" class="mw_show_metaname"><?php _e('Enter New','admin_mywords'); ?></a>
 					<a href="javascript:;" class="mw_hide_metaname" style="display: none;"><?php _e('Cancel','admin_mywords'); ?></a>
 					<?php else: ?>
-					
+					<input type="text" name="meta_name" id="meta-name" value="" class="mw_large" style="width: 95%;" />
 					<?php endif; ?>
 				</td>
 				<td valign="top">
@@ -78,3 +79,4 @@
 <?php RMEventsApi::get()->run_event('mw_posts_form', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="xoops-token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
+</form>

@@ -20,6 +20,7 @@ function mw_widget_addtags(){
     ob_start();
 ?>
 <div class="rmc_widget_content_reduced">
+<form id="mw-post-tags-form">
 <div class="tags_box">
 <input type="text" name="tags" id="tags" class="formInput wtLeftInput" />
 <input type="button" name="tags-button" id="tags-button" class="button" value="<?php _e('+ Add','admin_mywords'); ?>" /><br />
@@ -39,6 +40,7 @@ function mw_widget_addtags(){
         <a href="javascript:;" id="tag-<?php echo $tag['id_tag']; ?>" class="add_tag" style="font-size: <?php echo MWFunctions::get()->tag_font_size($tag['posts'],2) ?>em;"><?php echo $tag['tag']; ?></a>
     <?php endforeach; ?>
 </div>
+</form>
 </div>
 <?php
     $widget['content'] = ob_get_clean();

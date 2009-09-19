@@ -18,6 +18,7 @@ function mw_widget_categories(){
 	ob_start();
 ?>
 <div class="rmc_widget_content_reduced">
+<form id="mw-post-categos-form">
 <div class="w_categories" id="w-categos-container">
 <?php
 $categories = array();
@@ -44,6 +45,7 @@ foreach ($categories as $catego){
     	<a href="javascript:;"><?php _e('Cancel','admin_mywords'); ?></a>
     </div>
 </div>
+</form>
 </div>
 <?php
 	$widget['content'] = ob_get_clean();

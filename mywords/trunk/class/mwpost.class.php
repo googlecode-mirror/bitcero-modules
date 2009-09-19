@@ -58,123 +58,64 @@ class MWPost extends RMObject
 		return $this->getVar('id_post');
 	}
 	
-	/**
-	* Get meta data from post
-	*/
-	public function fields(){
+    /**
+    * Get content for current post according to given options
+    * 
+    * @param bool Indicates if only text before <!--more--> tag is returned
+    * @param bool Indicates wich page will be returned. If there are only a page then return all
+    * @return string
+    */
+	public function content($advance=true, $page=0){
 		
+        $content = $this->getVar('content', 'n');
+        $content = explode("<!--nextpage-->", $content);
+        
+        $pages = count($content);
+        
+        if ($advance){
+            $advance = explode('<!--more-->', $content[0]);
+            $advance = str_replace("<!--nextpage-->","", $advance);
+            return TextCleaner::getInstance()->to_display($advance);
+        }
+        
+        if ($page>0){
+            $page--;
+            if ($pages<=1) return TextCleaner::getInstance()->to_display(str_replace("<!--more-->","",$content[0]));
+            
+            if (($pages-1)<=$page) return TextCleaner::getInstance()->to_display(str_replace("<!--more-->","",$content[$pages-1]));
+            
+            return TextCleaner::getInstance()->to_display(str_replace("<!--more-->","",$content[$page]));
+        }
+        
+        $content = str_replace("<!--more-->","",$content[0]);
+        
 	}
 	
-	public function getText($full=true){
-		if ($full){
-			return str_replace('[home]','<a name="moreMwPost"></a>',$this->getVar('texto'));
-		} else {
-			return $this->getVar('texto');
-		}
-	}
-	public function setStatus($value){
-		return $this->setVAr('estado',$value);
-	}
-	public function getStatus(){
-		return $this->getVar('estado');
-	}
-	public function setComments($value){
-		return $this->setVar('comentarios', $value);
-	}
-	public function getComments(){
-		return $this->getVar('comentarios');
-	}
-	public function setTrackBacks($value){
-		$rtn = '';
-		if (is_array($value)){
-			foreach ($value as $k){
-				if ($rtn==''){
-					$rtn .= $k;
-				} else {
-					$rtn .= " $k";
-				}
-			}
-		} else {
-			$rtn = $value;
-		}
-		return $this->setVar('toping', $rtn);
-	}
-	public function getTrackBacks($asArray=true){
-		if ($asArray){
-			return explode(" ", $this->getVar('toping'));
-		} else {
-			return $this->getVar('toping');
-		}
-	}
-	public function addPinged($uri){
-		if (trim($uri)=='') return;
-		return $this->setVar('pinged', $this->getVar('pinged') . " " . $uri);
-	}
-	public function getPinged($asArray = true){
-		if ($asArray){
-			return explode(" ", $this->getVar('pinged'));
-		} else {
-			return $this->getVar('pinged');
-		}
-	}
 	/**
 	 * Incrementa en uno el numero de comentarios
 	 */
-	public function addComent(){
-		$this->setComments($this->getComments() + 1);
-		$this->update();
+	public function add_comment(){
+		$this->setVar('comments', $this->getVar('comments') + 1);
+        $this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET comments='".($this->getVar('comments'))."' 
+                WHERE id_post='".$this->id()."'");
 	}
-	/**
-	 * Obtiene el objeto usuario a partir del autor
-	 */
-	public function &getAuthorUser(){
-		$user = new XoopsUser($this->getAuthor());
-		return $user;
-	}
-	/**
-	 * Establece si el artículo recibe pings de trackbacks
-	 */
-	public function setAllowPings($value){
-		return $this->setVar('allowpings', $value);
-	}
-	public function getAllowPings(){
-		return $this->getVar('allowpings');
-	}
+	
+	
 	/**
 	 * Funciones para el control de lecturas
 	 */
-	public function addReads(){
-		$this->setVar('lecturas', $this->getVar('lecturas') + 1);
-		$this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET lecturas='".($this->getVar('lecturas'))."' 
-				WHERE id_post='".$this->getID()."'");
+	public function add_read(){
+		$this->setVar('reads', $this->getVar('reads') + 1);
+		$this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET reads='".($this->getVar('reads'))."' 
+				WHERE id_post='".$this->id()."'");
 	}
-	public function getReads(){
-		return $this->getVar('lecturas');
-	}
-	/**
-	 * Devuelve el texto de avance para el artículo
-	 * @param int $words Número máximo de palabras
-	 * @return string
-	 */
-	public function getHomeText(){
-		$rtn = array();
-		$rtn = explode("[home]", $this->getText(false));
-		$this->homenext = true;
-		return $rtn[0];
-	}
-	/**
-	 * Indica si el texto solo es el avance y continúa
-	 * @return bool
-	 */
-	public function moretext(){
-		return $this->homenext;
-	}
+
 	/**
 	 * Obtiene las catgorías a las que pertenece el artículo
-	 * @param int Tipo de Resultado (0 Todos los indices, 1 solo ID, 2 Permalinks)
+	 * @param bool Indicates if returns all data fro categories. False returns only ids
 	 * @return string, array
 	 */
-	public function categos($as = 0){
+	public function get_categos($all = true){
 		global $mc;
 		
 		$tbl1 = $this->db->prefix("mw_categos");
@@ -188,45 +129,28 @@ class MWPost extends RMObject
 				$this->categos[] = $row['id_cat'];
 			}
 		}
-		if ($as==0){ return $this->lcats; }
-		if ($as==1){ return $this->categos; }
-		// Generamos la lista junto con enlaces
-		$categos = '';
-		foreach ($this->lcats as $row){
-			$catego = new MWCategory();
-			$catego->assignVars($row);
-			if ($categos==''){
-				$categos .= "<a href='".mw_get_url();
-			} else {
-				$categos .= ", <a href='".mw_get_url();
-			}
-			$categos .= ($mc['permalinks']==1 ? '?cat='.$catego->getID() : ($mc['permalinks']==2 ? 'category/'.$catego->getPath() : 'category/'.$catego->getID()))."'>".$catego->getName()."</a>";
-		}
-		return $categos;
+        
+        if ($all)
+            return $this->lcats;
+        else
+            return $this->categos;
+		
 	}
 	/**
-	 * Se asigna una nueva categoría al artículo
-	 * @param int $cat Identificador de la categoría
+	 * Add a new category
+	 * @param int|array Category ID or array with categories ID
 	 */
-	public function addToCatego($cat){
+	public function add_categories($cat){
 		if (empty($this->categos)) $this->categos();
-		if (in_array($cat, $this->categos)) return;
-		$this->categos[] = $cat;
+        
+        if (!is_array($cat)) $cat = array($cat);
+        
+        foreach($cat as $id){
+            if (in_array($id, $this->categos)) continue;
+            $this->categos[] = $id;
+        }
 	}
-	/**
-	 * Se asignan múltiples categorías al post
-	 * @param array $cats Identificadores de las categorías
-	 */
-	public function addToCategos($cats){
-		if (!is_array($cats)) return;
-		
-		$this->categos = array();
-		
-		foreach ($cats as $k){
-			if (!is_numeric($k)) continue;
-			if (!in_array($k, $this->categos) )$this->categos[] = $k;
-		}
-	}
+
 	/**
 	 * Devuelve los nombres de las categorías a las que pertenece
 	 * el post actual
@@ -234,26 +158,13 @@ class MWPost extends RMObject
 	 * @param string $delimiter Delimitador para la lista
 	 * @return string or array
 	 */
-	public function getCategoNames($asList=true, $delimiter=','){
-		$sql = "SELECT * FROM ".$this->db->prefix("mw_categos")." WHERE";
-		$where = '';
-		foreach ($this->categos() as $k){
-			if ($where==''){
-				$where .= " id_cat='$k'";
-			} else {
-				$where .= " OR id_cat='$k'";
-			}
-		}
-		$sql .= $where;
-		$result = $this->db->query($sql);
-		$rtn = $asList ? '' : array();
-		while ($row = $this->db->fetchArray($result)){
+	public function get_categories_names($asList=true, $delimiter=','){
+		
+        $rtn = $asList ? '' : array();
+        
+		foreach ($this->lcats as $cat){
 			if ($asList){
-				if ($rtn == ''){
-					$rtn .= $row['nombre'];
-				} else {
-					$rtn .= "$delimiter $row[nombre]";
-				}
+				$rtn .= $rtn == '' ? $row['nombre'] : "$delimiter $cat[name]";
 			} else {
 				$rtn[] = $row['nombre'];
 			}
@@ -263,90 +174,14 @@ class MWPost extends RMObject
 	/**
 	 * Obtiene el enlace permanente al artículo
 	 */
-	public function getPermaLink(){
+	public function permalink(){
 		global $mc;
 		$day = date('d', $this->getDate());
 		$month = date('m', $this->getDate());
 		$year = date('Y', $this->getDate());
 		$rtn = mw_get_url();
-		$rtn .= $mc['permalinks']==1 ? '?post='.$this->getID() : ($mc['permalinks']==2 ? "$day/$month/$year/".$this->getFriendTitle()."/" : "post/".$this->getID());
+		$rtn .= $mc['permalinks']==1 ? '?post='.$this->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$this->getVar('shortname','n')."/" : "post/".$this->id());
 		return $rtn;
-	}
-	/**
-	 * Obtiene el texto que se enviará en los tracbacks
-	 */
-	public function setExcerpt($text){
-		return $this->setVar('excerpt', $text);
-	}
-	public function getExcerpt(){
-		return $this->getVar('excerpt');
-	}
-	/**
-	 * Obtiene la imágen para el bloque (si existe)
-	 */
-	public function setBlockImage($value){
-		$this->setVar('blockimg', $value);
-	}
-	public function getBlockImage(){
-		return $this->getVar('blockimg');
-	}
-	/**
-	 * Comprobamos si un usuario tiene permisos de lectura
-	 * para un artículo
-	 */
-	public function readAccess($xu=null){
-		global $xoopsUser;
-		
-		if ($xu==null){
-			$xu = $xoopsUser;
-		}
-		
-		$grupos = isset($xu) && get_class($xu)=='XoopsUser' ? $xu->getGroups() : array(0);
-		$ret = false;
-		
-		foreach ($this->categos() as $k){
-			$catego = new MWCategory();
-			$catego->assignVars($k);
-			if ($catego->groupsWithAccess($grupos)) $ret = true;
-		}
-		
-		return $ret;
-		
-	}
-	
-	public function html(){
-		return $this->getVar('dohtml');
-	}
-	public function setHTML($value){
-		return $this->setVar('dohtml', intval($value));
-	}
-	
-	public function smiley(){
-		return $this->getVar('dosmiley');
-	}
-	public function setSmiley($value){
-		return $this->setVar('dosmiley', intval($value));
-	}
-	
-	public function xcode(){
-		return $this->getVar('doxcode');
-	}
-	public function setXCode($value){
-		return $this->setVar('doxcode', intval($value));
-	}
-	
-	public function br(){
-		return $this->getVar('dobr');
-	}
-	public function setBR($value){
-		return $this->setVar('dobr', intval($value));
-	}
-	
-	public function doimage(){
-		return $this->getVar('doimage');
-	}
-	public function setDoImage($value){
-		return $this->setVar('doimage', intval($value));
 	}
 	
 	/**
@@ -399,8 +234,8 @@ class MWPost extends RMObject
 		
 		if (!$this->updateTable()) return false;
 		
-		$this->saveCategos();
-		$this->saveMetas();
+		$this->save_categories();
+		$this->save_metas();
 		
 		if ($this->errors()!='')
 			return false;
@@ -423,7 +258,7 @@ class MWPost extends RMObject
 	/**
 	* Save existing meta
 	*/
-	private function saveMetas(){
+	private function save_metas(){
 		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->getID()."'");
 		if (empty($this->metas)) return true;
 		$sql = "INSERT INTO ".$this->db->prefix("mw_meta")." (`name`,`value`,`post`) VALUES ";
@@ -442,7 +277,7 @@ class MWPost extends RMObject
 	/**
 	 * Almacena las categorías a las que pertenece el artículo
 	 */
-	public function saveCategos(){
+	public function save_categories(){
 		if (empty($this->categos)) return true;
 		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->getID()."'");
 		$sql = "INSERT INTO ".$this->db->prefix("mw_catpost")." (`post`,`cat`) VALUES ";
@@ -463,46 +298,19 @@ class MWPost extends RMObject
 	 */
 	public function delete(){
 		global $xoopsModule;
-		$sql = "DELETE FROM ".$this->db->prefix("mw_trackbacks")." WHERE post='".$this->getID()."'";
+		$sql = "DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->id()."'";
 		if (!$this->db->queryF($sql)){
 			$this->addError($this->db->error());
 		}
-		$sql = "DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->getID()."'";
-		if (!$this->db->queryF($sql)){
-			$this->addError($this->db->error());
-		}
-		
-		if ($this->getBlockImage()!=''){
-			@unlink(XOOPS_UPLOAD_PATH.'/mywords/'.$this->getBlockImage());
-		}
+        
+        $sql = "DELETE FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->id()."'";
+        if (!$this->db->queryF($sql)){
+            $this->addError($this->db->error());
+        }
 		
 		$this->deleteFromTable();
 		if ($this->errors()!=''){ return false; } else { return true; }
 		
 	}
-	/**
-	 * Devuelve el numero de trackbacks recibidos
-	 */
-	public function setTBCount($value){
-		return $this->setVAr('trackbacks', $value);
-	}
-	public function getTBCount(){
-		return $this->getVar('trackbacks');
-	}
-	/**
-	 * Obtenemos todos los trackbacks
-	 * @param bool $result Inidica si los comentarios son devueltos como un resultado de MySQL
-	 * @return array
-	 */
-	public function loadTrackbacks($result=false){
-		$res = $this->db->query("SELECT * FROM ".$this->db->prefix("mw_trackbacks")." WHERE post='".$this->getID()."'");
-		if ($result) return $res;
-		$ret = array();
-		while ($row = $this->db->fetchArray($res)){
-			$ret[] = $row;
-		}
-		return $ret;
-	}
-}
 
-?>
+}
