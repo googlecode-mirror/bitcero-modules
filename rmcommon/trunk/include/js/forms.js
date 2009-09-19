@@ -15,6 +15,7 @@ var absurl = '';
 
 $(document).ready(function(){
 	$('form').validate();	
+	
 });
 
 // Users field
@@ -22,6 +23,7 @@ var users_field_name = '';
 var usersField = jQuery.extend({
 	
 	form_search_users: 	function(id, width, height, limit, multisel, baseurl){
+
 		users_field_name = id;
 		absurl = baseurl;
 		var checks = $("#"+id+"-users-list input");
@@ -30,7 +32,7 @@ var usersField = jQuery.extend({
 			sel += sel=='' ? $(checks[i]).val() : ','+$(checks[i]).val();
 		}
 		
-		token = $("#EXM_TOKEN_REQUEST").val();
+		token = $("#XOOPS_TOKEN_REQUEST").val();
 		
 		// Update the users container
 		var params = {
@@ -38,10 +40,10 @@ var usersField = jQuery.extend({
 			limit: limit,
 			field: id,
 			s: sel,
-			EXM_TOKEN_REQUEST: token
+			XOOPS_TOKEN_REQUEST: token
 		}
 		
-		$.get(baseurl+'/apps/system/ajax/users.php', params, function(data){
+		$.get(baseurl+'/modules/rmcommon/ajax/users.php', params, function(data){
 			$("#"+id+"-dialog-search").html(data);
 		});
 		
@@ -57,7 +59,7 @@ var usersField = jQuery.extend({
 			
 	},
 	
-	add_to_list: function(id, users_field_name){
+	add_to_list: function(id){
 		var cb = $("#"+users_field_name+"-user-"+id); // Checkbox
 		var uc = $("#"+users_field_name+"-username-"+id); //Caption
 		var ul = "#"+users_field_name+"-selected-list"; // Selected users list (only name)
@@ -81,7 +83,7 @@ var usersField = jQuery.extend({
 		
 	},
 	
-	remove_from_list: function(id, users_field_name){
+	remove_from_list: function(id){
 		var ul = "#"+users_field_name+"-selected-list"; // Selected users list (only name)
 		var cb = "#"+users_field_name+"-user-"+id;
 		
@@ -96,13 +98,13 @@ var usersField = jQuery.extend({
 		
 	},
 	
-	change_title: function(users_field_name){
+	change_title: function(){
 		var span = $("#"+users_field_name+"-selected-title span");
 		var ul = "#"+users_field_name+"-selected-list";
 		span.text($(ul+" li").length);
 	},
 	
-	submit_search: function(multisel, users_field_name){
+	submit_search: function(multisel){
 		var ul = "#"+users_field_name+"-selected-list";
 		var limit = $("#"+users_field_name+"-limit").val();
 		limit = limit<=0?30:limit;
@@ -131,7 +133,7 @@ var usersField = jQuery.extend({
 		
 	},
 	
-	show_waiting: function(show, users_field_name){
+	show_waiting: function(show){
 		if (show)
 			$("#"+users_field_name+"-dialog-search").html('<img src="'+absurl+'/apps/system/images/waiting.gif" width="16" height="16" alt="" class="form_user_waiting_img" />');
 		else
@@ -150,7 +152,7 @@ var usersField = jQuery.extend({
 		return sel;
 	},
 	
-	goto_page: function(page, multisel, users_field_name){
+	goto_page: function(page, multisel){
 		var sel = usersField.get_selected();
 		var limit = $("#"+users_field_name+"-limit").val();
 		limit = limit<=0?30:limit;
@@ -177,7 +179,7 @@ var usersField = jQuery.extend({
 		
 	},
 	
-	insert_users: function(multi, uid, users_field_name){
+	insert_users: function(multi, uid){
 		
 		var input = multi ? 'checkbox' : 'radio';
 		var name = multi ? users_field_name+'[]' : users_field_name;
@@ -202,7 +204,7 @@ var usersField = jQuery.extend({
 			}
 			
 		} else {
-			
+
 			var ele = "#"+users_field_name+"-user-"+uid;
 			$("#"+users_field_name+"-users-list li").remove();
 			if ($(ele).length>0){
@@ -220,7 +222,7 @@ var usersField = jQuery.extend({
 		
 	},
 	
-	remove: function(id, users_field_name){
+	remove: function(id){
 		
 		$("#"+users_field_name+"-exmuser-"+id).remove();
 		

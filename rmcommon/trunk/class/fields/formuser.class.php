@@ -52,12 +52,14 @@ class RMFormUser extends RMFormElement
 	}
 	
 	/**
-	* @desc Genera el código HTML para el campo
+	* Show the Users field
+	* This field needs that form.css, jquery.css and forms.js would be included.
 	*/
 	public function render(){
+		
 		$rtn = "<div id='".$this->getName()."-users-container'".($this->getExtra()!='' ? " ".$this->getExtra() : '')." class='form_users_container'>
 				<ul id='".$this->getName()."-users-list'>";
-		$db =& EXMDatabase::get();
+		$db = Database::getInstance();
 		
 		if ($this->showall && in_array(0, $this->selected)){
 			$rtn .= "<li id='rm_exm_user_0'>\n
@@ -91,7 +93,7 @@ class RMFormUser extends RMFormElement
 		}
 		
 		$rtn .= "</ul></div><br />
-				<input type='button' value='".__('Search Users','global')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".$this->multi.",'".ABSURL."');\" />
+				<input type='button' value='".__('Search Users','global')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".$this->multi.",'".XOOPS_URL."');\" />
 				<div id='".$this->getName()."-dialog-search' title='".__('Search Users','global')."' style='display: none;'>
 				
 				</div>";
