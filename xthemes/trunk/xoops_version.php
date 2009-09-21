@@ -21,6 +21,7 @@ $modversion['dirname'] = "xthemes";
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 $modversion['tables'][0] = 'xtheme_config';
+$modversion['tables'][1] = 'xtheme_plugins';
 
 // Admin things
 $modversion['hasAdmin'] = 1;
