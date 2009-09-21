@@ -86,10 +86,10 @@
         <table width="100%" cellpadding="0" cellspacing="0">
             <tr class="outer">
                 <td width="50%">
-                    <label><input type="checkbox" name="comstatus" value="1" /> <?php _e('Enable comments for this post','admin_mywords'); ?></label>
+                    <label><input type="checkbox" name="comstatus" value="1" checked="checked" /> <?php _e('Enable comments for this post','admin_mywords'); ?></label>
                 </td>
                 <td>
-                    <label><input type="checkbox" name="pingstatus" value="1" /> <?php _e('Allow trackbacks for this post','admin_mywords'); ?></label>
+                    <label><input type="checkbox" name="pingstatus" value="1" checked="checked" /> <?php _e('Allow trackbacks for this post','admin_mywords'); ?></label>
                 </td>
             </tr>
         </table>
