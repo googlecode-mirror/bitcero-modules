@@ -140,10 +140,12 @@ foreach($meta as $data){
 
 if ($post->save()){
     if (!$edit) $xoopsUser->incrementPost();
+    showMessage($edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'), 0);
     $rtn = array(
         'message' => $edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'),
         'token' => $xoopsSecurity->createToken(),
-        'link' => '<strong>'.__('Permalink:','admin_mywords').'</strong> '.$post->permalink()
+        'link' => '<strong>'.__('Permalink:','admin_mywords').'</strong> '.$post->permalink(),
+        'post' => $post->id()
     );
     echo json_encode($rtn);
     die();

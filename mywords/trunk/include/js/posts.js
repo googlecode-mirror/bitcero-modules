@@ -344,11 +344,8 @@ $(document).ready( function($) {
                     $('#XOOPS_TOKEN_REQUEST').val(data['token']);
                 return;
             }
-            $('div#mw-messages-post').html(data['message']);
-            $('div#mw-messages-post').slideDown();
-            $('#XOOPS_TOKEN_REQUEST').val(data['token']);
-            $("#mw-perma-link").html(data['link']);
-            $("#mw-perma-link").removeClass('mw_permainfo');
+            
+            window.location.href = 'posts.php?op=edit&id='+data['post'];
             
         },'json');
         
