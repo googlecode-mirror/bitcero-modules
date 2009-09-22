@@ -256,7 +256,7 @@ function xt_save_settings(){
 			$errors[] = $db->error();
 		
 	}
-	
+
 	if (!empty($errors)){
 		xt_redirect('index.php', 'There was errors during this operation:<br />'.implode('<br />', $errors), true);
 	} else {
