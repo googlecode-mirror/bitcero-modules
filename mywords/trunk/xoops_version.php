@@ -31,29 +31,6 @@ $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=5';
 
 $modversion['hasMain'] = 1;
-global $xoopsUser, $xoopsModule;
-if (!isset($mc)) global $mc;
-// Categorias a mostrar como menu
-$db =& Database::getInstance();
-$i = 1;
-if (isset($xoopsModule) && $xoopsModule->dirname()=="mywords"){
-	$result = $db->query("SELECT * FROM ".$db->prefix("mw_categos")." WHERE menu='1' ORDER BY parent");
-	while ($row=$db->fetchArray($result)){
-		$catego = new MWCategory();
-		$catego->assignVars($row);
-		$modversion['sub'][$i]['name'] = $catego->getName();
-		$modversion['sub'][$i]['url'] = $mc['permalinks']==1 ? '?cat='.$catego->getID() : ($mc['permalinks']==2 ? 'category/'.$catego->getPath() : 'category/'.$catego->getID());
-		$i++;
-	}
-}
-global $xoopsModuleConfig;
-// Comprobamos si el usuario puede enviar un artículo
-if (isset($xoopsModuleConfig['submit']) && $xoopsModuleConfig['submit'] && $xoopsModule->dirname()=='mywords'){
-	if ((empty($xoopsUser) && $$mc['anonimo']==0) || $xoopsUser){
-		$modversion['sub'][$i]['name'] = _MI_MW_SEND;
-		$modversion['sub'][$i]['url'] = $xoopsModuleConfig['permalinks']==1 ? "?submit" : "submit/";
-	}
-}
 
 // Admin things
 $modversion['hasAdmin'] = 1;
