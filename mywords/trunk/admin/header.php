@@ -17,7 +17,7 @@ require $xpath.'/modules/mywords/include/general.func.php';
 $db =& $xoopsDB;
 
 define('MW_PATH',XOOPS_ROOT_PATH.'/modules/mywords');
-define('MW_URL', XOOPS_URL.'/modules/mywords');
+define('MW_URL', MWFunctions::get_url());
 
 # Asignamos las variables básicas a SMARTY
 $tpl->assign('MW_URL',MW_URL);

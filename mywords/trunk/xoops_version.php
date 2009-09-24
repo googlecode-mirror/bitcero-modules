@@ -25,7 +25,7 @@ $modversion['official'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
-$modversion['icon24'] = "images/icon24.png";
+$modversion['icon16'] = "images/icon16.png";
 $modversion['deflang'] = 'spanish';
 $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=5';
@@ -262,5 +262,3 @@ $modversion['subpages'] = array('index'=>_MI_MW_SPINDEX,
 							    'catego'=>_MI_MW_SPCATEGO,
 							    'author'=>_MI_MW_SPAUTHOR,
 							    'submit'=>_MI_MW_SPSUBMIT);
-
-?>

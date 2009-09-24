@@ -20,7 +20,7 @@
 	</div>
 	<div class="mw_bcontent">
 		<?php _e('Send trackbacks to:','admin_mywords'); ?>
-		<input type="text" name="trackbacks" id="post-trackbacks" class="mw_large" value="<?php echo $edit ? $post->trackurls() : ''; ?>" />
+		<input type="text" name="trackbacks" id="post-trackbacks" class="mw_large" value="<?php echo $edit ? 'Here Trackbacks' : ''; ?>" />
 		(<?php _e('Separate multiple URLs with spaces','admin_mywords'); ?>)
 	</div>
 </div>
@@ -34,8 +34,8 @@
 				<td><?php _e('Value','admin_mywords'); ?></td>
 			</tr>
 			<?php if($edit || (isset($post) && $post->fields())): ?>
-			<?php foreach($post->fields() as $field): ?>
-				<tr class="<?php echo cycle("even,odd"); ?>">
+			<?php foreach($post->get_meta() as $field): ?>
+				<tr class="<?php echo tpl_cycle("even,odd"); ?>">
 					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta-key-<?php echo $field->id(); ?>" value="<?php echo $field->name(); ?>" class="mw_large" /></td>
 					<td><textarea name="meta[<?php echo $field->id(); ?>][value]" id="meta[<?php echo $field->id(); ?>][value]" class="mw_large"><?php echo $field->value(); ?></textarea></td>
 				</tr>

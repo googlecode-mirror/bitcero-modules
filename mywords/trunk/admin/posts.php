@@ -15,7 +15,9 @@ require 'header.php';
  * Muestra los envíos existentes
  */
 function showPosts($aprovado = -1){
-	global $db, $tpl, $mc, $adminTemplate, $xoopsModule;
+	global $db, $tpl, $adminTemplate, $xoopsModule, $xoopsModuleConfig;
+	
+	$mc =& $xoopsModuleConfig;
 	
 	$keyw = '';
 	$op = '';
@@ -38,27 +40,28 @@ function showPosts($aprovado = -1){
 	}
 	
 	if (trim($keyw)!=''){
-		$sql .= ($aprovado>=0 ? " AND " : ($cat > 0 ? " AND " : " WHERE ")) . "titulo LIKE '%$keyw%'";
+		$sql .= ($aprovado>=0 ? " AND " : ($cat > 0 ? " AND " : " WHERE ")) . "title LIKE '%$keyw%'";
 		$tpl->assign('keyw', $keyw);
 	}
 	
 	/**
 	 * Paginacion de Resultados
 	 */
-	$page = rmc_server_var($_GET, 'page', '');
+	$page = rmc_server_var($_GET, 'page', 1);
 	$limit = isset($limit) && $limit>0 ? $limit : 15;
 	list($num) = $db->fetchRow($db->query($sql));
 	
 	$tpages = ceil($num / $limit);
     $page = $page > $tpages ? $tpages : $page;
+
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
 	
 	$nav = new RMPageNav($num, $limit, $page, 5);
     $nav->target_url('posts.php?limit='.$limit.'&page={PAGE_NUM}');
 	
-	$sql .= " ORDER BY fecha DESC LIMIT $start,$limit";
+	$sql .= " ORDER BY pubdate DESC LIMIT $start,$limit";
 	$sql = str_replace("SELECT COUNT(*)", "SELECT *", $sql);
-	
+
 	$result = $db->query($sql);
 	$posts = array();
 	while ($row = $db->fetchArray($result)){
@@ -66,15 +69,24 @@ function showPosts($aprovado = -1){
 		$post->assignVars($row);
 		
 		# Enlace para el artículo
-		$day = date('d', $post->getDate());
-		$month = date('m', $post->getDate());
-		$year = date('Y', $post->getDate());
-		$postlink = mw_get_url();
-		$postlink .= $mc['permalinks']==1 ? '?post='.$post->getID() : ($mc['permalinks']==2 ? "$day/$month/$year/".$post->getFriendTitle()."/" : "post/".$post->getID());
-		
-		$posts[] = array('id'=>$post->getID(), 'titulo'=>$post->getTitle(),'fecha'=>formatTimeStamp($post->getDate(),'s'),
-				'coms'=>$post->getComments(), 'uid'=>$post->getAuthor(), 'uname'=>$post->getAuthorName(),
-				'link'=>$postlink, 'aprovado'=>$post->getApproved(),'tracks'=>$post->getTBCount(),'categos'=>$post->categos(0));
+		$day = date('d', $post->getVar('pubdate'));
+		$month = date('m', $post->getVar('pubdate'));
+		$year = date('Y', $post->getVar('pubdate'));
+		$postlink = MWFunctions::get_url();
+		$postlink .= $mc['permalinks']==1 ? '?post='.$post->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$post->getFriendTitle()."/" : "post/".$post->getID());
+
+		$posts[] = array(
+			'id'=>$post->id(), 
+			'title'=>$post->getVar('title'),
+			'date'=>formatTimeStamp($post->getVar('pubdate')),
+			'comments'=>0,
+			'uid'=>$post->getVar('author'),
+			'uname'=>$post->getVar('authorname'),
+			'link'=>$postlink,
+			'status'=>$post->getVar('status'),
+			'categories'=>$post->get_categories_names(true, ',', true, 'admin'),
+			'tags'=>$post->tags()
+		);
 	}
 	
 	MWFunctions::include_required_files();
@@ -92,7 +104,7 @@ function newForm($edit = 0){
 	define('RMCSUBLOCATION','new_post');
 	
 	if ($edit){
-		$id = isset($_REQUEST['post']) ? $_REQUEST['post'] : 0;
+		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 		if ($id<=0){
 			redirectMsg('posts.php', _AS_MW_NOID, 1);
 			die();

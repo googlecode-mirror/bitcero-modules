@@ -118,7 +118,7 @@ class MWPost extends RMObject
 	public function get_categos($all = true){
 		global $mc;
 		
-		$tbl1 = $this->db->prefix("mw_categos");
+		$tbl1 = $this->db->prefix("mw_categories");
 		$tbl2 = $this->db->prefix("mw_catpost");
 		
 		if (empty($this->categos)){	
@@ -156,15 +156,27 @@ class MWPost extends RMObject
 	 * el post actual
 	 * @param bool $asList Detemina si se muestra en forma de lista o de array
 	 * @param string $delimiter Delimitador para la lista
+	 * @param bool Get names with links. Only works when $asList equal true
+	 * @param string Section for link. It can be front or admin. Only works when $asList equal true
 	 * @return string or array
 	 */
-	public function get_categories_names($asList=true, $delimiter=','){
+	public function get_categories_names($asList=true, $delimiter=',', $links = true, $section='front'){
+		
+		if (empty($this->lcats)) $this->get_categos();
 		
         $rtn = $asList ? '' : array();
+        $url = MWFunctions::get_url();
         
 		foreach ($this->lcats as $cat){
 			if ($asList){
-				$rtn .= $rtn == '' ? $row['nombre'] : "$delimiter $cat[name]";
+				if ($links){
+					$category = new MWCategory();
+					$category->assignVars($cat);
+					$rtn .= $rtn == '' ? '' : "$delimiter";
+					$rtn .= '<a href="'.($section=='front' ? $url.'/'.$category->path() : MW_URL.'/admin/posts.php?category='.$cat['id_cat']).'">'.$cat['name'].'</a>';
+				} else {
+					$rtn .= $rtn == '' ? $cat['name'] : "$delimiter $cat[name]";
+				}
 			} else {
 				$rtn[] = $row['nombre'];
 			}
@@ -180,6 +192,36 @@ class MWPost extends RMObject
         $tags = MWFunctions::add_tags($tags);
 
         $this->tags = $tags;
+    }
+    
+    /**
+    * Get Tags
+    */
+    private function get_tags(){
+		
+		$db = $this->db;
+		
+		$sql = "SELECT t.* FROM ".$db->prefix("mw_tags")." as t, ".$db->prefix("mw_tagspost")." as r WHERE r.post='".$this->id()."' AND t.id_tag=r.tag";
+		
+		$result = $db->query($sql);
+		$this->tags = array();
+		while($row = $db->fetchArray($result)){
+			$this->tags[] = $row;
+		}
+		
+    }
+    
+    /**
+    * Get all tags according to given options
+    * return array
+    * @todo Enable objects return
+    */
+    public function tags($objects = false){
+		
+		if (empty($this->tags)) $this->get_tags();
+		
+		if (!$objects) return $this->tags;
+		
     }
     
 	/**
@@ -201,7 +243,7 @@ class MWPost extends RMObject
 	private function load_meta(){
 		if (!empty($this->metas)) return;
 
-		$result = $this->db->query("SELECT name,value FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->getID()."'");
+		$result = $this->db->query("SELECT name,value FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->id()."'");
 		while($row = $this->db->fetchArray($result)){
 			$this->metas[$row['name']] = $row['value'];
 		}

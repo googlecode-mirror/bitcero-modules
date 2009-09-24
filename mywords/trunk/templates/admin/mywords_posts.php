@@ -13,42 +13,58 @@
 	</td>
 	<td align="center">
 		<a href="posts.php?limit=<{$limit}>"><?php _e('Show all','admin_mywords'); ?></a>
-	</td>
-	<td align="right">
-		<?php echo $nav->render(); ?>
 	</td></tr>
 </table></form>
 <br />
 <form name="modPosts" method="post" action="posts.php">
-<table border="0" cellspacing="1" cellpadding="0" class="outer">
+<?php echo isset($nav) ? $nav->render() : ''; ?>
+<select name="op" id="posts-op">
+	<option value=""><?php _e('Bulk Actions','admin_mywords'); ?></option>
+	<option value="delete"><?php _e('Delete Posts','admin_mywords'); ?></option>
+</select>
+<table border="0" cellspacing="1" cellpadding="0" class="outer" style="margin: 5px 0;">
   <tr class="head" align="center">
   	<th align="center" width="30"><input type="checkbox" name="chekall" value="1" onchange="xoopsCheckAll('modPosts', 'chekall');" /></th>
     <th align="left"><?php _e('Post','admin_mywords'); ?></th>
     <th><?php _e('Author','admin_mywords'); ?></th>
     <th align="left"><?php _e('Categories','admin_mywords'); ?></th>
-    <th><?php _e('Tags','admin_mywords'); ?></th>
-    <th><img src="images/comi.png" alt="" /></th>
+    <th align="left"><?php _e('Tags','admin_mywords'); ?></th>
+    <th><img src="../images/commi.png" alt="" /></th>
 	<th><?php _e('Date','admin_mywords'); ?></th>
   </tr>
+  <?php if(empty($posts)): ?>
+  <tr class="even">
+  	<td colspan="7" align="center" class="error"><?php _e('No posts where found','admin_mywords'); ?></td>
+  </tr>
+  <?php endif; ?>
   <?php foreach($posts as $post): ?>
-  <tr class="<?php echo cycle('even,odd'); ?>">
-  	<td align="center"><input type="checkbox" name="posts[]" value="<?php echo $post['id']; ?>" /></td>
-    <td><a href="<{$post.link}>"><?php echo $post['title']; ?></a></td>
-    <td><{assign var="i" value=1}>
-    <{foreach item=cat from=$post.categos}>
-    	<{if $i==1}><{$cat.nombre}><{else}> &middot; <{$cat.nombre}><{/if}>
-    	<{assign var="i" value=$i+1}>
-    <{/foreach}></td>
-    <td align="center"><{$post.fecha}></td>
+  <tr class="<?php echo tpl_cycle('even,odd'); ?>" valign="top">
+  	<td align="center" valign="top"><input type="checkbox" name="posts[]" value="<?php echo $post['id']; ?>" /></td>
+    <td>
+    	<strong><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
+    	<span class="mw_options">
+    		<a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
+    		<a href="posts.php?op=delete&amp;id=<?php echo $post['id']; ?>"><?php _e('Delete','admin_mywords'); ?></a> |
+    		<?php if($post['status']!='publish'): ?>
+    			<a href="<?php echo MW_URL.'?p='.$post['id']; ?>"><?php _e('Preview','admin_mywords'); ?></a>
+    		<?php else: ?>
+    			<a href="<?php echo $post['link']; ?>"><?php _e('View','admin_mywords'); ?></a>
+    		<?php endif; ?>
+    	</span>
+    </td>
+    <td align="center"><a href="posts.php?author=<?php echo $post['uid'] ?>"><?php echo $post['uname'] ?></a></td>
+    <td><?php echo $post['categories']; ?></td>
+    <td>
+    <?php 
+    $count = 0;
+    foreach ($post['tags'] as $tag): ?>
+    <?php echo $count<=0 ? '' : ', ' ?><a href="posts.php?tag=<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag']; ?></a>
+    <?php endforeach; ?>
+    </td>
     <td align="center">
-		<{$post.tracks}>
+		<?php echo $post['comments']; ?>
 	</td>
-    <td align="center"><{$post.coms}></td>
-	<td align="center"><img src="../images/<{if $post.aprovado}>aprovado.png<{else}>delete.png<{/if}>" alt="" /></td>
-	<td align="center"><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.uid}>"><{$post.uname}></a></td>
-	<td align="center"><a href="posts.php?op=edit&amp;post=<{$post.id}>" title="<{$lang_edit}>"><img src="../images/edit.png" alt="<{$lang_edit}>" /></a>
-	<a href="posts.php?op=delete&amp;post=<{$post.id}>" title="<{$lang_delete}>"><img src="../images/delete.png" alt="<{$lang_delete}>" /></a>
-	<a href="posts.php?op=trackbacks&amp;post=<{$post.id}>" title="<{$lang_trackbacks}>"><img src="../images/trackback.png" alt="<{$lang_trackbacks}>" /></a></td>
+    <td align="center"><?php echo $post['date']; ?></td>
   </tr>
   <?php endforeach; ?>
 </table>

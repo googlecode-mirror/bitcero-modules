@@ -50,7 +50,7 @@ class MWCategory extends RMObject
 	/**
 	 * Obtiene la ruta completa de la categor?a basada en nombres
 	 */
-	function getPath(){
+	function path(){
 		if ($this->getParent()==0) return $this->getVar('shortname','n').'/';
 		$parent = new MWCategory($this->getVar('parent','n'));
 		return $parent->getPath() . $this->getVar('shortname').'/';
