@@ -53,8 +53,8 @@ foreach ($mods as $mod) {
             $rtn['options'] = $options;     //add for sub menus
         }
 
-        if (isset($info['icon']) && $info['icon'] != '' ) {
-	        $rtn['icon'] = XOOPS_URL . '/modules/' . $mod->getVar('dirname', 'n') . '/' . $info['icon'];
+        if (isset($info['icon16']) && $info['icon16'] != '' ) {
+	        $rtn['icon'] = XOOPS_URL . '/modules/' . $mod->getVar('dirname', 'n') . '/' . $info['icon16'];
         } elseif($mod->getVar('dirname','n')=='system'){
             $rtn['icon'] = RMCURL.'/templates/default/images/system.png';
         }

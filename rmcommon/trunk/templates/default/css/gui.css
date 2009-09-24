@@ -94,7 +94,7 @@ div#rm-header div.right a{
 
 /** TOOLBAR **/
 div#rmc-toolbar{
-	background: #1D507D;
+	background: #1D507D url(../images/redmex.png) no-repeat right;
 	height: 30px;
 	border-bottom: 1px solid #FFF;
 	overflow: hidden;
