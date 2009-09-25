@@ -23,6 +23,18 @@ function mw_widget_publish(){
 	RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 	$widget['title'] = __('Publish','admin_mywords');
 	$widget['icon']	 = '';
+    
+    $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+    $edit = false;
+    if ($id>0){
+        $post = new MWPost($id);
+        if ($post->isNew()){
+            unset($post);
+        } else {
+            $edit = true;
+        }
+    }
+    
 	ob_start();
 ?>
 <div class="rmc_widget_content_reduced publish_container">

@@ -78,6 +78,7 @@ INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) 
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(10, 'StumbleUpon', 'Agregar a StumbleUpon!', 'http://www.stumbleupon.com/submit?url={URL}&title={TITLE}', 'stumbleupon.png', 1);
 
 CREATE TABLE `mw_meta` (
+`id_meta` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `name` VARCHAR( 50 ) NOT NULL ,
 `value` TEXT NOT NULL ,
 `post` INT NOT NULL ,

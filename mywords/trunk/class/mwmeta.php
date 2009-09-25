@@ -10,5 +10,33 @@
 
 class MWMeta extends RMObject
 {
-	
+	public function __construct($id){
+        $this->db =& Database::getInstance();
+        $this->myts =& MyTextSanitizer::getInstance();
+        $this->_dbtable = $this->db->prefix("mw_meta");
+        $this->setNew();
+        $this->initVarsFromTable();
+        
+        if ($id==null) return;
+    
+        if ($this->loadValues($id)){
+            $this->unsetNew();
+            return true;
+        } else {
+            return;
+        }        
+    }
+    
+    public function id(){
+        return $this->getVar('id_meta');
+    }
+    
+    function save(){
+        if ($this->isNew()){
+            return $this->saveToTable();
+        } else {
+            return $this->updateTable();
+        }
+    }
+    
 }

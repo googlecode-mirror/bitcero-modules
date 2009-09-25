@@ -243,9 +243,9 @@ class MWPost extends RMObject
 	private function load_meta(){
 		if (!empty($this->metas)) return;
 
-		$result = $this->db->query("SELECT name,value FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->id()."'");
+		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("mw_meta")." WHERE post='".$this->id()."'");
 		while($row = $this->db->fetchArray($result)){
-			$this->metas[$row['name']] = $row['value'];
+			$this->metas[$row['name']] = $row;
 		}
 	}
 	
@@ -255,16 +255,32 @@ class MWPost extends RMObject
 	* @param string Meta name
 	* @return string|array
 	*/
-	public function get_meta($name=''){
+	public function get_meta($name='', $object = true){
 		$this->load_meta();
 		
-		if (trim($name)=='')
-			return $this->metas;
+		if (trim($name)!=''){
+            
+            if (!isset($this->metas[$name])) return false;
+            
+            if (!$object) return $this->metas[$name]['value'];
+            
+            $meta = new MWMeta();
+            $meta->assignVars($this->metas[$name]);
+            return $meta;
+            
+        }
 		
-		if(!isset($this->metas[$name]))
-			return false;
+        $metas = array();
+        
+        if (!$object) return $this->metas;
+        
+		foreach ($this->metas as $data){
+            $meta = new MWMeta();
+            $meta->assignVars($data);
+            $metas[] = $meta;
+        }
 		
-		return $this->metas[$name];
+		return $metas;
 		
 	}
 	

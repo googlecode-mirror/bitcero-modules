@@ -85,7 +85,7 @@ function showPosts($aprovado = -1){
 			'link'=>$postlink,
 			'status'=>$post->getVar('status'),
 			'categories'=>$post->get_categories_names(true, ',', true, 'admin'),
-			'tags'=>$post->tags()
+			'tags'=>$post->tags(true)
 		);
 	}
 	

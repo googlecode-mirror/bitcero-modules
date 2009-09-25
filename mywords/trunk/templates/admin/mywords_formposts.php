@@ -34,10 +34,10 @@
 				<td><?php _e('Value','admin_mywords'); ?></td>
 			</tr>
 			<?php if($edit || (isset($post) && $post->fields())): ?>
-			<?php foreach($post->get_meta() as $field): ?>
+			<?php foreach($post->get_meta('',true) as $field): ?>
 				<tr class="<?php echo tpl_cycle("even,odd"); ?>">
-					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta-key-<?php echo $field->id(); ?>" value="<?php echo $field->name(); ?>" class="mw_large" /></td>
-					<td><textarea name="meta[<?php echo $field->id(); ?>][value]" id="meta[<?php echo $field->id(); ?>][value]" class="mw_large"><?php echo $field->value(); ?></textarea></td>
+					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta-key-<?php echo $field->id(); ?>" value="<?php echo $field->getVar('name'); ?>" class="mw_large" /></td>
+					<td><textarea name="meta[<?php echo $field->id(); ?>][value]" id="meta[<?php echo $field->id(); ?>][value]" class="mw_large"><?php echo $field->getVar('value','e'); ?></textarea></td>
 				</tr>
 			<?php endforeach; ?>
 			<?php endif; ?>
