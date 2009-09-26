@@ -35,22 +35,35 @@ function mw_widget_publish(){
         }
     }
     
+    if ($edit){
+        
+        $status = $post->getVar('status')=='draft' ? 'Draft' : ($post->getVar('status')=='pending' ? 'Pending Review' : 'Published');
+        $visibility = $post->getVar('visibility')=='public' ? 'Public' : ($post->getVar('visibility')=='password' ? 'Password Protected' : 'Private');
+        
+    } else {
+        $status = 'Draft';
+        $visibility = 'Public';
+    }
+    
 	ob_start();
 ?>
 <div class="rmc_widget_content_reduced publish_container">
 <form id="mw-post-publish-form">
 <div style="overflow: hidden;">
-<div class="save_how"><input type="submit" id="saveas" name="saveas" value="<?php _e('Save as draft','adin_mywords'); ?>" class="button bold" /></div>
-<div class="preview_button"><input type="button" id="saveas" value="<?php _e('Preview','admin_mywords'); ?>" class="button" /></div>
+<?php if (!$edit || $post->getVar('status')=='draft'): ?><div class="save_how"><input type="submit" id="saveas" name="saveas" value="<?php _e('Save as draft','adin_mywords'); ?>" class="button bold" /></div><?php endif; ?>
+<div class="preview_button"><input type="button" id="saveas" value="<?php _e($edit ? 'Preview Changes' : 'Preview','admin_mywords'); ?>" class="button" /></div>
 </div>
 <br />
 <!-- Opciones de Publicación -->
 <div class="publish_options">
-<?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e('Draft','admin_mywords'); ?></strong> &nbsp; <a href="#" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e($status,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>
 	<div id="publish-options" style="display: none;">
 		<select name="status" id="status">
-			<option value="draft" selected="selected"><?php _e('Draft','admin_mywords') ?></option>
-			<option value="pending"><?php _e('Pending Review','admin_mywords') ?></option>
+            <?php if($edit): ?>
+            <option value="publish"<?php echo $edit && $post->getVar('status')=='publish' ? 'selected="selected"' : ''?>><?php _e('Published','admin_mywords') ?></option>
+            <?php endif; ?>
+			<option value="draft"<?php echo $edit && $post->getVar('status')=='draft' ? 'selected="selected"' : ''?>><?php _e('Draft','admin_mywords') ?></option>
+			<option value="pending"<?php echo $edit && $post->getVar('status')=='pending' ? 'selected="selected"' : ''?>><?php _e('Pending Review','admin_mywords') ?></option>
 		</select>
 		<input type="button" name="publish-ok" id="publish-ok" class="button" value="<?php _e('Apply','admin_mywords') ?>" /><br />
 		<a href="#" onclick="$('#publish-options').slideUp('slow'); $('#edit-publish').show();"><?php _e('Cancel','admin_mywords') ?></a>
@@ -59,12 +72,12 @@ function mw_widget_publish(){
 <!-- //Opciones de Publicación -->
 <!-- Visibilidad -->
 <div class="publish_options">
-<?php _e('Visibility:','admin_mywords'); ?> <strong id="visibility-caption"><?php _e('Public','admin_mywords'); ?></strong> &nbsp; <a href="#" id="visibility-edit"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Visibility:','admin_mywords'); ?> <strong id="visibility-caption"><?php _e($visibility,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="visibility-edit"><?php _e('Edit','admin_mywords'); ?></a>
 <?php
-    if (!isset($post)){
+    if (!$edit){
         $visibility = 'public';
     } else {
-        $visibility = $post->status()=='private' ? 'private' : ($post->status()=='publish' && $post->password()!='' ? 'password' : 'public');
+        $visibility = $post->getVar('status')=='private' ? 'private' : ($post->getVar('status')=='publish' && $post->getVar('password')!='' ? 'password' : 'public');
     }
 ?>
     <div id="visibility-options">
@@ -88,7 +101,7 @@ function mw_widget_publish(){
     <div class="schedule-options" style="display: none;">
         <?php
             // Determinamos la fecha correcta
-            $time = $post!=null ? $post->date() : time();
+            $time = $edit ? $post->getVar('pubdate') : time();
             $day = date("d", $time);
             $month = date("n", $time);
             $year = date("Y", $time);
@@ -128,14 +141,14 @@ function mw_widget_publish(){
 <div class="publish_options no_border">
 <?php _e('Author:','admin_mywords'); ?>
 <?php 
-	$user = new RMFormUser('', 'author', 0, array($xoopsUser->uid()));
+	$user = new RMFormUser('', 'author', 0, $edit ? array($post->getVar('author')) : array($xoopsUser->uid()));
 	echo $user->render();
 ?>
 </div>
 <div class="widget_button">
 
 
-<input type="submit" value="<?php _e('Publish','admin_mywords'); ?>" class="button default" id="publish-submit" />
+<input type="submit" value="<?php _e($edit ? 'Update Post' : 'Publish','admin_mywords'); ?>" class="button default" id="publish-submit" />
 </div>
 
 

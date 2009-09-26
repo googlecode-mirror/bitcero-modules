@@ -15,6 +15,19 @@ function mw_widget_categories(){
 	$widget['title'] = __('Categories','admin_mywords');
     RMTemplate::get()->add_script('../include/js/widget_cats.js');
 	$widget['icon'] = '';
+    
+    $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+    $edit = false;
+    if ($id>0){
+        $post = new MWPost($id);
+        if ($post->isNew()){
+            unset($post);
+        } else {
+            $edit = true;
+            $postcat = $post->get_categos(false);
+        }
+    }
+    
 	ob_start();
 ?>
 <div class="rmc_widget_content_reduced">
@@ -25,13 +38,13 @@ $categories = array();
 MWFunctions::categos_list($categories);
 foreach ($categories as $catego){
 ?>
-<label class="cat_label" style="padding-left: <?php _e($catego['indent']*10); ?>px;"><input type="checkbox" name="categories[]" id="categories[]" value="<?php _e($catego['id_cat']); ?>" /> <?php _e($catego['name']); ?></label>
+<label class="cat_label" style="padding-left: <?php _e($catego['indent']*10); ?>px;"><input type="checkbox" name="categories[]" id="categories[]" value="<?php _e($catego['id_cat']); ?>"<?php echo in_array($catego['id_cat'], $postcat) ? ' checked="checked"' : '' ?> /> <?php _e($catego['name']); ?></label>
 <?php
 }
 ?>
 </div>
 <div class="w_catnew_container">
-    <a href="#" id="a-show-new"><strong><?php _e('+ Add Categories','admin_mywords'); ?></strong></a>
+    <a href="javascript:;" id="a-show-new"><strong><?php _e('+ Add Categories','admin_mywords'); ?></strong></a>
     <div id="w-catnew-form">
     	<label class="error" style="display: none;" for="w-name"><?php _e('Please provide a name','admin_mywords'); ?></label>
     	<input type="text" name="name" id="w-name" value="" class="required" />
