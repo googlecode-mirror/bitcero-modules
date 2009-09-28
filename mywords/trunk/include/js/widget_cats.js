@@ -8,7 +8,7 @@
 // --------------------------------------------------------------
 
 $(document).ready(function(){
-	
+        
 	$("#a-show-new").click(function(){
 		$("div#w-catnew-form").slideDown('slow');
 	});
