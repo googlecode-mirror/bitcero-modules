@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $("#addcat").validate({
         messages:{
             name: '<?php echo _AS_MW_NAMEREQ ?>'

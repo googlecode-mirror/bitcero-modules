@@ -25,7 +25,7 @@
 <table border="0" cellspacing="1" cellpadding="0" class="outer" style="margin: 5px 0;">
   <tr class="head" align="center">
   	<th align="center" width="30"><input type="checkbox" name="chekall" value="1" onchange="xoopsCheckAll('modPosts', 'chekall');" /></th>
-    <th align="left"><?php _e('Post','admin_mywords'); ?></th>
+    <th align="left" width="30%"><?php _e('Post','admin_mywords'); ?></th>
     <th><?php _e('Author','admin_mywords'); ?></th>
     <th align="left"><?php _e('Categories','admin_mywords'); ?></th>
     <th align="left"><?php _e('Tags','admin_mywords'); ?></th>
@@ -41,7 +41,7 @@
   <tr class="<?php echo tpl_cycle('even,odd'); ?>" valign="top">
   	<td align="center" valign="top"><input type="checkbox" name="posts[]" value="<?php echo $post['id']; ?>" /></td>
     <td>
-    	<strong><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
+    	<strong><?php echo $post['status']!='publish' ? "<span class=\"draft\">[".__('Draft','admin_mywords')."]</span> " : ''; ?><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
     	<span class="mw_options">
     		<a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
     		<a href="posts.php?op=delete&amp;id=<?php echo $post['id']; ?>"><?php _e('Delete','admin_mywords'); ?></a> |
@@ -53,13 +53,13 @@
     	</span>
     </td>
     <td align="center"><a href="posts.php?author=<?php echo $post['uid'] ?>"><?php echo $post['uname'] ?></a></td>
-    <td><?php echo $post['categories']; ?></td>
-    <td>
+    <td class="mw_postcats"><?php echo $post['categories']; ?></td>
+    <td class="mw_postcats">
     <?php 
     $count = 0;
     foreach ($post['tags'] as $tag): ?>
-    <?php echo $count<=0 ? '' : ', ' ?><a href="posts.php?tag=<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag']; ?></a>
-    <?php endforeach; ?>
+    <?php echo $count<=0 ? '' : ',' ?><a href="posts.php?tag=<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag']; ?></a>
+    <?php $count++; endforeach; ?>
     </td>
     <td align="center">
 		<?php echo $post['comments']; ?>

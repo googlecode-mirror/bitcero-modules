@@ -85,7 +85,7 @@ function showPosts($aprovado = -1){
 			'link'=>$postlink,
 			'status'=>$post->getVar('status'),
 			'categories'=>$post->get_categories_names(true, ',', true, 'admin'),
-			'tags'=>$post->tags(true)
+			'tags'=>$post->tags(false)
 		);
 	}
 	
@@ -140,120 +140,7 @@ function newForm($edit = 0){
 	xoops_cp_footer();
 }
 
-/**
- * Almacena la información de un artículo editado
- */
-function saveEdited($status=0){
-	global $db, $util, $xoopsUser, $myts, $mc;
-	
-	foreach ($_POST as $k => $v){
-		$$k = $v;
-	}
-	$id = $post;
-	if ($id<=0){
-		redirectMsg('posts.php', _AS_MW_NOID, 1);
-		die();
-	}
-	/*if (!$util->validateToken()){
-		redirectMsg('posts.php?op=edit&post='.$id, _AS_MW_ERRTOKEN, 1);
-		die();
-	}*/
-	$post = new MWPost($id);
-	if ($post->isNew()){
-		redirectMsg('posts.php', _AS_MW_NOID, 1);
-		die();
-	}
-	
-	if ($titulo==''){
-		redirectMsg('posts.php?op=edit&post='.$id, _AS_MW_ERRTITLE, 1);
-		die();
-	}
-	
-	if ($texto==''){
-		redirectMsg('posts.php?op=edit&post='.$id, _AS_MW_ERRTEXT, 1);
-		die();
-	}
-	
-	if (empty($categos)){
-		redirectMsg('posts.php?op=edit&post='.$id, _AS_MW_ERRCATS, 1);
-		die();
-	}
-	
-	if ($titulo_amigo==''){
-		redirectMsg('posts.php?op=edit&post='.$id, _AS_MW_ERRFRIENDTITLE, 1);
-		die();
-	}
-	
-	$tracks = explode(" ", $trackbacks);
-	$pinged = $post->getPinged(true);
-	$oktracks = array();
-    $errors = '';
-	foreach ($tracks as $k){
-		if (in_array($k, $pinged)) continue;
-		$oktracks[] = $k;
-	}
-	
-	if (!is_dir(XOOPS_ROOT_PATH.'/uploads/mywords')){
-        mkdir(XOOPS_ROOT_PATH.'/uploads/mywords', decoct(511));
-        chmod(XOOPS_ROOT_PATH.'/uploads/mywords', decoct(511));
-    }
-	$up = new RMUploader(true);
-	$folder = XOOPS_ROOT_PATH.'/uploads/mywords/';
-	$filename = '';
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $mc['filesize'] * 1024);
-	
-	if ($up->fetchMedia('blockimg')){
-        @unlink(XOOPS_ROOT_PATH.'/uploads/mywords/'.$post->getBlockImage());
-		if ($up->upload()){
-			$filename = $up->getSavedFileName();
-			$fullpath = $up->getSavedDestination();
 
-			$redim = new RMImageControl($fullpath, $fullpath);
-			$ext = substr($filename, strlen($filename) - 3);
-			$redim->setTargetFile(XOOPS_ROOT_PATH.'/uploads/mywords/'.$filename);
-			$redim->resizeAndCrop($mc['imgsize'][0],$mc['imgsize'][1]);
-			$imgfile = $filename;
-		} else {
-            $errors .= $up->getErrors();
-			@unlink(XOOPS_ROOT_PATH.'/uploads/mywords/'.$post->getBlockImage());
-			$imgfile = '';
-		}
-	} else {
-        $errors .= $up->getErrors();
-		$imgfile = $post->getBlockImage();
-	}
-	
-	$post->setTitle($titulo);
-	$post->setFriendTitle($util->sweetstring($titulo_amigo));
-	
-	$autor = new XoopsUser($autor);
-	$post->setModDate(time());
-	$post->setText($texto);
-	$post->setAllowPings($allowpings);
-	$post->addToCategos($categos);
-	$post->setTrackBacks($oktracks);
-	$post->setStatus($estado);
-	$post->setExcerpt($excerpt);
-	$post->setBlockImage($imgfile);
-	$post->setAuthor($autor->uid());
-	$post->setAuthorName($autor->uname());
-	$post->setHTML(isset($dohtml) ? 1 : 0);
-	$post->setXCode(isset($doxcode) ? 1 : 0);
-	$post->setBR(isset($dobr) ? 1 : 0);
-	$post->setDoImage(isset($doimage) ? 1 : 0);
-	$post->setSmiley(isset($dosmiley) ? 1 : 0);
-    
-    // Add Metas
-	foreach($meta_name as $k => $v){
-		$post->add_meta($v, $meta_value[$k]);
-	}
-	
-	if ($post->update()){
-		redirectMsg($status==0 ? 'posts.php?op=edit&post='.$post->getID() : 'posts.php', _AS_MW_DBOK.($errors!='' ? '<br />'.$errors : ''), 0);
-	} else {
-		redirectMsg('posts.php?op=edit&post='.$post->getID(), _AS_MW_DBERROR . "<br />" . $post->errors().($errors!='' ? '<br />'.$errors : ''), 1);
-	}
-}
 /**
  * Elimina un artículo de la base de datos
  */

@@ -7,7 +7,7 @@
 <input type="text" name="title" id="post-title" class="mw_biginput required" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
 <div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>" id="mw-perma-link">
 	<?php if($edit): ?>
-		<?php echo $post->permalink(); ?>
+		<strong><?php _e('Permalink:','admin_mywords'); ?></strong> <?php echo $post->permalink(); ?>
 	<?php else: ?>
 		<?php _e('This post has not been saved. Remember to save it before leave this page.','admin_mywords'); ?>
 	<?php endif; ?>
@@ -79,7 +79,7 @@
 		<label><?php _e('Custom fields can be used to add extra metadata to a post that you can use in your theme.','admin_mywords'); ?></label>
 	</div>
 </div>
-
+<br />
 <div class="outer">
     <div class="th"><?php _e('Comments and Trackbacks','admin_mywords'); ?></div>
     <div class="mw_bcontent">
@@ -98,4 +98,7 @@
 <?php RMEventsApi::get()->run_event('mw_posts_form', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="XOOPS_TOKEN_REQUEST" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
+<?php if($edit): ?>
+<input type="hidden" name="id" id="mw-id" value="<?php echo $post->id(); ?>" />
+<?php endif; ?>
 </form>

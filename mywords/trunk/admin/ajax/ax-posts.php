@@ -41,8 +41,8 @@ extract($_POST);
 }*/
 
     
-if (isset($id)){
-    if($id<=0){
+if ($op=='saveedit'){
+    if(!isset($id) || $id<=0){
         return_error(__('You must provide a valid post ID','admin_mywords'), 0, 'posts.php');
         die();
     }
@@ -61,7 +61,7 @@ if (isset($id)){
     $post = new MWPost();
     $edit = false;
 }
-    
+
 /**
 * @todo Insert code to verify token
 */
@@ -137,8 +137,9 @@ foreach($meta as $data){
     $post->add_meta($data['key'], $data['value']);
 }
 
+$return = $edit ? $post->update() : $post->save();
 
-if ($post->save()){
+if ($return){
     if (!$edit) $xoopsUser->incrementPost();
     showMessage($edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'), 0);
     $rtn = array(

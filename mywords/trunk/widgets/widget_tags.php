@@ -17,6 +17,19 @@ function mw_widget_addtags(){
     $widget['title'] = __('Add Tags','admin_mywords');
     RMTemplate::get()->add_script('../include/js/tags.js');
     $widget['icon'] = '';
+    
+    
+    $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+    $edit = false;
+    if ($id>0){
+        $post = new MWPost($id);
+        if ($post->isNew()){
+            unset($post);
+        } else {
+            $edit = true;
+        }
+    }
+    
     ob_start();
 ?>
 <div class="rmc_widget_content_reduced">
@@ -26,10 +39,18 @@ function mw_widget_addtags(){
 <input type="button" name="tags-button" id="tags-button" class="button" value="<?php _e('+ Add','admin_mywords'); ?>" /><br />
 <span class="descriptions"><em><?php _e('Separate multiple tags with commas','admin_mywords'); ?></em></span>
 </div>
+<?php $tags = $edit ? $post->tags() : array(); ?>
 <div id="tags-container">
-    <span class="tip_legends" style="display: none;">
+    <span class="tip_legends" style="<?php echo empty($tags) ? 'display: none;' : ''; ?>">
         <?php _e('Used Tags','admin_mywords'); ?>
     </span>
+    <?php
+    foreach ($tags as $tag): ?>
+    <label><input type='checkbox' name='tags[]' checked='checked' value='<?php echo $tag['tag']; ?>' /><?php echo $tag['tag']; ?></label>
+    <?php 
+    endforeach; 
+    unset($tags);
+    ?>
 </div>
 <a href="javascript:;" id="show-used-tags"><?php _e('Choose between most populars tags','admin_mywords'); ?></a>
 <div id="popular-tags-container" style="display: none;">

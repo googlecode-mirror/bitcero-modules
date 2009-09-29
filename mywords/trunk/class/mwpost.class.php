@@ -305,7 +305,8 @@ class MWPost extends RMObject
 		
 		$this->save_categories();
 		$this->save_metas();
-		
+		$this->save_tags();
+
 		if ($this->errors()!='')
 			return false;
 		
@@ -374,12 +375,10 @@ class MWPost extends RMObject
         $sql = "INSERT INTO ".$this->db->prefix("mw_tagspost")." (`post`,`tag`) VALUES ";
         $sa = '';
         foreach ($this->tags as $tag){
-            $sa .= $sa=='' ? "('$tag','".$this->id()."')" : ",('$tag','".$this->id()."')";
+            $sa .= $sa=='' ? "('".$this->id()."','$tag')" : ",('".$this->id()."','$tag')";
         }
 
-        if ($this->db->queryF($sql.$sa)){
-            return true;
-        } else {
+        if (!$this->db->queryF($sql.$sa)){
             $this->addError($this->db->error());
             return false;
         }

@@ -227,7 +227,7 @@ $(document).ready( function($) {
 		});
 		
 		if (!found)
-			$("div#tags-container").append("<label><input type='checkbox' name='tags[]' checked='checked' /> "+tag+"</label>");
+			$("div#tags-container").append("<label><input type='checkbox' name='tags[]' checked='checked' value='"+tag+"' /> "+tag+"</label>");
 		
 		if (!tip_tag_visible)
 			$("div#tags-container span.tip_legends").show();
@@ -337,7 +337,6 @@ $(document).ready( function($) {
         params += "&"+$("form#mw-post-publish-form").serialize();
         params += "&"+$("form#mw-post-categos-form").serialize();
         params += "&"+$("form#mw-post-tags-form").serialize();
-        
         // Send Post data
         $.post('ajax/ax-posts.php', params, function(data){
             if(data['error']!=undefined && data['error']!=''){
@@ -356,6 +355,54 @@ $(document).ready( function($) {
         return false;
         
     });
+    
+    $("#a-show-new").click(function(){
+		$("div#w-catnew-form").slideDown('slow');
+	});
+	
+	$("div#w-catnew-form a").click(function(){
+		$("div#w-catnew-form").slideUp('slow');
+	});
+	
+	$("input#create-new-cat").click(function(){
+		var name = $("div#w-catnew-form input#w-name").val();
+		if (name==''){
+			$("label[for='w-name']").slideDown();
+			return;
+		}
+	
+		var parent = $("select#w-parent").val();
+		
+		var params = {
+			'XOOPS_TOKEN_REQUEST': $("input#XOOPS_TOKEN_REQUEST").val(),
+			'name':name,
+			'parent':parent
+		};
+		
+		$.post('ajax/ax-categories.php', params, function(data){
+			
+			if (data['error']!=undefined){
+				alert(data['error']);
+				if(data['token'])
+					$("input#xoops-token").val(data['token']);
+				
+				return;
+			}
+			
+			var html = '<label class="cat_label" id="label-'+data['id']+'"><input type="checkbox" name="categories[]" id="categories[]" value="'+data['id']+'" checked="checked" /> '+name+'</label>';
+			$("div#w-categos-container").prepend(html);
+            $("select#w-parent").prepend('<option value="'+data['id']+'">'+name+'</option>');
+			$("label#label-"+data['id']).focus();
+			$("label#label-"+data['id']).effect('highlight', {}, 1000);
+			$("input#xoops-token").val(data['token']);
+			
+			$("div#w-catnew-form input#w-name").val('');
+			$("select#w-parent option[selected='selected']").removeAttr('selected');
+			$("select#w-parent option[value='0']").attr('selected','selected');
+			
+		},'json');
+		
+	});
 
  })(jQuery);
  
