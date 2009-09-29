@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$modversion['name'] = 'Red México Common Utilities';
+$modversion['name'] = 'Common Utilities';
 $modversion['version'] = 2.00;
 $modversion['releasedate'] = "Mon: 26 July 2004";
 $modversion['status'] = "Stable";
@@ -20,6 +20,9 @@ $modversion['license'] = "GPL 2";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "rmcommon";
+
+$modversion['hasAdmin'] = 1;
+$modversion['adminindex'] = "index.php";
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 

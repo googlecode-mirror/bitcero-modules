@@ -27,28 +27,25 @@
 // @author: BitC3R0
 
 $path = str_replace("\\", "/", __FILE__);
-$path = str_replace("/rmcommon/tinymce/plugins/exmsystem/exmimg.php", "", $path);
+$path = str_replace("/modules/rmcommon/api/editors/tinymce/plugins/exmsystem/exmimg.php", "", $path);
 
 function displayPage(){
 	global $tpl, $plugPath;
 	
-	echo $tpl->fetch($plugPath . "exmimg.html");
+	//echo $tpl->fetch($plugPath . "exmimg.html");
 	die();
 }
 
 require $path . '/mainfile.php';
-global $exmLogger, $exmConfig;
-$exmConfig['debug_mode'] = 0;
-$exmLogger->renderingEnabled = false;
+require_once $path.'/modules/rmcommon/loader.php';
+global $xoopsLogger, $xoopsConfig;
+/*$xoopsConfig['debug_mode'] = 0;
+$xoopsLogger->renderingEnabled = false;
 error_reporting(0);
-$exmLogger->activated = false;
+$xoopsLogger->activated = false;*/
 
-// include Smarty template engine and initialize it
-require_once ABSPATH . '/class/theme.php';
-require_once ABSPATH . '/class/theme_blocks.php';
-
-$tpl = new EXMTpl();
-$db =& $exmDB;
+$tpl = new RMTemplate();
+$db = Database::getInstance();
 $plugPath = str_replace("exmimg.php","",__FILE__);
 
 
