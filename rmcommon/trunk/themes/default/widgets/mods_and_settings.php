@@ -14,7 +14,7 @@ define('MODLOCATION',!isset($xoopsModule) ? 'system' : ($xoopsModule->getVar('di
 
 $left_widgets = array();
 $left_widgets[0]['title'] = __('Modules','rmcommon');
-$left_widgets[0]['icon'] = RMCURL.'/templates/default/images/mods.png';
+$left_widgets[0]['icon'] = RMCURL.'/themes/default/images/mods.png';
 $module_handler =& xoops_gethandler('module');
 $criteria = new CriteriaCompo();
 $criteria->add(new Criteria('hasadmin', 1));
@@ -56,7 +56,7 @@ foreach ($mods as $mod) {
         if (isset($info['icon16']) && $info['icon16'] != '' ) {
 	        $rtn['icon'] = XOOPS_URL . '/modules/' . $mod->getVar('dirname', 'n') . '/' . $info['icon16'];
         } elseif($mod->getVar('dirname','n')=='system'){
-            $rtn['icon'] = RMCURL.'/templates/default/images/system.png';
+            $rtn['icon'] = RMCURL.'/themes/default/images/system.png';
         }
     }
     $menu[] = $rtn;
@@ -92,7 +92,7 @@ $left_widgets[0]['content'] = $rtn;
 
 // add preferences menu
 $left_widgets[1]['title'] = __('Settings','rmcommon');
-$left_widgets[1]['icon'] = RMCURL.'/templates/default/images/settings.png';
+$left_widgets[1]['icon'] = RMCURL.'/themes/default/images/settings.png';
 
 $menu = array();
 $menu[] = array(
@@ -140,7 +140,7 @@ foreach ($mods as $mod) {
 $menu[] = array(
 	'title'		=> __('Modules Settings','rmcommon'),
 	'link'		=> '',
-	'icon'		=> RMCURL.'/templates/default/images/modset.png',
+	'icon'		=> RMCURL.'/themes/default/images/modset.png',
 	'options'	=> $options
 );
 

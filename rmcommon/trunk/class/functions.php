@@ -36,4 +36,15 @@ class RMFunctions
 		
 	}
 	
+	/**
+	* Create the module toolbar. This function must be called only from rmcommon module administration
+	*/
+	public function create_toolbar(){
+		
+		RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
+		RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
+		RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plguinsmng');
+		
+	}
+	
 }

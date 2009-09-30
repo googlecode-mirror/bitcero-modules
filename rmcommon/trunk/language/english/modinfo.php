@@ -13,6 +13,8 @@ define('_MI_RMC_EVENTSFILE','Events file location');
 define('_MI_RMC_EVENTSFILED','Specify a secure location, preferable outside from public web directory, for events cache.');
 
 // Admin Menu
+define('_MI_RMC_MENUDASH','Dashboard');
+define('_MI_RMC_MENUPLUGS','Plugins');
 define('_MI_RMC_MENUIMG','Images');
 define('_MI_RMC_OPTICATS','Categories');
 define('_MI_RMC_OPTINEWCAT','New Category');

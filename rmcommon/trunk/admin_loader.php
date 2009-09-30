@@ -23,5 +23,5 @@ if (!file_exists(RMCPATH.'/templates/'.$rmc_theme.'/admin_gui.php')){
 	$rmc_theme = 'default';
 }
 
-define('RMTHEMEPATH', RMCPATH.'/templates/'.$rmc_theme);
-define('RMTHEMEURL', RMCURL.'/templates/'.$rmc_theme);
+define('RMTHEMEPATH', RMCPATH.'/themes/'.$rmc_theme);
+define('RMTHEMEURL', RMCURL.'/themes/'.$rmc_theme);

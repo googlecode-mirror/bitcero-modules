@@ -15,6 +15,7 @@
 
 include_once '../../include/cp_header.php';
 require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
+define('RMCLOCATION','imgmanager');
 
 /**
 * Show all images existing in database
@@ -25,13 +26,33 @@ function show_images(){
 	$db = Database::getInstance();
 	
 	$catnum = RMFunctions::get_num_records("rmc_img_cats");
-	echo $catnum; die();
+	if ($catnum<=0){
+		redirectMsg('images.php?action=newcat', __('There are not categories yet! Please create one in order to can add images.','rmcommon'), 1);
+		die();
+	}
+	
+}
+
+/**
+* Show form to create categories
+*/
+function new_category(){
+	define('RMSUBLOCATION','rmc_imgnewcat');
+	RMFunctions::create_toolbar();
+	xoops_cp_header();
+	
+	include RMTemplate::get()->get_template('categories_form.php', 'module', 'rmcommon');
+	
+	xoops_cp_footer();
 	
 }
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch ($action){
+	case 'newcat':
+		new_category();
+		break;
 	default:
 		show_images();
 		break;

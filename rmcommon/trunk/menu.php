@@ -8,10 +8,16 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$adminmenu[0]['title'] = _MI_RMC_MENUIMG;
-$adminmenu[0]['link'] = "images.php";
-$adminmenu[0]['icon'] = "images/images.png";
-$adminmenu[0]['options'] = array(0 => array(
+$adminmenu[0]['title'] = _MI_RMC_MENUDASH;
+$adminmenu[0]['link'] = "index.php";
+$adminmenu[0]['icon'] = "images/dashboard.png";
+$adminmenu[0]['location'] = "dashboard";
+
+$adminmenu[1]['title'] = _MI_RMC_MENUIMG;
+$adminmenu[1]['link'] = "images.php";
+$adminmenu[1]['icon'] = "images/images.png";
+$adminmenu[1]['location'] = "imgmanager";
+$adminmenu[1]['options'] = array(0 => array(
 		'title'		=>	_MI_RMC_OPTICATS,
 		'link'		=> 'images.php?action=showcats',
 		'selected'	=> 'rmc_imgcats' // RMSUBLOCATION constant defines wich submenu options is selected
@@ -33,3 +39,8 @@ $adminmenu[0]['options'] = array(0 => array(
 		'selected'	=> 'rmc_newimages' // RMSUBLOCATION constant defines wich submenu options is selected
 	)
 );
+
+$adminmenu[2]['title'] = _MI_RMC_MENUPLUGS;
+$adminmenu[2]['link'] = "plugins.php";
+$adminmenu[2]['icon'] = "images/plugin.png";
+$adminmenu[2]['location'] = "plugins";

@@ -8,9 +8,11 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-include_once '../../mainfile.php';
 include_once '../../include/cp_header.php';
+require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
+define('RMCLOCATION','dashboard');
 
+RMFunctions::create_toolbar();
 xoops_cp_header();
 
 xoops_cp_footer();
