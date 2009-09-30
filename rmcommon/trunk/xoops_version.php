@@ -32,6 +32,7 @@ $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][0] = 'api_events';
 $modversion['tables'][1] = 'api_methods';
 $modversion['tables'][2] = 'api_objects';
+$modversion['tables'][3] = 'rmc_img_cats';
 
 /**
 * Events file

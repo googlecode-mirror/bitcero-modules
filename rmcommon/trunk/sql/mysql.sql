@@ -39,7 +39,7 @@ CREATE TABLE `api_objects` (
   KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
-CREATE TABLE `xa4c_rmc_img_cats` (
+CREATE TABLE `rmc_img_cats` (
 `id_img` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `name` VARCHAR( 150 ) NOT NULL ,
 `description` TEXT NOT NULL ,
