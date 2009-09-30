@@ -1,5 +1,5 @@
 <?php
-// $Id: mods_and_settings.php 52 2009-09-18 06:01:48Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules
@@ -172,7 +172,7 @@ if (isset($xoopsModule) && $xoopsModule->getVar('dirname','n')!='system'){
     $amenu = $xoopsModule->getAdminMenu();
     if ($amenu){
 	    foreach ($amenu as $menu){
-		    RMTemplate::get()->add_menu($menu['title'], strpos($menu['link'], array('http://','ftp://'))!==FALSE ? $menu['link'] : XOOPS_URL.'/modules/'.$xoopsModule->getVar('dirname','n').'/'.$menu['link'], isset($menu['icon']) ? $menu['icon'] : '');
+		    RMTemplate::get()->add_menu($menu['title'], strpos($menu['link'], array('http://','ftp://'))!==FALSE ? $menu['link'] : XOOPS_URL.'/modules/'.$xoopsModule->getVar('dirname','n').'/'.$menu['link'], isset($menu['icon']) ? $menu['icon'] : '', isset($menu['location']) ? $menu['location'] : '', isset($menu['options']) ? $menu['options'] : null);
 		    //RMTemplate::get()->add_tool($menu['title'], $menu['link'], isset($menu['icon']) ? $menu['icon'] : '');
 	    }
     }

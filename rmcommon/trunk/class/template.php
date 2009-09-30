@@ -87,11 +87,11 @@ class RMTemplate
 		ob_start();
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
-		if (!file_exists(RMCPATH.'/templates/'.$theme.'/admin_gui.php')){
+		if (!file_exists(RMCPATH.'/themes/'.$theme.'/admin_gui.php')){
 			$theme = 'default';
 		}
 		
-		$rm_theme_url = RMCURL.'/templates/'.$theme;
+		$rm_theme_url = RMCURL.'/themes/'.$theme;
         
         // Check if there are redirect messages
         $rmc_messages = array();
@@ -102,7 +102,7 @@ class RMTemplate
             unset($_SESSION['rmMsg']);
         }
 		
-		include_once RMCPATH.'/templates/'.$theme.'/admin_gui.php';
+		include_once RMCPATH.'/themes/'.$theme.'/admin_gui.php';
 		$output = ob_get_clean();
 		
 		$output = RMEventsApi::get()->run_event('rmevent_admin_output', $output);
@@ -119,9 +119,9 @@ class RMTemplate
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
 		$where = $type=='module' ? 'modules/'.$module : ($type=='plugin' ? 'plugins/'.$module : 'rmcommon');
-		$lpath = RMCPATH.'/templates/'.$theme.'/templates/'.$where.'/'.$file;
+		$lpath = RMCPATH.'/themes/'.$theme.'/templates/'.$where.'/'.$file;
 		
-		if (!is_dir(RMCPATH.'/templates/'.$theme)){
+		if (!is_dir(RMCPATH.'/themes/'.$theme)){
 			$theme = 'default';
 		}
 		
@@ -241,8 +241,8 @@ class RMTemplate
 		if (isset($this->tpl_styles[$id])) return;
     
         $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
-        $themepath = RMCPATH.'/templates/'.$theme;
-        $themeurl = RMCURL.'/templates/'.$theme;
+        $themepath = RMCPATH.'/themes/'.$theme;
+        $themeurl = RMCURL.'/themes/'.$theme;
 
         $theme_file = $themepath.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
         if (is_file($theme_file)){

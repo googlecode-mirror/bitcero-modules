@@ -20,9 +20,12 @@ $modversion['license'] = "GPL 2";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "rmcommon";
+$modversion['icon16'] = "images/rmc16.png";
+$modversion['icon24'] = 'images/rmc24.png';
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
+$modversion['adminmenu'] = "menu.php";
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 

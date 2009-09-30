@@ -30,7 +30,7 @@ function rmc_autoloader($class){
       
     $paths = array(
     	'/api',
-        '/class/',
+        '/class',
         '/kernel',
         '/fields'
         //'/rmcommon' /* @Todo: Eliminar este directorio */
