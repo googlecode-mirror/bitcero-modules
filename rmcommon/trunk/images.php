@@ -41,6 +41,10 @@ function new_category(){
 	RMFunctions::create_toolbar();
 	xoops_cp_header();
 	
+	$form = new RMForm('','','');
+	$write = new RMFormGroups('','write',true,1, 3, array(XOOPS_GROUP_ADMIN));
+	$read = new RMFormGroups('','read',true,1, 3, array(0));
+	
 	include RMTemplate::get()->get_template('categories_form.php', 'module', 'rmcommon');
 	
 	xoops_cp_footer();

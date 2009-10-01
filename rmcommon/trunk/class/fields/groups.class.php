@@ -139,7 +139,7 @@ class RMFormGroups extends RMFormElement
 	 * @return string
 	 */
 	public function render(){
-		$db = EXMDatabase::get();
+		$db = Database::getInstance();
 		$result = $db->query("SELECT * FROM ".$db->prefix("groups")." ORDER BY `name`");
 		$rtn = '';
 		$col = 1;
