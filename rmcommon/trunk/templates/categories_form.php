@@ -46,12 +46,38 @@
 			<td colspan="2">
 				<table class="outer" cellspacing="0">
 					<tr class="head">
-						<td><?php _e('Size Names','rmcommon'); ?></td>
-						<td><?php _e('Values','rmcommon'); ?></td>
+						<td><?php _e('Size Name','rmcommon'); ?></td>
+						<td colspan="4"><?php _e('Value','rmcommon'); ?></td>
 					</tr>
-					<tr>
-						<td><input type="text" name="sizes[]"
+					<tr class="even">
+						<td rowspan="3"><input type="text" name="sizes[0][name]" id="sizes[0][name]" value="default" size="30" /></td>
+                        <td colspan="2" style="background-color: #FAEBD3;">
+                            <?php _e('Thumbnails','rmcommon'); ?>
+                            (<em><label><input type="checkbox" name="sizes[0][thumbs]" value="1" /> <?php _e('Create thumbanails','rmcommon'); ?></label></em>)
+                        </td>
+                        <td colspan="2" style="background: #DBE9F2;"><?php _e('Images','rmcommon'); ?></td>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <strong><?php _e('Width:','rmcommon'); ?></strong>
+                            <input type="text" name="sizes[0][twidth]" value="" size="10" />
+                        </td>
+                        <td>
+                            <strong><?php _e('Height:','rmcommon'); ?></strong>
+                            <input type="text" name="sizes[0][theight]" value="" size="10" />
+                        </td>
+                        <td>
+                            <strong><?php _e('Width:','rmcommon'); ?></strong>
+                            <input type="text" name="sizes[0][width]" value="" size="10" />
+                        </td>
+                        <td>
+                            <strong><?php _e('Height:','rmcommon'); ?></strong>
+                            <input type="text" name="sizes[0][height]" value="" size="10" />
+                        </td>
 					</tr>
+                    <tr class="even">
+                        
+                    </tr>
 				</table>
 			</td>
 		</tr>
