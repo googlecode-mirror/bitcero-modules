@@ -27,7 +27,7 @@ function show_images(){
 	
 	$catnum = RMFunctions::get_num_records("rmc_img_cats");
 	if ($catnum<=0){
-		redirectMsg('images.php?action=newcat', __('There are not categories yet! Please create one in order to can add images.','rmcommon'), 1);
+		redirectMsg('images.php?action=newcat', __('There are not categories yet! Please create one in order to add images.','rmcommon'), 1);
 		die();
 	}
 	
