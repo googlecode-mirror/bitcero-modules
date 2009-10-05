@@ -1,0 +1,21 @@
+a.delsize{
+    float: right;
+    font-weight: normal;
+    background: url(../images/delete.png) no-repeat left;
+    padding: 3px 3px 3px 19px;
+}
+td#sizes-container-all{
+    overflow: hidden;
+}
+td#sizes-container-all table.outer{
+    width: 435px;
+    float: left;
+}
+td#sizes-container-all table{
+    margin: 5px;
+}
+td#sizes-container-all div.new_container{
+    clear: both;
+    margin-top: 10px;
+    text-align: center;
+}

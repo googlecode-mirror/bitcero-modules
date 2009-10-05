@@ -46,5 +46,26 @@ class RMFunctions
 		RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plguinsmng');
 		
 	}
+    
+    /**
+    * Encode array keys to make a valid url string
+    * 
+    * @param array Array to encode
+    * @param string Var name to generate url
+    * @param string URL separator
+    */
+    public function urlencode_array($array, $name, $separator='&'){
+        
+        $toImplode = array();
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $toImplode[] = self::urlencode_array($value, "{$name}[{$key}]", $separator);
+            } else {
+                $toImplode[] = "{$name}[{$key}]=".urlencode($value);
+            }
+        }
+        return implode($separator, $toImplode);
+        
+    }
 	
 }

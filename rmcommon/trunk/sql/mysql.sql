@@ -43,8 +43,6 @@ CREATE TABLE `rmc_img_cats` (
   `id_cat` int(11) NOT NULL auto_increment,
   `name` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL default 'active',
-  `width` smallint(6) NOT NULL,
-  `height` smallint(6) NOT NULL,
   `groups` text NOT NULL,
   `sizes` text NOT NULL,
   PRIMARY KEY  (`id_cat`)
