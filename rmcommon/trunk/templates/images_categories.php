@@ -1,0 +1,1 @@
+<h1 class="rmc_titles"><?php _e('Categories','rmcommon'); ?></h1>

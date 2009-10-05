@@ -34,8 +34,12 @@ function show_images(){
 }
 
 function show_categories(){
-    
+    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    RMFunctions::create_toolbar();
     xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('images_categories.php', 'module', 'rmcommon');
+    
     xoops_cp_footer();
     
 }
@@ -115,6 +119,13 @@ function save_category($edit = 0){
     if (empty($schecked)){
         redirectMsg($q, __('You must create one size for this category at least!','rmcommon'), 1);
         die();
+    }
+    
+    // Check if there are a category with same name
+    $num = RMFunctions::get_num_records('rmc_img_cats', "name='$name'".($edit ? " AND id_cat<>'".$cat->id()."'" : ''));
+    if($num>0){
+		redirectMsg($q, __('There are already a category with same name!','rmcommon'), 1);
+		die();
     }
     
     $cat->setVar('name', $name);
