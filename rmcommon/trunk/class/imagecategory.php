@@ -30,7 +30,11 @@ class RMImageCategory extends RMObject
 
     }
     
-    function save(){
+    public function id(){
+		return $this->getVar('id');
+    }
+    
+    public function save(){
         if ($this->isNew()){
             return $this->saveToTable();
         } else {

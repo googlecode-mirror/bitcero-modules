@@ -41,6 +41,7 @@ function rmc_autoloader($class){
     }
 	
     foreach ($paths as $path){
+    	
     	if (file_exists(RMCPATH.$path.'/'.$class.'.php')){
         	include_once RMCPATH.$path.'/'.$class.'.php';
         } elseif(file_exists(RMCPATH.$path.'/'.$class.'.class.php')){

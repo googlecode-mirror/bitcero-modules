@@ -67,5 +67,33 @@ class RMFunctions
         return implode($separator, $toImplode);
         
     }
+    
+    /**
+	* This functions allows to get the groups names for a single category
+	* @param array Groups ids
+	* @param bool Return as list
+	* @return array|list
+	*/
+	public function get_groups_names($groups, $list = true){
+		
+		$ret = array();
+		if (count($groups)==1 && $groups[0] == 0){
+			$ret[] = __('All','rmcommon');
+			return $list ? __('All','rmcommon') : $ret;
+		}
+		
+		if(in_array(0, $groups)) $ret[] = __('All','rmcommon');
+		
+		
+		$db = Database::getInstance();
+		$sql = "SELECT name FROM ".$db->prefix("groups")." WHERE groupid IN(".implode(',',$groups).")";
+		$result = $db->query($sql);
+		while($row = $db->fetchArray($result)){
+			$ret[] = $row['name'];
+		}
+		
+		if ($list) return implode(', ',$ret);
+		return $ret;
+	}
 	
 }

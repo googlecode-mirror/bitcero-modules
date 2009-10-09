@@ -19,3 +19,11 @@ td#sizes-container-all div.new_container{
     margin-top: 10px;
     text-align: center;
 }
+td.sizes_data{
+	font-size: 0.9em;
+	color: #666;
+}
+td.sizes_data em{
+	font-style: normal;
+	color: #800000;
+}

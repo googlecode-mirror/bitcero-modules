@@ -1,0 +1,9 @@
+span.rmc_options{
+	display: block;
+	font-size: 0.9em;
+	padding: 4px 0;
+	visibility: hidden;
+}
+.even:hover span.rmc_options, .odd:hover span.rmc_options{
+	visibility: visible;
+}

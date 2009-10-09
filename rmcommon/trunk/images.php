@@ -35,8 +35,34 @@ function show_images(){
 
 function show_categories(){
     global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    
+    // Get categories
+    $db = Database::getInstance();
+    $sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." ORDER BY id_cat DESC";
+    
+    $result = $db->query($sql);
+    $categories = array();
+    
+    while ($row = $db->fetchArray($result)){
+    	$cat = new RMImageCategory();
+    	$cat->assignVars($row);
+    	$groups = $cat->getVar('groups');
+		$categories[] = array(
+			'id'		=>	$cat->id(),
+			'name'		=>	$cat->getVar('name'),
+			'status'	=> 	$cat->getVar('status'),
+			'gwrite'	=> 	RMFunctions::get_groups_names($groups['write']),
+			'gread'		=> 	RMFunctions::get_groups_names($groups['read']),
+			'sizes'		=>	$cat->getVar('sizes'),
+			'images'	=>	RMFunctions::get_num_records('rmc_img_cats')
+		);
+    }
+    
+    RMTemplate::get()->add_style('general.css','rmcommon');
+    RMTemplate::get()->add_style('imgmgr.css','rmcommon');
     RMFunctions::create_toolbar();
     xoops_cp_header();
+    
     
     include RMTemplate::get()->get_template('images_categories.php', 'module', 'rmcommon');
     
@@ -113,7 +139,7 @@ function save_category($edit = 0){
     foreach ($sizes as $size){
         if (trim($size['name'])=='') continue;
         if ($size['type']!='none' && $size['width']<=0 && $size['height']<=0) continue;
-        $schecked = $size;
+        $schecked[] = $size;
     }
     
     if (empty($schecked)){
