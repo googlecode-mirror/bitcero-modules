@@ -43,3 +43,20 @@ $modversion['config'][1]['description'] = '_MI_RMC_EVENTSFILED';
 $modversion['config'][1]['formtype'] = 'textbox';
 $modversion['config'][1]['valuetype'] = 'text';
 $modversion['config'][1]['default'] = XOOPS_CACHE_PATH."/".md5('events').'.php';
+
+// Images store type
+$modversion['config'][2]['name'] = 'imagestore';
+$modversion['config'][2]['title'] = '_MI_RMC_IMAGESTORE';
+$modversion['config'][2]['description'] = '';
+$modversion['config'][2]['formtype'] = 'yesno';
+$modversion['config'][2]['valuetype'] = 'int';
+$modversion['config'][2]['default'] = 1;
+
+// Editor
+$modversion['config'][3]['name'] = 'editor_type';
+$modversion['config'][3]['title'] = '_MI_RMC_EDITOR';
+$modversion['config'][3]['description'] = '';
+$modversion['config'][3]['formtype'] = 'select';
+$modversion['config'][3]['valuetype'] = 'text';
+$modversion['config'][3]['default'] = 'tiny';
+$modversion['config'][3]['options'] = array('_MI_RMC_EDITOR_VISUAL'=>'tiny','_MI_RMC_EDITOR_HTML'=>'html','_MI_RMC_EDITOR_XOOPS'=>'xoops','_MI_RMC_EDITOR_SIMPLE'=>'simple');

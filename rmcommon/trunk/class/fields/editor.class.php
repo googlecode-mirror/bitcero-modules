@@ -87,10 +87,10 @@ class RMFormEditor extends RMFormElement
 		$ret = '';
         
 		switch ($this->_type){
-			case 'textarea':
+			case 'simple':
 				$ret .= $this->renderTArea();
 				break;
-			case 'code':
+			case 'xoops':
 				$ret .= $this->renderExmCode();
 				break;
 			case 'html':

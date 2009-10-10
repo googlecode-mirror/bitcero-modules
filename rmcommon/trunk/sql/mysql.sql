@@ -47,3 +47,12 @@ CREATE TABLE `rmc_img_cats` (
   `sizes` text NOT NULL,
   PRIMARY KEY  (`id_cat`)
 ) ENGINE=MyISAM;
+
+CREATE TABLE `rmc_images` (
+`id_img` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`title` VARCHAR( 100 ) NOT NULL ,
+`desc` TEXT NOT NULL ,
+`date` INT( 10 ) NOT NULL ,
+`file` VARCHAR( 150 ) NOT NULL ,
+`cat` INT NOT NULL
+) ENGINE = MYISAM ;
