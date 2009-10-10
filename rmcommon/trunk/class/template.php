@@ -118,7 +118,7 @@ class RMTemplate
 		
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
-		$where = $type=='module' ? 'modules/'.$module : ($type=='plugin' ? 'plugins/'.$module : 'rmcommon');
+		$where = $type=='module' ? 'modules/'.$module : ($type=='plugin' ? 'plugins/'.$module : 'modules/rmcommon');
 		$lpath = RMCPATH.'/themes/'.$theme.'/templates/'.$where.'/'.$file;
 		
 		if (!is_dir(RMCPATH.'/themes/'.$theme)){

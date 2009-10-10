@@ -1,8 +1,19 @@
 <h1 class="rmc_titles"><?php _e('Categories','rmcommon'); ?></h1>
 
+<form name="frmimgcats" id="form-img-cats" method="post" action="images.php">
+<div class="rmc_bulkactions">
+<?php echo $nav->render(); ?>
+<select name="action">
+	<option value=""><?php _e('Bulk Actions...','rmcommon'); ?></option>
+	<option value="deletecat"><?php _e('Delete','rmcommon'); ?></option>
+	<option value="closecat"><?php _e('Close Category','rmcommon'); ?></option>
+	<option value="opencat"><?php _e('Open Category','rmcommon'); ?></option>
+</select>
+<input type="submit" value="<?php _e('Apply','rmcommon'); ?>" />
+</div>
 <table class="outer" cellspacing="0" width="100%">
 	<tr>
-		<th width="20"><input type="checkbox" name="checkall" id="checkall" /></th>
+		<th width="20"><input type="checkbox" name="checkall" id="checkall" onclick="$('#form-img-cats').toggleCheckboxes(':not(#checkall)');" /></th>
 		<th align="left"><?php _e('Name','rmcommon'); ?></th>
 		<th><?php _e('Status','rmcommon'); ?></th>
 		<th align="left"><?php _e('Sizes','rmcommon'); ?></th>
@@ -22,11 +33,12 @@
 			<span class="rmc_options">
 				<a href="images.php?action=editcat&amp;id=<?php echo $cat['id']; ?>"><?php _e('Edit','rmcommon'); ?></a> |
 				<a href="images.php?action=deletecat&amp;id=<?php echo $cat['id']; ?>"><?php _e('Delete','rmcommon'); ?></a> |
+				<a href="images.php?action=<?php echo $cat['status']=='open' ? 'closecat' : 'opencat'; ?>&amp;id=<?php echo $cat['id']; ?>"><?php _e($cat['status']=='open' ? 'Close' : 'Open','rmcommon'); ?></a> |
 				<a href="images.php?category=<?php echo $cat['id']; ?>"><?php _e('Images','rmcommon'); ?></a>
 			</span>
 		</td>
 		<td align="center">
-			<?php _e($cat['status']=='open' ? 'Open' : 'Closed','rmcommon'); ?>
+			<img src="<?php echo RMTHEMEURL; ?>/images/<?php echo $cat['status']=='open' ? 'open' : 'closed'; ?>.png" alt="<?php _e($cat['status']=='open' ? 'Open' : 'Closed','rmcommon'); ?>" />
 		</td>
 		<td class="sizes_data">
 			<?php foreach ($cat['sizes'] as $size): ?>
@@ -48,3 +60,7 @@
 	</tr>
 	<?php endforeach; ?>
 </table>
+<div class="rmc_bulkactions">
+	<?php echo $nav->render(); ?>
+</div>
+</form>

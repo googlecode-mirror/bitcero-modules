@@ -28,24 +28,35 @@ input[type='text'],input[type='password'],textarea,select{
     border-radius: 3px;
     background: #F7F7F7;
 }
+option{
+	font-family: tahoma, arial, sans-serif;
+	font-size: 0.9em;
+	padding: 2px;
+	color: #333;
+}
 input[type='text']:focus,input[type='password']:focus,textarea:focus,select:focus{
 	background: #FFF;
 	color: #000;
 }
 input[type='button'],input[type='submit']{
-    background: url(../images/bgw.png) repeat-x top;
+    background: url(../images/bgwc.png) repeat-x top;
     padding: 4px 6px;
-    border: 1px outset #2D4760;
+    border: 1px outset #CCC;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    color: #FFF;
-    text-shadow: 0 0 2px #000;
+    color: #000;
+    text-shadow: 0 0 2px #fff;
     font-family: tahoma, arial, helvetica, sans-serif; /*georgia, times, serif;*/
     cursor: pointer;
 }
-
+input[type='submit'],input.formButton{
+	border: 1px outset #2D4760;
+	color: #FFF;
+	text-shadow: 0 0 2px #000;
+	background: url(../images/bgw.png) repeat-x top;
+}
 /** Standars from RMCOmmon **/
 h1.rmc_titles{
 	margin: 0 0 15px 0;
@@ -281,20 +292,20 @@ div.errorMsg{
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: #FFFFCE;
-    padding: 10px;
-    border: 1px solid #FFB57D;
-    color: #FF6600;
+    background: #cd0a0a url(../images/error.png) no-repeat 5px;
+    padding: 10px 10px 10px 23px;
+    border: 1px solid #cd0a0a;
+    color: #ffffff;
 }
 div.infoMsg{
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: #D5EAFF;
-    padding: 10px;
-    border: 1px solid #80BFFF;
-    color: #000;
+    background: #FFED97 url(../images/info.png) no-repeat 5px;
+    padding: 10px 10px 10px 23px;
+    border: 1px solid #fed22f;
+    color: #363636;
 }
 
 .outer{

@@ -54,5 +54,6 @@ CREATE TABLE `rmc_images` (
 `desc` TEXT NOT NULL ,
 `date` INT( 10 ) NOT NULL ,
 `file` VARCHAR( 150 ) NOT NULL ,
-`cat` INT NOT NULL
+`cat` INT NOT NULL,
+`uid` INT NOT NULL
 ) ENGINE = MYISAM ;

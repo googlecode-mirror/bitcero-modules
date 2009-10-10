@@ -60,3 +60,18 @@ $modversion['config'][3]['formtype'] = 'select';
 $modversion['config'][3]['valuetype'] = 'text';
 $modversion['config'][3]['default'] = 'tiny';
 $modversion['config'][3]['options'] = array('_MI_RMC_EDITOR_VISUAL'=>'tiny','_MI_RMC_EDITOR_HTML'=>'html','_MI_RMC_EDITOR_XOOPS'=>'xoops','_MI_RMC_EDITOR_SIMPLE'=>'simple');
+
+// Images Categories list limit number
+$modversion['config'][4]['name'] = 'catsnumber';
+$modversion['config'][4]['title'] = '_MI_RMC_IMGCATSNUMBER';
+$modversion['config'][4]['description'] = '';
+$modversion['config'][4]['formtype'] = 'textbox';
+$modversion['config'][4]['valuetype'] = 'int';
+$modversion['config'][4]['default'] = 10;
+
+$modversion['config'][5]['name'] = 'imgsnumber';
+$modversion['config'][5]['title'] = '_MI_RMC_IMGSNUMBER';
+$modversion['config'][5]['description'] = '';
+$modversion['config'][5]['formtype'] = 'textbox';
+$modversion['config'][5]['valuetype'] = 'int';
+$modversion['config'][5]['default'] = 20;

@@ -31,7 +31,7 @@ class RMImageCategory extends RMObject
     }
     
     public function id(){
-		return $this->getVar('id');
+		return $this->getVar('id_cat');
     }
     
     public function save(){

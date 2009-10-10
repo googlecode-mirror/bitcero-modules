@@ -17,6 +17,8 @@ define('_MI_RMC_EDITOR_VISUAL','Visual Editor');
 define('_MI_RMC_EDITOR_HTML','HTML Editor');
 define('_MI_RMC_EDITOR_XOOPS','XoopsCode Editor');
 define('_MI_RMC_EDITOR_SIMPLE','Simple Editor');
+define('_MI_RMC_IMGCATSNUMBER','Number limit for image categories list.');
+define('_MI_RMC_IMGSNUMBER','Image manager number of images per page');
 
 // Admin Menu
 define('_MI_RMC_MENUDASH','Dashboard');
