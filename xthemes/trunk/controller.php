@@ -52,6 +52,33 @@ class XThemesController
 	}
 	
 	/**
+	* Gets the theme configuration as an array
+	*/
+	public function get_theme_config($name=''){
+		global $xoopsConfig;
+		
+		if ($name!=''){
+			$theme = $name;
+		} else {
+			$theme = $xoopsConfig['theme_set'];
+		}
+		
+		$theme = preg_replace('/\s+/', '', $theme);
+		$theme = str_replace('-','',$theme);
+		$var = $theme.'Config';
+		
+		if (isset($this->configs[$theme])){
+			return $this->configs[$theme];
+		}
+		
+		if (false === ($object = xt_is_valid($theme)))
+			return;
+		
+		$this->configs[$theme] = xt_get_current_config($theme);
+		return $this->configs[$theme];
+	}
+	
+	/**
 	* Get theme configuration and assign to a smarty var
 	* 
 	* @param object $smarty
@@ -74,10 +101,10 @@ class XThemesController
 			return;
 		}
 		
-		if (false === ($object = xt_is_valid($xoopsConfig['theme_set'])))
+		if (false === ($object = xt_is_valid($theme)))
 			return;
 		
-		$this->configs[$theme] = xt_get_current_config($xoopsConfig['theme_set']);
+		$this->configs[$theme] = xt_get_current_config($theme);
 		
 		$smarty->assign($var, $this->configs[$theme]);
 		
