@@ -26,6 +26,6 @@ define('_MI_RMC_MENUPLUGS','Plugins');
 define('_MI_RMC_MENUIMG','Images');
 define('_MI_RMC_OPTICATS','Categories');
 define('_MI_RMC_OPTINEWCAT','New Category');
-define('_MI_RMC_OPTINEWIMG','Nueva Imagen');
-define('_MI_RMC_OPTINEWIMGS','Crear Imágenes');
+define('_MI_RMC_OPTINEWIMG','New Image');
+define('_MI_RMC_OPTINEWIMGS','Create Images');
 

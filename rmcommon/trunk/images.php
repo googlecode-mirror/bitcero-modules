@@ -51,7 +51,7 @@ function show_images(){
     $nav->target_url('images.php?'.($cat>0 ? 'category='.$cat : '').'&page={PAGE_NUM}');
     
     // Get categories
-    $sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." ".($cat>0 ? "WHERE cat='$cat'" : '')." ORDER BY id_cat DESC LIMIT $start,$limit";
+    $sql = "SELECT * FROM ".$db->prefix("rmc_images")." ".($cat>0 ? "WHERE cat='$cat'" : '')." ORDER BY id_img DESC LIMIT $start,$limit";
     
     $result = $db->query($sql);
     $images = array();
@@ -86,9 +86,14 @@ function show_images(){
 }
 
 function images_form($edit = 0){
-	
+	global $xoopsModule, $xoopsModuleConfig;
+    
+    $upload = new RMFlashUploader('images', 'images.php');
+    RMTemplate::get()->add_head($upload->get_js_settings());
 	xoops_cp_header();
 	
+    include RMTemplate::get()->get_template('images_uploadimages.php','module','rmcommon');
+    
 	xoops_cp_footer();
 	
 }
