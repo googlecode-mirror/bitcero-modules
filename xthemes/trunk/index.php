@@ -122,6 +122,26 @@ function xt_configure_show(){
 }
 
 /**
+* This funtion redirect to theme url owner
+*/
+function xt_goto_url(){
+	global $xoopsConfig;
+	
+	if (false === ($theme = xt_is_valid($xoopsConfig['theme_set'])))
+		xt_redirect('index.php', 'This theme cannot be configured by X.Themes because is not a valid Theme', 1);
+	
+	$element_info = $theme->get_info();
+	
+	if ($element_info['url']!=''){
+		header('location: '.$element_info['url']);
+		die();
+	} else {
+		header('location: index.php');
+		die();
+	}
+}
+
+/**
 * Activate a theme
 */
 function xt_install_theme(){
@@ -256,7 +276,7 @@ function xt_save_settings(){
 			$errors[] = $db->error();
 		
 	}
-
+	
 	if (!empty($errors)){
 		xt_redirect('index.php', 'There was errors during this operation:<br />'.implode('<br />', $errors), true);
 	} else {
@@ -421,6 +441,9 @@ switch($op){
         break;
     case 'config-plugin':
     	xt_configure_plugin();
+    	break;
+    case 'url':
+    	xt_goto_url();
     	break;
 	default:
 		xt_show_init();

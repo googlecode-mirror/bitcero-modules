@@ -8,7 +8,7 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'xThemes Manager';
-$modversion['version'] = 0.55;
+$modversion['version'] = 1.0;
 $modversion['description'] = 'A module to manage themes from TemasWeb.com';
 $modversion['credits'] = "Eduardo Cortés <i.bitcero@gmail.com>";
 $modversion['author'] = "Eduardo Cortés <i.bitcero@gmail.com>";
@@ -21,7 +21,6 @@ $modversion['dirname'] = "xthemes";
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 $modversion['tables'][0] = 'xtheme_config';
-$modversion['tables'][1] = 'xtheme_plugins';
 
 // Admin things
 $modversion['hasAdmin'] = 1;
