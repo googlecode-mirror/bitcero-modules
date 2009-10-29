@@ -152,6 +152,17 @@ class XThemesController
 	}
 	
 	/**
+	* This function get a smarty template and return its result
+	*/
+	public function include_tpl($smarty, $params){
+		global $xoopsConfig;
+		
+		$file = $params['file'];
+		return $smarty->fetch(XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'].'/'.$file);
+		
+	}
+	
+	/**
 	* Run third party function
 	*/
 	public function run_function(&$smarty, $params){
