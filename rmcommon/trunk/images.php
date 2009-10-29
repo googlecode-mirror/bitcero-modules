@@ -89,8 +89,9 @@ function images_form($edit = 0){
 	global $xoopsModule, $xoopsModuleConfig;
     
     /*$upload = new RMFlashUploader('images', 'images.php');*/
-    RMTemplate::get()->add_script('include/js/swfupload.js');
-    
+    RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
+    RMTemplate::get()->add_script('include/js/images.js');
+    RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
 	xoops_cp_header();
 	
     include RMTemplate::get()->get_template('images_uploadimages.php','module','rmcommon');
@@ -306,6 +307,10 @@ function category_status($action='open'){
 	
 }
 
+function images_upload(){
+    die(0);
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -334,6 +339,9 @@ switch ($action){
     case 'new':
     	images_form(0);
     	break;
+    case 'upload':
+        images_upload();
+        break;
 	default:
 		show_images();
 		break;
