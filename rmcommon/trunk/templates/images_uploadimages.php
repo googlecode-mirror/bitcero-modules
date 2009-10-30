@@ -2,6 +2,7 @@
 <div id="files-container">
 
 </div>
-<a href="javascript:;" onclick="$('#files-container').fileUploadStart();">Upload</a>
+<a href="javascript:;" onclick="$('#files-container').uploadifyUpload();">Upload</a> |
+<a href="javascript:;" onclick="$('#files-container').uploadifyClearQueue();">Clear All</a>
 
 

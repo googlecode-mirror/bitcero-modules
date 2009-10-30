@@ -89,10 +89,12 @@ function images_form($edit = 0){
 	global $xoopsModule, $xoopsModuleConfig;
     
     /*$upload = new RMFlashUploader('images', 'images.php');*/
+    RMTemplate::get()->add_script('include/js/swfobject.js');
     RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
     RMTemplate::get()->add_script('include/js/images.js');
     RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
 	xoops_cp_header();
+	RMFunctions::create_toolbar();
 	
     include RMTemplate::get()->get_template('images_uploadimages.php','module','rmcommon');
     
