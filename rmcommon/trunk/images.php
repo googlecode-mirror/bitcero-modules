@@ -88,11 +88,31 @@ function show_images(){
 function images_form($edit = 0){
 	global $xoopsModule, $xoopsModuleConfig;
     
+	$category = rmc_server_var($_GET, 'category', 0);
+	$cat = new RMImageCategory($category);
     /*$upload = new RMFlashUploader('images', 'images.php');*/
-    RMTemplate::get()->add_script('include/js/swfobject.js');
-    RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
-    RMTemplate::get()->add_script('include/js/images.js');
-    RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
+    if (!$cat->isNew()){
+    	RMTemplate::get()->add_script('include/js/swfobject.js');
+    	RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
+    	RMTemplate::get()->add_script('include/js/images.js');
+    	RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
+	}
+	RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
+	
+	// Load Categories
+	$db = Database::getInstance();
+	$sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." ORDER BY id_cat DESC";
+	$result = $db->query($sql);
+	$categories = array();
+	while($row = $db->fetchArray($result)){
+		$tc = new RMImageCategory();
+		$tc->assignVars($row);
+		$categories[] = array(
+			'id'	=> $tc->id(),
+			'name'	=> $tc->getVar('name')
+		);
+	}
+	
 	xoops_cp_header();
 	RMFunctions::create_toolbar();
 	

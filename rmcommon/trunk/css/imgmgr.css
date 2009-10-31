@@ -27,3 +27,14 @@ td.sizes_data em{
 	font-style: normal;
 	color: #800000;
 }
+
+/** IMAGES **/
+div.select_image_cat{
+	padding: 4px;
+	border: 1px solid #CCC;
+	margin: 0 auto;
+	background: #ebebeb;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 10px;
+}
