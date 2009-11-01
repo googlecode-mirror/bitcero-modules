@@ -86,16 +86,23 @@ function show_images(){
 }
 
 function images_form($edit = 0){
-	global $xoopsModule, $xoopsModuleConfig;
+	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity;
     
 	$category = rmc_server_var($_GET, 'category', 0);
 	$cat = new RMImageCategory($category);
     /*$upload = new RMFlashUploader('images', 'images.php');*/
     if (!$cat->isNew()){
-    	RMTemplate::get()->add_script('include/js/swfobject.js');
-    	RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
-    	RMTemplate::get()->add_script('include/js/images.js');
-    	RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
+        $uploader = new RMFlashUploader('files-container', 'include/upload.php');
+        $uploader->add_setting('scriptData', array('action'=>'upload','category'=>$cat->id(),'token'=>$xoopsSecurity->createToken()));
+        $uploader->add_setting('multi', true);
+        $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
+        $uploader->add_setting('fileDesc', __('All Images (*.jpg, +.png, *.gif)','rmcommon'));
+        $uploader->add_setting('sizeLimit', 2097152);
+        $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
+            alert(resp);
+            return true;
+        }");
+        RMTemplate::get()->add_head($uploader->render());
 	}
 	RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
 	

@@ -11,58 +11,73 @@
 class RMFlashUploader
 {
     private $settings = array();
-    private $name = '';
+    public $name = '';
     /**
     * Constructor
     * 
     * @param string Name of instance
-    * @param string Target uploader url
+    * @param string Target uploader url (e.g. uploader.php)
     * @param array SWFUploader settings
     * @return RMFlashUploader
     */
     public function __construct($name, $url, $settings = array()){
+        // Generate settings for uploadify
         $this->settings = array(
-            'upload_url' => $url,
-            'flash_url' => RMCURL.'/include/swfupload.swf',
-            'file_size_limit' => "100 MB",
-            'file_types' => "*.*",
-            'file_types_description' => "All Files",
-            'file_upload_limit' => 100,
-            'file_queue_limit' => 0,
-            'debug' => false,
-            // Button settings
-            // 'button_image_url' => "images/TestImageNoText_65x29.png",
-            // 'button_width' =>  "65",
-            // 'button_height' => "29",
-                button_placeholder_id: "spanButtonPlaceHolder",
-                button_text: '<span class="theFont">Hello</span>',
-                button_text_style: ".theFont { font-size: 16; }",
-                button_text_left_padding: 12,
-                button_text_top_padding: 3,
-                
-                // The event handler functions are defined in handlers.js
-                file_queued_handler : fileQueued,
-                file_queue_error_handler : fileQueueError,
-                file_dialog_complete_handler : fileDialogComplete,
-                upload_start_handler : uploadStart,
-                upload_progress_handler : uploadProgress,
-                upload_error_handler : uploadError,
-                upload_success_handler : uploadSuccess,
-                upload_complete_handler : uploadComplete,
-                queue_complete_handler : queueComplete    // Queue plugin event
-          
+            'uploader' => RMCURL.'/include/uploadify.swf',
+            'script' => $url,
+            'cancelImg' => RMCURL.'/images/cancel.png',
+            'scriptData' => array(),
+            'multi' => false,
+            'fileExt' => '*.*',
+            'fileDesc' => __('All Files','rmcommon'),
+            'sizeLimit' => 524288,
+            'queueSizeLimit' => 10,
+            'buttonText' => __('Select Files','rmcommon'),
+            'checkScript' => '',
+            'fileDataName' => 'Filedata',
+            'method' => 'POST',
+            'scriptAccess' => 'sameDomain',
+            'folder' => '',
+            'queueID' => '',
+            'auto' => false,
+            'simUploadLimit' => 1,
+            'buttonImg' => '',
+            'hideButton' => false,
+            'rollover' => false,
+            'width' => 110,
+            'height' => 30,
+            'wmode' => 'opaque',
+            'onInit' => '',
+            'onSelect' => '',
+            'onSelectOnce' => '',
+            'onCancel' => '',
+            'onClearQueue' => '',
+            'onQueueFull' => '',
+            'onError' => '',
+            'onOpen' => '',
+            'onProgress' => '',
+            'onComplete' => '',
+            'onAllComplete' => '',
+            'onCheck' => ''
         );
         
         foreach ($settings as $key => $value){
+            if (!isset($this->settings[$key])) continue;
             $this->settings[$key] = $value;
         }
+        
+        $this->name = $name;
         
         RMTemplate::get()->add_script(RMCURL.'/include/js/swfupload.js');
         
     }
     
     public function add_setting($name, $value){
+        if (!isset($this->settings[$name])) return false;
+        
         $this->settings[$name] = $value;
+        return true;
+        
     }
     
     public function get_setting($name){
@@ -71,20 +86,31 @@ class RMFlashUploader
         return $this->settings[$name];
     }
     
-    public function get_js_settings(){
-        $ret = "<script type='text/javascript'>\n
+    /**
+    * Add several settings items at once
+    * 
+    * @param array $settings
+    */
+    public function add_settings($settings){
+        foreach ($settings as $key => $value){
+            if (!isset($this->settings[$key])) continue;
+            $this->settings[$key] = $value;
+        }
+    }
+    
+    public function settings(){
+        return $this->settings;
+    }
+    
+    public function render(){
         
-        \$(document).ready(function(){
-            var settings = {\n";
-            $count = count($this->settings);
-            $c = 0;
-            foreach ($this->settings as $key => $value){
-                $c++;
-                $ret .= "$key: \"$value\"".($c>=$count ? '' : ',')."\n";
-            }
-        $ret .= "};\n
-        swfu = new SWFUpload(settings); });\n</script>";
+        RMTemplate::get()->add_script('include/js/swfobject.js');
+        RMTemplate::get()->add_script('include/js/jquery.uploadify.js');
+        RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
         
-        return $ret;
+        ob_start();
+        include RMTemplate::get()->get_template('uploadify.js.php', 'module', 'rmcommon');
+        $script = ob_get_clean();
+        return $script;
     }
 }
