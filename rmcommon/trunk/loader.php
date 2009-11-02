@@ -78,4 +78,6 @@ if (!RMEventsApi::get()->get_object('rmcommon', 'module')){
     unset($rmc_events);
 }
 
+include_once RMCPATH.'/include/tpl_functions.php';
+
 define('RMCLANG','en_US');

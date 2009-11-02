@@ -9,12 +9,6 @@ CREATE TABLE `api_events` (
   KEY `eid` (`eid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
--- --------------------------------------------------------
-
--- 
--- Estructura de tabla para la tabla `et_api_methods`
--- 
-
 CREATE TABLE `api_methods` (
   `method` varchar(100) collate latin1_general_ci NOT NULL,
   `event` bigint(20) NOT NULL,
@@ -23,12 +17,6 @@ CREATE TABLE `api_methods` (
   PRIMARY KEY  (`method`),
   KEY `event` (`event`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
--- --------------------------------------------------------
-
--- 
--- Estructura de tabla para la tabla `et_api_objects`
--- 
 
 CREATE TABLE `api_objects` (
   `id_object` int(11) NOT NULL auto_increment,
@@ -44,6 +32,8 @@ CREATE TABLE `rmc_img_cats` (
   `name` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL default 'active',
   `groups` text NOT NULL,
+  `filesize` int(11) NOT NULL default '0',
+  `sizeunit` smallint not null default '1024',
   `sizes` text NOT NULL,
   PRIMARY KEY  (`id_cat`)
 ) ENGINE=MyISAM;

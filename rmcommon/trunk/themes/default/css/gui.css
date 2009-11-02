@@ -28,6 +28,9 @@ input[type='text'],input[type='password'],textarea,select{
     border-radius: 3px;
     background: #F7F7F7;
 }
+select{
+	padding: 2px;
+}
 option{
 	font-family: tahoma, arial, sans-serif;
 	font-size: 0.9em;

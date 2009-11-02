@@ -86,18 +86,23 @@ function show_images(){
 }
 
 function images_form($edit = 0){
-	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity;
+	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity, $xoopsUser;
     
 	$category = rmc_server_var($_GET, 'category', 0);
 	$cat = new RMImageCategory($category);
+	
     /*$upload = new RMFlashUploader('images', 'images.php');*/
     if (!$cat->isNew()){
         $uploader = new RMFlashUploader('files-container', 'include/upload.php');
-        $uploader->add_setting('scriptData', array('action'=>'upload','category'=>$cat->id(),'token'=>$xoopsSecurity->createToken()));
+        $uploader->add_setting('scriptData', array(
+        	'action'=>'upload',
+        	'category'=>$cat->id(),
+        	'security'=>urlencode(TextCleaner::getInstance()->encrypt($_SERVER['PHP_SELF'].' '.session_id().' '.$xoopsUser->uid().' '.$xoopsSecurity->createToken().'-ok', true)))
+        );
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
-        $uploader->add_setting('fileDesc', __('All Images (*.jpg, +.png, *.gif)','rmcommon'));
-        $uploader->add_setting('sizeLimit', 2097152);
+        $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
+        $uploader->add_setting('sizeLimit', $cat->getVar('filesize') * $cat->getVar('sizeunit'));
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
             alert(resp);
             return true;
@@ -295,6 +300,8 @@ function save_category($edit = 0){
     $cat->setVar('status', $status);
     $cat->setVar('groups', array('write'=>$write,'read'=>$read));
     $cat->setVar('sizes',$schecked);
+    $cat->setVar('filesize', $filesize<=0 ? '50' : $filesize);
+    $cat->setVar('sizeunit', $sizeunit<=0 ? '1024' : $sizeunit);
     
     if ($cat->save()){
         redirectMsg('images.php?action=showcats', __($edit ? 'Category updated successfully!' : 'Category saved successfully!','rmcommon'), 0);

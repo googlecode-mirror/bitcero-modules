@@ -391,7 +391,7 @@ class RMEventsApi
 	    $this->from_db();
 	    
 	    if (empty($this->api_events)) return false;
-	    file_put_contents($this->api_file, TextCleaner::crypt(json_encode($this->api_events)));
+	    file_put_contents($this->api_file, TextCleaner::encrypt(json_encode($this->api_events)));
 	    
 	    return true;
 	    

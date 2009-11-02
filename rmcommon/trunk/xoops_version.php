@@ -75,3 +75,12 @@ $modversion['config'][5]['description'] = '';
 $modversion['config'][5]['formtype'] = 'textbox';
 $modversion['config'][5]['valuetype'] = 'int';
 $modversion['config'][5]['default'] = 20;
+
+// Secure Key
+$modversion['config'][6]['name'] = 'secretkey';
+$modversion['config'][6]['title'] = '_MI_RMC_SECREY';
+$modversion['config'][6]['description'] = '_MI_RMC_SECREYD';
+$modversion['config'][6]['formtype'] = 'textbox';
+$modversion['config'][6]['valuetype'] = 'text';
+if (!isset($xoopsSecurity)) $xoopsSecurity = new XoopsSecurity();
+$modversion['config'][6]['default'] = $xoopsSecurity->createToken();

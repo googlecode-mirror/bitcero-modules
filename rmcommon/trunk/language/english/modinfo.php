@@ -19,6 +19,8 @@ define('_MI_RMC_EDITOR_XOOPS','XoopsCode Editor');
 define('_MI_RMC_EDITOR_SIMPLE','Simple Editor');
 define('_MI_RMC_IMGCATSNUMBER','Number limit for image categories list.');
 define('_MI_RMC_IMGSNUMBER','Image manager number of images per page');
+define('_MI_RMC_SECREY','Secret Key');
+define('_MI_RMC_SECREYD','Provide a secret key used to encript information.');
 
 // Admin Menu
 define('_MI_RMC_MENUDASH','Dashboard');

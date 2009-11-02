@@ -577,19 +577,13 @@ class TextCleaner
 	* @param bool Apply base64_encode?
 	* @return string
 	*/
-	public function crypt($string, $encode64 = true){
-		global $exmg_config;
-		
-		if ($string=='') return $string;
-		
-		if (!extension_loaded("mcrypt"))
-			return $string;
-		
-		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
-		$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-		$data = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $exmg_config['secretkey'], $string, MCRYPT_MODE_ECB, $iv);
-		
-		return $encode64 ? base64_encode($data) : $data;
+	public function encrypt($string, $encode64 = true){
+		global $rmc_config;
+
+		$crypt = new pcrypt(MODE_ECB, "BLOWFISH", $rmc_config['secretkey']);
+		$string = $crypt->encrypt($string);
+		if ($encode64) $string = base64_encode($string);
+		return $string;
 		
 	}
 	
@@ -600,22 +594,13 @@ class TextCleaner
 	* @param bool Apply base64_decode? default true
 	*/
 	public function decrypt($string, $encode64 = true){
-		global $exmg_config;
+		global $rmc_config;
+
+		$crypt = new pcrypt(MODE_ECB, "BLOWFISH", $rmc_config['secretkey']);
+		if ($encode64) $string = base64_decode($string);
+		$string = $crypt->decrypt($string);
 		
-		if ($string=='') return $string;
-		
-		if (!extension_loaded("mcrypt"))
-			return $string;
-		
-		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
-		$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-		
-		if ($encode64)
-			$string = base64_decode($string);
-			
-		$data = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $exmg_config['secretkey'], $string, MCRYPT_MODE_ECB, $iv), "\0");
-		
-		return $data;
+		return $string;
 		
 	}
     

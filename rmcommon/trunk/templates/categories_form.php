@@ -33,6 +33,19 @@
 				<?php echo $fread->render(); ?>
 			</td>
 		</tr>
+		<tr class="cell_fields">
+			<td class="form_captions">
+				<label for="filesize"><?php _e('Maximum file size:','rmcommon'); ?></label>
+			</td>
+			<td>
+				<input type="text" name="filesize" id="filesize" size="5" value="<?php echo $edit ? $cat->getVar('filesize') : '50'; ?>" />
+				<select name="sizeunit">
+					<option value="1"<?php echo $edit && $cat->getVar('sizeunit')=='1' ? ' selected="selected"' : ''; ?>><?php _e('Bytes','rmcommon'); ?></option>
+					<option value="1024"<?php echo $edit && $cat->getVar('sizeunit')=='1024' ? ' selected="selected"' : (!$edit ? 'selected="selected"' : ''); ?>><?php _e('Kilobytes','rmcommon'); ?></option>
+					<option value="1048576"<?php echo $edit && $cat->getVar('sizeunit')=='1048576' ? ' selected="selected"' : ''; ?>><?php _e('Megabytes','rmcommon'); ?></option>
+				</select>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="2"><h1 class="rmc_titles"><?php _e('Images Configurations','rmcommon'); ?></h1></td>
 		</tr>
