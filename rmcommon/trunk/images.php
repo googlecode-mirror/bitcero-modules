@@ -97,7 +97,7 @@ function images_form($edit = 0){
         $uploader->add_setting('scriptData', array(
         	'action'=>'upload',
         	'category'=>$cat->id(),
-        	'security'=>urlencode(TextCleaner::getInstance()->encrypt($_SERVER['PHP_SELF'].' '.session_id().' '.$xoopsUser->uid().' '.$xoopsSecurity->createToken().'-ok', true)))
+        	'security'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'-'.$xoopsSecurity->createToken(), true))
         );
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');

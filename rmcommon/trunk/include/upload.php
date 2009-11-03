@@ -21,9 +21,8 @@ function error($message, $token = false){
 */
 include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
+$security = rmc_server_var($_POST, 'security', 0);
 $category = rmc_server_var($_POST, 'category', 0);
-$action = rmc_server_var($_POST, 'action', '');
-$security = urldecode(rmc_server_var($_POST, 'security', 0));
 
 $data = TextCleaner::getInstance()->decrypt($security, true);
 echo $data; die();
