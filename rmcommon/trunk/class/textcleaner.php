@@ -579,10 +579,9 @@ class TextCleaner
 	*/
 	public function encrypt($string, $encode64 = true){
 		global $rmc_config;
-
-		$crypt = new pcrypt(MODE_ECB, "BLOWFISH", $rmc_config['secretkey']);
+		$crypt = new Crypt(Crypt::MODE_HEX, $rmc_config['secretkey']);
 		$string = $crypt->encrypt($string);
-		if ($encode64) $string = base64_encode($string);
+		//if ($encode64) $string = base64_encode($string);
 		return $string;
 		
 	}
@@ -595,9 +594,7 @@ class TextCleaner
 	*/
 	public function decrypt($string, $encode64 = true){
 		global $rmc_config;
-
-		$crypt = new pcrypt(MODE_ECB, "BLOWFISH", $rmc_config['secretkey']);
-		if ($encode64) $string = base64_decode($string);
+		$crypt = new Crypt(Crypt::MODE_HEX, $rmc_config['secretkey']);
 		$string = $crypt->decrypt($string);
 		
 		return $string;

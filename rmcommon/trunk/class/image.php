@@ -19,7 +19,6 @@ class RMImage extends RMObject
         $this->_dbtable = $this->db->prefix("rmc_images");
         $this->setNew();
         $this->initVarsFromTable();
-        $this->setVarType('file', XOBJ_DTYPE_ARRAY);
         if ($id==null){
             return;
         }
@@ -32,5 +31,15 @@ class RMImage extends RMObject
 	public function id(){
 		return $this->getVar('id_img');
 	}
+    
+    public function save(){
+        
+        if ($this->isNew()){
+            return $this->saveToTable();
+        } else {
+            return $this->updateTable();
+        }
+        
+    }
 	
 }

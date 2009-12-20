@@ -365,6 +365,7 @@ class RMEventsApi
 	    if (!isset($this->api_events[$event])) return $value;
 
 	    $args = func_get_args();
+
 	    reset($this->api_events[$event]);
 	    
 	    //$methods = $this->api_events[$event][$event]['methods'];

@@ -42,4 +42,25 @@ class RMImageCategory extends RMObject
         }
     }
     
+    public function max_file_size(){
+        $size = $this->getVar('filesize') * $this->getVar('sizeunit');
+        return $size;
+    }
+    
+    /**
+    * Check if given user is allowed
+    * @param object XoopsUser object
+    * @return bool
+    */
+    public function user_allowed_toupload(XoopsUser $user){
+        $groups = $user->getGroups();
+        $allowed = $this->getVar('groups');
+        
+        foreach ($groups as $id){
+            if (in_array($id, $allowed['write'])) return true;
+        }
+        
+        return false;
+    }
+    
 }

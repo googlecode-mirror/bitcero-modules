@@ -86,7 +86,7 @@ function show_images(){
 }
 
 function images_form($edit = 0){
-	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity, $xoopsUser;
+	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity, $xoopsUser, $rmc_config;
     
 	$category = rmc_server_var($_GET, 'category', 0);
 	$cat = new RMImageCategory($category);
@@ -97,19 +97,43 @@ function images_form($edit = 0){
         $uploader->add_setting('scriptData', array(
         	'action'=>'upload',
         	'category'=>$cat->id(),
-        	'security'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'-'.$xoopsSecurity->createToken(), true))
+        	'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php', true))
         );
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
         $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
         $uploader->add_setting('sizeLimit', $cat->getVar('filesize') * $cat->getVar('sizeunit'));
+        $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
-            alert(resp);
+            eval('ret = '+resp);
+            if (ret.error){
+                \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
+            } else {
+                total++;
+                ids[total-1] = ret.id;
+                \$('#upload-errors').append('<span class=\"done\"><strong>'+file.name+'</strong>: ".__('Upload successfully!','rmcommon')."</span>');
+            }
             return true;
+        }");
+        $uploader->add_setting('onAllComplete', "function(event, data){
+            \$('.select_image_cat').hide('slow');
+            \$('#upload-errors').hide('slow');
+            \$('#upload-errors').html('');
+            \$('#upload-controls').hide('slow');
+            \$('#resizer-bar').show('slow');
+            \$('#resizer-bar').effect('highlight',{},1000);
+            
+            var increments = 1/total*100;
+            url = '".RMCURL."/images.php';
+            
+            params = '".TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)."';
+            resize_image(params);
+            
         }");
         RMTemplate::get()->add_head($uploader->render());
 	}
 	RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
+    RMTemplate::get()->add_script('include/js/images.js');
 	
 	// Load Categories
 	$db = Database::getInstance();
@@ -343,8 +367,54 @@ function category_status($action='open'){
 	
 }
 
-function images_upload(){
-    die(0);
+function send_error($message){
+    $data['error'] = 1;
+    $data['message'] = $message;
+    echo json_encode($data);
+    die();
+}
+
+function resize_images(){
+    global $xoopsUser, $xoopsLogger, $xoopsSecurity;
+    
+    error_reporting(0);
+    $xoopsLogger->activated = false;
+    
+    $params = rmc_server_var($_GET, 'data','');
+    $id = rmc_server_var($_GET, 'img', 0);
+    
+    if ($params==''){
+        send_error(__('Unauthorized!','rmcommon'));
+    }
+    
+    if ($id<=0){
+        send_error(__('Invalid image!','rmcommon'));
+    }
+    
+    $params = TextCleaner::decrypt($params);
+    $data = explode('|', $params);
+    
+    if ($data[0]!=$xoopsUser->uid()){
+        send_error(__('Unauthorized!','rmcommon'));
+    }
+    
+    if ($data[1]!=RMCURL.'/images.php'){
+        send_error(__('Unauthorized!','rmcommon'));
+    }
+    
+    if (!$xoopsSecurity->check(false, $data[2])){
+        send_error(__('Unauthorized!','rmcommon'));
+    }
+    
+    $image = new RMImage($id);
+    if ($image->isNew()){
+        send_error(__('Image not found!','rmcommon'));
+    }
+    
+    // Resize image
+    $cat = new RMImageCategory($image->getVar('cat'));
+    
+    die();
 }
 
 
@@ -375,8 +445,8 @@ switch ($action){
     case 'new':
     	images_form(0);
     	break;
-    case 'upload':
-        images_upload();
+    case 'resize':
+        resize_images();
         break;
 	default:
 		show_images();

@@ -12,11 +12,26 @@
 	<input type="hidden" name="action" value="new" />
 	</form>
 </div>
+<div id="upload-controls">
 <?php if (!$cat->isNew()): ?>
+<input type="button" class="formButton imgcontrols" style="float: left; margin-right: 5px;" onclick="$('#files-container').uploadifyUpload();" value="<?php _e('Upload','rmcommon'); ?>" />
+<input type="button" class="imgcontrols" style="float: left; margin-right: 5px;" onclick="$('#files-container').uploadifyClearQueue(); $('#upload-errors').html('');" value="<?php _e('Clear All','rmcommon'); ?>" />
 <div id="files-container">
 
 </div>
-<a href="javascript:;" onclick="$('#files-container').uploadifyUpload();">Upload</a> |
-<a href="javascript:;" onclick="$('#files-container').uploadifyClearQueue();">Clear All</a>
+</div>
+<div id="upload-errors">
+
+</div>
+<div id="resizer-bar">
+<strong><?php _e('Resizing images','rmcommon'); ?></strong>
+<div class="thebar">
+<div class="indicator" id="bar-indicator">0</div>
+</div>
+<span><?php _e('Please, do not close the window until resizing process has finished!','rmcommon'); ?></span>
+    <div class="donebutton">
+        <input type="button" class="donebutton" value="<?php _e('Done! Click to continue...','rmcommon'); ?>" onclick="imgcontinue();" />
+    </div>
+</div>
 <?php endif; ?>
 

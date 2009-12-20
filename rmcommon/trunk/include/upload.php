@@ -12,8 +12,10 @@ include '../../../mainfile.php';
 //XoopsLogger::getInstance()->activated = false;
 //XoopsLogger::getInstance()->renderingEnabled = false;
 
-function error($message, $token = false){
-	echo json_encode($message);
+function error($message){
+    $data['error'] = 1;
+    $data['message'] = $message;
+	echo json_encode($data);
 	die();
 }
 /**
@@ -21,24 +23,83 @@ function error($message, $token = false){
 */
 include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
-$security = rmc_server_var($_POST, 'security', 0);
+$security = rmc_server_var($_POST, 'rmsecurity', 0);
 $category = rmc_server_var($_POST, 'category', 0);
 
 $data = TextCleaner::getInstance()->decrypt($security, true);
-echo $data; die();
+
 $data = explode("|", $data); // [0] = referer, [1] = session_id(), [2] = user, [3] = token
 
+$xoopsUser = new XoopsUser($data[0]);
 
-if (!$xoopsSecurity->check(true, $data[0])){
+if (!isset($data[1]) || $data[1]!=RMCURL.'/images.php'){
 	error(__('You are not allowed to do this action','rmcommon'));
+}
+
+$xoopsUser = new XoopsUser($data[0]);
+
+if (!$xoopsUser){
+    error(__('You are not allowed to do this action','rmcommon'));
 }
 
 if ($category<=0){
 	error(__('Sorry, category has not been specified!','rmcommon'));
 }
 
-$c = TextCleaner::getInstance()->crypt("Soy Eduardo", true);
-echo $c.'<br />';
-echo TextCleaner::getInstance()->decrypt($c, true);
+$cat = new RMImageCategory($category);
+if ($cat->isNew()){
+    error(__('Sorry, the specified category has not been found!','rmcommon'));
+}
+
+if (!$cat->user_allowed_toupload($xoopsUser)){
+    error(__('Sorry, you can not upload images!','rmcommon'));
+}
+
+// Cargamos la imágen
+$updir = XOOPS_UPLOAD_PATH.'/'.date('Y', time());
+if (!file_exists($updir)){
+    mkdir($updir);
+    chmod($updir, octdec('0777'));
+}
+$updir .= '/'.date('m',time());
+if (!file_exists($updir)){
+    mkdir($updir);
+    chmod($updir, octdec('0777'));
+}
+
+if (!file_exists($updir.'/sizes')){
+    mkdir($updir.'/sizes');
+    chmod($updir.'/sizes', octdec('0777'));
+}
+
+include RMCPATH.'/class/uploader.php';
+
+$uploader = new RMFileUploader($updir, $cat->max_file_size(), array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/bmp'));
+
+$err = array();
+if (!$uploader->fetchMedia('Filedata')){
+    error($uploader->getErrors());
+}
+
+if (!$uploader->upload()){
+    error($uploader->getErrors());
+}
+
+// Insertamos el archivo en la base de datos
+$image = new RMImage();
+$image->setVar('title', $uploader->savedFileName);
+$image->setVar('date', time());
+$image->setVar('file', $uploader->savedFileName);
+$image->setVar('cat', $cat->id());
+$image->setVar('uid', $xoopsUser->uid());
+
+if (!$image->save()){
+    unlink($uploader->savedDestination);
+    error(__('File could not be inserted to database!','rmcommon'));
+}
+
+$ret['message'] = '1';
+$ret['id'] = $image->id();
+echo json_encode($ret);
 
 die();
