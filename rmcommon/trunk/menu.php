@@ -29,13 +29,9 @@ $adminmenu[1]['options'] = array(0 => array(
 		'title'		=>	_MI_RMC_MENUIMG,
 		'link'		=> 'images.php',
 		'selected'	=> 'rmc_images' // RMSUBLOCATION constant defines wich submenu options is selected
-	), 3 => array(
-		'title'		=>	_MI_RMC_OPTINEWIMG,
-		'link'		=> 'images.php?action=new',
-		'selected'	=> 'rmc_newimage' // RMSUBLOCATION constant defines wich submenu options is selected
 	), 4 => array(
 		'title'		=>	_MI_RMC_OPTINEWIMGS,
-		'link'		=> 'images.php?action=newbulk',
+		'link'		=> 'images.php?action=new',
 		'selected'	=> 'rmc_newimages' // RMSUBLOCATION constant defines wich submenu options is selected
 	)
 );

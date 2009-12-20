@@ -58,9 +58,23 @@ function show_images(){
     $categories = array();
     $authors = array();
 	
+    $category = new RMImageCategory($cat);
+    $sizes = $category->getVar('sizes');
+    $current_size = array();
+    
+    foreach ($sizes as $size){
+        if (empty($current_size)){
+            $current_size = $size;
+        } else {
+            if ($current_size['width']>=$size['width'] && $size['width']>0){
+                $current_size = $size;
+            }
+        }
+    }
+    
 	while($row = $db->fetchArray($result)){
 		$img = new RMImage();
-		
+		$img->assignVars($row);
 		if (!isset($categories[$img->getVar('cat')])){
 			$categories[$img->getVar('cat')] = new RMImageCategory($img->getVar('cat'));
 		}
@@ -68,18 +82,24 @@ function show_images(){
 		if (!isset($authors[$img->getVar('uid')])){
 			$authors[$img->getVar('uid')] = new XoopsUser($img->getVar('uid'));
 		}
+        
+        $fd = pathinfo($img->getVar('file'));
 		
 		$images[] = array(
 			'id'		=> $img->id(),
 			'title'		=> $img->getVar('title'),
 			'date'		=> $img->getVar('date'),
+            'desc'      => $img->getVar('desc', 'n'),
 			'cat'		=> $categories[$img->getVar('cat')]->getVar('name'),
-			'author'	=> $authors[$img->getVar('uid')]
+			'author'	=> $authors[$img->getVar('uid')],
+            'file'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension']
 		);
 	}
 	
 	xoops_cp_header();
 	RMFunctions::create_toolbar();
+    RMTemplate::get()->add_style('imgmgr.css','rmcommon');
+    RMTemplate::get()->add_style('general.css','rmcommon');
 	include RMTemplate::get()->get_template('images_images.php','module','rmcommon');
 	xoops_cp_footer();
 	
@@ -104,6 +124,7 @@ function images_form($edit = 0){
         $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
         $uploader->add_setting('sizeLimit', $cat->getVar('filesize') * $cat->getVar('sizeunit'));
         $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
+        $uploader->add_setting('queueSizeLimit', 100);
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
             eval('ret = '+resp);
             if (ret.error){
@@ -111,7 +132,7 @@ function images_form($edit = 0){
             } else {
                 total++;
                 ids[total-1] = ret.id;
-                \$('#upload-errors').append('<span class=\"done\"><strong>'+file.name+'</strong>: ".__('Upload successfully!','rmcommon')."</span>');
+                \$('#upload-errors').append('<span class=\"done\"><strong>'+file.name+'</strong>: ".__('Uploaded successfully!','rmcommon')."</span>');
             }
             return true;
         }");
@@ -122,6 +143,7 @@ function images_form($edit = 0){
             \$('#upload-controls').hide('slow');
             \$('#resizer-bar').show('slow');
             \$('#resizer-bar').effect('highlight',{},1000);
+            \$('#gen-thumbnails').show();
             
             var increments = 1/total*100;
             url = '".RMCURL."/images.php';
@@ -377,6 +399,8 @@ function send_error($message){
 function resize_images(){
     global $xoopsUser, $xoopsLogger, $xoopsSecurity;
     
+    set_time_limit(0);
+    
     error_reporting(0);
     $xoopsLogger->activated = false;
     
@@ -413,8 +437,62 @@ function resize_images(){
     
     // Resize image
     $cat = new RMImageCategory($image->getVar('cat'));
+    if (!$cat->user_allowed_toupload($xoopsUser)){
+        send_error(__('Unauthorized','rmcommon'));
+    }
     
+    $sizes = $cat->getVar('sizes');
+    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
+    $upurl = XOOPS_UPLOAD_URL.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
+    $width = 0;
+    $tfile = '';
+
+    foreach ($sizes as $size){
+        
+        if ($size['width']<=0 && $size['height']<=0) continue;
+        
+        $fd = pathinfo($updir.'/'.$image->getVar('file'));
+        
+        $name = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+        $sizer = new RMImageResizer($updir.'/'.$image->getVar('file'), $name);
+        
+        switch($size['type']){
+            case 'crop':
+                $sizer->resizeAndCrop($size['width'], $size['height']);
+                break;
+            default:
+                if ($size['width']<=0 || $size['height']<=0){
+                    $sizer->resizeWidth($size['width']);
+                } else {
+                    $sizer->resizeWidthOrHeight($size['width'], $size['height']);
+                }                
+                break;
+        }
+        
+        $width = $width==0 ? $size['width'] : $width;
+        if($width<$size['width']){
+            $with = $size['width'];
+            $tfile = str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $name);
+        }
+        
+    }
+    
+    $ret['message'] = sprintf(__('%s done!', 'rmcommon'), $image->getVar('file'));
+    $ret['done'] = 1;
+    $ret['file'] = $tfile;
+    $ret['title'] = $image->getVar('title');
+    echo json_encode($ret);
+        
     die();
+}
+
+/**
+* Function to edit images
+* 
+* @var any
+*/
+function edit_image(){
+    
 }
 
 
@@ -447,6 +525,9 @@ switch ($action){
     	break;
     case 'resize':
         resize_images();
+        break;
+    case 'edit':
+        edit_image();
         break;
 	default:
 		show_images();

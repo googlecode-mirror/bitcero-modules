@@ -41,6 +41,8 @@ div.select_image_cat{
 #upload-errors{
     padding: 10px;
     margin: 10px 0;
+    float: right;
+    width: 300px;
 }
 #upload-errors span.failed{
     background: url(../images/error.png) no-repeat left;
@@ -61,11 +63,20 @@ div.select_image_cat{
     color: #666;
     display: none;
 }
+#resizer-bar span.message{
+    display: block;
+    float: left;
+    color: #008000;
+}
+#resizer-bar span.message span{
+    color: #F00;
+}
 #resizer-bar .thebar{
     background: #999;
     height: 16px;
     border: 1px inset #666;
     margin: 5px;
+    clear: both;
 }
 #resizer-bar .thebar .indicator{
     background: #ff4400;
@@ -79,4 +90,21 @@ div.select_image_cat{
 div.donebutton{
     display: none;
     margin: 10px 0;
+}
+div#gen-thumbnails img{
+    width: 90px;
+    height: 70px;
+    margin: 4px;
+    padding: 1px;
+    border: 1px solid #666;
+}
+.even .description, .odd .description{
+    font-size: 0.9em;
+    display: block;
+    padding: 2px 0;
+    font-style: italic;
+    color: #666;
+}
+.rmc_pages_navigation_container{
+    float: right;
 }

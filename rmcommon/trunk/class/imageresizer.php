@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class RMImageResizer extends RMObject
+class RMImageResizer
 {
     private $file = ''; #Archivo de origen
     private $filetarget = ''; # Archivo destino
