@@ -108,3 +108,14 @@ div#gen-thumbnails img{
 .rmc_pages_navigation_container{
     float: right;
 }
+#image-loader{
+    display: none;
+    position: absolute;
+    padding: 10px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    -moz-box-shadow: 0 0 20px #000;
+    -webkit-box-shadow: 0 0 20px #000;
+    box-shadow: 0 0 20px #000;
+}

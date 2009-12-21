@@ -58,3 +58,42 @@ function imgcontinue(){
     });
     
 }
+
+function show_image_pop(url){
+    
+  var img = new Image();
+  
+  // wrap our new image in jQuery, then:
+  $(img)
+    // once the image has loaded, execute this code
+    .load(function () {
+      // set the image hidden by default    
+      $(this).hide('slow', function(){
+          $(this).fadeIn('slow', function(){
+              $('#image-loader')
+                // then insert our image
+                .html(this)
+                
+                .animate({
+                    width: $(this).width()+'px',
+                    height: $(img).height()+'px',
+                    marginLeft: '-'+($(img).width()/2)+'px',
+                    marginTop: '-'+($(img).height()/2)+'px'
+                });
+          });
+      });        
+    
+    })
+    
+    // if there was an error loading the image, react accordingly
+    .error(function () {
+      // notify the user that the image could not be loaded
+    })
+    
+    // *finally*, set the src attribute of the new image to our image
+    .attr('src', url)
+    .attr('onclick','$("#image-loader").hide("slow");');
+    
+    //alert($('#image-loader img').attr('src'));
+
+}

@@ -33,6 +33,10 @@ function show_images(){
 	}
 	
 	$cat = rmc_server_var($_GET, 'category', 0);
+    if ($cat<=0){
+        header('location: images.php?action=showcats');
+        die();
+    }
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_images");
     if ($cat>0) $sql .= " WHERE cat='$cat'";
     /**
@@ -442,7 +446,7 @@ function resize_images(){
     }
     
     $sizes = $cat->getVar('sizes');
-    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
+    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
     $upurl = XOOPS_UPLOAD_URL.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
     $width = 0;
     $tfile = '';
@@ -492,7 +496,59 @@ function resize_images(){
 * @var any
 */
 function edit_image(){
+    global $xoopsUser, $xoopsSecurity;
     
+    $id = rmc_server_var($_GET, 'id', 0);
+    if ($id<=0){
+        redirectMsg('images.php', __('Invalid image ID', 'rmcommon'), 1);
+        die();
+    }
+    
+    $image = new RMImage($id);
+    if ($image->isNew()){
+        redirectMsg('images.php', __('Image not found!', 'rmcommon'), 1);
+        die();
+    }
+    
+    $cat = new RMImageCategory($image->getVar('cat'));
+    $sizes = $cat->getVar('sizes');
+    $current_size = array();
+    
+    $fd = pathinfo($updir.'/'.$image->getVar('file'));
+    $updir = '/'.date('Y', $image->getVar('date')).'/'.date('m',time());
+    
+    foreach ($sizes as $size){
+        if (empty($current_size)){
+            $current_size = $size;
+        } else {
+            if ($current_size['width']>=$size['width'] && $size['width']>0){
+                $current_size = $size;
+            }
+        }
+        $image_data['sizes'][] = array(
+            'file' => XOOPS_UPLOAD_URL.$updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'],
+            'name' => $size['name']
+        );
+    }
+    
+    
+    $image_data['thumbnail'] = XOOPS_UPLOAD_URL.$updir.'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'];
+    $mimes = include(XOOPS_ROOT_PATH.'/include/mimetypes.inc.php');
+    $image_data['mime'] = isset($mimes[$fd['extension']]) ? $mimes[$fd['extension']] : 'application/octet-stream';
+    $image_data['file'] = $image->getVar('file');
+    $image_data['date'] = $image->getVar('date');
+    $image_data['title'] = $image->getVar('title');
+    $image_data['desc'] = $image->getVar('desc', 'e');
+    $image_data['url'] = XOOPS_UPLOAD_URL.$updir.'/'.$image->getVar('file');
+    
+    xoops_cp_header();
+    RMFunctions::create_toolbar();
+    
+    RMTemplate::get()->add_script('include/js/images.js');
+    RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
+    include RMTemplate::get()->get_template('images_edit.php','module','rmcommon');
+    
+    xoops_cp_footer();
 }
 
 
