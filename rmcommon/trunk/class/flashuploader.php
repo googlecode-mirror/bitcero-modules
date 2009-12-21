@@ -73,8 +73,8 @@ class RMFlashUploader
     }
     
     public function add_setting($name, $value){
+    	
         if (!isset($this->settings[$name])) return false;
-        
         $this->settings[$name] = $value;
         return true;
         

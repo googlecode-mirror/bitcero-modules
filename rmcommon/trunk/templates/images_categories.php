@@ -32,7 +32,7 @@
 			<strong><?php echo $cat['name']; ?></strong>
 			<span class="rmc_options">
 				<a href="images.php?action=editcat&amp;id=<?php echo $cat['id']; ?>"><?php _e('Edit','rmcommon'); ?></a> |
-				<a href="images.php?action=deletecat&amp;id=<?php echo $cat['id']; ?>"><?php _e('Delete','rmcommon'); ?></a> |
+				<a href="javascript:;" onclick="if(confirm('<?php _e('Do you really want to delete &quot;'.$cat['name'].'&quot;?') ?>')) window.location = 'images.php?action=delcat&id=<?php echo $cat['id']; ?>&XOOPS_TOKEN_REQUEST='+$('#token').val();"><?php _e('Delete','rmcommon'); ?></a> |
 				<a href="images.php?action=<?php echo $cat['status']=='open' ? 'closecat' : 'opencat'; ?>&amp;id=<?php echo $cat['id']; ?>"><?php _e($cat['status']=='open' ? 'Close' : 'Open','rmcommon'); ?></a> |
 				<a href="images.php?category=<?php echo $cat['id']; ?>"><?php _e('Images','rmcommon'); ?></a>
 			</span>
@@ -63,4 +63,5 @@
 <div class="rmc_bulkactions">
 	<?php echo $nav->render(); ?>
 </div>
+<input type="hidden" name="token" id="token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 </form>

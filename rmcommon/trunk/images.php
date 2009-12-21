@@ -100,10 +100,13 @@ function show_images(){
 		);
 	}
 	
+	$categories = RMFunctions::load_images_categories();
+	
 	xoops_cp_header();
 	RMFunctions::create_toolbar();
     RMTemplate::get()->add_style('imgmgr.css','rmcommon');
     RMTemplate::get()->add_style('general.css','rmcommon');
+    RMTemplate::get()->add_script('include/js/jquery.checkboxes.js');
 	include RMTemplate::get()->get_template('images_images.php','module','rmcommon');
 	xoops_cp_footer();
 	
@@ -114,6 +117,11 @@ function images_form($edit = 0){
     
 	$category = rmc_server_var($_GET, 'category', 0);
 	$cat = new RMImageCategory($category);
+	
+	if (!$cat->isNew() && $cat->getVar('status')!='open'){
+		showMessage(sprintf(__('Category %s is closed. Please, select another category.','rmcommon'), '"'.$cat->getVar('name').'"'), 1);
+		$cat = new RMImageCategory();
+	}
 	
     /*$upload = new RMFlashUploader('images', 'images.php');*/
     if (!$cat->isNew()){
@@ -141,6 +149,9 @@ function images_form($edit = 0){
             return true;
         }");
         $uploader->add_setting('onAllComplete', "function(event, data){
+        	
+        	if(total<=0) return;
+        	
             \$('.select_image_cat').hide('slow');
             \$('#upload-errors').hide('slow');
             \$('#upload-errors').html('');
@@ -162,18 +173,7 @@ function images_form($edit = 0){
     RMTemplate::get()->add_script('include/js/images.js');
 	
 	// Load Categories
-	$db = Database::getInstance();
-	$sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." ORDER BY id_cat DESC";
-	$result = $db->query($sql);
-	$categories = array();
-	while($row = $db->fetchArray($result)){
-		$tc = new RMImageCategory();
-		$tc->assignVars($row);
-		$categories[] = array(
-			'id'	=> $tc->id(),
-			'name'	=> $tc->getVar('name')
-		);
-	}
+	$categories = RMFunctions::load_images_categories("WHERE status='open' ORDER BY id_cat DESC");
 	
 	xoops_cp_header();
 	RMFunctions::create_toolbar();
@@ -185,7 +185,7 @@ function images_form($edit = 0){
 }
 
 function show_categories(){
-    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig, $xoopsSecurity;
     
     $db = Database::getInstance();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_img_cats");
@@ -492,13 +492,12 @@ function resize_images(){
 
 /**
 * Function to edit images
-* 
-* @var any
 */
 function edit_image(){
     global $xoopsUser, $xoopsSecurity;
     
     $id = rmc_server_var($_GET, 'id', 0);
+    $page = rmc_server_var($_GET, 'page', '');
     if ($id<=0){
         redirectMsg('images.php', __('Invalid image ID', 'rmcommon'), 1);
         die();
@@ -514,10 +513,11 @@ function edit_image(){
     $sizes = $cat->getVar('sizes');
     $current_size = array();
     
-    $fd = pathinfo($updir.'/'.$image->getVar('file'));
+    $fd = pathinfo($image->getVar('file'));
     $updir = '/'.date('Y', $image->getVar('date')).'/'.date('m',time());
     
     foreach ($sizes as $size){
+    	if ($size['width']<=0) continue;
         if (empty($current_size)){
             $current_size = $size;
         } else {
@@ -525,6 +525,7 @@ function edit_image(){
                 $current_size = $size;
             }
         }
+        
         $image_data['sizes'][] = array(
             'file' => XOOPS_UPLOAD_URL.$updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'],
             'name' => $size['name']
@@ -541,6 +542,8 @@ function edit_image(){
     $image_data['desc'] = $image->getVar('desc', 'e');
     $image_data['url'] = XOOPS_UPLOAD_URL.$updir.'/'.$image->getVar('file');
     
+    $categories = RMFunctions::load_images_categories("WHERE status='open' ORDER BY id_cat DESC");
+    
     xoops_cp_header();
     RMFunctions::create_toolbar();
     
@@ -549,6 +552,207 @@ function edit_image(){
     include RMTemplate::get()->get_template('images_edit.php','module','rmcommon');
     
     xoops_cp_footer();
+}
+
+/**
+* Update image data
+*/
+function update_image(){
+	global $xoopsUser, $xoopsSecurity;
+	
+	set_time_limit(0);
+	
+	$title = rmc_server_var($_POST, 'title', '');
+	$category = rmc_server_var($_POST, 'cat', '');
+	$desc = rmc_server_var($_POST, 'desc', '');
+	$page = rmc_server_var($_POST, 'page', 1);
+	$id = rmc_server_var($_POST, 'id', 0);
+	
+	if (!$xoopsSecurity->check()){
+		redirectMsg('images.php', __('Operation not alloed!','rmcommon'), 1);
+		die();
+	}
+	
+	if ($id<=0){
+		redirectMsg("images.php?category=$cat&page=$page", __('Image ID not provided!','rmcommon'), 1);
+		die();
+	}
+	
+	if (trim($title)==''){
+		redirectMsg("images.php?action=edit&id=$id&page=$page", __('You must to provide a title for this image','rmcommon'), 1);
+		die();
+	}
+	
+	$image = new RMImage($id);
+	if ($image->isNew()){
+		redirectMsg("images.php?category=$cat&page=$page", __('Image not exists!','rmcommon'), 1);
+		die();
+	}
+	
+	$cat = new RMImageCategory($category);
+	if ($cat->isNew()){
+		redirectMsg("images.php", __('Category not exists!','rmcommon'), 1);
+		die();
+	}
+	
+	if ($cat->id()!=$image->getVar('cat')){
+		$pcat = new RMImageCategory($image->getVar('cat'));
+	}
+	
+	$image->setVar('title', $title);
+	$image->setVar('desc', $desc);
+	if (isset($pcat)) $image->setVar('cat', $cat->id());
+	
+	if (!$image->save()){
+		redirectMsg("images.php?action=edit&id=$id&page=$page", __('the image could not be updated!','rmcommon').'<br />'.$image->errors(), 1);
+		die();
+	}
+	
+	// Modify image dimensions if category has changed
+	if (!isset($pcat)){
+		redirectMsg("images.php?category=".$cat->id()."&page=$page", __('Image updated succesfully!','rmcommon'), 0);
+		die();
+	}
+	
+	$fd = pathinfo($image->getVar('file'));
+    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
+    
+    // Delete current image files
+    foreach ($pcat->getVar('sizes') as $size){
+		if ($size['width']<=0) continue;
+		$file = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+		@unlink($file);
+		
+    }
+    
+    // Create new image files
+    foreach ($cat->getVar('sizes') as $size){
+		if ($size['width']<=0 && $size['height']<=0) continue;
+        
+        $name = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+        $sizer = new RMImageResizer($updir.'/'.$image->getVar('file'), $name);
+        
+        switch($size['type']){
+            case 'crop':
+                $sizer->resizeAndCrop($size['width'], $size['height']);
+                break;
+            default:
+                if ($size['width']<=0 || $size['height']<=0){
+                    $sizer->resizeWidth($size['width']);
+                } else {
+                    $sizer->resizeWidthOrHeight($size['width'], $size['height']);
+                }                
+                break;
+        }
+        
+        $width = $width==0 ? $size['width'] : $width;
+        if($width<$size['width']){
+            $with = $size['width'];
+            $tfile = str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $name);
+        }
+    }
+    
+    redirectMsg('images.php?category='.$cat->id(), __('Image updated successfully!', 'rmcommon'), 0);
+	
+}
+
+/**
+* Delete an image
+*/
+function delete_image(){
+	
+	$id = rmc_server_var($_GET, 'id', 0);
+	$page = rmc_server_var($_GET, 'page', 0);
+
+	if ($id<=0){
+		redirectMsg('images.php', __('Image ID not provided!','rmcommon'), 1);
+		die();
+	}
+	
+	$image = new RMImage($id);
+	if ($image->isNew()){
+		redirectMsg('images.php', __('Image not exists!','rmcommon'), 1);
+		die();
+	}
+	
+	$cat = new RMImageCategory($image->getVar('cat'));
+	
+	$fd = pathinfo($image->getVar('file'));
+    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
+    
+    // Delete current image files
+    foreach ($cat->getVar('sizes') as $size){
+		if ($size['width']<=0) continue;
+		$file = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+		@unlink($file);
+    }
+    
+    if ($image->delete()){
+		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('Image deleted successfully!', 'rmcommon'), 0);
+    } else {
+		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('The image could not be deleted from database', 'rmcommon').'<br />'.$image->errors(), 0);
+    }
+	
+}
+
+/**
+* This function deletes all images in a category and the category
+*/
+function delete_category(){
+	global $xoopsSecurity;
+	
+	$id = rmc_server_var($_GET, 'id', 0);
+	
+	if (!$xoopsSecurity->check()){
+		redirectMsg('images.php?action=showcats', __('Operation not allowed!', 'rmcommon'), 1);
+		die();
+	}
+	
+	if ($id<=0){
+		redirectMsg('images.php?action=showcats', __('Category ID not provided', 'rmcommon'), 1);
+		die();
+	}
+	
+	$cat = new RMImageCategory($id);
+	if ($cat->isNew()){
+		redirectMsg('images.php?action=showcats', __('Category not found', 'rmcommon'), 1);
+		die();
+	}
+	
+	$sizes = array();
+	foreach ($cat->getVar('sizes') as $size){
+		if ($size['width']<=0) continue;
+		
+		$sizes[] = '_'.$size['width'].'x'.$size['height'];
+		
+	}
+	
+	$db = Database::getInstance();
+	$sql = "SELECT * FROM ".$db->prefix("rmc_images")." WHERE cat='".$cat->id()."'";
+	$result = $db->query($sql);
+	
+	while($row = $db->fetchArray($result)){
+		$image = new RMImage();
+		$image->assignVars($row);
+		
+		$updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
+		$fd = pathinfo($image->getVar('file'));
+		
+		foreach ($sizes as $size){
+			$file = $updir.'/sizes/'.$fd['filename'].$size.'.'.$fd['extension'];
+			@unlink($file);
+	    }
+	    $file = $updir.'/'.$image->getVar('file');
+	    @unlink($file);
+	    $image->delete();
+	}
+	
+	if ($cat->delete()){
+		redirectMsg('images.php?action=showcats', __('Category deleted successfully!', 'rmcommon'), 0);
+	} else {
+		redirectMsg('images.php?action=showcats', __('Errors ocurred while deleting the category', 'rmcommon').'<br />'.$cat->errors(), 0);
+	}
+	
 }
 
 
@@ -563,6 +767,9 @@ switch ($action){
 		break;
 	case 'editcat':
 		new_category(1);
+		break;
+	case 'delcat':
+		delete_category();
 		break;
     case 'save':
         save_category();
@@ -585,6 +792,12 @@ switch ($action){
     case 'edit':
         edit_image();
         break;
+    case 'update':
+    	update_image();
+    	break;
+    case 'delete':
+    	delete_image();
+    	break;
 	default:
 		show_images();
 		break;

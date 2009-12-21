@@ -53,6 +53,7 @@ class RMImageCategory extends RMObject
     * @return bool
     */
     public function user_allowed_toupload(XoopsUser $user){
+    	
         $groups = $user->getGroups();
         $allowed = $this->getVar('groups');
         
@@ -61,6 +62,10 @@ class RMImageCategory extends RMObject
         }
         
         return false;
+    }
+    
+    public function delete(){
+		return $this->deleteFromTable();
     }
     
 }

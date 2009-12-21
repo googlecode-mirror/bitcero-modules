@@ -41,5 +41,9 @@ class RMImage extends RMObject
         }
         
     }
+    
+    public function delete(){
+		return $this->deleteFromTable();
+    }
 	
 }

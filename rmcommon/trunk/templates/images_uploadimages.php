@@ -8,7 +8,7 @@
 		<option value="<?php echo $category['id']; ?>"<?php echo $cat->id()==$category['id'] ? ' selected="selected"' : '' ?>><?php echo $category['name']; ?></option>
 		<?php endforeach; ?>
 	</select>
-	<input type="submit" value="<?php _e('Upload images','rmcommon'); ?>" />
+	<input type="submit" value="<?php _e('Change Category','rmcommon'); ?>" />
     <input type="button" value="<?php _e('Cancel','rmcommon'); ?>" onclick="window.location= 'images.php?action=showcats';" />
 	<input type="hidden" name="action" value="new" />
 	</form>

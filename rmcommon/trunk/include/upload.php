@@ -51,6 +51,10 @@ if ($cat->isNew()){
     error(__('Sorry, the specified category has not been found!','rmcommon'));
 }
 
+if ($cat->getVar('status')!='open'){
+	error(__('Sorry, the specified category is closed!','rmcommon'));
+}
+
 if (!$cat->user_allowed_toupload($xoopsUser)){
     error(__('Sorry, you can not upload images!','rmcommon'));
 }

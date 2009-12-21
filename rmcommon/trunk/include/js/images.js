@@ -14,7 +14,7 @@ function send_resize(id,params){
         
         var img = '<img src="'+data['file']+'" alt="" title="'+data['title']+'" />';
         $("#gen-thumbnails").append(img);
-        $("#resizer-bar span.message").html(data['message']);
+        $("#resizer-bar span.message").html(data['message']+' - '+(current)+' of '+total);
         resize_image(params);
         
     }, "json");
@@ -27,6 +27,9 @@ function resize_image(params){
     
     if(ids[current]==undefined){
         $("#bar-indicator").html('100%');
+        $("#bar-indicator").animate({
+	        width: '100%'
+	    }, 1000);
         current = 0;
         total = 0;
         ids = new Array();
@@ -38,10 +41,10 @@ function resize_image(params){
     
     send_resize(ids[current], params);
     $("#bar-indicator").animate({
-        width: percent*(current+1)+'%'
+        width: percent*(current)+'%'
     }, 1000);
     //$("#bar-indicator").css('width', percent*(current+1)+'%');
-    $("#bar-indicator").html(Math.round(percent*current)+'%');
+    $("#bar-indicator").html(Math.round(percent*current+1)+'%');
     current++;
     
 }

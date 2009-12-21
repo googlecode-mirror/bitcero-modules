@@ -20,9 +20,29 @@ class RMFileUploader extends XoopsMediaUploader
     * @param mixed $allowedtypes
     * @return RMFileUploader
     */
-    public function __construct($dir, $maxsize, $allowedtypes = array()){
+    public function __construct($uploadDir, $maxFileSize, $allowedMimeTypes = array()){
         
-        $this->XoopsMediaUploader($dir, $allowedtypes, $maxsize);
+        //$this->XoopsMediaUploader($dir, $allowedtypes, $maxsize);
+        $this->extensionToMime = include $GLOBALS['xoops']->path('include/mimetypes.inc.php');
+        if (!is_array($this->extensionToMime)) {
+            $this->extensionToMime = array();
+            return false;
+        }
+        if (is_array($allowedMimeTypes)) {
+            $this->allowedMimeTypes =& $allowedMimeTypes;
+        }
+        $this->uploadDir = $uploadDir;
+        $this->maxFileSize = intval($maxFileSize);
+        if (isset($maxWidth)) {
+            $this->maxWidth = intval($maxWidth);
+        }
+        if (isset($maxHeight)) {
+            $this->maxHeight = intval($maxHeight);
+        }
+
+        if (!include_once $GLOBALS['xoops']->path('language/' . $GLOBALS['xoopsConfig']['language'] . '/uploader.php')) {
+            include_once $GLOBALS['xoops']->path('language/english/uploader.php');
+        }
         
     }
     

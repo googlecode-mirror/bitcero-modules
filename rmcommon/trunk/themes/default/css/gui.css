@@ -400,6 +400,11 @@ tr.even td, tr.odd td{
 form .outer td.head{
     border-right: 1px dotted #CCC;
 }
+.foot, tr.foot td{
+	padding: 3px;
+	border-top: 1px dotted #CCC;
+	font-size: 0.9em;
+}
 fieldset{
 	border: 1px solid #CCC;
 	-moz-border-radius: 5px;
