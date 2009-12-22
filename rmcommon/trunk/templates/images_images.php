@@ -2,12 +2,12 @@
 <form name="list_images" method="post" action="images.php" id="list-images">
 <div class="rmc_bulkactions">
 <?php echo $nav->display(); ?>
-<select name="action">
+<select name="action" id="action-select">
     <option value=""><?php _e('Bulk Actions...','rmcommon'); ?></option>
     <option value="delete"><?php _e('Delete','rmcommon'); ?></option>
     <option value="thumbs"><?php _e('Update thumbnails','rmcommon'); ?></option>
 </select>
-<input type="submit" value="<?php _e('Apply','rmcommon'); ?>" /> &nbsp;&nbsp;
+<input type="submit" value="<?php _e('Apply','rmcommon'); ?>" onclick="if($('#action-select').val()=='delete') return confirm('Do you really want to delete selected images?');" /> &nbsp;&nbsp;
 <select name="category" onchange="window.location = 'images.php?category='+$(this).val();" id="category-select">
 	<?php foreach($categories as $catego): ?>
 	<option value="<?php echo $catego['id']; ?>"<?php echo $catego['id']==$cat ? ' selected="selected"' : ''; ?>><?php echo $catego['name']; ?></option>
@@ -41,7 +41,7 @@
             <?php endif; ?>
             <span class="rmc_options">
                 <a href="images.php?action=edit&amp;id=<?php echo $image['id']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Edit','rmcommon'); ?></a> | 
-                <a href="images.php?action=delete&amp;id=<?php echo $image['id']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('<?php _e('Do you really want to delete &quot;'.$image['title'].'&quot;?'); ?>');"><?php _e('Delete','rmcommon'); ?></a>
+                <a href="images.php?action=delete&amp;imgs[]=<?php echo $image['id']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm('<?php _e('Do you really want to delete &quot;'.$image['title'].'&quot;?'); ?>');"><?php _e('Delete','rmcommon'); ?></a>
             </span>
         </td>
         <td align="center"><?php echo $image['author']->uname(); ?></td>
@@ -50,4 +50,5 @@
     <?php endforeach; ?>
 </table>
 <input type="hidden" name="category" value="<?php echo $cat; ?>" />
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
 </form>

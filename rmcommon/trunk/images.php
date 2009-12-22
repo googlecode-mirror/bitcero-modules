@@ -661,10 +661,10 @@ function update_image(){
 */
 function delete_image(){
 	
-	$id = rmc_server_var($_GET, 'id', 0);
-	$page = rmc_server_var($_GET, 'page', 0);
-
-	if ($id<=0){
+	$ids = rmc_server_var($_REQUEST, 'imgs', array());
+	$page = rmc_server_var($_REQUEST, 'page', 0);
+	
+	if (empty($ids)<=0){
 		redirectMsg('images.php', __('Image ID not provided!','rmcommon'), 1);
 		die();
 	}
