@@ -9,8 +9,8 @@
 // --------------------------------------------------------------
 
 include '../../../mainfile.php';
-//XoopsLogger::getInstance()->activated = false;
-//XoopsLogger::getInstance()->renderingEnabled = false;
+XoopsLogger::getInstance()->activated = false;
+XoopsLogger::getInstance()->renderingEnabled = false;
 
 function error($message){
     $data['error'] = 1;

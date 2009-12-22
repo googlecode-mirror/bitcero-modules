@@ -19,6 +19,7 @@ $rmc_events = array(
     'rmcevent_clean_url',
     'rmcevent_get_replace_patterns',
     'rmcevent_text_todisplay',
-    'rmevent_admin_output'
+    'rmevent_admin_output',
+    'rm_loading_editorimages',				// Antes de cargar la plantilla para mostrar el administrador de imagenes en editores
 );
 

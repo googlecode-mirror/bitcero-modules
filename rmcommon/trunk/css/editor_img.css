@@ -1,0 +1,35 @@
+body{
+	margin: 0;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+#img-toolbar{
+	background: #CCC;
+	color: #000;
+	overflow: hidden;
+	padding: 8px 6px;
+	font-size: 0.85em;
+}
+#img-toolbar a{
+	display: block;
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+	float: left;
+	text-transform: uppercase;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0 3px;
+}
+#img-toolbar a.select{
+	background: #999;
+	color: #fff;
+}
+#img-toolbar a:hover{
+	background-color: #666;
+	color: #FFF;
+}

@@ -64,7 +64,7 @@ $xoopsLogger->activated = false;
             // EXM Image Manager
             ed.addCommand('mceEXMImg', function() {
                 ed.windowManager.open({
-                    file : url+'/exmimg.php',
+                    file : '<?php echo RMCURL; ?>/include/tiny-images.php',
                     width : 600 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
                     height : 600 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
                     inline : 1
