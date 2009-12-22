@@ -1,5 +1,6 @@
+<?php RMTemplate::get()->add_head('<script type="text/javascript">$(document).ready(function(){$("#frmupdimg").validate();});</script>'); ?>
 <h1 class="rmc_titles"><?php _e('Edit Image','rmcommon'); ?></h1>
-<form name="frmupdimg" method="post" action="images.php">
+<form name="frmupdimg" id="frmupdimg" method="post" action="images.php">
 <table cellpadding="0" cellspacing="0" width="90%" class="" align="center">
     <tr class="odd">
         <td rowspan="4" width="25%"><img src="<?php echo $image_data['thumbnail']; ?>" alt="" style="max-width: 150px; max-height: 100px;" /></td>
@@ -20,8 +21,8 @@
         </td>
     </tr>
     <tr class="even">
-        <td class="head"><?php _e('Title:', 'rmcommon'); ?></td>
-        <td><input name="title" type="text" value="<?php echo $image_data['title']; ?>" size="50" class="required" />*</td>
+        <td class="head">*<?php _e('Title:', 'rmcommon'); ?></td>
+        <td><input name="title" type="text" value="<?php echo $image_data['title']; ?>" size="50" class="required" /></td>
     </tr>
     <tr class="odd">
     	<td class="head"><?php _e('Category:','rmcommon'); ?></td>

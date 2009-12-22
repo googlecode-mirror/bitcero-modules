@@ -548,6 +548,7 @@ function edit_image(){
     RMFunctions::create_toolbar();
     
     RMTemplate::get()->add_script('include/js/images.js');
+    RMTemplate::get()->add_script('include/js/jquery.validate.min.js');
     RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
     include RMTemplate::get()->get_template('images_edit.php','module','rmcommon');
     
@@ -691,13 +692,20 @@ function delete_image(){
 			$file = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
 			@unlink($file);
 	    }
+	    
+	    $file = $updir.'/'.$image->getVar('file');
+		@unlink($file);
+	    
+	    if (!$image->delete()){
+	    	$errors .= $image->errors();
+	    }
 	
 	}
     
-    if ($image->delete()){
-		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('Image deleted successfully!', 'rmcommon'), 0);
-    } else {
-		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('The image could not be deleted from database', 'rmcommon').'<br />'.$image->errors(), 0);
+    if ($errors!=''){
+		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('Errors ocurred during images deletion!', 'rmcommon').'<br />'.$errors, 0);
+	} else {
+		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('Images deleted successfully!', 'rmcommon'), 0);
     }
 	
 }
