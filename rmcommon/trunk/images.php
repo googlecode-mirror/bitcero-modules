@@ -663,29 +663,36 @@ function delete_image(){
 	
 	$ids = rmc_server_var($_REQUEST, 'imgs', array());
 	$page = rmc_server_var($_REQUEST, 'page', 0);
+	$category = rmc_server_var($_REQUEST, 'category', 0);
 	
-	if (empty($ids)<=0){
-		redirectMsg('images.php', __('Image ID not provided!','rmcommon'), 1);
+	if (count($ids)<=0){
+		redirectMsg('images.php?category='.$category.'&page='.$page, __('Please, speciy an image at least!','rmcommon'), 1);
 		die();
 	}
 	
-	$image = new RMImage($id);
-	if ($image->isNew()){
-		redirectMsg('images.php', __('Image not exists!','rmcommon'), 1);
-		die();
+	$errors = '';
+	
+	foreach ($ids as $id){
+	
+		$image = new RMImage($id);
+		if ($image->isNew()){
+			redirectMsg('images.php', __('Image not exists!','rmcommon'), 1);
+			die();
+		}
+		
+		$cat = new RMImageCategory($image->getVar('cat'));
+		
+		$fd = pathinfo($image->getVar('file'));
+	    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
+	    
+	    // Delete current image files
+	    foreach ($cat->getVar('sizes') as $size){
+			if ($size['width']<=0) continue;
+			$file = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+			@unlink($file);
+	    }
+	
 	}
-	
-	$cat = new RMImageCategory($image->getVar('cat'));
-	
-	$fd = pathinfo($image->getVar('file'));
-    $updir = XOOPS_UPLOAD_PATH.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());
-    
-    // Delete current image files
-    foreach ($cat->getVar('sizes') as $size){
-		if ($size['width']<=0) continue;
-		$file = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
-		@unlink($file);
-    }
     
     if ($image->delete()){
 		redirectMsg('images.php?category='.$cat->id().'&page='.$page, __('Image deleted successfully!', 'rmcommon'), 0);
