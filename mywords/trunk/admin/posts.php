@@ -73,7 +73,7 @@ function showPosts($aprovado = -1){
 		$month = date('m', $post->getVar('pubdate'));
 		$year = date('Y', $post->getVar('pubdate'));
 		$postlink = MWFunctions::get_url();
-		$postlink .= $mc['permalinks']==1 ? '?post='.$post->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$post->getFriendTitle()."/" : "post/".$post->getID());
+		$postlink .= $mc['permalinks']==1 ? '?post='.$post->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$post->getVar('shortname')."/" : "post/".$post->id());
 
 		$posts[] = array(
 			'id'=>$post->id(), 

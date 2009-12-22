@@ -7,7 +7,7 @@
 <input type="text" name="title" id="post-title" class="mw_biginput required" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
 <div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>" id="mw-perma-link">
 	<?php if($edit): ?>
-		<strong><?php _e('Permalink:','admin_mywords'); ?></strong> <?php echo $post->permalink(); ?>
+		<strong><?php _e('Permalink:','admin_mywords'); ?></strong> <?php echo str_replace($post->getVar('shortname'), '<span id="shortname">'.$post->getVar('shortname').'</span>', $post->permalink()); ?>
 	<?php else: ?>
 		<?php _e('This post has not been saved. Remember to save it before leave this page.','admin_mywords'); ?>
 	<?php endif; ?>

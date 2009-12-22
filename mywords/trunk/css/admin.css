@@ -139,3 +139,10 @@ span.draft{
 td.mw_postcats{
 	font-size: 0.9em;
 }
+
+/** Permalink **/
+#shortname{
+	background: #FFFFC0;
+	color: #333;
+	padding: 2px 0;
+}
