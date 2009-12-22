@@ -755,6 +755,44 @@ function delete_category(){
 	
 }
 
+/**
+* Update image thumbnails
+*/
+function update_thumbnails(){
+    global $xoopsUser, $xoopsSecurity;
+    $cat = new RMImageCategory(rmc_server_var($_POST, 'category', 0));
+    $imgs = rmc_server_var($_POST, 'imgs', array());
+    
+    $ids = implode(',', $imgs);
+    
+    RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
+    RMTemplate::get()->add_script('include/js/images.js');
+    
+    xoops_cp_header();
+    RMFunctions::create_toolbar();
+    
+    $isupdate = true;
+    RMTemplate::get()->add_head("<script type='text/javascript'>
+    \$(document).ready(function(){
+        ids = new Array($ids);
+        total = ".count($imgs).";
+        \$('#resizer-bar').show('slow');
+        \$('#resizer-bar').effect('highlight',{},1000);
+        \$('#gen-thumbnails').show();
+        
+        var increments = 1/total*100;
+        url = '".RMCURL."/images.php';
+            
+        params = '".TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)."';
+        resize_image(params);
+    });</script>");
+    
+    include RMTemplate::get()->get_template('images_uploadimages.php','module','rmcommon');
+    
+    xoops_cp_footer();
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -798,6 +836,9 @@ switch ($action){
     case 'delete':
     	delete_image();
     	break;
+    case 'thumbs':
+        update_thumbnails();
+        break;
 	default:
 		show_images();
 		break;

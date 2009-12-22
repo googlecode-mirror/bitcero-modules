@@ -32,7 +32,7 @@
 	<?php endif; ?>
     <?php foreach($images as $image): ?>
     <tr class="<?php echo tpl_cycle("even,odd"); ?>">
-        <td align="center"><input type="checkbox" name="imgs[<?php echo $image['id']; ?>" value="<?php echo $image['id']; ?>" /></td>
+        <td align="center"><input type="checkbox" name="imgs[<?php echo $image['id']; ?>]" value="<?php echo $image['id']; ?>" /></td>
         <td><img src="<?php echo $image['file']; ?>" alt="" width="70" height="45" /></td>
         <td>
             <strong><?php echo $image['title']; ?></strong>
@@ -49,4 +49,5 @@
     </tr>
     <?php endforeach; ?>
 </table>
+<input type="hidden" name="category" value="<?php echo $cat; ?>" />
 </form>
