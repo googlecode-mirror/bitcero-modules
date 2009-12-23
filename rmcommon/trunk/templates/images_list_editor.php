@@ -73,7 +73,10 @@
             	</td>
             </tr>
             <tr class="even">
-            	<td colspan="2"><a href="javascript:;" class="insert_button" onclick="alert('Clickado');"><?php _e('Insert image','rmcommon'); ?></a>
+            	<td colspan="2">
+            		<a href="javascript:;" class="insert_button" onclick="alert('Clickado');"><?php _e('Insert image','rmcommon'); ?></a>
+            		<a href="javascript:;"><?php _e('Delete','rmcommon'); ?></a>
+            	</td>
             </tr>
         </table>
         

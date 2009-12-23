@@ -116,7 +116,8 @@ if ($action==''){
     /**
      * Paginacion de Resultados
      */
-    $page = rmc_server_var($_GET, 'page', 1);
+    $page = intval(rmc_server_var($_REQUEST, 'page', 1));
+    $page = $page<=0 ? $page = 1 : $page;
     $limit = 10;
     list($num) = $db->fetchRow($db->query($sql));
     
@@ -126,7 +127,7 @@ if ($action==''){
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
     
     $nav = new RMPageNav($num, $limit, $page, 5);
-    $nav->target_url('images.php?'.(!$cat->isNew() ? 'category='.$cat->id() : '').'&page={PAGE_NUM}');
+    $nav->target_url('javascript:;" onclick="show_library({PAGE_NUM});');
     
     // Get categories
     $sql = "SELECT * FROM ".$db->prefix("rmc_images")." ".(!$cat->isNew() ? "WHERE cat='".$cat->id()."'" : '')." ORDER BY id_img DESC LIMIT $start,$limit";

@@ -71,16 +71,17 @@ function show_upload(){
     
 }
 
-function show_library(){
+function show_library(pag){
     
     if ($("#ret-token").length>0) 
         $("#xoops-token").val($("#ret-token").val());
-    
+
     var params = {
         category: $("#category-field").val(),
         action: 'load-images',
         XOOPS_TOKEN_REQUEST: $("#xoops-token").val(),
-        url: window.parent.location.href
+        url: window.parent.location.href,
+        page: pag
     }
     
     $("#upload-container").slideUp('slow');

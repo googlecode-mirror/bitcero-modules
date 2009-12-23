@@ -59,6 +59,9 @@ input[type='submit'],input.formButton{
     text-shadow: 0 0 2px #000;
     background: url(../images/bgw.png) repeat-x top;
 }
+td input[type='text']{
+	width: 80%;
+}
 
 #img-toolbar{
 	background: #CCC;
@@ -186,7 +189,22 @@ input[type='submit'],input.formButton{
 .insert_button{
 	display: block;
 	float: left;
-	padding: 3px 10px;
+	padding: 3px 15px;
+	margin: 0 5px;
+	-moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #999;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.80em;
+}
+.insert_button:hover{
+	background: #666;
+	color: #FFF;
+	text-decoration: none;
 }
 
 .outer{
