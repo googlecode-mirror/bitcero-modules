@@ -54,11 +54,26 @@
             <tr class="even">
                 <td><strong><?php _e('Alignment:','rmcommon'); ?></strong></td>
                 <td><strong>
-                    <label><input type="radio" name="align" value="" /> <?php _e('None','rmcommon'); ?></label>
-                    <label><input type="radio" name="align" value="left" /> <?php _e('Left','rmcommon'); ?></label>
-                    <label><input type="radio" name="align" value="center" /> <?php _e('Center','rmcommon'); ?></label>
-                    <label><input type="radio" name="align" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" /> <?php _e('None','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="left" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="center" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
                 </td>
+            </tr>
+            <tr class="odd">
+            	<td><strong><?php _e('Image size:','rmcommon'); ?></strong></td>
+            	<td>
+            		<strong>
+            		<?php foreach($cat->getVar('sizes') as $size): ?>
+            		<?php if($size['width']<=0) continue; ?>
+            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="<?php echo $size['width'].'x'.$size['height']; ?>" /><?php echo $size['name']; ?></label>
+            		<?php endforeach; ?>
+            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="" /><?php _e('Original','rmcommon'); ?></label>
+            		</strong>
+            	</td>
+            </tr>
+            <tr class="even">
+            	<td colspan="2"><a href="javascript:;" class="insert_button" onclick="alert('Clickado');"><?php _e('Insert image','rmcommon'); ?></a>
             </tr>
         </table>
         

@@ -183,7 +183,11 @@ input[type='submit'],input.formButton{
     overflow: hidden;
     margin: 5px 0;
 }
-
+.insert_button{
+	display: block;
+	float: left;
+	padding: 3px 10px;
+}
 
 .outer{
     border: 0;
