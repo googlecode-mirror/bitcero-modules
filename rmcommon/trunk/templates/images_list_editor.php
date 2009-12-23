@@ -51,6 +51,15 @@
                     <?php endforeach; ?>
                 </td>
             </tr>
+            <tr class="even">
+                <td><strong><?php _e('Alignment:','rmcommon'); ?></strong></td>
+                <td><strong>
+                    <label><input type="radio" name="align" value="" /> <?php _e('None','rmcommon'); ?></label>
+                    <label><input type="radio" name="align" value="left" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align" value="center" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
+                </td>
+            </tr>
         </table>
         
         </td>
@@ -58,3 +67,4 @@
     <?php endforeach; ?>
 </table>
 <input type="hidden" name="token" id="ret-token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
+<?php echo $nav->display(); ?>

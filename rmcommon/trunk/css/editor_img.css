@@ -179,6 +179,10 @@ input[type='submit'],input.formButton{
 .the_data{
     background: #ebebeb;
 }
+.rmc_pages_navigation_container{
+    overflow: hidden;
+    margin: 5px 0;
+}
 
 
 .outer{

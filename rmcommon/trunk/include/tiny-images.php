@@ -80,6 +80,7 @@ if ($action==''){
     $categories = RMFunctions::load_images_categories("WHERE status='open' ORDER BY id_cat DESC", true);
 
     RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
+    RMTemplate::get()->add_style('pagenav.css', 'rmcommon');
     RMTemplate::get()->add_style('editor_img.css', 'rmcommon');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
