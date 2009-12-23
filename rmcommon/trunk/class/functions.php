@@ -101,7 +101,7 @@ class RMFunctions
 	* @param string SQL Filters
 	* @return array
 	*/
-	public function load_images_categories($filters='ORDER BY id_cat DESC'){
+	public function load_images_categories($filters='ORDER BY id_cat DESC', $object = false){
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." $filters";
 		$result = $db->query($sql);
@@ -109,10 +109,14 @@ class RMFunctions
 		while($row = $db->fetchArray($result)){
 			$tc = new RMImageCategory();
 			$tc->assignVars($row);
-			$categories[] = array(
-				'id'	=> $tc->id(),
-				'name'	=> $tc->getVar('name')
-			);
+            if (!$object){
+                $categories[] = array(
+                    'id'    => $tc->id(),
+                    'name'    => $tc->getVar('name')
+                );
+            } else {
+                $categories[] = $tc;
+            }			
 		}
 		
 		return $categories;

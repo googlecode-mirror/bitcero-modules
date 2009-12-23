@@ -21,5 +21,7 @@ $rmc_events = array(
     'rmcevent_text_todisplay',
     'rmevent_admin_output',
     'rm_loading_editorimages',				// Antes de cargar la plantilla para mostrar el administrador de imagenes en editores
+    'rm_imgmgr_editor_options',
+    'rm_loading_single_editorimgs'      // Se cargan las imágenes en tiny-images.php
 );
 

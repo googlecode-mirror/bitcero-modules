@@ -197,7 +197,7 @@ class RMEventsApi
 	    $eid = crc32($event);
 	    $sql = "SELECT COUNT(*) FROM ".$db->prefix("api_events")." WHERE eid='$eid'";
 	    list($num) = $db->fetchRow($db->query($sql));
-	    if ($num>0) return _api_error('008');
+	    if ($num>0) return false;//('008');
 	    
 	    $sql = "INSERT INTO ".$db->prefix("api_events")." (`event`,`object`,`eid`) VALUES ('$event','$object_id','$eid')";
 	    
