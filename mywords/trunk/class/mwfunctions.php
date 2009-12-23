@@ -273,7 +273,9 @@ class MWFunctions
     * Get correct base url for links
     */
     function get_url(){
-        global $xoopsModuleConfig;
+        global $xoopsModule;
+        if(!$xoopsModule || $xoopsModule->dirname()!='mywords')
+            $xoopsModuleConfig = RMUtilities::get()->module_config('mywords');
         
         if ($xoopsModuleConfig['permalinks']>1){
             

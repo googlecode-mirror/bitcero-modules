@@ -8,8 +8,21 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-RMTemplate::get()->add_menu(__('Dashboard','admin_mywords'), './index.php', '../images/dashboard.png', 'dashboard');
-RMTemplate::get()->add_menu(__('Categories','admin_mywords'), 'categories.php', '../images/categos.png', 'categories', $options);
+include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
+
+$adminmenu[] = array(
+    'title'=>__('Dashboard','admin_mywords'),
+    'link'=>"./index.php",
+    'icon'=>"../images/dashboard.png",
+    'location'=>"dashboard"
+);
+
+$adminmenu[] = array(
+    'title'=>__('Categories','admin_mywords'),
+    'link'=>"categories.php",
+    'icon'=>"../images/categos.png",
+    'location'=>"categories"
+);
 
 $options = array();
 $options[] = array(
@@ -22,8 +35,21 @@ $options[] = array(
     'link'      => 'posts.php?op=new',
     'selected'  => 'new_post' // RMSUBLOCATION constant defines wich submenu options is selected
 );
-RMTemplate::get()->add_menu(__('Posts','admin_mywords'), 'posts.php', '../images/post.png', 'posts', $options);
-RMTemplate::get()->add_menu(__('Editors','admin_mywords'), 'editors.php', '../images/editor.png', 'editors');
+
+$adminmenu[] = array(
+    'title'=>__('Posts','admin_mywords'),
+    'link'=>"posts.php",
+    'icon'=>"../images/post.png",
+    'location'=>"posts",
+    'options'=>$options
+);
+
+$adminmenu[] = array(
+    'title'=>__('Editors','admin_mywords'),
+    'link'=>"editors.php",
+    'icon'=>"../images/editor.png",
+    'location'=>"editors",
+);
 
 $options = array();
 $options[] = array(
@@ -36,14 +62,11 @@ $options[] = array(
     'link'      => 'bookmarks.php?op=new',
     'selected'  => 'bookmark_new' // RMSUBLOCATION constant defines wich submenu options is selected
 );
-RMTemplate::get()->add_menu(__('Bookmarks','admin_mywords'), 'bookmarks.php', '../images/bookmark.png', 'bookmarks', $options);
 
-unset($options);
-
-// TOOLBAR
-RMTemplate::get()->add_tool(__('Dashboard','admin_mywords'), './index.php', '../images/dashboard.png', 'dashboard');
-RMTemplate::get()->add_tool(__('Posts','admin_mywords'), './posts.php', '../images/post.png', 'posts');
-RMTemplate::get()->add_tool(__('Categories','admin_mywords'), './categories.php', '../images/categos.png', 'categories');
-RMTemplate::get()->add_tool(__('Editors','admin_mywords'), './editors.php', '../images/editor.png', 'editors');
-RMTemplate::get()->add_tool(__('Bookmarks','admin_mywords'), './bookmarks.php', '../images/bookmark.png', 'bookmarks');
-RMTemplate::get()->add_tool(__('Help','admin_mywords'), '#', '../images/help.png', '');
+$adminmenu[] = array(
+    'title'=>__('Bookmarks','admin_mywords'),
+    'link'=>"bookmarks.php",
+    'icon'=>"../images/bookmark.png",
+    'location'=>"bookmarks",
+    'options'=>$options
+);

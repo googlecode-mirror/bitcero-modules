@@ -28,3 +28,8 @@ $rmc_methods['mywords_left_widgets_controller'] = array(
     'event'    =>    'rmcevent_load_left_widgets',
     'file'    =>    '/modules/mywords/include/widgets.php'
 );
+
+$rmc_methods['mywords_images_links'] = array(
+    'event'    =>    'rm_loading_single_editorimgs',
+    'file'    =>    '/modules/mywords/include/rmapi.php'
+);

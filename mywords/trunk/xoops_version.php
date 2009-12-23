@@ -35,6 +35,7 @@ $modversion['hasMain'] = 1;
 // Admin things
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
+$modversion['adminmenu'] = "admin/menu.php";
 
 // Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
