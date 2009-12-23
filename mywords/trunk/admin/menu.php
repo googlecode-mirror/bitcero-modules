@@ -12,14 +12,14 @@ include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
 $adminmenu[] = array(
     'title'=>__('Dashboard','admin_mywords'),
-    'link'=>"./index.php",
+    'link'=>"admin/index.php",
     'icon'=>"../images/dashboard.png",
     'location'=>"dashboard"
 );
 
 $adminmenu[] = array(
     'title'=>__('Categories','admin_mywords'),
-    'link'=>"categories.php",
+    'link'=>"admin/categories.php",
     'icon'=>"../images/categos.png",
     'location'=>"categories"
 );
@@ -27,18 +27,18 @@ $adminmenu[] = array(
 $options = array();
 $options[] = array(
     'title'     => __('List','admin_mywords'),
-    'link'      => 'posts.php',
+    'link'      => 'admin/posts.php',
     'selected'  => 'posts_list' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 $options[] = array(
     'title'     => __('Add New','admin_mywords'),
-    'link'      => 'posts.php?op=new',
+    'link'      => 'admin/posts.php?op=new',
     'selected'  => 'new_post' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 
 $adminmenu[] = array(
     'title'=>__('Posts','admin_mywords'),
-    'link'=>"posts.php",
+    'link'=>"admin/posts.php",
     'icon'=>"../images/post.png",
     'location'=>"posts",
     'options'=>$options
@@ -46,7 +46,7 @@ $adminmenu[] = array(
 
 $adminmenu[] = array(
     'title'=>__('Editors','admin_mywords'),
-    'link'=>"editors.php",
+    'link'=>"admin/editors.php",
     'icon'=>"../images/editor.png",
     'location'=>"editors",
 );
@@ -65,7 +65,7 @@ $options[] = array(
 
 $adminmenu[] = array(
     'title'=>__('Bookmarks','admin_mywords'),
-    'link'=>"bookmarks.php",
+    'link'=>"admin/bookmarks.php",
     'icon'=>"../images/bookmark.png",
     'location'=>"bookmarks",
     'options'=>$options
