@@ -16,6 +16,7 @@ foreach (RMTemplate::get()->tpl_head as $head){
 }
 ?>
 </head>
+<title><?php _e('Insert Image','rmcommon'); ?></title>
 </body>
 <div id="img-toolbar">
 	<a href="javascript:;" class="select" id="a-upload" onclick="show_upload();"><?php _e('Upload Files','rmcommon'); ?></a>

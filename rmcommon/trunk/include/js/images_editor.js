@@ -113,3 +113,9 @@ function hide_image_data(id){
     $(".image_data").hide();
     
 }
+
+function insert_image(id){
+	alert("Hi vamos");
+	ed = tinyMCEPopup.editor;
+	ed.execCommand("mceInsertContent", true, "Que pex my man");
+}

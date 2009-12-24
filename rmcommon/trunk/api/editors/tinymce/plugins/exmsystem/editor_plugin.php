@@ -67,7 +67,8 @@ $xoopsLogger->activated = false;
                     file : '<?php echo RMCURL; ?>/include/tiny-images.php',
                     width : 600 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
                     height : 600 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
-                    inline : 1
+                    inline : 1,
+                    title: '<?php _e('Insert Image','rmcommon'); ?>'
                 }, {
                     plugin_url : url
                 });

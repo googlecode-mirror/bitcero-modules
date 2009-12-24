@@ -74,7 +74,7 @@
             </tr>
             <tr class="even">
             	<td colspan="2">
-            		<a href="javascript:;" class="insert_button" onclick="alert('Clickado');"><?php _e('Insert image','rmcommon'); ?></a>
+            		<a href="javascript:;" class="insert_button" onclick="insert_image(<?php echo $image['id']; ?>);"><?php _e('Insert image','rmcommon'); ?></a>
             		<a href="javascript:;"><?php _e('Delete','rmcommon'); ?></a>
             	</td>
             </tr>
