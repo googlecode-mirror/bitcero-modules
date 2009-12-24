@@ -40,6 +40,7 @@ $tiny =& TinyEditor::getInstance();
 $tiny->configuration = array('mode'=>'exact',
                     'theme'=>'advanced',
                     'skin'=>"exm_theme",
+                    'inlinepopups_skin'=>'exm', 
                     'plugins'=>"safari,inlinepopups,spellchecker,paste,media,fullscreen,exmsystem",
                     'theme_advanced_buttons1'=>"bold,italic,strikethrough,|,bullist,numlist,blockquote,|,justifyleft,justifycenter,justifyright,|,link,unlink|,spellchecker,fullscreen,|,exm_adv",
                     'theme_advanced_buttons2'=>"formatselect,underline,justifyfull,forecolor,|,pastetext,pasteword,removeformat,|,media,charmap,|,outdent,indent,|,undo,redo,|,exm_img,exm_icons", 
@@ -63,7 +64,7 @@ $tiny->configuration = array('mode'=>'exact',
                     'gecko_spellcheck'=>"1", 
                     'entities'=>"38,amp,60,lt,62,gt", 
                     'accessibility_focus'=>"1", 
-                    'tab_focus'=>"'=>prev,'=>next", 
+                    'tab_focus'=>"'=>prev,'=>next",
                     'save_callback'=>"switchEditors.saveCallback");
 
 /**
