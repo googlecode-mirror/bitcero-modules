@@ -166,6 +166,7 @@ if ($action==''){
         }
         
         $fd = pathinfo($img->getVar('file'));
+        $filesurl = XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date'));
         
         $ret = array(
             'id'        => $img->id(),
@@ -175,7 +176,8 @@ if ($action==''){
             'cat'        => $categories[$img->getVar('cat')]->getVar('name'),
             'author'    => $authors[$img->getVar('uid')],
             'thumb'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'],
-            //'file'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/'.$img->getVar('file'),
+            'file'      => $fd['filename'],
+            'extension' => $fd['extension'],
             'mime'      => isset($mimes[$fd['extension']]) ? $mimes[$fd['extension']] : 'application/octet-stream',
             'links'     => array(
                     'file'=>array('caption'=>__('File URL','rmcommon'),'value'=>XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/'.$img->getVar('file')),

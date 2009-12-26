@@ -75,6 +75,12 @@ function show_library(pag){
     
     if ($("#ret-token").length>0) 
         $("#xoops-token").val($("#ret-token").val());
+    
+    if($("#category-field option").length==2){
+		$("#category-field option").removeAttr("selected");
+		var opt = $("#category-field option");
+		$(opt[1]).attr("selected", 'selected');
+    }
 
     var params = {
         category: $("#category-field").val(),
@@ -116,11 +122,40 @@ function hide_image_data(id){
 
 function insert_image(id){
 	ed = tinyMCEPopup.editor;
-    var sizes = $("input[name='size_"+id+"']");
-    alert($(sizes[0]).val());
+	
+	var html = '';
+	var ext = $("#extension_"+id).val();
+	
+	// Link
+	if ($("#image-link-"+id).val()!=''){
+		html = '<a href="'+$("#image-link-"+id).val()+'" title="'+$("#image-name-"+id).val()+'">';
+	}
+	
+	// Image
+	html += '<img src="';
+	var sizes = $("input[name='size_"+id+"']");
     for(i=0;i<sizes.length;i++){
-        alert(sizes[i].val());
+        if(!$(sizes[i]).attr('checked')) continue;
+        
+        // File URL
+        html += $("#filesurl").val() + '/' + $(sizes[i]).val() + '"';
     }
-    html = '<img src=""';
+    
+    // Alignment
+    var align = $("input[name='align_"+id+"']");
+    for(i=0;i<align.length;i++){
+        if(!$(align[i]).attr('checked')) continue;
+        
+        // File URL
+        html += ' class="'+$(align[i]).val()+'"';
+    }
+    
+    html += ' alt="'+$("#image-alt-"+id).val()+'" />';
+    
+    if ($("#image-link-"+id).val()!=''){
+		html += '</a>';
+	}
+    
 	ed.execCommand("mceInsertContent", true, html);
+	tinyMCEPopup.close();
 }

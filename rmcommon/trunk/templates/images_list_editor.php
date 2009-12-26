@@ -45,6 +45,7 @@
             <tr class="odd">
                 <td><strong><?php _e('Link URL:','rmcommon'); ?></strong></td>
                 <td class="image_link">
+                	<input type="hidden" id="fileurl_<?php echo $image['id']; ?>" value="<?php echo $image['links']['file']['value']; ?>" />
                     <input type="text" id="image-link-<?php echo $image['id']; ?>" size="50" value="<?php echo $image['links']['file']['value']; ?>" />
                     <?php foreach ($image['links'] as $link): ?>
                     <a href="javascript:;" onclick="$('#image-link-<?php echo $image['id']; ?>').val('<?php echo $link['value']; ?>');"><?php echo $link['caption']; ?></a>
@@ -54,22 +55,21 @@
             <tr class="even">
                 <td><strong><?php _e('Alignment:','rmcommon'); ?></strong></td>
                 <td><strong>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" /> <?php _e('None','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="left" /> <?php _e('Left','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="center" /> <?php _e('Center','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" checked="checked" /> <?php _e('None','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignleft" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="aligncenter" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignright" /> <?php _e('Right','rmcommon'); ?></label></strong>
                 </td>
             </tr>
             <tr class="odd">
             	<td><strong><?php _e('Image size:','rmcommon'); ?></strong></td>
-            	<td>
-            		<strong>
-            		<?php foreach($cat->getVar('sizes') as $size): ?>
+            	<td class="sizes">
+            		<?php foreach($cat->getVar('sizes') as $i => $size): ?>
             		<?php if($size['width']<=0) continue; ?>
-            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="<?php echo $size['width'].'x'.$size['height']; ?>" /><?php echo $size['name']; ?></label>
+            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="sizes/<?php echo $image['file'].'_'.$size['width'].'x'.$size['height'].'.'.$image['extension']; ?>" /><br /><?php echo $size['name']; ?><br />(<?php echo $size['width'].($size['height']!='' ? ' x '.$size['height'] : ''); ?>)</label>
             		<?php endforeach; ?>
-            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="" /><?php _e('Original','rmcommon'); ?></label>
-            		</strong>
+            		<label><input type="radio" name="size_<?php echo $image['id']; ?>" value="<?php echo $image['file'].'.'.$image['extension']; ?>" checked="checked" /><br /><?php _e('Original','rmcommon'); ?></label>
+            		<input type="hidden" id="extension_<?php echo $image['id']; ?>" value="<?php echo $image['extension']; ?>">
             	</td>
             </tr>
             <tr class="even">
@@ -86,3 +86,4 @@
 </table>
 <input type="hidden" name="token" id="ret-token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <?php echo $nav->display(); ?>
+<input type="hidden" id="filesurl" value="<?php echo $filesurl; ?>" />

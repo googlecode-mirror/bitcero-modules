@@ -65,7 +65,8 @@ $tiny->configuration = array('mode'=>'exact',
                     'entities'=>"38,amp,60,lt,62,gt", 
                     'accessibility_focus'=>"1", 
                     'tab_focus'=>"'=>prev,'=>next",
-                    'save_callback'=>"switchEditors.saveCallback");
+                    'save_callback'=>"switchEditors.saveCallback",
+                    'content_css'=>RMTemplate::get()->style_url('editor.css','rmcommon'));
 
 /**
  * Esta clase controla la generación de formularios automáticamente.<br />

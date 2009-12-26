@@ -207,6 +207,22 @@ td input[type='text']{
 	color: #FFF;
 	text-decoration: none;
 }
+.sizes{
+	overflow: hidden;
+}
+.sizes label{
+	display: block;
+	float: left;
+	margin: 4px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px dotted #ebebeb;
+	padding: 4px;
+}
+.sizes label:hover{
+	background: #FFF;
+	border: 1px dotted #CCC;
+}
 
 .outer{
     border: 0;

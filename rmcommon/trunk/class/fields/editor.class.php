@@ -152,13 +152,12 @@ class RMFormEditor extends RMFormElement
 	}
 	
 	private function renderExmCode(){
-		RMTemplate::get()->add_script(RMCURL."/api/editors/exmcode/editor-exmcode.js");
+		RMTemplate::get()->add_script(RMCURL."/api/editors/exmcode/editor-exmcode.php?id=".$this->getName());
 		RMTemplate::get()->add_script(RMCURL."/include/js/colorpicker.js");
-		RMTemplate::get()->add_style('editor-exmcode.css','system');
-		RMTemplate::get()->add_style('colorpicker.css','system');
+		RMTemplate::get()->add_style('editor-exmcode.css','rmcommon');
+		RMTemplate::get()->add_style('colorpicker.css','rmcommon');
         $lang = is_file(ABSPATH.'/api/editors/exmcode/language/'.EXMLANG.'.js') ? EXMLANG : 'en_US';
         RMTemplate::get()->add_script(RMCURL.'/api/editors/exmcode/language/'.$lang.".js");
-		RMTemplate::get()->add_head("<script type='text/javascript'>$(document).ready(function(){\nexmCode.init('".RMCURL."/api/editors/exmcode','$lang');\nexmCode.make_buttons('".$this->getName()."');\n});</script>");
 		$rtn = 	"<div class='ed-container' width='$this->_width'>";
 		$rtn .= "<div class='ed_buttons' id='".$this->getName()."-ec-container'>";
 

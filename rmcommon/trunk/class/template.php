@@ -267,6 +267,35 @@ class RMTemplate
          );
 		
     }
+    
+    /**
+    * Get a style url formatted
+    */
+    public function style_url($sheet, $element='rmcommon', $subfolder=''){
+		global $rmc_config;
+    
+        $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+        $themepath = RMCPATH.'/themes/'.$theme;
+        $themeurl = RMCURL.'/themes/'.$theme;
+
+        $theme_file = $themepath.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+        if (is_file($theme_file)){
+            $url = $themeurl.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+        } else {
+            $url = XOOPS_URL.'/'.($element!='' ? 'modules/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'css/'.$sheet;
+        }        
+        
+		if (strpos($url, "?")>1){
+		    if (strpos($url, 'ver=')===FALSE){
+				$url .= "&ver=".RMCVERSION;
+		 	}
+        } else {
+		    $url .= "?ver=".RMCVERSION;
+        }
+         
+         return $url;
+    }
+    
 	/**
    	* Get all styles stored in class
    	*/
@@ -289,20 +318,6 @@ class RMTemplate
 			// Why? becouse we need to add an id to style
 			$this->add_style($style['sheet'], $style['system'], $style['subfolder'], $style['media'], $style['more']);
 		}
-    }
-
-    /**
-    * Devuelve la url correcta para la inclusión de un estilo.
-    * Esta función es útil para los diseñadores de temas para la administración
-    */
-    function style_url($sheet, $element='system', $subfolder=''){
-		$theme_file = THEMEPATH.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
-    	if (is_file($theme_file)){
-	    	$url = THEMEURL.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet.'?ver='.RMCVERSION;
-		} else {
-	    	$url = ABSURL.'/'.($element!='' ? 'apps/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'css/'.$sheet.'?ver='.RMCVERSION;
-		}
-		return $url;
     }
 
     /**
