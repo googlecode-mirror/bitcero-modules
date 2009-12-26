@@ -68,7 +68,8 @@ $xoopsLogger->activated = false;
                     width : 600 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
                     height : 600 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
                     inline : 1,
-                    title: '<?php _e('Insert Image','rmcommon'); ?>'
+                    title: '<?php _e('Insert Image','rmcommon'); ?>',
+                    maximizable: 'true'
                 }, {
                     plugin_url : url
                 });

@@ -85,6 +85,7 @@ if ($action==''){
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/images_editor.js');
+    RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce_popup.js');
 
     RMEventsApi::get()->run_event('rm_loading_editorimages', '');
 

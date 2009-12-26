@@ -115,7 +115,12 @@ function hide_image_data(id){
 }
 
 function insert_image(id){
-	alert("Hi vamos");
 	ed = tinyMCEPopup.editor;
-	ed.execCommand("mceInsertContent", true, "Que pex my man");
+    var sizes = $("input[name='size_"+id+"']");
+    alert($(sizes[0]).val());
+    for(i=0;i<sizes.length;i++){
+        alert(sizes[i].val());
+    }
+    html = '<img src=""';
+	ed.execCommand("mceInsertContent", true, html);
 }

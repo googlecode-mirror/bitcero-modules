@@ -1,7 +1,8 @@
 body{
 	margin: 0;
 	font-family: arial, helvetica, sans-serif;
-	font-size: 0.8em;
+	font-size: 0.9em;
+    background: #FFF;
 }
 a{
     text-decoration: none;
