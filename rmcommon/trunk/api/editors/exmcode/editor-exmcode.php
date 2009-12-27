@@ -10,6 +10,8 @@
 	XoopsLogger::getInstance()->activated = false;
 	XoopsLogger::getInstance()->renderingEnabled = false;
 	$lang = is_file(ABSPATH.'/api/editors/exmcode/language/'.EXMLANG.'.js') ? EXMLANG : 'en_US';
+    $editor_id = rmc_server_var($_GET, 'id', '');
+    $editor_url = RMCURL.'/api/editors/exmcode';
 ?>
 
 /*
@@ -102,89 +104,117 @@ var top_buttons = '';
 var bottom_buttons = '';
 
 <?php 
-// Top buttons
-$top_buttons[] = "bold: {
-                    icon: 'bold.png',
-                    name: 'bold', 
-                    alt: ed_lang.bold,
-                    text: '',
-                    open: 'b',
-                    close: '/b',
-                    command: 'bold',
-                    key: 'B'
-            }";
-$top_buttons[] = "italic: {
-                icon: 'italic.png',
-                name: 'italic',
-                alt: ed_lang.italic,
-                text: '',
-                open: 'i',
-                close: '/i',
-                command: 'italic'
-            }";
-$top_buttons[] = "underline: {
-                icon: 'under.png',
-                name: 'underline',
-                alt: ed_lang.underline,
-                text: '',
-                open: 'u',
-                close: '/u',
-                command: 'underline'
-            }";
-$top_buttons[] = "strike: {
-                icon: 'strike.png',
-                name: 'strike',
-                alt: ed_lang.strikeout,
-                text: '',
-                open: 'd',
-                close: '/d',
-                command: 'strike'
-            }";
-$top_buttons[] = "left: {
-                icon: 'left.png',
-                name: 'left',
-                alt: ed_lang.left,
-                text: '',
-                open: 'left',
-                close: '/left',
-                command: 'left'
-            }";
-$top_buttons[] = "center: {
-                icon: 'center.png',
-                name: 'center',
-                alt: ed_lang.center,
-                text: '',
-                open: 'center',
-                close: '/center',
-                command: 'center'
-            }";
-$top_buttons[] = "justify: {
-                icon: 'justify.png',
-                name: 'justify',
-                alt: ed_lang.justify,
-                text: '',
-                open: 'justify',
-                close: '/justify',
-                command: 'justify'
-            }";
-$top_buttons[] = "right: {
-                icon: 'right.png',
-                name: 'right',
-                alt: ed_lang.right,
-                text: '',
-                open: 'right',
-                close: '/right',
-                command: 'right'
-            }";
-$top_buttons[] = "size: {
-                icon: 'size.png',
-                name: 'size',
-                alt: ed_lang.fontsize,
-                text: '',
-                command: 'size',
-                type: 'dropdown',
-                special: true
-            }";
+
+// Carga de plugins
+$editor_path = RMCPATH.'/api/editors/exmcode';
+$dir = opendir($editor_path.'/plugins');
+while (false !== ($file = readdir($dir))) {
+        if ($file=='.' || $file=='..' || !is_dir($editor_path.'/plugins/'.$file)) continue;
+        if (!is_file($editor_path.'/plugins/'.$file.'/plugin.js')) continue;
+        include_once $editor_path."/plugins/$file/plugin.js";
+}
+
+// Bold plugin
+$top_buttons["bold"] = array(
+    "icon"=>$editor_url.'/images/bold.png',
+    "alt"=>__('Bold','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[b]%replace%[/b]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.bold();",
+    "key"=>'B'
+);
+// Italic plugin
+$top_buttons["italic"] = array(
+    "icon"=>$editor_url.'/images/italic.png',
+    "alt"=>__('Italic','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[i]%replace%[/i]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.italic();",
+    "key"=>'I'
+);
+// Underline plugin
+$top_buttons["underline"] = array(
+    "icon"=>$editor_url.'/images/under.png',
+    "alt"=>__('Underline','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[u]%replace%[/u]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.underline();",
+    "key"=>'U'
+);
+// Strikeout plugin
+$top_buttons["strike"] = array(
+    "icon"=>$editor_url.'/images/strike.png',
+    "alt"=>__('Strikeout','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[d]%replace%[/d]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.strike();",
+    "key"=>'S'
+);
+// Align left plugin
+$top_buttons["alignLeft"] = array(
+    "icon"=>$editor_url.'/images/left.png',
+    "alt"=>__('Left alignment','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[left]%replace%[/left]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.alignLeft();",
+    "key"=>''
+);
+// Align center plugin
+$top_buttons["alignCenter"] = array(
+    "icon"=>$editor_url.'/images/center.png',
+    "alt"=>__('Center alignment','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[center]%replace%[/center]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.alignCenter();",
+    "key"=>''
+);
+// Align justify plugin
+$top_buttons["alignJustify"] = array(
+    "icon"=>$editor_url.'/images/justify.png',
+    "alt"=>__('Justify','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[justify]%replace%[/justify]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.alignJustify();",
+    "key"=>''
+);
+// Align right plugin
+$top_buttons["alignRight"] = array(
+    "icon"=>$editor_url.'/images/right.png',
+    "alt"=>__('Right alignment','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[right]%replace%[/right]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.alignRight();",
+    "key"=>''
+);
+// Align right plugin
+$top_buttons["size"] = array(
+    "icon"=>$editor_url.'/images/size.png',
+    "alt"=>__('Font size','rmcommon'),
+    "text"=>'',
+    'action'=>'function(){
+        exmCode.insertText("[right]%replace%[/right]","'.$editor_id.'");
+    }',
+    "onclick"=>"exmCode.size();",
+    'type'=>'dropdown',
+    "key"=>''
+);
+/*
 $top_buttons[] = "font: {
                 icon: '',
                 name: 'font',
@@ -199,9 +229,17 @@ $top_buttons[] = "color: {
                 name: 'color',
                 alt: ed_lang.fontcolor,
                 text: '',
-                command: 'color',
+                show: function(id){
+                    alert('Hola');
+                    \$(\"#\"+id+\"-ec-container span.color\").ColorPicker({
+                        onSubmit: function(hsb, hex, rgb, el){
+                            exmCode.insertText(\"[color=\"+hex+\"]%replace%[/color]\", id);
+                            \$(el).ColorPickerHide();
+                        }
+                    });
+                },
                 type: 'dropdown',
-                special: true
+                onclick: \"exmCode.color.show(\'".$editor_id."\');\"
             }";
 $top_buttons[] = "showtool: {
                 icon: 'showtoolbar.png',
@@ -211,91 +249,99 @@ $top_buttons[] = "showtool: {
                 command: 'showmore',
                 special: 1
             }";
+*/
+$top_buttons = RMEventsApi::get()->run_event('load_xceditor_topplugins', $top_buttons);
 
-$top_buttons = RMEventsApi::get()->run_event('load_bbcode_topplugins', $top_buttons);
-            
-?>
-
-var exmCode = {
-    // Init
-	init: function(path, lang){
-		editor_path = path;
-        
-        // Creating buttons
-        // Buttons first row
-        top_buttons = {
-
-        };
-        
-        // Buttons second row
-        bottom_buttons = {
-            showless: {
+// Bottom row buttons
+$bottom_buttons[] = "showless: {
                 icon: 'hide.png',
                 name: 'showless',
                 alt: ed_lang.less,
                 text: '',
                 command: 'hide',
                 special: 1
-            },
-            link: {
+            }";
+$bottom_buttons[] = "link: {
                 icon: 'link.png',
                 name: 'link',
                 alt: ed_lang.link,
                 text: '',
                 command: 'link',
                 special: true
-            },
-            mail: {
+            }";
+$bottom_buttons[] = "mail: {
                 icon: 'mail.png',
                 name: 'mail',
                 alt: ed_lang.email,
                 text: '',
                 command: 'email',
                 special: true
-            },
-            code: {
+            }";
+$bottom_buttons[] = "code: {
                 icon: 'code.png',
                 name: 'code',
                 alt: ed_lang.code,
                 text: '',
                 command: 'code',
                 special: true
-            },
-            quote: {
+            }";
+$bottom_buttons[] = "quote: {
                 icon: 'quote.png',
                 name: 'quote',
                 alt: ed_lang.quote,
                 text: '',
                 command: 'quote',
                 special: true
-            },
-            smiley: {
+            }";
+$bottom_buttons[] = "smiley: {
                 icon: 'smiley.png',
                 name: ed_lang.smile,
                 alt: 'Insert smiley',
                 text: '',
                 command: 'smiley',
                 special: true
-            },
-            image: {
+            }";
+$bottom_buttons[] = "image: {
                 icon: 'image.png',
                 name: ed_lang.image,
                 alt: 'Insert image',
                 text: '',
                 command: 'image',
                 special: true
-            },
-            imageman: {
+            }";
+$bottom_buttons[] = "imageman: {
                 icon: 'images.png',
                 name: 'imageman',
                 alt: ed_lang.imageman,
                 text: '',
                 command: 'imageman',
                 special: true
-            }
-        };
+            }";
+$bottom_buttons = RMEventsApi::get()->run_event('load_xceditor_bottomplugins', $bottom_buttons);
+            
+?>
+
+var exmCode = {
+    // Init
+	init: function(){
+		editor_path = '<?php echo $file_url; ?>';
+        
+        // Buttons second row
+        /*bottom_buttons = {
+            <?php
+                /*foreach($bottom_buttons as $i => $button){
+                    echo $i<count($bottom_buttons) ? $button.',' : $button;
+                }*/
+            ?>
+        };*/
         
 	},
+    <?php
+        foreach($top_buttons as $name => $button){
+            if($button['action']=='') continue;
+            echo $name.": ".$button['action'].",\n";
+        }
+    ?>
     // Make buttons
 	make_buttons: function(id){
 		
@@ -303,19 +349,21 @@ var exmCode = {
 		// Top buttons
 		var first_row = '<div class="row_top">';
 		
-		for(i in top_buttons){
-			var b = '<span class="buttons '+top_buttons[i].name+'" accesskey="'+top_buttons[i].key+'" title="'+top_buttons[i].alt+'" onclick="exmCode.insert(\''+top_buttons[i].name+'\',\''+id+'\', \'top\');">';
-			b += "<span>";
-			if (top_buttons[i].icon!='' && top_buttons[i].icon!=undefined){
-				b += "<img src='"+editor_path+"/images/"+top_buttons[i].icon+"' alt='' />";
-			}
-			if (top_buttons[i].type=='dropdown'){
-				b += "<span class='dropdown'><img src='"+editor_path+"/images/down.png' alt='' /></span>";
-			}
-			b += (top_buttons[i].text!='' ? top_buttons[i].text : '')+"</span>";
-			b += "</span>";
-			first_row += b;
-		};
+        <?php
+            foreach($top_buttons as $name => $button){
+                $b = '<span class="buttons '.$name.'" accesskey="'.$button['key'].'" title="'.$button['alt'].'" onclick="'.$button['onclick'].'">';
+                $b .= "<span>";
+                if (trim($button['icon'])!=''){
+                    $b .= "<img src='".$button['icon']."' alt='".$button['alt']."' />";
+                }
+                if ($button['type']=='dropdown'){
+                    $b .= "<span class='dropdown'><img src='".$editor_url."/images/down.png' alt='' /></span>";
+                }
+                $b .= $button['text']!='' ? $button['text'] : '';
+                $b .= "</span></span>";
+                echo "first_row += '".str_replace("'", "\\'", $b)."';\n";
+            }
+        ?>
 		
 		first_row += "</div>"
 		container.append(first_row);
@@ -344,12 +392,7 @@ var exmCode = {
 		
 		container.append('<div id="'+id+'-popscont" class="pops_container"></div>');
 		
-		$("#"+id+"-ec-container span.color").ColorPicker({
-            onSubmit: function(hsb, hex, rgb, el){
-                exmCode.insertText("[color="+hex+"]%replace%[/color]", id);
-                $(el).ColorPickerHide();
-            }
-        });
+		
         
         button = $("#"+id+"-popscont");
         
