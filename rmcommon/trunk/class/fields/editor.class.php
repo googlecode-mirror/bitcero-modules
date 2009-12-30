@@ -32,6 +32,10 @@ class RMFormEditor extends RMFormElement
 	 * Variables utilizadas con el editor tiny
 	 */
 	private $_tinycss = '';
+    /**
+    * Almacena los botones (orden) que se utilizaran en el editor exmCode
+    */
+    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize';
 	/**
 	 * @param string $caption Texto del campo
 	 * @param string $name Nombre de este campo
@@ -158,12 +162,25 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_style('colorpicker.css','rmcommon');
         $lang = is_file(ABSPATH.'/api/editors/exmcode/language/'.EXMLANG.'.js') ? EXMLANG : 'en_US';
         RMTemplate::get()->add_script(RMCURL.'/api/editors/exmcode/language/'.$lang.".js");
-		$rtn = 	"<div class='ed-container' width='$this->_width'>";
+		$rtn = 	"<div class='ed-container' id='".$this->getName()."-ed-container' width='$this->_width'>";
 		$rtn .= "<div class='ed_buttons' id='".$this->getName()."-ec-container'>";
-
+        $rtn .= "<div class='row_top'></div><div class='row_bottom'></div>";
 		$rtn .= "</div>";
 		$rtn .= "<textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea>";
 		$rtn .= "</div>";
+        // buttons
+        RMTemplate::get()->add_head("<script type=\"text/javascript\">\nvar ".$this->getName()."_buttons = \"".RMEventsApi::get()->run_event('rm_exmcode_buttons', $this->ex_buttons)."\";\n</script>");
 		return $rtn;
 	}
+    
+    /**
+    * Establece los botones a mostrar en el editor
+    * 
+    * @param string $buttons
+    */
+    public function exmcode_buttons($buttons){
+        if ($buttons=='') return;
+        
+        $this->ex_buttons = $buttons;
+    }
 }
