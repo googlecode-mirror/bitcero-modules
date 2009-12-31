@@ -35,7 +35,8 @@ class RMFormEditor extends RMFormElement
     /**
     * Almacena los botones (orden) que se utilizaran en el editor exmCode
     */
-    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize';
+    private $ex_plugins = 'dropdown,texts,fonts,email,link';
+    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize,font,fontcolor';
 	/**
 	 * @param string $caption Texto del campo
 	 * @param string $name Nombre de este campo
@@ -169,7 +170,12 @@ class RMFormEditor extends RMFormElement
 		$rtn .= "<textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea>";
 		$rtn .= "</div>";
         // buttons
-        RMTemplate::get()->add_head("<script type=\"text/javascript\">\nvar ".$this->getName()."_buttons = \"".RMEventsApi::get()->run_event('rm_exmcode_buttons', $this->ex_buttons)."\";\n</script>");
+        $tplugins = RMEventsApi::get()->run_event('rm_exmcode_plugins', $this->ex_plugins);
+        $tplugins = explode(',',$tplugins);
+        foreach ($tplugins as $p){
+            $plugins .= $plugins=='' ? $p.': true' : ','.$p.': true';
+        }
+        RMTemplate::get()->add_head("<script type=\"text/javascript\">\nvar ".$this->getName()."_buttons = \"".RMEventsApi::get()->run_event('rm_exmcode_buttons', $this->ex_buttons)."\";\nvar ".$this->getName()."_plugins = {".$plugins."};\n</script>");
 		return $rtn;
 	}
     

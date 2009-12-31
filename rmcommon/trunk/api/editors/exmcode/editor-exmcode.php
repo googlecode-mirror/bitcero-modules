@@ -237,7 +237,10 @@ var exmCode<?php echo ucfirst($id); ?> = {
             include $path.'/'.$file.'/plugin.js';
             
         }
-
+        
+        // New plugins from other components
+        RMEventsApi::get()->run_event('load_exmcode_plugins', $id);
+        
         ?>
         
         //x.add_separator('top');
@@ -270,6 +273,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         var buttons = new Array();
         buttons[0] = 'top';
         buttons = buttons.concat(<?php echo $id; ?>_buttons.split(','),'separator_t','bottom');
+        plugs = <?php echo $id; ?>_plugins;
         
         for(i=0;i<buttons.length;i++){
             
@@ -282,6 +286,8 @@ var exmCode<?php echo ucfirst($id); ?> = {
             
             if (x.buttons[buttons[i]]==undefined) continue;
             d = x.buttons[buttons[i]];
+
+            if (d.plugin!=undefined && plugs[d.plugin]==undefined) continue;
             
                 var b = '<span class="buttons" id="<?php echo $id; ?>-'+d.name+'" accesskey="'+d.key+'" title="'+d.alt+'" onclick="'+x.name+'.button_press(\''+d.name+'\');">';
                 b += "<span>";
@@ -321,6 +327,10 @@ var exmCode<?php echo ucfirst($id); ?> = {
     add_plugin : function(n,d){
         var x = this;
         if (x[n]!=undefined) return;
+        
+        plugs = <?php echo $id; ?>_plugins;
+        if (plugs[n]==undefined) return;
+        
         x[n] = d;
 
         if (x[n].init!=undefined) x[n].init(x);
@@ -346,6 +356,10 @@ var exmCode<?php echo ucfirst($id); ?> = {
         if (x[n]==undefined) return;
         
         eval("x."+n+"."+c+"(x,p)");
+    },
+    execute : function(c){
+        x = this;
+        eval('x.'+c);
     },
     insertText: function(what){
         var x = this;
