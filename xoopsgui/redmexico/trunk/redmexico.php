@@ -32,6 +32,10 @@ class XoopsGuiRedmexico extends  XoopsSystemGui
 	public function header(){
 		global $xoopsConfig, $xoopsUser, $xoopsModule, $xoTheme, $xoopsTpl;
 		parent::header();
+		
+		if ($xoopsModule && !$xoopsModule->getInfo('rmnative'))
+			RMTemplate::get()->add_script(XOOPS_URL.'/include/xoops.js');
+		
 	}
 	
 	public function footer(){
@@ -44,6 +48,7 @@ class XoopsGuiRedmexico extends  XoopsSystemGui
             header('Content-Type:text/html; charset='._CHARSET);
             header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
             header('Cache-Control: private, no-cache');
+            header("Cache-Control: post-check=0, pre-check=0", false);
             header('Pragma: no-cache');
         }
 
