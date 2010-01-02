@@ -22,7 +22,7 @@ function array_slice(array, val){
 }
 
 $(document).ready( function($) {
-    
+
     var total_tags = 0;
     var tip_tag_visible = false;
     
@@ -410,7 +410,7 @@ $(document).ready( function($) {
 		$(this).html(html);
 	});
 
- })(jQuery);
+ });
  
  function remove_meta(id){
 	 
