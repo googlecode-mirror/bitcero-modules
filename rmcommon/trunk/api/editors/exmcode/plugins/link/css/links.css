@@ -8,4 +8,8 @@ label{
     display: block;
     cursor: pointer;
     font-weight: bold;
+    padding: 3px 0;
+}
+td.label{
+	padding: 0;
 }

@@ -248,6 +248,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         eval('x.'+c);
     },
     selection: function(){
+    	x = this;
         return $("#"+x.ed).getSelection();
     },
     insertText: function(what){
@@ -304,14 +305,18 @@ var exmCode<?php echo ucfirst($id); ?> = {
         $(pn+' .title').html(d.title!=undefined?d.title:'');
         $(pn+' .content').css('height',(h-39)+'px');
         
-        d.url = encodeURIComponent(d.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
-        var url = encodeURIComponent(x.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+        if (!d.single){
+        	d.url = encodeURIComponent(d.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+        	var url = encodeURIComponent(x.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
         
-        var params = '&id='+x.ed+'&name='+x.name+'&eurl='+url+'&lang=<?php echo _LANGCODE; ?>';
-        params += '&theme=<?php echo $rmc_config['theme']; ?>';
-        params += '&version=<?php echo RMCVERSION; ?>';
+        	var params = '&id='+x.ed+'&name='+x.name+'&eurl='+url+'&lang=<?php echo _LANGCODE; ?>';
+        	params += '&theme=<?php echo $rmc_config['theme']; ?>';
+        	params += '&version=<?php echo RMCVERSION; ?>';
         
-        $(pn+' iframe').attr('src', x.url+'/urls.php?url='+d.url+params);
+        	$(pn+' iframe').attr('src', x.url+'/urls.php?url='+d.url+params);
+        } else {
+        	$(pn+' iframe').attr('src', d.url);
+        }
         if (d.maximizable!=undefined&&d.maximizable) $(pn+' .maximize').show();
         
         $("#"+x.ed+"-ed-container .popblocker").show(10, function(){
@@ -367,82 +372,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
             'margin-top': '-'+(h/2)+'px'});
         });
         $(pn).removeClass('maximized');
-    },
-	/*/ Link
-	link: function(ele, editor, where){
-		exmCode.hidePops(editor);
-        // Link pop
-        var button = $("#"+editor+"-ec-container span.link");
-        var pop = $("#"+editor+"-ec-container div.pop-links");
-        var pos = button.position();
-
-        pop.css({'top':(pos.top+28)+'px', 'left':pos.left+'px'}); 
-        
-        selected = $("#"+editor).getSelection();
-        $("#"+editor+"-linkname").val(selected.text);
-               
-        exmCode.press(button, 1);
-        pop.slideDown('fast');
-		
-	},
-	// Code
-	code: function(ele, editor, where){
-		// Link pop
-		exmCode.hidePops(editor);
-        var button = $("#"+editor+"-ec-container span.code");
-        var pop = $("#"+editor+"-ec-container div.pop-code");
-        var pos = button.position();
-
-        pop.css({'top':(pos.top+28)+'px', 'left':pos.left+'px'}); 
-        
-        selected = $("#"+editor).getSelection();
-        $("#"+editor+"-codeblock").val(selected.text);
-               
-        exmCode.press(button, 1);
-        pop.slideDown('fast');
-	},
-	// Quote
-	quote: function(ele, editor, where){
-		// Link pop
-		exmCode.hidePops(editor);
-        var button = $("#"+editor+"-ec-container span.quote");
-        var pop = $("#"+editor+"-ec-container div.pop-quote");
-        var pos = button.position();
-
-        pop.css({'top':(pos.top+28)+'px', 'left':pos.left+'px'}); 
-        
-        selected = $("#"+editor).getSelection();
-        $("#"+editor+"-quotetext").val(selected.text);
-               
-        exmCode.press(button, 1);
-        pop.slideDown('fast');
-        
-	},
-    // Email
-    email: function(ele, editor, where){
-    	exmCode.hidePops(editor);
-        // Link pop
-        var button = $("#"+editor+"-ec-container span.mail");
-        var pop = $("#"+editor+"-ec-container div.pop-email");
-        var pos = button.position();
-        pop.css({'top':(pos.top+28)+'px', 'left':pos.left+'px'});    
-        exmCode.press(button, 1);
-        pop.slideDown('fast');
-    },
-	// Press
-	press: function(button, ok){
-		if (ok){
-			button.css('border-style','inset');
-		} else {
-			button.css('border-style','solid');
-		}
-	},
-	// Hide pops
-	hidePops: function(editor){
-		$("#"+editor+"-ec-container span.buttons").css('border-style','solid');
-		$("#"+editor+"-ec-container div.pops").hide();
-	},
-	*/
+    }
 };
 
 $(document).ready(function(){
