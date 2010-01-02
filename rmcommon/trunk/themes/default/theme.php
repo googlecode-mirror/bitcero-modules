@@ -2,15 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
-<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<?php echo _LANGCODE; ?>" />
+<meta http-equiv="content-type" content="text/html; charset=<?php echo _CHARSET; ?>" />
 <title><?php if($this->get_var('xoops_pagetitle')!=''): ?><?php echo $this->get_var('xoops_pagetitle'); ?> - <?php endif; ?><?php echo isset($xoopsModule) ? $xoopsModule->getInfo('name').' - ' : ''; ?><?php echo $xoopsConfig['sitename']; ?></title>
-<meta name="robots" content="<{$xoops_meta_robots}>" />
-<meta name="keywords" content="<{$xoops_meta_keywords}>" />
-<meta name="description" content="<{$xoops_meta_description}>" />
-<meta name="rating" content="<{$xoops_meta_rating}>" />
-<meta name="author" content="Red México - BitC3R0" />
-<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="author" content="BitC3R0 (i.bitcero@gmail.com)" />
+<meta name="copyright" content="Red México" />
 <meta name="generator" content="Red México Common Utilities" />
 <?php
 

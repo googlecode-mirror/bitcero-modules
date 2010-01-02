@@ -102,126 +102,12 @@ var editor_path = '';
 var top_buttons = '';
 var bottom_buttons = '';
 
-<?php 
-// Top buttons
-$top_buttons[] = "bold: {
-                    icon: 'bold.png',
-                    name: 'bold', 
-                    alt: ed_lang.bold,
-                    text: '',
-                    open: 'b',
-                    close: '/b',
-                    command: 'bold',
-                    key: 'B'
-            }";
-$top_buttons[] = "italic: {
-                icon: 'italic.png',
-                name: 'italic',
-                alt: ed_lang.italic,
-                text: '',
-                open: 'i',
-                close: '/i',
-                command: 'italic'
-            }";
-$top_buttons[] = "underline: {
-                icon: 'under.png',
-                name: 'underline',
-                alt: ed_lang.underline,
-                text: '',
-                open: 'u',
-                close: '/u',
-                command: 'underline'
-            }";
-$top_buttons[] = "strike: {
-                icon: 'strike.png',
-                name: 'strike',
-                alt: ed_lang.strikeout,
-                text: '',
-                open: 'd',
-                close: '/d',
-                command: 'strike'
-            }";
-$top_buttons[] = "left: {
-                icon: 'left.png',
-                name: 'left',
-                alt: ed_lang.left,
-                text: '',
-                open: 'left',
-                close: '/left',
-                command: 'left'
-            }";
-$top_buttons[] = "center: {
-                icon: 'center.png',
-                name: 'center',
-                alt: ed_lang.center,
-                text: '',
-                open: 'center',
-                close: '/center',
-                command: 'center'
-            }";
-$top_buttons[] = "justify: {
-                icon: 'justify.png',
-                name: 'justify',
-                alt: ed_lang.justify,
-                text: '',
-                open: 'justify',
-                close: '/justify',
-                command: 'justify'
-            }";
-$top_buttons[] = "right: {
-                icon: 'right.png',
-                name: 'right',
-                alt: ed_lang.right,
-                text: '',
-                open: 'right',
-                close: '/right',
-                command: 'right'
-            }";
-$top_buttons[] = "size: {
-                icon: 'size.png',
-                name: 'size',
-                alt: ed_lang.fontsize,
-                text: '',
-                command: 'size',
-                type: 'dropdown',
-                special: true
-            }";
-$top_buttons[] = "font: {
-                icon: '',
-                name: 'font',
-                alt: ed_lang.fontfamily,
-                text: ed_lang.fontselect,
-                command: 'font',
-                type: 'dropdown',
-                special: true
-            }";
-$top_buttons[] = "color: {
-                icon: 'color.png',
-                name: 'color',
-                alt: ed_lang.fontcolor,
-                text: '',
-                command: 'color',
-                type: 'dropdown',
-                special: true
-            }";
-$top_buttons[] = "showtool: {
-                icon: 'showtoolbar.png',
-                name: 'showtool',
-                alt: ed_lang.more,
-                text: '',
-                command: 'showmore',
-                special: 1
-            }";
-
-$top_buttons = RMEventsApi::get()->run_event('load_bbcode_topplugins', $top_buttons);
-            
-?>
-
 var exmCode<?php echo ucfirst($id); ?> = {
     // Init
 	init: function(path, lang){
         var x = this;
-        x.editor_path = '<?php echo RMCURL.'/api/editors/exmcode'; ?>';
+        x.url = '<?php echo RMCURL.'/api/editors/exmcode'; ?>';
+        x.editor_path = x.url;
         x.ed = '<?php echo $id; ?>';
         x.name = 'exmCode<?php echo ucfirst($id); ?>';
         // Add plugins
@@ -361,6 +247,9 @@ var exmCode<?php echo ucfirst($id); ?> = {
         x = this;
         eval('x.'+c);
     },
+    selection: function(){
+        return $("#"+x.ed).getSelection();
+    },
     insertText: function(what){
         var x = this;
         var e = document.getElementById(x.ed);
@@ -386,84 +275,100 @@ var exmCode<?php echo ucfirst($id); ?> = {
         $("#"+x.ed).focus();
         
     },
-	/*/ I
-	insert: function(ele, editor, where){
-		if (where=='top'){
-			if (top_buttons[ele].special){
-				cmd = top_buttons[ele].command;
-				exmCode[cmd](ele, editor, where);
-				return;
-			}	
-		} else {
-			if (bottom_buttons[ele].special){
-				cmd = bottom_buttons[ele].command;
-				exmCode[cmd](ele, editor, where);
-				return;
-			}	
-		}
-		
-		var e = document.getElementById(editor);
-		var scrollTop = e.scrollTop;
-		selected = $("#"+editor).getSelection();
-		
-		if(selected.text==null)
-			selected.text = '';
-		
-		button = top_buttons[ele];
-		
-		text = "["+button.open+"]" + selected.text + "["+button.close+"]";
-		$("#"+editor).replaceSelection(text, true);
-		
-		var cursorPos = 0;
-		if (selected.text==''){
-			cursorPos = selected.start + ("["+button.open+"]").length;
-		} else {
-			cursorPos = selected.start + text.length;
-		}
-		e.selectionEnd = cursorPos;
-		e.scrollTop = scrollTop;
-		$("#"+editor).focus();
-				
-	},
-    // Insert text
-    
-	
-	// Tools
-	showmore: function(ele, editor, where){
-		exmCode.hidePops(editor);
-		$("#"+editor+"-ec-container div.row_bottom").slideDown();
-		$("#"+editor+"-ec-container span."+ele+"'").hide();		
-	},
-	// Hide tools
-	hide: function(ele, editor, where){
-		exmCode.hidePops(editor);
-		$("#"+editor+"-ec-container div.row_bottom").hide();
-		$("#"+editor+"-ec-container div.row_top").css("border-bottom","");
-		$("#"+editor+"-ec-container span.showtool").show();
-	},
-	// Font Size
-	size: function(ele, editor, where){
-		exmCode.hidePops(editor);
-        var button = $("#"+editor+"-ec-container span.size");
-        $("#"+editor+"-ec-container div.pop-fonts").slideUp('fast');
-		pop = $("#"+editor+"-ec-container div.pop-size");
-		exmCode.press(button, 1);
-		pop.slideDown('fast');
-		
-	},	
-	// Font Family
-	font: function(ele, editor, where){
-		exmCode.hidePops(editor);
-		var button = $("#"+editor+"-ec-container span.font");
-		$("#"+editor+"-ec-container div.pop-size").slideUp('fast');
-		
-		pop = $("#"+editor+"-ec-container div.pop-fonts");
-		
-		exmCode.press(button, 1);
-		pop.slideDown('fast');
+    popup : function(d){
+        x = this;
+        if ($("#"+x.ed+"-ed-container .popup").length<=0){
+            var pop = '<div class="popblocker"></div><div class="popup">';
+            pop += '<div class="titlebar">';
+            pop += '<span class="buttons">';
+            pop += '<span class="close" onclick="'+x.name+'.closePopup()"><span>Close</span></span>';
+            pop += '<span class="maximize" onclick="'+x.name+'.maximize()"><span>Maximize</span></span>';
+            pop += '<span class="restore"><span>Restore</span></span>';
+            pop += '</span>';
+            pop += '<span class="title"></span></div>';
+            pop += '<div class="content"><iframe src=""></iframe></div></div>';
+            $("#"+x.ed+"-ed-container").append(pop);
+        }
         
-	},
-	// Link
+        var pn = "#"+x.ed+"-ed-container .popup";
+        var w = d.width!=undefined?d.width:300;
+        var h = d.height!=undefined?d.height:300;
+        $(pn).css('width', w+'px');
+        $(pn).css('height', h+'px');
+        $(pn).css({
+            top: '50%', 
+            left: '50%', 
+            'margin-left': '-'+(w/2)+'px', 
+            'margin-top': '-'+(h/2)+'px'
+        });
+        $(pn+' .title').html(d.title!=undefined?d.title:'');
+        $(pn+' .content').css('height',(h-39)+'px');
+        
+        d.url = encodeURIComponent(d.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+        var url = encodeURIComponent(x.url).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+        
+        var params = '&id='+x.ed+'&name='+x.name+'&eurl='+url+'&lang=<?php echo _LANGCODE; ?>';
+        params += '&theme=<?php echo $rmc_config['theme']; ?>';
+        params += '&version=<?php echo RMCVERSION; ?>';
+        
+        $(pn+' iframe').attr('src', x.url+'/urls.php?url='+d.url+params);
+        if (d.maximizable!=undefined&&d.maximizable) $(pn+' .maximize').show();
+        
+        $("#"+x.ed+"-ed-container .popblocker").show(10, function(){
+            $(pn).show(300);
+        });
+        
+        w = $(pn).width();
+        h = $(pn).height();
+        
+        $(pn+' .restore').click(function(){
+            x.restore(w,h);
+        });
+    },
+    closePopup: function(){
+        x = this;
+        var pn = "#"+x.ed+"-ed-container .popup";
+        $(pn+' iframe').attr('src', '');
+        $("#"+x.ed+"-ed-container .popup").hide(1000);
+        $("#"+x.ed+"-ed-container .popblocker").hide(100);
+    },
+    maximize: function(){
+        x = this;
+        var pn = "#"+x.ed+"-ed-container .popup";
+        $(pn+' .maximize').hide();
+        $(pn+' .restore').show();
+        
+        $(pn).animate({
+            'width': '100%',
+            'height': '100%',
+            'left': 0,
+            'top': 0,
+            'margin': 0
+        }, 500, '', function(){
+            $(pn+' .content').css('height',$(window).height()-39+'px');
+        });
+        $(pn).addClass('maximized');
+        
+    },
+    restore: function(w,h){
+        x = this;
+        var pn = "#"+x.ed+"-ed-container .popup";
+        $(pn+' .maximize').show();
+        $(pn+' .restore').hide();
+        
+        $(pn).animate({
+            'width': w+'px',
+            'height': h+'px',
+            'left': '50%',
+            'top': '50%',
+        }, 500, '', function(){
+            $(pn+' .content').css('height',(h-39)+'px');
+            $(pn).css({'margin-left': '-'+(w/2)+'px',
+            'margin-top': '-'+(h/2)+'px'});
+        });
+        $(pn).removeClass('maximized');
+    },
+	/*/ Link
 	link: function(ele, editor, where){
 		exmCode.hidePops(editor);
         // Link pop

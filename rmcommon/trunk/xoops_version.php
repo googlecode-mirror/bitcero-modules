@@ -22,6 +22,7 @@ $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
+$modversion['rmnative'] = 1;
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";

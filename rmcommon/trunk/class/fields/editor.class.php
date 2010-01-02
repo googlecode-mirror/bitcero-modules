@@ -36,7 +36,7 @@ class RMFormEditor extends RMFormElement
     * Almacena los botones (orden) que se utilizaran en el editor exmCode
     */
     private $ex_plugins = 'dropdown,texts,fonts,email,link';
-    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize,font,fontcolor';
+    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize,font,fontcolor,separator_b,link,email';
 	/**
 	 * @param string $caption Texto del campo
 	 * @param string $name Nombre de este campo

@@ -1,0 +1,11 @@
+td{
+    padding: 3px;
+}
+table td input[type='text']{
+    width: 100%;
+}
+label{
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+}
