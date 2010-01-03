@@ -450,7 +450,7 @@ function resize_images(){
     $upurl = XOOPS_UPLOAD_URL.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
     $width = 0;
     $tfile = '';
-
+    
     foreach ($sizes as $size){
         
         if ($size['width']<=0 && $size['height']<=0) continue;

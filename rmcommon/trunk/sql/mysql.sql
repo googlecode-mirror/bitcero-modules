@@ -33,7 +33,7 @@ CREATE TABLE `rmc_img_cats` (
   `status` varchar(10) NOT NULL default 'active',
   `groups` text NOT NULL,
   `filesize` int(11) NOT NULL default '0',
-  `sizeunit` smallint not null default '1024',
+  `sizeunit` MEDIUMINT(9) not null default '1024',
   `sizes` text NOT NULL,
   PRIMARY KEY  (`id_cat`)
 ) ENGINE=MyISAM;

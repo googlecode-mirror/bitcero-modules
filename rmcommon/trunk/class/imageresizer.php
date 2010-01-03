@@ -84,8 +84,8 @@ class RMImageResizer
         $height = $ho * $percent;; $width = $wo * $percent;;
         
         $format = $this->getFormat();
+
         $image = $this->createImage($format);
-        
         if ($wo==$tw && $ho==$th) return true;
 
         if ($wo < $ho) {
