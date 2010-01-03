@@ -27,12 +27,12 @@ $adminmenu[] = array(
 $options = array();
 $options[] = array(
     'title'     => __('List','admin_mywords'),
-    'link'      => 'admin/posts.php',
+    'link'      => 'posts.php',
     'selected'  => 'posts_list' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 $options[] = array(
     'title'     => __('Add New','admin_mywords'),
-    'link'      => 'admin/posts.php?op=new',
+    'link'      => 'posts.php?op=new',
     'selected'  => 'new_post' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 

@@ -273,7 +273,7 @@ class MWFunctions
     * Get correct base url for links
     */
     function get_url(){
-        global $xoopsModule;
+        global $xoopsModule, $xoopsModuleConfig;
         if(!$xoopsModule || $xoopsModule->dirname()!='mywords')
             $xoopsModuleConfig = RMUtilities::get()->module_config('mywords');
         
