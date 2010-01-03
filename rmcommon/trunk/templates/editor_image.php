@@ -60,6 +60,9 @@ foreach (RMTemplate::get()->tpl_head as $head){
             <td><?php _e('Image URL','rmcommon'); ?></td>
             <td><input type="text" id="imgurl" size="50" value="" /></td>
         <tr>
+        <tr>
+            <td>
+        </tr>
     </table>
 </div>
 
