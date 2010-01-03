@@ -56,7 +56,8 @@ function show_upload(){
     $("#library-container").hide('slow', function(){
         $("#library-content").html('');
     });
-    $("#upload-container").slideDown('slow');
+    $("#fromurl-container").hide();
+    $("#upload-container").show(100);
     $("#resizer-bar").hide('slow');
     $('.categories_selector').show('slow');
     $('#upload-errors').show('slow');
@@ -68,6 +69,14 @@ function show_upload(){
     });
     $("#img-toolbar a").removeClass('select');
     $("#a-upload").addClass('select');
+    
+}
+
+function show_fromurl(){
+
+    $("#library-container").hide();
+    $("#upload-container").hide();
+    $("#fromurl-container").show();
     
 }
 
@@ -90,10 +99,11 @@ function show_library(pag){
         page: pag
     }
     
-    $("#upload-container").slideUp('slow');
+    $("#upload-container").hide();
+    $("#fromurl-container").hide();
     $("#library-content").html('');
     $("#library-content").addClass('loading');
-    $("#library-container").show('slow');
+    $("#library-container").show();
     $("#img-toolbar a").removeClass('select');
     $("#a-library").addClass('select');
     

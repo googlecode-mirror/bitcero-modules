@@ -20,7 +20,7 @@ foreach (RMTemplate::get()->tpl_head as $head){
 <body style="background: #FFF;">
 <div id="img-toolbar">
 	<a href="javascript:;" class="select" id="a-upload" onclick="show_upload();"><?php _e('Upload Files','rmcommon'); ?></a>
-	<a href="javascript:;" id="a-url"><?php _e('From URL','rmcommon'); ?></a>
+	<a href="javascript:;" id="a-url" onclick="show_fromurl();"><?php _e('From URL','rmcommon'); ?></a>
 	<a href="javascript:;" id="a-library" onclick="show_library();"><?php _e('From Library','rmcommon'); ?></a>
     <?php echo RMEventsApi::get()->run_event('rm_imgmgr_editor_options', ''); ?>
 </div>
@@ -53,6 +53,16 @@ foreach (RMTemplate::get()->tpl_head as $head){
     <div id="gen-thumbnails"></div>
     <?php endif; ?>
 </div>
+
+<div id="fromurl-container">
+    <table width="100%" cellpadding="3" cellspacing="0">
+        <tr>
+            <td><?php _e('Image URL','rmcommon'); ?></td>
+            <td><input type="text" id="imgurl" size="50" value="" /></td>
+        <tr>
+    </table>
+</div>
+
 
 <div id="library-container">
     <div class="categories_selector">

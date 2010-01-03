@@ -25,7 +25,7 @@ x.add_plugin('email', {
 });
 
 x.add_button('email',{
-   name : 'email', 
+   name : 'email',
    title : 'Insert email',
    alt : 'Insert email',
    cmd : 'show',

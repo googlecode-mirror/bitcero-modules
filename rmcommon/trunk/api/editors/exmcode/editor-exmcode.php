@@ -378,5 +378,5 @@ var exmCode<?php echo ucfirst($id); ?> = {
 $(document).ready(function(){
 	exmCode<?php echo ucfirst($id); ?>.init();
 	//exmCode.make_buttons('<?php echo rmc_server_var($_GET, 'id'); ?>');
-	//$("#<?php echo rmc_server_var($_GET, 'id'); ?>").css('width', ($("#<?php echo rmc_server_var($_GET, 'id'); ?>-ec-container").width()-6)+'px');
+	$("#<?php echo rmc_server_var($_GET, 'id'); ?>").css('width', ($("#<?php echo rmc_server_var($_GET, 'id'); ?>-ec-container").width()-6)+'px');
 });

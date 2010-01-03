@@ -144,6 +144,10 @@ td input[type='text']{
     display: none;
     padding: 5px;
 }
+#fromurl-container{
+    display: none;
+    padding: 5px;
+}
 .loading{
     background: url(../images/loading.gif) no-repeat center;
     min-height: 100px;

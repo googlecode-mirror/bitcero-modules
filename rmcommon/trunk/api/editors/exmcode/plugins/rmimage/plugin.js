@@ -22,6 +22,6 @@ x.add_button('images',{
    alt : 'Image',
    cmd : 'show',
    plugin : 'rmimage',
-   row: 'top',
+   row: 'bottom',
    icon: x.editor_path+'/images/images.png'
 });
