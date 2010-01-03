@@ -61,7 +61,31 @@ foreach (RMTemplate::get()->tpl_head as $head){
             <td><input type="text" id="imgurl" size="50" value="" /></td>
         <tr>
         <tr>
+            <td><?php _e('Title:','rmcommon'); ?></td>
+            <td><input type="text" id="url-title" value="" /></td>
+        </tr>
+        <tr>
+            <td><?php _e('Alternative text:','rmcommon'); ?></td>
+            <td><input type="text" id="url-alt" value="" /></td>
+        </tr>
+        <tr>
+            <td><?php _e('Alignment:','rmcommon'); ?></td>
             <td>
+            <strong>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" checked="checked" /> <?php _e('None','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignleft" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="aligncenter" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignright" /> <?php _e('Right','rmcommon'); ?></label></strong>
+            </td>
+        </tr>
+        <tr>
+            <td><?php _e('Enlace:','rmcommon'); ?></td>
+            <td><input type="text" id="url-link" value="" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+            <a href="javascript:;" class="insert_button">Hola</a>
+            </td>
         </tr>
     </table>
 </div>
