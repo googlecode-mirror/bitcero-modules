@@ -56,9 +56,9 @@
                 <td><strong><?php _e('Alignment:','rmcommon'); ?></strong></td>
                 <td><strong>
                     <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" checked="checked" /> <?php _e('None','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignleft" /> <?php _e('Left','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="aligncenter" /> <?php _e('Center','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignright" /> <?php _e('Right','rmcommon'); ?></label></strong>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="left" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="center" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
                 </td>
             </tr>
             <tr class="odd">
@@ -74,7 +74,7 @@
             </tr>
             <tr class="even">
             	<td colspan="2">
-            		<a href="javascript:;" class="insert_button" onclick="insert_image(<?php echo $image['id']; ?>);"><?php _e('Insert image','rmcommon'); ?></a>
+            		<a href="javascript:;" class="insert_button" onclick="insert_image(<?php echo $image['id']; ?>,<?php echo $type=='exmcode'?1:0; ?>);"><?php _e('Insert image','rmcommon'); ?></a>
             		<a href="javascript:;"><?php _e('Delete','rmcommon'); ?></a>
             	</td>
             </tr>

@@ -25,6 +25,8 @@ function send_message($message){
 $category = rmc_server_var($_POST,'category', 0);
 $action = rmc_server_var($_POST,'action', '');
 $cat = new RMImageCategory($category);
+$type = rmc_server_var($_REQUEST, 'type', 'tiny');
+$en = rmc_server_var($_REQUEST, 'name', '');
 
 if ($action==''){
 
@@ -85,7 +87,11 @@ if ($action==''){
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/images_editor.js');
-    RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce_popup.js');
+    if($type=='tiny'){
+        RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce_popup.js');
+    } else {
+        RMTemplate::get()->add_head('<script type="text/javascript">var exmPopup = window.parent.'.$en.';</script>');
+    }
 
     RMEventsApi::get()->run_event('rm_loading_editorimages', '');
 

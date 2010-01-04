@@ -35,6 +35,8 @@ foreach (RMTemplate::get()->tpl_head as $head){
                 <option value="<?php echo $catego->id(); ?>"<?php echo $cat->id()==$catego->id() ? ' selected="selected"' : ''; ?>><?php echo $catego->getVar('name'); ?></option>
             <?php endforeach; ?>
         </select>
+        <input type="hidden" name="type" value="<?php echo $type; ?>" />
+        <input type="hidden" name="name" value="<?php echo $en; ?>" />
         </form>
     </div>
     <?php if (!$cat->isNew()): ?>
@@ -72,10 +74,10 @@ foreach (RMTemplate::get()->tpl_head as $head){
             <td><?php _e('Alignment:','rmcommon'); ?></td>
             <td>
             <strong>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="" checked="checked" /> <?php _e('None','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignleft" /> <?php _e('Left','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="aligncenter" /> <?php _e('Center','rmcommon'); ?></label>
-                    <label><input type="radio" name="align_<?php echo $image['id']; ?>" value="alignright" /> <?php _e('Right','rmcommon'); ?></label></strong>
+                    <label><input type="radio" name="align_url" value="" checked="checked" /> <?php _e('None','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_url" value="left" /> <?php _e('Left','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_url" value="center" /> <?php _e('Center','rmcommon'); ?></label>
+                    <label><input type="radio" name="align_url" value="right" /> <?php _e('Right','rmcommon'); ?></label></strong>
             </td>
         </tr>
         <tr>
@@ -83,8 +85,12 @@ foreach (RMTemplate::get()->tpl_head as $head){
             <td><input type="text" id="url-link" value="" /></td>
         </tr>
         <tr>
-            <td colspan="2">
-            <a href="javascript:;" class="insert_button">Hola</a>
+            <td>&nbsp;</td>
+            <td>
+            <a href="javascript:;" class="insert_button" onclick="<?php if($type=='exmcode'): ?>insert_from_url(1);<?php else: ?>insert_from_url(0);<?php endif; ?>"><?php _e('Insert Image','rmcommon'); ?></a>
+            <?php if($type=='exmcode'): ?>
+            <a href="javascript:;" onclick="exmPopup.closePopup();"><?php _e('Cancel','rmcommon'); ?></a>
+            <?php endif; ?>
             </td>
         </tr>
     </table>
@@ -107,5 +113,7 @@ foreach (RMTemplate::get()->tpl_head as $head){
         
     </div>
 </div>
+<input type="hidden" name="type" id="type" value="<?php echo $type; ?>" />
+<input type="hidden" name="name" id="name" value="<?php echo $en; ?>" />
 </body>
 </html>

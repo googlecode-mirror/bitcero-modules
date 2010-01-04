@@ -315,7 +315,10 @@ var exmCode<?php echo ucfirst($id); ?> = {
         
         	$(pn+' iframe').attr('src', x.url+'/urls.php?url='+d.url+params);
         } else {
-        	$(pn+' iframe').attr('src', d.url);
+            
+            var con = d.url.indexOf('?') != -1 ? '&' : '?';
+            
+        	$(pn+' iframe').attr('src', d.url+con+'type=exmcode&name='+x.name);
         }
         if (d.maximizable!=undefined&&d.maximizable) $(pn+' .maximize').show();
         
