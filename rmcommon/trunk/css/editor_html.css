@@ -7,8 +7,7 @@ div.ed-container{
 	
 }
 div.ed-container div.quicktags{
-	background: #dfdfdf url(../images/ed-bg.gif) repeat-x top;
-	width: 100%;
+	background: #E2E2E2 url(../images/ed-bg.png) repeat-x left top;
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-top-right-radius: 5px;
     -webkit-border-top-left-radius: 5px;
@@ -19,6 +18,7 @@ div.ed-container div.quicktags{
     margin-bottom: -2px;
     border: 1px solid #CCC;
     border-bottom: 0;
+    padding: 3px;
 }
 div.ed-container div.quicktags input{
     -moz-border-radius: 3px;
@@ -29,20 +29,22 @@ div.ed-container div.quicktags input{
     background-position: left top;
     background-repeat: repeat-x;
     padding: 4px;
-    font-size: 0.85em;
+    font-size: 0.9em;
     color: #333;
     border: 1px solid #CCC;
     margin: 2px 0px 2px 2px;
     font-family: Tahoma, Arial, Helvetica, sans-serif;
 }
 div.ed-container div.txtarea_container{
-	width: 100%;
+	
 }
 div.ed-container textarea{
     font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.05em;
 	color: #333;
 	padding: 3px;
+	border: 1px solid #CCC;
+	background: #FFF;
 	-moz-border-radius: 0 0 5px 5px;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;

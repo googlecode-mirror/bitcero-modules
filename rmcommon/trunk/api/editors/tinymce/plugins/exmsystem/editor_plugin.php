@@ -79,9 +79,9 @@ $xoopsLogger->activated = false;
             // Register commands
             ed.addCommand('mceExmIcons', function() {
                 ed.windowManager.open({
-                    file : url+'/exmicons.php',
+                    file : '<?php echo RMCURL; ?>/include/emotions.php',
                     width : 300 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
-                    height : 200 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
+                    height : 250 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
                     inline : 1
                 }, {
                     plugin_url : url

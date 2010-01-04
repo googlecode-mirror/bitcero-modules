@@ -35,8 +35,8 @@ class RMFormEditor extends RMFormElement
     /**
     * Almacena los botones (orden) que se utilizaran en el editor exmCode
     */
-    private $ex_plugins = 'dropdown,texts,fonts,email,link,xcode,xquote,rmimage';
-    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize,font,fontcolor,separator_b,link,email,xcode,xquote,separator_b,images';
+    private $ex_plugins = 'dropdown,texts,fonts,email,link,xcode,xquote,rmimage,emotions,more,chars';
+    private $ex_buttons = 'bold,italic,underline,strikeout,separator_t,left,center,right,separator_t,fontsize,font,fontcolor,separator_t,more,bottom,top,separator_b,link,email,xcode,xquote,separator_b,images,emotions,separator_b,chars,page';
 	/**
 	 * @param string $caption Texto del campo
 	 * @param string $name Nombre de este campo
@@ -133,11 +133,11 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_head(TinyEditor::getInstance()->get_js());
 		$rtn = "\n
 		<div id=\"ed-container\" style=\"width: $this->_width\">
-        <div id=\"es-editor\" style=\"width: 100%;\">
+        <div id=\"es-editor\">
         <a id=\"edButtonHTML\" class=\"\" onclick=\"switchEditors.go('".$this->getName()."', 'html');\">HTML</a>
         <a id=\"edButtonPreview\" class=\"active\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
         </div>
-        <div id=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
+        <div id=\"quicktags\" class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
         <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 100%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
 		return $rtn;
 	}
@@ -149,9 +149,9 @@ class RMFormEditor extends RMFormElement
 	private function renderHTML(){
 		RMTemplate::get()->add_script(RMCURL."/include/js/quicktags.js");
 		RMTemplate::get()->add_style('editor_html.css','rmcommon');
-		$rtn = "\n<div class='ed-container' style='width: $this->width;'>
+		$rtn = "\n<div class='ed-container html_editor_container' style='width: $this->width;' id='".$this->getName()."-ed-container'>
 		<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
-		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
+		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: $this->width; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
 		</div>";
 		return $rtn;
 	}

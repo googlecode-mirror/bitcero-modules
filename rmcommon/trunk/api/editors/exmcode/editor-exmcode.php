@@ -157,8 +157,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         //x.add_separator('bottom');
         
         var buttons = new Array();
-        buttons[0] = 'top';
-        buttons = buttons.concat(<?php echo $id; ?>_buttons.split(','),'separator_t','bottom');
+        buttons = buttons.concat(<?php echo $id; ?>_buttons.split(','));
         plugs = <?php echo $id; ?>_plugins;
         
         for(i=0;i<buttons.length;i++){
@@ -175,7 +174,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
 
             if (d.plugin!=undefined && plugs[d.plugin]==undefined) continue;
             
-                var b = '<span class="buttons" id="<?php echo $id; ?>-'+d.name+'" accesskey="'+d.key+'" title="'+d.alt+'" onclick="'+x.name+'.button_press(\''+d.name+'\');">';
+                var b = '<span class="buttons" id="<?php echo $id; ?>-'+d.name+'" accesskey="'+d.key+'" title="'+d.title+'" onclick="'+x.name+'.button_press(\''+d.name+'\');">';
                 b += "<span>";
                 if (d.icon!=undefined){
                     b += "<img src='"+d.icon+"' alt='' />";
@@ -323,7 +322,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         if (d.maximizable!=undefined&&d.maximizable) $(pn+' .maximize').show();
         
         $("#"+x.ed+"-ed-container .popblocker").show(10, function(){
-            $(pn).show(300);
+            $(pn).show();
         });
         
         w = $(pn).width();
@@ -337,8 +336,8 @@ var exmCode<?php echo ucfirst($id); ?> = {
         x = this;
         var pn = "#"+x.ed+"-ed-container .popup";
         $(pn+' iframe').attr('src', '');
-        $("#"+x.ed+"-ed-container .popup").hide(1000);
-        $("#"+x.ed+"-ed-container .popblocker").hide(100);
+        $("#"+x.ed+"-ed-container .popup").hide();
+        $("#"+x.ed+"-ed-container .popblocker").hide();
     },
     maximize: function(){
         x = this;

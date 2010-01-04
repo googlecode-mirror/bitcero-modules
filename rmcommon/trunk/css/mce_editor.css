@@ -37,8 +37,8 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     color: #333;
 }
 
-#quicktags{
-    background: #DFDFDF url(../images/ed-bg.gif) repeat-x top;
+.quicktags{
+    background: #DFDFDF url(../images/ed-bg.png) repeat-x top;
     padding: 3px;
     width: 100%;
     -moz-border-radius: 5px 5px 0 0;
@@ -51,7 +51,7 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     margin-bottom: -1px;
 	display: none;
 }
-#quicktags input{
+.quicktags input{
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
