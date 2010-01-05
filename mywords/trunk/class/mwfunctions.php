@@ -71,7 +71,7 @@ class MWFunctions
     */
     public function include_required_files(){
 		RMTemplate::get()->add_style('admin.css','mywords');
-		include 'menu.php';
+		include '../include/toolbar.php';
     }
     
     /**

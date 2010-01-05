@@ -24,6 +24,13 @@ $adminmenu[] = array(
     'location'=>"categories"
 );
 
+$adminmenu[] = array(
+    'title'=>__('Tags','admin_mywords'),
+    'link'=>"admin/tags.php",
+    'icon'=>"../images/tag.png",
+    'location'=>"tags"
+);
+
 $options = array();
 $options[] = array(
     'title'     => __('List','admin_mywords'),

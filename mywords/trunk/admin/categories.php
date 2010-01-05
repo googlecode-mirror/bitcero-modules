@@ -68,7 +68,7 @@ function showCategos(){
 	
 	MWFunctions::include_required_files();
 	
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_MW_CATLOCATION);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','admin_mywords'));
 	xoops_cp_header();
 	
     $desc = ''; $posts = ''; $parent = ''; $selcat = ''; $new = ''; $name=''; $shortcut = '';
