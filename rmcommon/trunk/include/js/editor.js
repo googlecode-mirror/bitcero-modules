@@ -126,6 +126,7 @@ var switchEditors = {
 
 			ed.hide();
 			qt.style.display = 'block';
+            qt.style.width = ta.style.width;
 
 			ta.style.color = '';
 
@@ -165,3 +166,4 @@ var switchEditors = {
 		return pee;
 	}
 };
+

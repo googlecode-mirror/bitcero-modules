@@ -37,10 +37,9 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     color: #333;
 }
 
-.quicktags{
+#quicktags{
     background: #DFDFDF url(../images/ed-bg.png) repeat-x top;
     padding: 3px;
-    width: 100%;
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-top-right-radius: 5px;
     -webkit-border-top-left-radius: 5px;
@@ -50,8 +49,10 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     border-top-left-radius: 5px;
     margin-bottom: -1px;
 	display: none;
+    border: 1px solid #CCC;
+    border-bottom: 0;
 }
-.quicktags input{
+#quicktags input{
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
@@ -71,8 +72,7 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.05em;
 	color: #333;
-	width: 100%;
-	padding: 10px 2px;
+	padding: 10px 3px;
     background: #FFF;
     border: 1px solid #E1E1E1;
 	-moz-border-radius: 0 0 5px 5px;

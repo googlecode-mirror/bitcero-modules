@@ -137,8 +137,8 @@ class RMFormEditor extends RMFormElement
         <a id=\"edButtonHTML\" class=\"\" onclick=\"switchEditors.go('".$this->getName()."', 'html');\">HTML</a>
         <a id=\"edButtonPreview\" class=\"active\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
         </div>
-        <div id=\"quicktags\" class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
-        <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 100%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
+        <div id=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
+        <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
 		return $rtn;
 	}
 	

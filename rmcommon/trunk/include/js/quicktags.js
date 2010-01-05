@@ -721,10 +721,10 @@ function edShowExtraCookie() {
 }
 
 if (jQuery){
-	$(document).ready(function(){
-		if ($(".html_editor_container").length==1){
-			var name = ".html_editor_container ";
-			$(name+' textarea').css('width', $(name+' .quicktags').width()+'px');
-		}
-	});
+    $(document).ready(function(){
+        if ($(".html_editor_container").length==1){
+            var name = ".html_editor_container ";
+            $(name+' textarea').css('width', $(name+' #quicktags').width()+'px');
+        }
+    });
 }
