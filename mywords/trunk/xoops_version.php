@@ -29,6 +29,7 @@ $modversion['icon16'] = "images/icon16.png";
 $modversion['deflang'] = 'spanish';
 $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=5';
+$modversion['rmnative'] = 1;
 
 $modversion['hasMain'] = 1;
 

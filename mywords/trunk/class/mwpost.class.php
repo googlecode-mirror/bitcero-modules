@@ -190,7 +190,7 @@ class MWPost extends RMObject
     */
     public function add_tags($tags){
         $tags = MWFunctions::add_tags($tags);
-
+		
         $this->tags = $tags;
     }
     
@@ -221,7 +221,14 @@ class MWPost extends RMObject
 		if (empty($this->tags)) $this->get_tags();
 		
 		if (!$objects) return $this->tags;
+		$tags = array();
+		foreach ($this->tags as $data){
+			$tag = new MWTag();
+			$tag->assignVars($data);
+			$tags[] = $tag;
+		}
 		
+		return $tags;
     }
     
 	/**
@@ -304,7 +311,7 @@ class MWPost extends RMObject
 		if (!$this->updateTable()) return false;
 		
 		$this->save_categories();
-		$this->save_metas();
+		$this->save_metas();		
 		$this->save_tags();
 
 		if ($this->errors()!='')
@@ -323,6 +330,11 @@ class MWPost extends RMObject
 		$this->save_categories();
 		$this->save_metas();
         $this->save_tags();
+        
+        // Increment tags post number
+        $sql = "UPDATE ".$this->db->prefix("mw_tags")." SET posts=posts+1 WHERE id_tag IN(".implode(',',$this->tags).")";
+        $this->db->queryF($sql);
+        
 		return true;
 	}
 	
@@ -382,6 +394,13 @@ class MWPost extends RMObject
             $this->addError($this->db->error());
             return false;
         }
+        
+        $this->tags = array();
+        $tags = $this->tags(true);
+        foreach($tags as $tag){
+			$tag->update_posts();
+        }
+        return true;
     
     }
 	/**

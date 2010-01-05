@@ -13,7 +13,6 @@
 */
 
 $wfile = isset($_GET['file']) ? $_GET['file'] : '';
-
 if ($wfile=='') exit();
 
 $path = dirname(__FILE__);
@@ -32,7 +31,6 @@ $xoopsLogger->activated = false;
 switch($wfile){
 	
 	default:
-		
 		include $path;
 		break;
 	

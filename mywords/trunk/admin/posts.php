@@ -267,4 +267,3 @@ switch ($op){
 		showPosts();
 		break;
 }
-?>

@@ -1,4 +1,4 @@
-<h1 class="rmc_titles mw_titles" style="background-image: url(../images/post32.png);"><?php _e('Posts Management','admin_mywords'); ?></h1>
+<h1 class="rmc_titles mw_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Posts Management','admin_mywords'); ?></h1>
 <form name="frmSearch" method="get" action="posts.php" style="margin: 0;">
 <table width="100%" cellspacing="0" border="0">
 	<tr class="even">

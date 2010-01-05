@@ -1,7 +1,7 @@
 <?php RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js'); ?>
-<h1 class="rmc_titles mw_titles" style="background-image: url(../images/post32.png);"><?php _e('Categories','admin_mywords'); ?></h1>
+<h1 class="rmc_titles mw_titles"><span style="background-position: left 0;">&nbsp;</span><?php _e('Categories','admin_mywords'); ?></h1>
 <div class="mw_all_container">
-    <div id="form_options">
+    <div class="form_options">
         <h3 class="form_titles"><?php _e('Add Category','admin_mywords'); ?></h3>
         <form name="addcat" id="addcat" method="post" action="categories.php" class="validate form">
         <label>
