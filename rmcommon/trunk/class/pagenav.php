@@ -83,7 +83,7 @@ class RMPageNav
     * @param bool INdicates if this method must show the navbar or only render it
     * @return string|echo
     */
-    public function render(){
+    public function render($caption){
 		global $exmTpl;
 		
 		// If we have the content of render then return it
@@ -137,8 +137,8 @@ class RMPageNav
     /**
     * Displays the navbar
     */
-    public function display(){
-		echo $this->render();
+    public function display($caption = true){
+		echo $this->render($caption);
     }
     	
 }
