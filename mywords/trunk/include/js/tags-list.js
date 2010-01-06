@@ -11,6 +11,8 @@ $(document).ready(function(){
 	$("#action-list").change(function(){
 		$("#action-list-b").val($("#action-list").val());
 	});
+    
+    $("#new-name").focus();
 	
 	$("#submit-newtag").click(function(){
 		// Check values
@@ -37,5 +39,8 @@ $(document).ready(function(){
 		$("#form-tags").submit();
 		
 	});
+    
+    $()
+    
 });
 
