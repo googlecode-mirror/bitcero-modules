@@ -329,6 +329,14 @@ class RMTemplate
         $this->tpl_vars[$varname] = $value;
     }
     /**
+    * Store vars inside template as array
+    * @param string Var name
+    * @param mixed Var valu
+    */
+    public function append($varname, $value){
+		$this->tpl_vars[$varname][] = $value;
+    }
+    /**
    * Get all template vars as an array
    */
     public function vars(){

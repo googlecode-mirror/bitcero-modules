@@ -17,7 +17,7 @@ class RMFormUser extends RMFormElement
 	private $limit = 100;
 	private $multi = false;
 	private $width = 600;
-	private $height = 300;
+	private $height = 500;
 	private $showall = 0;
 	
 	// Eventos
@@ -39,7 +39,7 @@ class RMFormUser extends RMFormElement
 		$this->setCaption($caption);
 		$this->setName($name);
 		$this->width = $width<=0 ? 600 : $width;
-		$this->height = $height<=0 ? 300 : $height;
+		$this->height = $height<=0 ? 500 : $height;
 		$this->showall = $showall;
 		!defined('RM_FRAME_USERS_CREATED') ? define('RM_FRAME_USERS_CREATED', 1) : '';
 	}
@@ -57,15 +57,18 @@ class RMFormUser extends RMFormElement
 	*/
 	public function render(){
 		
+		RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
+		RMTemplate::get()->add_style('forms.css','rmcommon');
+		
 		$rtn = "<div id='".$this->getName()."-users-container'".($this->getExtra()!='' ? " ".$this->getExtra() : '')." class='form_users_container'>
 				<ul id='".$this->getName()."-users-list'>";
 		$db = Database::getInstance();
 		
 		if ($this->showall && in_array(0, $this->selected)){
-			$rtn .= "<li id='rm_exm_user_0'>\n
+			$rtn .= "<li id='".$this->getName()."-exmuser-0'>\n
                         <label><input type='".($this->multi ? 'checkbox' : 'radio')."' name='".($this->multi ? $this->getName().'[]' : $this->getName())."' id='".$this->getName()."-0'
 				 		value='0' checked='checked' /> ".__('All Users','global')."
-                        <img onclick=\"usersField.remove(0,'".$this->getName()."');\" src='".ABSURL."/rmcommon/images/close16.png' alt='".__('Remove','global')."' style='position: relative; top: 2px; cursor: pointer; ' />
+                        <a href='javascript:;' onclick=\"users_field_name='".$this->getName()."'; usersField.remove(0);\"><span>delete</span></a>
                         </label></li>";
 		}
 		
@@ -83,17 +86,16 @@ class RMFormUser extends RMFormElement
 			$selected = '';
 			while ($row = $db->fetchArray($result)){
 				$rtn .= "<li id='".$this->getName()."-exmuser-$row[uid]'>\n
-						<a href='javascript:;' onclick='usersField.remove($row[uid],\"".$this->getName()."\");'><span>delete</span></a>
 						<label style='overflow: hidden;'>
                         <input type='".($this->multi ? 'checkbox' : 'radio')."' name='".($this->multi ? $this->getName().'[]' : $this->getName())."' id='".$this->getName()."-".$row['uid']."'
 				 		value='$row[uid]' checked='checked' /> 
-                        $row[uname]
+                        $row[uname] <a href='javascript:;' onclick='usersField.remove($row[uid]);'><span>delete</span></a>
                         </label></li>";
 			}
 		}
 		
 		$rtn .= "</ul></div><br />
-				<input type='button' value='".__('Search Users','global')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".$this->multi.",'".XOOPS_URL."');\" />
+				<input type='button' value='".__('Search Users','global')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".intval($this->multi).",'".XOOPS_URL."');\" />
 				<div id='".$this->getName()."-dialog-search' title='".__('Search Users','global')."' style='display: none;'>
 				
 				</div>";

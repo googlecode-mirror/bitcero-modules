@@ -122,13 +122,11 @@ div.form_users_container ul{
 	list-style: none;
 }
 div.form_users_container ul li{
-	width: 120px;
-	float: left;
 	list-style: none;
+	float: left;
 	padding: 2px;
 	margin: 0 2px 2px 0;
 	border: 1px dotted #ebebeb;
-	overflow: hidden;
 	font-size: 0.9em;
 	color: #666;
 }
@@ -139,7 +137,7 @@ div.form_users_container ul li:hover{
 }
 div.form_users_container a{
 	float: right;
-	margin-right: 2px;
+	margin-left: 5px;
 	display: block;
 	width: 10px;
 	height: 16px;
@@ -150,6 +148,11 @@ div.form_users_container a span{
 }
 div.form_users_container a:hover{
 	background-position: right 5px;
+}
+div.form_users_container ul li label{
+	overflow: hidden;
+	display: block;
+	margin: 0;
 }
 div.form_container label.hidden{
     display: none;

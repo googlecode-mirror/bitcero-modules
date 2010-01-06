@@ -13,11 +13,6 @@
 
 var absurl = '';
 
-$(document).ready(function(){
-	$('form').validate();	
-	
-});
-
 // Users field
 var users_field_name = '';
 var usersField = jQuery.extend({
@@ -196,9 +191,9 @@ var usersField = jQuery.extend({
 				if ($(con+id).length>0) continue;
 				
 				li = "<li id='"+users_field_name+"-exmuser-"+id+"'>";
-				li += "<a href='javascript:;' onclick='usersField.remove("+id+");'><span>delete</span></a>";
 				li += "<label><input type='"+input+"' value='"+id+"' name='"+name+"' id='"+users_field_name+"-"+id+"' checked='checked' />";
-				li += " "+$("#user-"+users_field_name+"-caption-"+id).text()+"</label></li>";
+				li += " "+$("#user-"+users_field_name+"-caption-"+id).text();
+				li += "<a href='javascript:;' onclick='usersField.remove("+id+");'><span>remove</span></label></li>";
 				$("#"+users_field_name+"-users-list").append(li);
 				
 			}
@@ -209,9 +204,9 @@ var usersField = jQuery.extend({
 			$("#"+users_field_name+"-users-list li").remove();
 			if ($(ele).length>0){
 				li = "<li id='"+users_field_name+"-exmuser-"+uid+"'>";
-				li += "<a href='javascript:;' onclick='usersField.remove("+uid+");'><span>delete</span></a>";
 				li += "<label><input type='"+input+"' value='"+uid+"' name='"+name+"' id='"+users_field_name+"-"+uid+"' checked='checked' />";
-				li += " "+$("#"+users_field_name+"-username-"+uid).text()+"</label></li>";
+				li += " "+$("#"+users_field_name+"-username-"+uid).text();
+				li += "<a href='javascript:;' onclick='usersField.remove("+uid+");'><span>remove</span></a></label></li>";
 				$("#"+users_field_name+"-users-list").append(li);
 			}
 			
@@ -223,7 +218,6 @@ var usersField = jQuery.extend({
 	},
 	
 	remove: function(id){
-		
 		$("#"+users_field_name+"-exmuser-"+id).remove();
 		
 	}
