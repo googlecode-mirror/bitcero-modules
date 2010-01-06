@@ -29,125 +29,112 @@ function showEditors(){
 		$$k = $v;
 	}
 	
-	$db = Database::getInstance();
-	$tbl1 = $db->prefix("mw_editors");
-	$tbl2 = $db->prefix("users");
-	
-	$result = $db->query("SELECT $tbl2.*, $tbl1.fecha FROM $tbl2, $tbl1 WHERE $tbl2.uid=$tbl1.uid");
-	list($posts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE autor='".$xoopsUser->uid()."'"));
-	$link = XOOPS_URL.'/modules/mywords/';
-	$link .= $mc['permalinks']==1 ? '?author='.$xoopsUser->uid() : ($mc['permalinks']==2 ? "author/".$xoopsUser->uname()."/" : "author/".$xoopsUser->uid());
-	$editores = array();
-	$tpl->append('editors', array('id'=>$xoopsUser->uid(),'uname'=>$xoopsUser->uname(),'email'=>$xoopsUser->email(),
-			'joined'=>formatTimeStamp($xoopsUser->getVar('user_regdate')),'envios'=>$posts,
-			'url'=>$xoopsUser->getVar('url'),'edit'=>false,'link'=>$link));
-			
-	$editores[] = $xoopsUser->uid();
+	$db = Database::getInstance();	
+    list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_editors")));
+    $page = rmc_server_var($_GET, 'page', 1);
+    $limit = isset($limit) && $limit>0 ? $limit : 15;
+    
+    $tpages = ceil($num / $limit);
+    $page = $page > $tpages ? $tpages : $page;
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('editors.php?page={PAGE_NUM}');
+	$result = $db->query("SELECT * FROM ".$db->prefix("mw_editors")." ORDER BY name LIMIT $start,$limit");	
+    $editores = array();			
+    
 	while($row = $db->fetchArray($result)){
-		if ($row['uid']==$xoopsUser->uid()) continue;
-		list($posts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE autor='".$row['uid']."'"));
-		$link = XOOPS_URL.'/modules/mywords/';
-		$link .= $mc['permalinks']==1 ? '?author='.$row['uid'] : ($mc['permalinks']==2 ? "author/".$row['uname']."/" : "author/".$row['uid']);
-		$tpl->append('editors', array('id'=>$row['uid'],'uname'=>$row['uname'],'email'=>$row['email'],
-				'joined'=>formatTimeStamp($row['user_regdate']),'envios'=>$posts,'url'=>$row['url'],
-				'edit'=>true,'link'=>$link));
-		$editores[] = $row['uid'];
+        $ed = new MWEditor();
+        $ed->assignVars($row);
+		$tpl->append('editors', $ed);
 	}
 	
 	xoops_cp_header();
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script('../include/js/editors.js');
 	include RMTemplate::get()->get_template('admin/mywords_editors.php','module','mywords');
 	
 	xoops_cp_footer();
 	
 }
+
+function edit_editor(){
+    
+    
+    
+}
+
 /**
  * Agregamos nuevos editores a la base de datos
  */
-function addEditors(){
+function save_editor($edit = false){
+	global $xoopsConfig, $xoopsSecurity;
 	
-	global $db, $util;
-	$categos = array(0);
-	
-	foreach ($_POST as $k => $v){
-		$$k = $v;
-	}
-	
-	if (!isset($uid) || !is_array($uid) || empty($uid)){
-		redirectMsg('editors.php?op='.$opaction.'&amp;keyword='.$keyword.'&amp;page='.$actual_page, _AS_MW_ERRSELECT, 1);
-		die();
-	}
-	
-	$cats = '';
-	foreach ($categos as $k){
-		$cats .= $cats=='' ? $k : ",$k";
-	}
-	
-	$sql = "INSERT IGNORE INTO ".$db->prefix("mw_editors")." (`uid`,`fecha`,`categos`) VALUES ";
-	$add = '';
-	foreach ($uid as $k){
-		$add .= $add=='' ? "('$k','".time()."','$cats')" : ", ('$k', '".time()."','$cats')";
-	}
-	
-	if ($db->query($sql . $add)){
-		redirectMsg('editors.php?page='.$actual_page, _AS_MW_DBOK, 0);
-		die();
-	} else {
-		redirectMsg('editors.php?op='.$opaction.'&amp;keyword='.$keyword.'&amp;page='.$actual_page, _AS_MW_DBERROR . "<br />" . $db->error(), 1);
-		die();
-	}
-	
-}
-/**
- * Elimina un editor de la base de datos
- */
-function deleteEditor(){
-	global $db, $util;
-	
-	$uid = isset($_REQUEST['uid']) ? $_REQUEST['uid'] : 0;
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-	
-	if ($uid<=0){
-		redirect_header('editors.php', 2, _AS_MW_ERRUID);
-		die();
-	}
-	
-	if ($ok){
-		
-		if (!$util->validateToken()){
-			redirectMsg('editors.php', _AS_MW_ERRTOKEN, 1);
-			die();
-		}
-		
-		if ($db->queryF("DELETE FROM ".$db->prefix("mw_editors")." WHERE uid='$uid'")){
-			redirectMsg('editors.php', _AS_MW_DBOK, 0);
-			die();
-		} else {
-			redirectMsg('editors.php', _AS_MW_DBERROR . "<br />" . $db->error(), 1);
-			die();
-		}
-		
-	} else {
-		xoops_cp_header();
-		$hiddens['ok'] = 1;
-		$hiddens['uid'] = $uid;
-		$hiddens['op'] = 'del';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['extra'] = 'onclick="history.go(-1);"';
-		$util->msgBox($hiddens, 'editors.php', _AS_MW_CONFIRMDEL, '../images/question.png', $buttons, true, '400px');
-		xoops_cp_footer();
-	}
+    $page = rmc_server_var($_POST, 'page', 1);
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('editors.php?page='.$page, __('Operation not allowed!','admin_mywords'), 1);
+        die();
+    }
+    
+    if ($edit){
+        
+        $id = rmc_server_var($_GET, 'id', 0);
+        if ($id<=0){
+            redirectMsg('editors.php?page='.$page, __('Editor ID has not been provided!','admin_mywords'), 1);
+            die();
+        }
+        
+        $editor = new MWEditor($id);
+        if ($editor->isNew()){
+            redirectMsg('editors.php?page='.$page, __('Editor has not been found!','admin_mywords'), 1);
+            die();
+        }
+        
+    } else {
+        
+        $editor = new MWEditor();
+        
+    }
+    
+    $name = rmc_server_var($_POST, 'name', '');
+    $bio = rmc_server_var($_POST, 'bio', '');
+    $uid = rmc_server_var($_POST, 'new_user', 0);
+    $perms = rmc_server_var($_POST, 'perms', array());
+    
+    if (trim($name)==''){
+        redirectMsg('editors.php?page='.$page, __('You must provide a display name for this editor!','admin_mywords'), 1);
+        die();
+    }
+    
+    if ($uid<=0){
+        redirectMsg('editors.php?page='.$page, __('You must specify a registered user ID for this editor!','admin_mywords'), 1);
+        die();
+    }
+    
+    $editor->setVar('name', $name);
+    $editor->setVar('bio', $bio);
+    $editor->setVar('uid', $uid);
+    $editor->setVar('privileges', $perms);
+    
+    if(!$editor->save()){
+        redirectMsg('editors.php?page='.$page, __('Errors occurs while trying to save editor data','admin_mywords').'<br />'.$editor->errors(), 1);
+        die();
+    } else {
+        redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+        die();
+    }
+    
 	
 }
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 
-switch($op){
-	case 'add':
-		addEditors();
+$action = rmc_server_var($_REQUEST, 'action', '');
+
+switch($action){
+	case 'new':
+		save_editor(false);
 		break;
 	case 'del':
 		deleteEditor();

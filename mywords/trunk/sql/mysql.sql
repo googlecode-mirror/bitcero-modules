@@ -18,11 +18,14 @@ CREATE TABLE `mw_catpost` (
 ) TYPE=MyISAM;
 
 CREATE TABLE `mw_editors` (
+  `id_editor` int(11) NOT NULL auto_increment,
   `uid` int(11) NOT NULL,
-  `fecha` int(11) NOT NULL,
-  `categos` text NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `privileges` text NOT NULL,
+  `active` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`id_editor`),
   UNIQUE KEY `uid` (`uid`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `mw_posts` (
   `id_post` int(11) NOT NULL auto_increment,

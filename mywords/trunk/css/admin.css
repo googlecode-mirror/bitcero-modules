@@ -186,11 +186,11 @@ h4{
 	padding: 4px 0;
 	margin: 5px 0 10px 0;
 }
-#tags-list .options{
+.options{
 	overflow: hidden;
 	padding: 0 0 4px 0;
 }
-#tags-list .options:last-child{
+.options:last-child{
 	padding: 4px 0 0 0;
 }
 #mw-dialog{
