@@ -119,7 +119,7 @@ function save_tag($edit = false){
 	// Check if tag exists
 	$db = Database::getInstance();
 	if ($edit){
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_tags")." WHERE tag='$name' OR shortname='$short' AND id_tag<>'$id'";
+		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_tags")." WHERE (tag='$name' OR shortname='$short') AND id_tag<>$id";
 	} else {
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_tags")." WHERE tag='$name' OR shortname='$short'";
 	}
@@ -167,6 +167,73 @@ function edit_form(){
 	
 }
 
+/**
+* Deletes a existing tag or set of tags* 
+*/
+function delete_tag(){
+	global $xoopsModule, $xoopsSecurity;
+	
+	$page = rmc_server_var($_POST, 'page', 1);
+	$tags = rmc_server_var($_POST, 'tags', array());
+	
+	if (!$xoopsSecurity->check()){
+		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+		die();
+	}
+	
+	if (!is_array($tags) || empty($tags)){
+		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','admin_mywords'), 1);
+		die();
+	}
+	
+	// Delete all relations
+	$db = Database::getInstance();
+	$sql = "DELETE FROM ".$db->prefix("mw_tagspost")." WHERE tag IN(".implode(",",$tags).")";
+	if (!$db->queryF($sql)){
+		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','admin_mywords').'<br />'.$db->error(), 1);
+		die();
+	}
+	
+	$sql = "DELETE FROM ".$db->prefix("mw_tags")." WHERE id_tag IN(".implode(",",$tags).")";
+	if (!$db->queryF($sql)){
+		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','admin_mywords').'<br />'.$db->error(), 1);
+		die();
+	}
+	
+	redirectMsg('tags.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+	
+}
+
+
+function update_tag(){
+	global $xoopsModule, $xoopsSecurity;
+	
+	$page = rmc_server_var($_POST, 'page', 1);
+	$tags = rmc_server_var($_POST, 'tags', array());
+	
+	if (!$xoopsSecurity->check()){
+		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+		die();
+	}
+	
+	if (!is_array($tags) || empty($tags)){
+		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','admin_mywords'), 1);
+		die();
+	}
+	
+	foreach ($tags as $id){
+		
+		$tag = new MWTag($id);
+		if($tag->isNew()) continue;
+		
+		$tag->update_posts();
+		
+	}
+	
+	redirectMsg('tags.php?page='.$page, __('Tags updated!','admin_mywords'), 0);
+	
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -179,6 +246,12 @@ switch($action){
 		break;
 	case 'edit':
 		edit_form();
+		break;
+	case 'delete':
+		delete_tag();
+		break;
+	case 'update':
+		update_tag();
 		break;
     default:
         show_tags();

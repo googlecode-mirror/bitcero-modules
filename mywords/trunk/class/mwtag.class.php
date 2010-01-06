@@ -58,4 +58,17 @@ class MWTag extends RMObject
 		}
     }
     
+    function delete(){
+		
+		// Delete posts relations
+		if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_tagspost")." WHERE tag=".$this->id())){
+			$this->addError($this->db->error());
+			return false;
+		}
+		
+		return $this->deleteFromTable();
+		
+		
+    }
+    
 }

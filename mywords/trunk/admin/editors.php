@@ -1,45 +1,35 @@
 <?php
-// $Id: editors.php 13 2009-08-31 00:45:24Z i.bitcero $
-// --------------------------------------------------------
+// $Id$
+// --------------------------------------------------------------
 // MyWords
-// Manejo de Artículos
-// CopyRight © 2007 - 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
-// @author: BitC3R0
+// Complete Blogging System
+// Author: BitC3R0 <bitc3r0@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('MW_LOCATION','editors');
+define('RMCLOCATION','editors');
 require('header.php');
+
+include_once '../include/general.func.php';
 
 /**
  * Mostramos la lista de editores junto con
  * el formulario para crear nuevos editores
  */
 function showEditors(){
-	global $db, $tpl, $xoopsUser, $mc, $adminTemplate;
+	global $tpl, $xoopsUser, $xoopsSecurity, $xoopsModule;
+	
+	MWFunctions::include_required_files();
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Editors','admin_mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editors Management','admin_mywords'));
+	include_once RMCPATH.'/class/form.class.php';
 	
 	foreach ($_REQUEST as $k => $v){
 		$$k = $v;
 	}
 	
+	$db = Database::getInstance();
 	$tbl1 = $db->prefix("mw_editors");
 	$tbl2 = $db->prefix("users");
 	
@@ -48,56 +38,25 @@ function showEditors(){
 	$link = XOOPS_URL.'/modules/mywords/';
 	$link .= $mc['permalinks']==1 ? '?author='.$xoopsUser->uid() : ($mc['permalinks']==2 ? "author/".$xoopsUser->uname()."/" : "author/".$xoopsUser->uid());
 	$editores = array();
-	$tpl->append('editores', array('uid'=>$xoopsUser->uid(),'uname'=>$xoopsUser->uname(),'email'=>$xoopsUser->email(),
+	$tpl->append('editors', array('id'=>$xoopsUser->uid(),'uname'=>$xoopsUser->uname(),'email'=>$xoopsUser->email(),
 			'joined'=>formatTimeStamp($xoopsUser->getVar('user_regdate')),'envios'=>$posts,
 			'url'=>$xoopsUser->getVar('url'),'edit'=>false,'link'=>$link));
+			
 	$editores[] = $xoopsUser->uid();
 	while($row = $db->fetchArray($result)){
 		if ($row['uid']==$xoopsUser->uid()) continue;
 		list($posts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE autor='".$row['uid']."'"));
 		$link = XOOPS_URL.'/modules/mywords/';
 		$link .= $mc['permalinks']==1 ? '?author='.$row['uid'] : ($mc['permalinks']==2 ? "author/".$row['uname']."/" : "author/".$row['uid']);
-		$tpl->append('editores', array('uid'=>$row['uid'],'uname'=>$row['uname'],'email'=>$row['email'],
+		$tpl->append('editors', array('id'=>$row['uid'],'uname'=>$row['uname'],'email'=>$row['email'],
 				'joined'=>formatTimeStamp($row['user_regdate']),'envios'=>$posts,'url'=>$row['url'],
 				'edit'=>true,'link'=>$link));
 		$editores[] = $row['uid'];
 	}
 	
-	$adminTemplate = "admin/mywords_editors.html";
 	xoops_cp_header();
-	
-	
-	$tpl->assign('lang_editors', _AS_MW_EDITORSLNG);
-	$tpl->assign('editors_tip', _AS_MW_EDITORSTIP);
-	$tpl->assign('lang_id', _AS_MW_ID);
-	$tpl->assign('lang_uname', _AS_MW_UNAME);
-	$tpl->assign('lang_joined', _AS_MW_JOINED);
-	$tpl->assign('lang_postssend', _AS_MW_POSTSSEND);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_seeposts', _AS_MW_SEEPOSTS);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_srhuser', _AS_MW_SEARCHUSR);
-	$tpl->assign('lang_srhusers',_AS_MW_SEARCHUSERS);
-	
-	$form = new RMForm(_AS_MW_SELECTUSER,'frmUsers','editors.php');
-	$form->addElement(new RMSubTitle(_AS_MW_USERDESC,'1','even'));
-	$ele = new RMFormUserEXM(_AS_MW_SELECTUSER,'uid',1, $editores, 30);
-	$form->addElement($ele);
-	// Categorias
-	$ele = new RMSelect(_AS_MW_EDCATEGOS, 'categos[]', 1);
-	arrayCategos($categos);
-	$ele->addOption(0, _AS_MW_ALL, 1);
-	foreach ($categos as $k){
-		$ele->addOption($k['id_cat'], str_repeat("-", $k['saltos']) . $k['nombre']);
-	}
-	$form->addElement($ele);
-	
-	$ele = new RMButton('sbt', _AS_MW_ADDEDITORS);
-	$ele->setExtra("style='font-size: 14px; font-weight: bold; padding: 8px;'");
-	$form->addElement($ele);
-	$form->addElement(new RMHidden('op','add'));
-	
-	$tpl->assign('form_editors', $form->render());
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	include RMTemplate::get()->get_template('admin/mywords_editors.php','module','mywords');
 	
 	xoops_cp_footer();
 	
@@ -197,5 +156,3 @@ switch($op){
 		showEditors();
 		break;
 }
-
-?>

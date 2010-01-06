@@ -55,7 +55,7 @@ $adminmenu[] = array(
     'title'=>__('Editors','admin_mywords'),
     'link'=>"admin/editors.php",
     'icon'=>"../images/editor.png",
-    'location'=>"editors",
+    'location'=>"editors"
 );
 
 $options = array();

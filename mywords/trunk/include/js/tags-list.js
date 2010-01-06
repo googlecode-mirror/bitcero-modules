@@ -40,7 +40,27 @@ $(document).ready(function(){
 		
 	});
     
-    $()
+    
     
 });
+
+function confirm_andgo(id,page){
+	
+	$("#mw-dialog").html('<?php _e('Do you really wisth to delete this tag?','admin_mywords'); ?>');
+	$("#mw-dialog").attr('title','<?php _e('Missing name','admin_mywords'); ?>');
+	
+	var ret = confirm('<?php _e('Do you really wisth to delete this tag?','admin_mywords'); ?>');
+	
+	if (!ret) return;
+	$("#form-list-tags #tags-"+id).attr('checked','checked');
+	$("#form-list-tags #action-list").val('delete');
+	$("#form-list-tags").submit();
+	
+}
+
+function goto_update(id){
+	$("#form-list-tags #tags-"+id).attr('checked','checked'); 
+	$("#form-list-tags #action-list").val('update');
+	$("#form-list-tags").submit();
+}
 

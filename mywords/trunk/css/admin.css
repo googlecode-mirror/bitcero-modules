@@ -12,6 +12,13 @@ h1.mw_titles span{
 	margin: 0 5px 0 0;
 	background: url(../images/icons32.png) no-repeat;
 }
+.descriptions{
+	padding: 4px 15px;
+	margin: 10px 0;
+	color: #666;
+	line-height: 150%;
+	
+}
 
 /** Forms **/
 div.mw_permacont{
@@ -159,7 +166,7 @@ td.mw_postcats{
 }
 
 /** TAGS **/
-#tags-list{
+#tags-list, #editors-list{
 	margin-left: 380px;
 }
 #tags-form{
@@ -205,4 +212,10 @@ h4{
 	width: 50%;
 	font-size: 1.3em;
 	padding: 4px;
+}
+.permissions{
+	color: #666;
+}
+.permissions label{
+	margin: 0;
 }

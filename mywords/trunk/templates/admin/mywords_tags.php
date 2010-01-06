@@ -1,7 +1,7 @@
 <h1 class="rmc_titles mw_titles"><span style="background-position: -64px 0;">&nbsp;</span><?php _e('Tags','admin_mywords'); ?></h1>
 <br clear="all" />
 
-<?php if($show_edit): ?>
+<?php if(isset($show_edit) && $show_edit): ?>
 	
 	<div class="edit_form">
 	<form name="form_edit" id="form-edit" method="post" action="tags.php">
@@ -9,7 +9,7 @@
 		<input type="text" name="name" id="edit-name" value="<?php echo $tag->getVar('tag'); ?>" />
 		<br clear="all" />
 		<label for="edit-short"><?php _e('Short name','admin_mywords'); ?></label>
-		<input type="text" name="short" id="edit-short" value="<?php echo $tag->getVar('tag'); ?>" />
+		<input type="text" name="short" id="edit-short" value="<?php echo $tag->getVar('shortname'); ?>" />
 		<br clear="all" />
 		<div style="padding-left: 160px;">
 		<input type="submit" value="<?php _e('Save Changes','admin_mywords'); ?>" />
@@ -79,13 +79,13 @@
 		<?php endif; ?>
 		<?php foreach($tags as $tag): ?>
 		<tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
-			<td align="center"><input type="checkbox" name="tags[<?php echo $tag['id_tag']; ?>]" id="tags[<?php echo $tag['id_tag']; ?>]" value="<?php echo $tag['id_tag']; ?>" /></td>
+			<td align="center"><input type="checkbox" name="tags[<?php echo $tag['id_tag']; ?>]" id="tags-<?php echo $tag['id_tag']; ?>" value="<?php echo $tag['id_tag']; ?>" /></td>
 			<td>
 				<strong><a href="tags.php?action=edit&amp;id=<?php echo $tag['id_tag']; ?>&amp;page=<?php echo $page; ?>"><?php echo $tag['tag']; ?></a></strong>
 				<span class="mw_options">
 					<a href="tags.php?action=edit&amp;id=<?php echo $tag['id_tag']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> | 
-					<a href="javascript:;"><?php _e('Quick Edit','admin_mywords'); ?></a> | 
-					<a href="tags.php?action=delete&amp;id=<?php echo $tag['id_tag']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Delete','admin_mywords'); ?></a>
+					<a href="javascript:;" onclick="goto_update(<?php echo $tag['id_tag']; ?>);"><?php _e('Update','admin_mywords'); ?></a> |
+					<a class="delete" href="javascript:;" onclick="confirm_andgo(<?php echo $tag['id_tag']; ?>, <?php echo $page; ?>);"><?php _e('Delete','admin_mywords'); ?></a>
 				</span>
 			</td>
 			<td align="center"><?php echo $tag['shortname']; ?></td>
@@ -103,7 +103,8 @@
 		</select>
 		<input type="button" value="<?php _e('Apply','admin_mywords'); ?>" onclick="submit();" />
 	</div>
-	<input type="hidden" name="XOOPS_TOKEN_REQUEST" value="<?php echo $xoopsSecurity->createToken(); ?>" />
+	<input type="hidden" name="XOOPS_TOKEN_REQUEST" id="xtoken" value="<?php echo $xoopsSecurity->createToken(); ?>" />
+	<input type="hidden" name="page" value="<?php echo $page; ?>" />
 	</form>
 </div>
 <?php endif; ?>
