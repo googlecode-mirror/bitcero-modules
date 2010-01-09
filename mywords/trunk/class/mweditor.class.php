@@ -25,6 +25,8 @@ class MWEditor extends RMObject
         if ($id==null || $id<=0) return;
         
         if (!$this->loadValues($id)) return;
+        
+        $this->unsetNew();
                 
 	}
     

@@ -17,7 +17,7 @@ include_once '../include/general.func.php';
  * Mostramos la lista de editores junto con
  * el formulario para crear nuevos editores
  */
-function showEditors(){
+function show_editors(){
 	global $tpl, $xoopsUser, $xoopsSecurity, $xoopsModule;
 	
 	MWFunctions::include_required_files();
@@ -52,7 +52,7 @@ function showEditors(){
 	
 	xoops_cp_header();
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/editors.js');
+    RMTemplate::get()->add_script('../include/js/scripts.php?file=editors.js');
 	include RMTemplate::get()->get_template('admin/mywords_editors.php','module','mywords');
 	
 	xoops_cp_footer();
@@ -60,8 +60,31 @@ function showEditors(){
 }
 
 function edit_editor(){
+    global $xoopsModule, $xoopsSecurity;
     
+    $id = rmc_server_var($_GET,'id',0);
+    $page = rmc_server_var($_GET,'page',1);
     
+    if($id<=0){
+        redirectMsg('editors.php?page='.$page, __('Editor ID not provided!.','admin_mywords'), 1);
+        die();
+    }
+    
+    $editor = new MWEditor($id);
+    if($editor->isNew()){
+        redirectMsg('editors.php?page='.$page, __('Editor does not exists!','admin_mywords'), 1);
+        die();
+    }
+    
+    include_once RMCPATH.'/class/form.class.php';
+    
+    MWFunctions::include_required_files();
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="editors.php">'.__('Editors','admin_mywords').'</a> &raquo; '.__('Editing Editor','admin_mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Editor','admin_mywords'));
+    xoops_cp_header();   
+    $show_edit = true;
+    include RMTemplate::get()->get_template('admin/mywords_editors.php','module','mywords');
+    xoops_cp_footer();
     
 }
 
@@ -80,7 +103,7 @@ function save_editor($edit = false){
     
     if ($edit){
         
-        $id = rmc_server_var($_GET, 'id', 0);
+        $id = rmc_server_var($_POST, 'id', 0);
         if ($id<=0){
             redirectMsg('editors.php?page='.$page, __('Editor ID has not been provided!','admin_mywords'), 1);
             die();
@@ -102,6 +125,7 @@ function save_editor($edit = false){
     $bio = rmc_server_var($_POST, 'bio', '');
     $uid = rmc_server_var($_POST, 'new_user', 0);
     $perms = rmc_server_var($_POST, 'perms', array());
+    $short = rmc_server_var($_POST, 'short', '');
     
     if (trim($name)==''){
         redirectMsg('editors.php?page='.$page, __('You must provide a display name for this editor!','admin_mywords'), 1);
@@ -113,7 +137,19 @@ function save_editor($edit = false){
         die();
     }
     
+    // Check if XoopsUser is already register
+    $db = Database::getInstance();
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_editors")." WHERE uid=$uid";
+    if ($edit) $sql .= " AND id_editor<>".$editor->id();
+    list($num) = $db->fetchRow($db->query($sql));
+    
+    if ($num>0){
+        redirectMsg('editors.php?page='.$page, __('This user has been registered as editor before.','admin_mywords'), 1);
+        die();
+    }
+    
     $editor->setVar('name', $name);
+    $editor->setVar('shortname', TextCleaner::sweetstring($short!='' ? $short : $name));
     $editor->setVar('bio', $bio);
     $editor->setVar('uid', $uid);
     $editor->setVar('privileges', $perms);
@@ -129,6 +165,67 @@ function save_editor($edit = false){
 	
 }
 
+function activate_editors($a){
+    global $xoopsSecurity;
+    
+    $page = rmc_server_var($_POST, 'page', 1);
+    $editors = rmc_server_var($_POST, 'editors', array());
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+        die();
+    }
+    
+    if (!is_array($editors) || empty($editors)){
+        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','admin_mywords'), 1);
+        die();
+    }
+    
+    // Delete all relations
+    $db = Database::getInstance();
+    $sql = "UPDATE ".$db->prefix("mw_editors")." SET active='".($a?'1':'0')."' WHERE id_editor IN(".implode(',',$editors).")";
+    if (!$db->queryF($sql)){
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to update database!','admin_mywords')."\n".$db->error(), 1);
+        die();
+    }
+    
+    redirectMsg('editors.php?page='.$page, __('Database updated successfully!','admin_mywords'), 0);
+    
+}
+
+function delete_editors(){
+    
+    $page = rmc_server_var($_POST, 'page', 1);
+    $editors = rmc_server_var($_POST, 'editor', array());
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+        die();
+    }
+    
+    if (!is_array($editors) || empty($editors)){
+        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','admin_mywords'), 1);
+        die();
+    }
+    
+    // Delete all relations
+    $db = Database::getInstance();
+    $sql = "UPDATE ".$db->prefix("mw_posts")." SET author='0' WHERE author IN(".implode(',',$editors).")";
+    if (!$db->queryF($sql)){
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','admin_mywords').'<br />'.$db->error(), 1);
+        die();
+    }
+    
+    $sql = "DELETE FROM ".$db->prefix("mw_editors")." WHERE id_editor IN(".implode(",",$editors).")";
+    if (!$db->queryF($sql)){
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','admin_mywords').'<br />'.$db->error(), 1);
+        die();
+    }
+    
+    redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -136,10 +233,22 @@ switch($action){
 	case 'new':
 		save_editor(false);
 		break;
+    case 'saveedit':
+        save_editor(true);
+        break;
+    case 'edit':
+        edit_editor();
+        break;
 	case 'del':
 		deleteEditor();
 		break;
+    case 'deactivate':
+        activate_editors(0);
+        break;
+    case 'activate':
+        activate_editors(1);
+        break;
 	default:
-		showEditors();
+		show_editors();
 		break;
 }

@@ -17,3 +17,27 @@ $(document).ready(function(){
     });
     
 });
+
+function goto_activate(id,page,act){
+    
+    var rtn = confirm('<?php _e('Do you really want to deactivate this editor?','admin_mywords'); ?>');
+    
+    if (!rtn) return false;
+    
+    $("#form-list-editors #editor-"+id).attr('checked','checked');
+    $("#form-list-editors #action-list").val(act?'activate':'deactivate');
+    $("#form-list-editors").submit();
+    
+}
+
+function goto_delete(id,page){
+    
+    var rtn = confirm('<?php _e('Do you really want to delete this editor?','admin_mywords'); ?>');
+    
+    if (!rtn) return false;
+    
+    $("#form-list-editors #editor-"+id).attr('checked','checked');
+    $("#form-list-editors #action-list").val('delete');
+    $("#form-list-editors").submit();
+    
+}

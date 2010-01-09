@@ -146,6 +146,8 @@ function edit_form(){
 	global $xoopsModule, $xoopsSecurity;
 	
 	$id = rmc_server_var($_GET,'id',0);
+    $page = rmc_server_var($_GET,'page',1);
+    
 	if($id<=0){
 		redirectMsg('tags.php?page='.$page, __('Tag ID not provided!.','admin_mywords'), 1);
 		die();

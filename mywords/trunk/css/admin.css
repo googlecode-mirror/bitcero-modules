@@ -208,7 +208,8 @@ h4{
 	padding: 10px 0 0 0;
 	font-weight: bold;
 }
-.edit_form input[type="text"]{
+.edit_form input[type="text"],
+.edit_form textarea{
 	width: 50%;
 	font-size: 1.3em;
 	padding: 4px;
@@ -218,4 +219,5 @@ h4{
 }
 .permissions label{
 	margin: 0;
+    float: none;
 }

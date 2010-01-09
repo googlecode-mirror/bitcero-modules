@@ -1,7 +1,43 @@
 <h1 class="rmc_titles mw_titles"><span style="background-position: -128px 0;">&nbsp;</span><?php _e('Editors','admin_mywords'); ?></h1>
 <?php if(isset($show_edit) && $show_edit): ?>
 
+    <div class="edit_form">
+    <form name="form_edit" id="form-edit" method="post" action="editors.php">
+        <label for="name"><?php _e('Name','admin_mywords'); ?></label>
+        <input type="text" name="name" id="name" value="<?php echo $editor->getVar('name'); ?>" />
+        <br clear="all" />
+        <label for="short"><?php _e('Short name','admin_mywords'); ?></label>
+        <input type="text" name="short" id="short" value="<?php echo $editor->getVar('shortname'); ?>" />
+        <br clear="all" />
+        <label for="bio"><?php _e('Biography:','admin_mywords'); ?></label>
+        <textarea name="bio" id="bio" style="height: 120px;"><?php echo $editor->getVar('bio','e'); ?></textarea>
+        <br clear="all" />
+        <label for="new_user"><?php _e('Registered user:','admin_mywords'); ?></label>
+        <?php 
+        $ele = new RMFormUser('', 'new_user', false, array($editor->getVar('uid')));
+        echo $ele->render();
+        ?>
+        <br clear="all" />
+        <label for="perms"><?php _e('Permissions:','admin_mywords'); ?></label>
+        <div class="permissions" style="margin-left: 160px;">
+            <label><input type="checkbox" name="perms[]" value="tags"<?php echo in_array("tags", $editor->getVar('privileges')) ? ' checked="checked"' : ''; ?> /> <?php _e('Create tags','admin_mywords'); ?></label>
+            <label><input type="checkbox" name="perms[]" value="cats"<?php echo in_array("cats", $editor->getVar('privileges')) ? ' checked="checked"' : ''; ?> /> <?php _e('Create categories','admin_mywords'); ?></label>
+            <label><input type="checkbox" name="perms[]" value="tracks"<?php echo in_array("tracks", $editor->getVar('privileges')) ? ' checked="checked"' : ''; ?> /> <?php _e('Send trackbacks','admin_mywords'); ?></label>
+            <label><input type="checkbox" name="perms[]" value="comms"<?php echo in_array("comms", $editor->getVar('privileges')) ? ' checked="checked"' : ''; ?> /> <?php _e('Manage discussions','admin_mywords'); ?></label>
+        </div>
+        <br clear="all" />
+        <div style="padding-left: 160px;">
+        <input type="submit" value="<?php _e('Save Changes','admin_mywords'); ?>" />
+        <input type="button" value="<?php _e('Cancel','admin_mywords'); ?>" onclick="history.go(-1);" />
+        </div>
+        <?php echo $xoopsSecurity->getTokenHTML(); ?>
+        <input type="hidden" name="action" value="saveedit" />
+        <input type="hidden" name="id" value="<?php echo $editor->id(); ?>" />
+    </form>
+    </div>
+
 <?php else: ?>
+
 <div class="descriptions">
 	<?php _e('Editors are people that can send and publish content without admin approval. You can create new editors and assign individuals permissions for them.','admin_mywords'); ?>
 	<em><?php _e('All webmasters are allowed as editors with all privileges.','armin_mywords'); ?></em>
@@ -71,17 +107,17 @@
 		<?php endif; ?>
 		<?php foreach($tpl->get_var('editors') as $editor): ?>
 		<tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
-			<td><input type="checkbox" name="editors[]" id="editors-<?php echo $editor->id(); ?>" value="<?php echo $editor->id(); ?>" /></td>
+			<td><input type="checkbox" name="editors[]" id="editor-<?php echo $editor->id(); ?>" value="<?php echo $editor->id(); ?>" /></td>
 			<td>
-                <strong><?php echo $editor->getVar('name'); ?></strong>
+                <strong><?php echo $editor->getVar('name'); ?></strong><?php echo $editor->getVar('active')?'':' ['.__('Inactive','admin_mywords').']'; ?>
                 <span class="mw_options">
-                    <a href="editors.php?action=edit"><?php _e('Edit','admin_mywords'); ?></a> |
+                    <a href="editors.php?id=<?php echo $editor->id(); ?>&amp;action=edit&amp;page=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
                     <?php if($editor->getVar('active')): ?>
-                    <a href="editors.php?action=deactivate"><?php _e('Desactivar','admin_mywords'); ?></a> |
+                    <a href="javascript:;" onclick="goto_activate(<?php echo $editor->id(); ?>,<?php echo $page; ?>,false);"><?php _e('Desactivar','admin_mywords'); ?></a> |
                     <?php else: ?>
-                    <a href="editors.php?action=activar"><?php _e('Activar','admin_mywords'); ?></a> |
+                    <a href="javascript:;" onclick="goto_activate(<?php echo $editor->id(); ?>,<?php echo $page; ?>,true);"><?php _e('Activar','admin_mywords'); ?></a> |
                     <?php endif; ?>
-                    <a href="editors.php?action=delete"><?php _e('Delete','admin_mywords'); ?></a>
+                    <a href="javascript:;" onclick="goto_delete(<?php echo $editor->id(); ?>,<?php echo $page; ?>);"><?php _e('Delete','admin_mywords'); ?></a>
                 </span>
             </td>
             <td align="center"><a href="<?php echo XOOPS_URL; ?>/modules/system/admin.php?fct=users&amp;op=modifyUser&amp;uid=<?php echo $editor->getVar('uid'); ?>" title="<?php _e('Edit user','admin_mywords'); ?>"><?php echo $editor->data('uname'); ?></a></td>
@@ -125,6 +161,8 @@
         </select>
         <input type="button" value="<?php _e('Apply','admin_mywords'); ?>" onclick="submit();"/>
     </div>
+    <?php echo $xoopsSecurity->getTokenHTML(); ?>
 	</form>
 </div>
+
 <?php endif; ?>

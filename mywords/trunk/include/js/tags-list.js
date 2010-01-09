@@ -26,7 +26,7 @@ $(document).ready(function(){
 				modal: true,
 				autoOpen: false,
 				buttons: {
-					<?php _e('Ok','admin_mywords'); ?>: function(){
+					'<?php _e('Ok','admin_mywords'); ?>': function(){
 						$(this).dialog('close');
 					}
 				}
