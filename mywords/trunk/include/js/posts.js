@@ -313,7 +313,7 @@ $(document).ready( function($) {
     });
     
     $("input#publish-submit").click(function(){
-        
+
         $('div#mw-messages-post').slideUp('slow',function(){
             $('div#mw-messages-post').html('');
         });
@@ -323,7 +323,8 @@ $(document).ready( function($) {
             return false;
         }
         
-        if(tinyMCE){
+        if(typeof tinyMCE!='undefined'){
+            alert("Hola");
             tinyMCE.activeEditor.save();
         }
         
@@ -384,7 +385,7 @@ $(document).ready( function($) {
 			if (data['error']!=undefined){
 				alert(data['error']);
 				if(data['token'])
-					$("input#xoops-token").val(data['token']);
+					$("input#XOOPS_TOKEN_REQUEST").val(data['token']);
 				
 				return;
 			}
@@ -394,7 +395,7 @@ $(document).ready( function($) {
             $("select#w-parent").prepend('<option value="'+data['id']+'">'+name+'</option>');
 			$("label#label-"+data['id']).focus();
 			$("label#label-"+data['id']).effect('highlight', {}, 1000);
-			$("input#xoops-token").val(data['token']);
+			$("input#XOOPS_TOKEN_REQUEST").val(data['token']);
 			
 			$("div#w-catnew-form input#w-name").val('');
 			$("select#w-parent option[selected='selected']").removeAttr('selected');

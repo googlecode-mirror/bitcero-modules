@@ -194,9 +194,10 @@ function activate_editors($a){
 }
 
 function delete_editors(){
+    global $xoopsSecurity;
     
     $page = rmc_server_var($_POST, 'page', 1);
-    $editors = rmc_server_var($_POST, 'editor', array());
+    $editors = rmc_server_var($_POST, 'editors', array());
     
     if (!$xoopsSecurity->check()){
         redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
@@ -239,8 +240,8 @@ switch($action){
     case 'edit':
         edit_editor();
         break;
-	case 'del':
-		deleteEditor();
+	case 'delete':
+		delete_editors();
 		break;
     case 'deactivate':
         activate_editors(0);
