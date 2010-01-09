@@ -89,7 +89,7 @@ class RMFormUser extends RMFormElement
 						<label style='overflow: hidden;'>
                         <input type='".($this->multi ? 'checkbox' : 'radio')."' name='".($this->multi ? $this->getName().'[]' : $this->getName())."' id='".$this->getName()."-".$row['uid']."'
 				 		value='$row[uid]' checked='checked' /> 
-                        $row[uname] <a href='javascript:;' onclick='usersField.remove($row[uid]);'><span>delete</span></a>
+                        $row[uname] <a href='javascript:;' onclick=\"users_field_name='".$this->getName()."'; usersField.remove($row[uid]);\"><span>delete</span></a>
                         </label></li>";
 			}
 		}
