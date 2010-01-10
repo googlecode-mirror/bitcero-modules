@@ -10,7 +10,7 @@
 
 define('_MS_MW_PERMALINK','Permalink to %s');
 define('_MS_MW_PUBLISH','Published on %s at %s by %s');
-define('_MS_MW_COMMENTON','Comment about $s');
+define('_MS_MW_COMMENTON','Comment about %s');
 define('_MS_MW_NUMCOMS','<strong>%u</strong> Comments &raquo;');
 define('_MS_MW_NUMCOMSL','%u Comments');
 define('_MS_MW_COMS','Comments');

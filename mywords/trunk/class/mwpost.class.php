@@ -24,6 +24,10 @@ class MWPost extends RMObject
     * Tags container
     */
     private $tags = array();
+    /**
+    * Indicate when a post has more text
+    */
+    private $hasmore = false;
 	/**
 	 * Constructor de la clase
 	 * Carga los valores de un post específico o prepara
@@ -74,7 +78,10 @@ class MWPost extends RMObject
         
         if ($advance){
             $advance = explode('<!--more-->', $content[0]);
-            $advance = str_replace("<!--nextpage-->","", $advance);
+            $advance = str_replace("<!--nextpage-->","", $advance[0]);
+
+            if(count($advance)>1) $this->hasmore = true;
+            
             return TextCleaner::getInstance()->to_display($advance);
         }
         
@@ -89,6 +96,10 @@ class MWPost extends RMObject
         
         $content = str_replace("<!--more-->","",$content[0]);
         
+	}
+	
+	public function hasmore_text(){
+		return $this->hasmore;
 	}
 	
 	/**
@@ -115,14 +126,14 @@ class MWPost extends RMObject
 	 * @param bool Indicates if returns all data fro categories. False returns only ids
 	 * @return string, array
 	 */
-	public function get_categos($all = true){
+	public function get_categos($ids = false, $w = '*'){
 		global $mc;
 		
 		$tbl1 = $this->db->prefix("mw_categories");
 		$tbl2 = $this->db->prefix("mw_catpost");
 		
 		if (empty($this->categos)){	
-			$result = $this->db->query("SELECT a.* FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
+			$result = $this->db->query("SELECT a.$w FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
 			$rtn = array();
 			while ($row = $this->db->fetchArray($result)){
 				$this->lcats[] = $row;
@@ -130,7 +141,7 @@ class MWPost extends RMObject
 			}
 		}
         
-        if ($all)
+        if (!$ids)
             return $this->lcats;
         else
             return $this->categos;
@@ -235,13 +246,14 @@ class MWPost extends RMObject
 	 * Obtiene el enlace permanente al artículo
 	 */
 	public function permalink(){
-		global $mc;
+		$mc = RMUtilities::get()->module_config('mywords');
 		$day = date('d', $this->getVar('pubdate'));
 		$month = date('m', $this->getVar('pubdate'));
 		$year = date('Y', $this->getVar('pubdate'));
 		$rtn = MWFunctions::get_url();
 		$rtn .= $mc['permalinks']==1 ? '?post='.$this->id() : ($mc['permalinks']==2 ? "$day/$month/$year/".$this->getVar('shortname','n')."/" : "post/".$this->id());
 		return $rtn;
+		
 	}
 	
 	/**

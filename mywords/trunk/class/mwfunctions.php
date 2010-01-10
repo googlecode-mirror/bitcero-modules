@@ -286,5 +286,20 @@ class MWFunctions
         }
         
     }
+    
+    public function format_time($time){
+		
+		$day = date('d', $time);
+    	$month = date('m', $time);
+    	$year = date('Y', $time);
+		$format = "Published on %s at %s";
+		
+		$date = '<a href="'.MWFunctions::get_url()."$day/$month/$year/".'">'.date(__('D M, Y','mywords'), $time).'</a>';
+		$hour = date(__('H:i','mywords'), $time);
+		
+		$rtn = sprintf($format, $date, $hour);
+		return $rtn;
+		
+    }
 	
 }

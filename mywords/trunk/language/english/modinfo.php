@@ -30,6 +30,8 @@ define('_MI_MW_BASEPATH','Base Path');
 define('_MI_MW_BASEPATHD','This path is used when the links format has been stablished as based in dates or numbers.');
 // Widget tags
 define('_MI_MW_WIDGETTAGS','Number of tags on admin widget');
+// Posts number per page
+define('_MI_MW_PPP','Posts per page');
 
 /*# Fechas
 define('_MI_MW_DATEFORMAT','Date Format');

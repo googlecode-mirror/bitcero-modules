@@ -52,6 +52,13 @@ class MWEditor extends RMObject
         
     }
     
+    public function permalink(){
+		$mc = RMUtilities::get()->module_config('mywords');
+		$rtn = MWFunctions::get_url();
+		$rtn .= $mc['permalinks']==1 ? '?editor='.$this->id() : ($mc['permalinks']==2 ? "editor/".$this->getVar('shortname','n')."/" : "editor/".$this->id());
+		return $rtn;
+    }
+    
     public function save(){
         if ($this->isNew()){
             return $this->saveToTable();

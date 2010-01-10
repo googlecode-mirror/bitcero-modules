@@ -324,7 +324,6 @@ $(document).ready( function($) {
         }
         
         if(typeof tinyMCE!='undefined'){
-            alert("Hola");
             tinyMCE.activeEditor.save();
         }
         

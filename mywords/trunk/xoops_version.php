@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('mywords','admin_');
+
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
 $modversion['version'] = '1.1';
@@ -118,6 +120,14 @@ $modversion['config'][2]['description'] = '';
 $modversion['config'][2]['formtype'] = 'textbox';
 $modversion['config'][2]['valuetype'] = 'int';
 $modversion['config'][2]['default'] = 10;
+
+// Posts list limit number
+$modversion['config'][3]['name'] = 'posts_limit';
+$modversion['config'][3]['title'] = '_MI_MW_PPP';
+$modversion['config'][3]['description'] = '';
+$modversion['config'][3]['formtype'] = 'textbox';
+$modversion['config'][3]['valuetype'] = 'int';
+$modversion['config'][3]['default'] = 10;
 
 /*
 // Envío de Artículo

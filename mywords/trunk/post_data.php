@@ -13,48 +13,49 @@ if (!defined('XOOPS_ROOT_PATH')){
     die();
 }
 
+// Authors cache
+$authors = array();
+
 while ($row = $db->fetchArray($result)){
+	
     $post = new MWPost();
     $post->assignVars($row);
     
-    if (!$post->readAccess()) continue;
-    
     # Generamos los vínculos
-    $day = date('d', $post->getDate());
-    $month = date('m', $post->getDate());
-    $year = date('Y', $post->getDate());
-    $link = mw_get_url();
-    $link .= $mc['permalinks']==1 ? '?post='.$post->getID() : ($mc['permalinks']==2 ? "$day/$month/$year/".$post->getFriendTitle()."/" : "post/".$post->getID());
+    $day = date('d', $post->getVar('pubdate'));
+    $month = date('m', $post->getVar('pubdate'));
+    $year = date('Y', $post->getVar('pubdate'));
+    $link = $post->permalink();
     # Generamos el vínculo para el autor
-    if ($post->getAuthor()>0){ $author =& $post->getAuthorUser(); }  else { unset($author); }
-    $alink = mw_get_url();
-    $alink .= $mc['permalinks']==1 ? '?author='.$post->getAuthor() : ($mc['permalinks']==2 ? "author/".$util->sweetstring((isset($author) ? $author->uname() : _MS_MW_ANONYMOUS))."/" : "author/".$post->getAuthor());
+    if ($post->getVar('author')>0){
+    	if(!isset($authors[$post->getVar('author')])) $authors[$post->getVar('author')] = new MWEditor($post->getVar('author'));
+    	$author = $authors[$post->getVar('author')];
+    } 
+    $alink = $author->permalink();
     # Información de Publicación
-    $publicado = sprintf(_MS_MW_PUBLISH, '<a href="'.$link.'">'.formatTimestamp($post->getDate(),'string').'</a>', formatTimestamp($post->getDate(),'t'),'<a href="'.$alink.'">'.(isset($author) ? $author->uname() : _MS_MW_ANONYMOUS)."</a>");
+    $published = sprintf('%s by %s', MWFunctions::format_time($post->getVar('pubdate'),'string'), '<a href="'.$alink.'">'.(isset($author) ? $author->getVar('name') : __('Anonymous','mywords'))."</a>");
     # Texto de continuar leyendo
-    $texto = $post->getHomeText();
+    $text = $post->content(true);
     
     // Redes Sociales
     $bms = array();
     foreach ($socials as $bm){
-        $bms[] = array('icon'=>$bm->icon(),'alt'=>$bm->text(),'link'=>$bm->link($post->getTitle(),$post->getPermaLink()));
+        $bms[] = array('icon'=>$bm->getVar('icon'),'alt'=>$bm->getVar('alt'),'link'=>str_replace(array('{URL}','{TITLE}','{DESC}'), array($post->permalink(),$post->getVar('title'),$text),$bm->getVar('url')));
     }
     
-    $tpl->append('posts', array(
-        'id'                =>$post->getID(),
-        'titulo'            =>$post->getTitle(),
-        'text'              =>$texto,
-        'categos'           =>$post->categos(2),
+    $xoopsTpl->append('posts', array(
+        'id'                =>$post->id(),
+        'title'            	=>$post->getVar('title'),
+        'text'              =>$text,
+        'cats'           	=>$post->get_categos(false),
         'link'              =>$link,
-        'lang_permalink'    =>sprintf(_MS_MW_PERMALINK, $post->getTitle()),
-        'publicado'         =>$publicado,
-        'lang_comment'      =>sprintf(_MS_MW_COMMENTON, $post->getTitle()),
-        'numcoms'           =>$post->getComments(),
-        'comments'          =>sprintf(_MS_MW_NUMCOMS, $post->getComments()),
-        'continue'          =>($post->moretext() ? sprintf(_MS_MW_CONTINUE, $post->getTitle()) : ''),
+        'published'         =>$published,
+        'comments'          =>$post->getVar('comments'),
+        'continue'          => $post->hasmore_text(),
         'bookmarks'         =>$bms,
-        'time'              =>$post->getDate(),
-        'author'            =>$post->getAuthorUser()->uname()
+        'time'              =>$post->getVar('pubdate'),
+        'author'            =>$authors[$post->getVar('author')]->getVar('name'),
+        'alink'				=>$alink
     ));
+    
 }
-?>

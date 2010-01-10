@@ -7,7 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
+//include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
 include XOOPS_ROOT_PATH."/header.php";
 include_once 'include/general.func.php';
@@ -41,4 +41,4 @@ while ($row = $db->fetchArray($result)){
     $i++;
 }
 
-?>
+$tpl = RMTemplate::get();
