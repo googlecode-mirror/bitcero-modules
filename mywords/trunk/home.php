@@ -15,7 +15,7 @@ include 'header.php';
 /**
  * Paginacion de Resultados
  */
-list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE estado='1' AND aprovado='1'"));
+list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND visibility='public'"));
 $page = isset($_REQUEST['page']) ? $_REQUEST['page']: 0;
 
 if ($page<=0){
@@ -36,26 +36,26 @@ if ($pactual>$tpages){
 	$start = ($pactual - 1) * $limit;
 }
 
-$tpl->assign('pactual', $pactual);
+$xoopsTpl->assign('pactual', $pactual);
 
 if ($pactual > 1){
-	$tpl->append('pages', array('id'=>'anterior', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?page='.($pactual-1) : ($mc['permalinks']==2 ? "page/".($pactual - 1)."/" : "page/".($pactual - 1)))));
+	$xoopsTpl->append('pages', array('id'=>'anterior', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?page='.($pactual-1) : ($mc['permalinks']==2 ? "page/".($pactual - 1)."/" : "page/".($pactual - 1)))));
 }
 for ($i=1;$i<=$tpages;$i++){
 	$plink = mw_get_url();
 	$plink .= $mc['permalinks']==1 ? '?page='.$i : ($mc['permalinks']==2 ? "page/$i/" : "page/$i");
-	$tpl->append('pages', array('id'=>$i,'link'=>$plink));
+	$xoopsTpl->append('pages', array('id'=>$i,'link'=>$plink));
 }
 
 if ($pactual < $tpages && $tpages > 1){
-	$tpl->append('pages', array('id'=>'siguiente', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?page='.($pactual+1) : ($mc['permalinks']==2 ? "page/".($pactual + 1)."/" : "page/".($pactual + 1)))));
+	$xoopsTpl->append('pages', array('id'=>'siguiente', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?page='.($pactual+1) : ($mc['permalinks']==2 ? "page/".($pactual + 1)."/" : "page/".($pactual + 1)))));
 }
 
-$tpl->assign('lang_next', _MS_MW_NEXTPAGE);
-$tpl->assign('lang_prev', _MS_MW_PREVPAGE);
-$tpl->assign('lang_comments', _MS_MW_COMS);
+$xoopsTpl->assign('lang_next', _MS_MW_NEXTPAGE);
+$xoopsTpl->assign('lang_prev', _MS_MW_PREVPAGE);
+$xoopsTpl->assign('lang_comments', _MS_MW_COMS);
 
-$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE estado=1 AND aprovado='1' ORDER BY fecha DESC LIMIT $start,$mc[limite]");
+$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND visibility='public' ORDER BY pubdate DESC LIMIT $start,10");
 require 'post_data.php';
 
 include 'footer.php';

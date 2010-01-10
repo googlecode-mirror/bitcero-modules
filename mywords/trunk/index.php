@@ -14,7 +14,7 @@ $docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
 $root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
 $request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
 
-if ($xoopsModuleConfig['permalinks']>1){
+if ($xoopsModuleConfig['permalinks']>1 && $xoopsModuleConfig['basepath']!='/'){
     $request = str_replace(rtrim($xoopsModuleConfig['basepath'],'/').'/', '', rtrim($request,'/').'/');
 }
 

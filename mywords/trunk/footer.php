@@ -26,7 +26,7 @@
 // @copyright: 2007 - 2008 Red México
 // @author: BitC3R0
 
-$tpl->assign('xoops_module_header', $xmh);
+$xoopsTpl->assign('xoops_module_header', $xmh);
 include XOOPS_ROOT_PATH."/footer.php";
 
 ?>
