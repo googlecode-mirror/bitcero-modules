@@ -8,6 +8,11 @@
 // --------------------------------------------------------------
 
 $(document).ready(function(){
+	
+	$("#action-list").change(function(){
+		$("#action-list-b").val($("#action-list").val());
+	});
+	
 	$(".icons_sel img").click(function(){
 		$(".icons_sel img").removeClass('selected');
 		$(this).addClass('selected');
@@ -39,3 +44,29 @@ $(document).ready(function(){
 		
 	});
 });
+
+function goto_activate(id,act){
+    
+    if(!act){
+    	var rtn = confirm('<?php _e('Do you really want to deactivate this site?','admin_mywords'); ?>');
+    
+    	if (!rtn) return false;
+	}
+    
+    $("#form-list-book #book-"+id).attr('checked','checked');
+    $("#form-list-book #book-list").val(act?'activate':'deactivate');
+    $("#form-list-book").submit();
+    
+}
+
+function goto_delete(id){
+    
+    var rtn = confirm('<?php _e('Do you really want to delete this site?','admin_mywords'); ?>');
+    
+    if (!rtn) return false;
+    
+    $("#form-list-book #book-"+id).attr('checked','checked');
+    $("#form-list-book #action-list").val('delete');
+    $("#form-list-book").submit();
+    
+}
