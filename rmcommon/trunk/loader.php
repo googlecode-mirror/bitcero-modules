@@ -36,7 +36,7 @@ function rmc_autoloader($class){
         //'/rmcommon' /* @Todo: Eliminar este directorio */
     );
 
-    if (is_a($xoopsModule, 'XoopsModule')){
+    if (is_a($xoopsModule, 'XoopsModule') && $xoopsModule->dirname()!='system'){
     	$paths[] = '/modules/'.$xoopsModule->dirname().'/class';
     }
 	
@@ -49,7 +49,7 @@ function rmc_autoloader($class){
         } elseif (file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.php')){
         	include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.php';
         } elseif(file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php')){
-            	include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php';
+            include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php';
         }
     }
 	

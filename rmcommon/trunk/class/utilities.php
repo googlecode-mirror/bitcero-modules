@@ -149,8 +149,19 @@ class RMUtilities
 	 */
 	public function module_config($modname, $option=''){
 		global $xoopsModuleConfig, $xoopsModule;
-	
+		
+		static $rmModuleConfigs;
+		
+		if (isset($rmModuleConfigs[$modname])){
+			
+			if($option!='' & isset($rmModuleConfigs[$modname][$option])) return $rmModuleConfigs[$modname][$option];
+			
+			return $rmModuleConfigs[$modname];
+			
+		}
+		
 		if (isset($xoopsModuleConfig) && (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modname && $xoopsModule->getVar('isactive'))) {
+			$rmModuleConfigs[$modname] = $xoopsModuleConfig;
 			if($option != '' && isset($xoopsModuleConfig[$option])) {
 				return $xoopsModuleConfig[$option];
 			} else {
@@ -162,6 +173,7 @@ class RMUtilities
 			$config_handler =& xoops_gethandler('config');
 			if ($module) {
 				$moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+				$rmModuleConfigs[$modname] = $moduleConfig;
 				if($option != '' && isset($moduleConfig[$option])) {
 					return $moduleConfig[$option];
 				} else {
