@@ -8,51 +8,52 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('MW_LOCATION','bookmarks');
+define('RMCLOCATION','bookmarks');
 require('header.php');
 
-// Crea el menu para los marcadores
-function menubar(){
-    global $tpl;
-    
-    $tpl->add_menu_option(__('Bookmark Sites','mywords_admin'), './bookmarks.php', '../images/social16.png');
-    $tpl->add_menu_option(__('Add Site','mywords_admin'), './bookmarks.php?op=new', '../images/add.png');
-    
-}
+include_once '../include/general.func.php';
 
 /**
 * @desc Muestra la lista de los elementos disponibles
 */
-function showBookmarks(){
-    global $tpl, $db, $xoopsModule, $xoopsConfig, $adminTemplate;
-    
-    $tpl->assign('lang_title', _AS_MW_BTITLE);
-    $tpl->assign('lang_name', _AS_MW_BNAME);
-    $tpl->assign('lang_url', _AS_MW_BURL);
-    $tpl->assign('lang_active', _AS_MW_BACTIVE);
-    $tpl->assign('lang_options', _OPTIONS);
-    $tpl->assign('lang_edit', _EDIT);
-    $tpl->assign('lang_delete', _DELETE);
-    $tpl->assign('lang_confdel', _AS_MW_CONFDEL);
-    $tpl->assign('lang_confdels', _AS_MW_CONFDELS);
-    $tpl->assign('lang_activate', _AS_MW_ACTIVATE);
+function show_bookmarks(){
+    global $xoopsModule, $xoopsConfig, $xoopsSecurity;
     
     // Cargamos los sitios
+    $db = Database::getInstance();
     $sql = "SELECT * FROM ".$db->prefix("mw_bookmarks")." ORDER BY title";
     $result = $db->query($sql);
     
     while ($row = $db->fetchArray($result)){
         $bm = new MWBookmark();
         $bm->assignVars($row);
-        $bookmarks = array('id'=>$bm->id(),'name'=>$bm->name(),'icon'=>$bm->icon(),'text'=>$bm->text(),'active'=>$bm->active(),'url'=>$bm->url());
+        $bookmarks[] = array(
+        	'id'=>$bm->id(),
+        	'name'=>$bm->getVar('title'),
+        	'icon'=>$bm->getVar('icon'),
+        	'desc'=>$bm->getVar('alt'),
+        	'active'=>$bm->getVar('active'),
+        	'url'=>str_replace(array('{','}'), array('<span>{','}</span>'), $bm->getVar('url'))
+        );
     }
     
-    $adminTemplate = "admin/mywords_bookmarks.html";
-    menubar();
-    xoops_cp_location($xoopsModule->name());
-    xoops_cp_header();
-    echo "Hola";
-    xoops_cp_footer();
+    $temp = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH.'/modules/mywords/images/icons');
+    foreach ($temp as $icon){
+        $icons[] = array('url'=>XOOPS_URL."/modules/mywords/images/icons/$icon", 'name'=>$icon);
+    }
+    
+    MWFunctions::include_required_files();
+    
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Bookmark Sites','admin_mywords'));
+	xoops_cp_header();
+	
+    extract($_GET);
+	include RMTemplate::get()->get_template('admin/mywords_bookmarks.php','module','mywords');
+	RMTemplate::get()->assign('xoops_pagetitle', __('Bookmarks Management','admin_mywords'));
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	RMTemplate::get()->add_script('../include/js/bookmarks.js');
+	
+	xoops_cp_footer();
     
 }
 
@@ -122,15 +123,31 @@ function newForm($edit = 0){
 /**
 * @desc Almacena los datos de un sitio
 */
-function saveBookmark($edit){
-    global $db, $mc;
+function save_bookmark($edit){
+    global $xoopsSecurity;
     
-    $qs = ''; // Variable para almacenar la cadena de petición
-    foreach ($_POST as $k => $v){
-        $$k = $v;
-        if ($k=='op' || $k=='EXM_TOKEN_REQUEST') continue;
-        $qs .= ($qs=='' ? '' : '&')."$k=".urlencode($v);
+    if (!$xoopsSecurity->check()){
+		redirectMsg('bookmarks.php', __('Operation not allowed!', 'admin_mywords'), 1);
+		die();
     }
+    
+    if ($edit){
+		
+		$id = rmc_server_var($_POST, 'id', 0);
+		if ($id<=0){
+			redirectMsg('bookmarks.php', __('Site ID not provided!','admin_mywords'), 1);
+			die();
+		}
+		
+		$book = new MWBookmark($id);
+		if($book->isNew()){
+			redirectMsg('bookmarks.php', __('Social site not exists!','admin_mywords'), 1);
+			die();
+		}
+		
+    }
+    
+    die();
     
     $qs .= $edit ? "&op=edit" : "&op=new";
     
@@ -234,13 +251,15 @@ function deleteBookmark(){
        
 }
 
-$op = isset($_REQUEST['op']) ? $myts->addSlashes($_REQUEST['op']) : '';
-switch($op){
+
+$action = rmc_server_var($_POST, 'action', '');
+
+switch($action){
     default:
-        showBookmarks();
+        show_bookmarks();
         break;
     case 'new':
-        newForm();
+        save_bookmark();
         break;
     case 'edit':
         newForm(1);

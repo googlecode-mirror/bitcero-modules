@@ -58,22 +58,9 @@ $adminmenu[] = array(
     'location'=>"editors"
 );
 
-$options = array();
-$options[] = array(
-    'title'     => __('List Sites','admin_mywords'),
-    'link'      => 'bookmarks.php',
-    'selected'  => 'bookmarks' // RMSUBLOCATION constant defines wich submenu options is selected
-);
-$options[] = array(
-    'title'     => __('Add New','admin_mywords'),
-    'link'      => 'bookmarks.php?op=new',
-    'selected'  => 'bookmark_new' // RMSUBLOCATION constant defines wich submenu options is selected
-);
-
 $adminmenu[] = array(
-    'title'=>__('Bookmarks','admin_mywords'),
+    'title'=>__('Social Sites','admin_mywords'),
     'link'=>"admin/bookmarks.php",
     'icon'=>"../images/bookmark.png",
     'location'=>"bookmarks",
-    'options'=>$options
 );

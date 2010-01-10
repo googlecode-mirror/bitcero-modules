@@ -1,27 +1,12 @@
 <?php
-// $Id: mwbookmark.class.php 16 2009-09-13 01:38:59Z i.bitcero $
-// --------------------------------------------------------
+// $Id$
+// --------------------------------------------------------------
 // MyWords
-// Manejo de Artículos
-// Author: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
+// Complete Blogging System
+// Author: BitC3R0 <bitc3r0@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 class MWBookmark extends RMObject
 {
@@ -46,42 +31,7 @@ class MWBookmark extends RMObject
     public function id(){
         return $this->getVar('id_book');
     }
-    
-    public function name(){
-        return $this->getVar('title');
-    }
-    public function setName($value){
-        return $this->setVar('title', $value);
-    }
-    
-    public function url(){
-        return $this->getVar('url');   
-    }
-    public function setUrl($value){
-        return $this->setVar('url', formatURL($value));
-    }
-    
-    public function icon(){
-        return $this->getVar('icon');   
-    }
-    public function setIcon($value){
-        return $this->setVar('icon', $value);
-    }
-    
-    public function active(){
-        return $this->getVar('active');   
-    }
-    public function setActive($value){
-        return $this->setVar('active', $value);
-    }
-    
-    public function text(){
-        return $this->getVar('alt');   
-    }
-    public function setText($value){
-        return $this->setVar('alt', $value);
-    }
-    
+        
     /**
     * @desc Crea el enlace para agregar el elemento a la red social
     */
@@ -110,4 +60,3 @@ class MWBookmark extends RMObject
     }
     
 }
-?>

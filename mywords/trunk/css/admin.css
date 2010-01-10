@@ -61,6 +61,14 @@ textare.mw_large{
 	padding: 0 10px 0 0;
 	width: 350px;
 }
+.form_options .description{
+	color: #666;
+	font-size: 0.9em;
+	display: block;
+	margin: 3px 0 0 0;
+	line-height: 150%;
+	font-style: italic;
+}
 h3.form_titles{
 	font-size: 1.3em;
 	margin: 0 0 20px 0;
@@ -166,7 +174,7 @@ td.mw_postcats{
 }
 
 /** TAGS **/
-#tags-list, #editors-list{
+#tags-list, #editors-list, #tables-list{
 	margin-left: 380px;
 }
 #tags-form{
@@ -220,4 +228,24 @@ h4{
 .permissions label{
 	margin: 0;
     float: none;
+}
+.icons_sel{
+	overflow: hidden;
+}
+.icons_sel img{
+	padding: 4px;
+	cursor: pointer;
+}
+.icons_sel img:hover{
+	background: #CCC;
+}
+.icons_sel img.selected{
+	background: #366194;
+	-moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.burl span{
+	color: #0000FF;
 }

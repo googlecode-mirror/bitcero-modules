@@ -17,7 +17,7 @@ RMTemplate::get()->add_tool(__('Categories','admin_mywords'), './categories.php'
 RMTemplate::get()->add_tool(__('Tags','admin_mywords'), './tags.php', '../images/tag.png', 'tags');
 RMTemplate::get()->add_tool(__('Posts','admin_mywords'), './posts.php', '../images/post.png', 'posts');
 RMTemplate::get()->add_tool(__('Editors','admin_mywords'), './editors.php', '../images/editor.png', 'editors');
-RMTemplate::get()->add_tool(__('Bookmarks','admin_mywords'), './bookmarks.php', '../images/bookmark.png', 'bookmarks');
+RMTemplate::get()->add_tool(__('Social Sites','admin_mywords'), './bookmarks.php', '../images/bookmark.png', 'bookmarks');
 RMTemplate::get()->add_tool(__('Help','admin_mywords'), '#', '../images/help.png', '');
 
 // New toolbar buttons

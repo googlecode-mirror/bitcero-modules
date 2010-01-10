@@ -75,12 +75,9 @@ CREATE TABLE `mw_bookmarks` (
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(1, 'BlinkList.com', 'Agregar a BlinkList.com!', 'http://blinklist.com/blink?u={URL}&t={TITLE}&d={DESC}', 'blinklist.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(2, 'Delicious', 'Add to Del.icio.us!', 'http://delicious.com/save?jump=yes&url={URL}&title={TITLE}&notes={DESC}', 'delicious.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(3, 'Digg', 'Digg It!', 'http://digg.com/submit?phase=2&url={URL}&title={TITLE}', 'digg.png', 1);
-INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(4, 'Diigo', 'Add to Diigo!', 'http://www.diigo.com/post?url={URL}&title={TITLE}&desc={DESC}', 'diigo.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(5, 'FaceBook', 'Add to FaceBook!', 'http://www.facebook.com/share.php?u={URL}&t={TITLE}', 'facebook.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(6, 'Furl', 'Add to Furl!', 'http://www.furl.net/items/new?t={TITLE}&u={URL}&r=&v=1&c=', 'furl.png', 1);
-INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(7, 'Mister Wong', 'Agregar a Mister Wong!', 'http://www.mister-wong.com/add_url/?bm_url={URL}&bm_description={TITLE}&bm_notice={DESC}', 'misterwong.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(8, 'Reddit.com', 'Agregar a Reddit!', 'http://www.reddit.com/submit?url={URL}&title={TITLE}', 'reddit.png', 1);
-INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(9, 'Simpy', 'Agregar a Simpy!', 'http://www.simpy.com/simpy/LinkAdd.do?href={URL}', 'simpy.png', 1);
 INSERT INTO `mw_bookmarks` (`id_book`, `title`, `alt`, `url`, `icon`, `active`) VALUES(10, 'StumbleUpon', 'Agregar a StumbleUpon!', 'http://www.stumbleupon.com/submit?url={URL}&title={TITLE}', 'stumbleupon.png', 1);
 
 CREATE TABLE `mw_meta` (
