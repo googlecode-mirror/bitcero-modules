@@ -16,7 +16,8 @@ function mw_widget_categories(){
     RMTemplate::get()->add_script('../include/js/widget_cats.js');
 	$widget['icon'] = '';
     
-    $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+    $id = rmc_server_var($_REQUEST,'id',0);
+    
     $edit = false;
     if ($id>0){
         $post = new MWPost($id);
@@ -24,7 +25,7 @@ function mw_widget_categories(){
             unset($post);
         } else {
             $edit = true;
-            $postcat = $post->get_categos(false);
+            $postcat = $post->get_categos(true);
         }
     }
     

@@ -79,8 +79,6 @@ class MWPost extends RMObject
         if ($advance){
             $advance = explode('<!--more-->', $content[0]);
             $advance = str_replace("<!--nextpage-->","", $advance[0]);
-
-            if(count($advance)>1) $this->hasmore = true;
             return TextCleaner::getInstance()->to_display($advance);
         }
         
@@ -98,7 +96,10 @@ class MWPost extends RMObject
 	}
 	
 	public function hasmore_text(){
-		return $this->hasmore;
+        
+        $text = explode("<!--more-->", $this->getVar('content'));
+        
+		return count($text)>0;
 	}
 	
 	/**

@@ -284,7 +284,6 @@ class MWFunctions
         } else {
             return XOOPS_URL.'/modules/mywords/';
         }
-        
     }
     
     public function format_time($time){
@@ -294,7 +293,7 @@ class MWFunctions
     	$year = date('Y', $time);
 		$format = "Published on %s at %s";
 		
-		$date = '<a href="'.MWFunctions::get_url()."$day/$month/$year/".'">'.date(__('D M, Y','mywords'), $time).'</a>';
+		$date = '<a href="'.MWFunctions::get_url()."$day/$month/$year/".'">'.date(__('D d M, Y','mywords'), $time).'</a>';
 		$hour = date(__('H:i','mywords'), $time);
 		
 		$rtn = sprintf($format, $date, $hour);

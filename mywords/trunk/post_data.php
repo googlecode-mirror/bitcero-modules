@@ -43,7 +43,7 @@ while ($row = $db->fetchArray($result)){
         $bms[] = array('icon'=>$bm->getVar('icon'),'alt'=>$bm->getVar('alt'),'link'=>str_replace(array('{URL}','{TITLE}','{DESC}'), array($post->permalink(),$post->getVar('title'),TextCleaner::getInstance()->truncate($text, 50)),$bm->getVar('url')));
     }
     
-    $xoopsTpl->append('posts', array(
+    RMTemplate::get()->append('posts', array(
         'id'                =>$post->id(),
         'title'            	=>$post->getVar('title'),
         'text'              =>$text,
@@ -55,7 +55,8 @@ while ($row = $db->fetchArray($result)){
         'bookmarks'         =>$bms,
         'time'              =>$post->getVar('pubdate'),
         'author'            =>$authors[$post->getVar('author')]->getVar('name'),
-        'alink'				=>$alink
+        'alink'				=>$alink,
+        'edit'             => $xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid()
     ));
     
 }
