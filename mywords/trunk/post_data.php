@@ -40,7 +40,7 @@ while ($row = $db->fetchArray($result)){
     // Redes Sociales
     $bms = array();
     foreach ($socials as $bm){
-        $bms[] = array('icon'=>$bm->getVar('icon'),'alt'=>$bm->getVar('alt'),'link'=>str_replace(array('{URL}','{TITLE}','{DESC}'), array($post->permalink(),$post->getVar('title'),$text),$bm->getVar('url')));
+        $bms[] = array('icon'=>$bm->getVar('icon'),'alt'=>$bm->getVar('alt'),'link'=>str_replace(array('{URL}','{TITLE}','{DESC}'), array($post->permalink(),$post->getVar('title'),TextCleaner::getInstance()->truncate($text, 50)),$bm->getVar('url')));
     }
     
     $xoopsTpl->append('posts', array(
