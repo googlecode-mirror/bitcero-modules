@@ -6,7 +6,6 @@
 */
 <?php
 	require '../../../../../mainfile.php'; 
-	require '../../../loader.php'; 
 	XoopsLogger::getInstance()->activated = false;
 	XoopsLogger::getInstance()->renderingEnabled = false;
 	$lang = is_file(ABSPATH.'/api/editors/exmcode/language/'.EXMLANG.'.js') ? EXMLANG : 'en_US';

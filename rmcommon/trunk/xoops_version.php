@@ -85,3 +85,39 @@ $modversion['config'][6]['formtype'] = 'textbox';
 $modversion['config'][6]['valuetype'] = 'text';
 if (!isset($xoopsSecurity)) $xoopsSecurity = new XoopsSecurity();
 $modversion['config'][6]['default'] = $xoopsSecurity->createToken();
+
+// Formato HTML5
+$modversion['config'][7]['name'] = 'dohtml';
+$modversion['config'][7]['title'] = '_MI_RMC_DOHTML';
+$modversion['config'][7]['description'] = '';
+$modversion['config'][7]['formtype'] = 'yesno';
+$modversion['config'][7]['valuetype'] = 'int';
+$modversion['config'][7]['default'] = 1;
+
+$modversion['config'][8]['name'] = 'dosmileys';
+$modversion['config'][8]['title'] = '_MI_RMC_DOSMILE';
+$modversion['config'][8]['description'] = '';
+$modversion['config'][8]['formtype'] = 'yesno';
+$modversion['config'][8]['valuetype'] = 'int';
+$modversion['config'][8]['default'] = 1;
+
+$modversion['config'][9]['name'] = 'doxcode';
+$modversion['config'][9]['title'] = '_MI_RMC_DOXCODE';
+$modversion['config'][9]['description'] = '';
+$modversion['config'][9]['formtype'] = 'yesno';
+$modversion['config'][9]['valuetype'] = 'int';
+$modversion['config'][9]['default'] = 1;
+
+$modversion['config'][10]['name'] = 'doimage';
+$modversion['config'][10]['title'] = '_MI_RMC_DOIMAGE';
+$modversion['config'][10]['description'] = '';
+$modversion['config'][10]['formtype'] = 'yesno';
+$modversion['config'][10]['valuetype'] = 'int';
+$modversion['config'][10]['default'] = 0;
+
+$modversion['config'][11]['name'] = 'dobr';
+$modversion['config'][11]['title'] = '_MI_RMC_DOBR';
+$modversion['config'][11]['description'] = '';
+$modversion['config'][11]['formtype'] = 'yesno';
+$modversion['config'][11]['valuetype'] = 'int';
+$modversion['config'][11]['default'] = 0;

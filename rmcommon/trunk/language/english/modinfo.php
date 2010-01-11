@@ -22,6 +22,12 @@ define('_MI_RMC_IMGSNUMBER','Image manager number of images per page');
 define('_MI_RMC_SECREY','Secret Key');
 define('_MI_RMC_SECREYD','Provide a secret key used to encript information.');
 
+define('_MI_RMC_DOHTML','Allow HTMl in text');
+define('_MI_RMC_DOSMILE','Allow smiles in text');
+define('_MI_RMC_DOXCODE','Allow XoopsCode');
+define('_MI_RMC_DOIMAGE','Allow images in text');
+define('_MI_RMC_DOBR','Auto add line breaks in text');
+
 // Admin Menu
 define('_MI_RMC_MENUDASH','Dashboard');
 define('_MI_RMC_MENUPLUGS','Plugins');

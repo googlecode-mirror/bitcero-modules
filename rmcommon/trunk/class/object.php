@@ -315,9 +315,9 @@ class RMObject
             case 'show':
             case 'e':
             case 'edit':
-                $ts =& TextCleaner::getInstance();
-                return $ts->htmlSpecialChars($ret);
-                break 1;
+                $ts = TextCleaner::getInstance();
+                return $ts->htmlSpecialChars($ts->$ret);
+                break;
             case 'p':
             case 'preview':
             case 'f':
@@ -339,8 +339,9 @@ class RMObject
                 break 1;
             case 'e':
             case 'edit':
-                return htmlspecialchars($ret, ENT_QUOTES);
-                break 1;
+            	$ts = TextCleaner::getInstance();
+            	return $ts->specialchars($ts->stripslashes($ret));
+                break;
             case 'p':
             case 'preview':
                 $ts =& TextCleaner::getInstance();
@@ -359,6 +360,7 @@ class RMObject
             case 'n':
             case 'none':
             default:
+            	return $ret;
                 break 1;
             }
             break;

@@ -35,9 +35,9 @@ class TextCleaner
 	*/
 	public function get_emotions(){
 		
-		global $xoopsConfig;
+		global $rmc_config;
 		
-		if (!$xoopsConfig->get_option('dosmileys'))
+		if (!$rmc_config['dosmileys'])
 			return false;
 		
 		if (!empty($this->emots))
@@ -185,13 +185,9 @@ class TextCleaner
      * @param mixed $text
      * @return
      */
-    public function truncate($text){
-        $instance = MyTextSanitizer::getInstance();
-        if (empty($text) || empty($instance->config['truncate_length']) || strlen($text) < $instance->config['truncate_length']) {
-            return $text;
-        }
-        $len = floor($instance->config['truncate_length'] / 2);
-        $ret = substr($text, 0, $len) . ' ... ' . substr($text, 5 - $len);
+    public function truncate($text, $len){
+        $ret = substr(strip_tags($text), 0, $len);
+        if (strlen($text)>$len) $ret .= '...';
         return $ret;
     }
 
@@ -203,7 +199,7 @@ class TextCleaner
      *                              On FALSE, uses links to images.
 	 * @return  string
 	 **/
-	public function exmCodeDecode($text, $allowimage = 1)
+	public function codeDecode($text, $allowimage = 1)
 	{
 		$patterns = array();
 		$replacements = array();
@@ -358,7 +354,7 @@ class TextCleaner
 		$string = @htmlspecialchars( $string, $quote_style, $charset );
 
 		//return preg_replace("/&amp;/i", '&', htmlspecialchars($text, ENT_QUOTES));
-		return preg_replace(array("/&amp;/i", "/&nbsp;/i"), array('&', '&amp;nbsp;'), htmlspecialchars($text, ENT_QUOTES));
+		return preg_replace(array("/&amp;/i", "/&nbsp;/i"), array('&', '&amp;nbsp;'), htmlspecialchars($string, ENT_QUOTES));
 	}
 
 	/**
@@ -475,39 +471,34 @@ class TextCleaner
 	 * based on Xoops displayTarea
 	 *
 	 * @param   string  $text
-	 * @param   bool    $html   allow html?
-	 * @param   bool    $smiley allow smileys?
-	 * @param   bool    $xcode  allow xoopscode?
-	 * @param   bool    $image  allow inline images?
-	 * @param   bool    $br     convert linebreaks?
+	 * @param   bool    $dbr Disbale replace of breaklines when html is enabled
 	 * @return  string
 	 **/
-	function to_display($text){
+	function to_display($text, $dbr = true){
 		global $rmc_config;
 		
 		$original_text = $text;
-		
 		if ($rmc_config['dohtml'] != 1)
 			$text = $this->specialchars($text);
 		
 		// Convert [code] tag
-		$text = $this->codePreConv($text, $rmc_config['exmcode']); // Ryuji_edit(2003-11-18)
+		$text = $this->codePreConv($text, $rmc_config['doxcode']); // Ryuji_edit(2003-11-18)
 		
 		if ($rmc_config['dosmileys'])
 			$text = $this->smiley($text);
 
 		// Decode exmcode
-		if ($rmc_config['exmcode'])
-			$text = $this->exmCodeDecode($text, $xoopsConfig->get_option('doimage'));
+		if ($rmc_config['doxcode'])
+			$text = $this->codeDecode($text, $rmc_config['doimage']);
 
 		// Replace breaklines
 		if ($rmc_config['dobr']) 
 			$text = $this->nl2Br($text);
 		
 		$text = $this->make_clickable($text);
-		$text = $this->codeConv($text, $rmc_config['exmcode']);	// Ryuji_edit(2003-11-18)
+		$text = $this->codeConv($text, $rmc_config['doxcode']);	// Ryuji_edit(2003-11-18)
 		$text = $this->double_br($text);
-		
+
 		// Before to send the formatted string we send it to interceptor methods
 		return RMEventsApi::get()->run_event('rmcevent_text_todisplay', $text, $original_text);
 	}
