@@ -123,17 +123,17 @@ class MWPost extends RMObject
 
 	/**
 	 * Obtiene las catgorías a las que pertenece el artículo
-	 * @param bool Indicates if returns all data fro categories. False returns only ids
+	 * @param string Indicates the returned data (ids, data, objects)
 	 * @return string, array
 	 */
-	public function get_categos($ids = false, $w = '*'){
+	public function get_categos($w='ids'){
 		global $mc;
 		
 		$tbl1 = $this->db->prefix("mw_categories");
 		$tbl2 = $this->db->prefix("mw_catpost");
 		
 		if (empty($this->categos)){	
-			$result = $this->db->query("SELECT a.$w FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
+			$result = $this->db->query("SELECT a.* FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
 			$rtn = array();
 			while ($row = $this->db->fetchArray($result)){
 				$this->lcats[] = $row;
@@ -141,10 +141,20 @@ class MWPost extends RMObject
 			}
 		}
         
-        if (!$ids)
-            return $this->lcats;
-        else
+        if ($w=='ids')
             return $this->categos;
+        elseif ($w=='data')
+            return $this->lcats;
+        
+        // Return objects
+        $rtn = array();
+        foreach($this->lcats as $row){
+            $cat = new MWCategory();
+            $cat->assignVars($row);
+            $rtn[] = $cat;
+        }
+        
+        return $rtn;
 		
 	}
 	/**

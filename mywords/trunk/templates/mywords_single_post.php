@@ -7,8 +7,10 @@
     <?php if($post['continue']): ?><span class="mwcontinue"><a href="<?php echo $post['link']; ?>#mwmore"><?php echo sprintf(__('Continue reading "%s"','mywords'), $post['title']); ?></a></span><?php endif; ?>
     <p class="mwfoot">
         <?php if (count($post['cats'])>0): ?>
-        <?php _e('Posted in','mywords'); ?>
-        
+            <?php _e('Posted in','mywords'); ?>
+            <?php foreach($post['cats'] as $cat): ?>
+                <?php echo $cat->getVar('name'); ?>
+            <?php endforeach; ?>
         <{if $post.categos!=''}><{$lang_postedin}> <span class="categos"><{$post.categos}><{if $post.comments!=''}> | <a href="<{$post.link}>#comments" title="<{$post.lang_comment}>"><{$post.comments}></a><{/if}></span><{/if}>
         <?php endif; ?>
         <{if $post.bookmarks}><br />
