@@ -12,7 +12,7 @@ load_mod_locale('mywords','admin_');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
-$modversion['version'] = '1.1';
+$modversion['version'] = '2.0';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
