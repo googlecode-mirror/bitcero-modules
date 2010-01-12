@@ -51,17 +51,17 @@ class MWCategory extends RMObject
 	 * Obtiene la ruta completa de la categor?a basada en nombres
 	 */
 	function path(){
-		if ($this->getParent()==0) return $this->getVar('shortname','n').'/';
+		if ($this->getVar('parent')==0) return $this->getVar('shortname','n').'/';
 		$parent = new MWCategory($this->getVar('parent','n'));
-		return $parent->getPath() . $this->getVar('shortname').'/';
+		return $parent->path() . $this->getVar('shortname').'/';
 	}
 	/**
 	 * Obtiene el enlace a la categor?a
 	 */
-	public function getLink(){
-		global $mc;
-		$link = mw_get_url();
-		$link .= ($mc['permalinks']==1 ? '?cat='.$this->getID() : ($mc['permalinks']==2 ? 'category/'.$this->getPath() : 'category/'.$this->id()));
+	public function permalink(){
+		$mc = RMUtilities::get()->module_config('mywords');
+		$link = MWFunctions::get_url();
+		$link .= ($mc['permalinks']==1 ? '?cat='.$this->getID() : ($mc['permalinks']==2 ? 'category/'.$this->path() : 'category/'.$this->id()));
 		return $link;
 	}
 

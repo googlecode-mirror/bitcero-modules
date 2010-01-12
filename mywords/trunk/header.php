@@ -22,8 +22,8 @@ define('MW_URL',MWFunctions::get_url());
 $xoopsTpl->assign('mw_url', MW_URL);
 
 $xmh = '';
-if ($mc['css']){
-    $xmh = '<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/mywords/styles/main.css" />';
+if ($mc['use_css']){
+    $xmh = '<link rel="stylesheet" type="text/css" media="screen" href="'.$mc['css_file'].'" />'."\n";
     $xmh .= '<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/mywords/styles/editor.css" />';
 }
 

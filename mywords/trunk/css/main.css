@@ -1,0 +1,58 @@
+/**
+* Default styles for MyWords.
+* You can use your own file by specifying this in MyWords configuration
+* or by including this in your theme file.
+* 
+* @author BitC3R0 <i.bitcero@gmail.com>
+*/
+.mwitem{
+    margin: 0 0 20px 0;
+    overflow: hidden;
+}
+.mwitem h1{
+    margin: 0;
+}
+.mwitem .mwinfotop{
+    font-size: 0.8em;
+    display: block;
+    margin-bottom: 10px;
+}
+.mwitem .mwtext{
+    line-height: 150%;
+    display: block;
+    margin-bottom: 10px;
+}
+.mwitem .mwcontinue{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.mwitem .mwfoot{
+    display: block;
+    font-size: 0.9em;
+}
+.mwitem .mwfoot .mwcats{
+    display: block;
+    float: left;
+}
+.mwitem .mwfoot .mwtags{
+    display: block;
+    float: right;
+    font-size: 0.9em;
+}
+.mwitem .mwfoot .mwbooks{
+    display: block;
+    clear: both;
+    padding: 10px 0 0 0;
+}
+.mwitem .mwfoot .mwbooks img{
+    padding: 4px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.mwitem .mwfoot .mwbooks img:hover{
+    background: #ebebeb;
+}

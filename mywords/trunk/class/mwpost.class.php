@@ -158,13 +158,18 @@ class MWPost extends RMObject
 		
 	}
 	/**
-	 * Add a new category
+	 * Assign this post to a new category.
+     * If Replace parameter is true, delete previos categories assignments and replace
+     * with new given cats
 	 * @param int|array Category ID or array with categories ID
+     * @param bool Replace or add
 	 */
-	public function add_categories($cat){
-		if (empty($this->categos)) $this->get_categos();
+	public function add_categories($cat, $replace = false){
+		if (empty($this->categos) && !$replace) $this->get_categos();
         
         if (!is_array($cat)) $cat = array($cat);
+        
+        if($replace) $this->categos = array();
         
         foreach($cat as $id){
             if (in_array($id, $this->categos)) continue;

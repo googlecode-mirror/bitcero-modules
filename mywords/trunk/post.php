@@ -8,12 +8,10 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$xoopsOption['template_main'] = 'mywords_post.html';
-$xoopsOption['module_subpage'] = 'post';
 include 'header.php';
 
 if ($post<=0){
-	redirect_header(mw_get_url(), 2, _MS_MW_ERRNOPOST);
+	redirect_header(MWFunctions::get_url(), 2, __(''));
 	die();
 }
 

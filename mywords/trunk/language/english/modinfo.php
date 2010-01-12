@@ -32,6 +32,8 @@ define('_MI_MW_BASEPATHD','This path is used when the links format has been stab
 define('_MI_MW_WIDGETTAGS','Number of tags on admin widget');
 // Posts number per page
 define('_MI_MW_PPP','Posts per page');
+define('_MI_MW_CSS','Use CSS file');
+define('_MI_MW_CSSFILE','CSS file to use');
 
 /*# Fechas
 define('_MI_MW_DATEFORMAT','Date Format');

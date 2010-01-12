@@ -128,7 +128,7 @@ if (MWFunctions::post_exists($post)){
 }
 
 // Add categories
-$post->add_categories($categories);
+$post->add_categories($categories, true);
 
 // Add tags
 $post->add_tags($tags);

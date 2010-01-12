@@ -51,12 +51,13 @@ while ($row = $db->fetchArray($result)){
         'link'              =>$link,
         'published'         =>$published,
         'comments'          =>$post->getVar('comments'),
-        'continue'          => $post->hasmore_text(),
+        'continue'          =>$post->hasmore_text(),
         'bookmarks'         =>$bms,
         'time'              =>$post->getVar('pubdate'),
         'author'            =>$authors[$post->getVar('author')]->getVar('name'),
         'alink'				=>$alink,
-        'edit'             => $xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid()
+        'edit'              => $xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid(),
+        'tags'              => $post->tags(true)
     ));
     
 }

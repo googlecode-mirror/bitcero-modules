@@ -50,9 +50,9 @@ $db =& Database::getInstance();
 if (is_numeric($vars[0]) && is_numeric($vars[1]) && is_numeric($vars[2])){
 	
 	$time = mktime(0,0,0,$vars[1],$vars[0],$vars[2]);
-	$sql = "SELECT id_post FROM ".$db->prefix("mw_posts")." WHERE titulo_amigo='$vars[3]' AND (fecha>=$time AND fecha<=".($time + 86400).")";
+	$sql = "SELECT id_post FROM ".$db->prefix("mw_posts")." WHERE shortname='$vars[3]' AND (pubdate>=$time AND pubdate<=".($time + 86400).")";
 	$result = $db->query($sql);
-	list($post) = $db->fetchRow($result);	
+	list($post) = $db->fetchRow($result);
 	require 'post.php';
 	die();
 }

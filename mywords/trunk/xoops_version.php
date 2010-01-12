@@ -129,6 +129,22 @@ $modversion['config'][3]['formtype'] = 'textbox';
 $modversion['config'][3]['valuetype'] = 'int';
 $modversion['config'][3]['default'] = 10;
 
+// CSS File
+$modversion['config'][4]['name'] = 'use_css';
+$modversion['config'][4]['title'] = '_MI_MW_CSS';
+$modversion['config'][4]['description'] = '';
+$modversion['config'][4]['formtype'] = 'yesno';
+$modversion['config'][4]['valuetype'] = 'int';
+$modversion['config'][4]['default'] = 1;
+
+// CSS Path
+$modversion['config'][5]['name'] = 'css_file';
+$modversion['config'][5]['title'] = '_MI_MW_CSSFILE';
+$modversion['config'][5]['description'] = '';
+$modversion['config'][5]['formtype'] = 'textbox';
+$modversion['config'][5]['valuetype'] = 'text';
+$modversion['config'][5]['default'] = XOOPS_URL.'/modules/mywords/css/main.css';
+
 /*
 // Envío de Artículo
 $modversion['config'][1]['name'] = 'submit';

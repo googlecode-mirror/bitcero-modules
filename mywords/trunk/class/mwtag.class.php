@@ -50,6 +50,13 @@ class MWTag extends RMObject
 		$this->updateTable();
     }
     
+    function permalink(){
+        $mc = RMUtilities::get()->module_config('mywords');
+        $ret = MWFunctions::get_url();
+        $ret .= $mc['permalinks']==1 ? '?tag='.$this->id() : ($mc['permalinks']==2 ? "tag/".$this->getVar('shortname','n')."/" : "tag/".$this->id());
+        return $ret;
+    }
+    
     function save(){
 		if ($this->isNew()){
 			return $this->saveToTable();
