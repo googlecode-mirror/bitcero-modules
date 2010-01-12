@@ -151,7 +151,7 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_style('editor_html.css','rmcommon');
 		$rtn = "\n<div class='ed-container html_editor_container' style='width: $this->width;' id='".$this->getName()."-ed-container'>
 		<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
-		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: $this->width; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
+		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
 		</div>";
 		return $rtn;
 	}
