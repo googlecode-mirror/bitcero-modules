@@ -30,29 +30,26 @@
 }
 .mwitem .mwfoot{
     display: block;
-    font-size: 0.9em;
+    font-size: 0.85em;
 }
 .mwitem .mwfoot .mwcats{
     display: block;
-    float: left;
 }
 .mwitem .mwfoot .mwtags{
     display: block;
-    float: right;
-    font-size: 0.9em;
 }
-.mwitem .mwfoot .mwbooks{
+.mwitem .mwbooks{
     display: block;
     clear: both;
     padding: 10px 0 0 0;
 }
-.mwitem .mwfoot .mwbooks img{
+.mwitem .mwbooks img{
     padding: 4px;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
-.mwitem .mwfoot .mwbooks img:hover{
+.mwitem .mwbooks img:hover{
     background: #ebebeb;
 }

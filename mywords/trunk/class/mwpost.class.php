@@ -99,7 +99,7 @@ class MWPost extends RMObject
         
         $text = explode("<!--more-->", $this->getVar('content'));
         
-		return count($text)>0;
+		return count($text)>1;
 	}
 	
 	/**
@@ -116,6 +116,11 @@ class MWPost extends RMObject
 	 * Funciones para el control de lecturas
 	 */
 	public function add_read(){
+		global $xoopsUser;
+		
+		$editor = new MWEditor($this->getVar('author'));
+		if ($xoopsUser && $editor->id()==$xoopsUser->uid()) return;
+		
 		$this->setVar('reads', $this->getVar('reads') + 1);
 		$this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET reads='".($this->getVar('reads'))."' 
 				WHERE id_post='".$this->id()."'");
@@ -328,6 +333,28 @@ class MWPost extends RMObject
 		if (trim($name)=='' || trim($value)=='') return;
 		
 		$this->metas[$name] = $value;
+	}
+	
+	/**
+	* Determines if current or given user can read this post
+	* @param int $id User ID
+	* @return bool
+	*/
+	public function user_allowed($uid=null){
+		global $xoopsUser;
+		
+		if ($this->getVar('status')!='publish') return false;
+		if ($this->getVar('visibility')=='public') return true;
+		if ($this->getVar('visibility')=='private'){
+			
+			$user = $uid!=null ? $uid : $xoopsUser->uid();
+			$editor = new MWEditor($this->getVar('author'));
+			if ($user==$editor->getVar('uid')) return true;
+			
+		}
+		
+		return false;
+		
 	}
 	
 	/**

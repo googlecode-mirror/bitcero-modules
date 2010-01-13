@@ -1,19 +1,20 @@
-<div class="mwPostNav">
+<div class="mwpostnav">
     <{if $prev_post}><span class="prev"><a href="<{$prev_post.link}>">&laquo; <{$prev_post.title}></a></span><{/if}>
     <{if $next_post}><span class="next"><a href="<{$next_post.link}>"><{$next_post.title}> &raquo;</a></span><{/if}>
     <a href="<{$mw_url}>">Inicio</a>
 </div>
-<div class="npitem">
-	<h1><{$post.titulo}></h1>
-	<{if $post.publicado!=''}>
-        <div class="published"><{$post.publicado}>. <{if $show_edit}> | <a href="<{$edit_link}>"><{$lang_edit}></a><{/if}>
+<div class="mwitem">
+	<h1><{$post.title}></h1>
+	<{if $post.published!=''}>
+        <span class="mwinfotop">
+        <{$post.published}>. <{if $edit_link}> | <{$edit_link}><{/if}>
 	    | <{$lang_reads}>
-	    <{if $post.trackback}> | <a href="<{$xoops_url}>/modules/mywords/?trackback=1&amp;post=<{$post.id}>">Trackback</a><{/if}>        </div>
+	    </span>
     <{/if}>
     <{if $socials}>
-        <div class="socials">
+        <div class="mwbooks">
             <{foreach item=bm from=$socials}>
-                <a href="javascript:;" onclick="openWithSelfMain('<{$bm.link}>','marker',600,600);" title="<{$bm.alt}>"><img src="<{$xoops_url}>/uploads/mywords/icons/<{$bm.icon}>" alt="<{$bm.alt}>" /></a>
+                <a href="javascript:;" onclick="openWithSelfMain('<{$bm.url}>','marker',600,600);" title="<{$bm.alt}>"><img src="<{$xoops_url}>/modules/mywords/images/icons/<{$bm.icon}>" alt="<{$bm.alt}>" /></a>
             <{/foreach}>
         </div>
     <{/if}>

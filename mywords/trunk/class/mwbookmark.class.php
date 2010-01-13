@@ -36,7 +36,7 @@ class MWBookmark extends RMObject
     * @desc Crea el enlace para agregar el elemento a la red social
     */
     public function link($title, $url, $desc=''){
-        $link = str_replace('{TITLE}', urlencode($title), $this->url());
+        $link = str_replace('{TITLE}', urlencode($title), $this->getVar('url'));
         $link = str_replace('{URL}', urlencode($url), $link);
         $link = str_replace('{DESC}', urlencode($desc), $link);
         return $link;
