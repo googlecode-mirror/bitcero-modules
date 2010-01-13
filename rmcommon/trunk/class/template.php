@@ -137,6 +137,29 @@ class RMTemplate
     }
     
     /**
+    * Get template path for front section
+    * @param string File path inside module folder
+    * @param string Module directory name
+    * @return string
+    */
+    public function tpl_path($file, $module, $subdir = 'templates'){
+		global $xoopsConfig;
+		
+		$theme = $xoopsConfig['theme_set'];
+		$subdir = $subdir == '' ? 'templates' : $subdir;
+		
+		if(!is_dir(XOOPS_ROOT_PATH.'/modules/'.$module)) return;
+		
+		$tpath = XOOPS_THEME_PATH.'/'.$theme.'/modules/'.$module.'/'.($subdir!='templates'?$subdir.'/':'').$file;
+		
+		if(is_file($tpath))
+			return $tpath;
+			
+		return XOOPS_ROOT_PATH.'/modules/'.$module.'/'.$subdir.'/'.$file;
+		
+    }
+    
+    /**
     * Set the location identifier for current page
     * This identifier will help to RMCommon to find widgets, forms, etc
     */
