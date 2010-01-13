@@ -85,11 +85,21 @@ if($xoopsUser && $xoopsUser->isAdmin() || $editor->getVar('uid')==$xoopsUser->ui
 
 $xoopsTpl->assign('lang_reads', sprintf(__('%u views','mywords'), $post->getVar('reads')));
 
+// Tags
+$tags = $post->tags(true);
+$tags_list = '';
+foreach($tags as $i => $tag){
+    $tags_list .= ($tags_list==''?'':', ').'<a href="'.$tag->permalink().'">'.$tag->getVar('tag').'</a>';
+}
+
 // Post data
 $xoopsTpl->assign('post', array(
 	'id'	=> $post->id(),
 	'title'	=> $post->getVar('title'),
-	'published' => $publicado = sprintf(__('Published on %s at %s by %s','mywords'), '<a href="'.$post->permalink().'">'.formatTimestamp($post->getVar('pubdate'),'s').'</a>', formatTimestamp($post->getVar('pubdate'),'t'),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>")
+	'published' => $publicado = sprintf(__('Published on %s at %s by %s','mywords'), '<a href="'.$post->permalink().'">'.formatTimestamp($post->getVar('pubdate'),'s').'</a>', formatTimestamp($post->getVar('pubdate'),'t'),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>"),
+    'text'    => $post->content(false, $page),
+    'cats'  => $post->get_categories_names(),
+    'tags'  => $tags_list
 ));
 
 // Social sites
@@ -98,9 +108,17 @@ foreach($socials as $site){
 		'title' => $site->getVar('title'),
 		'icon'	=> $site->getVar('icon'),
 		'url'	=> $site->link($post->permalink(), $post->getVar('title'), TextCleaner::truncate($post->content(true), 60)),
-		'alt'	=> $site->getVar('alt'),
-		'text'	=> $post->content(false, $page)
+		'alt'	=> $site->getVar('alt')
 	));
 }
+
+unset($tags_list);
+
+// Comments
+$comments = RMFunctions::get_comments('mywords','post='.$post->id());
+
+// Language
+$xoopsTpl->assign('lang_publish', __('Published in','mywords'));
+$xoopsTpl->assign('lang_tagged',__('Tagged as','mywords'));
  
 include 'footer.php';

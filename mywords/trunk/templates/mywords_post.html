@@ -21,21 +21,8 @@
 	<div class="text">
 		<{$post.text}>
 	</div>
-	<p class="npfoot"><{if $post.categos!=''}><{$lang_publish}> <{$post.categos}><{/if}></p>
+	<div class="mwfoot">
+        <{if $post.cats!=''}><span class="mwcats"><{$lang_publish}> <{$post.cats}></span><{/if}>
+        <{if $post.tags!=''}><span class="mwtags"><{$lang_tagged}> <{$post.tags}></span><{/if}>
+    </div>
 </div>
-<!-- Comenta y comparte -->
-<a name="comments"></a>
-<p class="nptopcom"><span class="npwritecom"><a href="#write"><{$lang_writecom}></a>.
-</span><span class="acomment"><a id="linkcom" href="javascript:;" onclick="npressShowComments();"><{$post.comments}></a>
-| <a href="javascript:;" onclick="npressShowTracks();" id="linktrack"><{$post.trackbacks}></a></span></p>
-<DIV id="comentarios" style="z-index: 5; LEFT: 25px; VISIBILITY: visible; POSITION: relative; left: 0px; TOP: 0px; BACKGROUND-COLOR: transparent; DISPLAY: ;">
-	<{include file="db:mywords_pagenav.html"}>
-	<!-- /Comentarios -->
-	<a name="write"></a>
-		<{include file="db:system_comments_view.html"}>
-</DIV>
-<DIV id="trackbacks" style="z-index: 5; LEFT: 25px; VISIBILITY: hidden; POSITION: relative; left: 0px; TOP: 0px; BACKGROUND-COLOR: transparent; DISPLAY: none;">
-	<{foreach item=track from=$trackbacks}>
-		<{include file="db:npress_trackback.html"}>
-	<{/foreach}>
-</DIV>

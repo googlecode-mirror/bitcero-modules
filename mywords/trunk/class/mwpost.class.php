@@ -92,6 +92,7 @@ class MWPost extends RMObject
         }
         
         $content = str_replace("<!--more-->","",$this->getVar('content'));
+        return $content;
         
 	}
 	
@@ -193,7 +194,7 @@ class MWPost extends RMObject
 	 */
 	public function get_categories_names($asList=true, $delimiter=',', $links = true, $section='front'){
 		
-		if (empty($this->lcats)) $this->get_categos();
+		if (empty($this->lcats)) $this->get_categos('data');
 		
         $rtn = $asList ? '' : array();
         $url = MWFunctions::get_url();
@@ -212,6 +213,7 @@ class MWPost extends RMObject
 				$rtn[] = $row['nombre'];
 			}
 		}
+        
 		return $rtn;
 	}
     
