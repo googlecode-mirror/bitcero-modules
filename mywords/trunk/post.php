@@ -107,7 +107,7 @@ foreach($socials as $site){
 	$xoopsTpl->append('socials', array(
 		'title' => $site->getVar('title'),
 		'icon'	=> $site->getVar('icon'),
-		'url'	=> $site->link($post->permalink(), $post->getVar('title'), TextCleaner::truncate($post->content(true), 60)),
+		'url'	=> $site->link($post->getVar('title'), $post->permalink(), TextCleaner::truncate($post->content(true), 60)),
 		'alt'	=> $site->getVar('alt')
 	));
 }
@@ -115,6 +115,9 @@ foreach($socials as $site){
 unset($tags_list);
 
 // Comments
+// When use the common utilities comments system you can choose between
+// use of Common Utilities templates or use your own templates
+// We will use MyWords included templates
 $comments = RMFunctions::get_comments('mywords','post='.$post->id());
 
 // Language
