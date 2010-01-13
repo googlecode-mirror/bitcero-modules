@@ -47,3 +47,21 @@ CREATE TABLE `rmc_images` (
 `cat` INT NOT NULL,
 `uid` INT NOT NULL
 ) ENGINE = MYISAM ;
+
+CREATE TABLE `rmc_comments` (
+`id_com` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`id_obj` VARCHAR( 50 ) NOT NULL ,
+`type` VARCHAR( 50 ) NOT NULL DEFAULT 'module',
+`parent` BIGINT NOT NULL DEFAULT '0',
+`params` VARCHAR( 200 ) NOT NULL ,
+`content` TEXT NOT NULL ,
+`user` INT NOT NULL ,
+INDEX ( `id_obj` , `type` )
+) ENGINE = MYISAM;
+
+CREATE TABLE `rmc_comusers` (
+`id_user` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`xuid` INT NOT NULL DEFAULT '0',
+`name` VARCHAR( 150 ) NOT NULL ,
+`email` VARCHAR( 150 ) NOT NULL
+) ENGINE = MYISAM ;

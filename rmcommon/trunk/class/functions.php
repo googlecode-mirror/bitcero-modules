@@ -121,5 +121,27 @@ class RMFunctions
 		
 		return $categories;
 	}
+    
+    /**
+    * Get all comments for given parameters
+    */
+    public function get_comments($obj,$params,$type='module',$parent=0,$user=null){
+        
+        $db = Database::getInstance();
+        
+        $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
+        $result = $db->query($sql);
+        $comms = array();
+        while($row = $db->fetchArray($result)){
+            
+            $com = new RMComment();
+            $com->assignVars($row);
+            $comms[] = $com;
+            
+        }
+        
+        return $comms;
+        
+    }
 	
 }
