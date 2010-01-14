@@ -120,6 +120,9 @@ unset($tags_list);
 // We will use MyWords included templates
 $comments = RMFunctions::get_comments('mywords','post='.$post->id());
 
+// Comments form
+RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module');
+
 // Language
 $xoopsTpl->assign('lang_publish', __('Published in','mywords'));
 $xoopsTpl->assign('lang_tagged',__('Tagged as','mywords'));
