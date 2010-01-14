@@ -161,7 +161,7 @@ class RMFunctions
     * @param string Object type (eg. module, plugin, etc.)
     */
     public function comments_form($obj, $params, $type='module'){
-        global $xoopsTpl;
+        global $xoopsTpl, $xoopsRequestUri;
         
         $form = array(
             'show_name'     => true,
@@ -170,17 +170,47 @@ class RMFunctions
             'lang_email'    => __('Email address','rmcommon'),
             'show_url'      => true,
             'lang_url'      => __('Web site', 'rmcommon'),
-            'lang_text'     =>  __('Your comment', 'rmcommon'),
-            'lang_submit'   =>  __('Submit Comment', 'rmcommon'),
-            'lang_title'    =>  __('Submit a comment', 'rmcommon')
+            'lang_text'     => __('Your comment', 'rmcommon'),
+            'lang_submit'   => __('Submit Comment', 'rmcommon'),
+            'lang_title'    => __('Submit a comment', 'rmcommon'),
+            'uri'			=> urlencode(RMFunctions::current_url()),
+            'actionurl'		=> RMCURL.'/post_comment.php',
+            'params'		=> urlencode($params),
+            'type'			=> $type,
+            'object'		=> $obj,
+            'action'		=> 'save'
         );
         
         // You can include new content into Comments form
         // eg. Captcha checker, etc
         $form = RMEventsApi::get()->run_event('rm_comments_form', $form, $obj, $params, $type);
+        RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
+        RMTemplate::get()->add_head('<script type="text/javascript">
+        $(document).ready(function(){
+        	$("#rmc-comment-form").validate({
+        		messages: {
+        			comment_name: "'.__('Please specify your name','rmcommon').'",
+        			comment_email: "'.__('Please specify a valid email','rmcommon').'",
+        			comment_text: "'.__('Please write a message','rmcommon').'",
+        			comment_url: "'.__('Please enter a valid URL','rmcommon').'"
+        		}
+        	});
+        });</script>');
         
         $xoopsTpl->assign('cf', $form);
         
     }
+    
+    public function current_url() {
+		$pageURL = 'http';
+		if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+		$pageURL .= "://";
+		if ($_SERVER["SERVER_PORT"] != "80") {
+	  		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+		} else {
+			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		}
+	 	return $pageURL;
+	}
 	
 }
