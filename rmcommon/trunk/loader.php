@@ -76,6 +76,7 @@ if (!RMEventsApi::get()->get_object('rmcommon', 'module')){
     include_once 'include/events_setup.php';
     RMEventsApi::get()->register_events($rmc_events, $eo);
     unset($rmc_events);
+    RMEventsApi::get()->register_methods($rmc_methods, $eo);
 }
 
 include_once RMCPATH.'/include/tpl_functions.php';

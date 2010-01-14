@@ -22,6 +22,13 @@ $rmc_events = array(
     'rmevent_admin_output',
     'rm_loading_editorimages',				// Antes de cargar la plantilla para mostrar el administrador de imagenes en editores
     'rm_imgmgr_editor_options',
-    'rm_loading_single_editorimgs'      // Se cargan las imágenes en tiny-images.php
+    'rm_loading_single_editorimgs',      // Se cargan las imágenes en tiny-images.php
+    'rmc_page_loaded',           // Called in footer.php file just before to show the page
+    'rm_comments_form'
+);
+
+$rmc_methods['rmc_include_styles'] = array(
+    'event'    =>    'rmc_page_loaded',
+    'file'    =>    '/modules/rmcommon/include/events-methods.php'
 );
 

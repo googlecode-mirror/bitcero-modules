@@ -1,0 +1,18 @@
+<div class="comments_form">
+    <h3><{$cf.lang_title}></h3>
+    <{if $cf.show_name}>
+    <label for="comment-name" class="label"><{$cf.lang_name}></label>
+    <input type="text" name="comment_name" id="comment-name" value="<{$cf.name}>" />
+    <{/if}>
+    <{if $cf.show_email}>
+    <label for="comment-email" class="label"><{$cf.lang_email}></label>
+    <input type="text" name="comment_email" id="comment-email" value="<{$cf.email}>" />
+    <{/if}>
+    <{if $cf.show_url}>
+    <label for="comment-url" class="label"><{$cf.lang_url}></label>
+    <input type="text" name="comment_url" id="comment-url" value="<{$cf.url}>" />
+    <{/if}>
+    <label for="comment-text" class="label"><{$cf.lang_text}></label>
+    <textarea name="comment_text" id="comment-text" class=""><{$cf.text}></textarea>
+    <input type="submit" value="<{$cf.lang_submit}>" />
+</div>

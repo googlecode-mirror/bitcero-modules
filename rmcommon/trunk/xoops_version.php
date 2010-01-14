@@ -35,6 +35,12 @@ $modversion['tables'][1] = 'api_methods';
 $modversion['tables'][2] = 'api_objects';
 $modversion['tables'][3] = 'rmc_img_cats';
 
+// Templates
+$modversion['templates'][1]['file'] = 'rmc_comments_display.html';
+$modversion['templates'][1]['description'] = 'Comments list';
+$modversion['templates'][2]['file'] = 'rmc_comments_form.html';
+$modversion['templates'][2]['description'] = 'Shows the comments form';
+
 /**
 * Events file
 */

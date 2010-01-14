@@ -1,0 +1,17 @@
+.comments_form{
+    padding: 10px 0;
+}
+.comments_form label.label{
+    display: block;
+    padding: 0 0 5px 0;
+    margin: 10px 0 0 0;
+}
+.comments_form input[type='text']{
+    width: 350px;
+    display: block;
+}
+.comments_form textarea{
+    width: 80%;
+    height: 150px;
+    display: block;
+}

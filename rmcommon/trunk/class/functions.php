@@ -124,6 +124,12 @@ class RMFunctions
     
     /**
     * Get all comments for given parameters
+    * @param string Object id (can be a module name)
+    * @param string Params for comment item
+    * @param string Object type (eg. module, plugin, etc)
+    * @param int Comment parent id, will return all comments under a given parent
+    * @param int User that has been posted the comments
+    * @return array
     */
     public function get_comments($obj,$params,$type='module',$parent=0,$user=null){
         
@@ -140,7 +146,40 @@ class RMFunctions
             
         }
         
+        $comms = RMEventsApi::get()->run_event('rmc_loading_comments', $comms, $obj, $params, $type, $parent, $user);
+        
         return $comms;
+        
+    }
+    
+    /**
+    * Create the comments form
+    * You need to include the template 'rmc_comments_form.html' where
+    * you wish to show this form
+    * @param string Object name (eg. mywords, qpages, etc.)
+    * @param string Params to be included in form
+    * @param string Object type (eg. module, plugin, etc.)
+    */
+    public function comments_form($obj, $params, $type='module'){
+        global $xoopsTpl;
+        
+        $form = array(
+            'show_name'     => true,
+            'lang_name'     => __('Name','rmcommon'),
+            'show_email'    => true,
+            'lang_email'    => __('Email address','rmcommon'),
+            'show_url'      => true,
+            'lang_url'      => __('Web site', 'rmcommon'),
+            'lang_text'     =>  __('Your comment', 'rmcommon'),
+            'lang_submit'   =>  __('Submit Comment', 'rmcommon'),
+            'lang_title'    =>  __('Submit a comment', 'rmcommon')
+        );
+        
+        // You can include new content into Comments form
+        // eg. Captcha checker, etc
+        $form = RMEventsApi::get()->run_event('rm_comments_form', $form, $obj, $params, $type);
+        
+        $xoopsTpl->assign('cf', $form);
         
     }
 	
