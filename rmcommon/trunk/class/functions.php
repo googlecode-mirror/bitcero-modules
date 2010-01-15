@@ -161,14 +161,14 @@ class RMFunctions
     * @param string Object type (eg. module, plugin, etc.)
     */
     public function comments_form($obj, $params, $type='module'){
-        global $xoopsTpl, $xoopsRequestUri;
+        global $xoopsTpl, $xoopsRequestUri, $xoopsUser;
         
         $form = array(
-            'show_name'     => true,
+            'show_name'     => !($xoopsUser),
             'lang_name'     => __('Name','rmcommon'),
-            'show_email'    => true,
+            'show_email'    => !($xoopsUser),
             'lang_email'    => __('Email address','rmcommon'),
-            'show_url'      => true,
+            'show_url'      => !($xoopsUser),
             'lang_url'      => __('Web site', 'rmcommon'),
             'lang_text'     => __('Your comment', 'rmcommon'),
             'lang_submit'   => __('Submit Comment', 'rmcommon'),
