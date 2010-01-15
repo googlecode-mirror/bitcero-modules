@@ -56,7 +56,7 @@ while ($row = $db->fetchArray($result)){
         'time'              =>$post->getVar('pubdate'),
         'author'            =>$authors[$post->getVar('author')]->getVar('name'),
         'alink'				=>$alink,
-        'edit'              => $xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid(),
+        'edit'              => $xoopsUser && ($xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid()),
         'tags'              => $post->tags(true)
     ));
     

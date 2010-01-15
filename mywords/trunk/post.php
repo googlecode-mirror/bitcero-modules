@@ -77,7 +77,7 @@ if ($db->getRowsNum($result)>0){
     $xoopsTpl->assign('next_post', array('link'=>$pn->permalink(), 'title'=>$pn->getVar('title')));
 }
 
-if($xoopsUser && $xoopsUser->isAdmin() || $editor->getVar('uid')==$xoopsUser->uid()){
+if($xoopsUser && ($xoopsUser->isAdmin() || $editor->getVar('uid')==$xoopsUser->uid())){
 	$edit = '<a href="'.XOOPS_URL.'/modules/mywords/admin/posts.php?action=edit&amp;id='.$post->id().'">'.__('Edit Post','mywords').'</a>';
 	$xoopsTpl->assign('edit_link', $edit);
 	unset($edit);
