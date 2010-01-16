@@ -57,26 +57,15 @@ function rmc_autoloader($class){
 
 spl_autoload_register('rmc_autoloader');
 
-require_once 'api/events.php';
-require_once 'api/l10n.php';
-
-// Check if module has been installed
 $rmc_config = RMUtilities::get()->module_config('rmcommon');
+
+require_once 'api/l10n.php';
 
 load_mod_locale('rmcommon','');
 
 if (!$rmc_config){
     _e('Sorry, Red Mexico Common Utilities has not been installed yet!');
     die();
-}
-
-// Check if Events has been created
-if (!RMEventsApi::get()->get_object('rmcommon', 'module')){
-    $eo = RMEventsApi::get()->register_object('rmcommon', 'module', '/modules/rmcommon');
-    include_once 'include/events_setup.php';
-    RMEventsApi::get()->register_events($rmc_events, $eo);
-    unset($rmc_events);
-    RMEventsApi::get()->register_methods($rmc_methods, $eo);
 }
 
 include_once RMCPATH.'/include/tpl_functions.php';

@@ -14,11 +14,11 @@ include_once 'widgets/mods_and_settings.php';
 $fct = rmc_server_var($_GET, 'fct', '');
 if ($fct!='blocksadmin'){
 	$right_widgets = array();
-	$right_widgets = RMEventsApi::get()->run_event('rmcevent_load_right_widgets', $right_widgets);
+	$right_widgets = RMEvents::get()->run_event('rmcevent_load_right_widgets', $right_widgets);
 }
         
 // Left Widgets
-$left_widgets = RMEventsApi::get()->run_event('rmcevent_load_left_widgets', $left_widgets);
+$left_widgets = RMEvents::get()->run_event('rmcevent_load_left_widgets', $left_widgets);
 
 RMTemplate::get()->add_style('gui.css','');
 include 'theme.php';

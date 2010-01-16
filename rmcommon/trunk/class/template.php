@@ -105,7 +105,7 @@ class RMTemplate
 		include_once RMCPATH.'/themes/'.$theme.'/admin_gui.php';
 		$output = ob_get_clean();
 		
-		$output = RMEventsApi::get()->run_event('rmevent_admin_output', $output);
+		$output = RMEvents::get()->run_event('rmevent_admin_output', $output);
 		
 		echo $output;
     }

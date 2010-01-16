@@ -24,7 +24,8 @@ $rmc_events = array(
     'rm_imgmgr_editor_options',
     'rm_loading_single_editorimgs',      // Se cargan las imágenes en tiny-images.php
     'rmc_page_loaded',           // Called in footer.php file just before to show the page
-    'rm_comments_form'
+    'rm_comments_form',             // Called when comments form is loading
+    'rm_comment_saved',             // Called inmediatly after save a comment
 );
 
 $rmc_methods['rmc_include_styles'] = array(

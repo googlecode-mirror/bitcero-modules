@@ -25,16 +25,14 @@ if(!$xoopsUser){
     $name = rmc_server_var($_POST, 'comment_name', '');
     $email = rmc_server_var($_POST, 'comment_email', '');
     $url = rmc_server_var($_POST, 'comment_url', '');
-    
-    echo $name.'<br />'.$email.'<br />'.$url;
+    $xuid = 0;
     
 } else {
     
     $name = $xoopsUser->getVar('uname');
     $email = $xoopsUser->getVar('email');
     $url = $xoopsUser->getVar('url');
-    
-    echo $name.'<br />'.$email.'<br />'.$url;
+    $xuid = $xoopsUser->uid();
     
 }
 
@@ -73,13 +71,46 @@ if (trim($text)==''){
     die();
 }
 
-RMEventsApi::get()->run('rm_comment_postdata', null);
+RMEventsApi::get()->run_event('rm_comment_postdata', null);
 
-// Save user
+// Save comment user
+$db = Database::getInstance();
+if($xoopsUser){
+    
+    $sql = "SELECT id_user FROM ".$db->prefix("rmc_comusers")." WHERE xuid=".$xoopsUser->uid();
+    
+} else {
+    
+    $sql = "SELECT id_user FROM ".$db->prefix("rmc_comusers")." WHERE email='$email'";
+    
+}
+
+$result = $db->query($sql);
+list($uid) = $db->fetchRow($result);
+
+if ($uid<=0){
+    
+    $db->queryF("INSERT INTO ".$db->prefix("rmc_comusers")." (`xuid`,`name`,`email`) VALUES ('$xuid','$name','$email')");
+    $uid = $db->getInsertId();
+    echo $uid;
+    
+}
 
 $comment = new RMComment();
 $comment->setVar('id_obj', $object);
 $comment->setVar('type', $type);
 $comment->setVar('parent', isset($parent) ? $parent : 0);
 $comment->setVar('params', $params);
-$comment->setVar('content', $content);
+$comment->setVar('content', $text);
+$comment->setVar('user', $xuid);
+
+if ($comment->save()){
+    
+    RMEventsApi::get()->run_event('rm_comment_saved', $comment, $uri);
+    redirect_header($uri.'#comment-'.$comment->id(), 1, __('Comment posted successfully!','rmcommon'));
+    
+} else {
+    
+    redirect_header($uri, 1, __('Comment could not be posted!','rmcommon').'<br />'.$comment->errors());
+    
+}

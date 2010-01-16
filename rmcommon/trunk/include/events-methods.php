@@ -14,7 +14,7 @@ function rmc_include_styles(){
     //ob_start();
     $xoTheme->render();
     $page = ob_get_clean();
-    
+    ob_start();
     $cf = $xoopsTpl->get_template_vars('cf');
     if(is_array($cf) && !empty($cf)){
         RMTemplate::get()->add_style('comments.css', 'rmcommon');
@@ -29,5 +29,4 @@ function rmc_include_styles(){
     echo $styles;
     echo $heads;
     echo substr($page, $pos);
-    
 }

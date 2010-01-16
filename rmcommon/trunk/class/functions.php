@@ -131,7 +131,7 @@ class RMFunctions
     * @param int User that has been posted the comments
     * @return array
     */
-    public function get_comments($obj,$params,$type='module',$parent=0,$user=null){
+    public function get_comments($obj,$params,$type='module',$parent=0,$user=null,$assign=true){
         
         $db = Database::getInstance();
         
@@ -142,13 +142,23 @@ class RMFunctions
             
             $com = new RMComment();
             $com->assignVars($row);
-            $comms[] = $com;
+            $comms[] = array(
+                'id'        => $row['id_com'],
+                'text'      => TextCleaner::to_display($row['content'], true)
+            );
+            echo TextCleaner::to_display($row['content'], true).'<br />';
             
         }
         
         $comms = RMEventsApi::get()->run_event('rmc_loading_comments', $comms, $obj, $params, $type, $parent, $user);
         
-        return $comms;
+        if ($assign){
+            global $xoopsTpl;
+            $xoopsTpl->assign('comments', $comms);
+            return true;
+        } else {
+            return $comms;
+        }
         
     }
     
@@ -203,13 +213,9 @@ class RMFunctions
     
     public function current_url() {
 		$pageURL = 'http';
-		if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+		if (isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) == "on") {$pageURL .= "s";}
 		$pageURL .= "://";
-		if ($_SERVER["SERVER_PORT"] != "80") {
-	  		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-		} else {
-			$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		}
+	  	$pageURL .= $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 	 	return $pageURL;
 	}
 	

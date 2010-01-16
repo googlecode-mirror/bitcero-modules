@@ -69,7 +69,7 @@ foreach ($mods as $mod) {
  );
 
 // Event for those elements that want to insert new options in modules menus
-$menu = RMEventsApi::get()->run_event('rmevent_modules_menu', $menu);
+$menu = RMEvents::get()->run_event('rmevent_modules_menu', $menu);
  
 $rtn = '';
 foreach ($menu as $mod){
@@ -146,7 +146,7 @@ $menu[] = array(
 );
 
 // Event for those elements that want to insert new options in settings menu
-$menu = RMEventsApi::get()->run_event('rmevent_settings_menu', $menu);
+$menu = RMEvents::get()->run_event('rmevent_settings_menu', $menu);
     
 $rtn = '';
 foreach ($menu as $mod){

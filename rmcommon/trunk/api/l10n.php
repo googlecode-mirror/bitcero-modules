@@ -17,7 +17,7 @@ function get_locale(){
 	global $exm_locale;
 	
 	if (isset($exm_locale) && $exm_locale!='')
-		return RMEventsApi::get()->run_event('rmevent_get_locale', $exm_locale);
+		return RMEvents::get()->run_event('rmevent_get_locale', $exm_locale);
 	
 	// Search for a defined constant
 	
@@ -28,7 +28,7 @@ function get_locale(){
 		$exm_locale = 'en_US';
 	
 	// Get default locale
-	$exm_locale = RMEventsApi::get()->run_event('rmevent_get_locale', $exm_locale);
+	$exm_locale = RMEvents::get()->run_event('rmevent_get_locale', $exm_locale);
 	
 	return $exm_locale;
 }
@@ -118,9 +118,9 @@ function translate($text, $domain = 'system'){
 	global $l10n;
 	
 	if (isset($l10n[$domain]))
-		return RMEventsApi::get()->run_event('rmevent_get_locale_text', $l10n[$domain]->translate($text), $text, $domain); 
+		return RMEvents::get()->run_event('rmevent_get_locale_text', $l10n[$domain]->translate($text), $text, $domain); 
 	else
-		return RMEventsApi::get()->run_event('rmevent_get_locale_text', $text, $text, $domain);
+		return RMEvents::get()->run_event('rmevent_get_locale_text', $text, $text, $domain);
 }
 
 /**

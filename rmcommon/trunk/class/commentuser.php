@@ -8,16 +8,11 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class RMComment extends RMObject
+class RMCommentUser extends RMObject
 {
-    /**
-    * User owner
-    */
-    private $user = array();
-    
     public function __construct($id=null){
         $this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("rmc_comments");
+        $this->_dbtable = $this->db->prefix("rmc_comusers");
         $this->setNew();
         $this->initVarsFromTable();
         if ($id==null){
@@ -31,33 +26,15 @@ class RMComment extends RMObject
     }
     
     public function id(){
-        return $this->getVar('id_com');
+        return $this->getVar('id_user');
     }
     
-    private function load_user(){
-        
-        $db = $this->db;
-        
-        $sql = "SELECT * FROM ".$db->prefix("rmc_comusers")." WHERE id_user=".$this->getVar('user');
-        $result = $db->query($sql);
-        if ($db->getRowsNum($resul)<=0) return;
-        
-        $row = $db->fetchArray($result);
-        $this->user = $row;
-        
-    }
-    
-    /**
-    * Save comment
-    */
     public function save(){
-        
-        if ($this->isNew()){
+        if($this->isNew()){
             return $this->saveToTable();
         } else {
             return $this->updateTable();
         }
-        
     }
     
 }
