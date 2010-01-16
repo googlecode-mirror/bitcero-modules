@@ -118,7 +118,7 @@ unset($tags_list);
 // When use the common utilities comments system you can choose between
 // use of Common Utilities templates or use your own templates
 // We will use MyWords included templates
-$comments = RMFunctions::get_comments('mywords','post='.$post->id());
+RMFunctions::get_comments('mywords','post='.$post->id());
 
 // Comments form
 RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module');
