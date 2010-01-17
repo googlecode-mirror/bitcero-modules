@@ -22,7 +22,7 @@ foreach (RMTemplate::get()->tpl_head as $head){
 	<a href="javascript:;" class="select" id="a-upload" onclick="show_upload();"><?php _e('Upload Files','rmcommon'); ?></a>
 	<a href="javascript:;" id="a-url" onclick="show_fromurl();"><?php _e('From URL','rmcommon'); ?></a>
 	<a href="javascript:;" id="a-library" onclick="show_library();"><?php _e('From Library','rmcommon'); ?></a>
-    <?php echo RMEventsApi::get()->run_event('rm_imgmgr_editor_options', ''); ?>
+    <?php echo RMEvents::get()->run_event('rmcommon.imgmgr_editor_options', ''); ?>
 </div>
 <div id="upload-container">
     <div class="categories_selector">

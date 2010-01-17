@@ -22,3 +22,12 @@
 	display: block;
 	color: #F00;
 }
+
+/** Item **/
+.comment_item{
+	margin: 0 0 10px 0;
+	padding: 0 0 10px 0;
+	border: 0;
+	border-bottom: 1px dotted #CCC;
+	overflow: hidden;
+}

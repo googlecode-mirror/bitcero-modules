@@ -170,12 +170,12 @@ class RMFormEditor extends RMFormElement
 		$rtn .= "<textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea>";
 		$rtn .= "</div>";
         // buttons
-        $tplugins = RMEventsApi::get()->run_event('rm_exmcode_plugins', $this->ex_plugins);
+        $tplugins = RMEvents::get()->run_event('rmcommon.exmcode_plugins', $this->ex_plugins);
         $tplugins = explode(',',$tplugins);
         foreach ($tplugins as $p){
             $plugins .= $plugins=='' ? $p.': true' : ','.$p.': true';
         }
-        RMTemplate::get()->add_head("<script type=\"text/javascript\">\nvar ".$this->getName()."_buttons = \"".RMEventsApi::get()->run_event('rm_exmcode_buttons', $this->ex_buttons)."\";\nvar ".$this->getName()."_plugins = {".$plugins."};\n</script>");
+        RMTemplate::get()->add_head("<script type=\"text/javascript\">\nvar ".$this->getName()."_buttons = \"".RMEvents::get()->run_event('rmcommon.exmcode_buttons', $this->ex_buttons)."\";\nvar ".$this->getName()."_plugins = {".$plugins."};\n</script>");
 		return $rtn;
 	}
     

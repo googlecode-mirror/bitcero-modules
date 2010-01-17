@@ -30,7 +30,7 @@ while ($row = $db->fetchArray($result)){
 }
 
 // Load new icons from plugins
-RMEventsApi::get()->run_event('rmc_load_emotions',$emotions,'exmcode');
+RMEvents::get()->run_event('rmcommon.load_emotions',$emotions,'exmcode');
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

@@ -8,6 +8,9 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-function rmc_include_styles(){
-    
+class RmcommonRmcommonPreload
+{
+	public function eventRmcommonPage_loaded(){
+		
+	}
 }

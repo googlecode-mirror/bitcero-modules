@@ -14,13 +14,19 @@ define('ABSURL', XOOPS_URL);
 define('ABSPATH', XOOPS_ROOT_PATH);
 define('RMCVERSION','2.0');
 
+ob_start('cu_render_output');
+
 /**
 * This file contains the autoloader function files from RMCommon Utilities
 */
 function rmc_autoloader($class){
 	global $xoopsModule;
 	
+	if(class_exists($class)) return;
+	
 	$class = strtolower($class);
+	
+	if($class=='xoopskernel') return;
 	
 	if (substr($class, 0, 2)=='rm') $class = substr($class, 2);
 
@@ -30,18 +36,16 @@ function rmc_autoloader($class){
       
     $paths = array(
     	'/api',
-        '/class',
         '/kernel',
+        '/class',
         '/fields'
-        //'/rmcommon' /* @Todo: Eliminar este directorio */
     );
 
     if (is_a($xoopsModule, 'XoopsModule') && $xoopsModule->dirname()!='system'){
     	$paths[] = '/modules/'.$xoopsModule->dirname().'/class';
     }
 	
-    foreach ($paths as $path){
-    	
+    foreach ($paths as $path){    	
     	if (file_exists(RMCPATH.$path.'/'.$class.'.php')){
         	include_once RMCPATH.$path.'/'.$class.'.php';
         } elseif(file_exists(RMCPATH.$path.'/'.$class.'.class.php')){
@@ -57,7 +61,38 @@ function rmc_autoloader($class){
 
 spl_autoload_register('rmc_autoloader');
 
-$rmc_config = RMUtilities::get()->module_config('rmcommon');
+/**
+* Modify the page output to include some new features
+* 
+* @param mixed $output
+* @return string
+*/
+function cu_render_output($output){
+	global $xoTheme, $xoopsTpl;
+    
+	$page = $output;
+	$cf = $xoopsTpl->get_template_vars('cf');
+	if(is_array($cf) && !empty($cf)){
+		RMTemplate::get()->add_style('comments.css', 'rmcommon');
+	}
+	    
+	$pos = strpos($page, "</head>");
+	    
+	include_once RMTemplate::get()->tpl_path('rmc_header.php', 'rmcommon');
+	    
+	$rtn = substr($page, 0, $pos);
+	$rtn .= $scripts;
+	$rtn .= $styles;
+	$rtn .= $heads;
+	$rtn .= substr($page, $pos);
+	return $rtn;
+}
+
+include_once XOOPS_ROOT_PATH.'/class/logger/xoopslogger.php';
+include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
+
+$db = XoopsDatabaseFactory::getDatabaseConnection();
+$rmc_config = RMFunctions::get()->configs();
 
 require_once 'api/l10n.php';
 

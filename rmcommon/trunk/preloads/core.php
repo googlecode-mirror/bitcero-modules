@@ -8,6 +8,17 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-function rmc_include_styles(){
-    
+class RmcommonCorePreload extends XoopsPreloadItem
+{
+	public function eventCoreIncludeCommonStart(){
+		
+		require_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
+		
+	}
+	
+	public function eventCoreFooterEnd(){
+		
+		ob_end_flush();
+
+	}
 }

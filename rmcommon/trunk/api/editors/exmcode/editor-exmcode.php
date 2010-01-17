@@ -124,7 +124,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         }
         
         // New plugins from other components
-        RMEventsApi::get()->run_event('load_exmcode_plugins', $id);
+        RMEvents::get()->run_event('rmcommon.load_exmcode_plugins', $id);
         
         ?>
         

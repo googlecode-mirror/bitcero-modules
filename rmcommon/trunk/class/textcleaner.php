@@ -62,7 +62,7 @@ class TextCleaner
 		$this->emots[] = array('code'=>array('>D','XD','xD'),'icon'=>$url.'/yell.png');    
 		
 		// Get another emoticons from plugins or modules
-		$this->emots = RMEventsApi::get()->run_event('rmcevent_get_emotions', $this->emots);
+		$this->emots = RMEvents::get()->run_event('rmcommon.get_emotions', $this->emots);
 		
 		return $this->emots;
 		
@@ -176,7 +176,7 @@ class TextCleaner
 		if ( wp_kses_bad_protocol( $url, $protocols ) != $url )
 			return '';
 
-		return RMEventsApi::get()->run_event('rmcevent_clean_url', $url, $original_url, $context);
+		return RMEvents::get()->run_event('rmcommon.clean_url', $url, $original_url, $context);
 	}
 	
 	/**
@@ -263,7 +263,7 @@ class TextCleaner
 		$replacements[] = "about :";
 		
 		// More patterns with plugins
-		$patterns = RMEventsApi::get()->run_event('rmcevent_get_replace_patterns', $patterns, $replacements, &$this);
+		$patterns = RMEvents::get()->run_event('rmcommon.get_replace_patterns', $patterns, $replacements, &$this);
 		
 		$text = preg_replace($patterns, $replacements, $text);
 
@@ -500,7 +500,7 @@ class TextCleaner
 		$text = $this->double_br($text);
 
 		// Before to send the formatted string we send it to interceptor methods
-		return RMEventsApi::get()->run_event('rmcevent_text_todisplay', $text, $original_text);
+		return RMEvents::get()->run_event('rmcommon.text_todisplay', $text, $original_text);
 	}
 
 	/**
@@ -534,7 +534,7 @@ class TextCleaner
 	*/
 	public function call_code_modifiers($code, $lang){
 		// Event to call methods thatr can handle code to display (eg. highlighters)
-		return RMEventsApi::get()->run_event('rmcevent_format_code', $code, $lang);
+		return RMEvents::get()->run_event('rmcommon.format_code', $code, $lang);
 	}
 	
 	/**

@@ -14,12 +14,44 @@ class RMFunctions
 		static $instance;
 		
 		if (!isset($instance))
-			$instance = new RMCFunctions();
+			$instance = new RMFunctions();
 		
 		return $instance;
 		
 	}
 	
+	/**
+	* Get Common Utilities Configurations
+	*/
+	public function configs($name=''){
+		static $rmc_configs;
+		
+		if (!isset($rmc_configs)){
+			$db = Database::getInstance();
+			$sql = "SELECT mid FROM ".$db->prefix("modules")." WHERE dirname='rmcommon'";
+			list($id) = $db->fetchRow($db->query($sql));
+			
+			include_once XOOPS_ROOT_PATH.'/kernel/object.php';
+			include_once XOOPS_ROOT_PATH.'/kernel/configitem.php';
+			include_once XOOPS_ROOT_PATH.'/class/criteria.php';
+			include_once XOOPS_ROOT_PATH.'/class/module.textsanitizer.php';
+			$ret = array();
+	        $result = $db->query("SELECT * FROM ".$db->prefix("config")." WHERE conf_modid='$id'");
+	        
+	        while($row = $db->fetchArray($result)){
+				$config = new XoopsConfigItem();
+				$config->assignVars($row);
+				$rmc_configs[$config->getVar('conf_name')] = $config->getConfValueForOutput();
+	        }
+		}
+		
+		$name = trim($name);
+		if($name!=''){
+			if(isset($rmc_configs[$name])) return $rmc_configs[$name];
+		}
+		
+		return $rmc_configs;
+	}
 	/**
 	* Check the number of images category on database
 	*/
@@ -135,22 +167,21 @@ class RMFunctions
         
         $db = Database::getInstance();
         
+        $params = urlencode($params);
         $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
         $result = $db->query($sql);
-        $comms = array();
+
         while($row = $db->fetchArray($result)){
             
             $com = new RMComment();
             $com->assignVars($row);
             $comms[] = array(
                 'id'        => $row['id_com'],
-                'text'      => TextCleaner::to_display($row['content'], true)
-            );
-            echo TextCleaner::to_display($row['content'], true).'<br />';
-            
+                'text'      => TextCleaner::getInstance()->to_display($row['content'], true)
+            );            
         }
         
-        $comms = RMEventsApi::get()->run_event('rmc_loading_comments', $comms, $obj, $params, $type, $parent, $user);
+        $comms = RMEvents::get()->run_event('rmcommon.loading_comments', $comms, $obj, $params, $type, $parent, $user);
         
         if ($assign){
             global $xoopsTpl;
@@ -193,7 +224,7 @@ class RMFunctions
         
         // You can include new content into Comments form
         // eg. Captcha checker, etc
-        $form = RMEventsApi::get()->run_event('rm_comments_form', $form, $obj, $params, $type);
+        $form = RMEvents::get()->run_event('rmcommon.comments_form', $form, $obj, $params, $type);
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
         RMTemplate::get()->add_head('<script type="text/javascript">
         $(document).ready(function(){

@@ -93,7 +93,7 @@ if ($action==''){
         RMTemplate::get()->add_head('<script type="text/javascript">var exmPopup = window.parent.'.$en.';</script>');
     }
 
-    RMEventsApi::get()->run_event('rm_loading_editorimages', '');
+    RMEvents::get()->run_event('rmcommon.loading_editorimages', '');
 
     include RMTemplate::get()->get_template('editor_image.php', 'module', 'rmcommon');
 
@@ -191,7 +191,7 @@ if ($action==''){
             )
         );
         
-        $images[] = RMEventsApi::get()->run_event('rm_loading_single_editorimgs', $ret, rmc_server_var($_REQUEST, 'url', ''));
+        $images[] = RMEvents::get()->run_event('rmcommon.loading_single_editorimgs', $ret, rmc_server_var($_REQUEST, 'url', ''));
     }
     
     include RMTemplate::get()->get_template('images_list_editor.php','module','rmcommon');

@@ -71,7 +71,7 @@ if (trim($text)==''){
     die();
 }
 
-RMEventsApi::get()->run_event('rm_comment_postdata', null);
+RMEvents::get()->run_event('rmcommon.comment_postdata', null);
 
 // Save comment user
 $db = Database::getInstance();
@@ -92,7 +92,6 @@ if ($uid<=0){
     
     $db->queryF("INSERT INTO ".$db->prefix("rmc_comusers")." (`xuid`,`name`,`email`) VALUES ('$xuid','$name','$email')");
     $uid = $db->getInsertId();
-    echo $uid;
     
 }
 
@@ -106,7 +105,7 @@ $comment->setVar('user', $xuid);
 
 if ($comment->save()){
     
-    RMEventsApi::get()->run_event('rm_comment_saved', $comment, $uri);
+    RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
     redirect_header($uri.'#comment-'.$comment->id(), 1, __('Comment posted successfully!','rmcommon'));
     
 } else {
