@@ -32,7 +32,16 @@
 }
 .comment_item .head{
     float: left;
-    width: 120px;
     background: #FFF;
-    text-align: center;
+    padding: 4px 15px 3px 4px;
+}
+.comment_item .info{
+    padding: 4px 0;
+}
+.comment_item .info .date{
+    font-size: 0.9em;
+    display: block;
+}
+.comment_item .text{
+    overflow: hidden;
 }

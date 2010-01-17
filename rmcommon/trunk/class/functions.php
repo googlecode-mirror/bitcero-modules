@@ -219,7 +219,8 @@ class RMFunctions
             $comms[] = array(
                 'id'        => $row['id_com'],
                 'text'      => TextCleaner::getInstance()->to_display($row['content'], true),
-                'poster'    => $poster
+                'poster'    => $poster,
+                'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l'))
             );            
         }
         
@@ -242,8 +243,9 @@ class RMFunctions
     * @param string Object name (eg. mywords, qpages, etc.)
     * @param string Params to be included in form
     * @param string Object type (eg. module, plugin, etc.)
+    * @param string File path to get the methods to update comments
     */
-    public function comments_form($obj, $params, $type='module'){
+    public function comments_form($obj, $params, $type='module', $file=array()){
         global $xoopsTpl, $xoopsRequestUri, $xoopsUser;
         
         $form = array(
@@ -259,6 +261,7 @@ class RMFunctions
             'uri'			=> urlencode(RMFunctions::current_url()),
             'actionurl'		=> RMCURL.'/post_comment.php',
             'params'		=> urlencode($params),
+            'update'        => urlencode(str_replace(XOOPS_ROOT_PATH, '', $file)),
             'type'			=> $type,
             'object'		=> $obj,
             'action'		=> 'save'

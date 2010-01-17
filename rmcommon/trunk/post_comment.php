@@ -103,14 +103,30 @@ $comment->setVar('params', $params);
 $comment->setVar('content', $text);
 $comment->setVar('user', $xuid);
 $comment->setVar('ip', $_SERVER['REMOTE_ADDR']);
+$comment->setVar('posted', time());
 
-if ($comment->save()){
-    if ($xoopsUser) $xoopsUser->incrementPost();
-    RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
-    redirect_header($uri.'#comment-'.$comment->id(), 1, __('Comment posted successfully!','rmcommon'));
-    
-} else {
+if (!$comment->save()){
     
     redirect_header($uri, 1, __('Comment could not be posted!','rmcommon').'<br />'.$comment->errors());
     
 }
+
+if ($xoopsUser) $xoopsUser->incrementPost();
+RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
+
+// Update comments number if object accepts this functionallity
+$file = urldecode(rmc_server_var($_POST,'update',''));
+if (is_file(XOOPS_ROOT_PATH.$file)){
+    
+    include_once XOOPS_ROOT_PATH.$file;
+    $class = ucfirst($object).'Controller';
+    if(class_exists($class)){
+        $controller = new $class();
+        if (method_exists($controller, 'update_comments_number')){
+            $controller->update_comments_number($comment);
+        }
+    }
+    
+}
+    
+redirect_header($uri.'#comment-'.$comment->id(), 1, __('Comment posted successfully!','rmcommon'));
