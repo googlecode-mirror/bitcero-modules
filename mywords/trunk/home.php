@@ -30,12 +30,12 @@ $limit = $xoopsModuleConfig['posts_limit'];
 $tpages = ceil($num / $limit);
 $page = $page > $tpages ? $tpages : $page;
 $p = $page>0 ? $page-1 : $page;
-$start = $num<=0 ? 0 : ($p - 1) * $limit;
+$start = $num<=0 ? 0 : $page * $limit;
 
 $nav = new RMPageNav($num, $limit, $page, 5);
 $nav->target_url(MW_URL.'/{PAGE_NUM}/');
 
-$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1)."))";
+$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY pubdate DESC LIMIT $start,$limit";
 $result = $db->query($sql);
 
 include 'post_data.php';
