@@ -266,17 +266,6 @@ $modversion['blocks'][2]['edit_func'] = "mywordsBlockRecentEdit";
 $modversion['blocks'][2]['template'] = 'bk_mywords_recent.html';
 $modversion['blocks'][2]['options'] = "1|50|5|1|d-m-Y|0";
 
-//Comentarios
-$modversion['hasComments'] = 1;
-$modversion['comments']['pageName'] = 'index.php';
-$modversion['comments']['itemName'] = 'idpost';
-$modversion['comments']['extraParams']=array();
-
-// Comment callback functions
-$modversion['comments']['callbackFile'] = 'include/general.func.php';
-$modversion['comments']['callback']['approve'] = 'mw_com_approve';
-$modversion['comments']['callback']['update'] = 'mw_com_update';
-
 // Sindicación RSS
 $modversion['rss']['name'] = '_MI_MW_RSSNAME'; 			// NOmbre del elemento
 $modversion['rss']['file'] = 'include/rss.php';			// Archivo donde se localizan las funciones
