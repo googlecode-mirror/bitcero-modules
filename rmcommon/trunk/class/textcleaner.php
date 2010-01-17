@@ -35,7 +35,7 @@ class TextCleaner
 	*/
 	public function get_emotions(){
 		
-		global $rmc_config;
+		$rmc_config = RMFunctions::get()->configs();
 		
 		if (!$rmc_config['dosmileys'])
 			return false;
@@ -475,7 +475,8 @@ class TextCleaner
 	 * @return  string
 	 **/
 	function to_display($text, $dbr = true){
-		global $rmc_config;
+		
+        $rmc_config = RMFunctions::get()->configs();
 		
 		$original_text = $text;
 		if ($rmc_config['dohtml'] != 1)

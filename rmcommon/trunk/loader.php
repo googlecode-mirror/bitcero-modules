@@ -70,14 +70,18 @@ spl_autoload_register('rmc_autoloader');
 function cu_render_output($output){
 	global $xoTheme, $xoopsTpl;
     
+    if (function_exists('xoops_cp_header')) return $output;
+    
 	$page = $output;
-	$cf = $xoopsTpl->get_template_vars('cf');
-	if(is_array($cf) && !empty($cf)){
-		RMTemplate::get()->add_style('comments.css', 'rmcommon');
-	}
-	    
+    if($xoopsTpl){
+	    $cf = $xoopsTpl->get_template_vars('cf');
+	    if(is_array($cf) && !empty($cf)){
+		    RMTemplate::get()->add_style('comments.css', 'rmcommon');
+	    }
+    }
+	
 	$pos = strpos($page, "</head>");
-	    
+	if($pos===FALSE) return $output;
 	include_once RMTemplate::get()->tpl_path('rmc_header.php', 'rmcommon');
 	    
 	$rtn = substr($page, 0, $pos);

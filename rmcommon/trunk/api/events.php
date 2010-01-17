@@ -112,7 +112,7 @@ class RMEvents
 	/**
 	* @desc Almacena toda la información de la API
 	*/
-    public function run_event($event_name, $value)
+    public function run_event($event_name, $value=null)
     {
         $event_name = strtolower(str_replace('.', '', $event_name));        
         $args = func_get_args();

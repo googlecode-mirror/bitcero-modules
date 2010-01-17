@@ -102,9 +102,10 @@ $comment->setVar('parent', isset($parent) ? $parent : 0);
 $comment->setVar('params', $params);
 $comment->setVar('content', $text);
 $comment->setVar('user', $xuid);
+$comment->setVar('ip', $_SERVER['REMOTE_ADDR']);
 
 if ($comment->save()){
-    
+    if ($xoopsUser) $xoopsUser->incrementPost();
     RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
     redirect_header($uri.'#comment-'.$comment->id(), 1, __('Comment posted successfully!','rmcommon'));
     

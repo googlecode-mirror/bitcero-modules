@@ -170,14 +170,56 @@ class RMFunctions
         $params = urlencode($params);
         $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
         $result = $db->query($sql);
+        
+        $ucache = array();
+        $ecache = array();
 
         while($row = $db->fetchArray($result)){
             
             $com = new RMComment();
             $com->assignVars($row);
+            
+            // Editor data
+            if(!isset($ecache[$com->getVar('user')])){
+                $ecache[$com->getVar('user')] = new RMCommentUser($com->getVar('user'));
+            }
+            
+            $editor = $ecache[$com->getVar('user')];
+            
+            if($editor->getVar('xuid')>0){
+            
+                if(!isset($ucache[$editor->getVar('xuid')])){
+                    $ucache[$editor->getVar('xuid')] = new XoopsUser($editor->getVar('xuid'));
+                }
+                
+                $user = $ucache[$editor->getVar('xuid')];
+                
+                $poster = array(
+                    'id' => $user->getVar('uid'),
+                    'name'  => $user->getVar('uname'),
+                    'email' => $user->getVar('email'),
+                    'posts' => $user->getVar('posts'),
+                    'avatar'=> $user->getVar('user_avatar'),
+                    'rank'  => $user->rank()
+                );
+            
+            } else {
+                
+                $poster = array(
+                    'id'    => 0,
+                    'name'  => $editor->getVar('name'),
+                    'email' => $editor->getVar('email'),
+                    'posts' => 0,
+                    'avatar'=> '',
+                    'rank'  => ''
+                );
+                
+            }
+            
             $comms[] = array(
                 'id'        => $row['id_com'],
-                'text'      => TextCleaner::getInstance()->to_display($row['content'], true)
+                'text'      => TextCleaner::getInstance()->to_display($row['content'], true),
+                'poster'    => $poster
             );            
         }
         

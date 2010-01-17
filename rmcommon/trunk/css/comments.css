@@ -27,7 +27,12 @@
 .comment_item{
 	margin: 0 0 10px 0;
 	padding: 0 0 10px 0;
-	border: 0;
-	border-bottom: 1px dotted #CCC;
 	overflow: hidden;
+    background: #FFF;
+}
+.comment_item .head{
+    float: left;
+    width: 120px;
+    background: #FFF;
+    text-align: center;
 }

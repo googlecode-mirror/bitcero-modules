@@ -12,13 +12,13 @@
 * Admin loader file
 */
 
-require_once 'loader.php';
+//require_once 'loader.php';
 
 // Usefull admin clases
 $tpl = RMTemplate::get();
 
 $rmc_theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
-		
+
 if (!file_exists(RMCPATH.'/templates/'.$rmc_theme.'/admin_gui.php')){
 	$rmc_theme = 'default';
 }

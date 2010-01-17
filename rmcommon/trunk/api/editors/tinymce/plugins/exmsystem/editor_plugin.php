@@ -6,8 +6,6 @@
 include_once '../../../../../../../mainfile.php';
 require_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 global $xoopsLogger;
-$xoopsLogger->renderingEnabled = false;
-error_reporting(0);
 $xoopsLogger->activated = false;
 ?>
 /**
@@ -155,7 +153,7 @@ $xoopsLogger->activated = false;
                 // para crear botones y comandos en TinyMCE
                 // Los métodos registrados deben retornar código javascript
                 // funcional en el método init de tinymce
-                RMEvents::get()->run_event('rmcommon.tinymce_plugin_loading','exmsystem');
+                RMEvents::get()->run_event('rmcommon.tinymce_plugin_loading');
             ?>
         
         },
@@ -264,7 +262,7 @@ $xoopsLogger->activated = false;
     
     <?php
         // Evento para registrar nuevas funciones en el plugin exmsystem
-        RMEvents::get()->run_event('rmcommon.tinymce_plugin_functions','exmsystem');
+        RMEvents::get()->run_event('rmcommon.tinymce_plugin_functions','');
     ?>
     
     // Register plugin
