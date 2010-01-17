@@ -17,12 +17,13 @@ function mw_widget_categories(){
 	$widget['icon'] = '';
     
     $id = rmc_server_var($_REQUEST,'id',0);
-    
+    $postcat = array();
     $edit = false;
     if ($id>0){
         $post = new MWPost($id);
         if ($post->isNew()){
             unset($post);
+            $postcat = array();
         } else {
             $edit = true;
             $postcat = $post->get_categos(true);
@@ -39,7 +40,7 @@ $categories = array();
 MWFunctions::categos_list($categories);
 foreach ($categories as $catego){
 ?>
-<label class="cat_label" style="padding-left: <?php _e($catego['indent']*10); ?>px;"><input type="checkbox" name="categories[]" id="categories[]" value="<?php _e($catego['id_cat']); ?>"<?php echo in_array($catego['id_cat'], $postcat) ? ' checked="checked"' : '' ?> /> <?php _e($catego['name']); ?></label>
+<label class="cat_label" style="padding-left: <?php echo $catego['indent']*10; ?>px;"><input type="checkbox" name="categories[]" id="categories[]" value="<?php echo $catego['id_cat']; ?>"<?php echo in_array($catego['id_cat'], $postcat) ? ' checked="checked"' : '' ?> /> <?php echo $catego['name']; ?></label>
 <?php
 }
 ?>

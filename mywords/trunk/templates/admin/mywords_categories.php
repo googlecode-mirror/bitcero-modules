@@ -30,7 +30,7 @@
         
         <?php
         	// Event to allow plugins to add new options
-        	RMEventsApi::get()->run_event('mw_newcategory_form', null);
+        	RMEvents::get()->run_event('mywords.newcategory_form', null);
         ?>
         
             <p class="submit"><input type="submit" class="button default" value="<?php _e('Add Category','admin_mywords'); ?>" /></p>

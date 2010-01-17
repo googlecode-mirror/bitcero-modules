@@ -28,10 +28,3 @@ load_mod_locale('mywords','admin');
 
 $mc =& $xoopsModuleConfig;
 
-// Check if events has been added
-if (!RMEventsApi::get()->get_object('mywords','module')){
-    include_once '../include/events.php';
-    $eo = RMEventsApi::get()->register_object('mywords', 'module', '/modules/mywords');
-    RMEventsApi::get()->register_methods($rmc_methods, $eo);
-}
-

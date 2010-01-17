@@ -21,8 +21,8 @@ RMTemplate::get()->add_tool(__('Social Sites','admin_mywords'), './bookmarks.php
 RMTemplate::get()->add_tool(__('Help','admin_mywords'), '#', '../images/help.png', '');
 
 // New toolbar buttons
-RMEventsApi::get()->run_event('mw_get_toolbar', RMTemplate::get()->get_toolbar());
+RMEvents::get()->run_event('mywords.get_toolbar', RMTemplate::get()->get_toolbar());
 
 // New menus
 global $xoopsModule;
-RMEventsApi::get()->run_event('mw_get_menu', $xoopsModule->getAdminMenu());
+RMEvents::get()->run_event('mywords.get_menu', $xoopsModule->getAdminMenu());

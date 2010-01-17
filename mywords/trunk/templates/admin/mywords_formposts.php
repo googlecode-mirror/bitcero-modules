@@ -95,7 +95,7 @@
         </table>
     </div>
 </div>
-<?php RMEventsApi::get()->run_event('mw_posts_form', isset($post) ? $post : null); ?>
+<?php RMEvents::get()->run_event('mywords.posts_form', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="XOOPS_TOKEN_REQUEST" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
 <?php if($edit): ?>
