@@ -39,8 +39,8 @@ function mywords_search($qa, $andor, $limit, $offset, $userid){
 	$db =& Database::getInstance();
 	
 	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
-	$util =& RMUtils::getInstance();
-	$mc =& $util->moduleConfig('mywords');
+	$util =& RMUtilities::get();
+	$mc =& $util->module_config('mywords');
 	
 	$sql = "SELECT * FROM ".$db->prefix("mw_posts");
 	if ( is_array($qa) && $count = count($qa) ) {
