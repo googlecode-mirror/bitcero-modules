@@ -8,11 +8,14 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+$aprotocols = array();
+
 /**
  * Handles many methods for formatting output.
  */
 class TextCleaner
 {
+    private $protocols = array();
 	/**
 	* Stores all the emoticons used on system
 	*/
@@ -150,12 +153,14 @@ class TextCleaner
 	* @return string The cleaned $url after the 'cleaned_url' filter is applied.
 	*/
 	public function clean_url( $url, $protocols = null, $context = 'display' ) {
+        global $aprotocols;
+        
 		$original_url = $url;
 
 		if ('' == $url) return $url;
 		$url = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\\x80-\\xff]|i', '', $url);
 		$strip = array('%0d', '%0a', '%0D', '%0A');
-		$url = _deep_replace($strip, $url);
+		$url = TextCleaner::replace($strip, $url);
 		$url = str_replace(';//', '://', $url);
 		/* If the URL doesn't appear to contain a scheme, we
 		 * presume it needs http:// appended (unless a relative
@@ -173,11 +178,105 @@ class TextCleaner
 
 		if ( !is_array($protocols) )
 			$protocols = array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet');
-		if ( wp_kses_bad_protocol( $url, $protocols ) != $url )
+            
+        $aprotocols = $protocols;
+        
+		if ( TextCleaner::bad_protocol( $url, $protocols ) != $url )
 			return '';
 
 		return RMEvents::get()->run_event('rmcommon.clean_url', $url, $original_url, $context);
 	}
+    
+    private function bad_protocol($string, $allowed_protocols) {
+        $string = TextCleaner::no_null($string);
+        $string2 = $string.'a';
+
+        while ($string != $string2) {
+            $string2 = $string;
+            $string = TextCleaner::bad_protocol_once($string, $allowed_protocols);
+        } # while
+
+        return $string;
+    }
+    
+    private function bad_protocol_once($string, $allowed_protocols) {
+
+        $string2 = preg_split('/:|&#58;|&#x3a;/i', $string, 2);
+        if ( isset($string2[1]) && !preg_match('%/\?%', $string2[0]) )
+            $string = TextCleaner::bad_protocol_once2($string2[0]) . trim($string2[1]);
+        else
+            $string = preg_replace_callback('/^((&[^;]*;|[\sA-Za-z0-9])*)'.'(:|&#58;|&#[Xx]3[Aa];)\s*/', 'bad_protocol_once2', $string);
+
+        return $string;
+    }
+    
+    function bad_protocol_once2($matches) {
+        global $aprotocols;
+        $allowed_protocols = $aprotocols;
+        
+        if ( is_array($matches) ) {
+            if ( ! isset($matches[1]) || empty($matches[1]) )
+                return '';
+
+            $string = $matches[1];
+        } else {
+            $string = $matches;
+        }
+
+        $string2 = TextCleaner::decode_entities($string);
+        $string2 = preg_replace('/\s/', '', $string2);
+        $string2 = TextCleaner::no_null($string2);
+        $string2 = strtolower($string2);
+
+        $allowed = false;
+        foreach ( (array) $allowed_protocols as $one_protocol)
+            if (strtolower($one_protocol) == $string2) {
+                $allowed = true;
+                break;
+            }
+
+        if ($allowed)
+            return "$string2:";
+        else
+            return '';
+    }
+    
+    function decode_entities($string) {
+        $string = preg_replace_callback('/&#([0-9]+);/', 'decode_entities_chr', $string);
+        $string = preg_replace_callback('/&#[Xx]([0-9A-Fa-f]+);/', 'decode_entities_chr_hexdec', $string);
+
+        return $string;
+    }
+    
+    public function decode_entities_chr( $match ) {
+        return chr( $match[1] );
+    }
+    
+    public function decode_entities_chr_hexdec( $match ) {
+        return chr( hexdec( $match[1] ) );
+    }
+    
+    public function no_null($string) {
+        $string = preg_replace('/\0+/', '', $string);
+        $string = preg_replace('/(\\\\0)+/', '', $string);
+
+        return $string;
+    }
+    
+    public function replace($search, $subject){
+        $found = true;
+        while($found) {
+            $found = false;
+            foreach( (array) $search as $val ) {
+                while(strpos($subject, $val) !== false) {
+                    $found = true;
+                    $subject = str_replace($val, '', $subject);
+                }
+            }
+        }
+
+        return $subject;
+    }
 	
 	/**
      * MyTextSanitizer::truncate()
@@ -631,4 +730,13 @@ function ftp_clickable($matches){
 
 function mail_clickable($matches){
 	return TextCleaner::mail_clickable($matches);
+}
+function bad_protocol_once2($matches){
+    return TextCleaner::bad_protocol_once2($matches);
+}
+function decode_entities_chr($matches){
+    return TextCleaner::decode_entities_chr($matches);
+}
+function decode_entities_chr_hexdec($matches){
+    return TextCleaner::decode_entities_chr_hexdec($matches);
 }

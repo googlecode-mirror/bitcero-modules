@@ -58,7 +58,7 @@ if (trim($type)==''){
 }
 
 // Object name
-$object = rmc_server_var($_POST, 'object', '');
+$object = strtolower(rmc_server_var($_POST, 'object', ''));
 if (trim($object)==''){
     redirect_header($uri, 2, __('Object name missing!','rmcommon'));
     die();
@@ -115,10 +115,9 @@ if ($xoopsUser) $xoopsUser->incrementPost();
 RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
 
 // Update comments number if object accepts this functionallity
-$file = urldecode(rmc_server_var($_POST,'update',''));
-if (is_file(XOOPS_ROOT_PATH.$file)){
+if (is_file(XOOPS_ROOT_PATH.'/modules/'.$object.'/class/'.$object.'controller.php')){
     
-    include_once XOOPS_ROOT_PATH.$file;
+    include_once XOOPS_ROOT_PATH.'/modules/'.$object.'/class/'.$object.'controller.php';
     $class = ucfirst($object).'Controller';
     if(class_exists($class)){
         $controller = new $class();

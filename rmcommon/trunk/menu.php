@@ -36,7 +36,12 @@ $adminmenu[1]['options'] = array(0 => array(
 	)
 );
 
-$adminmenu[2]['title'] = _MI_RMC_MENUPLUGS;
-$adminmenu[2]['link'] = "plugins.php";
-$adminmenu[2]['icon'] = "images/plugin.png";
-$adminmenu[2]['location'] = "plugins";
+$adminmenu[2]['title'] = __('Comments','rmcommon');
+$adminmenu[2]['link'] = "comments.php";
+$adminmenu[2]['icon'] = "images/comments.png";
+$adminmenu[2]['location'] = "comments";
+
+$adminmenu[3]['title'] = _MI_RMC_MENUPLUGS;
+$adminmenu[3]['link'] = "plugins.php";
+$adminmenu[3]['icon'] = "images/plugin.png";
+$adminmenu[3]['location'] = "plugins";
