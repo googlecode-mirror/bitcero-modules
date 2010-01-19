@@ -1,6 +1,6 @@
 <div class="comments_container">
     <{foreach item=comment from=$comments}>
-    <div class="comment_item outer">
+    <div class="comment_item outer"><a name="comment-<{$comment.id}>"></a>
     	<div class="head">
     		<{if $comment.poster.avatar=='blank.gif' || $comment.poster.avatar==''}>
                 <img src="<{$xoops_url}>/modules/rmcommon/images/avatar.gif" title="<{$poster.name}>" />

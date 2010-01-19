@@ -57,6 +57,7 @@ CREATE TABLE `rmc_comments` (
 `content` TEXT NOT NULL ,
 `user` INT NOT NULL ,
 `ip` VARCHAR(40) NOT NULL,
+`posted` INT(10) NOT NULL DEFAULT '0',
 INDEX ( `id_obj` , `type` )
 ) ENGINE = MYISAM;
 

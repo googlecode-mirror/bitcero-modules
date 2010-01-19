@@ -221,7 +221,8 @@ class RMFunctions
                 'id'        => $row['id_com'],
                 'text'      => TextCleaner::getInstance()->to_display($row['content'], true),
                 'poster'    => $poster,
-                'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l'))
+                'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
+                'ip'        => $com->getVar('ip')
             );            
         }
         
