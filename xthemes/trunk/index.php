@@ -24,6 +24,16 @@ function xt_show_init(){
 	if (false===($theme = xt_is_valid($xoopsConfig['theme_set']))){
 		// Not a Red Mexico theme
 		$not_valid = true;
+		if(is_file($theme_path.'/screenshot.png')){
+			$file = '/screenshot.png';
+		} elseif(is_file($theme_path.'/screenshot.jpg')){
+			$file = '/screenshot.jpg';
+		} elseif(is_file($theme_path.'/screenshot.gif')){
+			$file = '/screenshot.gif';
+		} else {
+			$file = '';
+		}
+		
 		$theme_info = array(
 			'name'			=>	$xoopsConfig['theme_set'],
 			'description'	=>	'This is XOOPS standar theme',
@@ -31,7 +41,7 @@ function xt_show_init(){
 			'author'		=>	'Unknow',
 			'email'			=>	'unknow',
 			'url'			=>	'unknow',
-			'screenshot'	=>	'shot.gif'
+			'screenshot'	=>	$file
 		);
 		
 	} else {
@@ -43,7 +53,7 @@ function xt_show_init(){
 	
 	$themes = array();
 	$i = 0; // Counter
-	
+	$tpath = XOOPS_ROOT_PATH.'/themes';
 	$dir_themes = opendir(XOOPS_ROOT_PATH.'/themes');
 	while (false !== ($t = readdir($dir_themes))){
 		if ($t=='.' || $t=='..') continue;
@@ -70,6 +80,17 @@ function xt_show_init(){
 			$themes[$i]['info']['dir'] = $t;
 			$themes[$i]['valid'] = true;
 		} else {
+			
+			if(is_file($tpath."/$t/screenshot.png")){
+				$file = "screenshot.png";
+			} elseif(is_file($tpath."/$t/screenshot.jpg")){
+				$file = "screenshot.jpg";
+			} elseif(is_file($tpath."/$t/screenshot.gif")){
+				$file = "screenshot.gif";
+			} else {
+				$file = '';
+			}
+			
 			$themes[$i]['valid'] = false;
 			$themes[$i]['info'] = array(
 				'name'			=>	$t,
@@ -78,7 +99,7 @@ function xt_show_init(){
 				'author'		=>	'Unknow',
 				'email'			=>	'unknow',
 				'url'			=>	'',
-				'screenshot'	=>	'shot.gif',
+				'screenshot'	=>	$file,
 				'dir'			=> $t
 			);
 		}
@@ -234,7 +255,7 @@ function xt_install_normal(){
 */
 function xt_save_settings(){
 	global $xoopsConfig;
-	
+
 	$myts = MyTextSanitizer::getInstance();
 	
 	if (false === ($theme = xt_is_valid($xoopsConfig['theme_set'])))
@@ -262,6 +283,7 @@ function xt_save_settings(){
 	// Save data
 	$sql = "INSERT INTO ".$db->prefix("xtheme_config")." (`name`,`value`,`type`,`element`) VALUES ('%s','%s','%s','$element')";
 	$errors = array();
+	array_walk_recursive($xt_to_save, 'clean_values');
 	foreach ($xt_to_save as $id => $value){
 		
 		if (is_array($value)){
@@ -276,12 +298,17 @@ function xt_save_settings(){
 			$errors[] = $db->error();
 		
 	}
-	
 	if (!empty($errors)){
 		xt_redirect('index.php', 'There was errors during this operation:<br />'.implode('<br />', $errors), true);
 	} else {
 		xt_redirect('index.php', 'Settings updated!', false);
 	}
+	
+}
+
+function clean_values(&$value, $key){
+
+	$value = htmlentities($value, ENT_QUOTES, 'UTF-8');
 	
 }
 

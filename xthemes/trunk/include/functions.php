@@ -24,10 +24,10 @@ define('ITURL', XOOPS_URL.'/modules/xthemes');
 */
 function &xt_is_valid($theme){
 	global $xoopsConfig;
-	
+
 	if (!is_file(XOOPS_THEME_PATH.'/'.$theme.'/config/theme.php'))
 		return false;
-	
+		
 	include_once XOOPS_THEME_PATH.'/'.$theme.'/config/theme.php';
 	$rtheme = preg_replace('/\s+/', '', strtolower($theme));
 	$rtheme = str_replace('-','',$rtheme);
@@ -37,6 +37,10 @@ function &xt_is_valid($theme){
         
     $object = new $class();
 	return $object;
+}
+
+function values_decode(&$value, $key){
+	$value = utf8_decode($value);
 }
 
 /**
@@ -71,17 +75,20 @@ function xt_show_message(){
 * Gets the current theme config
 */
 function xt_get_current_config($element=''){
-	
 	$db = Database::getInstance();
 	$sql = "SELECT * FROM ".$db->prefix("xtheme_config").($element != '' ? " WHERE element='$element'" : '');
 	$result = $db->query($sql);
-	
-	$ret = array();
 	while ($row = $db->fetchArray($result)){
 		$ret[$row['name']] = $row['type']=='array' ? json_decode($row['value'], true) : $row['value'];
 	}
 	
+	array_walk_recursive($ret, 'decode_entities');
+	
 	return $ret;
+}
+
+function decode_entities(&$value, $key){
+	$value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
 }
 
 

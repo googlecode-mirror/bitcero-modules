@@ -92,9 +92,10 @@ class XThemesController
 		} else {
 			$theme = $xoopsConfig['theme_set'];
 		}
-		$theme = preg_replace('/\s+/', '', $theme);
-		$theme = str_replace('-','',$theme);
-		$var = $theme.'Config';
+		
+		$var = preg_replace('/\s+/', '', $theme);
+		$var = str_replace('-','',$var);
+		$var .= 'Config';
 		
 		if (isset($this->configs[$theme])){
 			$smarty->assign($var, $this->configs[$theme]);
@@ -105,7 +106,6 @@ class XThemesController
 			return;
 		
 		$this->configs[$theme] = xt_get_current_config($theme);
-		
 		$smarty->assign($var, $this->configs[$theme]);
 		
 	}
@@ -148,17 +148,6 @@ class XThemesController
 			include_once $file;
 		else
 			return;
-		
-	}
-	
-	/**
-	* This function get a smarty template and return its result
-	*/
-	public function include_tpl($smarty, $params){
-		global $xoopsConfig;
-		
-		$file = $params['file'];
-		return $smarty->fetch(XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'].'/'.$file);
 		
 	}
 	
