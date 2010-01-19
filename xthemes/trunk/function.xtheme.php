@@ -7,6 +7,12 @@
 // License: GPL v2
 // --------------------------------------------------------------
 
+/**
+* This functions allows to themes to run several methods
+* or other actions directly from theme.php file
+* 
+* Put this file into /class/smarty/plugins
+*/
 function smarty_function_xtheme($params, &$smarty){
 	
 	if (!is_file(XOOPS_ROOT_PATH.'/modules/xthemes/controller.php'))

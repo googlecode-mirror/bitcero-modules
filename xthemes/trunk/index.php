@@ -1,11 +1,12 @@
 <?php
 // $Id: index.php 14 2009-09-09 18:22:07Z i.bitcero $
 // --------------------------------------------------------------
-// I.Themes
+// xThemes for XOOPS
 // Module for manage themes by Red Mexico
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // License: GPL v2
 // --------------------------------------------------------------
+
 include_once '../../mainfile.php';
 include_once '../../include/cp_header.php';
 include_once 'include/functions.php';

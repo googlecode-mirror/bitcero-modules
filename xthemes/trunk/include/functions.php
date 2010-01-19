@@ -119,7 +119,6 @@ function xt_menu_options(){
 <div id="px-menu-options">
 	<a href="index.php" title="Show all themes" class="themes">Themes</a>
 	<a href="index.php?op=config" title="Configure current theme" class="settings">Configure</a>
-	<a href="index.php?op=plugins" title="Show available plugins" class="plugins">Plugins</a>
 	<a href="index.php?op=catalog" title="Show themes catalog" class="catalog">Themes Catalog</a>
 	<a href="index.php?op=about" title="About I.Themes Module" class="about">About I.Themes</a>
 </div>
