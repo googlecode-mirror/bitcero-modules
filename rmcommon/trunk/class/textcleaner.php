@@ -10,6 +10,8 @@
 
 $aprotocols = array();
 
+
+
 /**
  * Handles many methods for formatting output.
  */
@@ -107,6 +109,20 @@ class TextCleaner
 		$string = trim($string);
 		return $string;
 	}
+	
+	function nofollow( $text ) {
+		global $wpdb;
+		// This is a pre save filter, so text is already escaped.
+		$text = stripslashes($text);
+		$text = preg_replace_callback('|<a (.+?)>|i', 'rel_nofollow', $text);
+		return $text;
+	}
+	
+	function popuplinks($text) {
+		$text = preg_replace('/<a (.+?)>/i', "<a $1 target='_blank' rel='external'>", $text);
+		return $text;
+	}
+	
 	/**
 	* Next set of three functions are a set of callbacks to manege url and uri matches
 	* 
@@ -573,9 +589,9 @@ class TextCleaner
 	 * @param   bool    $dbr Disbale replace of breaklines when html is enabled
 	 * @return  string
 	 **/
-	function to_display($text, $dbr = true){
+	function to_display($text, $dbr = true, $params = array()){
 		
-        $rmc_config = RMFunctions::get()->configs();
+        $rmc_config = empty($params) ? RMFunctions::get()->configs() : $params;
 		
 		$original_text = $text;
 		if ($rmc_config['dohtml'] != 1)
@@ -594,6 +610,10 @@ class TextCleaner
 		// Replace breaklines
 		if ($rmc_config['dobr']) 
 			$text = $this->nl2Br($text);
+		
+		// Delete scripts
+		if (!isset($rmc_config['doscripts']) || !$rmc_config['doscripts'])
+			$text = preg_replace_callback("@<iframe[^>]*?>.*?</iframe>@si","preg_striptags",$text); 
 		
 		$text = $this->make_clickable($text);
 		$text = $this->codeConv($text, $rmc_config['doxcode']);	// Ryuji_edit(2003-11-18)
@@ -739,4 +759,21 @@ function decode_entities_chr($matches){
 }
 function decode_entities_chr_hexdec($matches){
     return TextCleaner::decode_entities_chr_hexdec($matches);
+}
+function rel_nofollow( $matches ) {
+	$text = $matches[1];
+	$text = str_replace(array(' rel="nofollow"', " rel='nofollow'"), '', $text);
+	return "<a $text rel=\"nofollow\">";
+}
+function preg_striptags($match){
+	//return TextCleaner::getInstance()->specialchars($match);
+	$ret = '';
+	if(is_array($match)){
+		foreach($match as $i => $t){
+			$ret .= TextCleaner::getInstance()->specialchars($t);
+		}
+	} else {
+		$match = TextCleaner::getInstance()->specialchars($match);
+	}
+	return $ret;
 }

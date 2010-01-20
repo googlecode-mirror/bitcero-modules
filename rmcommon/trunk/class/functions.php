@@ -219,7 +219,7 @@ class RMFunctions
             
             $comms[] = array(
                 'id'        => $row['id_com'],
-                'text'      => TextCleaner::getInstance()->to_display($row['content'], true),
+                'text'      => TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content'))),
                 'poster'    => $poster,
                 'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
                 'ip'        => $com->getVar('ip')
