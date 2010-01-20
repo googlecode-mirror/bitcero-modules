@@ -10,8 +10,6 @@
 
 $aprotocols = array();
 
-
-
 /**
  * Handles many methods for formatting output.
  */
@@ -22,7 +20,17 @@ class TextCleaner
 	* Stores all the emoticons used on system
 	*/
 	private $emots = array();
-	
+	/**
+    * Tags that will be disbled when dohtml is activated
+    */
+    private $disable_tags = array(
+        '@<iframe[^>]*?>.*?</iframe>@si',
+        '@<script[^>]*?>.*?</script>@si',
+        '@<style[^>]*?>.*?</style>@si',
+        '@<html[^>]*?>.*?</html>@si',
+        '@<body[^>]*?>.*?</body>@si',
+        '@<meta[^>]*?>.*?</meta>@si'
+    );
 	/**
 	* Singleton
 	*/
@@ -589,13 +597,16 @@ class TextCleaner
 	 * @param   bool    $dbr Disbale replace of breaklines when html is enabled
 	 * @return  string
 	 **/
-	function to_display($text, $dbr = true, $params = array()){
+	function to_display($text, $dbr = true){
 		
         $rmc_config = empty($params) ? RMFunctions::get()->configs() : $params;
 		
 		$original_text = $text;
-		if ($rmc_config['dohtml'] != 1)
+		if ($rmc_config['dohtml'] != 1){
 			$text = $this->specialchars($text);
+        } else {
+            $text = preg_replace_callback($this->disable_tags,"preg_striptags",$text); 
+        }
 		
 		// Convert [code] tag
 		$text = $this->codePreConv($text, $rmc_config['doxcode']); // Ryuji_edit(2003-11-18)
@@ -610,10 +621,6 @@ class TextCleaner
 		// Replace breaklines
 		if ($rmc_config['dobr']) 
 			$text = $this->nl2Br($text);
-		
-		// Delete scripts
-		if (!isset($rmc_config['doscripts']) || !$rmc_config['doscripts'])
-			$text = preg_replace_callback("@<iframe[^>]*?>.*?</iframe>@si","preg_striptags",$text); 
 		
 		$text = $this->make_clickable($text);
 		$text = $this->codeConv($text, $rmc_config['doxcode']);	// Ryuji_edit(2003-11-18)

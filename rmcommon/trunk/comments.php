@@ -63,7 +63,7 @@ function show_comments(){
                 'name'  => $user->getVar('uname'),
                 'email' => $user->getVar('email'),
                 'posts' => $user->getVar('posts'),
-                'avatar'=> $user->getVar('user_avatar')!='' && $user->getVar('user_avatar')!='blank.gif' ? $user->getVar('user_avatar') : RMCURL.'/images/avatar.gif',
+                'avatar'=> $user->getVar('user_avatar')!='' && $user->getVar('user_avatar')!='blank.gif' ? XOOPS_UPLOAD_URL.'/'.$user->getVar('user_avatar') : RMCURL.'/images/avatar.gif',
                 'rank'  => $user->rank()
             );
             
@@ -82,7 +82,7 @@ function show_comments(){
         
         $comments[] = array(
             'id'        => $row['id_com'],
-            'text'      => $com->getVar('content','e'),
+            'text'      => $com->getVar('content'),
             'poster'    => $poster,
             'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
             'ip'        => $com->getVar('ip')

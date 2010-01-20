@@ -2,16 +2,16 @@
     <thead>
     <tr>
         <th width="20"><input type="checkbox" id="checkall" value="" /></th>
-        <th><?php _e('Author','rmcommon'); ?></th>
-        <th><?php _e('Comment','rmcommon'); ?></th>
+        <th align="left"><?php _e('Author','rmcommon'); ?></th>
+        <th align="left"><?php _e('Comment','rmcommon'); ?></th>
         <th><?php _e('In reply to','rmcommon'); ?></th>
     </tr>
     </thead>
     <tfoot>
     <tr>
         <th width="20"><input type="checkbox" id="checkall" value="" /></th>
-        <th><?php _e('Author','rmcommon'); ?></th>
-        <th><?php _e('Comment','rmcommon'); ?></th>
+        <th align="left"><?php _e('Author','rmcommon'); ?></th>
+        <th align="left"><?php _e('Comment','rmcommon'); ?></th>
         <th><?php _e('In reply to','rmcommon'); ?></th>
     </tr>
     </tfoot>
@@ -28,7 +28,8 @@
         <strong><?php echo $com['poster']['name']; ?></strong>
         <span class="poster_data"><a href="mailto:<?php echo $com['poster']['email']; ?>"><?php echo $com['poster']['email']; ?></a><br />
         <?php echo $com['ip']; ?></span></td>
-        <td><?php echo $com['text']; ?></td>
+        <td><span class="comment_date"><?php echo sprintf(__('Posted on %s', 'rmcommon'), formatTimestamp($com['date'], 'l')); ?></span>
+        <?php echo $com['text']; ?></td>
     </tr>
     <?php endforeach; ?>
     <?php endif; ?>
