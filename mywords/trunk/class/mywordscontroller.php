@@ -16,7 +16,7 @@
 
 class MywordsController
 {
-    public function update_comments_number($comment){
+    public function update_comments_number($total, $comment){
         
         $db = Database::getInstance();
         $params = urldecode($comment->getVar('params'));
