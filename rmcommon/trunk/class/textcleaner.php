@@ -604,8 +604,6 @@ class TextCleaner
 		$original_text = $text;
 		if ($rmc_config['dohtml'] != 1){
 			$text = $this->specialchars($text);
-        } else {
-            $text = preg_replace_callback($this->disable_tags,"preg_striptags",$text); 
         }
 		
 		// Convert [code] tag
@@ -628,6 +626,15 @@ class TextCleaner
 
 		// Before to send the formatted string we send it to interceptor methods
 		return RMEvents::get()->run_event('rmcommon.text_todisplay', $text, $original_text);
+	}
+	
+	function clean_disabled_tags($text){
+		
+		$this->disable_tags = RMEvents::get()->run_event('rmcommon.more_disabled_tags', $this->disable_tags);
+		
+		$text = preg_replace_callback($this->disable_tags,"preg_striptags",$text);
+		return $text;
+		
 	}
 
 	/**
