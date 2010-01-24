@@ -28,6 +28,8 @@ $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
 $modversion['adminmenu'] = "menu.php";
 
+$modversion['hasMain'] = 1;
+
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 $modversion['tables'][0] = 'api_events';
