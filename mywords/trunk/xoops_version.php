@@ -33,8 +33,6 @@ $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=5';
 $modversion['rmnative'] = 1;
 
-$modversion['hasMain'] = 1;
-
 // Admin things
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
