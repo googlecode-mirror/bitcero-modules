@@ -27,4 +27,9 @@ class MywordsController
         $sql = "UPDATE ".$db->prefix("mw_posts")." SET comments=comments+1 WHERE id_post=$post";
         $db->queryF($sql);
     }
+    
+    public function item_info($params){
+        
+    }
+    
 }
