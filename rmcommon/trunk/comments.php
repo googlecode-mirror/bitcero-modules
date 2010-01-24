@@ -82,7 +82,7 @@ function show_comments(){
         
         $comments[] = array(
             'id'        => $row['id_com'],
-            'text'      => $com->getVar('content'),
+            'text'      => TextCleaner::getInstance()->clean_disabled_tags(TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content')))),
             'poster'    => $poster,
             'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
             'ip'        => $com->getVar('ip')
