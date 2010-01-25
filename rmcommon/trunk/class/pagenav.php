@@ -83,8 +83,7 @@ class RMPageNav
     * @param bool INdicates if this method must show the navbar or only render it
     * @return string|echo
     */
-    public function render($caption){
-		global $exmTpl;
+    public function render($caption, $showing=0){
 		
 		// If we have the content of render then return it
 		if ($this->displayed){
@@ -110,6 +109,8 @@ class RMPageNav
 		$this->showing = sprintf(__('Showing <strong>%u</strong> to <strong>%u</strong> of <strong>%u</strong>.','global'), $first_element, $last_element, $total_results);
 		
 		if ($total_pages<=1) return;
+		
+		if($showing) $showing_legend = $this->showing;
 		
 		ob_start();
 		
@@ -137,8 +138,8 @@ class RMPageNav
     /**
     * Displays the navbar
     */
-    public function display($caption = true){
-		echo $this->render($caption);
+    public function display($caption = true, $showing = 0){
+		echo $this->render($caption, $showing);
     }
     	
 }

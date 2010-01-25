@@ -122,7 +122,7 @@ if (is_file(XOOPS_ROOT_PATH.'/modules/'.$object.'/class/'.$object.'controller.ph
     if(class_exists($class)){
         $controller = new $class();
         if (method_exists($controller, 'update_comments_number')){
-            $controller->update_comments_number($comment);
+            $controller->increment_comments_number($comment);
         }
     }
     

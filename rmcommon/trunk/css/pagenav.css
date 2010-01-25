@@ -7,6 +7,13 @@ div.rmc_pages_navigation_container span.pages_caption{
     float: left;
     padding: 2px 4px;
 }
+div.rmc_pages_navigation_container span.showing{
+	display: block;
+	float: left;
+	padding: 3px 10px 3px 0;
+	margin-right: 10px;
+	border-right: 1px dotted #CCC;
+}
 div.rmc_pages_navigation_container a{
     display: block;
     padding: 1px 6px;

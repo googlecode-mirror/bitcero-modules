@@ -16,10 +16,12 @@ class RMComment extends RMObject
     private $user = array();
     
     public function __construct($id=null){
+    	
         $this->db =& Database::getInstance();
         $this->_dbtable = $this->db->prefix("rmc_comments");
         $this->setNew();
         $this->initVarsFromTable();
+        
         if ($id==null){
             return;
         }
@@ -58,6 +60,33 @@ class RMComment extends RMObject
             return $this->updateTable();
         }
         
+    }
+    
+    /**
+    * Delete Comment
+    */
+    public function delete(){
+		
+		if (!$this->deleteFromTable()) return false;
+		
+		// Update comments parent
+		$sql = "UPDATE ".$this->db->prefix("rmc_comments")." SET parent=".$this->getVar('parent')." WHERE parent=".$this->id();
+		if (!$this->db->queryF($sql)) $this->addError($this->db->error());
+		
+		// Reduce user posts number
+		$user = new RMCommentUser($this->getVar('user'));
+		if ($user->isNew()) return true;
+		
+		if($user->getVar('xuid')<=0) return true;
+		
+		$sql = "UPDATE ".$this->db->prefix("users")." SET posts=posts-1 WHERE uid=".$user->getVar('xuid');
+		if(!$this->db->queryF($sql)){
+			$this->addError($this->db->error());
+			return false;
+		}
+		
+		return true;
+		
     }
     
 }

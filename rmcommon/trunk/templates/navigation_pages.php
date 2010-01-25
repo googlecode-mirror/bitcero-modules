@@ -1,4 +1,5 @@
 <div class="rmc_pages_navigation_container">
+	<?php if($showing): ?><span class="showing"><?php echo $showing_legend; ?></span><?php endif; ?>
 	<?php if($caption): ?><span class="pages_caption"><?php _e('Pages:','rmcommon'); ?></span><?php endif; ?>
 	<?php if($total_pages>$steps && $current_page>$steps-1): ?>
 		<a href="<?php echo str_replace('{PAGE_NUM}', 1, $url); ?>" title="<?php _e('First Page','rmcommon'); ?>" class="image"><img src="<?php echo RMCURL; ?>/images/first.gif" alt="<?php _e('First Page','rmcommon'); ?>" /></a>
