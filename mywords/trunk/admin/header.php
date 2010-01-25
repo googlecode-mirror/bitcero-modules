@@ -12,7 +12,6 @@ $xpath = str_replace("/modules/mywords/admin", "", $xpath);
 
 require $xpath.'/include/cp_header.php';
 require $xpath.'/modules/rmcommon/admin_loader.php';
-require $xpath.'/modules/mywords/include/general.func.php';
 
 $db =& $xoopsDB;
 

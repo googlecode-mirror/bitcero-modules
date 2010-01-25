@@ -16,19 +16,54 @@
 
 class MywordsController
 {
-    public function update_comments_number($total, $comment){
+    public function increment_comments_number($comment){
         
         $db = Database::getInstance();
         $params = urldecode($comment->getVar('params'));
         parse_str($params);
         
-        if(!isset($post) || $post<=0) continue;
+        if(!isset($post) || $post<=0) return;
         
         $sql = "UPDATE ".$db->prefix("mw_posts")." SET comments=comments+1 WHERE id_post=$post";
         $db->queryF($sql);
+        
     }
     
-    public function item_info($params){
+    public function reduce_comments_number($comment){
+		
+		$db = Database::getInstance();
+        $params = urldecode($comment->getVar('params'));
+        parse_str($params);
+        
+        if(!isset($post) || $post<=0) return;
+        
+        $sql = "UPDATE ".$db->prefix("mw_posts")." SET comments=comments-1 WHERE id_post=$post";
+        $db->queryF($sql);
+		
+    }
+    
+    public function get_item($params, $com){
+        static $posts;
+        
+        $params = urldecode($params);
+        parse_str($params);
+        if(!isset($post) || $post<=0) return __('Not found','mywords_admin');;
+        
+        if(isset($posts[$post])){
+        	$ret = '<a href="'.$posts[$post]->permalink().'#comment-'.$com->id().'" target="_blank">'.$posts[$post]->getVar('title').'</a><br /><small>MyWords</small>';
+			return $ret;
+        }
+        
+        include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php');
+        include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php');
+        $item = new MWPost($post);
+        if($item->isNew()){
+			return __('Not found','mywords_admin');
+        }
+        
+        $ret = '<a href="'.$item->permalink().'#comment-'.$com->id().'" target="_blank">'.$item->getVar('title').'</a><br /><small>MyWords</small>';
+        $posts[$post] = $item;
+        return $ret;
         
     }
     
