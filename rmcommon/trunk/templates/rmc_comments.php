@@ -64,7 +64,7 @@
         <td><span class="comment_date"><?php echo sprintf(__('Posted on %s', 'rmcommon'), formatTimestamp($com['posted'], 'l')); ?></span>
         <?php echo $com['text']; ?>
         <span class="rmc_options">
-        	<a href="comments.php?id=<?php echo $com['id']; ?>&amp;op=edit&amp;page=<?php echo $page; ?>&amp;filter=<?php echo $filter; ?>&amp;w=<?php echo $keyw; ?>"><?php _e('Edit','rmcommon'); ?></a> | 
+        	<a href="comments.php?id=<?php echo $com['id']; ?>&amp;action=edit&amp;page=<?php echo $page; ?>&amp;filter=<?php echo $filter; ?>&amp;w=<?php echo $keyw; ?>"><?php _e('Edit','rmcommon'); ?></a> | 
         	<a href="javascript:;" onclick="confirm_delete(<?php echo $com['id']; ?>);"><?php _e('Delete','rmcommon'); ?></a> | 
         	<?php if($com['status']=='approved'): ?>
         	<a href="javascript:;" onclick="approve_action(<?php echo $com['id']; ?>,'unapprove');"><?php _e('Unnaprove','rmcommon'); ?></a>

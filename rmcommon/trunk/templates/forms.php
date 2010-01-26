@@ -11,9 +11,9 @@
 		//print_r($data);
 		$field =& $data['field'];
 		
-		if ($data['class']=='EXMHidden'):
+		if ($data['class']=='RMFormHidden'):
 			echo $field->render();
-		elseif($data['class']=='EXMSubTitle'):
+		elseif($data['class']=='RMFormSubtitle'):
 ?>
 <tr>
 	<td colspan="2"><?php echo $field->render(); ?>

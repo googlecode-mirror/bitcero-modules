@@ -13,7 +13,8 @@ div.form_container{
 	margin: 20px auto;
 }
 table.table_form{
-	width: 99%;
+	width: 85%;
+	margin: 0 auto;
 }
 .cell_fields{
 	margin: 0 0 20px 0;

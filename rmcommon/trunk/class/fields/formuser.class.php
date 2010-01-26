@@ -33,7 +33,7 @@ class RMFormUser extends RMFormElement
 	* @param int Alto de la ventana
 	*/
 	public function __construct($caption, $name, $multi = false, $select=array(), $limit=36, $width=600,$height=300, $showall = 0){
-		$this->selected = $select;
+		$this->selected = is_array($select) ? $select : array($select);
 		$this->limit = $limit;
 		$this->multi = $multi;
 		$this->setCaption($caption);

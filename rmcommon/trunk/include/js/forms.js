@@ -223,4 +223,8 @@ var usersField = jQuery.extend({
 	}
 	
 });
+
+$(document).ready(function(){
+	$("form").validate();
+});
 	

@@ -229,6 +229,91 @@ function delete_comments(){
 	
 }
 
+function edit_comment(){
+	
+	$id = rmc_server_var($_GET,'id',0);
+	$page = rmc_server_var($_GET, 'page', 1);
+	$filter = rmc_server_var($_GET, 'filter', '');
+	$w = rmc_server_var($_GET, 'w', '1');
+	
+	$qs = "w=$w&page=$page&filter=$filter";
+	
+	if($id<=0){
+		redirectMsg('comments.php?'.$qs, __('Sorry, comment id is not valid','rmcommon'), 1);
+		die();
+	}
+	
+	$comment = new RMComment($id);
+	if($comment->isNew()){
+		redirectMsg('comments.php?'.$qs, __('Sorry, comment does not found','rmcommon'), 1);
+		die();
+	}
+	
+	$cpath = XOOPS_ROOT_PATH.'/modules/'.$comment->getVar('id_obj').'/class/'.$comment->getVar('id_obj').'controller.php';
+	
+	if(is_file($cpath)){
+		include $cpath;
+		$class = ucfirst($comment->getVar('id_obj')).'Controller';
+		$controller = new $class();
+	}
+	
+	$form = new RMForm(__('Edit Comment', 'rmcommon'), 'editComment', 'comments.php');
+	$form->addElement(new RMFormLabel(__('In reply to', 'rmcommon'), $controller ? $controller->get_item($comment->getVar('params'), $comment):''));
+	$form->addElement(new RMFormLabel(__('Posted date','rmcommon'), formatTimestamp($comment->getVar('posted'), 'mysql')));
+	$form->addElement(new RMFormLabel(__('Module','rmcommon'), $comment->getVar('id_obj')));
+	$form->addElement(new RMFormLabel(__('IP','rmcommon'), $comment->getVar('ip')));
+	
+	$user = new RMCommentUser($comment->getVar('user'));
+	$ele = new RMFormUser(__('Poster','rmcommon'), 'user', false, $user->getVar('xuid')>0 ? $user->getVar('xuid') : 0);
+	$form->addElement($ele);
+	
+	$ele = new RMFormRadio(__('Status','rmcommon'), 'status', 1, 0, 2);
+	$ele->addOption(__('Approved', 'rmcommon'), 'approved', $comment->getVar('status')=='approved'?1:0);
+	$ele->addOption(__('Unapproved', 'rmcommon'), 'waiting', $comment->getVar('status')=='waiting'?1:0);
+	$form->addElement($ele);
+	
+	$form->addElement(new RMFormTextArea(__('Content','rmcommon'), 'content', null, null, $comment->getVar('content','e'),'100%','150px'), true);
+	$form->addElement(new RMFormHidden('page', $page));
+	$form->addElement(new RMFormHidden('filter', $filter));
+	$form->addElement(new RMFormHidden('w', $w));
+	$form->addElement(new RMFormHidden('id', $id));
+	$form->addElement(new RMFormHidden('action', 'save'));
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', __('Update Comment','rmcommon'), 'submit');
+	$ele->addButton('cancel', __('Cancel','rmcommon'), 'button', 'onclick="history.go(-1);"');
+	$form->addElement($ele);
+	
+	xoops_cp_header();
+	$form->display();
+	xoops_cp_footer();
+	
+}
+
+function save_comment(){
+	global $xoopsSecurity;
+	
+	$id = rmc_server_var($_POST,'id',0);
+	$page = rmc_server_var($_POST, 'page', 1);
+	$filter = rmc_server_var($_POST, 'filter', '');
+	$w = rmc_server_var($_POST, 'w', '1');
+	
+	$qs = "id=$id&w=$w&page=$page&filter=$filter";
+	
+	if(!$xoopsSecurity->check()){
+		redirectMsg('comments.php?action=edit&'.$qs, __('Sorry, session token expired!','rmcommon'), 1);
+		die();
+	}
+	
+	$status = rmc_server_var($_POST, 'status', 'unapproved');
+	$status = $status=='approved'?$status:'unapproved';
+	
+	$user = rmc_server_var($_POST, 'user', 0);
+	$content = rmc_server_var($_POST, 'content', '');
+	$content = TextCleaner::getInstance()->clean_disabled_tags($content);
+	
+}
+
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -241,6 +326,12 @@ switch($action){
     	break;
     case 'delete':
     	delete_comments();
+    	break;
+    case 'edit':
+    	edit_comment();
+    	break;
+    case 'save':
+    	save_comment();
     	break;
     default:
         show_comments();
