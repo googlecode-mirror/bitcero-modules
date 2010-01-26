@@ -90,8 +90,12 @@ list($uid) = $db->fetchRow($result);
 
 if ($uid<=0){
     
-    $db->queryF("INSERT INTO ".$db->prefix("rmc_comusers")." (`xuid`,`name`,`email`) VALUES ('$xuid','$name','$email')");
+    $db->queryF("INSERT INTO ".$db->prefix("rmc_comusers")." (`xuid`,`name`,`email`,`url`) VALUES ('$xuid','$name','$email','$url')");
     $uid = $db->getInsertId();
+    
+} else {
+    
+    $db->queryF("UPDATE ".$db->prefix("rmc_comusers")." SET `name`='$name',`email`='$email',`url`='$url' WHERE id_user='$uid'");
     
 }
 
@@ -101,7 +105,7 @@ $comment->setVar('type', $type);
 $comment->setVar('parent', isset($parent) ? $parent : 0);
 $comment->setVar('params', $params);
 $comment->setVar('content', $text);
-$comment->setVar('user', $xuid);
+$comment->setVar('user', $uid);
 $comment->setVar('ip', $_SERVER['REMOTE_ADDR']);
 $comment->setVar('posted', time());
 

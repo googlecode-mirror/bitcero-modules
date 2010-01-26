@@ -74,7 +74,7 @@
         </span>
         </td>
         <td align="center">
-        	<?php echo $com['status']=='waiting' ? _e('Unapproved','rmcommon') : _e('Approved','rmcommon'); ?>
+        	<?php echo $com['status']=='approved' ? _e('Approved','rmcommon') : _e('Unapproved','rmcommon'); ?>
         </td>
         <td align="center">
         	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?>

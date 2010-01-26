@@ -169,7 +169,7 @@ class RMFunctions
         $db = Database::getInstance();
         
         $params = urlencode($params);
-        $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
+        $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE status='approved' AND id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
         $result = $db->query($sql);
         
         $ucache = array();
@@ -201,7 +201,8 @@ class RMFunctions
                     'email' => $user->getVar('email'),
                     'posts' => $user->getVar('posts'),
                     'avatar'=> $user->getVar('user_avatar'),
-                    'rank'  => $user->rank()
+                    'rank'  => $user->rank(),
+                    'url'   => $user->getVar('url')
                 );
             
             } else {
@@ -212,7 +213,8 @@ class RMFunctions
                     'email' => $editor->getVar('email'),
                     'posts' => 0,
                     'avatar'=> '',
-                    'rank'  => ''
+                    'rank'  => '',
+                    'url'  => $editor->getVar('url')
                 );
                 
             }

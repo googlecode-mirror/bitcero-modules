@@ -303,13 +303,48 @@ function save_comment(){
 		redirectMsg('comments.php?action=edit&'.$qs, __('Sorry, session token expired!','rmcommon'), 1);
 		die();
 	}
+    
+    if ($id<=0){
+        redirectMsg('comments.php', __('Commend ID not specified!', 'rmcommon'), 1);
+        die();
+    }
+    
+    $comment = new RMComment($id);
+    if($comment->isNew()){
+        redirectMsg('comments.php?'.$qs, __('Commend does not exists!', 'rmcommon'), 1);
+        die();
+    }
 	
 	$status = rmc_server_var($_POST, 'status', 'unapproved');
 	$status = $status=='approved'?$status:'unapproved';
 	
 	$user = rmc_server_var($_POST, 'user', 0);
 	$content = rmc_server_var($_POST, 'content', '');
-	$content = TextCleaner::getInstance()->clean_disabled_tags($content);
+    
+    // save basic info in comment object
+    $comment->setVar('content', $content);
+    $comment->setVar('status', $status);
+    // Modify, if neccessary, the user
+    $user = new RMCommentUser($comment->getVar('user'));
+    if ($user->getVar('xuid')!=$user){
+        
+        if ($user==0){
+            $user->setVar('xuid', 0);
+        } else {
+            $xuser = new XoopsUser($user);
+            $user->setVar('name', $xuser->getVar('uname'));
+            $user->setVar('email', $xuser->getVar('email'));
+            $user->setVar('xuid', $user);
+            $user->save();
+        }
+        
+    }
+    
+    if ($comment->save()){
+        redirectMsg('comments.php?'.$qs, __('Comment updated successfully!','rmcommon'), 0);
+    } else {
+        redirectMsg('comments.php?action=edit&'.$qs, __('Errros ocurrs while trying to update comment!', 1).'<br />'.$comment->errors(), 1);
+    }
 	
 }
 

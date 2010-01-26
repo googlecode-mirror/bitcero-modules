@@ -9,8 +9,10 @@
             <{/if}>
     	</div>
         <div class="info">
-            <{if $comment.poster.id>0}>
+            <{if $comment.poster.id>0 && $comment.poster.url==''}>
                 <a href="<{$xoops_url}>/userinfo.php?uid=<{$comment.poster.id}>"><{$comment.poster.name}></a> says:
+            <{elseif $comment.poster.url!=''}>
+                <a href="<{$comment.poster.url}>" rel="external nofollow" target="_blank"><{$comment.poster.name}></a> says:
             <{else}>
                 <{$comment.poster.name}> says:
             <{/if}>

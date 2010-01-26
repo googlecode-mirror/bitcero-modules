@@ -58,6 +58,7 @@ CREATE TABLE `rmc_comments` (
 `user` INT NOT NULL ,
 `ip` VARCHAR(40) NOT NULL,
 `posted` INT(10) NOT NULL DEFAULT '0',
+`status` VARCHAR(10) NOT NULL DEFAULT 'waiting',
 INDEX ( `id_obj` , `type` )
 ) ENGINE = MYISAM;
 
@@ -65,5 +66,6 @@ CREATE TABLE `rmc_comusers` (
 `id_user` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `xuid` INT NOT NULL DEFAULT '0',
 `name` VARCHAR( 150 ) NOT NULL ,
-`email` VARCHAR( 150 ) NOT NULL
+`email` VARCHAR( 150 ) NOT NULL,
+`url`   VARCHAR(150) NOT NULL
 ) ENGINE = MYISAM ;
