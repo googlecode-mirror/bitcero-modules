@@ -37,7 +37,7 @@ class MywordsController
         
         if(!isset($post) || $post<=0) return;
         
-        $sql = "UPDATE ".$db->prefix("mw_posts")." SET comments=comments-1 WHERE id_post=$post";
+        $sql = "UPDATE ".$db->prefix("mw_posts")." SET comments=comments-1 WHERE id_post=$post AND comments>0";
         $db->queryF($sql);
 		
     }

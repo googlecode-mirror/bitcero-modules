@@ -78,7 +78,7 @@ if ($db->getRowsNum($result)>0){
 }
 
 if($xoopsUser && ($xoopsUser->isAdmin() || $editor->getVar('uid')==$xoopsUser->uid())){
-	$edit = '<a href="'.XOOPS_URL.'/modules/mywords/admin/posts.php?action=edit&amp;id='.$post->id().'">'.__('Edit Post','mywords').'</a>';
+	$edit = '<a href="'.XOOPS_URL.'/modules/mywords/admin/posts.php?op=edit&amp;id='.$post->id().'">'.__('Edit Post','mywords').'</a>';
 	$xoopsTpl->assign('edit_link', $edit);
 	unset($edit);
 }
@@ -126,5 +126,6 @@ RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module', MW_PATH.'/c
 // Language
 $xoopsTpl->assign('lang_publish', __('Published in','mywords'));
 $xoopsTpl->assign('lang_tagged',__('Tagged as','mywords'));
+$xoopsTpl->assign('lang_numcoms', sprintf(__('%u Comments', 'mywords'), $post->getVar('comments')));
  
 include 'footer.php';

@@ -26,7 +26,7 @@
         <{if $post.tags!=''}><span class="mwtags"><{$lang_tagged}> <{$post.tags}></span><{/if}>
     </div>
 </div>
-
+<h2 class="comments_title"><{$lang_numcoms}></h2>
 <!-- Start Comments -->
 <{include file="db:rmc_comments_display.html"}>
 <{include file="db:rmc_comments_form.html"}>
