@@ -165,11 +165,13 @@ class RMFunctions
     * @return array
     */
     public function get_comments($obj,$params,$type='module',$parent=0,$user=null,$assign=true){
+        global $xoopsUser;
         
+        define('COMMENTS_INCLUDED', 1);
         $db = Database::getInstance();
         
         $params = urlencode($params);
-        $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE status='approved' AND id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'");
+        $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE status='approved' AND id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'")." ORDER BY posted";
         $result = $db->query($sql);
         
         $ucache = array();
@@ -202,7 +204,7 @@ class RMFunctions
                     'posts' => $user->getVar('posts'),
                     'avatar'=> $user->getVar('user_avatar'),
                     'rank'  => $user->rank(),
-                    'url'   => $user->getVar('url')
+                    'url'   => $user->getVar('url')!='http://'?$user->getVar('url'):''
                 );
             
             } else {
@@ -214,9 +216,17 @@ class RMFunctions
                     'posts' => 0,
                     'avatar'=> '',
                     'rank'  => '',
-                    'url'  => $editor->getVar('url')
+                    'url'  => $editor->getVar('url')!='http://'?$editor->getVar('url'):''
                 );
                 
+            }
+            
+            if ($xoopsUser && $xoopsUser->isAdmin()){
+				$editlink = RMCURL.'/comments.php?action=edit&amp;id='.$com->id();				
+            }elseif($xoopsUser && $xoopsUser->getVar('uid')==$editor->getVar('xuid')){
+				$editlink = RMCURL.'/post_comment.php?action=edit&amp;id='.$com->id();				
+            } else {
+				$editlink = '';
             }
             
             $comms[] = array(
@@ -224,7 +234,8 @@ class RMFunctions
                 'text'      => TextCleaner::getInstance()->clean_disabled_tags(TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content')))),
                 'poster'    => $poster,
                 'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
-                'ip'        => $com->getVar('ip')
+                'ip'        => $com->getVar('ip'),
+                'edit'		=> $editlink
             );            
         }
         
@@ -232,6 +243,7 @@ class RMFunctions
         
         if ($assign){
             global $xoopsTpl;
+            $xoopsTpl->assign('lang_edit', __('Edit','rmcommon'));
             $xoopsTpl->assign('comments', $comms);
             return true;
         } else {
@@ -251,6 +263,22 @@ class RMFunctions
     */
     public function comments_form($obj, $params, $type='module', $file=array()){
         global $xoopsTpl, $xoopsRequestUri, $xoopsUser;
+        
+        $config = self::configs();
+        
+        if (!$config['enable_comments']){
+			 return;
+        }
+        
+        if (!$xoopsUser && !$config['anonymous_comments']){
+			return;
+        }
+        
+        if (!defined('COMMENTS_INCLUDED')){
+			define('COMMENTS_INCLUDED', 1);
+        }
+        
+        $xoopsTpl->assign('enable_comments_form', 1);
         
         $form = array(
             'show_name'     => !($xoopsUser),

@@ -325,21 +325,26 @@ function save_comment(){
     $comment->setVar('content', $content);
     $comment->setVar('status', $status);
     // Modify, if neccessary, the user
-    $user = new RMCommentUser($comment->getVar('user'));
-    if ($user->getVar('xuid')!=$user){
+    $cuser = new RMCommentUser($comment->getVar('user'));
+    if ($cuser->getVar('xuid')!=$user){
         
         if ($user==0){
-            $user->setVar('xuid', 0);
+            $cuser->setVar('xuid', 0);
+            $cuser->save();
         } else {
             $xuser = new XoopsUser($user);
-            $user->setVar('name', $xuser->getVar('uname'));
-            $user->setVar('email', $xuser->getVar('email'));
-            $user->setVar('xuid', $user);
-            $user->save();
+            $cuser = new RMCommentUser($xuser->getVar('email'));
+            $cuser->setVar('name', $xuser->getVar('uname'));
+            $cuser->setVar('email', $xuser->getVar('email'));
+            $cuser->setVar('xuid', $user);
+            $cuser->setVar('url', $xuser->getVar('url'));
+            $cuser->save();
         }
         
+        $comment->setVar('user', $cuser->id());
+        
     }
-    
+
     if ($comment->save()){
         redirectMsg('comments.php?'.$qs, __('Comment updated successfully!','rmcommon'), 0);
     } else {

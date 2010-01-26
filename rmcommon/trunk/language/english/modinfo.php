@@ -28,6 +28,12 @@ define('_MI_RMC_DOXCODE','Allow XoopsCode');
 define('_MI_RMC_DOIMAGE','Allow images in text');
 define('_MI_RMC_DOBR','Auto add line breaks in text');
 
+// Comments
+define('_MI_RMC_ENABLECOMS','Enable comments');
+define('_MI_RMC_ANONCOMS','Allow anonymous users to post comments');
+define('_MI_RMC_APPROVEREG','Automatically approve comments by registered users');
+define('_MI_RMC_APPROVEANON','Automatically approve comments by anonymous users');
+
 // Admin Menu
 define('_MI_RMC_MENUDASH','Dashboard');
 define('_MI_RMC_MENUPLUGS','Plugins');

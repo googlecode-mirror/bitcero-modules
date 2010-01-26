@@ -129,3 +129,32 @@ $modversion['config'][11]['description'] = '';
 $modversion['config'][11]['formtype'] = 'yesno';
 $modversion['config'][11]['valuetype'] = 'int';
 $modversion['config'][11]['default'] = 0;
+
+// Comments
+$modversion['config'][12]['name'] = 'enable_comments';
+$modversion['config'][12]['title'] = '_MI_RMC_ENABLECOMS';
+$modversion['config'][12]['description'] = '';
+$modversion['config'][12]['formtype'] = 'yesno';
+$modversion['config'][12]['valuetype'] = 'int';
+$modversion['config'][12]['default'] = 1;
+
+$modversion['config'][13]['name'] = 'anonymous_comments';
+$modversion['config'][13]['title'] = '_MI_RMC_ANONCOMS';
+$modversion['config'][13]['description'] = '';
+$modversion['config'][13]['formtype'] = 'yesno';
+$modversion['config'][13]['valuetype'] = 'int';
+$modversion['config'][13]['default'] = 1;
+
+$modversion['config'][14]['name'] = 'approve_reg_coms';
+$modversion['config'][14]['title'] = '_MI_RMC_APPROVEREG';
+$modversion['config'][14]['description'] = '';
+$modversion['config'][14]['formtype'] = 'yesno';
+$modversion['config'][14]['valuetype'] = 'int';
+$modversion['config'][14]['default'] = 1;
+
+$modversion['config'][15]['name'] = 'approve_anon_coms';
+$modversion['config'][15]['title'] = '_MI_RMC_APPROVEANON';
+$modversion['config'][15]['description'] = '';
+$modversion['config'][15]['formtype'] = 'yesno';
+$modversion['config'][15]['valuetype'] = 'int';
+$modversion['config'][15]['default'] = 0;

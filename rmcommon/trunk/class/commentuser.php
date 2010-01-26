@@ -19,9 +19,20 @@ class RMCommentUser extends RMObject
             return;
         }
         
-        if (!$this->loadValues($id)) return false;
+        if ($this->loadValues($id)){
+			$this->unsetNew();
+			return;
+        }
         
-        $this->unsetNew();
+        $this->primary = 'email';
+        if ($this->loadValues($id)){
+			$this->unsetNew();
+			$this->primary = 'id_user';
+			return;
+        }
+        
+        $this->primary = 'id_user';
+		return;
         
     }
     

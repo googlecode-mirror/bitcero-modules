@@ -51,7 +51,7 @@
     <tbody>
     <?php if(count($comments)<=0): ?>
     <tr class="head">
-        <td colspan="4" align="center"><?php _e('There are not comments yet!','rmcommon'); ?></td>
+        <td colspan="5" align="center"><?php _e('There are not comments yet!','rmcommon'); ?></td>
     </tr>
     <?php else: ?>
     <?php foreach ($comments as $com): ?>

@@ -16,7 +16,7 @@
             <{else}>
                 <{$comment.poster.name}> says:
             <{/if}>
-            <span class="date"><{$comment.posted}></span>
+            <span class="date"><{$comment.posted}><{if ($comment.edit!='')}> (<a href="<{$comment.edit}>"><{$lang_edit}></a>)<{/if}></span>
         </div>
     	<div class="text"><{$comment.text}></div>
     </div>
