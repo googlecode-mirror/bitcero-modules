@@ -33,6 +33,8 @@ define('_MI_RMC_ENABLECOMS','Enable comments');
 define('_MI_RMC_ANONCOMS','Allow anonymous users to post comments');
 define('_MI_RMC_APPROVEREG','Automatically approve comments by registered users');
 define('_MI_RMC_APPROVEANON','Automatically approve comments by anonymous users');
+define('_MI_RMC_ALLOWEDIT','Allow users to edit their comments');
+define('_MI_RMC_EDITLIMIT','Time limit to edit a comment. (in hours)');
 
 // Admin Menu
 define('_MI_RMC_MENUDASH','Dashboard');

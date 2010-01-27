@@ -170,6 +170,8 @@ class RMFunctions
         define('COMMENTS_INCLUDED', 1);
         $db = Database::getInstance();
         
+        $rmc_config = RMFunctions::configs();
+        
         $params = urlencode($params);
         $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." WHERE status='approved' AND id_obj='$obj' AND params='$params' AND type='$type' AND parent='$parent'".($user==null?'':" AND user='$user'")." ORDER BY posted";
         $result = $db->query($sql);
@@ -223,11 +225,14 @@ class RMFunctions
             
             if ($xoopsUser && $xoopsUser->isAdmin()){
 				$editlink = RMCURL.'/comments.php?action=edit&amp;id='.$com->id();				
-            }elseif($xoopsUser && $xoopsUser->getVar('uid')==$editor->getVar('xuid')){
-				$editlink = RMCURL.'/post_comment.php?action=edit&amp;id='.$com->id();				
-            } else {
-				$editlink = '';
-            }
+            }elseif($rmc_config['allow_edit']){
+				$time_limit = time() - $com->getVar('posted');
+	            if($xoopsUser && $xoopsUser->getVar('uid')==$editor->getVar('xuid') && $time_limit<($rmc_config['edit_limit']*3600)){
+					$editlink = RMCURL.'/post_comment.php?action=edit&amp;id='.$com->id();				
+	            } else {
+					$editlink = '';
+	            }
+			}
             
             $comms[] = array(
                 'id'        => $row['id_com'],

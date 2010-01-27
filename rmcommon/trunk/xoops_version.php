@@ -158,3 +158,17 @@ $modversion['config'][15]['description'] = '';
 $modversion['config'][15]['formtype'] = 'yesno';
 $modversion['config'][15]['valuetype'] = 'int';
 $modversion['config'][15]['default'] = 0;
+
+$modversion['config'][16]['name'] = 'allow_edit';
+$modversion['config'][16]['title'] = '_MI_RMC_ALLOWEDIT';
+$modversion['config'][16]['description'] = '';
+$modversion['config'][16]['formtype'] = 'yesno';
+$modversion['config'][16]['valuetype'] = 'int';
+$modversion['config'][16]['default'] = 0;
+
+$modversion['config'][17]['name'] = 'edit_limit';
+$modversion['config'][17]['title'] = '_MI_RMC_EDITLIMIT';
+$modversion['config'][17]['description'] = '';
+$modversion['config'][17]['formtype'] = 'textbox';
+$modversion['config'][17]['valuetype'] = 'int';
+$modversion['config'][17]['default'] = 1;
