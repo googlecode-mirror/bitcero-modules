@@ -14,3 +14,12 @@ $adminmenu[1]['link'] = 'index.php';
 
 $adminmenu[2]['title'] = 'Plugins';
 $adminmenu[2]['link'] = 'index.php?op=plugins';
+
+$adminmenu[3]['title'] = 'Configure';
+$adminmenu[3]['link'] = 'index.php?op=config';
+
+$adminmenu[4]['title'] = 'Catalog';
+$adminmenu[4]['link'] = '#';
+
+$adminmenu[5]['title'] = 'About';
+$adminmenu[5]['link'] = 'index.php?op=about';
