@@ -15,7 +15,8 @@ require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
 function show_rm_plugins(){
 	
 	$dir = RMCPATH.'/plugins';
-	$file_list = XoopsLists::getFileListAsArray($dir);
+	$file_list = XoopsLists::getDirListAsArray($dir);
+	print_r($file_list); die();
 	
 	RMFunctions::create_toolbar();
 	xoops_cp_header();
