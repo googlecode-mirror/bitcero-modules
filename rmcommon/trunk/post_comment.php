@@ -28,7 +28,7 @@ if ($action=='save'){
 	    redirect_header(XOOPS_URL, 2, __('You are not allowed to do this action!', 'rmcommon'));
 	    die();
 	}
-        
+    
     if (!$xoopsUser && !$config['anonymous_comments']){
         return;
     }
@@ -158,6 +158,11 @@ if ($action=='save'){
 	
 } elseif ($action=='edit') {
 	
+	if (rmc_server_var($_GET, 'ret', '')==''){
+		redirect_header(XOOPS_URL, 2, __('Invalid operation','rmcommon'));
+		die();
+	}
+	
     // Check if user is allowed to edit this comment
     if (!$xoopsUser){
         redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('You are not allowed to edit this comment!', 'rmcommon'));
@@ -166,20 +171,20 @@ if ($action=='save'){
     
     $id = rmc_server_var($_GET, 'id', 0);
     if ($id<=0){
-        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('Please specify a comment', 'rmcommon'));
+        redirect_header(rmc_server_var($_REQUEST, 'ret', XOOPS_URL), 1, __('Please specify a comment', 'rmcommon'));
         die();
     }
     
     $comment = new RMComment($id);
     if ($comment->isNew()){
-        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('Specified comment does not exists!', 'rmcommon'));
+        redirect_header(rmc_server_var($_REQUEST, 'ret', XOOPS_URL), 1, __('Specified comment does not exists!', 'rmcommon'));
         die();
     }
     
     // Check if user is owner
     $editor = new RMCommentUser($comment->getVar('user'));
     if ($xoopsUser->uid()!=$editor->getVar('xuid') && !$xoopsUser->isAdmin($comment->getVar('id_obj'))){
-        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('You are not allowed to edit this comment!', 'rmcommon'));
+        redirect_header(rmc_server_var($_REQUEST, 'ret', XOOPS_URL), 1, __('You are not allowed to edit this comment!', 'rmcommon'));
         die();
     }
     
@@ -193,7 +198,7 @@ if ($action=='save'){
         $controller = new $class();
     }
     
-    $form = new RMForm(__('Edit Comment', 'rmcommon'), 'editComment', 'comments.php');
+    $form = new RMForm(__('Edit Comment', 'rmcommon'), 'editComment', 'post_comment.php');
     $form->addElement(new RMFormLabel(__('In reply to', 'rmcommon'), $controller ? $controller->get_item($comment->getVar('params'), $comment):''));
     $form->addElement(new RMFormLabel(__('Posted date','rmcommon'), formatTimestamp($comment->getVar('posted'), 'mysql')));
     $form->addElement(new RMFormLabel(__('Module','rmcommon'), $comment->getVar('id_obj')));
@@ -212,14 +217,96 @@ if ($action=='save'){
     }
     
     $form->addElement(new RMFormTextArea(__('Content','rmcommon'), 'content', null, null, $comment->getVar('content','e'),'100%','150px'), true);
-    $form->addElement(new RMFormHidden('action', 'saveedited'));
+    $form->addElement(new RMFormHidden('action', 'saveedit'));
     $ele = new RMFormButtonGroup();
     $ele->addButton('sbt', __('Update Comment','rmcommon'), 'submit');
     $ele->addButton('cancel', __('Cancel','rmcommon'), 'button', 'onclick="history.go(-1);"');
     $form->addElement($ele);
     
+    $form->addElement(new RMFormHidden('ret', rmc_server_var($_GET, 'ret', XOOPS_URL)));
+    $form->addElement(new RMFormHidden('id', $id));
+    
+    // Event to modify or add new elements to comments form
+    $form = RMEvents::get()->run_event('rmcommon.edit.comment.form', $form);
+    
     $form->display();
     
     include '../../footer.php';
+	
+} elseif($action=='saveedit'){
+	
+	$ret = rmc_server_var($_POST,'ret','');
+	$id = rmc_server_var($_POST,'id',0);
+	$page = rmc_server_var($_POST, 'page', 1);
+	$filter = rmc_server_var($_POST, 'filter', '');
+	$w = rmc_server_var($_POST, 'w', '1');
+	
+	if ($ret==''){
+		redirect_header(XOOPS_URL, 1, __('Invalid Operation','rmcommon'));
+		die();
+	}
+	
+	// Check if user is allowed to edit this comment
+    if (!$xoopsUser){
+        redirect_header($ret, 1, __('You are not allowed to edit this comment!', 'rmcommon'));
+        die();
+    }
+	
+	if(!$xoopsSecurity->check()){
+		redirect_header($ret, 1, __('You are not allowed to edit this comment!','rmcommon'));
+		die();
+	}
+    
+    if ($id<=0){
+        redirect_header(XOOPS_URL, 1, __('Please specify a comment','rmcommon'));
+        die();
+    }
+    
+    $comment = new RMComment($id);
+    if($comment->isNew()){
+        redirect_header(XOOPS_URL, 1, __('Specified comment does not exists!','rmcommon'));
+        die();
+    }
+	
+	$status = $xoopsUser->isAdmin($comment->getVar('id_obj')) ? rmc_server_var($_POST, 'status', $comment->getVar('status')) : $comment->getVar('status');
+	$status = $status=='approved'?$status:'unapproved';
+	
+	$user = $xoopsUser->isAdmin($comment->getVar('id_obj')) ? rmc_server_var($_POST, 'user', $xoopsUser->getVar('uid')) : $xoopsUser->getVar('uid');
+	$content = rmc_server_var($_POST, 'content', '');
+    
+    if ($content==''){
+		redirect_header('post_comment.php?id='.$id.'&ret='.urlencode($ret).'&action=edit', 2, __('You must provide a text for comment!','rmcommon'));
+		die();
+    }
+    
+    // save basic info in comment object
+    $comment->setVar('content', $content);
+    $comment->setVar('status', $status);
+    // Modify, if neccessary, the user
+    $cuser = new RMCommentUser($comment->getVar('user'));
+    if ($cuser->getVar('xuid')!=$user){
+        
+        if ($user==0){
+            $cuser->setVar('xuid', 0);
+            $cuser->save();
+        } else {
+            $xuser = new XoopsUser($user);
+            $cuser = new RMCommentUser($xuser->getVar('email'));
+            $cuser->setVar('name', $xuser->getVar('uname'));
+            $cuser->setVar('email', $xuser->getVar('email'));
+            $cuser->setVar('xuid', $user);
+            $cuser->setVar('url', $xuser->getVar('url'));
+            $cuser->save();
+        }
+        
+        $comment->setVar('user', $cuser->id());
+        
+    }
+
+    if ($comment->save()){
+        redirect_header($ret.'#comment-'.$comment->id(), 2, __('Comment updated successfully!','rmcommon'));
+    } else {
+        redirect_header($ret.'#comment-'.$comment->id(), 2, __('Errros ocurrs while trying to update comment!', 'rmcommon'));
+    }
 	
 }

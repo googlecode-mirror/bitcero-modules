@@ -312,7 +312,7 @@ function save_comment(){
     
     $comment = new RMComment($id);
     if($comment->isNew()){
-        redirectMsg('comments.php?'.$qs, __('Commend does not exists!', 'rmcommon'), 1);
+        redirectMsg('comments.php?'.$qs, __('Specified comment does not exists!', 'rmcommon'), 1);
         die();
     }
 	

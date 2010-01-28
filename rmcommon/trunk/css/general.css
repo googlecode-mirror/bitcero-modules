@@ -17,3 +17,7 @@ div.rmc_bulkactions div.rmc_pages_navigation_container{
 span.rmc_options a{
 	color: #FF3300;
 }
+.descriptions{
+	padding: 8px;
+	color: #666;
+}
