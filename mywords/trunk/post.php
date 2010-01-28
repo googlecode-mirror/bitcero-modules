@@ -93,14 +93,18 @@ foreach($tags as $i => $tag){
 }
 
 // Post data
-$xoopsTpl->assign('post', array(
+$post_arr = array(
 	'id'	=> $post->id(),
 	'title'	=> $post->getVar('title'),
-	'published' => $publicado = sprintf(__('Published on %s at %s by %s','mywords'), '<a href="'.$post->permalink().'">'.formatTimestamp($post->getVar('pubdate'),'s').'</a>', formatTimestamp($post->getVar('pubdate'),'t'),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>"),
+	'published' => $publicado = sprintf(__('Published on %s at %s by %s','mywords'), '<a href="'.$post->permalink().'">'.formatTimestamp($post->getVar('pubdate'),'s').'</a>', date('H:i',$post->getVar('pubdate')),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>"),
     'text'    => $post->content(false, $page),
     'cats'  => $post->get_categories_names(),
     'tags'  => $tags_list
-));
+);
+
+// Plugins?
+$post_arr = RMEvents::get()->run_event('mywords.view.post', $post_arr);
+$xoopsTpl->assign('post', $post_arr);
 
 // Social sites
 foreach($socials as $site){
