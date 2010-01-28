@@ -283,6 +283,7 @@ function edit_comment(){
 	$ele->addButton('cancel', __('Cancel','rmcommon'), 'button', 'onclick="history.go(-1);"');
 	$form->addElement($ele);
 	
+    RMFunctions::create_toolbar();
 	xoops_cp_header();
 	$form->display();
 	xoops_cp_footer();

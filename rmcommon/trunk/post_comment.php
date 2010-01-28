@@ -15,12 +15,23 @@ $action = rmc_server_var($_REQUEST, 'action', '');
 * This file handle comments from Common Utilties
 */
 
+$rmc_config = RMFunctions::configs();
+
+if (!$rmc_config['enable_comments']){
+    redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('Sorry, comments has been disabled by administrator', 'rmcommon'));
+    die();
+}
+
 if ($action=='save'){
 
 	if (!$xoopsSecurity->checkReferer()){
 	    redirect_header(XOOPS_URL, 2, __('You are not allowed to do this action!', 'rmcommon'));
 	    die();
 	}
+        
+    if (!$xoopsUser && !$config['anonymous_comments']){
+        return;
+    }
 
 	// Check if user is a Registered User
 	if(!$xoopsUser){
@@ -113,7 +124,6 @@ if ($action=='save'){
 	$comment->setVar('posted', time());
 
 	// Check if comment must be approved
-	$rmc_config = RMFunctions::get()->configs();
 	if ($xoopsUser && $rmc_config['approve_reg_coms']){
 		$comment->setVar('status', 'approved');
 	} elseif(!$xoopsUser && $rmc_config['approve_anon_coms']){
@@ -148,6 +158,68 @@ if ($action=='save'){
 	
 } elseif ($action=='edit') {
 	
-	echo "Hola";
+    // Check if user is allowed to edit this comment
+    if (!$xoopsUser){
+        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('You are not allowed to edit this comment!', 'rmcommon'));
+        die();
+    }
+    
+    $id = rmc_server_var($_GET, 'id', 0);
+    if ($id<=0){
+        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('Please specify a comment', 'rmcommon'));
+        die();
+    }
+    
+    $comment = new RMComment($id);
+    if ($comment->isNew()){
+        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('Specified comment does not exists!', 'rmcommon'));
+        die();
+    }
+    
+    // Check if user is owner
+    $editor = new RMCommentUser($comment->getVar('user'));
+    if ($xoopsUser->uid()!=$editor->getVar('xuid') && !$xoopsUser->isAdmin($comment->getVar('id_obj'))){
+        redirect_header(rmc_server_var($_REQUEST, 'comment_url', XOOPS_URL), 1, __('You are not allowed to edit this comment!', 'rmcommon'));
+        die();
+    }
+    
+	include '../../header.php';
+    
+    $cpath = XOOPS_ROOT_PATH.'/modules/'.$comment->getVar('id_obj').'/class/'.$comment->getVar('id_obj').'controller.php';
+    
+    if(is_file($cpath)){
+        include $cpath;
+        $class = ucfirst($comment->getVar('id_obj')).'Controller';
+        $controller = new $class();
+    }
+    
+    $form = new RMForm(__('Edit Comment', 'rmcommon'), 'editComment', 'comments.php');
+    $form->addElement(new RMFormLabel(__('In reply to', 'rmcommon'), $controller ? $controller->get_item($comment->getVar('params'), $comment):''));
+    $form->addElement(new RMFormLabel(__('Posted date','rmcommon'), formatTimestamp($comment->getVar('posted'), 'mysql')));
+    $form->addElement(new RMFormLabel(__('Module','rmcommon'), $comment->getVar('id_obj')));
+    
+    if($xoopsUser->isAdmin()){
+        $user = new RMCommentUser($comment->getVar('user'));
+        $ele = new RMFormUser(__('Poster','rmcommon'), 'user', false, $user->getVar('xuid')>0 ? $user->getVar('xuid') : 0);
+        $form->addElement($ele);
+    }
+    
+    if($xoopsUser->isAdmin($comment->getVAr('id_obj'))){
+        $ele = new RMFormRadio(__('Status','rmcommon'), 'status', 1, 0, 2);
+        $ele->addOption(__('Approved', 'rmcommon'), 'approved', $comment->getVar('status')=='approved'?1:0);
+        $ele->addOption(__('Unapproved', 'rmcommon'), 'waiting', $comment->getVar('status')=='waiting'?1:0);
+        $form->addElement($ele);
+    }
+    
+    $form->addElement(new RMFormTextArea(__('Content','rmcommon'), 'content', null, null, $comment->getVar('content','e'),'100%','150px'), true);
+    $form->addElement(new RMFormHidden('action', 'saveedited'));
+    $ele = new RMFormButtonGroup();
+    $ele->addButton('sbt', __('Update Comment','rmcommon'), 'submit');
+    $ele->addButton('cancel', __('Cancel','rmcommon'), 'button', 'onclick="history.go(-1);"');
+    $form->addElement($ele);
+    
+    $form->display();
+    
+    include '../../footer.php';
 	
 }
