@@ -14,6 +14,8 @@
 
 class RMPlugin extends RMObject
 {
+    private $dir = '';
+    
 	public function __construct($id=null){
 		
 		$this->db =& Database::getInstance();
@@ -25,7 +27,7 @@ class RMPlugin extends RMObject
             return;
         }
         
-        if ($this->loadValues($id)){
+        if (is_numeric($id) && $this->loadValues($id)){
 			$this->unsetNew();
 			return true;
         }

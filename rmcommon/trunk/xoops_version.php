@@ -32,10 +32,11 @@ $modversion['hasMain'] = 1;
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
-$modversion['tables'][0] = 'api_events';
-$modversion['tables'][1] = 'api_methods';
-$modversion['tables'][2] = 'api_objects';
-$modversion['tables'][3] = 'rmc_img_cats';
+$modversion['tables'][0] = 'rmc_img_cats';
+$modversion['tables'][1] = 'rmc_comments';
+$modversion['tables'][2] = 'rmc_comusers';
+$modversion['tables'][3] = 'rmc_images';
+$modversion['tables'][4] = 'rmc_plugins';
 
 // Templates
 $modversion['templates'][1]['file'] = 'rmc_comments_display.html';
