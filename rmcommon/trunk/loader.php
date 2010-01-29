@@ -7,7 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-
+define('RMCLANG','en_US');
 define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
 define("RMCURL",XOOPS_URL.'/modules/rmcommon');
 define('ABSURL', XOOPS_URL);
@@ -107,5 +107,3 @@ if (!$rmc_config){
 }
 
 include_once RMCPATH.'/include/tpl_functions.php';
-
-define('RMCLANG','en_US');

@@ -17,17 +17,27 @@ function show_rm_plugins(){
 	$path = RMCPATH.'/plugins';
 	$dir_list = XoopsLists::getDirListAsArray($path);
 	
+	$available_plugins = array();
+	$installed_plugins = array();
+	
     foreach ($dir_list as $dir){
         
         if (!file_exists($path.'/'.$dir.'/'.strtolower($dir).'-plugin.php')) continue;
         
-        $plugin = new RMPlugin($dir);
+        $phand = new RMPlugin($dir); // PLugin handler
         
-        if ($plugin->isNew()) continue;
+        if ($phand->isNew()){
+			
+			$available_plugins[] = $phand->plugin($dir);
+			
+        } else {
+			
+			$installed_plugins[] = $phand->plugin();
+			
+        }
         
     }
     
-    die();
 	
 	RMFunctions::create_toolbar();
 	xoops_cp_header();
@@ -38,10 +48,24 @@ function show_rm_plugins(){
 	
 }
 
+/**
+* This function install a plugin and all their functionallity
+*/
+function install_rm_plugin(){
+	
+	
+	
+}
+
+// Allow to plugins to take control over this section and show their own options
+RMEvents::get()->run_event('rmcommon.plugins.check.actions');
 
 $action = rmc_server_var($_REQUEST,'action','');
 
 switch($action){
+	case 'install':
+		install_rm_plugin();
+		break;
 	default:
 		show_rm_plugins();
 		break;

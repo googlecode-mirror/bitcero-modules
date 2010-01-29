@@ -29,7 +29,7 @@ function get_locale(){
 	
 	// Get default locale
 	$exm_locale = RMEvents::get()->run_event('rmcommon.get_locale', $exm_locale);
-	
+
 	return $exm_locale;
 }
 
@@ -84,11 +84,13 @@ function load_mod_locale($domain, $prefix=''){
 /**
 * Read a MO file for translate a plugin
 */
-function load_plugin_locale($plugin, $prefix=''){
+function load_plugin_locale($plugin, $prefix='', $module='rmcommon'){
 	$exm_locale = get_locale();
+
 	if ($plugin=='') return;
 	
-	$path = PLUGINSPATH.'/'.$plugin.'/lang/'.$prefix.$exm_locale.'.mo';
+	$path = XOOPS_ROOT_PATH.'/modules/'.$module.'/plugins/'.$plugin.'/lang/'.$prefix.$exm_locale.'.mo';
+
 	load_locale_file($plugin, $path);
 	
 }
@@ -116,7 +118,7 @@ function load_theme_locale($theme, $prefix='', $gui=false){
 */
 function translate($text, $domain = 'system'){
 	global $l10n;
-	
+
 	if (isset($l10n[$domain]))
 		return RMEvents::get()->run_event('rmcommon.get_locale_text', $l10n[$domain]->translate($text), $text, $domain); 
 	else

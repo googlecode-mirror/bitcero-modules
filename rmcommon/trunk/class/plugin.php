@@ -45,4 +45,25 @@ class RMPlugin extends RMObject
 		return $this->getVar('id_plugin');
 	}
 	
+	public function plugin($dir = ''){
+		
+		$dir = $dir=='' ? $this->getVar('dir') : $dir;
+		
+		$class = ucfirst($dir).'CUPlugin';
+		if (!class_exists($class))
+			include_once RMCPATH.'/plugins/'.$dir.'/'.strtolower($dir).'-plugin.php';
+		
+		$plugin = new $class();
+		return $plugin;
+		
+	}
+	
+	public function save(){
+		if ($this->isNew()){
+			return $this->saveToTable();
+		} else {
+			return $this->updateTable();
+		}
+	}
+	
 }
