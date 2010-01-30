@@ -53,8 +53,19 @@ function show_rm_plugins(){
 */
 function install_rm_plugin(){
 	
+	$name = rmc_server_var($_GET, 'plugin', '');
+    if ($name==''){
+        redirectMsg('plugins.php', __('You must specify a existing plugin', 'rmcommon'), 1);
+        die();
+    }
 	
-	
+    $plugin = new RMPlugin($name);
+    
+    if ($plugin->isNew()){
+        redirectMsg('plugins.php', __('Specified plugin does not exists!', 'rmcommon'), 1);
+        die();
+    }
+    
 }
 
 // Allow to plugins to take control over this section and show their own options

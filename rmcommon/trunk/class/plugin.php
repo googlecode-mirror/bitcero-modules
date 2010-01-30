@@ -15,6 +15,10 @@
 class RMPlugin extends RMObject
 {
     private $dir = '';
+    /**
+    * The plugin object
+    */
+    private $plugin;
     
 	public function __construct($id=null){
 		
@@ -27,11 +31,13 @@ class RMPlugin extends RMObject
             return;
         }
         
+        // If provided id is numeric
         if (is_numeric($id) && $this->loadValues($id)){
 			$this->unsetNew();
 			return true;
         }
         
+        // If id is a directory name
         $this->primary = 'dir';
         if ($this->loadValues($id)){
 			$this->unsetNew();
@@ -41,6 +47,18 @@ class RMPlugin extends RMObject
 		
 	}
 	
+    public function load_from_dir($dir){
+        
+        if ($dir == '') return;
+        
+        $path = RMCPATH.'/plugins/'.$dir;
+        
+        if (!is_file($path.'/'.strtolower($dir).'-plugin.php')) return;
+        
+        
+        
+    }
+    
 	public function id(){
 		return $this->getVar('id_plugin');
 	}
