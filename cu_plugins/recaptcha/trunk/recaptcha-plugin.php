@@ -22,7 +22,7 @@ class RecaptchaCUPlugin
 		
 		$this->info = array(
 			'name'			=> __('Recaptcha Plugin', 'recaptcha'),
-			'description'	=> __('Plugin to insert a receptcha field on comments and other forms','recaptcha'),
+			'description'	=> __('Plugin to insert a recaptcha field on comments and other forms','recaptcha'),
 			'version'		=> '1.0.0.0',
 			'author'		=> 'Eduardo Cortés',
 			'email'			=> 'i.bitcero@gmail.com',
