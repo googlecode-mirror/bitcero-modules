@@ -34,6 +34,7 @@ class RMPlugin extends RMObject
         // If provided id is numeric
         if (is_numeric($id) && $this->loadValues($id)){
 			$this->unsetNew();
+            $this->load_from_dir($this->getVar('dir'));
 			return true;
         }
         
@@ -41,22 +42,33 @@ class RMPlugin extends RMObject
         $this->primary = 'dir';
         if ($this->loadValues($id)){
 			$this->unsetNew();
+            $this->load_from_dir($this->getVar('dir'));
         }
         
         $this->primary = 'id_plugin';
 		
 	}
 	
+    /**
+    * This method must be called before to access the plugin methods
+    * @param string Directory name
+    */
     public function load_from_dir($dir){
         
-        if ($dir == '') return;
+        if ($dir == '') return false;
         
         $path = RMCPATH.'/plugins/'.$dir;
         
-        if (!is_file($path.'/'.strtolower($dir).'-plugin.php')) return;
+        if (!is_file($path.'/'.strtolower($dir).'-plugin.php')) return false;
         
+        include_once $path.'/'.strtolower($dir).'-plugin.php';
+        $class = ucfirst($dir).'CUPlugin';
         
+        if (!class_exists($class)) return false;
         
+        $this->plugin = new $class();
+        
+        return true;
     }
     
 	public function id(){

@@ -61,10 +61,18 @@ function install_rm_plugin(){
 	
     $plugin = new RMPlugin($name);
     
-    if ($plugin->isNew()){
-        redirectMsg('plugins.php', __('Specified plugin does not exists!', 'rmcommon'), 1);
+    if (!$plugin->isNew()){
+        redirectMsg('plugins.php', __('Specified plugin is installed already!', 'rmcommon'), 1);
         die();
     }
+    
+    if (!$plugin->load_from_dir($name)){
+        redirectMsg('plugins.php', sprintf(__('%s is not a valid plugin!', 'rmcommon'), $name), 1);
+        die();
+    }
+    
+    $db = Database::getInstance();
+    $sql = "INSERT INTO ".$db->prefix("rmc_plugins")." (`name`,`dir`,`description`,`active`,`version`) VALUES ()";
     
 }
 
