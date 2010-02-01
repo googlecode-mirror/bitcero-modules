@@ -8,12 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class RecaptchaCUPlugin
+class RecaptchaCUPlugin extends RMIPlugin
 {
-	/**
-	* Stores all information about plugin
-	*/
-	private $info = array();
 	
 	function __construct(){
 		
