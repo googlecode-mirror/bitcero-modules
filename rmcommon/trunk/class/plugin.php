@@ -67,6 +67,11 @@ class RMPlugin extends RMObject
         if (!class_exists($class)) return false;
         
         $this->plugin = new $class();
+        $this->setVar('dir', $dir);
+        
+        foreach ($this->plugin->info() as $k => $v){
+			$this->setVar($k, $v);
+        }
         
         return true;
     }
@@ -78,14 +83,21 @@ class RMPlugin extends RMObject
 	public function plugin($dir = ''){
 		
 		$dir = $dir=='' ? $this->getVar('dir') : $dir;
-		
 		$class = ucfirst($dir).'CUPlugin';
+		
+		if (is_a($this->plugin, $class))
+			return $this->plugin;
+		
 		if (!class_exists($class))
 			include_once RMCPATH.'/plugins/'.$dir.'/'.strtolower($dir).'-plugin.php';
 		
 		$plugin = new $class();
 		return $plugin;
 		
+	}
+	
+	public function get_info($name){
+		return $this->plugin()->get_info($name);
 	}
 	
 	public function save(){

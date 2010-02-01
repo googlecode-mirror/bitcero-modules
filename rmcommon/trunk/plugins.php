@@ -71,8 +71,10 @@ function install_rm_plugin(){
         die();
     }
     
-    $db = Database::getInstance();
-    $sql = "INSERT INTO ".$db->prefix("rmc_plugins")." (`name`,`dir`,`description`,`active`,`version`) VALUES ()";
+    if (!$plugin->save()){
+		redirectMsg('plugins.php', __('Plugin could not be installed, please try again.','rmcommon'), 1);
+		die();
+    }
     
 }
 
