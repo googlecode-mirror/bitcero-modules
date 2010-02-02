@@ -9,7 +9,6 @@
 // --------------------------------------------------------------
 
 include '../../../mainfile.php';
-include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 XoopsLogger::getInstance()->activated = false;
 XoopsLogger::getInstance()->renderingEnabled = false;
 
@@ -182,6 +181,7 @@ if ($action==''){
             'cat'        => $categories[$img->getVar('cat')]->getVar('name'),
             'author'    => $authors[$img->getVar('uid')],
             'thumb'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'],
+            'url'		=> $filesurl,
             'file'      => $fd['filename'],
             'extension' => $fd['extension'],
             'mime'      => isset($mimes[$fd['extension']]) ? $mimes[$fd['extension']] : 'application/octet-stream',
@@ -191,7 +191,7 @@ if ($action==''){
             )
         );
         
-        $images[] = RMEvents::get()->run_event('rmcommon.loading_single_editorimgs', $ret, rmc_server_var($_REQUEST, 'url', ''));
+        $images[] = RMEvents::get()->run_event('rmcommon.loading.single.editorimgs', $ret, rmc_server_var($_REQUEST, 'url', ''));
     }
     
     include RMTemplate::get()->get_template('images_list_editor.php','module','rmcommon');

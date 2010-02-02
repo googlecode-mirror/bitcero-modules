@@ -2,15 +2,15 @@
 * $Id$
 * Styles for tinymce editor content
 */
-.alignleft{
+img.left{
 	float: left;
 	margin: 3px 3px 3px 0;
 }
-.alignright{
+.right{
 	float: right;
 	margin: 3px 0 3px 3px;
 }
-.aligncenter{
+.center{
 	display:block;
 	margin: 5px auto 5px auto;
 }

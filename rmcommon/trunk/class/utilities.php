@@ -239,5 +239,13 @@ class RMUtilities
 		return $rtn;
 		
 	}
+	
+	/**
+	* Add a slash (/) to the end of string
+	*/
+	public function add_slash($string){
+		$string = rtrim($string, "/");
+		return $string.'/';
+	}
 		
 }

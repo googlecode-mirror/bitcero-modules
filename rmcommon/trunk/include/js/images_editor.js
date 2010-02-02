@@ -161,7 +161,7 @@ function insert_image(id,t){
             if(!$(sizes[i]).attr('checked')) continue;
             
             // File URL
-            html += $("#filesurl").val() + '/' + $(sizes[i]).val();
+            html += $(sizes[i]).val();
         }
         
         html += '[/img]';
@@ -192,7 +192,7 @@ function insert_image(id,t){
         if(!$(sizes[i]).attr('checked')) continue;
         
         // File URL
-        html += $("#filesurl").val() + '/' + $(sizes[i]).val() + '"';
+        html += $(sizes[i]).val() + '"';
     }
     
     // Alignment
@@ -205,7 +205,7 @@ function insert_image(id,t){
     }
     
     html += ' alt="'+$("#image-alt-"+id).val()+'" />';
-    
+
     if ($("#image-link-"+id).val()!=''){
 		html += '</a>';
 	}

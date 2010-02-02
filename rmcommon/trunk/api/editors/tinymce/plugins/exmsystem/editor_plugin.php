@@ -153,7 +153,7 @@ $xoopsLogger->activated = false;
                 // para crear botones y comandos en TinyMCE
                 // Los métodos registrados deben retornar código javascript
                 // funcional en el método init de tinymce
-                RMEvents::get()->run_event('rmcommon.tinymce_plugin_loading');
+                RMEvents::get()->run_event('rmcommon.tinymce.plugin.loading');
             ?>
         
         },
@@ -262,7 +262,7 @@ $xoopsLogger->activated = false;
     
     <?php
         // Evento para registrar nuevas funciones en el plugin exmsystem
-        RMEvents::get()->run_event('rmcommon.tinymce_plugin_functions','');
+        RMEvents::get()->run_event('rmcommon.tinymce.plugin.functions','');
     ?>
     
     // Register plugin

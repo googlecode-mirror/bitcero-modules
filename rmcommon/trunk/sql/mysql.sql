@@ -49,3 +49,13 @@ CREATE TABLE `rmc_plugins` (
 `version` TEXT NOT NULL ,
 `status` TINYINT( 1 ) NOT NULL DEFAULT '1'
 ) ENGINE = MYISAM ;
+
+CREATE TABLE `rmc_settings` (
+`conf_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`element` VARCHAR( 50 ) NOT NULL ,
+`name` VARCHAR( 50 ) NOT NULL ,
+`type` VARCHAR( 20 ) NOT NULL ,
+`value` TEXT NOT NULL ,
+`valuetype` VARCHAR( 20 ) NOT NULL ,
+INDEX ( `element` , `name` )
+) ENGINE = MYISAM ;
