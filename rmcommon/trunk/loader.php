@@ -97,6 +97,12 @@ include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 $rmc_config = RMFunctions::get()->configs();
 
+// Load plugins
+$result = $db->query("SELECT * FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
+while($row = $db->fetchArray($result)){
+    RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
+}
+
 require_once 'api/l10n.php';
 
 load_mod_locale('rmcommon','');

@@ -28,10 +28,6 @@ if ($action=='save'){
 	    redirect_header(XOOPS_URL, 2, __('You are not allowed to do this action!', 'rmcommon'));
 	    die();
 	}
-    
-    if (!$xoopsUser && !$config['anonymous_comments']){
-        return;
-    }
 
 	// Check if user is a Registered User
 	if(!$xoopsUser){
@@ -57,6 +53,11 @@ if ($action=='save'){
 	    die();
 	}
 
+    if (!$xoopsUser && !$rmc_config['anonymous_comments']){
+        redirect_header($uri, 2, __('Sorry, you are not allowed to post comments!', 'rmcommon'));
+        die();
+    }
+    
 	// Check params
 	$params = rmc_server_var($_POST, 'params', '');
 	if (trim($params)==''){
@@ -85,7 +86,7 @@ if ($action=='save'){
 	    die();
 	}
 
-	RMEvents::get()->run_event('rmcommon.comment_postdata', null);
+	RMEvents::get()->run_event('rmcommon.comment.postdata', $uri);
 
 	// Save comment user
 	$db = Database::getInstance();

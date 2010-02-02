@@ -99,13 +99,97 @@ class RMPlugin extends RMObject
 	public function get_info($name){
 		return $this->plugin()->get_info($name);
 	}
-	
-	public function save(){
-		if ($this->isNew()){
-			return $this->saveToTable();
-		} else {
-			return $this->updateTable();
-		}
-	}
+    
+    public function on_install(){
+        return $this->plugin->on_install();
+    }
+    
+    public function on_update(){
+        return $this->plugin->on_update();
+    }
+    
+    public function on_uninstall(){
+        return $this->plugin->on_uninstall();
+    }
+    
+    public function on_activate($q){
+        return $this->plugin->on_activate($q);
+    }
+    
+    public function options(){
+        return $this->plugin->options();
+    }
+    
+    private function insert_configs(){
+        
+        $dir = $this->plugin()->get_info('dir');
+        $pre_options = $this->plugin->options();
+        
+        if (empty($pre_options)) return;
+        
+        $db = Database::getInstance();
+        $c_options = RMFunctions::get()->plugin_settings($dir);
+        
+        if (empty($c_options)){
+            
+            $sql = '';
+            foreach ($pre_options as $name => $option){
+                $sql .= $sql==''?'':',';
+                $sql .= "('$dir','$name','plugin','$option[value]','$option[valuetype]')";
+            }
+            
+            $sql = "INSERT INTO ".$db->prefix("rmc_settings")." (`element`,`name`,`type`,`value`,`valuetype`) VALUES ".$sql;
+            
+            if(!$db->queryF($sql)){
+                $this->addError($this->db->error());
+                return false;
+            } else {
+                return true;
+            }
+            
+        } else {
+            
+            $sql = '';
+            foreach ($pre_options as $name => $option){
+                
+                if (isset($c_options[$name])){
+                    $option['value'] = $c_options[$name]['value'];
+                    $sql = "UPDATE ".$db->prefix("rmc_settings")." SET value='$option[value]' WHERE element='$dir' AND type='plugin' AND name='$name'";
+                    $db->queryF($sql);
+                } else {
+                    $sql = "INSERT INTO ".$db->prefix("rmc_settings")." (`element`,`name`,`type`,`value`,`valuetype`) VALUES 
+                            ('$dir','$name','plugin','$option[value]','$option[valuetype]')";
+                    $db->queryF($sql);
+                }
+            }
+            
+        }        
+        
+        return true;
+    }
+    
+    public function save(){
+        
+        $this->insert_configs();
+        
+        if ($this->isNew()){
+            return $this->saveToTable();
+        } else {
+            return $this->updateTable();
+        }
+    }
+    
+    public function delete(){
+        
+        $dir = $this->plugin()->get_info('dir');
+        $db = Database::getInstance();
+        $sql = "DELETE FROM ".$db->prefix("rmc_settings")." WHERE element='$dir' AND type='plugin'";
+        if(!$db->queryF($sql)){
+            $this->addError($db->error());
+            return false;
+        }
+        
+        return $this->deleteFromTable();
+    }
 	
 }

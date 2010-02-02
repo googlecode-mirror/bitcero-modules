@@ -10,6 +10,8 @@
 
 class RMFunctions
 {
+    private $plugin_settings = array();
+    
 	public function get(){
 		static $instance;
 		
@@ -306,7 +308,7 @@ class RMFunctions
         
         // You can include new content into Comments form
         // eg. Captcha checker, etc
-        $form = RMEvents::get()->run_event('rmcommon.comments_form', $form, $obj, $params, $type);
+        $form = RMEvents::get()->run_event('rmcommon.comments.form', $form, $obj, $params, $type);
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
         RMTemplate::get()->add_head('<script type="text/javascript">
         $(document).ready(function(){
@@ -331,5 +333,63 @@ class RMFunctions
 	  	$pageURL .= $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 	 	return $pageURL;
 	}
+    
+    /**
+    * Get plugins settings
+    * @param string Plugin dirname
+    * @param bool Type of values returned
+    */
+    public function plugin_settings($dir, $values = false){
+        
+        if ($dir=='') return;
+        
+        if (!isset($this->plugin_settings[$dir])){
+        
+            $db = Database::getInstance();
+            $sql = "SELECT * FROM ".$db->prefix("rmc_settings")." WHERE element='$dir'";
+            $result = $db->query($sql);
+            if($db->getRowsNum($result)<=0) return;
+            $configs = array();
+            while ($row = $db->fetchArray($result)){
+                $configs[$row['name']] = $row;
+            }
+            
+            $configs = $this->getConfValueForOutput($configs);
+            $this->plugin_settings[$dir] = $configs;
+        
+        }
+        
+        if (!$values) return $this->plugin_settings[$dir];
+        
+        $ret = array();
+        foreach($this->plugin_settings[$dir] as $name => $conf){
+            $ret[$name] = $conf['value'];
+        }
+        
+        return $ret;
+        
+    }
+    
+    private function getConfValueForOutput($confs){
+        foreach ($confs as $name => $data){
+            
+            switch ($data['valuetype']) {
+                case 'int':
+                    $confs[$name]['value'] = intval($data['value']);
+                    break;
+                case 'array':
+                    $confs[$name]['value'] = unserialize($data['value']);
+                    break;
+                case 'float':
+                    $confs[$name]['value'] = floatval($data['value']);
+                    break;
+                case 'textarea':
+                    $confs[$name]['value'] = stripSlashes($data['value']);
+                    break;
+            }
+        }
+        
+        return $confs;
+    }
 	
 }

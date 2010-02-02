@@ -77,14 +77,11 @@ class RMEvents
         
         $dir = rtrim($dir, '/');
         $extra = array();
-        
          if (is_dir($dir.'/events')){
             $file_list = XoopsLists::getFileListAsArray($dir.'/events');
             foreach ($file_list as $file) {
                 if (preg_match('/(\.php)$/i', $file)) {
                     $file = substr($file, 0, -4);
-                    $this->_preloads[$i]['theme'] = $module;
-                    $this->_preloads[$i]['file'] = $file;
                     $extra[] = $file;
                     $i++;
                 }
@@ -92,8 +89,8 @@ class RMEvents
         }
         
         foreach ($extra as $preload) {
-            include_once $dir . '/events/' . $preload['file']. '.php';
-            $class_name = ucfirst($name) . ucfirst($preload['file']) . 'Preload' ;
+            include_once $dir . '/events/' . $preload. '.php';
+            $class_name = ucfirst($name) . ucfirst($preload) . 'Preload' ;
             if (!class_exists($class_name)) {
                 continue;
             }

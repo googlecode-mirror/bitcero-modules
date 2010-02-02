@@ -406,7 +406,7 @@ class RMTemplate
     */
     public function menu_options(){
     	
-    	$this->tpl_menus = EXMEventsApi::get()->run_event('rmcommon.menus_options',$this->tpl_menus, $this);
+    	$this->tpl_menus = RMEvents::get()->run_event('rmcommon.menus_options',$this->tpl_menus, $this);
     	
 		return $this->tpl_menus;
     }

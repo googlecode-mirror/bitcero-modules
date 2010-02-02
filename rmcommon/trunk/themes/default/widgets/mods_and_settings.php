@@ -59,7 +59,8 @@ foreach ($mods as $mod) {
             $rtn['icon'] = RMCURL.'/themes/default/images/system.png';
         }
     }
-    $menu[] = $rtn;
+    
+    $menu[$mod->getVar('dirname','n')] = $rtn;
  }
  
  $menu[] = array(
@@ -69,7 +70,7 @@ foreach ($mods as $mod) {
  );
 
 // Event for those elements that want to insert new options in modules menus
-$menu = RMEvents::get()->run_event('rmcommon.modules_menu', $menu);
+$menu = RMEvents::get()->run_event('rmcommon.modules.menu', $menu);
  
 $rtn = '';
 foreach ($menu as $mod){
@@ -171,6 +172,7 @@ $left_widgets[1]['content'] = $rtn;
 // Modules Menu
 if (isset($xoopsModule) && $xoopsModule->getVar('dirname','n')!='system'){
     $amenu = $xoopsModule->getAdminMenu();
+    $amenu = RMEvents::get()->run_event('rmcommon.current.module.menu', $amenu);
     if ($amenu){
 	    foreach ($amenu as $menu){
 		    RMTemplate::get()->add_menu($menu['title'], strpos($menu['link'], array('http://','ftp://'))!==FALSE ? $menu['link'] : XOOPS_URL.'/modules/'.$xoopsModule->getVar('dirname','n').'/'.$menu['link'], isset($menu['icon']) ? $menu['icon'] : '', isset($menu['location']) ? $menu['location'] : '', isset($menu['options']) ? $menu['options'] : null);

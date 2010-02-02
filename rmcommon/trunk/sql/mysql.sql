@@ -47,5 +47,5 @@ CREATE TABLE `rmc_plugins` (
 `description` TEXT NOT NULL ,
 `dir` VARCHAR( 100 ) NOT NULL ,
 `version` TEXT NOT NULL ,
-`active` TINYINT( 1 ) NOT NULL DEFAULT '1'
+`status` TINYINT( 1 ) NOT NULL DEFAULT '1'
 ) ENGINE = MYISAM ;

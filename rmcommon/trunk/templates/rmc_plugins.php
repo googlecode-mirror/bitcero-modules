@@ -7,8 +7,8 @@
 <table class="outer" cellspacing="0" cellpadding="0">
 	<thead>
 	<tr>
-		<th width="20"><input type="checkbox" name="checkall" id="checkall" /></th>
-		<th align="left"><?php _e('Name and Description','rmcommon'); ?></th>
+		<th align="left"><?php _e('Name','rmcommon'); ?></th>
+        <th align="left"><?php _e('Description', 'rmcommon'); ?></th>
 		<th><?php _e('Version','rmcommon'); ?></th>
 		<th><?php _e('Author','rmcommon'); ?></th>
 		<th><?php _e('Status','rmcommon'); ?></th>
@@ -16,8 +16,8 @@
 	</thead>
 	<tfoot>
 	<tr>
-		<th width="20"><input type="checkbox" name="checkallb" id="checkallb" /></th>
-		<th align="left"><?php _e('Name and Description','rmcommon'); ?></th>
+		<th align="left"><?php _e('Name','rmcommon'); ?></th>
+        <th align="left"><?php _e('Description', 'rmcommon'); ?></th>
 		<th><?php _e('Version','rmcommon'); ?></th>
 		<th><?php _e('Author','rmcommon'); ?></th>
 		<th><?php _e('Status','rmcommon'); ?></th>
@@ -29,6 +29,42 @@
 		<td class="error" colspan="5" align="center"><?php _e('There are not plugins installed yet!','rmcommon'); ?></td>
 	</tr>
 	<?php endif; ?>
+    <?php foreach ($installed_plugins as $plugin): ?>
+    <tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
+        <td>
+            <strong><?php echo $plugin->getVar('name'); ?></strong>
+            <span class="rmc_options">
+                <a href="plugins.php?action=uninstall&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Uninstall','rmcommon'); ?></a> | 
+                <?php if($plugin->getVar('status')): ?>
+                    <a href="plugins.php?action=disable&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Disable','rmcommon'); ?></a> | 
+                <?php else: ?>
+                    <a href="plugins.php?action=enable&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Enable','rmcommon'); ?></a> | 
+                <?php endif; ?>
+                <a href="plugins.php?action=update&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Update','rmcommon'); ?></a>
+                <?php if($plugin->options()): ?>
+                | <a href="plugins.php?action=configure&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Settings','rmcommon'); ?></a>
+                <?php endif; ?>
+            </span>
+        </td>
+        <td>
+            <span class="descriptions"><?php echo $plugin->get_info('description'); ?></span>
+        </td>
+        <td align="center">
+            <strong><?php echo $plugin->get_info('version'); ?></strong>
+        </td>
+        <td align="center">
+            <?php if($plugin->get_info('web')!=''): ?>
+            <strong><a href="<?php echo $plugin->get_info('web'); ?>"><?php echo $plugin->get_info('author'); ?></a></strong>
+            <?php else: ?>
+            <strong><?php echo $plugin->get_info('author'); ?></strong>
+            <?php endif; ?><br />
+            <?php echo $plugin->get_info('email'); ?>
+        </td>
+        <td align="center">
+            <?php echo $plugin->getVar('status')?__('Active','rmcommon'):__('Inactive','rmcommon'); ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
 	</tbody>
 	
 </table>

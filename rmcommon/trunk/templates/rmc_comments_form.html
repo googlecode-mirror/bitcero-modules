@@ -16,7 +16,6 @@
     <{/if}>
     <label for="comment-text" class="label"><{$cf.lang_text}></label>
     <textarea name="comment_text" id="comment-text" class="required"><{$cf.text}></textarea>
-    <input type="submit" value="<{$cf.lang_submit}>" />
     <input type="hidden" name="uri" value="<{$cf.uri}>" />
     <input type="hidden" name="params" value="<{$cf.params}>" />
     <input type="hidden" name="type" value="<{$cf.type}>" />
@@ -26,6 +25,7 @@
     <{foreach item=field from=$cf.fields}>
     	<{$field}>
     <{/foreach}>
+    <input type="submit" value="<{$cf.lang_submit}>" />
 </form>
 </div>
 <{/if}>

@@ -27,7 +27,7 @@
 // @author: BitC3R0
 
 
-class RMFormAppsField extends RMFormElement
+class RMFormModules extends RMFormElement
 {
 	private $multi = 0;
 	private $type = 0;
@@ -123,7 +123,7 @@ class RMFormAppsField extends RMFormElement
 	}
 	
 	function render(){
-		$module_handler =& exm_gethandler('application');
+		$module_handler =& xoops_gethandler('module');
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $modules = array();
