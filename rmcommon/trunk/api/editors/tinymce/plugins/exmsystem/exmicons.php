@@ -1,5 +1,5 @@
 <?php
-// $Id: exmicons.php 416 2009-04-26 15:08:40Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // XOOPS EXM
 // Nueva Versión Mejorada de XOOPS

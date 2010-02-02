@@ -1,5 +1,5 @@
 <?php
-// $Id: form.class.php 21 2009-09-13 01:41:45Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

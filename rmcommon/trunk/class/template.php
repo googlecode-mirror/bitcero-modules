@@ -1,5 +1,5 @@
 <?php
-// $Id: template.php 51 2009-09-17 20:37:03Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

@@ -1,5 +1,5 @@
 <?php
-// $Id: tinyeditor.php 43 2009-09-15 20:40:30Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

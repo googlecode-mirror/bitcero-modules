@@ -1,5 +1,5 @@
 <?php
-// $Id: exmimg.php 416 2009-04-26 15:08:40Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // XOOPS IMAGE - TinyMCE Plugin
 // Plugin para el manejo de imágenes XOOPS en TinyMCE

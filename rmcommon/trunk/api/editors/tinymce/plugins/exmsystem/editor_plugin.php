@@ -1,5 +1,5 @@
 <?php
-// $Id: editor_plugin.php 511 2009-08-02 19:46:11Z BitC3R0 $
+// $Id$
 /**
 * Este archivo permite la inclusión de nuevos plugins desde otros módulos
 */ 

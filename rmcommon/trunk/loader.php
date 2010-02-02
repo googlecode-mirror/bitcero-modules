@@ -1,5 +1,5 @@
 <?php
-// $Id: loader.php 22 2009-09-13 07:42:57Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

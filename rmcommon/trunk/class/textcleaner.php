@@ -1,5 +1,5 @@
 <?php
-// $Id: textcleaner.php 55 2009-09-18 15:13:05Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

@@ -16,13 +16,20 @@ abstract class RMIPlugin
 {
 	protected $info = array();
 	
-	abstract public function get_info($name);
     abstract public function on_install();
     abstract public function on_uninstall();
     abstract public function on_update();
     abstract public function on_activate($q);
     abstract public function options();
 	
+    function get_info($name){
+        
+        if (!isset($this->info[$name])) return '';
+        
+        return $this->info[$name];
+        
+    }
+    
 	public function info(){
 		return $this->info;
 	}

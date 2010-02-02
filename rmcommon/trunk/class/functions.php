@@ -206,7 +206,7 @@ class RMFunctions
                     'name'  => $user->getVar('uname'),
                     'email' => $user->getVar('email'),
                     'posts' => $user->getVar('posts'),
-                    'avatar'=> $user->getVar('user_avatar'),
+                    'avatar'=> XOOPS_UPLOAD_URL.'/'.$user->getVar('user_avatar'),
                     'rank'  => $user->rank(),
                     'url'   => $user->getVar('url')!='http://'?$user->getVar('url'):''
                 );
@@ -246,7 +246,7 @@ class RMFunctions
             );            
         }
         
-        $comms = RMEvents::get()->run_event('rmcommon.loading_comments', $comms, $obj, $params, $type, $parent, $user);
+        $comms = RMEvents::get()->run_event('rmcommon.loading.comments', $comms, $obj, $params, $type, $parent, $user);
         
         if ($assign){
             global $xoopsTpl;

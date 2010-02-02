@@ -1,5 +1,5 @@
 <?php
-// $Id: tpl_functions.php 36 2009-09-14 20:45:10Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // EXM System
 // Content Management System

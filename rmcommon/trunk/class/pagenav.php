@@ -1,5 +1,5 @@
 <?php
-// $Id: pagenav.php 49 2009-09-17 14:54:39Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules

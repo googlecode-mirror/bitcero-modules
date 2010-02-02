@@ -1,5 +1,5 @@
 <?php
-// $Id: avatar.class.php 21 2009-09-13 01:41:45Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // RMSOFT Common Utilities
 // Utilidades comunes para módulos de Red México
