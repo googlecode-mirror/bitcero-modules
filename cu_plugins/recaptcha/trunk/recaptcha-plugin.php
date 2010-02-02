@@ -35,4 +35,28 @@ class RecaptchaCUPlugin extends RMIPlugin
 		return $this->info[$name];
 		
 	}
+    
+    public function options(){
+        
+        require 'include/options.php';
+        return $options;
+        
+    }
+    
+    public function on_install(){
+        return true;
+    }
+    
+    public function on_uninstall(){
+        return true;
+    }
+    
+    public function on_update(){
+        return true;
+    }
+    
+    public function on_activate($q){
+        return true;
+    }
+    
 }
