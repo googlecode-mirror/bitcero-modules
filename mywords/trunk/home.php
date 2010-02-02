@@ -8,12 +8,12 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-//$xoopsOption['template_main'] = 'mywords_index.html';
+$xoopsOption['template_main'] = 'mywords_index.html';
 $xoopsOption['module_subpage'] = 'index';
 include 'header.php';
 
 /**
- * Paginacion de Resultados
+ * Paginación de Resultados
  */
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1)."))";
 list($num) = $db->fetchRow($db->query($sql));
@@ -39,7 +39,5 @@ $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((v
 $result = $db->query($sql);
 
 include 'post_data.php';
-
-include RMTemplate::get()->get_template('mywords_index.php','module','mywords');
 
 include 'footer.php';

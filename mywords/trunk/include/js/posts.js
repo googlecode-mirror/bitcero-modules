@@ -136,7 +136,7 @@ $(document).ready( function($) {
     	current = <?php echo time() ?>;
         schedule = mktime($("#schedule-hour").val(), $("#schedule-minute").val(), 0, $("#schedule-month").val(), $("#schedule-day").val(), $("#schedule-year").val());
         // Check if scheduled date is minor than current date
-        if (schedule<=current+3600){
+        if (schedule<=current){
         
             schedule = current;
             day = <?php echo(date('d',time())) ?>;

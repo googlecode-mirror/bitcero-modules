@@ -138,12 +138,17 @@ class MWPost extends RMObject
 		$tbl1 = $this->db->prefix("mw_categories");
 		$tbl2 = $this->db->prefix("mw_catpost");
 		
+		$objs = array();
 		if (empty($this->categos)){	
 			$result = $this->db->query("SELECT a.* FROM $tbl1 a,$tbl2 b WHERE b.post='".$this->id()."' AND a.id_cat=b.cat GROUP BY b.cat");
 			$rtn = array();
 			while ($row = $this->db->fetchArray($result)){
+				$cat = new MWCategory();
 				$this->lcats[] = $row;
 				$this->categos[] = $row['id_cat'];
+				$cat->assignVars($row);
+				$objs[] = $cat;
+				$this->lcats[count($this->lcats)-1]['permalink'] = $cat->permalink();
 			}
 		}
         
@@ -154,11 +159,13 @@ class MWPost extends RMObject
         
         // Return objects
         $rtn = array();
-        foreach($this->lcats as $row){
-            $cat = new MWCategory();
-            $cat->assignVars($row);
-            $rtn[] = $cat;
-        }
+        if (empty($objs)){
+	        foreach($this->lcats as $row){
+	            $cat = new MWCategory();
+	            $cat->assignVars($row);
+	            $rtn[] = $cat;
+	        }
+		}
         
         return $rtn;
 		
@@ -205,7 +212,7 @@ class MWPost extends RMObject
 					$category = new MWCategory();
 					$category->assignVars($cat);
 					$rtn .= $rtn == '' ? '' : "$delimiter";
-					$rtn .= '<a href="'.($section=='front' ? $url.'/'.$category->path() : MW_URL.'/admin/posts.php?category='.$cat['id_cat']).'">'.$cat['name'].'</a>';
+					$rtn .= '<a href="'.($section=='front' ? $url.'category/'.$category->path() : MW_URL.'/admin/posts.php?category='.$cat['id_cat']).'">'.$cat['name'].'</a>';
 				} else {
 					$rtn .= $rtn == '' ? $cat['name'] : "$delimiter $cat[name]";
 				}
@@ -239,7 +246,10 @@ class MWPost extends RMObject
 		$result = $db->query($sql);
 		$this->tags = array();
 		while($row = $db->fetchArray($result)){
+			$tag = new MWTag();
+			$tag->assignVars($row);
 			$this->tags[] = $row;
+			$this->tags[count($this->tags)-1]['permalink'] = $tag->permalink();
 		}
 		
     }

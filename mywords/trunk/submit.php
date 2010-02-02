@@ -14,7 +14,7 @@ $xoopsOption['module_subpage'] = 'submit';
 include 'header.php';
 
 if (!$mc['submit']){
-	redirect_header(mw_get_url(), 2, _MS_MW_UNABLESEND);
+	redirect_header(MWFunctions::get_url(), 2, _MS_MW_UNABLESEND);
 	die();
 }
 

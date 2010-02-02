@@ -14,6 +14,8 @@ $docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
 $root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
 $request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
 
+$request = str_replace("/modules/mywords/", '', $request);
+
 if ($xoopsModuleConfig['permalinks']>1 && $xoopsModuleConfig['basepath']!='/'){
     $request = str_replace(rtrim($xoopsModuleConfig['basepath'],'/').'/', '', rtrim($request,'/').'/');
 }
@@ -39,7 +41,7 @@ $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 0;
 if (isset($_REQUEST['trackback'])){ require 'track.php'; die(); }
 if (isset($vars['post'])){ $post = $vars['post']; require 'post.php'; die(); }
 if (isset($vars['cat'])){ $category = $vars['cat']; require 'cats.php'; die(); }
-if (isset($vars['author'])){ $author = $vars['author']; require 'autor.php'; die(); }
+if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
 
 $vars = explode('/', $request);
@@ -72,7 +74,7 @@ if ($vars[0]=='post'){
  */
 if ($vars[0]=='category'){
 	$categotype = 1;
-	require 'cats.php';
+	require 'categories.php';
 	die();
 }
 /**
@@ -80,8 +82,8 @@ if ($vars[0]=='category'){
  * realiza la búsqueda por nombre de autor
  */
 if ($vars[0]=='author'){
-	$author = $vars[1];
-	require 'autor.php';
+	$editor = $vars[1];
+	require 'author.php';
 	die();
 }
 
