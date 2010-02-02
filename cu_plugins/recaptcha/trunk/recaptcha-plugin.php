@@ -27,14 +27,6 @@ class RecaptchaCUPlugin extends RMIPlugin
 		);
 		
 	}
-	
-	function get_info($name){
-		
-		if (!isset($this->info[$name])) return '';
-		
-		return $this->info[$name];
-		
-	}
     
     public function options(){
         
