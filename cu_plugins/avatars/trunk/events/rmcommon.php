@@ -23,4 +23,27 @@ class AvatarsPluginRmcommonPreload
         
     }
     
+    public function eventRmcommonCurrentModuleMenu($menu){
+        global $xoopsModule;
+        
+        if($xoopsModule->getVar('dirname')!='rmcommon') return $menu;
+        
+        $option = array(
+            'title'=>__('Gravatar options','gravatar'),
+            'link' => 'plugins.php?action=configure&plugin=avatars',
+            'selected' => ''
+        );
+        
+        foreach($menu as $i => $item){
+            if ($item['location']!='plugins') continue;
+            
+            $menu[$i]['options'][] = $option;
+            break;
+            
+        }
+        
+        return $menu;
+        
+    }
+    
 }
