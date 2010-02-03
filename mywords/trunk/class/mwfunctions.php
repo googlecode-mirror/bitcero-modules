@@ -300,5 +300,11 @@ class MWFunctions
 		return $rtn;
 		
     }
+    
+    public function go_scheduled(){
+		$db = Database::getInstance();
+		$sql = "UPDATE ".$db->prefix("mw_posts")." SET pubdate=schedule, schedule=0, status='publish' WHERE pubdate<schedule AND schedule<=".time();
+		return $db->queryF($sql);
+    }
 	
 }

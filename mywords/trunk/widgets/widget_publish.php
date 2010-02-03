@@ -37,7 +37,20 @@ function mw_widget_publish(){
     
     if ($edit){
         
-        $status = $post->getVar('status')=='draft' ? 'Draft' : ($post->getVar('status')=='pending' ? 'Pending Review' : 'Published');
+        switch($post->getVar('status')){
+			case 'draft':
+				$status = __('Draft','admin_mywords');
+				break;
+			case 'pending':
+				$status =  __('Pending review','admin_mywords');
+				break;
+			case 'publish':
+				$status =  __('Published','admin_mywords');
+				break;
+			case 'scheduled':
+				$status =  __('Scheduled','admin_mywords');
+				break;
+        }
         $visibility = $post->getVar('visibility')=='public' ? 'Public' : ($post->getVar('visibility')=='password' ? 'Password Protected' : 'Private');
         
     } else {
@@ -97,11 +110,11 @@ function mw_widget_publish(){
 <!-- /Visibilidad -->
 <!-- Schedule -->
 <div class="publish_options">
-<?php _e('Publish','admin_mywords'); ?> <strong id="schedule-caption"><?php _e('Inmediatly','admin_mywords'); ?></strong> &nbsp; <a href="#" class="edit-schedule"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Publish','admin_mywords'); ?> <strong id="schedule-caption"><?php echo $edit ? ($post->getVar('pubdate')>0?__('Inmediatly','admin_mywords'):date("d, M Y \@ H:i", $post->getVar('schedule'))) : __('Inmediatly','admin_mywords'); ?></strong> &nbsp; <a href="#" class="edit-schedule"><?php _e('Edit','admin_mywords'); ?></a>
     <div class="schedule-options" style="display: none;">
         <?php
             // Determinamos la fecha correcta
-            $time = $edit ? $post->getVar('pubdate') : time();
+            $time = $edit ? ($post->getVar('pubdate')>0?$post->getVar('pubdate'):$post->getVar('schedule')) : time();
             $day = date("d", $time);
             $month = date("n", $time);
             $year = date("Y", $time);

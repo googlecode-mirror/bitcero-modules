@@ -41,3 +41,6 @@ while ($row = $db->fetchArray($result)){
 }
 
 $tpl = RMTemplate::get();
+
+// Update scheduled posts
+MWFunctions::go_scheduled();

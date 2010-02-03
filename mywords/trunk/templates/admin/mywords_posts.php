@@ -41,7 +41,18 @@
   <tr class="<?php echo tpl_cycle('even,odd'); ?>" valign="top">
   	<td align="center" valign="top"><input type="checkbox" name="posts[]" value="<?php echo $post['id']; ?>" /></td>
     <td>
-    	<strong><?php echo $post['status']!='publish' ? "<span class=\"draft\">[".__('Draft','admin_mywords')."]</span> " : ''; ?><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
+    	<strong>
+    	<?php switch($post['status']){
+			case 'draft':
+				echo "<span class=\"draft\">[".__('Draft','admin_mywords')."]</span> ";
+				break;
+			case 'scheduled':
+				echo "<span class=\"draft\">[".__('Scheduled','admin_mywords')."]</span> ";
+				break;
+			case 'pending':
+				echo "<span class=\"draft\">[".__('Pending review','admin_mywords')."]</span> ";
+				break;
+		} ?><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
     	<span class="mw_options">
     		<a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
     		<a href="posts.php?op=delete&amp;id=<?php echo $post['id']; ?>"><?php _e('Delete','admin_mywords'); ?></a> |

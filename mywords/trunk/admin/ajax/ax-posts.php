@@ -107,7 +107,7 @@ $authorname = !isset($author) || $author<=0 ? $xoopsUser->uname() : MWFunctions:
 $post->setVar('title', $title);
 $post->setVar('shortname', $shortname);
 $post->setVar('content', $content);
-$post->setVar('status', $status);
+$post->setVar('status', $schedule>time() ? 'scheduled' : $status);
 $post->setVar('visibility', $visibility);
 $post->setVar('schedule', $schedule);
 $post->setVar('password', $password);

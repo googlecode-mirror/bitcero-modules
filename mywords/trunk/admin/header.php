@@ -27,3 +27,5 @@ load_mod_locale('mywords','admin');
 
 $mc =& $xoopsModuleConfig;
 
+// Activate scheduled posts
+MWFunctions::go_scheduled();
