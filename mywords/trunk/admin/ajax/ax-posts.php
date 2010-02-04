@@ -137,6 +137,9 @@ foreach($meta as $data){
     $post->add_meta($data['key'], $data['value']);
 }
 
+// before to save post
+RMEvents::get()->run_event('mywords.saving.post', &$post);
+
 $return = $edit ? $post->update() : $post->save();
 
 if ($return){

@@ -30,8 +30,8 @@ $(document).ready( function($) {
         if ($("#status option[value='publish']").val()==undefined){
             $("#status").html($("#status").html() + "<option value='publish'><?php _e('Published','admin_mywords'); ?></option>");
         }
-        $("#status option:selected").removeAttr("selected");
-        $("#status option[value='publish']").attr("selected", true);
+        //$("#status option:selected").removeAttr("selected");
+        //$("#status option[value='publish']").attr("selected", true);
         
     });
     

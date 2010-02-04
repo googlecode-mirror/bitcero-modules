@@ -103,7 +103,7 @@ $post_arr = array(
 );
 
 // Plugins?
-$post_arr = RMEvents::get()->run_event('mywords.view.post', $post_arr);
+$post_arr = RMEvents::get()->run_event('mywords.view.post', $post_arr, $post);
 $xoopsTpl->assign('post', $post_arr);
 
 // Social sites

@@ -40,6 +40,8 @@ while ($row = $db->fetchArray($result)){
     $i++;
 }
 
+$socials = RMEvents::get()->run_event('mywords.loding.socials', $socials);
+
 $tpl = RMTemplate::get();
 
 // Update scheduled posts
