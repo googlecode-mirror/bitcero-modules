@@ -427,7 +427,9 @@ class MWPost extends RMObject
 	 * Almacena las categorías a las que pertenece el artículo
 	 */
 	public function save_categories(){
-		if (empty($this->categos)) return true;
+		if (empty($this->categos)){
+			$this->add_categories(MWFunctions::default_category_id());
+		}
 		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->id()."'");
 		$sql = "INSERT INTO ".$this->db->prefix("mw_catpost")." (`post`,`cat`) VALUES ";
 		foreach ($this->categos as $k){

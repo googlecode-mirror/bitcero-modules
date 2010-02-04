@@ -41,8 +41,8 @@
     
     <div id="tableItems">
     <form name="tblCats" id="tblCats" method="post" action="categories.php">
-        <?php echo isset($nav) ? $nav->render() : ''; ?>
-        <select name="op">
+        <?php echo isset($nav) ? $nav->render(false) : ''; ?>
+        <select name="op" id="cat-op">
             <option value="" selected="selected"><?php _e('Bulk actions','admin_mywords'); ?></option>
             <option value="delete"><?php _e('Delete','admin_mywords'); ?></option>
         </select>
@@ -73,19 +73,14 @@
             <?php endif; ?>
             <?php foreach($categories as $cat): ?>
                 <tr id="item-<?php echo $cat['id_cat']; ?>" class="<?php echo tpl_cycle("even,odd"); ?> iedit"<?php if($new==$cat['id_cat']): ?> id="thenew"<?php endif; ?>>
-                    <td valign="top"><?php if($cat['id_cat']): ?><input type="checkbox" name="cats[]" id="cats[]" value="<?php echo $cat['id_cat'] ?>" /><?php endif; ?></td>
+                    <td valign="top"><?php if($cat['id_cat']): ?><input type="checkbox" name="cats[]" id="cat-<?php echo $cat['id_cat']; ?>" value="<?php echo $cat['id_cat'] ?>" /><?php endif; ?></td>
                     <td nowrap="nowrap">
                         <strong><a href="categories.php?op=edit&amp;id=<?php echo $cat['id_cat']?>"><?php echo str_repeat("&#8212;",$cat['indent']).' '.$cat['name']; ?></a></strong>
                         <span class="mw_options">
                         <a href="categories.php?op=edit&amp;id=<?php echo $cat['id_cat']?>"><?php _e('Edit','admin_mywords'); ?></a>
                         <?php if($cat['id_cat']!=1): ?> |
-                        <a href="categories.php?op=delete&amp;id=<?php echo $cat['id_cat']?>" onclick="return msg('<?php echo $cat['name']?>');"><?php _e('Delete','admin_mywords'); ?></a><?php endif; ?>
+                        <a href="javascript:;" onclick="return cat_del_confirm('<?php echo $cat['name']; ?>',<?php echo $cat['id_cat']; ?>);"><?php _e('Delete','admin_mywords'); ?></a><?php endif; ?>
                         </span>
-                        <div class="mw_hidden" id="inline_<?php echo $cat['id_cat']; ?>">
-                            <div class="name"><?php echo $cat['name']?></div>
-                            <div class="shortcut"><?php echo $cat['shortname']?></div>
-                            <div class="idcat"><?php echo $cat['id_cat']?></div>
-                        </div>
                     </td>
                     <td valign="top" class="mw_cat_description"><?if ($cat['description']!=''): ?><?php echo $cat['description']?><?php else: ?>&nbsp;<?php endif; ?></td>
                     <td align="center" valign="top"><?php echo $cat['shortname']?></td>
@@ -93,64 +88,14 @@
                 </tr>
             <?php endforeach; ?>
         </table>
-        <?php if($pages): ?>
-            <span class="tplPages">
-            <{foreach item=pag from=$pages}>
-                <{if $pag.current}>
-                    <span class="current"><{$pag.cap}></span>
-                <{else}>
-                    <a href="categories.php?page=<{$pag.id}>"><{$pag.cap}></a>
-                <{/if}>
-            <{/foreach}>
-            </span>
-        <?php endif; ?>
+        <?php echo isset($nav) ? $nav->render(false) : ''; ?>
          <select name="op2">
             <option value="" selected="selected"><?php _e('Bulk actions','admin_mywords'); ?></option>
             <option value="delete"><?php _e('Delete','admin_mywords'); ?></option>
         </select>
         <input type="submit" class="button" value="<?php _e('Apply','admin_mywords'); ?>" />
+        <?php echo $xoopsSecurity->getTokenHTML(); ?>
     </form><br />
     </div>
     
 </div>
-<table style="display: none"><tbody id="inlineedit">
-
-    <tr id="quick-edit" class="inline-edit-row" style="display: none"><td colspan="5">
-        <form method="post" action="categories.php" id="formQEdit" name="formQEdit">
-        <fieldset><div class="inline-edit-col">
-            <h4><{$lang_qedit}></h4>
-
-            <label>
-                <span class="title"><{$lang_name}></span>
-                <span class="input-text-wrap"><input type="text" name="name" class="formInput" value="" /></span>
-            </label>
-
-            <label>
-                <span class="title"><{$lang_shortcut}></span>
-                <span class="input-text-wrap"><input type="text" name="shortcut" class="formInput" value="" /></span>
-            </label>
-            
-            <label>
-                <span class="title"><{$lang_mtype}></span>
-                <span class="input-text-wrap">
-                <select name="type" class="formInput">
-                <option value=""<{if $type==''}> selected="selected"<{/if}>><{$lang_default}></option>
-                <option value="gal"<{if $type=='gal'}> selected="selected"<{/if}>><{$lang_galleries}></option>
-                <option value="vid"<{if $type=='vid'}> selected="selected"<{/if}>><{$lang_videos}></option>
-                <option value="mus"<{if $type=='mus'}> selected="selected"<{/if}>><{$lang_music}></option>
-                </select>
-                </span>
-            </label>
-
-            <input type="hidden" name="op" id="op" value="qsaveedit" />
-        <input type="hidden" name="id" id="id" value="" />
-        </div></fieldset></form>
-
-    <p class="buttons-inline submit">
-
-                <a accesskey="c" href="javascript:;" title="Cancel" class="cancel buttonleft"><{$lang_cancel}></a>
-                <a accesskey="s" href="javascript:;" title="Update Category" class="save buttonright"><{$lang_update}></a>
-    </p>
-    </td></tr>
-
-    </tbody></table>

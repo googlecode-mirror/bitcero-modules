@@ -62,11 +62,6 @@ function mw_widget_publish(){
 ?>
 <div class="rmc_widget_content_reduced publish_container">
 <form id="mw-post-publish-form">
-<div style="overflow: hidden;">
-<?php if (!$edit || $post->getVar('status')=='draft'): ?><div class="save_how"><input type="submit" id="saveas" name="saveas" value="<?php _e('Save as draft','adin_mywords'); ?>" class="button bold" /></div><?php endif; ?>
-<div class="preview_button"><input type="button" id="saveas" value="<?php _e($edit ? 'Preview Changes' : 'Preview','admin_mywords'); ?>" class="button" /></div>
-</div>
-<br />
 <!-- Opciones de Publicación -->
 <div class="publish_options">
 <?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e($status,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>

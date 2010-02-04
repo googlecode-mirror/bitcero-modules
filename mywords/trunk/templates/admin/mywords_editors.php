@@ -78,7 +78,7 @@
             <option value="deactivate"><?php _e('Deactivate','admin_mywords'); ?></option>
             <option value="delete"><?php _e('Delete','admin_mywords'); ?></option>
         </select>
-        <input type="button" value="<?php _e('Apply','admin_mywords'); ?>" onclick="submit();"/>
+        <input type="button" id="apply-button" value="<?php _e('Apply','admin_mywords'); ?>" onclick="submit();"/>
     </div>
 	<table class="outer" cellspacing="0">
 		<thead>

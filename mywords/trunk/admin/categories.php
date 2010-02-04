@@ -11,13 +11,11 @@
 define('RMCLOCATION','categories');
 require('header.php');
 
-include_once '../include/general.func.php';
-
 /**
  * Muestra una lista de las categorías existentes
  */
 function showCategos(){
-	global $tpl, $adminTemplate, $xoopsModule, $xoopsSecurity;
+	global $tpl, $xoopsSecurity, $xoopsModule, $xoopsSecurity;
 	
 	$row = array();
 	MWFunctions::categos_list($row);
@@ -26,6 +24,7 @@ function showCategos(){
 	foreach ($row as $k){
 		$catego = new MWCategory();
 		$catego->assignVars($k);
+		$catego->loadPosts();
 		$categories[] = array(
             'id_cat'=>$catego->id(),
             'description'=>$catego->getVar('description','n'),
@@ -67,6 +66,25 @@ function showCategos(){
     }
 	
 	MWFunctions::include_required_files();
+	
+	RMTemplate::get()->add_head(
+		'<script type="text/javascript">
+			function cat_del_confirm(cat, id){
+	  
+			  var string = "'.__('Do you really want to delete \"%s\"','admin_mywords').'";
+	 				string = string.replace("%s", cat);
+	 				var ret = confirm(string);
+	 				
+	 				if (ret){
+	 					$("#tblCats input[type=checkbox]").removeAttr("checked");
+	 					$("#cat-"+id).attr("checked","checked");
+	 					$("#cat-op").val("delete");
+	 					$("#tblCats").submit();
+					}
+			  
+		  }
+	  </script>'
+	);
 	
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','admin_mywords'));
 	xoops_cp_header();
@@ -208,49 +226,33 @@ function saveCatego($edit = 0){
  * sino que son asignadas a la categoría superior.
  */
 function deleteCatego(){
-	global $db, $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 	
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+	$cats = rmc_server_var($_POST, 'cats', array());
 	
-	if ($id<=0){
-		redirectMsg('cats.php', _AS_MW_ERRID, 1);
+	if (empty($cats)){
+		redirectMsg('categories.php', __('You must select one category at least!','admin_mywords'), 1);
 		die();
 	}
 	
-	if ($ok){
-		
-		if (!$util->validateToken()){
-			redirectMsg('cats.php', _AS_MW_ERRTOKEN, 1);
-			die();
-		}
-	
-		$catego = new MWCategory($id);
-		if ($catego->delete()){
-			redirectMsg('cats.php', _AS_MW_DBOK, 0);
-			die();
-		} else {
-			redirectMsg('cats.php', _AS_MW_DBERROR . '<br />' . $catego->error(), 1);
-			die();
-		}
-		
-	} else {
-		$util = new RMUtils();
-		$hiddens['op'] = 'delete';
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$buttons['sbt']['value'] = _SUBMIT;
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'cats.php\';"';
-		
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_MW_DELETECATEGO);
-		xoops_cp_header();
-		$util->msgBox($hiddens, 'cats.php', _AS_MW_CONFIRMDEL . '<br /><br />' . _AS_MW_DELETEDESC, XOOPS_ALERT_ICON, $buttons, true,'400px');
-		xoops_cp_footer();
+	if(!$xoopsSecurity->check()){
+		redirectMsg('categories.php', __("Session token expired!", 'admin_mywords'), 1);
+		die();
 	}
+	
+	$db = Database::getInstance();
+	$sql = "SELECT * FROM ".$db->prefix("mw_categories")." WHERE id_cat IN (".implode(",", $cats).")";
+	$result = $db->query($sql);
+	
+	while($row = $db->fetchArray($result)){
+		$cat = new MWCategory();
+		$cat->assignVars($row);
+		if (!$cat->delete()){
+			showMessage(__('Category "%s" could not be deleted','admin_mywords'), 1);
+		}
+	}
+	
+	redirectMsg('categories.php', __('Database updated!', 'admin_mywords'), 0);
 	
 }
 

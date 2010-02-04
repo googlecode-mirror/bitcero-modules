@@ -30,9 +30,10 @@ function goto_activate(id,page,act){
     	if (!rtn) return false;
 	}
     
+    $("#form-list-editors input[type=checkbox]").removeAttr("checked");
     $("#form-list-editors #editor-"+id).attr('checked','checked');
     $("#form-list-editors #action-list").val(act?'activate':'deactivate');
-    $("#form-list-editors").submit();
+    $("#apply-button").click();
     
 }
 
@@ -42,8 +43,9 @@ function goto_delete(id,page){
     
     if (!rtn) return false;
     
+    $("#form-list-editors input[type=checkbox]").removeAttr("checked");
     $("#form-list-editors #editor-"+id).attr('checked','checked');
     $("#form-list-editors #action-list").val('delete');
-    $("#form-list-editors").submit();
+    $("#apply-button").click();
     
 }

@@ -28,6 +28,11 @@ if (!$post->user_allowed()){
 	die();
 }
 
+// Check if post belong to some category
+if (count($post->get_categos())<=0){
+	$post->update();
+}
+
 # Generamos los vínculos
 $day = date('d', $post->getVar('pubdate'));
 $month = date('m', $post->getVar('pubdate'));

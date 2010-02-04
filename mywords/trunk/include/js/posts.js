@@ -34,11 +34,6 @@ $(document).ready( function($) {
         //$("#status option[value='publish']").attr("selected", true);
         
     });
-    
-    // Save as
-    $("#saveas").click(function() {
-    	$("#action").val('save-return');
-	});
 
     $("#edit-publish").click(function() {
     	$("#edit-publish").hide();
@@ -48,10 +43,8 @@ $(document).ready( function($) {
     $("#publish-ok").click(function() {
     	if ($("#status").val()=='draft'){
 			$("#publish-status-legend").text('<?php _e('Draft','admin_mywords'); ?>');
-			$("#saveas").val('<?php _e('Save as Draft','admin_mywords'); ?>');
     	} else if($("#status").val()=='pending') {
 			$("#publish-status-legend").text('<?php _e('Pending Review','admin_mywords'); ?>');
-			$("#saveas").val('<?php _e('Save as Pending','admin_mywords'); ?>');
     	} else {
             $("#publish-status-legend").text('<?php _e('Published','admin_mywords'); ?>');
         }
@@ -87,10 +80,8 @@ $(document).ready( function($) {
 		if ($("#visibility-options input[type=radio]:checked").val()=='private'){
 			$("#edit-publish").hide();
             $("#publish-status-legend").text('<?php _e('Private','admin_mywords'); ?>');
-            $("#saveas").hide();
 		} else {
             $("#edit-publish").show();
-            $("#saveas").show();
             if ($("#status").val()=='draft'){
     			$("#publish-status-legend").text('<?php _e('Draft','admin_mywords'); ?>');
             } else if ($("#status").val()=='publish'){

@@ -102,7 +102,7 @@ class MWFunctions
     * @param object MWPost object
     * @return bool
     */
-    public function post_exists(MWPost $post){
+    public function post_exists(MWPost &$post){
         
         if ($post->getVar('title','n')=='') return false;
         
@@ -124,13 +124,14 @@ class MWFunctions
 			
 			$bdate = mktime(0, 0, 0, $month, $day, $year);
 			$tdate = $bdate + 86400;
-			
+	
         }
         
         $db = Database::getInstance();
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE (pubdate>=$bdate AND pubdate<=$tdate) AND 
         		(title='".$post->getVar('title','n')."' OR shortname='".$post->getVar('shortname','n')."')";
         
+
         if (!$post->isNew()){
 			$sql .= " AND id_post<>".$post->id();
         }
@@ -303,7 +304,7 @@ class MWFunctions
     
     public function go_scheduled(){
 		$db = Database::getInstance();
-		$sql = "UPDATE ".$db->prefix("mw_posts")." SET pubdate=schedule, schedule=0, status='publish' WHERE pubdate<schedule AND schedule<=".time();
+		$sql = "UPDATE ".$db->prefix("mw_posts")." SET pubdate=schedule, schedule=0, status='publish' WHERE status<>'draft' AND pubdate<schedule AND schedule<=".time();
 		return $db->queryF($sql);
     }
 	

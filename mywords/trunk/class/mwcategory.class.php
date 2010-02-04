@@ -43,9 +43,9 @@ class MWCategory extends RMObject
 	}
 	
 	function loadPosts(){
-		$result = $this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix("mw_catpost")." WHERE cat='".$this->getID()."'");
+		$result = $this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix("mw_catpost")." WHERE cat='".$this->id()."'");
 		list($num) = $this->db->fetchRow($result);
-		$this->setPosts($num);
+		$this->setVar('posts', $num);
 	}
 	/**
 	 * Obtiene la ruta completa de la categor?a basada en nombres
@@ -80,7 +80,7 @@ class MWCategory extends RMObject
 	 */
 	function delete(){
 		$this->db->queryF("UPDATE ".$this->db->prefix("mw_categories")." SET parent='".$this->getVar('parent','n')."' WHERE parent='".$this->id()."'");
-		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_categories")." WHERE id_cat='".$this->id()."'");
+		$this->db->queryF("DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE cat='".$this->id()."'");
 		return $this->deleteFromTable();
 	}
 }

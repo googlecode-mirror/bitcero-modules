@@ -15,7 +15,7 @@ require 'header.php';
  * Muestra los envíos existentes
  */
 function showPosts($aprovado = -1){
-	global $db, $tpl, $adminTemplate, $xoopsModule, $xoopsModuleConfig;
+	global $db, $xoopsSecurity, $xoopsModule, $xoopsModuleConfig;
 	
 	$mc =& $xoopsModuleConfig;
 	
@@ -35,8 +35,8 @@ function showPosts($aprovado = -1){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts");
 	}	
 	
-	if ($aprovado>=0){
-		$sql .= $cat > 0 ? " AND a.aprovado='$aprovado'" : " WHERE aprovado=$aprovado";
+	if ($status!=''){
+		$sql .= $cat > 0 ? " AND a.status='$status'" : " WHERE status='$status'";
 	}
 	
 	if (trim($keyw)!=''){
@@ -59,7 +59,7 @@ function showPosts($aprovado = -1){
 	$nav = new RMPageNav($num, $limit, $page, 5);
     $nav->target_url('posts.php?limit='.$limit.'&page={PAGE_NUM}');
 	
-	$sql .= " ORDER BY pubdate DESC LIMIT $start,$limit";
+	$sql .= " ORDER BY id_post DESC, pubdate DESC LIMIT $start,$limit";
 	$sql = str_replace("SELECT COUNT(*)", "SELECT *", $sql);
 
 	$result = $db->query($sql);
@@ -78,7 +78,7 @@ function showPosts($aprovado = -1){
 		$posts[] = array(
 			'id'=>$post->id(), 
 			'title'=>$post->getVar('title'),
-			'date'=>formatTimeStamp($post->getVar('pubdate')),
+			'date'=>$post->getVar('pubdate')>0 ? formatTimeStamp($post->getVar('pubdate')) : '<em>'.__('Not published','admin_mywords').'</em>',
 			'comments'=>0,
 			'uid'=>$post->getVar('author'),
 			'uname'=>$post->getVar('authorname'),
@@ -89,6 +89,35 @@ function showPosts($aprovado = -1){
 		);
 	}
 	
+	// Published count
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='publish'";
+	list($pub_count) = $db->fetchRow($db->query($sql));
+	// Drafts count
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='draft'";
+	list($draft_count) = $db->fetchRow($db->query($sql));
+	// Pending count
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='pending'";
+	list($pending_count) = $db->fetchRow($db->query($sql));
+	
+	// Confirm message
+	RMTemplate::get()->add_head(
+	 '<script type="text/javascript">
+	 	function post_del_confirm(post, id){
+	 		var string = "'.__('Do you really want to delete \"%s\"','admin_mywords').'";
+	 		string = string.replace("%s", post);
+	 		var ret = confirm(string);
+	 		
+	 		if (ret){
+	 			$("#form-posts input[type=checkbox]").removeAttr("checked");
+	 			$("#post-"+id).attr("checked","checked");
+	 			$("#posts-op").val("delete");
+	 			$("#form-posts").submit();
+	 		}
+	 	}
+	 </script>'
+	);
+	
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	MWFunctions::include_required_files();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_MW_POSTSPAGE);
 	xoops_cp_header();
@@ -104,7 +133,7 @@ function newForm($edit = 0){
 	define('RMCSUBLOCATION','new_post');
 	
 	if ($edit){
-		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+		$id = rmc_server_var($_GET, 'id', 0);
 		if ($id<=0){
 			redirectMsg('posts.php', _AS_MW_NOID, 1);
 			die();
@@ -146,95 +175,43 @@ function newForm($edit = 0){
  * Elimina un artículo de la base de datos
  */
 function deletePost(){
-	global $util;
+	global $xoopsSecurity;
 	
-	$id = isset($_REQUEST['post']) ? $_REQUEST['post'] : 0;
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
+	$posts = rmc_server_var($_POST, 'posts', array());
 	
-	if ($ok){
-		
-		if (!$util->validateToken()){
-			redirectMsg('posts.php', _AS_MW_ERRTOKEN, 1);
-			die();
-		}
-		
-		$post = new MWPost($id);
-		if ($id<=0){
-			redirectMsg('posts.php', _AS_MW_NOID, 1);
-			die();
-		}
-		if ($post->isNew()){
-			redirectMsg('posts.php', _AS_MW_NOID, 1);
-			die();
-		}
-		
-		if ($post->delete()){
-			redirectMsg('posts.php', _AS_MW_DBOK, 0);
-		} else {
-			redirect_header('posts.php', _AS_MW_DBERROR . "<br />" . $post->errors(), 1);
-		}
-		
-	} else {
-		
-		xoops_cp_header();
-		$hiddens['op'] = 'delete';
-		$hiddens['post'] = $id;
-		$hiddens['ok'] = 1;
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="history.go(-1);"';
-		
-		
-		$util->msgBox($hiddens, 'posts.php', _AS_MW_CONFIRMDEL, '../images/question.png', $buttons, true, 400);
-		xoops_cp_footer();
-	}
-	
-}
-
-function approveBulk($aprovado){
-	global $db;
-	
-	$posts = isset($_REQUEST['posts']) ? $_REQUEST['posts'] : array();
-	
-	if (count($posts)<=0){
-		redirect_header($aprovado ? 'posts.php?op=waiting' : 'posts.php?op=approved', 2, _AS_MW_SELECTONE);
+	if(empty($posts)){
+		redirectMsg('posts.php', __('Select one post at least!','admin_mywords'), 1);
 		die();
 	}
 	
-	$sql = "UPDATE ".$db->prefix("mw_posts")." SET aprovado='$aprovado' WHERE ";
-	$cond = '';
-	foreach ($posts as $k){
-		if ($cond==''){
-			$cond.="id_post='$k'";
-		} else {
-			$cond.=" OR id_post='$k'";
-		}
+	if (!$xoopsSecurity->check()){
+		redirectMsg('posts.php', __('Session token expired!','admin_mywords'), 1);
+		die();
 	}
 	
-	$sql .= $cond;
-	if ($db->queryF($sql)){
-		redirectMsg($aprovado ? 'posts.php?op=waiting' : 'posts.php?op=approved', _AS_MW_DBOK, 0);
-	} else {
-		redirectMsg($aprovado ? 'posts.php?op=waiting' : 'posts.php?op=approved', _AS_MW_DBERROR . '<br />' . $db->error(), 1);
+	$db = Database::getInstance();
+	$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post IN (".implode(",",$posts).")";
+	$result = $db->query($sql);
+	
+	while($row = $db->fetchArray($result)){
+		$post = new MWPost();
+		$post->assignVars($row);
+		
+		if (!$post->delete()){
+			showMessage(sprintf(__('Errors ocurred while deleting "%s"', 'admin_mywords'), $post->getVar('title')), 1);
+		}
+		
 	}
+	
+	redirectMsg('posts.php', __('Database updated!', 'admin_mywords'), 0);
 	
 }
+
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 switch ($op){
 	case 'new':
 		newForm();
-		break;
-	case 'saveret':
-		savePost(0);
-		break;
-	case 'save':
-		savePost(0);
-		break;
-	case 'publish':
-		savePost(2);
 		break;
 	case 'edit':
 		newForm(1);
@@ -257,12 +234,6 @@ switch ($op){
 		break;
 	case 'approved':
 		showPosts(1);
-		break;
-	case 'aprove':
-		approveBulk(1);
-		break;
-	case 'unaprove':
-		approveBulk(0);
 		break;
 	default:
 		showPosts();
