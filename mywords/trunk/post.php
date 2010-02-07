@@ -24,7 +24,7 @@ if ($post->isNew()){
 }
 // Comprobamos permisos de acceso al post
 if (!$post->user_allowed()){
-	redirect_header(MWFunctions::get_url(), 2, _MS_MW_ERRNOPOST);
+	redirect_header(MWFunctions::get_url(), 2, __('Sorry, you ar enot allowed to view this post','mywords'));
 	die();
 }
 

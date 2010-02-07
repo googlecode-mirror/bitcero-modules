@@ -37,7 +37,7 @@ while ($row = $db->fetchArray($result)){
     # Información de Publicación
     $published = sprintf('%s by %s', MWFunctions::format_time($post->getVar('pubdate'),'string'), '<a href="'.$alink.'">'.(isset($author) ? $author->getVar('name') : __('Anonymous','mywords'))."</a>");
     # Texto de continuar leyendo
-    $text = $post->content(true);
+    $text = $post->getVar('visibility')=='password' ? MWFunctions::show_password($post) : $post->content(true);
     
     // Redes Sociales
     $bms = array();

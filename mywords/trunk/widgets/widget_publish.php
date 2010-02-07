@@ -80,7 +80,7 @@ function mw_widget_publish(){
 <!-- //Opciones de Publicación -->
 <!-- Visibilidad -->
 <div class="publish_options">
-<?php _e('Visibility:','admin_mywords'); ?> <strong id="visibility-caption"><?php _e($visibility,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="visibility-edit"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Visibility:','admin_mywords'); ?> <strong id="visibility-caption"><?php _e($visibility,'admin_mywords'); ?></strong> &nbsp; <a href="javascript:;" id="visibility-edit"><?php _e('Edit','admin_mywords'); ?></a>
 <?php
     if (!$edit){
         $visibility = 'public';
@@ -94,7 +94,7 @@ function mw_widget_publish(){
         <span id="vis-password-text" style="<?php _e($visibility=='password' ? '' : 'display: none') ?>">
             <label>
             <?php _e('Password:','admin_mywords') ?>
-            <input type="text" name="vis_password" id="vis-password" value="" class="options_input" />
+            <input type="text" name="vis_password" id="vis-password" value="<?php echo $edit ? $post->getVar('password') : ''; ?>" class="options_input" />
             </label>
         <br /></span>
         <input type="radio" name="visibility" value="private" id="visibility-private"<?php echo $visibility=='private' ? ' checked="checked"' : ''; ?> /> <label for="visibility-private"><?php _e('Private','admin_mywords') ?></label><br /><br />

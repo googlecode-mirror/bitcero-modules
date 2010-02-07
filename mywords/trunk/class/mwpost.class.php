@@ -230,7 +230,7 @@ class MWPost extends RMObject
     */
     public function add_tags($tags){
         $tags = MWFunctions::add_tags($tags);
-		
+		if (empty($tags)) return;
         $this->tags = $tags;
     }
     
@@ -364,6 +364,20 @@ class MWPost extends RMObject
 			if ($user==$editor->getVar('uid')) return true;
 			
 		}
+        
+        if ($this->getVar('visibility')=='password'){
+            
+            $pass = rmc_server_var($_POST, 'password', '');
+            $id = rmc_server_var($_POST, 'post_id', 0);
+            
+            if ($pass=='') return false;
+            if($id<=0) return false;
+            
+            if ($id!=$this->id() || $pass!=$this->getVar('password')) return false;
+            
+            return true;
+            
+        }
 		
 		return false;
 		

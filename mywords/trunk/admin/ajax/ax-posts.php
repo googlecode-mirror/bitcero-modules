@@ -110,7 +110,7 @@ $post->setVar('content', $content);
 $post->setVar('status', $schedule>time() && $status!='draft' ? 'scheduled' : $status);
 $post->setVar('visibility', $visibility);
 $post->setVar('schedule', $schedule);
-$post->setVar('password', $password);
+$post->setVar('password', $vis_password);
 $post->setVar('author', $author);
 $post->setVar('comstatus', isset($comstatus) ? $comstatus : 1);
 $post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 1);

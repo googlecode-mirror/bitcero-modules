@@ -240,6 +240,7 @@ class MWFunctions
         $sql = "SELECT id_tag, shortname FROM ".$db->prefix('mw_tags')." WHERE ";
         $sa = '';
         foreach($tags as $tag){
+            if ($tag=='') continue;
             $sa .= $sa=='' ? "shortname='".TextCleaner::sweetstring($tag)."'" : " OR shortname='".TextCleaner::sweetstring($tag)."'";
         }
 
@@ -306,6 +307,23 @@ class MWFunctions
 		$db = Database::getInstance();
 		$sql = "UPDATE ".$db->prefix("mw_posts")." SET pubdate=schedule, schedule=0, status='publish' WHERE status<>'draft' AND pubdate<schedule AND schedule<=".time();
 		return $db->queryF($sql);
+    }
+    
+    public function show_password($post){
+        
+        global $xoopsTpl;
+        
+        $xoopsTpl->assign('post', array(
+            'id' => $post->id(),
+            'permalink' => $post->permalink()
+        ));
+        
+        $xoopsTpl->assign('lang_thispost', __('This post has been protected by a password. To read it you must provide the correct password.','mywords'));
+        $xoopsTpl->assign('lang_password', __('Password:','mywords'));
+        $xoopsTpl->assign('lang_submit', __('Show Post','mywords'));
+        
+        return $xoopsTpl->fetch("db:mywords_password.html");
+        
     }
 	
 }

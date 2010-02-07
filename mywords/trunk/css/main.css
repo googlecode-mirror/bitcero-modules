@@ -53,3 +53,15 @@
 .mwitem .mwbooks img:hover{
     background: #ebebeb;
 }
+.pass_description{
+    display: block;
+    padding: 3px 0;
+}
+.pass_field{
+    display: block;
+    padding: 3px 0;
+}
+.pass_field input{
+    display: block;
+    margin: 2px 0;
+}
