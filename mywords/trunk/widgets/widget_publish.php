@@ -85,7 +85,7 @@ function mw_widget_publish(){
     if (!$edit){
         $visibility = 'public';
     } else {
-        $visibility = $post->getVar('status')=='private' ? 'private' : ($post->getVar('status')=='publish' && $post->getVar('password')!='' ? 'password' : 'public');
+        $visibility = $post->getVar('visibility');
     }
 ?>
     <div id="visibility-options">

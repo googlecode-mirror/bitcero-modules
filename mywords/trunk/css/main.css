@@ -65,3 +65,10 @@
     display: block;
     margin: 2px 0;
 }
+.mwtitles{
+    font-size: 1.2em;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 3px 0;
+    margin-bottom: 10px;
+    text-align: right;
+}

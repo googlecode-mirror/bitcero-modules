@@ -11,8 +11,6 @@
 define('RMCLOCATION','bookmarks');
 require('header.php');
 
-include_once '../include/general.func.php';
-
 /**
 * @desc Muestra la lista de los elementos disponibles
 */

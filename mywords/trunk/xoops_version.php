@@ -73,6 +73,8 @@ $modversion['templates'][7]['file'] = 'mywords_single_post.html';
 $modversion['templates'][7]['description'] = '';
 $modversion['templates'][8]['file'] = 'mywords_password.html';
 $modversion['templates'][8]['description'] = '';
+$modversion['templates'][9]['file'] = 'mywords_tag.html';
+$modversion['templates'][9]['description'] = '';
 
 // Formato de los enlaces
 $modversion['config'][0]['name'] = 'permalinks';
@@ -89,7 +91,7 @@ $modversion['config'][1]['description'] = '_MI_MW_BASEPATHD';
 $modversion['config'][1]['formtype'] = 'textbox';
 $modversion['config'][1]['valuetype'] = 'text';
 $modversion['config'][1]['size'] = '50';
-$modversion['config'][1]['default'] = '/blog';
+$modversion['config'][1]['default'] = '/modules/mywords';
 $modversion['config'][1]['order'] = 0;
 
 // Tags limit
@@ -229,7 +231,7 @@ $modversion['config'][12]['default'] = '';
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";
-$modversion['blocks'][1]['name'] = '_MI_MW_BKCATEGOS';
+$modversion['blocks'][1]['name'] = __('Categories','mywords');
 $modversion['blocks'][1]['description'] = "";
 $modversion['blocks'][1]['show_func'] = "mywordsBlockCats";
 $modversion['blocks'][1]['edit_func'] = "mywordsBlockCatsEdit";
@@ -238,19 +240,12 @@ $modversion['blocks'][1]['options'] = "1";
 
 // Bloque Recientes
 $modversion['blocks'][2]['file'] = "block.recent.php";
-$modversion['blocks'][2]['name'] = '_MI_MW_BKRECENT';
+$modversion['blocks'][2]['name'] = __('Recent Posts','mywords');
 $modversion['blocks'][2]['description'] = "";
 $modversion['blocks'][2]['show_func'] = "mywordsBlockRecent";
 $modversion['blocks'][2]['edit_func'] = "mywordsBlockRecentEdit";
 $modversion['blocks'][2]['template'] = 'bk_mywords_recent.html';
 $modversion['blocks'][2]['options'] = "1|50|5|1|d-m-Y|0";
-
-// Sindicación RSS
-$modversion['rss']['name'] = '_MI_MW_RSSNAME'; 			// NOmbre del elemento
-$modversion['rss']['file'] = 'include/rss.php';			// Archivo donde se localizan las funciones
-$modversion['rss']['desc'] = 'mywords_rssdesc';			// Devuelve la descripción del elemento
-$modversion['rss']['feed'] = 'mywords_rssfeed';			// Devuelve el menu de opciones del elemento
-$modversion['rss']['show'] = 'mywords_rssshow';			// Devuelve el archivo xml
 
 // Subpáginas
 $modversion['subpages'] = array('index'=>_MI_MW_SPINDEX,

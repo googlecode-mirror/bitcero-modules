@@ -24,7 +24,7 @@ if ($post->isNew()){
 }
 // Comprobamos permisos de acceso al post
 if (!$post->user_allowed()){
-	redirect_header(MWFunctions::get_url(), 2, __('Sorry, you ar enot allowed to view this post','mywords'));
+	redirect_header(MWFunctions::get_url(), 2, __('Sorry, you are not allowed to view this post','mywords'));
 	die();
 }
 
@@ -38,6 +38,7 @@ $day = date('d', $post->getVar('pubdate'));
 $month = date('m', $post->getVar('pubdate'));
 $year = date('Y', $post->getVar('pubdate'));
 
+// 
 $page = isset($_REQUEST['page']) ? $_REQUEST['page']: 0;
 
 
@@ -53,11 +54,13 @@ if ($page<=0){
 	$srh = array_search('page', $path);
 	if (isset($path[$srh]) && $path[$srh]=='page')	{
 		if (!isset($path[$srh])){ 
-			$page = 0; 
+			$page = 1; 
 		} else { 
 			$page = $path[$srh +1]; 
 		}
-	}
+	} else {
+        $page = 1;
+    }
 }
 
 $xmh .= "\n<script type='text/javascript' src='".MW_URL."include/functions.js'></script>";
@@ -96,6 +99,12 @@ $tags_list = '';
 foreach($tags as $i => $tag){
     $tags_list .= ($tags_list==''?'':', ').'<a href="'.$tag->permalink().'">'.$tag->getVar('tag').'</a>';
 }
+
+// Post pages
+$total_pages = $post->total_pages();
+$nav = new RMPageNav($total_pages, 1, $page, 5);
+$nav->target_url($post->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : '&amp;page={PAGE_NUM}'));
+$xoopsTpl->assign('post_navbar', $nav->render(true));
 
 // Post data
 $post_arr = array(

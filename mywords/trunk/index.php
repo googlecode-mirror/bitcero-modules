@@ -13,7 +13,6 @@ include("../../mainfile.php");
 $docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
 $root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
 $request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
-
 $request = str_replace("/modules/mywords/", '', $request);
 
 if ($xoopsModuleConfig['permalinks']>1 && $xoopsModuleConfig['basepath']!='/'){
@@ -42,6 +41,7 @@ if (isset($_REQUEST['trackback'])){ require 'track.php'; die(); }
 if (isset($vars['post'])){ $post = $vars['post']; require 'post.php'; die(); }
 if (isset($vars['cat'])){ $category = $vars['cat']; require 'cats.php'; die(); }
 if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; die(); }
+if (isset($vars['tag'])){ $editor = $vars['tag']; require 'tag.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
 
 $vars = explode('/', $request);
@@ -87,6 +87,12 @@ if ($vars[0]=='author'){
 	die();
 }
 
+if ($vars[0]=='tag'){
+    $tag = $vars[1];
+    require 'tag.php';
+    die();
+}
+
 /**
  * Si el primer valor es submit
  * entonces se muestra el formulario
@@ -103,7 +109,7 @@ if ($vars[0]=='edit'){
 	die();
 }
 
-if ($yesquery){
+if ($yesquery || $vars[0]==''){
 	require 'home.php';
 	die();
 }
@@ -119,5 +125,3 @@ echo "<h1>ERROR 404. Document not Found</h1>";
 die();
 
 decodeHeader();
-
-?>

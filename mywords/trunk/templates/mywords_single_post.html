@@ -2,9 +2,9 @@
     <h1><a href="<{$post.link}>"><{$post.title}></a></h1>
     <span class="mwinfotop">
         <span class="mwcomments">
-            <{$post.lang_comments}>
+            <a href="<{$post.link}>#comments"><{$post.lang_comments}></a> | 
         </span>
-        <{$post.published }>. <{if ($post.edit)}>&bull; <a href="<{$xoops_url}>/modules/mywords/admin/posts.php?op=edit&amp;id=<{$post.id}>"><{$lang_editpost}></a><{/if}></span>
+        <{$post.published }> <{if ($post.edit)}>| <a href="<{$xoops_url}>/modules/mywords/admin/posts.php?op=edit&amp;id=<{$post.id}>"><{$lang_editpost}></a><{/if}></span>
     <div class="mwtext">
         <{$post.text}>
     </div>

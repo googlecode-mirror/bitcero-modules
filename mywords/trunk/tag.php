@@ -8,22 +8,14 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$xoopsOption['template_main'] = 'mywords_author.html';
+$xoopsOption['template_main'] = 'mywords_tag.html';
 $xoopsOption['module_subpage'] = 'author';
 include 'header.php';
 
-if (!is_numeric($editor)){
-	
-	$sql = "SELECT id_editor FROM ".$db->prefix("mw_editors")." WHERE shortname='$editor'";
-	list($editor) = $db->fetchRow($db->query($sql));
-	if ($editor=='') $editor = 0;
-	
-}
+$tag = new MWTag($tag);
 
-$ed = new MWEditor($editor);
-
-if ($ed->isNew()){
-    redirect_header(MWFunctions::get_url(), 2, __('Sorry, We don\'t know to this editor', 'admin_mywords'));
+if ($tag->isNew()){
+    redirect_header(MWFunctions::get_url(), 2, __('Sorry, this tag does not exists!', 'admin_mywords'));
     die();
 }
 
@@ -40,7 +32,11 @@ $request = substr($request, 0, strpos($request, 'page')>0 ? strpos($request, 'pa
  * Paginamos los resultados
  */
 $limit = $mc['posts_limit'];
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE author='$editor' AND status='publish' AND 
+$table_tags = $db->prefix("mw_tagspost");
+$table_posts = $db->prefix("mw_posts");
+
+$sql = "SELECT COUNT(*) FROM $table_posts as a, $table_tags as b WHERE b.tag='".$tag->id()."' AND 
+        a.id_post=b.post AND status='publish' AND 
 		((visibility='public' OR visibility='password') OR (visibility='private' AND
 		author=".($xoopsUser ? $xoopsUser->uid() : -1)."))";
 list($num) = $db->fetchRow($db->query($sql));
@@ -58,15 +54,16 @@ if ($pactual>$tpages){
 }
 
 $nav = new RMPageNav($num, $limit, $pactual, 6);
-$nav->target_url($ed->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : '&page={PAGE_NUM}'));
+$nav->target_url($tag->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : '&page={PAGE_NUM}'));
 $xoopsTpl->assign("nav_pages", $nav->render(false, 0));
 
 $xoopsTpl->assign('pactual', $pactual);
 $xoopsTpl->assign('lang_comments', _MS_MW_COMS);
 
-$xoopsTpl->assign('lang_fromauthor', sprintf(__('Posts by "%s"','mywords'), $ed->getVar('name')));
+$xoopsTpl->assign('lang_taggedtitle', sprintf(__('Posts tagged as "%s"','mywords'), $tag->getVar('tag')));
 
-$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE author='$editor' AND status='publish' AND 
+$sql = "SELECT a.* FROM $table_posts as a, $table_tags as b WHERE b.tag='".$tag->id()."' AND
+        a.id_post=b.post AND status='publish' AND 
 		((visibility='public' OR visibility='password') OR (visibility='private' AND
 		author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY pubdate DESC LIMIT $start,$limit";
 $result = $db->query($sql);

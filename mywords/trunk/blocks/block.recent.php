@@ -9,50 +9,73 @@
 // --------------------------------------------------------------
 
 function mywordsBlockRecent($options){
-	
-	global $xoopsConfig;
-	include_once XOOPS_ROOT_PATH.'/modules/mywords/include/general.func.php';
-	include_once XOOPS_ROOT_PATH.'/rmcommon/object.class.php';
-	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwcategory.class.php';
-	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
-	
-	$util = new RMUtils();
-	$mc = array();
-	global $mc;
-	$mc = $util->moduleConfig('mywords');
+	global $xoopsModuleConfig, $xoopsModule, $xoopsUser;
+    
+	$mc = $xoopsModule && $xoopsModule->getVar('dirname')=='mywords' ? $xoopsModuleConfig : RMUtilities::module_config('mywords');
 	$db =& Database::getInstance();
-	$result = $db->queryF("SELECT * FROM ".$db->prefix("mw_posts")." ORDER BY fecha DESC LIMIT 0, $options[2]");
+    RMTemplate::get()->add_xoops_style('blocks.css', 'mywords');
+    
+    switch($options[1]){
+        case 'recent':
+            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY pubdate DESC LIMIT 0,$options[0]";
+            break;
+        case 'popular':
+            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY `reads` DESC LIMIT 0,$options[0]";
+            break;
+        case 'comm':
+            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY `comments` DESC LIMIT 0,$options[0]";
+            break;
+    }
+    
+	$result = $db->query($sql);
 	$block = array();
 	while ($row = $db->fetchArray($result)){
 		$ret = array();
 		$post = new MWPost();
 		$post->assignVars($row);
-		$ret['id'] = $post->getID();
-		$ret['titulo'] = $post->getTitle();
-		$ret['link'] = $post->getPermaLink();
-		if ($options[0]){
-			$texto = array();
-			$texto = explode(" ", $util->filterTags($post->getText()));
-			if (count($texto)>$options[1]) $texto = array_slice($texto, 0, $options[1]);
-			$ret['texto'] = join(" ",$texto); //substr($texto, 0, $options[1]);
-		}
-		if ($options[3]) $ret['fecha'] = date($options[4],$post->getDate());
-		if ($options[5]) $ret['image'] = $post->getBlockImage()!='' ? XOOPS_URL.'/uploads/mywords/'.$post->getBlockImage() : $mc['defimg'];
+		$ret['id'] = $post->id();
+		$ret['title'] = $post->getVar('title');
+		$ret['link'] = $post->permalink();
+        // Content
+        if ($options[2]){
+            $ret['content'] = TextCleaner::getInstance()->truncate($post->content(true), $options[3]);
+        }
+        // Pubdate
+        if ($options[4]){
+            $ret['date'] = formatTimestamp($post->getVar('pubdate'), 'c');
+        }
+        // Show reads
+        if ($options[1]=='popular'){
+            $ret['hits'] = sprintf(__('%u Reads','mywords'), $post->getVar('reads'));
+        } elseif($options[1]=='comm'){
+            $ret['comments'] = sprintf(__('%u Comments','mywords'), $post->getVar('comments'));
+        }
 		$block['posts'][] = $ret;
 	}
-	$block['showimage'] = $options[5];
-	$block['size'] = $mc['imgsize'];
 	return $block;
 }
 
-function mywordsBlockRecentEdit($options, &$form){
-	$form->addElement(new RMSubTitle(_AS_BKM_BOPTIONS,1));
-	$form->addElement(new RMYesNo(_MB_MW_SHOWTEXT, 'options[0]', $options[0]));
-	$form->addElement(new RMText(_MB_MW_TEXTLENGHT, 'options[1]', 5, 3, $options[1]));
-	$form->addElement(new RMText(_MB_MW_POSTSNUM, 'options[2]', 5, 3, $options[2]));
-	$form->addElement(new RMYesNo(_MB_MW_SHOWDATE, 'options[3]', $options[3]));
-	$form->addElement(new RMText(_MB_MW_DATEFORMAT, 'options[4]', 15, 50, $options[4]));
-	$form->addElement(new RMYesNo(_MB_MW_SHOWIMAGES, 'options[5]', $options[5]));
-	return $form;
+function mywordsBlockRecentEdit($options){
+    
+    $form = '<strong>'.__('Posts Number:','mywords').'</strong><br />
+            <input type="text" size="10" value="'.$options[0].'" name="options[0]" /><br /><br />
+            <strong>'.__('Block type:','mywords').'</strong><br />
+            <label><input type="radio" name="options[1]"'.(!isset($options[1]) || $options[1]=='recent' ? ' checked="checked"' : '').' value="recent" />
+            '.__('Recent Posts','mywords').'</label>
+            <label><input type="radio" name="options[1]"'.(isset($options[1]) && $options[1]=='popular' ? ' checked="checked"' : '').' value="popular" />
+            '.__('Popular Posts','mywords').'</label>
+            <label><input type="radio" name="options[1]"'.(isset($options[1]) && $options[1]=='comm' ? ' checked="checked"' : '').' value="comm" />
+            '.__('Most Commented','mywords').'</label><br /><br />
+            <strong>'.__('Show text:','mywords').'</strong><br />
+            <label><input type="radio" name="options[2]" value="1"'.(isset($options[2]) && $options[2]==1 ? ' checked="checked"' : '').' /> '.__('Yes','mywords').'</label> 
+            <label><input type="radio" name="options[2]" value="0"'.(!isset($options[2]) || $options[2]==0 ? ' checked="checked"' : '').' /> '.__('No','mywords').'</label>
+            <br /><br />
+            <strong>Text lenght:</strong> <input type="text" size="10" value="'.(isset($options[3]) ? $options[3] : 50).'" name="options[3]" />
+            <br /><br /><strong>'.__('Show date:','mywords').'</strong> 
+            <label><input type="radio" name="options[4]" value="1"'.(isset($options[4]) && $options[4]==1 ? ' checked="checked"' : '').' /> '.__('Yes','mywords').'</label> 
+            <label><input type="radio" name="options[4]" value="0"'.(!isset($options[4]) || $options[4]==0 ? ' checked="checked"' : '').' /> '.__('No','mywords').'</label>
+            ';
+    
+    return $form;
+    
 }
-?>

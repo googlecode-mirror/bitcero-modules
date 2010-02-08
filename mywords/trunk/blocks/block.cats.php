@@ -9,24 +9,22 @@
 // --------------------------------------------------------------
 
 function mywordsBlockCats($options){
-	global $xoopsConfig, $mc;
-	include_once XOOPS_ROOT_PATH.'/modules/mywords/include/general.func.php';
-	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwcategory.class.php';
+	global $xoopsModuleConfig, $xoopsModule;
+	
 	$categos = array();
-	arrayCategos($categos,0,0);
+	MWFunctions::categos_list($categos, 0, 0, $options[0]);
 	$block = array();
-	$util =& RMUtils::getInstance();
-	$mc =& $util->moduleConfig('mywords');
+	$mc = $xoopsModule && $xoopsModule->getVar('dirname')=='mywords' ? $xoopsModuleConfig : RMUtilities::get()->module_config('mywords');
 	foreach ($categos as $k){
 		$ret = array();
-		$catego = new MWCategory();
-		$catego->assignVars($k);
-		$catego->loadPosts();
-		$ret['id'] = $k['id_cat'];
-		$ret['nombre'] = $k['nombre'];
-		$ret['numposts'] = $catego->getPosts();
-		$ret['saltos'] = $k['saltos'] * 2;
-		$ret['link'] = $catego->getLink();
+		$cat = new MWCategory();
+		$cat->assignVars($k);
+		$cat->loadPosts();
+		$ret['id'] = $cat->id();
+		$ret['name'] = $cat->getVar('name');
+		if ($options[1]) $ret['posts'] = $cat->getVar('posts');
+		$ret['indent'] = $k['indent'] * 2;
+		$ret['link'] = $cat->permalink();
 		$block['categos'][] = $ret;
 	}
 	
@@ -35,9 +33,14 @@ function mywordsBlockCats($options){
 }
 
 function mywordsBlockCatsEdit($options){
-	$form = _MB_MW_SHOWSUBCATS . '<br />
-			<input type="radio" name="options[0]" value="1"'.($options[0] ? ' checked="checked"' : '').' /> '._YES;
-	$form .= '<input type="radio" name="options[0]" value="0"'.($options[0]==0 ? ' checked="checked"' : '').' /> '._NO;
+	$form = '<strong>'.__('Show subcategories:','mywords').'
+			<label><input type="radio" name="options[0]" value="1"'.($options[0] ? ' checked="checked"' : '').' /> '.__('Yes','mywords').'
+	        </label><label><input type="radio" name="options[0]" value="0"'.($options[0]==0 ? ' checked="checked"' : '').' /> '.__('No','mywords').'
+            </label><br /><br />
+            <strong>'.__('Show posts number:','mywords').'
+            <label><input type="radio" name="options[1]" value="1"'.(isset($options[1]) && $options[1]==1 ? ' checked="checked"' : '').' /> '.__('Yes','mywords').'
+            </label><label><input type="radio" name="options[1]" value="0"'.(!isset($options[1]) ||$options[1]==0 ? ' checked="checked"' : '').' /> '.__('No','mywords').'
+            </label>';
 	return $form;
 }
 

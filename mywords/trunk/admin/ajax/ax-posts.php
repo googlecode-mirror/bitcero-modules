@@ -154,6 +154,6 @@ if ($return){
     echo json_encode($rtn);
     die();
 } else {
-    return_error(__('Errors happened while trying to save this post.','admin_mywords').'<br />'.$post->errors(), true);
+    return_error(__('Errors ocurred while trying to save this post.','admin_mywords').'<br />'.$post->errors(), true);
     die();
 }

@@ -11,8 +11,6 @@
 define('RMCLOCATION','tags');
 require('header.php');
 
-include_once '../include/general.func.php';
-
 /**
 * Show all existing tags
 */

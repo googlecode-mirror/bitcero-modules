@@ -35,7 +35,7 @@ function showPosts($aprovado = -1){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts");
 	}	
 	
-	if ($status!=''){
+	if (isset($status) && $status!=''){
 		$sql .= $cat > 0 ? " AND a.status='$status'" : " WHERE status='$status'";
 	}
 	
@@ -119,7 +119,7 @@ function showPosts($aprovado = -1){
 	
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	MWFunctions::include_required_files();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_MW_POSTSPAGE);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Existing Posts','admin_mywords'));
 	xoops_cp_header();
 	include_once '../templates/admin/mywords_posts.php';    
 	xoops_cp_footer();
@@ -135,18 +135,18 @@ function newForm($edit = 0){
 	if ($edit){
 		$id = rmc_server_var($_GET, 'id', 0);
 		if ($id<=0){
-			redirectMsg('posts.php', _AS_MW_NOID, 1);
+			redirectMsg('posts.php', __('Please, specify a valid post ID','admin_mywords'), 1);
 			die();
 		}
 		$post = new MWPost($id);
 		if ($post->isNew()){
-			redirectMsg('posts.php', _AS_MW_NOID, 1);
+			redirectMsg('posts.php', __('Specified post does not exists!','admin_mywords'), 1);
 			die();
 		}
 	}
 	
 	MWFunctions::include_required_files();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? _AS_MW_EDITPOSTTITLE : _AS_MW_NEWPOSTTITLE));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Editing post','admin_mywords') : __('Creating a new post','admin_mywords')));
 	$head = '<script type="text/javascript" src="'.MW_URL.'/include/forms_post.js"></script>';
 	xoops_cp_header($head);
 	

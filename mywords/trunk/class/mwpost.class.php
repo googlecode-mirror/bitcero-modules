@@ -28,6 +28,10 @@ class MWPost extends RMObject
     * Indicate when a post has more text
     */
     private $hasmore = false;
+    /**
+    * Number of pages
+    */
+    private $pages = 1;
 	/**
 	 * Constructor de la clase
 	 * Carga los valores de un post específico o prepara
@@ -81,7 +85,7 @@ class MWPost extends RMObject
             $advance = str_replace("<!--nextpage-->","", $advance[0]);
             return TextCleaner::getInstance()->to_display($advance);
         }
-        
+
         if ($page>0){
             $page--;
             if ($pages<=1) return TextCleaner::getInstance()->to_display(str_replace("<!--more-->","",$content[0]));
@@ -95,6 +99,14 @@ class MWPost extends RMObject
         return $content;
         
 	}
+    
+    public function total_pages(){
+        
+        $content = explode("<!--nextpage-->", $this->getVar('content','n'));
+        $this->pages = count($content);
+        return $this->pages;
+        
+    }
 	
 	public function hasmore_text(){
         
@@ -123,7 +135,7 @@ class MWPost extends RMObject
 		if ($xoopsUser && $editor->id()==$xoopsUser->uid()) return;
 		
 		$this->setVar('reads', $this->getVar('reads') + 1);
-		$this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET reads='".($this->getVar('reads'))."' 
+		$this->db->queryF("UPDATE ".$this->db->prefix("mw_posts")." SET `reads`='".($this->getVar('reads'))."' 
 				WHERE id_post='".$this->id()."'");
 	}
 
@@ -368,12 +380,13 @@ class MWPost extends RMObject
         if ($this->getVar('visibility')=='password'){
             
             $pass = rmc_server_var($_POST, 'password', '');
-            $id = rmc_server_var($_POST, 'post_id', 0);
-            
+            $pass = $pass=='' && isset($_SESSION['password-'.$this->id()]) ? $_SESSION['password-'.$this->id()] : $pass;
+
             if ($pass=='') return false;
-            if($id<=0) return false;
             
-            if ($id!=$this->id() || $pass!=$this->getVar('password')) return false;
+            if ($pass!=$this->getVar('password')) return false;
+            
+            $_SESSION['password-'.$this->id()] = $pass;
             
             return true;
             
@@ -466,6 +479,9 @@ class MWPost extends RMObject
         if (!$this->isNew()){
             $this->db->queryF("DELETE FROM ".$this->db->prefix("mw_tagspost")." WHERE post='".$this->id()."'");
         }
+        
+        if (empty($this->tags)) return true;
+        
         $sql = "INSERT INTO ".$this->db->prefix("mw_tagspost")." (`post`,`tag`) VALUES ";
         $sa = '';
         foreach ($this->tags as $tag){

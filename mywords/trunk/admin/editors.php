@@ -11,8 +11,6 @@
 define('RMCLOCATION','editors');
 require('header.php');
 
-include_once '../include/general.func.php';
-
 /**
  * Mostramos la lista de editores junto con
  * el formulario para crear nuevos editores

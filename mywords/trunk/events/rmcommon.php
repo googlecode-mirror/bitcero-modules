@@ -16,7 +16,7 @@ class MywordsRmcommonPreload
 		if (!isset($xoopsModule) || ($xoopsModule->getVar('dirname')!='system' && $xoopsModule->getVar('dirname')!='mywords'))
 			return $widgets;
 		
-	    if (RMCSUBLOCATION=='new_post'){
+	    if (defined("RMCSUBLOCATION") && RMCSUBLOCATION=='new_post'){
 			include_once '../widgets/widget_publish.php';
 			$widgets[] = mw_widget_publish();
 			

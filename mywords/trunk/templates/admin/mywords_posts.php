@@ -22,7 +22,7 @@
 <br />
 <form name="modPosts" id="form-posts" method="post" action="posts.php">
 <div class="options">
-	<?php echo isset($nav) ? $nav->render() : ''; ?>
+	<?php echo isset($nav) ? $nav->render(false) : ''; ?>
 	<select name="op" id="posts-op">
 		<option value=""><?php _e('Bulk Actions','admin_mywords'); ?></option>
 		<option value="delete"><?php _e('Delete Posts','admin_mywords'); ?></option>

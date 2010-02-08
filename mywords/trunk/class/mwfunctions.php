@@ -240,7 +240,6 @@ class MWFunctions
         $sql = "SELECT id_tag, shortname FROM ".$db->prefix('mw_tags')." WHERE ";
         $sa = '';
         foreach($tags as $tag){
-            if ($tag=='') continue;
             $sa .= $sa=='' ? "shortname='".TextCleaner::sweetstring($tag)."'" : " OR shortname='".TextCleaner::sweetstring($tag)."'";
         }
 
@@ -256,7 +255,7 @@ class MWFunctions
         $sa = '';
         
         foreach ($tags as $tag){
-            
+            if ($tag=='') continue;
             $short = TextCleaner::sweetstring($tag);
             
             if (isset($existing[$short])) continue;
@@ -267,7 +266,7 @@ class MWFunctions
             
         }
 
-        return $ids;
+        return empty($ids) ? array() : $ids;
         
     }
     
