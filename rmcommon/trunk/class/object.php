@@ -917,7 +917,7 @@ class RMObject
 		}
 		
 		$sql .= $fields . " WHERE `$this->primary`='".$this->getVar($this->primary)."'";
-
+        
 		$this->db->queryF($sql);
 		if ($this->db->error()!=''){
 			$this->addError($this->db->error());

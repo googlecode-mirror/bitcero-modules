@@ -256,23 +256,30 @@ class RMTemplate
     * Note: must be used when stylesheet is an absolute url (or remote url)
     * @param 
     */
-    public function add_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more=''){
-        global $rmc_config;
+    public function add_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more='', $front = false){
+        global $rmc_config, $xoopsConfig;
         
 		$id = crc32($sheet.$element.$subfolder);
 		
 		if (isset($this->tpl_styles[$id])) return;
-    
-        $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
-        $themepath = RMCPATH.'/themes/'.$theme;
-        $themeurl = RMCURL.'/themes/'.$theme;
+        
+        if ($front){
+            $theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
+            $themepath = XOOPS_THEME_PATH.'/'.$theme;
+            $themeurl = XOOPS_THEME_URL.'/'.$theme;
+        } else {
+            $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+            $themepath = RMCPATH.'/themes/'.$theme;
+            $themeurl = RMCURL.'/themes/'.$theme;
+        }
 
         $theme_file = $themepath.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
+   
         if (is_file($theme_file)){
             $url = $themeurl.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
         } else {
             $url = XOOPS_URL.'/'.($element!='' ? 'modules/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'css/'.$sheet;
-        }        
+        }
         
 		if (strpos($url, "?")>1){
 		    if (strpos($url, 'ver=')===FALSE){
@@ -289,6 +296,15 @@ class RMTemplate
 	        'more'=>$more
          );
 		
+    }
+    
+    /**
+    * Add a style for the front section
+    */
+    public function add_xoops_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more=''){
+        
+        $this->add_style($sheet, $element, $subfolder, $media, $more, true);
+        
     }
     
     /**
