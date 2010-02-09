@@ -72,3 +72,20 @@
     margin-bottom: 10px;
     text-align: right;
 }
+.mwpostnav{
+	overflow: hidden;
+	padding: 0 0 4px 0;
+	border-bottom: 1px solid #CCC;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+.mwpostnav .next{
+	float: right;
+	display: block;
+}
+.mwpostnav .prev{
+	float: left;
+	display: block;
+}

@@ -1,8 +1,10 @@
+<{if $shownav}>
 <div class="mwpostnav">
     <{if $prev_post}><span class="prev"><a href="<{$prev_post.link}>">&laquo; <{$prev_post.title}></a></span><{/if}>
     <{if $next_post}><span class="next"><a href="<{$next_post.link}>"><{$next_post.title}> &raquo;</a></span><{/if}>
     <a href="<{$mw_url}>">Inicio</a>
 </div>
+<{/if}>
 <div class="mwitem">
 	<h1><{$post.title}></h1>
 	<{if $post.published!=''}>

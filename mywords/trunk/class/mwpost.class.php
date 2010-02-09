@@ -48,6 +48,8 @@ class MWPost extends RMObject
 		$this->_dbtable = $this->db->prefix("mw_posts");
 		$this->setNew();
 		$this->initVarsFromTable();
+		$this->setVarType('toping', XOBJ_DTYPE_ARRAY);
+		$this->setVarType('pinged', XOBJ_DTYPE_ARRAY);
 		
 		if ($id==null) return;
 	

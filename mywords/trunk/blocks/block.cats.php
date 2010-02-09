@@ -8,6 +8,10 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwcategory.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
+
 function mywordsBlockCats($options){
 	global $xoopsModuleConfig, $xoopsModule;
 	

@@ -46,13 +46,15 @@ CREATE TABLE `mw_posts` (
   `authorname` varchar(50) NOT NULL,
   `pubdate` int(10) NOT NULL,
   `reads` int(11) NOT NULL,
+  `toping` TEXT NOT NULL,
+  `pinged` TEXT NOT NULL,
   PRIMARY KEY  (`id_post`),
   KEY `shortname` (`shortname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `mw_trackbacks` (
   `id_t` int(11) NOT NULL auto_increment,
-  `fecha` int(11) NOT NULL,
+  `date` int(10) NOT NULL,
   `title` varchar(255) NOT NULL,
   `blog_name` varchar(150) NOT NULL,
   `excerpt` text NOT NULL,

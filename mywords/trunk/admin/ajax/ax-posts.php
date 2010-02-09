@@ -7,7 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-
+set_time_limit(0);
 /**
 * This function show an error message
 */
@@ -112,8 +112,8 @@ $post->setVar('visibility', $visibility);
 $post->setVar('schedule', $schedule);
 $post->setVar('password', $vis_password);
 $post->setVar('author', $author);
-$post->setVar('comstatus', isset($comstatus) ? $comstatus : 1);
-$post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 1);
+$post->setVar('comstatus', isset($comstatus) ? $comstatus : 0);
+$post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 0);
 $post->setVar('authorname', $authorname);
 
 if ($schedule<=time()){
@@ -139,6 +139,30 @@ foreach($meta as $data){
 
 // before to save post
 RMEvents::get()->run_event('mywords.saving.post', &$post);
+
+// Add trackbacks uris
+$toping = $edit ? $post->getVar('toping') : array();
+$pinged = $edit ? $post->getVar('pinged') : array();
+if ($trackbacks!='' && $post->getVar('pingstatus')){
+	
+	$trackbacks = explode(" ", $trackbacks);
+	
+} elseif($trackbacks=='' && $post->getVar('pingstatus')){
+	
+	$tb = new MWTrackback('','');
+	$trackbacks = $tb->auto_discovery($content);
+	
+}
+
+if (!empty($trackbacks)){
+	foreach ($trackbacks as $t){
+		if (!empty($toping) && in_array($t, $toping)) continue;
+		if (!empty($pinged) && in_array($t, $pinged)) continue;
+		$toping[] = $t;
+	}
+}
+
+$post->setVar('toping', !empty($toping) ? $toping : '');
 
 $return = $edit ? $post->update() : $post->save();
 

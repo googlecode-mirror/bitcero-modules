@@ -54,7 +54,7 @@ function mw_widget_publish(){
         $visibility = $post->getVar('visibility')=='public' ? 'Public' : ($post->getVar('visibility')=='password' ? 'Password Protected' : 'Private');
         
     } else {
-        $status = 'Draft';
+        $status = 'Published';
         $visibility = 'Public';
     }
     
@@ -67,9 +67,7 @@ function mw_widget_publish(){
 <?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e($status,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>
 	<div id="publish-options" style="display: none;">
 		<select name="status" id="status">
-            <?php if($edit): ?>
-            <option value="publish"<?php echo $edit && $post->getVar('status')=='publish' ? 'selected="selected"' : ''?>><?php _e('Published','admin_mywords') ?></option>
-            <?php endif; ?>
+            <option value="publish"<?php echo $edit && $post->getVar('status')=='publish' ? 'selected="selected"' : ($edit ? '' : 'selected="selected"'); ?>><?php _e('Published','admin_mywords') ?></option>
 			<option value="draft"<?php echo $edit && $post->getVar('status')=='draft' ? 'selected="selected"' : ''?>><?php _e('Draft','admin_mywords') ?></option>
 			<option value="pending"<?php echo $edit && $post->getVar('status')=='pending' ? 'selected="selected"' : ''?>><?php _e('Pending Review','admin_mywords') ?></option>
 		</select>

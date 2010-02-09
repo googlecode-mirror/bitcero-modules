@@ -129,6 +129,7 @@ class MWTrackback {
         while (!feof($tb_sock)) {
             $response .= fgets($tb_sock, 128);
         } 
+
         // Close socket
         fclose($tb_sock); 
         // Did the trackback ping work

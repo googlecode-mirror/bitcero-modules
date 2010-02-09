@@ -20,7 +20,7 @@
 	</div>
 	<div class="mw_bcontent">
 		<?php _e('Send trackbacks to:','admin_mywords'); ?>
-		<input type="text" name="trackbacks" id="post-trackbacks" class="mw_large" value="<?php echo $edit ? 'Here Trackbacks' : ''; ?>" />
+		<input type="text" name="trackbacks" id="post-trackbacks" class="mw_large" value="<?php echo $edit ? implode(' ', $post->getVar('toping')) : ''; ?>" />
 		(<?php _e('Separate multiple URLs with spaces','admin_mywords'); ?>)
 	</div>
 </div>
@@ -102,3 +102,6 @@
 <input type="hidden" name="id" id="mw-id" value="<?php echo $post->id(); ?>" />
 <?php endif; ?>
 </form>
+<?php if($edit && $post->getVar('toping')): ?>
+<iframe src="<?php echo XOOPS_URL; ?>/modules/mywords/include/ping.php?post=<?php echo $post->id(); ?>" style="display: none; visibility: hidden; width: 0; height: 0; border: 0;"></iframe>
+<?php endif; ?>

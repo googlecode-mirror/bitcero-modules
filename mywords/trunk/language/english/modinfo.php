@@ -34,6 +34,7 @@ define('_MI_MW_WIDGETTAGS','Number of tags on admin widget');
 define('_MI_MW_PPP','Posts per page');
 define('_MI_MW_CSS','Use CSS file');
 define('_MI_MW_CSSFILE','CSS file to use');
+define('_MI_MW_SHOWNAV', 'Show navigation bar between posts');
 
 /*# Fechas
 define('_MI_MW_DATEFORMAT','Date Format');

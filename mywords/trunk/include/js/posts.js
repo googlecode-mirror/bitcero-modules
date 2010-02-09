@@ -43,10 +43,13 @@ $(document).ready( function($) {
     $("#publish-ok").click(function() {
     	if ($("#status").val()=='draft'){
 			$("#publish-status-legend").text('<?php _e('Draft','admin_mywords'); ?>');
+			$("#publish-submit").val("<?php _e('Save as Draft','admin_mywords'); ?>");
     	} else if($("#status").val()=='pending') {
 			$("#publish-status-legend").text('<?php _e('Pending Review','admin_mywords'); ?>');
+			$("#publish-submit").val("<?php _e('Save as Pending','admin_mywords'); ?>");
     	} else {
             $("#publish-status-legend").text('<?php _e('Published','admin_mywords'); ?>');
+            $("#publish-submit").val("<?php _e('Publish','admin_mywords'); ?>");
         }
 	
 		$("#publish-options").slideUp("fast");

@@ -273,18 +273,22 @@ class MWFunctions
     /**
     * Get correct base url for links
     */
-    function get_url(){
+    function get_url($track = false){
         global $xoopsModule, $xoopsModuleConfig;
         if(!$xoopsModule || $xoopsModule->dirname()!='mywords')
             $xoopsModuleConfig = RMUtilities::get()->module_config('mywords');
         
         if ($xoopsModuleConfig['permalinks']>1){
             
-            return XOOPS_URL.rtrim($xoopsModuleConfig['basepath'], "/").'/';
+            $ret = XOOPS_URL.rtrim($xoopsModuleConfig['basepath'], "/").'/';
+            if ($track) $ret .= 'trackback/';
             
         } else {
-            return XOOPS_URL.'/modules/mywords/';
+            $ret = XOOPS_URL.'/modules/mywords/';
+            if ($track) $ret .= 'trackbacks.php?trackback=';
         }
+        
+        return $ret;
     }
     
     public function format_time($time){

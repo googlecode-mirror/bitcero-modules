@@ -43,6 +43,7 @@ if (isset($vars['cat'])){ $category = $vars['cat']; require 'cats.php'; die(); }
 if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; die(); }
 if (isset($vars['tag'])){ $editor = $vars['tag']; require 'tag.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
+if (isset($vars['trackback'])){ require 'trackback.php'; die(); }
 
 $vars = explode('/', $request);
 

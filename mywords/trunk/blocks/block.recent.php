@@ -7,13 +7,15 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwcategory.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
 
 function mywordsBlockRecent($options){
 	global $xoopsModuleConfig, $xoopsModule, $xoopsUser;
     
 	$mc = $xoopsModule && $xoopsModule->getVar('dirname')=='mywords' ? $xoopsModuleConfig : RMUtilities::module_config('mywords');
 	$db =& Database::getInstance();
-    RMTemplate::get()->add_xoops_style('blocks.css', 'mywords');
     
     switch($options[1]){
         case 'recent':

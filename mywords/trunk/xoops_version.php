@@ -47,7 +47,7 @@ $modversion['search']['file'] = "include/search.func.php";
 $modversion['search']['func'] = "mywords_search";
 
 // Tablas
-$modversion['tables'][0] = "mw_categos";
+$modversion['tables'][0] = "mw_categories";
 $modversion['tables'][1] = "mw_posts";
 $modversion['tables'][2] = "mw_catpost";
 $modversion['tables'][3] = "mw_trackbacks";
@@ -55,6 +55,7 @@ $modversion['tables'][4] = "mw_editors";
 $modversion['tables'][5] = "mw_bookmarks";
 $modversion['tables'][6] = "mw_meta";
 $modversion['tables'][7] = "mw_tags";
+$modversion['tables'][7] = "mw_tagspost";
 
 // Plantillas
 $modversion['templates'][1]['file'] = 'mywords_index.html';
@@ -126,108 +127,13 @@ $modversion['config'][5]['formtype'] = 'textbox';
 $modversion['config'][5]['valuetype'] = 'text';
 $modversion['config'][5]['default'] = XOOPS_URL.'/modules/mywords/css/main.css';
 
-/*
-// Envío de Artículo
-$modversion['config'][1]['name'] = 'submit';
-$modversion['config'][1]['title'] = '_MI_MW_ALLOWSUBMIT';
-$modversion['config'][1]['description'] = '';
-$modversion['config'][1]['formtype'] = 'yesno';
-$modversion['config'][1]['valuetype'] = 'int';
-$modversion['config'][1]['default'] = 1;
-
-// Permitir envio a usuarios anonimos
-$modversion['config'][2]['name'] = 'anonimo';
-$modversion['config'][2]['title'] = '_MI_MW_ALLOWANONYM';
-$modversion['config'][2]['description'] = '';
-$modversion['config'][2]['formtype'] = 'yesno';
-$modversion['config'][2]['valuetype'] = 'int';
-$modversion['config'][2]['default'] = 0;
-
-// Autoaprovación
-$modversion['config'][3]['name'] = 'aproveuser';
-$modversion['config'][3]['title'] = '_MI_MW_USERAUTO';
-$modversion['config'][3]['description'] = '';
-$modversion['config'][3]['formtype'] = 'yesno';
-$modversion['config'][3]['valuetype'] = 'int';
-$modversion['config'][3]['default'] = 0;
-
-$modversion['config'][4]['name'] = 'aproveano';
-$modversion['config'][4]['title'] = '_MI_MW_ANOAUTO';
-$modversion['config'][4]['description'] = '';
-$modversion['config'][4]['formtype'] = 'yesno';
-$modversion['config'][4]['valuetype'] = 'int';
-$modversion['config'][4]['default'] = 0;
-
-// Permitir recepción de Pings
-$modversion['config'][5]['name'] = 'pings';
-$modversion['config'][5]['title'] = '_MI_MW_ALLOWPINGS';
-$modversion['config'][5]['description'] = '_MI_MW_ALLOWPINGS_DESC';
-$modversion['config'][5]['formtype'] = 'yesno';
-$modversion['config'][5]['valuetype'] = 'int';
-$modversion['config'][5]['default'] = 1;
-
-// Archivos por página
-$modversion['config'][6]['name'] = 'limite';
-$modversion['config'][6]['title'] = '_MI_MW_LIMITE';
+// Navigation bar
+$modversion['config'][6]['name'] = 'shownav';
+$modversion['config'][6]['title'] = '_MI_MW_SHOWNAV';
 $modversion['config'][6]['description'] = '';
-$modversion['config'][6]['formtype'] = 'textbox';
+$modversion['config'][6]['formtype'] = 'yesno';
 $modversion['config'][6]['valuetype'] = 'int';
-$modversion['config'][6]['default'] = 10;
-$modversion['config'][6]['size'] = 5;
-
-// Usar hoja de estilos del módulo
-$modversion['config'][7]['name'] = 'css';
-$modversion['config'][7]['title'] = '_MI_MW_CSS';
-$modversion['config'][7]['description'] = '';
-$modversion['config'][7]['formtype'] = 'yesno';
-$modversion['config'][7]['valuetype'] = 'int';
-$modversion['config'][7]['default'] = 1;
-
-// Longitud en carácteres del texto para trackbacks
-$modversion['config'][8]['name'] = 'tracklen';
-$modversion['config'][8]['title'] = '_MI_MW_TRACKLEN';
-$modversion['config'][8]['description'] = '';
-$modversion['config'][8]['formtype'] = 'textbox';
-$modversion['config'][8]['valuetype'] = 'int';
-$modversion['config'][8]['default'] = 100;
-
-// Tamaño de la imágen para el bloque de noticias
-$modversion['config'][9]['name'] = 'imgsize';
-$modversion['config'][9]['title'] = '_MI_MW_BIMGSIZE';
-$modversion['config'][9]['description'] = '_MI_MW_BIMGSIZE_DESC';
-$modversion['config'][9]['formtype'] = 'textbox';
-$modversion['config'][9]['valuetype'] = 'array';
-$modversion['config'][9]['default'] = 50|50;
-$modversion['config'][9]['size'] = 5;
-
-// Tamaño de la imágen para el bloque de noticias
-$modversion['config'][10]['name'] = 'filesize';
-$modversion['config'][10]['title'] = '_MI_MW_FILESIZE';
-$modversion['config'][10]['description'] = '';
-$modversion['config'][10]['formtype'] = 'textbox';
-$modversion['config'][10]['valuetype'] = 'int';
-$modversion['config'][10]['default'] = '100';
-$modversion['config'][10]['size'] = 5;
-
-// Imágen por Defecto
-$modversion['config'][11]['name'] = 'defimg';
-$modversion['config'][11]['title'] = '_MI_MW_DEFIMG';
-$modversion['config'][11]['description'] = '_MI_MW_BIMGSIZE_DESC';
-$modversion['config'][11]['formtype'] = 'textbox';
-$modversion['config'][11]['valuetype'] = 'text';
-$modversion['config'][11]['size'] = 50;
-$modversion['config'][11]['default'] = XOOPS_URL.'/modules/mywords/images/defimg.png';
-
-// Descripción para la sindicación
-$modversion['config'][12]['name'] = 'rssdesc';
-$modversion['config'][12]['title'] = '_MI_MW_RSSDESC';
-$modversion['config'][12]['description'] = '';
-$modversion['config'][12]['formtype'] = 'editor';
-$modversion['config'][12]['valuetype'] = 'text';
-$modversion['config'][12]['size'] = '90%';
-$modversion['config'][12]['default'] = '';
-
-*/
+$modversion['config'][6]['default'] = 1;
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";

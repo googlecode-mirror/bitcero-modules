@@ -68,22 +68,25 @@ $xmh .= "\n<script type='text/javascript' src='".MW_URL."include/functions.js'><
 $post->add_read();
 
 // Navegación entre artículos
-$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post<".$post->id()." ORDER BY id_post DESC LIMIT 0, 1";
-$result = $db->query($sql);
-$pn = new MWPost();
-// Anterior
-if ($db->getRowsNum($result)>0){
-    $pn->assignVars($db->fetchArray($result));
-    $xoopsTpl->assign('prev_post', array('link'=>$pn->permalink(), 'title'=>$pn->getVar('title')));
-}
+if($xoopsModuleConfig['shownav']){
+	$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post<".$post->id()." ORDER BY id_post DESC LIMIT 0, 1";
+	$result = $db->query($sql);
+	$pn = new MWPost();
+	// Anterior
+	if ($db->getRowsNum($result)>0){
+	    $pn->assignVars($db->fetchArray($result));
+	    $xoopsTpl->assign('prev_post', array('link'=>$pn->permalink(), 'title'=>$pn->getVar('title')));
+	}
 
-// Siguiente
-$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post>".$post->id()." ORDER BY id_post ASC LIMIT 0, 1";
-$result = $db->query($sql);
-if ($db->getRowsNum($result)>0){
-    $pn->assignVars($db->fetchArray($result));
-    $xoopsTpl->assign('next_post', array('link'=>$pn->permalink(), 'title'=>$pn->getVar('title')));
+	// Siguiente
+	$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post>".$post->id()." ORDER BY id_post ASC LIMIT 0, 1";
+	$result = $db->query($sql);
+	if ($db->getRowsNum($result)>0){
+	    $pn->assignVars($db->fetchArray($result));
+	    $xoopsTpl->assign('next_post', array('link'=>$pn->permalink(), 'title'=>$pn->getVar('title')));
+	}
 }
+$xoopsTpl->assign('shownav', $xoopsModuleConfig['shownav']);
 
 if($xoopsUser && ($xoopsUser->isAdmin() || $editor->getVar('uid')==$xoopsUser->uid())){
 	$edit = '<a href="'.XOOPS_URL.'/modules/mywords/admin/posts.php?op=edit&amp;id='.$post->id().'">'.__('Edit Post','mywords').'</a>';
@@ -136,14 +139,23 @@ unset($tags_list);
 // When use the common utilities comments system you can choose between
 // use of Common Utilities templates or use your own templates
 // We will use MyWords included templates
-RMFunctions::get_comments('mywords','post='.$post->id());
-
-// Comments form
-RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module', MW_PATH.'/class/mywordscontroller.php');
+if ($post->getVar('comstatus')){
+	RMFunctions::get_comments('mywords','post='.$post->id());
+	// Comments form
+	RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module', MW_PATH.'/class/mywordscontroller.php');
+}
 
 // Language
 $xoopsTpl->assign('lang_publish', __('Published in','mywords'));
 $xoopsTpl->assign('lang_tagged',__('Tagged as','mywords'));
 $xoopsTpl->assign('lang_numcoms', sprintf(__('%u Comments', 'mywords'), $post->getVar('comments')));
+ 
+//Trackback
+if ($post->getVar('pingstatus')){
+	$tb = new MWTrackback($xoopsConfig['sitename'], $editor->getVar('name'));
+	RMTemplate::get()->add_head(
+		$tb->rdf_autodiscover(date('r', $post->getVar('pubdate')), $post->getVar('title'), TextCleaner::getInstance()->truncate($post->content(true), 255), $post->permalink(), MWFunctions::get_url(true).$post->id(), $editor->getVar('name'))
+	);
+}
  
 include 'footer.php';
