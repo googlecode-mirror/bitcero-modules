@@ -23,6 +23,18 @@ class AvatarsPluginRmcommonPreload
         
     }
     
+    public function eventRmcommonLoadingAdminComments($comms){
+        
+        $config = RMFunctions::get()->plugin_settings('avatars', true);
+        
+        foreach($comms as $i => $com){
+            $comms[$i]['poster']['avatar'] = "http://www.gravatar.com/avatar/".md5($comms[$i]['poster']['email'])."?s=".$config['size'].'&d='.$config['default'];
+        }
+        
+        return $comms;
+        
+    }
+    
     public function eventRmcommonCurrentModuleMenu($menu){
         global $xoopsModule;
         
