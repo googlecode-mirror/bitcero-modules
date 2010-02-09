@@ -54,6 +54,9 @@ class RMComment extends RMObject
     */
     public function save(){
         
+        // To check or modify data before save this
+        RMEvents::get()->run_event('rmcommon.saving.comment', &$this);
+        
         if ($this->isNew()){
             return $this->saveToTable();
         } else {

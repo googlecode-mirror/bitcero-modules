@@ -140,7 +140,7 @@ if ($action=='save'){
 	}
 
 	if ($xoopsUser) $xoopsUser->incrementPost();
-	RMEvents::get()->run_event('rmcommon.comment_saved', $comment, $uri);
+	RMEvents::get()->run_event('rmcommon.comment.saved', $comment, $uri);
 
 	// Update comments number if object accepts this functionallity
 	if (is_file(XOOPS_ROOT_PATH.'/modules/'.$object.'/class/'.$object.'controller.php')){

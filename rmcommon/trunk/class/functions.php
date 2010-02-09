@@ -326,6 +326,21 @@ class RMFunctions
         
     }
     
+    /**
+    * Delete comments assigned to a object
+    * @param string Module name
+    * @param string Params
+    */
+    public function delete_comments($module, $params){
+		
+		if ($module=='' || $params == '') return;
+		
+		$db = Database::getInstance();
+		$sql = "DELETE FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$module' AND params='$params'";
+		return $db->queryF($sql);
+		
+    }
+    
     public function current_url() {
 		$pageURL = 'http';
 		if (isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) == "on") {$pageURL .= "s";}

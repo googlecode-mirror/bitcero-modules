@@ -28,6 +28,12 @@
 <?php else: ?>
 <a href="comments.php?filter=approved"><?php _e('Approved','rmcommon'); ?></a>
 <?php endif; ?>
+|
+<?php if($filter=='spam'): ?>
+<strong><?php _e('SPAM','rmcommon'); ?></strong>
+<?php else: ?>
+<a href="comments.php?filter=spam"><?php _e('SPAM','rmcommon'); ?></a>
+<?php endif; ?>
 </div>
 <table class="outer" cellspacing="0" width="100%">
     <thead>
@@ -55,7 +61,7 @@
     </tr>
     <?php else: ?>
     <?php foreach ($comments as $com): ?>
-    <tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
+    <tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top"<?php if($com['status']=='spam'): ?> style="color: #F00;"<?php endif; ?>>
         <td align="center"><input type="checkbox" name="coms[]" id="com-<?php echo $com['id']; ?>" value="<?php echo $com['id']; ?>" /></td>
         <td class="poster_cell"><img class="poster_avatar" src="<?php echo $com['poster']['avatar']; ?>" />
         <strong><?php echo $com['poster']['name']; ?></strong>
@@ -74,7 +80,21 @@
         </span>
         </td>
         <td align="center">
-        	<?php echo $com['status']=='approved' ? _e('Approved','rmcommon') : _e('Unapproved','rmcommon'); ?>
+        	<?php 
+        		switch($com['status']){
+					case 'approved':
+						_e('Approved', 'rmcommon');
+						break;
+					case 'waiting':
+						_e('Unapproved','rmcommon');
+						break;
+					case 'spam':
+						echo "<span style='color: #F00;'>";
+						_e('SPAM', 'rmcommon');
+						echo "</span>";
+						break;
+        		}
+        	?>
         </td>
         <td align="center">
         	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?>
