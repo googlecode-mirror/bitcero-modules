@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class MWTrackback1 extends RMObject
+class MWTrackbackObject extends RMObject
 {
 	public function __construct($id){
 		

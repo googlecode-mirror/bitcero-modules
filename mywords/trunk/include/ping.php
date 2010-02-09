@@ -54,7 +54,7 @@ foreach ($tracks as $t){
 	}
 }
 
-$post->setVar('toping', $tp);
+$post->setVar('toping', empty($tp) ? '' : $tp);
 $post->setVar('pinged', $pinged);
 $post->update();
 

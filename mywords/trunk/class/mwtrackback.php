@@ -26,14 +26,14 @@
  * @param string $encoding 
  */
 class MWTrackback {
-    var $blog_name = ''; // Default blog name used throughout the class (ie. BLOGish)
-    var $author = ''; // Default author name used throughout the class (ie. Ran Aroussi)
-    var $encoding = ''; // Default encoding used throughout the class (ie. UTF-8)
-    var $get_id = ''; // Retreives and holds $_GET['id'] (if not empty)
-    var $post_id = ''; // Retreives and holds $_POST['id'] (if not empty)
-    var $url = ''; // Retreives and holds $_POST['url'] (if not empty)
-    var $title = ''; // Retreives and holds $_POST['title'] (if not empty)
-    var $expert = ''; // Retreives and holds $_POST['expert'] (if not empty)
+    public $blog_name = ''; // Default blog name used throughout the class (ie. BLOGish)
+    public $author = ''; // Default author name used throughout the class (ie. Ran Aroussi)
+    public $encoding = ''; // Default encoding used throughout the class (ie. UTF-8)
+    public $get_id = ''; // Retreives and holds $_GET['id'] (if not empty)
+    public $post_id = ''; // Retreives and holds $_POST['id'] (if not empty)
+    public $url = ''; // Retreives and holds $_POST['url'] (if not empty)
+    public $title = ''; // Retreives and holds $_POST['title'] (if not empty)
+    public $excerpt = ''; // Retreives and holds $_POST['expert'] (if not empty)
     /**
      * Class Constructure
      * 
@@ -50,19 +50,19 @@ class MWTrackback {
 		
         // Gather $_POST information
         if (isset($_GET['id'])) {
-            $this->get_id = $HTTP_GET_VARS['id'];
+            $this->get_id = $_GET['id'];
         } 
         if (isset($_POST['id'])) {
-            $this->post_id = $HTTP_POST_VARS['id'];
+            $this->post_id = $_POST['id'];
         } 
         if (isset($_POST['url'])) {
-            $this->url = $HTTP_POST_VARS['url'];
+            $this->url = $_POST['url'];
         } 
         if (isset($_POST['title'])) {
-            $this->title = $HTTP_POST_VARS['url'];
+            $this->title = $_POST['title'];
         } 
-        if (isset($_POST['expert'])) {
-            $this->expert = $HTTP_POST_VARS['expert'];
+        if (isset($_POST['excerpt'])) {
+            $this->excerpt = $_POST['excerpt'];
         } 
     } 
 
@@ -118,6 +118,7 @@ class MWTrackback {
         } 
         // Put together the things we want to send
         $tb_send = "url=" . rawurlencode($url) . "&title=" . rawurlencode($title) . "&blog_name=" . rawurlencode($this->blog_name) . "&excerpt=" . rawurlencode($excerpt); 
+
         // Send the trackback
         fputs($tb_sock, "POST " . $target["path"] . $target["query"] . " HTTP/1.1\r\n");
         fputs($tb_sock, "Host: " . $target["host"] . "\r\n");

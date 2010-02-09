@@ -141,7 +141,7 @@ foreach($meta as $data){
 RMEvents::get()->run_event('mywords.saving.post', &$post);
 
 // Add trackbacks uris
-$toping = $edit ? $post->getVar('toping') : array();
+$toping = array();
 $pinged = $edit ? $post->getVar('pinged') : array();
 if ($trackbacks!='' && $post->getVar('pingstatus')){
 	
@@ -156,7 +156,6 @@ if ($trackbacks!='' && $post->getVar('pingstatus')){
 
 if (!empty($trackbacks)){
 	foreach ($trackbacks as $t){
-		if (!empty($toping) && in_array($t, $toping)) continue;
 		if (!empty($pinged) && in_array($t, $pinged)) continue;
 		$toping[] = $t;
 	}

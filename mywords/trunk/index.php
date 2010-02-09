@@ -43,7 +43,7 @@ if (isset($vars['cat'])){ $category = $vars['cat']; require 'cats.php'; die(); }
 if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; die(); }
 if (isset($vars['tag'])){ $editor = $vars['tag']; require 'tag.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
-if (isset($vars['trackback'])){ require 'trackback.php'; die(); }
+if (isset($vars['trackback'])){ $id = $vars['trackback']; require 'trackbacks.php'; die(); }
 
 $vars = explode('/', $request);
 
@@ -91,6 +91,12 @@ if ($vars[0]=='author'){
 if ($vars[0]=='tag'){
     $tag = $vars[1];
     require 'tag.php';
+    die();
+}
+
+if ($vars[0]=='trackback'){
+    $id = $vars[1];
+    require 'trackbacks.php';
     die();
 }
 

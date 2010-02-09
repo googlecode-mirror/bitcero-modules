@@ -21,7 +21,9 @@
 	<div class="mw_bcontent">
 		<?php _e('Send trackbacks to:','admin_mywords'); ?>
 		<input type="text" name="trackbacks" id="post-trackbacks" class="mw_large" value="<?php echo $edit ? implode(' ', $post->getVar('toping')) : ''; ?>" />
-		(<?php _e('Separate multiple URLs with spaces','admin_mywords'); ?>)
+		(<?php _e('Separate multiple URLs with spaces','admin_mywords'); ?>)<br /><br />
+		<strong><?php _e('Pinged:','admin_mywords'); ?></strong><br />
+		<small><?php $pinged = $post->getVar('pinged'); echo implode("<br />", $pinged); ?></small>
 	</div>
 </div>
 <br />
@@ -103,5 +105,5 @@
 <?php endif; ?>
 </form>
 <?php if($edit && $post->getVar('toping')): ?>
-<iframe src="<?php echo XOOPS_URL; ?>/modules/mywords/include/ping.php?post=<?php echo $post->id(); ?>" style="display: none; visibility: hidden; width: 0; height: 0; border: 0;"></iframe>
+<iframe src="<?php echo XOOPS_URL; ?>/modules/mywords/include/ping.php?post=<?php echo $post->id(); ?>"></iframe>
 <?php endif; ?>

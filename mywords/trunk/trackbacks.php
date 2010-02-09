@@ -7,115 +7,64 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
+header('Content-Type: text/xml');
+require '../../mainfile.php';
 
-include 'header.php';
+load_mod_locale('mywords');
 
-function response($error, $msg){
-	echo "<?xml version=\"1.0\" encoding=\""._CHARSET."\"?>
-  <response>
-  <error>$error</error>
-  ".($msg!='' ? "<message>$msg</message>" : '')."
-</response>";
-}
+global $xoopsLogger;
+$xoopsLogger->renderingEnabled = false;
+error_reporting(0);
+$xoopsLogger->activated = false;
 
-foreach ($_GET as $k => $v){
-	$$k = $v;
-}
+if ($id<=0) die();
 
-if (count($_POST)==0){
-	header('location: '.mw_get_url());
+$post = new MWPost($id);
+
+if ($post->isNew()) die();
+
+$editor = new MWEditor($post->getVar('author'));
+if ($editor->isNew()) $user = new XoopsUser($post->getVar('author'));
+$track = new MWTrackback($xoopsConfig['sitename'], $editor->getVar('name'));
+
+$id = $track->post_id; // The id of the item being trackbacked
+$url = $track->url; // The URL from which we got the trackback
+$title = $track->title; // Subject/title send by trackback
+$excerpt = $track->excerpt; // Short text send by trackback
+$blog_name = rmc_server_var($_POST, 'blog_name', '');
+
+if ($url=='' || $title=='' || $excerpt==''){
+	echo $track->recieve(false, __('Sorry, your trackback seems to be invalid!', 'mywords'));
 	die();
 }
 
-foreach ($_POST as $k => $v){
-	$$k = $v;
-}
+$params = array(
+	'blogurl'=>MWFunctions::get_url(),
+	'name'	=> 'Trackback',
+	'email'	=> '',
+	'url'	=> $url,
+	'text'	=> $excerpt,
+	'permalink'	=> $post->permalink()
+);
 
-if ($post<=0){
-	response(1, _MS_MW_ERRNOPOST);
-	die();
-}
+$ret = RMEvents::get()->run_event('rmcommon.check.post.spam', $params);
 
-include_once XOOPS_ROOT_PATH.'/rmcommon/object.class.php';
-include_once XOOPS_ROOT_PATH.'/modules/mywords/class/post.class.php';
-$post = new MWPost($post);
-
-if ($mc['pings']==0){
-	response(1, _MS_MW_NOPINGS);
-	die();
-}
-
-if (!$post->getAllowPings()){
-	response(1, _MS_MW_NOPINGS);
-	die();
-}
-
-if ($url==''){
-	response(1, _MS_MW_URLMISSING);
-	die();
-}
-
-if ($title==''){
-	response(1, _MS_MW_NOTITLE);
-	die();
-}
-
-if ($excerpt==''){
-	response(1, _MS_MW_NOEXCERPT);
-	die();
-}
-
-if ($blog_name==''){
-	response(1, _MS_MW_NOBLOGNAME);
-	die();
-}
-
-$allowedtags = array (
-	'a' => array (
-		'href' => array (), 
-		'title' => array ()
-	), 
-	'abbr' => array (
-		'title' => array ()
-	), 
-	'acronym' => array (
-		'title' => array ()
-	), 
-	'b' => array (), 
-	'blockquote' => array (
-		'cite' => array ()
-	),
-	'code' => array (),
-	'em' => array (),
-	'i' => array (),
-	'strike' => array (),
-	'strong' => array (),
-	);
-
-
-$title = RMUtils::filterTags($title, array(), array());
-$excerpt = RMUtils::filterTags($excerpt, $allowedtags);
-$blog_name = RMUtils::filterTags($blog_name);
-
-$db = Database::getInstance();
-// Guardamos los datos en la base de datos
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('mw_trackbacks')." WHERE post='".$post->getID()."' AND title='$title' AND url='$url' LIMIT 0,1";
-list($num) = $db->fetchRow($db->query($sql));
-if ($num>0){
-	response(1, _MS_MW_EXISTSTRACK);
-	die();
-}
-
-$sql = "INSERT INTO ".$db->prefix('mw_trackbacks')." (`fecha`,`title`,`blog_name`,`excerpt`,`url`,`post`)
-		VALUES ('".time()."','$title','$blog_name','$excerpt','$url','".$post->getID()."')";
-if ($db->queryF($sql)){
-	$post->setTBCount($post->getTBCount() + 1);
-	$post->update();
-	response(0,'');
-	die();
+if (!$ret){
+	echo $track->recieve(false, __('Sorry, your trackback seems to be SAPM','mywords'));
 } else {
-	response(1, _MS_MW_ERRDB);
-	die();
+	
+	$to = new MWTrackbackObject();
+	$to->setVar('date', time());
+	$to->setVar('title', $title);
+	$to->setVar('blog_name', $blog_name);
+	$to->setVar('excerpt', $excerpt);
+	$to->setVar('url', $url);
+	$to->setVar('post', $post->id());
+	if ($to->save()){
+		echo $track->recieve(true);
+	} else {
+		echo $track->recieve(false, __('We are unable to store your trackback. Please try again later!', 'mywords'));
+	}
 }
 
-?>
+die();

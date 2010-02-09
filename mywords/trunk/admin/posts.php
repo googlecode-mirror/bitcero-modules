@@ -79,7 +79,7 @@ function showPosts($aprovado = -1){
 			'id'=>$post->id(), 
 			'title'=>$post->getVar('title'),
 			'date'=>$post->getVar('pubdate')>0 ? formatTimeStamp($post->getVar('pubdate')) : '<em>'.__('Not published','admin_mywords').'</em>',
-			'comments'=>0,
+			'comments'=>$post->getVar('comments'),
 			'uid'=>$post->getVar('author'),
 			'uname'=>$post->getVar('authorname'),
 			'link'=>$postlink,
@@ -200,6 +200,8 @@ function deletePost(){
 		if (!$post->delete()){
 			showMessage(sprintf(__('Errors ocurred while deleting "%s"', 'admin_mywords'), $post->getVar('title')), 1);
 		}
+		
+		RMFunctions::delete_comments('mywords', urlencode('post='.$post->id()));
 		
 	}
 	
