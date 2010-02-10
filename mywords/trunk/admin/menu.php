@@ -64,3 +64,10 @@ $adminmenu[] = array(
     'icon'=>"../images/bookmark.png",
     'location'=>"bookmarks",
 );
+
+$adminmenu[] = array(
+    'title'=>__('Trackbacks','admin_mywords'),
+    'link'=>"admin/trackbacks.php",
+    'icon'=>"../images/trackbacks.png",
+    'location'=>"trackbacks",
+);
