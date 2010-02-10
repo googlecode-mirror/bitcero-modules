@@ -18,7 +18,7 @@ function confirm_delete(id){
 
 function approve_action(id, w){
 	
-	if(w!='approve' && w!='unapprove') return;
+	if(w!='approve' && w!='unapprove' && w!='spam') return;
 
 	$("#com-"+id).attr('checked','checked');
 	$("#action-select").val(w);

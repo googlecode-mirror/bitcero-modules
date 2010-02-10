@@ -138,7 +138,7 @@ function show_comments(){
 function set_comments_status($status){
 	global $xoopsSecurity;
 	
-	if ($status!='waiting' && $status!='approved'){
+	if ($status!='waiting' && $status!='approved' && $status!='spam'){
 		redirectMsg('comments.php', __('Invalid operation','rmcommon'), 1);
 		die();
 	}
@@ -364,6 +364,9 @@ switch($action){
     	break;
     case 'unapprove':
     	set_comments_status('waiting');
+    	break;
+    case 'spam':
+    	set_comments_status('spam');
     	break;
     case 'delete':
     	delete_comments();

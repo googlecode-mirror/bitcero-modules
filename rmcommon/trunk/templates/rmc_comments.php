@@ -14,6 +14,7 @@
     <option value="" selected="selected"><?php _e('Bulk Actions...','rmcommon'); ?></option>
     <option value="unapprove"><?php _e('Set unapproved','rmcommon'); ?></option>
     <option value="approve"><?php _e('Set approved','rmcommon'); ?></option>
+    <option value="spam"><?php _e('Mark as SPAM','rmcommon'); ?></option>
     <option value="delete"><?php _e('Delete comments','rmcommon'); ?></option>
 </select>
 <input type="submit" value="<?php _e('Apply','rmcommon'); ?>" onclick="if($('#action-select').val()=='delete') return confirm('Do you really want to delete selected comments?');" /> &nbsp;&nbsp;
@@ -76,6 +77,9 @@
         	<a href="javascript:;" onclick="approve_action(<?php echo $com['id']; ?>,'unapprove');"><?php _e('Unnaprove','rmcommon'); ?></a>
         	<?php else: ?>
         	<a href="javascript:;" onclick="approve_action(<?php echo $com['id']; ?>,'approve');"><?php _e('Approve','rmcommon'); ?></a>
+        	<?php endif; ?>
+        	<?php if($com['status']!='spam'): ?>
+        	| <a href="javascript:;" onclick="approve_action(<?php echo $com['id']; ?>,'spam');"><?php _e('Spam','rmcommon'); ?></a>
         	<?php endif; ?>
         </span>
         </td>
