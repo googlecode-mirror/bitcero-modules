@@ -17,6 +17,8 @@ class AkismetPluginRmcommonPreload{
 		global $name, $url, $xuid, $xoopsUser, $email, $text, $xoopsConfig;
 		
 		 $config = RMFunctions::get()->plugin_settings('akismet', true);
+         
+         if ($config['key']=='') return;
 		 
 		 $akismet = new Akismet(XOOPS_URL, $config['key']);
 		 $akismet->setCommentAuthor($name);
@@ -50,6 +52,8 @@ class AkismetPluginRmcommonPreload{
 	public function eventRmcommonCheckPostSpam($params){
 		 $config = RMFunctions::get()->plugin_settings('akismet', true);
 		 
+         if ($config['key']=='') return;
+         
 		 extract($params);
 		 
 		 $akismet = new Akismet($blogurl, $config['key']);
