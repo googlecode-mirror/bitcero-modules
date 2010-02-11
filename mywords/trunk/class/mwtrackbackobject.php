@@ -10,13 +10,13 @@
 
 class MWTrackbackObject extends RMObject
 {
-	public function __construct($id){
+	public function __construct($id=null){
 		
 		$this->db =& Database::getInstance();
 		$this->_dbtable = $this->db->prefix("mw_trackbacks");
 		$this->setNew();
 		$this->initVarsFromTable();
-		if ($id==''){
+		if ($id==null && $id<=0){
 			return;
 		}
 		
