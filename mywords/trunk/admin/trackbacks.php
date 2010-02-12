@@ -49,11 +49,16 @@ function show_mw_trackbacks(){
         $posts[$trac->getVar('post')] = isset($posts[$trac->getVar('post')]) ? $posts[$trac->getVar('post')] : new MWPost($trac->getVar('post'));
         $trackbacks[] = array(
             'tb'    => $trac,
-            'post'  => $posts[$trac->getVar('post')]
+            'post'  => array(
+            	'title'=>$posts[$trac->getVar('post')]->getVar('title'),
+            	'link'=>$posts[$trac->getVar('post')]->isNew() ? '' : $posts[$trac->getVar('post')]->permalink()
+            )
         );
     }
     
     MWFunctions::include_required_files();
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/scripts.php?file=trackbacks.js');
 
     xoops_cp_header();
     xoops_cp_location('<a href="'.XOOPS_URL.'/modules/mywords/admin/">'.$xoopsModule->getVar('name').'</a> &raquo; '.__('Trackbacks','admin_mywords'));

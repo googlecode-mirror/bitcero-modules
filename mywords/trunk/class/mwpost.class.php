@@ -518,6 +518,12 @@ class MWPost extends RMObject
         if (!$this->db->queryF($sql)){
             $this->addError($this->db->error());
         }
+        
+        // Deleting trackbacks
+        $sql = "DELETE FROM ".$this->db->prefix("mw_trackbacks")." WHERE post='".$this->id()."'";
+        if (!$this->db->queryF($sql)){
+            $this->addError($this->db->error());
+        }
 		
 		$this->deleteFromTable();
 		if ($this->errors()!=''){ return false; } else { return true; }
