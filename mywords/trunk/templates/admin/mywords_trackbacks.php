@@ -47,7 +47,7 @@
 		<td nowrap="nowrap">
 			<strong><?php echo $tb->getVar('title'); ?></strong>
 			<span class="rmc_options">
-				<a href="javascript:;"><?php _e('Delete', 'admin_mywords'); ?></a>
+				<a href="javascript:;" onclick="delete_trackback(<?php echo $tb->id(); ?>);"><?php _e('Delete', 'admin_mywords'); ?></a>
 			</span>
 		</td>
 		<td align="center" nowrap="nowrap"><a href="<?php echo $tb->getVar('url'); ?>" target="_blank"><?php echo $tb->getVar('blog_name'); ?></a></td>
@@ -66,4 +66,5 @@
     </select>
 	<input type="button" id="apply-button" value="<?php _e('Apply','admin_mywords'); ?>" onclick="$('#form-list-tracks').submit();"/>
 </div>
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

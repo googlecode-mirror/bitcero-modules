@@ -116,7 +116,8 @@ $post_arr = array(
 	'published' => $publicado = sprintf(__('Published on %s at %s by %s','mywords'), '<a href="'.$post->permalink().'">'.formatTimestamp($post->getVar('pubdate'),'s').'</a>', date('H:i',$post->getVar('pubdate')),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>"),
     'text'    => $post->content(false, $page),
     'cats'  => $post->get_categories_names(),
-    'tags'  => $tags_list
+    'tags'  => $tags_list,
+    'trackback' => $post->getVar('pingstatus') ? MWFunctions::get_url(true).$post->id() : ''
 );
 
 // Plugins?
@@ -145,10 +146,25 @@ if ($post->getVar('comstatus')){
 	RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module', MW_PATH.'/class/mywordscontroller.php');
 }
 
+// Load trackbacks
+$trackbacks = $post->trackbacks();
+foreach ($trackbacks as $tb){
+    $xoopsTpl->append('trackbacks', array(
+        'id'    => $tb->id(),
+        'title' => $tb->getVar('title'),
+        'blog'  => $tb->getVar('blog_name'),
+        'url'  => $tb->getVar('url'),
+        'text'  => $tb->getVar('excerpt'),
+        'date'  => formatTimestamp($tb->getVar('date'), 'c')
+    ));
+}
+
 // Language
 $xoopsTpl->assign('lang_publish', __('Published in','mywords'));
 $xoopsTpl->assign('lang_tagged',__('Tagged as','mywords'));
 $xoopsTpl->assign('lang_numcoms', sprintf(__('%u Comments', 'mywords'), $post->getVar('comments')));
+$xoopsTpl->assign('lang_numtracks', sprintf(__('%u trackbacks', 'mywords'), count($trackbacks)));
+$xoopsTpl->assign('lang_trackback', __('Trackback','mywords'));
  
 //Trackback
 if ($post->getVar('pingstatus')){

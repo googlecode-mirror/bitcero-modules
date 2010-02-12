@@ -89,3 +89,23 @@
 	float: left;
 	display: block;
 }
+h3.tracks_title{
+    float: right;
+}
+#trackbacks-list .tb_item{
+    padding: 10px;
+    border: 1px dotted #CCC;
+    margin: 7px 0;
+}
+#trackbacks-list .tb_item .title{
+    font-size: 1.2em;
+    display: block;
+    font-weight: bold;
+}
+#trackbacks-list .tb_item .blogdate{
+    font-size: 0.85em;
+}
+#trackbacks-list .tb_item p{
+    background: url(../images/quotes.png) no-repeat left top;
+    padding: 0 0 0 40px;
+}

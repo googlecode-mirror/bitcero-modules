@@ -14,7 +14,7 @@ require('header.php');
 RMTemplate::get()->assign('xoops_pagetitle', __('Trackbacks management', 'admin_mywords'));
 
 function show_mw_trackbacks(){
-    global $xoopsModule;
+    global $xoopsModule, $xoopsSecurity;
     
     $id = rmc_server_var($_GET, 'id', 0);
     
@@ -56,6 +56,9 @@ function show_mw_trackbacks(){
         );
     }
     
+    // Event
+    $trackbacks = RMEvents::get()->run_event("mywords.trackbacks.list", $trackbacks);
+    
     MWFunctions::include_required_files();
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/scripts.php?file=trackbacks.js');
@@ -69,14 +72,43 @@ function show_mw_trackbacks(){
     
 }
 
+function delete_mw_trackbacks(){
+    global $xoopsSecurity;
+    
+    $tbs = rmc_server_var($_POST, 'tbs', array());
+    
+    if (empty($tbs) || !is_array($tbs)){
+        redirectMsg('trackbacks.php', __('Select one trackback at least!', 'admin_mywords'), 1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('trackbacks.php', __('Session token expired!','admin_mywords'), 1);
+        die();
+    }
+    
+    // Event
+    RMEvents::get()->run_event('mywords.before.delete.trackback', $tbs);
+    
+    foreach($tbs as $id){
+        $trac = new MWTrackbackObject($id);
+        if($trac->isNew()) continue;
+        
+        $trac->delete();
+    }
+    
+    redirectMsg('trackbacks.php', __('Trackbacks deleted successfully','admin_mywords'), 0);
+    
+}
 
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 switch ($action){
+    case 'delete':
+        delete_mw_trackbacks();
+        break;
 	default:
 		show_mw_trackbacks(0);
 		break;
 }
-
-?>

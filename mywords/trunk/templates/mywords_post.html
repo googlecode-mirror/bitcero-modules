@@ -11,6 +11,9 @@
         <span class="mwinfotop">
         <{$post.published}>. <{if $edit_link}> | <{$edit_link}><{/if}>
 	    | <{$lang_reads}>
+        <{if $post.trackback!=''}>
+        | <a href="<{$post.trackback}>"><{$lang_trackback}></a>
+        <{/if}>
 	    </span>
     <{/if}>
     <{if $socials}>
@@ -29,9 +32,26 @@
     </div>
 </div>
 <{$post_navbar}>
+
 <h2 class="comments_title"><{$lang_numcoms}></h2>
+
 <!-- Start Comments -->
 <a name="comments"></a>
 <{include file="db:rmc_comments_display.html"}>
 <{include file="db:rmc_comments_form.html"}>
 <!-- /End comments -->
+
+<!-- Trackbacks -->
+<{if $trackbacks}>
+<h2 class="comments_title"><{$lang_numtracks}></h2>
+<div id="trackbacks-list">
+<{foreach item=tb from=$trackbacks}>
+    <div class="tb_item">
+        <span class="title"><{$tb.title}></span>
+        <span class="blogdate"><a href="<{$tb.url}>"><{$tb.blog}></a> | <{$tb.date}></span>
+        <{$tb.text}>
+    </div>
+<{/foreach}>
+</div>
+<{/if}>
+<!-- /Trackbacks -->

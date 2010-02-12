@@ -32,6 +32,10 @@ class MWPost extends RMObject
     * Number of pages
     */
     private $pages = 1;
+    /**
+    * Trackbacks
+    */
+    private $trackbacks = array();
 	/**
 	 * Constructor de la clase
 	 * Carga los valores de un post específico o prepara
@@ -397,6 +401,30 @@ class MWPost extends RMObject
 		return false;
 		
 	}
+    
+    /**
+    * Trackbacks
+    * @return array
+    */
+    public function trackbacks(){
+        
+        if (!empty($this->trackbacks)) return $this->trackbacks;
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mw_trackbacks")." WHERE post='".$this->id()."'";
+        
+        $result = $db->query($sql);
+        $rtn = array();
+        
+        while($row = $db->fetchArray($result)){
+            $tb = new MWTrackbackObject();
+            $tb->assignVars($row);
+            $this->trackbacks[] = $tb;
+        }
+        
+        return $this->trackbacks;
+        
+    }
 	
 	/**
 	 * Actualizamos los valores en la base de datos
@@ -509,6 +537,10 @@ class MWPost extends RMObject
 	 */
 	public function delete(){
 		global $xoopsModule;
+        
+        // Event
+        RMEvents::get()->run_event('mywords.delete.post', $this);
+        
 		$sql = "DELETE FROM ".$this->db->prefix("mw_catpost")." WHERE post='".$this->id()."'";
 		if (!$this->db->queryF($sql)){
 			$this->addError($this->db->error());

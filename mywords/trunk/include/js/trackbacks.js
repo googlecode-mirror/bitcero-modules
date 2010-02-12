@@ -44,3 +44,12 @@ $(document).ready(function(){
 		$("#action-list").val($("#action-listb").val());
 	});
 });
+
+function delete_trackback(id){
+    
+    $("input[name='tbs[]']").removeAttr("checked")
+    $("#tb-"+id).attr('checked','checked');
+    $("#action-list").val('delete');
+    $("#form-list-tracks").submit();
+    
+}
