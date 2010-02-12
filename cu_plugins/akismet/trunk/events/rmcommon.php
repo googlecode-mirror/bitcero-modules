@@ -33,13 +33,16 @@ class AkismetPluginRmcommonPreload{
 			
 			$class = ucfirst($com->getVar('id_obj')).'Controller';
 			$controller = new $class();
-			$permalink = $controller->get_item($row['params'], $com, true);
+			$permalink = $controller->get_item($com->getVar('params'), $com, true);
 			$akismet->setPermalink($permalink);
         }
         
         if ($akismet->isCommentSpam()){
 			$com->setVar('status','spam');
+            return false;
         }
+        
+        return true;
 		
 	}
 	
