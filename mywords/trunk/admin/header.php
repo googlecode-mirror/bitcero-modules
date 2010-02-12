@@ -7,11 +7,14 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
+
 $xpath = str_replace("\\", "/", dirname(__FILE__));
 $xpath = str_replace("/modules/mywords/admin", "", $xpath);
 
 require $xpath.'/include/cp_header.php';
 require $xpath.'/modules/rmcommon/admin_loader.php';
+
+load_mod_locale('mywords', 'admin_');
 
 $db =& $xoopsDB;
 

@@ -26,8 +26,6 @@ if ($mc['use_css']){
     $xmh .= '<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/mywords/styles/editor.css" />';
 }
 
-$xoopsTpl->assign('lang_postedin', _MS_MW_CATEGOS);
-
 // Redes Sociales
 $sql = "SELECT * FROM ".$db->prefix("mw_bookmarks")." WHERE `active`='1'";
 $result = $db->query($sql);

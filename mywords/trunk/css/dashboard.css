@@ -1,0 +1,15 @@
+/*
+$Id$
+*/
+#mw_widgets_container{
+    overflow: hidden;
+    padding: 10px;
+}
+#mw_widgets_container .mw_right_widgets{
+    float: right;
+    width: 48%;
+}
+#mw_widgets_container .mw_left_widgets{
+    float: left;
+    width: 48%;
+}

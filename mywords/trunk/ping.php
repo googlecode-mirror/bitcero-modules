@@ -12,7 +12,7 @@
 * This file execute the pings for a given post
 */
 
-require '../../../mainfile.php';
+require '../../mainfile.php';
 
 global $xoopsLogger;
 $xoopsLogger->renderingEnabled = false;
@@ -22,12 +22,6 @@ $xoopsLogger->activated = false;
 $id = rmc_server_var($_GET, 'post', 0);
 
 if ($id<=0) die();
-
-XoopsLoad::load('mwpost.class', 'mywords');
-XoopsLoad::load('mweditor.class', 'mywords');
-XoopsLoad::load('mwtrackback', 'mywords');
-XoopsLoad::load('mwfunctions', 'mywords');
-XoopsLoad::load('mwcategory.class', 'mywords');
 
 $post = new MWPost($id);
 
@@ -43,7 +37,7 @@ $pinged = $post->getVar('pinged');
 $toping = $post->getVar('toping');
 $tp = array();
 
-$tback = new MWTrackback($xoopsConfig['sitename'], $editor->isNew() ? $user->getVar('uname') : $editor->getVar('name'));
+$tback = new MWTrackback($xoopsModuleConfig['blogname'], $editor->isNew() ? $user->getVar('uname') : $editor->getVar('name'));
 foreach ($tracks as $t){
 	if (!empty($pinged) && in_array($t, $pinged)) continue;
 	$ret = $tback->ping($t, $post->permalink(), $post->getVar('title'), TextCleaner::getInstance()->truncate($post->content(true), 240));

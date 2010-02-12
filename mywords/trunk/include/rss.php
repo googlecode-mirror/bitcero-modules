@@ -1,9 +1,9 @@
 <?php
-// $Id: rss.php 13 2009-08-31 00:45:24Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
-// Complete Blogging System
-// Author: BitC3R0 <bitc3r0@gmail.com>
+// Blogging System
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------

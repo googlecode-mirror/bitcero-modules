@@ -77,63 +77,71 @@ $modversion['templates'][8]['description'] = '';
 $modversion['templates'][9]['file'] = 'mywords_tag.html';
 $modversion['templates'][9]['description'] = '';
 
-// Formato de los enlaces
-$modversion['config'][0]['name'] = 'permalinks';
-$modversion['config'][0]['title'] = '_MI_MW_PERMAFORMAT';
-$modversion['config'][0]['description'] = '_MI_MW_PERMA_DESC';
-$modversion['config'][0]['formtype'] = 'select';
-$modversion['config'][0]['valuetype'] = 'int';
-$modversion['config'][0]['default'] = 1;
-$modversion['config'][0]['options'] = array(_MI_MW_PERMA_DEF=>1, _MI_MW_PERMA_DATE=>2, _MI_MW_PERMA_NUMS=>3);
+// Blog name
+$modversion['config'][0]['name'] = 'blogname';
+$modversion['config'][0]['title'] = '_MI_MW_BLOGNAME';
+$modversion['config'][0]['description'] = '_MI_MW_BLOGNAMED';
+$modversion['config'][0]['formtype'] = 'textbox';
+$modversion['config'][0]['valuetype'] = 'text';
+$modversion['config'][0]['default'] = $xoopsConfig['sitename'];
 
-$modversion['config'][1]['name'] = 'basepath';
-$modversion['config'][1]['title'] = '_MI_MW_BASEPATH';
-$modversion['config'][1]['description'] = '_MI_MW_BASEPATHD';
-$modversion['config'][1]['formtype'] = 'textbox';
-$modversion['config'][1]['valuetype'] = 'text';
-$modversion['config'][1]['size'] = '50';
-$modversion['config'][1]['default'] = '/modules/mywords';
-$modversion['config'][1]['order'] = 0;
+// Formato de los enlaces
+$modversion['config'][1]['name'] = 'permalinks';
+$modversion['config'][1]['title'] = '_MI_MW_PERMAFORMAT';
+$modversion['config'][1]['description'] = '_MI_MW_PERMA_DESC';
+$modversion['config'][1]['formtype'] = 'select';
+$modversion['config'][1]['valuetype'] = 'int';
+$modversion['config'][1]['default'] = 1;
+$modversion['config'][1]['options'] = array(_MI_MW_PERMA_DEF=>1, _MI_MW_PERMA_DATE=>2, _MI_MW_PERMA_NUMS=>3);
+
+$modversion['config'][2]['name'] = 'basepath';
+$modversion['config'][2]['title'] = '_MI_MW_BASEPATH';
+$modversion['config'][2]['description'] = '_MI_MW_BASEPATHD';
+$modversion['config'][2]['formtype'] = 'textbox';
+$modversion['config'][2]['valuetype'] = 'text';
+$modversion['config'][2]['size'] = '50';
+$modversion['config'][2]['default'] = '/modules/mywords';
+$modversion['config'][2]['order'] = 0;
 
 // Tags limit
-$modversion['config'][2]['name'] = 'tags_widget_limit';
-$modversion['config'][2]['title'] = '_MI_MW_WIDGETTAGS';
-$modversion['config'][2]['description'] = '';
-$modversion['config'][2]['formtype'] = 'textbox';
-$modversion['config'][2]['valuetype'] = 'int';
-$modversion['config'][2]['default'] = 10;
-
-// Posts list limit number
-$modversion['config'][3]['name'] = 'posts_limit';
-$modversion['config'][3]['title'] = '_MI_MW_PPP';
+$modversion['config'][3]['name'] = 'tags_widget_limit';
+$modversion['config'][3]['title'] = '_MI_MW_WIDGETTAGS';
 $modversion['config'][3]['description'] = '';
 $modversion['config'][3]['formtype'] = 'textbox';
 $modversion['config'][3]['valuetype'] = 'int';
 $modversion['config'][3]['default'] = 10;
 
-// CSS File
-$modversion['config'][4]['name'] = 'use_css';
-$modversion['config'][4]['title'] = '_MI_MW_CSS';
+// Posts list limit number
+$modversion['config'][4]['name'] = 'posts_limit';
+$modversion['config'][4]['title'] = '_MI_MW_PPP';
 $modversion['config'][4]['description'] = '';
-$modversion['config'][4]['formtype'] = 'yesno';
+$modversion['config'][4]['formtype'] = 'textbox';
 $modversion['config'][4]['valuetype'] = 'int';
-$modversion['config'][4]['default'] = 1;
+$modversion['config'][4]['default'] = 10;
+
+// CSS File
+$modversion['config'][5]['name'] = 'use_css';
+$modversion['config'][5]['title'] = '_MI_MW_CSS';
+$modversion['config'][5]['description'] = '';
+$modversion['config'][5]['formtype'] = 'yesno';
+$modversion['config'][5]['valuetype'] = 'int';
+$modversion['config'][5]['default'] = 1;
 
 // CSS Path
-$modversion['config'][5]['name'] = 'css_file';
-$modversion['config'][5]['title'] = '_MI_MW_CSSFILE';
-$modversion['config'][5]['description'] = '';
-$modversion['config'][5]['formtype'] = 'textbox';
-$modversion['config'][5]['valuetype'] = 'text';
-$modversion['config'][5]['default'] = XOOPS_URL.'/modules/mywords/css/main.css';
+$modversion['config'][6]['name'] = 'css_file';
+$modversion['config'][6]['title'] = '_MI_MW_CSSFILE';
+$modversion['config'][6]['description'] = '';
+$modversion['config'][6]['formtype'] = 'textbox';
+$modversion['config'][6]['valuetype'] = 'text';
+$modversion['config'][6]['default'] = XOOPS_URL.'/modules/mywords/css/main.css';
 
 // Navigation bar
-$modversion['config'][6]['name'] = 'shownav';
-$modversion['config'][6]['title'] = '_MI_MW_SHOWNAV';
-$modversion['config'][6]['description'] = '';
-$modversion['config'][6]['formtype'] = 'yesno';
-$modversion['config'][6]['valuetype'] = 'int';
-$modversion['config'][6]['default'] = 1;
+$modversion['config'][7]['name'] = 'shownav';
+$modversion['config'][7]['title'] = '_MI_MW_SHOWNAV';
+$modversion['config'][7]['description'] = '';
+$modversion['config'][7]['formtype'] = 'yesno';
+$modversion['config'][7]['valuetype'] = 'int';
+$modversion['config'][7]['default'] = 1;
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";

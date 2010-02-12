@@ -62,7 +62,6 @@ $nav->target_url($ed->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : '&
 $xoopsTpl->assign("nav_pages", $nav->render(false, 0));
 
 $xoopsTpl->assign('pactual', $pactual);
-$xoopsTpl->assign('lang_comments', _MS_MW_COMS);
 
 $xoopsTpl->assign('lang_fromauthor', sprintf(__('Posts by "%s"','mywords'), $ed->getVar('name')));
 

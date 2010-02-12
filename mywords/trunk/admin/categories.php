@@ -121,13 +121,13 @@ function newForm(){
 	}
 	
 	MWFunctions::include_required_files();
-	//xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? _AS_MW_EDITTITLE : _AS_MW_NEWCAT));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('New Category','admin_mywords'));
 	xoops_cp_header();
 	
 	$cats = array();
 	MWFunctions::categos_list($cats, 0, 0, true, $id);
 	
-	$form = new RMForm($edit ? __('Editar Categoría','admin_mywords') : __('Crear Categoría','admin_mywords'), 'frmNew', 'categories.php');
+	$form = new RMForm($edit ? __('Editar Categoría','admin_mywords') : __('Edit Category','admin_mywords'), 'frmNew', 'categories.php');
     $form->styles('width: 30%;','odd');
 	$form->addElement(new RMFormText(__('Category name','admin_mywords'), 'name', 50, 150, $catego->getVar('name')), true);
     $form->addElement(new RMFormText(__('Category slug','admin_mywords'), 'shortname', '', '150', $catego->getVar('shortname','n')));

@@ -58,7 +58,6 @@ $nav->target_url($tag->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : '
 $xoopsTpl->assign("nav_pages", $nav->render(false, 0));
 
 $xoopsTpl->assign('pactual', $pactual);
-$xoopsTpl->assign('lang_comments', _MS_MW_COMS);
 
 $xoopsTpl->assign('lang_taggedtitle', sprintf(__('Posts tagged as "%s"','mywords'), $tag->getVar('tag')));
 

@@ -35,44 +35,10 @@ define('_MI_MW_PPP','Posts per page');
 define('_MI_MW_CSS','Use CSS file');
 define('_MI_MW_CSSFILE','CSS file to use');
 define('_MI_MW_SHOWNAV', 'Show navigation bar between posts');
+// Blog name
+define('_MI_MW_BLOGNAME','Blog name (section name)');
+define('_MI_MW_BLOGNAMED','This name will be used in trackbacks.');
 
-/*# Fechas
-define('_MI_MW_DATEFORMAT','Date Format');
-define('_MI_MW_DATE_DESC','Sets the way the date will be shown. Eg. <strong>m/d/Y</strong>.<br />See the <a href="http://www.php.net/manual/es/function.date.php" target="_blank">documentación</a>.');
-define('_MI_MW_HOURFORMAT','Hour Format');
-# Envio de Articulos
-define('_MI_MW_ALLOWSUBMIT','Allow Article Submit');
-define('_MI_MW_ALLOWANONYM','Allow Article Submit for anonimous users');
-# Activar Pings
-define('_MI_MW_ALLOWPINGS','Allow Pings Reception');
-define('_MI_MW_ALLOWPINGS_DESC','Enable the storage of trackbacks sent by websites');
-# Palabras en la página principal
-define('_MI_MW_HOMEWORDS','Words Number in the Home Page');
-define('_MI_MW_HOMEWORDS_DESC','If the option "Show only davance in the home page" is enable for an article thus the module will show this maximum number of words.');
-# Archivos por página
-define('_MI_MW_LIMITE','File Number per page');
-# Hoja de estilos
-define('_MI_MW_CSS','Use the module CSS styles sheet ');
-# Comentarios
-define('_MI_MW_COMMAN','Allow the users send comments');
-define('_MI_MW_COMMMOD','The Comments need to be approved');
-# Etiquetas permitidas en los comentarios
-define('_MI_MW_TAGS','Allowed Tags in the comments');
-# Activar XOOPS Code
-define('_MI_MW_XCODE','Enable XoopsCode');
-# Comentarios por página
-define('_MI_MW_COMSNUM','Comments Number per page');
-# Autoaprovación
-define('_MI_MW_USERAUTO','Approve posts by registered users');
-define('_MI_MW_ANOAUTO','Approve posts by anonymous users');
-# Manejador de Imágenes
-define('_MI_MW_IMAGEMANAGER','Allow the Registered Users to use Image Manager');
-define('_MI_MW_IMAGEUPLOAD','Allow the Registered Users Upload images');
-define('_MI_MW_IMAGEMANAGERAN','Allow the Anonimous Users to use the Image Manager');
-define('_MI_MW_IMAGEUPLOADAN','Allow the Anonimous Users to upload images');
-#Trackbacks
-define('_MI_MW_TRACKLEN','LengthText lengthLongitud predeterminada para el texto enviado en trackbacks');
-*/
 # Imágenes para los bloques
 define('_MI_MW_BIMGSIZE','Image Size for the Blocks');
 define('_MI_MW_BIMGSIZE_DESC','The specified image in the article will be resized with this sizes. Format: "width|height"');

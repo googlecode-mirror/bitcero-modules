@@ -108,5 +108,5 @@
 <?php endif; ?>
 </form>
 <?php if($edit && $post->getVar('toping')): ?>
-<iframe src="<?php echo XOOPS_URL; ?>/modules/mywords/include/ping.php?post=<?php echo $post->id(); ?>" style="display: none; visibility: hidden; width: 0; height: 0;"></iframe>
+<iframe src="<?php echo XOOPS_URL; ?>/modules/mywords/ping.php?post=<?php echo $post->id(); ?>" style="display: none; visibility: hidden; width: 0; height: 0;"></iframe>
 <?php endif; ?>

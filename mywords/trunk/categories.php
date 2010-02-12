@@ -106,9 +106,6 @@ if ($pactual < $tpages && $tpages > 1){
 	$xoopsTpl->append('pages', array('id'=>'siguiente', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?cat='.$category.'&amp;page='.($pactual+1) : ($mc['permalinks']==2 ? $request."page/".($pactual + 1)."/" : $request."page/".($pactual + 1)))));
 }
 
-$xoopsTpl->assign('lang_next', _MS_MW_NEXTPAGE);
-$xoopsTpl->assign('lang_prev', _MS_MW_PREVPAGE);
-$xoopsTpl->assign('lang_comments', _MS_MW_COMS);
 $xoopsTpl->assign('lang_permalink',__('Permalink to this post','mywords'));
 
 $result = $db->query("SELECT $tbl3.* FROM $tbl2, $tbl3 WHERE $tbl2.cat='$category' 

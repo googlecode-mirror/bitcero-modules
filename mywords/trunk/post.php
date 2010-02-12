@@ -12,7 +12,7 @@ $xoopsOption['template_main'] = 'mywords_post.html';
 include 'header.php';
 
 if ($post<=0){
-	redirect_header(MWFunctions::get_url(), 2, __(''));
+	redirect_header(MWFunctions::get_url(), 2, '');
 	die();
 }
 
@@ -173,5 +173,9 @@ if ($post->getVar('pingstatus')){
 		$tb->rdf_autodiscover(date('r', $post->getVar('pubdate')), $post->getVar('title'), TextCleaner::getInstance()->truncate($post->content(true), 255), $post->permalink(), MWFunctions::get_url(true).$post->id(), $editor->getVar('name'))
 	);
 }
+
+// Send pings?
+$pings = $post->getVar('toping');
+$xoopsTpl->assign('pingnow', empty($pings));
  
 include 'footer.php';
