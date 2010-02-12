@@ -329,6 +329,11 @@ div.infoMsg{
     border-radius: 5px;
     padding: 1px;
 }
+.outer p{
+	padding: 0;
+	margin: 0;
+	color: #666;
+}
 th, .th{
     padding: 6px;
     border-bottom: 3px solid #ccc;
