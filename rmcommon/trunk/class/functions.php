@@ -337,6 +337,10 @@ class RMFunctions
 		
 		$db = Database::getInstance();
 		$sql = "DELETE FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$module' AND params='$params'";
+        
+        // Event
+        RMEvents::get()->run_event('rmcommon.deleting.comments', $module, $params);
+        
 		return $db->queryF($sql);
 		
     }
