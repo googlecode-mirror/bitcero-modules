@@ -9,8 +9,7 @@
 // --------------------------------------------------------------
 
 // Configurations
-define('_MI_RMC_EVENTSFILE','Events file location');
-define('_MI_RMC_EVENTSFILED','Specify a secure location, preferable outside from public web directory, for events cache.');
+define('_MI_RMC_LANG','Language to use');
 define('_MI_RMC_IMAGESTORE','Arrange images by date');
 define('_MI_RMC_EDITOR','Select the default editor');
 define('_MI_RMC_EDITOR_VISUAL','Visual Editor');

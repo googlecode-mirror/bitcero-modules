@@ -7,7 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-define('RMCLANG','en_US');
+
 define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
 define("RMCURL",XOOPS_URL.'/modules/rmcommon');
 define('ABSURL', XOOPS_URL);
@@ -96,6 +96,7 @@ include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 $rmc_config = RMFunctions::get()->configs();
+define('RMCLANG',$rmc_config['lang']);
 
 // Load plugins
 $result = $db->query("SELECT * FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
@@ -105,7 +106,8 @@ while($row = $db->fetchArray($result)){
 
 require_once 'api/l10n.php';
 
-load_mod_locale('rmcommon','');
+if ($xoopsModule && $xoopsModule->dirname()!='rmcommon')
+    load_mod_locale($xoopsModule->dirname());
 
 if (!$rmc_config){
     _e('Sorry, Red Mexico Common Utilities has not been installed yet!');

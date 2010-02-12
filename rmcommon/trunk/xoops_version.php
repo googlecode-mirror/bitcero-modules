@@ -45,14 +45,14 @@ $modversion['templates'][2]['file'] = 'rmc_comments_form.html';
 $modversion['templates'][2]['description'] = 'Shows the comments form';
 
 /**
-* Events file
+* Language
 */
-$modversion['config'][1]['name'] = 'eventsfile';
-$modversion['config'][1]['title'] = '_MI_RMC_EVENTSFILE';
-$modversion['config'][1]['description'] = '_MI_RMC_EVENTSFILED';
+$modversion['config'][1]['name'] = 'lang';
+$modversion['config'][1]['title'] = '_MI_RMC_LANG';
+$modversion['config'][1]['description'] = '';
 $modversion['config'][1]['formtype'] = 'textbox';
 $modversion['config'][1]['valuetype'] = 'text';
-$modversion['config'][1]['default'] = XOOPS_CACHE_PATH."/".md5('events').'.php';
+$modversion['config'][1]['default'] = 'en_US';
 
 // Images store type
 $modversion['config'][2]['name'] = 'imagestore';
