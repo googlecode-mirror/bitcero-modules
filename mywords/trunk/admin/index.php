@@ -16,14 +16,21 @@ list($numcats) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("m
 list($numposts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")));
 list($numdrafts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='draft'"));
 list($numpending) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='waiting'"));
-list($editores) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_editors")));
-list($replaces) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_replacements")));
-list($books) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_bookmarks")));
+list($numeditors) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_editors")));
+list($numsocials) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_bookmarks")));
+list($numcoms) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("rmc_comments")." WHERE id_obj='mywords'"));
+list($numtags) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_tags")));
 	
 /**
 * @desc Caragmaos los artículos recientemente enviados
 */
-$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." ORDER BY pubdate DESC LIMIT 0,5");
+$posts = array();
+$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' ORDER BY pubdate DESC LIMIT 0,5");
+while ($row = $db->fetchArray($result)){
+    $post = new MWPost();
+    $post->assignVars($row);
+    $posts[] = $post;
+}
 	
 $url = "http://www.redmexico.com.mx/modules/vcontrol/?id=5";
 

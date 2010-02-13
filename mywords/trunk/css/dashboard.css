@@ -16,10 +16,9 @@ $Id$
 .mw_qrdata td{
 	padding: 4px;
 	border-bottom: 1px dotted #CCC;
-	font-size: 1.4em;
-	font-family: Georgia, times, serif;
+	font-size: 1.1em;
 }
 .mw_qrdata td span{
-	color: #CC4E02;
-	font-family: "Trebuchet MS", arial, helvetica, sans-serif;
+	font-family: georgia, times, serif;
+    font-size: 1.4em;
 }

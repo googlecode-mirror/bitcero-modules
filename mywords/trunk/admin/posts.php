@@ -41,7 +41,6 @@ function showPosts($aprovado = -1){
 	
 	if (trim($keyw)!=''){
 		$sql .= ($aprovado>=0 ? " AND " : ($cat > 0 ? " AND " : " WHERE ")) . "title LIKE '%$keyw%'";
-		$tpl->assign('keyw', $keyw);
 	}
 	
 	/**
@@ -96,7 +95,7 @@ function showPosts($aprovado = -1){
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='draft'";
 	list($draft_count) = $db->fetchRow($db->query($sql));
 	// Pending count
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='pending'";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='waiting'";
 	list($pending_count) = $db->fetchRow($db->query($sql));
 	
 	// Confirm message
@@ -209,6 +208,37 @@ function deletePost(){
 	
 }
 
+function set_posts_status($status){
+    global $xoopsSecurity;
+    
+    $posts = rmc_server_var($_POST, 'posts', array());
+    $limit = rmc_server_var($_POST, 'limit', 15);
+    $keyw = rmc_server_var($_POST, 'keyw', '');
+    $page = rmc_server_var($_POST, 'page', 1);
+    
+    $q = "limit=$limit&keyw=$keyw&page=$page";
+    
+    if(empty($posts)){
+        redirectMsg('posts.php?'.$q, __('Select one post at least!','admin_mywords'), 1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('posts.php?'.$q, __('Session token expired!','admin_mywords'), 1);
+        die();
+    }
+    
+    $db = Database::getInstance();
+    $sql = "UPDATE ".$db->prefix("mw_posts")." SET status='$status' WHERE id_post IN (".implode(",", $posts).")";
+    if (!$db->queryF($sql)){
+        redirectMsg('posts.php?'.$q, __('Posts could not be updated!', 'admin_mywords'), 1);
+        die();
+    }
+    
+    redirectMsg('posts.php?'.$q, __('Posts updated successfully!','admin_mywords'), 0);
+    
+}
+
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 switch ($op){
@@ -237,9 +267,15 @@ switch ($op){
 	case 'approved':
 		showPosts(1);
 		break;
-	case 'status':
-		set_posts_status();
+	case 'status-waiting':
+		set_posts_status('waiting');
 		break;
+    case 'status-draft':
+        set_posts_status('draft');
+        break;
+    case 'status-published':
+        set_posts_status('publish');
+        break;
 	default:
 		showPosts();
 		break;

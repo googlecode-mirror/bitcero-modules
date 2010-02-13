@@ -16,7 +16,7 @@
 		<a href="posts.php?limit=<?php echo $limit ?>"><?php _e('Show all','admin_mywords'); ?></a> <strong>(<?php echo ($pub_count+$draft_count+$pending_count); ?>)</strong> |
 		<a href="posts.php?status=publish&amp;limit=<?php echo $limit ?>"><?php _e('Published', 'admin_mywords'); ?></a> <strong>(<?php echo $pub_count; ?>)</strong> |
 		<a href="posts.php?status=draft&amp;limit=<?php echo $limit ?>"><?php _e('Drafts', 'admin_mywords'); ?></a> <strong>(<?php echo $draft_count; ?>)</strong> |
-		<a href="posts.php?status=pending&amp;limit=<?php echo $limit ?>"><?php _e('Pending of Review', 'admin_mywords'); ?></a> <strong>(<?php echo $pending_count; ?>)</strong>
+		<a href="posts.php?status=waiting&amp;limit=<?php echo $limit ?>"><?php _e('Pending of Review', 'admin_mywords'); ?></a> <strong>(<?php echo $pending_count; ?>)</strong>
 	</td></tr>
 </table></form>
 <br />
@@ -26,9 +26,9 @@
 	<select name="op" id="posts-op">
 		<option value=""><?php _e('Bulk Actions','admin_mywords'); ?></option>
 		<option value="delete"><?php _e('Delete Posts','admin_mywords'); ?></option>
-		<option value="pending"><?php _e('Set status as Pending review','admin_mywords'); ?></option>
-		<option value="draft"><?php _e('Set status as Draft','admin_mywords'); ?></option>
-		<option value="publish"><?php _e('Set status as published','admin_mywords'); ?></option>
+		<option value="status-waiting"><?php _e('Set status as Pending review','admin_mywords'); ?></option>
+		<option value="status-draft"><?php _e('Set status as Draft','admin_mywords'); ?></option>
+		<option value="status-published"><?php _e('Set status as published','admin_mywords'); ?></option>
 	</select>
 	<input type="button" value="<?php _e('Apply', 'admin_mywords'); ?>" onclick="submit();" />
 </div>
@@ -52,17 +52,19 @@
   	<td align="center" valign="top"><input type="checkbox" name="posts[]" id="post-<?php echo $post['id']; ?>" value="<?php echo $post['id']; ?>" /></td>
     <td>
     	<strong>
-    	<?php switch($post['status']){
-			case 'draft':
-				echo "<span class=\"draft\">[".__('Draft','admin_mywords')."]</span> ";
-				break;
-			case 'scheduled':
-				echo "<span class=\"draft\">[".__('Scheduled','admin_mywords')."]</span> ";
-				break;
-			case 'pending':
-				echo "<span class=\"draft\">[".__('Pending review','admin_mywords')."]</span> ";
-				break;
-		} ?><a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></strong>
+    	    <a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+            <?php switch($post['status']){
+                case 'draft':
+                    echo "<span class=\"draft\">- ".__('Draft','admin_mywords')."</span> ";
+                    break;
+                case 'scheduled':
+                    echo "<span class=\"sheduled\">- ".__('Scheduled','admin_mywords')."</span> ";
+                    break;
+                case 'waiting':
+                    echo "<span class=\"pending\">- ".__('Pending','admin_mywords')."</span> ";
+                    break;
+            } ?>
+        </strong>
     	<span class="mw_options">
     		<a href="posts.php?op=edit&amp;id=<?php echo $post['id']; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
     		<a href="javascript:;" onclick="return post_del_confirm('<?php echo $post['title']; ?>', <?php echo $post['id']; ?>);"><?php _e('Delete','admin_mywords'); ?></a> |
@@ -90,4 +92,7 @@
   <?php endforeach; ?>
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
+<input type="hidden" name="keyw" value="<?php echo $keyw; ?>" />
+<input type="hidden" name="limit" value="<?php echo $limit; ?>" />
 </form>
