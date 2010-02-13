@@ -24,12 +24,20 @@ list($numtags) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("m
 /**
 * @desc Caragmaos los artículos recientemente enviados
 */
-$posts = array();
-$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' ORDER BY pubdate DESC LIMIT 0,5");
+$drafts = array();
+$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='draft' ORDER BY id_post DESC LIMIT 0,5");
 while ($row = $db->fetchArray($result)){
     $post = new MWPost();
     $post->assignVars($row);
-    $posts[] = $post;
+    $drafts[] = $post;
+}
+
+$paendings = array();
+$result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='waiting' ORDER BY id_post DESC LIMIT 0,5");
+while ($row = $db->fetchArray($result)){
+    $post = new MWPost();
+    $post->assignVars($row);
+    $pendings[] = $post;
 }
 	
 $url = "http://www.redmexico.com.mx/modules/vcontrol/?id=5";
@@ -42,6 +50,8 @@ $cHead .= "<link href=\"".XOOPS_URL."/modules/mywords/styles/admin.css\" media=\
 xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Dashboard','admin_mywords'));
 	
 include 'menu.php';
+MWFunctions::include_required_files();
+RMTemplate::get()->add_script('../include/js/scripts.php?file=dashboard.js');
 xoops_cp_header();
 	
 // Show Templates

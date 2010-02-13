@@ -5,15 +5,36 @@
     <div class="mw_right_widgets">
         <!-- Quick publishing -->
         <div class="outer">
-            <div class="th"><?php _e('MyWords Tools','admin_mywords'); ?></div>
-            <?php foreach ($posts as $post): ?>
-            <div class="<?php echo tpl_cycle("even,odd"); ?>">
-                <strong><a href="<?php echo $post->permalink(); ?>"><?php echo $post->getVar('title'); ?></a></strong><br />
-                <?php echo strip_tags(substr($post->content(true), 0, 100)).'...'; ?>
+            <div class="th"><?php _e('MyWords Resources','admin_mywords'); ?></div>
+            <div class="even mw_tools">
+            	<a href="http://redmexico.com.mx/docs/mywords" target="_blank" class="item">
+            		<?php _e('MyWords documentation','admin_mywords'); ?><br />
+            		<span><?php _e('Learn more about MyWords. Installation, configuration and all information to improve thsi module.','admin_mywords'); ?>
+            	</a>
             </div>
-            <?php endforeach; ?>
+            <div class="even mw_tools">
+            	<a href="http://redmexico.com.mx/" target="_blank" class="item">
+            		<?php _e('Red México','admin_mywords'); ?><br />
+            		<span><?php _e('New modules, themes and awesome resources for XOOPS.','admin_mywords'); ?></span>
+            	</a>
+            	<?php
+            		// Print new resources
+            		RMEvents::get()->run_event('mywords.get.resources.list');
+            	?>
+            </div>
         </div>
         <!-- / End quick publishing -->
+        
+        <!-- Recent News -->
+        <div class="outer" id="mw-recent-news">
+        	<div class="th"><?php _e('Recent News','admin_mywords'); ?></div>
+        	
+        </div>
+        <!-- /End recent news -->
+        
+        <!-- Other blocks -->
+        <?php RMEvents::get()->run_event('mywords.dashboard.right.widgets'); ?>
+        <!-- /End other blocks -->
     </div>
     
     <div class="mw_left_widgets">
@@ -49,6 +70,55 @@
             <span class="descriptions">Esta es la descripcion</span>
         </div>
         <!-- / End quick overview -->
+        
+        <!-- Drafts -->
+        <div class="outer">
+        	<div class="th"><?php _e('Recent Drafts', 'admin_mywords'); ?></div>
+        	<?php foreach($drafts as $post): ?>
+        	<div class="even mw_tools">
+        		<a href="posts.php?op=edit&amp;id=<?php echo $post->id(); ?>" class="item">
+        			<?php echo $post->getVar('title'); ?><br />
+        			<span><?php echo substr(strip_tags($post->content(true)), 0, 150).'...'; ?></span>
+        		</a>
+        		
+        	</div>
+        	<?php endforeach; ?>
+        </div>
+        <!-- / End Drafts -->
+        
+        <!-- Pending of review -->
+        <div class="outer">
+        	<div class="th"><?php _e('Posts pending for review', 'admin_mywords'); ?></div>
+        	<?php foreach($pendings as $post): ?>
+        	<div class="even mw_tools">
+        		<a href="posts.php?op=edit&amp;id=<?php echo $post->id(); ?>" class="item">
+        			<?php echo $post->getVar('title'); ?><br />
+        			<span><?php echo substr(strip_tags($post->content(true)), 0, 150).'...'; ?></span>
+        		</a>
+        		
+        	</div>
+        	<?php endforeach; ?>
+        </div>
+        <!-- / End Pending of Review -->
+        
+        <!-- Other blocks -->
+        <?php RMEvents::get()->run_event('mywords.dashboard.left.widgets'); ?>
+        <!-- /End other blocks -->
+        
+        <!-- Credits -->
+        <div class="outer">
+        	<div class="th"><?php _e('Credits', 'admin_mywords'); ?></div>
+        	<div class="even mw_tools">
+        	<ul>
+        		<li><?php _e('MyWords has been created by <strong><a href="http://redmexico.com.mx">Red México</a></strong>', 'admin_mywords'); ?></li>
+        		<li><?php _e('And developed by <strong>BitC3R0</strong>','admin_mywords'); ?></li>
+        		<li><?php _e('You can contact me trough <strong>i.bitcero@gmail.com</strong>','amin_mywords'); ?></li>
+        		<li><?php _e('Some icons has been designed by <a href="http://dryicons.com/free-icons/">dryicons</a>.','admin_mywords'); ?></li>
+        	</ul>
+        	</div>
+        </div>
+        <!-- /End credits -->
+        
     </div>
     
 </div>

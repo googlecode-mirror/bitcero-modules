@@ -16,22 +16,16 @@ $modversion['version'] = '2.0';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
-$modversion['authorlink'] = "mailto:bitc3r0@gmail.com";
-$modversion['authorweb'] = "Red México";
-$modversion['authorurl'] = "http://www.redmexico.com.mx";
-$modversion['url'] = 'www.exmsystem.net';
 $modversion['credits'] = "Red México";
 $modversion['help'] = "http://www.redmexico.com.mx/modules/ahelp/";
-$modversion['license'] = "GPL see LICENSE";
+$modversion['license'] = "GPL v2";
 $modversion['official'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
-$modversion['deflang'] = 'spanish';
-$modversion['updatable'] = 1;
-$modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=5';
 $modversion['rmnative'] = 1;
+$modversion['rmversion'] = array('number'=>2,'revision'=>001,'status'=>-2,'name'=>'MyWords');
 
 // Admin things
 $modversion['hasAdmin'] = 1;

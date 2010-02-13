@@ -22,3 +22,31 @@ $Id$
 	font-family: georgia, times, serif;
     font-size: 1.4em;
 }
+.mw_tools{
+	overflow: hidden;
+}
+.mw_tools a.item{
+	display: block;
+	padding: 0 4px;
+	margin: 0 3px 0 0;
+	color: #333;
+	font-size: 1em;
+	font-weight: bold;
+}
+.mw_tools a.item:hover{
+	text-decoration: none;
+}
+.mw_tools a span{
+	color: #666;
+	font-size: 0.90em;
+	font-weight: normal;
+}
+div.outer{
+	margin-bottom: 10px;
+}
+span.rmc_options{
+	padding-left: 4px;
+}
+.mw_tools ul{
+	line-height: 150%;
+}
