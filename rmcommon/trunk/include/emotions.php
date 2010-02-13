@@ -12,7 +12,6 @@
 * Emotions for tiny and exmcode editors
 */
 include '../../../mainfile.php';
-include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 XoopsLogger::getInstance()->activated = false;
 XoopsLogger::getInstance()->renderingEnabled = false;
 
