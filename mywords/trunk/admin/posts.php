@@ -237,6 +237,9 @@ switch ($op){
 	case 'approved':
 		showPosts(1);
 		break;
+	case 'status':
+		set_posts_status();
+		break;
 	default:
 		showPosts();
 		break;

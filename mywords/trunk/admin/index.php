@@ -12,11 +12,10 @@ define('RMCLOCATION','dashboard');
 require 'header.php';
 
 	
-list($categos) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_categos")));
-list($posts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")));
-list($aprovados) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE aprovado='1'"));
-list($esperando) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE aprovado='0'"));
-list($tracks) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_trackbacks")));
+list($numcats) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_categories")));
+list($numposts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")));
+list($numdrafts) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='draft'"));
+list($numpending) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_posts")." WHERE status='waiting'"));
 list($editores) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_editors")));
 list($replaces) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_replacements")));
 list($books) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_bookmarks")));

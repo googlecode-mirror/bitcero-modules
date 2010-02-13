@@ -13,3 +13,13 @@ $Id$
     float: left;
     width: 48%;
 }
+.mw_qrdata td{
+	padding: 4px;
+	border-bottom: 1px dotted #CCC;
+	font-size: 1.4em;
+	font-family: Georgia, times, serif;
+}
+.mw_qrdata td span{
+	color: #CC4E02;
+	font-family: "Trebuchet MS", arial, helvetica, sans-serif;
+}
