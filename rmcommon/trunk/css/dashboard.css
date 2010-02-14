@@ -1,0 +1,107 @@
+/*
+$Id$
+*/
+.rmc_widgets_container{
+    overflow: hidden;
+}
+#rmc-central-right-widgets{
+    float: right;
+    width: 48%;
+}
+#rmc-central-left-widgets{
+    float: left;
+    width: 48%;
+}
+.rmc_widgets_container .system_tools a{
+    display: block;
+    padding: 2px 0 2px 20px;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+.mods_coint{
+    overflow: hidden;
+}
+.mods_coint .module{
+    padding: 5px 3px;
+    float: left;
+    width: 200px;
+    height: 60px;
+    overflow: hidden;
+    line-height: 150%;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #CCC;
+}
+.mods_coint .module a.image{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999;
+    background-position: center;
+    background-repeat: no-repeat;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.mods_coint .module a.image span{
+    display: block;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #FFF;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.mods_coint .module span.module_data{
+    display: block;
+    float: right;
+    width: 143px;
+}
+.description{
+    clear: both;
+    display: block;
+    color: #666;
+    line-height: 150%;
+    padding: 2px 10px;
+    border-top: 1px dotted #CCC;
+}
+#loading-mods{
+    float: left;
+    margin-right: 5px;
+}
+.th{
+    height: 16px;
+}
+.outer{
+    margin-bottom: 10px;
+}
+.moddesc{
+    color: #666;
+    font-size: 0.9em;
+}
+.rmc_news{
+    padding: 0 0 8px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted #CCC;
+    overflow: hidden;
+}
+.rmc_news a.link{
+    display: block;
+    padding: 0 0 2px 0;
+    font-weight: bold;
+}
+.rmc_news .text{
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+}
+.rmc_news .image{
+    float: left;
+    margin: 0 3px 3px 0;
+    width: 60px;
+}
+.even .rmc_news:last-child{
+    border-bottom: 0;
+}

@@ -173,3 +173,10 @@ $modversion['config'][17]['description'] = '';
 $modversion['config'][17]['formtype'] = 'textbox';
 $modversion['config'][17]['valuetype'] = 'int';
 $modversion['config'][17]['default'] = 1;
+
+$modversion['config'][18]['name'] = 'mods_number';
+$modversion['config'][18]['title'] = '_MI_RMC_MODSNUMBER';
+$modversion['config'][18]['description'] = '';
+$modversion['config'][18]['formtype'] = 'textbox';
+$modversion['config'][18]['valuetype'] = 'int';
+$modversion['config'][18]['default'] = 6;

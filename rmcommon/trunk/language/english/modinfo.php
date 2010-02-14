@@ -27,6 +27,8 @@ define('_MI_RMC_DOXCODE','Allow XoopsCode');
 define('_MI_RMC_DOIMAGE','Allow images in text');
 define('_MI_RMC_DOBR','Auto add line breaks in text');
 
+define('_MI_RMC_MODSNUMBER','Modules number on dashboard');
+
 // Comments
 define('_MI_RMC_ENABLECOMS','Enable comments');
 define('_MI_RMC_ANONCOMS','Allow anonymous users to post comments');
