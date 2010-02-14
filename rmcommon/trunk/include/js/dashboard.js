@@ -26,6 +26,7 @@ $(document).ready(function(){
 
     $.post('include/proxy.php', {url: url}, function(data){
         $("#rmc-recent-news").append(data);
+        $("#loading-news").hide();
     }, 'html');
     
 });

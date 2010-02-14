@@ -84,7 +84,7 @@
         
         <!-- Recent news -->
         <div class="outer">
-            <div class="th"><?php _e('Recent News','rmcommon'); ?></div>
+            <div class="th"><img src="images/loading_2.gif" alt="" class="loading" id="loading-news" /> <?php _e('Recent News','rmcommon'); ?></div>
             <div class="even" id="rmc-recent-news">
             
             </div>

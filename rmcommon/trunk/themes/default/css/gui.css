@@ -108,7 +108,7 @@ div#rm-header div.right a{
 
 /** TOOLBAR **/
 div#rmc-toolbar{
-	background: #1D507D url(../images/redmex.png) no-repeat right;
+	background: #1D507D;
 	height: 30px;
 	border-bottom: 1px solid #FFF;
 	overflow: hidden;
@@ -125,6 +125,9 @@ div#rmc-toolbar a{
 }
 div#rmc-toolbar a:last-child{
 	border-right: 0;
+}
+div#rmc-toolbar a:first-child{
+    border-left: 0;
 }
 div#rmc-toolbar a span{
 	display: block;
@@ -148,6 +151,13 @@ div#rmc-toolbar a.selected{
 	padding: 0 1px;
 	color: #fff;
 	text-shadow: 1px 1px 2px #000;
+}
+#rmc-toolbar .help_button{
+    float: right;
+}
+#rmc-toolbar .help_button span{
+    background-image: url(../images/help.png);
+    padding-left: 24px;
 }
 
 div#rmc-container{

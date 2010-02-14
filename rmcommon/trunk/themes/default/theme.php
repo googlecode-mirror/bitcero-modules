@@ -35,6 +35,10 @@ foreach ($this->tpl_head as $head){
 </div>
 <?php if($this->get_toolbar()): ?>
 	<div id="rmc-toolbar">
+        <?php if($this->help()): ?>
+            <a href="<?php echo $this->help(); ?>" class="help_button" target="_blank">
+                <span style="background-image: url(<?php echo RMTHEMEURL; ?>/images/help.png);"><?php _e('Help','rmcommon'); ?></span></a>
+        <?php endif; ?>
 		<?php foreach($this->get_toolbar() as $menu): ?>
 		<a href="<?php echo $menu['link']; ?>"<?php echo $menu['location']==RMCLOCATION ? ' class = "selected"' : ''; ?>><span<?php if($menu['icon']): ?> style="background-image: url(<?php echo $menu['icon']; ?>); padding-left: 24px"<?php endif; ?>><?php echo $menu['title']; ?></a>
 		<?php endforeach; ?>

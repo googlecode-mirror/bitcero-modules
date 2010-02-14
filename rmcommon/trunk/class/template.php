@@ -48,6 +48,10 @@ class RMTemplate
     * Toolbar for admin gui
     */
     private $toolbar = array();
+    /**
+    * Help link
+    */
+    private $help_link = '';
 
     /**
      * At this moment this method do nothing
@@ -165,6 +169,18 @@ class RMTemplate
     */
     public function location_id($id){
 		
+    }
+    
+    /**
+    * Add a help lint to manage diferents sections
+    * @param string Link to help resource
+    */
+    public function set_help($link){
+        $this->help_link = $link;
+    }
+    
+    public function help(){
+        return $this->help_link;
     }
     
     /**
