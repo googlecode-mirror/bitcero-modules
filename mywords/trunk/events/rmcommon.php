@@ -10,9 +10,10 @@
 
 class MywordsRmcommonPreload
 {
-	public function eventRmcommonLoad_right_widgets($widgets){
-		global $xoopsModule;
 	
+    public function eventRmcommonLoadRightWidgets($widgets){
+		global $xoopsModule;
+        
 		if (!isset($xoopsModule) || ($xoopsModule->getVar('dirname')!='system' && $xoopsModule->getVar('dirname')!='mywords'))
 			return $widgets;
 		
@@ -27,7 +28,24 @@ class MywordsRmcommonPreload
 	        $widgets[] = mw_widget_addtags();
 	        
 	    }
+        
 		return $widgets;
 	}
+    
+    public function eventRmcommonGetSystemTools($tools){
+        
+        load_mod_locale('mywords', 'admin_');
+        
+        $rtn = array(
+            'link'  => '../mywords/admin/',
+            'icon'  => '../mywords/images/icon16.png',
+            'caption' => __('MyWords Administration', 'admin_mywords')
+        );
+        
+        $tools[] = $rtn;
+        
+        return $tools;
+        
+    }
 	
 }
