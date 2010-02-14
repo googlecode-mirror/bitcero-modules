@@ -73,4 +73,20 @@ class RecaptchaPluginRmcommonPreload
         
     }
     
+    public function eventRmcommonGetSystemTools($tools){
+        
+        load_plugin_locale('recaptcha', '', 'rmcommon');
+        
+        $rtn = array(
+            'link'  => RMCURL.'/plugins.php?action=configure&plugin=recaptcha',
+            'icon'  => RMCURL.'/plugins/recaptcha/recaptcha.png',
+            'caption' => __('Recaptcha options', 'recaptcha')
+        );
+        
+        $tools[] = $rtn;
+        
+        return $tools;
+           
+    }
+    
 }
