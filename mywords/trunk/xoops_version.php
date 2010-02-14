@@ -32,14 +32,14 @@ $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
-$modversion['hasmain'] = 1;
+$modversion['hasMain'] = 1;
 
 // Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 // Search
 $modversion['hasSearch'] = 1;
-$modversion['search']['file'] = "include/search.func.php";
+$modversion['search']['file'] = "include/search.php";
 $modversion['search']['func'] = "mywords_search";
 
 // Tablas
@@ -88,7 +88,7 @@ $modversion['config'][1]['description'] = '_MI_MW_PERMA_DESC';
 $modversion['config'][1]['formtype'] = 'select';
 $modversion['config'][1]['valuetype'] = 'int';
 $modversion['config'][1]['default'] = 1;
-$modversion['config'][1]['options'] = array(_MI_MW_PERMA_DEF=>1, _MI_MW_PERMA_DATE=>2, _MI_MW_PERMA_NUMS=>3);
+$modversion['config'][1]['options'] = array(__('Default','admin_mywords')=>1, __('Based on date and name','admin_mywords')=>2, __('Numeric format','admin_mywords')=>3);
 
 $modversion['config'][2]['name'] = 'basepath';
 $modversion['config'][2]['title'] = '_MI_MW_BASEPATH';
@@ -123,21 +123,13 @@ $modversion['config'][5]['formtype'] = 'yesno';
 $modversion['config'][5]['valuetype'] = 'int';
 $modversion['config'][5]['default'] = 1;
 
-// CSS Path
-$modversion['config'][6]['name'] = 'css_file';
-$modversion['config'][6]['title'] = '_MI_MW_CSSFILE';
-$modversion['config'][6]['description'] = '';
-$modversion['config'][6]['formtype'] = 'textbox';
-$modversion['config'][6]['valuetype'] = 'text';
-$modversion['config'][6]['default'] = XOOPS_URL.'/modules/mywords/css/main.css';
-
 // Navigation bar
-$modversion['config'][7]['name'] = 'shownav';
-$modversion['config'][7]['title'] = '_MI_MW_SHOWNAV';
-$modversion['config'][7]['description'] = '';
-$modversion['config'][7]['formtype'] = 'yesno';
-$modversion['config'][7]['valuetype'] = 'int';
-$modversion['config'][7]['default'] = 1;
+$modversion['config'][6]['name'] = 'shownav';
+$modversion['config'][6]['title'] = '_MI_MW_SHOWNAV';
+$modversion['config'][6]['description'] = '';
+$modversion['config'][6]['formtype'] = 'yesno';
+$modversion['config'][6]['valuetype'] = 'int';
+$modversion['config'][6]['default'] = 1;
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";

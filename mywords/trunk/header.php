@@ -22,8 +22,7 @@ $xoopsTpl->assign('mw_url', MW_URL);
 
 $xmh = '';
 if ($mc['use_css']){
-    $xmh = '<link rel="stylesheet" type="text/css" media="screen" href="'.$mc['css_file'].'" />'."\n";
-    $xmh .= '<link rel="stylesheet" type="text/css" media="screen" href="'.XOOPS_URL.'/modules/mywords/styles/editor.css" />';
+	RMTemplate::get()->add_xoops_style('mywords.css', 'mywords');
 }
 
 // Redes Sociales

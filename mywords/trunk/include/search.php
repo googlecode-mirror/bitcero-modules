@@ -27,15 +27,15 @@ function mywords_search($qa, $andor, $limit, $offset, $userid){
 	if ( is_array($qa) && $count = count($qa) ) {
 		$adds = '';
 		for($i=0;$i<$count;$i++){
-			$adds .= $adds=='' ? "(titulo LIKE '%$qa[$i]%' OR titulo_amigo LIKE '%$qa[$i]%')" : " $andor (titulo LIKE '%$qa[$i]%' OR titulo_amigo LIKE '%$qa[$i]%')";
+			$adds .= $adds=='' ? "(title LIKE '%$qa[$i]%' OR content LIKE '%$qa[$i]%')" : " $andor (title LIKE '%$qa[$i]%' OR content LIKE '%$qa[$i]%')";
 		}
 	}
 	
 	$sql .= $adds!='' ? " WHERE ".$adds : '';
 	if ($userid>0){
-		$sql .= ($adds!='' ? " AND " : " WHERE ")."autor='$userid'";
+		$sql .= ($adds!='' ? " AND " : " WHERE ")."author='$userid'";
 	}
-	$sql .= " ORDER BY modificado DESC";
+	$sql .= " ORDER BY pubdate DESC";
 
 	$i = 0;
 	$result = $db->query($sql);
@@ -43,21 +43,15 @@ function mywords_search($qa, $andor, $limit, $offset, $userid){
 	while ($row = $db->fetchArray($result)){
 		$post = new MWPost();
 		$post->assignVars($row);
-		$ret[$i]['image'] = "images/iconsearch.png";
-		$day = date('d', $row['fecha']);
-		$month = date('m', $row['fecha']);
-		$year = date('Y', $row['fecha']);
-		$link = $mc['permalinks']==1 ? '?post='.$row['id_post'] : ($mc['permalinks']==2 ? "$day/$month/$year/".$row['titulo_amigo']."/" : "post/".$row['id_post']);
-		$ret[$i]['link'] = $link;
-		$ret[$i]['title'] = $post->getTitle();
-		$ret[$i]['time'] = $post->getModDate();
-		$ret[$i]['uid'] = $post->getAuthor();
-		$ret[$i]['desc'] = substr($util->filterTags($post->getHomeText()), 0, 150);
+		$ret[$i]['image'] = "images/post.png";
+		$ret[$i]['link'] = $post->permalink();
+		$ret[$i]['title'] = $post->getVar('title');
+		$ret[$i]['time'] = $post->getVar('pubdate');
+		$ret[$i]['uid'] = $post->getVar('author');
+		$ret[$i]['desc'] = substr(strip_tags($post->content()), 0, 150);
 		$i++;
 	}
 	
 	return $ret;
 	
 }
-
-?>
