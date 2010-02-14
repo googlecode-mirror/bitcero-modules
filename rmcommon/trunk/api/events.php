@@ -74,7 +74,6 @@ class RMEvents
     }
     
     public function load_extra_preloads($dir, $name){
-        
         $dir = rtrim($dir, '/');
         $extra = array();
          if (is_dir($dir.'/events')){

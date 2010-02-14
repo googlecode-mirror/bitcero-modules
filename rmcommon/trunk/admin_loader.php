@@ -27,3 +27,6 @@ RMTemplate::get()->add_style('general.css','rmcommon');
 
 define('RMTHEMEPATH', RMCPATH.'/themes/'.$rmc_theme);
 define('RMTHEMEURL', RMCURL.'/themes/'.$rmc_theme);
+
+// Load theme events
+RMEvents::get()->load_extra_preloads(RMTHEMEPATH, ucfirst($rmc_theme).'Theme');

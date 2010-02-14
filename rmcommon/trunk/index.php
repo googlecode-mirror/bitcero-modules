@@ -26,12 +26,12 @@ function get_modules_ajax(){
     $page = $page > $tpages ? $tpages : $page;
 
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
-    
     $nav = new RMPageNav($num, $limit, $page, 5);
     $nav->target_url('javascript:;" onclick="get_mods_page({PAGE_NUM})');
     
-    $sql = 'SELECT * FROM ' . $db->prefix('modules')." ORDER BY weight LIMIT $start,$limit";
+    $sql = 'SELECT * FROM ' . $db->prefix('modules')." ORDER BY mid, weight LIMIT $start,$limit";
     $result = $db->query($sql);
+    $installed_mods = array();
     while($row = $db->fetchArray($result)){
         $mod = new XoopsModule();
         $mod->assignVars($row);

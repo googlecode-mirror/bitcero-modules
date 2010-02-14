@@ -20,16 +20,23 @@ $Id$
 }
 .mods_coint{
     overflow: hidden;
+    font-size: 0.95em;
 }
 .mods_coint .module{
-    padding: 5px 3px;
+    padding: 10px;
     float: left;
-    width: 200px;
+    width: 180px;
     height: 60px;
     overflow: hidden;
     line-height: 150%;
-    margin-bottom: 15px;
-    border-bottom: 1px dotted #CCC;
+    margin: 0 10px 10px 0;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.mods_coint .module:hover{
+	background: #ebebeb;
 }
 .mods_coint .module a.image{
     display: block;
@@ -57,7 +64,8 @@ $Id$
 .mods_coint .module span.module_data{
     display: block;
     float: right;
-    width: 143px;
+    width: 123px;
+    background: #FFF;
 }
 .description{
     clear: both;
