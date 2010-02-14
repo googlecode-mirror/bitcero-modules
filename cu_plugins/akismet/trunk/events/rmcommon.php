@@ -73,5 +73,21 @@ class AkismetPluginRmcommonPreload{
         
         return true;
 	}
+    
+    public function eventRmcommonGetSystemTools($tools){
+        
+        load_plugin_locale('akismet', '', 'rmcommon');
+        
+        $rtn = array(
+            'link'  => RMCURL.'/plugins.php?action=configure&plugin=akismet',
+            'icon'  => RMCURL.'/plugins/akismet/comments.gif',
+            'caption' => __('Akismet options', 'akismet')
+        );
+        
+        $tools[] = $rtn;
+        
+        return $tools;
+           
+    }
 	
 }
