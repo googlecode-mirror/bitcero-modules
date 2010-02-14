@@ -58,4 +58,20 @@ class AvatarsPluginRmcommonPreload
         
     }
     
+    public function eventRmcommonGetSystemTools($tools){
+        
+        load_plugin_locale('avatars', '', 'rmcommon');
+        
+        $rtn = array(
+            'link'  => RMCURL.'/plugins.php?action=configure&plugin=avatars',
+            'icon'  => RMCURL.'/plugins/avatars/gravatar.jpg',
+            'caption' => __('Avatars options', 'avatars')
+        );
+        
+        $tools[] = $rtn;
+        
+        return $tools;
+           
+    }
+    
 }
