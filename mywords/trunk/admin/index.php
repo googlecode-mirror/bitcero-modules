@@ -52,7 +52,7 @@ xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Dashb
 include 'menu.php';
 MWFunctions::include_required_files();
 RMTemplate::get()->add_script('../include/js/scripts.php?file=dashboard.js');
-RMTemplate::get()->set_help('http://redmexico.com.mx/docs/mywords/introduccion');
+RMTemplate::get()->set_help('http://redmexico.com.mx/docs/mywords/');
 xoops_cp_header();
 	
 // Show Templates
