@@ -17,6 +17,8 @@ $modversion['license'] = "GPLv2";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "xthemes";
+$modversion['icon16'] = "images/xthemes.png";
+$modversion['icon24'] = 'images/xthemes24.png';
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
