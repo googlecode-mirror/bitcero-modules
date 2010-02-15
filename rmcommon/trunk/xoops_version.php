@@ -37,6 +37,7 @@ $modversion['tables'][1] = 'rmc_comments';
 $modversion['tables'][2] = 'rmc_comusers';
 $modversion['tables'][3] = 'rmc_images';
 $modversion['tables'][4] = 'rmc_plugins';
+$modversion['tables'][5] = 'rmc_settings';
 
 // Templates
 $modversion['templates'][1]['file'] = 'rmc_comments_display.html';
