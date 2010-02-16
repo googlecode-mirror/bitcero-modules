@@ -22,6 +22,8 @@ $modversion['icon24'] = 'images/xthemes24.png';
 
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
+$modversion['tables'][0] = "xtheme_config";
+
 // Admin things
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
