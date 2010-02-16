@@ -1,5 +1,4 @@
-<?php xt_menu_options(); ?>
-<h1><?php echo sprintf("%s Configuration", $element_info['name']); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: -32px;">&nbsp;</span><?php echo sprintf(__("%s Configuration",'xthemes'), $element_info['name']); ?></h1>
 <form name="itform" method="post" action="index.php">
 	<div id="it-form-container">
 		<?php if($xt_show=='theme'): ?>

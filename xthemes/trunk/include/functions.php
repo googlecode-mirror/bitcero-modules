@@ -12,6 +12,7 @@
 * @author Eduardo Cortés <i.bitcero@gmail.com>
 */
 
+load_mod_locale('xthemes');
 define('ITPATH', XOOPS_ROOT_PATH.'/modules/xthemes');
 define('ITURL', XOOPS_URL.'/modules/xthemes');
 
@@ -56,22 +57,6 @@ function xt_redirect($url, $message, $error=false){
 }
 
 /**
-* print the message
-*/
-function xt_show_message(){
-	// Check if there are some error
-	if (isset($_SESSION['redir_message'])){
-		echo "<div id='it-redir-message'";
-		if ($_SESSION['redir_error']){
-			echo " class='error'";
-		}
-		echo ">".$_SESSION['redir_message']."</div>";
-		unset($_SESSION['redir_message']);
-		unset($_SESSION['redir_error']);
-	}
-}
-
-/**
 * Gets the current theme config
 */
 function xt_get_current_config($element=''){
@@ -91,38 +76,11 @@ function decode_entities(&$value, $key){
 	$value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
 }
 
-
-function xt_load_jquery(){
-	global $xoopsTpl, $xoopsConfig, $xoopsLogger;
-	
-	if ($xoopsConfig['cpanel']!='oxygen'){
-		/*
-		$salida = ob_get_contents();
-		$pos = strpos($salida,'</head>');
-		
-		$pre = substr($salida, 0, $pos);
-		$post = substr($salida, $pos);
-		$salida = $pre;*/
-		echo '<script type="text/javascript" src="'.XOOPS_URL.'/modules/xthemes/include/js/jquery-1.3.2.min.js?ver=1.0"></script>
-			<script type="text/javascript" src="'.XOOPS_URL.'/modules/xthemes/include/js/jquery-ui-1.7.2.custom.min.js"></script>';
-		//$salida .= $post;
-		
-	}
-	
-	echo '<script type="text/javascript" src="'.XOOPS_URL.'/modules/xthemes/include/js/xthemes.js"></script>';
-	echo '<link rel="stylesheet" type="text/css" href="'.ITURL.'/css/themes.css?ver=1.0" media="all" />';
-	
-}
-
 function xt_menu_options(){
-?>	
-<div id="px-menu-options">
-	<a href="index.php" title="Show all themes" class="themes">Themes</a>
-	<a href="index.php?op=config" title="Configure current theme" class="settings">Configure</a>
-	<a href="index.php?op=catalog" title="Show themes catalog" class="catalog">Themes Catalog</a>
-	<a href="index.php?op=about" title="About I.Themes Module" class="about">About I.Themes</a>
-</div>
-<?php
+	RMTemplate::get()->add_tool(__('Dashboard', 'xthemes'), 'index.php', 'images/dashboard.png', 'dashboard');
+	RMTemplate::get()->add_tool(__('Theme Settings', 'xthemes'), 'index.php?op=config', 'images/settings.png', 'settings');
+	RMTemplate::get()->add_tool(__('Catalog', 'xthemes'), 'index.php?op=catalog', 'images/catalog.png', 'catalog');
+	RMTemplate::get()->add_tool(__('About', 'xthemes'), 'index.php?op=about', 'images/about.png', 'about');
 }
 
 /**

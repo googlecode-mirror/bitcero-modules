@@ -1,30 +1,14 @@
-div#it-redir-message{
-	background: #FFFFC0;
-	border: 1px solid #FFCE9D;
-	padding: 10px;
-	-moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
+.rmc_titles{
+	overflow: hidden;
 }
-.error{
-	color: #F00;
-	font-weight: bold;
-	font-size: 1.1em;
-}
-h1{
-	margin: 0 0 10px 0;
-	font-family: georgia, times, serif;
-	font-size: 2.3em;
-	font-weight: normal;
-	font-style: italic;
-	border-bottom: 1px dotted #CCC;
-	padding: 0 0 6px 0;
+.rmc_titles span{
+	background: url(../images/titles.png) no-repeat;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-right: 5px;
 }
 div#it-current-theme{
-	border: 1px dashed #ccc;
 	padding: 20px;
 	-moz-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -184,31 +168,9 @@ div#it-form-container input[type='text'], div#it-form-container select, div#it-f
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-div#it-form-container select{
-
-}
-div#it-form-container input.button{
-    -moz-border-radius: 15px;
-    -khtml-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
-    padding: 4px 15px;
-    background: url(../images/bgbutton.png) repeat-x top;
-    font-size: 1.1em;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
 div#it-form-container input[type="submit"]{
     font-weight: bold;
     cursor: pointer;
-}
-div#it-form-container input.button:hover{
-	background-position: bottom;
-	border: 1px solid #8A9BA8;
-	box-shadow: 0 0 5px #5CCCE0;
-	-o-box-shadow: 0 0 5px #5CCCE0;
-	-moz-box-shadow: 1px 1px 5px #5CCCE0;
-	-webkit-box-shadow:	0 0 5px #5CCCE0;
 }
 div#it-form-container h2.subtitles{
 	font-family: georgia, times, serif;
@@ -263,39 +225,6 @@ div#px-menu-options a.plugins{background-image: url(../images/plugins24.png);}
 div#px-menu-options a.catalog{background-image: url(../images/catalog.png);}
 div#px-menu-options a.about{background-image: url(../images/about.png);}
 
-table.outer{
-    border: 1px solid #CCC;
-    -moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-.outer th{
-    background: 0;
-    color: #268AC6;
-    font-family: georgia, times, serif;
-    font-size: 1.1em;
-    background: url(../images/bgbutton.png) repeat-x top;
-    height: 22px;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #CCC;
-    border-left: 1px solid #FFF;
-    padding: 4px 5px;
-}
-.outer th:first-child{
-    -moz-border-radius-topleft: 5px;
-    -khtml-border-radius-topleft: 5px;
-    -webkit-border-top-left-radius: 5px;
-    border-top-left-radius: 5px;
-    border-left: 0;
-}
-.outer th:last-child{
-    -moz-border-radius-topright: 5px;
-    -khtml-border-radius-topright: 5px;
-    -webkit-border-top-right-radius: 5px;
-    border-top-right-radius: 5px;
-    border-right: 0;
-}
 tr.plug_item td{
     padding: 15px 5px;
     border-bottom: 1px solid #ebebeb;
@@ -375,11 +304,4 @@ div.it_config_container{
     
 	margin-bottom: 20px;
 	display: none;
-}
-
-div#bodyCP{
-	-moz-border-radius: 8px;
-    -khtml-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
 }

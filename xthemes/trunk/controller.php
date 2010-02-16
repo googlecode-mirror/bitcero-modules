@@ -22,7 +22,6 @@ defined('XOOPS_ROOT_PATH') or die("");
 */
 
 include_once XOOPS_ROOT_PATH.'/modules/xthemes/include/functions.php';
-include_once XOOPS_ROOT_PATH.'/modules/xthemes/class/plugin.php';
 include_once XOOPS_ROOT_PATH.'/modules/xthemes/class/theme.php';
 
 class XThemesController
