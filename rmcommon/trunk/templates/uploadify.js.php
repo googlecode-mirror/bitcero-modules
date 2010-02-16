@@ -6,7 +6,7 @@ $(document).ready(function(){
         foreach($this->settings() as $name => $value):
         
         if ($value=='') continue;
-        if(substr($value, 0, 8)=='function'){
+        if(!is_array($value) && substr($value, 0, 8)=='function'){
             $value = $value;
         }elseif(is_string($value)){
             $value = "'$value'";

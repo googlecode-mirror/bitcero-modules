@@ -18,6 +18,7 @@ function error($message){
 	echo json_encode($data);
 	die();
 }
+
 /**
 * Handle uploaded image files only.
 */

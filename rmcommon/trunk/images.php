@@ -125,7 +125,7 @@ function images_form($edit = 0){
 	
     /*$upload = new RMFlashUploader('images', 'images.php');*/
     if (!$cat->isNew()){
-        $uploader = new RMFlashUploader('files-container', 'include/upload.php');
+        $uploader = new RMFlashUploader('files-container', RMCURL.'/include/upload.php');
         $uploader->add_setting('scriptData', array(
         	'action'=>'upload',
         	'category'=>$cat->id(),
