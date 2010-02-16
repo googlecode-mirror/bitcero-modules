@@ -328,5 +328,30 @@ class MWFunctions
         return $xoopsTpl->fetch("db:mywords_password.html");
         
     }
+    
+    /**
+    * Get posts by category
+    */
+    public function get_posts_by_cat($cat, $start=0, $limit=1, $orderby='pubdate', $order='DESC', $status='publish'){
+		
+		if ($cat<=0) return;
+		$path = XOOPS_ROOT_PATH.'/modules/mywords';
+		include_once $path.'/class/mwpost.class.php';
+		
+		$db = Database::getInstance();
+		$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a, ".$db->prefix("mw_catpost")." as b WHERE
+				b.cat='$cat' AND a.id_post=b.post AND a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
+		
+		$result = $db->query($sql);
+		$ret = array();
+		while($row = $db->fetchArray($result)){
+			$post = new MWPost();
+			$post->assignVars($row);
+			$ret[] = $post;
+		}
+		
+		return $ret;
+		
+    }
 	
 }

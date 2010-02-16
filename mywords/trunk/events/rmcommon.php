@@ -47,5 +47,23 @@ class MywordsRmcommonPreload
         return $tools;
         
     }
+    
+    public function eventRmcommonLoadingSingleEditorimgs($items, $url){
+    	
+    	if (FALSE === strpos($url, 'modules/mywords/admin/posts.php')) return $items;
+    	
+		parse_str($url);
+		if (!isset($id) || $id<=0) return $items;
+		
+		xoops_load('mwpost.class','mywords');
+		xoops_load('mwfunctions','mywords');
+		
+		$post = new MWPost($id);
+		if ($post->isNew()) return $items;
+		
+		$items['links']['post'] = array('caption'=>__('Link to post','mywords'),'value'=>$post->permalink());
+		return $items;
+		
+    }
 	
 }
