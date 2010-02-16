@@ -43,6 +43,11 @@ if ($action==''){
         $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
         $uploader->add_setting('queueSizeLimit', 100);
         $uploader->add_setting('auto', true);
+        $uploader->add_setting('onSelect', "function(event, qid, file){
+        	if (queuefiles[qid]) return false;
+        	queuefiles[qid] = true;
+        	return true;
+        }");
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
             eval('ret = '+resp);
             if (ret.error){

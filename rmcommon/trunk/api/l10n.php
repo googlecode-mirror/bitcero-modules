@@ -91,7 +91,7 @@ function load_plugin_locale($plugin, $prefix='', $module='rmcommon'){
 	
 	$path = XOOPS_ROOT_PATH.'/modules/'.$module.'/plugins/'.$plugin.'/lang/'.$prefix.$exm_locale.'.mo';
 
-	load_locale_file($plugin, $path);
+	load_locale_file($prefix.$plugin, $path);
 	
 }
 
@@ -106,11 +106,11 @@ function load_theme_locale($theme, $prefix='', $gui=false){
 	if ($theme=='') return;
 	
 	if ($gui){
-		$path = EXM_SYSTEM_PATH.'/apps/themes/'.$theme.'/lang/'.$prefix.$exm_locale.'.mo';
+		$path = RMCPATH.'/themes/'.$theme.'/lang/'.$prefix.$exm_locale.'.mo';
 	} else {
-		$path = ABSPATH.'/themes/'.$theme.'/lang/'.$prefix.$exm_locale.'.mo';
+		$path = XOOPS_THEME_PATH.'/'.$theme.'/lang/'.$prefix.$exm_locale.'.mo';
 	}
-	load_locale_file('theme_'.$theme, $path);
+	load_locale_file($prefix.$theme, $path);
 }
 
 /**

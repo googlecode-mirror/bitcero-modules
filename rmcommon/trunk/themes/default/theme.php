@@ -10,6 +10,8 @@
 <meta name="generator" content="Red México Common Utilities" />
 <?php
 
+!defined('RMCLOCATION') ? define('RMCLOCATION', '') : true;
+
 foreach ($this->tpl_scripts as $script){
 	echo '<script type="'.$script['type'].'" src="'.$script['url'].'"></script>'."\n";
 }
@@ -98,7 +100,7 @@ foreach ($this->tpl_head as $head){
     <div id="rmc-center-content" class="<?php echo $left_widgets || $this->get_menus() ? 'reduce_left ' : ''; ?><?php echo $right_widgets ? 'reduce_right' : '' ?>">
         <?php foreach($rmc_messages as $message): ?>
             <div class="<?php if($message['level']): ?>errorMsg<?php else: ?>infoMsg<?php endif; ?>">
-                <?php echo $message['text']; ?>
+                <?php echo html_entity_decode($message['text']); ?>
             </div>
         <?php endforeach; ?>
         <?php echo $content; ?>

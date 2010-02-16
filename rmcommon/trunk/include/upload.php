@@ -21,8 +21,6 @@ function error($message){
 /**
 * Handle uploaded image files only.
 */
-include XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
-
 $security = rmc_server_var($_POST, 'rmsecurity', 0);
 $category = rmc_server_var($_POST, 'category', 0);
 

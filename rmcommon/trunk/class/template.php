@@ -58,6 +58,7 @@ class RMTemplate
      * Maybe later i will add some functionality... i must to think ;)
      */
     function __construct(){
+
         $this->add_script(RMCURL.'/include/js/jquery.min.js');
         $this->add_script(RMCURL.'/include/js/jquery-ui.min.js');
     }
