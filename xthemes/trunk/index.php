@@ -140,7 +140,7 @@ function xt_configure_show(){
 	$element = $xoopsConfig['theme_set'];
 
 	$xt_show = 'theme';
-    $current_settings = xt_get_current_config($xoopsConfig['theme_set']);
+    $current_settings = xt_get_current_config($xoopsConfig['theme_set'], true);
 	include_once 'templates/xt_form_config.php';
 	
 	xoops_cp_footer();
@@ -293,7 +293,7 @@ function xt_save_settings(){
 	foreach ($xt_to_save as $id => $value){
 		
 		if (is_array($value)){
-			$value = json_encode($value);
+			$value = serialize($value);
 			$type = 'array';
 		} else {
 			$value = $myts->addSlashes($value);
@@ -305,9 +305,9 @@ function xt_save_settings(){
 		
 	}
 	if (!empty($errors)){
-		redirectMsg('index.php', __('There was errors during this operation:','xthemes').'<br />'.implode('<br />', $errors), 1);
+		redirectMsg('index.php?op=config', __('There was errors during this operation:','xthemes').'<br />'.implode('<br />', $errors), 1);
 	} else {
-		redirectMsg('index.php', __('Settings updated!', 'xthemes'), false);
+		redirectMsg('index.php?op=config', __('Settings updated!', 'xthemes'), false);
 	}
 	
 }

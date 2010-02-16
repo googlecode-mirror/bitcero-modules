@@ -59,21 +59,30 @@ function xt_redirect($url, $message, $error=false){
 /**
 * Gets the current theme config
 */
-function xt_get_current_config($element=''){
+function xt_get_current_config($element='', $edit = false){
 	$db = Database::getInstance();
 	$sql = "SELECT * FROM ".$db->prefix("xtheme_config").($element != '' ? " WHERE element='$element'" : '');
 	$result = $db->query($sql);
 	while ($row = $db->fetchArray($result)){
-		$ret[$row['name']] = $row['type']=='array' ? json_decode($row['value'], true) : $row['value'];
+		$ret[$row['name']] = $row['type']=='array' ? unserialize($row['value']) : $row['value'];
 	}
 	
 	array_walk_recursive($ret, 'decode_entities');
+	
+	if ($edit){
+		array_walk_recursive($ret, 'special_chars');
+	}
+	
 	
 	return $ret;
 }
 
 function decode_entities(&$value, $key){
 	$value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
+}
+
+function special_chars(&$value, $key){
+	$value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
 function xt_menu_options(){

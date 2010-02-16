@@ -190,5 +190,18 @@ class XThemesController
         return $this->objects[$theme]->$method($smarty, $params);
         
     }
+    
+    /**
+    * Generate script tags for jQuery
+    */
+    public function get_jquery(&$smarty, $params){
+		
+		$ret = '<script type="text/javascript" src="'.RMCURL.'/include/js/jquery.min.js"></script>';
+		if ($params['ui']){
+			$ret .= '<script type="text/javascript" src="'.RMCURL.'/include/js/jquery-ui.min.js"></script>';
+		}
+		
+		return $ret;
+    }
 	
 }
