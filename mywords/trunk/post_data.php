@@ -65,7 +65,8 @@ while ($row = $db->fetchArray($result)){
         'author'            =>$authors[$post->getVar('author')]->getVar('name'),
         'alink'				=>$alink,
         'edit'              => $xoopsUser && ($xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid()),
-        'tags'              => $post->tags(false)
+        'tags'              => $post->tags(false),
+        'meta'              => $post->get_meta('', false)
     ));
     
 }
