@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" media="all" href="../styles/admin.css" />
+<!-- Barra de Navegación -->
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr class="menus">
+  	<{assign var=i value=1}>
+  	<{foreach item=menu from=$adminmenus}>  	
+    <td>
+		<{if $i==1 && $menu.select}><{assign var="sel" value=1}><{/if}>
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td width="7"><img src="../images/admin/left_<{if $menu.select}>s<{else}>n<{/if}>_button.jpg" width="7" height="23"></td>
+				<td class="menutext<{if $menu.select}>s<{else}>n<{/if}>">
+				<{if $menu.select}><{$menu.text}><{else}><a href="<{$menu.link}>" title="<{$menu.text}>"><{$menu.text}></a><{/if}>
+				</td>
+				<td width="7"><img src="../images/admin/right_<{if $menu.select}>s<{else}>n<{/if}>_button.jpg" width="7" height="23"></td>
+			</tr>
+		</table>
+	</td>
+	<{assign var=i value=$i+1}>
+	<{/foreach}>
+  </tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 10px;">
+	<tr>
+		<td width="7"><img src="../images/admin/nav_left_<{if $sel}>sel<{else}>normal<{/if}>.jpg" width="7" height="27"></td>
+		<td class="navitems">
+		<{foreach item=sub from=$adminsubmenus}>
+			<a href="<{$sub.link}>"<{if $sub.target!=''}> target="<{$sub.target}>"<{/if}> title="<{$sub.text}>"><{$sub.text}></a>
+		<{/foreach}>&nbsp;
+		</td>
+		<td width="7"><img src="../images/admin/nav_right.jpg" width="7" height="27"></td>
+	</tr>
+</table>
+<!-- / Barra de Navegación -->
+
+<!-- Errores de Página -->
+<{if $page_error!=''}>
+	<div class="confirmMsg"><{$page_error}></div>
+<{/if}>
+<!-- / Errores de Página -->

@@ -1,0 +1,19 @@
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="outer">
+  <tr>
+    <th colspan="5"><{$lang_categoslist}></th>
+  </tr>
+  <tr class="head" align="center">
+    <td width="50"><{$lang_id}></td>
+    <td><{$lang_name}></td>
+    <td><{$lang_catpages}></td>
+    <td><{$lang_options}></td>
+  </tr>
+  <{foreach item=cat from=$categos}>
+  <tr class="<{cycle values="even,odd"}>">
+    <td align="center"><strong><{$cat.id_cat}></strong></td>
+    <td><{$cat.nombre}></td>
+    <td align="center"><{$cat.posts}></td>
+    <td align="center"><a href="?op=edit&amp;id=<{$cat.id_cat}>"><{$lang_edit}></a> | <a href="?op=delete&amp;id=<{$cat.id_cat}>"><{$lang_delete}></a></td>
+  </tr>
+  <{/foreach}>
+</table>

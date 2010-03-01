@@ -1,0 +1,25 @@
+<{include file="db:qpages_title.html"}><br />
+<div class="qpPageText">
+	<{$page.text}>
+</div>
+<div class="qpDocInfo">
+	<{$page.mod_date}> &nbsp; | &nbsp; <{$page.reads}>
+</div>
+
+<{if $show_related && $related_num>0}>
+	<table class="qpRelated" cellspacing="1">
+		<tr><td colspan="3"><h2><{$lang_related}></h2></td></tr>
+		<tr class="head" align="center">
+			<td align="left"><{$lang_page}></td>
+			<td><{$lang_modified}></td>
+			<td><{$lang_hits}></td>
+		</tr>
+		<{foreach item=page from=$related}>
+			<tr>
+				<td><a href="<{$page.link}>"><{$page.title}></a><br /><{$page.desc}></td>
+				<td align="center"><{$page.modified}></td>
+				<td align="center"><strong><{$page.hits}></strong></td>
+			</tr>
+		<{/foreach}>
+	</table>
+<{/if}>

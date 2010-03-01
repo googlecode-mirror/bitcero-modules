@@ -1,0 +1,45 @@
+<{include file="db:qpages_title.html"}>
+
+<div class="qpHomeText">
+	<{$home_text}>
+</div>
+<{foreach item=cat from=$categos}>
+	<div class="qpCategosHome">
+		<h2><a href="<{$cat.link}>"><{$cat.nombre}></a></h2>
+		<span class="catdesc"><{$cat.desc}></span>
+		<{if $cat.pages_count>0}>
+		<table class="qpPagesList" border="0" cellapcing="2">
+			<tr><td colspan="3"><h3><{$lang_pagesin}></h3></td></tr>
+			<tr>
+			<{assign var="i" value=1}>
+			<{foreach item=page from=$cat.pages}>
+			<{if $i>3}>
+				</tr><tr>
+				<{assign var="i" value=1}>
+			<{/if}>
+			<td><a href="<{$page.link}>"><{$page.titulo}></a><br />
+			<{$page.desc}></td>
+			<{assign var="i" value=$i+1}>
+		<{/foreach}>
+		</tr>
+		</table>
+		<{/if}>
+		<{if $cat.subcats_count>0}>
+		<table class="qpSubcats">
+			<tr><td colspan="3"><h3><{$lang_subcats}></h3></td></tr>
+			<tr>
+				<{assign var="i" value=1}>
+				<{foreach item=sub from=$cat.subcats}>
+					<{if $i>3}>
+						</tr><tr>
+						<{assign var="i" value=1}>
+					<{/if}>
+					<td><a href="<{$sub.link}>"><{$sub.nombre}></a><br /><{$sub.desc}></td>
+					<{assign var="i" value=$i+1}>
+				<{/foreach}>
+			</tr>
+		</table>
+		<{/if}>
+	</div>
+<{/foreach}>
+

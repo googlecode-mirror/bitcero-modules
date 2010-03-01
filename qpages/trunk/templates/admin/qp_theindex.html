@@ -1,0 +1,15 @@
+<div id="qpOptions">
+	<{foreach item=info from=$options}>
+		<a href="<{$info.link}>" title="<{$info.text}>">
+			<img src="<{$info.icon}>" alt="<{$info.text}>" />
+			<{$info.text}>
+			<span class="qpOptionsInfo"><{$info.info}></span>
+		</a>
+	<{/foreach}>
+</div>
+<div id="qpVersionPages">
+	<h2><{$lang_version}></h2>
+	<div id="versionInfo">
+	
+	</div>
+</div>
