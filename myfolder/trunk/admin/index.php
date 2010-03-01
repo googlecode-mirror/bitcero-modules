@@ -1,39 +1,12 @@
 <?php
-/*******************************************************************
-* $Id$            *
-* -----------------------------------------------------            *
-* RMSOFT MyFolder 1.0                                              *
-* Módulo para el manejo de un portafolio profesional               *
-* CopyRight © 2006. Red México Soft                                *
-* Autor: BitC3R0                                                   *
-* http://www.redmexico.com.mx                                      *
-* http://www.xoops-mexico.net                                      *
-* --------------------------------------------                     *
-* This program is free software; you can redistribute it and/or    *
-* modify it under the terms of the GNU General Public License as   *
-* published by the Free Software Foundation; either version 2 of   *
-* the License, or (at your option) any later version.              *
-*                                                                  *
-* This program is distributed in the hope that it will be useful,  *
-* but WITHOUT ANY WARRANTY; without even the implied warranty of   *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the     *
-* GNU General Public License for more details.                     *
-*                                                                  *
-* You should have received a copy of the GNU General Public        *
-* License along with this program; if not, write to the Free       *
-* Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,   *
-* MA 02111-1307 USA                                                *
-*                                                                  *
-* -----------------------------------------------------            *
-* index.php:                                                       *
-* Control de Trabajos existentes                                   *
-* -----------------------------------------------------            *
-* @copyright: © 2006. BitC3R0.                                     *
-* @autor: BitC3R0                                                  *
-* @paquete: RMSOFT MyFolder v1.0                                   *
-* @version: 1.0.0                                                  *
-* @modificado: 24/05/2006 12:37:27 a.m.                            *
-*******************************************************************/
+// $Id$
+// --------------------------------------------------------------
+// MyFolder
+// Advanced Portfolio System
+// Author: Eduardo CortÃ©s <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 include 'header.php';
 
@@ -161,7 +134,7 @@ function rmmfSave(){
 			$newname = $upload->getSavedFileName();
 		}	
 		
-		// Redimensionamos las imágenes
+		// Redimensionamos las im?genes
 		rmmf_image_resize($dir . $newname, $dir . $newname, $mc['imgw'], $mc['imgh']);
 		if (!is_dir($dir . 'ths/')){ mkdir($dir . 'ths/', 0777); }
 		//rmmf_image_resize($dir . $newname, $dir . 'ths/' . $newname, $mc['thw'], $mc['thh']);
@@ -257,7 +230,7 @@ function rmmfSaveEdit(){
 	$newname = $work->getVar('imagen');
 	if (is_uploaded_file($_FILES['imagen']['tmp_name'])){
 		
-		// Eliminamos las imágenes anteriores si existen
+		// Eliminamos las im?genes anteriores si existen
 		if ($work->getVar('imagen')!=''){
 			if (file_exists($dir . $work->getVar('imagen'))){
 				unlink($dir . $work->getVar('imagen'));
@@ -283,7 +256,7 @@ function rmmfSaveEdit(){
 			$newname = $upload->getSavedFileName();
 		}	
 		
-		// Redimensionamos las imágenes
+		// Redimensionamos las im?genes
 		if (!is_dir($dir . 'ths/')){ mkdir($dir . 'ths/', 0777); }
 		resize_then_crop( $dir . $newname,$dir . 'ths/' . $newname,$mc['thw'],$mc['thh'],255,255,255);
 		rmmf_image_resize($dir . $newname, $dir . $newname, $mc['imgw'], $mc['imgh']);
@@ -392,7 +365,7 @@ function rmmfAddImgs(){
 }
 
 /**
- * Guardamos una imágen
+ * Guardamos una im?gen
  */
 function rmmfSaveImg(){
 	global $db, $mc;
@@ -430,7 +403,7 @@ function rmmfSaveImg(){
 		$newname = $upload->getSavedFileName();
 	}	
 		
-	// Redimensionamos las imágenes
+	// Redimensionamos las im?genes
 	rmmf_image_resize($dir . $newname, $dir . $newname, $mc['imgw'], $mc['imgh']);
 	if (!is_dir($dir . 'ths/')){ mkdir($dir . 'ths/', 0777); }
 	//rmmf_image_resize($dir . $newname, $dir . 'ths/' . $newname, $mc['thw'], $mc['thh']);
@@ -449,7 +422,7 @@ function rmmfSaveImg(){
 }
 
 /**
- * Eliminamos una imágen
+ * Eliminamos una im?gen
  */
 function rmmfDelImg(){
 	global $db, $mc;
@@ -514,4 +487,3 @@ switch ($op){
 		rmmfShow();
 		break;
 }
-?>
