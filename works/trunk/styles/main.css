@@ -1,0 +1,198 @@
+/** Encabezado **/
+div.pwHeader{
+	padding: 0px 0px 10px 0;
+	border-bottom: 4px solid #CCC;
+	margin: 0 0 10px 0;
+}
+div.pwHeader a{
+	padding-right: 10px;
+}
+div.pwHeader h1{
+	margin: 0;
+}
+
+h2.pwWorks{
+	margin: 0 0 10px 0;
+}
+span#pwShowCategos{
+	float: right;
+	background: url(../images/down.gif) no-repeat left;
+	padding-left: 8px;
+	width: 100px;
+}
+/** Navegador de páginas **/
+span.infoNavPage{
+	padding: 20px 0px 0px 10px;
+}
+div.navPage{
+	float: right;
+}
+/** Lista de Categorías **/
+div#showCategos{
+	position: absolute;
+	display: none;
+	border: 1px solid #c8c8c8;
+	background-color: #FFF;					
+}
+div#showCategos ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div#showCategos li{
+	padding-left: 12px;
+	background-image: url(../images/arrow.gif);
+	background-repeat:  no-repeat;
+	background-position: 4px;
+	list-style: none;
+}
+div#showCategos a{
+	text-decoration: none;
+	font-weight: bold;
+}
+/** Trabajos Recientes **/
+div.pwRecentsAll{
+	margin-bottom: 10px;
+	padding: 0 0 8px 0;
+}
+div.pwRecent{
+	display: block;
+	overflow: hidden;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+div.pwRecent img{
+	float: left;
+	padding: 2px;
+	border: 1px solid #666;
+}
+div.pwRecent span.desc{
+	line-height: 150%;
+	display: block;
+}
+div.pwRecent span.info{
+	color: #666;
+}
+div.pwRecent span.info strong{
+	color: #000;
+}
+div.pwRecent h3{
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+}
+div.pwRecentsAll span.pwRecentsShowAlls{
+	display: block;
+	text-align: right;
+	padding: 5px;
+}
+
+span.featured{
+	color: #0099ff;
+	font-size: 11px;
+	padding: 0 0 0 10px;
+}
+
+/** Trabajos Destacados **/
+div.pwFeaturedsAll{
+	border: 1px solid #ccc;
+	background-color: #FFFFC0;
+	margin: 0 0 10px 0;
+}
+div.pwFeatured{
+	display: block;
+	overflow: auto;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+div.pwFeatured img{
+	float: left;
+	padding: 2px;
+	border: 1px solid #666;
+	background: #FFF;
+}
+div.pwFeatured span.desc{
+	display: block;
+	line-height: 150%;
+}
+div.pwFeatured span.info{
+	color: #666;
+}
+div.pwFeatured span.info strong{
+	color: #000;
+}
+div.pwFeatured h3{
+	font-size: 14px;
+	margin: 0 0 5px 0;
+}
+div.pwFeaturedsAll span.pwFeaturedsShowAlls{
+	text-align: right;
+	display: block;
+	padding: 5px;
+}
+/** Detalles del trabajo **/
+div.pwWork{
+	padding: 10px;
+}
+div.pwDetails img{
+	float: left;
+	padding-right: 10px;
+}
+div.pwDetails{
+	display: block;
+	overflow: auto;
+	padding-bottom: 20px;
+}
+div.pwDetails span{
+	display: block;
+	font-size: 12px;
+	line-height: 150%;
+}
+div.pwDetails h2{
+	font-size: 20px;
+	margin: 0 0 10px 0;
+}
+span.pwTitle span.pwMark{
+	color: #666;
+	font-size: 14px;
+	display: inline;
+}
+div.pwWork div.pwComment{
+	font-size: 18px;
+	font-style: italic;
+	text-align: center;
+	padding: 6px;
+	border: 1px dashed #CCC;
+}
+div.pwComment span{
+	display: block;
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+	margin-top: 10px;
+}
+span.pwWorkDesc{
+	font-size: 12px;
+	line-height: 150%;
+}
+div.pwImages{
+	overflow: auto;
+}
+div.pwImages img{
+	padding: 1px;
+	border: 1px solid #999;	
+}
+div.pwImages a{
+	float: left;
+	padding: 10px;
+	text-decoration: none;
+	display: block;
+	border: 1px solid #ddd;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+table.pwDetails td{
+	padding: 3px 8px 3px 3px;
+}

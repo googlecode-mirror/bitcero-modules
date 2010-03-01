@@ -1,0 +1,20 @@
+<form name="frmtypes" method="POST" action="types.php">
+<table cellspacing="1">
+	<tr>
+		<th colspan="2"><{if $edit}><{$lang_edittype}><{else}><{$lang_newtype}><{/if}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"></td>
+		<td><{$lang_type}></td>
+	</tr>
+	<{foreach item=field from=$fields}>
+	<tr class="<{cycle values='even,odd'}>">
+		<td align="center"><strong><{$field.i}></strong></td>
+		<td><{$lang_name}> 
+		<input type="text" size="50" value="" name="type[$field.i}>" />
+		</td>
+
+	</tr>
+	<{/foreach}>
+</table>
+</form>

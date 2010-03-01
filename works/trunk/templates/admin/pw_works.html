@@ -1,0 +1,56 @@
+<form name="frmNav" method="POST" action="works.php">
+	<table width="100%" cellspacing="1" class="outer">
+		<tr>
+			<td><{$lang_showing}></td>
+			<td><input type="text" name="limit" value="<{$limit}>" size="3" />
+			    <input type="submit"  value="<{$lang_submit}>" class="formButton" />
+			</td>
+			<td width="34%" align="right"><{$worksNavPage}></td>
+		</tr>
+	</table>
+</form>
+<form name="frmWorks" method="POST" action="works.php">
+<table class="outer" cellspacing="1" widht="100%">
+	<tr>
+		<th colspan="9"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmWorks','checkAll')" /> </td>
+		<td width="30"><{$lang_id}></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_catego}></td>
+		<td><{$lang_client}></td>
+		<td><{$lang_start}></td>
+		<td><{$lang_mark}></td>
+		<td><{$lang_public}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=work from=$works}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="ids[]" value="<{$work.id}>"</td>
+		<td><strong><{$work.id}></strong></td>
+		<td align="left"><{$work.title}></td>
+		<td align="left"><{$work.catego}></td>
+		<td align="left"><{$work.client}></td>
+		<td><{$work.start}></td>
+		<td><{if $work.mark}><img src="<{$xoops_url}>/modules/works/images/ok.png" /><{else}><img src="<{$xoops_url}>/modules/works/images/no.png" /><{/if}></td>
+		<td><{if $work.public}><img src="<{$xoops_url}>/modules/works/images/ok.png" /><{else}><img src="<{$xoops_url}>/modules/works/images/no.png" /><{/if}></td>
+		<td><a href="./works.php?op=edit&amp;id=<{$work.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>"><{$lang_edit}></a> &bull; <a href="./works.php?op=delete&amp;ids=<{$work.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>"><{$lang_delete}></a> &bull; <a href="./images.php?work=<{$work.id}>"><{$lang_images}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>	
+		<td colspan="8"><input type="submit" class="formButton" value="<{$lang_delete}>" onclick="document.forms['frmWorks'].op.value='delete';" />
+		<input type="submit" class="formButtonBlue" value="<{$lang_pub}>" onclick="document.forms['frmWorks'].op.value='public';" />
+		<input type="submit" class="formButtonRed" value="<{$lang_nopub}>" onclick="document.forms['frmWorks'].op.value='nopublic';" />
+		<input type="submit" class="formButtonGreen" value="<{$lang_mk}>" onclick="document.forms['frmWorks'].op.value='mark';" />
+		<input type="submit" class="formButtonGold" value="<{$lang_nomark}>" onclick="document.forms['frmWorks'].op.value='nomark';" />
+		</td>
+			
+	</tr>
+</table>
+<{$token}>
+<input type="hidden" name="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+<input type="hidden" name="limit" value="<{$limit}>" />
+</form>

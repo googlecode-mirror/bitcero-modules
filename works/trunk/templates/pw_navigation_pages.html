@@ -1,0 +1,21 @@
+<div class="<{$navigationClass}>" >
+<{if $navigationTotalPages>1}>
+    <{foreach item=page from=$navigationPages}>
+        <{if $page.id=='next'}>
+            <a href="<{$navigationParams}><{$page.num}>/"><img src="<{$navigationNextImage}>" border="0" alt="" align="absmiddle" width="16" height="16" /></a>
+        <{elseif $page.id=='last'}>
+            <a href="<{$navigationParams}><{$page.num}>/" title="<{$lang_last}>"><img src="<{$navigationLastImage}>" border="0" alt="" align="absmiddle" /></a>
+        <{elseif $page.id=='first'}>
+            <a href="<{$navigationParams}><{$page.num}>/" title="<{$lang_first}>"><img src="<{$navigationFirstImage}>" border="0" alt="" align="absmiddle" /></a>
+        <{elseif $page.id=='previous'}>
+            <a href="<{$navigationParams}><{$page.num}>/" border="0" alt="" align="absmiddle"><img src="<{$navigationPrevImage}>" border="0" alt="" align="absmiddle" /></a>
+        <{else}>
+        <{if $navigationCurrentPage==$page.id}>
+            <span class="exmPageSelect"><{$page.id}></span>
+        <{else}>
+            <{if $page.salto==2}> &middot;&middot;&middot; <{/if}> <a href="<{$navigationParams}><{$page.num}>/" class="exmPageLink"><{$page.id}></a> <{if $page.salto==1}>  &middot;&middot;&middot; <{/if}>
+            <{/if}>
+        <{/if}>
+<{/foreach}>
+<{/if}>
+</div>

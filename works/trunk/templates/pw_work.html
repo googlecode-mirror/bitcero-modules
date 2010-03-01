@@ -1,0 +1,109 @@
+<{include file="db:pw_header.html"}>
+<!-- Detalles del Trabajo -->
+<div class="pwWork">
+
+	<div class="pwDetails">
+		<img src="<{$work.image}>" alt="<{$work.title}>" />
+	
+		<div style="margin-left:<{$width}>px;">
+		<h2><{$work.title}> <{if $work.mark}><span class="pwMark">[<{$lang_mark}>]<{/if}></span></h3>
+		<table class="pwDetails" cellspacing="1">
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_catego}></strong></td>
+				<td><a href="<{$work.linkcat}>"><{$work.catego}></a></td>
+			</tr>
+			<{if $work.client}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_client}></strong></td>
+				<td><{$work.client}></td>
+			</tr>
+			<{/if}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_start}></strong></td>
+				<td><{$work.start}></td>
+			</tr>
+			<{if $work.period}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_period}></strong></td>
+				<td><{$work.period}></td>
+			</tr>
+			<{/if}>
+			<{if $work.cost}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_cost}></strong></td>
+				<td><{$work.cost}></td>
+			</tr>
+			<{/if}>
+			<{if $work.url}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_site}></strong></td>
+				<td><a href="<{$work.url}>" target="_blank"><{$work.site}></a></td>
+			</tr>
+			<{/if}>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_rating}></strong></td>
+				<td><{$work.rating}></td>
+			</tr>
+			<tr class="<{cycle values="even,odd"}>">
+				<td><strong><{$lang_views}></strong></td>
+				<td><{$work.views}></td>
+			</tr>
+		</table>
+		</div>
+	</div>
+
+	<{if $work.comment}>
+		<div class="pwComment">
+		"<{$work.comment}>"
+		<span><{$work.client}></span>
+		</div>
+	<{/if}>
+
+	<h3><{$lang_desc}></h3>
+	<span class="pwWorkDesc"><{$work.desc}></span>
+
+	<!-- Imagenes del trabajo -->
+	<h3><{$lang_images}></h3>
+	<div class="pwImages">
+		<{foreach item=img from=$images}>
+		<a style="width: <{$widthimg}>px;" href="<{$img.link_image}>" rel="lightbox[roadtrip]"><img src="<{$img.image}>" /><br /><{$img.title}></a>
+		<{/foreach}>
+	</div>
+	<!-- //Fin de imágenes del trabajo -->
+</div>
+<!-- //Fin de Detalles del Trabajo -->
+<!-- Otros Trabajos -->
+<{if $works_type}>
+<h2 class="pwWorks"><{$lang_others}></h2>
+<div class="pwFeaturedsAll">
+	<{foreach item=feat from=$works}>
+	<div class="<{cycle values="even,odd"}> pwFeatured">
+		<a href="<{$feat.link}>"><img src="<{$feat.image}>" alt="<{$feat.title}>" /></a>
+		<div style="margin-left: <{$widthOther}>px;">		
+		<h3><a href="<{$feat.link}>"><{$feat.title}></a></h3>
+		<span class="desc"><{$feat.desc}></span>	
+		<span class="info"><strong><{$lang_catego}></strong> <a href="<{$feat.linkcat}>"><{$feat.catego}></a> |
+		<strong><{$lang_date}></strong> <{$feat.created}> |
+		<{if $feat.client}><strong><{$lang_client}></strong> <{$feat.client}><{/if}></span>
+		</div>
+	</div>
+	<{/foreach}>
+</div>
+<{else}>
+<h2 class="pwWorks"><{$lang_others}></h2>
+<div class="pwRecentsAll">
+	<{foreach item=work from=$works}>
+	<div class="<{cycle values="even,odd"}> pwRecent">
+	<a href="<{$rowk.link}>"><img src="<{$work.image}>" alt="<{$work.title}>" /></a>
+	<div style="margin-left: <{$widthOther}>px;">		
+		<h3><a href="<{$work.link}>"><{$work.title}></a></h3>
+		<span class="desc"><{$work.desc}></span>	
+		<span class="info"><strong><{$lang_catego}></strong> <a href="<{$work.linkcat}>"><{$work.catego}></a> |
+		<strong><{$lang_date}></strong> <{$work.created}> |
+		<{if $work.client}><strong><{$lang_client}></strong> <{$work.client}><{/if}></span>
+	</div>
+	</div>
+	<{/foreach}>
+</div>
+<{/if}>
+<!-- //Fin de otros trabajos -->

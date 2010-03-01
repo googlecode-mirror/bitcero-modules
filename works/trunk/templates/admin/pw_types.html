@@ -1,0 +1,29 @@
+<form name="frmTypes" method="POST" action="types.php">
+<table width="100%" cellspacing="1" class="outer">
+	<tr>
+		<th colspan="4"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmTypes','checkAll')" /></td>
+		<td width="30"><{$lang_id}></td>
+		<td><{$lang_type}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=type from=$types}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="ids[]" value="<{$type.id}>" /></td>
+		<td><strong><{$type.id}></strong></td>
+		<td align="left"><{$type.type}></td>
+		<td><a href="./types.php?op=edit&amp;ids=<{$type.id}>"><{$lang_edit}></a> &bull; <a href="./types.php?op=delete&amp;ids=<{$type.id}>"><{$lang_delete}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="3">
+			<input type="submit" class="formButtonRed" value="<{$lang_edit}>" onclick="document.forms['frmTypes'].op.value='edit';" />
+			<input type="submit" class="formButton" value="<{$lang_delete}>" onclick="document.forms['frmTypes'].op.value='delete';" />
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+</form>

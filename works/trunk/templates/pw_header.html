@@ -1,0 +1,14 @@
+<div class="pwHeader">
+	<h1><{$pw_title}></h1>
+	<span id="pwShowCategos"><a href="javascript:;" onclick="<{$url_categos}>"><{$lang_categos}></a></span>
+	<a href="<{$url_home}>"><{$lang_home}></a> 
+	<a href="<{$url_recent}>"><{$lang_recentsalls}></a> 
+	<a href="<{$url_featured}>"><{$lang_featuredsalls}></a> 
+	<div id="showCategos">
+		<ul class="even">
+		<{foreach item=cat from=$categos}>
+		<li class="<{cycle values='even,odd'}>"><a href="<{$cat.link}>"><{$cat.name}></a></li>
+		<{/foreach}>
+		</ul>
+	</div>
+</div>

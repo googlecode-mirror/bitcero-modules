@@ -1,0 +1,87 @@
+<?php
+// $Id$
+// --------------------------------------------------------------
+// Professional Works
+// Module for personals and professionals portfolios
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
+
+include '../../mainfile.php';
+
+$docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
+$root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
+$request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
+
+if ($xoopsModuleConfig['urlmode']>0){
+    $request = str_replace(rtrim($xoopsModuleConfig['htbase'],'/').'/', '', rtrim($request,'/').'/');
+}
+
+$yesquery = false;
+
+if (substr($request, 0, 1)=='?'){ $request = substr($request, 1); $yesquery=true; }
+if ($request=='' || $request=='index.php'){
+	require 'home.php';
+	die();
+}
+
+$vars = array();
+parse_str($request, $vars);
+
+$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : 0;
+if (isset($vars['work'])){ $post = $vars['work']; require 'work.php'; die(); }
+if (isset($vars['cat'])){ $category = $vars['cat']; require 'catego.php'; die(); }
+
+$vars = explode('/', rtrim($request,'/'));
+
+/**
+ * Si el primer valor es category entonces se realiza la búsqueda por
+ * categoría
+ */
+if ($vars[0]=='category'){
+	$id = $vars[1];
+	require 'catego.php';
+	die();
+}
+
+if ($vars[0]=='recent'){
+	$categotype = 1;
+	require 'recent.php';
+	die();
+}
+
+if ($vars[0]=='featured'){
+	require 'featured.php';
+	die();
+}
+
+if ($vars[0]=='page'){
+	$page = $vars[1];
+	require 'home.php';
+	exit();
+}
+
+/**
+* Work
+*/
+if (!empty($vars[0])){
+	$id = $vars[0];
+	require 'work.php';
+	exit();
+}
+
+if ($yesquery){
+	require 'home.php';
+	exit();
+}
+
+header("HTTP/1.0 404 Not Found");
+if (substr(php_sapi_name(), 0, 3) == 'cgi')
+      header('Status: 404 Not Found', TRUE);
+  	else
+      header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+
+echo "<h1>ERROR 404. Document not Found</h1>";
+exit();
+
