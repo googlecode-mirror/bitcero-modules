@@ -1,0 +1,9 @@
+<{foreach item=work from=$block.works}>
+<div style="text-align: center; padding: 3px;">
+	<a href="<{$xoops_url}>/modules/rmmf/view.php?id=<{$work.id}>"><{$work.titulo}></a><br />
+	<a href="<{$xoops_url}>/modules/rmmf/view.php?id=<{$work.id}>"><img style="border: 1px solid #CCCCCC;" src='<{$work.img}>' border='0' /></a>
+</div>
+<div style="font-size: 10px; text-align: center;">
+	<{$work.desc}>
+</div>
+<{/foreach}>
