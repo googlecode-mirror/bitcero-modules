@@ -9,26 +9,20 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Professional Works";
-$modversion['version'] = array('number'=>1,'revision'=>100,'status'=>0,'name'=>'Professional Works');
+$modversion['version'] = 2;
+$modversion['rmversion'] = array('number'=>2,'revision'=>001,'status'=>0,'name'=>'Professional Works');
 $modversion['description'] = _MI_PW_MODDESC;
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
+$modversion['icon16'] = 'images/icon16.png';
 $modversion['author'] = "BitC3R0";
-$modversion['authorlink'] = "mailto:bitc3r0@gmail.com";
-$modversion['authorweb'] = "Red México";
-$modversion['authorurl'] = "http://www.redmexico.com.mx";
-$modversion['url'] = 'www.exmsystem.org';
 $modversion['credits'] = "Red México";
 $modversion['help'] = "http://www.redmexico.com.mx/modules/ahelp/";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['official'] = 1;
+$modversion['rmnative'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "works";
 $modversion['icon48'] = "images/logo.png";
-$modversion['deflang'] = 'spanish';
-$modversion['updatable'] = 1;
-$modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=10';
-$modversion['onUpdate']="update.php";
 
 //Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
@@ -52,20 +46,6 @@ $modversion['tables'][1] = "pw_works";
 $modversion['tables'][2] = "pw_images";
 $modversion['tables'][3] = "pw_clients";
 $modversion['tables'][4] = "pw_types";
-
-// Templates del Modulo
-$modversion['templates'][0]['file'] = 'admin/pw_index.html';
-$modversion['templates'][0]['description'] = '';
-$modversion['templates'][1]['file'] = 'admin/pw_categories.html';
-$modversion['templates'][1]['description'] = '';
-$modversion['templates'][2]['file'] = 'admin/pw_clients.html';
-$modversion['templates'][2]['description'] = '';
-$modversion['templates'][3]['file'] = 'admin/pw_types.html';
-$modversion['templates'][3]['description'] = '';
-$modversion['templates'][4]['file'] = 'admin/pw_works.html';
-$modversion['templates'][4]['description'] = '';
-$modversion['templates'][5]['file'] = 'admin/pw_images.html';
-$modversion['templates'][5]['description'] = '';
 
 /*
 // Front Section Templates
@@ -267,4 +247,3 @@ $modversion['blocks'][3]['edit_func'] = "";
 $modversion['blocks'][3]['template'] = 'pw_bk_cats.html';
 $modversion['blocks'][3]['options'] = array(1);
 
-?>

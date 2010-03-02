@@ -8,10 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('PW_LOCATION','index');
+define('RMCLOCATION','index');
 include 'header.php';
-
-
 
 //Inicio
 $tpl->append('options', array('text'=>_AS_PW_HOME, 'info'=>_AS_PW_CLICK,
