@@ -1,86 +1,47 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Advanced Portfolio System
+// Author: BitC3R0 <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('PW_LOCATION','categories');
+define('RMCLOCATION','categories');
 include 'header.php';
 
-/**
-* @desc Barra de Menus
-*/
-function optionsBar(){
-	global $tpl;
-	
-	$tpl->append('xoopsOptions', array('link' => './categos.php', 'title' => _AS_PW_CATEGOS, 'icon' => '../images/cats16.png'));
-	$tpl->append('xoopsOptions', array('link' => './categos.php?op=new', 'title' => _AS_PW_NEWCATEGO, 'icon' => '../images/add.png'));
-}
-
 function showCategories(){
-	global $xoopsModule, $mc, $tpl, $db, $adminTemplate, $util;
-	
-	$tpl->assign('lang_existing', _AS_PW_EXISTING);
-	$tpl->assign('lang_id', _AS_PW_ID);
-	$tpl->assign('lang_name', _AS_PW_NAME);
-	$tpl->assign('lang_desc', _AS_PW_DESC);
-	$tpl->assign('lang_works', _AS_PW_WORKS);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_active', _AS_PW_ACTIVE);
-	$tpl->assign('lang_order',_AS_PW_ORDER);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_save',_AS_PW_SAVE);
-	$tpl->assign('token',$util->getTokenHTML());
-	$tpl->assign('lang_activ',_AS_PW_ACTIV);
-	$tpl->assign('lang_desactive',_AS_PW_DESACTIVE);
+	global $xoopsModule, $mc, $tpl, $db, $xoopsSecurity;
 
-	
+	$categories = array();
 	$result = $db->query("SELECT * FROM ".$db->prefix("pw_categos")." ORDER BY `order`,active");
 	while ($row = $db->fetchArray($result)){
 		$cat = new PWCategory();
 		$cat->assignVars($row);
 		$link = PW_URL.'/'.($mc['urlmode'] ? 'cat/'.$cat->nameId().'/' : 'category.php?id='.$cat->id());
-		$tpl->append('categos', array('id'=>$cat->id(),'link'=>$link,'name'=>$cat->name(),'active'=>$cat->active(),
-		'order'=>$cat->order(),'works'=>$cat->works()));
+		$categories[] = array('id'=>$cat->id(),'link'=>$link,'name'=>$cat->name(),'active'=>$cat->active(),
+		'order'=>$cat->order(),'works'=>$cat->works());
 	}
 
 	
-	optionsBar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_CATLOC);
-	$adminTemplate = "admin/pw_categories.html";
+	PWFunctions::toolbar();
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works Categories','admin_works'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Works Categories','admin_works'));
+	RMTemplate::get()->add_style('admin.css', 'works');
 	xoops_cp_header();
 	
+	include RMTemplate::get()->get_template("admin/pw_categories.php", 'module', 'works');
 	xoops_cp_footer();
 }
 
 function formCategory($edit = 0){
 	global $mc, $xoopsModule, $db;
 	
-	optionsBar();
+	PWFunctions::toolbar();
+	RMTemplate::get()->assign('xoops_pagetitle',$edit?__('Edit Category','admin_works'):__('Add Category','admin_works'));
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; 
-		<a href='categos.php'>"._AS_PW_CATLOC.'</a> &raquo; '.($edit ? _AS_PW_FEDIT : _AS_PW_FNEW));
+		<a href='categos.php'>".__('Categories','admin_works').'</a> &raquo; '.($edit ? __('Edit Category','admin_works') : __('Add Category','admin_works')));
 	xoops_cp_header();
 
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
@@ -89,33 +50,33 @@ function formCategory($edit = 0){
 	if ($edit){
 		//Verificamos si la categoría es válida
 		if ($id<=0){
-			redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATVALID,1);
+			redirectMsg('./categos.php?op=edit&id='.$id,__('Provide a category ID!','admin_works'),1);
 			die();
 		}
 
 		//Verificamos si la categoría existe
 		$cat = new PWCategory($id);
 		if ($cat->isNew()){
-			redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATEXIST,1);
+			redirectMsg('./categos.php?op=edit&id='.$id,__('Specified category was not found!','admin_works'),1);
 			die();
 		}
 	}
 
 	
-	$form = new RMForm($edit ? _AS_PW_FEDIT : _AS_PW_FNEW,'frmNew','categos.php');
+	$form = new RMForm($edit ? __('Edit Category','admin_works') : __('Add Category','admin_works'),'frmNew','categos.php');
 
-	$form->addElement(new RMText(_AS_PW_FNAME, 'name', 50, 150, $edit ? $cat->name() : ''), true);
+	$form->addElement(new RMFormText(__('Name','admin_works'), 'name', 50, 150, $edit ? $cat->name() : ''), true);
 
-	if ($edit) $form->addElement(new RMText(_AS_PW_FSHORTNAME, 'nameid', 50, 150, $cat->nameId()), true);
-	$form->addElement(new RMEditor(_AS_PW_FDESC, 'desc', '90%','250px', $edit ? $cat->desc('e') : ''));
-	$form->addElement(new RMYesNo(_AS_PW_FACTIVE, 'active', $edit ? $cat->active() : 1));
-	$form->addElement(new RMText(_AS_PW_FORDER, 'order', 8, 3, $edit ? $cat->order() : 0), true, 'num');
+	if ($edit) $form->addElement(new RMFormText(__('Short name','admin_works'), 'nameid', 50, 150, $cat->nameId()), true);
+	$form->addElement(new RMFormEditor(__('Description','admin_works'), 'desc', '100%','250px', $edit ? $cat->desc('e') : ''));
+	$form->addElement(new RMFormYesNo(__('Enable category','admin_works'), 'active', $edit ? $cat->active() : 1));
+	$form->addElement(new RMFormText(__('Display order','admin_works'), 'order', 8, 3, $edit ? $cat->order() : 0), true, 'num');
 
 	
-	$form->addElement(new RMHidden('op', $edit ? 'saveedit' : 'save'));
-	if ($edit) $form->addElement(new RMHidden('id', $cat->id()));
-	$ele = new RMButtonGroup();
-	$ele->addButton('sbt', _SUBMIT, 'submit');
+	$form->addElement(new RMFormHidden('op', $edit ? 'saveedit' : 'save'));
+	if ($edit) $form->addElement(new RMFormHidden('id', $cat->id()));
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', $edit ? __('Save Changes!','admin_works') : __('Add Now!','admin_works'), 'submit');
 	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'categos.php\';"');
 	$form->addElement($ele);
 	$form->display();
@@ -125,28 +86,28 @@ function formCategory($edit = 0){
 }
 
 function saveCategory($edit = 0){
-	global $db, $mc, $util;
+	global $db, $mc, $xoopsSecurity;
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
 	
-	if (!$util->validateToken()){
-		redirectMsg('./categos.php?op='.($edit ? 'edit&id='.$id : 'new'), _AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./categos.php?op='.($edit ? 'edit&id='.$id : 'new'), __('Session token expired!', 'admin_works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos si la categoría es válida
 		if ($id<=0){
-			redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATVALID,1);
+			redirectMsg('./categos.php?op=edit&id='.$id,__('Wrong category ID!','admin_works'),1);
 			die();
 		}
 
 		//Verificamos si la categoría existe
 		$cat = new PWCategory($id);
 		if ($cat->isNew()){
-			redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATEXIST,1);
+			redirectMsg('./categos.php?op=edit&id='.$id,__('Specified category does not exists!','admin_works'),1);
 			die();
 		}
 
@@ -154,7 +115,7 @@ function saveCategory($edit = 0){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_categos')." WHERE name='$name' AND id_cat<>'$id'";
 		list($num) = $db->fetchRow($db->query($sql));
 		if ($num>0){
-			redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATNAMEEXIST,1);
+			redirectMsg('./categos.php?op=edit&id='.$id,__('A category with same name already exists!','admin_works'),1);
 			die();
 		}
 
@@ -163,7 +124,7 @@ function saveCategory($edit = 0){
 			$sql="SELECT COUNT(*) FROM ".$db->prefix('pw_categos')." WHERE nameid='$nameid' AND id_cat<>'".$id."'";
 			list($num)=$db->fetchRow($db->queryF($sql));
 			if ($num>0){
-				redirectMsg('./categos.php?op=edit&id='.$id,_AS_PW_ERRCATNAMEID,1);
+				redirectMsg('./categos.php?op=edit&id='.$id,__('There are already a category with same name id!','admin_works'),1);
 				die();
 			}
 
@@ -179,7 +140,7 @@ function saveCategory($edit = 0){
 	$i = 0;
 	if ($name!=$cat->name() || empty($nameid)){
 		do{
-			$nameid = $util->sweetstring($name).($found ? $i : '');
+			$nameid = TextCleaner::sweetstring($name).($found ? $i : '');
         		$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_categos'). " WHERE nameid = '$nameid'";
         		list ($num) =$db->fetchRow($db->queryF($sql));
         		if ($num>0){
@@ -200,10 +161,10 @@ function saveCategory($edit = 0){
 	$cat->isNew() ? $cat->setCreated(time()) : '';
 
 	if (!$cat->save()){
-		redirectMsg('./categos.php',_AS_PW_DBERROR.$cat->errors(),1);
+		redirectMsg('./categos.php',__('Errors ocurred while trying to update database!','admin_works').'<br />'.$cat->errors(),1);
 		die();
 	}else{
-		redirectMsg('./categos.php',_AS_PW_DBOK,0);
+		redirectMsg('./categos.php',__('Database updated successfully!','admin_works'),0);
 		die();
 	}
 }

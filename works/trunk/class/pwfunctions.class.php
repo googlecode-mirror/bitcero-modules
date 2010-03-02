@@ -166,6 +166,16 @@ class PWFunctions
 		return $works;
 		
 	}
+	
+	/**
+	* Create toolbar
+	*/
+	public function toolbar(){
+		RMTemplate::get()->add_tool(__('Dashboard','admin_works'), './index.php', '../images/dashboard.png', 'dashboard');
+		RMTemplate::get()->add_tool(__('Categories','admin_works'), './categos.php', '../images/cats16.png', 'categories');
+		RMTemplate::get()->add_tool(__('Customer Types','admin_works'), './types.php', '../images/types.png', 'customertypes');
+		RMTemplate::get()->add_tool(__('Customers','admin_works'), './clients.php', '../images/clients.png', 'customers');
+		RMTemplate::get()->add_tool(__('Works','admin_works'), './works.php', '../images/works.png', 'works');
+	}
 
 }
-?>

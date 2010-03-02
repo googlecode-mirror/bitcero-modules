@@ -1,0 +1,72 @@
+.pw_options{
+	padding: 5px;
+	overflow: hidden;
+}
+/** Página de Inicio **/
+div#pwOptions{
+    padding: 6px;
+    max-width: 420px;
+    *width: 420px;
+    float: left;
+    margin-right: 10px;
+}
+div#pwOptions a{
+    width: 120px;
+    height: 100px;
+    display: block;
+    float: left;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    margin: 3px;
+    background: url(../../system/images/bgoptions.png) no-repeat 0 115px;
+}
+div#pwOptions a img{
+    border: 0;
+    margin: 4px auto 8px auto;
+    display: block;
+}
+div#pwOptions a span{
+    font-size: 0.85em;
+    font-weight: normal;
+    display: block;
+    color: #ff4400;
+}
+div#pwOptions a:hover{
+    background-position: 0 0;
+    /*border: 1px solid #ccc;*/
+}
+div#pwOptions a:hover span{
+    color: #333;
+    text-decoration: underline;
+}
+div#pwVersion{
+	font-size: 0.9em;
+	padding: 0 5px 0 30px;
+	height: 100%;
+	margin-left: 420px;
+	border-left: 2px solid #c8c8c8;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+div#pwVersion div.pwErrAccess{
+	padding: 5px;
+	background-color: #FEFCEB;
+	border: 1px dotted #FFCC00;
+	color: #666;
+}
+div#pwVersion div#htcode{
+	display: none;
+	margin: 10px;
+	background-color: #FFF;
+	border: 1px dashed #CCC;
+	padding: 8px;
+}
+div#versionInfo{
+	min-height: 500px;
+}
+div#versionInfo div#xo-logger-output{
+	display: none;
+}
+/** Fin de Página de inicio **/
