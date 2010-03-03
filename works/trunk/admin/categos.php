@@ -20,8 +20,15 @@ function showCategories(){
 		$cat = new PWCategory();
 		$cat->assignVars($row);
 		$link = PW_URL.'/'.($mc['urlmode'] ? 'cat/'.$cat->nameId().'/' : 'category.php?id='.$cat->id());
-		$categories[] = array('id'=>$cat->id(),'link'=>$link,'name'=>$cat->name(),'active'=>$cat->active(),
-		'order'=>$cat->order(),'works'=>$cat->works());
+		$categories[] = array(
+            'id'        => $cat->id(),
+            'link'      => $link,
+            'name'      => $cat->name(),
+            'active'    => $cat->active(),
+		    'order'     => $cat->order(),
+            'works'     => $cat->works(),
+            'nameid'    => $cat->nameId()
+        );
 	}
 
 	
@@ -29,6 +36,7 @@ function showCategories(){
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works Categories','admin_works'));
 	RMTemplate::get()->assign('xoops_pagetitle', __('Works Categories','admin_works'));
 	RMTemplate::get()->add_style('admin.css', 'works');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/pw_categories.php", 'module', 'works');
@@ -175,14 +183,18 @@ function saveCategory($edit = 0){
 **/
 function deleteCategory(){
 
-	global $util, $xoopsModule, $db;
+	global $xoopsModule, $db, $xoopsSecurity;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-
+    
+    if (!$xoopsSecurity->check()){
+        
+    }
+    
 	//Verificamos que nos hayan proporcionado una categoría para eliminar
 	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./categos.php',_AS_PW_ERRNOTCATDEL,1);
+		redirectMsg('./categos.php',__('No categories selected!','admin_works'),1);
 		die();
 	}
 	
@@ -192,10 +204,8 @@ function deleteCategory(){
 	}
 
 
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./categos.php',_AS_PW_ERRSESSID, 1);
+		if (!$xoopsSecurity->check()){
+			redirectMsg('./categos.php',__('Session token expired!','admin_works'), 1);
 			die();
 		}
 
@@ -203,19 +213,19 @@ function deleteCategory(){
 		foreach ($ids as $k){
 			//Verificamos si la categoría es válida
 			if ($k<=0){
-				$errors.=sprintf(_AS_PW_NOTVALID, $k);
+				$errors.=sprintf(__('Category ID invalid!','admin_works'), $k);
 				continue;
 			}
 
 			//Verificamos si la categoría existe
 			$cat = new PWCategory($k);
 			if ($cat->isNew()){
-				$errors.=sprintf(_AS_PW_NOTEXIST, $k);
+				$errors.=sprintf(__('Category does not exists!','admin_works'), $k);
 				continue;
 			}
 		
 			if (!$cat->delete()){
-				$errors.=sprintf(_AS_PW_NOTDELETE,$k);
+				$errors.=sprintf(__('Category could not be deleted!','admin_works'),$k);
 			}else{
 				$sql = "UPDATE ".$db->prefix('pw_categos')." SET parent='".$cat->parent()."' WHERE parent='".$cat->id()."'";
 				$result = $db->queryF($sql);
@@ -224,35 +234,13 @@ function deleteCategory(){
 		}
 	
 		if ($errors!=''){
-			redirectMsg('./categos.php',_AS_PW_DBERRORS.$errors,1);
+			redirectMsg('./categos.php',__('Errors ocurred while trying to delete categories').'<br />'.$errors,1);
 			die();
 		}else{
-			redirectMsg('./categos.php',_AS_PW_DBOK,0);
+			redirectMsg('./categos.php',__('Database updated successfully!','admin_works'),0);
 			die();
 		}
 
-
-	}else{
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; 
-		<a href='categos.php'>"._AS_PW_CATLOC.'</a> &raquo; '._AS_PW_DELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'categos.php\';"';
-		
-		$util->msgBox($hiddens, 'categos.php',($catego ? sprintf(_AS_PW_DELETECONF, $catego->name()) : _AS_PW_DELETECONFS). '<br /><br />' ._AS_PW_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
-	}
 }
 
 /**
