@@ -1,34 +1,18 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 define('GS_LOCATION','index');
 include 'header.php';
 
-
+$db = Database::getInstance();
+$myts =& MyTextSanitizer::getInstance();
 //Inicio
 $tpl->append('options', array('text'=>_AS_GS_HOME, 'info'=>_AS_GS_CLICK,
 		'link'=>'../','icon'=>'../images/home48.png'));
@@ -66,7 +50,7 @@ $tpl->append('options', array('text'=>_AS_GS_POSTCARDS, 'info'=>sprintf(_AS_GS_P
 //Espacio utilizado en disco
 $dir = str_replace(XOOPS_URL,XOOPS_ROOT_PATH,$xoopsModuleConfig['storedir']);
 $num = GSFunctions::folderSize($dir);
-$tpl->append('options', array('text'=>_AS_GS_SIZE, 'info'=>sprintf(_AS_GS_SIZENUM, formatBytesSize($num)),
+$tpl->append('options', array('text'=>_AS_GS_SIZE, 'info'=>sprintf(_AS_GS_SIZENUM, RMUtilities::formatBytesSize($num)),
 		'link'=>'','icon'=>'../images/hd48.png'));
 
 
@@ -116,4 +100,3 @@ $cHead .= '<link href="../styles/admin.css" media="all" rel="stylesheet" type="t
 xoops_cp_header($cHead);
 
 xoops_cp_footer();
-?>

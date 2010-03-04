@@ -1,29 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 class GSFunctions
 {
@@ -247,8 +230,18 @@ class GSFunctions
 
 	}
 
-
+	/**
+	* Create the toolbar for rmcommon
+	*/
+	public function toolbar(){
+		RMTemplate::get()->add_tool(__('Dashboard','admin_works'), './index.php', '../images/dashboard.png', 'dashboard');
+		RMTemplate::get()->add_tool(__('Albums','admin_works'), './sets.php', '../images/album.png', 'sets');
+		RMTemplate::get()->add_tool(__('Tags','admin_works'), './tags.php', '../images/tags.png', 'tags');
+		RMTemplate::get()->add_tool(__('Users','admin_works'), './users.php', '../images/users.png', 'users');
+		RMTemplate::get()->add_tool(__('Albums','admin_works'), './images.php', '../images/images.png', 'images');
+		RMTemplate::get()->add_tool(__('Postcards','admin_works'), './postcards.php', '../images/postcard.png', 'postcards');
+		
+		RMTemplate::get()->add_style('admin.css', 'galleries');
+	}
 	
 }
-
-?>

@@ -1,54 +1,24 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('GS_LOCATION','sets');
+define('RMCLOCATION','sets');
 include 'header.php';
-
-function optionsBar(){
-	global $tpl;
-
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_set';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-
-	$ruta = "&pag=$page&limit=$limit&sort=$sort&mode=$mode&search=$search";
-
-	$tpl->append('xoopsOptions', array('link' => './sets.php', 'title' => _AS_GS_SETS, 'icon' => '../images/album16.png'));
-	$tpl->append('xoopsOptions', array('link' => './sets.php?op=new'.$ruta, 'title' => _AS_GS_NEW, 'icon' => '../images/add.png'));
-	
-}
 
 /**
 * @desc Visualiza todos los albums
 **/
 function showAlbums(){
-	global $tpl, $xoopsModule, $mc, $adminTemplate, $db, $util;
+	global $tpl, $xoopsModule, $mc, $xoopsSecurity;
+	
+	define('RMSUBLOCATION','sets');
+	$db = Database::getInstance();
 
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
@@ -56,6 +26,8 @@ function showAlbums(){
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_set';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+	
+	$query = "search=$search&page=$page&limit=$limit&sort=$sort&mode=$mode";
 	
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_sets');
@@ -81,30 +53,20 @@ function showAlbums(){
 	list($num)=$db->fetchRow($db->query($sql.$sql1));
 	
 	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
+    $start = $page * $limit;
+    $tpages = (int)($num / $limit);
+    if($num % $limit > 0) $tpages++;
+    $pactual = $page + 1;
+    if ($pactual>$tpages){
+    	$rest = $pactual - $tpages;
+    	$pactual = $pactual - $rest + 1;
+    	$start = ($pactual - 1) * $limit;
+    }
 	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&sort='.$sort.'&mode='.$mode.'&search='.$search, 0);
-    	    $tpl->assign('setsNavPage', $nav->renderNav(4, 1));
-    	}
+	$nav = new RMPageNav($num, $limit, $page, 5);
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_GS_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	$tpl->assign('sort',$sort);
-	$tpl->assign('mode',$mode);
-	$tpl->assign('search',$search);
 	//Fin de barra de navegación
 
 	
@@ -113,6 +75,9 @@ function showAlbums(){
 	$sql2 = $sort ? " ORDER BY $sort ".($mode ? "DESC" : "ASC ") : '';
 	$sql2.= " LIMIT $start,$limit";
 	$result = $db->query($sql.$sql1.$sql2);
+	
+	$sets = array();
+	
 	while($rows = $db->fetchArray($result)){
 		
 		foreach ($words as $k){
@@ -123,36 +88,30 @@ function showAlbums(){
 		$set = new GSSet();
 		$set->assignVars($rows);
 
-		$tpl->append('sets',array('id'=>$set->id(),'title'=>$set->title(),'owner'=>$set->uname(),
-		'public'=>$set->isPublic(),'date'=>formatTimeStamp($set->date(),'string'),'pics'=>$set->pics(),
-		'url'=>$set->url()));
+		$sets[] = array(
+			'id'=>$set->id(),
+			'title'=>$set->title(),
+			'owner'=>$set->uname(),
+			'public'=>$set->isPublic(),
+			'date'=>formatTimeStamp($set->date(),'c'),
+			'pics'=>$set->pics(),
+			'url'=>$set->url()
+		);
 
 	}
 
-
-	$tpl->assign('lang_existing', _AS_GS_EXISTING);
-	$tpl->assign('lang_id', _AS_GS_ID);
-	$tpl->assign('lang_title', _AS_GS_TITLE);
-	$tpl->assign('lang_owner', _AS_GS_OWNER);
-	$tpl->assign('lang_public', _AS_GS_PUBLIC);
-	$tpl->assign('lang_privatef',_AS_GS_PRIVFRIEND);
-	$tpl->assign('lang_date', _AS_GS_CREATED);
-	$tpl->assign('lang_pics', _AS_GS_PICS);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_publics',_AS_GS_PUBLICS);
-	$tpl->assign('lang_nopublics',_AS_GS_PRIVATE);
-	$tpl->assign('token',$util->getTokenHTML()); 
-	$tpl->assign('lang_search',_AS_GS_SEARCH);
-
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_SETSLOC);
-	$adminTemplate = "admin/gs_albums.html";
+	GSFunctions::toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Albums managemenet','admin_galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle','Albums management');
+	
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected albums?','admin_galleries')."';\n</script>");
+	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets');
+	
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
 	xoops_cp_header($cHead);
 	
+	include RMTemplate::get()->get_template('admin/gs_albums.php','module','galleries');
 	xoops_cp_footer();
 	
 }
@@ -164,7 +123,8 @@ function showAlbums(){
 function formAlbums($edit = 0){
 
 	global $xoopsModule, $xoopsUser;
-
+	
+	define('RMSUBLOCATION','newalbum');
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
@@ -178,47 +138,47 @@ function formAlbums($edit = 0){
 	if($edit){
 		//Verificamos que el album sea válido
 		if ($id<=0){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSETVALID,1);
+			redirectMsg('./sets.php?'.$ruta,__('Please provide a valid ID!','admin_galleries'),1);
 			die();
 		}
 
 		//Verificamos que el album exista
 		$set = new GSSet($id);
 		if($set->isNew()){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSETEXIST,1);
+			redirectMsg('./sets.php?'.$ruta,__('Specified album does not exists!','admin_galleries'),1);
 			die();
 		}
 	}
 
 
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./sets.php'>"._AS_GS_SETSLOC."</a> &raquo; ".($edit ? _AS_GS_EDITSET : _AS_GS_NEWSET));
+	GSFunctions::toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./sets.php'>".__('Albums management','admin_galleries')."</a> &raquo; ".($edit ? __('Edit album','admin_galleries') : __('New album','admin_galleries')));
 	xoops_cp_header();
 	
 
-	$form = new RMForm($edit ? _AS_GS_EDITSET : _AS_GS_NEWSET, 'frmsets','sets.php');
-	$form->addElement(new RMText(_AS_GS_TITLE,'title',50,100,$edit ? $set->title() : ''),true);
+	$form = new RMForm($edit ? __('Edit album','admin_galleries') : __('New Album','admin_galleries'), 'frmsets','sets.php');
+	$form->addElement(new RMFormText(__('Album title','admin_galleries'),'title',50,100,$edit ? $set->title() : ''),true);
 
-	$ele = new RMSelect(_AS_GS_PRIVACY,'public');
-	$ele->addOption(0,_AS_GS_PRIVATE,$edit ? ($set->isPublic()==0 ? 1 : 0) : 0);
-	$ele->addOption(1,_AS_GS_PRIVFRIEND,$edit ? ($set->isPublic()==1 ? 1 : 0) : 0);
-	$ele->addOption(2,_AS_GS_PUBLIC,$edit ? ($set->isPublic()==2 ? 1 : 0) : 0);
+	$ele = new RMFormSelect(__('Privacy level','admin_galleries'),'public');
+	$ele->addOption(0,__('Private','admin_galleries'),$edit ? ($set->isPublic()==0 ? 1 : 0) : 0);
+	$ele->addOption(1,__('Public for friends','admin_galleries'),$edit ? ($set->isPublic()==1 ? 1 : 0) : 0);
+	$ele->addOption(2,__('Public','admin_galleries'),$edit ? ($set->isPublic()==2 ? 1 : 0) : 0);
 
 	$form->addElement($ele,true);
 
-	$form->addElement(new RMFormUserEXM(_AS_GS_OWNER,'owner',0,$edit ? array($set->owner()) : array($xoopsUser->uid()),30));
+	$form->addElement(new RMFormUser(__('Owner','admin_galleries'),'owner',0,$edit ? array($set->owner()) : array($xoopsUser->uid()),30));
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));	
-	$form->addElement(new RMHidden('page',$page));	
-	$form->addElement(new RMHidden('limit',$limit));	
-	$form->addElement(new RMHidden('sort',$sort));	
-	$form->addElement(new RMHidden('mode',$mode));	
-	$form->addElement(new RMHidden('search',$search));	
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));	
+	$form->addElement(new RMFormHidden('page',$page));	
+	$form->addElement(new RMFormHidden('limit',$limit));	
+	$form->addElement(new RMFormHidden('sort',$sort));	
+	$form->addElement(new RMFormHidden('mode',$mode));	
+	$form->addElement(new RMFormHidden('search',$search));	
 
-	$buttons = new RMButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button','onclick="window.location=\'sets.php?'.$ruta.'\'"');
+	$buttons = new RMFormButtonGroup();
+	$buttons->addButton('sbt',$edit ? __('Save Changes!','admin_galleries') : __('Create Album!','admin_galleries'),'submit');
+	$buttons->addButton('cancel',__('Cancel','admin_galleries'),'button','onclick="window.location=\'sets.php?'.$ruta.'\'"');
 
 	$form->addElement($buttons);
 
@@ -232,7 +192,9 @@ function formAlbums($edit = 0){
 **/
 function saveAlbums($edit = 0){
 
-	global $util, $db, $xoopsUser;
+	global $xoopsSecurity, $xoopsUser;
+	
+	$db = Database::getInstance();
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;
@@ -241,9 +203,10 @@ function saveAlbums($edit = 0){
 	if (!isset($owner) || $owner<=0) $owner = $xoopsUser->uid();
 
 	$ruta = "pag=$page&limit=$limit&sort=$sort&mode=$mode&search=$search";
+	$op = $op='save'?'new':'edit';
 
-	if (!$util->validateToken()){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_SESSINVALID,1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./sets.php?op='.$op.'&'.$ruta,__('Session token expired!','admin_galleries'),1);
 		die();
 	}
 
@@ -251,30 +214,31 @@ function saveAlbums($edit = 0){
 	if ($edit){
 		//Verificamos que el album sea válido
 		if ($id<=0){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSETVALID,1);
+			redirectMsg('./sets.php?'.$ruta,__('Please provide a valid ID!','admin_galleries'),1);
 			die();
 		}
 
 		//Verificamos que el album exista
 		$set = new GSSet($id);
 		if($set->isNew()){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSETEXIST,1);
+			redirectMsg('./sets.php?'.$ruta,__('Specified album does not exists!','admin_galleries'),1);
 			die();
 		}
 
 		$sql ="SELECT COUNT(*) FROM ".$db->prefix('gs_sets')." WHERE title='$title' AND owner=$owner AND id_set<>".$set->id();
 		list($num) = $db->fetchRow($db->query($sql));
 		if($num>0){
-			redirectMsg('./sets.php?op=edit&id='.$set->id().'&'.$ruta,_AS_GS_ERRTITLE,1);
+			redirectMsg('./sets.php?op=edit&id='.$set->id().'&'.$ruta,__('You have another album with same name. Please specify a different name.','admin_galleries'),1);
 			die();
 		}
+		
 	}else{
 
 		//Verificamos que el titulo del album no exista
 		$sql ="SELECT COUNT(*) FROM ".$db->prefix('gs_sets')." WHERE title='$title' AND owner=$owner";
 		list($num) = $db->fetchRow($db->query($sql));
 		if($num>0){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRTITLE,1);
+			redirectMsg('./sets.php?'.$op.'&'.$ruta,__('You have another album with same name. Please specify a different name.','admin_galleries'),1);
 			die();
 		}
 
@@ -291,7 +255,7 @@ function saveAlbums($edit = 0){
 	$new = $set->isNew();
 
 	if (!$set->save()){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_DBERROR.'<br />'.$set->errors(),1);
+		redirectMsg('./sets.php?'.$ruta,__('Database could not be updated!','admin_galleries').'<br />'.$set->errors(),1);
 		die();
 	}else{
 		//Incrementamos el número de albums del usuario
@@ -300,7 +264,7 @@ function saveAlbums($edit = 0){
 			$user->addSet();
 		}
 
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_DBOK,0);
+		redirectMsg('./sets.php?'.$ruta,__('Database updated successfully!','admin_galleries'),0);
 		die();
 	}
 
@@ -311,7 +275,7 @@ function saveAlbums($edit = 0){
 **/
 function deleteAlbums(){
 
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
@@ -325,7 +289,7 @@ function deleteAlbums(){
 	
 	//Verificamos si nos proporcionaron al menos un album para eliminar
 	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSET,1);
+		redirectMsg('./sets.php?'.$ruta,__('Select one album at least!','admin_galleries'),1);
 		die();
 	}
 
@@ -335,31 +299,29 @@ function deleteAlbums(){
 	}
 	
 
-	if ($ok){
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./sets.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
+		die();
+	}
 
-		if (!$util->validateToken()){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_SESSINVALID,1);
-			die();
-		}
-
-		$errors = '';
-		foreach ($ids as $k){
+	$errors = '';
+	foreach ($ids as $k){
 			
 			//Verificamos si el album es válido
 			if($k<=0){
-				$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
+				$errors .= sprintf(__('ID "%u" is not valid','admin_galleries'), $k);
 				continue;			
 			}
 
 			//Verificamos si el album existe
 			$set = new GSSet($k);
 			if ($set->isNew()){
-				$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
+				$errors .= sprintf(__('Album "%u" does not exists','admin_galleries'), $k);
 				continue;
 			}	
 
 			if(!$set->delete()){
-				$errors .= sprintf(_AS_GS_ERRDELETE, $k);
+				$errors .= sprintf(__('Album "%u" could not be deleted','admin_galleries'), $k);
 			}else{
 				//Decrementamos el número de albumes del usuario
 				$user = new GSUser($set->owner(),1);
@@ -368,41 +330,13 @@ function deleteAlbums(){
 		}
 
 		if($erros!=''){
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
+			redirectMsg('./sets.php?'.$ruta,__('Errors ocurred while trying to delete albums','admin_galleries').'<br />'.$errors,1);
 			die();
 		}else{
-			redirectMsg('./sets.php?'.$ruta,_AS_GS_DBOK,0);
+			redirectMsg('./sets.php?'.$ruta,__('Database updated successfully!','admin_galleries'),0);
 			die();
 		}
 		
-
-
-	}else{
-
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./sets.php'>"._AS_GS_SETSLOC."</a> &raquo; "._AS_GS_LOCDELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['limit'] = $limit;
-		$hiddens['pag'] = $page;
-		$hiddens['sort'] = $sort;		
-		$hiddens['mode'] = $mode;		
-		$hiddens['search'] = $search;			
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'sets.php?'.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'sets.php',(isset($album) ? sprintf(_AS_GS_DELETECONF, $album->title()) : _AS_GS_DELETECONFS). '<br /><br />' ._AS_GS_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
-	}
 }
 
 
@@ -411,7 +345,7 @@ function deleteAlbums(){
 **/
 function publicAlbums($pub = 0){
 
-	global $util;
+	global $xoopsSecurity;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
@@ -424,12 +358,12 @@ function publicAlbums($pub = 0){
 	
 	//Verificamos si nos proporcionaron al menos un album para publicar
 	if (!is_array($ids)){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_ERRSETPUBLIC,1);
+		redirectMsg('./sets.php?'.$ruta,__('Select one album at least!','admin_galleries'),1);
 		die();
 	}
 
-	if (!$util->validateToken()){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_SESSINVALID,1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./sets.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
 		die();
 	}
 
@@ -438,27 +372,27 @@ function publicAlbums($pub = 0){
 		
 		//Verificamos si el album es válido
 		if($k<=0){
-			$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
+			$errors .= sprintf(__('"%u" is not a valid ID','admin_galleries'), $k);
 			continue;			
 		}
 		//Verificamos si el album existe
 		$set = new GSSet($k);
 		if ($set->isNew()){
-			$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
+			$errors .= sprintf(__('Album "%u" does not exists','admin_galleries'), $k);
 			continue;
 		}	
 
 		$set->setPublic($pub);
 		if(!$set->save()){
-			$errors .= sprintf(_AS_GS_ERRDELETE, $k);
+			$errors .= sprintf(__('Error ocurred while trying to update album "%u"!','admin_galleries'), $k);
 		}
 	}
 
 	if($erros!=''){
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
+		redirectMsg('./sets.php?'.$ruta,__('Errors ocurred while trying to update albums','admin_galleries').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./sets.php?'.$ruta,_AS_GS_DBOK,0);
+		redirectMsg('./sets.php?'.$ruta,__('Database updated successfully!','admin_galleries'),0);
 		die();
 	}
 		
@@ -501,4 +435,3 @@ switch($op){
 		showAlbums();
 		break;
 }
-?>
