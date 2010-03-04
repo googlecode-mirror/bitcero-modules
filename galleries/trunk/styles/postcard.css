@@ -1,0 +1,56 @@
+body{
+	background: #000000;
+	color: #999;
+	font-family: Arial, helvetica, sans-serif;
+	margin: 20px;
+}
+a{
+	color: #0099ff;
+	font-size: 12px;
+}
+a:hover{
+	color: #FF00FF;
+	text-decoration: none;
+}
+div.postContainer{
+	padding: 5px;
+	background-color: #FFF;
+	margin: 0 auto;
+	background-position: 5px;
+	cursor: pointer;
+}
+div.allContainer{
+	margin: 0 auto;
+	text-align: center;
+}
+div.allContainer h3{
+	color: #FFF;
+	margin: 0 0 3px 0;
+}
+div.allContainer span.says{
+	color: #FFFF00;
+	display: block;
+	margin: 5px 0 5px 0;
+	text-align: left;
+}
+div.allContainer span.says strong{
+	color: #fff;
+	border-bottom: 1px dotted #fff;
+}
+div.allContainer span.message{
+	color: #ccc;
+	display: block;
+	margin: 5px 0 5px 0;
+	text-align: left;
+	font-style: italic;
+}
+div.options{
+	margin: 20px;
+}
+input.formButton{
+	background-color: #FFFF80;
+	color: #000;
+	font-weight: bold;
+	font-size: 16px;
+	border: 1px solid #FFBD24;
+}

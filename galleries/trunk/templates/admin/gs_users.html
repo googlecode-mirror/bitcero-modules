@@ -1,0 +1,60 @@
+<form name="frmNav" method="POST" action="users.php">
+<table width="100%" class="outer" cellspacing="1">
+	<tr class="even">
+		<td><{$lang_showing}></td>
+		<td align="center">
+				<input type="text" size="5" name="limit" value="<{$limit}>" />
+				<input type="submit" class="formButton" value="<{$lang_submit}>" /> &nbsp;
+				<{$lang_search}>
+				<input type="text" size="20" name="search" value="<{$search}>" />
+				<input type="submit" class="formButton" value="<{$lang_search}>" /> 
+			</td>
+		<td width="34%" align="right"><{$usersNavPage}></td>
+	</tr>
+</table>
+</form>
+
+<form name="frmUsers" method="POST" action="users.php">
+<table width="100%" class="outer" cellspacing="1">
+	<tr>
+		<th colspan="10"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkall" onchange="xoopsCheckAll('frmUsers','checkall');" /></td>
+		<td width="30"><{$lang_id}></td>
+		<td><{$lang_name}></td>
+		<td><{$lang_quota}></td>
+		<td><{$lang_used}></td>
+		<td><{$lang_blocked}></td>
+		<td><{$lang_pics}></td>
+		<td><{$lang_sets}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=user from=$users}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="ids[]" value="<{$user.id}>" /></td>
+		<td><strong><{$user.id}></strong></td>
+		<td align="left"><a href="<{$user.url}>"><{$user.uname}></a></td>
+		<td><{$user.quota}></td>
+		<td><{$user.used}></td>
+		<td><{if $user.blocked}><img src="<{$xoops_url}>/modules/galleries/images/lock.png" /><{else}><img src="<{$xoops_url}>/modules/galleries/images/unlock.png" /><{/if}></td>
+		<td><{$user.pics}></td>
+		<td><{$user.sets}></td>
+		<td><{$user.date}></td>
+		<td><a href="./users.php?op=edit&amp;id=<{$user.id}>"><{$lang_edit}></a> &bull; <a href="./users.php?op=delete&amp;ids=<{$user.id}>"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="9">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmUsers'].op.value='delete';" />
+			<input type="submit" class="formButtonRed" value="<{$lang_block}>" onclick="document.forms['frmUsers'].op.value='block';" />
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+<input type="hidden" name="limit" value="<{$limit}>" />
+<input type="hidden" name="search" value="<{$search}>" />
+</form>

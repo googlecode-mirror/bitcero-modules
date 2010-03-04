@@ -1,0 +1,39 @@
+<{include file="db:gs_header.html"}>
+<div class="userData">
+	<img class="avatar" src="<{$gs_url}>/images/tags48.png" alt="<{$tagname}>" />
+	<h1><{$lang_picstag}></h1>
+	<{if $usr}>
+	<ul>
+		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$pics_link}>"><{$lang_pics}></a></li>
+		<li><img src="<{$gs_url}>/images/set.png" align="absmiddle" /> <a href="<{$sets_link}>"><{$lang_sets}></a></li>
+		<li><img src="<{$gs_url}>/images/tag.png" align="absmiddle" /> <a href="<{$tags_link}>"><{$lang_tags}></a></li>
+		<li class="last"><img src="<{$gs_url}>/images/mark.png" align="absmiddle" /> <a href="<{$bmark_link}>"><{$lang_bmark}></a></li>
+	</ul>
+	<{/if}>
+</div>
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+<table class="userPics" cellspacing="1">
+	<tr class="rowPic">
+	<{assign var="i" value=1}>
+	<{foreach item=img from=$images}>
+		<{if $i>$max_cols}>
+			</tr><tr class="rowPic">
+			<{assign var="i" value=1}>
+		<{/if}>
+		<td>
+			<span class="title"><{$img.title}></span>
+			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
+			<{$lang_by}> <a href="<{$img.userurl}>"><{$img.by}></a><br />
+			<{$img.created}><br />
+			<a href="<{$img.link}>/#comments"><{$img.comments}></a>
+			<a href="<{$img.bigimage}>" class="quick" rel="lightbox[roadtrip]"><{$lang_quickview}></a>
+		</td>
+		<{assign var="i" value=$i+1}>
+	<{/foreach}>
+	</tr>
+</table>
+<div class="gsNavPages">
+	<{$tagsNavPage}>
+</div>

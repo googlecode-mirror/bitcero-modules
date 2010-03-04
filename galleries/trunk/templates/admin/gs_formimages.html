@@ -1,0 +1,90 @@
+<script type="text/javascript">
+	function sendData(){
+		var url = "<{$xoops_url}>/modules/galleries/admin/images.php?op=news&<{$ruta}>&uid="+document.forms['frmImgs'].uid.value;
+		var eles = document.forms['frmImgs'].elements;
+		var params = '';
+		
+		for (i=0; i<eles.length; i++){
+			if (eles[i].value!='' && (eles[i].type=='text' || eles[i].type=='file')){
+				params += params=='' ? eles[i].name+'='+eles[i].value : '&'+eles[i].name+'='+eles[i].value;
+			}
+		}
+		
+		url += '&'+params;
+		window.location = url;
+	}
+	
+	function validateTags(){
+		
+		var value = document.forms['frmImgs'].tags.value;
+				
+
+		value = value.replace(/^\value+/,'');
+		value = value.replace(/\value+$/,'');
+	
+		if(value==''){
+			alert('<{$lang_msg}>');
+			document.tagsvalidation = false;
+			return;
+		}
+	
+		document.tagsvalidation = true;
+
+
+	}
+</script>
+<form name="frmImgs" id="frmImgs" method="POST" action="images.php" enctype="multipart/form-data" onsubmit="validateTags(); return document.tagsvalidation;">
+<table class="outer" cellspacing="1">
+	<tr>
+		<th colspan="3"><{$lang_newimg}></th>
+	</tr>
+	<tr class="<{cycle values='even,odd'}>"  valign="top">
+		<td colspan="2"><strong><{$lang_user}></strong> <{$users}></td>
+		<td><strong><{$lang_albums}></strong><br />
+			<select name="albums[]" multiple="multiple" size="5" />
+			<{foreach item=set from=$sets}>
+				<option value="<{$set.id}>"><{$set.title}></option>
+			<{/foreach}>		
+			</select>
+		</td>
+	</tr>
+	<tr  class="<{cycle values='even,odd'}>">
+		<td colspan="3">	
+			<strong><{$lang_tags}></strong><br />
+			<input type="text" name="tags" size="50" />
+		</td>
+	</tr>
+
+	<tr class="head">
+		<td width="20"></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_img}></td>
+	</tr>
+	<{foreach item=field from=$fields}>
+	<tr class="<{cycle values='even,odd'}>">
+		<td align="center"><strong><{$field.i}></strong></td>
+		<td><input type="text" name="title[<{$field.i}>]" value="<{$field.title}>" size="50" /></td>
+		<td><input type="file" name="image[<{$field.i}>]" id="image[<{$field.i}>]" value="<{$field.file}>" size="45"  />
+			<input type="hidden" name="MAX_FILE_SIZE" value="<{$size}>" />
+		</td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right">
+			<img src="<{$xoops_url}>/images/root.gif" />
+		</td>
+		<td colspan="2">
+			<input type="submit" class="formButtonOk" value="<{$lang_save}>" onclick="document.forms['frmImgs'].op.value='savebulk'"/>
+			<input type="button" class="formButton" value="<{$lang_cancel}>" onclick="window.location='images.php?<{$ruta}>';"/>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="num" value="<{$num}>" />
+<input type="hidden" name="op" id="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+<input type="hidden" name="limit" value="<{$limit}>" />
+<input type="hidden" name="search" value="<{$search}>" />
+<input type="hidden" name="owner" value="<{$owner}>" />
+<input type="hidden" name="sort" value="<{$sort}>" />
+<input type="hidden" name="mode" value="<{$mode}>" />
+</form>

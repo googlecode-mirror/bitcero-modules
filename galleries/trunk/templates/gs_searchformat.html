@@ -1,0 +1,30 @@
+<{include file="db:gs_header.html"}>
+<div class="gsSrhResults">
+	<{$lang_found}>
+</div>
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+
+<{foreach item=img from=$images}>
+	<div class="searchItem">
+		<div class="gsImgSearch" style="width: <{$width_img}>px;">
+			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
+		</div>
+		<div class="gsInfoSearch" style="margin-left: <{$width}>px;">
+			<h3><{$img.title}></h3>
+			<span class="created"><{$img.created}></span>
+			<div class="uinfo">
+			<a href="<{$img.userurl}>"><img class="avatar" src="<{if $img.avatar!=''}><{$xoops_url}>/uploads/avatars/<{$img.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$img.uname}>" /></a>
+			<h4><{$img.by}></h4>
+			<{$img.viemore}>
+			</div>
+			<span class="tags"><{$img.tags}></span>
+			<br />
+		</div>
+	</div>
+<{/foreach}>
+
+<div class="gsNavPages">
+	<{$searchNavPage}>
+</div>

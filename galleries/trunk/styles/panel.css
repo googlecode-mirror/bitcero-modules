@@ -1,0 +1,75 @@
+.gsEdit{
+	display: none;
+}
+table.lists .even, table.lists .odd{
+	font-size: 11px;
+	color: #666;
+}
+span.noDesc{
+	color: #999;
+	font-style: italic;
+	cursor: pointer;
+}
+span.noDesc:hover{
+	background-color: #FFFFC0;
+	color: #666;
+}
+span.withDesc{
+	color: #666;
+	cursor: pointer;
+}
+span.withDesc:hover{
+	background-color: #E0E0E0;
+	color: #000;
+}
+div.panelOptions{
+	overflow: hidden;
+	padding: 0;
+	border-bottom: 1px dotted #ccc;
+	margin-bottom: 10px;
+}
+div.panelOptions ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div.panelOptions li{
+	padding: 3px 10px 3px 10px;
+	float: right;
+	list-style: none;
+	background: url(../images/separator.gif) no-repeat right;
+}
+div.panelOptions li a{
+	display: block;
+	height: 18px;
+	padding: 1px 1px 1px 18px;
+	text-decoration: none;
+}
+div.panelOptions li a:hover{
+	color: #FF0000;
+	text-decoration: underline;
+}
+div.panelOptions li.sets{
+	background: none;
+}
+div.panelOptions li.sets a{
+	background: url(../images/set.png) no-repeat left;
+}
+div.panelOptions li.friends a{
+	background: url(../images/friend.png) no-repeat left;
+}
+div.panelOptions li.bookmarks a{
+	background: url(../images/mark.png) no-repeat left;
+}
+div.panelOptions li.photos a{
+	background: url(../images/usrimage.png) no-repeat left;
+}
+img#panelFriendAvatar{
+	float: left;
+	padding: 0 10px;	
+}
+span#panelFriend{
+	margin-left: 80px; 
+	display: block;
+	padding-bottom: 10px;
+}

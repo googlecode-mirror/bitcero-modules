@@ -1,0 +1,56 @@
+<{include file="db:gs_header.html"}>
+
+<!-- Opciones del panel -->
+<div class="panelOptions">
+	<ul>
+		<{if $user}>
+			<li class="sets"><a href="<{$link_sets}>"><{$lang_msets}></a></li>
+			<li class="photos"><a href="<{$link_photos}>"><{$lang_mpics}></a></li>
+			<li class="friends"><a href="<{$link_friends}>"><{$lang_friends}></a></li>
+		<{/if}>
+		<li class="bookmarks"><a href="<{$link_bookmarks}>"><{$lang_favourites}></a></li>
+	</ul>
+</div>
+<!-- // Opciones del Panel -->
+
+<form name="frmBookMarks" method="POST" action="<{$gs_url}>/cpanel.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr class="even">
+		<td colspan="4"><{$lang_showing}></td>
+		<td colspan="3" align="right"><{$bookmarksNavPage}></td>
+	</tr>
+	<tr>
+		<th colspan="7"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmBookMarks','checkAll')" /></td>
+		<td width="20"><{$lang_id}></td>
+		<td width="50"><{$lang_image}></td>
+		<td width="40%"><{$lang_title}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_owner}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=img from=$images}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td width="20"><input type="checkbox" name="ids[]" value="<{$img.id}>" /></td>
+		<td><strong><{$img.id}></strong></td>
+		<td><a href="<{$img.link}>"><img src="<{$img.image}>" width="50"/></a></td>
+		<td align="left"><a href="<{$img.link}>"><strong><{$img.title}></strong></a><br />
+		<{$img.desc}>
+		</td>
+		<td><{$img.created}></td>
+		<td><{$img.uname}></td>
+		<td><a href="<{$gs_url}>/cpanel.php?op=delbookmarks&amp;ids=<{$img.id}>&amp;pag=<{$pag}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="6">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmBookMarks'].op.value='delbookmarks'; return confirm('<{$lang_confirms}>');" />		</td>
+
+	</tr>
+</table>
+<input type="hidden" name="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+</form>

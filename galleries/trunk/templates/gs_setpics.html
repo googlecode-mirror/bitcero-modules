@@ -1,0 +1,36 @@
+<{include file="db:gs_header.html"}>
+
+<div class="userData">
+	<img class="avatar" src="<{if $user.avatar!=''}><{$xoops_url}>/uploads/avatars/<{$user.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$user.uname}>" />
+	<h1><{$lang_picsof}></h1>
+	<ul>
+		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$user.link}>"><{$lang_pics}></a></li>
+		<li><img src="<{$gs_url}>/images/set.png" align="absmiddle" /> <a href="<{$sets_link}>"><{$lang_sets}></a></li>
+		<li><img src="<{$gs_url}>/images/tag.png" align="absmiddle" /> <a href="<{$tags_link}>"><{$lang_tags}></a></li>
+		<li class="last"><img src="<{$gs_url}>/images/mark.png" align="absmiddle" /> <a href="<{$bmark_link}>"><{$lang_bmark}></a></li>
+	</ul>
+</div>
+
+<div class="theSet">
+	<table cellspacing="2" border="0" align="center">
+		<tr>
+			<td class="setBigImages"<{if $big_width>0}> style="width: <{$big_width}>px;"<{/if}>>
+				<{foreach item=pic from=$bigs}>
+					<a href="<{$pic.link}>" title="<{$pic.title}>"><img src="<{$pic.image}>" alt="<{$pic.title}>" /></a>
+					<{if $pic.desc!=''}><span class="desc"><{$pic.desc}></span><{/if}>
+				<{/foreach}>
+				
+				<{$lang_numpics}> | <{$lang_numviews}><br /><br />
+				<{$lang_updated}>
+			</td>
+			<td class="setImages">
+				<{foreach item=pic from=$images}>
+					<a href="<{$pic.link}>" title="<{$pic.title}>"><img src="<{$pic.image}>" alt="<{$pic.title}>" /></a>
+				<{/foreach}>
+			</td>
+		</tr>
+	</table>
+	<div class="gsNavPages">
+		<{$upNavPage}>
+	</div>
+</div>

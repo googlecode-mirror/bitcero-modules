@@ -1,0 +1,72 @@
+<{include file="db:gs_header.html"}>
+<div class="lastContent">
+	<div class="gsBrowseLinks">
+		<a href="<{$explore_sets_link}>" id="sets"><{$lang_setbrowse}></a>
+		<a href="<{$explore_imgs_link}>" id="imgs"><{$lang_imgbrowse}></a>
+		<a href="<{$explore_tags_link}>" id="tags"><{$lang_tagbrowse}></a>
+	</div>
+	
+	<div class="gsLastPhotos">
+		<h2><{$lang_lastphotos}></h2>
+		<table cellspacing="0" border="0" align="center">
+		<tr class="gsPhotos">
+		<{assign var="i" value=1}>
+		<{foreach item=img from=$last_images}>
+			<{if $i>$last_cols}>
+				</tr><tr class="gsPhotos">
+				<{assign var="i" value=1}>
+			<{/if}>
+			<td style="width: <{$td_width}>px;">
+			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
+			<{if $img.title!=''}><a href="<{$img.link}>" title="<{$img.title}>"><{$img.title}></a><br /><{/if}>
+			<{$img.by}>
+			</td>
+			<{assign var="i" value=$i+1}>
+		<{/foreach}>
+		</tr>
+		</table>
+	</div>
+
+	<div class="lastSets">
+		<h2><{$last_sets}></h2>
+		<{foreach item=set from=$sets}>
+			<div class="gsSet">
+				<h3><a href="<{$set.link}>"><{$set.title}></a></h3>
+				<span class="gsSetinfo">
+					<img src="images/time.png" alt="" align="absmiddle" /> <strong><{$lang_created}></strong> <em><{$set.date}></em>
+					| <img src="images/user.png" alt="" align="absmiddle" /> <strong><{$lang_by}></strong> <em><{$set.by}></em>
+					| <strong><{$lang_pics}></strong> <em><{$set.picsnum}></em>
+					| <img src="images/view.png" alt="" align="absmiddle" /> <a href="<{$set.link}>"><{$lang_view}></a>
+				</span>
+				<table cellspacing="0" border="0">
+					<tr class="gsPhotos">
+						<{foreach item=img from=$set.images}>
+						<td style="width: <{$td_width}>px;">
+						<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
+						<a href="<{$img.link}>" title="<{$img.title}>"><{$img.title}></a><br />
+						<{$img.by}>
+						</td>
+						<{/foreach}>
+					</tr>
+				</table>
+			</div>
+		<{/foreach}>
+	</div>
+	<div class="otherSets">
+		<h2><{$lang_other}></h2>
+		<table cellspacing="0" border="0">
+			<{foreach item=set from=$other_sets}>
+				<tr class="<{cycle values="even,odd"}>">
+					<td><h3><{$set.title}></h3></td>
+					<td class="otherInfo">
+						<img src="images/time.png" alt="" align="absmiddle" /> <strong><{$lang_created}></strong> <em><{$set.date}></em>
+						| <img src="images/user.png" alt="" align="absmiddle" /> <strong><{$lang_by}></strong> <em><{$set.by}></em>
+						| <strong><{$lang_pics}></strong> <em><{$set.picsnum}></em>
+						| <img src="images/view.png" alt="" align="absmiddle" /> <a href="<{$set.link}>"><{$lang_view}></a>
+					</td>
+				</tr>
+			<{/foreach}>
+		</table>
+		<div class="gsLinkMore"><a href="<{$explore_sets_link}>"><{$lang_moresets}></a></div>
+	</div>
+</div>

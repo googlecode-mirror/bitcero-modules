@@ -1,0 +1,82 @@
+<{include file="db:gs_header.html"}>
+
+<div class="gsImage">
+	<h1 class="title"><{$image.title}></h1>
+	<img class="theImage" src="<{$image.file}>" alt="<{$image.title}>" />
+	<{$image.desc}>
+</div>
+<div class="userData">
+	<ul>
+		<{if $postcards}>
+			<li><img src="<{$gs_url}>/images/email.png" align="absmiddle" />
+			<a href="<{$postcard_link}>"><{$lang_postcards}></a></li>
+		<{/if}>
+		<{if $xoops_isuser}><li><img src="<{$gs_url}>/images/mark.png" align="absmiddle" />
+		<a href="<{$bookmark_link}>"><{$lang_bookmark}></a></li><{/if}>
+		<{if $isowner}>
+			<li><img src="<{$gs_url}>/images/set.png" align="absmiddle" />
+			<a href="<{$toset_link}>&amp;ids[<{$image.id}>]=<{$image.id}>&amp;referer=<{$xoops_requesturi}>"><{$lang_toset}></a></li>
+			<li><img src="<{$gs_url}>/images/edit.png" align="absmiddle" />
+			<a href="<{$edit_link}><{$image.id}>&amp;referer=<{$xoops_requesturi}>"><{$lang_edit}></a></li>
+			<li class="last"><img src="<{$gs_url}>/images/delete.png" align="absmiddle" />
+			<a href="<{$delete_link}><{$image.id}>&amp;referer=<{$del_return}>" onclick="return confirm('<{$lang_confirmdel}>');"><{$lang_delete}></a></li>
+		<{/if}>
+	</ul>
+</div>
+<div class="gsImageExtras">
+	<div class="tags">
+		<h3><{$lang_tags}></h3>
+		<{foreach item=tag from=$tags}>
+			<a class="tag" href="<{$tag.link}>"><{$tag.tag}></a>
+		<{/foreach}>
+	</div>
+	<div class="gsPrevNext">
+		<table cellspacing="0" border="0">
+			<tr>
+				<td colspan="2" class="gsPNTitle"><a href="<{$title_link}>"><{$prevnext_title}></a></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="prev">
+					<{if $is_first}>
+						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
+							<{$lang_firstpic}>
+						</div>
+					<{else}>
+						<a href="<{$prev.link}>"><img src="<{$prev.file}>" alt="<{$prev.title}>" /></a></td>
+					<{/if}>
+				<td class="next">
+					<{if $is_last}>
+						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
+							<{$lang_lastpic}>
+						</div>
+					<{else}>
+						<a href="<{$next.link}>"><img src="<{$next.file}>" alt="<{$next.title}>" /></a></td>
+					<{/if}>
+				<td class="count"><span><{$pics_count}></span><{$lang_photos}></td>
+			</tr>
+			<tr class="arrows">
+				<td colspan="2">
+					<{if !$is_first}>
+					<a href="<{$prev.link}>"><img src="<{$gs_url}>/images/prev.png" alt="" class="left" /></a>
+					<{/if}>
+					<{if !$is_last}>
+					<a href="<{$next.link}>"><img src="<{$gs_url}>/images/next.png" alt="" class="right" /></a>
+					<{/if}>
+					<a href="<{$user_link}>browse/<{$image.id}>/"><{$lang_browse}></a>
+				</td>
+				<td class="empty">&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="alsoBelong">
+		<h3><{$lang_alsobelong}></h3>
+		<{foreach item=set from=$sets}>
+			<div class="item">
+				<a href="<{$set.link}>"><img src="<{$gs_url}>/images/plus.png" align="absmiddle" /></a>
+				<a class="link" href="<{$set.link}>"><{$set.title}></a>
+			</div>
+		<{/foreach}>
+	</div>
+</div>
+<{include file="db:gs_comments.html"}>

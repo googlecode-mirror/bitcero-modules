@@ -1,0 +1,75 @@
+<{include file="db:gs_header.html"}>
+
+<!-- Opciones del panel -->
+<div class="panelOptions">
+	<ul>
+		<{if $user}>
+			<li class="sets"><a href="<{$link_sets}>"><{$lang_msets}></a></li>
+			<li class="photos"><a href="<{$link_photos}>"><{$lang_mpics}></a></li>
+			<li class="friends"><a href="<{$link_friends}>"><{$lang_friends}></a></li>
+		<{/if}>
+		<li class="bookmarks"><a href="<{$link_bookmarks}>"><{$lang_favourites}></a></li>
+	</ul>
+</div>
+<!-- // Opciones del Panel -->
+<form name="frmFriend" method="POST" action="<{$gs_url}>/cpanel.php">
+<table class="outer" cellspacing="1">
+	<tr class="even">
+		<td><{$lang_showing}></td>
+		<td align="right"><{$friendsNavPage}></td>
+	</tr>
+</table>
+<table class="outer" cellspacing="1">
+	<tr class="head">
+		<td colspan="<{$max_cols*2}>"><{$lang_newfriend}></td>
+	</tr>
+	<tr class="odd">
+		<td colspan="<{$max_cols*2}>">
+		<strong><{$lang_uname}></strong> 
+		<input type="text" size="30" name="uname" /> &nbsp;
+		<input type="submit" class="formButton" value="<{$lang_newfriend}>" onclick="document.forms['frmFriend'].op.value='add'"/>
+
+		</td>
+	</tr>
+	<tr>
+		<th colspan="<{$max_cols*2}>"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<{assign var="i" value=1}>
+		<{foreach item=head from=$heads}>
+		<{if $i>$max_cols}>
+			</tr><tr  class="head">
+			<{assign var="i" value=1}>
+		<{/if}>
+		<td><{if $i==1}><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmFriend','checkAll')" /><{else}>&nbsp;<{/if}></td>
+		<td><{$lang_user}></td>
+		<{assign var="i" value=$i+1}>
+	<{/foreach}>
+	</tr>
+		
+	</tr>
+	<tr class="<{cycle values='even,odd'}>">
+	<{assign var="i" value=1}>
+	<{foreach item=user from=$users}>
+		<{if $i>$max_cols}>
+			</tr><tr  class="<{cycle values='even,odd'}>">
+			<{assign var="i" value=1}>
+		<{/if}>
+		<td width="20"><input type="checkbox" name="ids[]" value="<{$user.uid}>" /></td>
+		<td><img id="panelFriendAvatar" src="<{$user.avatar}>" alt="<{$user.uname}>" />
+		<span id="panelFriend"><a href="<{$user.link}>"><{$user.uname}></a></span>
+		<span id="panelFriend"><a href="<{$gs_url}>/cpanel.php?op=deletefriend&amp;ids=<{$user.uid}>&amp;pag=<{$pag}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></span>
+		</td>
+	<{assign var="i" value=$i+1}>
+	<{/foreach}>
+	</tr>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="<{$max_cols*2}>">
+		<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmFriend'].op.value='deletefriend'; return confirm('<{$lang_confirms}>');" />	
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+</form>
