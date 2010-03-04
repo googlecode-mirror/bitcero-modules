@@ -188,10 +188,6 @@ function deleteCategory(){
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
     
-    if (!$xoopsSecurity->check()){
-        
-    }
-    
 	//Verificamos que nos hayan proporcionado una categoría para eliminar
 	if (!is_array($ids) && ($ids<=0)){
 		redirectMsg('./categos.php',__('No categories selected!','admin_works'),1);
@@ -213,19 +209,19 @@ function deleteCategory(){
 		foreach ($ids as $k){
 			//Verificamos si la categoría es válida
 			if ($k<=0){
-				$errors.=sprintf(__('Category ID invalid!','admin_works'), $k);
+				$errors.=sprintf(__('Category id "%s" invalid!','admin_works'), $k);
 				continue;
 			}
 
 			//Verificamos si la categoría existe
 			$cat = new PWCategory($k);
 			if ($cat->isNew()){
-				$errors.=sprintf(__('Category does not exists!','admin_works'), $k);
+				$errors.=sprintf(__('Category "%s" does not exists!','admin_works'), $k);
 				continue;
 			}
 		
 			if (!$cat->delete()){
-				$errors.=sprintf(__('Category could not be deleted!','admin_works'),$k);
+				$errors.=sprintf(__('Category "%s" could not be deleted!','admin_works'),$k);
 			}else{
 				$sql = "UPDATE ".$db->prefix('pw_categos')." SET parent='".$cat->parent()."' WHERE parent='".$cat->id()."'";
 				$result = $db->queryF($sql);
@@ -247,12 +243,12 @@ function deleteCategory(){
 * @desc Actualiza el orden de las categorías
 **/
 function updateCategory(){
-	global $util;
+	global $xoopsSecurity;
 
 	$orders = isset($_REQUEST['order']) ? $_REQUEST['order'] : null;
 
-	if (!$util->validateToken()){
-		redirectMsg('./categos.php',_AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./categos.php',__('Session token expired!','admin_works'), 1);
 		die();
 	}
 
@@ -261,14 +257,14 @@ function updateCategory(){
 
 		//Verificamos si la categoría es válida
 		if ($k<=0){
-			$errors.=sprintf(_AS_PW_NOTVALID, $k);
+			$errors.=sprintf(__('Category id "%s" not valid!','admin_works'), $k);
 			continue;
 		}
 
 		//Verificamos si la categoría existe
 		$cat = new PWCategory($k);
 		if ($cat->isNew()){
-			$errors.=sprintf(_AS_PW_NOTEXIST, $k);
+			$errors.=sprintf(__('Specified category "%s" does not exists!','admin_works'), $k);
 			continue;
 		}
 		
@@ -277,15 +273,15 @@ function updateCategory(){
 		$cat->setOrder($v);
 
 		if (!$cat->save()){
-			$errors.=sprintf(_AS_PW_NOTSAVE,$k);
+			$errors.=sprintf(__('Category "%s" could not be saved!','admin_works'),$k);
 		}
 	}
 
 	if ($errors!=''){
-		redirectMsg('./categos.php',_AS_PW_DBERRORS.$errors,1);
+		redirectMsg('./categos.php',__('Errors ocurred while trying to save category','admin_works').$errors,1);
 		die();
 	}else{
-		redirectMsg('./categos.php',_AS_PW_DBOK,0);
+		redirectMsg('./categos.php',__('Database updated successfully!','admin_works'),0);
 		die();
 	}
 }
@@ -295,20 +291,20 @@ function updateCategory(){
 **/
 function activeCategory($act = 0){
 
-	global $util;
+	global $xoopsSecurity;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : null;
 
 
-	if (!$util->validateToken()){
-		redirectMsg('./categos.php',_AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./categos.php',__('Session token expired!','admin_works'), 1);
 		die();
 	}
 
 
 	//Verificamos que nos hayan proporcionado una categoría
 	if (!is_array($ids)){
-		redirectMsg('./categos.php',_AS_PW_ERRNOTCATEGORY,1);
+		redirectMsg('./categos.php',__('You must select a category to enable/disable','admin_works'),1);
 		die();
 	}
 
@@ -317,29 +313,29 @@ function activeCategory($act = 0){
 		
 		//Verificamos si la categoría es válida
 		if ($k<=0){
-			$errors.=sprintf(_AS_PW_NOTVALID, $k);
+			$errors.=sprintf(__('Category id "%s" not valid!','admin_works'), $k);
 			continue;
 		}
 
 		//Verificamos si la categoría existe
 		$cat = new PWCategory($k);
 		if ($cat->isNew()){
-			$errors.=sprintf(_AS_PW_NOTEXIST, $k);
+			$errors.=sprintf(__('Specified category "%s" does not exists!','admin_works'), $k);
 			continue;
 		}
 		
 
 		$cat->setActive($act);
 		if (!$cat->save()){
-			$errors.=sprintf(_AS_PW_NOTSAVE,$k);
+			$errors.=sprintf(__('Category "%s" could not be saved!','admin_works'),$k);
 		}
 	}
 
 	if ($errors!=''){
-		redirectMsg('./categos.php',_AS_PW_DBERRORS.$errors,1);
+		redirectMsg('./categos.php',__('Errors ocurred while trying to save category','admin_works').$errors,1);
 		die();
 	}else{
-		redirectMsg('./categos.php',_AS_PW_DBOK,0);
+		redirectMsg('./categos.php',__('Database updated successfully!','admin_works'),0);
 		die();
 	}
 	

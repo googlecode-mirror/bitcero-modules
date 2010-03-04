@@ -26,7 +26,7 @@ $adminmenu[1]['options'] = array(
 $adminmenu[4]['title'] = __('Customer Types','admin_works');
 $adminmenu[4]['link'] = "admin/types.php";
 $adminmenu[4]['icon'] = "../images/types.png";
-$adminmenu[4]['location'] = "cutomertypes";
+$adminmenu[4]['location'] = "customertypes";
 
 $adminmenu[2]['title'] = __('Customers','admin_works');
 $adminmenu[2]['link'] = "admin/clients.php";

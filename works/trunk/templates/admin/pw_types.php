@@ -1,13 +1,12 @@
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Customer Types','admin_works'); ?></h1>
+
 <form name="frmTypes" method="POST" action="types.php">
-<table width="100%" cellspacing="1" class="outer">
-	<tr>
-		<th colspan="4"><{$lang_exist}></th>
-	</tr>
+<table width="100%" cellspacing="0" class="outer">
 	<tr class="head" align="center">
-		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmTypes','checkAll')" /></td>
-		<td width="30"><{$lang_id}></td>
-		<td><{$lang_type}></td>
-		<td><{$lang_options}></td>
+		<th width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmTypes','checkAll')" /></th>
+		<th width="30"><{$lang_id}></th>
+		<th><{$lang_type}></th>
+		<th><{$lang_options}></th>
 	</tr>
 	<{foreach item=type from=$types}>
 	<tr class="<{cycle values='even,odd'}>" align="center">

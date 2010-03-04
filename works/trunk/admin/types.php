@@ -1,42 +1,15 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: gina
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Module for personals and professionals portfolios
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('PW_LOCATION','types');
+define('RMCLOCATION','customertypes');
 include 'header.php';
-
-/**
-* @desc Barra de Menus
-*/
-function optionsBar(){
-	global $tpl;
-	
-	$tpl->append('xoopsOptions', array('link' => './types.php', 'title' => _AS_PW_TYPES, 'icon' => '../images/types16.png'));
-	$tpl->append('xoopsOptions', array('link' => './types.php?op=new', 'title' => _AS_PW_NEWTYPE, 'icon' => '../images/add.png'));
-}
 
 
 /**
@@ -63,11 +36,10 @@ function showTypes(){
 	$tpl->assign('lang_delete',_DELETE);
 
 
-	optionsBar();
+	PWFunctions::toolbar();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_TYPELOC);
-	$adminTemplate = "admin/pw_types.html";
 	xoops_cp_header();
-
+    include RMTemplate::get()->get_template("admin/pw_types.php",'module','works');
 	xoops_cp_footer();
 
 }

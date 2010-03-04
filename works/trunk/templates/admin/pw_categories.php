@@ -65,7 +65,7 @@
 		<option value="active"><?php _e('Enable categories','admin_works'); ?></option>
 		<option value="desactive"><?php _e('Disable categories','admin_works'); ?></option>
 	</select>
-	<input type="button" value="<?php _e('Apply','admin_works'); ?>" />
+	<input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" />
 </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
