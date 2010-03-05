@@ -29,7 +29,7 @@ class RMFormDate extends RMFormElement
 		$this->_showtime = $showtime;
 		if (!defined('RM_FRAME_DATETIME_CREATED')) define('RM_FRAME_DATETIME_CREATED',1); // Necesario para incluir el script de fechas
 		if (!defined('SCRIPT_PROTOTYPE_INCLUDED')){
-			$util =& RMUtils::getInstance();
+			$util =& RMUtilities::get();
 		}
 
                 if (defined('EXM_IS_CP') && EXM_IS_CP==true){

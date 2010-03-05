@@ -270,5 +270,28 @@ class RMUtilities
 		}
 		
 	}
+	
+	/**
+	 * Elimina directorios y todos los archivos contenidos
+	 * @param string $path Ruta del directorio
+	 * @return bool
+	 */
+	function delete_directory($path){
+		$path = str_replace('\\', '/', $path);
+		if (substr($path, 0, strlen($path) - 1)!='/'){
+			$path .= '/';
+		}
+		$dir = opendir($path);
+		while (($file = readdir($dir)) !== false){
+			if ($file == '.' || $file=='..') continue;
+			if (is_dir($path . $file)){
+				self::delete_directory($path . $file);
+			} else {
+				@unlink($path . $file);
+			}
+		}
+		closedir($dir);
+		@rmdir($path);
+	}
 		
 }
