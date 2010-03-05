@@ -42,7 +42,7 @@ foreach ($this->tpl_head as $head){
                 <span style="background-image: url(<?php echo RMTHEMEURL; ?>/images/help.png);"><?php _e('Help','rmcommon'); ?></span></a>
         <?php endif; ?>
 		<?php foreach($this->get_toolbar() as $menu): ?>
-		<a href="<?php echo $menu['link']; ?>"<?php echo $menu['location']==RMCLOCATION ? ' class = "selected"' : ''; ?>><span<?php if($menu['icon']): ?> style="background-image: url(<?php echo $menu['icon']; ?>); padding-left: 24px"<?php endif; ?>><?php echo $menu['title']; ?></a>
+		<a href="<?php echo $menu['link']; ?>"<?php echo $menu['location']==RMCLOCATION ? ' class = "selected"' : ''; ?>><span<?php if($menu['icon']): ?> style="background-image: url(<?php echo $menu['icon']; ?>); padding-left: 24px"<?php endif; ?>><?php echo $menu['title']; ?></span></a>
 		<?php endforeach; ?>
 	</div>
 <?php endif; ?>

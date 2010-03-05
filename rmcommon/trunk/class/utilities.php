@@ -247,5 +247,28 @@ class RMUtilities
 		$string = rtrim($string, "/");
 		return $string.'/';
 	}
+	
+	/**
+	 * Format bytes to MB, GB, KB, etc
+	 * @param int $size Tamaño de bytes
+	 * @return string
+	 */
+	public function formatBytesSize($size){
+
+		$kb = 1024;
+		$mb = $kb * 1024;
+		$gb = $mb * 1024;
+		
+		if ($size<$kb){
+			return sprintf(__('%s bytes','rmcommon'), $size);
+		} elseif ($size<$mb){
+			return sprintf(__('%s Kb','rmcommon'), number_format($size / $kb, 2));
+		} elseif ($size<$gb){
+			return sprintf(__('%s MB','rmcommon'), number_format($size / $mb, 2));
+		} else {
+			return sprintf(__('%s GB','rmcommon'), number_format($size / $mb, 2));
+		}
+		
+	}
 		
 }

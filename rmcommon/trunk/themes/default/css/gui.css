@@ -205,6 +205,13 @@ div#rmc-center-content a{
 div#rmc-center-content a:hover{
 	color: #ff6600;
 }
+div#rmc-center-content th a{
+	color: #FFF;
+}
+div#rmc-center-content span.rmc_options, 
+div#rmc-center-content span.rmc_options a{
+	color: #FF3300;
+}
 div.reduce_left{
     margin-left: 160px;
 }
@@ -439,5 +446,4 @@ label.error{
     color: #FF0000;
     padding: 4px 0;
     display: block;
-    
 }
