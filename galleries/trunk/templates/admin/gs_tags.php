@@ -1,16 +1,15 @@
 <form name="frmNav" method="post" action="tags.php">
 	<table class="outer" width="100%" cellspacing="1">
 		<tr class="even">
-			<td><{$lang_showing}></td>
 			<td align="center">
-				<input type="text" size="5" name="limit" value="<{$limit}>" />
-				<input type="submit" class="formButton" value="<{$lang_submit}>" /> &nbsp;
-				<{$lang_search}>
-				<input type="text" size="20" name="search" value="<{$search}>" />
-				<input type="submit" class="formButton" value="<{$lang_search}>" /> 
+				<input type="text" size="5" name="limit" value="<?php echo $limit; ?>" />
+				<input type="submit" class="formButton" value="<?php _e('Apply','admin_galleries'); ?>" /> &nbsp;
+				<?php echo _e('Search:','admin_galleries'); ?>
+				<input type="text" size="20" name="search" value="<?php echo $search; ?>" />
+				<input type="submit" class="formButton" value="<?php _e('Apply','admin_galleries'); ?>" />
+				&nbsp; &nbsp;
+				<a href="tags.php"><?php _e('Show all','admin_galleries'); ?></a>
 			</td>
-			<td width="34%" align="right"><{$tagsNavPage}></td>
-
 		</tr>
 	</table>
 </form>

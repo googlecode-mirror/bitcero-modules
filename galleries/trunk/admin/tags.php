@@ -8,32 +8,17 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('GS_LOCATION','tags');
+define('RMCLOCATION','tags');
 include 'header.php';
-
-function optionsBar(){
-	global $tpl;
-
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 45;
-	$limit = $limit<=0 ? 45 : $limit;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-
-	$ruta = "&pag=$page&limit=$limit&search=$search";
-
-	
-	$tpl->append('xoopsOptions', array('link' => './tags.php', 'title' => _AS_GS_TAGS, 'icon' => '../images/tags16.png'));
-	$tpl->append('xoopsOptions', array('link' => './tags.php?op=new'.$ruta, 'title' => _AS_GS_NEW, 'icon' => '../images/add.png'));
-	
-}
 
 /**
 * @desc Visualiza todas los etiquetas existentes
 **/
 function showTags(){
 	
-	global $xoopsModule, $adminTemplate, $tpl, $db, $xoopsModuleConfig;
+	global $xoopsModule, $tpl, $xoopsModuleConfig;
 	
+	$db = Database::getInstance();	
 	$mc =&$xoopsModuleConfig;
 
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
@@ -82,10 +67,6 @@ function showTags(){
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_GS_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	$tpl->assign('search',$search);
 	//Fin de barra de navegación
 
 
@@ -116,21 +97,12 @@ function showTags(){
 		$tpl->append('header',array());
 	}
 
-	$tpl->assign('lang_exist',_AS_GS_EXIST);
-	$tpl->assign('lang_id',_AS_GS_ID);
-	$tpl->assign('lang_tag',_AS_GS_TAG);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_pics',_AS_GS_PICS);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_search',_AS_GS_SEARCH);
-
-	optionsBar();
+	GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_TAGSLOC);
-	$adminTemplate = "admin/gs_tags.html";
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
 	xoops_cp_header($cHead);
+	
+	include RMTemplate::get()->get_template("admin/gs_tags.php",'module','galleries');
 	
 	xoops_cp_footer();
 
