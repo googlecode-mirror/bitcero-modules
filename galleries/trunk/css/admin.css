@@ -2,6 +2,9 @@
 	overflow: hidden;
 	padding: 4px;
 }
+.gs_options .rmc_pages_navigation_container{
+    float: right;
+}
 /** Página de Inicio **/
 div#gsOptions{
     padding: 6px;

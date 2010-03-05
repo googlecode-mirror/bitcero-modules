@@ -20,7 +20,7 @@ function showAlbums(){
 	define('RMSUBLOCATION','sets');
 	$db = Database::getInstance();
 
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$limit = $limit<=0 ? 15 : $limit;
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_set';
@@ -51,19 +51,11 @@ function showAlbums(){
 
 
 	list($num)=$db->fetchRow($db->query($sql.$sql1));
-	
-	if ($page > 0){ $page -= 1; }
-    $start = $page * $limit;
-    $tpages = (int)($num / $limit);
-    if($num % $limit > 0) $tpages++;
-    $pactual = $page + 1;
-    if ($pactual>$tpages){
-    	$rest = $pactual - $tpages;
-    	$pactual = $pactual - $rest + 1;
-    	$start = ($pactual - 1) * $limit;
-    }
+    $start = $num<=0 ? 0 : ($page-1) * $limit;
+    $tpages =ceil($num / $limit);
 	
 	$nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url("sets.php?page={PAGE_NUM}&limit=$limit&sort=$sort&mode=$mode&search=$search");
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;

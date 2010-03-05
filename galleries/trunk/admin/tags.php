@@ -68,13 +68,13 @@ function showTags(){
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
 	//Fin de barra de navegación
-
-
-
 	
 	$sql = "SELECT * FROM ".$db->prefix('gs_tags');
 	$sql2 = " LIMIT $start,$limit";
 	$result = $db->query($sql.$sql1.$sql2);
+    
+    $tags = array();
+    
 	while ($rows = $db->fetchArray($result)){
 
 		foreach ($words as $k){
@@ -88,11 +88,11 @@ function showTags(){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_tagsimages')." WHERE id_tag=".$tag->id();
 		list($pics) = $db->fetchRow($db->query($sql));
 	
-		$tpl->append('tags',array('id'=>$tag->id(),'name'=>$tag->tag(),'pics'=>$pics,'url'=>$tag->url()));
+		$tags[] = array('id'=>$tag->id(),'name'=>$tag->tag(),'pics'=>$pics,'url'=>$tag->url());
 
 	}
 	
-	$tpl->assign('columns',3);
+	$columns = 3;
 	for($i=0; $i<3; ++$i){
 		$tpl->append('header',array());
 	}
@@ -114,7 +114,7 @@ function showTags(){
 **/
 function formTags($edit = 0){
 
-	global $xoopsModule, $adminTemplate, $tpl, $util;
+	global $xoopsModule;
 
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 45;
@@ -131,7 +131,7 @@ function formTags($edit = 0){
 
 		//Verificamos si nos proporcionaron al menos una etiqueta para editar
 		if (!is_array($ids) && $ids<=0){
-			redirectMsg('./tags.php?'.$ruta,_AS_GS_ERRTAGEDIT,1);
+			redirectMsg('./tags.php?'.$ruta,__('Specify some valid IDs','admin_galleries'),1);
 			die();
 		}
 
@@ -142,11 +142,11 @@ function formTags($edit = 0){
 	}
 
 
-	optionsBar();
+	GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./tags.php'>"._AS_GS_TAGSLOC."</a> &raquo; ".($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG,'frmtags','tags.php');
+	$form = new RMForm($edit ? __('Editing tags','admin_galleries') : __('Add tags','admin_galleries'),'frmtags','tags.php');
 	
 	if($edit){
 		$errors = '';
@@ -165,7 +165,7 @@ function formTags($edit = 0){
 				continue;
 			}	
 
-			$form->addElement(new RMText(_AS_GS_NAME,'tags['.$tag->id().']',50,100,$edit ? $tag->tag() : ''));
+			$form->addElement(new RMFormText(_AS_GS_NAME,'tags['.$tag->id().']',50,100,$edit ? $tag->tag() : ''));
 		}
 			
 
@@ -173,17 +173,17 @@ function formTags($edit = 0){
 
 
 		for ($i=0; $i<$num; $i++){
-			$form->addElement(new RMText(_AS_GS_NAME,'tags['.$i.']',50,100,$edit ? $tag->tag() : ''));
+			$form->addElement(new RMFormText(_AS_GS_NAME,'tags['.$i.']',50,100,$edit ? $tag->tag() : ''));
 		}
 	}
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('page',$page));	
-	$form->addElement(new RMHidden('limit',$limit));	
-	$form->addElement(new RMHidden('search',$search));
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('page',$page));	
+	$form->addElement(new RMFormHidden('limit',$limit));	
+	$form->addElement(new RMFormHidden('search',$search));
 
 
-	$buttons = new RMButtonGroup();
+	$buttons = new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button','onclick="window.location=\'tags.php?'.$ruta.'\'"');
 

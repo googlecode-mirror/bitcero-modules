@@ -28,6 +28,10 @@ $adminmenu[2]['title'] = __('Tags','admin_galleries');
 $adminmenu[2]['link'] = "admin/tags.php";
 $adminmenu[2]['icon'] = '../images/tags.png';
 $adminmenu[2]['location'] = 'tags';
+$adminmenu[2]['options'] = array(
+    array('title'=>__('List tags','admin_galleries'),'link'=>'tags.php','selected'=>'tags'),
+    array('title'=>__('Add tags','admin_galleries'),'link'=>'tags.php?op=new','selected'=>'newtags')
+);
 
 $adminmenu[3]['title'] = __('Users','admin_galleries');
 $adminmenu[3]['link'] = "admin/users.php";

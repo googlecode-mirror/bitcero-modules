@@ -19,6 +19,7 @@
 
 <form name="frmSets" id="frm-sets" method="POST" action="sets.php">
 <div class="gs_options">
+    <?php $nav->display(false); ?>
 	<select name="op" id="select-op-top">
 		<option value="" selected="selected">Bulk actions...</option>
 		<option value="public">Set as public</option>
@@ -79,6 +80,7 @@
 	</tbody>
 </table>
 <div class="gs_options">
+    <?php $nav->display(false); ?>
 	<select name="opb" id="select-op-bottom">
 		<option value="" selected="selected">Bulk actions...</option>
 		<option value="public">Set as public</option>
