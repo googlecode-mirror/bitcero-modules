@@ -36,7 +36,7 @@ class GSUser extends RMObject
 			$this->primary = 'id_user';
 		}
         
-        $this->eUser = new EXMUser($this->getVar('uid'));
+        $this->eUser = new XoopsUser($this->getVar('uid'));
         $this->primary = 'id_user';
         
 	}
@@ -244,7 +244,7 @@ class GSUser extends RMObject
 			$img->delete();
 		}
 
-		exm_delete_directory($this->filesPath());
+		RMUtilities::delete_directory($this->filesPath());
 		
 		//Eliminamos los albumes
 		$sql = "SELECT * FROM ".$this->db->prefix('gs_sets')." WHERE owner='".$this->uid()."'";

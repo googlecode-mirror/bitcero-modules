@@ -16,14 +16,15 @@ include 'header.php';
 **/
 function showTags(){
 	
-	global $xoopsModule, $tpl, $xoopsModuleConfig;
+	global $xoopsModule, $xoopsSecurity, $xoopsModuleConfig;
 	
 	$db = Database::getInstance();	
 	$mc =&$xoopsModuleConfig;
 
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 45;
-	$limit = $limit<=0 ? 45 : $limit;
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
+	$page = $page<1 ? 1 : $page;
+  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$limit = $limit<=0 ? 15 : $limit;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
 	//Barra de Navegación
@@ -47,24 +48,11 @@ function showTags(){
 	}
 	
 	list($num)=$db->fetchRow($db->query($sql.$sql1));
-	
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&search='.$search, 0);
-    	    $tpl->assign('tagsNavPage', $nav->renderNav(4, 1));
-    	}
-
+	$start = $num<=0 ? 0 : ($page - 1) * $limit;
+    $tpages = ceil($num / $limit);	
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url("tags.php?search=".urlencode($search)."&amp;limit=$limit&page={PAGE_NUM}");
+    
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
 	//Fin de barra de navegación
@@ -91,19 +79,18 @@ function showTags(){
 		$tags[] = array('id'=>$tag->id(),'name'=>$tag->tag(),'pics'=>$pics,'url'=>$tag->url());
 
 	}
-	
-	$columns = 3;
-	for($i=0; $i<3; ++$i){
-		$tpl->append('header',array());
-	}
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_TAGSLOC);
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Tags managemenet','admin_galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Tags','admin_galleries'));
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
 	xoops_cp_header($cHead);
 	
 	include RMTemplate::get()->get_template("admin/gs_tags.php",'module','galleries');
-	
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-tags');
+	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=tags');
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected tags?','admin_galleries')."';\n</script>");
 	xoops_cp_footer();
 
 }
@@ -118,7 +105,7 @@ function formTags($edit = 0){
 
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 45;
-	$limit = $limit<=0 ? 45 : $limit;
+	$limit = $limit<=0 ? 15 : $limit;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
 	$ruta = "pag=$page&limit=$limit&search=$search";
@@ -143,7 +130,8 @@ function formTags($edit = 0){
 
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./tags.php'>"._AS_GS_TAGSLOC."</a> &raquo; ".($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./tags.php'>".__('Tags management','admin_galleries')."</a> &raquo; ".($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG));
+	RMTemplate::get()->assign('xoops_pagetitle',$edit ? __('Edit Tags','admin_galleries') : __('Add Tags','admin_galleries'));
 	xoops_cp_header();
 
 	$form = new RMForm($edit ? __('Editing tags','admin_galleries') : __('Add tags','admin_galleries'),'frmtags','tags.php');
@@ -154,18 +142,18 @@ function formTags($edit = 0){
 			
 			//Verificamos si la etiqueta es válida
 			if($k<=0){
-				$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
+				$errors .= sprintf(__('ID "%s" is not valid','admin_galleries'), $k);
 				continue;			
 			}
 
 			//Verificamos si la etiqueta existe
 			$tag = new GSTag($k);
 			if ($tag->isNew()){
-				$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
+				$errors .= sprintf(__('Tag "%s" does not exists','admin_galleries'), $k);
 				continue;
 			}	
 
-			$form->addElement(new RMFormText(_AS_GS_NAME,'tags['.$tag->id().']',50,100,$edit ? $tag->tag() : ''));
+			$form->addElement(new RMFormText(__('Tag name','admin_galleries'),'tags['.$tag->id().']',50,100,$edit ? $tag->tag() : ''));
 		}
 			
 
@@ -173,7 +161,7 @@ function formTags($edit = 0){
 
 
 		for ($i=0; $i<$num; $i++){
-			$form->addElement(new RMFormText(_AS_GS_NAME,'tags['.$i.']',50,100,$edit ? $tag->tag() : ''));
+			$form->addElement(new RMFormText(__('Tag name','admin_galleries'),'tags['.$i.']',50,100,$edit ? $tag->tag() : ''));
 		}
 	}
 
@@ -184,8 +172,8 @@ function formTags($edit = 0){
 
 
 	$buttons = new RMFormButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button','onclick="window.location=\'tags.php?'.$ruta.'\'"');
+	$buttons->addButton('sbt',$edit ? __('Save Changes','admin_galleries') : __('Create tags','admin_galleries'),'submit');
+	$buttons->addButton('cancel',__('Cancel','admin_galleries'),'button','onclick="window.location=\'tags.php?'.$ruta.'\'"');
 
 	$form->addElement($buttons);
 
@@ -202,9 +190,10 @@ function formTags($edit = 0){
 **/
 function saveTags($edit = 0){
 	
-	global $util, $db, $xoopsModuleConfig;
+	global $xoopsModuleConfig, $xoopsSecurity;
 
 	$mc =&$xoopsModuleConfig;
+	$db = Database::getInstance();
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;
@@ -212,8 +201,8 @@ function saveTags($edit = 0){
 
 	$ruta = "&pag=$page&limit=$limit&search=$search";
 
-	if (!$util->validateToken()){
-		redirectMsg('./tags.php?'.$ruta,_AS_GS_SESSINVALID,1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./tags.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
 		die();
 	}
 
@@ -227,7 +216,7 @@ function saveTags($edit = 0){
 
 			//Verificamos el tamaño máximo y mínimo de la etiqueta
 			if (strlen($v)<$mc['min_tag'] || strlen($v)>$mc['max_tag']){
-				$errors .=sprintf(_AS_GS_ERRSIZETAG, $v);
+				$errors .=sprintf(__('Tag "%s" does not have the correct length!','admin_galleries'), $v);
 				continue;
 			}
 
@@ -235,27 +224,27 @@ function saveTags($edit = 0){
 			$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_tags')." WHERE tag='$v' AND id_tag<>$k";
 			list($num) = $db->fetchRow($db->query($sql));
 			if ($num>0){
-				$errors .= sprintf(_AS_GS_ERRNAME, $v);
+				$errors .= sprintf(__('There are another tag with name "%s" already registered!','admin_galleries'), $v);
 				continue;
 			}
 
 			//Verificamos si la etiqueta es válida
 			if($k<=0){
-				$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
+				$errors .= sprintf(__('ID "%s" is not valid','admin_galleries'), $k);
 				continue;			
 			}
 
 			//Verificamos si la etiqueta existe
 			$tag = new GSTag($k);
 			if ($tag->isNew()){
-				$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
+				$errors .= sprintf('Tag "%s" does not exists', $v);
 				continue;
 			}			
 
 			$tag->setTag(strtolower($v));			
 			
 			if (!$tag->save()){
-				$errors .= sprintf(_AS_GS_ERRSAVE, $v);
+				$errors .= sprintf(__('Errors while trying to save tag "%s"','admin_galleries'), $v);
 			}
 			
 		}
@@ -269,7 +258,7 @@ function saveTags($edit = 0){
 
 			//Verificamos el tamaño máximo y mínimo de la etiqueta
 			if (strlen($v)<$mc['min_tag'] || strlen($v)>$mc['max_tag']){
-				$errors .=sprintf(_AS_GS_ERRSIZETAG, $v);
+				$errors .=sprintf(__('Tag "%s" does not have the correct length!','admin_galleries'), $v);
 				continue;
 			}
 
@@ -278,7 +267,7 @@ function saveTags($edit = 0){
 			$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_tags')." WHERE tag='$v'";
 			list($num) = $db->fetchRow($db->query($sql));
 			if ($num>0){
-				$errors .= sprintf(_AS_GS_ERRNAME, $v);
+				$errors .= sprintf(__('There are another tag with name "%s" already registered!','admin_galleries'), $v);
 				continue;
 			}
 
@@ -286,7 +275,7 @@ function saveTags($edit = 0){
 			$tag->setTag(strtolower($v));			
 			
 			if (!$tag->save()){
-				$errors .= sprintf(_AS_GS_ERRSAVE, $v);
+				$errors .= sprintf(__('Errors while trying to save tag "%s"','admin_galleries'), $v);
 			}
 			
 		}
@@ -295,10 +284,10 @@ function saveTags($edit = 0){
 	}
 
 	if ($errors!=''){
-		redirectMsg('./tags.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
+		redirectMsg('./tags.php?'.$ruta,__('Errors ocurred while trying to save tags.','admin_galleries').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./tags.php?'.$ruta,_AS_GS_DBOK,0);
+		redirectMsg('./tags.php?'.$ruta,__('Tags saved successfully!','admin_galleries'),0);
 		die();
 	}
 
@@ -309,10 +298,9 @@ function saveTags($edit = 0){
 **/
 function deleteTags(){
 
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 45;
 	$limit = $limit<=0 ? 45 : $limit;
@@ -322,80 +310,44 @@ function deleteTags(){
 
 	
 	//Verificamos si nos proporcionaron al menos una etiqueta para eliminar
-	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./tags.php?'.$ruta,_AS_GS_ERRTAG,1);
+	if (!is_array($ids)){
+		redirectMsg('./tags.php?'.$ruta,__('Select at least one tag to delete','admin_galleries'),1);
 		die();
 	}
 
-	if (!is_array($ids)){
-		$tg = new GSTag($ids);
-		$ids = array($ids);
+
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./tags.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
+		die();
 	}
 
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./tags.php?'.$ruta,_AS_GS_SESSINVALID,1);
-			die();
+	$errors = '';
+	foreach ($ids as $k){
+		//Verificamos si la etiqueta es válida
+		if($k<=0){
+			$errors .= sprintf(__('ID "%s" is not valid','admin_galleries'), $k);
+			continue;			
 		}
 
-		$errors = '';
-		foreach ($ids as $k){
-			
-			//Verificamos si la etiqueta es válida
-			if($k<=0){
-				$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
-				continue;			
-			}
+		//Verificamos si la etiqueta existe
+		$tag = new GSTag($k);
+		if ($tag->isNew()){
+			$errors .= sprintf(__('Tag "%s" does not exists','admin_galleries'), $k);
+			continue;
+		}	
 
-			//Verificamos si la etiqueta existe
-			$tag = new GSTag($k);
-			if ($tag->isNew()){
-				$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
-				continue;
-			}	
-
-			if(!$tag->delete()){
-				$errors .= sprintf(_AS_GS_ERRDELETE, $k);
-			}
+		if(!$tag->delete()){
+			$errors .= sprintf(__('Tag "%s" could not be deleted!'), $k);
 		}
+	}
 
-		if($erros!=''){
-			redirectMsg('./tags.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
-			die();
-		}else{
-			redirectMsg('./tags.php?'.$ruta,_AS_GS_DBOK,0);
-			die();
-		}
-		
+	if($erros!=''){
+		redirectMsg('./tags.php?'.$ruta,__('Errors ocurred while trying to delete tags.','admin_galleries').'<br />'.$errors,1);
+		die();
 	}else{
-
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./sets.php'>"._AS_GS_TAGSLOC."</a> &raquo; "._AS_GS_LOCDELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['limit'] = $limit;
-		$hiddens['pag'] = $page;
-		$hiddens['search'] = $search;		
-		
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'tags.php?'.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'tags.php',(isset($tg) ? sprintf(_AS_GS_DELETECONF, $tg->tag()) : _AS_GS_DELETECONFS). '<br /><br />' ._AS_GS_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+		redirectMsg('./tags.php?'.$ruta,__('Tags deleted successfully!','admin_galleries'),0);
+		die();
 	}
-	
-
-
 
 }
 

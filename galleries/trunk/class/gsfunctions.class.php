@@ -20,7 +20,7 @@ class GSFunctions
 		if ($showpercent){
 			$rtn .= round($user->usedQuota()*(100/$quota)).'%';
 		} else {
-			$rtn .= formatBytesSize($user->usedQuota());
+			$rtn .= RMUtilities::formatBytesSize($user->usedQuota());
 		}
 		$rtn .= "</div>";
 		return $rtn;

@@ -1,60 +1,26 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('GS_LOCATION','images');
+define('RMCLOCATION','images');
 include 'header.php';
-
-function optionsBar(){
-	global $tpl;
-
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
-	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 1;
-
-	$ruta = "&pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
-
-	$tpl->append('xoopsOptions', array('link' => './images.php', 'title' => _AS_GS_IMAGES, 'icon' => '../images/images16.png'));
-	$tpl->append('xoopsOptions', array('link' => './images.php?op=new'.$ruta, 'title' => _AS_GS_NEW, 'icon' => '../images/add.png'));
-	$tpl->append('xoopsOptions', array('link' => './images.php?op=news'.$ruta, 'title' => _AS_GS_NEWIMGS, 'icon' => '../images/add.png'));
-}
 
 /**
 * @desc Visualiza todas las imágenes existentes
 **/
 function showImages(){
 
-	global $xoopsModule, $adminTemplate, $db, $tpl, $xoopsConfig;
-	include (XOOPS_ROOT_PATH.'/modules/galleries/class/gsusers.class.php');
+	global $xoopsModule, $tpl, $xoopsConfig, $xoopsSecurity;
+	
+	$db = Database::getInstance();
 
-
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
 	$limit = $limit<=0 ? 10 : $limit;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
@@ -116,15 +82,6 @@ function showImages(){
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_GS_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	$tpl->assign('search',$search);
-	$tpl->assign('owner',$owner);
-	$tpl->assign('mindate',$mindate);
-	$tpl->assign('maxdate',$maxdate);
-	$tpl->assign('sort',$sort);
-	$tpl->assign('mode',$mode);
 	
 	//Fin de barra de navegación
 
@@ -155,45 +112,22 @@ function showImages(){
 		'owner'=>$xu->uname(),'public'=>$img->isPublic(),'link'=>$link));
 
 	}
-
-	$tpl->assign('lang_exist',_AS_GS_EXIST);
-	$tpl->assign('lang_id',_AS_GS_ID);
-	$tpl->assign('lang_title',_AS_GS_TITLE);
-	$tpl->assign('lang_desc',_AS_GS_DESC);
-	$tpl->assign('lang_img',_AS_GS_IMG);
-	$tpl->assign('lang_date',_AS_GS_DATE);
-	$tpl->assign('lang_owner',_AS_GS_OWNER);
-	$tpl->assign('lang_public',_AS_GS_PUBLIC);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE); 
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_search',_AS_GS_SEARCH);
-	$tpl->assign('lang_publicimg',_AS_GS_PUBLICIMG);
-	$tpl->assign('lang_nopublicimg',_AS_GS_NOPUBLICIMG);
-	$tpl->assign('lang_privatef',_AS_GS_PRIVATEF);
-	$tpl->assign('lang_results', _AS_GS_RESULTS);
-	$tpl->assign('lang_indate', _AS_GS_INDATE);
-	$tpl->assign('lang_and', _AS_GS_AND);
 	
 	$form = new RMForm('','frmNav', '');
-	$ele = new RMFormUserGS('','owner', false, $owner>0 ? array($owner) : array(0), 50, null, null, 1);
+	$ele = new RMFormUser('','owner', false, $owner>0 ? array($owner) : array(0), 50, null, null, 1);
 	$ele->setForm('frmNav');
 	$tpl->assign('user_field', $ele->render());
-	$ele = new RMDateExm('', 'mindate', $mindate==null ? null : $mindate, 1);
+	$ele = new RMFormDate('', 'mindate', $mindate==null ? null : $mindate, 1);
 	$tpl->assign('mindate_field', $ele->render());
-	$ele = new RMDateExm('', 'maxdate', $maxdate==null ? null : $maxdate, 1);
+	$ele = new RMFormDate('', 'maxdate', $maxdate==null ? null : $maxdate, 1);
 	$tpl->assign('maxdate_field', $ele->render());
 
-	optionsBar();
+	GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_IMGSLOC);
-	$adminTemplate = "admin/gs_images.html";
-	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
-	$cHead.="\n";
-	$cHead.= '<script tyle="text/javascript" src="'.XOOPS_URL.'/modules/galleries/include/fieldusers.js"></script>';
 	
-	xoops_cp_header($form->javaScript()."\n".$cHead);
+	xoops_cp_header();
 	
+	include RMTemplate::get()->get_template("admin/gs_images.php",'module','galleries');
 	xoops_cp_footer();
 
 }
@@ -989,4 +923,3 @@ switch($op){
 		showImages();
 		break;
 }
-?>

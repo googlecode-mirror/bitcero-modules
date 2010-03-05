@@ -62,7 +62,7 @@
 	<?php endif; ?>
 	<?php foreach($sets as $set): ?>
 	<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center" valign="top">
-		<td><input type="checkbox" name="ids[]" id="set-<?php echo $set['id']; ?>" value="<?php echo $set['id']; ?>" /></td>
+		<td><input type="checkbox" name="ids[]" id="item-<?php echo $set['id']; ?>" value="<?php echo $set['id']; ?>" /></td>
 		<td ><strong><?php echo $set['id']; ?></strong></td>
 		<td align="left">
 			<a href="<?php echo $set['url']; ?>"><?php echo $set['title']; ?></a>

@@ -1,3 +1,5 @@
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Tags Management','admin_galleries'); ?></h1>
+
 <form name="frmNav" method="post" action="tags.php">
 	<table class="outer" width="100%" cellspacing="1">
 		<tr class="even">
@@ -15,6 +17,7 @@
 </form>
 <form name="frmTags" id="frm-tags" method="post" action="tags.php">
 <div class="gs_options">
+	<?php $nav->display(false); ?>
     <select name="op" id="select-op-top">
         <option value="" selected="selected"><?php _e('Bulk actions...','admin_galleries'); ?></option>
         <option value="edit"><?php _e('Edit','admin_galleries'); ?></option>
@@ -25,12 +28,22 @@
 <table width="100%" class="outer" cellspacing="0">
 	<thead>
     <tr align="center">
-		<th width="20"><input type="checkbox" name="checkall" onchange="xoopsCheckAll('frmTags','checkall');" /></th>
+		<th width="20"><input type="checkbox" name="checkall" id="checkall" onclick='$("#frm-tags").toggleCheckboxes(":not(#checkall)");' /></th>
 		<th width="30"><?php _e('ID','admin_galleries'); ?></th>
-		<th><?php _e('Tag','admin_galleries'); ?></th>
+		<th align="left"><?php _e('Tag','admin_galleries'); ?></th>
 		<th><?php _e('Pictures','admin_galleries'); ?></th>
 	</tr>
     </thead>
+    
+    <tfoot>
+    <tr align="center">
+		<th width="20"><input type="checkbox" name="checkall2" id="checkall2" onclick='$("#frm-tags").toggleCheckboxes(":not(#checkall2)");' /></th>
+		<th width="30"><?php _e('ID','admin_galleries'); ?></th>
+		<th align="left"><?php _e('Tag','admin_galleries'); ?></th>
+		<th><?php _e('Pictures','admin_galleries'); ?></th>
+	</tr>
+    </tfoot>
+    
     <tbody>
     <?php if(empty($tags)): ?>
     <tr class="even" align="center">
@@ -38,25 +51,30 @@
     </tr>
     <?php endif; ?>
 	<?php foreach($tags as $tag): ?>
-    <tr class='<?php echo tpl_cycle("even,odd"); ?>'>
-		<td align="center"><input type="checkbox" name="ids[]" value="<{$tag.id}>" /></td>
-		<td align="center"><strong><{$tag.id}></strong></td>
-		<td align="left"><a href="<{$tag.url}>"><strong><{$tag.name}></strong></a></td>
-		<td align="center"><{$tag.pics}></td>
-		<td align="center"><a href="./tags.php?op=edit&amp;ids=<{$tag.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>&amp;search=<{$search}>"><{$lang_edit}></a> &bull; <a href="./tags.php?op=delete&amp;ids=<{$tag.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>&amp;search=<{$search}>"><{$lang_del}></a></td>
+    <tr class='<?php echo tpl_cycle("even,odd"); ?>' valign="top">
+		<td align="center"><input type="checkbox" name="ids[]" value="<?php echo $tag['id']; ?>" id="item-<?php echo $tag['id']; ?>" /></td>
+		<td align="center"><strong><?php echo $tag['id']; ?></strong></td>
+		<td align="left"><a href="<?php echo $tag['url']; ?>"><strong><?php echo $tag['name']; ?></strong></a>
+		<span class="rmc_options">
+			<a href="javascript:;" class="gs_edit_option" id="edit-<?php echo $tag['id']; ?>"><?php _e('Edit','admin_galleries'); ?></a> |
+			<a href="javascript:;" class="gs_delete_option" id="delete-<?php echo $tag['id']; ?>"><?php _e('Delete','admin_galleries'); ?></a>
+		</span></td>
+		<td align="center"><?php echo $tag['pics']; ?></td>
     </tr>
 	<?php endforeach; ?>
     </tbody>
 </table>
 <div class="gs_options">
-    <select name="op" id="select-op-bottom">
+	<?php $nav->display(false); ?>
+    <select name="opb" id="select-op-bottom">
         <option value="" selected="selected"><?php _e('Bulk actions...','admin_galleries'); ?></option>
         <option value="edit"><?php _e('Edit','admin_galleries'); ?></option>
         <option value="delete"><?php _e('Delete','admin_galleries'); ?></option>
     </select>
     <input type="button" value="<?php _e('Apply','admin_galleries'); ?>" id="op-bottom" />
 </div>
-<input type="hidden" name="pag" value="<{$pag}>" />
-<input type="hidden" name="limit" value="<{$limit}>" />
-<input type="hidden" name="search" value="<{$search}>" />
+<input type="hidden" name="pag" value="<?php echo $page; ?>" />
+<input type="hidden" name="limit" value="<?php echo $limit; ?>" />
+<input type="hidden" name="search" value="<?php echo $search; ?>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

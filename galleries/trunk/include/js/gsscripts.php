@@ -9,6 +9,7 @@
 // --------------------------------------------------------------
 
 $file = isset($_GET['file']) ? $_GET['file'] : '';
+$form = isset($_GET['form']) ? $_GET['form'] : 'frm-sets';
 
 switch ($file){
 	
@@ -26,14 +27,14 @@ $(document).ready(function(){
 	});
 	
 	$("#op-top").click(function(){
-		$("#frm-sets").submit();
+		$("#<?php echo $form; ?>").submit();
 	});
 	
 	$("#op-bottom").click(function(){
-		$("#frm-sets").submit();
+		$("#<?php echo $form; ?>").submit();
 	});
 	
-	$("#frm-sets").submit(function(){
+	$("#<?php echo $form; ?>").submit(function(){
 		
 		if ($("#select-op-top").val()=='delete'){
 			return confirm(delete_warning);
@@ -43,11 +44,19 @@ $(document).ready(function(){
 	
 	$("a.gs_delete_option").click(function(){
 		id = $(this).attr("id").replace("delete-",'');
-		
-		$("#frm-sets input[name='ids[]']").removeAttr("checked");
-		$("#set-"+id).attr("checked",'checked');
+		$("#<?php echo $form; ?> input[name='ids[]']").removeAttr("checked");
+		$("#item-"+id).attr("checked",'checked');
 		$("#select-op-top").val('delete');
-		$("#frm-sets").submit();
+		$("#<?php echo $form; ?>").submit();
+		
+	});
+	
+	$("a.gs_edit_option").click(function(){
+		id = $(this).attr("id").replace("edit-",'');
+		$("#<?php echo $form; ?> input[name='ids[]']").removeAttr("checked");
+		$("#item-"+id).attr("checked",'checked');
+		$("#select-op-top").val('edit');
+		$("#<?php echo $form; ?>").submit();
 		
 	});
 	
@@ -55,4 +64,5 @@ $(document).ready(function(){
 
 <?php
 		break;
+
 }

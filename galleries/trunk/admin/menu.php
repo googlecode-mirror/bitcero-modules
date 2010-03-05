@@ -37,6 +37,10 @@ $adminmenu[3]['title'] = __('Users','admin_galleries');
 $adminmenu[3]['link'] = "admin/users.php";
 $adminmenu[3]['icon'] = '../images/users.png';
 $adminmenu[3]['location'] = 'users';
+$adminmenu[3]['options'] = array(
+    array('title'=>__('List users','admin_galleries'),'link'=>'users.php','selected'=>'users'),
+    array('title'=>__('New user','admin_galleries'),'link'=>'users.php?op=new','selected'=>'newuser')
+);
 
 $adminmenu[4]['title'] = __('Images','admin_galleries');
 $adminmenu[4]['link'] = "admin/images.php";
