@@ -20,7 +20,7 @@ class RMFileUploader extends XoopsMediaUploader
     * @param mixed $allowedtypes
     * @return RMFileUploader
     */
-    public function __construct($uploadDir, $maxFileSize, $allowedMimeTypes = array()){
+    public function __construct($uploadDir, $maxFileSize, $allowed_exts = array()){
         
         //$this->XoopsMediaUploader($dir, $allowedtypes, $maxsize);
         $this->extensionToMime = include $GLOBALS['xoops']->path('include/mimetypes.inc.php');
@@ -28,9 +28,14 @@ class RMFileUploader extends XoopsMediaUploader
             $this->extensionToMime = array();
             return false;
         }
-        if (is_array($allowedMimeTypes)) {
-            $this->allowedMimeTypes =& $allowedMimeTypes;
+        if (is_array($allowed_exts)) {
+            foreach($allowed_exts as $ext){
+                
+                $this->allowedMimeTypes[] = $this->extensionToMime[$ext];
+                
+            }
         }
+        
         $this->uploadDir = $uploadDir;
         $this->maxFileSize = intval($maxFileSize);
         if (isset($maxWidth)) {
@@ -92,4 +97,9 @@ class RMFileUploader extends XoopsMediaUploader
         return true;
         
     }
+    
+    public function getMIME($extension){
+        print_r($this->extensionToMime); die();
+    }
+    
 }
