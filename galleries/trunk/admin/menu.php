@@ -46,6 +46,11 @@ $adminmenu[4]['title'] = __('Images','admin_galleries');
 $adminmenu[4]['link'] = "admin/images.php";
 $adminmenu[4]['icon'] = '../images/images.png';
 $adminmenu[4]['location'] = 'images';
+$adminmenu[4]['options'] = array(
+    array('title'=>__('List images','admin_galleries'),'link'=>'images.php','selected'=>'images'),
+    array('title'=>__('Add image','admin_galleries'),'link'=>'images.php?op=new','selected'=>'newimage'),
+    array('title'=>__('Add multiple images','admin_galleries'),'link'=>'images.php?op=newbulk','selected'=>'newbulk')
+);
 
 $adminmenu[5]['title'] = __('Postcards', 'admin_galleries');
 $adminmenu[5]['link'] = "admin/postcards.php";
