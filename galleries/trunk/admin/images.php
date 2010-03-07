@@ -20,11 +20,12 @@ function showImages(){
 	
 	$db = Database::getInstance();
 
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
+    $page = $page<=0 ? 1 : $page;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
 	$limit = $limit<=0 ? 10 : $limit;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
+	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : '';
 	$mindate = isset($_REQUEST['mindate']) ? $_REQUEST['mindate'] : '';
 	$maxdate = isset($_REQUEST['maxdate']) ? $_REQUEST['maxdate'] : '';
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
@@ -62,23 +63,10 @@ function showImages(){
 
 
 	list($num)=$db->fetchRow($db->query($sql.$sql1));
-	
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&search='.$search.'&owner='.$owner.'&mindate='.$mindate.'&maxdate='.$maxdate.'&sort='.$sort.'&mode='.$mode, 0);
-    	    $tpl->assign('imgsNavPage', $nav->renderNav(4, 1));
-    	}
+   	$start = $num<=0 ? 0 : ($page-1) * $limit;
+    $tpages = ceil($num / $limit);
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url("images.php?page={PAGE_NUM}&amp;limit=$limit&amp;search=$search&amp;owner=$owner&amp;mindate=$mindate&amp;maxdate=$maxdate&amp;sort=$sort&amp;mode=$mode");
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
@@ -133,7 +121,9 @@ function showImages(){
 	GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Images Management','admin_galleries'));
     RMTemplate::get()->assign('xoops_pagetitle', __('Images','admin_galleries'));
-	
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-images');
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected images?','admin_galleries')."';\n</script>");
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/gs_images.php",'module','galleries');
@@ -153,12 +143,12 @@ function formImages($edit = 0){
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
+	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : '';
 	$uid = isset($_REQUEST['uid']) ? intval($_REQUEST['uid']) : 0;
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
 
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	if($edit){
 		//Verificamos si la imagen es válida
@@ -273,17 +263,17 @@ function formBulkImages(){
 	global $mc,$xoopsUser, $tpl, $xoopsModule;
 
 	$num_fields = isset($_REQUEST['num']) ? intval($_REQUEST['num']) : 10;
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
+	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : '';
 	$uid = isset($_REQUEST['uid']) ? intval($_REQUEST['uid']) : 0;
 	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : 0;
 	$file = isset($_REQUEST['image']) ? $_REQUEST['image'] : 0;
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
 
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	$db = Database::getInstance();
 	
@@ -329,7 +319,7 @@ function saveImages($edit = 0){
 		$$k = $v;
 	}
 
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	if (!$xoopsSecurity->check()){
 		redirectMsg('./images.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
@@ -424,6 +414,7 @@ function saveImages($edit = 0){
 	$folder = $mc['storedir']."/".$user->uname();
 	$folderths = $mc['storedir']."/".$user->uname()."/ths";
 	$up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
+    
 	if ($edit){
 		$filename=$img->image();
 	}
@@ -494,7 +485,7 @@ function saveImages($edit = 0){
 		}
 
 
-	}
+	} 
 	//Fin de Imagen
 	
 	$img->setImage($filename);
@@ -525,7 +516,7 @@ function saveImages($edit = 0){
 		$sets = str_replace($tbl2.'.', '', $sets);
 		$sql = "DELETE FROM ".$db->prefix("gs_setsimages")." WHERE id_image='".$img->id()."' ".($sets!='' ? " AND ($sets)" : '');
 		$db->queryF($sql);
-		
+
 		redirectMsg('./images.php?'.$ruta,__('Database updated successfully!','admin_galleries'), 0);
 		die();
 	}
@@ -542,7 +533,7 @@ function saveBulkImages(){
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$uid&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$uid&sort=$sort&mode=$mode";
 	
 	if ($xoopsUser->uid()==$uid){
 		$xu = $xoopsUser;
@@ -561,7 +552,7 @@ function saveBulkImages(){
 		$user->setDate(time());
 
 		if(!$user->save()){
-			redirectMsg('./images.php?'.$ruta,_AS_GS_ERRUSER."<br />".$user->errors(), 1);
+			redirectMsg('./images.php?'.$ruta,__('User owner could not be created!','admin_galleries')."<br />".$user->errors(), 1);
 			die();
 		}else{
 			mkdir($mc['storedir']."/".$user->uname());
@@ -582,7 +573,7 @@ function saveBulkImages(){
 	$ret = array(); 
 	foreach ($tgs as $k){
 		$k = trim($k);
-		$k = $util->sweetstring($k);
+		$k = TextCleaner::getInstance()->sweetstring($k);
 		if ($k=='') continue;
 		// Comprobamos que la palabra tenga la longitud permitida
 		if(strlen($k)<$mc['min_tag'] || strlen($k)>$mc['max_tag']){
@@ -604,10 +595,10 @@ function saveBulkImages(){
 
 	$errors = '';
 	$k = 1;
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = $mc['storedir']."/".$xu->uname();
-	$folderths = $mc['storedir']."/".$xu->uname()."/ths";
+	include_once RMCPATH.'/class/uploader.php';
+    $folder = $mc['storedir']."/".$xu->uname();
+    $folderths = $mc['storedir']."/".$xu->uname()."/ths";
+    $up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
 	
 	foreach ($_FILES['image']['name'] as $k => $v){
 		if ($v=='') continue;
@@ -619,13 +610,11 @@ function saveBulkImages(){
 		
 		//Imagen
 		$filename = '';
-			
-		$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $mc['size_image']*1024);//tamaño
 		
 		if ($up->fetchMedia('image',$k)){
 
 			if (!$up->upload()){
-				$errors .= sprintf(_AS_GS_ERRIMG, $title[$k], $up->getErrors());
+				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','admin_galleries'), $title[$k], $up->getErrors());
 				continue;
 			}
 					
@@ -647,7 +636,7 @@ function saveBulkImages(){
 			}
 			
 			// Redimensionamos la imagen
-			$redim = new RMImageControl($fullpath, $fullpath);
+			$redim = new RMImageResizer($fullpath, $fullpath);
 			switch ($mc['redim_image']){
 				case 0:
 					//Recortar miniatura
@@ -683,7 +672,7 @@ function saveBulkImages(){
 		
 		if ($up->getErrors()==''){
 			if (!$img->save()){
-				$errors .= sprintf(_AS_GS_ERRSAVEIMG, $v)." (".$img->errors().")";
+				$errors .= sprintf(__('Image could not be inserted in database!','admin_galleries'), $v)." (".$img->errors().")";
 			} else {
 				$user->addPic();
 				$img->setTags($ret);
@@ -705,10 +694,10 @@ function saveBulkImages(){
 	}
 
 	if($errors!=''){
-		redirectMsg('./images.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
+		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to upload images.','admin_galleries').$errors,1);
 		die();
 	}else{
-		redirectMsg('./images.php?'.$ruta,_AS_GS_DBOK,0);
+		redirectMsg('./images.php?'.$ruta,__('Images uploaded successfully!','admin_galleries'),0);
 		die();
 	}
 
@@ -719,104 +708,66 @@ function saveBulkImages(){
 **/
 function deleteImages(){
 
-	global $util, $xoopsModule, $db;
+	global $xoopsSecurity, $xoopsModule, $db;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? intval($_REQUEST['owner']) : 0;
+	$owner = isset($_REQUEST['owner']) ? intval($_REQUEST['owner']) : '';
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
 
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
-	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./images.php?'.$ruta,_AS_GS_ERRIMGDELETE,1);
+	if (!is_array($ids)){
+		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','admin_galleries'),1);
+		die();
+	}
+	
+    if (!$xoopsSecurity->check()){
+	    redirectMsg('./images.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
 		die();
 	}
 
-	if (!is_array($ids)){
-		$im = new GSImage($ids);
-		$ids = array($ids);
-	}
-	
+	$errors = '';
+	foreach ($ids as $k){
 
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./images.php?'.$ruta,_AS_GS_SESSINVALID,1);
-			die();
+	    //Verificamos si la imagen es válida
+		if($k<=0){
+		    $errors .= sprintf(__('Image ID "%s" not valid','admin_galleries'), $k);
+			continue;			
 		}
 
-		$errors = '';
-		foreach ($ids as $k){
+		//Verificamos si la imagen existe
+		$img = new GSImage($k);
+		if ($img->isNew()){
+		    $errors .= sprintf(__('Image "%s" does not exists!','admin_galleries'), $k);
+			continue;
+		}	
 
-			//Verificamos si la imagen es válida
-			if($k<=0){
-				$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
-				continue;			
-			}
-
-			//Verificamos si la imagen existe
-			$img = new GSImage($k);
-			if ($img->isNew()){
-				$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
-				continue;
-			}	
-
-			$sets = $img->sets();
-			if(!$img->delete()){
-				$errors .= sprintf(_AS_GS_ERRDELETE, $k);
-			}else{
-	
-				//Decrementamos el número de imágenes de los albumes
-				foreach ($sets as $k => $set){
-					$set->quitPic($img->id());
-				}
-			}
-		}
-
-		if($erros!=''){
-			redirectMsg('./images.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
-			die();
+		$sets = $img->sets();
+		if(!$img->delete()){
+		    $errors .= sprintf(__('Image "%s" could not be deleted!', 'admin_galleries'), $k);
 		}else{
-			redirectMsg('./images.php?'.$ruta,_AS_GS_DBOK,0);
-			die();
+	        //Decrementamos el número de imágenes de los albumes
+			foreach ($sets as $k => $set){
+			    $set->quitPic($img->id());
+			}
 		}
-		
-
-
-	}else{
-
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./images.php'>"._AS_GS_IMGSLOC."</a> &raquo; "._AS_GS_LOCDELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['limit'] = $limit;
-		$hiddens['pag'] = $page;
-		$hiddens['search'] = $search;
-		$hiddens['owner'] = $owner;
-		$hiddens['sort'] = $sort;
-		$hiddens['mode'] = $mode;			
-
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'images.php?'.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'images.php',(isset($im) ? sprintf(_AS_GS_DELETECONF, $im->title()) : _AS_GS_DELETECONFS). '<br /><br />' ._AS_GS_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
 	}
+
+	if($erros!=''){
+	    redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to delete images','admin_galleries').$errors,1);
+		die();
+	}else{
+	    redirectMsg('./images.php?'.$ruta,__('Images deleted successfully!','admin_galleries'),0);
+		die();
+	}
+		
 
 
 }
@@ -828,19 +779,19 @@ function publicImages($pub = 0){
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? intval($_REQUEST['owner']) : 0;	
+	$owner = isset($_REQUEST['owner']) ? intval($_REQUEST['owner']) : '';	
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
 
-	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 
 	//Verificamos si nos proporcionaron al menos una imagen
-	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./images.php?'.$ruta,_AS_GS_ERRIMGPUB,1);
+	if (!is_array($ids)){
+		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','admin_galleries'),1);
 		die();
 	}
 
@@ -849,32 +800,31 @@ function publicImages($pub = 0){
 	
 		//Verificamos si la imagen es válida
 		if($k<=0){
-			$errors .= sprintf(_AS_GS_ERRNOTVALID, $k);
+			$errors .= sprintf(__('Image ID "%s" is not valid','admin_galleries'), $k);
 			continue;			
 		}
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(_AS_GS_ERRNOTEXIST, $k);
+			$errors .= sprintf(__('Image "%s" does not exists!','admin_galleries'), $k);
 			continue;
 		}	
 		
 		$img->setPublic($pub);
 		if(!$img->save()){
-			$errors .= sprintf(_AS_GS_ERRSAVE, $k);
+			$errors .= sprintf(__('Image could not be updated!','admin_galleries'), $k);
 		}
 	}
 
 	if($erros!=''){
-		redirectMsg('./images.php?'.$ruta,_AS_GS_DBERRORS.$errors,1);
+		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to update images!').$errors,1);
 		die();
 	}else{
-		redirectMsg('./images.php?'.$ruta,_AS_GS_DBOK,0);
+		redirectMsg('./images.php?'.$ruta,__('Images updated successfully!','admin_galleries'),0);
 		die();
 	}
 
 }
-
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 

@@ -14,8 +14,9 @@
 		</tr>
 	</table>
 </form>
-<form name="frmImgs"  method="POST" if="frm-images" action="images.php">
+<form name="frmImgs"  method="POST" id="frm-images" action="images.php">
 <div class="gs_options">
+    <?php $nav->display(false); ?>
 	<select name="op" id="select-op-top">
 		<option value=""><?php _e('Bulk actions...','admin_galleries'); ?></option>
 		<option value="public"><?php _e('Set as public','admin_galleries'); ?></option>
@@ -23,7 +24,8 @@
 		<option value="privatef"><?php _e('Set as public for friends','admin_galleries'); ?></option>
 		<option value="delete"><?php _e('Delete','admin_galleries'); ?></option>
 	</select>
-	<input type="button" id="op-top" value="<?php _e('Apply','admin_galleries'); ?>" />
+	<input type="button" id="op-top" value="<?php _e('Apply','admin_galleries'); ?>" /> &nbsp; &nbsp;
+    <?php echo $nav->get_showing(); ?>
 </div>
 <table width="100%" class="outer" cellspacing="1">
 	<thead>
@@ -72,7 +74,8 @@
 		<td align="left"><a href="<{$img.link}>"><strong><?php echo $img['title']; ?></strong></a>
 			<?php if($img['desc']!=''): ?><span class="imgDesc"><br /><?php echo $img['desc']; ?></span><?php endif; ?>
 			<span class="rmc_options">
-				<a href="./images.php?op=edit&amp;id=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_edit}></a> &bull; <a href="./images.php?op=delete&amp;ids=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_del}></a>
+				<a href="./images.php?op=edit&amp;id=<?php echo $img['id']; ?>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<?php echo $sort; ?>&amp;mode=<?php echo $mode; ?>"><?php _e('Edit','admin_galleries'); ?></a> | 
+                <a href="javascript:;" class="gs_delete_option" id="delete-<?php echo $img['id']; ?>"><?php _e('Delete','admin_galleries'); ?></a>
 			</span>
 		</td>
 		<td><?php if($img['public']==2): ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/public.png" title="<?php _e('Public','admin_galleries'); ?>" /><?php elseif($img['public']==1): ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/faccess.png" title="<?php _e('Public for friends','admin_galleries'); ?>" /><?php else: ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/private.png" title="<?php _e('Private','admin_galleries'); ?>" /><?php endif; ?></td>
@@ -83,21 +86,22 @@
 	</tbody>
 </table>
 <div class="gs_options">
-    <select name="op" id="select-op-bottom">
+    <?php $nav->display(false); ?>
+    <select name="opb" id="select-op-bottom">
         <option value=""><?php _e('Bulk actions...','admin_galleries'); ?></option>
         <option value="public"><?php _e('Set as public','admin_galleries'); ?></option>
         <option value="private"><?php _e('Set as private','admin_galleries'); ?></option>
         <option value="privatef"><?php _e('Set as public for friends','admin_galleries'); ?></option>
         <option value="delete"><?php _e('Delete','admin_galleries'); ?></option>
     </select>
-    <input type="button" id="op-bottom" value="<?php _e('Apply','admin_galleries'); ?>" />
+    <input type="button" id="op-bottom" value="<?php _e('Apply','admin_galleries'); ?>" /> &nbsp; &nsbp;
+    <?php echo $nav->get_showing(); ?>
 </div>
-<input type="hidden" name="op" id="op" />
 <input type="hidden" name="pag" value="<?php echo $page; ?>" />
 <input type="hidden" name="limit" value="<?php echo $limit; ?>" />
 <input type="hidden" name="search" value="<?php echo $search; ?>" />
 <input type="hidden" name="owner" value="<?php echo $owner; ?>" />
-<input type="hidden" name="sort" value="<{$sort}>" />
-<input type="hidden" name="mode" value="<{$mode}>" />
+<input type="hidden" name="sort" value="<?php echo $sort; ?>" />
+<input type="hidden" name="mode" value="<?php echo $mode; ?>" />
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

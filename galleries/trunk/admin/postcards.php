@@ -1,32 +1,14 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-
-define('GS_LOCATION', 'post');
+define('RMCLOCATION', 'postcards');
 include 'header.php';
 
 
@@ -34,14 +16,15 @@ include 'header.php';
 * @desc Visualiza todas las postales existentes
 **/
 function showPostCards(){
-	global $xoopsModule, $adminTemplate, $tpl, $db, $xoopsModuleConfig;
+	global $xoopsModule, $tpl, $xoopsModuleConfig;
 
 	$mc =& $xoopsModuleConfig;
 
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$limit = $limit<=0 ? 15 : $limit;
-
+    
+    $db = Database::getInstance();
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_postcards');
 	
@@ -97,9 +80,12 @@ function showPostCards(){
 	$tpl->assign('lang_del',_DELETE);
 	$tpl->assign('lang_submit',_SUBMIT);
 	
+    GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_POSTCARDS);
-	$adminTemplate = 'admin/gs_postcards.html';
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/gs_postcards.php','module','galleries');
+    
 	xoops_cp_footer();
 
 }

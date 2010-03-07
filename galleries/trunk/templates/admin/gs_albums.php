@@ -1,4 +1,5 @@
 <h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Albums Management','admin_galleries'); ?></h1>
+
 <form name="frmnav" method="POST" action="sets.php">
 <table class="outer" cellspacing="1" width="100%">
 	<tr class="even">
