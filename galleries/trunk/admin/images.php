@@ -179,8 +179,8 @@ function formImages($edit = 0){
 		$form->addElement($ele);
 	}else{
 		$xu = new XoopsUser($img->owner());
-		$form->addElement(new RMLabel(__('User','admin_galleries'),$xu->uname()));
-		$form->addElement(new RMHidden('uid',$img->owner()));
+		$form->addElement(new RMFormLabel(__('User','admin_galleries'),$xu->uname()));
+		$form->addElement(new RMFormHidden('uid',$img->owner()));
 	}
 
 	$form->addElement(new RMFormText(__('Title','admin_galleries'),'title',50,100,$edit ? $img->title() : ''));
