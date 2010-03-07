@@ -64,5 +64,47 @@ $(document).ready(function(){
 
 <?php
 		break;
+	
+	case 'bulkimages':
+		$xoopsOption['nocommon'] = 1;
+		include '../../../../mainfile.php';
+?>
+<script type="text/javascript">
+	function sendData(){
+		var url = "<?php echo XOOPS_URL; ?>/modules/galleries/admin/images.php?op=news&<{$ruta}>&uid="+document.forms['frmImgs'].uid.value;
+		var eles = document.forms['frmImgs'].elements;
+		var params = '';
+		
+		for (i=0; i<eles.length; i++){
+			if (eles[i].value!='' && (eles[i].type=='text' || eles[i].type=='file')){
+				params += params=='' ? eles[i].name+'='+eles[i].value : '&'+eles[i].name+'='+eles[i].value;
+			}
+		}
+		
+		url += '&'+params;
+		window.location = url;
+	}
+	
+	function validateTags(){
+		
+		var value = document.forms['frmImgs'].tags.value;
+				
+
+		value = value.replace(/^\value+/,'');
+		value = value.replace(/\value+$/,'');
+	
+		if(value==''){
+			alert('<{$lang_msg}>');
+			document.tagsvalidation = false;
+			return;
+		}
+	
+		document.tagsvalidation = true;
+
+
+	}
+</script>
+<?php
+		break;
 
 }

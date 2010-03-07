@@ -68,13 +68,16 @@
 	<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center" valign="top">
 		<td><input type="checkbox" name="ids[]" value="<?php echo $img['id']; ?>" id="item-<?php echo $img['id']; ?>" /></td>
 		<td><strong><?php echo $img['id']; ?></strong></td>
-		<td width="50" class="listimg"><a href="<?php echo $img['link']; ?>"><img src="<?php echo $img['image']; ?>" alt="" /></a></td>
+		<td width="50" class="listimg"><a href="<?php echo $img['link']; ?>"><img src="<?php echo $img['image']; ?>" alt="" style="width: 50px;" /></a></td>
 		<td align="left"><a href="<{$img.link}>"><strong><?php echo $img['title']; ?></strong></a>
-			<?php if($img['desc']!=''): ?><span class="imgDesc"><br /><?php echo $img['desc']; ?></span><?php endif; ?></td>
+			<?php if($img['desc']!=''): ?><span class="imgDesc"><br /><?php echo $img['desc']; ?></span><?php endif; ?>
+			<span class="rmc_options">
+				<a href="./images.php?op=edit&amp;id=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_edit}></a> &bull; <a href="./images.php?op=delete&amp;ids=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_del}></a>
+			</span>
+		</td>
 		<td><?php if($img['public']==2): ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/public.png" title="<?php _e('Public','admin_galleries'); ?>" /><?php elseif($img['public']==1): ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/faccess.png" title="<?php _e('Public for friends','admin_galleries'); ?>" /><?php else: ?><img src="<?php echo XOOPS_URL; ?>/modules/galleries/images/private.png" title="<?php _e('Private','admin_galleries'); ?>" /><?php endif; ?></td>
 		<td nowrap="nowrap"><?php echo $img['created']; ?></td>
 		<td><?php echo $img['owner']; ?></td>
-		<td nowrap="nowrap"><a href="./images.php?op=edit&amp;id=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_edit}></a> &bull; <a href="./images.php?op=delete&amp;ids=<{$img.id}>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;sort=<{$sort}>&amp;mode=<{$mode}>"><{$lang_del}></a></td>
 	</tr>
 	<?php endforeach; ?>
 	</tbody>

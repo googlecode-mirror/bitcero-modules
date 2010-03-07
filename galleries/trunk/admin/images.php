@@ -151,7 +151,7 @@ function formImages($edit = 0){
 
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
 	$uid = isset($_REQUEST['uid']) ? intval($_REQUEST['uid']) : 0;
@@ -208,7 +208,7 @@ function formImages($edit = 0){
 	$ele = new RMFormSelect(__('Privacy','admin_galleries'),'public');
 	$ele->addOption(0,__('Private','admin_galleries'),$edit ? ($img->isPublic()==0 ? 1 : 0) : 0);
 	$ele->addOption(1,__('Visible for friends','admin_galleries'),$edit ? ($img->isPublic()==1 ? 1 : 0) : 0);
-	$ele->addOption(2,__('Visible for all','admin_galleries'),$edit ? ($img->isPublic()==2 ? 1 : 0) : 0);
+	$ele->addOption(2,__('Visible for all','admin_galleries'),$edit ? ($img->isPublic()==2 ? 1 : 0) : 1);
 
 	$form->addElement($ele,true);
 
@@ -270,10 +270,10 @@ function formImages($edit = 0){
 **/
 function formBulkImages(){
 	
-	global $mc,$xoopsUser, $tpl, $adminTemplate, $xoopsModule, $db;
+	global $mc,$xoopsUser, $tpl, $xoopsModule;
 
-	$num = isset($_REQUEST['num']) ? intval($_REQUEST['num']) : 10;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$num_fields = isset($_REQUEST['num']) ? intval($_REQUEST['num']) : 10;
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : 0;
@@ -285,51 +285,33 @@ function formBulkImages(){
 
 	$ruta = "pag=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
-
-	for ($i=1; $i<=$num; $i++){
-		$tpl->append('fields',array('i'=>$i,'title'=>isset($title[$i]) ? $title[$i] : '','file'=>isset($file[$i]) ? urlencode($file[$i]) : ''));
-	}
-
-
+	$db = Database::getInstance();
+	
 	//Lista de albumes
 	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".($uid ? $uid : $xoopsUser->uid())."'";
 	$result = $db->query($sql);
+	$sets = array();
 	while($rows = $db->fetchArray($result)){
-		$tpl->append('sets',array('id'=>$rows['id_set'],'title'=>$rows['title']));
+		$sets[] = array('id'=>$rows['id_set'],'title'=>$rows['title']);
 	}
 
 
 	$form = new RMForm('','frmImgs','images.php');
 
-	$ele = new RMFormUserEXM(_AS_GS_USER,'uid',0,($uid ? array($uid) : array($xoopsUser->uid())),0);
+	$ele = new RMFormUser('','uid',0,($uid ? array($uid) : array($xoopsUser->uid())),0);
 	$ele->setForm('frmImgs');
 	$ele->onChange("sendData();");
 	
-	$tpl->assign('users',$ele->render());
-	$tpl->assign('lang_newimg',_AS_GS_NEWIMGS);
-	$tpl->assign('lang_title',_AS_GS_TITLE);
-	$tpl->assign('lang_img',_AS_GS_IMAGE);
-	$tpl->assign('lang_save',_AS_GS_SAVE);
-	$tpl->assign('lang_user',_AS_GS_USERASSIGN);
-	$tpl->assign('size',$mc['size_image']*1024);
-	$tpl->assign('ruta',$ruta);
-	$tpl->assign('owner',$owner);
-	$tpl->assign('lang_albums',_AS_GS_ALBUMS);
-	$tpl->assign('lang_cancel',_CANCEL);
-	$tpl->assign('lang_tags',_AS_GS_TAGS);
-	$tpl->assign('lang_msg',_AS_GS_MESSAGE);
-	$tpl->assign('num',$num);
-	$tpl->assign('pag',$page);
-	$tpl->assign('limit',$limit);	
-	$tpl->assign('search',$search);
-	$tpl->assign('sort',$sort);	
-	$tpl->assign('mode',$mode);
+	$users_field = $ele->render();
+	$file_size = $mc['size_image']*1024;	
 	
+	GSFunctions::toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Create batch images','admin_galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Create batch images','admin_galleries'));
+	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=bulkimages');
+	xoops_cp_header();
 	
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_GS_IMGSLOC);
-	$adminTemplate = "admin/gs_formimages.html";
-	xoops_cp_header($form->javascript());
+	include RMTemplate::get()->get_template("admin/gs_formimages.php",'module','galleries');
 	
 	xoops_cp_footer();
 
@@ -439,9 +421,9 @@ function saveImages($edit = 0){
 
 	//Imagen
 	include_once RMCPATH.'/class/uploader.php';
-	$up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
 	$folder = $mc['storedir']."/".$user->uname();
 	$folderths = $mc['storedir']."/".$user->uname()."/ths";
+	$up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
 	if ($edit){
 		$filename=$img->image();
 	}

@@ -238,7 +238,7 @@ class GSFunctions
 		RMTemplate::get()->add_tool(__('Albums','admin_works'), './sets.php', '../images/album.png', 'sets');
 		RMTemplate::get()->add_tool(__('Tags','admin_works'), './tags.php', '../images/tags.png', 'tags');
 		RMTemplate::get()->add_tool(__('Users','admin_works'), './users.php', '../images/users.png', 'users');
-		RMTemplate::get()->add_tool(__('Albums','admin_works'), './images.php', '../images/images.png', 'images');
+		RMTemplate::get()->add_tool(__('Images','admin_works'), './images.php', '../images/images.png', 'images');
 		RMTemplate::get()->add_tool(__('Postcards','admin_works'), './postcards.php', '../images/postcard.png', 'postcards');
 		
 		RMTemplate::get()->add_style('admin.css', 'galleries');
