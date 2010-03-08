@@ -334,13 +334,17 @@ class MWFunctions
     */
     public function get_posts_by_cat($cat, $start=0, $limit=1, $orderby='pubdate', $order='DESC', $status='publish'){
 		
-		if ($cat<=0) return;
 		$path = XOOPS_ROOT_PATH.'/modules/mywords';
 		include_once $path.'/class/mwpost.class.php';
 		
 		$db = Database::getInstance();
-		$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a, ".$db->prefix("mw_catpost")." as b WHERE
+		if ($cat>0){
+			$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a, ".$db->prefix("mw_catpost")." as b WHERE
 				b.cat='$cat' AND a.id_post=b.post AND a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
+		} else {
+			$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a WHERE
+				a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
+		}
 		
 		$result = $db->query($sql);
 		$ret = array();
@@ -351,6 +355,12 @@ class MWFunctions
 		}
 		
 		return $ret;
+		
+    }
+    
+    public function get_posts($start=0, $limit=1, $orderby='pubdate', $order='DESC', $status='publish'){
+		
+		return self::get_posts_by_cat(0, $start, $limit, $orderby, $order, $status);
 		
     }
 	

@@ -58,7 +58,7 @@ function showPosts($aprovado = -1){
 	$nav = new RMPageNav($num, $limit, $page, 5);
     $nav->target_url('posts.php?limit='.$limit.'&page={PAGE_NUM}');
 	
-	$sql .= " ORDER BY id_post DESC, pubdate DESC LIMIT $start,$limit";
+	$sql .= " ORDER BY id_post DESC LIMIT $start,$limit";
 	$sql = str_replace("SELECT COUNT(*)", "SELECT *", $sql);
 
 	$result = $db->query($sql);
