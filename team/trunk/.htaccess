@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /modules/team/
+RewriteCond %{REQUEST_URI} !/[A-Z]+-
+RewriteRule ^cat/(.*)/?$ category.php?id=$1 [L]
+RewriteRule ^t/(.*)/?$ team.php?id=$1 [L]
+RewriteRule ^player/(.*)/?$ player.php?id=$1 [L]
+RewriteRule ^coach/(.*)/?$ coach.php?id=$1 [L]

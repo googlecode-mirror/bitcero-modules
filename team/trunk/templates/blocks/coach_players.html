@@ -1,0 +1,18 @@
+<table class="outer" cellspacing="0" cellpadding="4">
+<{assign var="i" value=1}>
+<tr>
+<{foreach item=player from=$block.players}>
+	<{if $i>$block.cols}>
+		</tr><tr>
+		<{assign var="i" value=1}>
+	<{/if}>
+	<td align="center">
+		<{if $player.image!=''}>
+			<a href="<{$player.link}>"><img src="<{$xoops_url}>/uploads/teams/players/ths/<{$player.image}>" alt="<{$player.name}>" style="padding: 1px; border: 1px solid #333;" /></a><br />
+		<{/if}>
+		<a href="<{$player.link}>"><strong>#<{$player.number}></strong></a>
+	</td>
+	<{assign var="i" value=$i+1}>
+<{/foreach}>
+</tr>
+</table>

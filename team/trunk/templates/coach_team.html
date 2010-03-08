@@ -1,0 +1,33 @@
+<{include file="db:coach_header.html"}>
+
+<div class="coachDivSection">
+	<h2><{$lang_coachs}></h2>
+	<{foreach item=coach from=$coachs}>
+		<a class="player" href="<{$coach.link}>">
+			<{if $coach.image!=''}>
+				<img src="<{$xoops_url}>/uploads/teams/coachs/ths/<{$coach.image}>" alt="<{$coach.name}>" />
+			<{/if}>
+			<span class="number"><{$coach.role}></span>
+		</a>
+	<{/foreach}>
+	<div class="clearer">&nbsp;</div>
+</div>
+<div class="coachDivSection">
+	<h2><{$lang_players}></h2>
+	<div style="margin-left: 10px">
+	<{foreach item=player from=$players}>
+		<a class="player" href="<{$player.link}>">
+			<{if $player.image!=''}>
+				<img src="<{$xoops_url}>/uploads/teams/players/ths/<{$player.image}>" alt="<{$player.name}>" />
+			<{/if}>
+			<span class="number">#<{$player.number}></span>
+		</a>
+	<{/foreach}>
+	</div>
+	<div class="clearer">&nbsp;</div>
+</div>
+
+<div class="coachDivSection">
+	<h2><{$lang_info}></h2>
+	<{$team.desc}>
+</div>

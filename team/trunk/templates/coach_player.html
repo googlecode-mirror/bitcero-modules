@@ -1,0 +1,52 @@
+<{include file="db:coach_header.html"}>
+
+<{if $player.image!=''}>
+<div class="playerimg">
+	<img src="<{$xoops_url}>/uploads/teams/players/<{$player.image}>" alt="<{$player.name}>" />
+</div><br />
+<{/if}>
+
+<table class="outer" cellspacing="1">
+	<tr><th colspan="2"><{$lang_data}></th></tr>
+	<tr class="even">
+		<td width="20%"><{$lang_name}></td>
+		<td><{$player.name}></td>
+	</tr>
+	<tr class="odd">
+		<td><{$lang_number}></td>
+		<td><{$player.number}></td>
+	</tr>
+	<tr class="even">
+		<td><{$lang_team}></td>
+		<td><a href="<{$team.link}>"><{$team.name}></a></td>
+	</tr>
+	<tr class="odd">
+		<td><{$lang_age}></td>
+		<td><{$player.age}></td>
+	</tr>
+	<tr class="even">
+		<td><{$lang_date}></td>
+		<td><{$player.date}></td>
+	</tr>
+	<tr class="odd">
+		<td><{$lang_link}></td>
+		<td><{$player.link}></td>
+	</tr>
+</table>
+<h2><{$lang_bio}></h2>
+<div class="coachBio"><{$player.bio}></div>
+<br />
+<div class="coachDivSection">
+	<h2><{$lang_players}></h2>
+	<div style="margin-left: 10px">
+	<{foreach item=player from=$players}>
+		<a class="player" href="<{$player.link}>">
+			<{if $player.image!=''}>
+				<img src="<{$xoops_url}>/uploads/teams/players/ths/<{$player.image}>" alt="<{$player.name}>" />
+			<{/if}>
+			<span class="number">#<{$player.number}></span>
+		</a>
+	<{/foreach}>
+	</div>
+	<div class="clearer">&nbsp;</div>
+</div>

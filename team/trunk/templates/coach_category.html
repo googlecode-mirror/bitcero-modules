@@ -1,0 +1,17 @@
+<{include file="db:coach_header.html"}>
+
+
+<h1 class="coachTitleCat"><{$lang_in}></h1>
+
+<{foreach item=team from=$teams}>
+<div class="coachDivSection">
+	<h2><a href="<{$team.link}>"><{$team.name}></a></h2>
+	<{if $team.image!=''}>
+		<a href="<{$team.link}>"><img src="<{$xoops_url}>/uploads/teams/ths/<{$team.image}>" alt="<{$team.name}>" class="coachTeamImage" /></a>
+	<{/if}>
+	<div class="coachTeamDesc"<{if $team.image!=''}> style="margin-left: 90px;"<{/if}>>
+		<{$team.desc}>...<br /><br />
+		<a href="<{$team.link}>"><img src="<{$tc_url}>/images/details.png" alt="Detalles" /></a>
+	</div>
+</div>
+<{/foreach}>

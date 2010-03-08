@@ -1,0 +1,26 @@
+<{include file="db:coach_header.html"}>
+
+<{if $coach.image!=''}>
+<div class="playerimg">
+	<img src="<{$xoops_url}>/uploads/teams/coachs/<{$coach.image}>" alt="<{$coach.name}>" />
+</div><br />
+<{/if}>
+
+<table class="outer" cellspacing="1">
+	<tr><th colspan="2"><{$lang_data}></th></tr>
+	<tr class="even">
+		<td width="20%"><{$lang_name}></td>
+		<td><{$coach.name}></td>
+	</tr>
+	<tr class="even">
+		<td><{$lang_team}></td>
+		<td><{$teams}></td>
+	</tr>
+	<tr class="even">
+		<td><{$lang_date}></td>
+		<td><{$coach.date}></td>
+	</tr>
+</table>
+
+<h2><{$lang_bio}></h2>
+<div class="coachBio"><{$coach.bio}></div>

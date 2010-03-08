@@ -1,0 +1,19 @@
+<{include file="db:coach_header.html"}>
+
+<div class="coachDivSection">
+	<h2><{$lang_categos}></h2>
+	<ul>
+		<{foreach item=cat from=$categos}>
+			<li><a href="<{$cat.link}>"><{$cat.name}></a></li>
+		<{/foreach}>
+	</ul>
+</div>
+
+<div class="coachDivSection">
+	<h2><{$lang_teams}></h2>
+	<ul>
+		<{foreach item=team from=$teams}>
+			<li><a href="<{$team.link}>"><{$team.name}></a></li>
+		<{/foreach}>
+	</ul>
+</div>
