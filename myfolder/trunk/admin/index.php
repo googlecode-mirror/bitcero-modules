@@ -12,52 +12,45 @@ include 'header.php';
 
 function rmmfShow(){
 	global $db;
-	define('_RMMF_LOCATION','INDEX');
+	
+	define('RMCLOCATION','index');
+	MFFunctions::toolbar();
+	
 	xoops_cp_header();
-	echo "<script type='text/javascript'>
+	RMTemplate::get()->add_head("<script type='text/javascript'>
 			<!--
 				function decision(message, url){
 					if(confirm(message)) location.href = url;
 				}
 			-->
-		   </script>";
-	rmmf_make_adminnav();
+		   </script>");
+	
+	/**
+	* @todo Create pagination
+	*/
 	
 	$result = $db->query("SELECT * FROM ".$db->prefix("rmmf_works")." ORDER BY titulo");
 	
-	include_once '../class/table.class.php';
 	include_once '../class/catego.class.php';
-	$table = new MFTable(true);
-	$table->setCellStyle("padding: 0px; padding-left: 10px; padding-right: 10px; vertical-align: middle; border-bottom: 1px solid #0066CC; border-right: 1px solid #0066CC; background: url(../images/bgth.jpg) repeat-x; height: 20px; color: #FFFFFF;");
-	$table->openTbl('100%','',1);
-	$table->openRow('left');
-	$table->addCell(_MA_RMMF_WORKS, 1,4);
-	$table->closeRow();
-	$table->setRowClass('head');
-	$table->setCellStyle("padding: 0px; padding-left: 3px; padding-right: 3px; border-bottom: 1px solid #DBE691; border-right: 1px solid #DBE691; background: url(../images/bghead.jpg) repeat-x; height: 20px; color: #000000;");
-	$table->openRow('center');
-	$table->addCell(_MA_RMMF_TITLE, 0, '','center');
-	$table->addCell(_MA_RMMF_CATEGO, 0, '','center');
-	$table->addCell(_MA_RMMF_FEATURED,0,'','center');
-	$table->addCell(_MA_RMMF_OPTIONS,0,'','center');
-	$table->closeRow();
-	
+	$items = array();
+	while ($row=$db->fetchArray($result)){
+		$catego = new MFCategory($row['catego']);
+		$items[] = array(
+			'title'			=> $row['titulo'],
+			'category'		=> $catego->getVar('nombre'),
+			'featured'		=> $row['resaltado'],
+			'id'			=> $row['id_w']
+		);
+	}
+	/*
 	$table->setRowClass('odd,even', true);
 	$table->setCellStyle('');
-	while ($row=$db->fetchArray($result)){
-		$table->openRow();
-		$table->addCell("<strong>$row[titulo]</strong>", 0, '', 'left');
-		$catego = new MFCategory($row['catego']);
-		$table->addCell($catego->getVar('nombre'), 0, '', 'center');
-		$table->addCell(($row['resaltado']==1) ? _MA_RMMF_YES :  _MA_RMMF_NO, 0, '', 'center');
-		$table->addCell("<a href='?op=edit&amp;id=$row[id_w]'>"._MA_RMMF_EDIT."</a>
-				&nbsp;| &nbsp;<a href=\"javascript:decision('".sprintf(_MA_RMMF_CONFIRM, $row['titulo'])."','?op=del&amp;id=$row[id_w]')\">"._MA_RMMF_DELETE."</a>
-				&nbsp;| &nbsp;<a href='?op=imgs&amp;id=$row[id_w]'>"._MA_RMMF_ADDIMAGES."</a>", 0, '', 'center');
-		$table->closeRow();
-	}
+	
 	
 	$table->closeTbl();
-	rmmf_make_footer();
+	rmmf_make_footer();*/
+	
+	include RMTemplate::get()->get_template('admin/mf-index.php', 'module', 'myfolder');
 	xoops_cp_footer();
 }
 

@@ -1,59 +1,32 @@
 <?php
-/*******************************************************************
-* $Id$          *
-* -------------------------------------------------------          *
-* RMSOFT MyFolder 1.0                                              *
-* Módulo para el manejo de un portafolio profesional               *
-* CopyRight © 2006. Red México Soft                                *
-* Autor: BitC3R0                                                   *
-* http://www.redmexico.com.mx                                      *
-* http://www.xoops-mexico.net                                      *
-* --------------------------------------------                     *
-* This program is free software; you can redistribute it and/or    *
-* modify it under the terms of the GNU General Public License as   *
-* published by the Free Software Foundation; either version 2 of   *
-* the License, or (at your option) any later version.              *
-*                                                                  *
-* This program is distributed in the hope that it will be useful,  *
-* but WITHOUT ANY WARRANTY; without even the implied warranty of   *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the     *
-* GNU General Public License for more details.                     *
-*                                                                  *
-* You should have received a copy of the GNU General Public        *
-* License along with this program; if not, write to the Free       *
-* Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,   *
-* MA 02111-1307 USA                                                *
-*                                                                  *
-* -------------------------------------------------------          *
-* categos.php:                                                     *
-* Manejo de Categorías                                             *
-* -------------------------------------------------------          *
-* @copyright: © 2006. BitC3R0.                                     *
-* @autor: BitC3R0                                                  *
-* @paquete: RMSOFT MyFolder v1.0                                   *
-* @version: 1.0.1                                                  *
-* @modificado: 24/05/2006 12:35:09 a.m.                            *
-*******************************************************************/
+// $Id$
+// --------------------------------------------------------------
+// MyFolder
+// Advanced Portfolio System
+// Author: Eduardo CortÃ©s <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 include 'header.php';
 /**
- * Mostramos las categorías
+ * Mostramos las categor?as
  */
 function rmmfShow(){
 	global $db;
-	define('_RMMF_LOCATION','CATEGOS');
-	xoops_cp_header();
-	echo "<script type='text/javascript'>
+	define('RMCLOCATION','categories');
+	
+	MFFunctions::toolbar();
+	RMTemplate::get()->add_head("<script type='text/javascript'>
 			<!--
 				function decision(message, url){
 					if(confirm(message)) location.href = url;
 				}
 			-->
-		   </script>";
-	rmmf_make_adminnav();
+		   </script>");
 	
 	$result = array();
-	rmmf_get_categos($result);
+	MFFunctions::get_categories($result);
 	
 	include_once '../class/table.class.php';
 	$table = new MFTable(true);
@@ -83,55 +56,63 @@ function rmmfShow(){
 	}
 	
 	$table->closeTbl();
-	rmmf_make_footer();
+	xoops_cp_header();
+
 	xoops_cp_footer();
 }
 
 /**
- * Creamos una nueva categoría
+ * Creamos una nueva categor?a
  */
 function rmmfNew(){
 	global $db, $mc;
-	define('_RMMF_LOCATION','NEWCATEGO');
-	xoops_cp_header();
-	rmmf_make_adminnav();
+	define('RMCLOCATION','newcategory');
 	
-	include_once '../common/form.class.php';
-	$form = new RMForm(_MA_RMMF_NEWCATEGO, 'frmNew', 'categos.php?op=save');
-	$form->addElement(new RMText(_MA_RMMF_NAME, 'nombre', 50, 150));
+	MFFunctions::toolbar();
+	
+	$form = new RMForm(__('New Category','admin_myfolder'), 'frmNew', 'categos.php');
+	$form->addElement(new RMFormText(__('Name','admin_mywords'), 'nombre', 50, 150));
+	
+	$ele = new RMFormSelect(__('Parent category','admin_myfolder'), 'parent');
+	$ele->addOption('', __('Select category...','admin_myfolder'), 1);
 	$result = array();
-	$select = "<select name='parent'>
-				<option value='0'>"._MA_RMMF_SELECT."</option>";
-	rmmf_get_categos($result);
+	MFFunctions::get_categories($result);
 	foreach ($result as $k => $v){
-		$select .= "<option value='$v[id_cat]'>$v[nombre]</option>";
+		$ele->addOption($v['id_cat'], $v['nombre']);
 	}
-	$select .= "</select>";
-	$form->addElement(new RMLabel(_MA_RMMF_PARENT, $select));
-	$form->addElement(new RMText(_MA_RMMF_ORDER, 'orden', 5, 5, 0));
-	$form->addElement(new RMLabel(_MA_RMMF_DESC, rmmf_select_editor('desc',$mc['editor'],'','100%','250px')));
-	$form->addElement(new RMButton('sbt',_MA_RMMF_SEND));
+	$form->addElement($ele);
+	$form->addElement(new RMFormText(__('Display order','admin_myfolder'), 'orden', 5, 5, 0));
+	$ele = new RMFormEditor(__('Description', 'admin_myfolder'), 'desc', '96%', '300px');
+	$form->addElement($ele);
+	
+	$ele = new RMFormButtonGroup('');
+	$ele->addButton('sbt', __('Create Category','admin_myfolder'), 'submit');
+	$ele->addButton('cancel', __('Cancel','admin_myfolder'), 'button', 'onclick="history.go(-1);"');
+	$form->addElement($ele, false);
+	$form->addElement(new RMFormHidden('op', 'save'));
+	
+	xoops_cp_header();
 	$form->display();
-	rmmf_make_footer();
 	xoops_cp_footer();
 }
 
 function rmmfSave(){
 	global $db, $myts;
 	
-	foreach ($_POST as $k => $v){
-		$$k = $v;
-	}
+	$nombre = rmc_server_var($_POST, 'nombre', '');
+	$parent = rmc_server_var($_POST, 'parent', 0);
+	$desc = rmc_server_var($_POST, 'desc', '');
+	$orden = rmc_server_var($_POST, 'orden', 0);
 	
 	if ($nombre==''){
-		redirect_header('?op=new', 1, _MA_RMMF_ERRNAME);
+		redirectMsg('categos.php?op=new', __('You must provide a name for this category','admin_myfolder'), 1);
 		die();
 	}
 	
 	$tbl = $db->prefix("rmmf_categos");
 	list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM $tbl WHERE nombre='$nombre' AND parent='$parent'"));
 	if ($num>0){
-		redirect_header('?op=new', 1, _MA_RMMF_ERREXISTS);
+		redirectMsg('categos.php?op=new', __('A category with same name already exists!', 'admin_myfolder'), 1);
 		die();
 	}
 	
@@ -140,16 +121,17 @@ function rmmfSave(){
 			('$nombre','$orden','$desc','$parent')";
 	$db->query($sql);
 	if ($db->error()!=''){
-		redirect_header('?op=new', 2, sprintf(_MA_RMMF_ERRDB, $db->error()));
+		redirectMsg('categos.php?op=new', __('There was some errors while trying to update database!', 'admin_myfolder').'<br />'.$db->error());
 		die();
 	} else {
-		header('location: categos.php'); die();
+		redirectMsg('categos.php', __('Database updated successfully!', 'admin_myfolder'));
+		die();
 	}
 	
 }
 
 /**
- * Editamos una categoría
+ * Editamos una categor?a
  */
 function rmmfEdit(){
 	global $db, $mc, $myts;
@@ -301,4 +283,3 @@ switch ($op){
 		rmmfShow();
 		break;
 }
-?>

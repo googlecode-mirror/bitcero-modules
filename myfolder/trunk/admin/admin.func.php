@@ -3,8 +3,8 @@
 * $Id$       *
 * ----------------------------------------------------------       *
 * RMSOFT MyFolder 1.0                                              *
-* Módulo para el manejo de un portafolio profesional               *
-* CopyRight © 2006. Red México Soft                                *
+* M?dulo para el manejo de un portafolio profesional               *
+* CopyRight ? 2006. Red M?xico Soft                                *
 * Autor: BitC3R0                                                   *
 * http://www.redmexico.com.mx                                      *
 * http://www.xoops-mexico.net                                      *
@@ -26,16 +26,16 @@
 *                                                                  *
 * ----------------------------------------------------------       *
 * admin.func.php:                                                  *
-* Funciones para la sección administrativa                         *
+* Funciones para la secci?n administrativa                         *
 * ----------------------------------------------------------       *
-* @copyright: © 2006. BitC3R0.                                     *
+* @copyright: ? 2006. BitC3R0.                                     *
 * @autor: BitC3R0                                                  *
 * @paquete: RMSOFT MyFolder v1.0                                   *
 * @version: 1.0.1                                                  *
 * @modificado: 24/05/2006 12:34:23 a.m.                            *
 *******************************************************************/
 /**
- * Crea la barra de navegación superior del módulo
+ * Crea la barra de navegaci?n superior del m?dulo
  */
 function rmmf_make_adminnav(){
 	
@@ -52,11 +52,11 @@ function rmmf_make_adminnav(){
 			</tr></table><br />";
 }
 
-// Pie de la página
+// Pie de la p?gina
 function rmmf_make_footer($echo = true){
 	$rtn = "<div style='font-size: 10px; text-align: center; padding: 4px;'>";
 	if ($echo){
-		$rtn.= "CopyRight © 2006 <a href='http://www.redmexico.com.mx'>Red México Soft</a>
+		$rtn.= "CopyRight ? 2006 <a href='http://www.redmexico.com.mx'>Red M?xico Soft</a>
 				&nbsp;| &nbsp;";
 	}
 	$rtn .= "Powered by <a href='http://www.redmexico.com.mx'>RMSOFT MyFolder 1.2</a> &nbsp;|
@@ -65,19 +65,8 @@ function rmmf_make_footer($echo = true){
 	if ($echo){ echo $rtn; } else { return $rtn; }
 }
 
-// Obtenemos las categorías
-function rmmf_get_categos(&$rtn, $parent=0, $saltos=0, $current=0){
-	global $db;
-	
-	$result = $db->query("SELECT * FROM ".$db->prefix("rmmf_categos")." WHERE `parent`='$parent' ORDER BY `orden`");
-	while ($row=$db->fetchArray($result)){
-		if ($row['id_cat']==$current){ continue; }
-		$row['saltos'] = $saltos;
-		$rtn[] = $row;
-		rmmf_get_categos($rtn, $row['id_cat'], $saltos + 2);
-	}
-	
-}
+// Obtenemos las categor?as
+
 
 /**
  * Obtenemos el editor correcto
@@ -179,7 +168,7 @@ function rmmf_make_random($size=8, $prefix=''){
 }
 
 /**
- * Función que agrega una diagonal al final de una ruta
+ * Funci?n que agrega una diagonal al final de una ruta
  * @return string
  */
 function rmmf_add_slash($text){
@@ -202,8 +191,8 @@ function rmmf_web_dir($dir){
 	return $dir;
 }
 /**
- * Permite redimensionar una imágen
- * a un tamaño dado
+ * Permite redimensionar una im?gen
+ * a un tama?o dado
  * Es necesario contar con la extension GD2 de PHP
  */
 function rmmf_image_resize($source,$target,$width, $height){
@@ -238,7 +227,7 @@ function rmmf_image_resize($source,$target,$width, $height){
 		}
 	  }
 	  
-      // esta será la nueva imagen reescalada
+      // esta ser? la nueva imagen reescalada
       $thumb = imagecreatetruecolor($width,$height);
 	  switch ($type){
 	  	case '.jpg':
@@ -251,7 +240,7 @@ function rmmf_image_resize($source,$target,$width, $height){
 			$img = imagecreatefrompng($source);
 			break;
 	  }
-      // con esta función la reescalamos
+      // con esta funci?n la reescalamos
       imagecopyresampled ($thumb, $img, 0, 0, 0, 0, $width, $height, $datos[0], $datos[1]);
       // la guardamos con el nombre y en el lugar que nos interesa.
 	  switch ($type){
@@ -269,7 +258,7 @@ function rmmf_image_resize($source,$target,$width, $height){
 }
 
 /**
- * Rediemsion de Imágenes
+ * Rediemsion de Im?genes
  */
 function resize_then_crop( $filein,$fileout,$imagethumbsize_w,$imagethumbsize_h,$red,$green,$blue)
 {
@@ -360,7 +349,7 @@ function resize_then_crop( $filein,$fileout,$imagethumbsize_w,$imagethumbsize_h,
 	//imagegif($thumb2); //output to browser
 }
 
-// Localización
+// Localizaci?n
 function rmmf_localize($id, $by){
 	global $db;
 	
