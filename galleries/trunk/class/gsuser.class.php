@@ -158,8 +158,7 @@ class GSUser extends RMObject
 		if (isset($xoopsModule) && $xoopsModule->dirname()=='galleries'){
 			$mc =& $xoopsModuleConfig;
 		} else {
-			$util =& RMUtils::getInstance();
-			$mc =& $util->moduleConfig('galleries');
+			$mc =& RMUtilities::get()->module_config('galleries');
 		}
 		$mc['storedir'] = substr($mc['storedir'], strlen($mc['storedir']) - 1)=='/' ? substr($mc['storedir'], 0, strlen($mc['storedir']) - 1) : $mc['storedir'];
 		$this->_fpath = $mc['storedir'].'/'.$this->uname();
@@ -177,8 +176,7 @@ class GSUser extends RMObject
 		if (isset($xoopsModule) && $xoopsModule->dirname()=='galleries'){
 			$mc =& $xoopsModuleConfig;
 		} else {
-			$util =& RMUtils::getInstance();
-			$mc =& $util->moduleConfig('galleries');
+			$mc =& RMUtilities::get()->module_config('galleries');
 		}
 		
 		if ($mc['storemode']){
@@ -204,8 +202,7 @@ class GSUser extends RMObject
 		if (isset($xoopsModule) && $xoopsModule->dirname()=='galleries'){
 			$mc =& $xoopsModuleConfig;
 		} else {
-			$util =& RMUtils::getInstance();
-			$mc =& $util->moduleConfig('galleries');
+			$mc =& RMUtilities::get()->module_config('galleries');
 		}
 		
 		$url = XOOPS_URL.'/modules/galleries/';
