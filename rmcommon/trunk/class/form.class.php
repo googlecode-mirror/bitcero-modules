@@ -386,7 +386,6 @@ class RMForm
         /**
          * Generamos el cdigo JavaScript para comprobación del formulario
          */
-        $rtn = $this->javaScript();
                 
         $ret = '';
         $req = '';
@@ -433,9 +432,9 @@ class RMForm
                 <table class='$this->_tableClass' cellspacing='1'>
                     <tr><th colspan='2'".(($this->_thClass!='') ? " class='".$this->_thClass."'" : '').($this->_thStyle!='' ? " style=\"$this->_thStyle\"":'').">".$this->_title."</th></tr>";
         if ($this->_addtoken){
-            $rtn .= $GLOBALS['exmSecurity']->getTokenHTML();
+            $rtn .= $GLOBALS['xoopsSecurity']->getTokenHTML();
         }
-        $rtn .= $ret . "<tr class='$this->_footClass'".($this->_footStyle!='' ? " style=\"$this->_footStyle\"":'')."><td colspan='2' align='right'>"._RMS_CF_REQUIREDT."</td></tr></table></form>\n";
+        $rtn .= $ret . "<tr class='$this->_footClass'".($this->_footStyle!='' ? " style=\"$this->_footStyle\"":'')."><td colspan='2' align='right'>".__('Required fields marked with "*"','rmcommon')."</td></tr></table></form>\n";
         return $rtn;
         
     }

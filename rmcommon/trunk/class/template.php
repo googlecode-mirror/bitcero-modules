@@ -291,7 +291,7 @@ class RMTemplate
         }
 
         $theme_file = $themepath.'/css/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
-   
+
         if (is_file($theme_file)){
             $url = $themeurl.'/css/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$sheet;
         } else {
