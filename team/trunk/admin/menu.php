@@ -42,6 +42,8 @@ $adminmenu[3]['options'] = array(
 	array('link' => './teams.php?op=new', 'title' => __('Crear equipo','admin_team'), 'selected' => 'newteam')
 );
 
+$team = rmc_server_var($_GET,'team','');
+
 $adminmenu[4]['title'] = __('Jugadores','admin_team');
 $adminmenu[4]['link'] = "admin/players.php";
 $adminmenu[4]['icon'] = '../images/icon24.png';

@@ -1,29 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// The Coach
-// Manejo de Integrantes de Equipos Deportivos
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// Equipo Club Gallos
+// Un modulo sencillo para el manejo de equipos
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 define('TC_LOCATION','teams');
 include '../../mainfile.php';
@@ -60,7 +43,7 @@ $tpl->assign('team', array('id'=>$team->id(),'desc'=>$team->desc()));
 // Integrantes
 $players = $team->players(true);
 foreach ($players as $player){
-	$link = TC_URL.'/'.($mc['urlmode'] ? 'player/'.$player->nameId().'/' : 'player.php?id='.$player->id());
+	$link = TC_URL.'/'.($xoopsModuleConfig['urlmode'] ? 'player/'.$player->nameId().'/' : 'player.php?id='.$player->id());
 	$tpl->append('players', array('id'=>$player->id(),'name'=>$player->name(),'image'=>$player->image(),
 			'number'=>$player->number(), 'link'=>$link));
 }
@@ -68,14 +51,14 @@ foreach ($players as $player){
 // ENtrenadores
 $coachs = $team->coachs(true);
 foreach ($coachs as $coach){
-	$link = TC_URL.'/'.($mc['urlmode'] ? 'coach/'.$coach->nameId().'/' : 'player.php?t=c&amp;id='.$coach->id());
+	$link = TC_URL.'/'.($xoopsModuleConfig['urlmode'] ? 'coach/'.$coach->nameId().'/' : 'player.php?t=c&amp;id='.$coach->id());
 	$tpl->append('coachs', array('id'=>$coach->id(),'name'=>$coach->name(),'role'=>$coach->role(),'link'=>$link,
 			'image'=>$coach->image()));
 }
 
 $tpl->assign('xoops_pagetitle', sprintf(_MS_TC_PTITLE, $team->name()));
 $location = "<a href='".TC_URL."'>".$xoopsModule->name()."</a> &raquo; 
-	<a href='".TC_URL."/".($mc['urlmode'] ? 'cat/'.$cat->nameId()."/" : 'category.php?id='.$cat->id())."'>
+	<a href='".TC_URL."/".($xoopsModuleConfig['urlmode'] ? 'cat/'.$cat->nameId()."/" : 'category.php?id='.$cat->id())."'>
 	".$cat->name()."</a> &raquo; ".sprintf(_MS_TC_PTITLE, $team->name());
 $tpl->assign('coach_location', $location);
 

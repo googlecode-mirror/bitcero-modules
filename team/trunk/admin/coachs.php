@@ -12,17 +12,7 @@ define('RMCLOCATION','coachs');
 include 'header.php';
 
 function showCoachs(){
-	global $xoopsModule, $tpl, $db, $adminTemplate;
-	
-	$tpl->assign('lang_existing', _AS_TC_EXISTING);
-	$tpl->assign('lang_name', _AS_TC_NAME);
-	$tpl->assign('lang_teams', _AS_TC_TEAMS);
-	$tpl->assign('lang_id', _AS_TC_ID);
-	$tpl->assign('lang_img', _AS_TC_IMG);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_confirm', _AS_TC_CONFDEL);
+	global $xoopsModule, $tpl, $db;
 	
 	$result = $db->query("SELECT * FROM ".$db->prefix("coach_coachs")." ORDER BY name");
 	$coachs = array();

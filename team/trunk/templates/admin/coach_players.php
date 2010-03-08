@@ -4,62 +4,62 @@
 <form name="selTeam" method="get" action="players.php">
 	<?php _e('Equipo:','admin_team'); ?>
 	<select name="team" onchange="submit();">
-		<option value="0"<?php if($team==0): ?> selected="selected"<?php endif; ?>><?php _e('Seleccionar...','admin_team'); ?></option>
+		<option value="0"<?php if($gteam==0): ?> selected="selected"<?php endif; ?>><?php _e('Seleccionar...','admin_team'); ?></option>
 		<?php foreach($teams as $steam): ?>
-			<option value="<?php echo $steam['id']; ?>"<?php if($team==$steam['id']): ?> selected="selected"<?php endif; ?><?php echo $steam['name']; ?></option>
+			<option value="<?php echo $steam['id']; ?>"<?php if($gteam==$steam['id']): ?> selected="selected"<?php endif; ?>><?php echo $steam['name']; ?></option>
 		<?php endforeach; ?>
 	</select>
 </form>
 </div>
-<{if $coachs}>
+<?php if($coachs): ?>
 <div class="foot" style="margin-top: 1px; color: #333; text-align: right;">
-	<strong><{$lang_coachs}></strong> 
-	<{foreach item=coach from=$coachs}>
-		<a href="coachs.php?op=edit&amp;id=<{$coach.id}>"><{$coach.name}></a> |
-	<{/foreach}>
+	<strong><?php _e('Entrenadores:','admin_team'); ?></strong>  &nbsp;
+	<?php foreach($coachs as $id => $coach): ?>
+		<a href="coachs.php?op=edit&amp;id=<?php echo $coach['id']; ?>"><?php echo $coach['name']; ?></a>
+        <?php if($id<count($coachs)-1): ?>|<?php endif; ?>
+	<?php endforeach; ?>
 </div>
-<{/if}><br />
+<?php endif; ?><br />
 <form name="frmPlayers" method="post" action="players.php">
 <table class="outer" cellspacing="1">
-	<tr><th colspan="8"><{$lang_existing}></th></tr>
 	<tr class="head" align="center">
-		<td width="20"><input type="checkbox" name="checkall" onclick="xoopsCheckAll('frmPlayers','checkall');" /></td>
-		<td width="30"><{$lang_id}></td>
-		<td width="50"><{$lang_image}></td>
-		<td><{$lang_name}></td>
-		<td><{$lang_number}></td>
-		<td><{$lang_age}></td>
-		<td><{$lang_date}></td>
-		<td><{$lang_options}></td>
+		<th width="20"><input type="checkbox" name="checkall" onclick="xoopsCheckAll('frmPlayers','checkall');" /></th>
+		<th width="30"><?php _e('ID','admin_team'); ?></th>
+		<th width="50"><?php _e('Imagen','admin_team'); ?></th>
+		<th><?php _e('Nombre','admin_team'); ?></th>
+		<th><?php _e('Número','admin_team'); ?></th>
+		<th><?php _e('Edad','admin_team'); ?></th>
+		<th><?php _e('Alta','admin_team'); ?></th>
+		<th><?php _e('Opciones','admin_team'); ?></th>
 	</tr>
-	<{foreach item=player from=$players}>
-		<tr class="<{cycle values="even,odd"}>" align="center">
-			<td><input type="checkbox" name="players[]" value="<{$payer.id}>" /></td>
-			<td><strong><{$player.id}></strong></td>
+	<?php foreach($players as $player): ?>
+		<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center">
+			<td><input type="checkbox" name="players[]" value="<?php echo $player['id']; ?>" /></td>
+			<td><strong><?php echo $player['id']; ?></strong></td>
 			<td>
-				<{if $player.image!=''}>
-					<img src="<{$xoops_url}>/uploads/teams/players/ths/<{$player.image}>" alt="" />
-				<{else}>
+				<?php if($player['image']!=''): ?>
+					<img width="40" src="<?php echo XOOPS_URL; ?>/uploads/teams/players/ths/<?php echo $player['image']; ?>" alt="" />
+				<?php else: ?>
 					&nbsp;
-				<{/if}>
+				<?php endif; ?>
 			</td>
-			<td align="left"><{$player.name}></td>
-			<td><{$player.number}></td>
-			<td><{$player.age}></td>
-			<td><{$player.date}></td>
+			<td align="left"><?php echo $player['name']; ?></td>
+			<td><?php echo $player['number']; ?></td>
+			<td><?php echo $player['age']; ?></td>
+			<td><?php echo $player['date']; ?></td>
 			<td>
-				<a href="?op=edit&amp;id=<{$player.id}>&amp;team=<{$team}>"><{$lang_edit}></a> |
-				<a href="?team=<{$team}>&amp;op=delete&amp;players[]=<{$player.id}>" onclick="return confirm('<{$lang_confirmdel}>\n\n<{$player.name}>')"><{$lang_delete}></a>
+				<a href="?op=edit&amp;id=<?php echo $player['id']; ?>&amp;team=<?php echo $gteam; ?>"><?php _e('Editar','admin_team'); ?></a> |
+				<a href="?team=<?php echo $gteam; ?>&amp;op=delete&amp;players[]=<?php echo $player['id']; ?>" onclick="return confirm('<?php echo _e('¿Realmente deseas eliminar este jugador?','admin_team'); ?>\n\n<?php echo $player['name']; ?>')"><?php _e('Eliminar','admin_team'); ?></a>
 			</td>
 		</tr>
-	<{/foreach}>
+	<?php endforeach; ?>
 	<tr class="foot">
 		<td align="right">
 			<img src="../../../images/root.gif" alt="" />
 		</td>
-		<td colspan="7"><input type="submit" value="<{$lang_delete}>" class="formButton" onclick="return confirm('<{$lang_confirmdels}>');" />
+		<td colspan="7"><input type="submit" value="<?php _e('Eliminar','admin_team'); ?>" class="formButton" onclick="return confirm('<?php _e('¿Realmente deseas eliminar los jugadores seleccionados?','admin_team'); ?>');" />
 	</tr>
 </table>
 <input type="hidden" name="op" value="delete" />
-<input type="hidden" name="team" value="<{$team}>" />
+<input type="hidden" name="team" value="<?php echo $gteam; ?>" />
 </form>

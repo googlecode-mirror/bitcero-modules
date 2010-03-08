@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /modules/team/
+RewriteBase /xoops24/modules/team/
 RewriteCond %{REQUEST_URI} !/[A-Z]+-
 RewriteRule ^cat/(.*)/?$ category.php?id=$1 [L]
 RewriteRule ^t/(.*)/?$ team.php?id=$1 [L]

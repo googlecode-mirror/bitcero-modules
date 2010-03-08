@@ -15,8 +15,8 @@ include 'header.php';
 function showPlayers(){
 	global $xoopsModule, $mc, $adminTemplate, $tpl, $db;
 	
-	$team = TCFunctions::get('team');
-	$team = new TCTeam($team);
+	$gteam = TCFunctions::get('team');
+	$team = new TCTeam($gteam);
 	
 	// Equipos
 	$tpl->assign('team', $team->isNew() ? 0 : $team->id());
@@ -30,19 +30,21 @@ function showPlayers(){
 	}
 	
 	// Entrenadores
+    $coachs = array();
 	if (!$team->isNew()){
 		foreach ($team->coachs(true) as $coach){
-			$tpl->append('coachs', array('id'=>$coach->id(),'name'=>$coach->name(),'image'=>$coach->image()));
+			$coachs[] = array('id'=>$coach->id(),'name'=>$coach->name(),'image'=>$coach->image());
 		}
 	}
 	
 	// Jugadores
 	$result = $db->query("SELECT * FROM ".$db->prefix("coach_players")." WHERE team='".$team->id()."'");
+    $players = array();
 	while ($row = $db->fetchArray($result)){
 		$player = new TCPlayer();
 		$player->assignVars($row);
-		$tpl->append('players', array('id'=>$player->id(),'name'=>$player->name(),'image'=>$player->image(),
-			'number'=>$player->number(),'age'=>$player->age(),'date'=>formatTimestamp($player->date(), 's')));
+		$players[] = array('id'=>$player->id(),'name'=>$player->name(),'image'=>$player->image(),
+			'number'=>$player->number(),'age'=>$player->age(),'date'=>formatTimestamp($player->date(), 'c'));
 	}
 	
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Jugadores','admin_team'));
@@ -54,54 +56,52 @@ function showPlayers(){
 }
 
 function formPlayer($edit = 0){
-	global $xoopsModule, $mc, $util, $xoopsConfig;
+	global $xoopsModule, $mc, $xoopsConfig, $rmc_config;
 	
 	$idteam = TCFunctions::request('team');
 	if ($idteam<=0){
-		redirectMsg('teams.php', _AS_TC_ERRIDTEAM, 1);
+		redirectMsg('teams.php', __('Selecciona un equipo antes de crear jugadores','admin_team'), 1);
 		die();
 	}
 	
 	$team = new TCTeam($idteam);
 	if($team->isNew()){
-		redirectMsg('teams.php', _AS_TC_ERRTEAMNOEXISTS, 1);
+		redirectMsg('teams.php', __('El equipo seleccionado no existe','admin_team'), 1);
 		die();
 	}
 	
 	if ($edit){
 		$id = TCFunctions::get('id');
 		if ($id<=0){
-			redirectMsg('players.php?team='.$idteam, _AS_TC_ERRID, 1);
+			redirectMsg('players.php?team='.$idteam, __('El id del jugador no es válido','admin_team'), 1);
 			die();
 		}
 		
 		$player = new TCPlayer($id);
 		if ($player->isNew()){
-			redirectMsg('players.php?team='.$isteam, _AS_TC_ERRNOEXISTS, 1);
+			redirectMsg('players.php?team='.$isteam, __('El jugador seleccionado no existe','admin_team'), 1);
 			die();
 		}
 	}
 	
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./players.php?team=$idteam'>"._AS_TC_PLAYLOC."</a> &raquo; ".($edit ? _AS_TC_FEDITTITLE : _AS_TC_FNEWTITLE));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./players.php?team=$idteam'>".__('Jugadores','admin_team')."</a> &raquo; ".($edit ? __('Editar jugador','admin_team') : __('Crear jugador','admin_team')));
 	xoops_cp_header();
 	
-	$form = new RMForm($edit ? _AS_TC_FEDITTITLE : _AS_TC_FNEWTITLE, 'frmNew', 'players.php');
+	$form = new RMForm($edit ? __('Editar Jugador','admin_team') : __('Crear Jugador','admin_team'), 'frmNew', 'players.php');
 	$form->oddClass('oddForm');
 	$form->setExtra('enctype="multipart/form-data"');
-	$form->addElement(new RMLabel(_AS_TC_FTEAM, "<h2 style='margin: 0;'>".$team->name()."</h2>"));
-	$form->addElement(new RMText(_AS_TC_FNAME, 'name', 50, 100, $edit ? $player->name() : ''), true);
-	if ($edit) $form->addElement(new RMText(_AS_TC_FSHORTNAME, 'nameid', 50, 100, $player->nameId()));
+	$form->addElement(new RMFormLabel(__('Equipo','admin_team'), "<h2 style='margin: 0;'>".$team->name()."</h2>"));
+	$form->addElement(new RMFormText(__('Nombre del jugador'), 'name', 50, 100, $edit ? $player->name() : ''), true);
+	if ($edit) $form->addElement(new RMFormText(__('Nombre corto','admin_team'), 'nameid', 50, 100, $player->nameId()));
 	
-	$ele = new RMDate(_AS_TC_FBIRTH, 'birth', $edit ? $player->birth() : null);
-	$ele->startYear(1940);
+	$ele = new RMFormDate(__('Fecha de nacimiento','admin_team'), 'birth', $edit ? $player->birth() : null);
 	$form->addElement($ele);
-	$form->addElement(new RMText(_AS_TC_FNUMBER, 'number', 5, 3, $edit ? $player->number() : ''), true, 'num');
-	$form->addElement(new RMFile(_AS_TC_FPIC, 'image', 45));
+	$form->addElement(new RMFormText(__('Número','admin_team'), 'number', 5, 3, $edit ? $player->number() : ''), true, 'num');
+	$form->addElement(new RMFormFile(__('Imagen','admin_team'), 'image', 45));
 	if ($edit && $player->image()!='') 
-		$form->addElement(new RMLabel(_AS_TC_FCURPIC, "<img src='".XOOPS_URL."/uploads/teams/players/ths/".$player->image()."' alt='' />"));
+		$form->addElement(new RMFormLabel(__('Imagen actual','admin_team'), "<img src='".XOOPS_URL."/uploads/teams/players/ths/".$player->image()."' alt='' />"));
 	
-	$form->addElement(new RMEditor(_AS_TC_FBIO, 'bio', '90%', '300px', $edit ? $player->bio('e') : ''));
+	$form->addElement(new RMFormEditor(__('Información','admin_team'), 'bio', '90%', '300px', $edit ? $player->bio('e') : ''));
 	if ($edit){
 		$html = $player->getVar('dohtml');
 		$xcode = $player->getVar('doxcode');
@@ -109,20 +109,20 @@ function formPlayer($edit = 0){
 		$smiley = $player->getVar('dosmiley');
 		$br = $player->getVar('dobr');
 	} else {
-		$html = $xoopsConfig['editor_type']=='tiny' ? 1 : 0;
-		$xcode = $xoopsConfig['editor_type']=='tiny' ? 0 : 1;
-		$doimage = $xoopsConfig['editor_type']=='tiny' ? 0 : 1;
-		$smiley = $xoopsConfig['editor_type']=='tiny' ? 0 : 1;
-		$br = $xoopsConfig['editor_type']=='tiny' ? 0 : 1;
+		$html = $rmc_config['editor_type']=='tiny' ? 1 : 0;
+		$xcode = $rmc_config['editor_type']=='tiny' ? 0 : 1;
+		$doimage = $rmc_config['editor_type']=='tiny' ? 0 : 1;
+		$smiley = $rmc_config['editor_type']=='tiny' ? 0 : 1;
+		$br = $rmc_config['editor_type']=='tiny' ? 0 : 1;
 	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $html, $xcode, $doimage, $smiley, $br));
-	$ele = new RMButtonGroup();
-	$ele->addButton('sbt', _SUBMIT, 'submit');
-	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'players.php?team='.$team->id().'\';"');
+	$form->addElement(new RMFormTextOptions(__('Opciones','admin_team'), $html, $xcode, $doimage, $smiley, $br));
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', __('Enviar','admin_team'), 'submit');
+	$ele->addButton('cancel', __('Cancelar','admin_team'), 'button', 'onclick="window.location=\'players.php?team='.$team->id().'\';"');
 	$form->addElement($ele);
-	$form->addElement(new RMHidden('op', $edit ? 'saveedit' : 'save'));
-	if ($edit) $form->addElement(new RMHidden('id', $id));
-	$form->addElement(new RMHidden('team', $idteam));
+	$form->addElement(new RMFormHidden('op', $edit ? 'saveedit' : 'save'));
+	if ($edit) $form->addElement(new RMFormHidden('id', $id));
+	$form->addElement(new RMFormHidden('team', $idteam));
 	
 	$form->display();
 	
@@ -130,7 +130,7 @@ function formPlayer($edit = 0){
 }
 
 function savePlayer($edit = 0){
-	global $db, $mc, $util;
+	global $db, $mc, $xoopsSecurity;
 	
 	$nameid = '';
 	$teams = array();
@@ -139,34 +139,34 @@ function savePlayer($edit = 0){
 		$$k = $v;
 	}
 	
-	if (!$util->validateToken()){
-		redirectMsg('players.php?team='.$idteam.($edit ? "&op=edit&id=$id" : "&op=new"), _AS_TC_ERRSESSID, 1);
+	if (!$xoopsSecurity->validateToken()){
+		redirectMsg('players.php?team='.$idteam.($edit ? "&op=edit&id=$id" : "&op=new"), __('El identificador se sesión ha expirado','admin_team'), 1);
 		break;
 	}
 	
 	$idteam = TCFunctions::request('team');
 
 	if ($idteam<=0){
-		redirectMsg('teams.php', _AS_TC_ERRIDTEAM, 1);
+		redirectMsg('teams.php', __('No se ha especificado un equipo','admin_team'), 1);
 		die();
 	}
 	
 	$team = new TCTeam($idteam);
 	
 	if($team->isNew()){
-		redirectMsg('teams.php', _AS_TC_ERRTEAMNOEXISTS, 1);
+		redirectMsg('teams.php', __('El equipo especificado no existe','admin_team'), 1);
 		die();
 	}
 	
 	if ($edit){
 		$id = TCFunctions::post('id');
 		if ($id<=0){
-			redirectMsg('players.php?team='.$idteam, _AS_TC_ERRID, 1);
+			redirectMsg('players.php?team='.$idteam, __('No se ha especificado un jugador para editar','admin_team'), 1);
 			die();
 		}
 		$player = new TCPLayer($id);
 		if ($player->isNew()){
-			redirectMsg('players.php?team='.$idteam, _AS_TC_ERRNOEXISTS, 1);
+			redirectMsg('players.php?team='.$idteam, __('El jugador especificado no existe','admin_team'), 1);
 			die();
 		}
 		
@@ -181,7 +181,7 @@ function savePlayer($edit = 0){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("coach_players")." WHERE name='$name' AND id_play<>'".$player->id()."'";
 		list($num) = $db->fetchRow($db->query($sql));
 		if ($num>0){
-			redirectMsg('players.php?team='.$idteam.'&op=edit&id='.$player->id(), _AS_TC_ERREXISTS, 1);
+			redirectMsg('players.php?team='.$idteam.'&op=edit&id='.$player->id(), __('Ya existe otro jugador con el mismo nombre','admin_team'), 1);
 			die();
 		}
 		
@@ -191,7 +191,7 @@ function savePlayer($edit = 0){
 		
 		$i = 0;
 		do{
-			$nameid = $util->sweetstring($name).($i>0 ? $i : '');
+			$nameid = TextCleaner::getInstance()->sweetstring($name).($i>0 ? $i : '');
 			$sql = "SELECT COUNT(*) FROM ".$db->prefix("coach_players")." WHERE nameid='$nameid'";
 			list($num) = $db->fetchRow($db->query($sql));
 			$i++;
@@ -200,17 +200,15 @@ function savePlayer($edit = 0){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("coach_players")." WHERE name='$name'";
 		list($num) = $db->fetchRow($db->query($sql));
 		if ($num>0){
-			redirectMsg('players.php?team='.$idteam.'&op=new&id='.$cat->id(), _AS_TC_ERREXISTS, 1);
+			redirectMsg('players.php?team='.$idteam.'&op=new&id='.$cat->id(), __('Ya existe otro jugador con el mismo nombre','admin_team'), 1);
 			die();
 		}
 		
 	}
 	
 	// Cargamos la imágen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	
-	$up->prepareUpload(XOOPS_UPLOAD_PATH.'/teams/players', array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $mc['filesize']*1024);//tamaño
+	include_once RMCPATH.'/class/uploader.php';
+	$up = new RMFileUploader(XOOPS_UPLOAD_PATH.'/teams/players', $mc['filesize']*1024, array('jpg','png','gif'));
 	
 	if ($up->fetchMedia('image')){
 
@@ -233,7 +231,7 @@ function savePlayer($edit = 0){
 		$filename = $up->getSavedFileName();
 		$fullpath = $up->getSavedDestination();
 		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
+		$redim = new RMImageResizer($fullpath, $fullpath);
 		$redim->resizeWidth($mc['img_size']);
 		$redim->setTargetFile(XOOPS_UPLOAD_PATH."/teams/players/ths/$filename");
 		switch ($mc['resize_method']){
@@ -254,7 +252,7 @@ function savePlayer($edit = 0){
 	
 	$player->setName($name);
 	$player->setNameId($nameid);
-	$player->setBirth(rmsoft_read_date('birth'));
+	$player->setBirth($birth);
 	$player->setBio($bio);
 	if (!$edit) $player->setDate(time());
 	$player->setTeam($idteam);
@@ -268,9 +266,9 @@ function savePlayer($edit = 0){
 	$player->setVar('dobr', isset($dobr) ? 1 : 0);
 	
 	if ($player->save()){
-		redirectMsg('players.php?team='.$idteam, _AS_TC_DBOK, 0);
+		redirectMsg('players.php?team='.$idteam, __('Base de datos actualizada correctamente','admin_team'), 0);
 	} else {
-		redirectMsg('players.php?team='.$idteam.'&op='.($edit ? 'edit&id='.$player->id() : 'new'), _AS_TC_DBFAIL.'<br />'.$player->errors(), 0);
+		redirectMsg('players.php?team='.$idteam.'&op='.($edit ? 'edit&id='.$player->id() : 'new'), __('Ocurrieron errores al intentar actualizar la base de datos','admin_team').'<br />'.$player->errors(), 0);
 	}
 	
 }
@@ -281,7 +279,7 @@ function deletePlayer(){
 	$team = TCFunctions::request('team');
 	$players = TCFunctions::request('players');
 	if (empty($players)){
-		redirectMsg('players.php?team='.$team, _AS_TC_NOSEL, 1);
+		redirectMsg('players.php?team='.$team, __('No has seleccionado jugadores para eliminar','admin_team'), 1);
 		die();
 	}
 	
@@ -290,7 +288,7 @@ function deletePlayer(){
 		$player->delete();
 	}
 	
-	redirectMsg('players.php?team='.$team, _AS_TC_DBOK, 0);
+	redirectMsg('players.php?team='.$team, __('¡Jugadores eliminados!','admin_team'), 0);
 	
 }
 
