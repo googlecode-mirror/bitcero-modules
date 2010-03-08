@@ -77,7 +77,7 @@ if (!file_exists($updir.'/sizes')){
 
 include RMCPATH.'/class/uploader.php';
 
-$uploader = new RMFileUploader($updir, $cat->max_file_size(), array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/bmp'));
+$uploader = new RMFileUploader($updir, $cat->max_file_size(), array('gif', 'jpg', 'jpeg', 'png'));
 
 $err = array();
 if (!$uploader->fetchMedia('Filedata')){

@@ -28,7 +28,11 @@ $type = rmc_server_var($_REQUEST, 'type', 'tiny');
 $en = rmc_server_var($_REQUEST, 'name', '');
 
 if ($action==''){
-
+	
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/images_editor.js');
+	
     if (!$cat->isNew()){
         $uploader = new RMFlashUploader('files-container', 'upload.php');
         $uploader->add_setting('scriptData', array(
@@ -88,9 +92,6 @@ if ($action==''){
     RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
     RMTemplate::get()->add_style('pagenav.css', 'rmcommon');
     RMTemplate::get()->add_style('editor_img.css', 'rmcommon');
-    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
-    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
-    RMTemplate::get()->add_script(RMCURL.'/include/js/images_editor.js');
     if($type=='tiny'){
         RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce_popup.js');
     } else {

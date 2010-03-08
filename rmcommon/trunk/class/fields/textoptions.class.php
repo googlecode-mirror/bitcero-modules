@@ -111,15 +111,15 @@ class RMFormTextOptions extends RMFormElement
 			}
 			$rtn .="<td>";
 			if ($i==1){
-				$rtn .= '<label><input type="checkbox" name="dohtml" value="1"'.($this->html ? ' checked="checked"' : '')." /> "._RMS_CF_DOHTML."</label>\n";
+				$rtn .= '<label><input type="checkbox" name="dohtml" value="1"'.($this->html ? ' checked="checked"' : '')." /> ".__('Allow HTML','rmcommon')."</label>\n";
 			}elseif ($i==2){
-				$rtn .= '<label><input type="checkbox" name="doxcode" value="1"'.($this->xcode ? ' checked="checked"' : '')." /> "._RMS_CF_DOXCODE."</label>\n";
+				$rtn .= '<label><input type="checkbox" name="doxcode" value="1"'.($this->xcode ? ' checked="checked"' : '')." /> ".__('Allow Xoops Code','rmcommon')."</label>\n";
 			}elseif ($i==3){
-				$rtn .= '<label><input type="checkbox" name="dosmiley" value="1"'.($this->smiley ? ' checked="checked"' : '')." /> "._RMS_CF_DOSMILEY."</label>\n";
+				$rtn .= '<label><input type="checkbox" name="dosmiley" value="1"'.($this->smiley ? ' checked="checked"' : '')." /> ".__('Allow Smilies','rmcommon')."</label>\n";
 			}elseif ($i==4){
-				$rtn .= '<label><input type="checkbox" name="dobr" value="1"'.($this->br ? ' checked="checked"' : '')." /> "._RMS_CF_DOBR."</label>\n";
+				$rtn .= '<label><input type="checkbox" name="dobr" value="1"'.($this->br ? ' checked="checked"' : '')." /> ".__('Allow break lines','rmcommon')."</label>\n";
 			}elseif ($i==5){
-				$rtn .= '<label><input type="checkbox" name="doimage" value="1"'.($this->image ? ' checked="checked"' : '')." /> "._RMS_CF_DOIMAGE."</label>\n";
+				$rtn .= '<label><input type="checkbox" name="doimage" value="1"'.($this->image ? ' checked="checked"' : '')." /> ".__('Do images','rmcommon')."</label>\n";
 			}
 			$rtn.="</td>";
 			
