@@ -126,7 +126,7 @@ class GSFunctions
 	*/
 	public function resizeImage($crop,$input,$output,$width,$height){
 			// Redimensionamos la imagen
-		$redim = new RMImageControl($input, $output);
+		$redim = new RMImageResizer($input, $output);
 		if ($crop){
 			$redim->resizeAndCrop($width,$height);
 		} else {

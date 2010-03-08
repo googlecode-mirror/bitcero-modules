@@ -1,32 +1,5 @@
 <div class="gsComments">
-	<a name="comments"></a><h3><{$lang_comments}></h3>
-
-<{assign var="comNumber" value=1}>
-<table cellspacing="0">
-<{foreach item=comment from=$comments}>
-	<tr class="gsCommentItem">
-		<td class="avatar" nowrap="nowrap">
-		<a name="comment<{$comment.id}>"></a>
-		<{if $comment.avatar!=''}>
-            <a href="<{$users_link}><{$comment.user}>/"><img class="avatar" src="<{$xoops_url}>/uploads/avatars/<{$comment.avatar}>" border="0" /></a>
-        <{else}>
-        	<a href="<{$users_link}><{$comment.user}>/"><img src="<{$gs_url}>/images/avatar.png" alt="<{$comment.user}>" /></a>
-        <{/if}>
-        </td>
-        <td>
-        	<span class="says"><a href="<{$users_link}><{$comment.user}>/"><{$comment.user}></a> <{$lang_usays}></span>
-        	<{$comment.text}>
-        	<span class="publish"><{$comment.created}>
-            <{if $comment.edit}> | <a href="<{$xoops_url}>/comments.php?op=edit&amp;itemid=<{$comItem}>&amp;comid=<{$comment.id}>&amp;modid=<{$comMod}>&amp;commentReturnPage=<{$commentReturnPage}>"><{$lang_edit}></a><{/if}>
-            <{if $comment.delete}> | <a href="<{$xoops_url}>/comments.php?op=delete&amp;itemid=<{$comItem}>&amp;comid=<{$comment.id}>&amp;modid=<{$comMod}>&amp;commentReturnPage=<{$commentReturnPage}>"><{$lang_delete}></a><{/if}></span>
-        </td>
-	</tr>
-	<{assign var="comNumber" value=$comNumber+1}>
-<{/foreach}>
-</table>
-<{if $commentSend!=''}>
-	<h3 class="send">
-		<a href="<{$xoops_url}>/comments.php?itemid=<{$itemid}>&modid=<{$modid}>&commentOrder=<{$commentCurrentOrder}>&commentMode=<{$commentCurrentMode}>&commentReturnPage=<{$commentReturnPage}>"><{$lang_send}></a>
-    </h3>
-<{/if}>
+<a name="comments"></a>
+<{include file="db:rmc_comments_display.html"}>
+<{include file="db:rmc_comments_form.html"}>
 </div>

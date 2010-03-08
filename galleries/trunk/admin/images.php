@@ -413,6 +413,7 @@ function saveImages($edit = 0){
 	include_once RMCPATH.'/class/uploader.php';
 	$folder = $mc['storedir']."/".$user->uname();
 	$folderths = $mc['storedir']."/".$user->uname()."/ths";
+
 	$up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
     
 	if ($edit){
@@ -485,7 +486,10 @@ function saveImages($edit = 0){
 		}
 
 
-	} 
+	} else {
+		echo $up->getErrors();
+		die();
+	}
 	//Fin de Imagen
 	
 	$img->setImage($filename);

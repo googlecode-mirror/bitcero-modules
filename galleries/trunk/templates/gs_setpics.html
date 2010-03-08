@@ -1,7 +1,7 @@
 <{include file="db:gs_header.html"}>
 
 <div class="userData">
-	<img class="avatar" src="<{if $user.avatar!=''}><{$xoops_url}>/uploads/avatars/<{$user.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$user.uname}>" />
+	<img class="avatar" src="<{if $user.avatar!='' && $user.avatar!='blank.gif'}><{$xoops_url}>/uploads/avatars/<{$user.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$user.uname}>" />
 	<h1><{$lang_picsof}></h1>
 	<ul>
 		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$user.link}>"><{$lang_pics}></a></li>
@@ -34,3 +34,5 @@
 		<{$upNavPage}>
 	</div>
 </div>
+
+<{include file="db:gs_comments.html"}>

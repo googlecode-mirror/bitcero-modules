@@ -1,29 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 $toget = 'id';
 include 'include/parse.php';
@@ -383,18 +366,14 @@ function showImageDetails(){
 	}
 	
 	// Comentarios
-	include_once XOOPS_ROOT_PATH.'/include/comment_constants.php';
 	$tpl->assign('users_link', GS_URL.'/'.($mc['urlmode'] ? 'usr/' : 'user.php?id=usr/'));
 	$tpl->assign('lang_usays', _MS_GS_USAYS);
 	$tpl->assign('lang_comments', _MS_GS_TCOMMENTS);
 	$tpl->assign('lang_send', _MS_GS_SEND);
-
-	XoopsCommentHandler::renderNavbar($image->id(), $image->title(), $_SERVER['REQUEST_URI'], $_SERVER['REQUEST_URI'], 'post');
-	$comments = XoopsCommentHandler::getComments($image->id(), $xoopsModule->mid(), false, $_SERVER['REQUEST_URI']);
-	foreach ($comments as $k => $v){
-		$comments[$k]['created'] = sprintf(_MS_GS_POSTED, formatTimestamp($v['createdtime'], 'string'));
-	}
-	$tpl->assign('comments', $comments);
+	
+	RMFunctions::get_comments('galleries','image='.$image->id());
+	// Comments form
+	RMFunctions::comments_form('galleries', 'image='.$image->id(), 'module', MW_PATH.'/class/galleriescontroller.php');
 	
 	include 'footer.php';
 	
@@ -585,7 +564,7 @@ function showSetContent(){
 		// ASignamos las imagenes grandes para los albumes
 		$imgfile = $user->filesURL().'/'.($mc['set_format_mode'] ? 'formats/bigset_' : 'ths/').$img->image();
 		if ($bi==0){
-			$tpl->assign('lang_updated', sprintf(_MS_GS_UPDATED, formatTimestamp($img->created(),'string')));
+			$tpl->assign('lang_updated', sprintf(_MS_GS_UPDATED, formatTimestamp($img->created(),'c')));
 		}
 		$tpl->append('bigs', array('id'=>$img->id(),'title'=>$img->title(),
 		'image'=>$imgfile,'link'=>$imglink,
@@ -593,18 +572,12 @@ function showSetContent(){
 		'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),'desc'=>$bshowdesc ? $img->desc() : ''));
 	}
 	
+	RMFunctions::get_comments('galleries','set='.$set->id());
+	// Comments form
+	RMFunctions::comments_form('galleries', 'set='.$set->id(), 'module', MW_PATH.'/class/galleriescontroller.php');
 	
 	// Datos para el formato
 	$tpl->assign('max_cols', $cols);
-	
-	$util =& RMUtils::getInstance();
-	
-	$xmh .= "\n<link href='".GS_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
-			<script type='text/javascript'>\nvar gs_url='".GS_URL."';\n</script>";
-	$util->addScript('prototype');
-	$util->addScript('scriptaeffects');
-	global $xoTheme;
-	$xoTheme->addScript(GS_URL."/include/js/lightbox.js");
 	
 	include 'footer.php';
 }
