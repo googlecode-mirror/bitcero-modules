@@ -20,6 +20,22 @@ class RmcommonCorePreload extends XoopsPreloadItem
 		require_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 		
 	}
+    
+    /**
+    * To prevent errors when upload images with closed site 
+    */
+    public function eventCoreIncludeCommonLanguage(){
+        global $xoopsConfig;
+        
+        if (RMFunctions::current_url()==RMCURL.'/include/upload.php' && $xoopsConfig['closesite']){
+            $security = rmc_server_var($_POST, 'rmsecurity', 0);
+            $data = TextCleaner::getInstance()->decrypt($security, true);
+            $data = explode("|", $data); // [0] = referer, [1] = session_id(), [2] = user, [3] = token
+            $xoopsUser = new XoopsUser($data[0]);
+            if ($xoopsUser->isAdmin()) $xoopsConfig['closesite'] = 0;
+        }
+        
+    }
 	
 	public function eventCoreFooterEnd(){
 		
