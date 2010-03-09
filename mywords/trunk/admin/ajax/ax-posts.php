@@ -116,8 +116,10 @@ $post->setVar('comstatus', isset($comstatus) ? $comstatus : 0);
 $post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 0);
 $post->setVar('authorname', $authorname);
 
-if ($schedule<=time()){
+if ($schedule<=time() && !$edit){
     $post->setVar('pubdate', time());
+}elseif ($schedule<=time() && $edit){
+    $post->setVar('pubdate', $post->getVar('pubdate')==0 ? time() : $post->getVar('pubdate'));
 } else {
     $post->setVar('pubdate', 0);
 }
