@@ -507,8 +507,9 @@ function showSetContent(){
    	$urlnav = '';
    	if ($tpages > 1) {
     	$urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'user.php?id=usr/'.$user->uname().'/set/'.$set->id();
-    	$nav = new GSPageNav($num, $limit, $start, 'pag',$urlnav,0);
-   	    $tpl->assign('upNavPage', $nav->renderNav(4, 1));
+        $nav = new RMPageNav($num, $limit, $pactual, 5);
+        $nav->target_url($urlnav.'/pag/{PAGE_NUM}');
+   	    $tpl->assign('upNavPage', $nav->renderNav(false));
    	}
 
 	$showmax = $start + $limit;
