@@ -18,8 +18,8 @@ function show_tags(){
     global $xoopsModule, $xoopsSecurity;
     
     MWFunctions::include_required_files();
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Tags','admin_mywords'));
-    RMTemplate::get()->assign('xoops_pagetitle', __('Tags Management','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Tags','mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Tags Management','mywords'));
     
     // More used tags
     $db = Database::getInstance();
@@ -75,7 +75,7 @@ function save_tag($edit = false){
 	$page = rmc_server_var($_POST, 'page', 1);
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('tags.php?page='.$page, __('Operation not allowed!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Operation not allowed!','mywords'), 1);
 		die();
 	}
 	
@@ -83,7 +83,7 @@ function save_tag($edit = false){
 	$short = rmc_server_var($_POST,'short','');
 	
 	if ($name==''){
-		redirectMsg('tags.php?page='.$page, __('You must provide a name!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('You must provide a name!','mywords'), 1);
 		die();
 	}
 	
@@ -91,13 +91,13 @@ function save_tag($edit = false){
 		
 		$id = rmc_server_var($_POST,'id',0);
 		if ($id<=0){
-			redirectMsg('tags.php?page='.$page, __('Tag id not provided!','admin_mywords'), 1);
+			redirectMsg('tags.php?page='.$page, __('Tag id not provided!','mywords'), 1);
 			die();
 		}
 		
 		$tag = new MWTag($id);
 		if($tag->isNew()){
-			redirectMsg('tags.php?page='.$page, __('Tag does not exists!','admin_mywords'), 1);
+			redirectMsg('tags.php?page='.$page, __('Tag does not exists!','mywords'), 1);
 			die();
 		}
 		
@@ -124,17 +124,17 @@ function save_tag($edit = false){
 	
 	list($num) = $db->fetchRow($db->query($sql));
 	if($num>0){
-		redirectMsg('tags.php?page='.$page, __('A tag with same name or same short name already exists!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('A tag with same name or same short name already exists!','mywords'), 1);
 		die();
 	}
 	
 	$tag->setVar('tag', $name);
 	$tag->setVar('shortname', $short);
 	if ($tag->save()){
-		redirectMsg('tags.php', __('Database updated successfully!','admin_mywords'), 0);
+		redirectMsg('tags.php', __('Database updated successfully!','mywords'), 0);
 		die();
 	} else {
-		redirectMsg('tags.php?page='.$page, __('A problem occurs while trying to save tag.','admin_mywords').'<br />'.$tag->errors(), 1);
+		redirectMsg('tags.php?page='.$page, __('A problem occurs while trying to save tag.','mywords').'<br />'.$tag->errors(), 1);
 		die();
 	}
 	
@@ -147,18 +147,18 @@ function edit_form(){
     $page = rmc_server_var($_GET,'page',1);
     
 	if($id<=0){
-		redirectMsg('tags.php?page='.$page, __('Tag ID not provided!.','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Tag ID not provided!.','mywords'), 1);
 		die();
 	}
 	$tag = new MWTag($id);
 	if($tag->isNew()){
-		redirectMsg('tags.php?page='.$page, __('Tag does not exists!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Tag does not exists!','mywords'), 1);
 		die();
 	}
 	
 	MWFunctions::include_required_files();
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="tags.php">'.__('Tags','admin_mywords').'</a> &raquo; '.__('Edit Tag','admin_mywords'));
-    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Tag','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="tags.php">'.__('Tags','mywords').'</a> &raquo; '.__('Edit Tag','mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Tag','mywords'));
 	xoops_cp_header();   
 	$show_edit = true;
     include RMTemplate::get()->get_template('admin/mywords_tags.php','module','mywords');
@@ -177,12 +177,12 @@ function delete_tag(){
 	$tags = rmc_server_var($_POST, 'tags', array());
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','mywords'), 1);
 		die();
 	}
 	
 	if (!is_array($tags) || empty($tags)){
-		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','mywords'), 1);
 		die();
 	}
 	
@@ -190,17 +190,17 @@ function delete_tag(){
 	$db = Database::getInstance();
 	$sql = "DELETE FROM ".$db->prefix("mw_tagspost")." WHERE tag IN(".implode(",",$tags).")";
 	if (!$db->queryF($sql)){
-		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','admin_mywords').'<br />'.$db->error(), 1);
+		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','mywords').'<br />'.$db->error(), 1);
 		die();
 	}
 	
 	$sql = "DELETE FROM ".$db->prefix("mw_tags")." WHERE id_tag IN(".implode(",",$tags).")";
 	if (!$db->queryF($sql)){
-		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','admin_mywords').'<br />'.$db->error(), 1);
+		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','mywords').'<br />'.$db->error(), 1);
 		die();
 	}
 	
-	redirectMsg('tags.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+	redirectMsg('tags.php?page='.$page, __('Database updated succesfully!','mywords'), 0);
 	
 }
 
@@ -212,12 +212,12 @@ function update_tag(){
 	$tags = rmc_server_var($_POST, 'tags', array());
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Sorry, operation not allowed!','mywords'), 1);
 		die();
 	}
 	
 	if (!is_array($tags) || empty($tags)){
-		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','admin_mywords'), 1);
+		redirectMsg('tags.php?page='.$page, __('Please, specify a valid tag id!','mywords'), 1);
 		die();
 	}
 	
@@ -230,7 +230,7 @@ function update_tag(){
 		
 	}
 	
-	redirectMsg('tags.php?page='.$page, __('Tags updated!','admin_mywords'), 0);
+	redirectMsg('tags.php?page='.$page, __('Tags updated!','mywords'), 0);
 	
 }
 

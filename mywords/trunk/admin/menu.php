@@ -11,21 +11,21 @@
 include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
 $adminmenu[] = array(
-    'title'=>__('Dashboard','admin_mywords'),
+    'title'=>__('Dashboard','mywords'),
     'link'=>"admin/index.php",
     'icon'=>"../images/dashboard.png",
     'location'=>"dashboard"
 );
 
 $adminmenu[] = array(
-    'title'=>__('Categories','admin_mywords'),
+    'title'=>__('Categories','mywords'),
     'link'=>"admin/categories.php",
     'icon'=>"../images/categos.png",
     'location'=>"categories"
 );
 
 $adminmenu[] = array(
-    'title'=>__('Tags','admin_mywords'),
+    'title'=>__('Tags','mywords'),
     'link'=>"admin/tags.php",
     'icon'=>"../images/tag.png",
     'location'=>"tags"
@@ -33,18 +33,18 @@ $adminmenu[] = array(
 
 $options = array();
 $options[] = array(
-    'title'     => __('List','admin_mywords'),
+    'title'     => __('List','mywords'),
     'link'      => 'posts.php',
     'selected'  => 'posts_list' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 $options[] = array(
-    'title'     => __('Add New','admin_mywords'),
+    'title'     => __('Add New','mywords'),
     'link'      => 'posts.php?op=new',
     'selected'  => 'new_post' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 
 $adminmenu[] = array(
-    'title'=>__('Posts','admin_mywords'),
+    'title'=>__('Posts','mywords'),
     'link'=>"admin/posts.php",
     'icon'=>"../images/post.png",
     'location'=>"posts",
@@ -52,21 +52,21 @@ $adminmenu[] = array(
 );
 
 $adminmenu[] = array(
-    'title'=>__('Editors','admin_mywords'),
+    'title'=>__('Editors','mywords'),
     'link'=>"admin/editors.php",
     'icon'=>"../images/editor.png",
     'location'=>"editors"
 );
 
 $adminmenu[] = array(
-    'title'=>__('Social Sites','admin_mywords'),
+    'title'=>__('Social Sites','mywords'),
     'link'=>"admin/bookmarks.php",
     'icon'=>"../images/bookmark.png",
     'location'=>"bookmarks",
 );
 
 $adminmenu[] = array(
-    'title'=>__('Trackbacks','admin_mywords'),
+    'title'=>__('Trackbacks','mywords'),
     'link'=>"admin/trackbacks.php",
     'icon'=>"../images/trackbacks.png",
     'location'=>"trackbacks",

@@ -71,7 +71,7 @@ function showCategos(){
 		'<script type="text/javascript">
 			function cat_del_confirm(cat, id){
 	  
-			  var string = "'.__('Do you really want to delete \"%s\"','admin_mywords').'";
+			  var string = "'.__('Do you really want to delete \"%s\"','mywords').'";
 	 				string = string.replace("%s", cat);
 	 				var ret = confirm(string);
 	 				
@@ -86,13 +86,13 @@ function showCategos(){
 	  </script>'
 	);
 	
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','admin_mywords'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','mywords'));
 	xoops_cp_header();
 	
     $desc = ''; $posts = ''; $parent = ''; $selcat = ''; $new = ''; $name=''; $shortcut = '';
     extract($_GET);
 	include RMTemplate::get()->get_template('admin/mywords_categories.php','module','mywords');
-	RMTemplate::get()->assign('xoops_pagetitle', __('Categories Management','admin_mywords'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Categories Management','mywords'));
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	RMTemplate::get()->add_script('../include/js/categories.js');
 	
@@ -109,30 +109,30 @@ function newForm(){
 	
 	$id = isset($_GET['id']) ? $_GET['id'] : 0;
 	if ($id<=0){
-	    redirectMsg('categories.php',  __('You must specify a valid category','admin_mywords'), 1);
+	    redirectMsg('categories.php',  __('You must specify a valid category','mywords'), 1);
 		die();
 	}
 	// Cargamos la categoría
 	$catego = new MWCategory($id);
 	// Si no existe entonces devolvemos un error
 	if ($catego->isNew()){
-	    redirectMsg('cats.php', __('Specified category not exists!','admin_mywords'), 1);
+	    redirectMsg('cats.php', __('Specified category not exists!','mywords'), 1);
 		die();
 	}
 	
 	MWFunctions::include_required_files();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('New Category','admin_mywords'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('New Category','mywords'));
 	xoops_cp_header();
 	
 	$cats = array();
 	MWFunctions::categos_list($cats, 0, 0, true, $id);
 	
-	$form = new RMForm($edit ? __('Editar Categoría','admin_mywords') : __('Edit Category','admin_mywords'), 'frmNew', 'categories.php');
+	$form = new RMForm($edit ? __('Editar Categoría','mywords') : __('Edit Category','mywords'), 'frmNew', 'categories.php');
     $form->styles('width: 30%;','odd');
-	$form->addElement(new RMFormText(__('Category name','admin_mywords'), 'name', 50, 150, $catego->getVar('name')), true);
-    $form->addElement(new RMFormText(__('Category slug','admin_mywords'), 'shortname', '', '150', $catego->getVar('shortname','n')));
-	$form->addElement(new RMFormTextArea(__('Category description','admin_mywords'), 'desc', 5, 45, $catego->getVar('description','e')));
-	$ele = new RMFormSelect(__('Category Parent','admin_mywords'), 'parent');
+	$form->addElement(new RMFormText(__('Category name','mywords'), 'name', 50, 150, $catego->getVar('name')), true);
+    $form->addElement(new RMFormText(__('Category slug','mywords'), 'shortname', '', '150', $catego->getVar('shortname','n')));
+	$form->addElement(new RMFormTextArea(__('Category description','mywords'), 'desc', 5, 45, $catego->getVar('description','e')));
+	$ele = new RMFormSelect(__('Category Parent','mywords'), 'parent');
 	$ele->addOption(0, _SELECT, $catego->getVar('parent')==0 ? 1 : 0);
 	foreach ($cats as $k){
 		$ele->addOption($k['id_cat'], str_repeat("-", $k['indent']) . ' ' . $k['name'], $catego->getVar('parent')==$k['id_cat'] ? 1 : 0);
@@ -143,8 +143,8 @@ function newForm(){
 	$form->addElement(new RMFormHidden('id', $id));
 	
 	$ele = new RMFormButtonGroup('',' ');
-	$ele->addButton('sbt', __('Update Category','admin_mywords'), 'submit');
-	$ele->addButton('cancel', __('Cancel','admin_mywords'), 'button');
+	$ele->addButton('sbt', __('Update Category','mywords'), 'submit');
+	$ele->addButton('cancel', __('Cancel','mywords'), 'button');
 	$ele->setExtra('cancel', "onclick='history.go(-1);'");
 	$form->addElement($ele);
 	$form->display();
@@ -160,7 +160,7 @@ function saveCatego($edit = 0){
 	global $xoopsSecurity, $db;
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('categories.php', __('Sorry, session token expired!','admin_mywords'), 1);
+		redirectMsg('categories.php', __('Sorry, session token expired!','mywords'), 1);
 		die();
 	}
 	
@@ -175,13 +175,13 @@ function saveCatego($edit = 0){
 	
 	if ($edit){
 		if ($id<=0){
-			redirectMsg('categories.php', __('You must specify a valid category','admin_mywords'), 1);
+			redirectMsg('categories.php', __('You must specify a valid category','mywords'), 1);
 			die();
 		}
 		
 		$catego = new MWCategory($id);
 		if ($catego->isNew()){
-			redirectMsg('categories.php', __('Specified category not exists!','admin_mywords'), 1);
+			redirectMsg('categories.php', __('Specified category not exists!','mywords'), 1);
 			die();
 		}
 	} else {
@@ -189,7 +189,7 @@ function saveCatego($edit = 0){
 	}
 		
 	if ($name==''){
-		redirectMsg('categories.php?'.$query, __('Please specify a name for this category!','admin_mywords'), 1);
+		redirectMsg('categories.php?'.$query, __('Please specify a name for this category!','mywords'), 1);
 		die();
 	}
 	
@@ -200,7 +200,7 @@ function saveCatego($edit = 0){
 	list($num) = $db->fetchRow($result);
 	
 	if ($num>0){
-		redirectMsg('categories.php?'.$query, __('There is already a category with the same name!','admin_mywords'), 1);
+		redirectMsg('categories.php?'.$query, __('There is already a category with the same name!','mywords'), 1);
 		die();
 	}
 	
@@ -214,9 +214,9 @@ function saveCatego($edit = 0){
 	$result = $catego->save();
     
 	if ($result){
-		redirectMsg('categories.php', __('Category created succesfully!','admin_mywords'), 0);
+		redirectMsg('categories.php', __('Category created succesfully!','mywords'), 0);
 	} else {
-		redirectMsg('categories.php?'.$query, __('There was an error!','admin_mywords'). "<br />" . $catego->errors(), 1);
+		redirectMsg('categories.php?'.$query, __('There was an error!','mywords'). "<br />" . $catego->errors(), 1);
 	}
 	
 }
@@ -231,12 +231,12 @@ function deleteCatego(){
 	$cats = rmc_server_var($_POST, 'cats', array());
 	
 	if (empty($cats)){
-		redirectMsg('categories.php', __('You must select one category at least!','admin_mywords'), 1);
+		redirectMsg('categories.php', __('You must select one category at least!','mywords'), 1);
 		die();
 	}
 	
 	if(!$xoopsSecurity->check()){
-		redirectMsg('categories.php', __("Session token expired!", 'admin_mywords'), 1);
+		redirectMsg('categories.php', __("Session token expired!", 'mw_categories'), 1);
 		die();
 	}
 	
@@ -248,11 +248,11 @@ function deleteCatego(){
 		$cat = new MWCategory();
 		$cat->assignVars($row);
 		if (!$cat->delete()){
-			showMessage(__('Category "%s" could not be deleted','admin_mywords'), 1);
+			showMessage(__('Category "%s" could not be deleted','mywords'), 1);
 		}
 	}
 	
-	redirectMsg('categories.php', __('Database updated!', 'admin_mywords'), 0);
+	redirectMsg('categories.php', __('Database updated!', 'mw_categories'), 0);
 	
 }
 

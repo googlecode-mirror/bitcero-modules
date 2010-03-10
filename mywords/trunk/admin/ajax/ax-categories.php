@@ -23,7 +23,7 @@ extract($_POST);
 
 if(!$xoopsSecurity->check() || !$xoopsSecurity->checkReferer()){
 	$ret = array(
-		'error'=>__('You are not allowed to do this operation!','admin_mywords')
+		'error'=>__('You are not allowed to do this operation!','mywords')
 	);
 	echo json_encode($ret);
 	die();
@@ -31,7 +31,7 @@ if(!$xoopsSecurity->check() || !$xoopsSecurity->checkReferer()){
 
 if(!isset($name) || $name==''){
 	$ret = array(
-		'error'=>__('A name is neccesary to create a new category!','admin_mywords'),
+		'error'=>__('A name is neccesary to create a new category!','mywords'),
 		'token'=>$xoopsSecurity->createToken()
 	);
 	echo json_encode($ret);
@@ -45,7 +45,7 @@ $catego->setVar('parent',$parent);
 
 if (MWFunctions::category_exists($catego)){
 	$ret = array(
-		'error'=>__('There is already a category with same name!','admin_mywords'),
+		'error'=>__('There is already a category with same name!','mywords'),
 		'token'=>$xoopsSecurity->createToken()
 	);
 	echo json_encode($ret);
@@ -54,7 +54,7 @@ if (MWFunctions::category_exists($catego)){
 
 if (!$catego->save()){
 	$ret = array(
-		'error'=>__('Category could not inserted!','admin_mywords')."\n".$catego->errors(),
+		'error'=>__('Category could not inserted!','mywords')."\n".$catego->errors(),
 		'token'=>$xoopsSecurity->createToken()
 	);
 	echo json_encode($ret);
@@ -62,7 +62,7 @@ if (!$catego->save()){
 }
 
 $ret = array(
-	'message'	=> __('Category created successfully!','admin_mywords'),
+	'message'	=> __('Category created successfully!','mywords'),
 	'token'		=> $xoopsSecurity->createToken(),
 	'id'		=> $catego->id()
 );

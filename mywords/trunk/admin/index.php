@@ -47,7 +47,7 @@ $cHead = "<script type='text/javascript'>
          	new Ajax.Updater('versionInfo',url);
 		 </script>\n";
 $cHead .= "<link href=\"".XOOPS_URL."/modules/mywords/styles/admin.css\" media=\"all\" rel=\"stylesheet\" type=\"text/css\" />";
-xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Dashboard','admin_mywords'));
+xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Dashboard','mywords'));
 	
 include 'menu.php';
 MWFunctions::include_required_files();

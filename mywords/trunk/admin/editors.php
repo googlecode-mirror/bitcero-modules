@@ -19,8 +19,8 @@ function show_editors(){
 	global $tpl, $xoopsUser, $xoopsSecurity, $xoopsModule;
 	
 	MWFunctions::include_required_files();
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Editors','admin_mywords'));
-    RMTemplate::get()->assign('xoops_pagetitle', __('Editors Management','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Editors','mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editors Management','mywords'));
 	include_once RMCPATH.'/class/form.class.php';
 	
 	foreach ($_REQUEST as $k => $v){
@@ -64,21 +64,21 @@ function edit_editor(){
     $page = rmc_server_var($_GET,'page',1);
     
     if($id<=0){
-        redirectMsg('editors.php?page='.$page, __('Editor ID not provided!.','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Editor ID not provided!.','mywords'), 1);
         die();
     }
     
     $editor = new MWEditor($id);
     if($editor->isNew()){
-        redirectMsg('editors.php?page='.$page, __('Editor does not exists!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Editor does not exists!','mywords'), 1);
         die();
     }
     
     include_once RMCPATH.'/class/form.class.php';
     
     MWFunctions::include_required_files();
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="editors.php">'.__('Editors','admin_mywords').'</a> &raquo; '.__('Editing Editor','admin_mywords'));
-    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Editor','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="editors.php">'.__('Editors','mywords').'</a> &raquo; '.__('Editing Editor','mywords'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Editor','mywords'));
     xoops_cp_header();   
     $show_edit = true;
     include RMTemplate::get()->get_template('admin/mywords_editors.php','module','mywords');
@@ -95,7 +95,7 @@ function save_editor($edit = false){
     $page = rmc_server_var($_POST, 'page', 1);
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('editors.php?page='.$page, __('Operation not allowed!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Operation not allowed!','mywords'), 1);
         die();
     }
     
@@ -103,13 +103,13 @@ function save_editor($edit = false){
         
         $id = rmc_server_var($_POST, 'id', 0);
         if ($id<=0){
-            redirectMsg('editors.php?page='.$page, __('Editor ID has not been provided!','admin_mywords'), 1);
+            redirectMsg('editors.php?page='.$page, __('Editor ID has not been provided!','mywords'), 1);
             die();
         }
         
         $editor = new MWEditor($id);
         if ($editor->isNew()){
-            redirectMsg('editors.php?page='.$page, __('Editor has not been found!','admin_mywords'), 1);
+            redirectMsg('editors.php?page='.$page, __('Editor has not been found!','mywords'), 1);
             die();
         }
         
@@ -126,12 +126,12 @@ function save_editor($edit = false){
     $short = rmc_server_var($_POST, 'short', '');
     
     if (trim($name)==''){
-        redirectMsg('editors.php?page='.$page, __('You must provide a display name for this editor!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('You must provide a display name for this editor!','mywords'), 1);
         die();
     }
     
     if ($uid<=0){
-        redirectMsg('editors.php?page='.$page, __('You must specify a registered user ID for this editor!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('You must specify a registered user ID for this editor!','mywords'), 1);
         die();
     }
     
@@ -142,7 +142,7 @@ function save_editor($edit = false){
     list($num) = $db->fetchRow($db->query($sql));
     
     if ($num>0){
-        redirectMsg('editors.php?page='.$page, __('This user has been registered as editor before.','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('This user has been registered as editor before.','mywords'), 1);
         die();
     }
     
@@ -153,10 +153,10 @@ function save_editor($edit = false){
     $editor->setVar('privileges', $perms);
     
     if(!$editor->save()){
-        redirectMsg('editors.php?page='.$page, __('Errors occurs while trying to save editor data','admin_mywords').'<br />'.$editor->errors(), 1);
+        redirectMsg('editors.php?page='.$page, __('Errors occurs while trying to save editor data','mywords').'<br />'.$editor->errors(), 1);
         die();
     } else {
-        redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+        redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','mywords'), 0);
         die();
     }
     
@@ -170,12 +170,12 @@ function activate_editors($a){
     $editors = rmc_server_var($_POST, 'editors', array());
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','mywords'), 1);
         die();
     }
     
     if (!is_array($editors) || empty($editors)){
-        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','mywords'), 1);
         die();
     }
     
@@ -183,11 +183,11 @@ function activate_editors($a){
     $db = Database::getInstance();
     $sql = "UPDATE ".$db->prefix("mw_editors")." SET active='".($a?'1':'0')."' WHERE id_editor IN(".implode(',',$editors).")";
     if (!$db->queryF($sql)){
-        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to update database!','admin_mywords')."\n".$db->error(), 1);
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to update database!','mywords')."\n".$db->error(), 1);
         die();
     }
     
-    redirectMsg('editors.php?page='.$page, __('Database updated successfully!','admin_mywords'), 0);
+    redirectMsg('editors.php?page='.$page, __('Database updated successfully!','mywords'), 0);
     
 }
 
@@ -198,12 +198,12 @@ function delete_editors(){
     $editors = rmc_server_var($_POST, 'editors', array());
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Sorry, operation not allowed!','mywords'), 1);
         die();
     }
     
     if (!is_array($editors) || empty($editors)){
-        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','admin_mywords'), 1);
+        redirectMsg('editors.php?page='.$page, __('Please, specify a valid editor ID!','mywords'), 1);
         die();
     }
     
@@ -211,17 +211,17 @@ function delete_editors(){
     $db = Database::getInstance();
     $sql = "UPDATE ".$db->prefix("mw_posts")." SET author='0' WHERE author IN(".implode(',',$editors).")";
     if (!$db->queryF($sql)){
-        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','admin_mywords').'<br />'.$db->error(), 1);
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','mywords').'<br />'.$db->error(), 1);
         die();
     }
     
     $sql = "DELETE FROM ".$db->prefix("mw_editors")." WHERE id_editor IN(".implode(",",$editors).")";
     if (!$db->queryF($sql)){
-        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','admin_mywords').'<br />'.$db->error(), 1);
+        redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','mywords').'<br />'.$db->error(), 1);
         die();
     }
     
-    redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','admin_mywords'), 0);
+    redirectMsg('editors.php?page='.$page, __('Database updated succesfully!','mywords'), 0);
     
 }
 

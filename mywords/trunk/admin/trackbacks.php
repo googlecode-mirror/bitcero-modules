@@ -11,7 +11,7 @@
 define('RMCLOCATION','trackbacks');
 require('header.php');
 
-RMTemplate::get()->assign('xoops_pagetitle', __('Trackbacks management', 'admin_mywords'));
+RMTemplate::get()->assign('xoops_pagetitle', __('Trackbacks management', 'mw_categories'));
 
 function show_mw_trackbacks(){
     global $xoopsModule, $xoopsSecurity;
@@ -64,7 +64,7 @@ function show_mw_trackbacks(){
     RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/scripts.php?file=trackbacks.js');
 
     xoops_cp_header();
-    xoops_cp_location('<a href="'.XOOPS_URL.'/modules/mywords/admin/">'.$xoopsModule->getVar('name').'</a> &raquo; '.__('Trackbacks','admin_mywords'));
+    xoops_cp_location('<a href="'.XOOPS_URL.'/modules/mywords/admin/">'.$xoopsModule->getVar('name').'</a> &raquo; '.__('Trackbacks','mywords'));
     
     include RMTemplate::get()->get_template('admin/mywords_trackbacks.php', 'module', 'mywords');
     
@@ -78,12 +78,12 @@ function delete_mw_trackbacks(){
     $tbs = rmc_server_var($_POST, 'tbs', array());
     
     if (empty($tbs) || !is_array($tbs)){
-        redirectMsg('trackbacks.php', __('Select one trackback at least!', 'admin_mywords'), 1);
+        redirectMsg('trackbacks.php', __('Select one trackback at least!', 'mw_categories'), 1);
         die();
     }
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('trackbacks.php', __('Session token expired!','admin_mywords'), 1);
+        redirectMsg('trackbacks.php', __('Session token expired!','mywords'), 1);
         die();
     }
     
@@ -97,7 +97,7 @@ function delete_mw_trackbacks(){
         $trac->delete();
     }
     
-    redirectMsg('trackbacks.php', __('Trackbacks deleted successfully','admin_mywords'), 0);
+    redirectMsg('trackbacks.php', __('Trackbacks deleted successfully','mywords'), 0);
     
 }
 

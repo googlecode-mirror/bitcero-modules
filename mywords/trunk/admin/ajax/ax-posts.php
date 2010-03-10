@@ -34,7 +34,7 @@ extract($_POST);
 
 /*if(!$xoopsSecurity->check() || !$xoopsSecurity->checkReferer()){
     $ret = array(
-        'error'=>__('You are not allowed to do this operation!','admin_mywords')
+        'error'=>__('You are not allowed to do this operation!','mywords')
     );
     echo json_encode($ret);
     die();
@@ -43,13 +43,13 @@ extract($_POST);
     
 if ($op=='saveedit'){
     if(!isset($id) || $id<=0){
-        return_error(__('You must provide a valid post ID','admin_mywords'), 0, 'posts.php');
+        return_error(__('You must provide a valid post ID','mywords'), 0, 'posts.php');
         die();
     }
         
     $post = new MWPost($id);
     if($post->isNew()){
-        return_error(__('You must provide an existing post ID','admin_mywords'), 0, 'posts.php');
+        return_error(__('You must provide an existing post ID','mywords'), 0, 'posts.php');
         die();
     }
         
@@ -68,7 +68,7 @@ if ($op=='saveedit'){
     
 // Verify title
 if ($title==''){
-    return_error(__('You must provide a title for this post','admin_mywords'), true);
+    return_error(__('You must provide a title for this post','mywords'), true);
     die();
 }
 
@@ -80,7 +80,7 @@ if (!isset($shortname) || $shortname==''){
 
 // Check content
 if ($content==''){
-    return_error(__('Content for this post has not been provided!','admin_mywords'), true);
+    return_error(__('Content for this post has not been provided!','mywords'), true);
     die();
 }
     
@@ -91,7 +91,7 @@ if (!isset($categories) || empty($categories)){
     
 // Check publish options
 if ($visibility=='password' && $vis_password==''){
-    return_error(__('You must provide a password for this post or select another visibility option','admin_mywords'), true);
+    return_error(__('You must provide a password for this post or select another visibility option','mywords'), true);
     die();
 }
     
@@ -125,7 +125,7 @@ if ($schedule<=time() && !$edit){
 }
 
 if (MWFunctions::post_exists($post)){
-    return_error(__('There is already another post with same title for same date','admin_mywords'), $xoopsSecurity->createToken());
+    return_error(__('There is already another post with same title for same date','mywords'), $xoopsSecurity->createToken());
     die();
 }
 
@@ -169,16 +169,16 @@ $return = $edit ? $post->update() : $post->save();
 
 if ($return){
     if (!$edit) $xoopsUser->incrementPost();
-    showMessage($edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'), 0);
+    showMessage($edit ? __('Post updated successfully','mywords') : __('Post saved successfully','mywords'), 0);
     $rtn = array(
-        'message' => $edit ? __('Post updated successfully','admin_mywords') : __('Post saved successfully','admin_mywords'),
+        'message' => $edit ? __('Post updated successfully','mywords') : __('Post saved successfully','mywords'),
         'token' => $xoopsSecurity->createToken(),
-        'link' => '<strong>'.__('Permalink:','admin_mywords').'</strong> '.$post->permalink(),
+        'link' => '<strong>'.__('Permalink:','mywords').'</strong> '.$post->permalink(),
         'post' => $post->id()
     );
     echo json_encode($rtn);
     die();
 } else {
-    return_error(__('Errors ocurred while trying to save this post.','admin_mywords').'<br />'.$post->errors(), true);
+    return_error(__('Errors ocurred while trying to save this post.','mywords').'<br />'.$post->errors(), true);
     die();
 }

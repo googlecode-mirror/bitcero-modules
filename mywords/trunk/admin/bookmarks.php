@@ -42,11 +42,11 @@ function show_bookmarks(){
     
     MWFunctions::include_required_files();
     
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Bookmark Sites','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Bookmark Sites','mywords'));
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template('admin/mywords_bookmarks.php','module','mywords');
-	RMTemplate::get()->assign('xoops_pagetitle', __('Bookmarks Management','admin_mywords'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Bookmarks Management','mywords'));
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	RMTemplate::get()->add_script('../include/js/scripts.php?file=bookmarks.js');
 	
@@ -62,13 +62,13 @@ function edit_bookmark(){
     
     $id = rmc_server_var($_GET, 'id', 0);
     if ($id<=0){
-		redirectMsg('bookmarks.php', __('Site ID not provided!','admin_mywords'), 1);
+		redirectMsg('bookmarks.php', __('Site ID not provided!','mywords'), 1);
 		die();
 	}
 	
 	$book = new MWBookmark($id);
 	if($book->isNew()){
-		redirectMsg('bookmarks.php', __('Social site not exists!','admin_mywords'), 1);
+		redirectMsg('bookmarks.php', __('Social site not exists!','mywords'), 1);
 		die();
 	}
 	
@@ -79,12 +79,12 @@ function edit_bookmark(){
     
     MWFunctions::include_required_files();
     
-    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="bookmarks.php">'.__('Social Sites','admin_mywords').'</a> &raquo; '.__('Editing Social Site','admin_mywords'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; <a href="bookmarks.php">'.__('Social Sites','mywords').'</a> &raquo; '.__('Editing Social Site','mywords'));
 	xoops_cp_header();
 	
     $show_edit = true;
 	include RMTemplate::get()->get_template('admin/mywords_bookmarks.php','module','mywords');
-	RMTemplate::get()->assign('xoops_pagetitle', __('Bookmarks Management','admin_mywords'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Bookmarks Management','mywords'));
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	RMTemplate::get()->add_script('../include/js/scripts.php?file=bookmarks.js');
 	
@@ -99,7 +99,7 @@ function save_bookmark($edit){
     global $xoopsSecurity;
     
     if (!$xoopsSecurity->check()){
-		redirectMsg('bookmarks.php', __('Operation not allowed!', 'admin_mywords'), 1);
+		redirectMsg('bookmarks.php', __('Operation not allowed!', 'mw_categories'), 1);
 		die();
     }
     
@@ -107,13 +107,13 @@ function save_bookmark($edit){
 		
 		$id = rmc_server_var($_POST, 'id', 0);
 		if ($id<=0){
-			redirectMsg('bookmarks.php', __('Site ID not provided!','admin_mywords'), 1);
+			redirectMsg('bookmarks.php', __('Site ID not provided!','mywords'), 1);
 			die();
 		}
 		
 		$book = new MWBookmark($id);
 		if($book->isNew()){
-			redirectMsg('bookmarks.php', __('Social site not exists!','admin_mywords'), 1);
+			redirectMsg('bookmarks.php', __('Social site not exists!','mywords'), 1);
 			die();
 		}
 		
@@ -131,12 +131,12 @@ function save_bookmark($edit){
     $icon = rmc_server_var($_POST, 'icon', '');
     
     if($title==''){
-		redirectMsg('bookmarks.php'.$qs, __('You must specify a title for this site!','admin_mywords'), 1);
+		redirectMsg('bookmarks.php'.$qs, __('You must specify a title for this site!','mywords'), 1);
 		die();
     }
     
     if($url=='' || $url=='http://'){
-		redirectMsg('bookmarks.php'.$qs, __('You must specify a formatted URL for this site!','admin_mywords'), 1);
+		redirectMsg('bookmarks.php'.$qs, __('You must specify a formatted URL for this site!','mywords'), 1);
 		die();
     }
     
@@ -149,7 +149,7 @@ function save_bookmark($edit){
     $book->setVar('active',1);
     
     if ($book->save()){
-        redirectMsg('bookmarks.php', __('Database updated successfully!','admin_mywords'), 0);
+        redirectMsg('bookmarks.php', __('Database updated successfully!','mywords'), 0);
     } else {
         redirectMsg('bookmarks.php'.$qs, __('Errors ocurred while trying to update database!'). '<br />' . $book->errors(), 1);
     }
@@ -165,12 +165,12 @@ function activate_bookmark($act){
     $books = rmc_server_var($_POST, 'books', array());
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('bookmarks.php', __('Sorry, operation not allowed!','admin_mywords'), 1);
+        redirectMsg('bookmarks.php', __('Sorry, operation not allowed!','mywords'), 1);
         die();
     }
     
     if (!is_array($books) || empty($books)){
-        redirectMsg('bookmarks.php', __('Please, specify a valid site ID!','admin_mywords'), 1);
+        redirectMsg('bookmarks.php', __('Please, specify a valid site ID!','mywords'), 1);
         die();
     }
     
@@ -178,9 +178,9 @@ function activate_bookmark($act){
     $sql = "UPDATE ".$db->prefix("mw_bookmarks")." SET active=".($act?1:0)." WHERE id_book IN(".implode(',',$books).")";
     
     if ($db->queryF($sql)){
-		redirectMsg('bookmarks.php', __('Database updated successfully!','admin_mywords'), 0);
+		redirectMsg('bookmarks.php', __('Database updated successfully!','mywords'), 0);
 	} else {
-		redirectMsg('bookmarks.php', __('Errors ocurred while trying to update database!','admin_mywords').'<br />'.$db->error(), 0);
+		redirectMsg('bookmarks.php', __('Errors ocurred while trying to update database!','mywords').'<br />'.$db->error(), 0);
 	}
     
 }
@@ -194,12 +194,12 @@ function delete_bookmark(){
     $books = rmc_server_var($_POST, 'books', array());
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('bookmarks.php', __('Sorry, operation not allowed!','admin_mywords'), 1);
+        redirectMsg('bookmarks.php', __('Sorry, operation not allowed!','mywords'), 1);
         die();
     }
     
     if (!is_array($books) || empty($books)){
-        redirectMsg('bookmarks.php', __('Please, specify a valid site ID!','admin_mywords'), 1);
+        redirectMsg('bookmarks.php', __('Please, specify a valid site ID!','mywords'), 1);
         die();
     }
     
@@ -207,9 +207,9 @@ function delete_bookmark(){
     $sql = "DELETE FROM ".$db->prefix("mw_bookmarks")." WHERE id_book IN (".implode(',',$books).")";
 	
 	if ($db->queryF($sql)){
-		redirectMsg('bookmarks.php', __('Database updated successfully!','admin_mywords'), 0);
+		redirectMsg('bookmarks.php', __('Database updated successfully!','mywords'), 0);
 	} else {
-		redirectMsg('bookmarks.php', __('Errors ocurred while trying to update database!','admin_mywords').'<br />'.$db->error(), 0);
+		redirectMsg('bookmarks.php', __('Errors ocurred while trying to update database!','mywords').'<br />'.$db->error(), 0);
 	}
        
 }

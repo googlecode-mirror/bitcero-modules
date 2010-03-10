@@ -77,7 +77,7 @@ function showPosts($aprovado = -1){
 		$posts[] = array(
 			'id'=>$post->id(), 
 			'title'=>$post->getVar('title'),
-			'date'=>$post->getVar('pubdate')>0 ? formatTimeStamp($post->getVar('pubdate')) : '<em>'.__('Not published','admin_mywords').'</em>',
+			'date'=>$post->getVar('pubdate')>0 ? formatTimeStamp($post->getVar('pubdate')) : '<em>'.__('Not published','mywords').'</em>',
 			'comments'=>$post->getVar('comments'),
 			'uid'=>$post->getVar('author'),
 			'uname'=>$post->getVar('authorname'),
@@ -102,7 +102,7 @@ function showPosts($aprovado = -1){
 	RMTemplate::get()->add_head(
 	 '<script type="text/javascript">
 	 	function post_del_confirm(post, id){
-	 		var string = "'.__('Do you really want to delete \"%s\"','admin_mywords').'";
+	 		var string = "'.__('Do you really want to delete \"%s\"','mywords').'";
 	 		string = string.replace("%s", post);
 	 		var ret = confirm(string);
 	 		
@@ -118,7 +118,7 @@ function showPosts($aprovado = -1){
 	
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	MWFunctions::include_required_files();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Existing Posts','admin_mywords'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Existing Posts','mywords'));
 	xoops_cp_header();
 	include_once '../templates/admin/mywords_posts.php';    
 	xoops_cp_footer();
@@ -134,18 +134,18 @@ function newForm($edit = 0){
 	if ($edit){
 		$id = rmc_server_var($_GET, 'id', 0);
 		if ($id<=0){
-			redirectMsg('posts.php', __('Please, specify a valid post ID','admin_mywords'), 1);
+			redirectMsg('posts.php', __('Please, specify a valid post ID','mywords'), 1);
 			die();
 		}
 		$post = new MWPost($id);
 		if ($post->isNew()){
-			redirectMsg('posts.php', __('Specified post does not exists!','admin_mywords'), 1);
+			redirectMsg('posts.php', __('Specified post does not exists!','mywords'), 1);
 			die();
 		}
 	}
 	
 	MWFunctions::include_required_files();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Editing post','admin_mywords') : __('Creating a new post','admin_mywords')));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Editing post','mywords') : __('Creating a new post','mywords')));
 	$head = '<script type="text/javascript" src="'.MW_URL.'/include/forms_post.js"></script>';
 	xoops_cp_header($head);
 	
@@ -179,12 +179,12 @@ function deletePost(){
 	$posts = rmc_server_var($_POST, 'posts', array());
 	
 	if(empty($posts)){
-		redirectMsg('posts.php', __('Select one post at least!','admin_mywords'), 1);
+		redirectMsg('posts.php', __('Select one post at least!','mywords'), 1);
 		die();
 	}
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('posts.php', __('Session token expired!','admin_mywords'), 1);
+		redirectMsg('posts.php', __('Session token expired!','mywords'), 1);
 		die();
 	}
 	
@@ -197,14 +197,14 @@ function deletePost(){
 		$post->assignVars($row);
 		
 		if (!$post->delete()){
-			showMessage(sprintf(__('Errors ocurred while deleting "%s"', 'admin_mywords'), $post->getVar('title')), 1);
+			showMessage(sprintf(__('Errors ocurred while deleting "%s"', 'mw_categories'), $post->getVar('title')), 1);
 		}
 		
 		RMFunctions::delete_comments('mywords', urlencode('post='.$post->id()));
 		
 	}
 	
-	redirectMsg('posts.php', __('Database updated!', 'admin_mywords'), 0);
+	redirectMsg('posts.php', __('Database updated!', 'mw_categories'), 0);
 	
 }
 
@@ -219,23 +219,23 @@ function set_posts_status($status){
     $q = "limit=$limit&keyw=$keyw&page=$page";
     
     if(empty($posts)){
-        redirectMsg('posts.php?'.$q, __('Select one post at least!','admin_mywords'), 1);
+        redirectMsg('posts.php?'.$q, __('Select one post at least!','mywords'), 1);
         die();
     }
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('posts.php?'.$q, __('Session token expired!','admin_mywords'), 1);
+        redirectMsg('posts.php?'.$q, __('Session token expired!','mywords'), 1);
         die();
     }
     
     $db = Database::getInstance();
     $sql = "UPDATE ".$db->prefix("mw_posts")." SET status='$status' WHERE id_post IN (".implode(",", $posts).")";
     if (!$db->queryF($sql)){
-        redirectMsg('posts.php?'.$q, __('Posts could not be updated!', 'admin_mywords'), 1);
+        redirectMsg('posts.php?'.$q, __('Posts could not be updated!', 'mw_categories'), 1);
         die();
     }
     
-    redirectMsg('posts.php?'.$q, __('Posts updated successfully!','admin_mywords'), 0);
+    redirectMsg('posts.php?'.$q, __('Posts updated successfully!','mywords'), 0);
     
 }
 

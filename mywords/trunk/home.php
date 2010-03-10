@@ -33,7 +33,8 @@ $p = $page>0 ? $page-1 : $page;
 $start = $num<=0 ? 0 : $page * $limit;
 
 $nav = new RMPageNav($num, $limit, $page, 5);
-$nav->target_url(MW_URL.'/{PAGE_NUM}/');
+$nav->target_url(MW_URL.'page/{PAGE_NUM}/');
+$xoopsTpl->assign('pagenav', $nav->render(false));
 
 $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY pubdate DESC LIMIT $start,$limit";
 $result = $db->query($sql);
