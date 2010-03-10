@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-global $exmConfig;
+global $rmc_config;
 
 class RMFormDate extends RMFormElement
 {
@@ -34,7 +34,7 @@ class RMFormDate extends RMFormElement
 
                 if (defined('EXM_IS_CP') && EXM_IS_CP==true){
                     // This class must be instantiated before that the method ExmGUI::cp_head();
-                    EXMTemplate::getInstance()->add_script(ABSURL.'/include/js/dates.js');
+                    RMTemplate::get()->add_script(RMCURL.'/include/js/dates.js');
                 }
 
 	}
