@@ -27,6 +27,7 @@
 
 define('_BK_GS_PICNUM','Número de Fotografías');
 define('_BK_GS_COLSNUM','Número de Columnas');
+define('_BK_GS_IMGWIDTH','Ancho de Imágenes');
 define('_BK_GS_PICTYPE','Tipo de Fotografías');
 define('_BK_GS_PICRECENT','Fotos Recientes');
 define('_BK_GS_PICRANDOM','Fotos Aleatorias');

@@ -7,7 +7,7 @@
 			<{assign var="i" value=1}>
 		<{/if}>
 		<td align="center" valign="top" width="<{$block.width}>%">
-			<a href="<{$pic.link}>"><img src="<{$pic.file}>" alt="<{$pic.title}>" style="padding: 1px; border: 1px solid #666;" /></a><br />
+			<a href="<{$pic.link}>"><img src="<{$pic.file}>" alt="<{$pic.title}>" style="padding: 1px; border: 1px solid #666; width: <{$block.imgw}>px;" /></a><br />
 			<strong><a href="<{$pic.link}>"><{$pic.title}></a></strong>
 			<{if $block.showdesc && $pic.desc!=''}>
 				<br /><span style="color: #666;"><{$pic.desc}></span>
@@ -15,7 +15,7 @@
 			<br /><{$pic.by}><br />
 			<span style="color: #999"><{$pic.created}></span>
 		</td>
-		<{assign var="i" value="$i+1"}>
+		<{assign var="i" value=$i+1}>
 	<{/foreach}>
 	</tr>
 </table>

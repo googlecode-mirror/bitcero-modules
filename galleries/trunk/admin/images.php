@@ -271,14 +271,14 @@ function formBulkImages(){
 	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : 0;
 	$file = isset($_REQUEST['image']) ? $_REQUEST['image'] : 0;
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
+	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 1;
 
 	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	$db = Database::getInstance();
 	
 	//Lista de albumes
-	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".($uid ? $uid : $xoopsUser->uid())."'";
+	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".($uid ? $uid : $xoopsUser->uid())."' ORDER BY id_set DESC";
 	$result = $db->query($sql);
 	$sets = array();
 	while($rows = $db->fetchArray($result)){

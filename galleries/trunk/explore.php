@@ -103,8 +103,9 @@ function sets(){
 		}
 		$urlnav.= isset($usr) ? 'usr/'.$usr.'/' : '';		    
 
-    	    $nav = new GsPageNav($num, $limit, $start, 'pag',$urlnav,0);
-    	    $tpl->assign('setsNavPage', $nav->renderNav(4, 1));
+    	    $nav = new RMPageNav($num, $limit, $pactual, 5);
+            $nav->target_url(GS_URL.'/'.$urlnav.'pag/{PAGE_NUM}/');
+    	    $tpl->assign('setsNavPage', $nav->render(false));
     	}
 
 	$showmax = $start + $limit;

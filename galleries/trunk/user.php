@@ -91,9 +91,10 @@ function showUserPics(){
 	
    	$urlnav = '';
    	if ($tpages > 1) {
-    	$urlnav .= isset($usr) ? 'usr/'.$user->uname() : 'user.php?id=usr/'.$user->uname();	    
-    	$nav = new GSPageNav($num, $limit, $start, 'pag',$urlnav,0);
-   	    $tpl->assign('upNavPage', $nav->renderNav(4, 1));
+    	$urlnav .= isset($usr) ? 'usr/'.$user->uname() : 'user.php?id=usr/'.$user->uname();        
+        $nav = new RMPageNav($num, $limit, $pactual, 5);
+        $nav->target_url(GS_URL.'/'.$urlnav . '/pag/{PAGE_NUM}/');
+        $tpl->assign('upNavPage', $nav->render(false));
    	}
 
 	$showmax = $start + $limit;
@@ -127,15 +128,6 @@ function showUserPics(){
 	
 	// Datos para el formato
 	$tpl->assign('max_cols', $cols);
-	
-	$util =& RMUtils::getInstance();
-	
-	$xmh .= "\n<link href='".GS_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
-			<script type='text/javascript'>\nvar gs_url='".GS_URL."';\n</script>";
-	$util->addScript('prototype');
-	$util->addScript('scriptaeffects');
-	global $xoTheme;
-	$xoTheme->addScript(GS_URL."/include/js/lightbox.js");
 	
 	include 'footer.php';
 	
@@ -508,7 +500,7 @@ function showSetContent(){
    	if ($tpages > 1) {
     	$urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'user.php?id=usr/'.$user->uname().'/set/'.$set->id();
         $nav = new RMPageNav($num, $limit, $pactual, 5);
-        $nav->target_url($urlnav.'/pag/{PAGE_NUM}');
+        $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}');
    	    $tpl->assign('upNavPage', $nav->renderNav(false));
    	}
 
