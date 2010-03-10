@@ -35,7 +35,7 @@ while ($row = $db->fetchArray($result)){
     }
     
     # Información de Publicación
-    $published = sprintf('%s by %s', MWFunctions::format_time($post->getVar('pubdate'),'string'), '<a href="'.$alink.'">'.(isset($author) ? $author->getVar('name') : __('Anonymous','mywords'))."</a>");
+    $published = sprintf(__('%s by %s', 'mywords'), MWFunctions::format_time($post->getVar('pubdate'),'string'), '<a href="'.$alink.'">'.(isset($author) ? $author->getVar('name') : __('Anonymous','mywords'))."</a>");
     # Texto de continuar leyendo
     if ($post->getVar('visibility')=='password'){
         $text = isset($_SESSION['password-'.$post->id()]) && $_SESSION['password-'.$post->id()]==$post->getVar('password') ? $post->content(true) : MWFunctions::show_password($post);

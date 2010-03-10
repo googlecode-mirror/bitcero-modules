@@ -296,7 +296,7 @@ class MWFunctions
 		$day = date('d', $time);
     	$month = date('m', $time);
     	$year = date('Y', $time);
-		$format = "Published on %s at %s";
+		$format = __("Published on %s at %s",'mywords');
 		
 		$date = '<a href="'.MWFunctions::get_url()."$day/$month/$year/".'">'.date(__('D d M, Y','mywords'), $time).'</a>';
 		$hour = date(__('H:i','mywords'), $time);
