@@ -118,10 +118,9 @@ function load_theme_locale($theme, $prefix='', $gui=false){
 */
 function translate($text, $domain = 'system'){
 	global $l10n;
-
-	if (isset($l10n[$domain]))
+	if (isset($l10n[$domain])){
 		return RMEvents::get()->run_event('rmcommon.get_locale_text', $l10n[$domain]->translate($text), $text, $domain); 
-	else
+	}else
 		return RMEvents::get()->run_event('rmcommon.get_locale_text', $text, $text, $domain);
 }
 
