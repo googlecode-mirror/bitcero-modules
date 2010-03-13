@@ -86,6 +86,8 @@ function showCategos(){
 	  </script>'
 	);
 	
+	RMTemplate::get()->set_help('http://redmexico.com.mx/docs/mywords/descripcion-del-modulo#categorias');
+	
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','mywords'));
 	xoops_cp_header();
 	

@@ -32,7 +32,7 @@ while ($row = $db->fetchArray($result)){
     $drafts[] = $post;
 }
 
-$paendings = array();
+$pendings = array();
 $result = $db->query("SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='waiting' ORDER BY id_post DESC LIMIT 0,5");
 while ($row = $db->fetchArray($result)){
     $post = new MWPost();
