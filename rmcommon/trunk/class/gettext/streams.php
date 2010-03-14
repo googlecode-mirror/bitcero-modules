@@ -152,6 +152,7 @@ class CachedFileReader extends StringReader {
 	$this->error = 3; // Cannot read file, probably permissions
 	return false;
       }
+      
       $this->_str = fread($fd, $length);
       fclose($fd);
 
