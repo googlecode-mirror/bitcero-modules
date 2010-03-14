@@ -512,7 +512,7 @@ function showSetContent(){
 	//Fin de barra de navegación
 	
 	$sql = str_replace("COUNT(*)",'*',$sql);
-	$sql .= " ORDER BY a.created DESC, a.modified DESC LIMIT $start, $limit";
+	$sql .= " ORDER BY a.created ASC, a.modified DESC LIMIT $start, $limit";
 	$result = $db->query($sql);
 	while ($row = $db->fetchArray($result)){
 		$img = new GSImage();
