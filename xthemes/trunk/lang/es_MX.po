@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xThemes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-15 11:14-0600\n"
-"PO-Revision-Date: 2010-02-15 11:16-0600\n"
+"POT-Creation-Date: 2010-03-14 22:36-0600\n"
+"PO-Revision-Date: 2010-03-14 22:39-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgid "Settings updated!"
 msgstr "¡Configuración actualizada!"
 
 #: F:\webserver\htdocs\xoops24\modules\xthemes/menu.php:14
-#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:80
+#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:89
 #: F:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:2
 msgid "Dashboard"
 msgstr "Panel de Control"
@@ -108,16 +108,16 @@ msgid "Settings"
 msgstr "Configuraciones"
 
 #: F:\webserver\htdocs\xoops24\modules\xthemes/menu.php:24
-#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:82
+#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:91
 msgid "Catalog"
 msgstr "Catálogo"
 
 #: F:\webserver\htdocs\xoops24\modules\xthemes/menu.php:29
-#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:83
+#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:92
 msgid "About"
 msgstr "Acerca"
 
-#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:81
+#: F:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:90
 msgid "Theme Settings"
 msgstr "Configuración de Tema"
 
