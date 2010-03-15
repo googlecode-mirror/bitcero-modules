@@ -106,6 +106,9 @@ while($row = $db->fetchArray($result)){
 
 require_once 'api/l10n.php';
 
+// Load rmcommon language
+load_mod_locale('rmcommon');
+
 if ($xoopsModule && $xoopsModule->dirname()!='rmcommon')
     load_mod_locale($xoopsModule->dirname());
 

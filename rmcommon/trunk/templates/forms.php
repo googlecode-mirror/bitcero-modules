@@ -31,7 +31,7 @@
 	</td>
 	<td>
 		<?php echo $field->render(); ?>
-		<label for="<?php echo $field->getName(); ?>" class="error hidden"><?php _e('This is a required field. Please fill it!','global'); ?></label></td>
+		<label for="<?php echo $field->getName(); ?>" class="error hidden"><?php _e('This is a required field. Please fill it!','rmcommon'); ?></label></td>
 </tr>
 <?php
 		endif;

@@ -79,7 +79,7 @@ foreach ($menu as $mod){
 	if (isset($mod['options'])){
 		$rtn .= '<span class="toggle" id="switch-'.$wcounter.'">&nbsp;</span>';
 	}
-	$rtn .= '<a href="'.$mod['link'].'" style="'.(isset($mod['icon']) ? "background-image: url(".$mod['icon']."); padding-left: 22px; width: 100px" : '').'"'.(isset($mod['options']) ? ' class="reduced"' : '').'">'.$mod['title'].'</a>';
+	$rtn .= '<a href="'.$mod['link'].'" style="'.(isset($mod['icon']) ? "background-image: url(".$mod['icon']."); padding-left: 22px; width: 120px" : '').'"'.(isset($mod['options']) ? ' class="reduced"' : '').'">'.$mod['title'].'</a>';
 	$rtn .= "</div>";
 	if (isset($mod['options'])){
 		$rtn .= '<div class="submenu" id="container-'.$wcounter.'" style="'.($mod['location']==MODLOCATION ? 'display: block;' : 'display: none;').'">';
@@ -156,7 +156,7 @@ foreach ($menu as $mod){
 	if (isset($mod['options'])){
 		$rtn .= '<span class="toggle" id="switch-'.$wcounter.'">&nbsp;</span>';
 	}
-	$rtn .= '<a href="'.$mod['link'].'" style="'.(isset($mod['icon']) ? "background-image: url(".$mod['icon']."); padding-left: 22px; width: 100px" : '').'"'.(isset($mod['options']) ? ' class="reduced"' : '').'">'.$mod['title'].'</a>';
+	$rtn .= '<a href="'.$mod['link'].'" style="'.(isset($mod['icon']) ? "background-image: url(".$mod['icon']."); padding-left: 22px; width: 120px" : '').'"'.(isset($mod['options']) ? ' class="reduced"' : '').'">'.$mod['title'].'</a>';
 	$rtn .= "</div>";
 	if (isset($mod['options'])){
 		$rtn .= '<div class="submenu" id="container-'.$wcounter.'" style="'.(isset($mod['location']) && $mod['location']==RMCLOCATION ? 'display: block;' : 'display: none;').'">';
@@ -181,6 +181,6 @@ if (isset($xoopsModule) && $xoopsModule->getVar('dirname','n')!='system'){
     }
     
     if($xoopsModule->hasconfig()){
-        RMTemplate::get()->add_menu(__('Configure','admin_mywords'), XOOPS_URL.'/modules/system/admin.php?fct=preferences&op=showmod&mod='.$xoopsModule->mid(), RMTHEMEURL.'/images/configure.png','');
+        RMTemplate::get()->add_menu(__('Settings','rmcommon'), XOOPS_URL.'/modules/system/admin.php?fct=preferences&op=showmod&mod='.$xoopsModule->mid(), RMTHEMEURL.'/images/configure.png','');
     }
 }

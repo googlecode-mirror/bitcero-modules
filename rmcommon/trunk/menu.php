@@ -8,29 +8,29 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$adminmenu[0]['title'] = _MI_RMC_MENUDASH;
+$adminmenu[0]['title'] = __('Dashboard','rmcommon');
 $adminmenu[0]['link'] = "index.php";
 $adminmenu[0]['icon'] = "images/dashboard.png";
 $adminmenu[0]['location'] = "dashboard";
 
-$adminmenu[1]['title'] = _MI_RMC_MENUIMG;
+$adminmenu[1]['title'] = __('Images','rmcommon');
 $adminmenu[1]['link'] = "images.php";
 $adminmenu[1]['icon'] = "images/images.png";
 $adminmenu[1]['location'] = "imgmanager";
 $adminmenu[1]['options'] = array(0 => array(
-		'title'		=>	_MI_RMC_OPTICATS,
+		'title'		=>	__('Categories','rmcommon'),
 		'link'		=> 'images.php?action=showcats',
 		'selected'	=> 'rmc_imgcats' // RMSUBLOCATION constant defines wich submenu options is selected
 	), 1 => array(
-		'title'		=>	_MI_RMC_OPTINEWCAT,
+		'title'		=>	__('New category','rmcommon'),
 		'link'		=> 'images.php?action=newcat',
 		'selected'	=> 'rmc_imgnewcat' // RMSUBLOCATION constant defines wich submenu options is selected
 	), 2 => array(
-		'title'		=>	_MI_RMC_MENUIMG,
+		'title'		=>	__('Images','rmcommon'),
 		'link'		=> 'images.php',
 		'selected'	=> 'rmc_images' // RMSUBLOCATION constant defines wich submenu options is selected
 	), 4 => array(
-		'title'		=>	_MI_RMC_OPTINEWIMGS,
+		'title'		=>	__('Add images','rmcommon'),
 		'link'		=> 'images.php?action=new',
 		'selected'	=> 'rmc_newimages' // RMSUBLOCATION constant defines wich submenu options is selected
 	)
@@ -41,7 +41,7 @@ $adminmenu[2]['link'] = "comments.php";
 $adminmenu[2]['icon'] = "images/comments.png";
 $adminmenu[2]['location'] = "comments";
 
-$adminmenu[3]['title'] = _MI_RMC_MENUPLUGS;
+$adminmenu[3]['title'] = __('Plugins','rmcommon');
 $adminmenu[3]['link'] = "plugins.php";
 $adminmenu[3]['icon'] = "images/plugin.png";
 $adminmenu[3]['location'] = "plugins";

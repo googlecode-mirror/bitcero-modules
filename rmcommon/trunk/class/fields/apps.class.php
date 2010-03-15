@@ -149,7 +149,7 @@ class RMFormModules extends RMFormElement
 					$rtn .= "<label><input type='radio' value='$k' name='".$this->getName()."' id='".$this->getName()."'".(!empty($this->selected) ? ($k == $this->selected ? " checked='checked'" : '') : '')." /> $v</label>";
 				}
 				
-				$rtn .= ($this->subpages && $k>0) ? " <a href='javascript:;' onclick=\"\$('.subpages_container:visible').slideUp('slow');\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' title='".__('Show module sections','global')."'><img src='".ABSURL."/rmcommon/images/subpages.gif' align='absmiddle' /></a>" : "";
+				$rtn .= ($this->subpages && $k>0) ? " <a href='javascript:;' onclick=\"\$('.subpages_container:visible').slideUp('slow');\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' title='".__('Show module sections','rmcommon')."'><img src='".ABSURL."/rmcommon/images/subpages.gif' align='absmiddle' /></a>" : "";
 
 				/**
 				* Mostramos las subpáginas

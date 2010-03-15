@@ -315,25 +315,25 @@ function configure_rm_plugin(){
             case 'startpage':
             case 'select_modules':
                 $ele = new RMFormModules($option['caption'], 'conf_' . $config, 0, 0, $option['value'], 3);
-                $ele->setInserted(array('--'=>__('None','global')));
+                $ele->setInserted(array('--'=>__('None','rmcommon')));
                 if ($option['desc']!='') $ele->setDescription($option['desc']);
                 $form->addElement($ele);
                 break;
             case 'select_modules_multi':
                 $ele = new RMFormModules($option['caption'], 'conf_' . $config, 1, 0, $option['value'], 3);
-                $ele->setInserted(array('--'=>__('None','global')));
+                $ele->setInserted(array('--'=>__('None','rmcommon')));
                 if ($option['desc']!='') $ele->setDescription($option['desc']);
                 $form->addElement($ele);
                 break;
             case 'checkbox_modules':
                 $ele = new RMFormModules($option['caption'], 'conf_' . $config, 1, 1, $option['value'], 3);
-                $ele->setInserted(array('--'=>__('None','global')));
+                $ele->setInserted(array('--'=>__('None','rmcommon')));
                 if ($option['desc']!='') $ele->setDescription($option['desc']);
                 $form->addElement($ele);
                 break;
             case 'radio_modules':
                 $ele = new RMFormModules($option['caption'], 'conf_' . $config, 0, 1, $option['value'], 3);
-                $ele->setInserted(array('--'=>__('None','global')));
+                $ele->setInserted(array('--'=>__('None','rmcommon')));
                 if ($option['desc']!='') $ele->setDescription($option['desc']);
                 $form->addElement($ele);
                 break;
@@ -407,10 +407,10 @@ function configure_rm_plugin(){
             case 'select_editor':
                 $ele = new RMFormSelect($option['caption'], 'conf_'.$config, 0, array($option['value']));
                 if ($option['desc']!='') $ele->setDescription($option['desc']);
-                $ele->addOption('tiny', __('Visual Editor','global'));
-                $ele->addOption('code', __('EXMCode Editor','global'));
-                $ele->addOption('textarea', __('Simple Editor','global'));
-                $ele->addOption('html', __('HTML Editor','global'));
+                $ele->addOption('tiny', __('Visual Editor','rmcommon'));
+                $ele->addOption('code', __('EXMCode Editor','rmcommon'));
+                $ele->addOption('textarea', __('Simple Editor','rmcommon'));
+                $ele->addOption('html', __('HTML Editor','rmcommon'));
                 $form->addElement($ele);
                 break;
             case 'textbox':

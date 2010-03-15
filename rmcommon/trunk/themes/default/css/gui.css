@@ -186,7 +186,7 @@ div#rmc-right-widgets{
     float: right;
 }
 div#rmc-left-widgets{
-    width: 150px;
+    width: 170px;
     float: left;
 }
 div#rmc-center-content{
@@ -213,7 +213,7 @@ div#rmc-center-content span.rmc_options a{
 	color: #FF3300;
 }
 div.reduce_left{
-    margin-left: 160px;
+    margin-left: 180px;
 }
 div.reduce_right{
     margin-right: 260px;
@@ -296,7 +296,7 @@ div.rmc_widget_content div.menu span{
 div.rmc_widget_content div.menu a.reduced{
     border-right: 1px solid #FFF;
     float: left;
-    width: 118px;
+    width: 138px;
 }
 div.rmc_widget_content div.submenu a{
     display: block;

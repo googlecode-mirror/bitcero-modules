@@ -8,7 +8,7 @@
 <?php if ($field_type=='checkbox'): ?>
 <div class="form_users_selected_list">
 	<div id="<?php echo $field; ?>-selected-title" class="form_users_selected_title">
-		<?php _e('Seleccionados:','global'); ?> (<strong><span><?php echo count($selected); ?></span></strong>)
+		<?php _e('Seleccionados:','rmcommon'); ?> (<strong><span><?php echo count($selected); ?></span></strong>)
 	</div>
 	<ul id="<?php echo $field; ?>-selected-list">
 	<?php foreach($selecteds as $sel): ?>
@@ -18,22 +18,22 @@
 		</label></li>
 	<?php endforeach; ?>
 	</ul>
-	<div align="center"><input type="button" value="<?php echo _e('Insertar Usuarios','global'); ?>" onclick="usersField.insert_users(<?php echo $type; ?>);" /></div>
+	<div align="center"><input type="button" value="<?php echo _e('Insertar Usuarios','rmcommon'); ?>" onclick="usersField.insert_users(<?php echo $type; ?>);" /></div>
 </div>
 <?php endif; ?>
 <div<?php if ($field_type=='checkbox'): ?> style="margin-right: 160px;"<?php endif; ?>>
 <table class="outer" cellspacing="0">
 	<tr>
 		<td colspan="<?php echo $cols; ?>" align="center" class="even">
-			<?php _e('Search:','global'); ?> <input type="text" id="<?php echo $field ?>-kw" size="8" value="<?php echo $kw; ?>" /> &nbsp;
-			<?php _e('Show:','global'); ?> <input type="text" id="<?php echo $field ?>-limit" size="5" value="<?php echo $limit; ?>" /> &nbsp;
-			<?php _e('Sort by:','global'); ?>
+			<?php _e('Search:','rmcommon'); ?> <input type="text" id="<?php echo $field ?>-kw" size="8" value="<?php echo $kw; ?>" /> &nbsp;
+			<?php _e('Show:','rmcommon'); ?> <input type="text" id="<?php echo $field ?>-limit" size="5" value="<?php echo $limit; ?>" /> &nbsp;
+			<?php _e('Sort by:','rmcommon'); ?>
 			<select id="<?php echo $field ?>-ord">
-				<option value="2"<?php echo $ord==2 ? ' selected="selected"' : ''; ?>><?php _e('ID', 'global'); ?></option>
-				<option value="0"<?php echo $ord==0 ? ' selected="selected"' : ''; ?>><?php _e('Registered','global'); ?></option>
-				<option value="1"<?php echo $ord==1 ? ' selected="selected"' : ''; ?>><?php _e('Username','global'); ?></option>
+				<option value="2"<?php echo $ord==2 ? ' selected="selected"' : ''; ?>><?php _e('ID', ,'rmcommon'); ?></option>
+				<option value="0"<?php echo $ord==0 ? ' selected="selected"' : ''; ?>><?php _e('Registered','rmcommon'); ?></option>
+				<option value="1"<?php echo $ord==1 ? ' selected="selected"' : ''; ?>><?php _e('Username','rmcommon'); ?></option>
 			</select>
-			<input type="button" value="<?php _e('Go!','global'); ?>" onclick="usersField.submit_search(<?php echo $type; ?>);" />
+			<input type="button" value="<?php _e('Go!','rmcommon'); ?>" onclick="usersField.submit_search(<?php echo $type; ?>);" />
 		</td>
 	</tr>
 	<tr>

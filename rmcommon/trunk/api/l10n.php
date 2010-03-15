@@ -131,7 +131,7 @@ function translate($text, $domain = 'system'){
 * The teme name must be specified with prefix "theme_". eg. "theme_exm" or "theme_simplex"
 * @return print string
 */
-function _e($text, $domain='global'){
+function _e($text, $domain='rmcommon'){
 	echo translate($text, $domain);
 }
 
@@ -142,6 +142,6 @@ function _e($text, $domain='global'){
 * The teme name must be specified with prefix "theme_". eg. "theme_exm" or "theme_simplex"
 * @return string
 */
-function __($text, $domain='global'){
+function __($text, $domain='rmcommon'){
 	return translate($text, $domain);
 }

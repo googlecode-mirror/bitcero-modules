@@ -68,7 +68,7 @@ class RMFormUser extends RMFormElement
 		if ($this->showall && in_array(0, $this->selected)){
 			$rtn .= "<li id='".$this->getName()."-exmuser-0'>\n
                         <label><input type='".($this->multi ? 'checkbox' : 'radio')."' name='".($this->multi ? $this->getName().'[]' : $this->getName())."' id='".$this->getName()."-0'
-				 		value='0' checked='checked' /> ".__('All Users','global')."
+				 		value='0' checked='checked' /> ".__('All Users','rmcommon')."
                         <a href='javascript:;' onclick=\"users_field_name='".$this->getName()."'; usersField.remove(0);\"><span>delete</span></a>
                         </label></li>";
 		}
@@ -96,8 +96,8 @@ class RMFormUser extends RMFormElement
 		}
 		
 		$rtn .= "</ul></div><br />
-				<input type='button' value='".__('Search Users','global')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".intval($this->multi).",'".XOOPS_URL."');\" />
-				<div id='".$this->getName()."-dialog-search' title='".__('Search Users','global')."' style='display: none;'>
+				<input type='button' value='".__('Search Users','rmcommon')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".intval($this->multi).",'".XOOPS_URL."');\" />
+				<div id='".$this->getName()."-dialog-search' title='".__('Search Users','rmcommon')."' style='display: none;'>
 				
 				</div>";
 		

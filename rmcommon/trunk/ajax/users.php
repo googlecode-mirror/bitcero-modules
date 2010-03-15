@@ -36,7 +36,7 @@ foreach($_REQUEST as $k => $v){
 }
 
 if (!isset($field) || $field==''){
-	_e('Sorry, you are not allowed to view this page','global');
+	_e('Sorry, you are not allowed to view this page','rmcommon');
 	die();
 }
 
@@ -91,7 +91,7 @@ $result = $db->query($sql);
 
 $users = array();
 if ($all){
-	$users[] = array('id'=>0,'name'=>__('Todos','global'),'check'=>in_array(0, $selected));
+	$users[] = array('id'=>0,'name'=>__('Todos','rmcommon'),'check'=>in_array(0, $selected));
 }
 
 while ($row = $db->fetchArray($result)){

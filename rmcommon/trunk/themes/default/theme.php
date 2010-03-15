@@ -73,7 +73,7 @@ foreach ($this->tpl_head as $head){
                 <?php if($menu['options']): ?>
                     <span class="toggle" id="switch-<?php echo $wcounter; ?>">&nbsp;</span>
                 <?php endif; ?>
-                <a href="<?php echo $menu['link']; ?>" style="<?php echo $menu['icon']!='' ? "background-image: url(".$menu['icon']."); padding-left: 22px; width: 100px" : '' ?>"<?php if($menu['options']): ?> class="reduced"<?php endif; ?>><?php echo $menu['title']; ?></a>
+                <a href="<?php echo $menu['link']; ?>" style="<?php echo $menu['icon']!='' ? "background-image: url(".$menu['icon']."); padding-left: 22px; width: 120px" : '' ?>"<?php if($menu['options']): ?> class="reduced"<?php endif; ?>><?php echo $menu['title']; ?></a>
             </div>
             <?php if($menu['options']): ?>
             <div class="submenu" id="container-<?php echo $wcounter; ?>" style="<?php if($menu['location']==RMCLOCATION): ?>display: block;<?php else: ?>display: none;<?php endif; ?>">

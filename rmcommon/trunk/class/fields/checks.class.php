@@ -209,12 +209,12 @@ class RMFormYesNo extends RMFormElement
 		if ($this->_value==1){
 			$rtn .= "checked='checked' ";
 		}
-		$rtn .= "/> ".__('Yes','global')."&nbsp;&nbsp;";
+		$rtn .= "/> ".__('Yes','rmcommon')."&nbsp;&nbsp;";
 		$rtn .= "<input name='".$this->getName()."' id='".$this->getName()."' type='radio' value='0' ";
 		if ($this->_value==0){
 			$rtn .= "checked='checked' ";
 		}
-		$rtn .= "/> ".__('No','global');
+		$rtn .= "/> ".__('No','rmcommon');
 		return $rtn;
 	}
 }

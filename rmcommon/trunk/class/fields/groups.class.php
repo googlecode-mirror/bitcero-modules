@@ -155,7 +155,7 @@ class RMFormGroups extends RMFormElement
 					$rtn .= " checked='checked'";
 				}
 			}
-			$rtn .= ">".__('All','global')."</label></td>";
+			$rtn .= ">".__('All','rmcommon')."</label></td>";
 			$col++;
 			while ($row = $db->fetchArray($result)){
 				
