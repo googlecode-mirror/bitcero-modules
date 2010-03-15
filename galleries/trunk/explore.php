@@ -431,8 +431,9 @@ function imgsTag(){
 	    }
 		$urlnav.= $usr ? 'usr/'.$user->uname().'' : '';
 
-    	    $nav = new GsPageNav($num, $limit, $start, 'pag',$urlnav,0);
-    	    $tpl->assign('tagsNavPage', $nav->renderNav(4, 1));
+    	    $nav = new RMPageNav($num, $limit, $pactual, 5);
+    	    $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}/');
+    	    $tpl->assign('tagsNavPage', $nav->render(false));
     	}
 
 	$showmax = $start + $limit;
@@ -484,16 +485,6 @@ function imgsTag(){
 		$tpl->assign('sets_link', GS_URL.'/'.($mc['urlmode'] ? "explore/sets/usr/".$user->uname()."/" : "explore.php?by=explore/sets/usr/".$user->uname()."/"));
 		$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
 	}
-
-	//Vista Rápida
-	$util =& RMUtils::getInstance();
-	
-	$xmh .= "\n<link href='".GS_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
-			<script type='text/javascript'>\nvar gs_url='".GS_URL."';\n</script>";
-	$util->addScript('prototype');
-	$util->addScript('scriptaeffects');
-	global $xoTheme;
-	$xoTheme->addScript(GS_URL."/include/js/lightbox.js");	
 	
 	include('footer.php');
 }

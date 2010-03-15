@@ -95,9 +95,10 @@ if ($pactual>$tpages){
 	
     	
 if ($tpages > 1) {
-   
-    $nav = new XoopsPageNav($num, $limit, $start, 'pag','search='.$search,0);
-    $tpl->assign('searchNavPage', $nav->renderNav(4, 1));
+   	
+   	$nav = new RMPageNav($num, $limit, $pactual, 5);
+   	$nav->target_url('search.php?search='.$search.'&pag={PAGE_NUM}');
+    $tpl->assign('searchNavPage', $nav->render(false));
 }
 
 $showmax = $start + $limit;
