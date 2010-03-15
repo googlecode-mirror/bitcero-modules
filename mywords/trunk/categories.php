@@ -96,7 +96,7 @@ if ($pactual > 1){
 }
 if ($tpages > 1){
 	for ($i=1;$i<=$tpages;$i++){
-		$plink = mw_get_url();
+		$plink = MWFunctions::get_url();
 		$plink .= $mc['permalinks']==1 ? '?cat='.$category.'&amp;page='.$i : ($mc['permalinks']==2 ? $request."page/$i/" : $request."page/$i");
 		$xoopsTpl->append('pages', array('id'=>$i,'link'=>$plink));
 	}
