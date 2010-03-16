@@ -1,28 +1,63 @@
 <h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Customer Types','admin_works'); ?></h1>
 
-<form name="frmTypes" method="POST" action="types.php">
-<table width="100%" cellspacing="0" class="outer">
-	<tr class="head" align="center">
-		<th width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmTypes','checkAll')" /></th>
-		<th width="30"><{$lang_id}></th>
-		<th><{$lang_type}></th>
-		<th><{$lang_options}></th>
-	</tr>
-	<{foreach item=type from=$types}>
-	<tr class="<{cycle values='even,odd'}>" align="center">
-		<td><input type="checkbox" name="ids[]" value="<{$type.id}>" /></td>
-		<td><strong><{$type.id}></strong></td>
-		<td align="left"><{$type.type}></td>
-		<td><a href="./types.php?op=edit&amp;ids=<{$type.id}>"><{$lang_edit}></a> &bull; <a href="./types.php?op=delete&amp;ids=<{$type.id}>"><{$lang_delete}></a></td>
-	</tr>
-	<{/foreach}>
-	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
-		<td colspan="3">
-			<input type="submit" class="formButtonRed" value="<{$lang_edit}>" onclick="document.forms['frmTypes'].op.value='edit';" />
-			<input type="submit" class="formButton" value="<{$lang_delete}>" onclick="document.forms['frmTypes'].op.value='delete';" />
-		</td>
-	</tr>
-</table>
-<input type="hidden" name="op" />
-</form>
+<div id="pw-right-table">
+	<form name="frmTypes" id="frm-types" method="POST" action="types.php">
+	<div class="pw_options">
+		<select name="op" id="bulk-top">
+			<option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
+			<option value="edit"><?php _e('Edit','admin_works'); ?></option>
+			<option value="delete"><?php _e('Delete','admin_works'); ?></option>
+		</select>
+		<input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-types');" />
+	</div>
+	<table width="100%" cellspacing="0" class="outer">
+		<thead>
+		<tr class="head" align="center">
+			<th width="20"><input type="checkbox" name="checkall" id="checkall" onclick='$("#frm-types").toggleCheckboxes(":not(#checkall)");' /></th>
+			<th width="30"><?php _e('ID','admin_works'); ?></th>
+			<th align="left"><?php _e('Name','admin_works'); ?></th>
+		</tr>
+		</thead>
+		<tfoot>
+		<tr class="head" align="center">
+			<th width="20"><input type="checkbox" name="checkall" id="checkall2" onclick='$("#frm-types").toggleCheckboxes(":not(#checkall2)");' /></th>
+			<th width="30"><?php _e('ID','admin_works'); ?></th>
+			<th align="left"><?php _e('Name','admin_works'); ?></th>
+		</tr>
+		</tfoot>
+		<tbody>
+		<?php foreach($types as $type): ?>
+		<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center" valign="top">
+			<td><input type="checkbox" name="ids[]" id="item-<?php echo $type['id']; ?>" value="<?php echo $type['id']; ?>" /></td>
+			<td><strong><?php echo $type['id']; ?></strong></td>
+			<td align="left"><?php echo $type['type']; ?>
+				<span class="rmc_options">
+					<a href="javascript:;" onclick="select_option(<?php echo $type['id']; ?>,'edit');"><?php _e('Edit','admin_works'); ?></a> | 
+					<a href="javascript:;" onclick="select_option(<?php echo $type['id']; ?>,'delete');"><?php _e('Delete','admin_works'); ?></a>
+				</span>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+	<div class="pw_options">
+		<select name="opb" id="bulk-bottom">
+			<option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
+			<option value="edit"><?php _e('Edit','admin_works'); ?></option>
+			<option value="delete"><?php _e('Delete','admin_works'); ?></option>
+		</select>
+		<input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-types');" />
+	</div>
+	</form>
+</div>
+
+<div id="pw-left-form">
+	<form name="frmAddTypes" method="post" action="types.php" id="frm-add-types" onsubmit="$(this).validate();">
+	<h3><?php _e('Add new type', 'admin_works'); ?></h3>
+	<label for="type-name"><?php _e('Type name','admin_works'); ?></label>
+	<input type="text" name="type[]" id="type-name" size="50" class="required" />
+	<input type="submit" value="<?php _e('Add type','admin_works'); ?>" />
+	<input type="hidden" name="op" value="save" />
+	<?php echo $xoopsSecurity->getTokenHTML(); ?>
+	</form>
+</div>

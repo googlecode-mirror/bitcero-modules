@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 
-class PWWork extends EXMObject
+class PWWork extends RMObject
 {
 
 	public function __construct($id=null){
@@ -261,4 +261,3 @@ class PWWork extends EXMObject
 	}
 
 }
-?>
