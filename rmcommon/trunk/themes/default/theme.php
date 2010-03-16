@@ -63,7 +63,7 @@ foreach ($this->tpl_head as $head){
     <div id="rmc-left-widgets">
         <!-- Module Menu -->
         <?php if ($this->get_menus()): ?>
-        <div class="rmc_widget_title"><span<?php echo $xoopsModule->getInfo('icon24') ? ' style="background-image: url('.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/'.$xoopsModule->getInfo('icon24').'); padding-left: 26px;"': ''; ?>><?php echo strlen($xoopsModule->getVar('name'))>15?substr($xoopsModule->getVar('name'), 0, 15).'...':$xoopsModule->getVar('name'); ?></span></div>
+        <div class="rmc_widget_title"><span<?php echo $xoopsModule->getInfo('icon24') ? ' style="background-image: url('.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/'.$xoopsModule->getInfo('icon24').'); padding-left: 26px;"': ''; ?>><?php echo strlen($xoopsModule->getVar('name'))>20?substr($xoopsModule->getVar('name'), 0, 17).'...':$xoopsModule->getVar('name'); ?></span></div>
         <div class="rmc_widget_content mod_menu">
         <?php 
         foreach($this->get_menus() as $menu): 

@@ -36,7 +36,7 @@ foreach ($mods as $mod) {
         } else {
 	        $rtn['link'] = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid');
         }
-        $rtn['title'] = strlen($mod->name())>15?substr($mod->name(), 0, 12).'...':$mod->name();
+        $rtn['title'] = strlen($mod->name())>20?substr($mod->name(), 0, 17).'...':$mod->name();
         $rtn['location'] = $mod->getVar('dirname','n');
         $rtn['absolute'] = 1;
         $rtn['url'] = XOOPS_URL . '/modules/'. $mod->getVar('dirname', 'n') . '/'; //add for sub menus
