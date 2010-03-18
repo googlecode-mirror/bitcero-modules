@@ -30,7 +30,7 @@ $limit = $xoopsModuleConfig['posts_limit'];
 $tpages = ceil($num / $limit);
 $page = $page > $tpages ? $tpages : $page;
 $p = $page>0 ? $page-1 : $page;
-$start = $num<=0 ? 0 : $page * $limit;
+$start = $num<=0 ? 0 : $p * $limit;
 
 $nav = new RMPageNav($num, $limit, $page, 5);
 $nav->target_url(MW_URL.'page/{PAGE_NUM}/');

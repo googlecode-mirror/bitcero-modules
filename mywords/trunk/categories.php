@@ -76,35 +76,19 @@ list($num) = $db->fetchRow($db->query("SELECT COUNT($tbl2.post) FROM $tbl2, $tbl
 		(($tbl3.visibility='public' OR $tbl3.visibility='password') OR ($tbl3.visibility='private' AND 
 		$tbl3.author=".($xoopsUser ? $xoopsUser->uid() : -1)."))"));
 
-$page = isset($page) ? $page : 0;
+$page = isset($page) && $page>0 ? $page : 1;
 
-if ($page > 0){ $page -= 1; }
-$start = $page * $limit;
-$tpages = (int)($num / $limit);
-if($num % $limit > 0) $tpages++;
-$pactual = $page + 1;
-if ($pactual>$tpages){
-	$rest = $pactual - $tpages;
-	$pactual = $pactual - $rest + 1;
-	$start = ($pactual - 1) * $limit;
-}
+$limit = $xoopsModuleConfig['posts_limit'];
+$tpages = ceil($num / $limit);
+$page = $page > $tpages ? $tpages : $page;
+$p = $page>0 ? $page-1 : $page;
+$start = $num<=0 ? 0 : $p * $limit;
 
 $xoopsTpl->assign('pactual', $pactual);
 
-if ($pactual > 1){
-	$xoopsTpl->append('pages', array('id'=>'anterior', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?cat='.$category.'&amp;page='.($pactual-1) : ($mc['permalinks']==2 ? $request."page/".($pactual - 1)."/" : $request."page/".($pactual - 1)))));
-}
-if ($tpages > 1){
-	for ($i=1;$i<=$tpages;$i++){
-		$plink = MWFunctions::get_url();
-		$plink .= $mc['permalinks']==1 ? '?cat='.$category.'&amp;page='.$i : ($mc['permalinks']==2 ? $request."page/$i/" : $request."page/$i");
-		$xoopsTpl->append('pages', array('id'=>$i,'link'=>$plink));
-	}
-}
-
-if ($pactual < $tpages && $tpages > 1){
-	$xoopsTpl->append('pages', array('id'=>'siguiente', 'link'=>mw_get_url().($mc['permalinks']==1 ? '?cat='.$category.'&amp;page='.($pactual+1) : ($mc['permalinks']==2 ? $request."page/".($pactual + 1)."/" : $request."page/".($pactual + 1)))));
-}
+$nav = new RMPageNav($num, $limit, $page, 5);
+$nav->target_url($catego->permalink() . ($xoopsModuleConfig['permalinks']==1 ? '&page={PAGE_NUM}' : 'page/{PAGE_NUM}/'));
+$xoopsTpl->assign('pagenav', $nav->render(false));
 
 $xoopsTpl->assign('lang_permalink',__('Permalink to this post','mywords'));
 
