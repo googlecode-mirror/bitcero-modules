@@ -1,45 +1,15 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: gina
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Advanced Portfolio System
+// Author: BitC3R0 <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('PW_LOCATION','clients');
+define('RMCLOCATION','customers');
 include 'header.php';
-
-/**
-* @desc Barra de Menus
-*/
-function optionsBar(){
-	global $tpl;
-	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-
-	$tpl->append('xoopsOptions', array('link' => './clients.php', 'title' => _AS_PW_CLIENTS, 'icon' => '../images/clients16.png'));
-	$tpl->append('xoopsOptions', array('link' => './clients.php?op=new&pag='.$page.'&limit='.$limit, 'title' => _AS_PW_NEWCLIENT, 'icon' => '../images/add.png'));
-}
 
 /**
 * @desc Visualiza todos los clientes
@@ -52,33 +22,14 @@ function showClients(){
 	
 	list($num)=$db->fetchRow($db->query($sql));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit, 0);
-    	    $tpl->assign('clientsNavPage', $nav->renderNav(4, 1));
-    	}
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_PW_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin de barra de navegación
+	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
+	$limit = 20;
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page;  
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('clients.php?page={PAGE_NUM}');
 
 	$sql = "SELECT * FROM ".$db->prefix('pw_clients')." ORDER BY id_client";
 	$sql.= " LIMIT $start,$limit";
@@ -94,22 +45,12 @@ function showClients(){
 		'type'=>$type->type()));
 	}
 
-
-	$tpl->assign('lang_exist',_AS_PW_EXIST);
-	$tpl->assign('lang_id',_AS_PW_ID);
-	$tpl->assign('lang_name',_AS_PW_NAME);
-	$tpl->assign('lang_business',_AS_PW_BUSINESS);
-	$tpl->assign('lang_type',_AS_PW_TYPE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_delete',_DELETE);
-	$tpl->assign('lang_submit',_SUBMIT);
-
-
-	optionsBar();
+    PWFunctions::toolbar();
+    RMTemplate::get()->add_style('admin.css', 'works');
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_CLIENTLOC);
-	$adminTemplate = "admin/pw_clients.html";
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/pw_clients.php', 'module', 'works');
 
 	xoops_cp_footer();
 }

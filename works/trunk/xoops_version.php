@@ -10,7 +10,7 @@
 
 $modversion['name'] = "Professional Works";
 $modversion['version'] = 2;
-$modversion['rmversion'] = array('number'=>2,'revision'=>001,'status'=>0,'name'=>'Professional Works');
+$modversion['rmversion'] = array('number'=>2,'revision'=>010,'status'=>0,'name'=>'Professional Works');
 $modversion['description'] = _MI_PW_MODDESC;
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
@@ -81,7 +81,7 @@ $modversion['config'][1]['title'] = '_MI_PW_BASEDIR';
 $modversion['config'][1]['description'] = '';
 $modversion['config'][1]['formtype'] = 'textbox';
 $modversion['config'][1]['valuetype'] = 'text';
-$modversion['config'][1]['default'] = str_replace('http://'.$_SERVER['SERVER_NAME'],'', XOOPS_URL);
+$modversion['config'][1]['default'] = '/works';
 $modversion['config'][1]['order'] = 1;
 
 //Título
