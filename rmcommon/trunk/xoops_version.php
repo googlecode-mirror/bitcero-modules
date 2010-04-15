@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'Common Utilities';
-$modversion['version'] = 2.00;
+$modversion['version'] = 2.05;
 $modversion['releasedate'] = "08 Jan 2010";
 $modversion['status'] = "Stable";
 $modversion['description'] = 'Container a lot of clases and functions used by Red México Modules';
