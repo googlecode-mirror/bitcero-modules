@@ -23,22 +23,26 @@ $adminmenu[1]['options'] = array(
 								array('title'=>__('Add Category', 'admin_works'),'link'=>'categos.php?op=new', 'selected'=>'newcategory')
 							);
 
-$adminmenu[4]['title'] = __('Customer Types','admin_works');
-$adminmenu[4]['link'] = "admin/types.php";
-$adminmenu[4]['icon'] = "../images/types.png";
-$adminmenu[4]['location'] = "customertypes";
-$adminmenu[4]['options'] = array(
+$adminmenu[2]['title'] = __('Customer Types','admin_works');
+$adminmenu[2]['link'] = "admin/types.php";
+$adminmenu[2]['icon'] = "../images/types.png";
+$adminmenu[2]['location'] = "customertypes";
+$adminmenu[2]['options'] = array(
 	array('title'=>__('List', 'admin_works'),'link'=>'types.php', 'selected'=>'types'),
-	array('title'=>__('Add type', 'admin_works'),'link'=>'types.php?op=new', 'selected'=>'newtype')
+	array('title'=>__('Add multiple types', 'admin_works'),'link'=>'types.php?op=new', 'selected'=>'newtype')
 );
 
-$adminmenu[2]['title'] = __('Customers','admin_works');
-$adminmenu[2]['link'] = "admin/clients.php";
-$adminmenu[2]['icon'] = "../images/clients.png";
-$adminmenu[2]['location'] = "customers";
+$adminmenu[3]['title'] = __('Customers','admin_works');
+$adminmenu[3]['link'] = "admin/clients.php";
+$adminmenu[3]['icon'] = "../images/clients.png";
+$adminmenu[3]['location'] = "customers";
+$adminmenu[3]['options'] = array(
+	array('title'=>__('List', 'admin_works'),'link'=>'clients.php', 'selected'=>'customers'),
+	array('title'=>__('Add Customer', 'admin_works'),'link'=>'clients.php?op=new', 'selected'=>'newcustomer')
+);
 
-$adminmenu[3]['title'] = __('Works','admin_works');
-$adminmenu[3]['link'] = "admin/works.php";
-$adminmenu[3]['icon'] = "../images/works.png";
-$adminmenu[3]['location'] = "works";
+$adminmenu[4]['title'] = __('Works','admin_works');
+$adminmenu[4]['link'] = "admin/works.php";
+$adminmenu[4]['icon'] = "../images/works.png";
+$adminmenu[4]['location'] = "works";
 

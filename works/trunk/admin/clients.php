@@ -47,7 +47,8 @@ function showClients(){
 
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_CLIENTLOC);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customers','admin_works'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','admin_works'));
 	xoops_cp_header();
     
     include RMTemplate::get()->get_template('admin/pw_clients.php', 'module', 'works');
@@ -62,11 +63,6 @@ function formClients($edit = 0){
 
 	global $xoopsModule, $db;
 
-	optionsBar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./clients.php'>"._AS_PW_CLIENTLOC."</a> &raquo;".($edit ? _AS_PW_EDITCLIENT : _AS_PW_NEWCLIENT));
-
-	xoops_cp_header();
-
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
@@ -76,27 +72,32 @@ function formClients($edit = 0){
 	if ($edit){
 		//Verificamos si el cliente es válido
 		if ($id<=0){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRCLIENTVALID,1);
+			redirectMsg('./clients.php?'.$ruta, __('You must provide a customer ID','admin_works'),1);
 			die();
 		}
 
 		//Verificamos si el cliente existe
 		$client = new PWClient($id);
 		if ($client->isNew()){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRCLIENTEXIST,1);
+			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','admin_works'),1);
 			die();
 		}
 	}
 
-	$form = new RMForm($edit ? _AS_PW_EDITCLIENT : _AS_PW_NEWCLIENT,'frmClient','clients.php');
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./clients.php'>".__('Customers', 'admin_works')."</a> &raquo;".($edit ? __('Edit Customer','admin_works') : __('New Customer','admin_works')));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','admin_works'));
+	PWFunctions::toolbar();
+	xoops_cp_header();
+	
+	$form = new RMForm($edit ? __('Edit Customer','admin_works') : __('New Customer','admin_works'),'frmClient','clients.php');
 
-	$form->addElement(new RMText(_AS_PW_FNAME,'name',50,200,$edit ? $client->name() : ''),true);
-	$form->addElement(new RMText(_AS_PW_FBUSINESS,'business',50,200,$edit ? $client->businessName() : ''));
-	$form->addElement(new RMText(_AS_PW_FMAIL,'mail',50,100,$edit ? $client->email() : ''));
-	$form->addElement(new RMTextArea(_AS_PW_FDESC,'desc',4,50,$edit ? $client->desc() : ''),true);
+	$form->addElement(new RMFormText(__('Name','admin_works'),'name',50,200,$edit ? $client->name() : ''),true);
+	$form->addElement(new RMFormText(__('Business','admin_works'),'business',50,200,$edit ? $client->businessName() : ''));
+	$form->addElement(new RMFormText(__('Email address','admin_works'),'mail',50,100,$edit ? $client->email() : ''));
+	$form->addElement(new RMFormTextArea(__('Description','admin_works'),'desc',4,50,$edit ? $client->desc() : ''),true);
 
 	//Tipos de Cliente
-	$ele = new RMSelect(_AS_PW_FTYPE,'type');
+	$ele = new RMFormSelect(__('Type','admin_works'),'type');
 	$ele->addOption(0,_SELECT);
 	$result = $db->query("SELECT * FROM ".$db->prefix('pw_types'));	
 	while ($row = $db->fetchArray($result)){
@@ -106,14 +107,14 @@ function formClients($edit = 0){
 	$form->addElement($ele,true,'noselect:0');
 	
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('page',$page));
-	$form->addElement(new RMHidden('limit',$limit));
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('page',$page));
+	$form->addElement(new RMFormHidden('limit',$limit));
 
-	$ele = new RMButtonGroup();
-	$ele->addButton('sbt', _SUBMIT, 'submit');
-	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'clients.php?'.$ruta.'\';"');
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Customer','admin_works'), 'submit');
+	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'clients.php?'.$ruta.'\';"');
 	$form->addElement($ele);
 	$form->display();
 	

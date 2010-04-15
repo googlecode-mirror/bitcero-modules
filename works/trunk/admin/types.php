@@ -66,7 +66,7 @@ function formTypes($edit = 0){
 
 	PWFunctions::toolbar();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./types.php'>".__('Customer types','admin_works')."</a> &raquo; ".($edit ? __('Edit type','admin_works') : __('New type','admin_works')));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Customer types','admin_works'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Add Customers types','admin_works'));
 	xoops_cp_header();
 
 	$form = new RMForm($edit ? __('Edit Type','admin_works') : __('New Type','admin_works'),'frmtype','types.php');
