@@ -82,7 +82,7 @@
                         <a href="javascript:;" onclick="return cat_del_confirm('<?php echo $cat['name']; ?>',<?php echo $cat['id_cat']; ?>);"><?php _e('Delete','mywords'); ?></a><?php endif; ?>
                         </span>
                     </td>
-                    <td valign="top" class="mw_cat_description"><?if ($cat['description']!=''): ?><?php echo $cat['description']?><?php else: ?>&nbsp;<?php endif; ?></td>
+                    <td valign="top" class="mw_cat_description"><?if ($cat['description']!=''): ?><?php echo $cat['description']; ?><?php else: ?>&nbsp;<?php endif; ?></td>
                     <td align="center" valign="top"><?php echo $cat['shortname']?></td>
                     <td align="center" valign="top"><?php echo $cat['posts']; ?></td>
                 </tr>
