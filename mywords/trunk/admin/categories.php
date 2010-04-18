@@ -129,7 +129,7 @@ function newForm(){
 	$cats = array();
 	MWFunctions::categos_list($cats, 0, 0, true, $id);
 	
-	$form = new RMForm($edit ? __('Editar Categoría','mywords') : __('Edit Category','mywords'), 'frmNew', 'categories.php');
+	$form = new RMForm($edit ? __('Edit Category','mywords') : __('Edit Category','mywords'), 'frmNew', 'categories.php');
     $form->styles('width: 30%;','odd');
 	$form->addElement(new RMFormText(__('Category name','mywords'), 'name', 50, 150, $catego->getVar('name')), true);
     $form->addElement(new RMFormText(__('Category slug','mywords'), 'shortname', '', '150', $catego->getVar('shortname','n')));
