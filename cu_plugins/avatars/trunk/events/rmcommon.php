@@ -35,6 +35,21 @@ class AvatarsPluginRmcommonPreload
         
     }
     
+    /**
+    * This function allows to other modules or plugins get gravatars
+    * by passing an email address and other options
+    */
+    public function eventRmcommonGetAvatar($email, $size=0, $default=''){
+        $config = RMFunctions::get()->plugin_settings('avatars', true);
+        
+        $size = $size<=0 ? $size = $config['size']  : $size;
+        $default = $default=='' ? $config['default'] : $default;
+        
+        $avatar = "http://www.gravatar.com/avatar/".md5($email)."?s=".$size.'&d='.$default;
+        
+        return $avatar;
+    }
+    
     public function eventRmcommonCurrentModuleMenu($menu){
         global $xoopsModule;
         
