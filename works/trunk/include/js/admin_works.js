@@ -42,21 +42,23 @@ function before_submit(id){
 	
 }
 
-function select_option(id,action){
+function select_option(id,action,form){
 	
+    form = form==undefined || form==''?'frm-types':form;
+    
 	if(action=='edit'){
 		$("#bulk-top").val('edit');
 		$("#bulk-bottom").val('edit');
-		$("#frm-types input[type=checkbox]").removeAttr("checked");
+		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item-"+id).attr("checked","checked");
-		$("#frm-types").submit();
+		$("#"+form).submit();
 	}else if(action=='delete'){
 		$("#bulk-top").val('delete');
 		$("#bulk-bottom").val('delete');
-		$("#frm-types input[type=checkbox]").removeAttr("checked");
+		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item-"+id).attr("checked","checked");
 		if (confirm(pw_message))
-			$("#frm-types").submit();
+			$("#"+form).submit();
 	}
 	
 }

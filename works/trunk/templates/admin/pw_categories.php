@@ -9,7 +9,7 @@
 		<option value="active"><?php _e('Enable categories','admin_works'); ?></option>
 		<option value="desactive"><?php _e('Disable categories','admin_works'); ?></option>
 	</select>
-	<input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" />
+	<input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-categos');" />
 </div>
 <table class="outer" cellspacing="1">
     <thead>
@@ -41,11 +41,11 @@
     <tbody>
 	<?php foreach($categories as $cat): ?>
 	<tr align="center" class="<?php echo tpl_cycle('even,odd'); ?>" valign="top">
-		<td><input type="checkbox" name="ids[]" value="<?php echo $cat['id']; ?>" /></td>
+		<td><input type="checkbox" name="ids[]" value="<?php echo $cat['id']; ?>" id="item-<?php echo $cat['id']; ?>" /></td>
 		<td><strong><?php echo $cat['id']; ?></strong></td>
 		<td align="left"><a href="<?php echo $cat['link']; ?>"><?php echo $cat['name']; ?></a>
         <span class="rmc_options">
-            <a href="./categos.php?op=edit&amp;id=<?php echo $cat['id']; ?>"><?php _e('Edit','admin_works'); ?></a> | <a href="./categos.php?op=delete&amp;ids=<?php echo $cat['id']; ?>"><?php _e('Delete','admin_works'); ?></a>
+            <a href="./categos.php?op=edit&amp;id=<?php echo $cat['id']; ?>"><?php _e('Edit','admin_works'); ?></a> | <a href="javascript:;" onclick="select_option(<?php echo $cat['id']; ?>,'delete','frm-categos');"><?php _e('Delete','admin_works'); ?></a>
         </span>
         </td>
         <td align="center"><?php echo $cat['nameid']; ?></td>

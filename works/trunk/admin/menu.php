@@ -45,4 +45,8 @@ $adminmenu[4]['title'] = __('Works','admin_works');
 $adminmenu[4]['link'] = "admin/works.php";
 $adminmenu[4]['icon'] = "../images/works.png";
 $adminmenu[4]['location'] = "works";
+$adminmenu[4]['options'] = array(
+    array('title'=>__('List', 'admin_works'),'link'=>'works.php', 'selected'=>'works'),
+    array('title'=>__('Add Work', 'admin_works'),'link'=>'works.php?op=new', 'selected'=>'newwork')
+);
 

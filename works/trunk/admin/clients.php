@@ -15,17 +15,19 @@ include 'header.php';
 * @desc Visualiza todos los clientes
 **/
 function showClients(){
-	global $xoopsModule, $db, $tpl, $adminTemplate;
-
+	global $xoopsModule, $xoopsSecurity;
+    
+    $db = Database::getInstance();
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_clients');
 	
 	list($num)=$db->fetchRow($db->query($sql));
 	
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
-	$limit = 20;
+	$page = rmc_server_var($_GET, 'page', 1);
+	$limit = 2;
     $tpages = ceil($num/$limit);
-    $page = $page > $tpages ? $tpages : $page;  
+    $page = $page > $tpages ? $tpages : $page; 
+
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
     
     $nav = new RMPageNav($num, $limit, $page, 5);
@@ -34,6 +36,7 @@ function showClients(){
 	$sql = "SELECT * FROM ".$db->prefix('pw_clients')." ORDER BY id_client";
 	$sql.= " LIMIT $start,$limit";
 	$result = $db->query($sql);
+    $customers = array();
 	while($rows = $db->fetchArray($result)){
 	
 		$client = new PWClient();
@@ -41,14 +44,22 @@ function showClients(){
 
 		$type = new PWType($client->type());
 
-		$tpl->append('clients',array('id'=>$client->id(),'name'=>$client->name(),'business'=>$client->businessName(),
-		'type'=>$type->type()));
+		$customers[] = array(
+            'id'=>$client->id(),
+            'name'=>$client->name(),
+            'business'=>$client->businessName(),
+		    'type'=>$type->type(),
+            'description'=>$client->desc()
+        );
 	}
 
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customers','admin_works'));
 	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','admin_works'));
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected customers?','admin_works')."';\n
+        var pw_select_message = '".__('You must select some customer before to execute this action!','admin_works')."';</script>");
 	xoops_cp_header();
     
     include RMTemplate::get()->get_template('admin/pw_clients.php', 'module', 'works');
@@ -126,7 +137,7 @@ function formClients($edit = 0){
 * @desc Almacena en la base de datos la información del cliente
 **/
 function saveClients($edit = 0){
-	global $util;
+	global $xoopsSecurity;
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;
@@ -134,22 +145,22 @@ function saveClients($edit = 0){
 		
 	$ruta = "pag=$page&limit=$limit";
 
-	if (!$util->validateToken()){
-		redirectMsg('./clients.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, _AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./clients.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Session token expired!','admin_works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos si el cliente es válido
 		if ($id<=0){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRCLIENTVALID,1);
+			redirectMsg('./clients.php?'.$ruta, __('Customer ID not provided!','admin_works'),1);
 			die();
 		}
 
 		//Verificamos si el cliente existe
 		$client = new PWClient($id);
 		if ($client->isNew()){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRCLIENTEXIST,1);
+			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','admin_works'),1);
 			die();
 		}
 
@@ -165,10 +176,10 @@ function saveClients($edit = 0){
 	$client->isNew() ? $client->setCreated(time()) : $client->setModified(time());
 
 	if (!$client->save()){
-		redirectMsg('./clients.php?'.$ruta,_AS_PW_DBERROR.$client->errors(),1);
+		redirectMsg('./clients.php?'.$ruta, __('Errores ocurred while trying to update database','admin_works').'<br />'.$client->errors(),1);
 		die();
 	}else{
-		redirectMsg('./clients.php?'.$ruta,_AS_PW_DBOK,0);
+		redirectMsg('./clients.php?'.$ruta, __('Database updated successfully!','admin_works'),0);
 		die();
 	}
 }
@@ -179,86 +190,53 @@ function saveClients($edit = 0){
 **/
 function deleteClients(){
 
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 
-	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$ids = rmc_server_var($_POST,'ids',array());
+	$page = rmc_server_var($_POST,'page',1);
+  	$limit = rmc_server_var($_POST,'limit',15);
 	
-	$ruta = "pag=$page&limit=$limit";
+	$ruta = "page=$page&limit=$limit";
 
 	//Verificamos que nos hayan proporcionado un cliente para eliminar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRNOTCLIENTDEL,1);
+	if (!is_array($ids)){
+		redirectMsg('./clients.php?'.$ruta,__('You must specify a customer to delete!','admin_works'),1);
 		die();
 	}
-	
-	if (!is_array($ids)){
-		$user = new PWClient($ids);
-		$ids = array($ids);
+
+	if (!$xoopsSecurity->check()){
+	    redirectMsg('./clients.php?'.$ruta,__('Session token expired!','admin_works'), 1);
+		die();
 	}
 
-
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_ERRSESSID, 1);
-			die();
+	$errors = '';
+	foreach ($ids as $k){
+	    //Verificamos si el cliente es válido
+		if ($k<=0){
+		    $errors.=sprintf(__('Customer ID "%u" not valid!','admin_works'), $k);
+			continue;
 		}
 
-		$errors = '';
-		foreach ($ids as $k){
-			//Verificamos si el cliente es válido
-			if ($k<=0){
-				$errors.=sprintf(_AS_PW_NOTVALID, $k);
-				continue;
-			}
-
-			//Verificamos si el cliente existe
-			$client = new PWClient($k);
-			if ($client->isNew()){
-				$errors.=sprintf(_AS_PW_NOTEXIST, $k);
-				continue;
-			}
+		//Verificamos si el cliente existe
+		$client = new PWClient($k);
+		if ($client->isNew()){
+		    $errors.=sprintf(__('Customer with ID "%u" does not exists!','admin_works'), $k);
+			continue;
+		}
 		
-			if (!$client->delete()){
-				$errors.=sprintf(_AS_PW_NOTDELETE,$k);
-			}
+		if (!$client->delete()){
+		    $errors.=sprintf(__('Customer with ID "%u" could not be deleted!','admin_works'),$k);
 		}
+	}
 	
-		if ($errors!=''){
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_DBERRORS.$errors,1);
-			die();
-		}else{
-			redirectMsg('./clients.php?'.$ruta,_AS_PW_DBOK,0);
-			die();
-		}
-
-
+	if ($errors!=''){
+	    redirectMsg('./clients.php?'.$ruta,__('Errors ocurred while trying to delete customers:','admin_works').'<br />'.$errors,1);
+		die();
 	}else{
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; 
-		<a href='./clients.php'>"._AS_PW_CLIENTLOC."</a> &raquo;"._AS_PW_DELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['pag'] = $page;
-		$hiddens['limit'] = $limit;
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'clients.php?'.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'clients.php',($user ? sprintf(_AS_PW_DELETECONF, $user->name()) : _AS_PW_DELETECONFS). '<br /><br />' ._AS_PW_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+	    redirectMsg('./clients.php?'.$ruta,__('Database updated successfully!','admin_works'),0);
+		die();
 	}
+
 }
 
 

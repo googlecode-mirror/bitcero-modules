@@ -8,68 +8,40 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('PW_LOCATION','works');
+define('RMCLOCATION','works');
 include 'header.php';
-
-/**
-* @desc Barra de Menus
-*/
-function optionsBar(){
-	global $tpl;
-	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-
-	$tpl->append('xoopsOptions', array('link' => './works.php', 'title' => _AS_PW_WORKS, 'icon' => '../images/works16.png'));
-	$tpl->append('xoopsOptions', array('link' => './works.php?op=new&pag='.$page.'&limit='.$limit, 'title' => _AS_PW_NEWWORK, 'icon' => '../images/add.png'));
-}
-
 
 /**
 * @desc Visualiza todos los trabajos existentes
 **/ 
 function showWorks(){
-	global $tpl, $adminTemplate, $xoopsModule, $db, $util;
-
+	global $xoopsModule, $xoopsSecurity;
+    
+    $db = Database::getInstance();
 
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works');
 	
 	list($num)=$db->fetchRow($db->query($sql));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
+	$page = rmc_server_var($_REQUEST,'page', 1);
+  	$limit = rmc_server_var($_REQUEST,'limit', 15);
 
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit, 0);
-    	    $tpl->assign('worksNavPage', $nav->renderNav(4, 1));
-    	}
+	$page = rmc_server_var($_GET, 'page', 1);
+    $limit = 2;
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
 
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_PW_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin de barra de navegación
-
-
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('works.php?page={PAGE_NUM}');
 
 	$sql = "SELECT * FROM ".$db->prefix('pw_works');
 	$sql.= " ORDER BY id_work DESC LIMIT $start, $limit"; 
 	$result = $db->query($sql);
+    $works = array(); //Container
+    
 	while ($row = $db->fetchArray($result)){
 		$work = new PWWork();
 		$work->assignVars($row);
@@ -80,34 +52,24 @@ function showWorks(){
 		//Obtenemos el cliente
 		$user = new PWClient($work->client());
 
-		$tpl->append('works',array('id'=>$work->id(),'title'=>$work->title(),'catego'=>$cat->name(),
-		'client'=>$user->name(),'start'=>formatTimeStamp($work->start(),'s'),'mark'=>$work->mark(),'public'=>$work->isPublic()));
+		$works[] = array(
+            'id'=>$work->id(),
+            'title'=>$work->title(),
+            'catego'=>$cat->name(),
+		    'client'=>$user->name(),
+            'start'=>formatTimeStamp($work->start(),'s'),
+            'mark'=>$work->mark(),
+            'public'=>$work->isPublic()
+        );
 
 	}
 
-	$tpl->assign('lang_exist',_AS_PW_EXIST);
-	$tpl->assign('lang_id',_AS_PW_ID);
-	$tpl->assign('lang_title',_AS_PW_TITLE);
-	$tpl->assign('lang_catego',_AS_PW_CATEGO);
-	$tpl->assign('lang_client',_AS_PW_CLIENT);
-	$tpl->assign('lang_start',_AS_PW_START);
-	$tpl->assign('lang_mark',_AS_PW_MARK);
-	$tpl->assign('lang_public',_AS_PW_PUBLIC);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_delete',_DELETE);
-	$tpl->assign('lang_pub',_AS_PW_PUBLISH);
-	$tpl->assign('lang_nopub',_AS_PW_NOPUBLIC);
-	$tpl->assign('token',$util->getTokenHTML());
-	$tpl->assign('lang_mk',_AS_PW_MRK);
-	$tpl->assign('lang_nomark',_AS_PW_NOMARK);
-	$tpl->assign('lang_images',_AS_PW_IMAGE);
-	$tpl->assign('lang_submit',_SUBMIT);
-
-	optionsBar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_WORKLOC);
-	$adminTemplate = "admin/pw_works.html";
+	PWFunctions::toolbar();
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works','admin_works'));
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template("admin/pw_works.php", 'module', 'works');
+    
 	xoops_cp_footer();
 }
 
@@ -117,14 +79,13 @@ function showWorks(){
 **/
 function formWorks($edit = 0){
 
-	global $xoopsModule, $db, $xoopsModuleConfig;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	global $xoopsModule, $xoopsModuleConfig;
+	$page = rmc_server_var($_REQUEST, 'page', 1);
 
-	$ruta = "pag=$page&limit=$limit";
+	$ruta = "page=$page&limit=$limit";
 
 	
-	optionsBar();
+	PWFunctions::toolbar();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./works.php'>"._AS_PW_WORKLOC."</a> &raquo; ".($edit ? _AS_PW_WORKEDIT : _AS_PW_NEWWORK));
 	xoops_cp_header();
 

@@ -24,3 +24,6 @@
 	display: block;
 	margin: 0 0 5px 0;
 }
+div.rmc_pages_navigation_container{
+    float: right;
+}
