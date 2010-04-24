@@ -447,3 +447,17 @@ label.error{
     padding: 4px 0;
     display: block;
 }
+
+/** Debugger **/
+#rmc-debug-output{
+	padding: 15px;
+	background: #ebebeb;
+	width: 90%;
+	margin: 10px auto;
+	-moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    
+}

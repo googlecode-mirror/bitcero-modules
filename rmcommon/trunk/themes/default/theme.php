@@ -104,6 +104,9 @@ foreach ($this->tpl_head as $head){
             </div>
         <?php endforeach; ?>
         <?php echo $content; ?>
+        <?php if($xoopsConfig['debug_mode']==1): ?>
+<div id="rmc-debug-output"><!--{xo-logger-output}--></div>
+<?php endif; ?>
     </div>
     <!-- // -->
 </div>
@@ -116,5 +119,6 @@ foreach ($this->tpl_head as $head){
 	Powered by <a href="http://www.xoops.org"><?php echo XOOPS_VERSION; ?></a>.<br />
 	Common Utilities by Red México
 </div>
+
 </html>
 </body>
