@@ -24,7 +24,7 @@
 	</tr>
     <?php if(empty($customers)): ?>
     <tr class="even">
-        <td colspan="5" align="center"><?php _e('There are not customers registered on Professional Works yet!','admin_works'); ?></td>
+        <td colspan="5" align="center"><?php _e('There are not customers registered in Professional Works yet!','admin_works'); ?></td>
     </tr>
     <?php endif; ?>
 	<?php foreach($customers as $client): ?>

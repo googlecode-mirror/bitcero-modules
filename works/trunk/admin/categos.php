@@ -21,13 +21,14 @@ function showCategories(){
 		$cat->assignVars($row);
 		$link = PW_URL.'/'.($mc['urlmode'] ? 'cat/'.$cat->nameId().'/' : 'category.php?id='.$cat->id());
 		$categories[] = array(
-            'id'        => $cat->id(),
-            'link'      => $link,
-            'name'      => $cat->name(),
-            'active'    => $cat->active(),
-		    'order'     => $cat->order(),
-            'works'     => $cat->works(),
-            'nameid'    => $cat->nameId()
+            'id'        	=> $cat->id(),
+            'link'      	=> $link,
+            'name'      	=> $cat->name(),
+            'active'    	=> $cat->active(),
+		    'order'     	=> $cat->order(),
+            'works'     	=> $cat->works(),
+            'nameid'    	=> $cat->nameId(),
+            'description'	=> $cat->desc()
         );
 	}
 

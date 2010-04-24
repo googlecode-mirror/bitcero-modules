@@ -18,7 +18,7 @@
 		<th width="30"><?php _e('ID','admin_works'); ?></th>
 		<th align="left"><?php _e('Name','admin_works'); ?></th>
         <th><?php _e('Short name','admin_works'); ?></th>
-        <th><?php _e('Description','admin_works'); ?></th>
+        <th align="left"><?php _e('Description','admin_works'); ?></th>
 		<th><?php _e('Works','admin_works'); ?></th>
 		<th><?php _e('Active','admin_works'); ?></th>
 		<th><?php _e('Order','admin_works'); ?></th>
@@ -31,7 +31,7 @@
         <th width="30"><?php _e('ID','admin_works'); ?></th>
         <th align="left"><?php _e('Name','admin_works'); ?></th>
         <th><?php _e('Short name','admin_works'); ?></th>
-        <th><?php _e('Description','admin_works'); ?></th>
+        <th align="left"><?php _e('Description','admin_works'); ?></th>
         <th><?php _e('Works','admin_works'); ?></th>
         <th><?php _e('Active','admin_works'); ?></th>
         <th><?php _e('Order','admin_works'); ?></th>
@@ -49,7 +49,7 @@
         </span>
         </td>
         <td align="center"><?php echo $cat['nameid']; ?></td>
-        <td><?php echo $cat['description']; ?></td>
+        <td align="left"><?php echo $cat['description']; ?></td>
 		<td><?php echo $cat['works']; ?></td>
 		<td><?php if($cat['active']): ?><img src="<?php echo PW_URL; ?>/images/ok.png" /><?php else: ?><img src="<?php echo PW_URL; ?>/images/no.png" /><?php endif; ?></td>
 		<td><input type="text" name="order[<?php echo $cat['id']; ?>]" value="<?php echo $cat['order']; ?>" size="3" style="text-align: center;" /></td>

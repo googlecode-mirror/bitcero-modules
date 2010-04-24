@@ -1,13 +1,5 @@
 $(document).ready(function(){
     
-    $('#the-op-top').click(function(){
-        $("#frm-categos").submit();
-    });
-    
-    $('#the-op-bottom').click(function(){
-        $("#frm-categos").submit();
-    });
-    
     $("#bulk-top").change(function(){
         $("#bulk-bottom").val($(this).val());
     });
@@ -19,8 +11,8 @@ $(document).ready(function(){
 });
 
 function before_submit(id){
-	
-	var types = $("#"+id+" input[type=checkbox]");
+
+	var types = $("#"+id+" input[name='ids[]']");
 	var go = false;
 	
 	for(i=0;i<types.length;i++){
@@ -30,7 +22,7 @@ function before_submit(id){
 	
 	if (!go){
 		alert(pw_select_message);
-		return;
+		return false;
 	}
 	
 	if ($("#bulk-top").val()=='delete'){

@@ -20,8 +20,9 @@ $adminmenu[1]['link'] = "admin/categos.php";
 $adminmenu[1]['icon'] = "../images/cats16.png";
 $adminmenu[1]['location'] = "categories";
 $adminmenu[1]['options'] = array(
-								array('title'=>__('Add Category', 'admin_works'),'link'=>'categos.php?op=new', 'selected'=>'newcategory')
-							);
+	array('title'=>__('List all', 'admin_works'),'link'=>'categos.php', 'selected'=>'categories'),
+	array('title'=>__('Add Category', 'admin_works'),'link'=>'categos.php?op=new', 'selected'=>'newcategory')
+);
 
 $adminmenu[2]['title'] = __('Customer Types','admin_works');
 $adminmenu[2]['link'] = "admin/types.php";
