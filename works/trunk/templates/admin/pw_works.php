@@ -17,24 +17,24 @@
 	<tr class="head" align="center">
 		<th width="20"><input type="checkbox" id="checkall" onclick='$("#frm-works").toggleCheckboxes(":not(#checkall)");' /></th>
 		<th width="30"><?php _e('ID','admin_works'); ?></th>
-        <th><?php _e('Name','admin_works'); ?></th>
+        <th align="left"><?php _e('Name','admin_works'); ?></th>
+        <th align="left"><?php _e('Description','admin_works'); ?></th>
         <th><?php _e('Category','admin_works'); ?></th>
         <th><?php _e('Customer','admin_works'); ?></th>
         <th><?php _e('Start date','admin_works'); ?></th>
         <th><?php _e('Featured','admin_works'); ?></th>
-        <th><?php _e('Public','admin_works'); ?></th>
 	</tr>
     </thead>
     <tfoot>
     <tr class="head" align="center">
-        <th width="20"><input type="checkbox" id="checkallb" onclick='$("#frm-works").toggleCheckboxes(":not(#checkallb)");' /></th>
+        <th width="20"><input type="checkbox" id="checkall" onclick='$("#frm-works").toggleCheckboxes(":not(#checkall)");' /></th>
         <th width="30"><?php _e('ID','admin_works'); ?></th>
-        <th><?php _e('Name','admin_works'); ?></th>
+        <th align="left"><?php _e('Name','admin_works'); ?></th>
+        <th align="left"><?php _e('Description','admin_works'); ?></th>
         <th><?php _e('Category','admin_works'); ?></th>
         <th><?php _e('Customer','admin_works'); ?></th>
         <th><?php _e('Start date','admin_works'); ?></th>
         <th><?php _e('Featured','admin_works'); ?></th>
-        <th><?php _e('Public','admin_works'); ?></th>
     </tr>
     </tfoot>
     <tbody>
@@ -44,20 +44,27 @@
     </tr>
     <?php endif; ?>
 	<?php foreach($works as $work): ?>
-	<tr class="<{cycle values='even,odd'}>" align="center">
-		<td><input type="checkbox" name="ids[]" value="<{$work.id}>"</td>
-		<td><strong><{$work.id}></strong></td>
+	<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
+		<td><input type="checkbox" name="ids[]" value="<?php echo $work['id']; ?>" id="item-<?php echo $row['id']; ?>" /></td>
+		<td><strong><?php echo $work['id']; ?></strong></td>
 		<td align="left">
-            <{$work.title}>
+            <?php if(!$work['public']): ?>
+                <?php echo $work['title']; ?>
+                <em>[Hidden]</em>
+            <?php else: ?>
+                <strong><?php echo $work['title']; ?></strong>
+            <?php endif; ?>
             <span class="rmc_options">
-            <a href="./works.php?op=edit&amp;id=<{$work.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>"><{$lang_edit}></a> &bull; <a href="./works.php?op=delete&amp;ids=<{$work.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>"><{$lang_delete}></a> &bull; <a href="./images.php?work=<{$work.id}>"><{$lang_images}></a>
+            <a href="./works.php?op=edit&amp;id=<?php echo $work['id']; ?>&amp;pag=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
+            <a href="javascript:;" onclick="before_submit('frm-works');"><?php echo _e('Delete','admin_works'); ?></a> |
+            <a href="./images.php?work=<?php echo $work['id']; ?>"><?php _e('Work Images'); ?></a>
             </span>
         </td>
-		<td align="left"><{$work.catego}></td>
-		<td align="left"><{$work.client}></td>
-		<td><{$work.start}></td>
-		<td><{if $work.mark}><img src="<{$xoops_url}>/modules/works/images/ok.png" /><{else}><img src="<{$xoops_url}>/modules/works/images/no.png" /><{/if}></td>
-		<td><{if $work.public}><img src="<{$xoops_url}>/modules/works/images/ok.png" /><{else}><img src="<{$xoops_url}>/modules/works/images/no.png" /><{/if}></td>
+        <td align="left"><?php echo $work['description']; ?></td>
+		<td><?php echo $work['catego']; ?></td>
+		<td><?php echo $work['client']; ?></td>
+		<td><?php echo $work['start']; ?></td>
+		<td><?php if($work['mark']): ?><img src="<?php echo XOOPS_URL; ?>/modules/works/images/ok.png" /><?php else: ?><img src="<?php echo XOOPS_URL; ?>/modules/works/images/no.png" /><?php endif; ?></td>
 	</tr>
 	<?php endforeach; ?>
     </tbody>

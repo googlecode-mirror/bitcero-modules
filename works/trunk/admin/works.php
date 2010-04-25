@@ -59,7 +59,8 @@ function showWorks(){
 		    'client'=>$user->name(),
             'start'=>formatTimeStamp($work->start(),'s'),
             'mark'=>$work->mark(),
-            'public'=>$work->isPublic()
+            'public'=>$work->isPublic(),
+            'description'=>$work->descShort()
         );
 
 	}
@@ -266,8 +267,7 @@ function saveWorks($edit = 0){
 	
 	
 	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
+    include_once RMCPATH.'/class/uploader.php';
 	$folder = XOOPS_UPLOAD_PATH.'/works';
 	$folderths = XOOPS_UPLOAD_PATH.'/works/ths';
 	if ($edit){
@@ -282,8 +282,7 @@ function saveWorks($edit = 0){
 	$thSize = $xoopsModuleConfig['image_main_ths'];
 	$imgSize = $xoopsModuleConfig['image_main'];
 
-	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['size_image']*1024);//tamaño
+	$up = new RMFileUploader($folder, $xoopsModuleConfig['size_image']*1024, array('jpg','png','gif'));
 
 	if ($up->fetchMedia('image')){
 
@@ -302,7 +301,7 @@ function saveWorks($edit = 0){
 		$filename = $up->getSavedFileName();
 		$fullpath = $up->getSavedDestination();
 		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
+		$redim = new RMImageResizer($fullpath, $fullpath);
 		switch ($xoopsModuleConfig['redim_image']){
 			
 			case 0:
