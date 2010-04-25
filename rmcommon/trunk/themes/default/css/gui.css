@@ -459,5 +459,5 @@ label.error{
     -webkit-border-radius: 10px;
     border-radius: 10px;
     font-size: 0.9em;
-    
+    clear: both;
 }

@@ -46,15 +46,16 @@ class RMFormEditor extends RMFormElement
 	 * @param string $type Tipo de Editor. Posibles valores: FCKeditor, DHTML
 	 */
 	function __construct($caption, $name, $width='100%', $height='300px', $default='', $type='', $change=1, $ele=array('op')){
-        global $rmc_config;
+        
+        $rmc_config = RMFunctions::get()->configs();
+        
 		$tcleaner = TextCleaner::getInstance();
 		$this->setCaption($caption);
 		$this->setName($name);
 		$this->_width = $width;
 		$this->_height = $height;
 		$this->_default = isset($_REQUEST[$name]) ? $tcleaner->stripslashes($_REQUEST[$name]) : $tcleaner->stripslashes($default);
-		$t = $change ? (isset($_REQUEST['editor_type']) ? strtolower($_REQUEST['editor_type']) : $type) : $type;
-		$this->_type = $t=='' ? ($type=='' ? $rmc_config['editor_type'] : $type) : $t;
+		$this->_type = $type=='' ? $rmc_config['editor_type'] : $type;
         $this->_type = strtolower($this->_type);
         $this->_change = $change;
         $this->_eles = $ele;
@@ -133,7 +134,7 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_head(TinyEditor::getInstance()->get_js());
 		$rtn = "\n
 		<div id=\"ed-container\" style=\"width: $this->_width\">
-        <div id=\"es-editor\">
+        <div id=\"es-editor\" style=\"width: $this->_width;\">
         <a id=\"edButtonHTML\" class=\"\" onclick=\"switchEditors.go('".$this->getName()."', 'html');\">HTML</a>
         <a id=\"edButtonPreview\" class=\"active\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
         </div>

@@ -5,9 +5,9 @@
 #es-editor #edButtonHTML, #es-editor #edButtonPreview{
     display: block;
     height: 18px;
-    margin: 5px 5px 0 0;
+    margin: 5px 0 0 5px;
     padding: 4px 5px 2px;
-    float: right;
+    float: left;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -22,8 +22,11 @@
     border-color: #E1E1E1;
     color: #999;
 }
-#es-editor #edButtonHTML {
-    margin-right: 15px;
+#es-editor #edButtonPreview {
+    margin-left: 5px;
+}
+#es-editor #edButtonHTML{
+    margin-left: 15px;
 }
 a#edButtonHTML:hover, a#edButtonPreview:hover{
     text-decoration: none;

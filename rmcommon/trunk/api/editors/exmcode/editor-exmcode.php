@@ -288,7 +288,6 @@ var exmCode<?php echo ucfirst($id); ?> = {
             pop += '<div class="content"><iframe src=""></iframe></div></div>';
             $("#"+x.ed+"-ed-container").append(pop);
         }
-        
         var pn = "#"+x.ed+"-ed-container .popup";
         var w = d.width!=undefined?d.width:300;
         var h = d.height!=undefined?d.height:300;
@@ -298,7 +297,8 @@ var exmCode<?php echo ucfirst($id); ?> = {
             top: '50%', 
             left: '50%', 
             'margin-left': '-'+(w/2)+'px', 
-            'margin-top': '-'+(h/2)+'px'
+            'margin-top': '-'+(h/2)+'px',
+            'position': 'fixed'
         });
         $(pn+' .title').html(d.title!=undefined?d.title:'');
         $(pn+' .content').css('height',(h-39)+'px');
@@ -370,7 +370,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         }, 500, '', function(){
             $(pn+' .content').css('height',(h-39)+'px');
             $(pn).css({'margin-left': '-'+(w/2)+'px',
-            'margin-top': '-'+(h/2)+'px'});
+            'margin-top': '-'+(h/2)+'px', 'display':'fixed'});
         });
         $(pn).removeClass('maximized');
     }

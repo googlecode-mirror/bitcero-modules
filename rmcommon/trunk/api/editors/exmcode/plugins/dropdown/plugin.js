@@ -13,9 +13,8 @@ x.add_plugin('dropdown',{
         
     },
     show_menu: function(x,n){
-        
         name = '#'+x.ed+'-'+n+' .dropdown_menu';
-        if($("#"+name).length<=0){
+        if($(name).length<=0){
             $('#'+x.ed+'-'+n).append('<ul class="dropdown_menu" style="width: '+$('#'+x.ed+'-ed-container .dropdown_'+n).css('width')+'; height: '+$('#'+x.ed+'-ed-container .dropdown_'+n).css('height')+';">'+$('#'+x.ed+'-ed-container .dropdown_'+n).html()+'</ul>');
             $('#'+x.ed+'-ed-container .dropdown_'+n).remove();
         }
@@ -28,7 +27,7 @@ x.add_plugin('dropdown',{
         $('#'+x.ed+'-'+n).hover(function(){},function(){
             $(name).hide();
         });
-
+        
         $(name).slideDown(100);
     },
     hide_menu: function(n){

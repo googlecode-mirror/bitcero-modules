@@ -54,7 +54,7 @@ class RMFormDate extends RMFormElement
 
                 $rtn = "\n<script type='text/javascript'>
             \n$(function(){
-            \n$(\"#exmdate-".$this->getName()."\").datepicker();
+            \n$(\"#exmdate-".$this->getName()."\").datepicker({changeMonth: true,changeYear: true});
             \n});\n</script>
             \n";
                 $rtn .= "<input type='text' class='exmdates_field' name='text_".$this->getName()."' id=\"exmdate-".$this->getName()."\"' size='15' maxlength='10' value='".($this->_date>0 ? date('m/d/Y', $this->_date) : '')."' />
