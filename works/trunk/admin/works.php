@@ -65,6 +65,10 @@ function showWorks(){
 	}
 
 	PWFunctions::toolbar();
+    RMTemplate::get()->add_style('admin.css', 'works');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','admin_works')."';\n
+        var pw_select_message = '".__('You must select some work before to execute this action!','admin_works')."';</script>");
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works','admin_works'));
 	xoops_cp_header();
     
@@ -82,39 +86,39 @@ function formWorks($edit = 0){
 	global $xoopsModule, $xoopsModuleConfig;
 	$page = rmc_server_var($_REQUEST, 'page', 1);
 
-	$ruta = "page=$page&limit=$limit";
+	$ruta = "page=$page";
 
 	
 	PWFunctions::toolbar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./works.php'>"._AS_PW_WORKLOC."</a> &raquo; ".($edit ? _AS_PW_WORKEDIT : _AS_PW_NEWWORK));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./works.php'>".__('Works Management','admin_works')."</a> &raquo; ".($edit ? __('Editing work','admin_works'): __('New work','admin_works')));
 	xoops_cp_header();
 
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+	$id = rmc_server_var($_REQUEST, 'id', 0);
 
 	if ($edit){
 
 		//Verificamos que el trabajo sea válido
 		if ($id<=0){
-			redirectMsg('./works.php?'.$ruta,_AS_PW_ERRWORKVALID,1);
+			redirectMsg('./works.php?'.$ruta,__('Provided Work ID is not valid!','admin_works'),1);
 			die();
 		}
 
 		//Verificamos que el trabajo exista
 		$work = new PWWork($id);
 		if ($work->isNew()){
-			redirectMsg('./works.php?'.$ruta,_AS_PW_ERRWORKEXIST,1);
+			redirectMsg('./works.php?'.$ruta,__('Specified work does not exists!','admin_works'),1);
 			die();
 
 		}	
 	}
 
 
-	$form = new RMForm($edit ? _AS_PW_WORKEDIT : _AS_PW_NEWWORK,'frmwork','works.php');
+	$form = new RMForm($edit ? __('Edit Work','admin_works') : __('Create Work','admin_works'),'frmwork','works.php');
 	$form->setExtra("enctype='multipart/form-data'");
 
-	$form->addElement(new RMText(_AS_PW_FTITLE,'title',50,200,$edit ? $work->title() : ''),true);
-	$form->addElement(new RMTextArea(_AS_PW_FSHORT,'short',4,50,$edit ? $work->descShort() : ''),true);
-	$form->addElement(new RMEditor(_AS_PW_FDESC,'desc','90%','350px',$edit ? $work->desc('e') : ''),true);
+	$form->addElement(new RMFormText(__('Title','admin_works'),'title',50,200,$edit ? $work->title() : ''),true);
+	$form->addElement(new RMFormTextArea(__('Short description','admin_works'),'short',4,50,$edit ? $work->descShort() : ''),true);
+	$form->addElement(new RMFormEditor(__('Description','admin_works'),'desc','90%','350px',$edit ? $work->desc('e') : ''),true);
 	if ($edit){
 		$dohtml = $work->getVar('dohtml');
 		$doxcode = $work->getVar('doxcode');
@@ -128,11 +132,12 @@ function formWorks($edit = 0){
 		$dosmiley = 0;
 		$doimage = 0;
 	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	$form->addElement(new RMFormTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
 	
-	$ele = new RMSelect(_AS_PW_FCATEGO,'catego');
-	$ele->addOption(0,_SELECT);
+	$ele = new RMFormSelect(__('Category','admin_works'),'catego');
+	$ele->addOption(0,__('Select...','admin_works'));
 	//Categorias existentes
+    $db = Database::getInstance();
 	$result = $db->query("SELECT * FROM ".$db->prefix("pw_categos")." ORDER BY `order`");
 	while ($rows = $db->fetchArray($result)){
 		$ele->addOption($rows['id_cat'],$rows['name'],$edit ? ($work->category()==$rows['id_cat'] ? 1 : 0) : '');
@@ -141,8 +146,8 @@ function formWorks($edit = 0){
 	$form->addElement($ele,true,'noselect:0');
 
 	//Clientes Existentes
-	$ele = new RMSelect(_AS_PW_FCLIENT,'client');
-	$ele->addOption(0,_SELECT);
+	$ele = new RMFormSelect(__('Customer','admin_works'),'client');
+	$ele->addOption(0,__('Select...','admin_works'));
 	$sql = "SELECT * FROM ".$db->prefix('pw_clients');
 	$result = $db->query($sql);
 	while ($row = $db->fetchArray($result)){
@@ -151,37 +156,35 @@ function formWorks($edit = 0){
 
 	$form->addElement($ele,true,'noselect:0');
 
-	$form->addElement(new RMTextArea(_AS_PW_FCOMMENT,'comment',4,50,$edit ? $work->comment() : ''));
-	$form->addElement(new RMText(_AS_PW_NAMESITE,'site',50,150,$edit ? $work->nameSite() : ''));
-	$form->addElement(new RMText(_AS_PW_FURL,'url',50,255,$edit ? $work->url() : ''));
-	$form->addElement(new RMDate(_AS_PW_FSTART,'start',$edit ? $work->start() : time()));
-	$form->addElement(new RMText(_AS_PW_FPERIOD,'period',50,255,$edit ? $work->period() : ''));
-	$form->addElement(new RMText(_AS_PW_FCOST,'cost',10,20,$edit ? $work->cost() : 0));
-	$form->addElement(new RMYesno(_AS_PW_FMARK,'mark',$edit ? $work->mark() : 0));
-	$form->addElement(new RMYesno(_AS_PW_FPUBLIC,'public',$edit ? $work->isPublic() : 1));
+	$form->addElement(new RMFormTextArea(__('Customer comment','admin_works'),'comment',4,50,$edit ? $work->comment() : ''));
+	$form->addElement(new RMFormText(__('Web site','admin_works'),'site',50,150,$edit ? $work->nameSite() : ''));
+	$form->addElement(new RMFormText(__('Site URL','admin_works'),'url',50,255,$edit ? $work->url() : ''));
+	$form->addElement(new RMFormDate(__('Start date','admin_works'),'start',$edit ? $work->start() : time()));
+	$form->addElement(new RMFormText(__('Long time','admin_works'),'period',50,255,$edit ? $work->period() : ''));
+	$form->addElement(new RMFormText(__('Monetary cost','admin_works'),'cost',10,20,$edit ? $work->cost() : 0));
+	$form->addElement(new RMFormYesno(__('Featured','admin_works'),'mark',$edit ? $work->mark() : 0));
+	$form->addElement(new RMFormYesno(__('Visible','admin_works'),'public',$edit ? $work->isPublic() : 1));
 
-	$form->addElement(new RMFile(_AS_PW_FIMAGE,'image',45, $xoopsModuleConfig['size_image']*1024));
+	$form->addElement(new RMFormFile(__('Work image','admin_works'),'image',45, $xoopsModuleConfig['size_image']*1024));
 	if ($edit){
-		$form->addElement(new RMLabel(_AS_PW_FIMGACT,"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$work->image()."' />"));
+		$form->addElement(new RMFormLabel(__('Current image','admin_works'),"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$work->image()."' />"));
 	}
 
-	$ele = new RMSelect(_AS_PW_RATING,'rating');
+	$ele = new RMFormSelect(__('Rating','admin_works'),'rating');
 	for ($i=0; $i<=10; $i++){
 		$ele->addOption($i,$i,$edit ? ($work->rating()==$i ? 1 : 0) : 0);
 	}
 
 	$form->addElement($ele,true);
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('page',$page));
-	$form->addElement(new RMHidden('limit',$limit));
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('page',$page));
 
-	$ele = new RMButtonGroup();
-	$ele->addButton('sbt', _SUBMIT, 'submit');
-	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'works.php?'.$ruta.'\';"');
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Work','admin_works'), 'submit');
+	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'works.php?'.$ruta.'\';"');
 	$form->addElement($ele);
-
 
 	$form->display();
 
@@ -194,31 +197,31 @@ function formWorks($edit = 0){
 **/
 function saveWorks($edit = 0){
 
-	global $util, $xoopsModuleConfig;
+	global $xoopsSecurity, $xoopsModuleConfig;
 	
 	$query = '';
 	foreach ($_POST as $k => $v){
 		$$k = $v;
-		if ($k == 'EXM_TOKEN_REQUEST' || $k=='op' || $k=='sbt') continue;
+		if ($k == 'XOOPS_TOKEN_REQUEST' || $k=='op' || $k=='sbt') continue;
 		$query .= $query=='' ? "$k=".urlencode($v) : "&$k=".urlencode($v);
 	}
 
-	if (!$util->validateToken()){
-		redirectMsg('./works.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$query, _AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./works.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$query, __('Session token expired!','admin_works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos que el trabajo sea válido
 		if ($id<=0){
-			redirectMsg('./works.php?'.$query,_AS_PW_ERRWORKVALID,1);
+			redirectMsg('./works.php?'.$query,__('Work ID not valid!','admin_works'),1);
 			die();
 		}
 
 		//Verificamos que el trabajo exista
 		$work = new PWWork($id);
 		if ($work->isNew()){
-			redirectMsg('./works.php?'.$query,_AS_PW_ERRWORKEXIST,1);
+			redirectMsg('./works.php?'.$query,__('Specified work does not exists!','admin_works'),1);
 			die();
 
 		}
@@ -235,12 +238,12 @@ function saveWorks($edit = 0){
 	}
 	list($num)=$db->fetchRow($db->query($sql));
 	if ($num>0){
-		redirectMsg("works.php?".$query, _AS_PW_EXISTS, 1);
+		redirectMsg("works.php?".$query, __('A work with same name already exists!','admin_works'), 1);
 		die();
 	}
 
 	$work->setTitle($title);
-	$work->set_title_id(RMUtils::sweetstring($title));
+	$work->set_title_id(TextCleaner::sweetstring($title));
 	$work->setDescShort(substr(stripcslashes($short),0,255));
 	$work->setDesc($desc);
 	$work->setCategory($catego);
@@ -248,8 +251,7 @@ function saveWorks($edit = 0){
 	$work->setComment($comment);
 	$work->setNameSite($site);
 	$work->setUrl($url);
-	$date=rmsoft_read_date('start');
-	$work->setStart($date);
+	$work->setStart($start);
 	$work->setPeriod($period);
 	$work->setCost($cost);
 	$work->setMark($mark);
@@ -336,10 +338,10 @@ function saveWorks($edit = 0){
 	$work->setImage($filename);
 	
 	if (!$work->save()){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBERROR.$work->errors(),1);
+		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update database!','admin_works').$work->errors(),1);
 		die();
 	}else{	
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBOK,0);
+		redirectMsg('./works.php?'.$ruta,__('Database updated successfully!','admin_works'),0);
 		die();
 
 	}

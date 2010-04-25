@@ -4,10 +4,11 @@
     <?php $nav->display(false); ?>
     <select name="op" id="bulk-top">
         <option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
-        <option value="update"><?php _e('Save changes','admin_works'); ?></option>
+        <option value="public"><?php _e('Visible','admin_works'); ?></option>
+        <option value="nopublic"><?php _e('Hidden','admin_works'); ?></option>
+        <option value="mark"><?php _e('Featured','admin_works'); ?></option>
+        <option value="nomark"><?php _e('Normal','admin_works'); ?></option>
         <option value="delete"><?php _e('Delete','admin_works'); ?></option>
-        <option value="active"><?php _e('Enable categories','admin_works'); ?></option>
-        <option value="desactive"><?php _e('Disable categories','admin_works'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" />
 </div>
@@ -60,25 +61,16 @@
 	</tr>
 	<?php endforeach; ?>
     </tbody>
-	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>	
-		<td colspan="8"><input type="submit" class="formButton" value="<{$lang_delete}>" onclick="document.forms['frmWorks'].op.value='delete';" />
-		<input type="submit" class="formButtonBlue" value="<{$lang_pub}>" onclick="document.forms['frmWorks'].op.value='public';" />
-		<input type="submit" class="formButtonRed" value="<{$lang_nopub}>" onclick="document.forms['frmWorks'].op.value='nopublic';" />
-		<input type="submit" class="formButtonGreen" value="<{$lang_mk}>" onclick="document.forms['frmWorks'].op.value='mark';" />
-		<input type="submit" class="formButtonGold" value="<{$lang_nomark}>" onclick="document.forms['frmWorks'].op.value='nomark';" />
-		</td>
-			
-	</tr>
 </table>
 <div class="pw_options">
     <?php $nav->display(false); ?>
-    <select name="opb" id="bulk-bottom">
+    <select name="op" id="bulk-top">
         <option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
-        <option value="update"><?php _e('Save changes','admin_works'); ?></option>
+        <option value="public"><?php _e('Visible','admin_works'); ?></option>
+        <option value="nopublic"><?php _e('Hidden','admin_works'); ?></option>
+        <option value="mark"><?php _e('Featured','admin_works'); ?></option>
+        <option value="nomark"><?php _e('Normal','admin_works'); ?></option>
         <option value="delete"><?php _e('Delete','admin_works'); ?></option>
-        <option value="active"><?php _e('Enable categories','admin_works'); ?></option>
-        <option value="desactive"><?php _e('Disable categories','admin_works'); ?></option>
     </select>
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" />
 </div>
