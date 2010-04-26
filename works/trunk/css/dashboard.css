@@ -1,0 +1,34 @@
+#works-dash-right{
+	width: 48%;
+	float: right;
+	overflow: hidden;
+}
+#works-dash-left{
+	width: 48%;
+	float: left;
+	overflow: hidden;
+}
+.works_widget{
+	overflow: hidden;
+	margin: 0 0 10px 0;
+	padding: 1px;
+}
+.works_widget .widget_content{
+	padding: 6px;
+	overflow: hidden;
+}
+.widget_content form label{
+	display: block;
+	font-weight: bold;
+	padding: 2px 0;
+	cursor: pointer;
+}
+.widget_content form input[type='text']{
+	width: 90%;
+	margin: 0 0 5px 0;
+}
+.widget_content form textarea{
+	width: 90%;
+	height: 80px;
+	margin: 0 0 5px 0;
+}

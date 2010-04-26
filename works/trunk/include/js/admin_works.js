@@ -14,9 +14,9 @@ function before_submit(id){
 
 	var types = $("#"+id+" input[name='ids[]']");
 	var go = false;
-	
+
 	for(i=0;i<types.length;i++){
-		if ($(types[0]).is(":checked"))
+		if ($(types[i]).is(":checked"))
 			go = true;
 	}
 	

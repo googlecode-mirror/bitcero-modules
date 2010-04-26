@@ -118,7 +118,7 @@ function formWorks($edit = 0){
 
 	$form->addElement(new RMFormText(__('Title','admin_works'),'title',50,200,$edit ? $work->title() : ''),true);
 	$form->addElement(new RMFormTextArea(__('Short description','admin_works'),'short',4,50,$edit ? $work->descShort() : ''),true);
-	$form->addElement(new RMFormEditor(__('Description','admin_works'),'desc','90%','350px',$edit ? $work->desc('e') : ''),true);
+	$form->addElement(new RMFormEditor(__('Description','admin_works'),'desc','90%','200px',$edit ? $work->desc('e') : ''),true);
 	if ($edit){
 		$dohtml = $work->getVar('dohtml');
 		$doxcode = $work->getVar('doxcode');

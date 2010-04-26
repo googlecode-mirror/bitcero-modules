@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Works','admin_works'); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: -32px -32px;">&nbsp;</span><?php _e('Works','admin_works'); ?></h1>
 <form name="frmWorks" id="frm-works" method="POST" action="works.php">
 <div class="pw_options">
     <?php $nav->display(false); ?>

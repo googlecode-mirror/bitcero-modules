@@ -162,7 +162,7 @@ function saveTypes($edit = 0){
 		redirectMsg('./types.php',__('Errors ocurred while saving types','admin_works').$errors,1);
 		die();
 	}else{
-		redirectMsg('./types.php',__('Types added successfully!','admin_works'),0);
+		redirectMsg($return!='' ? XOOPS_URL.'/modules/works/'.urldecode($return) : './types.php',__('Types added successfully!','admin_works'),0);
 		die();
 	}
 	

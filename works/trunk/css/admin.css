@@ -1,3 +1,13 @@
+/** Titles **/
+.rmc_titles span{
+	display: block;
+	float: left;
+	width: 32px;
+	height: 32px;
+	background: url(../images/icons32.png) no-repeat;
+	margin: 0 5px 0 0;
+}
+
 .pw_options{
 	padding: 5px;
 	overflow: hidden;
@@ -22,6 +32,15 @@
 #pw-left-form input[type='text']{
 	width: 90%;
 	display: block;
+	margin: 0 0 5px 0;
+}
+#pw-left-form input[type='file']{
+	width: 90%;
+	display: block;
+	margin: 0 0 5px 0;
+}
+#pw-left-form textarea{
+	width: 90%;
 	margin: 0 0 5px 0;
 }
 div.rmc_pages_navigation_container{

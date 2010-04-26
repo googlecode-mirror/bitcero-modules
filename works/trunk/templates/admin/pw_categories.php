@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Works Categories','admin_works'); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Works Categories','admin_works'); ?></h1>
 
 <form name="frmCategos" id="frm-categos" method="POST" action="categos.php">
 <div class="pw_options">
@@ -60,14 +60,14 @@
     </tbody>
 </table>
 <div class="pw_options">
-	<select name="op" id="bulk-bottom">
+	<select name="opb" id="bulk-bottom">
 		<option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
 		<option value="update"><?php _e('Save changes','admin_works'); ?></option>
 		<option value="delete"><?php _e('Delete','admin_works'); ?></option>
 		<option value="active"><?php _e('Enable categories','admin_works'); ?></option>
 		<option value="desactive"><?php _e('Disable categories','admin_works'); ?></option>
 	</select>
-	<input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" />
+	<input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-categos');" />
 </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

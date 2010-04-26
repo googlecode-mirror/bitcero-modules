@@ -11,9 +11,12 @@
 define('RMCLOCATION','index');
 include 'header.php';
 
-//Inicio
-$tpl->append('options', array('text'=>_AS_PW_HOME, 'info'=>_AS_PW_CLICK,
-		'link'=>'../','icon'=>'../images/home48.png'));
+define('WORKS_LOCATION', 'dashboard');
+PWFunctions::toolbar();
+
+// Widgets
+$widgets = array();
+$widgets = RMEvents::get()->run_event('works.dashboard.right.widgets', $widgets);
 
 //Categorías
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_categos');
@@ -70,8 +73,6 @@ RewriteRule ^cat/(.*)/?$ catego.php?id=$1 [L][/code]";
 	}
 }
 
-
-$adminTemplate = "admin/pw_index.html";
 xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a>");
 
 //Control de Versiones
@@ -84,7 +85,10 @@ $cHead = "<script type='text/javascript'>
 		 </script>\n";
 
 $cHead .= '<link href="../styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
+
+RMTemplate::get()->add_style('admin.css', 'works');
+RMTemplate::get()->add_style('dashboard.css', 'works');
 xoops_cp_header($cHead);
 
+include RMTemplate::get()->get_template("admin/pw_index.php", 'module', 'works');
 xoops_cp_footer();
-?>

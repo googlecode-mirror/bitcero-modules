@@ -186,7 +186,7 @@ function saveCategory($edit = 0){
 		redirectMsg('./categos.php',__('Errors ocurred while trying to update database!','admin_works').'<br />'.$cat->errors(),1);
 		die();
 	}else{
-		redirectMsg('./categos.php',__('Database updated successfully!','admin_works'),0);
+		redirectMsg($return!='' ? XOOPS_URL.'/modules/works/'.urldecode($return) : './categos.php',__('Database updated successfully!','admin_works'),0);
 		die();
 	}
 }

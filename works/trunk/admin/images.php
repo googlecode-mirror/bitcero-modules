@@ -14,7 +14,7 @@ include 'header.php';
 
 function showImages(){
 
-	global $xoopsModule, $db;
+	global $xoopsModule, $db, $xoopsSecurity;
 
 	$work = rmc_server_var($_REQUEST, 'work', 0);
 
@@ -37,7 +37,8 @@ function showImages(){
 	list($num)=$db->fetchRow($db->query($sql));
     
     $page = rmc_server_var($_REQUEST,'page', 1);
-    $limit = 15;
+    $page = $page<=0 ? 1 : $page;
+    $limit = 10;
 
     $tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
@@ -65,12 +66,16 @@ function showImages(){
 	}
     
     $images = RMEvents::get()->run_event('works.list.images', $images, $work);
+    $form_fields = '';
+    $form_fields = RMEvents::get()->run_event('works.images.form.fields', $form_fields, $work);
 
 	PWFunctions::toolbar();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Images','admin_works'));
     RMTemplate::get()->assign('xoops_pagetitle', $work->title().' &raquo; Work Images','admin_mywords');
     RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected images?','admin_works')."';\n
+        var pw_select_message = '".__('You must select an image before to execute this action!','admin_works')."';</script>");
 	xoops_cp_header();
     
     include RMTemplate::get()->get_template("admin/pw_images.php", 'module', 'works');
@@ -85,23 +90,22 @@ function formImages($edit = 0){
 
 	global $xoopsModule, $xoopsModuleConfig;
 
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$work = isset($_REQUEST['work']) ? intval($_REQUEST['work']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$id = rmc_server_var($_REQUEST, 'id', 0);
+	$work = rmc_server_var($_REQUEST, 'work', 0);
+	$page = rmc_server_var($_REQUEST, 'page', 0);
 
-	$ruta = "&pag=$page&limit=$limit";
+	$ruta = "&page=$page";
 	
 	//Verificamos que el trabajo sea válido
 	if ($work<=0){
-		redirectMsg('./works.php',_AS_PW_ERRWORKVALID,1);
+		redirectMsg('./works.php', __('You must specify a work ID!', 'admin_works'),1);
 		die();
 	}
 
 	//Verificamos que el trabajo exista
 	$work = new PWWork($work);
 	if ($work->isNew()){
-		redirectMsg('./works.php',_AS_PW_ERRWORKEXIST,1);
+		redirectMsg('./works.php', __('Specified work does not exists!', 'admin_works'),1);
 		die();
 	}
 
@@ -109,41 +113,42 @@ function formImages($edit = 0){
 	if ($edit){
 		//Verificamos que la imagen sea válida
 		if ($id<=0){
-			redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRIMGVALID,1);
+			redirectMsg('./images.php?work='.$work->id().$ruta,__('You must specify an image ID!', 'admin_works'),1);
 			die();
 		}
 
 		//Verificamos que la imagen exista
 		$img = new PWImage($id);
 		if ($img->isNew()){
-			redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRIMGEXIST,1);
+			redirectMsg('./images.php?work='.$work->id().$ruta,__('Specified image does not exists!', 'admin_works'),1);
 			die();
 		}
 	}
 
 
-	optionsBar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./images.php?work=".$work->id()."'>"._AS_PW_IMGLOC."</a> &raquo;".($edit ? _AS_PW_EDITIMG : _AS_PW_NEWIMG));
+	PWFunctions::toolbar();
+	RMTemplate::get()->assign('xoops_pagetitle', $work->title().' &raquo; '.__('Work Images','admin_works'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./images.php?work=".$work->id()."'>".__('Work Images','admin_works')."</a> &raquo;".($edit ? __('Edit Image','admin_works') : __('Add Image','admin_works')));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? _AS_PW_EDITIMG : _AS_PW_NEWIMG,'frmImg','images.php');
+	$form = new RMForm($edit ? __('Edit Image','admin_works') : __('Add Image','admin_works'),'frmImg','images.php');
 	$form->setExtra("enctype='multipart/form-data'");
 
-	$form->addElement(new RMText(_AS_PW_FTITLE,'title',50,100,$edit ? $img->title() : ''), true);
-	$form->addElement(new RMFile(_AS_PW_FIMAGE,'image',45, $xoopsModuleConfig['size_image']*1024), true);
+	$form->addElement(new RMFormText(__('Title','admin_works'),'title',50,100,$edit ? $img->title() : ''), true);
+	$form->addElement(new RMFormFile(__('Image file','admin_works'),'image',45, $xoopsModuleConfig['size_image']*1024), $edit ? false : true);
 	if ($edit){
-		$form->addElement(new RMLabel(_AS_PW_FIMGACT,"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$img->image()."' />"));
+		$form->addElement(new RMFormLabel(__('Current image file','admin_works'),"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$img->image()."' />"));
 	}
 
-	$form->addElement(new RMTextArea(_AS_PW_FDESC,'desc',4,50,$edit ? $img->desc() : ''));
+	$form->addElement(new RMFormTextArea(__('Description','admin_works'),'desc',4,50,$edit ? $img->desc() : ''));
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('work',$work->id()));
-	$form->addElement(new RMHidden('page',$page));
-	$form->addElement(new RMHidden('limit',$limit));
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('work',$work->id()));
+	$form->addElement(new RMFormHidden('page',$page));
+	$form->addElement(new RMFormHidden('limit',$limit));
 
-	$ele = new RMButtonGroup();
+	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', _SUBMIT, 'submit');
 	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'images.php?work='.$work->id().$ruta.'\';"');
 	$form->addElement($ele);
@@ -157,43 +162,43 @@ function formImages($edit = 0){
 * @desc Almacena las imágenes en la base de datos
 **/
 function saveImages($edit = 0){
-	global $xoopsModuleConfig, $util;
+	global $xoopsModuleConfig, $xoopsSecurity;
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
 
-	$ruta = "&pag=$page&limit=$limit";
+	$ruta = "&page=$page";
 
 	//Verificamos que el trabajo sea válido
 	if ($work<=0){
-		redirectMsg('./works.php',_AS_PW_ERRWORKVALID,1);
+		redirectMsg('./works.php',__('You must specify a work ID!', 'admin_works'),1);
 		die();
 	}
 
 	//Verificamos que el trabajo exista
 	$work = new PWWork($work);
 	if ($work->isNew()){
-		redirectMsg('./works.php',_AS_PW_ERRWORKEXIST,1);
+		redirectMsg('./works.php',__('Specified work does not exists!', 'admin_works'),1);
 		die();
 	}
 
-	if (!$util->validateToken()){
-		redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./images.php?work='.$work->id().$ruta,__('Session token expired!', 'admin_works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos que la imagen sea válida
 		if ($id<=0){
-			redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRIMGVALID,1);
+			redirectMsg('./images.php?work='.$work->id().$ruta,__('You must specify an image ID!', 'admin_works'),1);
 			die();
 		}
 
 		//Verificamos que la imagen exista
 		$img = new PWImage($id);
 		if ($img->isNew()){
-			redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRIMGEXIST,1);
+			redirectMsg('./images.php?work='.$work->id().$ruta,__('Specified image does not exists!', 'admin_works'),1);
 			die();
 		}
 	}else{
@@ -205,8 +210,7 @@ function saveImages($edit = 0){
 	$img->setWork($work->id());
 	
 	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
+	include_once RMCPATH.'/class/uploader.php';
 	$folder = XOOPS_UPLOAD_PATH.'/works';
 	$folderths = XOOPS_UPLOAD_PATH.'/works/ths';
 	if ($edit){
@@ -221,8 +225,7 @@ function saveImages($edit = 0){
 	$thSize = $xoopsModuleConfig['image_ths'];
 	$imgSize = $xoopsModuleConfig['image'];
 
-	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['size_image']*1024);//tamaño
+	$up = new RMFileUploader($folder, $xoopsModuleConfig['size_image']*1024, array('jpg','png','gif'));
 
 	if ($up->fetchMedia('image')){
 
@@ -241,7 +244,7 @@ function saveImages($edit = 0){
 		$filename = $up->getSavedFileName();
 		$fullpath = $up->getSavedDestination();
 		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
+		$redim = new RMImageResizer($fullpath, $fullpath);
 		switch ($xoopsModuleConfig['redim_image']){
 			
 			case 0:
@@ -274,12 +277,14 @@ function saveImages($edit = 0){
 
 	
 	$img->setImage($filename);
-
+	
+	RMEvents::get()->run_event('works.save.image', $img);
+	
 	if (!$img->save()){
-		redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_DBERROR.$img->errors(),1);
+		redirectMsg('./images.php?work='.$work->id().$ruta,__('Errors ocurred while trying to save the image', 'admin_works').'<br />'.$img->errors(),1);
 		die();
 	}else{	
-		redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_DBOK,0);
+		redirectMsg('./images.php?work='.$work->id().$ruta,__('Database updated successfully!', 'admin_works'),0);
 		die();
 
 	}
@@ -289,88 +294,52 @@ function saveImages($edit = 0){
 * @desc Elimina de la base de datos las imagenes especificadas
 **/
 function deleteImages(){
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
+	
+	$ids = rmc_server_var($_REQUEST, 'ids', 0);
+	$work = rmc_server_var($_REQUEST, 'work', 0);
+	$page = rmc_server_var($_REQUEST, 'page', 0);
 
-	$work = isset($_REQUEST['work']) ? intval($_REQUEST['work']) : 0;
-	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-
-	$ruta = "&pag=$page&limit=$limit";
+	$ruta = "&page=$page";
 
 	//Verificamos que nos hayan proporcionado una imagen para eliminar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./images.php?work='.$work.$ruta,_AS_PW_ERRNOTIMGDEL,1);
+	if (!is_array($ids)){
+		redirectMsg('./images.php?work='.$work.$ruta, __('You must select an image to delete!', 'admin_works'),1);
 		die();
 	}
-	
-	if (!is_array($ids)){
-		$image = new PWImage($ids);
-		$ids = array($ids);
+
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./images.php?work='.$work.$ruta,__('Session token expired!', 'admin_works'), 1);
+		die();
 	}
 
-
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./images.php?work='.$work->id().$ruta,_AS_PW_ERRSESSID, 1);
-			die();
+	$errors = '';
+	foreach ($ids as $k){
+		//Verificamos si la imagen es válida
+		if ($k<=0){
+			$errors.=sprintf(__('Image ID "%s" is not valid!', 'admin_works'), $k);
+			continue;
 		}
-
-		$errors = '';
-		foreach ($ids as $k){
-			//Verificamos si la imagen es válida
-			if ($k<=0){
-				$errors.=sprintf(_AS_PW_NOTVALID, $k);
-				continue;
-			}
 
 			//Verificamos si la imagen existe
 			$img = new PWImage($k);
 			if ($img->isNew()){
-				$errors.=sprintf(_AS_PW_NOTEXIST, $k);
+				$errors.=sprintf(__('Image with ID "%s" does not exists!', 'admin_works'), $k);
 				continue;
 			}
 		
 			if (!$img->delete()){
-				$errors.=sprintf(_AS_PW_NOTDELETE,$k);
+				$errors.=sprintf(__('Image "%s" could not be deleted!', 'admin_works'),$img->title());
 			}
 		}
 	
 		if ($errors!=''){
-			redirectMsg('./images.php?work='.$work.$ruta,_AS_PW_DBERRORS.$errors,1);
+			redirectMsg('./images.php?work='.$work.$ruta,__('Errors ocurred while trying to delete images', 'admin_works').'<br />'.$errors,1);
 			die();
 		}else{
-			redirectMsg('./images.php?work='.$work.$ruta,_AS_PW_DBOK,0);
+			redirectMsg('./images.php?work='.$work.$ruta,__('Images deleted successfully!', 'admin_works'),0);
 			die();
 		}
-
-
-	}else{
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./images.php?work=".$work."'>".
-		_AS_PW_IMGLOC."</a> &raquo;"._AS_PW_DELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['work'] = $work;
-		$hiddens['pag'] = $page;
-		$hiddens['limit'] = $limit;
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'images.php?work='.$work.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'images.php',($image ? sprintf(_AS_PW_DELETECONF, $image->title()) : _AS_PW_DELETECONFS). '<br /><br />' ._AS_PW_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
-	}
 }
 
 

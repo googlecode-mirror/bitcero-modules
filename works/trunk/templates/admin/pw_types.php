@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Customer Types','admin_works'); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: -64px 0;">&nbsp;</span><?php _e('Customer Types','admin_works'); ?></h1>
 
 <div id="pw-right-table">
 	<form name="frmTypes" id="frm-types" method="POST" action="types.php">
