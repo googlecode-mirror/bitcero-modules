@@ -27,8 +27,6 @@ function showWorks(){
 	$page = rmc_server_var($_REQUEST,'page', 1);
   	$limit = rmc_server_var($_REQUEST,'limit', 15);
 
-	$page = rmc_server_var($_GET, 'page', 1);
-    $limit = 2;
     $tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
 
@@ -67,6 +65,7 @@ function showWorks(){
 
 	PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script('../include/js/admin_works.js');
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','admin_works')."';\n
         var pw_select_message = '".__('You must select some work before to execute this action!','admin_works')."';</script>");
@@ -351,86 +350,52 @@ function saveWorks($edit = 0){
 **/
 function deleteWorks(){
 
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 
-	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$ids = rmc_server_var($_POST, 'ids', 0);
+	$page = rmc_server_var($_POST, 'page', 1);
 	
-	$ruta = "pag=$page&limit=$limit";
+	$ruta = "pag=$page";
 
 	//Verificamos que nos hayan proporcionado un trabajo para eliminar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_ERRNOTWORKDEL,1);
+	if (!is_array($ids)){
+		redirectMsg('./works.php?'.$ruta, __('You must select a work at least!','admin_works'),1);
 		die();
 	}
-	
-	if (!is_array($ids)){
-		$wk = new PWWork($ids);
-		$ids = array($ids);
-	}
 
+     if (!$xoopsSecurity->check()){
+	    redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
+		die();
+	 }
 
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./works.php?'.$ruta,_AS_PW_ERRSESSID, 1);
-			die();
+	 $errors = '';
+	 foreach ($ids as $k){
+	    //Verificamos si el trabajo es válido
+		if ($k<=0){
+		    $errors.=sprintf(__('Work ID "%s" is not valid!','admin_works'), $k);
+			continue;
 		}
 
-		$errors = '';
-		foreach ($ids as $k){
-			//Verificamos si el trabajo es válido
-			if ($k<=0){
-				$errors.=sprintf(_AS_PW_NOTVALID, $k);
-				continue;
-			}
-
-			//Verificamos si el trabajo existe
-			$work = new PWWork($k);
-			if ($work->isNew()){
-				$errors.=sprintf(_AS_PW_NOTEXIST, $k);
-				continue;
-			}
+		//Verificamos si el trabajo existe
+		$work = new PWWork($k);
+		if ($work->isNew()){
+		    $errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
+			continue;
+		}
 		
-			if (!$work->delete()){
-				$errors.=sprintf(_AS_PW_NOTDELETE,$k);
-			}
+		if (!$work->delete()){
+		    $errors.=sprintf(__('Work "%s" could not be deleted!','admin_works'),$work->title());
 		}
+	 }
 	
-		if ($errors!=''){
-			redirectMsg('./works.php?'.$ruta,_AS_PW_DBERRORS.$errors,1);
-			die();
-		}else{
-			redirectMsg('./works.php?'.$ruta,_AS_PW_DBOK,0);
-			die();
-		}
-
-
+	if ($errors!=''){
+	    redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to delete works','admin_works').'<br />'.$errors,1);
+		die();
 	}else{
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; 
-		<a href='./clients.php'>"._AS_PW_WORKLOC."</a> &raquo;"._AS_PW_DELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		$hiddens['pag'] = $page;
-		$hiddens['limit'] = $limit;
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'works.php?'.$ruta.'\';"';
-		
-		$util->msgBox($hiddens, 'works.php',($wk ? sprintf(_AS_PW_DELETECONF, $wk->title()) : _AS_PW_DELETECONFS). '<br /><br />' ._AS_PW_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+	    redirectMsg('./works.php?'.$ruta,__('Works deleted successfully!','admin_works'),0);
+		die();
 	}
+
 }
 
 /**

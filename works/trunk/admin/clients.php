@@ -52,6 +52,9 @@ function showClients(){
             'description'=>$client->desc()
         );
 	}
+    
+    // Event
+    $customers = RMEvents::get()->run_event('works.list.customers', $customers);
 
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
@@ -127,6 +130,10 @@ function formClients($edit = 0){
 	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Customer','admin_works'), 'submit');
 	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'clients.php?'.$ruta.'\';"');
 	$form->addElement($ele);
+    
+    //Event
+    $form = RMEvents::get()->run_event('works.form.customers', $form);
+    
 	$form->display();
 	
 	xoops_cp_footer();
@@ -174,7 +181,10 @@ function saveClients($edit = 0){
 	$client->setType($type);
 	$client->setDesc(substr($desc,0,50));
 	$client->isNew() ? $client->setCreated(time()) : $client->setModified(time());
-
+    
+    //Event
+    $client = RMEvents::get()->run_event('works.save.customer', $client);
+    
 	if (!$client->save()){
 		redirectMsg('./clients.php?'.$ruta, __('Errores ocurred while trying to update database','admin_works').'<br />'.$client->errors(),1);
 		die();
@@ -224,6 +234,9 @@ function deleteClients(){
 			continue;
 		}
 		
+        // Event
+        RMEvents::get()->run_event('works.deleting.customer', $client);
+        
 		if (!$client->delete()){
 		    $errors.=sprintf(__('Customer with ID "%u" could not be deleted!','admin_works'),$k);
 		}
@@ -260,4 +273,3 @@ switch($op){
 	default:
 		showClients();
 }
-?>

@@ -1,129 +1,80 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: gina
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Advanced Portfolio System
+// Author: BitC3R0 <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('PW_LOCATION','images');
+define('RMCLOCATION','works');
 include 'header.php';
-
-/**
-* @desc Barra de Menus
-*/
-function optionsBar(){
-	global $tpl;
-	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$work = isset($_REQUEST['work']) ? intval($_REQUEST['work']) : 0;
-
-	$tpl->append('xoopsOptions', array('link' => './images.php', 'title' => _AS_PW_IMAGES, 'icon' => '../images/works16.png'));
-	$tpl->append('xoopsOptions', array('link' => './images.php?op=new&work='.$work.'&pag='.$page.'&limit='.$limit, 'title' => _AS_PW_NEWIMG, 'icon' => '../images/add.png'));
-}	
 
 
 function showImages(){
 
-	global $xoopsModule, $tpl, $db, $adminTemplate;
+	global $xoopsModule, $db;
 
-	$work = isset($_REQUEST['work']) ? intval($_REQUEST['work']) : 0;
-
+	$work = rmc_server_var($_REQUEST, 'work', 0);
 
 	//Verificamos que el trabajo sea válido
 	if ($work<=0){
-		redirectMsg('./works.php',_AS_PW_ERRWORKVALID,1);
+		redirectMsg('./works.php', __('Provided work ID is not valid!','admin_works'),1);
 		die();
 	}
 
 	//Verificamos que el trabajo exista
 	$work = new PWWork($work);
 	if ($work->isNew()){
-		redirectMsg('./works.php',_AS_PW_ERRWORKEXIST,1);
+		redirectMsg('./works.php', __('Specified work does not exists!','admin_work'),1);
 		die();
 	}
-
-
 	
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_images')." WHERE work='".$work->id()."'";
 	
 	list($num)=$db->fetchRow($db->query($sql));
-	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
+    
+    $page = rmc_server_var($_REQUEST,'page', 1);
+    $limit = 15;
 
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
-    	
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&work='.$work->id(), 0);
-    	    $tpl->assign('imgsNavPage', $nav->renderNav(4, 1));
-    	}
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
 
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_PW_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin de barra de navegación
-
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('images.php?page={PAGE_NUM}&amp;work='.$work->id());
 
 	$sql = "SELECT * FROM ".$db->prefix('pw_images')." WHERE work='".$work->id()."'";
 	$sql.= " LIMIT $start,$limit";
 	$result = $db->query($sql);
+    $images = array();
 	while($row = $db->fetchArray($result)){
 		$img = new PWImage();
 		$img->assignVars($row);
 
-		$tpl->append('images',array('id'=>$img->id(),'title'=>$img->title(),'image'=>$img->image(),'work'=>$img->work(),'desc'=>$img->desc()));
+		$images[] = array(
+            'id'=>$img->id(),
+            'title'=>$img->title(),
+            'image'=>$img->image(),
+            'work'=>$img->work(),
+            'desc'=>$img->desc()
+        );
 	}
+    
+    $images = RMEvents::get()->run_event('works.list.images', $images, $work);
 
-	$tpl->assign('lang_exist',sprintf(_AS_PW_EXIST,$work->title()));
-	$tpl->assign('lang_id',_AS_PW_ID);
-	$tpl->assign('lang_title',_AS_PW_TITLE);
-	$tpl->assign('lang_image',_AS_PW_IMAGE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_delete',_DELETE);
-	$tpl->assign('work',$work->id());
-	$tpl->assign('lang_submit',_SUBMIT);
-
-
-	optionsBar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; "._AS_PW_IMGLOC);
-	$adminTemplate = "admin/pw_images.html";
+	PWFunctions::toolbar();
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Images','admin_works'));
+    RMTemplate::get()->assign('xoops_pagetitle', $work->title().' &raquo; Work Images','admin_mywords');
+    RMTemplate::get()->add_style('admin.css', 'works');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template("admin/pw_images.php", 'module', 'works');
+    
 	xoops_cp_footer();
 }
 
@@ -443,4 +394,3 @@ switch($op){
 	default:
 		showImages();
 }
-?>

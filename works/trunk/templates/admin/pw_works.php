@@ -45,7 +45,7 @@
     <?php endif; ?>
 	<?php foreach($works as $work): ?>
 	<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
-		<td><input type="checkbox" name="ids[]" value="<?php echo $work['id']; ?>" id="item-<?php echo $row['id']; ?>" /></td>
+		<td><input type="checkbox" name="ids[]" value="<?php echo $work['id']; ?>" id="item-<?php echo $work['id']; ?>" /></td>
 		<td><strong><?php echo $work['id']; ?></strong></td>
 		<td align="left">
             <?php if(!$work['public']): ?>
@@ -56,7 +56,7 @@
             <?php endif; ?>
             <span class="rmc_options">
             <a href="./works.php?op=edit&amp;id=<?php echo $work['id']; ?>&amp;pag=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
-            <a href="javascript:;" onclick="before_submit('frm-works');"><?php echo _e('Delete','admin_works'); ?></a> |
+            <a href="javascript:;" onclick="select_option(<?php echo $work['id']; ?>,'delete','frm-works');"><?php echo _e('Delete','admin_works'); ?></a> |
             <a href="./images.php?work=<?php echo $work['id']; ?>"><?php _e('Work Images'); ?></a>
             </span>
         </td>
@@ -71,7 +71,7 @@
 </table>
 <div class="pw_options">
     <?php $nav->display(false); ?>
-    <select name="op" id="bulk-top">
+    <select name="opb" id="bulk-bottom">
         <option value=""><?php _e('Bulk actions...','admin_works'); ?></option>
         <option value="public"><?php _e('Visible','admin_works'); ?></option>
         <option value="nopublic"><?php _e('Hidden','admin_works'); ?></option>
@@ -82,4 +82,5 @@
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" />
 </div>
 <input type="hidden" name="pag" value="<?php echo $page ?>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

@@ -31,6 +31,9 @@ function showCategories(){
             'description'	=> $cat->desc()
         );
 	}
+    
+    // Event
+    $categories = RMEvents::get()->run_event('works.list.categories', $categories);
 
 	
 	PWFunctions::toolbar();
@@ -42,7 +45,8 @@ function showCategories(){
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected categories?','admin_works')."';\n
         var pw_select_message = '".__('You must select some category before to execute this action!','admin_works')."';</script>");
     xoops_cp_header();
-	xoops_cp_header();
+    
+    $works_extra_options = RMEvents::get()->run_event('works.more.options', $works_extra_options);
 	
 	include RMTemplate::get()->get_template("admin/pw_categories.php", 'module', 'works');
 	xoops_cp_footer();
@@ -92,6 +96,9 @@ function formCategory($edit = 0){
 	$ele->addButton('sbt', $edit ? __('Save Changes!','admin_works') : __('Add Now!','admin_works'), 'submit');
 	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'categos.php\';"');
 	$form->addElement($ele);
+    
+    $form = RMEvents::get()->run_event('works.form.categories', $form);
+    
 	$form->display();
 	
 	xoops_cp_footer();
@@ -172,7 +179,9 @@ function saveCategory($edit = 0){
 	$cat->setActive($active);
 	$cat->setNameId($nameid);
 	$cat->isNew() ? $cat->setCreated(time()) : '';
-
+    
+    $cat = RMEvents::get()->run_event('works.save.category', $cat);
+    
 	if (!$cat->save()){
 		redirectMsg('./categos.php',__('Errors ocurred while trying to update database!','admin_works').'<br />'.$cat->errors(),1);
 		die();
@@ -224,7 +233,9 @@ function deleteCategory(){
 				$errors.=sprintf(__('Category "%s" does not exists!','admin_works'), $k);
 				continue;
 			}
-		
+		    
+            RMEvents::get()->run_event('works.delete.category', $cat);
+            
 			if (!$cat->delete()){
 				$errors.=sprintf(__('Category "%s" could not be deleted!','admin_works'),$k);
 			}else{
@@ -276,7 +287,9 @@ function updateCategory(){
 		if ($cat->order()==$v) continue;
 
 		$cat->setOrder($v);
-
+        
+        RMEvents::get()->run_event('works.update.category', $cat);
+        
 		if (!$cat->save()){
 			$errors.=sprintf(__('Category "%s" could not be saved!','admin_works'),$k);
 		}
@@ -331,6 +344,9 @@ function activeCategory($act = 0){
 		
 
 		$cat->setActive($act);
+        
+        RMEvents::get()->run_event('works.activate.category', $cat);
+        
 		if (!$cat->save()){
 			$errors.=sprintf(__('Category "%s" could not be saved!','admin_works'),$k);
 		}
@@ -380,5 +396,3 @@ switch($op){
 		showCategories();
 		break;
 }
-
-?>
