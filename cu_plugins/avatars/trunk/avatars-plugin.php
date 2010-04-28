@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Vatars plugin for Common Utilities
+// Avatars plugin for Common Utilities
 // Allows to integrate gravatars and other systems in Common Utilities
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
