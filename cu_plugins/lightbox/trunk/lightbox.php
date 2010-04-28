@@ -10,6 +10,15 @@
 
 class RMLightbox
 {
+	/**
+	* Elements that can be hadled by lighbox plugin.
+	* eg. #container a (Will handle all "a" elements inside "#container" element)
+	* eg. a.lights (will handle all "a" elements with class "lights")
+	* 
+	* You can provide a single element as string, or an array with all elements that you whish to hanlde
+	* 
+	* @param string|array $elements
+	*/
 	public function load_lightbox($elements){
 		
 		RMTemplate::get()->add_script(RMCURL.'/plugins/lightbox/js/jquery.lightbox.min.js');
