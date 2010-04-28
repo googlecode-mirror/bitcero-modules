@@ -67,7 +67,7 @@
                     <td><a href="<?php echo XOOPS_URL; ?>/modules/mywords/admin/tags.php"><?php _e('Tags','mywords'); ?></a></td>
                 </tr>
             </table><br />
-            <span class="descriptions">Esta es la descripcion</span>
+            <span class="descriptions"><?php _e('Current version:','mywords'); ?> <strong><?php echo RMUtilities::getVersion(false, 'mywords', 0); ?></strong></span>
         </div>
         <!-- / End quick overview -->
         
