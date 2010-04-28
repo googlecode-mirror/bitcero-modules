@@ -276,11 +276,13 @@ class MWFunctions
     function get_url($track = false){
         global $xoopsModule, $xoopsModuleConfig;
         if(!$xoopsModule || $xoopsModule->dirname()!='mywords')
-            $xoopsModuleConfig = RMUtilities::get()->module_config('mywords');
+            $mc = RMUtilities::get()->module_config('mywords');
+        else
+            $mc = $xoopsModuleConfig;
         
-        if ($xoopsModuleConfig['permalinks']>1){
+        if ($mc['permalinks']>1){
             
-            $ret = XOOPS_URL.rtrim($xoopsModuleConfig['basepath'], "/").'/';
+            $ret = XOOPS_URL.rtrim($mc['basepath'], "/").'/';
             if ($track) $ret .= 'trackback/';
             
         } else {
