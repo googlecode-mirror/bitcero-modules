@@ -406,7 +406,9 @@ th, .th{
     border-bottom: 0;
 }
 .outer tr.even:last-child td,
-.outer tr.odd:last-child td{
+.outer tr.odd:last-child td,
+.outer .odd:last-child,
+.outer .even:last-child{
 	border-bottom: 0;
 }
 
@@ -424,7 +426,7 @@ tr.head td, div.head{
 .even, tr.even td, .odd, tr.odd td{
     padding: 6px 3px;
 }
-tr.even td, tr.odd td{
+tr.even td, tr.odd td, .even, .odd{
     border-bottom: 1px dotted #ccc;
 }
 form .outer td.head{

@@ -65,46 +65,22 @@ class RMUtilities
 	 * @param int $type 0 = String, 1 = Array
 	 */
 	public function getVersion($includename = true, $module='', $type=0){
-		global $exmApp, $exmConfig;
+		global $xoopsModule, $exmConfig;
 		
         //global $version;
+        if ($module!=''){
+			
+			if($xoopsModule->dirname()==$module){
+				$mod = $xoopsModule;
+			} else {
+				$mod = new XoopsModule();
+			}
+			
+        }
         
-		if ($module=='exm' || $module=='exm'){
-            
-			if (!file_exists(ABSPATH.'/include/version.php')) return false;
-			@include(ABSPATH.'/include/version.php');
-                        
-		} elseif($module!='') {
-			/**
-            * Obtenemos la version de un módulo instalado
-            */
-            if (file_exists(ABSPATH.'/apps/'.$module.'/language/'.$exmConfig['language'].'/modinfo.php')){
-            	include_once ABSPATH.'/apps/'.$module.'/language/'.$exmConfig['language'].'/modinfo.php';
-            } else {
-            	include_once ABSPATH.'/apps/'.$module.'/language/spanish/modinfo.php';
-            }
-            if ($module == $exmApp->dirname()){
-                $version = $exmApp->getVar('version');   
-            } else {
-                $mod = new EXMApplication($module);
-                if (!$mod->isNew()){
-                    $version = $mod->getVar('version');
-                } else {
-                    $mod->loadInfoAsVar($module);
-                    $version = $mod->getVar('version');
-                    $version = is_array($version) ? $version : array('number'=>$version, 'revision'=>0, 'status'=>0, 'name'=>$mod->getInfo('name'));
-                }
-            }
-			
-		} else {
-			if (empty($exmApp)) return false;
-			
-			if (!file_exists(ABSPATH.'/apps/'.$exmApp->getVar('dirname').'/include/version.php')) return false;
-			
-			global $version;
-			require_once ABSPATH.'/apps/'.$exmApp->dirname().'/include/version.php';
-			
-		}
+        $mod->loadInfoAsVar($module);
+        $version = $mod->getInfo('rmversion');
+        $version = is_array($version) ? $version : array('number'=>$version, 'revision'=>0, 'status'=>0, 'name'=>$mod->getInfo('name'));
 	
 		if ($type==1){
 			return $version;
@@ -123,7 +99,7 @@ class RMUtilities
 		} else {
 			$rtn .= '.0';
 		}
-
+		
 		switch($version['status']){
 			case '-3':
 				$rtn .= ' alfa';
