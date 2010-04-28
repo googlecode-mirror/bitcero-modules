@@ -1,13 +1,16 @@
 <{include file="db:pw_header.html"}>
 <!-- Detalles del Trabajo -->
-<div class="pwWork">
-
-	<div class="pwDetails">
-		<img src="<{$work.image}>" alt="<{$work.title}>" />
-	
-		<div style="margin-left:<{$width}>px;">
-		<h2><{$work.title}> <{if $work.mark}><span class="pwMark">[<{$lang_mark}>]<{/if}></span></h3>
-		<table class="pwDetails" cellspacing="1">
+<h2 class="pw_title"><{$work.title}><{if $work.mark}> <span class="pw_featured">[<{$lang_mark}>]<{/if}></h2>
+<div id="pw-image">
+	<img src="<{$work.image}>" alt="<{$work.title}>" />
+</div>
+<div id="pw-details">
+	<div class="pw_description">
+		<h3><{$lang_desc}></h3>
+		<{$work.desc}>
+	</div>
+	<div class="pw_data">
+		<table cellspacing="0" border="0">
 			<tr class="<{cycle values="even,odd"}>">
 				<td><strong><{$lang_catego}></strong></td>
 				<td><a href="<{$work.linkcat}>"><{$work.catego}></a></td>
@@ -49,28 +52,24 @@
 				<td><{$work.views}></td>
 			</tr>
 		</table>
-		</div>
 	</div>
-
-	<{if $work.comment}>
-		<div class="pwComment">
-		"<{$work.comment}>"
-		<span><{$work.client}></span>
-		</div>
-	<{/if}>
-
-	<h3><{$lang_desc}></h3>
-	<span class="pwWorkDesc"><{$work.desc}></span>
-
-	<!-- Imagenes del trabajo -->
-	<h3><{$lang_images}></h3>
-	<div class="pwImages">
-		<{foreach item=img from=$images}>
-		<a style="width: <{$widthimg}>px;" href="<{$img.link_image}>" rel="lightbox[roadtrip]"><img src="<{$img.image}>" /><br /><{$img.title}></a>
-		<{/foreach}>
-	</div>
-	<!-- //Fin de imágenes del trabajo -->
 </div>
+<{if $work.comment}>
+<div id="pw-customer-comment">
+	"<{$work.comment}>"
+	<span>&#8212; <{$work.client}></span>
+</div>
+<{/if}>
+
+<{if $images}>
+<div id="pw-work-images">
+	<h3><{$lang_images}></h3>
+<{foreach item=img from=$images}>
+	<a style="width: <{$widthimg}>px;" href="<{$img.link_image}>" title="<{$img.title}>"><img src="<{$img.image}>" /><span><{$img.title}></span></a>
+<{/foreach}>
+</div>
+<{/if}>
+
 <!-- //Fin de Detalles del Trabajo -->
 <!-- Otros Trabajos -->
 <{if $works_type}>

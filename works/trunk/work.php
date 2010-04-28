@@ -31,12 +31,24 @@ $client = new PWClient($work->client());
 
 $link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$cat->nameId().'/' : '/catego.php?id='.$cat->nameId());
 
-$tpl->assign('work',array('id'=>$work->id(),'title'=>$work->title(),'desc'=>$work->desc(),
-	     'catego'=>$cat->name(),'client'=>$client->businessName(),'site'=>$work->nameSite(),'url'=>$work->url(),
-	     'created'=>formatTimeStamp($work->created(),'s'),'start'=>formatTimeStamp($work->start(),'s'),
-	     'period'=>$work->period(),'cost'=>$mc['cost'] ? sprintf($mc['format_currency'],number_format($work->cost(),2)) : '',
-	     'mark'=>$work->mark(),'image'=>XOOPS_UPLOAD_URL.'/works/'.$work->image(),'linkcat'=>$link_cat,
-	     'comment'=>$work->comment(),'rating'=>PWFunctions::rating($work->rating()),'views'=>$work->views()));
+$tpl->assign('work',array(
+	'id'=>$work->id(),
+	'title'=>$work->title(),
+	'desc'=>$work->desc(),
+	'catego'=>$cat->name(),
+	'client'=>$client->businessName(),
+	'site'=>$work->nameSite(),
+	'url'=>$work->url(),
+	'created'=>formatTimeStamp($work->created(),'s'),
+	'start'=>formatTimeStamp($work->start(),'s'),
+	'period'=>$work->period(),
+	'cost'=>$mc['cost'] ? sprintf($mc['format_currency'],number_format($work->cost(),2)) : '',
+	'mark'=>$work->mark(),
+	'image'=>XOOPS_UPLOAD_URL.'/works/'.$work->image(),
+	'linkcat'=>$link_cat,
+	'comment'=>$work->comment(),
+	'rating'=>PWFunctions::rating($work->rating()),
+	'views'=>$work->views()));
 
 $work->addView();
 
@@ -82,33 +94,31 @@ while ($row = $db->fetchArray($result)){
 
 
 
-$tpl->assign('lang_desc',_MS_PW_DESC);
-$tpl->assign('lang_catego',_MS_PW_CATEGO);
-$tpl->assign('lang_client',_MS_PW_CLIENT);
-$tpl->assign('lang_start',_MS_PW_START);
-$tpl->assign('lang_period',_MS_PW_PERIOD);
-$tpl->assign('lang_comment',_MS_PW_COMMENT);
-$tpl->assign('lang_cost',_MS_PW_COST);
-$tpl->assign('lang_others',_MS_PW_OTHERS);
-$tpl->assign('lang_date',_MS_PW_DATE);
-$tpl->assign('lang_images',_MS_PW_IMAGES);
-$tpl->assign('lang_site',_MS_PW_SITE); 
-$tpl->assign('lang_mark',_MS_PW_MARK);
-$tpl->assign('lang_rating',_MS_PW_RATING);
+$tpl->assign('lang_desc',__('Description','works'));
+$tpl->assign('lang_catego',__('Category', 'works'));
+$tpl->assign('lang_client',__('Customer','admin_works'));
+$tpl->assign('lang_start',__('Begins','works'));
+$tpl->assign('lang_period',__('Time length','works'));
+$tpl->assign('lang_comment',__('Comment','works'));
+$tpl->assign('lang_cost',__('Price','works'));
+$tpl->assign('lang_others',__('Related Works','works'));
+$tpl->assign('lang_date',__('Date','works'));
+$tpl->assign('lang_images',__('Work Images','works'));
+$tpl->assign('lang_site',__('Web site','works')); 
+$tpl->assign('lang_mark',__('Featured','works'));
+$tpl->assign('lang_rating',__('Our Rate','works'));
 $tpl->assign('works_type', $mc['other_works']);
-$tpl->assign('lang_views', _MS_PW_VIEWS);
+$tpl->assign('lang_views', __('Views','works'));
 
 $imgSize = $mc['image_main'];
-$tpl->assign('width',$imgSize[0]);
 $thsSize = $mc['image_ths'];
 $tpl->assign('widthimg',$thsSize[0]+10);
 $tpl->assign('widthOther',$thsSize[0]+20);
-	
-//$xmh .= "\n<link href='".PW_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
-//<script type='text/javascript'>\nvar pw_url='".PW_URL."';\n</script>";
-//$util->addScript('prototype');
-//$util->addScript('scriptaeffects');
-global $xoTheme;
-//$xoTheme->addScript(PW_URL."/include/js/lightbox.js");	
-PWFunctions::makeHeader();
+
+// Professional Works uses LightBox plugin to show
+// work images.
+if (RMFunctions::plugin_installed('lightbox')){
+	RMLightbox::load_lightbox('#pw-work-images a');
+}
+
 include 'footer.php';

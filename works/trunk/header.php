@@ -18,3 +18,5 @@ define('PW_ROOT',XOOPS_ROOT_PATH.'/modules/works');
 
 $tpl = $xoopsTpl;
 $db = Database::getInstance();
+
+RMTemplate::get()->add_style('main.css', 'works');

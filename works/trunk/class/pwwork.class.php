@@ -108,7 +108,7 @@ class PWWork extends RMObject
 	* @desc Comentario
 	**/
 	public function comment(){
-		return $this->getVar('comment');
+		return $this->getVar('comment','n');
 	}
 
 	public function setComment($comment){

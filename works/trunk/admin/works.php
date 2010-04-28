@@ -328,7 +328,7 @@ function saveWorks($edit = 0){
 				break;
 			case 2:
 				//Recortar ambas
-				$redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+				$redim->resizeAndCrop($imgSize[0],$imgSize[1]);
 				$redim->setTargetFile($folderths."/$filename");
 				$redim->resizeAndCrop($thSize[0],$thSize[1]);
 				break;
