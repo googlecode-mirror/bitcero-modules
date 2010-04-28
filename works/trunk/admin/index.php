@@ -15,80 +15,52 @@ define('WORKS_LOCATION', 'dashboard');
 PWFunctions::toolbar();
 
 // Widgets
-$widgets = array();
-$widgets = RMEvents::get()->run_event('works.dashboard.right.widgets', $widgets);
+$widgets_right = array();
+$widgets_left = array();
+$widgets_right = RMEvents::get()->run_event('works.dashboard.right.widgets', $widgets_right);
+$widgets_left = RMEvents::get()->run_event('works.dashboard.left.widgets', $widgets_left);
 
 //Categorías
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_categos');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_PW_CATEGOS, 'info'=>sprintf(_AS_PW_CATSNUM, $num),
-		'link'=>'categos.php','icon'=>'../images/cats48.png'));
+list($categories) = $db->fetchRow($db->query($sql));
 
 //Tipos de Cliente
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_types');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_PW_TYPES, 'info'=>sprintf(_AS_PW_TYPESNUM, $num),
-		'link'=>'types.php','icon'=>'../images/types48.png'));
+list($types) = $db->fetchRow($db->query($sql));
 
 //Clientes
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_clients');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_PW_CLIENTS, 'info'=>sprintf(_AS_PW_CLIENTSNUM, $num),
-		'link'=>'clients.php','icon'=>'../images/clients48.png'));
+list($customers) = $db->fetchRow($db->query($sql));
 
 //Trabajos
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_PW_WORKS, 'info'=>sprintf(_AS_PW_WORKSNUM, $num),
-		'link'=>'works.php','icon'=>'../images/works48.png'));
+list($works) = $db->fetchRow($db->query($sql));
 
-$tpl->append('options', array('text'=>"Red México", 'info'=>_AS_PW_CLICK,
-		'link'=>'http://redmexico.com.mx','icon'=>'../images/rm48.png'));
+// IMages
+$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_images');
+list($images) = $db->fetchRow($db->query($sql));
 
-$tpl->append('options', array('text'=>"EXM System", 'info'=>_AS_PW_CLICK,
-		'link'=>'http://exmsystem.org','icon'=>'../images/exm.png'));
-
-$tpl->append('options', array('text'=>_AS_PW_HELP, 'info'=>_AS_PW_CLICK,
-		'link'=>'http://exmsystem.org','icon'=>'../images/help.png'));
-
-
-$access = PWFunctions::accessInfo();
-if (!$access){
-	$tpl->assign('err_access', 1);
-	$tpl->assign('lang_showcode', _AS_PW_SHOWCODE);
-	$tpl->assign('lang_erraccess', _AS_PW_ERRACCESS);
-	
-	$docroot = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-	$path = str_replace($docroot, '', XOOPS_ROOT_PATH.'/modules/works/');
-	$code="[code]AddType application/x-rar .rar\nRewriteEngine On\nRewriteBase /exm/modules/works/\nRewriteCond %{REQUEST_URI} !/[A-Z]+-\nRewriteRule ^recent/(.*)/?$ recent.php$1 [L]\nRewriteRule ^featured/(.*)/?$ featured.php$1 [L]\nRewriteRule ^work/(.*)/?$ work.php?id=$1 [L]\n
-RewriteRule ^cat/(.*)/?$ catego.php?id=$1 [L][/code]";
-	$tpl->assign('code', $myts->displayTarea($code, 0,0,1,0,1));
-	
-} else {
-	// Comprobamos que el archivo .htaccess no tenga permisos de escritura
-	$file = XOOPS_ROOT_PATH.'/modules/works/.htaccess';
-	if (is_writable($file)){
-		$tpl->assign('err_access', 1);
-		$tpl->assign('lang_erraccess', _AS_PW_ERRACCWRITE);
-	}
+// Works not published
+$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=0 ORDER BY id_work DESC LIMIT 0,5";
+$result = $db->query($sql);
+$works_pending = array();
+while($row = $db->fetchArray($result)){
+	$work = new PWWork();
+	$work->assignVars($row);
+	$works_pending[] = array(
+		'id'	=> $work->id(),
+		'title'	=> $work->title(),
+		'desc'	=> $work->descShort(),
+		'date'	=> formatTimestamp($work->created(), 'c')
+	);
 }
 
 xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a>");
 
-//Control de Versiones
-$ver=$xoopsModule->getVar('version');
-$version=$ver['number'].'.'.$ver['revision'].'.'.$ver['status'];
-$url = "http://redmexico.com.mx/modules/vcontrol/?id=10";
-$cHead = "<script type='text/javascript'>
-			var url = '".XOOPS_URL."/include/proxy.php?url=' + encodeURIComponent('$url');
-         	new Ajax.Updater('versionInfo',url);
-		 </script>\n";
-
-$cHead .= '<link href="../styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
-
 RMTemplate::get()->add_style('admin.css', 'works');
 RMTemplate::get()->add_style('dashboard.css', 'works');
-xoops_cp_header($cHead);
+RMTemplate::get()->set_help('http://redmexico.com.mx/docs/professional-works');
+xoops_cp_header();
 
 include RMTemplate::get()->get_template("admin/pw_index.php", 'module', 'works');
 xoops_cp_footer();

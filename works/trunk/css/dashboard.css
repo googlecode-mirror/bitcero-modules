@@ -1,10 +1,10 @@
 #works-dash-right{
-	width: 48%;
+	width: 40%;
 	float: right;
 	overflow: hidden;
 }
 #works-dash-left{
-	width: 48%;
+	width: 58%;
 	float: left;
 	overflow: hidden;
 }
@@ -24,11 +24,33 @@
 	cursor: pointer;
 }
 .widget_content form input[type='text']{
-	width: 90%;
+	width: 95%;
 	margin: 0 0 5px 0;
 }
 .widget_content form textarea{
-	width: 90%;
+	width: 95%;
 	height: 80px;
 	margin: 0 0 5px 0;
+}
+.qoverview{
+	font-size: 1.1em;
+}
+.qoverview span{
+	font-size: 1.5em;
+	font-family: georgia, times, serif;
+	display: block;
+	float: left;
+	margin: -6px 5px 0 0;
+}
+div.even{
+	line-height: 130%;
+}
+.pw_descriptions{
+	color: #666;
+	font-size: 0.9em;
+	display: block;
+}
+.pw_dates{
+	font-size: 0.9em;
+	font-style: italic;
 }

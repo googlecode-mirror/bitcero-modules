@@ -21,12 +21,7 @@ class WorksWorksPreload
 			include_once '../include/widgets.php';
 			$widgets[] = works_widget_categories();
 			$widgets[] = works_widget_types();
-			/*include_once '../widgets/widget_categories.php';
-			$widgets[] = mw_widget_categories();
-	        
-	        include_once '../widgets/widget_tags.php';
-	        $widgets[] = mw_widget_addtags();*/
-	        
+			$widgets[] = works_widget_info();	        
 	    }
         
 		return $widgets;

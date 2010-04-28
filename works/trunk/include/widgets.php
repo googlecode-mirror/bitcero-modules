@@ -43,9 +43,28 @@ function works_widget_types(){
 	<input type="hidden" name="op" value="save" />
 	<input type="hidden" name="return" value="<?php echo urlencode("admin/index.php"); ?>" />
 	<?php echo $xoopsSecurity->getTokenHTML(); ?>
-	<input type="submit" value="<?php _e('Create Category','admin_works'); ?>" />
+	<input type="submit" value="<?php _e('Create Type','admin_works'); ?>" />
 </form>
 <?php
 	$widget['content'] = ob_get_clean();
 	return $widget;
+}
+
+function works_widget_info(){
+	
+	$widget['title'] = "About Professional Works";
+	$widget['icon'] = '';
+	ob_start();
+?>
+<ul>
+	<li>Created by <strong><a href="http://redmexico.com.mx" target="_blank">BitC3R0</a></strong>.</li>
+	<li>A module by <strong><a href="http://redmexico.com.mx" target="_blank">Red México</a></strong>.</li>
+	<li>Title icons by <strong><a href="http://pixel-mixer.com" target="_blank">PixelMixer</a></strong>.</li>
+</ul>
+<span class="pw_descriptions"><?php echo sprintf(__('You can contact me at %s.','admin_works'), '<strong>i.bitcero@gmail.com</strong>'); ?><br />
+You can get help by visiting <a href="http://redmexico.com.mx/docs/" target="_blank">Red México Docs</a>.</span>
+<?php
+	$widget['content'] = ob_get_clean();
+	return $widget;
+	
 }
