@@ -625,12 +625,12 @@ class TextCleaner
 		$text = $this->double_br($text);
 
 		// Before to send the formatted string we send it to interceptor methods
-		return RMEvents::get()->run_event('rmcommon.text_todisplay', $text, $original_text);
+		return RMEvents::get()->run_event('rmcommon.text.todisplay', $text, $original_text);
 	}
 	
 	function clean_disabled_tags($text){
 		
-		$this->disable_tags = RMEvents::get()->run_event('rmcommon.more_disabled_tags', $this->disable_tags);
+		$this->disable_tags = RMEvents::get()->run_event('rmcommon.more.disabled.tags', $this->disable_tags);
 		
 		$text = preg_replace_callback($this->disable_tags,"preg_striptags",$text);
 		return $text;
@@ -668,7 +668,7 @@ class TextCleaner
 	*/
 	public function call_code_modifiers($code, $lang){
 		// Event to call methods thatr can handle code to display (eg. highlighters)
-		return RMEvents::get()->run_event('rmcommon.format_code', $code, $lang);
+		return RMEvents::get()->run_event('rmcommon.format.code', $code, $lang);
 	}
 	
 	/**

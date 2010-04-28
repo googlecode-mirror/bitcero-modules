@@ -410,5 +410,17 @@ class RMFunctions
         
         return $confs;
     }
+    
+    /**
+    * Check if a plugin is installed and active in Common Utilities
+    */
+    public function plugin_installed($dir){
+		
+		if (isset($GLOBALS['installed_plugins'][$dir]))
+			return true;
+		else
+			return false;
+		
+    }
 	
 }

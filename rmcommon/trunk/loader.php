@@ -100,7 +100,9 @@ define('RMCLANG',$rmc_config['lang']);
 
 // Load plugins
 $result = $db->query("SELECT * FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
+$GLOBALS['installed_plugins'] = array();
 while($row = $db->fetchArray($result)){
+	$GLOBALS['installed_plugins'][$row['dir']] = true;
     RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
 }
 
@@ -118,3 +120,5 @@ if (!$rmc_config){
 }
 
 include_once RMCPATH.'/include/tpl_functions.php';
+
+RMEvents::get()->run_event('rmcommon.base.loaded');
