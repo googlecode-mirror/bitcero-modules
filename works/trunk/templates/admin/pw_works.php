@@ -10,7 +10,10 @@
         <option value="nomark"><?php _e('Normal','admin_works'); ?></option>
         <option value="delete"><?php _e('Delete','admin_works'); ?></option>
     </select>
-    <input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" />
+    <input type="button" id="the-op-top" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" /> &nbsp;
+    <a href="works.php?page=<?php echo $page; ?>"<?php if(!isset($show) || $show==''): ?> style="font-weight: bold;"<?php endif; ?>><?php _e('Show all','admin_works'); ?></a> |
+    <a href="works.php?page=<?php echo $page; ?>&amp;show=public"<?php if(isset($show) && $show=='public'): ?> style="font-weight: bold;"<?php endif; ?>><?php _e('Published', 'admin_works'); ?></a> |
+    <a href="works.php?page=<?php echo $page; ?>&amp;show=hidden"<?php if(isset($show) && $show=='hidden'): ?> style="font-weight: bold;"<?php endif; ?>><?php _e('Hidden','admin_works'); ?></a>
 </div>
 <table class="outer" cellspacing="0" widht="100%">
     <thead>
@@ -82,5 +85,6 @@
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-works');" />
 </div>
 <input type="hidden" name="pag" value="<?php echo $page ?>" />
+<input type="hidden" name="show" value="<?php echo $show ?>" />
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

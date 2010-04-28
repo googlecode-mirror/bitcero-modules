@@ -13,8 +13,9 @@ include '../../mainfile.php';
 $docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
 $root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
 $request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
+$request = str_replace("/modules/works/", '', $request);
 
-if ($xoopsModuleConfig['urlmode']>0){
+if ($xoopsModuleConfig['urlmode']>0 && $xoopsModuleConfig['htbase']!='/' && $request!=''){
     $request = str_replace(rtrim($xoopsModuleConfig['htbase'],'/').'/', '', rtrim($request,'/').'/');
 }
 

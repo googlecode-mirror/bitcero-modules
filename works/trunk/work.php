@@ -15,14 +15,14 @@ include 'header.php';
 $mc =& $xoopsModuleConfig;
 
 if ($id==''){
-	redirect_header(PW_URL.'/', 2, _MS_PW_ERRIDW);
+	redirect_header(PW_URL.'/', 2, __('Work id not provided!','works'));
 	die();
 }
 
 //Verificamos si el trabajo existe
 $work = new PWWork($id);
 if($work->isNew()){
-	redirect_header(PW_URL.'/', 2, _MS_PW_ERRIDW);
+	redirect_header(PW_URL.'/', 2, __('Specified id does not exists!','works'));
 	die();
 }
 
@@ -103,9 +103,6 @@ $tpl->assign('width',$imgSize[0]);
 $thsSize = $mc['image_ths'];
 $tpl->assign('widthimg',$thsSize[0]+10);
 $tpl->assign('widthOther',$thsSize[0]+20);
-
-//Ver imagen grande
-$util =& RMUtils::getInstance();
 	
 //$xmh .= "\n<link href='".PW_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
 //<script type='text/javascript'>\nvar pw_url='".PW_URL."';\n</script>";
@@ -115,4 +112,3 @@ global $xoTheme;
 //$xoTheme->addScript(PW_URL."/include/js/lightbox.js");	
 PWFunctions::makeHeader();
 include 'footer.php';
-?>

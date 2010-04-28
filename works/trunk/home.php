@@ -20,34 +20,20 @@ PWFunctions::makeHeader();
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works')." WHERE public=1";
 	
 list($num)=$db->fetchRow($db->query($sql));
-	
 
 $limit = $mc['num_recent'];
 $limit = $limit<=0 ? 10 : $limit;
+$page = rmc_server_var($_GET, 'page', 1);
 
-if ($page > 0){ $page -= 1; }
-$start = $page * $limit;
-$tpages = (int)($num / $limit);
-if($num % $limit > 0) $tpages++;
-$pactual = $page + 1;
-if ($pactual>$tpages){
-	$rest = $pactual - $tpages;
-	$pactual = $pactual - $rest + 1;
-	$start = ($pactual - 1) * $limit;
-}
-	
-if ($tpages > 1) {
-	$url = $mc['urlmode'] ? '' : 'index.php';
+$tpages = ceil($num/$limit);
+$page = $page > $tpages ? $tpages : $page; 
+$start = $num<=0 ? 0 : ($page - 1) * $limit;
+$start = $start<0 ? 0 : $start;
 
-	$nav = new PWPageNav($num, $limit, $start, 'pag',$url, 0);
-	$tpl->assign('worksNavPage', $nav->renderNav(4, 1));
-}
+$nav = new RMPageNav($num, $limit, $page, 5);
+$url = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.rtrim($xoopsModuleConfig['htbase'],'/').'/page/{PAGE_NUM}/' : XOOPS_URL.'/modules/works/?page={PAGE_NUM}';
+$nav->target_url($url);
 
-$showmax = $start + $limit;
-$showmax = $showmax > $num ? $num : $showmax;
-$tpl->assign('lang_showing', sprintf(_MS_PW_SHOWING, $start + 1, $showmax, $num));
-$tpl->assign('limit',$limit);
-$tpl->assign('pag',$pactual);
 //Fin de barra de navegación
 
 //Obtenemos los trabajos recientes
@@ -80,19 +66,16 @@ while ($row = $db->fetchArray($result)){
 }
 
 
-$tpl->assign('lang_recents',_MS_PW_RECENTS);
-$tpl->assign('lang_catego',_MS_PW_CATEGO);
-$tpl->assign('lang_date',_MS_PW_DATE);
-$tpl->assign('lang_client',_MS_PW_CLIENT);
-$tpl->assign('lang_featureds',_MS_PW_FEATUREDS);
-$tpl->assign('lang_allsrecent',_MS_PW_ALLSRECENT);
-$tpl->assign('lang_allsfeat',_MS_PW_ALLSFEAT);
-$tpl->assign('lang_rating',_MS_PW_RATING);
+$tpl->assign('lang_recents',__('Recent Works','works'));
+$tpl->assign('lang_catego',__('Cetegory:','works'));
+$tpl->assign('lang_date',__('Date:','works'));
+$tpl->assign('lang_client',__('Customer:','works'));
+$tpl->assign('lang_allsrecent',__('View all recent works','works'));
 $tpl->assign('link_recent',PW_URL.($mc['urlmode'] ? '/recent/' : '/recent.php'));
 $tpl->assign('link_featured',PW_URL.($mc['urlmode'] ? '/featured/' : '/featured.php'));
 $thSize = $mc['image_ths'];
 $tpl->assign('width',$thSize[0]+10);
-$tpl->assign('lang_featured', _MS_PW_FEAT);
+$tpl->assign('lang_featured', __('Featured','works'));
 
 
 include 'footer.php';

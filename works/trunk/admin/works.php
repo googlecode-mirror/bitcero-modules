@@ -18,14 +18,20 @@ function showWorks(){
 	global $xoopsModule, $xoopsSecurity;
     
     $db = Database::getInstance();
-
+    
+    $page = rmc_server_var($_REQUEST,'page', 1);
+    $limit = rmc_server_var($_REQUEST,'limit', 15);
+    $show = rmc_server_var($_REQUEST,'show', '');
+    
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works');
-	
+	if ($show=='public'){
+        $sql .= " WHERE public=1";
+    } elseif($show=='hidden'){
+        $sql .= " WHERE public=0";
+    }
+    
 	list($num)=$db->fetchRow($db->query($sql));
-	
-	$page = rmc_server_var($_REQUEST,'page', 1);
-  	$limit = rmc_server_var($_REQUEST,'limit', 15);
 
     $tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
@@ -36,6 +42,11 @@ function showWorks(){
     $nav->target_url('works.php?page={PAGE_NUM}');
 
 	$sql = "SELECT * FROM ".$db->prefix('pw_works');
+    if ($show=='public'){
+        $sql .= " WHERE public=1";
+    } elseif($show=='hidden'){
+        $sql .= " WHERE public=0";
+    }
 	$sql.= " ORDER BY id_work DESC LIMIT $start, $limit"; 
 	$result = $db->query($sql);
     $works = array(); //Container
@@ -354,8 +365,9 @@ function deleteWorks(){
 
 	$ids = rmc_server_var($_POST, 'ids', 0);
 	$page = rmc_server_var($_POST, 'page', 1);
+    $show = rmc_server_var($_POST, 'show', 1);
 	
-	$ruta = "pag=$page";
+	$ruta = "pag=$page&show=$show";
 
 	//Verificamos que nos hayan proporcionado un trabajo para eliminar
 	if (!is_array($ids)){
@@ -402,51 +414,51 @@ function deleteWorks(){
 * @desc Publica o no los trabajos
 **/
 function publicWorks($pub = 0){
-	global $util;
+	global $xoopsSecurity;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+  	$show = rmc_server_var($_POST, 'show', 1);
 
-	$ruta = "pag=$page&limit=$limit";
+	$ruta = "page=$page&show=$show";
 
 	//Verificamos que nos hayan proporcionado un trabajo para publicar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_ERRNOTWORKPUB,1);
+	if (!is_array($ids)){
+		redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','admin_works'),1);
 		die();
 	}
 	
-	if (!$util->validateToken()){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_ERRSESSID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
 		die();
 	}
 	$errors = '';
 	foreach ($ids as $k){
 		//Verificamos si el trabajo es válido
 		if ($k<=0){
-			$errors.=sprintf(_AS_PW_NOTVALID, $k);
+			$errors.=sprintf(__('Work ID "%s" is not valid!', 'admin_works'), $k);
 			continue;
 		}
 
 		//Verificamos si el trabajo existe
 		$work = new PWWork($k);
 		if ($work->isNew()){
-			$errors.=sprintf(_AS_PW_NOTEXIST, $k);
+			$errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
 			continue;
 		}
 
 		$work->setPublic($pub);
 		
 		if (!$work->save()){
-			$errors.=sprintf(_AS_PW_NOTUPDATE,$k);
+			$errors.=sprintf(__('Work "%s" could not be saved!','admin_works'),$k);
 		}
 	}
 	
 	if ($errors!=''){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBERRORS.$errors,1);
+		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update works').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBOK,0);
+		redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','admin_works'),0);
 		die();
 	}
 
@@ -457,52 +469,52 @@ function publicWorks($pub = 0){
 * @desc Destaca o no los trabajos
 **/
 function markWorks($mark = 0){
-	global $util;
+	global $xoopsSecurity;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+  	$show = rmc_server_var($_POST, 'show', 1);
 
-	$ruta = "pag=$page&limit=$limit";
+	$ruta = "page=$page&show=$show";
 
 	//Verificamos que nos hayan proporcionado un trabajo para destacar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_ERRNOTWORKUP,1);
-		die();
-	}
-	
-	if (!$util->validateToken()){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_ERRSESSID, 1);
-		die();
-	}
+	if (!is_array($ids)){
+        redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','admin_works'),1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
+        die();
+    }
 	$errors = '';
 	foreach ($ids as $k){
 		//Verificamos si el trabajo es válido
 		if ($k<=0){
-			$errors.=sprintf(_AS_PW_NOTVALID, $k);
-			continue;
-		}
+            $errors.=sprintf(__('Work ID "%s" is not valid!', 'admin_works'), $k);
+            continue;
+        }
 
-		//Verificamos si el trabajo existe
-		$work = new PWWork($k);
-		if ($work->isNew()){
-			$errors.=sprintf(_AS_PW_NOTEXIST, $k);
-			continue;
-		}
+        //Verificamos si el trabajo existe
+        $work = new PWWork($k);
+        if ($work->isNew()){
+            $errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
+            continue;
+        }
 
 		$work->setMark($mark);
 		
 		if (!$work->save()){
-			$errors.=sprintf(_AS_PW_NOTUPDATE,$k);
-		}
+            $errors.=sprintf(__('Work "%s" could not be saved!','admin_works'),$k);
+        }
 	}
 	
 	if ($errors!=''){
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBERRORS.$errors,1);
-		die();
-	}else{
-		redirectMsg('./works.php?'.$ruta,_AS_PW_DBOK,0);
-		die();
+		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update works').'<br />'.$errors,1);
+        die();
+    }else{
+        redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','admin_works'),0);
+        die();
 	}
 
 	

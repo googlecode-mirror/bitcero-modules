@@ -16,4 +16,5 @@ $xmh = '';
 define('PW_URL',XOOPS_URL.($xoopsModuleConfig['urlmode'] ? rtrim($xoopsModuleConfig['htbase'], '/') : '/modules/works'));
 define('PW_ROOT',XOOPS_ROOT_PATH.'/modules/works');
 
-?>
+$tpl = $xoopsTpl;
+$db = Database::getInstance();

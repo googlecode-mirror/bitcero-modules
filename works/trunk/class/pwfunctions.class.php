@@ -15,20 +15,10 @@ class PWFunctions
 	* @desc Crea el encabezado de la sección frontal
 	*/
 	public function makeHeader(){
-		global $xoopsModuleConfig, $tpl, $xoopsUser, $db;
+		global $xoopsModuleConfig, $xoopsTpl, $xoopsUser, $db;
 	
 		$mc =& $xoopsModuleConfig;
-
-		$tpl->assign('pw_title', $mc['title']);
-		$tpl->assign('lang_home', _MS_PW_HOME);	
-		$tpl->assign('lang_recentsalls',_MS_PW_RECENTSALLS);
-		$tpl->assign('lang_featuredsalls',_MS_PW_FEATUREDSALLS);
-		$tpl->assign('lang_categos',_MS_PW_CATEGOS);
-		$tpl->assign('url_home',PW_URL);
-		$tpl->assign('url_recent',PW_URL.'/'.($mc['urlmode'] ? 'recent/' : 'recent.php'));	
-		$tpl->assign('url_featured',PW_URL.'/'.($mc['urlmode'] ? 'featured/' : 'featured.php'));
-		$tpl->assign('url_categos','showCategos()');	
-
+        $db = Database::getInstance();
 		//Obtenemos la lista de categorías
 		$sql = "SELECT * FROM ".$db->prefix('pw_categos')." WHERE active=1 ORDER BY `order`";
 		$result = $db->query($sql);
@@ -38,7 +28,7 @@ class PWFunctions
 	
 			$link = PW_URL.($mc['urlmode'] ? '/category/'.$cat->nameId() : '/catego.php?id='.$cat->nameId());
 
-			$tpl->append('categos',array('id'=>$cat->id(),'name'=>$cat->name(),'link'=>$link));			
+			$xoopsTpl->append('categos',array('id'=>$cat->id(),'name'=>$cat->name(),'link'=>$link));			
 		}
 			
 	}
