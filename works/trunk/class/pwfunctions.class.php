@@ -16,20 +16,17 @@ class PWFunctions
 	*/
 	public function makeHeader(){
 		global $xoopsModuleConfig, $xoopsTpl, $xoopsUser, $db;
-	
-		$mc =& $xoopsModuleConfig;
-        $db = Database::getInstance();
-		//Obtenemos la lista de categorías
-		$sql = "SELECT * FROM ".$db->prefix('pw_categos')." WHERE active=1 ORDER BY `order`";
-		$result = $db->query($sql);
-		while ($row = $db->fetchArray($result)){
-			$cat = new PWCategory();
-			$cat->assignVars($row);
-	
-			$link = PW_URL.($mc['urlmode'] ? '/category/'.$cat->nameId() : '/catego.php?id='.$cat->nameId());
-
-			$xoopsTpl->append('categos',array('id'=>$cat->id(),'name'=>$cat->name(),'link'=>$link));			
-		}
+		
+		$xoopsTpl->assign('pw_title', $xoopsModuleConfig['title']);
+		$xoopsTpl->assign('lang_recentsall', __('Recent works','works'));
+		$xoopsTpl->assign('lang_featuredall', __('Featured works','works'));
+		
+		$recent = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/recent/' : XOOPS_URL.'/modules/works/recent.php';
+		$featured = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/featured/' : XOOPS_URL.'/modules/works/featured.php';
+		
+		$xoopsTpl->assign('url_recent', $recent);
+		$xoopsTpl->assign('url_featured', $featured);
+		$xoopsTpl->assign('url_home', PW_URL);
 			
 	}
 

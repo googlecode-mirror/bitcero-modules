@@ -19,34 +19,19 @@ $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works')." WHERE public=1 AND mark
 	
 list($num)=$db->fetchRow($db->query($sql));
 	
-$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
+$limit = $mc['num_recent'];
 $limit = $limit<=0 ? 10 : $limit;
+if (!isset($page)) $page = rmc_server_var($_GET, 'page', 1);
 
-if ($page > 0){ $page -= 1; }
-$start = $page * $limit;
-$tpages = (int)($num / $limit);
-if($num % $limit > 0) $tpages++;
-$pactual = $page + 1;
-if ($pactual>$tpages){
-	$rest = $pactual - $tpages;
-	$pactual = $pactual - $rest + 1;
-	$start = ($pactual - 1) * $limit;
-}
-	
-if ($tpages > 1) {
-	$nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit, 0);
-	$tpl->assign('featuredNavPage', $nav->renderNav(4, 1));
-}
+$tpages = ceil($num/$limit);
+$page = $page > $tpages ? $tpages : $page; 
+$start = $num<=0 ? 0 : ($page - 1) * $limit;
+$start = $start<0 ? 0 : $start;
 
-$showmax = $start + $limit;
-$showmax = $showmax > $num ? $num : $showmax;
-$tpl->assign('lang_showing', sprintf(_MS_PW_SHOWING, $start + 1, $showmax, $num));
-$tpl->assign('limit',$limit);
-$tpl->assign('pag',$pactual);
-//Fin de barra de navegación
-
-
+$nav = new RMPageNav($num, $limit, $page, 5);
+$url = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.rtrim($xoopsModuleConfig['htbase'],'/').'/featured/page/{PAGE_NUM}/' : XOOPS_URL.'/modules/works/featured.php?page={PAGE_NUM}';
+$nav->target_url($url);
+$tpl->assign('navpage', $nav->render(false));
 
 $sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND mark=1";
 $sql.= " LIMIT $start,$limit";
@@ -70,14 +55,14 @@ while ($row = $db->fetchArray($result)){
 	'rating'=>PWFunctions::rating($feat->rating()),'linkcat'=>$link_cat));
 
 }
-$tpl->assign('lang_feats',_MS_PW_FEATURED);
-$tpl->assign('lang_date',_MS_PW_DATE);
-$tpl->assign('lang_catego',_MS_PW_CATEGO);
-$tpl->assign('lang_client',_MS_PW_CLIENT);
-$tpl->assign('lang_rating',_MS_PW_RATING);
+$tpl->assign('lang_feats',__('Featured Works','works'));
+$tpl->assign('lang_date',__('Date:','works'));
+$tpl->assign('lang_catego',__('Category:','works'));
+$tpl->assign('lang_client',__('Customer:','works'));
+$tpl->assign('lang_rating',__('Our rate:','works'));
 $thSize = $mc['image_ths'];
 $tpl->assign('width',$thSize[0]+20);
-$tpl->assign('xoops_pagetitle', _MS_PW_FEATURED." &raquo; ".$mc['title']);
+$tpl->assign('xoops_pagetitle', __('Featured Works','works')." &raquo; ".$mc['title']);
 
 include 'footer.php';
 ?>

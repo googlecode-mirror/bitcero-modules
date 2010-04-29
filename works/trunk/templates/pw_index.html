@@ -1,14 +1,12 @@
 <{include file="db:pw_header.html"}>
 <!-- Trabajos recientes -->
-<{if $recents}>
-<h2 class="pwWorks"><{$lang_recents}></h2>
-<div class="pwRecentsAll">
-	<{foreach item=item from=$recents}>
+<h2 class="pwWorks"><{$lang_works}></h2>
+<div class="pw_grid_container">
+	<{foreach item=item from=$works}>
 	<{include file="db:pw_witem.html"}>
 	<{/foreach}>
-	<span class="pwRecentsShowAlls"><a href="<{$link_recent}>"><{$lang_allsrecent}></a></span>
 </div>
-<{/if}>
+<{$navpage}>
 <!-- //Fin de trabajos recientes -->
 
 <{$worksNavPage}>

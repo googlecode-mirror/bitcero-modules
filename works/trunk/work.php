@@ -68,30 +68,31 @@ $tpl->assign('xoops_pagetitle', $work->title().' &raquo; '.$mc['title']);
 /**
 * Otros trabajos
 **/
-if ($mc['other_works']){ //Trabajos destacados
-	$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND mark=1 AND id_work<>'".$work->id()."' ORDER BY RAND() LIMIT 0,".$mc['num_otherworks'];
-}else{ //Misma categoría
-	$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND catego=".$work->category()." AND id_work<>'".$work->id()."' ORDER BY RAND() LIMIT 0,".$mc['num_otherworks'];
+if ($mc['other_works']>0){
+	if ($mc['other_works']==2){ //Trabajos destacados
+		$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND mark=1 AND id_work<>'".$work->id()."' ORDER BY RAND() LIMIT 0,".$mc['num_otherworks'];
+	}elseif($mc['other_works']==1){ //Misma categoría
+		$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND catego=".$work->category()." AND id_work<>'".$work->id()."' ORDER BY RAND() LIMIT 0,".$mc['num_otherworks'];
+	}
+	$result = $db->query($sql);
+	$categos = array();
+	$clients = array();
+	while ($row = $db->fetchArray($result)){
+		$wk = new PWWork();
+		$wk->assignVars($row);
+
+		if (!isset($categos[$wk->category()])) $categos[$wk->category()] = new PWCategory($wk->category());
+
+		if (!isset($clients[$wk->client()])) $clients[$wk->client()] = new PWClient($wk->client());
+
+		$link = PW_URL.($mc['urlmode'] ? '/'.$wk->title_id().'/' : '/work.php?id='.$wk->id());
+		$link_cat = PW_URL.($mc['urlmode'] ? '/cat/'.$categos[$wk->category()]->nameId().'/' : '/catego.php?id='.$categos[$wk->category()]->nameId());
+
+		$tpl->append('other_works',array('id'=>$wk->id(),'title'=>$wk->title(),'desc'=>$wk->descShort(),'linkcat'=>$link_cat,
+		'catego'=>$categos[$wk->category()]->name(),'client'=>$clients[$wk->client()]->name(),'link'=>$link,
+		'created'=>formatTimeStamp($wk->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),'views'=>$wk->views()));
+	}
 }
-$result = $db->query($sql);
-$categos = array();
-$clients = array();
-while ($row = $db->fetchArray($result)){
-	$wk = new PWWork();
-	$wk->assignVars($row);
-
-	if (!isset($categos[$wk->category()])) $categos[$wk->category()] = new PWCategory($wk->category());
-
-	if (!isset($clients[$wk->client()])) $clients[$wk->client()] = new PWClient($wk->client());
-
-	$link = PW_URL.($mc['urlmode'] ? '/work/'.$wk->id().'/' : '/work.php?id='.$wk->id());
-	$link_cat = PW_URL.($mc['urlmode'] ? '/cat/'.$categos[$wk->category()]->nameId().'/' : '/catego.php?id='.$categos[$wk->category()]->nameId());
-
-	$tpl->append('works',array('id'=>$wk->id(),'title'=>$wk->title(),'desc'=>$wk->descShort(),'linkcat'=>$link_cat,
-	'catego'=>$categos[$wk->category()]->name(),'client'=>$clients[$wk->client()]->name(),'link'=>$link,
-	'created'=>formatTimeStamp($wk->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),'views'=>$wk->views()));
-}
-
 
 
 $tpl->assign('lang_desc',__('Description','works'));
@@ -114,6 +115,8 @@ $imgSize = $mc['image_main'];
 $thsSize = $mc['image_ths'];
 $tpl->assign('widthimg',$thsSize[0]+10);
 $tpl->assign('widthOther',$thsSize[0]+20);
+
+PWFunctions::makeHeader();
 
 // Professional Works uses LightBox plugin to show
 // work images.

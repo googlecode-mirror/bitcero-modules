@@ -15,7 +15,7 @@ $xoopsOption['module_subpage'] = 'index';
 include 'header.php';
 
 PWFunctions::makeHeader();
-
+extract($vars);
 //Barra de Navegación
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works')." WHERE public=1";
 	
@@ -23,7 +23,7 @@ list($num)=$db->fetchRow($db->query($sql));
 
 $limit = $mc['num_recent'];
 $limit = $limit<=0 ? 10 : $limit;
-$page = rmc_server_var($_GET, 'page', 1);
+if (!isset($page)) $page = rmc_server_var($_GET, 'page', 1);
 
 $tpages = ceil($num/$limit);
 $page = $page > $tpages ? $tpages : $page; 
@@ -33,11 +33,12 @@ $start = $start<0 ? 0 : $start;
 $nav = new RMPageNav($num, $limit, $page, 5);
 $url = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.rtrim($xoopsModuleConfig['htbase'],'/').'/page/{PAGE_NUM}/' : XOOPS_URL.'/modules/works/?page={PAGE_NUM}';
 $nav->target_url($url);
+$tpl->assign('navpage', $nav->render(false));
 
 //Fin de barra de navegación
 
 //Obtenemos los trabajos recientes
-$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 ORDER BY created DESC LIMIT $start,".$mc['num_recent'];
+$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 ORDER BY created DESC LIMIT $start,$limit";
 $result = $db->query($sql);
 
 // Numero de resultados en esta página
@@ -59,14 +60,14 @@ while ($row = $db->fetchArray($result)){
 	$link = PW_URL.($mc['urlmode'] ? '/'.$recent->title_id().'/' : '/work.php?id='.$recent->id());
 	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$recent->category()]->nameId().'/' : '/catego.php?id='.$categos[$recent->category()]->nameId());
 
-	$tpl->append('recents',array('id'=>$recent->id(),'title'=>$recent->title(),'desc'=>$recent->descShort(),
+	$tpl->append('works',array('id'=>$recent->id(),'title'=>$recent->title(),'desc'=>$recent->descShort(),
 	'catego'=>$categos[$recent->category()]->name(),'client'=>$clients[$recent->client()]->businessName(),'link'=>$link,
 	'created'=>formatTimeStamp($recent->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$recent->image(),
 	'rating'=>PWFunctions::rating($recent->rating()),'featured'=>$recent->mark(),'linkcat'=>$link_cat));
 }
 
 
-$tpl->assign('lang_recents',__('Recent Works','works'));
+$tpl->assign('lang_works',__('Our Work','works'));
 $tpl->assign('lang_catego',__('Cetegory:','works'));
 $tpl->assign('lang_date',__('Date:','works'));
 $tpl->assign('lang_client',__('Customer:','works'));

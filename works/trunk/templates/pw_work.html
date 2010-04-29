@@ -72,35 +72,19 @@
 
 <!-- //Fin de Detalles del Trabajo -->
 <!-- Otros Trabajos -->
-<{if $works_type}>
+<{if $other_works}>
 <h2 class="pwWorks"><{$lang_others}></h2>
-<div class="pwFeaturedsAll">
+<div class="pw_grid_container">
 	<{foreach item=feat from=$works}>
-	<div class="<{cycle values="even,odd"}> pwFeatured">
+	<div class="<{cycle values="even,odd"}> pw_works_grid">
 		<a href="<{$feat.link}>"><img src="<{$feat.image}>" alt="<{$feat.title}>" /></a>
-		<div style="margin-left: <{$widthOther}>px;">		
+		<div>		
 		<h3><a href="<{$feat.link}>"><{$feat.title}></a></h3>
 		<span class="desc"><{$feat.desc}></span>	
 		<span class="info"><strong><{$lang_catego}></strong> <a href="<{$feat.linkcat}>"><{$feat.catego}></a> |
 		<strong><{$lang_date}></strong> <{$feat.created}> |
 		<{if $feat.client}><strong><{$lang_client}></strong> <{$feat.client}><{/if}></span>
 		</div>
-	</div>
-	<{/foreach}>
-</div>
-<{else}>
-<h2 class="pwWorks"><{$lang_others}></h2>
-<div class="pwRecentsAll">
-	<{foreach item=work from=$works}>
-	<div class="<{cycle values="even,odd"}> pwRecent">
-	<a href="<{$rowk.link}>"><img src="<{$work.image}>" alt="<{$work.title}>" /></a>
-	<div style="margin-left: <{$widthOther}>px;">		
-		<h3><a href="<{$work.link}>"><{$work.title}></a></h3>
-		<span class="desc"><{$work.desc}></span>	
-		<span class="info"><strong><{$lang_catego}></strong> <a href="<{$work.linkcat}>"><{$work.catego}></a> |
-		<strong><{$lang_date}></strong> <{$work.created}> |
-		<{if $work.client}><strong><{$lang_client}></strong> <{$work.client}><{/if}></span>
-	</div>
 	</div>
 	<{/foreach}>
 </div>

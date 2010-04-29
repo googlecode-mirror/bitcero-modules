@@ -30,11 +30,17 @@ if ($request=='' || $request=='index.php'){
 $vars = array();
 parse_str($request, $vars);
 
-$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : 0;
 if (isset($vars['work'])){ $post = $vars['work']; require 'work.php'; die(); }
 if (isset($vars['cat'])){ $category = $vars['cat']; require 'catego.php'; die(); }
 
 $vars = explode('/', rtrim($request,'/'));
+
+foreach ($vars as $i => $v){
+	if ($v=='page'){
+		$page = $vars[$i+1];
+		break;
+	}
+}
 
 /**
  * Si el primer valor es category entonces se realiza la búsqueda por

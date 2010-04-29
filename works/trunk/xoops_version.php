@@ -203,7 +203,7 @@ $modversion['config'][13]['formtype'] = 'select';
 $modversion['config'][13]['valuetype'] = 'int';
 $modversion['config'][13]['default'] ='0';
 $modversion['config'][13]['order'] = 13;
-$modversion['config'][13]['options'] = array('_MI_PW_CATEGO'=>0,'_MI_PW_FEATUREDS'=>1);
+$modversion['config'][13]['options'] = array('_MI_PW_NOSHOW'=>0,'_MI_PW_CATEGO'=>1,'_MI_PW_FEATUREDS'=>2);
 
 //Número de Otros Trabajos
 $modversion['config'][14]['name'] = 'num_otherworks';

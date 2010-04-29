@@ -70,3 +70,31 @@ h2.pw_title{
 	border: 1px solid #666;
 	padding: 1px;
 }
+#pw-header{
+	overflow: hidden;
+	font-size: 0.9em;
+	margin: 0 0 10px 0;
+	text-align: right;
+}
+
+.pw_works_grid{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.pw_works_grid a img{
+	float: left;
+	padding: 1px;
+	border: 1px solid #CCC;
+	margin: 0 5px 10px 0;
+}
+.pw_works_grid h3{
+	margin: 0 0 5px 0;
+}
+.pw_works_grid .desc{
+	line-height: 150%;
+	display: block;
+	margin-bottom: 4px;
+}
+.pw_works_grid .info{
+	font-size: 0.85em;
+}

@@ -4,8 +4,9 @@
 <div class="navPage">
 	<{$featuredNavPage}>
 </div>
-<div class="pwRecentsAll">
+<div class="pw_grid_container">
 	<{foreach item=item from=$featureds}>
 		<{include file="db:pw_witem.html"}>
 	<{/foreach}>
 </div>
+<{$navpage}>

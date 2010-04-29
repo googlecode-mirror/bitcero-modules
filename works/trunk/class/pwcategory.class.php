@@ -88,6 +88,29 @@ class PWCategory extends RMObject
 	public function setCreated($created){
 		return $this->setVar('created',$created);
 	}
+	
+	/**
+	* Get the category link formated
+	*/
+	public function link(){
+		global $xoopsModule, $xoopsModuleConfig;
+		
+		if ($xoopsModule->dirname()=='works'){
+			$mc =& $xoopsModuleConfig;
+		} else {
+			$mc = RMUtilities::module_config('works');
+		}
+		
+		$link = XOOPS_URL.'/';
+		if ($mc['urlmode']){
+			$link .= trim($mc['htbase'], '/').'/category/'.$this->nameId().'/';
+		} else {
+			$link .= 'catego.php?id='.$this->id();
+		}
+		
+		return $link;
+		
+	}
 
 	/**
 	* @desc Obtiene el total de trabajos de la categoría
