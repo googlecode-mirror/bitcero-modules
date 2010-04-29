@@ -62,6 +62,7 @@ CREATE TABLE `pw_works` (
   `doimage` tinyint(1) NOT NULL default '0',
   `dosmiley` tinyint(1) NOT NULL default '0',
   `dobr` tinyint(1) NOT NULL default '0',
+  `comms` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_work`),
   KEY `titleid` (`titleid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

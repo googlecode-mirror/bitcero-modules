@@ -118,6 +118,10 @@ $tpl->assign('widthOther',$thsSize[0]+20);
 
 PWFunctions::makeHeader();
 
+RMFunctions::get_comments('works','work='.$work->id());
+// Comments form
+RMFunctions::comments_form('works', 'work='.$work->id(), 'module', PW_ROOT.'/class/workscontroller.php');
+
 // Professional Works uses LightBox plugin to show
 // work images.
 if (RMFunctions::plugin_installed('lightbox')){
