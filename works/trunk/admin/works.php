@@ -347,10 +347,10 @@ function saveWorks($edit = 0){
 	$work->setImage($filename);
 	
 	if (!$work->save()){
-		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update database!','admin_works').$work->errors(),1);
+		redirectMsg('./works.php?'.$query,__('Errors ocurred while trying to update database!','admin_works').$work->errors(),1);
 		die();
 	}else{	
-		redirectMsg('./works.php?'.$ruta,__('Database updated successfully!','admin_works'),0);
+		redirectMsg('./works.php?op=edit&id='.$work->id(),__('Database updated successfully!','admin_works'),0);
 		die();
 
 	}

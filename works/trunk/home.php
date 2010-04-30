@@ -15,7 +15,7 @@ $xoopsOption['module_subpage'] = 'index';
 include 'header.php';
 
 PWFunctions::makeHeader();
-extract($vars);
+
 //Barra de Navegación
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works')." WHERE public=1";
 	
