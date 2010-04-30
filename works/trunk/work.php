@@ -31,7 +31,7 @@ $client = new PWClient($work->client());
 
 $link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$cat->nameId().'/' : '/catego.php?id='.$cat->nameId());
 
-$tpl->assign('work',array(
+$work_data = array(
 	'id'=>$work->id(),
 	'title'=>$work->title(),
 	'desc'=>$work->desc(),
@@ -48,7 +48,11 @@ $tpl->assign('work',array(
 	'linkcat'=>$link_cat,
 	'comment'=>$work->comment(),
 	'rating'=>PWFunctions::rating($work->rating()),
-	'views'=>$work->views()));
+	'views'=>$work->views());
+
+$work_data = RMEvents::get()->run_event('works.work.data',$work_data, $work);
+
+$xoopsTpl->assign('work', $work_data);
 
 $work->addView();
 
@@ -62,6 +66,8 @@ while($row = $db->fetchArray($result)){
 	$tpl->append('images',array('id'=>$img->id(),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$img->image(),
 	'title'=>$img->title(),'desc'=>$img->desc(),'link_image'=>XOOPS_UPLOAD_URL.'/works/'.$img->image()));
 }
+
+RMEvents::get()->run_event('works.load.work.images', $work);
 
 $tpl->assign('xoops_pagetitle', $work->title().' &raquo; '.$mc['title']);
 
@@ -92,6 +98,9 @@ if ($mc['other_works']>0){
 		'catego'=>$categos[$wk->category()]->name(),'client'=>$clients[$wk->client()]->name(),'link'=>$link,
 		'created'=>formatTimeStamp($wk->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),'views'=>$wk->views()));
 	}
+	
+	RMEvents::get()->run_event('works.load.other.works', $work);
+	
 }
 
 
