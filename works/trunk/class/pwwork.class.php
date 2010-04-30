@@ -242,6 +242,25 @@ class PWWork extends RMObject
 	public function views(){
 		return $this->getVar('views');
 	}
+	
+	public function link(){
+		global $xoopsModule, $xoopsModuleConfig;
+		
+		if($xoopsModule->dirname()=='works'){
+			$mc = $xoopsModuleConfig;
+		} else {
+			$mc = RMUtilities::module_config('works');
+		}
+		
+		$link = XOOPS_URL.'/';
+		if ($mc['urlmode']){
+			$link .= trim($mc['htbase'], '/').'/'.$this->title_id().'/';
+		} else {
+			$link .= 'work.php?id='.$this->id();
+		}
+		
+		return $link;
+	}
 
 	public function save(){
 		if ($this->isNew()){

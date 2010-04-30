@@ -125,7 +125,7 @@ RMFunctions::comments_form('works', 'work='.$work->id(), 'module', PW_ROOT.'/cla
 // Professional Works uses LightBox plugin to show
 // work images.
 if (RMFunctions::plugin_installed('lightbox')){
-	RMLightbox::load_lightbox('#pw-work-images a');
+	RMLightbox::get()->add_element('#pw-work-images a');
 }
 
 include 'footer.php';

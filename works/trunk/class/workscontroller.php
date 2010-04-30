@@ -44,9 +44,22 @@ class WorksController
         if(!isset($work) || $work<=0) return __('Not found','admin_works');;
         
         if(isset($works[$work])){
+        	if ($url) return $works[$work]->link();
         	$ret = '<a href="'.$works[$work]->link().'#comment-'.$com->id().'" target="_blank">'.$works[$work]->title().'</a>';
 			return $ret;
         }
+        
+        include_once (XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php');
+        $item = new PWWork($work);
+        if($item->isNew()){
+			return __('Unknow','admin_works');
+        }
+        
+        if($url) return $item->link();
+        
+        $ret = '<a href="'.$item->link().'#comment-'.$com->id().'" target="_blank">'.$item->title().'</a>';
+        $works[$work] = $item;
+        return $ret;
         
     }
     
