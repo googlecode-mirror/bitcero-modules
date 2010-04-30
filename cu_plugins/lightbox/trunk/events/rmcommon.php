@@ -14,5 +14,23 @@ class LightboxPluginRmcommonPreload{
 		include_once RMCPATH.'/plugins/lightbox/lightbox.php';
 	}
 	
+	/**
+	* Replace [lighbox=#element a] by <div class="lightbox_container"> to include lightbox effects in texts
+	* @params array with patterns and replacements
+	* @param object TextCleaner object
+	* @return array witj patterns and $replacements must be filled also
+	*/
+	public function eventRmcommonCodeDecode($text){
+		
+		$pattern = "/\[lightbox=(['\"]?)([^\"'<>]*)\\1](.*)\[\/lightbox\]/sU";
+		$text = preg_replace_callback($pattern, 'found_lightbox', $text);
+		
+		$pattern = "/\[lightbox](.*)\[\/lightbox\]/sU";
+		$text = preg_replace_callback($pattern, 'found_lightbox', $text);
+	
+		return $text;
+		
+	}
+	
 }
 
