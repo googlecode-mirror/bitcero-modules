@@ -75,7 +75,7 @@ function cu_render_output($output){
 	$page = $output;
     if($xoopsTpl){
 	    if(defined('COMMENTS_INCLUDED') && COMMENTS_INCLUDED){
-		    RMTemplate::get()->add_style('comments.css', 'rmcommon');
+		    RMTemplate::get()->add_xoops_style('comments.css', 'rmcommon');
 	    }
     }
 	

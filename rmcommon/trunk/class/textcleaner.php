@@ -329,66 +329,68 @@ class TextCleaner
 		//$patterns[] = "/\[code](.*)\[\/code\]/esU";
 		//$replacements[] = "'<div class=\"exmCode\"><code><pre>'.wordwrap(MyTextSanitizer::htmlSpecialChars('\\1'), 100).'</pre></code></div>'";
 		// RMV: added new markup for intrasite url (allows easier site moves)
-		// TODO: automatically convert other URLs to this format if ABSURL matches??
-		$patterns[] = "/\[siteurl=(['\"]?)([^\"'<>]*)\\1](.*)\[\/siteurl\]/sU";
-		$replacements[] = '<a href="'.ABSURL.'/\\2">\\3</a>';
-		$patterns[] = "/\[url=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-		$replacements[] = '<a href="\\2" target="_blank">\\3</a>';
-		$patterns[] = "/\[url=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
-		$replacements[] = '<a href="\\2" target="_blank">\\3</a>';
-		$patterns[] = "/\[url=(['\"]?)([^\"'<>]*)\\1](.*)\[\/url\]/sU";
-		$replacements[] = '<a href="http://\\2" target="_blank">\\3</a>';
-		$patterns[] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
-		$replacements[] = '<span style="color: #\\2;">\\3</span>';
-		$patterns[] = "/\[size=(['\"]?)([a-z0-9-]*)\\1](.*)\[\/size\]/sU";
-		$replacements[] = '<span style="font-size: \\2;">\\3</span>';
-		$patterns[] = "/\[font=(['\"]?)([^;<>\*\(\)\"']*)\\1](.*)\[\/font\]/sU";
-		$replacements[] = '<span style="font-family: \\2;">\\3</span>';
-		$patterns[] = "/\[email]([^;<>\*\(\)\"']*)\[\/email\]/sU";
-		$replacements[] = '<a href="mailto:\\1">\\1</a>';
+		// TODO: automatically convert other URLs to this format if XOOPS_ROOT_PATH matches??
+		$patterns['patterns'][] = "/\[siteurl=(['\"]?)([^\"'<>]*)\\1](.*)\[\/siteurl\]/sU";
+		$patterns['replacements'][] = '<a href="'.XOOPS_ROOT_PATH.'/\\2">\\3</a>';
+		$patterns['patterns'][] = "/\[url=(['\"]?)(http[s]?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
+		$patterns['replacements'][] = '<a href="\\2" target="_blank">\\3</a>';
+		$patterns['patterns'][] = "/\[url=(['\"]?)(ftp?:\/\/[^\"'<>]*)\\1](.*)\[\/url\]/sU";
+		$patterns['replacements'][] = '<a href="\\2" target="_blank">\\3</a>';
+		$patterns['patterns'][] = "/\[url=(['\"]?)([^\"'<>]*)\\1](.*)\[\/url\]/sU";
+		$patterns['replacements'][] = '<a href="http://\\2" target="_blank">\\3</a>';
+		$patterns['patterns'][] = "/\[color=(['\"]?)([a-zA-Z0-9]*)\\1](.*)\[\/color\]/sU";
+		$patterns['replacements'][] = '<span style="color: #\\2;">\\3</span>';
+		$patterns['patterns'][] = "/\[size=(['\"]?)([a-z0-9-]*)\\1](.*)\[\/size\]/sU";
+		$patterns['replacements'][] = '<span style="font-size: \\2;">\\3</span>';
+		$patterns['patterns'][] = "/\[font=(['\"]?)([^;<>\*\(\)\"']*)\\1](.*)\[\/font\]/sU";
+		$patterns['replacements'][] = '<span style="font-family: \\2;">\\3</span>';
+		$patterns['patterns'][] = "/\[email]([^;<>\*\(\)\"']*)\[\/email\]/sU";
+		$patterns['replacements'][] = '<a href="mailto:\\1">\\1</a>';
 		
-		$patterns[] = "/\[b](.*)\[\/b\]/sU";
-		$replacements[] = '<b>\\1</b>';
-		$patterns[] = "/\[i](.*)\[\/i\]/sU";
-		$replacements[] = '<i>\\1</i>';
-		$patterns[] = "/\[u](.*)\[\/u\]/sU";
-		$replacements[] = '<u>\\1</u>';
-		$patterns[] = "/\[d](.*)\[\/d\]/sU";
-		$replacements[] = '<del>\\1</del>';
+		$patterns['patterns'][] = "/\[b](.*)\[\/b\]/sU";
+		$patterns['replacements'][] = '<b>\\1</b>';
+		$patterns['patterns'][] = "/\[i](.*)\[\/i\]/sU";
+		$patterns['replacements'][] = '<i>\\1</i>';
+		$patterns['patterns'][] = "/\[u](.*)\[\/u\]/sU";
+		$patterns['replacements'][] = '<u>\\1</u>';
+		$patterns['patterns'][] = "/\[d](.*)\[\/d\]/sU";
+		$patterns['replacements'][] = '<del>\\1</del>';
 		
-		$patterns[] = "/\[quote(=*+(.*))]/sU";
-		$replacements[] = '<div class="exmQuote"><blockquote>'.TextCleaner::formQuote('$2').'<p>';
-		$patterns[] = "/\[\/quote]/sU";
-		$replacements[] = '</p></blockquote></div>';
+		$patterns['patterns'][] = "/\[quote(=*+(.*))]/sU";
+		$patterns['replacements'][] = '<div class="exmQuote"><blockquote>'.TextCleaner::formQuote('$2').'<p>';
+		$patterns['patterns'][] = "/\[\/quote]/sU";
+		$patterns['replacements'][] = '</p></blockquote></div>';
 		
-		$patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1]([^\"\(\)'<>]*)\[\/img\]/sU";
-		$patterns[] = "/\[img]([^\"\(\)'<>]*)\[\/img\]/sU";
-		$patterns[] = "/\[img align=(['\"]?)(left|center|right)\\1 id=(['\"]?)([0-9]*)\\3]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
-		$patterns[] = "/\[img id=(['\"]?)([0-9]*)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
+		$patterns['patterns'][] = "/\[img align=(['\"]?)(left|center|right)\\1]([^\"\(\)'<>]*)\[\/img\]/sU";
+		$patterns['patterns'][] = "/\[img]([^\"\(\)'<>]*)\[\/img\]/sU";
+		$patterns['patterns'][] = "/\[img align=(['\"]?)(left|center|right)\\1 id=(['\"]?)([0-9]*)\\3]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
+		$patterns['patterns'][] = "/\[img id=(['\"]?)([0-9]*)\\1]([^\"\(\)\?\&'<>]*)\[\/img\]/sU";
 		
 		if ($allowimage != 1) {
-			$replacements[] = '<a href="\\3" target="_blank">\\3</a>';
-			$replacements[] = '<a href="\\1" target="_blank">\\1</a>';
-			$replacements[] = '<a href="'.ABSURL.'/image.php?id=\\4" target="_blank">\\4</a>';
-			$replacements[] = '<a href="'.ABSURL.'/image.php?id=\\2" target="_blank">\\3</a>';
+			$patterns['replacements'][] = '<a href="\\3" target="_blank">\\3</a>';
+			$patterns['replacements'][] = '<a href="\\1" target="_blank">\\1</a>';
+			$patterns['replacements'][] = '<a href="'.XOOPS_ROOT_PATH.'/image.php?id=\\4" target="_blank">\\4</a>';
+			$patterns['replacements'][] = '<a href="'.XOOPS_ROOT_PATH.'/image.php?id=\\2" target="_blank">\\3</a>';
 		} else {
-			$replacements[] = '<img src="\\3" align="\\2" alt="" />';
-			$replacements[] = '<img src="\\1" alt="" />';
-			$replacements[] = '<img src="'.ABSURL.'/image.php?id=\\4" align="\\2" alt="\\4" />';
-			$replacements[] = '<img src="'.ABSURL.'/image.php?id=\\2" alt="\\3" />';
+			$patterns['replacements'][] = '<img src="\\3" align="\\2" alt="" />';
+			$patterns['replacements'][] = '<img src="\\1" alt="" />';
+			$patterns['replacements'][] = '<img src="'.XOOPS_ROOT_PATH.'/image.php?id=\\4" align="\\2" alt="\\4" />';
+			$patterns['replacements'][] = '<img src="'.XOOPS_ROOT_PATH.'/image.php?id=\\2" alt="\\3" />';
 		}
 		
 		$text = str_replace( "\x00", "", $text );
 		$c = "[\x01-\x1f]*";
-		$patterns[] = "/j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}:/si";
-		$replacements[] = "(script removed)";
-		$patterns[] = "/a{$c}b{$c}o{$c}u{$c}t{$c}:/si";
-		$replacements[] = "about :";
+		$patterns['patterns'][] = "/j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}:/si";
+		$patterns['replacements'][] = "(script removed)";
+		$patterns['patterns'][] = "/a{$c}b{$c}o{$c}u{$c}t{$c}:/si";
+		$patterns['replacements'][] = "about :";
 		
 		// More patterns with plugins
-		$patterns = RMEvents::get()->run_event('rmcommon.get_replace_patterns', $patterns, $replacements, &$this);
+		$patterns = RMEvents::get()->run_event('rmcommon.get.replace.patterns', $patterns, &$this);
 		
-		$text = preg_replace($patterns, $replacements, $text);
+		$text = preg_replace($patterns['patterns'], $patterns['replacements'], $text);
+		
+		$text = RMEvents::get()->run_event('rmcommon.code.decode',$text);
 
 		return $text;
 	}
@@ -654,7 +656,7 @@ class TextCleaner
 			return $text;
 		
 		$patterns = "/\[code([^\]]*?)\](.*)\[\/code\]/esU";
-		$replacements = "'<div class=\"exmCode\"><code>'.\$this->call_code_modifiers(\$this->specialchars(str_replace('\\\"', '\"', base64_decode('$2'))), '$1').'</code></div>'";
+		$replacements = "'<div class=\"xoopsCode\"><code>'.\$this->call_code_modifiers(\$this->specialchars(str_replace('\\\"', '\"', base64_decode('$2'))), '$1').'</code></div>'";
 		$text =  preg_replace($patterns, $replacements, $text);
 		return $text;
 	}
