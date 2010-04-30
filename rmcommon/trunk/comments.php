@@ -112,6 +112,7 @@ function show_comments(){
             'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
             'ip'        => $com->getVar('ip'),
             'item'		=> $item,
+            'module'	=> $row['id_obj'],
             'status'	=> $com->getVar('status')
         );
     }

@@ -101,7 +101,8 @@
         	?>
         </td>
         <td align="center">
-        	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?>
+        	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?><br />
+        	<?php echo $com['module']; ?>
         </td>
     </tr>
     <?php endforeach; ?>
