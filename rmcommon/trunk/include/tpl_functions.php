@@ -43,9 +43,7 @@ function tpl_cycle($values, $delimiter = ',', $reset = false){
 * Create location for modules
 */
 function xoops_cp_location($location){
-	global $tpl;
-	
-	$tpl->assign('admin_location', $location);
+	RMTemplate::get()->assign('admin_location', $location);
 }
 
 /**
