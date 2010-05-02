@@ -8,51 +8,21 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('QP_LOCATION','pages');
+define('RMCLOCATION','pages');
 require 'header.php';
-
-include_once '../include/general.func.php';
-
-function optionsBar(){
-	global $tpl;
-	
-	$cat = isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : '';
-	
-    $tpl->append('xoopsOptions', array('link' => './pages.php', 'title' => _AS_QP_PAGELIST, 'icon' => '../images/pages16.png'));
-    $tpl->append('xoopsOptions', array('link' => './pages.php?op=public&amp;cat='.$cat, 'title' => _AS_QP_PUBLICPAGES, 'icon' => '../images/public16.png'));
-    $tpl->append('xoopsOptions', array('link' => './pages.php?op=private&amp;cat='.$cat, 'title' => _AS_QP_PRIVATEPAGES, 'icon' => '../images/private16.png'));
-    $tpl->append('xoopsOptions', array('link' => './pages.php?op=new&amp;cat='.$cat, 'title' => _AS_QP_NEWPAGE, 'icon' => '../images/page.png'));
-    $tpl->append('xoopsOptions', array('link' => './pages.php?op=newlink&amp;cat='.$cat, 'title' => _AS_QP_NEWLINKED, 'icon' => '../images/page_go.png'));
-    
-}
 
 /**
  * Muestra los envíos existentes
  */
 function showPages($acceso = -1){
-	global $db, $tpl, $mc, $adminTemplate, $xoopsModule;
+	global $mc, $xoopsModule;
 	
 	$keyw = '';
 	foreach ($_REQUEST as $k => $v){
 		$$k = $v;
 	}
 	
-	$tpl->assign('lang_pages', $acceso<0 ? _AS_QP_PAGELIST : ($acceso==0 ? _AS_QP_PRIVATELIST : _AS_QP_PUBLICLIST));
-	$tpl->assign('lang_id', _AS_QP_ID);
-	$tpl->assign('lang_title', _AS_QP_TITLE);
-	$tpl->assign('lang_date', _AS_QP_DATEPAGE);
-	$tpl->assign('lang_modif', _AS_QP_MODPAGE);
-	$tpl->assign('lang_inmenu', _AS_QP_MENUPAGE);
-	$tpl->assign('lang_catego', _AS_QP_CATEGO);
-	$tpl->assign('lang_reads', _AS_QP_READS);
-	$tpl->assign('lang_access', _AS_QP_ACCESS);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_submit', _SUBMIT);
-	$tpl->assign('lang_results', _AS_QP_RESULTS);
-	$tpl->assign('lang_showall', _AS_QP_SHOWALL);
-	$tpl->assign('op', isset($op) ? $op : '');
+	$db = Database::getInstance();
 	
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("qpages_pages");
 	if ($acceso>=0){
@@ -86,46 +56,21 @@ function showPages($acceso = -1){
 		$start = ($pactual - 1) * $limit;
 	}
 	
-	$tpl->assign('pactual', $pactual);
-	
-	if ($pactual > 1){
-		$tpl->append('pages', array('id'=>'anterior', 'link'=>'?cat='.$cat.'&amp;op='.$op.'&amp;page='.($pactual-1).(trim($keyw)!='' ? "&amp;keyw=$keyw" : '')."&amp;limit=$limit"));
-	}
-	if ($tpages > 1){
-		for ($i=1;$i<=$tpages;$i++){
-			$tpl->append('pages', array('id'=>$i,'link'=>'?cat='.$cat.'&amp;op='.(isset($op) ? $op : '').'&amp;page='.$i.(trim($keyw)!='' ? "&amp;keyw=$keyw" : '')."&amp;limit=$limit"));
-		}
-	}
-	
-	if ($pactual < $tpages && $tpages > 1){
-		$tpl->append('pages', array('id'=>'siguiente', 'link'=>'?cat='.$cat.'&amp;op='.(isset($op) ? $op : '').'&amp;page='.($pactual+1).(trim($keyw)!='' ? "&amp;keyw=$keyw" : '')."&amp;limit=$limit"));
-	}
-	
-	$tpl->assign('lang_next', _AS_QP_NEXTPAGE);
-	$tpl->assign('lang_prev', _AS_QP_PREVPAGE);
-	$tpl->assign('lang_search', _AS_QP_SEARCH);
-	$tpl->assign('limit', $limit);
-	$tpl->assign('acceso', $acceso);
-	$tpl->assign('lang_publicate', _AS_QP_PUBLICATE);
-	$tpl->assign('lang_privatize', _AS_QP_PRIVATIZE);
-	$tpl->assign('lang_order', _AS_QP_ORDER);
-	$tpl->assign('lang_savechanges', _AS_QP_SAVECHGS);
-	$tpl->assign('lang_linked', _AS_QP_LINKED);
-	
 	$sql .= " ORDER BY porder, cat LIMIT $start,$limit";
 	$sql = str_replace("SELECT COUNT(*)", "SELECT *", $sql);
 	
 	$result = $db->query($sql);
+	$pages = array();
 	while ($row = $db->fetchArray($result)){
 		$page = new QPPage();
 		$page->assignVars($row);
 		# Enlaces para las categorías
 		$catego = new QPCategory($page->getCategory());
 		$estado = $page->getAccess() ? _AS_QP_PUBLISHED : _AS_QP_PRIVATED;
-		$tpl->append('paginas', array('id'=>$page->getID(), 'titulo'=>$page->getTitle(),'catego'=>$catego->getName(), 'fecha'=>formatTimeStamp($page->getDate(),'s'),
+		$pages[] = array('id'=>$page->getID(), 'titulo'=>$page->getTitle(),'catego'=>$catego->getName(), 'fecha'=>formatTimeStamp($page->getDate(),'s'),
 				'link'=>$page->getPermaLink(),'menu'=>$page->getInMenu() ? _YES : _NO, 'estado'=>$estado,
 				'modificada'=>$page->getModDate()==0 ? '--' : formatTimestamp($page->getModDate(),'s'), 
-				'lecturas'=>$page->getReads(),'order'=>$page->order(),'type'=>$page->type()));
+				'lecturas'=>$page->getReads(),'order'=>$page->order(),'type'=>$page->type());
 	}
 	
 	/**
@@ -133,15 +78,15 @@ function showPages($acceso = -1){
 	 */
 	$categos = array();
 	qpArrayCategos($categos);
-	$tpl->append('categos', array('id'=>0, 'nombre'=>_SELECT));
+	$categories = array();
 	foreach ($categos as $k){
-		$tpl->append('categos', array('id'=>$k['id_cat'],'nombre'=>$k['nombre']));;
+		$categories[] = array('id'=>$k['id_cat'],'nombre'=>$k['nombre']);
 	}
 	
-	optionsBar();
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($acceso<0 ? _AS_QP_PAGELIST : ($acceso==0 ? _AS_QP_PRIVATELIST : _AS_QP_PUBLICLIST)));
-	$adminTemplate = "admin/qp_pages.html";
 	xoops_cp_header();
+	
+	include RMTemplate::get()->get_template("admin/qp_pages.html", 'module', 'qpages');
 	
 	xoops_cp_footer();
 }

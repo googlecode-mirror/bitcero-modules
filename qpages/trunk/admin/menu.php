@@ -21,3 +21,38 @@ $adminmenu[1]['location'] = 'categories';
 $adminmenu[2]['title'] = __('Pages','qpages');
 $adminmenu[2]['link'] = "admin/pages.php";
 $adminmenu[2]['icon'] = '../images/pages.png';
+$adminmenu[2]['location'] = 'pages';
+
+$cat = rmc_server_var($_REQUEST, 'cat', '');
+
+$options[] = array(
+    'title'     => __('List','qpages'),
+    'link'      => 'pages.php?cat='.$cat,
+    'selected'  => 'pages_list' // RMSUBLOCATION constant defines wich submenu options is selected
+);
+
+$options[] = array(
+    'title'     => __('Published','qpages'),
+    'link'      => 'pages.php?op=public&cat='.$cat,
+    'selected'  => 'pages_public' // RMSUBLOCATION constant defines wich submenu options is selected
+);
+
+$options[] = array(
+    'title'     => __('Privates','qpages'),
+    'link'      => 'pages.php?op=private&cat='.$cat,
+    'selected'  => 'pages_private' // RMSUBLOCATION constant defines wich submenu options is selected
+);
+
+$options[] = array(
+    'title'     => __('Add page','qpages'),
+    'link'      => 'pages.php?op=new&cat='.$cat,
+    'selected'  => 'pages_new' // RMSUBLOCATION constant defines wich submenu options is selected
+);
+
+$options[] = array(
+    'title'     => __('Add linked page','qpages'),
+    'link'      => 'pages.php?op=newlink&cat='.$cat,
+    'selected'  => 'pages_linked' // RMSUBLOCATION constant defines wich submenu options is selected
+);
+
+$adminmenu[2]['options'] = $options;

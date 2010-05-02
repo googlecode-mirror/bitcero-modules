@@ -17,7 +17,7 @@ include_once '../include/general.func.php';
  * Muestra una lista de las categorías existentes
  */
 function showCategos(){
-	global $xoopsModule;
+	global $xoopsModule, $xoopsSecurity;
 	
 	$row = array();
 	qpArrayCategos($row);
@@ -38,6 +38,7 @@ function showCategos(){
 	
 	RMTemplate::get()->add_style('admin.css', 'qpages');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	RMTemplate::get()->add_script('../include/js/qpages.js');
 	RMTemplate::get()->assign('xoops_pagetitle', __('Categories management', 'qpages'));
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_LIST);
 	xoops_cp_header();
@@ -156,40 +157,48 @@ function saveCatego($edit = 0){
  * sino que son asignadas a la categoría superior.
  */
 function deleteCatego(){
-	global $db, $xoopsModule, $util;
+	global $db, $xoopsModule, $xoopsSecurity;
 	
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+	$ids = rmc_server_var($_POST, 'ids', array());
 	
-	if ($id<=0){
-		redirectMsg('cats.php', _AS_QP_ERRID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('cats.php',__('Session token expired!','qpages'), 1);
 		die();
 	}
 	
-	if ($ok){
-		$catego = new QPCategory($id);
-		if ($catego->delete()){
-			redirectMsg('cats.php', _AS_QP_DBOK, 0);
-			die();
-		} else {
-			redirectMsg('cats.php', _AS_QP_DBERROR . '<br />' . $catego->error(), 1);
-			die();
+	if (!is_array($ids)){
+		redirectMsg('cats.php', __('No category has been selected!','qpages'), 1);
+		die();
+	}
+	
+	$errors = '';
+	
+	foreach($ids as $id){
+		
+		if ($id<=0){
+			$errors .= sprintf(__('ID "%s" is not valid!','qpages'), $id).'<br />';
+			continue;
 		}
+		
+		$catego = new QPCategory($id);
+		
+		if ($catego->isNew){
+			$errors .= sprintf(__('Category with ID "%s" does not exists!','qpages'), $id).'<br />';
+			continue;
+		}
+		
+		if ($catego->delete()){
+			continue;
+		} else {
+			$errors .= sprintf(__('Category "%s" could not be deleted!','qpages'), $catego->getName()).'<br />';
+			continue;
+		}	
+	}
+	
+	if ($errors!=''){
+		redirectMsg('cats.php', __('Errors ocurred while trying to delete categories','qpages').'<br />'.$errors, 1); 
 	} else {
-		
-		$hiddens['op'] = 'delete';
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$buttons['sbt']['value'] = _SUBMIT;
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['extra'] = 'onclick="javascript:history.go(-1);"';
-		
-		xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_DELCAT);
-		xoops_cp_header();
-		$util->msgBox($hiddens, 'cats.php', _AS_QP_CONFIRMDEL . '<br /><br />' . _AS_QP_DELETEDESC, XOOPS_ALERT_ICON, $buttons, $display=true, '400px');
-		xoops_cp_footer();
+		redirectMsg('cats.php', __('Categories deleted successfully!', 'qpages'));
 	}
 	
 }

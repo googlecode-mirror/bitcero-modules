@@ -1,15 +1,22 @@
 <h1 class="rmc_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Categories','qpages'); ?></h1>
 
+<script type="text/javascript">
+<!--
+	var qp_select_message = '<?php _e('Select at least a category to apply this action!','qpages'); ?>';
+	var qp_message = '<?php _e('Do you really wisth to delete this category?','qpages'); ?>';
+-->
+</script>
+
 <div id="qp-two-cols">
 	<div id="qp-col-right">
 	
 		<form name="frm_categos" id="frm-categos" method="post" action="cats.php">
 		<div class="qp_options">
-			<select name="op">
+			<select name="op" id="bulk-top">
 				<option value="">Bulk actions</option>
 				<option value="delete"><?php _e('Delete','qpages'); ?></option>
 			</select>
-			<input type="button" value="<?php _e('Apply','qpages'); ?>" />
+			<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-categos');" />
 		</div>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="outer">
 			<thead>
@@ -44,7 +51,7 @@
     				<strong><?php echo $cat['nombre']; ?></strong>
     				<span class="rmc_options">
     					<a href="?op=edit&amp;id=<?php echo $cat['id_cat']; ?>"><?php _e('Edit','qpages'); ?></a> |
-    					<a href="?op=delete&amp;id=<{$cat.id_cat}>"><{$lang_delete}></a>
+    					<a href="javascript:;" onclick="select_option(<?php echo $cat['id_cat']; ?>,'delete','frm-categos');"><?php _e('Delete','qpages'); ?></a>
     				</span>
     			</td>
     			<td align="left">
@@ -56,12 +63,13 @@
 			</tbody>
 		</table>
 		<div class="qp_options">
-			<select name="opb">
+			<select name="opb" id="bulk-bottom">
 				<option value="">Bulk actions</option>
 				<option value="delete"><?php _e('Delete','qpages'); ?></option>
 			</select>
-			<input type="button" value="<?php _e('Apply','qpages'); ?>" />
+			<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-categos');" />
 		</div>
+		<?php echo $xoopsSecurity->getTokenHTML(); ?>
 		</form>
 	
 	</div>
