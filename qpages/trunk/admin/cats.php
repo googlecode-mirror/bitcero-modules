@@ -1,74 +1,48 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Quick Pages
-// Módulo para la publicación de páginas individuales
-// CopyRight © 2007 - 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
-// @author: BitC3R0
+// Create simple pages easily and quickly
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('QP_LOCATION','categos');
+define('RMCLOCATION','categories');
 require('header.php');
 
 include_once '../include/general.func.php';
 
-function optionsBar(){
-	global $tpl;
-	
-    $tpl->append('xoopsOptions', array('link' => './cats.php', 'title' => _AS_QP_CATLIST, 'icon' => '../images/categos16.png'));
-    $tpl->append('xoopsOptions', array('link' => './cats.php?op=new', 'title' => _AS_QP_NEWCAT, 'icon' => '../images/add.png'));
-    
-}
 /**
  * Muestra una lista de las categorías existentes
  */
 function showCategos(){
-	global $tpl, $db, $adminTemplate, $xoopsModule, $util;
+	global $xoopsModule;
 	
-	$tpl->assign('lang_categoslist', _AS_QP_LIST);
-	$tpl->assign('lang_id', _AS_QP_ID);
-	$tpl->assign('lang_name', _AS_QP_NAME);
-	$tpl->assign('lang_catpages', _AS_QP_CATPAGES);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_delete', _DELETE);
-	
-	$util = new RMUtils();
 	$row = array();
 	qpArrayCategos($row);
 	
+	$categories = array();
+	$db = Database::getInstance();
 	foreach ($row as $k){
 		$catego = new QPCategory($k['id_cat']);
 		$catego->update();
 		list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("qpages_pages")." WHERE cat='$k[id_cat]'"));
 		$k['posts'] = $num;
-		$k['nombre'] = str_repeat("-", $k['saltos']) . ' ' . $k['nombre'];
-		$tpl->append('categos', $k);
+		$k['nombre'] = str_repeat("&#8212;", $k['saltos']) . ' ' . $k['nombre'];
+		$categories[] = $k;
 	}
 	
-	optionsBar();
-	$adminTemplate = "admin/qp_categos.html";
+	// Event
+	$categories = RMEvents::get()->run_event('qpages.categories.list',$categories);
+	
+	RMTemplate::get()->add_style('admin.css', 'qpages');
+	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+	RMTemplate::get()->assign('xoops_pagetitle', __('Categories management', 'qpages'));
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_LIST);
 	xoops_cp_header();
+	
+	include RMTemplate::get()->get_template("admin/qp_categos.php", 'module', 'qpages');
 	
 	xoops_cp_footer();
 	
@@ -84,40 +58,40 @@ function newForm($edit=0){
 	if ($edit){
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		if ($id<=0){
-			redirectMsg('cats.php', _AS_QP_ERRID, 1);
+			redirectMsg('cats.php', __('You must provide a Category ID to edit!','qpages'), 1);
 			die();
 		}
 		// Cargamos la categoría
 		$catego = new QPCategory($id);
 		// Si no existe entonces devolvemos un error
 		if ($catego->isNew()){
-			redirectMsg('cats.php', _AS_QP_ERRID, 1);
+			redirectMsg('cats.php', __('Specified category does not exists!','qpages'), 1);
 			die();
 		}
 	}
 	
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_NEWCAT);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Edit Category','qpages') : __('New Category','qpages')));
 	xoops_cp_header();
 	
 	$cats = array();
 	qpArrayCategos($cats, 0, 0, $edit ? array($id) : 0);
 	
-	$form = new RMForm($edit ? _AS_QP_EDITTITLE : _AS_QP_NEWTITLE, 'frmNew', 'cats.php');
-	$form->addElement(new RMText(_AS_QP_NAME, 'nombre', 50, 150, $edit ? $catego->getName() : ''), true);
-	$form->addElement(new RMTextArea(_AS_QP_DESC, 'descripcion', 5, 45, $edit ? $catego->getDescription() : ''));
-	$ele = new RMSelect(_AS_QP_CATPARENT, 'parent');
+	$form = new RMForm($edit ? __('Edit Category','qpages') : __('New Category','qpages'), 'frmNew', 'cats.php');
+	$form->addElement(new RMFormText(__('Category name','qpages'), 'nombre', 50, 150, $edit ? $catego->getName() : ''), true);
+	$form->addElement(new RMFormTextArea(__('Description','qpages'), 'descripcion', 5, 45, $edit ? $catego->getVar('descripcion','e') : ''));
+	$ele = new RMFormSelect(__('Category parent','qpages'), 'parent');
 	$ele->addOption(0, _SELECT, $edit ? ($catego->getParent()==0 ? 1 : 0) : 1);
 	foreach ($cats as $k){
 		$ele->addOption($k['id_cat'], str_repeat("-", $k['saltos']) . ' ' . $k['nombre'], $edit ? ($catego->getParent()==$k['id_cat'] ? 1 : 0) : 0);
 	}
 	$form->addElement($ele);
-	$form->addElement(new RMHidden('op', $edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('op', $edit ? 'saveedit' : 'save'));
 	if ($edit){
-		$form->addElement(new RMHidden('id', $id));
+		$form->addElement(new RMFormHidden('id', $id));
 	}
-	$ele = new RMButtonGroup('',' ');
-	$ele->addButton('sbt', $edit ? _EDIT : _SUBMIT, 'submit');
-	$ele->addButton('cancel', _CANCEL, 'button');
+	$ele = new RMFormButtonGroup('',' ');
+	$ele->addButton('sbt', $edit ? __('Update Category','qpages') : __('Create Category','qpages'), 'submit');
+	$ele->addButton('cancel', __('Cancel','qpages'), 'button');
 	$ele->setExtra('cancel', "onclick='history.go(-1);'");
 	$form->addElement($ele);
 	$form->display();
@@ -130,30 +104,31 @@ function newForm($edit=0){
  * Almacenamos la categoría en la base de datos
  */
 function saveCatego($edit = 0){
-	global $db, $util;
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
 	
 	if ($edit && $id<=0){
-		redirectMsg('cats.php', _AS_QP_ERRID, 1);
+		redirectMsg('cats.php', __('You must provide a category ID to edit!','qpages'), 1);
 		die();
 	}
 	
 	if ($nombre==''){
-		redirectMsg('cats.php?op=new', _AS_QP_ERRNAME, 1);
+		redirectMsg('cats.php?op=new', __('Please provide a name for this category!','qpages'), 1);
 		die();
 	}
 	
-	$nombre_amigo = $util->sweetstring($nombre);
+	$nombre_amigo = TextCleaner::getInstance()->sweetstring($nombre);
+	
+	$db = Database::getInstance();
 	
 	# Verificamos que no exista la categoría
 	$result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("qpages_categos")." WHERE parent='$parent'".($edit ? " AND id_cat<>$id" : '')." AND (nombre='$nombre' OR nombre_amigo='$nombre_amigo')");
 	list($num) = $db->fetchRow($result);
 	
 	if ($num>0){
-		redirectMsg('cats.php?op=new', _AS_QP_ERREXISTS, 1);
+		redirectMsg('cats.php?op=new', __('There another category with same name!','qpages'), 1);
 		die();
 	}
 	
@@ -169,9 +144,9 @@ function saveCatego($edit = 0){
 		$result = $catego->save();
 	}
 	if ($result){
-		redirectMsg('cats.php', _AS_QP_DBOK, 0);
+		redirectMsg('cats.php', __('Database updated successfully!','qpages'), 0);
 	} else {
-		redirectMsg('cats.php?op=new', _AS_QP_DBERROR . "<br />" . $catego->errors(), 1);
+		redirectMsg('cats.php?op=new', __('Errors ucurred while trying to update database') . "<br />" . $catego->errors(), 1);
 	}
 	
 }
@@ -241,4 +216,3 @@ switch ($op){
 		showCategos();
 		break;
 }
-?>

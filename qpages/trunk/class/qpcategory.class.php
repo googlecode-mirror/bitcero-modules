@@ -11,7 +11,7 @@
 /**
  * Clase para el manejo de categorías
  */
-class QPCategory extends EXMObject
+class QPCategory extends RMObject
 {
 	
 	function __construct($id=''){

@@ -9,7 +9,8 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Quick Pages";
-$modversion['version'] = array('number'=>1,'revision'=>100,'status'=>0,'name'=>'Quick Pages');
+$modversion['rmversion'] = array('number'=>1,'revision'=>100,'status'=>0,'name'=>'Quick Pages');
+$modversion['version'] = 1.2;
 $modversion['description'] = _MI_QP_DESC;
 $modversion['author'] = "BitC3R0";
 $modversion['authorlink'] = "mailto:i.bitcero@gmail.com";
@@ -21,7 +22,7 @@ $modversion['license'] = "See GPL License";
 $modversion['official'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "qpages";
-$modversion['icon48'] = "images/logo.png";
+$modversion['icon16'] = "images/qpages-16.png";
 $modversion['icon24'] = "images/icon24.png";
 $modversion['deflang'] = "spanish";
 $modversion['url'] = "www.exmsystem.net";

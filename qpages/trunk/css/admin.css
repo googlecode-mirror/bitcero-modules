@@ -1,0 +1,35 @@
+#qp-two-cols{
+	overflow: hidden;
+}
+#qp-col-right{
+	float: right;
+	width: 70%;
+}
+#qp-col-left{
+	width: 28%;
+	float: left;
+	overflow: hidden;
+}
+#qp-col-left h3{
+	font-size: 1.2em;
+	margin: 0 0 10px 0;
+}
+#qp-col-left label{
+	display: block;
+	cursor: pointer;
+	padding: 5px 0;
+}
+#qp-col-left input[type='text'],
+#qp-col-left textarea,
+#qp-col-left select{
+	width: 95%;
+	margin-bottom: 10px;
+}
+#qp-col-left textarea{
+	height: 60px;
+}
+
+.qp_options{
+	padding: 4px 0;
+	overflow: hidden;
+}

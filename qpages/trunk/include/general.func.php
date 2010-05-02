@@ -26,7 +26,7 @@ function qpArrayCategos(&$ret,$saltos=0,$parent=0, $exclude=null){
 			$rtn['saltos'] = $saltos;
 			$ret[] = $rtn;
 		}
-		qpArrayCategos($ret, $saltos + 2, $row['id_cat'], $exclude);
+		qpArrayCategos($ret, $saltos + 1, $row['id_cat'], $exclude);
 	}
 	
 	return true;
