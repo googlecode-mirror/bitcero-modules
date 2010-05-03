@@ -1,16 +1,18 @@
+<h1 class="rmc_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Pages','qpages'); ?></h1>
+
 <form name="frmSearch" method="get" action="pages.php" style="margin: 0;">
 <table width="100%" cellspacing="1" cellpadding="3" border="0">
 	<tr class="even">
 	<td align="left">
-			<{$lang_search}>
-			<input type="text" name="keyw" value="<{$keyw}>" size="30" />
+			<?php _e('Search:','qpages'); ?>
+			<input type="text" name="keyw" value="<?php echo $keyw ?>" size="30" />
 	</td>
 	<td align="center">
-		<{$lang_catego}>
+		<?php _e('Category','qpages'); ?>
 		<select name="cat" onchange="submit();">
-			<{foreach item=cat from=$categos}>
-				<option value="<{$cat.id}>"<{if $cat.id==$catego}> selected="selected"<{/if}>><{$cat.nombre}></option>
-			<{/foreach}>
+			<?php foreach($categories as $cat): ?>
+				<option value="<?php echo $cat['id']; ?>"<?php if($cat['id']==$catego): ?> selected="selected"<?php endif; ?>><?php echo $cat['nombre']; ?></option>
+			<?php endforeach; ?>
 		</select>
 	</td>
 	<td align="center">
@@ -22,37 +24,23 @@
 		<a href="pages.php?limit=<{$limit}>"><{$lang_showall}></a>
 	</td>
 	<td align="right">
-		<{foreach item=pag from=$pages}>
-			<{if $pag.id=='anterior'}>
-				<a href="<{$pag.link}>">&laquo; <{$lang_prev}></a>
-			<{elseif $pag.id=='siguiente'}>
-				<a href="<{$pag.link}>"><{$lang_next}> &raquo;</a>
-			<{else}>
-				<{if $pag.id==$pactual}>
-					<span class="nppageactual"><{$pag.id}></span>
-				<{else}>
-				<a href="<{$pag.link}>"><{$pag.id}></a>
-				<{/if}>
-			<{/if}>
-		<{/foreach}>
+		
 	</td></tr>
 </table></form>
+
 <form name="modPages" method="post" action="pages.php">
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="outer">
-  <tr>
-    <th colspan="10"><{$lang_pages}></th>
-  </tr>
   <tr class="head" align="center">
-  	<td align="center" width="30"><input type="checkbox" name="chekall" value="1" onchange="xoopsCheckAll('modPages', 'chekall');" /></td>
-    <td width="30"><{$lang_id}></td>
-    <td width="26">&nbsp;</td>
-    <td><{$lang_title}></td>
-    <td><{$lang_modif}></td>
-	<td><{$lang_inmenu}></td>
-    <td><{$lang_reads}></td>
-    <td><{$lang_access}></td>
-    <td><{$lang_order}></td>
-	<td><{$lang_options}></td>
+  	<th align="center" width="30"><input type="checkbox" name="chekall" value="1" onchange="xoopsCheckAll('modPages', 'chekall');" /></th>
+    <th width="30"><{$lang_id}></th>
+    <th width="26">&nbsp;</th>
+    <th><{$lang_title}></th>
+    <th><{$lang_modif}></th>
+	<th><{$lang_inmenu}></th>
+    <th><{$lang_reads}></th>
+    <th><{$lang_access}></th>
+    <th><{$lang_order}></th>
+	<th><{$lang_options}></th>
   </tr>
   <{foreach item=page from=$paginas}>
   <tr class="<{cycle values="even,odd"}>" align="center">

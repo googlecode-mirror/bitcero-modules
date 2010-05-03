@@ -86,7 +86,7 @@ function showPages($acceso = -1){
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($acceso<0 ? _AS_QP_PAGELIST : ($acceso==0 ? _AS_QP_PRIVATELIST : _AS_QP_PUBLICLIST)));
 	xoops_cp_header();
 	
-	include RMTemplate::get()->get_template("admin/qp_pages.html", 'module', 'qpages');
+	include RMTemplate::get()->get_template("admin/qp_pages.php", 'module', 'qpages');
 	
 	xoops_cp_footer();
 }
