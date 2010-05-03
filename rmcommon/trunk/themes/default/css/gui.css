@@ -190,6 +190,7 @@ div#rmc-left-widgets{
     float: left;
 }
 div#rmc-center-content{
+	overflow: hidden;
     background: #FFF;
     border: 1px solid #CCC;
     padding: 10px;
@@ -197,7 +198,6 @@ div#rmc-center-content{
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    overflow: hidden;
 }
 div#rmc-center-content a{
 	color: #285875;

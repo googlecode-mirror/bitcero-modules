@@ -24,6 +24,13 @@ foreach ($this->tpl_head as $head){
 	echo $head."\n";
 }
 ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if (navigator.userAgent.toLowerCase().indexOf('chrome')>0 || navigator.userAgent.toLowerCase().indexOf('safari')>0){
+    		$("#rmc-center-content").css("overflow",'visible');
+		}
+	});
+</script>
 </head>
 </body>
 <div id="rm-header">
