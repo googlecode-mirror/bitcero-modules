@@ -19,7 +19,6 @@ CREATE TABLE `qpages_pages` (
   `lecturas` int(11) NOT NULL default '0',
   `acceso` tinyint(1) NOT NULL default '0',
   `grupos` varchar(255) NOT NULL,
-  `menu` tinyint(1) NOT NULL default '0',
   `dohtml` tinyint(1) NOT NULL default '1',
   `doxcode` tinyint(1) NOT NULL default '0',
   `doimage` tinyint(1) NOT NULL default '0',

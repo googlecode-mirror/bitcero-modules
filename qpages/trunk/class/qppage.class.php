@@ -11,7 +11,7 @@
 /**
  * Clase para el manejo de páginas
  */
-class QPPage extends EXMObject
+class QPPage extends RMObject
 {
 	private $myts = '';
 	private $metas = array();

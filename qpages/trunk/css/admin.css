@@ -33,3 +33,9 @@
 	padding: 4px 0;
 	overflow: hidden;
 }
+.top_options{
+	border-bottom: 1px dotted #CCC;
+}
+.rmc_pages_navigation_container{
+	float: right;
+}

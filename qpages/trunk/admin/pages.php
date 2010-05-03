@@ -15,7 +15,7 @@ require 'header.php';
  * Muestra los envíos existentes
  */
 function showPages($acceso = -1){
-	global $mc, $xoopsModule;
+	global $mc, $xoopsModule, $xoopsSecurity;
 	
 	$keyw = '';
 	foreach ($_REQUEST as $k => $v){
@@ -34,27 +34,21 @@ function showPages($acceso = -1){
 	}
 	if (isset($cat) && $cat>0){
 		$sql .= ($acceso>=0 || $keyw!='' ? " AND " : " WHERE ") . "cat='$cat'";
-		$tpl->assign('catego', $cat);
 	}
 	
 	/**
 	 * Paginacion de Resultados
 	 */
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
-	$limit = isset($limit) && $limit>0 ? $limit : 15;
+	$page = rmc_server_var($_REQUEST,'page', 1);
+	$page = $page<=0 ? 1 :  $page;
+    $limit = 15;
 	list($num) = $db->fetchRow($db->query($sql));
-	$page = isset($page) ? $page : 0;
-	
-	if ($page > 0){ $page -= 1; }
-	$start = $page * $limit;
-	$tpages = (int)($num / $limit);
-	if($num % $limit > 0) $tpages++;
-	$pactual = $page + 1;
-	if ($pactual>$tpages){
-		$rest = $pactual - $tpages;
-		$pactual = $pactual - $rest + 1;
-		$start = ($pactual - 1) * $limit;
-	}
+	$tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('pages.php?cat='.$cat.'&page={PAGE_NUM}');
 	
 	$sql .= " ORDER BY porder, cat LIMIT $start,$limit";
 	$sql = str_replace("SELECT COUNT(*)", "SELECT *", $sql);
@@ -66,11 +60,19 @@ function showPages($acceso = -1){
 		$page->assignVars($row);
 		# Enlaces para las categorías
 		$catego = new QPCategory($page->getCategory());
-		$estado = $page->getAccess() ? _AS_QP_PUBLISHED : _AS_QP_PRIVATED;
-		$pages[] = array('id'=>$page->getID(), 'titulo'=>$page->getTitle(),'catego'=>$catego->getName(), 'fecha'=>formatTimeStamp($page->getDate(),'s'),
-				'link'=>$page->getPermaLink(),'menu'=>$page->getInMenu() ? _YES : _NO, 'estado'=>$estado,
-				'modificada'=>$page->getModDate()==0 ? '--' : formatTimestamp($page->getModDate(),'s'), 
-				'lecturas'=>$page->getReads(),'order'=>$page->order(),'type'=>$page->type());
+		$estado = $page->getAccess() ? __('Published','qpages') : __('Private','qpages');
+		$pages[] = array(
+			'id'=>$page->getID(),
+			'titulo'=>$page->getTitle(),
+			'catego'=>$catego->getName(),
+			'fecha'=>formatTimeStamp($page->getDate(),'s'),
+			'link'=>$page->getPermaLink(),
+			'estado'=>$estado,
+			'modificada'=>$page->getModDate()==0 ? '--' : formatTimestamp($page->getModDate(),'c'), 
+			'lecturas'=>$page->getReads(),
+			'order'=>$page->order(),
+			'type'=>$page->type()
+		);
 	}
 	
 	/**
@@ -86,7 +88,8 @@ function showPages($acceso = -1){
     RMTemplate::get()->add_style('admin.css', 'qpages');
     RMTemplate::get()->add_script('../include/js/qpages.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($acceso<0 ? _AS_QP_PAGELIST : ($acceso==0 ? _AS_QP_PRIVATELIST : _AS_QP_PUBLICLIST)));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Pages Management','qpages'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($acceso<0 ? __('All Pages','qpages') : ($acceso==0 ? __('Draft pages','qpages') : __('Published pages','qpages'))));
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/qp_pages.php", 'module', 'qpages');
@@ -104,7 +107,7 @@ function newForm($edit = 0, $redir = false){
 		$$k = $v;
 	}
 	
-	$pag = isset($page) ? $page : '';
+	$page = isset($page) ? $page : 1;
 	
 	if ($edit){
 		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
@@ -123,7 +126,7 @@ function newForm($edit = 0, $redir = false){
 	$form->styles('width: 25%;','odd');
 	$form->addElement(new RMFormText(__('Page title','qpages'), 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
 	if ($edit){
-		$ele = new RMFormText(__('URL Title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
+		$ele = new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
 		$ele->setDescription(__('Specify a title to use in friendly urls. Remember, this title must not contain any special char, only numbers or letters.'));
 		$form->addElement($ele);
 		$form->addElement(new RMFormHidden('id', $page->getID()));
@@ -138,7 +141,7 @@ function newForm($edit = 0, $redir = false){
 	}
 	$form->addElement($ele, true, "Select:0");
 
-	$form->addElement(new RMFormTextArea(__('Introduction','qpages'), 'desc', 5, 60, $edit ? $page->getDescription() : ''));
+	$form->addElement(new RMFormTextArea(__('Introduction','qpages'), 'desc', 5, 60, $edit ? $page->getVar('desc','e') : ''));
 	
 	$ele = new RMFormEditor(__('Page content','qpages'), 'texto', '100%','450px',$edit ? $page->getText() : '',$mc['editor']);
 	$form->addElement($ele, true);
@@ -190,41 +193,38 @@ function newForm($edit = 0, $redir = false){
  * Muestra el formulario para la creación de una nueva página enlazada
  */
 function newLinkForm($edit = 0){
-	global $db, $mc, $xoopsModule, $myts, $util;
+	global $db, $mc, $xoopsModule, $myts;
 	
 	foreach ($_REQUEST as $k => $v){
 		$$k = $v;
 	}
 	
-	$pag = $page;
+	$page = isset($page) ? $page : 1;
 	
 	if ($edit){
 		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 		if ($id<=0){
-			redirectMsg("pages.php&cat=$cat&limit=$limit&page=$pag", _AS_QP_NOID, 1);
+			redirectMsg("pages.php&cat=$cat&page=$page", __('You must provide a page ID to edit','qpages'), 1);
 			die();
 		}
 		$page = new QPPage($id);
 	}
 	
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_NEWPAGE);
-	optionsBar();
-	$head = '<script type="text/javascript" src="'.QP_URL.'/include/jquery-min.js"></script>';
-	$head .= '<script type="text/javascript" src="'.QP_URL.'/include/jquery-ui-min.js"></script>';
-	$head .= '<script type="text/javascript" src="'.QP_URL.'/include/forms_pages.js"></script>';
-	xoops_cp_header($head);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Edit linked page','qpages') : __('New linked page','qpages')));
+
+	RMTemplate::get()->add_script('../include/js/forms_pages.js');
+	xoops_cp_header();
 	
-	$form = new RMForm($edit ? _AS_QP_EDITLINKTITLE : _AS_QP_NEWLINKTITLE, 'frmNew', 'pages.php');
-	$form->addElement(new RMText(_AS_QP_TITLE, 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
-	$form->tinyCSS(QP_URL.'/styles/main.css');
+	$form = new RMForm($edit ? __('Edit Linked Page','qpages') : __('New Linked Page','qpages'), 'frmNew', 'pages.php');
+	$form->addElement(new RMFormText(__('Page title','qpages'), 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
 	if ($edit){
-		$ele = new RMText(_AS_QP_FRIENDTITLE, 'titulo_amigo', 50, 255, $page->getFriendTitle());
-		$ele->setDescription(_AS_QP_FRIENDDESC);
+		$ele = new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
+		$ele->setDescription(__('Thsi title will be used in friendly url.','qpages'));
 		$form->addElement($ele);
-		$form->addElement(new RMHidden('id', $page->getID()));
+		$form->addElement(new RMFormHidden('id', $page->getID()));
 	}
 	
-	$ele = new RMSelect(_AS_QP_CATEGO, 'catego', 0);
+	$ele = new RMFormSelect(__('Category','qpages'), 'catego', 0);
 	$categos = array();
 	qpArrayCategos($categos);
 	$ele->addOption('0',_SELECT, $edit ? 0 : 1);
@@ -233,41 +233,35 @@ function newLinkForm($edit = 0){
 	}
 	$form->addElement($ele, true, "Select:0");
 
-	$form->addElement(new RMTextArea(_AS_QP_SHORTDESC, 'desc', 5, 60, $edit ? $page->getDescription() : ''));
+	$form->addElement(new RMFormTextArea(__('Introduction','qpages'), 'desc', 5, 60, $edit ? $page->getDescription() : ''));
 	// URL
-	$form->addElement(new RMText(_AS_QP_URL, 'url', 50, 255, $edit ? $page->url() : ''), true);
+	$form->addElement(new RMFormText(__('Target URL','qpages'), 'url', 50, 255, $edit ? $page->url() : ''), true);
 	// Grupos
-	$ele = new RMGroups(_AS_QP_GROUPS, 'grupos', 1, 1, 3, $edit ? $page->getGroups() : array(0));
-	$ele->setDescription(_AS_QP_GROUPS_DESC);
+	$ele = new RMFormGroups(__('Allowed groups','qpages'), 'grupos', 1, 1, 3, $edit ? $page->getGroups() : array(0));
+	$ele->setDescription(__('Only selected groups can access to this document.','qpages'));
 	$form->addElement($ele);
 	
-	$form->addElement(new RMYesNo(_AS_QP_INMENU, 'menu', $edit ? $page->getInMenu() : 0));
 	if ($edit){
-		$ele = new RMRadio(_AS_QP_PAGESTATUS, 'acceso', 0);
-		$ele->addOption(_AS_QP_PUBLISHED, '1', $page->getAccess() ? 1 : 0);
-		$ele->addOption(_AS_QP_PRIVATED, '0', $page->getAccess() ? 0 : 1);
+		$ele = new RMFormRadio(__('Page status','qpages'), 'acceso', 0);
+		$ele->addOption(__('Published','qpages'), '1', $page->getAccess() ? 1 : 0);
+		$ele->addOption(__('Draft','qpages'), '0', $page->getAccess() ? 0 : 1);
 		$form->addElement($ele);
 	}
 	
 	$page_metas = $edit ? $page->get_meta() : array();
 	$available_metas = qp_get_metas();
 	include 'metas.php';
-	$form->addElement(new RMLabel('', $meta_data));
+	$form->addElement(new RMFormLabel('', $meta_data));
 	
-	$ele = new RMButtonGroup();
-	$ele->addButton('saveret', _AS_QP_SAVEANDRETURN, 'submit');
-	$ele->addButton('onlysave', _AS_QP_SAVE, 'submit');
-	if (!$edit) $ele->addButton('publish', _AS_QP_PUBLISH, 'submit');
-	$ele->setExtra('saveret', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? "saveretedit" : "saveret").'\';"');
-	$ele->setExtra('onlysave', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? 'saveedit' : 'save').'\';"');
-	if (!$edit) $ele->setExtra('publish', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? 'publishedit' : 'publish').'\';"');
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('save', $edit ? __('Update Page','qpages') : __('Save Page','qpages'), 'submit');
+	$ele->addButton('cancel', __('Cancel','qpages'), 'button', 'onclick="history.go(-1);"');
 	
 	$form->addElement($ele);
-	$form->addElement(new RMHidden('op', $edit ? 'publishedit' : 'publish'));
-	$form->addElement(new RMHidden('type', 1));
-	$form->addElement(new RMHidden('cat', $cat));
-	$form->addElement(new RMHidden('limit', $limit));
-	$form->addElement(new RMHidden('page', $pag));
+	$form->addElement(new RMFormHidden('op', $edit ? 'publishedit' : 'publish'));
+	$form->addElement(new RMFormHidden('type', 1));
+	$form->addElement(new RMFormHidden('cat', $cat));
+	$form->addElement(new RMFormHidden('page', $page));
 	$form->display();
 	
 
@@ -277,7 +271,7 @@ function newLinkForm($edit = 0){
  * Esta función permite guardar y publicar un envío
  */
 function savePage($state=0){
-	global $db, $util, $xoopsUser, $myts, $mc;
+	global $xoopsSecurity, $xoopsUser, $myts, $mc, $xoopsModule;
 	
 	$cat = 0;
 	$url = '';
@@ -286,39 +280,35 @@ function savePage($state=0){
 		$$k = $v;
 	}
 	
-	$pag = isset($page) ? $page : '';
-	
-	if (!$util->validateToken()){
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_QP_ERRTOKEN, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg("pages.php?op=new&cat=$cat&page=$page", __('Session token expired!','qpages'), 1);
 		die();
 	}
 	
 	if ($titulo==''){
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_QP_ERRTITLE, 1);
+		redirectMsg("pages.php?op=new&cat=$cat&page=$page", __('Title is missing','qpages'), 1);
 		die();
 	}
 	
 	if (isset($pretitulo)){
 		
 		if ($pretitulo != $titulo){
-			$titulo_amigo = $util->sweetstring($titulo);
+			$titulo_amigo = TextCleaner::getInstance()->sweetstring($titulo);
 		} else {
 			$titulo_amigo = $titulo_amigo;
 		}
 		
 	} else {
-		$titulo_amigo = $util->sweetstring($titulo);
+		$titulo_amigo = TextCleaner::getInstance()->sweetstring($titulo);
 	}
 	
-	$titulo = $myts->makeTboxData4Save($titulo);
-	
 	if ($texto=='' && $type==0){
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_QP_ERRTEXT, 1);
+		redirectMsg("pages.php?op=new&cat=$cat&page=$page", __('Content is missing','qpages'), 1);
 		die();
 	}
 	
 	if ($catego<=0){
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_NP_ERRCAT, 1);
+		redirectMsg("pages.php?op=new&cat=$cat&page=$page", __('You must select a category for this page','qpages'), 1);
 		die();
 	}
 	
@@ -329,33 +319,46 @@ function savePage($state=0){
 	/**
 	 * Comprobamos que no exista otra página con el mismo título
 	 */
+	$db = Database::getInstance();
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("qpages_pages")." WHERE titulo_amigo='$titulo_amigo'";
 	list($num) = $db->fetchRow($db->query($sql));
 	if ($num>0){
 		
+		$form = new RMForm(__('Review Page','qpages'), 'frm-review', 'pages.php');
+		
+		$form->addElement(new RMFormLabel('', __('A page with same friendly name already exists. Please change the freindly title to prevent errors.','qpages')));
 		foreach ($_POST as $k => $v){
 			if ($k=='titulo_amigo') continue;
+			if ($k=='text') continue;
+			if ($k=='grupos') continue;
+			if ($k=='XOOPS_TOKEN_REQUEST') continue;
 			if ($k=='titulo') $k = 'pretitulo';
 			$hiddens[$k] = $v;
 		}
-		$buttons['ok']['type'] = 'submit';
-		$buttons['ok']['value'] = _SUBMIT;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="history.go(-1);"';
 		
-		$texto = _AS_QP_ERREXISTS;
-		$texto .= "<br /><br />"._AS_QP_TITLE."<br />
-					<input type='text' name='titulo' value='$titulo' size='50' maxlength='255' /><br />
-					"._AS_QP_FRIENDTITLE."<br />
-					<input type='text' name='titulo_amigo' value='$titulo_amigo' size='50' maxlength='255' /><br />";
+		$form->addElement(new RMFormText(__('Title','qpages'), 'titulo', 50, 255, $titulo), true);
+		$form->addElement(new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $titulo_amigo), true);
+		$form->addElement(new RMFormHidden('texto', TextCleaner::getInstance()->specialchars($texto)));
 		
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_FRIENDTITLE);
+		foreach($hiddens as $k => $v){
+			$form->addElement(new RMFormHidden($k, $v));
+		}
+		
+		foreach ($grupos as $group){
+			$form->addElement(new RMFormHidden('grupos[]', $group));
+		}
+		
+		$ele = new RMFormButtonGroup();
+		$ele->addButton('sbt', __('Save Page', 'qpages'), 'submit');
+		$ele->addButton('cancel', __('Cancel','qpages'), 'button', 'onclick="history.go(-1);"');
+		$form->addElement($ele);
+		
+		qpages_toolbar();
 		xoops_cp_header();
-		$util->msgBox($hiddens, 'pages.php', $texto, '../images/warn.png', $buttons, true, '400px');
+		$form->display();
 		xoops_cp_footer();
 		die();
+
 	}
 	
 	#Guardamos los datos del Post
@@ -366,7 +369,7 @@ function savePage($state=0){
 	$page->setModDate(time());
 	$page->setText($myts->makeTareaData4Save($texto));
 	$page->setCategory($catego);
-	$page->setDescription(substr($util->filterTags($desc), 0, 255));
+	$page->setVar('desc', TextCleaner::getInstance()->clean_disabled_tags($desc));
 	$page->setGroups($grupos);
 	$page->setInMenu($menu);
 	$page->setHTML(isset($dohtml) ? 1 : 0);
@@ -390,9 +393,9 @@ function savePage($state=0){
 	
 	if ($page->save()){
 		$xoopsUser->incrementPost();
-		redirectMsg($state==0 ? "pages.php?op=edit&id=".$page->getID()."&cat=$cat&limit=$limit&page=$pag" : "pages.php?cat=$cat&limit=$limit&page=$pag", _AS_QP_DBOK, 0);
+		redirectMsg($state==0 ? "pages.php?op=edit&id=".$page->getID()."&cat=$cat&page=$pag" : "pages.php?cat=$cat&page=$pag", _AS_QP_DBOK, 0);
 	} else {
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
+		redirectMsg("pages.php?op=new&cat=$cat&page=$pag", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
 	}
 	
 	
@@ -401,7 +404,7 @@ function savePage($state=0){
  * Almacena la información de un artículo editado
  */
 function saveEdited($status=0){
-	global $db, $util, $xoopsUser, $myts, $mc;
+	global $xoopsSecurity, $xoopsUser, $myts, $mc;
 	
 	$cat = 0;
 	$url='';
@@ -414,48 +417,46 @@ function saveEdited($status=0){
 	$pag = isset($page) ? $page : '';
 	
 	if ($id<=0){
-		redirectMsg("pages.php?cat=$cat&limit=$limit&page=$pag", _AS_QP_NOID, 1);
+		redirectMsg("pages.php?cat=$cat&page=$pag", __('Page ID not valid!','qpages'), 1);
 		die();
 	}
-	if (!$util->validateToken()){
-		redirectMsg("pages.php?op=edit&cat=$cat&id=$id&page=$pag&limit=$limit", _AS_QP_ERRTOKEN, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg("pages.php?op=edit&cat=$cat&id=$id&page=$pag", __('Session token expired','qpages'), 1);
 		die();
 	}
 	$page = new QPPage($id);
 	if ($page->isNew()){
-		redirectMsg("pages.php?cat=$cat&limit=$limit&page=$pag", _AS_QP_NOID, 1);
+		redirectMsg("pages.php?cat=$cat&page=$pag", __('Specified page does not exists!','qpages'), 1);
 		die();
 	}
 	$op = $page->type() ? 'editlink' : 'edit';
 	
 	if ($titulo==''){
-		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&limit=$limit&page=$pag", _AS_QP_ERRTITLE, 1);
+		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&page=$pag", __('You must provide a title for this page!','qpages'), 1);
 		die();
 	}
 	
 	if ($texto==''&& $type==0){
-		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&limit=$limit&page=$pag", _AS_QP_ERRTEXT, 1);
+		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&page=$pag", __('You must provide the content for this page!','qpages'), 1);
 		die();
 	}
 	
 	if ($catego<=0){
-		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&limit=$limit&page=$pag", _AS_NP_ERRCAT, 1);
+		redirectMsg("pages.php?op=$op&cat=$cat&id=$id&page=$pag", __('Select at least a category to assign this page','qpages'), 1);
 		die();
 	}
 	
 	if (isset($pretitulo)){
 		
 		if ($pretitulo != $titulo){
-			$titulo_amigo = $util->sweetstring($titulo);
+			$titulo_amigo = TextCleaner::sweetstring($titulo);
 		} else {
 			$titulo_amigo = $titulo_amigo;
 		}
 		
 	} else {
-		$titulo_amigo = $titulo_amigo!='' ? $titulo_amigo : $util->sweetstring($titulo);
+		$titulo_amigo = $titulo_amigo!='' ? $titulo_amigo : TextCleaner::sweetstring($titulo);
 	}
-	
-	$titulo = $myts->makeTboxData4Save($titulo);
 	
 	if (count($grupos)<=0){
 		$grupos = array(0);
@@ -464,33 +465,46 @@ function saveEdited($status=0){
 	/**
 	 * Comprobamos que no exista otra página con el mismo título
 	 */
+	$db = Database::getInstance();
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("qpages_pages")." WHERE titulo_amigo='$titulo_amigo' AND id_page<>$id";
 	list($num) = $db->fetchRow($db->query($sql));
 	if ($num>0){
 		
+		$form = new RMForm(__('Review Page','qpages'), 'frm-review', 'pages.php');
+		
+		$form->addElement(new RMFormLabel('', __('A page with same friendly name already exists. Please change the freindly title to prevent errors.','qpages')));
 		foreach ($_POST as $k => $v){
 			if ($k=='titulo_amigo') continue;
+			if ($k=='text') continue;
+			if ($k=='grupos') continue;
+			if ($k=='XOOPS_TOKEN_REQUEST') continue;
 			if ($k=='titulo') $k = 'pretitulo';
 			$hiddens[$k] = $v;
 		}
-		$buttons['ok']['type'] = 'submit';
-		$buttons['ok']['value'] = _SUBMIT;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="history.go(-1);"';
 		
-		$texto = _AS_QP_ERREXISTS;
-		$texto .= "<br /><br />"._AS_QP_TITLE."<br />
-					<input type='text' name='titulo' value='$titulo' size='50' maxlength='255' /><br />
-					"._AS_QP_FRIENDTITLE."<br />
-					<input type='text' name='titulo_amigo' value='$titulo_amigo' size='50' maxlength='255' /><br />";
+		$form->addElement(new RMFormText(__('Title','qpages'), 'titulo', 50, 255, $titulo), true);
+		$form->addElement(new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $titulo_amigo), true);
+		$form->addElement(new RMFormHidden('texto', TextCleaner::getInstance()->specialchars($texto)));
 		
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_FRIENDTITLE);
+		foreach($hiddens as $k => $v){
+			$form->addElement(new RMFormHidden($k, $v));
+		}
+		
+		foreach ($grupos as $group){
+			$form->addElement(new RMFormHidden('grupos[]', $group));
+		}
+		
+		$ele = new RMFormButtonGroup();
+		$ele->addButton('sbt', __('Save Page', 'qpages'), 'submit');
+		$ele->addButton('cancel', __('Cancel','qpages'), 'button', 'onclick="history.go(-1);"');
+		$form->addElement($ele);
+		
+		qpages_toolbar();
 		xoops_cp_header();
-		$util->msgBox($hiddens, 'pages.php', $texto, '../images/warn.png', $buttons, true, '400px');
+		$form->display();
 		xoops_cp_footer();
 		die();
+		
 	}
 
 
@@ -518,59 +532,38 @@ function saveEdited($status=0){
 	}
 	
 	if ($page->update()){
-		redirectMsg($status==0 ? "pages.php?op=edit&cat=$cat&id=".$page->getID()."&limit=$limit&page=$pag" : 'pages.php?cat='.$cat, _AS_QP_DBOK, 0);
+		redirectMsg($status==0 ? "pages.php?op=edit&cat=$cat&id=".$page->getID()."&page=$pag" : 'pages.php?cat='.$cat, __('Page updated successfully!','qpages'), 0);
 	} else {
-		redirectMsg("pages.php?op=new&cat=$cat&limit=$limit&page=$pag", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
+		redirectMsg("pages.php?op=new&cat=$cat&page=$pag", __('Database update failed!','qpages') . "<br />" . $page->errors(), 1);
 	}
 }
 /**
  * Elimina un artículo de la base de datos
  */
 function deletePage(){
-	global $util, $xoopsModule;
+	global $xoopsSecurity, $xoopsModule;
 	
-	foreach ($_REQUEST as $k => $v){
-		$$k = $v;
+	if (!$xoopsSecurity->check()){
+		redirectMsg("pages.php?cat=$cat&page=$page", __('Session token expired!','qpages'), 1);
+		die();
 	}
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
 	
-	if ($ok){
+	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
 		
-		$page = new QPPage($id);
-		if ($id<=0){
-			redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_NOID, 1);
-			die();
-		}
-		if ($page->isNew()){
-			redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_NOID, 1);
-			die();
-		}
+	$page = new QPPage($id);
+	if ($id<=0){
+		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_NOID, 1);
+		die();
+	}
+	if ($page->isNew()){
+		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_NOID, 1);
+		die();
+	}
 		
-		if ($page->delete()){
-			redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_DBOK, 0);
-		} else {
-			redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
-		}
-		
+	if ($page->delete()){
+		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBOK, 0);
 	} else {
-		
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_DELPAGE);
-		xoops_cp_header();
-		$hiddens['op'] = 'delete';
-		$hiddens['id'] = $id;
-		$hiddens['page'] = $page;
-		$hiddens['ok'] = 1;
-		$hiddens['cat'] = $cat;
-		$hiddens['limit'] = $limit;
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="history.go(-1);"';
-		
-		$util->msgBox($hiddens, 'pages.php', _AS_QP_CONFIRMDEL, XOOPS_ALERT_ICON, $buttons, true, 400);
-		xoops_cp_footer();
+		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
 	}
 	
 }
@@ -583,7 +576,7 @@ function approveBulk($acceso){
 	}
 	
 	if (count($pages)<=0){
-		redirectMsg($aprovado ? "pages.php?op=private&cat=$cat&limit=$limit&page=$page" : "pages.php?op=public&cat=$cat&limit=$limit&page=$page", _AS_QP_SELECTONE, 1);
+		redirectMsg($aprovado ? "pages.php?op=private&cat=$cat&page=$page" : "pages.php?op=public&cat=$cat&page=$page", _AS_QP_SELECTONE, 1);
 		die();
 	}
 	
@@ -599,9 +592,9 @@ function approveBulk($acceso){
 	
 	$sql .= $cond;
 	if ($db->queryF($sql)){
-		redirectMsg($acceso ? "pages.php?op=private&cat=$cat&limit=$limit&page=$page" : "pages.php?op=public&cat=$cat&limit=$limit&page=$page", _AS_QP_DBOK, 0);
+		redirectMsg($acceso ? "pages.php?op=private&cat=$cat&page=$page" : "pages.php?op=public&cat=$cat&page=$page", _AS_QP_DBOK, 0);
 	} else {
-		redirectMsg($acceso ? "pages.php?op=private&cat=$cat&limit=$limit&page=$page" : "pages.php?op=public&cat=$cat&limit=$limit&page=$page", _AS_QP_DBERROR . '<br />' . $db->error(), 1);
+		redirectMsg($acceso ? "pages.php?op=private&cat=$cat&page=$page" : "pages.php?op=public&cat=$cat&page=$page", _AS_QP_DBERROR . '<br />' . $db->error(), 1);
 	}
 	
 }
@@ -614,7 +607,7 @@ function linkedPages(){
 	}
 	
 	if (count($pages)<=0){
-		redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_SELECTONE, 1);
+		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_SELECTONE, 1);
 		die();
 	}
 	
@@ -634,7 +627,7 @@ function linkedPages(){
 		$page->update();
 	}
 
-	redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_DBOK, 0);
+	redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBOK, 0);
 	
 }
 
@@ -646,7 +639,7 @@ function saveChanges(){
 	}
 	
 	if (count($porder)<=0){
-		header("location: pages.php?cat=$cat&page=$page&limit=$limit", '', 0);
+		header("location: pages.php?cat=$cat&page=$page", '', 0);
 		die();
 	}
 	
@@ -656,7 +649,7 @@ function saveChanges(){
 		$pag->setOrder($v);
 		$pag->update();
 	}
-	redirectMsg("pages.php?cat=$cat&page=$page&limit=$limit", _AS_QP_DBOK, 0);
+	redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBOK, 0);
 	
 }
 

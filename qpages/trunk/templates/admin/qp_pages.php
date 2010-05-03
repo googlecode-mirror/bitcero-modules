@@ -1,94 +1,102 @@
 <h1 class="rmc_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Pages','qpages'); ?></h1>
-
+<script type="text/javascript">
+<!--
+	var qp_select_message = '<?php _e('Select at least a page to apply this action!','qpages'); ?>';
+	var qp_message = '<?php _e('Do you really wisth to delete selected pages?','qpages'); ?>';
+-->
+</script>
 <form name="frmSearch" method="get" action="pages.php" style="margin: 0;">
-<div class="qp_options">
+<div class="qp_options top_options">
     <?php _e('Search:','qpages'); ?>
     <input type="text" name="keyw" value="<?php echo $keyw ?>" size="30" /> &#160; 
     <?php _e('Category','qpages'); ?>
     <select name="cat" onchange="submit();">
-        <?php foreach($categories as $cat): ?>
-            <option value="<?php echo $cat['id']; ?>"<?php if($cat['id']==$catego): ?> selected="selected"<?php endif; ?>><?php echo $cat['nombre']; ?></option>
+        <?php foreach($categories as $category): ?>
+            <option value="<?php echo $category['id']; ?>"<?php if($category['id']==$catego): ?> selected="selected"<?php endif; ?>><?php echo $category['nombre']; ?></option>
         <?php endforeach; ?>
     </select>
     <input type="submit" name="sbt" value="<?php _e('Apply','qpages'); ?>" class="formButton" />
 </div>
 </form>
 
-<form name="modPages" method="post" action="pages.php">
+<form name="modPages" id="frm-pages" method="post" action="pages.php">
+<div class="qp_options">
+	<?php $nav->display(false); ?>
+	<select name="op" id="bulk-top">
+		<option value="" selected="selected"><?php _e('Bulk actions...','qpages'); ?></option>
+		<option value="private"><?php _e('Set as draft','qpages'); ?></option>
+		<option value="public"><?php _e('Publish','qpages'); ?></option>
+		<option value="linked"><?php _e('Set as linked','qpages'); ?></option>
+		<option value="delete"><?php _e('Delete','qpages'); ?></option>
+	</select>
+	<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-pages');" />
+</div>
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="outer">
     <thead>
     <tr class="head" align="center">
-  	    <th width="20"><input<?php if(empty($categories)): ?> disabled="disabled"<?php endif; ?> type="checkbox" id="checkall" onclick='$("#frm-categos").toggleCheckboxes(":not(#checkall)");' /></th>
-        <th width="30"><?php _e('ID','qpages'); ?></th>
-        <th width="26">&nbsp;</th>
-        <th><?php _e('Title','qpages'); ?></th>
+  	    <th width="20"><input<?php if(empty($categories)): ?> disabled="disabled"<?php endif; ?> type="checkbox" id="checkall" onclick='$("#frm-pages").toggleCheckboxes(":not(#checkall)");' /></th>
+        <th width="20"><?php _e('ID','qpages'); ?></th>
+        <th width="20">&nbsp;</th>
+        <th align="left"><?php _e('Title','qpages'); ?></th>
         <th><?php _e('Modified','qpages'); ?></th>
         <th><?php _e('Views','qpages'); ?></th>
         <th><?php _e('Visibility','qpages'); ?></th>
         <th><?php _e('Diplay order','qpages'); ?></th>
     </tr>
     </thead>
+    <tfoot>
+    <tr class="head" align="center">
+  	    <th width="20"><input<?php if(empty($categories)): ?> disabled="disabled"<?php endif; ?> type="checkbox" id="checkall2" onclick='$("#frm-pages").toggleCheckboxes(":not(#checkall2)");' /></th>
+        <th width="20"><?php _e('ID','qpages'); ?></th>
+        <th width="20">&nbsp;</th>
+        <th align="left"><?php _e('Title','qpages'); ?></th>
+        <th><?php _e('Modified','qpages'); ?></th>
+        <th><?php _e('Views','qpages'); ?></th>
+        <th><?php _e('Visibility','qpages'); ?></th>
+        <th><?php _e('Diplay order','qpages'); ?></th>
+    </tr>
+    </tfoot>
     <tbody>
-    <?php if(empty($paginas)): ?>
+    <?php if(empty($pages)): ?>
         <tr class="even">
             <td align="center" colspan="8"><?php _e('There are not pages registered yet!','qpages'); ?></td>
         </tr>
     <?php endif; ?>
-    <?php foreach($paginas as $page): ?>
-    <tr class="<{cycle values="even,odd"}>" align="center">
-  	    <td><input type="checkbox" name="pages[]" value="<{$page.id}>" /></td>
-        <td><strong><{$page.id}></strong></td>
+    <?php foreach($pages as $page): ?>
+    <tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
+  	    <td><input type="checkbox" name="ids[]" id="item-<?php echo $page['id']; ?>" value="<?php echo $page['id']; ?>" /></td>
+        <td><strong><?php echo $page['id']; ?></strong></td>
         <td>
-    	    <img src="../images/page<{if $page.type}>_go<{/if}>.png" alt="" />
+    	    <img src="../images/page<?php if($page['type']): ?>_go<?php endif; ?>.png" alt="" />
         </td>
-        <td align="left"><a href="<{$page.link}>"><{$page.titulo}></a></td>
-        <td><{$page.modificada}></td>
-	    <td><strong><{$page.menu}></strong></td>
-        <td align="center"><{$page.lecturas}></td>
-        <td><{$page.estado}></td>
-        <td><input type="text" size="5" value="<{$page.order}>" name="porder[<{$page.id}>]" style="text-align: center;" /></td>
-	    <td><a href="pages.php?op=edit<{if $page.type}>link<{/if}>&amp;id=<{$page.id}>&amp;cat=<{$catego}>" title="<{$lang_edit}>"><{$lang_edit}></a> &bull;
-	    <a href="pages.php?op=delete&amp;id=<{$page.id}>&amp;cat=<{$catego}>" title="<{$lang_delete}>"><{$lang_delete}></a></td>
+        <td align="left">
+        	<a href="<?php echo $page['link']; ?>"><strong><?php echo $page['titulo']; ?></strong></a>
+        	<span class="rmc_options">
+        		<a href="pages.php?op=edit<?php if($page['type']): ?>link<?php endif; ?>&amp;id=<?php echo $page['id']; ?>&amp;cat=<?php echo $cat; ?>" title="<?php _e('Edit','qpages'); ?>"><?php _e('Edit','qpages'); ?></a> &bull;
+	    		<a href="javascript:;" title="<?php _e('Delete','qpages'); ?>" onclick="select_option(<?php echo $page['id']; ?>,'delete','frm-pages');"><?php _e('Delete','qpages'); ?></a>
+        	</span>
+        </td>
+        <td><?php echo $page['modificada']; ?></td>
+        <td align="center"><?php echo $page['lecturas']; ?></td>
+        <td><?php echo $page['estado']; ?></td>
+        <td><input type="text" size="5" value="<?php echo $page['order']; ?>" name="porder[<?php echo $page['id']; ?>]" style="text-align: center;" /></td>
     </tr>
     <?php endforeach; ?>
     </tbody>
-  <tr class="foot">
-  	<td align="center"><img src="<{$xoops_url}>/images/root.gif" align="absmiddle" /></td>
-	<td colspan="9">
-		<input type="hidden" name="op" value="" />
-		<{if $acceso<0}>
-			<input type="button" name="action" value="<{$lang_privatize}>" class='formButton' onclick="document.forms['modPages'].elements['op'].value='privatize'; submit();" />
-			<input type="button" name="action" value="<{$lang_publicate}>" class='formButton' onclick="document.forms['modPages'].elements['op'].value='publicate'; submit();" />
-		<{elseif $acceso==1}>
-			<input type="button" name="action" value="<{$lang_privatize}>" class='formButton' onclick="document.forms['modPages'].elements['op'].value='privatize'; submit();" />
-		<{elseif $acceso==0}>
-			<input type="button" name="action" value="<{$lang_publicate}>" class='formButton' onclick="document.forms['modPages'].elements['op'].value='publicate'; submit();" />
-		<{/if}>
-		<input type="button" value="<{$lang_savechanges}>" class="formButtonBlue" onclick="document.forms['modPages'].elements['op'].value='savechanges'; submit();" />
-		<input type="button" value="<{$lang_linked}>" class="formButtonGreen" onclick="document.forms['modPages'].elements['op'].value='linked'; submit();" />
-		<input type="hidden" name="cat" value="<{$catego}>" />
-		<input type="hidden" name="page" value="<{$pactual}>" />
-		<input type="hidden" name="limit" value="<{$limit}>" />
-	</td>
-  </tr>
+	
 </table>
-<table width="100%" cellspacing="1" cellpadding="3" border="0">
-	<tr>
-	<td align="right">
-		<{foreach item=pag from=$pages}>
-			<{if $pag.id=='anterior'}>
-				<a href="<{$pag.link}>">&laquo; <{$lang_prev}></a>
-			<{elseif $pag.id=='siguiente'}>
-				<a href="<{$pag.link}>"><{$lang_next}> &raquo;</a>
-			<{else}>
-				<{if $pag.id==$pactual}>
-					<span class="nppageactual"><{$pag.id}></span>
-				<{else}>
-				<a href="<{$pag.link}>"><{$pag.id}></a>
-				<{/if}>
-			<{/if}>
-		<{/foreach}>
-	</td>
-	</tr>
-</table>
+<div class="qp_options">
+	<?php $nav->display(false); ?>
+	<select name="opb" id="bulk-bottom">
+		<option value="" selected="selected"><?php _e('Bulk actions...','qpages'); ?></option>
+		<option value="private"><?php _e('Set as draft','qpages'); ?></option>
+		<option value="public"><?php _e('Publish','qpages'); ?></option>
+		<option value="linked"><?php _e('Set as linked','qpages'); ?></option>
+		<option value="delete"><?php _e('Delete','qpages'); ?></option>
+	</select>
+	<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-pages');" />
+</div>
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
+<input type="hidden" name="cat" value="<?php echo $cat; ?>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
