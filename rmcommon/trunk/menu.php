@@ -8,6 +8,9 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!function_exists('__'))
+    include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
+
 $adminmenu[0]['title'] = __('Dashboard','rmcommon');
 $adminmenu[0]['link'] = "index.php";
 $adminmenu[0]['icon'] = "images/dashboard.png";
