@@ -72,3 +72,4 @@ $adminmenu[] = array(
     'icon'=>"../images/trackbacks.png",
     'location'=>"trackbacks",
 );
+
