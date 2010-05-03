@@ -83,6 +83,9 @@ function showPages($acceso = -1){
 		$categories[] = array('id'=>$k['id_cat'],'nombre'=>$k['nombre']);
 	}
 	
+    RMTemplate::get()->add_style('admin.css', 'qpages');
+    RMTemplate::get()->add_script('../include/js/qpages.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($acceso<0 ? _AS_QP_PAGELIST : ($acceso==0 ? _AS_QP_PRIVATELIST : _AS_QP_PUBLICLIST)));
 	xoops_cp_header();
 	
@@ -90,6 +93,7 @@ function showPages($acceso = -1){
 	
 	xoops_cp_footer();
 }
+
 /**
  * Muestra el formulario para la creación de un nuevo artículo
  */
@@ -105,42 +109,38 @@ function newForm($edit = 0, $redir = false){
 	if ($edit){
 		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 		if ($id<=0){
-			redirectMsg("pages.php?cat=$cat&page=$pag&limit=$limit", _AS_QP_NOID, 1);
+			redirectMsg("pages.php?cat=$cat&page=$page", __('You must specify a page ID to edit!','qpages'), 1);
 			die();
 		}
 		$page = new QPPage($id);
 	}
 	
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_NEWPAGE);
-	optionsBar();
-	$head = '<script type="text/javascript" src="'.QP_URL.'/include/jquery-min.js"></script>';
-	$head .= '<script type="text/javascript" src="'.QP_URL.'/include/jquery-ui-min.js"></script>';
-	$head .= '<script type="text/javascript" src="'.QP_URL.'/include/forms_pages.js"></script>';
-	xoops_cp_header($head);
+    RMTemplate::get()->add_script('../include/js/forms_pages.js');
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.($edit ? __('Edit page','qpages') : __('New page','qpages')));
+	xoops_cp_header();
 	
-	$form = new RMForm($edit ? _AS_QP_EDITTITLE : _AS_QP_NEWTITLE, 'frmNew', 'pages.php');
+	$form = new RMForm($edit ? __('Edit Page','qpages') : __('New Page','qpages'), 'frmNew', 'pages.php');
 	$form->styles('width: 25%;','odd');
-	$form->addElement(new RMText(_AS_QP_TITLE, 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
-	$form->tinyCSS(QP_URL.'/styles/main.css');
+	$form->addElement(new RMFormText(__('Page title','qpages'), 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
 	if ($edit){
-		$ele = new RMText(_AS_QP_FRIENDTITLE, 'titulo_amigo', 50, 255, $page->getFriendTitle());
-		$ele->setDescription(_AS_QP_FRIENDDESC);
+		$ele = new RMFormText(__('URL Title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
+		$ele->setDescription(__('Specify a title to use in friendly urls. Remember, this title must not contain any special char, only numbers or letters.'));
 		$form->addElement($ele);
-		$form->addElement(new RMHidden('id', $page->getID()));
+		$form->addElement(new RMFormHidden('id', $page->getID()));
 	}
 	
-	$ele = new RMSelect(_AS_QP_CATEGO, 'catego', 0);
+	$ele = new RMFormSelect(__('Category','qpages'), 'catego', 0);
 	$categos = array();
 	qpArrayCategos($categos);
-	$ele->addOption('0',_SELECT, $edit ? 0 : 1);
+	$ele->addOption('0',__('Select category...','qpages'), $edit ? 0 : 1);
 	foreach ($categos as $k){
 		$ele->addOption($k['id_cat'], str_repeat("-", $k['saltos']) . " " . $k['nombre'], $edit ? ($k['id_cat']==$page->getCategory() ? 1 : 0) : 0);
 	}
 	$form->addElement($ele, true, "Select:0");
 
-	$form->addElement(new RMTextArea(_AS_QP_SHORTDESC, 'desc', 5, 60, $edit ? $page->getDescription() : ''));
+	$form->addElement(new RMFormTextArea(__('Introduction','qpages'), 'desc', 5, 60, $edit ? $page->getDescription() : ''));
 	
-	$ele = new RMEditor(_AS_QP_PAGETEXT, 'texto', '100%','450px',$edit ? $page->getText() : '',$mc['editor']);
+	$ele = new RMFormEditor(__('Page content','qpages'), 'texto', '100%','450px',$edit ? $page->getText() : '',$mc['editor']);
 	$form->addElement($ele, true);
 	if ($edit){
 		$html = $page->html();
@@ -155,42 +155,34 @@ function newForm($edit = 0, $redir = false){
 		$image = 0;
 		$smiley = 1;
 	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $html, $xcode, $image, $smiley, $br));
+	$form->addElement(new RMFormTextOptions(__('Text options','qpages'), $html, $xcode, $image, $smiley, $br));
 	
 	// Grupos
-	$ele = new RMGroups(_AS_QP_GROUPS, 'grupos', 1, 1, 3, $edit ? $page->getGroups() : array(0));
-	$ele->setDescription(_AS_QP_GROUPS_DESC);
+	$ele = new RMFormGroups(__('Allowed groups','qpages'), 'grupos', 1, 1, 3, $edit ? $page->getGroups() : array(0));
+	$ele->setDescription(__('These groups can access and read page content.','qpages'));
 	$form->addElement($ele);
 	
-	$form->addElement(new RMYesNo(_AS_QP_INMENU, 'menu', $edit ? $page->getInMenu() : 0));
 	if ($edit){
-		$ele = new RMRadio(_AS_QP_PAGESTATUS, 'acceso', 0);
-		$ele->addOption(_AS_QP_PUBLISHED, '1', $page->getAccess() ? 1 : 0);
-		$ele->addOption(_AS_QP_PRIVATED, '0', $page->getAccess() ? 0 : 1);
+		$ele = new RMFormRadio(__('Status','qpages'), 'acceso', 0);
+		$ele->addOption(__('Public','qpages'), '1', $page->getAccess() ? 1 : 0);
+		$ele->addOption(__('Private','qpages'), '0', $page->getAccess() ? 0 : 1);
 		$form->addElement($ele);
 	}
 	
 	$page_metas = $edit ? $page->get_meta() : array();
 	$available_metas = qp_get_metas();
 	include 'metas.php';
-	$form->addElement(new RMLabel('Additional Fields', $meta_data));
+	$form->addElement(new RMFormLabel(__('Additional Fields', 'qpages'), $meta_data));
 	
-	$ele = new RMButtonGroup();
-	$ele->addButton('saveret', _AS_QP_SAVEANDRETURN, 'submit');
-	$ele->addButton('onlysave', _AS_QP_SAVE, 'submit');
-	if (!$edit) $ele->addButton('publish', _AS_QP_PUBLISH, 'submit');
-	$ele->setExtra('saveret', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? "saveretedit" : "saveret").'\';"');
-	$ele->setExtra('onlysave', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? 'saveedit' : 'save').'\';"');
-	if (!$edit) $ele->setExtra('publish', 'onclick="document.forms[\'frmNew\'].op.value=\''.($edit ? 'publishedit' : 'publish').'\';"');
+	$ele = new RMFormButtonGroup();
+	$ele->addButton('sbt', $edit ? __('Update Page','qpages') : __('Save Page','qpages'), 'submit');
 	
 	$form->addElement($ele);
-	$form->addElement(new RMHidden('op', $edit ? 'publishedit' : 'publish'));
-	$form->addElement(new RMHidden('type', 0));
-	$form->addElement(new RMHidden('cat', $cat));
-	$form->addElement(new RMHidden('page', $pag));
-	$form->addElement(new RMHidden('limit', $limit));
+	$form->addElement(new RMFormHidden('op', $edit ? 'publishedit' : 'publish'));
+	$form->addElement(new RMFormHidden('type', 0));
+	$form->addElement(new RMFormHidden('cat', $cat));
+	$form->addElement(new RMFormHidden('page', $page));
 	$form->display();
-	
 
 	xoops_cp_footer();
 }

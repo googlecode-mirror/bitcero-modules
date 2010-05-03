@@ -1,7 +1,7 @@
 <?php
 ob_start();
 ?>
-<table cellspacing="0" cellpadding="4" width="99%" id="existing_meta">
+<table class="outer" cellspacing="0" cellpadding="4" width="99%" id="existing_meta">
 <?php foreach($page_metas as $meta => $value): ?>
 <tr valign="top" class="even">
 	<td width="100">
@@ -14,9 +14,9 @@ ob_start();
 <?php endforeach; ?>
 </table>
 <br />
-<table cellspacing="0" cellpadding="4" width="99%">
+<table cellspacing="0" cellpadding="4" width="99%" class="outer">
 <tr><th colspan="2">Add new field</th></tr>
-<tr valign="top">
+<tr valign="top" class="even">
 	<td width="100">
 		<?php if(count($available_metas)>0): ?>
 		<select name="dmeta_name" id="dmeta_sel">
@@ -32,14 +32,13 @@ ob_start();
 		<?php endif; ?>
 	</td>
 	<td>
-		<textarea name="dmeta_value" id="dvalue" style="width: 99%; height: 100px;"></textarea>
+		<textarea name="dmeta_value" id="dvalue" style="width: 95%; height: 100px;"></textarea>
 	</td>
 </tr>
-<tr>
+<tr class="foot">
 	<td>&nbsp;</td>
 	<td><input type="button" id="add_field" value="Add Field" />
 </tr>
 </table>
 <?php
 $meta_data = ob_get_clean();
-?>

@@ -17,16 +17,20 @@ $(document).ready(function(){
 		
 		if ($("#dmeta_sel").is(":visible")){
 			name = $("#dmeta_sel").val();
-		} else {
+		} else if($("#dmeta_sel").length>0) {
 			name = $("#dmeta").val();
 			$("#dmeta_sel").show();
 			$("#dmeta").hide();
 			$("#dmeta").val('');
 			$(this).text("Add New");
-		}
+		} else {
+            name = $("#dmeta").val();
+            $("#dmeta").val('');
+            $(this).text("Add New");
+        }
 		
-		var field = '<tr valign="top"><td width="100"><input type="text" name="meta_name[]" value="'+name+'" /></td>';
-		field += '<td><textarea name="meta_value[]" style="width: 99%; height: 70px;">'+$("#dvalue").val()+'</textarea></td></tr>';
+		var field = '<tr valign="top" class="even"><td width="100"><input type="text" name="meta_name[]" value="'+name+'" /></td>';
+		field += '<td><textarea name="meta_value[]" style="width: 96%; height: 70px;">'+$("#dvalue").val()+'</textarea></td></tr>';
 		$("#dvalue").val('');
 		$("#existing_meta").append(field);
 		
