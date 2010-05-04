@@ -33,13 +33,13 @@ $options[] = array(
 
 $options[] = array(
     'title'     => __('Published','qpages'),
-    'link'      => 'pages.php?op=public&cat='.$cat,
+    'link'      => 'pages.php?acceso=1&cat='.$cat,
     'selected'  => 'pages_public' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 
 $options[] = array(
     'title'     => __('Privates','qpages'),
-    'link'      => 'pages.php?op=private&cat='.$cat,
+    'link'      => 'pages.php?acceso=0&cat='.$cat,
     'selected'  => 'pages_private' // RMSUBLOCATION constant defines wich submenu options is selected
 );
 

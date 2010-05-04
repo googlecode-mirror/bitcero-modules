@@ -26,7 +26,7 @@ if (isset($_REQUEST['page'])){
 	$nombre = explode('/',$request);
 }
 
-$nombre[0] = $util->sweetstring($nombre[0]);
+$nombre[0] = TextCleaner::sweetstring($nombre[0]);
 
 $page = new QPPage($nombre[0]);
 if ($page->isNew() || $page->getAccess()==0){

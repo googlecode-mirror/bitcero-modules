@@ -32,7 +32,7 @@ ob_start();
 		<?php endif; ?>
 	</td>
 	<td>
-		<textarea name="dmeta_value" id="dvalue" style="width: 95%; height: 100px;"></textarea>
+		<textarea name="dmeta_value" id="dvalue" style="width: 95%; height: 60px;"></textarea>
 	</td>
 </tr>
 <tr class="foot">
