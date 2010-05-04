@@ -548,22 +548,30 @@ function deletePage(){
 		die();
 	}
 	
-	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
-		
-	$page = new QPPage($id);
-	if ($id<=0){
-		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_NOID, 1);
+	$ids = rmc_server_var($_POST, 'ids', array());
+	
+	if (!is_array($ids) || empty($ids)){
+		redirectMsg("pages.php?cat=$cat&page=$page", __('Select at least a category to delete','qpages'), 1);
 		die();
 	}
-	if ($page->isNew()){
-		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_NOID, 1);
-		die();
+	
+	$errors = '';
+	foreach($ids as $id){
+		$page = new QPPage($id);
+		if ($page->isNew()){
+			$errors .= sprintf(__('Page with ID "%s" does not exists!','qpages'), $id).'<br />';
+		}
+		
+		if (!$page->delete()){
+			$errors .= sprintf(__('Page "%s" could not be deleted:','qpages'), $page->getTitle()).$page->errors();
+		}
+		
 	}
 		
-	if ($page->delete()){
-		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBOK, 0);
+	if ($errors!=''){
+		redirectMsg("pages.php?cat=$cat&page=$page", __('Errors ocurred while trying to delete pages','qpages').'<br />'.$errors, 1);
 	} else {
-		redirectMsg("pages.php?cat=$cat&page=$page", _AS_QP_DBERROR . "<br />" . $page->errors(), 1);
+		redirectMsg("pages.php?cat=$cat&page=$page", __('Pages deleted successfully!','qpages'), 0);
 	}
 	
 }

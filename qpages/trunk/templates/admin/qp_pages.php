@@ -31,7 +31,7 @@
 	</select>
 	<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-pages');" />
 </div>
-<table width="100%" border="0" cellspacing="1" cellpadding="0" class="outer">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="outer">
     <thead>
     <tr class="head" align="center">
   	    <th width="20"><input<?php if(empty($categories)): ?> disabled="disabled"<?php endif; ?> type="checkbox" id="checkall" onclick='$("#frm-pages").toggleCheckboxes(":not(#checkall)");' /></th>
@@ -72,8 +72,9 @@
         <td align="left">
         	<a href="<?php echo $page['link']; ?>"><strong><?php echo $page['titulo']; ?></strong></a>
         	<span class="rmc_options">
-        		<a href="pages.php?op=edit<?php if($page['type']): ?>link<?php endif; ?>&amp;id=<?php echo $page['id']; ?>&amp;cat=<?php echo $cat; ?>" title="<?php _e('Edit','qpages'); ?>"><?php _e('Edit','qpages'); ?></a> &bull;
-	    		<a href="javascript:;" title="<?php _e('Delete','qpages'); ?>" onclick="select_option(<?php echo $page['id']; ?>,'delete','frm-pages');"><?php _e('Delete','qpages'); ?></a>
+        		<a href="pages.php?op=edit<?php if($page['type']): ?>link<?php endif; ?>&amp;id=<?php echo $page['id']; ?>&amp;cat=<?php echo $cat; ?>" title="<?php _e('Edit','qpages'); ?>"><?php _e('Edit','qpages'); ?></a> |
+	    		<a href="javascript:;" title="<?php _e('Delete','qpages'); ?>" onclick="select_option(<?php echo $page['id']; ?>,'delete','frm-pages');"><?php _e('Delete','qpages'); ?></a> |
+	    		<a href="pages.php?op=duplicate&amp;id=<?php echo $page['id']; ?>&amp;cat=<?php echo $cat; ?>" title="<?php _e('Duplicate page','qpages'); ?>"><?php _e('Clone','qpages'); ?></a>
         	</span>
         </td>
         <td><?php echo $page['modificada']; ?></td>
