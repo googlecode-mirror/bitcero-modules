@@ -113,7 +113,7 @@ if ($mc['related']){
 		$rp = new QPPage();
 		$rp->assignVars($row);
 		$tpl->append('related', array('id'=>$rp->getID(),'link'=>$rp->getPermaLink(),'title'=>$rp->getTitle(),
-				'modified'=>formatTimestamp($rp->getModDate(),'string'),
+				'modified'=>formatTimestamp($rp->getModDate(),'c'),
 				'hits'=>$rp->getReads(),'desc'=>$rp->getDescription()));
 	}
 }

@@ -141,7 +141,7 @@ function newForm($edit = 0, $redir = false){
 
 	$form->addElement(new RMFormTextArea(__('Introduction','qpages'), 'desc', 5, 60, $edit ? $page->getVar('desc','e') : ''));
 	
-	$ele = new RMFormEditor(__('Page content','qpages'), 'texto', '100%','450px',$edit ? $page->getText() : '',$mc['editor']);
+	$ele = new RMFormEditor(__('Page content','qpages'), 'texto', '100%','450px',$edit ? $page->getText() : '');
 	$form->addElement($ele, true);
 	if ($edit){
 		$html = $page->html();

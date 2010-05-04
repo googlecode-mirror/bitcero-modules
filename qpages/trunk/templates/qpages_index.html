@@ -8,13 +8,13 @@
 		<h2><a href="<{$cat.link}>"><{$cat.nombre}></a></h2>
 		<span class="catdesc"><{$cat.desc}></span>
 		<{if $cat.pages_count>0}>
-		<table class="qpPagesList" border="0" cellapcing="2">
-			<tr><td colspan="3"><h3><{$lang_pagesin}></h3></td></tr>
-			<tr>
+		<table class="outer" border="0" cellapcing="2">
+			<tr><th colspan="3"><{$lang_pagesin}></th></tr>
+			<tr class="even">
 			<{assign var="i" value=1}>
 			<{foreach item=page from=$cat.pages}>
 			<{if $i>3}>
-				</tr><tr>
+				</tr><tr class="<{cycle values="odd,even"}>">
 				<{assign var="i" value=1}>
 			<{/if}>
 			<td><a href="<{$page.link}>"><{$page.titulo}></a><br />
@@ -25,13 +25,14 @@
 		</table>
 		<{/if}>
 		<{if $cat.subcats_count>0}>
-		<table class="qpSubcats">
-			<tr><td colspan="3"><h3><{$lang_subcats}></h3></td></tr>
-			<tr>
+        <br />
+		<table class="outer">
+			<tr><th colspan="3"><{$lang_subcats}></th></tr>
+			<tr class="even">
 				<{assign var="i" value=1}>
 				<{foreach item=sub from=$cat.subcats}>
 					<{if $i>3}>
-						</tr><tr>
+						</tr><tr class="<{cycle values="odd,even"}>">
 						<{assign var="i" value=1}>
 					<{/if}>
 					<td><a href="<{$sub.link}>"><{$sub.nombre}></a><br /><{$sub.desc}></td>

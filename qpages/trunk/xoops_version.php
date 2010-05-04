@@ -97,19 +97,6 @@ $modversion['blocks'][2]['edit_func'] = "qpagesBlockPagesEdit";
 $modversion['blocks'][2]['template'] = 'bk_qpages_pages.html';
 $modversion['blocks'][2]['options'] = "0|10";
 
-// Configuración
-$modversion['config'][0]['name'] = 'editor';
-$modversion['config'][0]['title'] = '_MI_QP_CNFEDITOR';
-$modversion['config'][0]['description'] = '';
-$modversion['config'][0]['formtype'] = 'select';
-$modversion['config'][0]['valuetype'] = 'text';
-$modversion['config'][0]['default'] = 'tiny';
-$modversion['config'][0]['options'] = array(
-											_MI_QP_FORM_DHTML=>'dhtml',
-											_MI_QP_FORM_COMPACT=>'textarea',
-											_MI_QP_FORM_TINY=>'tiny',
-											_MI_QP_FORM_HTMLAREA=>'htmlarea'
-											);
 
 $modversion['config'][1]['name'] = 'links';
 $modversion['config'][1]['title'] = '_MI_QP_CNFLINKS';
