@@ -16,7 +16,8 @@ $tpl =& $xoopsTpl;
 $myts =& MyTextSanitizer::getInstance();
 
 define('QP_PATH',XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->dirname());
-define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/'.$xoopsModule->dirname()));
+if (!defined("QP_URL"))
+    define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/'.$xoopsModule->dirname()));
 
 RMTemplate::get()->add_xoops_style('main.css', 'qpages');
 

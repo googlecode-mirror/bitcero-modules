@@ -93,15 +93,14 @@ for ($i=count($pt)-1;$i>=0;$i--){
 
 $tpl->assign('page_location',$location);
 $tpl->assign('xoops_pagetitle', $pagetitle);
-$mod = sprintf(_MS_QP_MODDATE, formatTimestamp($page->getModDate(),'s'), formatTimestamp($page->getModDate(),'t'));
 $page->addRead();
 $tpl->assign('page', array(
 	'title'		=> $page->getTitle(),
 	'text'		=> $page->getText(),
 	'id'		=> $page->getID(),
 	'name'		=> $page->getFriendTitle(),
-	'mod_date'	=> $mod,
-	'reads'		=> $page->getReads()
+	'mod_date'	=> sprintf(__('Last update: %s', 'qpages'), formatTimestamp($page->getModDate(),'c')),
+	'reads'		=> sprintf(__('Read %u times','qpages'), $page->getReads())
 ));
 
 // Páginas relacionadas

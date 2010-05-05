@@ -309,6 +309,8 @@ function savePage($edit=0){
 		} else {
 			$titulo_amigo = $titulo_amigo;
 		}
+        
+        $texto = TextCleaner::getInstance()->specialchars_decode($texto, ENT_QUOTES);
 		
 	} else {
 		$titulo_amigo = $edit ? ($titulo_amigo!='' ? $titulo_amigo : TextCleaner::getInstance()->sweetstring($titulo)) : TextCleaner::getInstance()->sweetstring($titulo);
@@ -344,7 +346,7 @@ function savePage($edit=0){
 		$form->addElement(new RMFormLabel('', __('A page with same friendly name already exists. Please change the freindly title to prevent errors.','qpages')));
 		foreach ($_POST as $k => $v){
 			if ($k=='titulo_amigo') continue;
-			if ($k=='text') continue;
+			if ($k=='texto') continue;
 			if ($k=='grupos') continue;
 			if ($k=='XOOPS_TOKEN_REQUEST') continue;
 			if ($k=='titulo') $k = 'pretitulo';
@@ -353,7 +355,7 @@ function savePage($edit=0){
 		
 		$form->addElement(new RMFormText(__('Title','qpages'), 'titulo', 50, 255, $titulo), true);
 		$form->addElement(new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $titulo_amigo), true);
-		$form->addElement(new RMFormHidden('texto', TextCleaner::getInstance()->specialchars($texto)));
+		$form->addElement(new RMFormHidden('texto', TextCleaner::getInstance()->specialchars($texto, ENT_QUOTES)));
 		
 		foreach($hiddens as $k => $v){
 			$form->addElement(new RMFormHidden($k, $v));

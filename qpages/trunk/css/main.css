@@ -50,10 +50,10 @@ div.qpPageText{
 	margin-top: 10px;
     line-height: 150%;
 }
-div.qpDocInfo{
+.qpDocInfo{
 	padding: 4px;
 	text-align: right;
-	font-size: 0.9em;
+	font-size: 0.85em;
 }
 img.img_left{
 	float: left;

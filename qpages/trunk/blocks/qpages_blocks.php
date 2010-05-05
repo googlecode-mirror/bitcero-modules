@@ -1,30 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Quick Pages
-// Módulo para la publicación de páginas individuales
-// CopyRight © 2007 - 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
-// @author: BitC3R0
+// Create simple pages easily and quickly
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 function qpagesBlockCategos(){
 	global $xoopsConfig, $mc;
@@ -32,10 +14,11 @@ function qpagesBlockCategos(){
 	include_once XOOPS_ROOT_PATH.'/modules/qpages/class/qpcategory.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/qpages/include/general.func.php';
 	
-	$util = RMUtils::getInstance();
-	
-	$mc =& $util->moduleConfig('qpages');
+	$mc =& RMUtilities::module_config('qpages');
 	$db =& Database::getInstance();
+    
+    if (!defined('QP_URL'))
+        define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/qpages'));
 	
 	$block = array();
 	$categos = array();
@@ -62,9 +45,13 @@ function qpagesBlockCategos(){
 function qpagesBlockPages($options){
 	global $xoopsConfig;
 
-	$util = RMUtils::getInstance();
+    include_once XOOPS_ROOT_PATH.'/modules/qpages/class/qppage.class.php';
+    
 	$db =& Database::getInstance();
-	$mc =& $util->moduleConfig('qpages');
+	$mc =& RMUtilities::module_config('qpages');
+    
+    if (!defined('QP_URL'))
+        define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/qpages'));
 	
 	$sql = "SELECT * FROM ".$db->prefix("qpages_pages");
 	if ($options[0]>0){
@@ -75,11 +62,12 @@ function qpagesBlockPages($options){
 	$block = array();
 	$result = $db->query($sql);
 	while ($row = $db->fetchArray($result)){
+        $page = new QPPage();
+        $page->assignVars($row);
 		$rtn = array();
-		$rtn['id'] = $row['id_page'];
-		$rtn['titulo'] = $row['titulo'];
-		$rtn['link'] = XOOPS_URL.'/modules/qpages/';
-		$rtn['link'] .= $mc['links'] ? $row['titulo_amigo'] . '/' : "page.php?page=$row[titulo_amigo]";
+		$rtn['id'] = $page->getID();
+		$rtn['titulo'] = $page->getTitle();
+		$rtn['link'] = $page->getPermaLink();
 		$block['pages'][] = $rtn;
 	}
 	
