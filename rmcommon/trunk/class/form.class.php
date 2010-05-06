@@ -382,7 +382,7 @@ class RMForm
      * su propia salida HTML
      * @return string Todo el cdigo HTML del formulario
      */
-    public function render($js=true){
+    public function render($form_tag=true){
         /**
          * Generamos el cdigo JavaScript para comprobación del formulario
          */
@@ -419,22 +419,29 @@ class RMForm
             
         }
         
-        $req .= $req=='' ? ($this->_othervalidates!='' ? $this->_othervalidates : '') : ($this->_othervalidates!='' ? ','.$this->_othervalidates : '');
+        if ($form_tag){
+        	$req .= $req=='' ? ($this->_othervalidates!='' ? $this->_othervalidates : '') : ($this->_othervalidates!='' ? ','.$this->_othervalidates : '');
         
-        $rtn .= "<form name='".$this->_name."' id='".$this->_name."' action='".$this->_action."' method='".$this->_method."'";
-        if ($req!=''){
-            $rtn .= " onsubmit=\"".$callmethod."rmValidateForm(this, '$req');return document.rmValidateReturnValue;\"";
+        	$rtn .= "<form name='".$this->_name."' id='".$this->_name."' action='".$this->_action."' method='".$this->_method."'";
+        	if ($req!=''){
+            	$rtn .= " onsubmit=\"".$callmethod."rmValidateForm(this, '$req');return document.rmValidateReturnValue;\"";
+        	}
+        	if ($this->_extra != ''){
+            	$rtn .= " ".$this->_extra;
+        	}
+        	$rtn .= ">\n";
         }
-        if ($this->_extra != ''){
-            $rtn .= " ".$this->_extra;
-        }
-        $rtn .= ">\n
-                <table class='$this->_tableClass' cellspacing='1'>
+        
+        $rtn .= "<table class='$this->_tableClass' cellspacing='1'>
                     <tr><th colspan='2'".(($this->_thClass!='') ? " class='".$this->_thClass."'" : '').($this->_thStyle!='' ? " style=\"$this->_thStyle\"":'').">".$this->_title."</th></tr>";
-        if ($this->_addtoken){
+        if ($this->_addtoken && $form_tag){
             $rtn .= $GLOBALS['xoopsSecurity']->getTokenHTML();
         }
-        $rtn .= $ret . "<tr class='$this->_footClass'".($this->_footStyle!='' ? " style=\"$this->_footStyle\"":'')."><td colspan='2' align='right'>".__('Required fields marked with "*"','rmcommon')."</td></tr></table></form>\n";
+        $rtn .= $ret . "<tr class='$this->_footClass'".($this->_footStyle!='' ? " style=\"$this->_footStyle\"":'')."><td colspan='2' align='right'>".__('Required fields marked with "*"','rmcommon')."</td></tr></table>\n";
+        
+        if ($form_tag){
+        	$rtn .= "</form>\n";
+		}
         return $rtn;
         
     }
