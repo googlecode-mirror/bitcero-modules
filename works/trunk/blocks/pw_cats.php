@@ -1,29 +1,14 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Advanced Portfolio System
+// Author: BitC3R0 <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
+
+load_mod_locale('works');
 
 function pw_categories_show($options){
 	global $xoopsModule, $xoopsModuleConfig;
@@ -32,11 +17,11 @@ function pw_categories_show($options){
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
 
 	$db =& Database::getInstance();
-	$util =& RMUtils::getInstance();
+
 	if (isset($xoopsModule) && ($xoopsModule->dirname()=='works')){
 		$mc =& $xoopsModuleConfig;
 	}else{
-		$mc =& $util->moduleConfig('works');
+		$mc =& RMUtilities::module_config('works');
 	}
 	
 	$db =& Database::getInstance();
@@ -53,5 +38,3 @@ function pw_categories_show($options){
 	
 	return $block;
 }
-
-?>

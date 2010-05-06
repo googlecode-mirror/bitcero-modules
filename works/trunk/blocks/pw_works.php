@@ -1,30 +1,14 @@
 <?php
 // $Id$
-// --------------------------------------------------------
+// --------------------------------------------------------------
 // Professional Works
-// Manejo de Portafolio de Trabajos
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// Advanced Portfolio System
+// Author: BitC3R0 <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
+load_mod_locale('works');
 
 function pw_works_show($options){
 	global $xoopsModule, $xoopsModuleConfig;
@@ -34,11 +18,11 @@ function pw_works_show($options){
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
 
 	$db =& Database::getInstance();
-	$util =& RMUtils::getInstance();
+	
 	if (isset($xoopsModule) && ($xoopsModule->dirname()=='works')){
 		$mc =& $xoopsModuleConfig;
 	}else{
-		$mc =& $util->moduleConfig('works');
+		$mc =& RMUtilities::module_config('works');
 	}
 
 	$sql = "SELECT * FROM ".$db->prefix('pw_works');
@@ -77,11 +61,11 @@ function pw_works_show($options){
 		$rtn['title'] = $work->title();
 		if ($options[6]) $rtn['desc'] = substr($work->descShort(),0,50);
 		$rtn['link'] = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'work/'.$work->id() : 'work.php?id='.$work->id());
-		$rtn['created'] = formatTimestamp($work->created(), 'string');
+		$rtn['created'] = formatTimestamp($work->created(), 's');
 		if ($options[5]) $rtn['image'] = XOOPS_UPLOAD_URL.'/works/ths/'.$work->image();
 		$linkcat = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'cat/'.$cat->nameId() : 'catego.php?id='.$cat->nameId());
-		$rtn['cat'] = sprintf(_BK_PW_CAT,'<a href="'.$linkcat.'">'.$cat->name().'</a>');
-		$rtn['client'] = sprintf(_BK_PW_USER,$client->businessName());
+		$rtn['cat'] = sprintf(__('Category: %s','works'),'<a href="'.$linkcat.'">'.$cat->name().'</a>');
+		$rtn['client'] = sprintf(__('Customer: %s','works'),$client->businessName());
 		$block['works'][] = $rtn;
 
 	}
@@ -93,25 +77,24 @@ function pw_works_show($options){
 }
 
 
-function pw_works_edit($options, &$form){
+function pw_works_edit($options){
 	global $db;
-
 
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
-
-	$form->addElement(new RMSubTitle(_AS_BKM_BOPTIONS, 1, 'head'));
 	//Tipo de Trabajo
-	$ele = new RMSelect(_BK_PW_TYPE,'options[0]');
-	$ele->addOption(0,_BK_PW_RAND,$options[0]==0 ? 1 : 0);
-	$ele->addOption(1,_BK_PW_FEATURED,$options[0]==1 ? 1 : 0);
-	$ele->addOption(2,_BK_PW_RECENT,$options[0]==2 ? 1 : 0);
+	$form = new RMForm(__('Block Options','works'), 'form_options', '');
+	$ele = new RMFormSelect(__('Works type','works'),'options[0]');
+	$ele->addOption(0,__('Reandom works','works'),$options[0]==0 ? 1 : 0);
+	$ele->addOption(1,__('Featured works','works'),$options[0]==1 ? 1 : 0);
+	$ele->addOption(2,__('Recent works','works'),$options[0]==2 ? 1 : 0);
 
 	$form->addElement($ele);
 
 	//Obtenemos las categorías
-	$ele = new RMSelect(_BK_PW_CATEGO,'options[1]');
-	$ele->addOption(0,_BK_PW_ALLSCAT);
+	$ele = new RMFormSelect(__('Category','works'),'options[1]');
+	$ele->addOption(0,__('All categories','works'));
+	$db = Database::getInstance();
 	$result = $db->query("SELECT * FROM ".$db->prefix('pw_categos')." WHERE active=1");
 	while ($row = $db->fetchArray($result)){
 		$cat = new PWCategory();
@@ -122,29 +105,23 @@ function pw_works_edit($options, &$form){
 	$form->addElement($ele,true);
 	
 	//Obtenemos los clientes
-	$ele = new RMSelect(_BK_PW_CLIENT,'options[2]');
-	$ele->addOption(0,_BK_PW_ALLSCLIENT);
+	$ele = new RMFormSelect(__('Customer','works'),'options[2]');
+	$ele->addOption(0,__('All customers','works'));
 	$result = $db->query("SELECT * FROM ".$db->prefix('pw_clients'));
 	while ($row = $db->fetchArray($result)){
 		$client = new PWClient();
 		$client->assignVars($row);			
-
 		$ele->addOption($client->id(),$client->name(),isset($ptions[2]) ? ($options[2]==$client->id() ? 1 : 0) : 0);
 	}
 
 	$form->addElement($ele,true);
 	
 	//Número de trabajos
-	$form->addElement(new RMText(_BK_PW_NUMWORK,'options[3]',5,5,isset($options[3]) ? $options[3] : ''),true);
-	$form->addElement(new RMText(_BK_PW_COLS,'options[4]',5,5,isset($options[4]) ? $options[4] : ''),true);
-	$form->addElement(new RMYesno(_BK_PW_IMAGE,'options[5]',isset($options[5]) ? ($options[5] ? 1 : 0) : 0), true);
-	$form->addElement(new RMYesno(_BK_PW_DESC,'options[6]',isset($options[6]) ? ($options[6] ? 1 : 0) : 0), true);
+	$form->addElement(new RMFormText(__('Works number','works'),'options[3]',5,5,isset($options[3]) ? $options[3] : ''),true);
+	$form->addElement(new RMFormText(__('Columns','works'),'options[4]',5,5,isset($options[4]) ? $options[4] : ''),true);
+	$form->addElement(new RMFormYesno(__('Show work image','works'),'options[5]',isset($options[5]) ? ($options[5] ? 1 : 0) : 0), true);
+	$form->addElement(new RMFormYesno(__('Show description','works'),'options[6]',isset($options[6]) ? ($options[6] ? 1 : 0) : 0), true);
 
-	return $form;
+	return $form->render(false);
 
 }
-
-
-
-
-?>

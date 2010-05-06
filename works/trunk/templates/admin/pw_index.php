@@ -23,7 +23,7 @@
 					<td><span><a href="works.php"><?php echo $works; ?></a></span> <a href="works.php"><?php _e('Works','admin_works'); ?></a></td>
 				</tr>
 				<tr class="even qoverview">
-					<td><span><a href="works.php"><?php echo $images; ?></a></span> <a href="works.php"><?php _e('Images types','admin_works'); ?></a></td>
+					<td><span><a href="works.php"><?php echo $images; ?></a></span> <a href="works.php"><?php _e('Images','admin_works'); ?></a></td>
 					<td><?php _e('Current version:','admin_works'); ?> <strong><?php echo RMUtilities::getVersion(false, 'works', 0); ?></strong></td>
 				</tr>
 			</table>

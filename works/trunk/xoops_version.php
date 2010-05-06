@@ -229,7 +229,7 @@ $modversion['blocks'][1]['description'] = '';
 $modversion['blocks'][1]['show_func'] = "pw_works_show";
 $modversion['blocks'][1]['edit_func'] = "pw_works_edit";
 $modversion['blocks'][1]['template'] = 'pw_bk_works.html';
-$modversion['blocks'][1]['options'] = array(0, 0, 0, 1, 1, 1, 0);
+$modversion['blocks'][1]['options'] = "0|0|0|1|1|1|0";
 
 $modversion['blocks'][2]['file'] = "pw_comments.php";
 $modversion['blocks'][2]['name'] = '_MI_PW_COMMENTS';
@@ -237,7 +237,7 @@ $modversion['blocks'][2]['description'] = '';
 $modversion['blocks'][2]['show_func'] = "pw_comments_show";
 $modversion['blocks'][2]['edit_func'] = "pw_comments_edit";
 $modversion['blocks'][2]['template'] = 'pw_bk_comments.html';
-$modversion['blocks'][2]['options'] = array(1, 0);
+$modversion['blocks'][2]['options'] = "1|0";
 
 $modversion['blocks'][3]['file'] = "pw_cats.php";
 $modversion['blocks'][3]['name'] = '_MI_PW_BKCATS';
@@ -245,5 +245,5 @@ $modversion['blocks'][3]['description'] = '';
 $modversion['blocks'][3]['show_func'] = "pw_categories_show";
 $modversion['blocks'][3]['edit_func'] = "";
 $modversion['blocks'][3]['template'] = 'pw_bk_cats.html';
-$modversion['blocks'][3]['options'] = array(1);
+$modversion['blocks'][3]['options'] = "1";
 

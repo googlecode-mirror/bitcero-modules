@@ -1,9 +1,9 @@
-<table class="outer" cellspacing="1" cellpadding="3">
-	<tr class="even" align="center" valign="top">
+<table class="outer" cellspacing="0" cellpadding="3">
+	<tr class="even" valign="top">
 	<{assign var="i" value=1}>
 	<{foreach item=work from=$block.works}>
 		<{if $i>$block.cols}>
-			</tr><tr class="<{cycle values="even,odd"}>" align="center" valign="top">
+			</tr><tr class="<{cycle values="even,odd"}>" valign="top">
 			<{assign var="i" value=1}>
 		<{/if}>
 		<td>
