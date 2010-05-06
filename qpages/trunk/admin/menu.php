@@ -38,7 +38,7 @@ $options[] = array(
 );
 
 $options[] = array(
-    'title'     => __('Privates','qpages'),
+    'title'     => __('Drafts','qpages'),
     'link'      => 'pages.php?acceso=0&cat='.$cat,
     'selected'  => 'pages_private' // RMSUBLOCATION constant defines wich submenu options is selected
 );

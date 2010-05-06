@@ -165,7 +165,7 @@ function newForm($edit = 0, $redir = false){
 	
 	$ele = new RMFormRadio(__('Status','qpages'), 'acceso', 1);
 	$ele->addOption(__('Public','qpages'), '1', $edit ? ($page->getAccess() ? 1 : 0) : 0);
-	$ele->addOption(__('Private','qpages'), '0', $edit ? ($page->getAccess() ? 0 : 1) : 1);
+	$ele->addOption(__('Draft','qpages'), '0', $edit ? ($page->getAccess() ? 0 : 1) : 1);
 	$form->addElement($ele);
 	
 	$page_metas = $edit ? $page->get_meta() : array();
@@ -240,7 +240,7 @@ function newLinkForm($edit = 0){
 	
 	$ele = new RMFormRadio(__('Status','qpages'), 'acceso', 1);
     $ele->addOption(__('Public','qpages'), '1', $edit ? ($page->getAccess() ? 1 : 0) : 0);
-    $ele->addOption(__('Private','qpages'), '0', $edit ? ($page->getAccess() ? 0 : 1) : 1);
+    $ele->addOption(__('Draft','qpages'), '0', $edit ? ($page->getAccess() ? 0 : 1) : 1);
     $form->addElement($ele);
 	
 	$page_metas = $edit ? $page->get_meta() : array();

@@ -38,7 +38,7 @@ foreach ($path as $k){
 		list($idp) = $db->fetchRow($result);
 		$rutas[] = new QPCategory($idp);
 	} else {
-		redirect_header(QP_URL, 2, _MS_QP_NOTFOUND);
+		redirect_header(QP_URL, 2, __('Category not found!','qpages'));
 		die();
 	}
 }
@@ -46,14 +46,14 @@ foreach ($path as $k){
 $catego = new QPCategory($idp);
 
 if ($catego->isNew()){
-	redirect_header(QP_URL, 2, _MS_QP_NOTFOUND);
+	redirect_header(QP_URL, 2, __('Category not found!','qpages'));
 	die();
 }
 
 // Asignamos datos de la categoría
 $tpl->assign('qpcategory', array('id'=>$catego->getID(),'name'=>$catego->getName(),'nameid'=>$catego->getFriendName()));
 
-$location = '<a href="'.QP_URL.'" title="'.$xoopsModule->name().'">'._MS_QP_HOMEPAGE.'</a> ';
+$location = '<a href="'.QP_URL.'" title="'.$xoopsModule->name().'">'.__('Main page','qpages').'</a> ';
 $pt = array(); // Titulo de la página
 $pt[] = $xoopsModule->name();
 foreach($rutas as $k){
@@ -69,7 +69,7 @@ for ($i=count($pt)-1;$i>=0;$i--){
 $tpl->assign('page_location',$location);
 $tpl->assign('page_title',$catego->getName());
 $tpl->assign('xoops_pagetitle', $pagetitle);
-$tpl->assign('lang_pages', sprintf(_MS_QP_PAGES, $catego->getName()));
+$tpl->assign('lang_pages', sprintf(__('Pages in %s', 'qpages'), $catego->getName()));
 
 /**
  * Cargamos las páginas
@@ -81,7 +81,7 @@ foreach ($lpages as $p){
 	$rp = new QPPage();
 	$rp->assignVars($p);
 	$tpl->append('pages', array('id'=>$rp->getID(),'link'=>$rp->getPermaLink(),'title'=>$rp->getTitle(),
-				'modified'=>formatTimestamp($rp->getModDate(),'string'),
+				'modified'=>formatTimestamp($rp->getModDate(),'l'),
 				'hits'=>$rp->getReads(),'desc'=>$rp->getDescription()));
 }
 $tpl->assign('page_count', count($lpages));

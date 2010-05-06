@@ -97,7 +97,7 @@ class QPPage extends RMObject
 		return $this->setVar('desc', $value);
 	}
 	public function getDescription(){
-		return $this->getVar('desc');
+		return strip_tags($this->getVar('desc'));
 	}
 	public function setOrder($value){
 		return $this->setVar('porder', $value);

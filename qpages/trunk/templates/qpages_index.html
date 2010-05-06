@@ -10,14 +10,14 @@
 		<{if $cat.pages_count>0}>
 		<table class="outer" border="0" cellapcing="2">
 			<tr><th colspan="3"><{$lang_pagesin}></th></tr>
-			<tr class="even">
+			<tr class="even" valign="top">
 			<{assign var="i" value=1}>
 			<{foreach item=page from=$cat.pages}>
 			<{if $i>3}>
-				</tr><tr class="<{cycle values="odd,even"}>">
+				</tr><tr class="<{cycle values="odd,even"}>" valign="top">
 				<{assign var="i" value=1}>
 			<{/if}>
-			<td><a href="<{$page.link}>"><{$page.titulo}></a><br />
+			<td width="33%"><a href="<{$page.link}>"><{$page.titulo}></a><br />
 			<{$page.desc}></td>
 			<{assign var="i" value=$i+1}>
 		<{/foreach}>
@@ -28,14 +28,14 @@
         <br />
 		<table class="outer">
 			<tr><th colspan="3"><{$lang_subcats}></th></tr>
-			<tr class="even">
+			<tr class="even" valign="top">
 				<{assign var="i" value=1}>
 				<{foreach item=sub from=$cat.subcats}>
 					<{if $i>3}>
-						</tr><tr class="<{cycle values="odd,even"}>">
+						</tr><tr class="<{cycle values="odd,even"}>" valign="top">
 						<{assign var="i" value=1}>
 					<{/if}>
-					<td><a href="<{$sub.link}>"><{$sub.nombre}></a><br /><{$sub.desc}></td>
+					<td width="33%"><a href="<{$sub.link}>"><{$sub.nombre}></a><{$sub.desc}></td>
 					<{assign var="i" value=$i+1}>
 				<{/foreach}>
 			</tr>

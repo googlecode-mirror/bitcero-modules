@@ -23,14 +23,14 @@
 <{if $subcats_count>0}>
 	<table class="outer">
 		<tr><th colspan="3"><{$lang_subcats}></th></tr>
-		<tr class="even">
+		<tr class="even" valign="top">
 			<{assign var="i" value=1}>
 			<{foreach item=sub from=$categos}>
 				<{if $i>3}>
-					</tr><tr class="<{cycle values="odd,even"}>">
+					</tr><tr class="<{cycle values="odd,even"}>" valign="top">
 					<{assign var="i" value=1}>
 				<{/if}>
-				<td><a href="<{$sub.link}>"><{$sub.nombre}></a><span class="subdesc"><{$sub.desc}></span>
+				<td width="33%"><a href="<{$sub.link}>"><{$sub.nombre}></a><span class="subdesc"><{$sub.desc}></span>
 				<{$sub.pages_count}></td>
 				<{assign var="i" value=$i+1}>
 			<{/foreach}>
