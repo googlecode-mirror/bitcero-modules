@@ -15,6 +15,9 @@
 .qp_widget_container{
 	margin: 0 0 10px 0;
 }
+.qp_widget_container .even{
+	line-height: 140%;
+}
 .qp_loading_image{
 	float: left;
 	margin: 0 5px 0 0;
