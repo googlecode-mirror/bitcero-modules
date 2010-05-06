@@ -42,3 +42,14 @@
 .qp_status{
     color: #cc0000;
 }
+
+/* Titles */
+.rmc_titles span{
+	display: block;
+	float: left;
+	margin: 0 6px 0 0;
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+	background-image: url(../images/icons.png);
+}

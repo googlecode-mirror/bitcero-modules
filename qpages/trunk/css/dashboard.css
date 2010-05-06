@@ -1,0 +1,27 @@
+#qp-dashboard-container{
+	overflow: hidden;
+	margin: 10px 0;
+}
+
+#qp-dash-right{
+	float: right;
+	overflow: hidden;
+	width: 380px;
+}
+#qp-dash-left{
+	overflow: hidden;
+	margin-right: 400px; 
+}
+.qp_widget_container{
+	margin: 0 0 10px 0;
+}
+.qp_loading_image{
+	float: left;
+	margin: 0 5px 0 0;
+}
+#qp-recent-pages .even{
+	padding-left: 24px;
+	background: url(../images/page.png) no-repeat 4px 8px;
+	line-height: 150%;
+	color: #666;
+}

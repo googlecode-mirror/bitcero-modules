@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: -32px 0;">&nbsp;</span><?php _e('Pages','qpages'); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: -64px 0;">&nbsp;</span><?php _e('Pages','qpages'); ?></h1>
 <script type="text/javascript">
 <!--
 	var qp_select_message = '<?php _e('Select at least a page to apply this action!','qpages'); ?>';
