@@ -9,7 +9,8 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Quick Pages";
-$modversion['rmversion'] = array('number'=>1,'revision'=>300,'status'=>0,'name'=>'Quick Pages');
+$modversion['rmnative'] = 1;
+$modversion['rmversion'] = array('number'=>1,'revision'=>330,'status'=>0,'name'=>'Quick Pages');
 $modversion['version'] = 1.3;
 $modversion['description'] = _MI_QP_DESC;
 $modversion['author'] = "BitC3R0";
@@ -19,13 +20,12 @@ $modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['credits'] = "Red México";
 $modversion['help'] = "";
 $modversion['license'] = "See GPL License";
-$modversion['official'] = 1;
+$modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "qpages";
 $modversion['icon16'] = "images/qpages-16.png";
 $modversion['icon24'] = "images/icon24.png";
 $modversion['deflang'] = "spanish";
-$modversion['url'] = "www.exmsystem.net";
 $modversion['onUpdate']="update.php";
 $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=9';
