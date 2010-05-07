@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Professional Works";
-$modversion['version'] = 2;
+$modversion['version'] = "2.1";
 $modversion['rmversion'] = array('number'=>2,'revision'=>010,'status'=>-3,'name'=>'Professional Works');
 $modversion['description'] = _MI_PW_MODDESC;
 $modversion['icon32'] = 'images/icon32.png';
