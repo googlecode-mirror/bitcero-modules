@@ -25,7 +25,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>003,'status'=>-3,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>035,'status'=>-3,'name'=>'MyWords');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
