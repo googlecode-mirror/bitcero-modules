@@ -46,7 +46,7 @@
                 	<td align="right" width="20"><a href="posts.php"><span><?php echo $numposts; ?></span></td>
                     <td><a href="posts.php"><?php _e('Posts', 'admin_mywords'); ?></a></td>
                     <td align="right" width="20"><a href="<?php echo RMCURL; ?>/comments.php?module=mywords"><span><?php echo $numcoms; ?></span></a></td>
-                    <td><a href="<?php echo XOOPS_URL; ?>/modules/mywords/admin/comments.php?module=mywords"><?php _e('Comments','mywords'); ?></a></td>
+                    <td><a href="<?php echo XOOPS_URL; ?>/modules/rmcommon/comments.php?module=mywords"><?php _e('Comments','mywords'); ?></a></td>
                 </tr>
                 <tr class="mw_qrdata">
                 	<td align="right"><a href="posts.php?status=draft"><span><?php echo $numdrafts; ?></span></a></td>

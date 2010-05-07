@@ -51,7 +51,7 @@ $modversion['tables'][4] = "mw_editors";
 $modversion['tables'][5] = "mw_bookmarks";
 $modversion['tables'][6] = "mw_meta";
 $modversion['tables'][7] = "mw_tags";
-$modversion['tables'][7] = "mw_tagspost";
+$modversion['tables'][8] = "mw_tagspost";
 
 // Plantillas
 $modversion['templates'][1]['file'] = 'mywords_index.html';

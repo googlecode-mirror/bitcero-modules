@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
+
 class MWPost extends RMObject
 {
 	private $myts = '';

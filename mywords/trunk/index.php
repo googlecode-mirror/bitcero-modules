@@ -39,9 +39,9 @@ parse_str($request, $vars);
 $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 0;
 if (isset($_REQUEST['trackback'])){ require 'track.php'; die(); }
 if (isset($vars['post'])){ $post = $vars['post']; require 'post.php'; die(); }
-if (isset($vars['cat'])){ $category = $vars['cat']; require 'cats.php'; die(); }
+if (isset($vars['cat'])){ $category = $vars['cat']; require 'categories.php'; die(); }
 if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; die(); }
-if (isset($vars['tag'])){ $editor = $vars['tag']; require 'tag.php'; die(); }
+if (isset($vars['tag'])){ $tag = $vars['tag']; require 'tag.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
 if (isset($vars['trackback'])){ $id = $vars['trackback']; require 'trackbacks.php'; die(); }
 

@@ -24,6 +24,8 @@ function mywords_search($qa, $andor, $limit, $offset, $userid){
 	$mc =& $util->module_config('mywords');
 	
 	$sql = "SELECT * FROM ".$db->prefix("mw_posts");
+	$adds = '';
+	
 	if ( is_array($qa) && $count = count($qa) ) {
 		$adds = '';
 		for($i=0;$i<$count;$i++){

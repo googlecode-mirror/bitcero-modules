@@ -17,6 +17,7 @@ $xoopsLogger->renderingEnabled = false;
 error_reporting(0);
 $xoopsLogger->activated = false;
 
+$id = rmc_server_var($_REQUEST, 'trackback', 0);
 if ($id<=0) die();
 
 $post = new MWPost($id);
