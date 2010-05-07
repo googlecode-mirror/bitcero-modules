@@ -68,7 +68,7 @@
         <strong><?php echo $com['poster']['name']; ?></strong>
         <span class="poster_data"><a href="mailto:<?php echo $com['poster']['email']; ?>"><?php echo $com['poster']['email']; ?></a><br />
         <?php echo $com['ip']; ?></span></td>
-        <td><span class="comment_date"><?php echo sprintf(__('Posted on %s', 'rmcommon'), formatTimestamp($com['posted'], 'l')); ?></span>
+        <td><span class="comment_date"><?php echo $com['posted']; ?></span>
         <?php echo $com['text']; ?>
         <span class="rmc_options">
         	<a href="comments.php?id=<?php echo $com['id']; ?>&amp;action=edit&amp;page=<?php echo $page; ?>&amp;filter=<?php echo $filter; ?>&amp;w=<?php echo $keyw; ?>"><?php _e('Edit','rmcommon'); ?></a> | 
