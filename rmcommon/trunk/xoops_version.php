@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'Common Utilities';
-$modversion['version'] = 2.05;
+$modversion['version'] = 2.07;
 $modversion['releasedate'] = "08 Jan 2010";
 $modversion['status'] = "Stable";
 $modversion['description'] = 'Container a lot of clases and functions used by Red México Modules';
@@ -23,6 +23,7 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
+$modversion['rmversion'] = array('number'=>2,'revision'=>70,'status'=>-3,'name'=>'Common Utilities');
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
