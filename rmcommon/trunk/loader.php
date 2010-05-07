@@ -8,6 +8,18 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+// Check locations for system module
+if (FALSE !== strpos($_SERVER['REQUEST_URI'], 'modules/system/admin.php')){
+	$fct = isset($_REQUEST['fct']) ? $_REQUEST['fct'] : '';
+	
+	switch($fct){
+		case 'modulesadmin':
+			header('location: ../rmcommon/modules.php');
+			break;
+	}
+	
+}
+
 define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
 define("RMCURL",XOOPS_URL.'/modules/rmcommon');
 define('ABSURL', XOOPS_URL);
@@ -119,6 +131,6 @@ if (!$rmc_config){
     die();
 }
 
-include_once RMCPATH.'/include/tpl_functions.php';
-
 RMEvents::get()->run_event('rmcommon.base.loaded');
+
+include_once RMCPATH.'/include/tpl_functions.php';

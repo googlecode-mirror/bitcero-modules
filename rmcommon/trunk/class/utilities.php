@@ -57,7 +57,7 @@ class RMUtilities
 		return $num;
 	}
 	/**
-	 * Obtiene la version del m?dulo actual
+	 * Obtiene la version del mdulo actual
 	 * Esta funci?n solo funciona con m?dulos de Red M?xico Soft
 	 * o compatibles
 	 * @param bool $includename Mostrar todo el nombre del m?dulo
@@ -89,6 +89,38 @@ class RMUtilities
 		$rtn = '';
 		
 		if ($includename){
+			$rtn .= (defined($version['name']) ? constant($version['name']) : $version['name']) . ' ';
+		}
+		
+		$rtn .= $version['number'];
+
+		if ($version['revision'] > 0){
+			$rtn .= '.' . $version['revision'] / 100;
+		} else {
+			$rtn .= '.0';
+		}
+		
+		switch($version['status']){
+			case '-3':
+				$rtn .= ' alfa';
+				break;
+			case '-2':
+				$rtn .= ' beta';
+				break;
+			case '-1':
+				$rtn .= ' final';
+				break;
+			case '0':
+				break;
+		}
+        
+		return $rtn;
+	}
+	
+	public function format_version($version, $name = false){
+		$rtn = '';
+		
+		if ($name){
 			$rtn .= (defined($version['name']) ? constant($version['name']) : $version['name']) . ' ';
 		}
 		

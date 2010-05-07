@@ -16,11 +16,16 @@ $adminmenu[0]['link'] = "index.php";
 $adminmenu[0]['icon'] = "images/dashboard.png";
 $adminmenu[0]['location'] = "dashboard";
 
-$adminmenu[1]['title'] = __('Images','rmcommon');
-$adminmenu[1]['link'] = "images.php";
-$adminmenu[1]['icon'] = "images/images.png";
-$adminmenu[1]['location'] = "imgmanager";
-$adminmenu[1]['options'] = array(0 => array(
+$adminmenu[1]['title'] = __('Modules','rmcommon');
+$adminmenu[1]['link'] = "modules.php";
+$adminmenu[1]['icon'] = "images/modules.png";
+$adminmenu[1]['location'] = "modules";
+
+$adminmenu[2]['title'] = __('Images','rmcommon');
+$adminmenu[2]['link'] = "images.php";
+$adminmenu[2]['icon'] = "images/images.png";
+$adminmenu[2]['location'] = "imgmanager";
+$adminmenu[2]['options'] = array(0 => array(
 		'title'		=>	__('Categories','rmcommon'),
 		'link'		=> 'images.php?action=showcats',
 		'selected'	=> 'rmc_imgcats' // RMSUBLOCATION constant defines wich submenu options is selected
@@ -39,12 +44,12 @@ $adminmenu[1]['options'] = array(0 => array(
 	)
 );
 
-$adminmenu[2]['title'] = __('Comments','rmcommon');
-$adminmenu[2]['link'] = "comments.php";
-$adminmenu[2]['icon'] = "images/comments.png";
-$adminmenu[2]['location'] = "comments";
+$adminmenu[3]['title'] = __('Comments','rmcommon');
+$adminmenu[3]['link'] = "comments.php";
+$adminmenu[3]['icon'] = "images/comments.png";
+$adminmenu[3]['location'] = "comments";
 
-$adminmenu[3]['title'] = __('Plugins','rmcommon');
-$adminmenu[3]['link'] = "plugins.php";
-$adminmenu[3]['icon'] = "images/plugin.png";
-$adminmenu[3]['location'] = "plugins";
+$adminmenu[4]['title'] = __('Plugins','rmcommon');
+$adminmenu[4]['link'] = "plugins.php";
+$adminmenu[4]['icon'] = "images/plugin.png";
+$adminmenu[4]['location'] = "plugins";

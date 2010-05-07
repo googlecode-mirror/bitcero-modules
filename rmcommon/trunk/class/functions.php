@@ -76,6 +76,7 @@ class RMFunctions
 	public function create_toolbar(){
 		
 		RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
+		RMTemplate::get()->add_tool(__('Modules','rmcommon'), 'modules.php', 'images/modules.png', 'modules');
 		RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
 		RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
         RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');

@@ -10,7 +10,15 @@
 
 class RmcommonRmcommonPreload
 {
-	public function eventRmcommonPage_loaded(){
+	public function eventRmcommonLoadRightWidgets($widgets){
+		
+		include_once RMCPATH.'/include/right_widgets.php';
+		
+		global $xoopsModule;
+		if (RMCLOCATION=='modules' && $xoopsModule->dirname()=='rmcommon')
+			$widgets[] = rmc_available_mods();
+		
+		return $widgets;
 		
 	}
 }

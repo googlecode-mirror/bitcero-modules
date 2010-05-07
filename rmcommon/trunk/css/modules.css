@@ -1,0 +1,42 @@
+.rmc_modules_widget{
+	
+}
+.rmc_modules_widget .even,
+.rmc_modules_widget .odd{
+	overflow: hidden;
+}
+.rmc_mod_info{
+	display: none;
+	font-size: 0.85em;
+	color: #666;
+}
+.rmc_mod_img{
+	display: block;
+	float: left;
+	height: 40px;
+	width: 40px;
+	margin: 0 5px 0 0px;
+	border: 1px solid #666;
+	-moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.rmc_mod_img span{
+	display: block;
+	height: 38px;
+	width: 38px;
+	border: 1px solid #fff;
+	-moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.rmc_available_options{
+	display: block;
+	font-size: 0.85em;
+}
+.rmc_available_options a{
+	color: #FF4400;
+}
