@@ -14,7 +14,7 @@ $modversion['rmversion'] = array('number'=>1,'revision'=>330,'status'=>0,'name'=
 $modversion['version'] = 1.3;
 $modversion['description'] = _MI_QP_DESC;
 $modversion['author'] = "BitC3R0";
-$modversion['authorlink'] = "mailto:i.bitcero@gmail.com";
+$modversion['authormail'] = "i.bitcero@gmail.com";
 $modversion['authorweb'] = "Red México";
 $modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['credits'] = "Red México";
