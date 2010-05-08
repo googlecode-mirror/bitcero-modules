@@ -45,13 +45,24 @@ function show_modules_list(){
 			
 		}
 		
+		// Admin section
+		$admin_link = $mod->getVar('hasadmin') ? XOOPS_URL.'/modules/'.$mod->dirname().'/'.$mod->getInfo('adminindex') : '';
+		
 		$modules[] = array(
+			'id'			=> $mod->getVar('mid'),
 			'name'			=> $mod->getVar('name'),
 			'realname'		=> $mod->getInfo('name'),
 			'version'		=> $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
 			'description'	=> $mod->getInfo('description'),
 			'image'			=> XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
-			'link'			=> $main_link
+			'link'			=> $main_link,
+			'admin_link'	=> $admin_link,
+			'updated'		=> formatTimestamp($mod->getVar('last_update'), 's'),
+			'author'		=> $mod->getInfo('author'),
+			'author_mail'	=> $mod->getInfo('authormail'),
+			'author_web'	=> $mod->getInfo('authorweb'),
+			'author_url'	=> $mod->getInfo('authorurl'),
+			'license'		=> $mod->getInfo('license')
 		);
 		
     }

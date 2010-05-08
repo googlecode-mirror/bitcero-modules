@@ -1,3 +1,4 @@
+/** Modules Widget **/
 .rmc_modules_widget{
 	
 }
@@ -39,4 +40,145 @@
 }
 .rmc_available_options a{
 	color: #FF4400;
+}
+
+/** Modules Content **/
+.rounded{
+	-moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.rmc_item_module{
+	overflow: hidden;
+	padding: 10px;
+	margin: 10px;
+	float: left;
+	border: 1px solid #ccc;
+	background: #f4f4f4;
+	width: 200px;
+	font-family: arial, helvetica, sans-serif;
+}
+.rmc_item_module input{
+	float: right;
+	position: relative;
+	top: -5px;
+	right: -5px;
+	border: 0;
+}
+.rmc_item_module .mod_image{
+	float: left;
+	width: 52px;
+	margin: 0;
+}
+.mod_image a{
+	display: block;
+	width: 48px;
+	height: 48px;
+	border: 1px solid #ccc;
+}
+.mod_image a span{
+	display: block;
+	width: 46px;
+	height: 46px;
+	border: 1px solid #FFF;
+}
+.mod_image a:hover{
+	border: 1px solid #333;
+}
+.rmc_item_module .mod_data{
+	margin-left: 60px;
+	line-height: 130%;
+}
+.mod_data .name{
+	display: block;
+	font-size: 1.1em;
+	font-family: georgia, times, serif;
+}
+.mod_data .data{
+	color: #666;
+	font-size: 0.90em;
+	display: block;
+}
+.mod_data .data span{
+	display: block;
+}
+.mod_data .options{
+	font-size: 0.85em;
+	display: block;
+	margin: 3px 0 0 0;
+	font-family: georgia, times, serif;
+	text-align: right;
+	overflow: hidden;
+}
+.mod_data .options a{
+	display: block;
+	float: right;
+	margin: 0 0 0 15px;
+}
+.rmc_item_module .data_storage{
+	display: none;
+}
+#data-display{
+	display: none;
+	position: absolute;
+	width: 250px;
+	background: #fff;
+	border: 1px solid  #999;
+	box-shadow: 5px 5px 1px #ccc;
+	-moz-box-shadow: 5px 5px 1px #ccc;
+	-webkit-box-shadow: 5px 5px 1px #ccc;
+}
+#data-display .mod_image{
+	float: left;
+	margin: 0 5px 0 0;
+}
+#data-display .data_head{
+	background: #e8e8e8;
+	padding: 5px;
+	border-bottom: 1px solid #999;
+	-moz-border-radius: 5px 5px 0 0;
+    -khtml-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+}
+#data-display .data_head .name{
+	font-family: georgia, times, serif;
+	font-size: 1.2em;
+	display: block;
+	padding: 5px 0 0 0;
+}
+#data-display .data_head .mod_image a{
+	display: block;
+	width: 32px;
+	height: 32px;
+	border: 1px solid #ccc;
+}
+#data-display .data_head .mod_image a span{
+	display: block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #FFF;
+}
+#data-display .data_description{
+	background: #f4f4f4;
+	padding: 5px;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #CCC;
+	color: #666;
+	font-size: 0.9em;
+}
+#data-display .data_values{
+	padding: 10px 5px 10px 10px;
+}
+#data-display .data_values a{
+	text-decoration: underline;
+}
+#data-display .data_values table td{
+	padding: 3px;
+	vertical-align: top;
+}
+#data-display .data_values table tr td:first-child{
+	color: #666;
 }
