@@ -69,4 +69,16 @@ class MywordsController
         
     }
     
+    public function get_main_link(){
+		
+		$mc = RMUtilities::module_config('mywords');
+		
+		if ($mc['permalinks']>1){
+			return XOOPS_URL.$mc['basepath'];
+		} else {
+			return XOOPS_URL.'/modules/mywords';
+		}
+		
+    }
+    
 }
