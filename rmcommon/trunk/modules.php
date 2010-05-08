@@ -20,10 +20,38 @@ function show_modules_list(){
     foreach($installed_modules as $mod){
 		$installed_dirs[] = $mod->dirname();
 		
+		if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php')){
+			include_once XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php';
+			$class = ucfirst($mod->getVar('dirname')).'Controller';
+			$class = new $class();
+			if (method_exists($class, 'get_main_link')){
+				$main_link = $class->get_main_link();
+			} else {
+				
+			if ($mod->getVar('hasmain')){
+				$main_link = XOOPS_URL.'/modules/'.$mod->dirname();
+			} else {
+				$main_link = "#";
+			}
+				
+			}
+		} else {
+			
+			if ($mod->getVar('hasmain')){
+				$main_link = XOOPS_URL.'/modules/'.$mod->dirname();
+			} else {
+				$main_link = "#";
+			}
+			
+		}
+		
 		$modules[] = array(
 			'name'			=> $mod->getVar('name'),
 			'realname'		=> $mod->getInfo('name'),
-			'version'		=> $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version')
+			'version'		=> $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
+			'description'	=> $mod->getInfo('description'),
+			'image'			=> XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
+			'link'			=> $main_link
 		);
 		
     }
