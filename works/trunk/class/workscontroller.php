@@ -63,4 +63,16 @@ class WorksController
         
     }
     
+    public function get_main_link(){
+		
+		$mc = RMUtilities::module_config('works');
+		
+		if ($mc['urlmode']){
+			return XOOPS_URL.$mc['htbase'];
+		} else {
+			return XOOPS_URL.'/modules/works';
+		}
+		
+    }
+    
 }
