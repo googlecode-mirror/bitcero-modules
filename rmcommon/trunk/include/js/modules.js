@@ -35,7 +35,7 @@ $(document).ready(function(){
 		$(data+" table td.license").html($(source+" .data_storage .license").html());
 		$(data+" table td.name").html($(source+" .data_storage .name").html());
 		
-		$("#data-display").slideDown(500);
+		$("#data-display").slideDown(200);
 		
 	})
 });

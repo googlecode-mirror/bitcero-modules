@@ -62,4 +62,10 @@
 			</tr>
 		</table>
 	</div>
+    <div class="data_buttons">
+        <a href="#"><?php _e('Update','rmcommon'); ?></a> |
+        <a href="#"><?php _e('Uninstall','rmcommon'); ?></a> |
+        <a href="#"><?php _e('Disable','rmcommon'); ?></a> |
+        <a href="#" onclick="$('#data-display').slideUp('fast');">Close</a>
+    </div>
 </div>

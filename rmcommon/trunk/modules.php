@@ -13,61 +13,75 @@ include_once '../../include/cp_header.php';
 
 function show_modules_list(){
 	
-	$module_handler =& xoops_gethandler('module');
-    $installed_modules = $module_handler->getObjects();
+    $installed_modules = array();
     
+    $limit = rmc_server_var($_SESSION, 'mods_limit', 4);
+    
+    include_once XOOPS_ROOT_PATH.'/kernel/module.php';
+    
+    $db = Database::getInstance();
+    $sql = "SELECT * FROM ".$db->prefix("modules")." ORDER BY `name` LIMIT 0,$limit";
+    $result = $db->query($sql);
     $installed_dirs = array();
+    
+    while($row = $db->fetchArray($result)){
+        $mod = new XoopsModule();
+        $mod->assignVars($row);
+        $installed_dirs[] = $mod->dirname();
+        
+        if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php')){
+            include_once XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php';
+            $class = ucfirst($mod->getVar('dirname')).'Controller';
+            $class = new $class();
+            if (method_exists($class, 'get_main_link')){
+                $main_link = $class->get_main_link();
+            } else {
+                
+            if ($mod->getVar('hasmain')){
+                $main_link = XOOPS_URL.'/modules/'.$mod->dirname();
+            } else {
+                $main_link = "#";
+            }
+                
+            }
+        } else {
+            
+            if ($mod->getVar('hasmain')){
+                $main_link = XOOPS_URL.'/modules/'.$mod->dirname();
+            } else {
+                $main_link = "#";
+            }
+            
+        }
+        
+        // Admin section
+        $admin_link = $mod->getVar('hasadmin') ? XOOPS_URL.'/modules/'.$mod->dirname().'/'.$mod->getInfo('adminindex') : '';
+        
+        $modules[] = array(
+            'id'            => $mod->getVar('mid'),
+            'name'            => $mod->getVar('name'),
+            'realname'        => $mod->getInfo('name'),
+            'version'        => $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
+            'description'    => $mod->getInfo('description'),
+            'image'            => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
+            'link'            => $main_link,
+            'admin_link'    => $admin_link,
+            'updated'        => formatTimestamp($mod->getVar('last_update'), 's'),
+            'author'        => $mod->getInfo('author'),
+            'author_mail'    => $mod->getInfo('authormail'),
+            'author_web'    => $mod->getInfo('authorweb'),
+            'author_url'    => $mod->getInfo('authorurl'),
+            'license'        => $mod->getInfo('license')
+        );
+    }
+    
     foreach($installed_modules as $mod){
-		$installed_dirs[] = $mod->dirname();
 		
-		if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php')){
-			include_once XOOPS_ROOT_PATH.'/modules/'.$mod->getVar('dirname').'/class/'.strtolower($mod->getVar('dirname').'controller').'.php';
-			$class = ucfirst($mod->getVar('dirname')).'Controller';
-			$class = new $class();
-			if (method_exists($class, 'get_main_link')){
-				$main_link = $class->get_main_link();
-			} else {
-				
-			if ($mod->getVar('hasmain')){
-				$main_link = XOOPS_URL.'/modules/'.$mod->dirname();
-			} else {
-				$main_link = "#";
-			}
-				
-			}
-		} else {
-			
-			if ($mod->getVar('hasmain')){
-				$main_link = XOOPS_URL.'/modules/'.$mod->dirname();
-			} else {
-				$main_link = "#";
-			}
-			
-		}
-		
-		// Admin section
-		$admin_link = $mod->getVar('hasadmin') ? XOOPS_URL.'/modules/'.$mod->dirname().'/'.$mod->getInfo('adminindex') : '';
-		
-		$modules[] = array(
-			'id'			=> $mod->getVar('mid'),
-			'name'			=> $mod->getVar('name'),
-			'realname'		=> $mod->getInfo('name'),
-			'version'		=> $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
-			'description'	=> $mod->getInfo('description'),
-			'image'			=> XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
-			'link'			=> $main_link,
-			'admin_link'	=> $admin_link,
-			'updated'		=> formatTimestamp($mod->getVar('last_update'), 's'),
-			'author'		=> $mod->getInfo('author'),
-			'author_mail'	=> $mod->getInfo('authormail'),
-			'author_web'	=> $mod->getInfo('authorweb'),
-			'author_url'	=> $mod->getInfo('authorurl'),
-			'license'		=> $mod->getInfo('license')
-		);
 		
     }
     
     require_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
+    $module_handler = xoops_gethandler('module');
     $dirlist = XoopsLists::getModulesList();
     $available_mods = array();
     foreach ($dirlist as $file) {

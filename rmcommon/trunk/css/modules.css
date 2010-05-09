@@ -171,6 +171,7 @@
 }
 #data-display .data_values{
 	padding: 10px 5px 10px 10px;
+    border-bottom: 1px solid #CCC;
 }
 #data-display .data_values a{
 	text-decoration: underline;
@@ -181,4 +182,14 @@
 }
 #data-display .data_values table tr td:first-child{
 	color: #666;
+}
+#data-display .data_buttons{
+    padding: 5px;
+    background: #EAF3FA;
+    border-top: 1px solid #FFF;
+    -moz-border-radius: 0 0 5px 5px;
+    -khtml-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    font-size: 0.9em;
 }
