@@ -20,7 +20,8 @@ function show_modules_list(){
     include_once XOOPS_ROOT_PATH.'/kernel/module.php';
     
     $db = Database::getInstance();
-    $sql = "SELECT * FROM ".$db->prefix("modules")." ORDER BY `name` LIMIT 0,$limit";
+
+    $sql = "SELECT * FROM ".$db->prefix("modules")." ORDER BY `name`";
     $result = $db->query($sql);
     $installed_dirs = array();
     
@@ -75,11 +76,6 @@ function show_modules_list(){
         );
     }
     
-    foreach($installed_modules as $mod){
-		
-		
-    }
-    
     require_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
     $module_handler = xoops_gethandler('module');
     $dirlist = XoopsLists::getModulesList();
@@ -109,8 +105,40 @@ function show_modules_list(){
 	
 }
 
+/**
+* This function show a resume of the changes that will be made by module
+*/
+function module_install(){
+    
+    $dir = rmc_server_var($_GET,'dir','');
+    
+    if ($dir=='' || !file_exists(XOOPS_ROOT_PATH.'/modules/'.$dir.'/xoops_version.php')){
+        redirectMsg('modules.php', __('Specified module is not valid!','rmcommon'), 1);
+        die();
+    }
+    
+    $module_handler = xoops_gethandler('module');
+    $module =& $module_handler->create();
+    if (!$module->loadInfo($dir, false)) {
+        redirectMsg('modules.php',__('Sepecified module is not a valid Xoops Module!','rmcommon'), 1);
+        die();
+    }
+    
+    RMTemplate::get()->add_style('modules.css', 'rmcommon');
+    RMFunctions::create_toolbar();
+    xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('rmc_mod_preinstall.php', 'module', 'rmcommon');
+    
+    xoops_cp_footer();
+    
+}
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 switch($action){
+    case 'install':
+        module_install();
+        break;
 	default:
 		show_modules_list();
 		break;

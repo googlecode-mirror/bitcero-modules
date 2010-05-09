@@ -15,7 +15,7 @@ class RmcommonRmcommonPreload
 		include_once RMCPATH.'/include/right_widgets.php';
 		
 		global $xoopsModule;
-		if (RMCLOCATION=='modules' && $xoopsModule->dirname()=='rmcommon')
+		if (RMCLOCATION=='modules' && $xoopsModule->dirname()=='rmcommon' && rmc_server_var($_REQUEST, 'action', '')=='')
 			$widgets[] = rmc_available_mods();
 		
 		return $widgets;
