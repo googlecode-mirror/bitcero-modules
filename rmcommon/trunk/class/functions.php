@@ -244,7 +244,9 @@ class RMFunctions
                 'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
                 'ip'        => $com->getVar('ip'),
                 'edit'		=> $editlink
-            );            
+            );  
+            
+            unset($editor);
         }
         
         $comms = RMEvents::get()->run_event('rmcommon.loading.comments', $comms, $obj, $params, $type, $parent, $user);

@@ -52,6 +52,11 @@ if ($action=='save'){
 	    header('loaction: '.XOOPS_URL);
 	    die();
 	}
+	
+	if ($name=='' || $email==''){
+		redirect_header($uri, 2, __('You must provide your name and email in order to can post comments','rmcommon'));
+		die();
+	}
 
     if (!$xoopsUser && !$rmc_config['anonymous_comments']){
         redirect_header($uri, 2, __('Sorry, you are not allowed to post comments!', 'rmcommon'));

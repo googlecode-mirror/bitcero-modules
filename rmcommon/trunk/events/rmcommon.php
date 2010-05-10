@@ -12,6 +12,8 @@ class RmcommonRmcommonPreload
 {
 	public function eventRmcommonLoadRightWidgets($widgets){
 		
+		if(!defined('RMCLOCATION')) return;
+		
 		include_once RMCPATH.'/include/right_widgets.php';
 		
 		global $xoopsModule;
