@@ -18,15 +18,13 @@ $modversion['authormail'] = "i.bitcero@gmail.com";
 $modversion['authorweb'] = "Red México";
 $modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['credits'] = "Red México";
-$modversion['help'] = "";
+$modversion['help'] = "http://redmexico.com.mx/docs/quickpages";
 $modversion['license'] = "See GPL License";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "qpages";
 $modversion['icon16'] = "images/qpages-16.png";
 $modversion['icon24'] = "images/icon24.png";
-$modversion['deflang'] = "spanish";
-$modversion['onUpdate']="update.php";
 $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=9';
 
@@ -55,6 +53,7 @@ $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 // Tablas
 $modversion['tables'][0] = "qpages_pages";
 $modversion['tables'][1] = "qpages_categos";
+$modversion['tables'][2] = "qpages_meta";
 
 // Plantillas del Módulo
 $modversion['templates'][1]['file'] = 'qpages_index.html';
