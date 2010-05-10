@@ -57,14 +57,12 @@
 	border: 1px solid #ccc;
 	background: #f4f4f4;
 	width: 200px;
+    height: 70px;
 	font-family: arial, helvetica, sans-serif;
 }
-.rmc_item_module input{
-	float: right;
-	position: relative;
-	top: -5px;
-	right: -5px;
-	border: 0;
+.inactive{
+    background: #FFF;
+    border:1px dashed #ccc;
 }
 .rmc_item_module .mod_image{
 	float: left;
@@ -94,6 +92,7 @@
 	display: block;
 	font-size: 1.1em;
 	font-family: georgia, times, serif;
+    color: #333;
 }
 .mod_data .data{
 	color: #666;
@@ -114,7 +113,8 @@
 .mod_data .options a{
 	display: block;
 	float: right;
-	margin: 0 0 0 15px;
+    padding: 3px 0 3px 18px;
+    background: url(../images/down.png) no-repeat left;
 }
 .rmc_item_module .data_storage{
 	display: none;
@@ -192,6 +192,20 @@
     -webkit-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
     font-size: 0.9em;
+    overflow: hidden;
+}
+#data-display .data_buttons a{
+    display: block;
+    padding: 0 3px;
+    float: left;
+    border-right: 1px solid #B8D8EF;
+    border-left: 1px solid #FFF;
+}
+#data-display .data_buttons a:first-child{
+    border-left: 0;
+}
+#data-display .data_buttons a:last-child{
+    border-right: 0;
 }
 .mod_preinstall_container{
     overflow: hidden;
@@ -236,4 +250,18 @@
 }
 .mod_data_container input{
 	font-size: 1.5em;
+}
+.mod_options{
+    padding: 10px 0;
+    font-weight: bold;
+}
+.mod_log{
+    max-height: 500px;
+    overflow: auto;
+    background: #f4f4f4;
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+.mod_log strong{
+    color: #BB5E00;
 }

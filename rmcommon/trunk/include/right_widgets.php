@@ -9,15 +9,25 @@
 // --------------------------------------------------------------
 
 function rmc_available_mods(){
-	global $available_mods;
+	global $available_mods, $xoopsSecurity;
 	
 	$ret['title'] = __('Available Modules','rmcommon');
 	$ret['icon'] = RMCURL.'/images/modules.png';
+    
+    $limit = 10;
+    $tpages = ceil(count($available_mods)/$limit);
+    
+    $nav = new RMPageNav(count($available_mods), $limit, 1, 3);
+    $nav->target_url('javascript:;" onclick="load_page({PAGE_NUM});');
 	
 	ob_start();
+    $i = 0;
 ?>
 	<div class="rmc_widget_content_reduced rmc_modules_widget">
+        <img id="img-load" src="images/loading.gif" style="display: none; margin: 15px auto;" />
+        <div id="mods-widget-container">
 		<?php foreach($available_mods as $mod): ?>
+        <?php if($i==$limit) break; ?>
 		<div class="<?php echo tpl_cycle("even,odd"); ?>">
 			<a href="modules.php?action=install&amp;dir=<?php echo $mod->getInfo('dirname'); ?>" class="rmc_mod_img" style="background: url(<?php echo XOOPS_URL; ?>/modules/<?php echo $mod->getInfo('dirname'); ?>/<?php echo $mod->getInfo('image'); ?>) no-repeat center;"><span>&nbsp;</span></a>
 			<strong><a href="modules.php?action=install&amp;dir=<?php echo $mod->getInfo('dirname'); ?>"><?php echo $mod->getInfo('name'); ?></a></strong>
@@ -35,8 +45,11 @@ function rmc_available_mods(){
 				<?php _e('Author:', 'rmcommon'); ?> <?php echo substr(strip_tags($mod->getInfo('author')), 0, 12); ?>
 			</span>
 		</div>
-		<?php endforeach; ?>
+		<?php $i++; endforeach; ?>
+        <?php $nav->display(false); ?>
+        </div>
 	</div>
+    <input type="hidden" id="token" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <?php
 	$ret['content'] = ob_get_clean();
 	return $ret;
