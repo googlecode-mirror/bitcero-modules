@@ -226,3 +226,14 @@
     font-weight: normal;
     font-style: italic;
 }
+.mod_preinstall_container .mod_data_container{
+	line-height: 130%;
+	font-size: 0.9em;
+}
+.mod_preinstall_container .mod_data_container table td{
+	padding: 3px;
+	vertical-align: top;
+}
+.mod_data_container input{
+	font-size: 1.5em;
+}

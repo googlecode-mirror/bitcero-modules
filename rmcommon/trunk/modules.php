@@ -77,9 +77,9 @@ function show_modules_list(){
     }
     
     require_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
-    $module_handler = xoops_gethandler('module');
     $dirlist = XoopsLists::getModulesList();
     $available_mods = array();
+    $module_handler = xoops_gethandler('module');
     foreach ($dirlist as $file) {
         clearstatcache();
         $file = trim($file);
@@ -109,6 +109,7 @@ function show_modules_list(){
 * This function show a resume of the changes that will be made by module
 */
 function module_install(){
+    global $xoopsSecurity;
     
     $dir = rmc_server_var($_GET,'dir','');
     
@@ -118,6 +119,12 @@ function module_install(){
     }
     
     $module_handler = xoops_gethandler('module');
+	
+	if ($module = $module_handler->getByDirname($dir)){
+		redirectMsg('modules.php', sprintf(__('%s is already installed!', 'rmcommon'), $module->name()), 1);
+		die();
+	}
+    
     $module =& $module_handler->create();
     if (!$module->loadInfo($dir, false)) {
         redirectMsg('modules.php',__('Sepecified module is not a valid Xoops Module!','rmcommon'), 1);
@@ -135,11 +142,51 @@ function module_install(){
     
 }
 
+function module_install_now(){
+	global $xoopsSecurity, $xoopsConfig;
+	
+	$mod = rmc_server_var($_POST, 'module', '');
+	
+	if (!$xoopsSecurity->check()){
+		redirectMsg('modules.php?action=install&dir='.$module, __('Sorry, this operation could not be completed!', 'rmcommon'), 1);
+		die();
+	}
+	
+	$module_handler = xoops_gethandler('module');
+	
+	if ($module = $module_handler->getByDirname($mod)){
+		redirectMsg('modules.php', sprintf(__('%s is already installed!', 'rmcommon'), $module->name()), 1);
+		die();
+	}
+	
+	$file = XOOPS_ROOT_PATH.'/modules/system/language/'.$xoopsConfig['language'].'/admin/modulesadmin.php';
+	if (file_exists($file)){
+		include_once $file;
+	} else {
+		include_once str_replace($xoopsConfig['language'], 'english', $file);
+	}
+	
+	
+	include_once XOOPS_ROOT_PATH.'/modules/system/admin/modulesadmin/modulesadmin.php';
+	$ret = xoops_module_install($mod);
+	
+	RMFunctions::create_toolbar();
+	xoops_cp_header();
+	
+	echo $ret;
+	
+	xoops_cp_footer();
+	
+}
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 switch($action){
     case 'install':
         module_install();
         break;
+    case 'install_now':
+    	module_install_now();
+    	break;
 	default:
 		show_modules_list();
 		break;

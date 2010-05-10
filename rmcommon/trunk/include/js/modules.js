@@ -44,6 +44,10 @@ $(document).ready(function(){
         $("#"+id+"-container").slideToggle(600);
     });
     
+    $("#install-ok").click(function(){
+		$("#install-form").submit();
+    })
+    
 });
 
 function show_module_info(id){
