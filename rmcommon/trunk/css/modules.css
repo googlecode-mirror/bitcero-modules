@@ -198,6 +198,31 @@
 }
 .mod_preinstall_container .left{
     float: left;
-    width: 31%;
-    margin-right: 10px;
+    width: 40%;
+    margin-right: 20px;
+}
+.mod_preinstall_container .th a{
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(../images/down.png) no-repeat center;
+    text-decoration: none;
+}
+.mod_preinstall_container .th a:hover{
+    text-decoration: none;
+}
+.mod_preinstall_container .container_hidden{
+    display: none;
+    line-height: 130%;
+}
+.mod_preinstall_container .descriptions{
+    color: #666;
+    font-size: 0.9em;
+}
+.mod_preinstall_container .left h2{
+    margin: 0 0 10px 0;
+    font-family: georgia, times, serif;
+    font-weight: normal;
+    font-style: italic;
 }

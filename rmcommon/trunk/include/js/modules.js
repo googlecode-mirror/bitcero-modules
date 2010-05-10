@@ -37,7 +37,13 @@ $(document).ready(function(){
 		
 		$("#data-display").slideDown(200);
 		
-	})
+	});
+    
+    $(".mod_preinstall_container .th a").click(function(){
+        var id = $(this).attr("id").replace("down-",'');
+        $("#"+id+"-container").slideToggle(600);
+    });
+    
 });
 
 function show_module_info(id){

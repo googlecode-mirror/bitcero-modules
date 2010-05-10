@@ -124,6 +124,7 @@ function module_install(){
         die();
     }
     
+    RMTEmplate::get()->add_script('include/js/modules.js');
     RMTemplate::get()->add_style('modules.css', 'rmcommon');
     RMFunctions::create_toolbar();
     xoops_cp_header();
