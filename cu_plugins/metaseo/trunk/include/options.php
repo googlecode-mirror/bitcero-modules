@@ -26,8 +26,16 @@ $options['meta'] = array(
 );
 
 $options['meta_name'] = array(
-        'caption'   =>  __('Custom field name','metaseo'),
+        'caption'   =>  __('Custom field name for descriptions','metaseo'),
         'desc'      =>  __('Specify here the custom field name to use as description (eg. meta_desc).','metaseo'),
+        'fieldtype'      =>  'textbox',
+        'valuetype' =>  'text',
+        'value'   =>  ''
+);
+
+$options['meta_keys'] = array(
+        'caption'   =>  __('Custom field name for keywords','metaseo'),
+        'desc'      =>  __('Specify here the custom field name to use as keywords. Remember that each word in MyWords custom field must be separated by comma (eg. xoops,cms,etc).','metaseo'),
         'fieldtype'      =>  'textbox',
         'valuetype' =>  'text',
         'value'   =>  ''

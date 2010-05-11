@@ -24,5 +24,21 @@ class MetaseoPluginRmcommonPreload
         return $menu;
         
     }
+    
+    /**
+    * This event can be used on any module, theme or plugin
+    * to add description and keywords to meta headers
+    * 
+    * @param string $desc
+    * @param string $keys
+    */
+    public function eventRmcommonMetaSeo($desc, $keys){
+		
+		$meta = '<meta name="description" content="'.$desc.'" />';
+		$meta .= '<meta name="keywords" content="'.$keys.'" />';
+		
+		RMTemplate::get()->add_head($meta);
+		
+    }
 	
 }
