@@ -1,0 +1,19 @@
+.cache_options{
+  padding: 5px 0;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.cache_options a{
+  display: block;
+  float: left;
+  margin: 0 8px 0 0;
+  padding: 2px 8px 2px 19px;
+  background-position: left;
+  background-repeat: no-repeat;
+  border-right: 1px dotted #CCC;
+}
+.cache_options a:last-child{
+  border-right: 0;
+}
+

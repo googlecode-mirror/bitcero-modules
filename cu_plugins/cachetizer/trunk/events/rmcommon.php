@@ -45,4 +45,46 @@ class CachetizerPluginRmcommonPreload
         
     }
     
+    /**
+    * This event init the cache engine
+    */
+    public function eventRmcommonPluginsLoaded($plugins){
+		
+		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/cachetizer/cachetizer-plugin.php';
+		$plugin = new CachetizerCUPlugin();
+		
+		if (!$plugin->get_config('enabled'))
+			return $plugins;
+		
+		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/class/functions.php';
+		$url = RMFunctions::current_url();
+		
+		if(!is_dir(XOOPS_CACHE_PATH.'/cachetizer/files'))
+			mkdir(XOOPS_CACHE_PATH.'/cachetizer/files', 511);
+		
+		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url);
+		if (file_exists($file)){
+			ob_end_clean();
+			echo file_get_contents($file);
+			die();
+		}
+		
+    }
+    
+    /**
+    * This event save the current page if is neccesary
+    */
+    public function eventRmcommonEndFlush($output){
+		
+		$url = RMFunctions::current_url();
+		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url);
+
+		if (!file_exists($file)){
+			file_put_contents($file, $output);
+		}
+		
+		return $output;
+		
+    }
+    
 }

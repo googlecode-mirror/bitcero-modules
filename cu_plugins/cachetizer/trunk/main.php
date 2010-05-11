@@ -12,6 +12,9 @@ define('RMCLOCATION','cachetizer');
 
 function cache_show_options(){
     RMFunctions::create_toolbar();
+	
+	$plugin = RMFunctions::get()->load_plugin('cachetizer');
+	RMTemplate::get()->add_style('cache.css', 'rmcommon', 'plugins/cachetizer');
     xoops_cp_header();
     
     include RMTemplate::get()->get_template('cache_index.php', 'plugin', 'rmcommon', 'cachetizer');
