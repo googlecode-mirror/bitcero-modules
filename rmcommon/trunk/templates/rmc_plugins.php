@@ -32,7 +32,11 @@
     <?php foreach ($installed_plugins as $plugin): ?>
     <tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
         <td>
+            <?php if($plugin->get_info('hasmain')): ?>
+            <strong><a href="plugins.php?p=<?php echo $plugin->get_info('dir'); ?>"><?php echo $plugin->getVar('name'); ?></a></strong>
+            <?php else: ?>
             <strong><?php echo $plugin->getVar('name'); ?></strong>
+            <?php endif; ?>
             <span class="rmc_options">
                 <a href="plugins.php?action=uninstall&amp;plugin=<?php echo $plugin->get_info('dir'); ?>"><?php _e('Uninstall','rmcommon'); ?></a> | 
                 <?php if($plugin->getVar('status')): ?>

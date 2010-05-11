@@ -80,6 +80,8 @@ class RMFunctions
 		RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
 		RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
         RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');
+        
+        RMEvents::get()->run_event('rmcommon.create.toolbar');
 		
 	}
     

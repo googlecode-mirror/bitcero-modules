@@ -8,7 +8,10 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('RMCLOCATION','plugins');
+$p = isset($_REQUEST['p']) ? $_REQUEST['p'] : '';
+if ($p==''){
+    define('RMCLOCATION','plugins');
+}
 include_once '../../include/cp_header.php';
 require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
 
@@ -481,8 +484,44 @@ function save_settings_rm_plugin(){
     
 }
 
+/**
+* This function allows to plugins to show their own options
+*/
+function main_rm_plugin($dir){
+    
+    $path = RMCPATH.'/plugins';
+    
+    if (!file_exists($path.'/'.$dir.'/'.strtolower($dir).'-plugin.php')){
+        header("location: plugins.php"); die();
+    }
+        
+    $plugin = new RMPlugin($dir);
+    if ($plugin->isNew()){
+        header("location: plugins.php"); die();
+    }
+    
+    if (!$plugin->get_info('hasmain')){
+        header("location: plugins.php"); die();
+    }
+    
+    $class = ucfirst($dir).'CUPlugin';
+    $plugin = new $class();
+    if (!method_exists($plugin, 'main')){
+        header("location: plugins.php"); die();
+    }
+    
+    $plugin->main();
+    
+}
+
 // Allow to plugins to take control over this section and show their own options
 RMEvents::get()->run_event('rmcommon.plugins.check.actions');
+
+$dir = rmc_server_var($_REQUEST, 'p', '');
+if ($dir!=''){
+    main_rm_plugin($dir);
+    die();
+}
 
 $action = rmc_server_var($_REQUEST,'action','');
 

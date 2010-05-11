@@ -118,6 +118,8 @@ while($row = $db->fetchArray($result)){
     RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
 }
 
+RMEvents::get()->run_event("rmcommon.plugins.loaded", $GLOBALS['installed_plugins']);
+
 require_once 'api/l10n.php';
 
 // Load rmcommon language
