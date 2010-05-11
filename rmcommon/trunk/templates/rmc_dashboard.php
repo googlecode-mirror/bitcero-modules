@@ -20,8 +20,9 @@
             <div class="th"><?php _e('Available Modules','rmcommon'); ?></div>
             <?php foreach($available_mods as $module): ?>
             <div class="<?php echo tpl_cycle("even,odd"); ?>">
+                <span class="modimg" style="background: url(../<?php echo $module->getInfo('dirname'); ?>/<?php echo $module->getInfo('image'); ?>) no-repeat center;">&nbsp;</span>
                 <strong><?php echo $module->getInfo('name'); ?></strong><br />
-                <span class="moddesc"><?php echo $xoopsModule->getInfo('description'); ?></span><br />
+                <span class="moddesc"><?php echo $module->getInfo('description'); ?></span><br />
                 <a href="<?php echo XOOPS_URL; ?>/modules/system/admin.php?fct=modulesadmin&op=install&module=<?php echo $module->getInfo('dirname'); ?>"><?php _e('Install', 'rmcommon'); ?></a>
             </div>
             <?php endforeach; ?>

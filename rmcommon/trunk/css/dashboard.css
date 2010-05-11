@@ -89,6 +89,14 @@ $Id$
     color: #666;
     font-size: 0.9em;
 }
+.modimg{
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 0 5px 5px 10px;
+    border: 1px solid #999;
+}
 .rmc_news{
     padding: 0 0 8px 0;
     margin-bottom: 5px;

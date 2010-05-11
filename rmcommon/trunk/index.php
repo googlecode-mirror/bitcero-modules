@@ -60,7 +60,9 @@ function show_dashboard(){
     $dirlist = XoopsLists::getModulesList();
     $available_mods = array();
     $module_handler =& xoops_gethandler('module');
+    $i = 0;
     foreach ($dirlist as $file) {
+        if ($i>5) break;
         clearstatcache();
         $file = trim($file);
         if (!in_array($file, $installed_mods)) {
@@ -70,6 +72,7 @@ function show_dashboard(){
             }
             $available_mods[] = $module;
         }
+        $i++;
     }
 
     xoops_cp_header();
