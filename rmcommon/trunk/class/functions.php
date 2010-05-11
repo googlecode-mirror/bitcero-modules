@@ -427,5 +427,25 @@ class RMFunctions
 			return false;
 		
     }
+    
+    /**
+    * Get a existing plugin
+    */
+    public function load_plugin($name){
+		
+		$name = strtolower($name);
+		if (!file_exists(RMCPATH.'/plugins/'.$name.'/'.$name.'-plugin.php'))
+			return false;
+		
+		include_once RMCPATH.'/plugins/'.$name.'/'.$name.'-plugin.php';
+		$class = ucfirst($name).'CUPlugin';
+		
+		if (!class_exists($class))
+			return false;
+		
+		$plugin = new $class();
+		return $plugin;
+		
+    }
 	
 }

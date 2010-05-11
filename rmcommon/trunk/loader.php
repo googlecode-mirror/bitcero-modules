@@ -81,7 +81,7 @@ spl_autoload_register('rmc_autoloader');
 */
 function cu_render_output($output){
 	global $xoTheme, $xoopsTpl;
-    
+	
     if (function_exists('xoops_cp_header')) return $output;
     
 	$page = $output;
@@ -100,6 +100,9 @@ function cu_render_output($output){
 	$rtn .= $styles;
 	$rtn .= $heads;
 	$rtn .= substr($page, $pos);
+	
+	$rtn = RMEvents::get()->run_event('rmcommon.end.flush',$rtn);
+	
 	return $rtn;
 }
 
@@ -107,6 +110,7 @@ include_once XOOPS_ROOT_PATH.'/class/logger/xoopslogger.php';
 include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
+
 $rmc_config = RMFunctions::get()->configs();
 define('RMCLANG',$rmc_config['lang']);
 
@@ -118,7 +122,7 @@ while($row = $db->fetchArray($result)){
     RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
 }
 
-RMEvents::get()->run_event("rmcommon.plugins.loaded", $GLOBALS['installed_plugins']);
+$GLOBALS['installed_plugins'] = RMEvents::get()->run_event("rmcommon.plugins.loaded", $GLOBALS['installed_plugins']);
 
 require_once 'api/l10n.php';
 

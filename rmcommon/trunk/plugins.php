@@ -42,6 +42,14 @@ function show_rm_plugins(){
         
     }
     
+    /*
+    $plugins = array();
+    foreach($installed_plugins as $p){
+		$plugins[] = $p->getVar('dir');
+    }
+    file_put_contents(XOOPS_CACHE_PATH.'/plgs.cnf', TextCleaner::encrypt(json_encode($plugins)));
+    */
+    
 	
 	RMFunctions::create_toolbar();
 	xoops_cp_header();
@@ -494,7 +502,7 @@ function main_rm_plugin($dir){
     if (!file_exists($path.'/'.$dir.'/'.strtolower($dir).'-plugin.php')){
         header("location: plugins.php"); die();
     }
-        
+
     $plugin = new RMPlugin($dir);
     if ($plugin->isNew()){
         header("location: plugins.php"); die();
@@ -509,6 +517,8 @@ function main_rm_plugin($dir){
     if (!method_exists($plugin, 'main')){
         header("location: plugins.php"); die();
     }
+
+    load_plugin_locale($dir);
     
     $plugin->main();
     
