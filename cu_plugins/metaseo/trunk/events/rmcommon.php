@@ -1,4 +1,12 @@
 <?php
+// $Id$
+// --------------------------------------------------------------
+// MetaSEO plugin for Common Utilities
+// Optimize searchs by adding meta description and keywords to you rtemplate
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 class MetaseoPluginRmcommonPreload
 {	
