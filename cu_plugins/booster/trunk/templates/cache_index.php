@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><?php _e('Cache Status','booster'); ?></h1>
+<h1 class="rmc_titles"><?php _e('Booster Status','booster'); ?></h1>
 <script type="text/javascript">
     <!--
     $(document).ready(function(){
@@ -19,6 +19,7 @@
     -->
 </script>
 <div class="cache_options">
+	<a href="plugins.php?p=booster" style="background-image: url(plugins/booster/images/cache.png);"><?php _e('Booster status','booster'); ?></a>
 	<a href="plugins.php?p=booster&amp;action=clean" id="clean-cache" style="background-image: url(plugins/booster/images/clean.png);"><?php _e('Clean cache','booster'); ?></a>
 	<a href="plugins.php?p=booster&amp;action=view" style="background-image: url(plugins/booster/images/files.png);"><?php _e('View files','booster'); ?></a>
 </div>

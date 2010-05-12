@@ -66,27 +66,30 @@ class BoosterPluginRmcommonPreload
         $path = parse_url($url);
         // Pages to exclude
         $prevent = $plugin->get_config('prevent');
-        
+
         if (in_array($path['path'], $prevent))
             return $plugins;
-		
+
 		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
 			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
-		
+			
 		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
-		if (file_exists($file)){
-            
-            $time = time() - filemtime($file);
+		if (file_exists($file.'.html')){
+			
+            $time = time() - filemtime($file.'.html');
+			
             if($time>=$plugin->get_config('time')){
                 unlink($file.'.html');
                 unlink($file.'.meta');
                 return $plugins;
             }
-                
+
 			ob_end_clean();
-			echo file_get_contents($file);
-			die();
+			echo file_get_contents($file.'.html');
+            die();
 		}
+
+        return $plugins;
 		
     }
     
@@ -114,8 +117,13 @@ class BoosterPluginRmcommonPreload
             'uri' => $url,
             'created' => time()
         );
-
-		file_put_contents($file.'.html', $output);
+		
+		$pos = strpos($output, '<div id="xo-logger-output">');
+		if ($pos!==FALSE)
+			file_put_contents($file.'.html', substr($output, 0, $pos));
+		else
+			file_put_contents($file.'.html', $output);
+			
         file_put_contents($file.'.meta', json_encode($data));
 		
 		return $output;
