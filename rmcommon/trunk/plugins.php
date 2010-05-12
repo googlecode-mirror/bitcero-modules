@@ -19,7 +19,7 @@ function show_rm_plugins(){
 	
 	$path = RMCPATH.'/plugins';
 	$dir_list = XoopsLists::getDirListAsArray($path);
-	
+
 	$available_plugins = array();
 	$installed_plugins = array();
 	
@@ -42,13 +42,13 @@ function show_rm_plugins(){
         
     }
     
-    /*
+
     $plugins = array();
     foreach($installed_plugins as $p){
 		$plugins[] = $p->getVar('dir');
     }
     file_put_contents(XOOPS_CACHE_PATH.'/plgs.cnf', TextCleaner::encrypt(json_encode($plugins)));
-    */
+    
     
 	
 	RMFunctions::create_toolbar();
@@ -72,7 +72,7 @@ function install_rm_plugin(){
     }
 	
     $plugin = new RMPlugin($name);
-    
+
     if (!$plugin->isNew()){
         redirectMsg('plugins.php', __('Specified plugin is installed already!', 'rmcommon'), 1);
         die();

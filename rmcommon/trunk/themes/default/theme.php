@@ -118,8 +118,6 @@ foreach ($this->tpl_head as $head){
 <div id="rmc-footer">
 	<div class="by_redmexico">
 		Theme powered by <a href="http://redmexico.com.mx">Red México</a>.<br />
-		<a href="http://www.temasweb.com">TemasWeb.com</a> |
-		<a href="http://www.frecuenciau.com">Frecuencia Universitaria</a> |
 	</div>
 	Powered by <a href="http://www.xoops.org"><?php echo XOOPS_VERSION; ?></a>.<br />
 	Common Utilities by Red México

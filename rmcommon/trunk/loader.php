@@ -115,12 +115,35 @@ $rmc_config = RMFunctions::get()->configs();
 define('RMCLANG',$rmc_config['lang']);
 
 // Load plugins
-$result = $db->query("SELECT * FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
+$file = XOOPS_CACHE_PATH.'/plgs.cnf';
+$plugins = array();
 $GLOBALS['installed_plugins'] = array();
-while($row = $db->fetchArray($result)){
-	$GLOBALS['installed_plugins'][$row['dir']] = true;
-    RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
+
+if (file_exists($file)){
+    $plugins = json_decode(file_get_contents($file), true);
 }
+
+if (empty($plugins)){
+
+    $result = $db->query("SELECT dir FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
+    while($row = $db->fetchArray($result)){
+    	$GLOBALS['installed_plugins'][$row['dir']] = true;
+        $plugins[] = $row['dir'];
+        RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$row['dir'], ucfirst($row['dir']).'Plugin');
+    }
+    file_put_contents($file, json_encode($plugins));
+
+} else {
+
+    foreach($plugins as $p){
+        $GLOBALS['installed_plugins'][$p] = true;
+        RMEvents::get()->load_extra_preloads(RMCPATH.'/plugins/'.$p, ucfirst($p).'Plugin');
+    }
+
+}
+
+unset($plugins);
+unset($file);
 
 $GLOBALS['installed_plugins'] = RMEvents::get()->run_event("rmcommon.plugins.loaded", $GLOBALS['installed_plugins']);
 
