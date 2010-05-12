@@ -1,20 +1,20 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Cachetizer plugin for Common Utilities
-// Speed up your Xoops web site with cachetizer
+// booster plugin for Common Utilities
+// Speed up your Xoops web site with booster
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class CachetizerPluginRmcommonPreload
+class BoosterPluginRmcommonPreload
 {
     public function eventRmcommonModulesMenu($menu){
         if (isset($menu['rmcommon'])){
             $menu['rmcommon']['options'][] = array(
-                'title' => __('Cachetizer', 'cachetizer'),
-                'link'  => RMCURL.'/plugins.php?p=cachetizer'
+                'title' => 'Booster',
+                'link'  => RMCURL.'/plugins.php?p=booster'
             );
         }
         
@@ -27,10 +27,10 @@ class CachetizerPluginRmcommonPreload
         if($xoopsModule->getVar('dirname')!='rmcommon') return $menu;
         
         $option = array(
-            'title'=>__('Cache','cachetizer'),
-            'link' => 'plugins.php?p=cachetizer',
-            'icon' => RMCURL.'/plugins/cachetizer/images/cache.png',
-            'location' => 'cachetizer'
+            'title'=>'Booster',
+            'link' => 'plugins.php?p=booster',
+            'icon' => RMCURL.'/plugins/booster/images/cache.png',
+            'location' => 'booster'
         );
         
         $menu[] = $option;
@@ -41,7 +41,7 @@ class CachetizerPluginRmcommonPreload
     
     public function eventRmcommonCreateToolbar(){
         
-        RMTemplate::get()->add_tool(__('Cache','rmcommon'), 'plugins.php?p=cachetizer', RMCURL.'/plugins/cachetizer/images/cache.png', 'cachetizer');
+        RMTemplate::get()->add_tool(__('Booster','rmcommon'), 'plugins.php?p=booster', RMCURL.'/plugins/booster/images/cache.png', 'booster');
         
     }
     
@@ -50,8 +50,8 @@ class CachetizerPluginRmcommonPreload
     */
     public function eventRmcommonPluginsLoaded($plugins){
 		
-		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/cachetizer/cachetizer-plugin.php';
-		$plugin = new CachetizerCUPlugin();
+		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/booster/booster-plugin.php';
+		$plugin = new boosterCUPlugin();
 		
 		if (!$plugin->get_config('enabled'))
 			return $plugins;
@@ -60,21 +60,22 @@ class CachetizerPluginRmcommonPreload
 		$url = RMFunctions::current_url();
         
         $path = parse_url($url);
+        // Pages to exclude
         $prevent = $plugin->get_config('prevent');
         
         if (in_array($path['path'], $prevent))
             return $plugins;
 		
-		if(!is_dir(XOOPS_CACHE_PATH.'/cachetizer/files'))
-			mkdir(XOOPS_CACHE_PATH.'/cachetizer/files', 511);
+		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
+			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
 		
-		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url).'.html';
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
 		if (file_exists($file)){
             
             $time = time() - filemtime($file);
             if($time>=$plugin->get_config('time')){
-                unlink($file);
-                die();
+                unlink($file.'.html');
+                unlink($file.'.meta');
                 return $plugins;
             }
                 
@@ -90,7 +91,7 @@ class CachetizerPluginRmcommonPreload
     */
     public function eventRmcommonEndFlush($output){
 		
-        $plugin = RMFunctions::load_plugin('cachetizer');
+        $plugin = RMFunctions::load_plugin('booster');
         
         if(!$plugin->get_config('enabled'))
             return $output;
@@ -104,19 +105,39 @@ class CachetizerPluginRmcommonPreload
             return $output;
         
         
-		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url);
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
         $data = array(
             'uri' => $url,
             'created' => time()
         );
 
-		if (!file_exists($file)){
-			file_put_contents($file.'.html', $output);
-            file_put_contents($file.'.meta', json_encode($data));
-		}
+		file_put_contents($file.'.html', $output);
+        file_put_contents($file.'.meta', json_encode($data));
 		
 		return $output;
 		
+    }
+    
+    public function eventRmcommonCommentSaved($com, $ret){
+        
+        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret);
+        
+        @unlink($file.'.html');
+        @unlink($file.'.meta');
+        
+    }
+    
+    /**
+    * This event must be triggered when you wish to update cache for a specific url
+    * Specially util to use in your modules or another components
+    */
+    public function eventRmcommonUpdateCache($url){
+        
+        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret);
+        
+        @unlink($file.'.html');
+        @unlink($file.'.meta');
+        
     }
     
 }

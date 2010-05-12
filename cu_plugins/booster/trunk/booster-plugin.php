@@ -1,14 +1,14 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Cachetizer plugin for Common Utilities
-// Speed up your Xoops web site with cachetizer
+// booster plugin for Common Utilities
+// Speed up your Xoops web site with booster
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class CachetizerCUPlugin extends RMIPlugin
+class BoosterCUPlugin extends RMIPlugin
 {
     private $config;
 
@@ -16,16 +16,16 @@ class CachetizerCUPlugin extends RMIPlugin
         
         // Load language
         if(function_exists('load_plugin_locale')){
-        	load_plugin_locale('cachetizer', '', 'rmcommon');
+        	load_plugin_locale('booster', '', 'rmcommon');
         
 	        $this->info = array(
-	            'name'            => __('Cachetizer', 'cachetizer'),
-	            'description'    => __('Plugin to speed up your Xoops Web site by reducing load times.','cachetizer'),
+	            'name'            => __('Xoops Booster', 'booster'),
+	            'description'    => __('Plugin to speed up your Xoops Web site by reducing load times.','booster'),
 	            'version'        => '1.0.0.0',
 	            'author'        => 'Eduardo Cortés',
 	            'email'            => 'i.bitcero@gmail.com',
 	            'web'            => 'http://redmexico.com.mx',
-	            'dir'            => 'cachetizer',
+	            'dir'            => 'booster',
 	            'hasmain'       => true
 	        );
 		}
@@ -82,7 +82,8 @@ class CachetizerCUPlugin extends RMIPlugin
             $path = $path['path'];
             
             $prevent = array(
-                $path.'/user.php'
+                $path.'/user.php',
+                $path.'/modules/rmcommon/post_comment.php'
             );
 			
 			$config = array(
@@ -93,10 +94,10 @@ class CachetizerCUPlugin extends RMIPlugin
 			
 		}
 		
-		if(!is_dir(XOOPS_CACHE_PATH.'/cachetizer'))
-			mkdir(XOOPS_CACHE_PATH.'/cachetizer/', 511);
+		if(!is_dir(XOOPS_CACHE_PATH.'/booster'))
+			mkdir(XOOPS_CACHE_PATH.'/booster/', 511);
 		
-		$file = XOOPS_CACHE_PATH.'/cachetizer/config.cnf';
+		$file = XOOPS_CACHE_PATH.'/booster/config.cnf';
 		file_put_contents($file, json_encode($config));
 		
     }
@@ -104,7 +105,7 @@ class CachetizerCUPlugin extends RMIPlugin
     private function loadConfig(){
         if (!empty($config)) return;
 
-        $file = XOOPS_CACHE_PATH.'/cachetizer/config.cnf';
+        $file = XOOPS_CACHE_PATH.'/booster/config.cnf';
         if (!file_exists($file)){
 			$this->write_file();
         }
