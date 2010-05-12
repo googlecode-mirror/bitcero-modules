@@ -308,6 +308,8 @@ if ($action=='save'){
         $comment->setVar('user', $cuser->id());
         
     }
+    
+    RMEvents::get()->run_event('rmcommon.comment.saved', $comment, $ret);
 
     if ($comment->save()){
         redirect_header($ret.'#comment-'.$comment->id(), 2, __('Comment updated successfully!','rmcommon'));
