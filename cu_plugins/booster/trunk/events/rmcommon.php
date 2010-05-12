@@ -30,7 +30,11 @@ class BoosterPluginRmcommonPreload
             'title'=>'Booster',
             'link' => 'plugins.php?p=booster',
             'icon' => RMCURL.'/plugins/booster/images/cache.png',
-            'location' => 'booster'
+            'location' => 'booster',
+            'options' => array(
+                array('title'=>__('Clean cache','booster'),'link'=>'plugins.php?p=booster&amp;action=clean'),
+                array('title'=>__('View files','booster'),'link'=>'plugins.php?p=booster&amp;action=view')
+            )
         );
         
         $menu[] = $option;

@@ -20,7 +20,7 @@
 </script>
 <div class="cache_options">
 	<a href="plugins.php?p=booster&amp;action=clean" id="clean-cache" style="background-image: url(plugins/booster/images/clean.png);"><?php _e('Clean cache','booster'); ?></a>
-	<a href="plugins.php?p=booster&amp;action=view" style="background-image: url(plugins/booster/images/files.png);"><?php _e('View cache files','booster'); ?></a>
+	<a href="plugins.php?p=booster&amp;action=view" style="background-image: url(plugins/booster/images/files.png);"><?php _e('View files','booster'); ?></a>
 </div>
 
 <form action="plugins.php" method="post" name="frmcache" id="frm-cache">
@@ -34,7 +34,15 @@
 	<?php _e('Cache duration specify the time inteval to rewrite cache files. A small value indicates small interval. The value must be specified in seconds.','booster'); ?>
 </div><br />
 <strong><?php _e('Cache duration','booster'); ?></strong>
-<input type="text" name="duration" size="8" value="<?php echo $plugin->get_config('time'); ?>" /> <?php _e('seconds','booster'); ?> &nbsp;
+<input type="text" name="duration" size="8" value="<?php echo $plugin->get_config('time'); ?>" /> <?php _e('seconds','booster'); ?><br /><br />
+
+<strong><?php _e('Pages to exclude from cache','booster'); ?></strong>
+<div class="descriptions">
+    <?php _e('Add an URL per line.','booster'); ?>
+</div><br />
+
+<textarea name="prevent" style="width: 60%; height: 200px;"><?php echo implode("\n", $plugin->get_config('prevent')); ?></textarea><br /><br />
+
 <input type="button" id="save" value="<?php _e('Save Settings','booster'); ?>" />
 <input type="hidden" name="action" id="action" value="" />
 <input type="hidden" name="p" value="booster" />

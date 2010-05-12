@@ -39,15 +39,16 @@ switch($action){
         redirectMsg('plugins.php?p=booster', __('booster has been enabled','booster'), 0);
         break;
     case 'save':
-        
         $duration = rmc_server_var($_POST, 'duration', 600);
+        $prevent = rmc_server_var($_POST, 'prevent', '');
         $duration = $duration<=0 ? 600 : $duration;
         $config = $this->get_config();
         $config['time'] = $duration;
+        $prevent = explode("\n", $prevent);
+        $config['prevent'] = $prevent;
         $this->write_file($config);
         redirectMsg('plugins.php?p=booster', __('Settings saved!','booster'), 0);
         break;
-    
     case 'clean':
     
         $files = XoopsLists::getFileListAsArray(XOOPS_CACHE_PATH.'/booster/files');
