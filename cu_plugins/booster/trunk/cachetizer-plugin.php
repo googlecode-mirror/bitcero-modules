@@ -67,7 +67,8 @@ class CachetizerCUPlugin extends RMIPlugin
 		
 		if (empty($config)){
 			
-			$mh = xoops_gethandler('module');
+			/*
+            $mh = xoops_gethandler('module');
 			$modules = $mh->getObjects();
 			$prevent = array();
 			foreach($modules as $mod){
@@ -75,6 +76,14 @@ class CachetizerCUPlugin extends RMIPlugin
 					$prevent[] = 'modules/'.$mod->dirname().'/'.dirname($mod->getInfo('adminindex'));
 				}
 			}
+            */
+            
+            $path = parse_url(XOOPS_URL);
+            $path = $path['path'];
+            
+            $prevent = array(
+                $path.'/user.php'
+            );
 			
 			$config = array(
 				'enabled'		=> 1,

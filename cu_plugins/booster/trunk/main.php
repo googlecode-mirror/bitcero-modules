@@ -26,6 +26,37 @@ function cache_show_options(){
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
+    case 'disable':
+        $config = $this->get_config();
+        $config['enabled'] = 0;
+        $this->write_file($config);
+        redirectMsg('plugins.php?p=cachetizer', __('Cachetizer has been disabled','cachetizer'), 0);
+        break;
+    case 'enable':
+        $config = $this->get_config();
+        $config['enabled'] = 1;
+        $this->write_file($config);
+        redirectMsg('plugins.php?p=cachetizer', __('Cachetizer has been enabled','cachetizer'), 0);
+        break;
+    case 'save':
+        
+        $duration = rmc_server_var($_POST, 'duration', 600);
+        $duration = $duration<=0 ? 600 : $duration;
+        $config = $this->get_config();
+        $config['time'] = $duration;
+        $this->write_file($config);
+        redirectMsg('plugins.php?p=cachetizer', __('Settings saved!','cachetizer'), 0);
+        break;
+    
+    case 'clean':
+    
+        $files = XoopsLists::getFileListAsArray(XOOPS_CACHE_PATH.'/cachetizer/files');
+        foreach($files as $file){
+            unlink(XOOPS_CACHE_PATH.'/cachetizer/files/'.$file);
+        }
+        redirectMsg('plugins.php?p=cachetizer', __('Cache deleted successfully!','cachetizer'), 0);
+        break;
+        
     default:
         cache_show_options();
         break;

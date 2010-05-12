@@ -55,15 +55,29 @@ class CachetizerPluginRmcommonPreload
 		
 		if (!$plugin->get_config('enabled'))
 			return $plugins;
-		
+        
 		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/class/functions.php';
 		$url = RMFunctions::current_url();
+        
+        $path = parse_url($url);
+        $prevent = $plugin->get_config('prevent');
+        
+        if (in_array($path['path'], $prevent))
+            return $plugins;
 		
 		if(!is_dir(XOOPS_CACHE_PATH.'/cachetizer/files'))
 			mkdir(XOOPS_CACHE_PATH.'/cachetizer/files', 511);
 		
-		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url);
+		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url).'.html';
 		if (file_exists($file)){
+            
+            $time = time() - filemtime($file);
+            if($time>=$plugin->get_config('time')){
+                unlink($file);
+                die();
+                return $plugins;
+            }
+                
 			ob_end_clean();
 			echo file_get_contents($file);
 			die();
@@ -76,11 +90,29 @@ class CachetizerPluginRmcommonPreload
     */
     public function eventRmcommonEndFlush($output){
 		
+        $plugin = RMFunctions::load_plugin('cachetizer');
+        
+        if(!$plugin->get_config('enabled'))
+            return $output;
+        
 		$url = RMFunctions::current_url();
+        
+        $path = parse_url($url);
+        $prevent = $plugin->get_config('prevent');
+        
+        if (in_array($path['path'], $prevent))
+            return $output;
+        
+        
 		$file = XOOPS_CACHE_PATH.'/cachetizer/files/'.md5($url);
+        $data = array(
+            'uri' => $url,
+            'created' => time()
+        );
 
 		if (!file_exists($file)){
-			file_put_contents($file, $output);
+			file_put_contents($file.'.html', $output);
+            file_put_contents($file.'.meta', json_encode($data));
 		}
 		
 		return $output;
