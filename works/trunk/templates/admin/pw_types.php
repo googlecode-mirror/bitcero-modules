@@ -48,6 +48,7 @@
 		</select>
 		<input type="button" id="the-op-bottom" value="<?php _e('Apply','admin_works'); ?>" onclick="before_submit('frm-types');" />
 	</div>
+    <?php echo $xoopsSecurity->getTokenHTML(); ?>
 	</form>
 </div>
 

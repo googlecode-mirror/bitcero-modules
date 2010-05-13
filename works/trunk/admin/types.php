@@ -172,83 +172,49 @@ function saveTypes($edit = 0){
 * @desc Elimina los tipos de cliente porporcionados
 **/
 function deleteTypes(){
-
+    global $xoopsSecurity;
+    
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
 
 	//Verificamos que nos hayan proporcionado un tipo para eliminar
-	if (!is_array($ids) && ($ids<=0)){
-		redirectMsg('./types.php',_AS_PW_ERRNOTTYPEDEL,1);
+	if (!is_array($ids)){
+		redirectMsg('./types.php', __('You has not selected any customer type to delete!','works'),1);
 		die();
 	}
-	
-	if (!is_array($ids)){
-		$tp = new PWType($ids);
-		$ids = array($ids);
+
+	if (!$xoopsSecurity->check()){
+	    redirectMsg('./types.php',__('Session token expired!','works'), 1);
+		die();
 	}
 
-
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./types.php',_AS_PW_ERRSESSID, 1);
-			die();
+	$errors = '';
+	foreach ($ids as $k){
+	    //Verificamos si el tipo sea válido
+		if ($k<=0){
+		    $errors.=sprintf(__('Customer type id "%u" is not valid!','works'), $k);
+			continue;
 		}
 
-		$errors = '';
-		foreach ($ids as $k){
-			//Verificamos si el tipo sea válido
-			if ($k<=0){
-				$errors.=sprintf(_AS_PW_NOTVALID, $k);
-				continue;
-			}
-
-			//Verificamos siel tipo existe
-			$type = new PWType($k);
-			if ($type->isNew()){
-				$errors.=sprintf(_AS_PW_NOTEXIST, $k);
-				continue;
-			}
+		//Verificamos siel tipo existe
+		$type = new PWType($k);
+		if ($type->isNew()){
+		    $errors.=sprintf(__('Customer type with id "%u" does not exists!','works'), $k);
+			continue;
+		}
 		
-			if (!$type->delete()){
-				$errors.=sprintf(_AS_PW_NOTDELETE,$k);
-			}
+		if (!$type->delete()){
+		    $errors.=sprintf(__('Type %s could not be deleted!','works'),$type->type());
 		}
+	}
 	
-		if ($errors!=''){
-			redirectMsg('./types.php',_AS_PW_DBERRORS.$errors,1);
-			die();
-		}else{
-			redirectMsg('./types.php',_AS_PW_DBOK,0);
-			die();
-		}
-
-
+	if ($errors!=''){
+	    redirectMsg('./types.php',__('Errors ocurred while trying to delete selected types').'<br />'.$errors,1);
+		die();
 	}else{
-		optionsBar();
-		xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; 
-		<a href='./types.php'>"._AS_PW_TYPELOC.'</a> &raquo; '._AS_PW_DELETE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['ids[]'] = $ids;
-		$hiddens['op'] = 'delete';
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'types.php\';"';
-		
-		$util->msgBox($hiddens, 'types.php',($tp ? sprintf(_AS_PW_DELETECONF, $tp->type()) : _AS_PW_DELETECONFS). '<br /><br />' ._AS_PW_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+	    redirectMsg('./types.php',__('Customer types deleted successfully!','works'),0);
+		die();
 	}
-	
-
-
-
 
 }
 
