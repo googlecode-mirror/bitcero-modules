@@ -1,31 +1,32 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-$modversion['name'] = _MI_AH_NAME;
-$modversion['description'] = _MI_AH_DESC;
-$modversion['version'] = array('number'=>1,'revision'=>207,'status'=>0,'name'=>'Ability Help');
+$modversion['name'] = __('Rapid Docs','docs');
+$modversion['description'] = __('Create documentation in Xoops, quicky and an advanced way.','docs');
+$modversion['rmversion'] = array('number'=>1,'revision'=>0,'status'=>0,'name'=>'Ability Help');
+$modversion['rmnative'] = 1;
+$modversion['version'] = '1.0';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
+$modversion['icon16'] = 'images/icon16.png';
 $modversion['author'] = "BitC3R0";
-$modversion['authorlink'] = "mailto:i.bitcero@gmail.com";
+$modversion['authormail'] = "i.bitcero@gmail.com";
 $modversion['authorweb'] = "Red México";
 $modversion['authorurl'] = "http://www.redmexico.com.mx";
-$modversion['url'] = 'www.exmsystem.com';
 $modversion['credits'] = "Red México";
 $modversion['help'] = "http://exmsystem.net/docs/manual-de-ability-help";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['official'] = 1;
+$modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
-$modversion['dirname'] = "ahelp";
+$modversion['dirname'] = "docs";
 $modversion['icon48'] = "images/logo.png";
-$modversion['deflang'] = 'spanish';
 $modversion['onUninstall']="include/uninstall.php";
 $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=8';
@@ -36,17 +37,6 @@ $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
 $modversion['hasMain'] = 1;
-global $xoopsModule,$xoopsUser,$xoopsModuleConfig;
-if (isset($xoopsModule) && $xoopsModule->dirname()=='ahelp'){
-	if ($xoopsModuleConfig['createres']){
-		$res=new AHResource();
-		if ($res->isAllowedNew(($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS),$xoopsModuleConfig['create_groups'])){
-	
-			$modversion['sub'][0]['name'] = _MI_AH_NEW;
-			$modversion['sub'][0]['url'] = "publish.php";
-		}
-	}
-}
 
 // Busqueda
 $modversion['hasSearch'] = 1;
@@ -54,58 +44,40 @@ $modversion['search']['file'] = "include/search.php";
 $modversion['search']['func'] = "ahelpSearch";
 
 //Templates
-$modversion['templates'][0]['file'] = 'admin/ahelp_resources.html';
+$modversion['templates'][0]['file'] = 'ahelp_header.html';
 $modversion['templates'][0]['description'] = '';
-$modversion['templates'][1]['file'] = 'admin/ahelp_sections.html';
+$modversion['templates'][1]['file'] = 'ahelp_footer.html';
 $modversion['templates'][1]['description'] = '';
-$modversion['templates'][2]['file'] = 'admin/ahelp_references.html';
+$modversion['templates'][2]['file'] = 'ahelp_index.html';
 $modversion['templates'][2]['description'] = '';
-$modversion['templates'][3]['file'] = 'admin/ahelp_figures.html';
+$modversion['templates'][3]['file'] = 'ahelp_resources.html';
 $modversion['templates'][3]['description'] = '';
-$modversion['templates'][4]['file'] = 'admin/ahelp_refs.html';
+$modversion['templates'][4]['file'] = 'ahelp_section.html';
 $modversion['templates'][4]['description'] = '';
-$modversion['templates'][5]['file'] = 'admin/ahelp_figs.html';
+$modversion['templates'][5]['file'] = 'ahelp_quickindex.html';
 $modversion['templates'][5]['description'] = '';
-$modversion['templates'][6]['file'] = 'ahelp_header.html';
+$modversion['templates'][6]['file'] = 'ahelp_resindex.html';
 $modversion['templates'][6]['description'] = '';
-$modversion['templates'][7]['file'] = 'ahelp_footer.html';
+$modversion['templates'][7]['file'] = 'ahelp_singles.html';
 $modversion['templates'][7]['description'] = '';
-$modversion['templates'][8]['file'] = 'ahelp_index.html';
+$modversion['templates'][8]['file'] = 'ahelp_refslist.html';
 $modversion['templates'][8]['description'] = '';
-$modversion['templates'][9]['file'] = 'ahelp_resources.html';
+$modversion['templates'][9]['file'] = 'ahelp_printpage.html';
 $modversion['templates'][9]['description'] = '';
-$modversion['templates'][10]['file'] = 'ahelp_section.html';
+$modversion['templates'][10]['file'] = 'ahelp_publish.html';
 $modversion['templates'][10]['description'] = '';
-$modversion['templates'][11]['file'] = 'ahelp_quickindex.html';
+$modversion['templates'][11]['file'] = 'ahelp_sec.html';
 $modversion['templates'][11]['description'] = '';
-$modversion['templates'][12]['file'] = 'ahelp_resindex.html';
+$modversion['templates'][12]['file'] = 'ahelp_references.html';
 $modversion['templates'][12]['description'] = '';
-$modversion['templates'][13]['file'] = 'ahelp_singles.html';
+$modversion['templates'][13]['file'] = 'ahelp_figures.html';
 $modversion['templates'][13]['description'] = '';
-$modversion['templates'][14]['file'] = 'ahelp_refslist.html';
+$modversion['templates'][14]['file'] = 'ahelp_viewsec.html';
 $modversion['templates'][14]['description'] = '';
-$modversion['templates'][15]['file'] = 'ahelp_printpage.html';
+$modversion['templates'][15]['file'] = 'ahelp_search.html';
 $modversion['templates'][15]['description'] = '';
-$modversion['templates'][16]['file'] = 'ahelp_publish.html';
+$modversion['templates'][16]['file'] = 'ahelp_figures_resume.html';
 $modversion['templates'][16]['description'] = '';
-$modversion['templates'][17]['file'] = 'ahelp_sec.html';
-$modversion['templates'][17]['description'] = '';
-$modversion['templates'][18]['file'] = 'ahelp_references.html';
-$modversion['templates'][18]['description'] = '';
-$modversion['templates'][19]['file'] = 'ahelp_figures.html';
-$modversion['templates'][19]['description'] = '';
-$modversion['templates'][20]['file'] = 'ahelp_viewsec.html';
-$modversion['templates'][20]['description'] = '';
-$modversion['templates'][21]['file'] = 'ahelp_search.html';
-$modversion['templates'][21]['description'] = '';
-$modversion['templates'][22]['file'] = 'admin/ahelp_edits.html';
-$modversion['templates'][22]['description'] = '';
-$modversion['templates'][23]['file'] = 'admin/ahelp_reviewedit.html';
-$modversion['templates'][23]['description'] = '';
-$modversion['templates'][24]['file'] = 'admin/ahelp_index.html';
-$modversion['templates'][24]['description'] = '';
-$modversion['templates'][25]['file'] = 'ahelp_figures_resume.html';
-$modversion['templates'][25]['description'] = '';
 
 //Base de datos
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';

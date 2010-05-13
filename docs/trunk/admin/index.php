@@ -12,6 +12,9 @@
 define('AH_LOCATION', 'index');
 include 'header.php';
 
+$tpl = RMTemplate::get();
+$db = Database::getInstance();
+
 // Opciones de la Página Inicial
 $tpl->append('options', array('text'=>_AS_AH_GOMOD, 'info'=>_AS_AH_CLICK,
         'link'=>'../','icon'=>'../images/gomod.png'));
