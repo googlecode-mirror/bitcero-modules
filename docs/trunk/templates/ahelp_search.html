@@ -1,0 +1,60 @@
+<{include file="db:ahelp_header.html"}>
+<form name="frm1" method="post" action="<{$ah_url}>/search/">
+<table class="outer">
+	<tr class="even">
+		<td align="right"><{$lang_showing}></td>
+	</tr>
+	<tr class="odd">
+		<td><{$lang_search}>
+		    <input type="text" name="search" value="<{$search}>" /> 
+		    <{$lang_in}> 
+		    <select name="item" onchange="submit()">
+			<option value="0" <{if $item==0}>selected<{/if}>><{$lang_resources}></option>
+			<option value="1" <{if $item==1}>selected<{/if}>><{$lang_sections}></option>
+		    </select>
+		    <input type="submit" value="<{$lang_search}>" class="formButton" />
+		</td>
+
+	</tr>
+	<tr class="even">
+		<td>
+		    <strong><{$lang_type}></strong>
+		    <label><input type="radio" name="type" value="0"<{if $type==0 }> checked="checked"<{/if}> /><{$lang_all}></label> 
+		    <label><input type="radio" name="type" value="1"<{if $type==1 }> checked="checked"<{/if}> /><{$lang_any}></label> 
+		    <label><input type="radio" name="type" value="2"<{if $type==2 }> checked="checked"<{/if}> /><{$lang_phrase}></label> 
+		</td>
+	</tr>	
+	
+</table>
+</form>
+<h2><{$lang_results}></h2>
+
+<table width="100%">
+	<tr align="right">
+		<td colspan="3"><{$resNavPage}></td>
+	</tr>
+	<{foreach item=it from=$items}>
+	<tr class="<{cycle values='even,odd'}>">
+		<!--<{if !$item && $it.img!=''}>
+		<td align="center" width="<{if !$item}><{$it.sizeimg}><{else}>0<{/if}>">
+			<{if !$item}><img src="<{$xoops_url}>/uploads/ahelp/<{$it.img}>" border="0" /><{/if}>
+		</td>
+		<{/if}>-->
+		<td valign="top"><h3><a href="<{if $item}><{$it.url_sec}><{else}><{$it.url}><{/if}>"><{if $item}><{$it.title_sec}><{else}><{$it.title}><{/if}></a></h3>
+		    <{if $item}><{$it.content}><{else}><{$it.desc}><{/if}><br />
+		    <span class="ah_search_info"><strong><{$lang_created}>:</strong> <{if $item}><{$it.created_sec}><{else}><{$it.created}><{/if}></span>
+		
+		</td>
+		<td align="center" class="ah_data_res">
+			<img src="<{$xoops_url}>/modules/ahelp/images/rate<{$it.rating}>.png" border="0" /><br />
+			(<{$it.vote}> <{$lang_votes}>) <br />
+			<{$it.reads}> <{$lang_reads}> <br />
+			<{$lang_owner}> <a href="<{$xoops_url}>/userinfo.php?uid=<{if $item}><{$it.uid}><{else}><{$it.owner}><{/if}>"><strong><{if $item}><{$it.uname}><{else}><{$it.owname}><{/if}></strong></a>
+			
+		</td>	
+
+	</tr>
+	<{/foreach}>
+
+
+</table>

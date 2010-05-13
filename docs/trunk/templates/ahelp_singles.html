@@ -1,0 +1,130 @@
+<div id="ahHeader">
+	<h1><{$page_title}></h1>
+	<div class="ahSearch">
+		<form name="frmSearch" method="GET" action="<{$xoops_url}>/modules/ahelp/search.php">
+			<{$lang_findlabel}>
+			<input name="search" size="15" type="text" />
+			<input name="submit" class="formButton" type="submit" value="<{$lang_find}>"/>
+		</form>
+	</div>
+	<div class="ahResource">
+		<{$location_bar}>
+	</div>
+</div>
+
+<div id="ahDocInfo">
+	<div><{$last_edited}></div>
+	<!-- Inidice del Contenido -->
+	<div class="ahSecIndex" style="width: <{$index_width}>px;">
+        <span><{$lang_contents}></span>
+        <div id="ahAllIndex">
+            <ul class="ahIndexList">
+                <{foreach item=section from=$sections}>
+                    <{assign var="jump" value=$section.jump*6}>
+                    <{if $section.jump>0}>
+                        <li class="content" style="padding-left: <{$jump+10}>px; background-position: <{$jump}>px;<{if $section.current}> background-image: url(<{$xoops_url}>/modules/ahelp/images/arrow.png);<{/if}>">
+                            <a href="<{$section.link}>"><{$section.title}></a></li>
+                    <{else}>
+                        <li <{if $section.current}> style="background-image: url(<{$xoops_url}>/modules/ahelp/images/arrow.png);"<{/if}>><a href="<{$section.link}>"><{$section.title}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+            <div class="ahMoreInfo">
+                <a id="ahLessLink" href="javascript:;" onclick="ahHideAll();"><{$lang_less}></a>
+            </div>
+        </div>
+        <div id="ahPreIndex">
+		    <ul class="ahIndexList">
+			    <{foreach item=section from=$pre_index}>
+				    <{assign var="jump" value=$section.jump*6}>
+				    <{if $section.jump>0}>
+					    <li class="content" style="padding-left: <{$jump+10}>px; background-position: <{$jump}>px;<{if $section.current}> background-image: url(<{$xoops_url}>/modules/ahelp/images/arrow.png);<{/if}>">
+						    <a href="<{$section.link}>"><{$section.title}></a></li>
+				    <{else}>
+					    <li <{if $section.current}> style="background-image: url(<{$xoops_url}>/modules/ahelp/images/arrow.png);"<{/if}>><a href="<{$section.link}>"><{$section.title}></a></li>
+				    <{/if}>
+			    <{/foreach}>
+		    </ul>
+            <{if $index_rest>0}>
+                <div><{$lang_indexmore}></div>
+                <div class="ahMoreInfo">
+                	<a id="ahMoreLink" href="javascript:;" onclick="ahShowAll();"><{$lang_more}></a>
+            	</div>
+            <{/if}>
+        </div>
+	</div>
+    <div style="margin-right: <{$index_width+10}>px;">
+	    <!-- Imprimir/Email -->
+	    <div class="ahPrintEmail">
+		    <{if $lang_print!=''}><a href="<{$print_link}>" target="_blank"><{$lang_print}> <img align="top" src="<{$xoops_url}>/modules/ahelp/images/print.png" border="0" alt="<{$lang_print}>" /></a>
+            &nbsp; &nbsp;<{/if}>
+            <{if $edit}><a href="<{$xoops_url}>/modules/ahelp/edit.php?op=edit&amp;id=<{$res_id}>&amp;sec=<{$content.id}>"><{$lang_edit}> <img align="top" src="<{$xoops_url}>/modules/ahelp/images/edit.png" border="0" alt="<{$lang_edit}>" /></a><{/if}>
+	    </div>
+	    <div class="ahSecRating">
+		    <table cellspacing="1" cellpadding="2" border="0" width="100%" align="center">
+	    	<tr>
+	    		<td width="100"><strong><{$lang_rating}></strong></td>
+	    		<td width="100"><img src="<{$xoops_url}>/modules/ahelp/images/rate<{$res_rating}>.png" border="0" /></td>
+	    		<td align="right"><{$lang_reads}></td>
+	    	</tr>
+	    	<tr>
+	    		<td><strong><{$lang_rate}></strong></td>
+	    		<td>
+	    			<a href="<{$xoops_url}>/modules/ahelp/rate.php?id=<{$res_id}>&amp;rate=1&amp;ret=<{$xoops_requesturi}>"><img src="<{$xoops_url}>/modules/ahelp/images/starw.png" border="0" id="r1" onmouseover="swapStar(1,'o');" onmouseout="swapStar(1,'w');" /></a><a href="<{$xoops_url}>/modules/ahelp/rate.php?id=<{$res_id}>&amp;rate=2&amp;ret=<{$xoops_requesturi}>"><img src="<{$xoops_url}>/modules/ahelp/images/starw.png" border="0" id="r2" onmouseover="swapStar(2,'o');" onmouseout="swapStar(2,'w');" /></a><a href="<{$xoops_url}>/modules/ahelp/rate.php?id=<{$res_id}>&amp;rate=3&amp;ret=<{$xoops_requesturi}>"><img src="<{$xoops_url}>/modules/ahelp/images/starw.png" border="0" id="r3" onmouseover="swapStar(3,'o');" onmouseout="swapStar(3,'w');" /></a><a href="<{$xoops_url}>/modules/ahelp/rate.php?id=<{$res_id}>&amp;rate=4&amp;ret=<{$xoops_requesturi}>"><img src="<{$xoops_url}>/modules/ahelp/images/starw.png" border="0" id="r4" onmouseover="swapStar(4,'o');" onmouseout="swapStar(4,'w');" /></a><a href="<{$xoops_url}>/modules/ahelp/rate.php?id=<{$res_id}>&amp;rate=5&amp;ret=<{$xoops_requesturi}>"><img src="<{$xoops_url}>/modules/ahelp/images/starw.png" border="0" id="r5" onmouseover="swapStar(5,'o');" onmouseout="swapStar(5,'w');" /></a>
+	    		</td>
+	    		<td align="right"><{$lang_votes}></td>
+	    	</tr>
+		    </table>
+	    </div>
+	    <div class="ahSecDesc">
+			    <{$article_desc}>
+	    </div>
+	    <{if $show_navigation}>
+		    <div class="ahNavInfo">
+			    <div class="ahPrevious">
+				    <{if $previous}>&laquo; <a href="<{$previous.link}>"><{$previous.title}></a><{/if}>
+			    </div>
+			    <div class="ahNext">
+				    <{if $next}><a href="<{$next.link}>"><{$next.title}></a> &raquo;<{/if}>
+			    </div>
+			    <div class="ahIndex">
+				    <a href="<{$index_link}>"><{$lang_index}></a>
+			    </div>
+		    </div><br />
+            <div>&nbsp;</div>
+	    <{/if}>
+	    <{if $show_print}>
+	    	<div class="ahPrintInfo">
+	    		<{$lang_print_from}>
+	    	</div>
+	    <{/if}>
+    </div>
+</div>
+<div class="ahInfoBottom">
+    <{if $index_rest>0}><a href="javascript:;" onclick="ahShowAll();"><img src="<{$xoops_url}>/modules/ahelp/images/pico.png" alt="" border="0" /></a><{else}>&nbsp;<{/if}>
+</div>
+
+<!-- Contenido de la Sección -->
+<div id="ahSingleContent">
+	<div class="ahContentTitle">
+		<div class="ahContentOptions">
+			<{if $edit}><a href="<{$xoops_url}>/modules/ahelp/edit.php?op=edit&amp;sec=<{$content.id}>&amp;id=<{$res_id}>"><{$lang_edit}></a> | <{/if}>
+			<a href="#top<{$ref.id}>">↑ <{$lang_top}></a>
+		</div>
+		<a name="<{$content.id}><{$content.nameid}>"></a><h1><{$content.title}></h1>
+		<div class="ahBorder">&nbsp;</div>
+	</div>
+	<{$content.content}>
+</div>
+
+<{if $show_tip}>
+<div id="ahelpRefs" style="position:absolute; visibility:hidden; z-index:100">
+	<div id="ahelpRefsContent"><strong><{$lang_loading}></strong><br />
+	<img src="<{$xoops_url}>/modules/ahelp/images/wait.gif" border="0" alt="" /></div><br />
+	<div align="center"><a href="javascript:;" onclick="hideTip();" /><{$lang_close}></a></div>
+</div>
+<{else}>
+	<{if $have_refs}><{include file="db:ahelp_refslist.html"}><{/if}>
+<{/if}>
+
+<{include file="db:ahelp_footer.html"}>

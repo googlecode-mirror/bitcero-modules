@@ -1,0 +1,93 @@
+.outer{
+	border: 1px solid #CCC;
+}
+div#ahOptions{
+    padding: 6px;
+    max-width: 420px;
+    *width: 420px;
+    float: left;
+    margin-right: 10px;
+}
+div#ahOptions a{
+    width: 120px;
+    height: 100px;
+    display: block;
+    float: left;
+    padding: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    margin: 3px;
+    background: url(../../system/images/bgoptions.png) no-repeat 0 115px;
+}
+div#ahOptions a img{
+    border: 0;
+    margin: 4px auto 8px auto;
+    display: block;
+}
+div#ahOptions a span{
+    font-size: 0.85em;
+    font-weight: normal;
+    display: block;
+    color: #ff4400;
+}
+div#ahOptions a:hover{
+    background-position: 0 0;
+    /*border: 1px solid #ccc;*/
+}
+div#ahOptions a:hover span{
+    color: #333;
+    text-decoration: underline;
+}
+div#ahVersion{
+	font-size: 0.9em;
+	padding: 0 5px 0 30px;
+	height: 100%;
+	margin-left: 420px;
+	border-left: 2px solid #c8c8c8;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+div#ahVersion div.ahErrAccess{
+	padding: 5px;
+	background-color: #FEFCEB;
+	border: 1px dotted #FFCC00;
+	color: #666;
+}
+div#ahVersion div#htcode{
+	display: none;
+	margin: 10px;
+	background-color: #FFF;
+	border: 1px dashed #CCC;
+	padding: 8px;
+}
+ul#ahRecents{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+ul#ahRecents li{
+	list-style: none;
+	margin-bottom: 2px;
+	font-size: 0.9em;
+	color: #333;
+}
+ul#ahRecents li a{
+	color: #0000FF;
+}
+ul#ahRecents li a.items{
+	color: #FF4400;
+	display: block;
+	padding: 3px 0 3px 0;
+}
+ul#ahRecents li span{
+	font-size: 0.95em;
+	color: #666;
+	border-bottom: 1px dashed #ebebeb;
+	display: block;
+	padding: 4px 0 4px 0;
+	color: #666;
+}
+div#versionInfo div#xo-logger-output{
+	display: none;
+}

@@ -1,0 +1,13 @@
+<{include file="db:ahelp_header.html"}>
+
+<h2><{$lang_index}></h2>
+<div class="ahQuickIndex">
+	<ol id="ahQuickList">
+	<{foreach item=sec from=$sections}>
+		<li>
+			<a href="<{$sec.link}>"><{$sec.title}></a>
+			<{$sec.desc}>
+		</li>
+	<{/foreach}>
+	</ol>
+</div>

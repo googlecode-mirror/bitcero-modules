@@ -1,0 +1,40 @@
+<{include file="db:ahelp_header.html"}>
+
+<form name="frmsec" method="POST" action="edit.php">
+<table class="outer" width="100%" cellspacing="0">
+	<tr class="head">
+		<td colspan="5" align="right"><a class="addpage" href="<{$newpage_link}>"><{$lang_newpage}></a></td>
+	</tr>
+	<tr>
+		<th colspan="5"><{$lang_secexist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td><{$lang_id}></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_order}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=section from=$sections}>
+	<tr align="center"  class="<{cycle values="even,odd"}>">
+		<td><{$section.id}></td>
+		<td align="left" style="padding-left:<{$section.indent*5}>px;"><{if $section.indent>0}><img src="<{$xoops_url}>/images/root.gif" align="absmiddle" alt="" /><{/if}> <a href="<{$ah_url}>/<{$section.link}>"><{$section.title}></a></td>
+		<td><input type="text" name="orders[<{$section.id}>]" id="orders[<{$section.id}>]" size="5" value="<{$section.order}>" style="text-align: center;" /></td>
+		<td>
+			<a href="<{$ah_url}>/edit/<{$section.link}>"><{$lang_edit}></a>
+		</td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
+		<td colspan="4">
+			<input type="submit" value="<{$lang_save}>" class="formButton" onclick="document.forms['frmsec'].op.value='changeorder';" />
+		</td>
+
+	</tr>
+
+
+</table>
+<{$token}>
+<input type="hidden" name="op" value="" />
+<input type="hidden" name="id" value="<{$id}>" />
+</form>

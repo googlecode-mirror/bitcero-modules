@@ -1,0 +1,50 @@
+<form name="frmres" method="GET" action="sections.php">
+	<strong><{$lang_res}></strong>
+	<select name="id" onchange="submit()">
+		<option><{$lang_select}></option>
+		<{foreach item=resource from=$resources}>
+			<option value="<{$resource.id}>" <{if $id==$resource.id}>selected<{/if}>><{$resource.title}></option>
+		<{/foreach}>
+	</select>
+</form>
+
+<{if $id}>
+<form name="frmsec" method="POST" action="sections.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="5"><{$lang_secexist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td><{$lang_id}></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_order}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=section from=$sections}>
+	<tr align="center"  class="<{cycle values="even,odd"}>">
+		<td><{$section.id}></td>
+		<td align="left" style="padding-left:<{$section.indent*5}>px;"><{if $section.indent>0}><img src="<{$xoops_url}>/images/root.gif" align="absmiddle" alt="" /><{/if}> <{$section.title}></td>
+		<td><input type="text" name="orders[<{$section.id}>]" id="orders[<{$section.id}>]" size="1" value="<{$section.order}>" /></td>
+		<td>
+			<a href="./sections.php?op=edit&amp;sec=<{$section.id}>&amp;id=<{$id}>"><{$lang_edit}></a> &bull; 
+		    <a href="./sections.php?op=delete&amp;sec=<{$section.id}>&amp;id=<{$id}>"><{$lang_del}></a> &bull; 
+		    <{if !$section.featured}><a href="./sections.php?op=recommend&amp;sec=<{$section.id}>&amp;id=<{$id}>"><{$lang_recommend}></a><{else}><a href="./sections.php?op=norecommend&amp;sec=<{$section.id}>&amp;id=<{$id}>"><{$lang_norecommend}></a><{/if}></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
+		<td colspan="4">
+			<input type="submit" value="<{$lang_save}>" class="formButtonOk" onclick="document.forms['frmsec'].op.value='changeorder';" />
+		</td>
+
+	</tr>
+
+
+</table>
+<{$token}>
+<input type="hidden" name="op" value="" />
+<input type="hidden" name="id" value="<{$id}>" />
+</form>
+<{else}>
+	<h3><{$lang_notres}></h3>
+<{/if}>

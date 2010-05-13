@@ -1,0 +1,35 @@
+<table class="outer" cellspacing="1" width="100%">
+	<tr>
+		<th colspan="2"><{$lang_original}></th>
+		<td width="20">&nbsp;</td>
+		<th colspan="2"><{$lang_edited}></th>
+	</tr>
+	<tr>
+		<td class="even"><{$lang_title}></td>
+		<td class="even"><strong><{$section.title}></strong></td>
+		<td>
+		<td class="even"><{$lang_title}></td>
+		<td class="even"><strong><{$edit.title}></strong></td>
+	</tr>
+	<tr>
+		<td colspan="2" class="odd" valign="top">
+			<{$section.text}>
+		</td>
+		<td>&nbsp;</td>
+		<td colspan="2" class="odd" valign="top">
+			<{$edit.text}>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" class="foot">
+			<input type="button" class="formButton" value="<{$lang_view}>" onclick="window.location='<{$section.link}>';" />
+			<input type="button" class="formButton" value="<{$lang_edit}>" onclick="window.location='sections.php?op=edit&sec=<{$section.id}>&id=<{$section.res}>';" />
+		</td>
+		<td>&nbsp;</td>
+		<td class="foot" colspan="2">
+			<input type="button" class="formButton" value="<{$lang_approve}>" onclick="window.location='?op=approve&edits[]=<{$edit.id}>';" />
+			<input type="button" class="formButton" value="<{$lang_edit}>" onclick="window.location='?op=edit&id=<{$edit.id}>';" />
+			<input type="button" class="formButton" value="<{$lang_delete}>" onclick="window.location='?op=delete&id=<{$edit.id}>';" />
+		</td>
+	</tr>
+</table>
