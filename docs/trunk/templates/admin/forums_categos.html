@@ -1,0 +1,42 @@
+<form name="frmCats" action="categos.php" method="post">
+<table class="outer" cellspacing="1" cellpadding="0" width="100%">
+    <tr>
+        <th colspan="6"><{$lang_existingcats}></th>
+    </tr>
+    <tr class="head" align="center">
+        <td width="20">
+            <input type="checkbox" name="checkall" onchange="xoopsCheckAll('frmCats','checkall');" />
+        </td>
+        <td width="50"><{$lang_id}></td>
+        <td><{$lang_title}></td>
+        <td><{$lang_order}></td>
+        <td><{$lang_active}></td>
+        <td><{$lang_options}></td>
+    </tr>
+    <{foreach item=cat from=$categos}>
+        <tr class="<{cycle values="even,odd"}>" align="center">
+            <td><input type="checkbox" name="cats[]" value="<{$cat.id}>" /></td>
+            <td><strong><{$cat.id}></strong></td>
+            <td align="left">
+            <a href="forums.php?catid=<{$cat.id}>"><{$cat.title}></a></td>
+            <td><input type="text" name="orders[<{$cat.id}>]" value="<{$cat.order}>" size="4" style="text-align: center;" /></td>
+            <td><img src="../images/<{if $cat.status}>ok.png<{else}>no.png<{/if}>" border="0" alt="" /></td>
+            <td>
+                <a href="?op=edit&amp;id=<{$cat.id}>"><{$lang_edit}></a> &bull;
+                <a href="?op=delete&amp;cats=<{$cat.id}>"><{$lang_delete}></a>
+            </td>
+        </tr>
+    <{/foreach}>
+    <tr class="foot">
+        <td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
+        <td colspan="5">
+            <input type="submit" value="<{$lang_save}>" class="formButtonOk" onclick="document.forms['frmCats'].op.value='savechanges';" />
+	    <input type="submit" value="<{$lang_activ}>" class="formButtonBlue" onclick="document.forms['frmCats'].op.value='activebulk';" />
+            <input type="submit" value="<{$lang_disable}>" class="formButtonRed" onclick="document.forms['frmCats'].op.value='disablebulk';" />
+            <input type="submit" value="<{$lang_delete}>" class="formButton" onclick="document.forms['frmCats'].op.value='delete';" />
+        </td>
+    </tr>
+</table>
+<input type="hidden" name="op" />
+<{$token}>
+</form>
