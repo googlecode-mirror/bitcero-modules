@@ -114,7 +114,7 @@ function cache_delete_file(){
 	@unlink($path.$file.'.html');
 	@unlink($path.$file.'.meta');
 	
-	redirectMsg('plugins.php?p=booster&action=view', __('File delted successfully!','booster'), 0);
+	redirectMsg('plugins.php?p=booster&action=view', __('File deleted successfully!','booster'), 0);
 	
 }
 
