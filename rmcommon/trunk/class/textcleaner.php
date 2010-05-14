@@ -386,7 +386,7 @@ class TextCleaner
 		$patterns['replacements'][] = "about :";
 		
 		// More patterns with plugins
-		$patterns = RMEvents::get()->run_event('rmcommon.get.replace.patterns', $patterns, &$this);
+		$patterns = RMEvents::get()->run_event('rmcommon.get.replace.patterns', $patterns, $this);
 		
 		$text = preg_replace($patterns['patterns'], $patterns['replacements'], $text);
 		

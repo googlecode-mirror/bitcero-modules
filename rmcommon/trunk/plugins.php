@@ -15,6 +15,35 @@ if ($p==''){
 include_once '../../include/cp_header.php';
 require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
 
+function rm_reload_plugins(){
+	
+	$path = RMCPATH.'/plugins';
+	$dir_list = XoopsLists::getDirListAsArray($path);
+
+	$installed_plugins = array();
+	
+    foreach ($dir_list as $dir){
+        
+        if (!file_exists($path.'/'.$dir.'/'.strtolower($dir).'-plugin.php')) continue;
+        
+        $phand = new RMPlugin($dir); // PLugin handler
+        
+        if (!$phand->isNew() && $phand->getVar('status')){
+		    
+			$installed_plugins[] = $phand;
+			
+        }
+	}
+	
+	$plugins = array();
+    foreach($installed_plugins as $p){
+		$plugins[] = $p->getVar('dir');
+    }
+    
+    file_put_contents(XOOPS_CACHE_PATH.'/plgs.cnf', json_encode($plugins));
+	
+}
+
 function show_rm_plugins(){
 	
 	$path = RMCPATH.'/plugins';
@@ -42,14 +71,7 @@ function show_rm_plugins(){
         
     }
     
-
-    $plugins = array();
-    foreach($installed_plugins as $p){
-		$plugins[] = $p->getVar('dir');
-    }
-    file_put_contents(XOOPS_CACHE_PATH.'/plgs.cnf', TextCleaner::encrypt(json_encode($plugins)));
-    
-    
+    rm_reload_plugins();
 	
 	RMFunctions::create_toolbar();
 	xoops_cp_header();
@@ -93,6 +115,8 @@ function install_rm_plugin(){
         die();
     }
     
+    rm_reload_plugins();
+    
     redirectMsg('plugins.php', __('Plugin installed succesfully!','rmcommon'), 0);
     
 }
@@ -123,6 +147,8 @@ function uninstall_rm_plugin(){
         die();
     }
     
+    rm_reload_plugins();
+    
     redirectMsg('plugins.php', __('Plugin uninstalled succesfully!','rmcommon'), 0);
     
 }
@@ -151,6 +177,8 @@ function update_rm_plugin(){
         redirectMsg('plugins.php', __('The database has been updated, but erros ocurred on this process.', 'rmcommon').'<br />'.$plugin->errors(), 1);
         die();
     }
+    
+    rm_reload_plugins();
     
     redirectMsg('plugins.php', __('Plugin updated succesfully!','rmcommon'), 0);
     
@@ -182,6 +210,8 @@ function activate_rm_plugin($q){
         redirectMsg('plugins.php', __('The database has been updated, but erros ocurred on this process.', 'rmcommon').'<br />'.$plugin->errors(), 1);
         die();
     }
+    
+    rm_reload_plugins();
     
     redirectMsg('plugins.php', __('Plugin status changed succesfully!','rmcommon'), 0);
     

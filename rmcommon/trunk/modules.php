@@ -80,7 +80,7 @@ function show_modules_list(){
     }
     
     // Event for installed modules
-    $modules = RMEvents::get()->run_event('rmcommon.installed.modules', $modules, &$installed_dirs);
+    $modules = RMEvents::get()->run_event('rmcommon.installed.modules', $modules, $installed_dirs);
     
     require_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
     $dirlist = XoopsLists::getModulesList();

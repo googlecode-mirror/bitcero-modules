@@ -152,7 +152,7 @@ require_once 'api/l10n.php';
 // Load rmcommon language
 load_mod_locale('rmcommon');
 
-if ($xoopsModule && $xoopsModule->dirname()!='rmcommon')
+if (isset($xoopsModule) && is_object($xoopsModule) && $xoopsModule->dirname()!='rmcommon')
     load_mod_locale($xoopsModule->dirname());
 
 if (!$rmc_config){

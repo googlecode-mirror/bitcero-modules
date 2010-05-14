@@ -82,7 +82,6 @@ class RMEvents
                 if (preg_match('/(\.php)$/i', $file)) {
                     $file = substr($file, 0, -4);
                     $extra[] = $file;
-                    $i++;
                 }
             }
         }

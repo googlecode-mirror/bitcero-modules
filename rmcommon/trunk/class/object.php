@@ -729,7 +729,7 @@ class RMObject
         
 		foreach ($this->getColumns() as $k => $v){
 			$efes = array();
-			ereg("(.+)(\(([,0-9]+)\))", $v['Type'], $efes);
+			preg_match("/(.+)(\(([,0-9]+)\))/", $v['Type'], $efes);
 			if (!isset($efes[1])){
 				$efes[1] = $v['Type'];
 			}
