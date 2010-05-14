@@ -11,6 +11,9 @@
 define('RMCLOCATION','booster');
 
 function cache_show_options(){
+	
+	RMTemplate::get()->set_help('http://redmexico.com.mx/docs/xoops-booster/como-funciona');
+	
     RMFunctions::create_toolbar();
 	
 	$plugin = RMFunctions::get()->load_plugin('booster');
@@ -26,6 +29,8 @@ function cache_show_options(){
 
 function cache_view_files(){
 	global $xoopsSecurity;
+	
+	RMTemplate::get()->set_help('http://redmexico.com.mx/docs/xoops-booster/archivos-del-cache');
 	
 	RMTemplate::get()->assign('xoops_pagetitle', __('Booster Zone','booster'));
 	RMTemplate::get()->add_style('cache.css', 'rmcommon', 'plugins/booster');
