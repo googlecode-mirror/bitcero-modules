@@ -108,14 +108,14 @@ while ($k = $db->fetchArray($result)){
 	$link = $cat->getLink();
 	$subcats = $cat->getSubcategos();
 	$tpl->append('categos', array('id'=>$cat->getID(),'nombre'=>$cat->getName(),'desc'=>$cat->getDescription(),
-			'pages_count'=>sprintf(_MS_QP_PAGESNUM, count($lpages)),'link'=>$link,
+			'pages_count'=>sprintf(__('%u pages','qpages'), count($lpages)),'link'=>$link,
 			'subcats'=>count($subcats)>0 ? $subcats : '','subcats_count'=>count($subcats)));
 	
 }
 
-$tpl->assign('lang_subcats',_MS_QP_SUBCATS);
-$tpl->assign('lang_page', _MS_QP_PAGE);
-$tpl->assign('lang_modified', _MS_QP_MOD);
-$tpl->assign('lang_hits', _MS_QP_HITS);
+$tpl->assign('lang_subcats',__('Subcategories','qpages'));
+$tpl->assign('lang_page', __('Page','qpages'));
+$tpl->assign('lang_modified', __('Last update','qpages'));
+$tpl->assign('lang_hits', __('Reads','qpages'));
 
 require 'footer.php';

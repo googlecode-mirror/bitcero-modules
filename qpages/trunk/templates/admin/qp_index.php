@@ -51,8 +51,13 @@
 		<div class="qp_widget_container">
 			<div class="outer" id="qp-recent-pages">
 				<div class="th"><?php _e('Recent Pages','qpages'); ?></div>
-				<?php foreach($pages as $page): ?>
+				<?php if(empty($pages)): ?>
 				<div class="even">
+					<?php _e('There are not pages created yet!','qpages'); ?>
+				</div>
+				<?php endif; ?>
+				<?php foreach($pages as $page): ?>
+				<div class="<?php echo tpl_cycle("even,odd"); ?>">
 					<a href="<?php echo $page['link']; ?>"><strong><?php echo $page['title']; ?></strong></a>
 					<?php if(!$page['public']): _e('[Draft]','qpages'); endif;?>
 					&nbsp;

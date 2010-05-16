@@ -25,6 +25,7 @@ $labels = "chxt=x,y&chxl=0:";
 $values = 'chd=t:';
 $leg = "chdlp=bv&chdl=";
 $i = 0;
+$max = 0;
 
 while($row = $db->fetchArray($result)){
 	$page = new QPPage();
@@ -40,11 +41,15 @@ while($row = $db->fetchArray($result)){
 $values = rtrim($values, ',');
 $leg = rtrim($leg, "|");
 
-$chart = "http://chart.apis.google.com/chart?";
-$chart .= "cht=bvs&chco=99CC00|FFCC00|0099FF|FF6600|6666FF";
-$chart .= "&".$labels.'&'.$values."&".$leg;
-$chart .= "&chbh=a,20&chs=330x300&chxr=1,0,".($max+1)."&chds=0,".($max+1);
-$chart .= "&chtt=".urlencode(__('Most viewed pages','qpages'));
+if ($max>0){
+	$chart = "http://chart.apis.google.com/chart?";
+	$chart .= "cht=bvs&chco=99CC00|FFCC00|0099FF|FF6600|6666FF";
+	$chart .= "&".$labels.'&'.$values."&".$leg;
+	$chart .= "&chbh=a,20&chs=330x300&chxr=1,0,".($max)."&chds=0,".($max+1);
+	$chart .= "&chtt=".urlencode(__('Most viewed pages','qpages'));
+} else {
+	$chart  = '';
+}
 
 // Recent pages
 $sql = "SELECT * FROM ".$db->prefix("qpages_pages")." ORDER BY fecha DESC LIMIT 0, 5";

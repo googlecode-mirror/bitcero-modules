@@ -1,0 +1,580 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: QuickPages 1.3.35\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-16 16:24-0600\n"
+"PO-Revision-Date: 2010-05-16 17:37-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: MEXICO\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: F:\\Webserver\\htdocs\\xoops24\\modules\\qpages\n"
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/catego.php:41
+#: F:\Webserver\htdocs\xoops24\modules\qpages/catego.php:49
+msgid "Category not found!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/catego.php:56
+msgid "Main page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/catego.php:72
+#, php-format
+msgid "Pages in %s"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/home.php:16
+#: F:\Webserver\htdocs\xoops24\modules\qpages/home.php:18
+msgid "Main"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/home.php:46
+msgid "Subcategories"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/home.php:47
+msgid "Pages in this category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/page.php:102
+#, php-format
+msgid "Last update: %s"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/page.php:103
+#, php-format
+msgid "Read %u times"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:42
+msgid "Categories management"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:62
+msgid "You must provide a Category ID to edit!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:69
+msgid "Specified category does not exists!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:74
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:80
+msgid "Edit Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:74
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:80
+msgid "New Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:81
+msgid "Category name"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:82
+msgid "Description"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:83
+msgid "Category parent"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:94
+msgid "Update Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:94
+msgid "Create Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:95
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:178
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:253
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:370
+msgid "Cancel"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:114
+msgid "You must provide a category ID to edit!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:119
+msgid "Please provide a name for this category!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:132
+msgid "There another category with same name!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:148
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:409
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:474
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:506
+msgid "Database updated successfully!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:150
+msgid "Errors ucurred while trying to update database"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:165
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:296
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:424
+msgid "Session token expired!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:170
+msgid "No category has been selected!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:179
+#, php-format
+msgid "ID \"%s\" is not valid!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:186
+#, php-format
+msgid "Category with ID \"%s\" does not exists!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:193
+#, php-format
+msgid "Category \"%s\" could not be deleted!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:199
+msgid "Errors ocurred while trying to delete categories"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/cats.php:201
+msgid "Categories deleted successfully!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/index.php:49
+msgid "Most viewed pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:11
+msgid "Dashboard"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:16
+msgid "Categories"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:21
+msgid "Pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:29
+msgid "List"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:35
+msgid "Published"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:41
+msgid "Drafts"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:47
+msgid "Add page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/menu.php:53
+msgid "Add linked page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:89
+msgid "Pages Management"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:90
+msgid "All Pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:90
+msgid "Draft pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:90
+msgid "Published pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:113
+msgid "You must specify a page ID to edit!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:120
+msgid "Edit page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:120
+msgid "New page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:123
+msgid "Edit Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:123
+msgid "New Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:125
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:216
+msgid "Page title"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:127
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:218
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:357
+msgid "Friendly title"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:128
+msgid "Specify a title to use in friendly urls. Remember, this title must not contain any special char, only numbers or letters."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:133
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:224
+msgid "Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:136
+msgid "Select category..."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:142
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:233
+msgid "Introduction"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:144
+msgid "Page content"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:159
+msgid "Text options"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:162
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:237
+msgid "Allowed groups"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:163
+msgid "These groups can access and read page content."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:166
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:241
+msgid "Status"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:167
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:242
+msgid "Public"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:168
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:243
+msgid "Draft"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:174
+msgid "Additional Fields"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:177
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:252
+msgid "Update Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:177
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:252
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:369
+msgid "Save Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:204
+msgid "You must provide a page ID to edit"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:210
+msgid "Edit linked page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:210
+msgid "New linked page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:215
+msgid "Edit Linked Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:215
+msgid "New Linked Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:219
+msgid "Thsi title will be used in friendly url."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:235
+msgid "Target URL"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:238
+msgid "Only selected groups can access to this document."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:282
+msgid "Page ID has not been provided"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:288
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:538
+msgid "Specified page does not exists!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:301
+msgid "Title is missing"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:320
+msgid "Content is missing"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:325
+msgid "You must select a category for this page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:344
+msgid "Review Page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:346
+msgid "A page with same friendly name already exists. Please change the freindly title to prevent errors."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:356
+msgid "Title"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:411
+msgid "Errors ocurred while trying to update database"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:431
+msgid "Select at least a category to delete"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:439
+#, php-format
+msgid "Page with ID \"%s\" does not exists!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:443
+#, php-format
+msgid "Page \"%s\" could not be deleted:"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:449
+msgid "Errors ocurred while trying to delete pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:451
+msgid "Pages deleted successfully!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:463
+msgid "You must select at least one category!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:476
+msgid "Database update failed!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:488
+msgid "Select at least a cetegory to edit"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:528
+msgid "Chenges saved successfully!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:546
+msgid "Page could not be cloned!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/admin/pages.php:550
+msgid "Page cloned successfully!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:5
+msgid "Select at least a category to apply this action!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:6
+msgid "Do you really wisth to delete this category?"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:7
+msgid "WARNING: All pages under this category will be deleted also!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:18
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:55
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:69
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:36
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:83
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:103
+msgid "Delete"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:20
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:71
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:19
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:38
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:105
+msgid "Apply"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:26
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:35
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:44
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:56
+msgid "ID"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:27
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:36
+msgid "Name"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:44
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:68
+msgid "There are not pages registered yet!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:54
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:64
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:82
+msgid "Edit"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:79
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:92
+msgid "Add Category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:83
+msgid "Category description"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_categos.php:85
+msgid "Parent category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:7
+msgid "Pages Statistics"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:16
+msgid "About QuickPages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:18
+msgid "Create static pages easily and quickly with QuickPages for Xoops."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:44
+msgid "Recent News"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:53
+msgid "Recent Pages"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:56
+msgid "There are not pages created yet!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_index.php:62
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:80
+msgid "[Draft]"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:4
+msgid "Select at least a page to apply this action!"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:5
+msgid "Do you really wisth to delete selected pages?"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:10
+msgid "Search:"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:14
+msgid "Select category"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:20
+msgid "Show all"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:32
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:99
+msgid "Bulk actions..."
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:33
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:100
+msgid "Set as draft"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:34
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:101
+msgid "Publish"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:35
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:102
+msgid "Set as linked"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:48
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:60
+msgid "Modified"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:49
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:61
+msgid "Views"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:50
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:62
+msgid "Diplay order"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:84
+msgid "Duplicate page"
+msgstr ""
+
+#: F:\Webserver\htdocs\xoops24\modules\qpages/templates/admin/qp_pages.php:84
+msgid "Clone"
+msgstr ""
+
