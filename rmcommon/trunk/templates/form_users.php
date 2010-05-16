@@ -29,7 +29,7 @@
 			<?php _e('Show:','rmcommon'); ?> <input type="text" id="<?php echo $field ?>-limit" size="5" value="<?php echo $limit; ?>" /> &nbsp;
 			<?php _e('Sort by:','rmcommon'); ?>
 			<select id="<?php echo $field ?>-ord">
-				<option value="2"<?php echo $ord==2 ? ' selected="selected"' : ''; ?>><?php _e('ID', ,'rmcommon'); ?></option>
+				<option value="2"<?php echo $ord==2 ? ' selected="selected"' : ''; ?>><?php _e('ID','rmcommon'); ?></option>
 				<option value="0"<?php echo $ord==0 ? ' selected="selected"' : ''; ?>><?php _e('Registered','rmcommon'); ?></option>
 				<option value="1"<?php echo $ord==1 ? ' selected="selected"' : ''; ?>><?php _e('Username','rmcommon'); ?></option>
 			</select>
@@ -68,6 +68,7 @@
 		<td colspan="<?php echo $cols; ?>"><?php $nav->display(); ?></td>
 	</tr>
 </table>
+</div>
 <?php if(!$type): ?>
 <input type="hidden" name="s" value="<?php echo $selected_string; ?>" id="s" />
 <?php endif; ?>

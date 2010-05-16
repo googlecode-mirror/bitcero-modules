@@ -34,20 +34,22 @@ $(document).ready(function(){
 		$(data+" table td.web").html(web);
 		$(data+" table td.license").html($(source+" .data_storage .license").html());
 		$(data+" table td.name").html($(source+" .data_storage .name").html());
-        if ($(source+" .data_storage .dirname").html()=='system'){
+        dir = $(source+" .data_storage .dirname").html();
+        if (dir=='system'){
             $(data+" .data_buttons .uninstall_button").css("display",'none');
-            $(data+" .data_buttons .disable_button").css("display",'none');
-            $("#the-id").val("");
         } else {
-            $("#the-id").val($(source+" .data_storage .dirname").html());
             $(data+" .data_buttons .uninstall_button").css('display','');
-            $(data+" .data_buttons .disable_button").css('display','');
         }
+        
+        $("#the-id").val($(source+" .data_storage .dirname").html());
         
         var active = $(source+" .data_storage .active").html()
         if (active==1){
             $(data+" .data_buttons .enable_button").hide();
-            $(data+" .data_buttons .disable_button").show();
+            if (dir!='system')
+                $(data+" .data_buttons .disable_button").show();
+            else
+                $(data+" .data_buttons .disable_button").hide();
         } else {
             $(data+" .data_buttons .enable_button").show();
             $(data+" .data_buttons .disable_button").hide();
@@ -81,7 +83,6 @@ $(document).ready(function(){
     
     $("a.update_button").click(function(){
         var dir = $("#the-id").val();
-       
        if (!confirm(message_upd)) return;
        
        $("#mod-action").val("update_module");

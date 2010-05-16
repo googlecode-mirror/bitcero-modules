@@ -60,6 +60,7 @@ class RMFormUser extends RMFormElement
 		RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 		RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
 		RMTemplate::get()->add_style('forms.css','rmcommon');
+        RMTemplate::get()->add_style('jquery.css','rmcommon');
 		
 		$rtn = "<div id='".$this->getName()."-users-container'".($this->getExtra()!='' ? " ".$this->getExtra() : '')." class='form_users_container'>
 				<ul id='".$this->getName()."-users-list'>";

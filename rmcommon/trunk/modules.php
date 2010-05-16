@@ -644,8 +644,9 @@ function module_update_now(){
     }
     
     $module_handler = xoops_gethandler('module');
+    $module = $module_handler->getByDirname($mod);
     
-    if (!$module = $module_handler->getByDirname($mod)){
+    if (!$module){
         redirectMsg('modules.php', sprintf(__('Module %s is not installed yet!', 'rmcommon'), $mod), 1);
         die();
     }

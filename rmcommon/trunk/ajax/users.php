@@ -16,7 +16,7 @@ error_reporting(0);
 $xoopsLogger->activated = false;
 
 // Check Security settings
-if (!$xoopsSecurity->check() || !$xoopsSecurity->checkReferer()){
+if (!$xoopsSecurity->check()){
 	_e('Sorry, you are not allowed to view this page','rmcommon');
 	die();
 }
@@ -30,6 +30,7 @@ $type = 0;
 $s = '';
 $kw = '';
 $ord = 2;
+$all = false;
 
 foreach($_REQUEST as $k => $v){
 	$$k = $v;
@@ -85,7 +86,6 @@ switch($ord){
 		break;
 }
 $sql .= " LIMIT $start,$limit";
-
 //$sql = "SELECT uid, uname FROM ".$db->prefix("users")." WHERE level>0 LIMIT $start,$limit";
 $result = $db->query($sql);
 
@@ -110,5 +110,6 @@ if (is_array($selected) && count($selected)>0){
 
 $field_type = $type ? 'checkbox' : 'radio';
 
-$nav->render();
-include RMTemplate::get()->get_template("form_users.php", 'rmcommon');
+$nav->render(false);
+
+include RMTemplate::get()->get_template("form_users.php", 'module','rmcommon');

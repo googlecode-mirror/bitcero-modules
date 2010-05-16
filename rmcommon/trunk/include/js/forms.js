@@ -28,7 +28,7 @@ var usersField = jQuery.extend({
 		}
 		
 		token = $("#XOOPS_TOKEN_REQUEST").val();
-		
+
 		// Update the users container
 		var params = {
 			type: multisel,
