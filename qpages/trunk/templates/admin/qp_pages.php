@@ -2,7 +2,7 @@
 <script type="text/javascript">
 <!--
 	var qp_select_message = '<?php _e('Select at least a page to apply this action!','qpages'); ?>';
-	var qp_message = '<?php _e('Do you really wisth to delete selected pages?','qpages'); ?>';
+	var qp_message = '<?php _e('Do you really wish to delete selected pages?','qpages'); ?>';
 -->
 </script>
 <form name="frmSearch" method="get" action="pages.php" style="margin: 0;">
@@ -65,7 +65,7 @@
     <tbody>
     <?php if(empty($pages)): ?>
         <tr class="even">
-            <td align="center" colspan="8"><?php _e('There are not pages registered yet!','qpages'); ?></td>
+            <td align="center" colspan="8"><?php _e('There are not pages created yet!','qpages'); ?></td>
         </tr>
     <?php endif; ?>
     <?php foreach($pages as $page): ?>

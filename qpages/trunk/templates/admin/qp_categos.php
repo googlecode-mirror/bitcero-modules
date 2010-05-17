@@ -3,7 +3,7 @@
 <script type="text/javascript">
 <!--
 	var qp_select_message = '<?php _e('Select at least a category to apply this action!','qpages'); ?>';
-	var qp_message = '<?php _e('Do you really wisth to delete this category?','qpages'); ?>';
+	var qp_message = '<?php _e('Do you really wish to delete this category?','qpages'); ?>';
 	qp_message += '\n\n<?php _e('WARNING: All pages under this category will be deleted also!','qpages'); ?>';
 -->
 </script>
@@ -41,7 +41,7 @@
   			<tbody>
   			<?php if(empty($categories)): ?>
   			<tr class="even">
-  				<td align="center" colspan="4"><?php _e('There are not pages registered yet!','qpages'); ?></td>
+  				<td align="center" colspan="4"><?php _e('There are not categories created yet!','qpages'); ?></td>
   			</tr>
   			<?php endif; ?>
 			<?php foreach($categories as $cat): ?>

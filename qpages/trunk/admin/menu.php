@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('qpages');
+
 $adminmenu[0]['title'] = __('Dashboard','qpages');
 $adminmenu[0]['link'] = "admin/index.php";
 $adminmenu[0]['icon'] = '../images/status.png';

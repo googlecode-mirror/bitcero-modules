@@ -40,7 +40,7 @@ function showCategos(){
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	RMTemplate::get()->add_script('../include/js/qpages.js');
 	RMTemplate::get()->assign('xoops_pagetitle', __('Categories management', 'qpages'));
-	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '._AS_QP_LIST);
+	xoops_cp_location('<a href="./">'.$xoopsModule->name().'</a> &raquo; '.__('Categories','qpages'));
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/qp_categos.php", 'module', 'qpages');
@@ -59,7 +59,7 @@ function newForm($edit=0){
 	if ($edit){
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		if ($id<=0){
-			redirectMsg('cats.php', __('You must provide a Category ID to edit!','qpages'), 1);
+			redirectMsg('cats.php', __('You must provide a category ID to edit!','qpages'), 1);
 			die();
 		}
 		// Cargamos la categoría
@@ -129,7 +129,7 @@ function saveCatego($edit = 0){
 	list($num) = $db->fetchRow($result);
 	
 	if ($num>0){
-		redirectMsg('cats.php?op=new', __('There another category with same name!','qpages'), 1);
+		redirectMsg('cats.php?op=new', __('There is another category with same name!','qpages'), 1);
 		die();
 	}
 	
@@ -147,7 +147,7 @@ function saveCatego($edit = 0){
 	if ($result){
 		redirectMsg('cats.php', __('Database updated successfully!','qpages'), 0);
 	} else {
-		redirectMsg('cats.php?op=new', __('Errors ucurred while trying to update database') . "<br />" . $catego->errors(), 1);
+		redirectMsg('cats.php?op=new', __('Errors ocurred while trying to update database') . "<br />" . $catego->errors(), 1);
 	}
 	
 }

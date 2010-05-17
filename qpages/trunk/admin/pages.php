@@ -110,7 +110,7 @@ function newForm($edit = 0, $redir = false){
 	if ($edit){
 		$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 		if ($id<=0){
-			redirectMsg("pages.php?cat=$cat&page=$page", __('You must specify a page ID to edit!','qpages'), 1);
+			redirectMsg("pages.php?cat=$cat&page=$page", __('You must provide a page ID to edit!','qpages'), 1);
 			die();
 		}
 		$page = new QPPage($id);
@@ -125,7 +125,7 @@ function newForm($edit = 0, $redir = false){
 	$form->addElement(new RMFormText(__('Page title','qpages'), 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
 	if ($edit){
 		$ele = new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
-		$ele->setDescription(__('Specify a title to use in friendly urls. Remember, this title must not contain any special char, only numbers or letters.'));
+		$ele->setDescription(__('Specify a title to use in friendly urls. Remember, this title must not contain any blank space or special char, only numbers or letters.'));
 		$form->addElement($ele);
 		$form->addElement(new RMFormHidden('id', $page->getID()));
 	}
@@ -216,7 +216,7 @@ function newLinkForm($edit = 0){
 	$form->addElement(new RMFormText(__('Page title','qpages'), 'titulo', 50, 255, $edit ? $page->getTitle() : ''), true);
 	if ($edit){
 		$ele = new RMFormText(__('Friendly title','qpages'), 'titulo_amigo', 50, 255, $page->getFriendTitle());
-		$ele->setDescription(__('Thsi title will be used in friendly url.','qpages'));
+		$ele->setDescription(__('This title will be used in friendly url.','qpages'));
 		$form->addElement($ele);
 		$form->addElement(new RMFormHidden('id', $page->getID()));
 	}
@@ -525,7 +525,7 @@ function saveChanges(){
 		$pag->setOrder($v);
 		$pag->update();
 	}
-	redirectMsg("pages.php?cat=$cat&page=$page", __('Chenges saved successfully!','qpages'), 0);
+	redirectMsg("pages.php?cat=$cat&page=$page", __('Changes saved successfully!','qpages'), 0);
 	
 }
 

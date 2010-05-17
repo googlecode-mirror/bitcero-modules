@@ -18,4 +18,6 @@ define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/'.$xoopsMo
 
 include_once QP_PATH.'/include/general.func.php';
 
+load_mod_locale('qpages');
+
 qpages_toolbar();
