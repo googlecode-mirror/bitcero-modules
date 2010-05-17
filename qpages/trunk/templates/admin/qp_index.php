@@ -57,7 +57,7 @@
 				</div>
 				<?php endif; ?>
 				<?php foreach($pages as $page): ?>
-				<div class="<?php echo tpl_cycle("even,odd"); ?>">
+				<div class="even">
 					<a href="<?php echo $page['link']; ?>"><strong><?php echo $page['title']; ?></strong></a>
 					<?php if(!$page['public']): _e('[Draft]','qpages'); endif;?>
 					&nbsp;
