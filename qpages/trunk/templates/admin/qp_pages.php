@@ -34,6 +34,7 @@
 		<option value="publicate"><?php _e('Publish','qpages'); ?></option>
 		<option value="linked"><?php _e('Set as linked','qpages'); ?></option>
 		<option value="delete"><?php _e('Delete','qpages'); ?></option>
+        <option value="savechanges"><?php _e('Set order','qpages'); ?></option>
 	</select>
 	<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-pages');" />
 </div>
@@ -101,6 +102,7 @@
         <option value="publicate"><?php _e('Publish','qpages'); ?></option>
         <option value="linked"><?php _e('Set as linked','qpages'); ?></option>
         <option value="delete"><?php _e('Delete','qpages'); ?></option>
+        <option value="savechanges"><?php _e('Set order','qpages'); ?></option>
 	</select>
 	<input type="button" value="<?php _e('Apply','qpages'); ?>" onclick="before_submit('frm-pages');" />
 </div>
