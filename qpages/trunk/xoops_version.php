@@ -9,8 +9,8 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Quick Pages";
-$modversion['rmnative'] = '1.335';
-$modversion['rmversion'] = array('number'=>1,'revision'=>335,'status'=>0,'name'=>'Quick Pages');
+$modversion['rmnative'] = '1.336';
+$modversion['rmversion'] = array('number'=>1,'revision'=>336,'status'=>0,'name'=>'Quick Pages');
 $modversion['version'] = 1.3;
 $modversion['description'] = _MI_QP_DESC;
 $modversion['author'] = "BitC3R0";
