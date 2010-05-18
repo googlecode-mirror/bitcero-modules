@@ -11,7 +11,7 @@
 class RmcommonCorePreload extends XoopsPreloadItem
 {
 	public function eventCoreIncludeCommonStart(){
-        
+
         if(substr($_SERVER['REQUEST_URI'], -16)=='system/admin.php' && empty($_POST)){
             header('location: '.XOOPS_URL.'/modules/rmcommon/');
             die();
@@ -26,7 +26,7 @@ class RmcommonCorePreload extends XoopsPreloadItem
     */
     public function eventCoreIncludeCommonLanguage(){
         global $xoopsConfig;
-        
+
         if (RMFunctions::current_url()==RMCURL.'/include/upload.php' && $xoopsConfig['closesite']){
             $security = rmc_server_var($_POST, 'rmsecurity', 0);
             $data = TextCleaner::getInstance()->decrypt($security, true);
