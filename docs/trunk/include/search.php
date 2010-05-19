@@ -12,14 +12,14 @@
 * @desc Realiza una búsqueda en el módulo desde EXM
 */
 function ahelpSearch($queryarray, $andor, $limit, $offset, $userid){
-    global $db, $myts;
+    global $myts;
     
 	include_once (XOOPS_ROOT_PATH."/modules/ahelp/class/ahsection.class.php");
 	include_once (XOOPS_ROOT_PATH."/modules/ahelp/class/ahresource.class.php");
 
-    $util =& RMUtils::getInstance();
-    $mc = $util->moduleConfig('ahelp');
+    $mc = RMUtilities::module_config('docs');
     
+    $db = Database::getInstance();
     $tbl1 = $db->prefix("pa_resources");
     $tbl2 = $db->prefix("pa_sections");
     
