@@ -802,6 +802,65 @@ function load_modules_page(){
 }
 
 
+function module_rename(){
+	global $xoopsSecurity, $xoopsLogger;
+	
+	error_reporting(0);
+	$xoopsLogger->activated = false;
+	
+	if (!$xoopsSecurity->check()){
+		
+		$ret = array(
+			'error'		=> 1,
+			'message'	=> __('You can not rename modules. Session token not valid!','rmcommon').' '.rmc_server_var($_POST, 'token')
+		);
+		
+		echo json_encode($ret);
+		die();
+		
+	}
+	
+	$id = rmc_server_var($_POST, 'id', 0);
+	$name = trim(rmc_server_var($_POST, 'name', ''));
+	
+	if ($id<=0 || $name==''){
+		$ret = array(
+			'error'		=> 1,
+			'message'	=> __('Data provided is not valid','rmcommon'),
+			'token'	=> $xoopsSecurity->createToken()
+		);
+		
+		echo json_encode($ret);
+		die();
+	}
+	
+	$db = Database::getInstance();
+	$sql = "UPDATE ".$db->prefix("modules")." SET `name`='$name' WHERE mid='$id'";
+	if (!$db->queryF($sql)){
+		$ret = array(
+			'error'		=> 1,
+			'message'	=> __('Module name could not be changed!','rmcommon').'\n'.$db->error(),
+			'token'	=> $xoopsSecurity->createToken()
+		);
+		
+		echo json_encode($ret);
+		die();
+	}
+	
+	$ret = array(
+		'error'=>0,
+		'message'=>__('Module name changed successfully!','rmcommon'),
+		'token'=>$xoopsSecurity->createToken(),
+		'id'=>$id
+	);
+	
+	echo json_encode($ret);
+	
+	die();
+	
+}
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 switch($action){
     case 'install':
@@ -825,6 +884,9 @@ switch($action){
     case 'load_page':
         load_modules_page();
         break;
+    case 'savename':
+    	module_rename();
+    	break;
 	default:
         $_REQUEST['action'] = '';
 		show_modules_list();

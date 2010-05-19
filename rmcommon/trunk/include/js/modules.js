@@ -108,6 +108,72 @@ $(document).ready(function(){
        $("#form-modules").submit();
     });
     
+    $("a.rename").click(function(){
+    	var id = $(this).attr("id").replace("rename-",'');
+    	$("#rename-blocker").show('fast', function(){
+    		$("#rename span span").html($("#module-"+id+" .data_storage .name").html());
+    		$("#rename-name").val($("#module-"+id+" .data_storage .name").html());
+    		$("#id-module").val(id);
+			$("#rename").show('slow', function(){
+				$("#rename-name").focus();
+			});
+    	});
+	});
+	
+	$("#rename-blocker").click(function(){
+		$("#rename").hide('slow', function(){
+			$("#rename-name").val('');
+			$("#rename-blocker").hide('fast');
+		});
+	});
+	
+	$("#rename-save").click(function(){
+		
+		var id = $("#id-module").val();
+		
+		if ($("#rename-name").val() == $("#module-"+id+" .data_storage .name").html()){
+			alert(message_name);
+			$("#rename-name").focus();
+			return;
+		}
+		
+		params = {
+			name: $("#rename-name").val(),
+			id: $("#id-module").val(),
+			action: 'savename',
+			XOOPS_TOKEN_REQUEST: $('#XOOPS_TOKEN_REQUEST').val()
+		};
+		
+		$.post('modules.php', params, function(data){
+			
+			if (data.error){
+				alert(data.message);
+				if (!data.token) window.location.reload();
+				$("#rename-blocker").click();
+			} else {
+				
+				$("#rename").hide('slow', function(){
+					$("#rename-name").val('');
+					$("#rename-blocker").hide('fast', function(){
+						$("#module-"+data.id+" .mod_data .name a").html(params.name);
+						$("#module-"+data.id+" .data_storage .name").html(params.name);
+						$("#module-"+data.id).effect('highlight', {}, 1000);
+					});
+				});
+				
+				
+			}
+			
+			if (data.token){
+				$('#XOOPS_TOKEN_REQUEST').val(data.token);
+			}
+			
+			
+			
+		}, "json");
+		
+	});
+    
 });
 
 function show_module_info(id){

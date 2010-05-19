@@ -113,7 +113,10 @@
 .mod_data .options a{
 	display: block;
 	float: right;
-    padding: 3px 0 3px 18px;
+	padding: 2px 5px;
+}
+.mod_data .options a.show{
+	padding: 2px 0 2px 18px;
     background: url(../images/down.png) no-repeat left;
 }
 .rmc_item_module .data_storage{
@@ -264,4 +267,52 @@
 }
 .mod_log strong{
     color: #BB5E00;
+}
+
+/* Rename */
+#rename-blocker{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	display: none;
+}
+#rename{
+	position: absolute;
+	width: 380px;
+	padding: 10px;
+	background: #FFF;
+	height: 100px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -190px;
+	line-height: 150%;
+	border: 1px solid #000;
+	box-shadow: 5px 5px 1px #000;
+	-moz-box-shadow: 0px 0px 15px #000;
+	-webkit-box-shadow: 5px 5px 1px #000;
+	display: none;
+}
+#rename span{
+	display: block;
+	padding: 2px 0;
+	margin-bottom: 10px;
+}
+#rename span span{
+	font-weight: bold;
+	font-size: 1.2em;
+	display: inline;
+}
+#rename input[type=text]{
+	font-size: 1.3em;
+	font-family: arial, helvetica, sans-serif;
+	width: 350px;
+	margin-bottom: 10px;
 }

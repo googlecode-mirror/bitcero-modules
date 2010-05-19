@@ -4,6 +4,7 @@
     var message = "<?php _e('Do you really wish to uninstall selected module?','rmcommon'); ?>";
     var message_upd = "<?php _e('Do you really wish to update selected module?','rmcommon'); ?>";
     var message_dis = "<?php _e('Do you really wish to disable selected module?','rmcommon'); ?>";
+    var message_name = "<?php _e('New name must be different from current name!','rmcommon'); ?>";
 -->
 </script>
 
@@ -31,6 +32,7 @@
 		</span>
 		<span class="options">
 			<a href="javascript:;" class="show" id="show-<?php echo $mod['id']; ?>">Show</a>
+			<a href="javascript:;" class="rename" id="rename-<?php echo $mod['id']; ?>">Rename</a>
 		</span>
 	</div>
 	<div class="data_storage">
@@ -88,4 +90,12 @@
         <a href="#" onclick="$('#data-display').slideUp('fast');">Close</a>
         <input type="hidden" id="the-id" value="" />
     </div>
+</div>
+<div id="rename-blocker"></div>
+<div id="rename">
+	<span><?php _e('Change name:','rmcommon'); ?> <span></span></span>
+	<input type="text" size="50" id="rename-name" value="" />
+	<input type="submit" id="rename-save" value="<?php _e('Rename','rmcommon'); ?>" />
+	<input type="button" onclick="$('#rename-blocker').click();" value="<?php _e('Cancel','rmcommon'); ?>" />
+	<input type="hidden" name="id" id="id-module" value="" />
 </div>
