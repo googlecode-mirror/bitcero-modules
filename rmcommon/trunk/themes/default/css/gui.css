@@ -76,6 +76,7 @@ div#rm-header{
 	height: 80px;
 	overflow: hidden;
 	border-bottom: 1px solid #FFF;
+	min-width: 950px;
 }
 div#rm-header div.right{
     float: right;
@@ -112,6 +113,7 @@ div#rmc-toolbar{
 	height: 30px;
 	border-bottom: 1px solid #FFF;
 	overflow: hidden;
+	min-width: 950px;
 }
 div#rmc-toolbar a{
 	display: block;

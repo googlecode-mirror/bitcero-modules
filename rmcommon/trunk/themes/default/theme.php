@@ -24,6 +24,9 @@ foreach ($this->tpl_head as $head){
 	echo $head."\n";
 }
 ?>
+<?php
+	include_once 'include/xoops_metas.php';
+?>
 <script type="text/javascript">
 	$(document).ready(function(){
 		if (navigator.userAgent.toLowerCase().indexOf('chrome')>0 || navigator.userAgent.toLowerCase().indexOf('safari')>0){
