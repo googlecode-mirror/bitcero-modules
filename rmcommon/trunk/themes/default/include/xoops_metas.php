@@ -20,6 +20,7 @@ if (isset($GLOBALS['xoTheme'])){
 	$xoTheme = $GLOBALS['xoTheme'];
 	$name = '';
 	$str = '';
+
 	foreach (array_keys($xoTheme->metas) as $type) {
 		switch ($type) {
     		case 'script':
@@ -50,13 +51,14 @@ if (isset($GLOBALS['xoTheme'])){
 	            }
 	            break;
 	        case 'http':
-        		foreach ($xoTheme->metas[$type] as $name => $content) {
-            		$str .= '<meta http-equiv="' . htmlspecialchars($name, ENT_QUOTES) . '" content="' . htmlspecialchars($content, ENT_QUOTES) . "\" />\n";
+        		foreach ($xoTheme->metas[$type] as $name => $value) {
+            		$str .= '<meta http-equiv="' . htmlspecialchars($name, ENT_QUOTES) . '" content="' . htmlspecialchars($value, ENT_QUOTES) . "\" />\n";
 	            }
 	            break;
 	        default:
-        		foreach ($xoTheme->metas[$type] as $name => $content) {
-            		$str .= '<meta name="' . htmlspecialchars($name, ENT_QUOTES) . '" content="' . htmlspecialchars($content, ENT_QUOTES) . "\" />\n";
+        		foreach ($xoTheme->metas[$type] as $name => $value) {
+                    if ($name=='description'||$name=='keywords'||$name=='copyright') continue;
+            		$str .= '<meta name="' . htmlspecialchars($name, ENT_QUOTES) . '" content="' . htmlspecialchars($value, ENT_QUOTES) . '" />'."\n";
 	            }
 	            break;
 			}
