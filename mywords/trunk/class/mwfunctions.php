@@ -347,7 +347,7 @@ class MWFunctions
 			$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a WHERE
 				a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
 		}
-		
+
 		$result = $db->query($sql);
 		$ret = array();
 		while($row = $db->fetchArray($result)){
