@@ -8,18 +8,6 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-// Check locations for system module
-if (FALSE !== strpos($_SERVER['REQUEST_URI'], 'modules/system/admin.php')){
-	$fct = isset($_REQUEST['fct']) ? $_REQUEST['fct'] : '';
-	
-	switch($fct){
-		case 'modulesadmin':
-			header('location: ../rmcommon/modules.php');
-			break;
-	}
-	
-}
-
 define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
 define("RMCURL",XOOPS_URL.'/modules/rmcommon');
 define('ABSURL', XOOPS_URL);
