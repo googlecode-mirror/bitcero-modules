@@ -18,7 +18,8 @@ function xt_show_init(){
 	global $xoopsConfig;
 	
 	xt_menu_options();
-	RMTemplate::get()->set_help('http://redmexico.com.mx/docs/xthemes');
+	if (defined(RMCPATH))
+		RMTemplate::get()->set_help('http://redmexico.com.mx/docs/xthemes');
 	xoops_cp_header();
 	
 	// Check if installed theme is a valid I.Theme theme
@@ -109,8 +110,10 @@ function xt_show_init(){
 		$i++;
 		
 	}
-
-	RMTemplate::get()->add_style('themes.css', 'xthemes');
+	
+	$xoTheme = $GLOBALS['xoTheme'];
+	$xoTheme->addMeta('stylesheet', 'themes.css', array('href'=>'css/themes.css','type'=>'text/css'));
+	//RMTemplate::get()->add_style('themes.css', 'xthemes');
 	include_once 'templates/xt_index.php';
 	
 	xoops_cp_footer();
@@ -131,10 +134,12 @@ function xt_configure_show(){
 	if (!method_exists($theme, 'get_config'))
 		redirectMsg('index.php', __('This theme has not configuration options', 'xthemes'), 1);
 	
-	RMTemplate::get()->add_style('themes.css','xthemes');
-	RMTemplate::get()->add_script('include/js/xthemes.js');
 	xt_menu_options();
 	xoops_cp_header();
+	
+	$xoTheme = $GLOBALS['xoTheme'];
+	$xoTheme->addMeta('stylesheet', 'themes.css', array('href'=>'css/themes.css','type'=>'text/css'));
+	$xoTheme->addMeta('script', 'include/js/xthemes.js', array('src'=>'include/js/xthemes.js','type'=>'text/javascript'));
 	
 	$element_info = $theme->get_info();
 	$element = $xoopsConfig['theme_set'];
