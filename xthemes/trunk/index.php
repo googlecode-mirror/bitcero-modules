@@ -129,7 +129,7 @@ function xt_configure_show(){
 	global $xoopsConfig, $xoopsTpl;
 	
 	if (false === ($theme = xt_is_valid($xoopsConfig['theme_set'])))
-		redirectMsg('index.php', __('This theme cannot be configured by I.Themes because is not a valid Theme','xthemes'), 1);
+		redirectMsg('index.php', __('This theme cannot be configured by XThemes because is not a valid Theme','xthemes'), 1);
 
 	if (!method_exists($theme, 'get_config'))
 		redirectMsg('index.php', __('This theme has not configuration options', 'xthemes'), 1);
@@ -159,7 +159,7 @@ function xt_goto_url(){
 	global $xoopsConfig;
 	
 	if (false === ($theme = xt_is_valid($xoopsConfig['theme_set'])))
-		xt_redirect('index.php', 'This theme cannot be configured by X.Themes because is not a valid Theme', 1);
+		xt_redirect('index.php', 'This theme cannot be configured by XThemes because is not a valid Theme', 1);
 	
 	$element_info = $theme->get_info();
 	
@@ -188,14 +188,14 @@ function xt_install_theme(){
     	redirectMsg('index.php', sprintf(__('Theme "%s" does not exists!','xthemes'), $dir), 1);
     
     if (false===($theme = xt_is_valid($dir)))
-   		redirectMsg('index.php', sprintf(__('Theme "%s" is not a valid xThemes theme!','xthemes'), $dir), 1);
+   		redirectMsg('index.php', sprintf(__('Theme "%s" is not a valid XThemes theme!','xthemes'), $dir), 1);
     
     include_once $pdir.'/config/theme.php';
     $rtheme = preg_replace('/\s+/', '', strtolower($dir));
 	$rtheme = str_replace('-','',$rtheme);
 	$class = "XTheme".ucfirst($rtheme);
     if (!class_exists($class))
-    	redirectMsg('index.php', sprintf(__('Theme "%s" is not a valid xThemes theme!','xthemes'), $dir), 1);
+    	redirectMsg('index.php', sprintf(__('Theme "%s" is not a valid XThemes theme!','xthemes'), $dir), 1);
     
     $db = Database::getInstance();
     //$theme = new $class();

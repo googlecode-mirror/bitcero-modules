@@ -8,10 +8,15 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'xThemes';
-$modversion['version'] = 1.0;
+$modversion['version'] = 1.01;
+$modversion['rmnative'] = '1';
+$modversion['rmversion'] = array('number'=>1,'revision'=>10,'status'=>0,'name'=>'Quick Pages');
 $modversion['description'] = 'A module to manage themes from TemasWeb.com';
 $modversion['credits'] = "Eduardo Cortés <i.bitcero@gmail.com>";
-$modversion['author'] = "Eduardo Cortés <i.bitcero@gmail.com>";
+$modversion['author'] = "BitC3R0";
+$modversion['authormail'] = "i.bitcero@gmail.com";
+$modversion['authorweb'] = "Red México";
+$modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['help'] = "";
 $modversion['license'] = "GPLv2";
 $modversion['official'] = 0;
