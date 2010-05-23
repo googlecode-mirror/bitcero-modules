@@ -65,7 +65,7 @@
 <div id="pw-work-images">
 	<h3><{$lang_images}></h3>
 <{foreach item=img from=$images}>
-	<a style="width: <{$widthimg}>px;" href="<{$img.link_image}>" title="<{$img.title}>"><img src="<{$img.image}>" /><span><{$img.title}></span></a>
+	<a rel="work-<{$work.id}>" style="width: <{$widthimg}>px;" href="<{$img.link_image}>" title="<{$img.title}>"><img src="<{$img.image}>" /><span><{$img.title}></span></a>
 <{/foreach}>
 </div>
 <{/if}>

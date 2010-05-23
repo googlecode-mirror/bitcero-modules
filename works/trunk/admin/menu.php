@@ -50,4 +50,11 @@ $adminmenu[4]['options'] = array(
     array('title'=>__('List', 'admin_works'),'link'=>'works.php', 'selected'=>'works'),
     array('title'=>__('Add Work', 'admin_works'),'link'=>'works.php?op=new', 'selected'=>'newwork')
 );
+$op = rmc_server_var($_GET, 'op', '');
+if ($op=='edit'){
+	$adminmenu[4]['options'][] = array(
+		'title'=>'Custom fields',
+		'link'=>'works.php?id='.rmc_server_var($_GET, 'id', 0).'&op=meta'
+	);
+}
 

@@ -135,6 +135,7 @@ RMFunctions::comments_form('works', 'work='.$work->id(), 'module', PW_ROOT.'/cla
 // work images.
 if (RMFunctions::plugin_installed('lightbox')){
 	RMLightbox::get()->add_element('#pw-work-images a');
+	//RMLightbox::get()->render();
 }
 
 include 'footer.php';
