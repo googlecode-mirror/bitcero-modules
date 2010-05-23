@@ -557,7 +557,7 @@ class RMObject
      * @access public
      * @return object clone
      */
-    function &exmClone()
+    function rmClone()
     {
         $class = get_class($this);
         $clone = new $class();
