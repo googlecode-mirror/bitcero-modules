@@ -95,7 +95,7 @@ class PWCategory extends RMObject
 	public function link(){
 		global $xoopsModule, $xoopsModuleConfig;
 		
-		if ($xoopsModule->dirname()=='works'){
+		if (isset($xoopsModule) && $xoopsModule->dirname()=='works'){
 			$mc =& $xoopsModuleConfig;
 		} else {
 			$mc = RMUtilities::module_config('works');

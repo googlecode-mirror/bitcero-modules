@@ -11,7 +11,11 @@
 
 class PWWork extends RMObject
 {
-
+    /**
+    * Custom fields storage
+    */
+    private $metas = array();
+     
 	public function __construct($id=null){
 		
 		$this->db =& Database::getInstance();
@@ -246,7 +250,7 @@ class PWWork extends RMObject
 	public function link(){
 		global $xoopsModule, $xoopsModuleConfig;
 		
-		if($xoopsModule->dirname()=='works'){
+		if(isset($xoopsModule) && $xoopsModule->dirname()=='works'){
 			$mc = $xoopsModuleConfig;
 		} else {
 			$mc = RMUtilities::module_config('works');
@@ -261,6 +265,15 @@ class PWWork extends RMObject
 		
 		return $link;
 	}
+    
+    public function get_metas(){
+        
+        if (empty($this->metas))
+            $this->metas = PWFunctions::work_metas($this->id());
+        
+        return $this->metas;
+        
+    }
 
 	public function save(){
 		if ($this->isNew()){

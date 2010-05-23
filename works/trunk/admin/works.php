@@ -520,6 +520,139 @@ function markWorks($mark = 0){
 	
 }
 
+/**
+* Add meta data
+*/
+function works_meta_data(){
+    global $xoopsModule, $xoopsSecurity;
+    
+    $id = rmc_server_var($_GET, 'id', 0);
+    
+    if ($id<=0){
+        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 0);
+        die();
+    }
+    
+    $work = new PWWork($id);
+    if ($work->isNew()){
+        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 0);
+        die();
+    }
+    
+    PWFunctions::toolbar();
+    RMTemplate::get()->add_style('admin.css', 'works');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','admin_works')."';\n
+        var pw_select_message = '".__('You must select some work before to execute this action!','admin_works')."';</script>");
+    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Custom Fields','admin_works'));
+    
+    // Load metas
+    $metas = array();
+    $db = Database::getInstance();
+    $sql = "SELECT * FROM ".$db->prefix("pw_meta")." WHERE work='$id'";
+    $result = $db->query($sql);
+    while($row = $db->fetchArray($result)){
+        $metas[] = $row;
+    }
+    
+    xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/pw_metas.php', 'module', 'works');
+    
+    xoops_cp_footer();
+    
+}
+
+function works_save_meta(){
+    global $xoopsSecurity;
+    
+    $id = rmc_server_var($_POST, 'id', 0);
+    
+    if ($id<=0){
+        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 1);
+        die();
+    }
+    
+    $work = new PWWork($id);
+    if ($work->isNew()){
+        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','admin_works'), 1);
+        die();
+    }
+    
+    $name = rmc_server_var($_POST, 'name', '');
+    $value = rmc_server_var($_POST, 'value', '');
+    
+    if ($name=='' || $value==''){
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Please, fill all data!','admin_works'), 1);
+        die();
+    }
+    
+    $name = TextCleaner::sweetstring($name);
+    
+    $db = Database::getInstance();
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("pw_meta")." WHERE name='$name' AND work='$id'";
+    list($num) = $db->fetchRow($db->query($sql));
+    
+    $value = TextCleaner::addslashes($value);
+    
+    if ($num>0){
+        $sql = "UPDATE ".$db->prefix("pw_meta")." SET value='$value' WHERE name='$name' AND work='$id'";
+    } else {
+        $sql = "INSERT INTO ".$db->prefix("pw_meta")." (`value`,`name`,`work`) VALUES ('$value','$name','$id')";
+    }
+    
+    if ($db->queryF($sql)){
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field added successfully!','admin_works'), 0);
+    } else {
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field could not be added. Please try again!','admin_works').'<br />'.$db->error(), 1);
+    }
+    
+}
+
+function works_delete_meta(){
+    global $xoopsSecurity;
+    
+    $id = rmc_server_var($_POST, 'id', 0);
+    
+    if ($id<=0){
+        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 1);
+        die();
+    }
+    
+    $work = new PWWork($id);
+    if ($work->isNew()){
+        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','admin_works'), 1);
+        die();
+    }
+    
+    $ids = rmc_server_var($_POST, 'ids', array()); 
+    if (!is_array($ids) || empty($ids)){
+        redirectMsg('works.php', __('Select some fields to delete!','admin_works'), 1);
+        die();
+    }
+    
+    $db = Database::getInstance();
+    $sql = "DELETE FROM ".$db->prefix("pw_meta")." WHERE id_meta IN(".implode(",",$ids).")";
+    
+    if ($db->queryF($sql)){
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields deleted successfully!','admin_works'), 0);
+    } else {
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields could not be deleted!','admin_works').'<br />'.$db->error(), 1);
+    }
+    
+}
+
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 switch($op){
@@ -550,6 +683,15 @@ switch($op){
 	case 'nomark';
 		markWorks(0);
 		break;
+    case 'meta':
+        works_meta_data();
+        break;
+    case 'savemeta':
+        works_save_meta();
+        break;
+    case 'delmeta':
+        works_delete_meta();
+        break;
 	default:
 		showWorks();
 }

@@ -28,6 +28,7 @@
 #pw-left-form label{
 	display: block;
 	padding: 0 0 3px 0;
+    cursor: pointer;
 }
 #pw-left-form input[type='text']{
 	width: 90%;

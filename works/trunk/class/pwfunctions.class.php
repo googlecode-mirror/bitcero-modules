@@ -98,16 +98,21 @@ class PWFunctions
 	*/
 	public function get_works($limit, $category=null, $public=1, $object=true, $order="DESC"){
 		global $xoopsModule, $xoopsModuleConfig;
+        
+        include_once XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
+        
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=$public";
 		$sql .= $category>0 ? " AND catego='$category'" : '';
-        $sql .= $order!='' ? " ORDER BY id_work $order" : '';
+        $sql .= $order!='' ? " ORDER BY $order" : '';
 		$sql.= " LIMIT 0,$limit";
 		
 		if ($xoopsModule && $xoopsModule->dirname()=='works'){
 			$mc =& $xoopsModuleConfig;
 		} else {
-			$mc = RMUtils::moduleConfig('works');
+			$mc = RMUtilities::module_config('works');
 		}
 		
 		$result = $db->query($sql);
@@ -121,21 +126,19 @@ class PWFunctions
 
 			if (!isset($clients[$work->client()])) $clients[$work->client()] = new PWClient($work->client());
 
-			$link = PW_URL.($mc['urlmode'] ? '/'.$work->title_id().'/' : '/work.php?id='.$work->id());
-			$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$work->category()]->nameId().'/' : '/catego.php?id='.$categos[$work->category()]->nameId());
-
 			$ret = array(
 				'id'=>$work->id(),
 				'title'=>$work->title(),
 				'desc'=>$work->descShort(),
 				'catego'=>$categos[$work->category()]->name(),
 				'client'=>$clients[$work->client()]->name(),
-				'link'=>$link,
+				'link'=>$work->link(),
 				'created'=>formatTimeStamp($work->created(),'s'),
 				'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
 				'rating'=>PWFunctions::rating($work->rating()),
 				'featured'=>$work->mark(),
-				'linkcat'=>$link_cat
+				'linkcat'=>$categos[$work->category()]->link(),
+                'metas'=>$work->get_metas()
 			);
 			
 			if ($object){
@@ -164,5 +167,25 @@ class PWFunctions
 		RMTemplate::get()->add_tool(__('Customers','admin_works'), './clients.php', '../images/clients.png', 'customers');
 		RMTemplate::get()->add_tool(__('Works','admin_works'), './works.php', '../images/works.png', 'works');
 	}
+    
+    /**
+    * Get works custom fields
+    * @param int Work id
+    */
+    public function work_metas($work){
+        
+        if ($work<=0) return;
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("pw_meta")." WHERE work='$work'";
+        $result = $db->query($sql);
+        $metas = array();
+        while ($row = $db->fetchArray($result)){
+            $metas[$row['name']] = $row['value'];
+        }
+        
+        return $metas;
+        
+    }
 
 }

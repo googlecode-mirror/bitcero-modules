@@ -39,20 +39,20 @@ CREATE TABLE `pw_types` (
 
 CREATE TABLE `pw_works` (
   `id_work` int(11) NOT NULL auto_increment,
-  `title` varchar(200) collate latin1_general_ci NOT NULL,
-  `titleid` varchar(200) collate latin1_general_ci NOT NULL,
-  `short` varchar(255) collate latin1_general_ci NOT NULL default '',
-  `desc` text collate latin1_general_ci NOT NULL,
+  `title` varchar(200)  NOT NULL,
+  `titleid` varchar(200)  NOT NULL,
+  `short` varchar(255)  NOT NULL default '',
+  `desc` text  NOT NULL,
   `catego` int(11) NOT NULL default '0',
   `client` int(11) NOT NULL,
-  `comment` text collate latin1_general_ci NOT NULL,
-  `site` varchar(150) collate latin1_general_ci NOT NULL,
-  `url` varchar(255) collate latin1_general_ci NOT NULL default '',
+  `comment` text  NOT NULL,
+  `site` varchar(150)  NOT NULL,
+  `url` varchar(255)  NOT NULL default '',
   `mark` tinyint(1) NOT NULL default '0',
-  `image` varchar(255) collate latin1_general_ci NOT NULL,
+  `image` varchar(255)  NOT NULL,
   `created` int(10) NOT NULL default '0',
   `date_start` int(10) NOT NULL default '0',
-  `period` varchar(255) collate latin1_general_ci NOT NULL,
+  `period` varchar(255)  NOT NULL,
   `cost` float NOT NULL,
   `public` tinyint(1) NOT NULL default '0',
   `rating` int(11) NOT NULL default '0',
@@ -65,4 +65,12 @@ CREATE TABLE `pw_works` (
   `comms` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_work`),
   KEY `titleid` (`titleid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM;
+
+CREATE TABLE `pw_meta` (
+`id_meta` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`name` VARCHAR( 50 ) NOT NULL ,
+`value` TEXT NOT NULL,
+`work` INT(11) NOT NULL DEFAULT '0',
+INDEX ( `name` )
+) ENGINE = MYISAM ;
