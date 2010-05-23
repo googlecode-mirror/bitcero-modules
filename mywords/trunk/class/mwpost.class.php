@@ -343,12 +343,14 @@ class MWPost extends RMObject
 		
         $metas = array();
         
-        if (!$object) return $this->metas;
-        
 		foreach ($this->metas as $data){
             $meta = new MWMeta();
             $meta->assignVars($data);
-            $metas[] = $meta;
+            if (!$object){
+				$metas[$data['name']] = $data['value'];
+            } else {
+            	$metas[] = $meta;
+			}
         }
 		
 		return $metas;
