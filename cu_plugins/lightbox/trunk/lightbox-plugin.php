@@ -44,6 +44,9 @@ class LightBoxCUPlugin extends RMIPlugin
     }
     
     public function options(){
-		
+        
+        require 'include/options.php';
+        return $options;
+        
     }
 }

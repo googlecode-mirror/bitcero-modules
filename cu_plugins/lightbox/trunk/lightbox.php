@@ -28,8 +28,13 @@ class RMLightbox
 	}
 	
 	public function __construct(){
-		RMTemplate::get()->add_script(RMCURL.'/plugins/lightbox/js/jquery.lightbox.min.js');
-		RMTemplate::get()->add_style('lightbox.css', 'rmcommon', 'plugins/lightbox');
+		RMTemplate::get()->add_script(RMCURL.'/plugins/lightbox/js/jquery.colorbox-min.js');
+		
+		$config = RMFunctions::get()->plugin_settings('lightbox', true);
+		
+		$css = $config['theme']!='' ? $config['theme'] : 'default';
+		
+		RMTemplate::get()->add_style($css.'/colorbox.css', 'rmcommon', 'plugins/lightbox');
 	}
 	
 	/**
@@ -55,21 +60,35 @@ class RMLightbox
 		}
 	}
 	
-	public function __destruct(){
+	public function render(){
 		$script = "<script type='text/javascript'>\n";
 		$script .= "var lburl = '".RMCURL."/plugins/lightbox';\n";
 		$script .= "\$(function(){\n";
 		
+		$config = RMFunctions::get()->plugin_settings('lightbox', true);
+		$params = "{";
+		$params .= "transition:'$config[transition]'";
+		$params .= ",speed:$config[speed]";
+		$params .= $config['width']>0 ? ",maxWidth:$config[width]" : '';
+		$params .= $config['height']>0 ? ",maxHeight:$config[height]" : '';
+		$params .= ",scalePhotos:$config[scale]";
+		$params .= $config['configs']!='' ? ",$config[configs]" : '';
+		$params .= "}";
+		
 		if (is_array($this->elements)){
 			foreach ($this->elements as $element){
-				$script .= "\$(\"$element\").lightBox();\n";
+				$script .= "\$(\"$element\").colorbox($params);\n";
 			}
 		} else {
-			$script .= "\$(\"$this->elements\").lightBox();\n";
+			$script .= "\$(\"$this->elements\").colorbox($params);\n";
 		}
 		
 		$script .= "});\n</script>\n";
 		RMTemplate::get()->add_head($script);
+	}
+	
+	public function __destruct(){
+		self::render();
 	}
 }
 

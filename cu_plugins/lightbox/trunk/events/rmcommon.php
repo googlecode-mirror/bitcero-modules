@@ -16,9 +16,6 @@ class LightboxPluginRmcommonPreload{
 	
 	/**
 	* Replace [lighbox=#element a] by <div class="lightbox_container"> to include lightbox effects in texts
-	* @params array with patterns and replacements
-	* @param object TextCleaner object
-	* @return array witj patterns and $replacements must be filled also
 	*/
 	public function eventRmcommonCodeDecode($text){
 		
