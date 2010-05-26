@@ -169,6 +169,7 @@ $return = $edit ? $post->update() : $post->save();
 
 if ($return){
     if (!$edit) $xoopsUser->incrementPost();
+    
     showMessage($edit ? __('Post updated successfully','mywords') : __('Post saved successfully','mywords'), 0);
     $rtn = array(
         'message' => $edit ? __('Post updated successfully','mywords') : __('Post saved successfully','mywords'),

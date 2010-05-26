@@ -150,7 +150,16 @@ $modversion['blocks'][2]['description'] = "";
 $modversion['blocks'][2]['show_func'] = "mywordsBlockRecent";
 $modversion['blocks'][2]['edit_func'] = "mywordsBlockRecentEdit";
 $modversion['blocks'][2]['template'] = 'bk_mywords_recent.html';
-$modversion['blocks'][2]['options'] = "1|50|5|1|d-m-Y|0";
+$modversion['blocks'][2]['options'] = "10|recent|1|50|1|0";
+
+// Tags
+$modversion['blocks'][3]['file'] = "block.tags.php";
+$modversion['blocks'][3]['name'] = __('Tags','mywords');
+$modversion['blocks'][3]['description'] = "";
+$modversion['blocks'][3]['show_func'] = "mywordsBlockTags";
+$modversion['blocks'][3]['edit_func'] = "mywordsBlockTagsEdit";
+$modversion['blocks'][3]['template'] = 'bk_mywords_tags.html';
+$modversion['blocks'][3]['options'] = "50|.05";
 
 // Subpáginas
 $modversion['subpages'] = array('index'=>_MI_MW_SPINDEX,

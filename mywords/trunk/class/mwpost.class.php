@@ -560,6 +560,14 @@ class MWPost extends RMObject
         if (!$this->db->queryF($sql)){
             $this->addError($this->db->error());
         }
+        
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("mw_tagspost")." WHERE post='".$this->id()."'");
+        foreach($this->tags(false) as $tag){
+            $tags[] = $tag['id_tag'];
+        }
+        
+        $sql = "UPDATE ".$this->db->prefix("mw_tags")." SET posts=posts-1 WHERE id_tag IN(".implode(',',$this->tags).")";
+        $this->db->queryF($sql);
 		
 		$this->deleteFromTable();
 		if ($this->errors()!=''){ return false; } else { return true; }

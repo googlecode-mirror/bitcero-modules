@@ -16,25 +16,25 @@ function mywordsBlockRecent($options){
     
 	$mc = $xoopsModule && $xoopsModule->getVar('dirname')=='mywords' ? $xoopsModuleConfig : RMUtilities::module_config('mywords');
 	$db =& Database::getInstance();
+    $by = '';
     
     switch($options[1]){
         case 'recent':
-            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY pubdate DESC LIMIT 0,$options[0]";
+            $by = 'pubdate';
             break;
         case 'popular':
-            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY `reads` DESC LIMIT 0,$options[0]";
+            $by = "`reads`";
             break;
         case 'comm':
-            $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE status='publish' AND ((visibility='public' OR visibility='password') OR (visibility='private' AND author=".($xoopsUser ? $xoopsUser->uid() : -1).")) ORDER BY `comments` DESC LIMIT 0,$options[0]";
+            $by = "`comments`";
             break;
     }
     
-	$result = $db->query($sql);
+    $posts = MWFunctions::get_posts_by_cat($options[5], 0, $options[0], $by, 'DESC');
+    
 	$block = array();
-	while ($row = $db->fetchArray($result)){
+	foreach ($posts as $post){
 		$ret = array();
-		$post = new MWPost();
-		$post->assignVars($row);
 		$ret['id'] = $post->id();
 		$ret['title'] = $post->getVar('title');
 		$ret['link'] = $post->permalink();
@@ -59,6 +59,8 @@ function mywordsBlockRecent($options){
 
 function mywordsBlockRecentEdit($options){
     
+    $options[5] = isset($options[5]) ? $options[5] : 0;
+    
     $form = '<strong>'.__('Posts Number:','mywords').'</strong><br />
             <input type="text" size="10" value="'.$options[0].'" name="options[0]" /><br /><br />
             <strong>'.__('Block type:','mywords').'</strong><br />
@@ -76,7 +78,18 @@ function mywordsBlockRecentEdit($options){
             <br /><br /><strong>'.__('Show date:','mywords').'</strong> 
             <label><input type="radio" name="options[4]" value="1"'.(isset($options[4]) && $options[4]==1 ? ' checked="checked"' : '').' /> '.__('Yes','mywords').'</label> 
             <label><input type="radio" name="options[4]" value="0"'.(!isset($options[4]) || $options[4]==0 ? ' checked="checked"' : '').' /> '.__('No','mywords').'</label>
-            ';
+            <br /><br />';
+    $cats = array();
+    MWFunctions::categos_list($cats);
+    $form .= '<strong>'.__('Posts form category:','mywords').'</strong><br />
+            <select name="options[5]">
+            <option value="0"'.($options[5]==0 ? ' selected="selected"' : '').'>'.__('Select category...','mywords').'</option>';
+    
+    foreach($cats as $cat){
+        $form.='<option value="'.$cat['id_cat'].'"'.($options[5]==$cat['id_cat'] ? ' selected="selected"' : '').'>'.str_repeat("&#8212;", $cat['indent']).$cat['name'].'</option>';
+    }
+    
+    $form .= "</select><br /><br />";
     
     return $form;
     
