@@ -87,12 +87,38 @@ function show_dashboard(){
 }
 
 
+function rm_change_theme(){
+    global $xoopsModule;
+    
+    $theme = rmc_server_var($_GET,'theme','');
+    
+    if (is_file(RMCPATH.'/themes/'.$theme.'/admin_gui.php')){
+        $db = Database::getInstance();
+        $sql = "UPDATE ".$db->prefix("config")." SET conf_value='$theme' WHERE conf_name='theme' AND conf_modid='".$xoopsModule->mid()."'";
+        if ($db->queryF($sql)){
+            redirectMsg('index.php', __('Theme changed successfully!','rmcommon'), 0);
+            die();
+        } else {
+            redirectMsg('index.php', __('Theme could not be changed!','rmcommon').'<br />'.$db->error(), 0);
+            die();
+        }
+    }
+    
+    redirectMsg('index.php', __('Specified theme does not exists!','rmcommon'), 1);
+    die();
+    
+}
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
     case 'list':
         get_modules_ajax();
         die();
+    case 'theme':
+        rm_change_theme();
+        break;
     default:
         show_dashboard();
         break;

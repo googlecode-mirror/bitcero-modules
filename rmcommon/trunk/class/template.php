@@ -90,6 +90,8 @@ class RMTemplate
         global $xoopsModule, $rmc_config, $xoopsConfig, $xoopsModuleConfig;
 		$content = ob_get_clean();
 		ob_start();
+        
+        $rmc_config = RMFunctions::configs();
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
 		if (!file_exists(RMCPATH.'/themes/'.$theme.'/admin_gui.php')){

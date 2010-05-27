@@ -17,9 +17,10 @@
 // Usefull admin clases
 $tpl = RMTemplate::get();
 
+$rmc_config = RMFunctions::get()->configs();
 $rmc_theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 
-if (!file_exists(RMCPATH.'/templates/'.$rmc_theme.'/admin_gui.php')){
+if (!file_exists(RMCPATH.'/themes/'.$rmc_theme.'/admin_gui.php')){
 	$rmc_theme = 'default';
 }
 

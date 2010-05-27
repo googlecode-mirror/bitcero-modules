@@ -185,3 +185,10 @@ $modversion['config'][18]['description'] = '';
 $modversion['config'][18]['formtype'] = 'textbox';
 $modversion['config'][18]['valuetype'] = 'int';
 $modversion['config'][18]['default'] = 6;
+
+$modversion['config'][19]['name'] = 'theme';
+$modversion['config'][19]['title'] = __('Admin theme','rmcommon');
+$modversion['config'][19]['description'] = '';
+$modversion['config'][19]['formtype'] = 'textbox';
+$modversion['config'][19]['valuetype'] = 'text';
+$modversion['config'][19]['default'] = 'default';

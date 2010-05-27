@@ -53,3 +53,20 @@ $adminmenu[4]['title'] = __('Plugins','rmcommon');
 $adminmenu[4]['link'] = "plugins.php";
 $adminmenu[4]['icon'] = "images/plugin.png";
 $adminmenu[4]['location'] = "plugins";
+
+$adminmenu[5]['title'] = __('Themes','rmcommon');
+$adminmenu[5]['link'] = "javascript:;";
+$adminmenu[5]['icon'] = "images/themes.png";
+$adminmenu[5]['location'] = "";
+
+include XOOPS_ROOT_PATH.'/class/xoopslists.php';
+$themes = XoopsLists::getDirListAsArray(RMCPATH.'/themes');
+foreach($themes as $dir){
+    if (file_exists(RMCPATH.'/themes/'.$dir.'/admin_gui.php')){
+        $adminmenu[5]['options'][] = array(
+            'title' => ucfirst($dir),
+            'link'  => 'index.php?action=theme&amp;theme='.$dir,
+            'selected' => ''
+        );
+    }
+}
