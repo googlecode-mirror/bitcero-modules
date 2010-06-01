@@ -16,7 +16,6 @@ function myWordsBlockTags($options){
     $db = Database::getInstance();
     $sql = "SELECT * FROM ".$db->prefix("mw_tags")." ORDER BY RAND() LIMIT 0,$options[0]";
     $result = $db->query($sql);
-    
     $block = array();
     $max = 0;
     $min = 0;

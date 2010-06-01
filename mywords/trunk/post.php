@@ -63,8 +63,6 @@ if ($page<=0){
     }
 }
 
-$xmh .= "\n<script type='text/javascript' src='".MW_URL."include/functions.js'></script>";
-
 $post->add_read();
 
 // Navegación entre artículos
