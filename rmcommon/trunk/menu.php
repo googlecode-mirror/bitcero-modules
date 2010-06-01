@@ -55,7 +55,7 @@ $adminmenu[4]['icon'] = "images/plugin.png";
 $adminmenu[4]['location'] = "plugins";
 
 $adminmenu[5]['title'] = __('Themes','rmcommon');
-$adminmenu[5]['link'] = "javascript:;";
+$adminmenu[5]['link'] = "#";
 $adminmenu[5]['icon'] = "images/themes.png";
 $adminmenu[5]['location'] = "";
 
