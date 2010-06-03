@@ -21,6 +21,8 @@ function array_slice(array, val){
     return array;
 }
 
+<?php $front = rmc_server_var($_GET, 'front', 0); ?>
+
 $(document).ready( function($) {
 
     var total_tags = 0;
@@ -307,7 +309,7 @@ $(document).ready( function($) {
     });
     
     $("input#publish-submit").click(function(){
-
+		
         $('div#mw-messages-post').slideUp('slow',function(){
             $('div#mw-messages-post').html('');
         });
@@ -331,8 +333,10 @@ $(document).ready( function($) {
         params += "&"+$("form#mw-post-publish-form").serialize();
         params += "&"+$("form#mw-post-categos-form").serialize();
         params += "&"+$("form#mw-post-tags-form").serialize();
+
         // Send Post data
-        $.post('ajax/ax-posts.php', params, function(data){
+        $.post('<?php echo XOOPS_URL; ?>/modules/mywords/admin/ajax/ax-posts.php', params, function(data){
+
             if(data['error']!=undefined && data['error']!=''){
                 $('div#mw-messages-post').addClass('messages_error');
                 $('div#mw-messages-post').html(data['error']);
@@ -342,7 +346,7 @@ $(document).ready( function($) {
                 return;
             }
             
-            window.location.href = 'posts.php?op=edit&id='+data['post'];
+            window.location.href = '<?php if(!$front): echo "posts.php?op=edit"; else: echo "submit.php?action=edit"; endif; ?>&id='+data['post'];
             
         },'json');
         
@@ -402,6 +406,7 @@ $(document).ready( function($) {
 		if ($("#shortname-editor").length>0) return;
 		var html = '<input type="text" size="20" value="'+$(this).html()+'" name="shortname" id="shortname-editor" />';
 		$(this).html(html);
+		$("#shortname-editor").focus();
 	});
 
  });

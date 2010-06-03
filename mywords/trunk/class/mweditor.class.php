@@ -59,6 +59,18 @@ class MWEditor extends RMObject
 		return $rtn;
     }
     
+	public function from_user($uid){
+		$this->primary = 'uid';
+		if ($this->loadValues($uid)){
+			$this->unsetNew();
+			$this->primary = 'id_editor';
+			return true;
+		}
+		
+		$this->primary = 'id_editor';
+		return false;
+	}
+    
     public function save(){
         if ($this->isNew()){
             return $this->saveToTable();

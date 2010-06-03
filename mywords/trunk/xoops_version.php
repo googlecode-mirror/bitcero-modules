@@ -67,14 +67,12 @@ $modversion['templates'][4]['file'] = 'mywords_author.html';
 $modversion['templates'][4]['description'] = '';
 $modversion['templates'][5]['file'] = 'mywords_trackback.html';
 $modversion['templates'][5]['description'] = '';
-$modversion['templates'][6]['file'] = 'mywords_submit_form.html';
+$modversion['templates'][6]['file'] = 'mywords_single_post.html';
 $modversion['templates'][6]['description'] = '';
-$modversion['templates'][7]['file'] = 'mywords_single_post.html';
+$modversion['templates'][7]['file'] = 'mywords_password.html';
 $modversion['templates'][7]['description'] = '';
-$modversion['templates'][8]['file'] = 'mywords_password.html';
+$modversion['templates'][8]['file'] = 'mywords_tag.html';
 $modversion['templates'][8]['description'] = '';
-$modversion['templates'][9]['file'] = 'mywords_tag.html';
-$modversion['templates'][9]['description'] = '';
 
 // Blog name
 $modversion['config'][0]['name'] = 'blogname';

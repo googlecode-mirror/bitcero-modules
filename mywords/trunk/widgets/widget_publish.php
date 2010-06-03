@@ -64,7 +64,7 @@ function mw_widget_publish(){
 <form id="mw-post-publish-form">
 <!-- Opciones de Publicación -->
 <div class="publish_options">
-<?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e($status,'admin_mywords'); ?></strong> &nbsp; <a href="#" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Status:','admin_mywords'); ?> <strong id="publish-status-legend"><?php _e($status,'admin_mywords'); ?></strong> &nbsp; <a href="javascript:;" id="edit-publish"><?php _e('Edit','admin_mywords'); ?></a>
 	<div id="publish-options" style="display: none;">
 		<select name="status" id="status">
             <option value="publish"<?php echo $edit && $post->getVar('status')=='publish' ? 'selected="selected"' : ($edit ? '' : 'selected="selected"'); ?>><?php _e('Published','admin_mywords') ?></option>
@@ -72,7 +72,7 @@ function mw_widget_publish(){
 			<option value="pending"<?php echo $edit && $post->getVar('status')=='pending' ? 'selected="selected"' : ''?>><?php _e('Pending Review','admin_mywords') ?></option>
 		</select>
 		<input type="button" name="publish-ok" id="publish-ok" class="button" value="<?php _e('Apply','admin_mywords') ?>" /><br />
-		<a href="#" onclick="$('#publish-options').slideUp('slow'); $('#edit-publish').show();"><?php _e('Cancel','admin_mywords') ?></a>
+		<a href="javascript:;" onclick="$('#publish-options').slideUp('slow'); $('#edit-publish').show();"><?php _e('Cancel','admin_mywords') ?></a>
 	</div>
 </div>
 <!-- //Opciones de Publicación -->
@@ -97,13 +97,13 @@ function mw_widget_publish(){
         <br /></span>
         <input type="radio" name="visibility" value="private" id="visibility-private"<?php echo $visibility=='private' ? ' checked="checked"' : ''; ?> /> <label for="visibility-private"><?php _e('Private','admin_mywords') ?></label><br /><br />
         <input type="button" name="vis-button" id="vis-button" value="<?php _e('Apply','admin_mywords') ?>" class="button" />
-        <a href="#" id="vis-cancel"><?php _e('Cancel','admin_mywords') ?></a>
+        <a href="javascript:;" id="vis-cancel"><?php _e('Cancel','admin_mywords') ?></a>
     </div>
 </div>
 <!-- /Visibilidad -->
 <!-- Schedule -->
 <div class="publish_options">
-<?php _e('Publish','admin_mywords'); ?> <strong id="schedule-caption"><?php echo $edit ? ($post->getVar('pubdate')>0?__('Inmediatly','admin_mywords'):date("d, M Y \@ H:i", $post->getVar('schedule'))) : __('Inmediatly','admin_mywords'); ?></strong> &nbsp; <a href="#" class="edit-schedule"><?php _e('Edit','admin_mywords'); ?></a>
+<?php _e('Publish','admin_mywords'); ?> <strong id="schedule-caption"><?php echo $edit ? ($post->getVar('pubdate')>0?__('Inmediatly','admin_mywords'):date("d, M Y \@ H:i", $post->getVar('schedule'))) : __('Inmediatly','admin_mywords'); ?></strong> &nbsp; <a href="javascript:;" class="edit-schedule"><?php _e('Edit','admin_mywords'); ?></a>
     <div class="schedule-options" style="display: none;">
         <?php
             // Determinamos la fecha correcta
@@ -139,7 +139,7 @@ function mw_widget_publish(){
         <input type="text" name="schedule_hour" id="schedule-hour" size="2" maxlength="2" value="<?php _e($hour) ?>" /> :
         <input type="text" name="schedule_minute" id="schedule-minute" size="2" maxlength="2" value="<?php _e($minute) ?>" /><br /><br />
         <input type="button" class="button" name="schedule-ok" id="schedule-ok" value="<?php _e('Apply','admin_mywords') ?>" />
-        <a href="#" class="schedule-cancel"><?php _e('Cancel','admin_mywords') ?></a>
+        <a href="javascript:;" class="schedule-cancel"><?php _e('Cancel','admin_mywords') ?></a>
         <input type="hidden" name="schedule" id="schedule" value="<?php _e("$day-$month-$year-$hour-$minute") ?>" />
     </div>
 </div>
