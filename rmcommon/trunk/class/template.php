@@ -287,8 +287,8 @@ class RMTemplate
 		$id = crc32($sheet.$element.$subfolder);
 		
 		if (isset($this->tpl_styles[$id])) return;
-        
-        if ($front){
+
+        if (!function_exists("xoops_cp_header")){
             $theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
             $themepath = XOOPS_THEME_PATH.'/'.$theme;
             $themeurl = XOOPS_THEME_URL.'/'.$theme;
@@ -327,7 +327,7 @@ class RMTemplate
     * Add a style for the front section
     */
     public function add_xoops_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more=''){
-        
+
         $this->add_style($sheet, $element, $subfolder, $media, $more, true);
         
     }

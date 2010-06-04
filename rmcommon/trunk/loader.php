@@ -12,7 +12,7 @@ define("RMCPATH",XOOPS_ROOT_PATH.'/modules/rmcommon');
 define("RMCURL",XOOPS_URL.'/modules/rmcommon');
 define('ABSURL', XOOPS_URL);
 define('ABSPATH', XOOPS_ROOT_PATH);
-define('RMCVERSION','2.0');
+define('RMCVERSION','2.0.75');
 
 ob_start('cu_render_output');
 

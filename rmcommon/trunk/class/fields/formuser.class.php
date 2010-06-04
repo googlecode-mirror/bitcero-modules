@@ -19,6 +19,7 @@ class RMFormUser extends RMFormElement
 	private $width = 600;
 	private $height = 500;
 	private $showall = 0;
+	private $can_change = true; // Show search users button?
 	
 	// Eventos
 	private $_onchange = '';
@@ -44,6 +45,10 @@ class RMFormUser extends RMFormElement
 		!defined('RM_FRAME_USERS_CREATED') ? define('RM_FRAME_USERS_CREATED', 1) : '';
 	}
 	
+	public function button($enable){
+		$this->can_change = $enable;
+	}
+	
 	/**
 	* @desc Crea un manejador para el evento onchange
 	*/
@@ -60,7 +65,11 @@ class RMFormUser extends RMFormElement
 		RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 		RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
 		RMTemplate::get()->add_style('forms.css','rmcommon');
-        RMTemplate::get()->add_style('jquery.css','rmcommon');
+		if (function_exists("xoops_cp_header")){
+        	RMTemplate::get()->add_style('jquery.css','rmcommon');
+		} else {
+			RMTemplate::get()->add_xoops_style('jquery.css','rmcommon');
+		}
 		
 		$rtn = "<div id='".$this->getName()."-users-container'".($this->getExtra()!='' ? " ".$this->getExtra() : '')." class='form_users_container'>
 				<ul id='".$this->getName()."-users-list'>";
@@ -91,16 +100,19 @@ class RMFormUser extends RMFormElement
 						<label style='overflow: hidden;'>
                         <input type='".($this->multi ? 'checkbox' : 'radio')."' name='".($this->multi ? $this->getName().'[]' : $this->getName())."' id='".$this->getName()."-".$row['uid']."'
 				 		value='$row[uid]' checked='checked' /> 
-                        $row[uname] <a href='javascript:;' onclick=\"users_field_name='".$this->getName()."'; usersField.remove($row[uid]);\"><span>delete</span></a>
-                        </label></li>";
+                        $row[uname]";
+                $rtn .= $this->can_change ? " <a href='javascript:;' onclick=\"users_field_name='".$this->getName()."'; usersField.remove($row[uid]);\"><span>delete</span></a>" : '';
+                $rtn .= "</label></li>";
 			}
 		}
 		
-		$rtn .= "</ul></div><br />
-				<input type='button' value='".__('Search Users','rmcommon')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".intval($this->multi).",'".XOOPS_URL."');\" />
-				<div id='".$this->getName()."-dialog-search' title='".__('Search Users','rmcommon')."' style='display: none;'>
-				
-				</div>";
+		$rtn .= "</ul></div><br />";
+		if ($this->can_change){
+			$rtn .= "<input type='button' value='".__('Search Users','rmcommon')."' onclick=\"usersField.form_search_users('".$this->getName()."',".$this->width.",".$this->height.",".$this->limit.",".intval($this->multi).",'".XOOPS_URL."');\" />
+					<div id='".$this->getName()."-dialog-search' title='".__('Search Users','rmcommon')."' style='display: none;'>
+					
+					</div>";
+		}
 		
 		return $rtn;
 	}
