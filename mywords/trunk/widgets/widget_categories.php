@@ -12,8 +12,9 @@
 * Categories widget
 */
 function mw_widget_categories(){
+	global $xoopsUser, $allowed_cats;
+	
 	$widget['title'] = __('Categories','admin_mywords');
-    RMTemplate::get()->add_script('../include/js/widget_cats.js');
 	$widget['icon'] = '';
     
     $id = rmc_server_var($_REQUEST,'id',0);
@@ -45,6 +46,7 @@ foreach ($categories as $catego){
 }
 ?>
 </div>
+<?php if($xoopsUser->isAdmin() || $allowed_cats): ?>
 <div class="w_catnew_container">
     <a href="javascript:;" id="a-show-new"><strong><?php _e('+ Add Categories','admin_mywords'); ?></strong></a>
     <div id="w-catnew-form">
@@ -60,6 +62,7 @@ foreach ($categories as $catego){
     	<a href="javascript:;"><?php _e('Cancel','admin_mywords'); ?></a>
     </div>
 </div>
+<?php endif; ?>
 </form>
 </div>
 <?php

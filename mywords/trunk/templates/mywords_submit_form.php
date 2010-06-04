@@ -14,6 +14,7 @@
 </div>
 <?php echo $editor->render(); ?>
 <br />
+<?php if($allowed_tracks): ?>
 <table class="outer" cellspacing="0">
 	<tr><th><?php _e('Send Trackbacks','mywords'); ?></th></tr>
 	<tr><td class="mw_bcontent">
@@ -28,7 +29,8 @@
 	</td></tr>
 </table>
 <br />
-<table class="outer" cellsapcing="0">
+<?php endif; ?>
+<table cellsapcing="0">
 	<tr><th><?php _e('Custom Fields','mywords'); ?></th></tr>
 	<tr><td class="mw_bcontent">
 		<table id="metas-container" class="outer<?php echo !$edit || (!isset($post) && !$post->fields()) ? ' mw_hidden' : ''; ?>" cellspacing="0" width="100%" />
@@ -38,7 +40,7 @@
 			</tr>
 			<?php if($edit || (isset($post) && $post->fields())): ?>
 			<?php foreach($post->get_meta('',true) as $field): ?>
-				<tr class="<?php echo tpl_cycle("even,odd"); ?>">
+				<tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
 					<td valign="top"><input type="text" name="meta[<?php echo $field->id(); ?>][key]" id="meta-key-<?php echo $field->id(); ?>" value="<?php echo $field->getVar('name'); ?>" class="mw_large" /></td>
 					<td><textarea name="meta[<?php echo $field->id(); ?>][value]" id="meta[<?php echo $field->id(); ?>][value]" class="mw_large"><?php echo $field->getVar('value','e'); ?></textarea></td>
 				</tr>
@@ -83,6 +85,7 @@
 	</td></tr>
 </table>
 <br />
+<?php if($allowed_tracks): ?>
 <table class="outer" cellspacing="0">
     <tr><th><?php _e('Comments and Trackbacks','mywords'); ?></th></tr>
     <tr><td class="mw_bcontent">
@@ -99,6 +102,7 @@
     </td></tr>
 </table>
 <br />
+<?php endif; ?>
 <?php RMEvents::get()->run_event('mywords.posts.form.center.widgets', isset($post) ? $post : null); ?>
 <input type="hidden" name="XOOPS_TOKEN_REQUEST" id="XOOPS_TOKEN_REQUEST" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />

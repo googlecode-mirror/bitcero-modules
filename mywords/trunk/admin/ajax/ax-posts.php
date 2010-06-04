@@ -40,6 +40,16 @@ extract($_POST);
     die();
 }*/
 
+if (!isset($xoopsUser)){
+	return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
+}
+
+$author = new MWEditor();
+$author->from_user($xoopsUser->uid());
+
+if ($author->isNew() && !$xoopsUser->isAdmin()){
+	return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
+}
     
 if ($op=='saveedit'){
     if(!isset($id) || $id<=0){
@@ -51,6 +61,10 @@ if ($op=='saveedit'){
     if($post->isNew()){
         return_error(__('You must provide an existing post ID','mywords'), 0, 'posts.php');
         die();
+    }
+    
+    if (!$author->id()==$post->getVar('author') && !$xoopsUser->isAdmin()){
+		return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
     }
         
     $query = 'op=edit&id='.$id;

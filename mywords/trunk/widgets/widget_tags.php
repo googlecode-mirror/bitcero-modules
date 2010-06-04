@@ -12,10 +12,10 @@
 * Widget that show tags selection in a post form
 */
 function mw_widget_addtags(){
-    global $xoopsModuleConfig;
+    global $xoopsModuleConfig, $xoopsUser, $allowed_tags;
     
     $widget['title'] = __('Add Tags','admin_mywords');
-    RMTemplate::get()->add_script('../include/js/tags.js');
+    RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/scripts.php?file=tags.js');
     $widget['icon'] = '';
     
     
@@ -34,11 +34,13 @@ function mw_widget_addtags(){
 ?>
 <div class="rmc_widget_content_reduced">
 <form id="mw-post-tags-form">
+<?php if($xoopsUser->isAdmin() || $allowed_tags): ?>
 <div class="tags_box">
 <input type="text" name="tagsm" id="tags-m" class="formInput wtLeftInput" />
 <input type="button" name="tags-button" id="tags-button" class="button" value="<?php _e('+ Add','admin_mywords'); ?>" /><br />
 <span class="descriptions"><em><?php _e('Separate multiple tags with commas','admin_mywords'); ?></em></span>
 </div>
+<?php endif; ?>
 <?php $tags = $edit ? $post->tags() : array(); ?>
 <div id="tags-container">
     <span class="tip_legends" style="<?php echo empty($tags) ? 'display: none;' : ''; ?>">

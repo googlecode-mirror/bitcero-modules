@@ -18,8 +18,8 @@ function mw_widget_publish(){
 	RMTemplate::get()->add_style('publish_widget.css','mywords');
 	RMTemplate::get()->add_style('forms.css','rmcommon');
 	RMTemplate::get()->add_style('jquery.css','rmcommon');
-	RMTemplate::get()->add_script('../include/js/scripts.php?file=posts.js');
-	RMTemplate::get()->add_script('../include/js/mktime.js');
+	RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/scripts.php?file=posts.js');
+	RMTemplate::get()->add_script(XOOPS_URL.'/modules/mywords/include/js/mktime.js');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 	$widget['title'] = __('Publish','admin_mywords');
 	$widget['icon']	 = '';
@@ -148,6 +148,7 @@ function mw_widget_publish(){
 <?php _e('Author:','admin_mywords'); ?>
 <?php 
 	$user = new RMFormUser('', 'author', 0, $edit ? array($post->getVar('author')) : array($xoopsUser->uid()));
+	if (!$xoopsUser->isAdmin()) $user->button(false);
 	echo $user->render();
 ?>
 </div>

@@ -363,6 +363,7 @@ $(document).ready( function($) {
 	});
 	
 	$("input#create-new-cat").click(function(){
+
 		var name = $("div#w-catnew-form input#w-name").val();
 		if (name==''){
 			$("label[for='w-name']").slideDown();
@@ -377,7 +378,7 @@ $(document).ready( function($) {
 			'parent':parent
 		};
 		
-		$.post('ajax/ax-categories.php', params, function(data){
+		$.post('<?php echo XOOPS_URL; ?>/modules/mywords/admin/ajax/ax-categories.php', params, function(data){
 			
 			if (data['error']!=undefined){
 				alert(data['error']);
