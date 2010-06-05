@@ -16,19 +16,19 @@ $adminmenu[0]['icon'] = "../images/dashboard.png";
 
 
 //Publicaciones
-$adminmenu[1]['title'] = _MI_AH_RESOURCES;
+$adminmenu[1]['title'] = __('Resources','docs');
 $adminmenu[1]['link'] = "./admin/resources.php";
-$adminmenu[1]['icon'] = "images/res.png";
+$adminmenu[1]['icon'] = "../images/book.png";
 
 //Secciones
-$adminmenu[2]['title'] = _MI_AH_SECTIONS;
+$adminmenu[2]['title'] = __('Sections','docs');
 $adminmenu[2]['link'] = "./admin/sections.php";
-$adminmenu[2]['icon'] = "images/sections.png";
+$adminmenu[2]['icon'] = "../images/section.png";
 
 //Referencias
-$adminmenu[4]['title'] = _MI_AH_REFS;
+$adminmenu[4]['title'] = __('Notes','docs');
 $adminmenu[4]['link'] = "./admin/refs.php";
-$adminmenu[4]['icon'] = "images/refs.png";
+$adminmenu[4]['icon'] = "../images/notes.png";
 
 //Figuras
 $adminmenu[5]['title'] = _MI_AH_FIGURES;
