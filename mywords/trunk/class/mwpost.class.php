@@ -60,7 +60,9 @@ class MWPost extends RMObject
 		if ($id==null) return;
 	
 		if ($this->loadValues($id)){
-			$this->unsetNew();
+            $this->unsetNew();
+            $this->load_meta();
+            $this->get_tags();
 			return true;
 		} else {
 			return;
@@ -474,6 +476,7 @@ class MWPost extends RMObject
 		$sql = "INSERT INTO ".$this->db->prefix("mw_meta")." (`name`,`value`,`post`) VALUES ";
 		$values = '';
 		foreach ($this->metas as $name => $value){
+            if (is_array($value)) $value = $value['value'];
 			$values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->id()."')";
 		}
 		
