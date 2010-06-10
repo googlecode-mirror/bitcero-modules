@@ -1,12 +1,12 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 include '../../../include/cp_header.php';
 include XOOPS_ROOT_PATH.'/modules/ahelp/include/admin.func.php';
@@ -21,4 +21,4 @@ if (!file_exists(XOOPS_UPLOAD_PATH.'/ahelp')){
 //$access = accessInfo();
 
 $mc =& $xoopsModuleConfig;
-?>
+$db = Database::getInstance();

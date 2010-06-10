@@ -7,6 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
+
 load_mod_locale('docs');
 
 //Inicio
@@ -19,6 +20,12 @@ $adminmenu[0]['icon'] = "../images/dashboard.png";
 $adminmenu[1]['title'] = __('Resources','docs');
 $adminmenu[1]['link'] = "./admin/resources.php";
 $adminmenu[1]['icon'] = "../images/book.png";
+$adminmenu[1]['location'] = "resources";
+$adminmenu[1]['options'] = array(
+	array('title'=>__('All resources','docs'), 'link'=>'resources.php', 'selected'=>'resources'),
+	array('title'=>__('New resource','docs'), 'link'=>'resources.php?action=new', 'selected'=>'newresource'),
+	array('title'=>__('Drafts','docs'), 'link'=>'resources.php?action=drafts', 'selected'=>'drafts')
+);
 
 //Secciones
 $adminmenu[2]['title'] = __('Sections','docs');
@@ -31,13 +38,12 @@ $adminmenu[4]['link'] = "./admin/refs.php";
 $adminmenu[4]['icon'] = "../images/notes.png";
 
 //Figuras
-$adminmenu[5]['title'] = _MI_AH_FIGURES;
-$adminmenu[5]['link'] = "./admin/figs.php";
-$adminmenu[5]['icon'] = "images/figures.png";
+$adminmenu[5]['title'] = __('Figures','docs');
+$adminmenu[5]['link'] = "./admin/figures.php";
+$adminmenu[5]['icon'] = "../images/figures.png";
 
 //Ediciones
-$adminmenu[6]['title'] = _MI_AH_EDITS;
+$adminmenu[6]['title'] = __('Waiting','docs');
 $adminmenu[6]['link'] = "./admin/edits.php";
-$adminmenu[6]['icon'] = "images/edits.png";
+$adminmenu[6]['icon'] = "../images/waiting.png";
 
-?>

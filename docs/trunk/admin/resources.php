@@ -1,36 +1,22 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-
-define('AH_LOCATION', 'resources');
+define('RMCLOCATION', 'resources');
 include 'header.php';
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBarResource(){
-    global $tpl;
-    $pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
-
-    $tpl->append('xoopsOptions', array('link' => './resources.php?limit='.$limit.'&pag='.$pag, 'title' => _AS_AH_RESOURCES, 'icon' => '../images/res16.png'));
-    $tpl->append('xoopsOptions', array('link' => './resources.php?op=new&limit='.$limit.'&pag='.$pag, 'title' => _AS_AH_NEWRESOURCE, 'icon' => '../images/add.png'));
-}
 
 /**
 * @desc Muestra todas las publicaciones existentes
 **/
 function showResources(){
 	global $xoopsModule,$adminTemplate,$db,$tpl,$util,$xoopsConfig;
-	optionsBarResource();
-
+	
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources');
 	list($num)=$db->fetchRow($db->queryF($sql));
@@ -56,53 +42,28 @@ function showResources(){
     	    $tpl->assign('resourcesNavPage', $nav->renderNav(4, 1));
     	}
 
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_AH_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
 	//Fin navegador de páginas
 	
 	$sql="SELECT * FROM ".$db->prefix('pa_resources')." ORDER BY created DESC LIMIT $start,$limit";
 	$result=$db->queryF($sql);
+	$resources = array();
+	
 	while ($rows=$db->fetchArray($result)){
 		$res = new AHResource();
 		$res->assignVars($rows);
-		$tpl->append('resources',array('id'=>$res->id(),'title'=>$res->title(),
+		$resources[] = array('id'=>$res->id(),'title'=>$res->title(),
 				'created'=>date($xoopsConfig['datestring'],$res->created()), 'public'=>$res->isPublic(),
 				'quick'=>$res->quick(),'approvededit'=>$res->approveEditors(),'featured'=>$res->featured(),
-				'approved'=>$res->approved(),'owname'=>$res->owname()));
-
+				'approved'=>$res->approved(),'owname'=>$res->owname());
 	}
-	
-	$tpl->assign('lang_resources',_AS_AH_RESEXIST);
-	$tpl->assign('lang_id',_AS_AH_ID);
-	$tpl->assign('lang_title',_AS_AH_TITLE);
-	$tpl->assign('lang_date',_AS_AH_DATE);
-	$tpl->assign('lang_approve',_AS_AH_APPROVE);
-	$tpl->assign('lang_public',_AS_AH_PUBLIC);
-	$tpl->assign('lang_quick',_AS_AH_QUICK);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_delete',_DELETE);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_pub',_AS_AH_PUB);
-	$tpl->assign('lang_nopub',_AS_AH_NOPUB);
-	$tpl->assign('lang_quick',_AS_AH_QUICK);
-	$tpl->assign('lang_noquick',_AS_AH_NOQUICK);
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_result',_AS_AH_RESULT);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_sections',_AS_AH_SECTIONS);
-	$tpl->assign('lang_recommend',_AS_AH_RECOMMEND);
-	$tpl->assign('lang_norecommend',_AS_AH_NORECOMMEND);
-	$tpl->assign('lang_approv',_AS_AH_APPROVRES);
-	$tpl->assign('lang_noapprov',_AS_AH_NOAPPROV);
 
 
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_RESOURCES);
-	$adminTemplate = 'admin/ahelp_resources.html';
+	RDFunctions::toolbar();
 	xoops_cp_header();
-	 
+	
+	include RMTemplate::get()->get_template('admin/ahelp_resources.php', 'module', 'docs'); 
+	
 	xoops_cp_footer();
 
 }
