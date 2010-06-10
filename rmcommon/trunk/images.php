@@ -473,9 +473,8 @@ function resize_images(){
                 break;
         }
         
-        $width = $width==0 ? $size['width'] : $width;
-        if($width<$size['width']){
-            $with = $size['width'];
+        if($size['width']<=$width || $width==0){
+            $width = $size['width'];
             $tfile = str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $name);
         }
         
@@ -789,7 +788,7 @@ function update_thumbnails(){
     $isupdate = true;
     RMTemplate::get()->add_head("<script type='text/javascript'>
     \$(document).ready(function(){
-        ids = new Array($ids);
+        ids = [$ids];
         total = ".count($imgs).";
         \$('#resizer-bar').show('slow');
         \$('#resizer-bar').effect('highlight',{},1000);
