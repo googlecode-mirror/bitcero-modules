@@ -83,7 +83,8 @@ class BoosterCUPlugin extends RMIPlugin
             
             $prevent = array(
                 $path.'/user.php',
-                $path.'/modules/rmcommon/post_comment.php'
+                $path.'/modules/rmcommon/post_comment.php',
+                $path.'/modules/rmcommon/include/tiny-images.php'
             );
 			
 			$config = array(
