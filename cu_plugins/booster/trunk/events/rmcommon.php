@@ -72,8 +72,8 @@ class BoosterPluginRmcommonPreload
 
 		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
 			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
-			
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
+		
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['xoops_user']);
 		if (file_exists($file.'.html')){
 			
             $time = time() - filemtime($file.'.html');
@@ -97,22 +97,24 @@ class BoosterPluginRmcommonPreload
     * This event save the current page if is neccesary
     */
     public function eventRmcommonEndFlush($output){
+		global $xoopsUser;
 		
         $plugin = RMFunctions::load_plugin('booster');
         
         if(!$plugin->get_config('enabled'))
             return $output;
         
+        if (defined('BOOSTER_NOTSAVE'))
+        	return $output;
+        
 		$url = RMFunctions::current_url();
         
         $path = parse_url($url);
-        $prevent = $plugin->get_config('prevent');
         
-        if (in_array($path['path'], $prevent))
-            return $output;
+        if ($plugin->is_excluded($path['path']))
+        	return $output;
         
-        
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['xoops_user']);
         $data = array(
             'uri' => $url,
             'created' => time()
@@ -132,7 +134,7 @@ class BoosterPluginRmcommonPreload
     
     public function eventRmcommonCommentSaved($com, $ret){
         
-        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret);
+        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret.$_COOKIE['xoops_user']);
         
         @unlink($file.'.html');
         @unlink($file.'.meta');
@@ -150,6 +152,12 @@ class BoosterPluginRmcommonPreload
         @unlink($file.'.html');
         @unlink($file.'.meta');
         
+    }
+    
+    public function eventRmcommonRedirectHeader($url, $time, $message, $addredir, $allowext){
+		
+		define('BOOSTER_NOTSAVE', 1);
+		
     }
     
 }

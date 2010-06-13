@@ -131,4 +131,26 @@ class BoosterCUPlugin extends RMIPlugin
 		return $this->config[$name];
 		
     }
+    
+    /**
+    * Check excluded paths
+    */
+    public function is_excluded($path){
+        
+        if ($path=='') return false;
+        
+        if (strstr($path, '/modules/rmcommon/'))
+        	return true;
+        
+        $prevent = $this->get_config('prevent');
+        foreach($prevent as $url){
+
+			if (strlen($url) > 0 || strstr($path, $url))
+				return true;
+			
+        }
+        
+        return false;
+    }
+    
 }
