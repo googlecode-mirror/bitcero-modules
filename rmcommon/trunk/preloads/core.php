@@ -42,4 +42,22 @@ class RmcommonCorePreload extends XoopsPreloadItem
 		ob_end_flush();
 
 	}
+	
+	public function eventCoreClassTheme_blocksRetrieveBlocks($params){
+		
+		RMEvents::get()->run_event('rmcommon.retrieve.blocks', $params);
+		
+	}
+	
+	public function eventCoreIncludeFunctionsRedirectheader($params){
+		
+		// 0 = URL
+		// 1 = Time
+		// 2 = Message
+		// 3 = Add redirect
+		// 4 = Allow external link
+		RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
+		
+	}
+	
 }
