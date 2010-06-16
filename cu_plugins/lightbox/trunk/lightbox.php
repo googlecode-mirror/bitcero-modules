@@ -28,6 +28,7 @@ class RMLightbox
 	}
 	
 	public function __construct(){
+		RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
 		RMTemplate::get()->add_script(RMCURL.'/plugins/lightbox/js/jquery.colorbox-min.js');
 		
 		$config = RMFunctions::get()->plugin_settings('lightbox', true);
