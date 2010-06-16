@@ -33,7 +33,7 @@
     <?php foreach($images as $image): ?>
     <tr class="<?php echo tpl_cycle("even,odd"); ?>">
         <td align="center"><input type="checkbox" name="imgs[<?php echo $image['id']; ?>]" value="<?php echo $image['id']; ?>" /></td>
-        <td><img src="<?php echo $image['file']; ?>" alt="" width="70" height="45" /></td>
+        <td><a href="<?php echo $image['big']; ?>" class="bigimages"><img src="<?php echo $image['file']; ?>" alt="" width="70" height="45" /></a></td>
         <td>
             <strong><?php echo $image['title']; ?></strong>
             <?php if($image['desc']!=''): ?>

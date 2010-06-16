@@ -96,11 +96,17 @@ function show_images(){
             'desc'      => $img->getVar('desc', 'n'),
 			'cat'		=> $categories[$img->getVar('cat')]->getVar('name'),
 			'author'	=> $authors[$img->getVar('uid')],
-            'file'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension']
+            'file'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'],
+            'big'		=> XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/'.$fd['filename'].'.'.$fd['extension']
 		);
 	}
 	
 	$categories = RMFunctions::load_images_categories();
+	
+	if (RMFunctions::plugin_installed('lightbox')){
+		RMLightbox::get()->add_element('#list-images a.bigimages');
+		RMLightbox::get()->render();
+	}
 	
 	xoops_cp_header();
 	RMFunctions::create_toolbar();
