@@ -86,6 +86,7 @@ class BoosterPluginRmcommonPreload
 
 			ob_end_clean();
 			echo file_get_contents($file.'.html');
+			$plugin->delete_expired();
             die();
 		}
 
@@ -98,7 +99,7 @@ class BoosterPluginRmcommonPreload
     */
     public function eventRmcommonEndFlush($output){
 		global $xoopsUser;
-		
+
         $plugin = RMFunctions::load_plugin('booster');
         
         if(!$plugin->get_config('enabled'))
@@ -106,14 +107,14 @@ class BoosterPluginRmcommonPreload
         
         if (defined('BOOSTER_NOTSAVE'))
         	return $output;
-        
+
 		$url = RMFunctions::current_url();
         
         $path = parse_url($url);
         
-        if ($plugin->is_excluded($path['path']))
+        if ($plugin->is_excluded($url))
         	return $output;
-        
+
 		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['xoops_user']);
         $data = array(
             'uri' => $url,
@@ -128,6 +129,7 @@ class BoosterPluginRmcommonPreload
 			
         file_put_contents($file.'.meta', json_encode($data));
 		
+		$plugin->delete_expired();
 		return $output;
 		
     }

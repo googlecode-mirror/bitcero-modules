@@ -143,14 +143,32 @@ class BoosterCUPlugin extends RMIPlugin
         	return true;
         
         $prevent = $this->get_config('prevent');
+        
         foreach($prevent as $url){
 
-			if (strlen($url) > 0 || strstr($path, $url))
+			if (strlen($url) > 0 && strstr($path, $url))
 				return true;
 			
         }
         
         return false;
+    }
+    
+    /**
+    * Clean cached files
+    */
+    public function delete_expired(){
+		$items = XoopsLists::getFileListAsArray(XOOPS_CACHE_PATH.'/booster/files');
+		$files = array();
+		foreach($items as $file){
+			$tmp = explode('.',$file);
+			if ($tmp[1]!='meta') continue;
+			$content = json_decode(file_get_contents(XOOPS_CACHE_PATH.'/booster/files/'.$file), true);
+			if (time()-$content['created']>=$this->get_config('time')){
+				@unlink(XOOPS_CACHE_PATH.'/booster/files/'.$file);
+				@unlink(XOOPS_CACHE_PATH.'/booster/files/'.$tmp[0].'.html');
+			}
+		}
     }
     
 }
