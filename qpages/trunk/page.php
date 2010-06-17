@@ -100,7 +100,8 @@ $tpl->assign('page', array(
 	'id'		=> $page->getID(),
 	'name'		=> $page->getFriendTitle(),
 	'mod_date'	=> sprintf(__('Last update: %s', 'qpages'), formatTimestamp($page->getModDate(),'c')),
-	'reads'		=> sprintf(__('Read %u times','qpages'), $page->getReads())
+	'reads'		=> sprintf(__('Read %u times','qpages'), $page->getReads()),
+	'metas'		=> $page->get_meta()
 ));
 
 // Páginas relacionadas
@@ -122,5 +123,7 @@ $tpl->assign('lang_related', _MS_QP_RELATED);
 $tpl->assign('lang_page', _MS_QP_PAGE);
 $tpl->assign('lang_modified', _MS_QP_MOD);
 $tpl->assign('lang_hits', _MS_QP_HITS);
+
+RMEvents::get()->run_event('qpages.view.page', $page);
 
 require 'footer.php';
