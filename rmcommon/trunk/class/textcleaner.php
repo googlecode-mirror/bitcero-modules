@@ -720,7 +720,9 @@ class TextCleaner
 	* @param bool Apply base64_decode? default true
 	*/
 	public function decrypt($string, $encode64 = true){
-		global $rmc_config;
+		
+		$rmc_config = RMFunctions::configs();
+		
 		$crypt = new Crypt(Crypt::MODE_HEX, $rmc_config['secretkey']);
 		$string = $crypt->decrypt($string);
 		

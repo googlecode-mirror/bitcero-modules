@@ -135,7 +135,8 @@ function images_form($edit = 0){
         $uploader->add_setting('scriptData', array(
         	'action'=>'upload',
         	'category'=>$cat->id(),
-        	'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php', true))
+        	// Need better code
+        	'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true))
         );
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');

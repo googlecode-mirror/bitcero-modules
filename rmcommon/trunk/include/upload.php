@@ -22,11 +22,10 @@ function error($message){
 /**
 * Handle uploaded image files only.
 */
-$security = rmc_server_var($_POST, 'rmsecurity', 0);
+$security = TextCleaner::getInstance()->decrypt(rmc_server_var($_POST, 'rmsecurity', 0), true);
 $category = rmc_server_var($_POST, 'category', 0);
 
-$data = TextCleaner::getInstance()->decrypt($security, true);
-
+$data = $security; //base64_decode($security);
 $data = explode("|", $data); // [0] = referer, [1] = session_id(), [2] = user, [3] = token
 
 $xoopsUser = new XoopsUser($data[0]);
