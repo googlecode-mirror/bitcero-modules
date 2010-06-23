@@ -21,7 +21,7 @@ class BoosterCUPlugin extends RMIPlugin
 	        $this->info = array(
 	            'name'            => __('Xoops Booster', 'booster'),
 	            'description'    => __('Plugin to speed up your Xoops Web site by reducing load times.','booster'),
-	            'version'        => '1.0.0.0',
+	            'version'        => '1.0.0.10',
 	            'author'        => 'Eduardo Cortés',
 	            'email'            => 'i.bitcero@gmail.com',
 	            'web'            => 'http://redmexico.com.mx',
@@ -145,12 +145,10 @@ class BoosterCUPlugin extends RMIPlugin
         $prevent = $this->get_config('prevent');
         
         foreach($prevent as $url){
-
-			if (strlen($url) > 0 && strstr($path, $url))
+			if (strlen($url) > 0 && strstr($path, trim($url)))
 				return true;
 			
         }
-        
         return false;
     }
     

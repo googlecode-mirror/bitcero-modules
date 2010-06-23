@@ -67,7 +67,7 @@ class BoosterPluginRmcommonPreload
         // Pages to exclude
         $prevent = $plugin->get_config('prevent');
 
-        if (in_array($path['path'], $prevent))
+        if ($plugin->is_excluded($url))
             return $plugins;
 
 		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
