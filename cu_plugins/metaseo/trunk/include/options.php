@@ -18,7 +18,7 @@ $options['len'] = array(
 );
 
 $options['meta'] = array(
-        'caption'   =>  __('Use a custom field from MyWords','metaseo'),
+        'caption'   =>  __('Use a custom field from MyWords and Quick Pages','metaseo'),
         'desc'      =>  __('You can use a custom field value directly from MyWords in order to specify the content for meta description tag.','metaseo'),
         'fieldtype'      =>  'yesno',
         'valuetype' =>  'int',
