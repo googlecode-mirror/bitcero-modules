@@ -105,7 +105,7 @@ class MywordsRmcommonPreload
 		$options[] = array(
 			'title' => __('Posts by category','mywords'),
 			'description' => __('Select a category to see the posts published recently.','mywords').' <a href="javascript:;" onclick="$(\'#categories-feed\').slideToggle(\'slow\');">Show Categories</a>
-						    <div id="categories-feed" style="padding: 10px;">'.$table.'</div>'
+						    <div id="categories-feed" style="padding: 10px; display: none;">'.$table.'</div>'
 		);
 		
 		unset($categories);
@@ -126,15 +126,43 @@ class MywordsRmcommonPreload
 		$options[] = array(
 			'title' => __('Show posts by tag','mywords'),
 			'description' => __('Select a tag to see the posts published recently.','mywords').' <a href="javascript:;" onclick="$(\'#tags-feed\').slideToggle(\'slow\');">Show Tags</a>
-						    <div id="tags-feed" style="padding: 10px;">'.$table.'</div>'
+						    <div id="tags-feed" style="padding: 10px; display: none;">'.$table.'</div>'
 		);
+        
+        unset($tags);
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mw_editors")." ORDER BY name";
+        $result = $db->query($sql);
+        $editors = array();
+        while ($row = $db->fetchArray($result)){
+            $editors[] = $row;
+        }
+        asort($editors);
+        
+        $table = '<table cellpadding="2" cellspacing="2" width="100%"><tr class="even">';
+        $count = 0;
+        foreach($editors as $ed){
+            if ($count>=3){
+                $count = 0;
+                $table .= '</tr><tr class="'.tpl_cycle("odd,even").'">';
+            }
+            $table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?op=showfeed&amp;show=tag&amp;tag='.$ed['id_editor'].'">'.$ed['name'].'</a></td>';
+            $count++;
+        }
+        $table .= '</tr></table>';
 		
 		$options[] = array(
 			'title' => __('Show posts by author','mywords'),
 			'description' => __('Select an author to see the posts published recently.','mywords').' <a href="javascript:;" onclick="$(\'#editor-feed\').slideToggle(\'slow\');">Show Authors</a>
-						    <div id="editor-feed" style="padding: 10px;">'.$table.'</div>'
+						    <div id="editor-feed" style="padding: 10px; display: none;">'.$table.'</div>'
 		);
-		
+        
+        unset($editors);
+		unset($table);
+        
+        RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
+        RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
 		
 		$feed = array('data'=>$data,'options'=>$options);
 		$feeds[] = $feed;
