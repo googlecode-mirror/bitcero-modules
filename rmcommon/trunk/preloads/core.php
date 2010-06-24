@@ -60,4 +60,13 @@ class RmcommonCorePreload extends XoopsPreloadItem
 		
 	}
 	
+	/**
+	* RSS Management
+	*/
+	public function eventCoreIncludeCommonEnd(){
+		
+		RMEvents::get()->run_event('rmcommon.xoops.common.end');
+		
+	}
+	
 }

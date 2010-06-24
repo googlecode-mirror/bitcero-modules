@@ -23,4 +23,9 @@ class RmcommonRmcommonPreload
 		return $widgets;
 		
 	}
+	
+	public function eventRmcommonXoopsCommonEnd(){
+		include_once RMCPATH.'/rss.php';
+		die();
+	}
 }
