@@ -447,5 +447,21 @@ class RMFunctions
 		return $plugin;
 		
     }
+    
+    /**
+    * Load a module as XoopsModule object
+    * @param int|string Module id or module name
+    * @return object XoopsModule
+    */
+    public function load_module($mod){
+		$mh = xoops_gethandler('module');
+		if (is_numeric($mod)){
+			$m = $mh->get($mod);
+		} else {
+			$m = $mh->getByDirname($mod);
+		}
+		
+		return $m;
+    }
 	
 }

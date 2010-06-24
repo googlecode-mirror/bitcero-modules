@@ -25,7 +25,13 @@ class RmcommonRmcommonPreload
 	}
 	
 	public function eventRmcommonXoopsCommonEnd(){
-		include_once RMCPATH.'/rss.php';
-		die();
+		
+		$url = RMFunctions::current_url();
+		$p = parse_url($url);
+		
+		if(substr($p['path'], -11)=='backend.php'){
+			include_once RMCPATH.'/rss.php';
+			die();
+		}
 	}
 }
