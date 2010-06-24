@@ -72,8 +72,11 @@ class BoosterPluginRmcommonPreload
 
 		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
 			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
+	
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['booster_session']);
+		if (!file_exists($file.'.html'))
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
 		
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['xoops_user']);
 		if (file_exists($file.'.html')){
 			
             $time = time() - filemtime($file.'.html');
@@ -114,11 +117,16 @@ class BoosterPluginRmcommonPreload
         
         if ($plugin->is_excluded($url))
         	return $output;
-
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['xoops_user']);
+			
+		if ($xoopsUser){
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.session_id());
+			setcookie('booster_session', session_id(), 0, '/');
+		} else {
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
+		}
         $data = array(
             'uri' => $url,
-            'created' => time()
+            'created' => time(),
         );
 		
 		$pos = strpos($output, '<div id="xo-logger-output">');
