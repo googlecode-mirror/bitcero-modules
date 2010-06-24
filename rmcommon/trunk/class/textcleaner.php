@@ -705,7 +705,8 @@ class TextCleaner
 	* @return string
 	*/
 	public function encrypt($string, $encode64 = true){
-		global $rmc_config;
+		
+		$rmc_config = RMFunctions::get()->configs();
 		$crypt = new Crypt(Crypt::MODE_HEX, $rmc_config['secretkey']);
 		$string = $crypt->encrypt($string);
 		//if ($encode64) $string = base64_encode($string);

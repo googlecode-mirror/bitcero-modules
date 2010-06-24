@@ -38,7 +38,7 @@ if ($action==''){
         $uploader->add_setting('scriptData', array(
             'action'=>'upload',
             'category'=>$cat->id(),
-            'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php', true))
+            'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true))
         );
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
