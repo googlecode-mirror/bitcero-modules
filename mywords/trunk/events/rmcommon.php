@@ -78,7 +78,8 @@ class MywordsRmcommonPreload
 
 		$data = array(
 				'title'	=> $module->name(),
-				'url'	=> XOOPS_URL.$config['basepath']
+				'url'	=> XOOPS_URL.$config['basepath'],
+				'module' => 'mywords'
 		);
 		
 		$options[] = array(
