@@ -28,16 +28,39 @@ function show_rss_options(){
 }
 
 function show_rss_content(){
+	
+	include_once $GLOBALS['xoops']->path('class/template.php');
+	$tpl = new XoopsTpl();
+	$module = rmc_server_var($_GET,'mod','');
+	
+	if($module==''){
+		redirect_header('backend.php', 1, __('Choose an option to chose its feed','rmcommon'));
+		die();
+	}
+	
+	if (!file_exists(XOOPS_ROOT_PATH.'/modules/'.$module.'/rss.php')){
+		redirect_header('backend.php', 1, __('This module does not support rss feeds','rmcommon'));
+		die();
+	}
+	
 	$GLOBALS['xoopsLogger']->activated = false;
 	if (function_exists('mb_http_output')) {
 	    mb_http_output('pass');
 	}
 	header('Content-Type:text/xml; charset=utf-8');
+	
+	include XOOPS_ROOT_PATH.'/modules/'.$module.'/rss.php';
+	
+	$tpl->display('db:system_rss.html');
+	
 }
 
 $action = rmc_server_var($_GET, 'action', '');
 
 switch($action){
+	case 'showfeed':
+		show_rss_content();
+		break;
 	default:
 		show_rss_options();
 		break;
