@@ -28,7 +28,8 @@ function show_rss_options(){
 }
 
 function show_rss_content(){
-	
+	global $xoopsConfig;
+    
 	include_once $GLOBALS['xoops']->path('class/template.php');
 	$tpl = new XoopsTpl();
 	$module = rmc_server_var($_GET,'mod','');
@@ -50,8 +51,16 @@ function show_rss_content(){
 	header('Content-Type:text/xml; charset=utf-8');
 	
 	include XOOPS_ROOT_PATH.'/modules/'.$module.'/rss.php';
+    
+    if (!isset($rss_channel['image'])){
+        $rmc_config = RMFunctions::configs();
+        $rss_channel['image']['url'] = $rmc_config['rssimage'];
+        $dimention = getimagesize(XOOPS_ROOT_PATH . '/images/logo.png');
+        $rss_channel['image']['width'] = ($dimention[0] > 144) ? 144 : $dimention[0];
+        $rss_channel['image']['height'] = ($dimention[1] > 400) ? 400 : $dimention[1];
+    }
 	
-	$tpl->display('db:system_rss.html');
+	include RMTemplate::get()->get_template('rmc_rss.php', 'module', 'rmcommon');
 	
 }
 

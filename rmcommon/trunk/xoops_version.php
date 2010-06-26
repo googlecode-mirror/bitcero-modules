@@ -192,3 +192,10 @@ $modversion['config'][19]['description'] = '';
 $modversion['config'][19]['formtype'] = 'textbox';
 $modversion['config'][19]['valuetype'] = 'text';
 $modversion['config'][19]['default'] = 'default';
+
+$modversion['config'][20]['name'] = 'rssimage';
+$modversion['config'][20]['title'] = __('Image for rss feeds','rmcommon');
+$modversion['config'][20]['description'] = '';
+$modversion['config'][20]['formtype'] = 'textbox';
+$modversion['config'][20]['valuetype'] = 'text';
+$modversion['config'][20]['default'] = XOOPS_URL.'/modules/rmcommon/images/rssimage.png';
