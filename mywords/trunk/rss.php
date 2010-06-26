@@ -21,6 +21,11 @@ switch($show){
 		$tpl->assign('channel_title', $xoopsModule->name());
 		$tpl->assign('channel_link', XOOPS_URL.($config['permalinks'] ? $config['basepath'] : '/modules/mywords'));
 		$tpl->assign('channel_lastbuild', formatTimestamp(time(), 'rss'));
+		$tpl->assign('channel_webmaster', checkEmail($xoopsConfig['adminmail'], true));
+	    $tpl->assign('channel_editor', checkEmail($xoopsConfig['adminmail'], true));
+	    $tpl->assign('channel_category', 'Blog');
+	    $tpl->assign('channel_generator', 'Common Utilities');
+	    $tpl->assign('channel_language', RMCLANG);
 		break;
 }
 
