@@ -72,7 +72,7 @@ class TextCleaner
 		$this->emots[] = array('code'=>array('>:(','>:-('),'icon'=>$url.'/mad.png');
 		$this->emots[] = array('code'=>array(':oops:'),'icon'=>$url.'/red.png');
 		$this->emots[] = array('code'=>array(':roll:'),'icon'=>$url.'/roll.png');
-		$this->emots[] = array('code'=>array('>D','XD','xD'),'icon'=>$url.'/yell.png');    
+		$this->emots[] = array('code'=>array('X-D','x-D'),'icon'=>$url.'/yell.png');    
 		
 		// Get another emoticons from plugins or modules
 		$this->emots = RMEvents::get()->run_event('rmcommon.get_emotions', $this->emots);
