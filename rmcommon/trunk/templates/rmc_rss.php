@@ -20,14 +20,14 @@
       <height><?php echo $rss_channel['image']['height']; ?></height>
     </image>
     <?php endif; ?>
-    <{foreach item=item from=$items}>
+    <?php foreach($rss_items as $item): ?>
     <item>
-      <title><{$item.title}></title>
-      <link><{$item.link}></link>
-      <description><{$item.description}></description>
-      <pubDate><{$item.pubdate}></pubDate>
-      <guid><{$item.guid}></guid>
+      <title><?php echo $item['title']; ?></title>
+      <link><?php echo $item['link']; ?></link>
+      <description><?php echo $item['description']; ?></description>
+      <pubDate><?php echo $item['pubdate']; ?></pubDate>
+      <guid><?php echo $item['guid']; ?></guid>
     </item>
-    <{/foreach}>
+    <?php endforeach; ?>
   </channel>
 </rss>
