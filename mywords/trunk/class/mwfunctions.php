@@ -360,9 +360,76 @@ class MWFunctions
 		
     }
     
+    /**
+    * Get posts by tag
+    * 
+    * @param int Tag id
+    * @param int Start
+    * @param int Max results
+    * @param string Column to sort
+    * @param string Sort direction ASC or DESC, etc
+    * @param string Posts status, published, draft, etc.
+    * @return array
+    */
+    public function get_posts_by_tag($tag, $start=0, $limit=1, $orderby='pubdate', $order='DESC', $status='publish'){
+    	$path = XOOPS_ROOT_PATH.'/modules/mywords';
+		include_once $path.'/class/mwpost.class.php';
+		
+		if($tag<=0) return false;
+		
+		$db = Database::getInstance();
+		
+		$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a, ".$db->prefix("mw_tagspost")." as b WHERE
+				b.tag='$tag' AND a.id_post=b.post AND a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
+
+		$result = $db->query($sql);
+		$ret = array();
+		while($row = $db->fetchArray($result)){
+			$post = new MWPost();
+			$post->assignVars($row);
+			$ret[] = $post;
+		}
+		
+		return $ret;
+	}
+    
     public function get_posts($start=0, $limit=1, $orderby='pubdate', $order='DESC', $status='publish'){
 		
 		return self::get_posts_by_cat(0, $start, $limit, $orderby, $order, $status);
+		
+    }
+    
+    public function get_filtered_posts($where = '', $start = 0, $limit = 1, $orderby='pubdate',$sort='desc',$status='publish'){
+		
+		$path = XOOPS_ROOT_PATH.'/modules/mywords';
+		include_once $path.'/class/mwpost.class.php';
+		
+		$db = Database::getInstance();
+		
+		$sql = "SELECT * FROM ".$db->prefix("mw_posts");
+		if ($where!=''){
+			$sql .= " WHERE $where";
+		}
+		if($status!=''){
+			$sql .= $where!='' ? " AND status='$status'" : " WHERE status='$status'";
+		}
+		if($orderby!=''){
+			$sql .= " ORDER BY $orderby";
+		}
+		if($sort!=''){
+			$sql .= " $sort";
+		}
+		$sql .= " LIMIT $start,$limit";
+		//echo $sql;
+		$result = $db->query($sql);
+		$ret = array();
+		while($row = $db->fetchArray($result)){
+			$post = new MWPost();
+			$post->assignVars($row);
+			$ret[] = $post;
+		}
+		
+		return $ret;
 		
     }
 	

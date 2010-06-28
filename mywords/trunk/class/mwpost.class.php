@@ -234,7 +234,7 @@ class MWPost extends RMObject
 					$category = new MWCategory();
 					$category->assignVars($cat);
 					$rtn .= $rtn == '' ? '' : "$delimiter";
-					$rtn .= '<a href="'.($section=='front' ? $url.'category/'.$category->path() : MW_URL.'/admin/posts.php?category='.$cat['id_cat']).'">'.$cat['name'].'</a>';
+					$rtn .= '<a href="'.($section=='front' ? $category->permalink() : 'posts.php?cat='.$cat['id_cat']).'">'.$cat['name'].'</a>';
 				} else {
 					$rtn .= $rtn == '' ? $cat['name'] : "$delimiter $cat[name]";
 				}

@@ -98,7 +98,7 @@ class MywordsRmcommonPreload
 				$count = 0;
 				$table .= '</tr><tr class="'.tpl_cycle("odd,even").'">';
 			}
-			$table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?op=showfeed&amp;show=cat&amp;cat='.$cat['id_cat'].'">'.$cat['name'].'</a></td>';
+			$table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?action=showfeed&amp;mod=mywords&amp;show=cat&amp;cat='.$cat['id_cat'].'">'.$cat['name'].'</a></td>';
 			$count++;
 		}
 		$table .= '</tr></table>';
@@ -119,7 +119,7 @@ class MywordsRmcommonPreload
 				$count = 0;
 				$table .= '</tr><tr class="'.tpl_cycle("odd,even").'">';
 			}
-			$table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?op=showfeed&amp;show=tag&amp;tag='.$tag['id_tag'].'">'.$tag['tag'].'</a></td>';
+			$table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?action=showfeed&amp;mod=mywords&amp;show=tag&amp;tag='.$tag['id_tag'].'">'.$tag['tag'].'</a></td>';
 			$count++;
 		}
 		$table .= '</tr></table>';
@@ -148,7 +148,7 @@ class MywordsRmcommonPreload
                 $count = 0;
                 $table .= '</tr><tr class="'.tpl_cycle("odd,even").'">';
             }
-            $table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?op=showfeed&amp;show=tag&amp;tag='.$ed['id_editor'].'">'.$ed['name'].'</a></td>';
+            $table .= '<td width="33%"><a href="'.XOOPS_URL.'/backend.php?action=showfeed&amp;mod=mywords&amp;show=author&amp;author='.$ed['id_editor'].'">'.$ed['name'].'</a></td>';
             $count++;
         }
         $table .= '</tr></table>';

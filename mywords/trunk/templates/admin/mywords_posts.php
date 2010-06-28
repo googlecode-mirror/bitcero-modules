@@ -79,9 +79,10 @@
     <td class="mw_postcats"><?php echo $post['categories']; ?></td>
     <td class="mw_postcats">
     <?php 
-    $count = 0;
+    $count = 1;
+    $ct = count($post['tags']);
     foreach ($post['tags'] as $tag): ?>
-    <?php echo $count<=0 ? '' : ',' ?><a href="posts.php?tag=<?php echo $tag['id_tag']; ?>"><?php echo $tag['tag']; ?></a>
+    <?php echo $tag['tag']; ?><?php echo $count<$ct ? ',' : ''; ?>
     <?php $count++; endforeach; ?>
     </td>
     <td align="center">
