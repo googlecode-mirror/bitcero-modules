@@ -10,6 +10,7 @@
 
 include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
 include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwtag.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwmeta.php';
 
 class MWPost extends RMObject
 {
