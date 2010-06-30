@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: ahresource.class.php 409 2010-05-13 18:00:22Z i.bitcero $
 // --------------------------------------------------------------
 // Ability Help
 // http://www.redmexico.com.mx
@@ -9,7 +9,7 @@
 // @license: GPL v2
 
 
-class AHResource extends EXMObject{
+class RDResource extends RMObject{
 	
 	/**
 	* Stores the references existing for this resource
@@ -53,22 +53,6 @@ class AHResource extends EXMObject{
 		return $this->getVar('id_res');
 	}
 
-	public function title(){
-		return $this->getVar('title');
-	}
-
-	public function setTitle($title){
-		return $this->setVar('title',$title);
-	}
-
-	public function desc(){
-		return $this->getVar('description');
-	}
-
-	public function setDesc($desc){
-		return $this->setVar('description',$desc);
-	}
-
 	public function image(){
 		return $this->getVar('image');
 	}
@@ -93,22 +77,6 @@ class AHResource extends EXMObject{
 		return $this->setVar('modified',$modified);
 	}
 
-	public function editors(){
-		return $this->getVar('editores');
-	}
-
-	public function setEditors($editores){
-		return $this->setVar('editores',$editores);
-	}
-
-	public function approveEditors(){
-		return $this->getVar('editor_approve');
-	}
-	
-	public function setApproveEditors($approve){
-		return $this->setVar('editor_approve',$approve);
-	}
-
 	public function approved(){
 		return $this->getVar('approved');
 	}
@@ -125,29 +93,12 @@ class AHResource extends EXMObject{
 		return $this->setVar('groups',$groups);
 	}
 
-	public function isPublic(){
-		return $this->getVar('public');
-	}
-
-	public function setPublic($public){
-		return $this->setVar('public',$public);
-	}
-
 	public function quick(){
 		return $this->getVar('quick');
 	}
 
 	public function setQuick($quick){
 		return $this->setVar('quick',$quick);
-	}
-
-
-	public function nameId(){
-		return $this->getVar('nameid');
-	}
-	
-	public function setNameId($name){
-		return $this->setVar('nameid',$name);
 	}
 
 	//Mostrar índice a usuarios sin permiso de ver publicación

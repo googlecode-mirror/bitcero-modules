@@ -35,7 +35,7 @@ CREATE TABLE `pa_resources` (
   `modified` int(10) NOT NULL default '0',
   `owner` int(11) NOT NULL,
   `owname` varchar(50) NOT NULL,
-  `editores` text NOT NULL,
+  `editors` text NOT NULL,
   `editor_approve` tinyint(1) NOT NULL default '0',
   `groups` text NOT NULL,
   `public` tinyint(1) NOT NULL default '0',

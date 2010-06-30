@@ -1,2 +1,0 @@
-[05-Mar-2008 20:28:24] PHP Parse error:  syntax error, unexpected T_STRING in /home/redmexic/public_html/exmsystem/modules/ahelp/language/english/admin.php on line 225
-[30-Jul-2009 14:26:16] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/redmexic/public_html/exmsystem/kernel/object.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/redmexic/public_html/exmsystem/include/common.php on line 153

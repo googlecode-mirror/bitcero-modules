@@ -21,35 +21,26 @@ function showResources(){
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources');
 	list($num)=$db->fetchRow($db->queryF($sql));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$page = rmc_server_var($_REQUEST, 'page', 1);
+    $limit = rmc_server_var($_REQUEST, 'limit', 15);
 	$limit = $limit<=0 ? 15 : $limit;
 
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
+	$tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
     
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit, 0);
-    	    $tpl->assign('resourcesNavPage', $nav->renderNav(4, 1));
-    	}
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('resources.php?page={PAGE_NUM}');
 
 	//Fin navegador de páginas
 	
-	$sql="SELECT * FROM ".$db->prefix('pa_resources')." ORDER BY created DESC LIMIT $start,$limit";
+	$sql="SELECT * FROM ".$db->prefix('pa_resources')." ORDER BY `created` DESC LIMIT $start,$limit";
 	$result=$db->queryF($sql);
 	$resources = array();
 	
 	while ($rows=$db->fetchArray($result)){
-		$res = new AHResource();
+		$res = new RDResource();
 		$res->assignVars($rows);
 		$resources[] = array('id'=>$res->id(),'title'=>$res->title(),
 				'created'=>date($xoopsConfig['datestring'],$res->created()), 'public'=>$res->isPublic(),
@@ -58,6 +49,8 @@ function showResources(){
 	}
 
 
+    RMTemplate::get()->add_style('admin.css', 'docs');
+    
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_RESOURCES);
 	RDFunctions::toolbar();
 	xoops_cp_header();
@@ -71,63 +64,52 @@ function showResources(){
 /**
 * Formulario para crear publicaciones
 **/
-function showForm($edit=0){
-
+function qd_show_form($edit=0){
 	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig;
-	optionsBarResource();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_RESOURCES);
+
+    RDFunctions::toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Editing Resource','docs') : __('Create Resource','docs')));
 	xoops_cp_header();
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-        $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
+	$id= rmc_server_var($_GET,'id', 0);
+	$page = rmc_server_var($_GET, 'page', 1);
 
 	if ($edit){
 		//Comprueba si la publicación es válida
 		if ($id<=0){
-			redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_IDNOTVALID,1);
+			redirectMsg('./resources.php?page='.$page, __('You must provide an ID from some resource to edit!', 'docs'),1);
 			die();		
 		}
 		
 		//Comprueba si la publicación existe
-		$res= new AHResource($id);
+		$res= new RDResource($id);
 		if ($res->isNew()){
-			redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_NOTEXIST,1);
+			redirectMsg('./resources.php?page='.$page, __('Specified resource does not exists!','docs'),1);
 			die();
 		}	
 
 	}
 
-	$form = new RMForm($edit ? _AS_AH_EDITRESOURCE : _AS_AH_NEWRESOURCE,'frmres','resources.php');
-	$form->setExtra("enctype='multipart/form-data'");
+	$form = new RMForm($edit ? sprintf(__('Edit Resource: %s','docs'), $res->getVar('title')) : __('New Resource','docs'),'frmres','resources.php');
 	
-	$form->addElement(new RMText(_AS_AH_TITLE,'title',50,150,$edit ? $res->title() : ''),true);
-	if ($edit) $form->addElement(new RMText(_AS_AH_NAMEID,'nameid',50,150,$res->nameid()));
-	$form->addElement(new RMTextArea(_AS_AH_DESC,'desc',5,50,$edit ? $res->desc() : ''),true);
-		
-	//Imagen
-	$form->addElement(new RMFile(_AS_AH_IMAGE, 'image', 45, $xoopsModuleConfig['size_image']*1024));
-	if ($edit){
-		$img = "<img src='".XOOPS_URL."/uploads/ahelp/".$res->image()."' border='0' />";
-		$form->addElement(new RMLabel(_AS_AH_IMAGEACT,$img));
+	$form->addElement(new RMFormText(__('Reource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
+	if ($edit) $form->addElement(new RMFormText(__('Resource slug'),'nameid',50,150,$res->getVar('nameid')));
+	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description') : ''),true);
 
-	}
-
-	$form->addElement(new RMFormUserEXM(_AS_AH_EDITORS,'editors',1,$edit ? $res->editors() : '',30));
+	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$edit ? $res->getVar('editors') : '',30));
 
 	//Propietario de la publicacion
 	if ($edit){
-		$form->addElement(new RMFormUserEXM(_AS_AH_OWNER,'owner',0,$edit ? array($res->owner()) : '',30));
-	}	
-	$form->addElement(new RMYesno(_AS_AH_APPROV,'approvededit',$edit ? $res->approveEditors() : 0));
-	$form->addElement(new RMGroups(_AS_AH_GROUPS,'groups',1,1,5,$edit ? $res->groups() : array(1,2)),true);
-	$form->addElement(new RMYesno(_AS_AH_PUBLIC,'public',$edit ? $res->isPublic() : 0));
-	$ele = new RMYesNo(_AS_AH_QUICK,'quick',$edit ? $res->quick() : 0);
-	$form->addElement($ele);
+		$form->addElement(new RMFormUser(__('Resource owner'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
+	}
+	$form->addElement(new RMFormYesno(__('Approve content and changes by editors'),'approvededit',$edit ? $res->getVar('editor_approve') : 0));
+	$form->addElement(new RMFormGroups(__('Graups that can see this reource'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
+	$form->addElement(new RMFormYesno(__('Set as public','docs'),'public',$edit ? $res->getVar('public') : 0));
+	$form->addElement(new RMFormYesNo(__('Quick index'),'quick',$edit ? $res->getVar('quick') : 0));
 
 	
 	//Mostrar índice a usuarios sin permiso de publicación
-	$form->addElement(new RMYesno(_AS_AH_SHOWINDEX,'showindex',$edit ? $res->showIndex() : 0));
+	$form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex',$edit ? $res->showIndex() : 0));
 	$form->addElement(new RMYesno(_AS_AH_FEATURED,'featured',$edit ? $res->featured() : 0));
 	$form->addElement(new RMYesno(_AS_AH_APPROVEDRES,'approvedres',$edit ? $res->approved() : 1));
 
@@ -579,11 +561,11 @@ function approvedResources($app=0){
 }
 
 
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$action=isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
-switch ($op){
+switch ($action){
 	case 'new':
-		showForm();
+		qd_show_form();
 	break;
 	case 'edit':
 		showForm(1);
