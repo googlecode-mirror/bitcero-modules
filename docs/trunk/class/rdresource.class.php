@@ -52,92 +52,6 @@ class RDResource extends RMObject{
 	public function id(){
 		return $this->getVar('id_res');
 	}
-
-	public function image(){
-		return $this->getVar('image');
-	}
-
-	public function setImage($image){
-		return $this->setVar('image',$image);
-	}
-
-	public function created(){
-		return $this->getVar('created');
-	}
-
-	public function setCreated($created){
-		return $this->setVar('created',$created);
-	}
-
-	public function modified(){
-		return $this->getVar('modified');
-	}
-
-	public function setModified($modified){
-		return $this->setVar('modified',$modified);
-	}
-
-	public function approved(){
-		return $this->getVar('approved');
-	}
-
-	public function setApproved($approved){
-		return $this->setVar('approved',$approved);
-	}
-
-	public function groups(){
-		return $this->getVar('groups');
-	}
-
-	public function setGroups($groups){
-		return $this->setVar('groups',$groups);
-	}
-
-	public function quick(){
-		return $this->getVar('quick');
-	}
-
-	public function setQuick($quick){
-		return $this->setVar('quick',$quick);
-	}
-
-	//Mostrar índice a usuarios sin permiso de ver publicación
-	public function showIndex(){
-		return $this->getVar('show_index');
-
-	}
-
-	public function setShowIndex($showindex){
-		return $this->setVar('show_index',$showindex);
-	}
-
-	//Id de usuario que crea el recurso
-	public function owner(){
-		return $this->getVar('owner');
-	}
-
-	public function setOwner($owner){
-		return $this->setVar('owner',$owner);
-
-	}
-
-	//Nombre de usuario que crea el recurso
-	public function owname(){
-		return $this->getVar('owname');
-
-	}
-
-	public function setOwname($owname){
-		return $this->setVar('owname',$owname);
-	}
-	
-	// Featured
-	public function featured(){
-		return $this->getVar('featured');
-	}
-	public function setFeatured($value){
-		return $this->setVar('featured', $value);
-	}
 	
 	/**
 	* Get the references for this resource
@@ -179,41 +93,15 @@ class RDResource extends RMObject{
 		return $this->figures;
 	}
 	
-	/**
-	* @desc Lecturas
-	*/
-	public function reads(){
-		return $this->getVar('reads');
-	}
-	public function setReads($value){
-		return $this->setVar('reads', $value);
-	}
 	public function addRead(){
 		if ($this->isNew()) return;
 		return $this->db->queryF("UPDATE ".$this->db->prefix("pa_resources")." SET `reads`=`reads`+1 WHERE id_res='".$this->id()."'");
 	}
 	
-	// Votos
-	public function votes(){
-		return $this->getVar('votes');
-	}
-	public function setVotes($value){
-		return $this->setVar('votes', $value);
-	}
 	public function addVote($rate){
 		if ($this->isNew()) return;
 		return $this->db->queryF("UPDATE ".$this->db->prefix("pa_resources")." SET `votes`=`votes`+1, `rating`='".($this->rating()+$rate)."' WHERE id_res='".$this->id()."'");
 		$this->setRating($this->rating()+$rate);
-	}
-	
-	
-	
-	// rating
-	public function rating(){
-		return $this->getVar('rating');
-	}
-	public function setRating($value){
-		return $this->setVar('rating', $value);
 	}
 	
 	/**
@@ -317,9 +205,7 @@ class RDResource extends RMObject{
 
 		$ret=$this->deleteFromTable();
 											
-
-		return $ret;
-	
+		return $ret;	
 		
 	}
 	

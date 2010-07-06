@@ -18,20 +18,30 @@
 	<tr>
 	    <th width="20"><input type="checkbox" id="checkall" onclick='$("#frm-resources").toggleCheckboxes(":not(#checkall)");' /></th>
 		<th width="30"><?php _e('ID','docs'); ?></th>
-		<th><?php _e('Title','docs'); ?></th>
+		<th align="left"><?php _e('Title','docs'); ?></th>
+        <th align="left"><?php _e('Description','docs'); ?></th>
 		<th><?php _e('Date','docs'); ?></th>
 		<th><?php _e('Attributes','docs'); ?></th>
 	</tr>
 	<?php foreach($resources as $res): ?>
-		<tr class="<{cycle values="even,odd"}>" align="center">
-			<td><input type="checkbox" name="resources[]" value="<{$resource.id}>" /></td>
-			<td><{$resource.id}></td>
-			<td align="left"><a href="./sections.php?id=<{$resource.id}>" ><{$resource.title}></a> (<{$resource.owname}>)</td>
-			<td><{$resource.created}></td>
-			<td><{if $resource.approved}><img src="../images/ok.png" border="0" /><{else}><img src="../images/no.png" border="0" /><{/if}></td>
-			<td><{if $resource.public}><img src="../images/ok.png" border="0" /><{else}><img src="../images/no.png" border="0" /><{/if}></td>
-			<td><{if $resource.quick}><img src="../images/ok.png" border="0" /><{else}><img src="../images/no.png" border="0" /><{/if}></td>
-			<td align="center"><a href="./resources.php?op=edit&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><{$lang_edit}></a> &bull; <a href="./resources.php?op=del&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><{$lang_delete}></a> &bull; <a href="./sections.php?id=<{$resource.id}>"><{$lang_sections}></a> &bull; <{if !$resource.featured }><a href="./resources.php?op=recommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><{$lang_recommend}><{else}><a href="./resources.php?op=norecommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><{$lang_norecommend}><{/if}></a></td>
+		<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
+			<td><input type="checkbox" name="resources[]" value="<?php echo $res['id']; ?>" /></td>
+			<td><strong><?php echo $res['id']; ?></strong></td>
+			<td align="left">
+                <a href="./sections.php?id=<?php echo $res['id']; ?>" ><?php echo $res['title']; ?></a> (<?php echo $res['owname']; ?>)
+                <span class="rmc_options">
+                    <a href="./resources.php?op=edit&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><?php _e('Edit','docs'); ?></a>
+                    | <a href="./resources.php?op=del&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><?php _e('Delete','docs'); ?></a>
+                    | <a href="./sections.php?id=<{$resource.id}>"><?php _e('Sections','docs'); ?></a>
+                    | <?php if($resource['featured']): ?><a href="./resources.php?op=recommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><?php _e('Featured','docs'); ?><?php else: ?><a href="./resources.php?op=norecommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><?php _e('Not featured','docs'); ?><?php endif; ?></a>
+                </span>
+            </td>
+            <td align="left"><?php echo $res['description']; ?></td>
+			<td><?php echo $res['created']; ?></td>
+			<td>
+                <img src="../images/<?php echo $res['approved'] ? 'approved.png' : 'noapproved.png'; ?>" border="0" />
+			    <img src="../images/<?php echo $res['public'] ? 'public.png' : 'draft.png'; ?>" border="0" />
+			    <img src="../images/<?php echo $res['quick']; ?>" border="0" /></td>
 		</tr>
 	<?php endforeach; ?>
 </table>

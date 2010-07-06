@@ -42,10 +42,18 @@ function showResources(){
 	while ($rows=$db->fetchArray($result)){
 		$res = new RDResource();
 		$res->assignVars($rows);
-		$resources[] = array('id'=>$res->id(),'title'=>$res->title(),
-				'created'=>date($xoopsConfig['datestring'],$res->created()), 'public'=>$res->isPublic(),
-				'quick'=>$res->quick(),'approvededit'=>$res->approveEditors(),'featured'=>$res->featured(),
-				'approved'=>$res->approved(),'owname'=>$res->owname());
+		$resources[] = array(
+            'id'=>$res->id(),
+            'title'=>$res->getVar('title'),
+			'created'=>formatTimestamp($res->getVar('created'), 'c'),
+            'public'=>$res->getVar('public'),
+			'quick'=>$res->getVar('quick'),
+            'approvededit'=>$res->getVar('editor_approve'),
+            'featured'=>$res->getVar('featured'),
+			'approved'=>$res->getVar('approved'),
+            'owname'=>$res->getVar('owname'),
+            'description'=>$res->getVar('description')
+        );
 	}
 
 
@@ -55,7 +63,7 @@ function showResources(){
 	RDFunctions::toolbar();
 	xoops_cp_header();
 	
-	include RMTemplate::get()->get_template('admin/ahelp_resources.php', 'module', 'docs'); 
+	include RMTemplate::get()->get_template('admin/qd_resources.php', 'module', 'docs'); 
 	
 	xoops_cp_footer();
 
@@ -92,7 +100,7 @@ function qd_show_form($edit=0){
 
 	$form = new RMForm($edit ? sprintf(__('Edit Resource: %s','docs'), $res->getVar('title')) : __('New Resource','docs'),'frmres','resources.php');
 	
-	$form->addElement(new RMFormText(__('Reource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
+	$form->addElement(new RMFormText(__('Resource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
 	if ($edit) $form->addElement(new RMFormText(__('Resource slug'),'nameid',50,150,$res->getVar('nameid')));
 	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description') : ''),true);
 
@@ -103,27 +111,26 @@ function qd_show_form($edit=0){
 		$form->addElement(new RMFormUser(__('Resource owner'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
 	}
 	$form->addElement(new RMFormYesno(__('Approve content and changes by editors'),'approvededit',$edit ? $res->getVar('editor_approve') : 0));
-	$form->addElement(new RMFormGroups(__('Graups that can see this reource'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
+	$form->addElement(new RMFormGroups(__('Groups that can see this resource'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
 	$form->addElement(new RMFormYesno(__('Set as public','docs'),'public',$edit ? $res->getVar('public') : 0));
 	$form->addElement(new RMFormYesNo(__('Quick index'),'quick',$edit ? $res->getVar('quick') : 0));
 
 	
 	//Mostrar índice a usuarios sin permiso de publicación
 	$form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex',$edit ? $res->showIndex() : 0));
-	$form->addElement(new RMYesno(_AS_AH_FEATURED,'featured',$edit ? $res->featured() : 0));
-	$form->addElement(new RMYesno(_AS_AH_APPROVEDRES,'approvedres',$edit ? $res->approved() : 1));
+	$form->addElement(new RMFormYesno(__('Featured','docs'),'featured',$edit ? $res->featured() : 0));
+	$form->addElement(new RMFormYesno(__('Approve inmediatly','docs'),'approvedres',$edit ? $res->approved() : 1));
 
-	$buttons =new RMButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'resources.php\';"');
+	$buttons =new RMFormButtonGroup();
+	$buttons->addButton('sbt',__('Create Resource','docs'),'submit');
+	$buttons->addButton('cancel',__('Cancel','docs'),'button', 'onclick="window.location=\'resources.php\';"');
 
 	$form->addElement($buttons);
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit': 'save' ));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('limit',$limit));
-	$form->addElement(new RMHidden('pag',$pag));
-	$form->addElement(new RMHidden('app',$edit ? $res->approved() : 0));
+	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit': 'save' ));
+	if ($edit) $form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('page',$page));
+	$form->addElement(new RMFormHidden('app',$edit ? $res->approved() : 0));
 	$form->display();
 
 
@@ -135,43 +142,47 @@ function qd_show_form($edit=0){
 * @desc Almacena la información de la publicación
 **/
 function saveResources($edit=0){
-	global $util,$db,$xoopsModuleConfig,$xoopsUser;
+	global $xoopsModuleConfig,$xoopsUser, $xoopsSecurity;
 	
 	$nameid = '';
+    $q = '';
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
+        if ($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
+        $q .= $q=='' ? "$k=".urlencode($v) : "&$k=".urlencode($v);
 	}
+    
+    if($action=='save')
+        $q .= '&amp;action=new';
+    else
+        $q .= "&amp;action=edit";
 
-	if (!$util->validateToken()){
-		if (!$edit){
-			redirectMsg('./resources.php?op=new&limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
-			die();
-		}else{
-			redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
-			die();
-		}
+	if (!$xoopsSecurity->check()){
+		redirectMsg('resources.php?'.$q, __('Sessiontoken expired!','docs'), 1);
+        die();
 	}
+    
+    $db = Database::getInstance();
     
 	if ($edit){
 		//Comprueba si la publicación es válida
 		if ($id<=0){
-			redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_IDNOTVALID,1);
+			redirectMsg('resources.php', __('You must provide a valid resource ID','docs'), 1);
 			die();		
 		}
 		
 		//Comprueba si la publicación existe
-		$res= new AHResource($id);
+		$res= new RDResource($id);
 		if ($res->isNew()){
-			redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_NOTEXIST,1);
+			redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
 			die();
 		}	
-
 
 		//Comprueba que el título de publicación no exista
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_resources')." WHERE title='$title' AND id_res<>'".$id."'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_ERRTITLE,1);	
+			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);	
 			die();
 		}
 
@@ -181,18 +192,18 @@ function saveResources($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_resources')." WHERE title='$title' ";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./resources.php?op=new&limit='.$limit.'&pag='.$pag,_AS_AH_ERRTITLE,1);	
-			die();
+			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);    
+            die();
 		}
-		$res = new AHResource();
+		$res = new RDResource();
 	}
 	
 	//Genera $nameid Nombre identificador
-	if (!$edit || $nameid==''){
+	if ($nameid=='' || $res->getVar('title')!=$title){
 		$found=false; 
 		$i = 0;
 		do{
-    		$nameid = $util->sweetstring($title).($found ? $i : '');
+    		$nameid = TextCleaner::getInstance()->sweetstring($title).($found ? $i : '');
         	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources'). " WHERE nameid = '$nameid'";
         	list ($num) =$db->fetchRow($db->queryF($sql));
         	if ($num>0){
@@ -205,85 +216,31 @@ function saveResources($edit=0){
 
 	}
 	
-	$res->setTitle($title);
-	$res->setDesc(substr($desc, 0, 255));
-	$res->isNew() ? $res->setCreated(time()) : $res->setModified(time());
-	$res->setEditors($editors);
-	$res->setApproveEditors($approvededit);
-	$res->setGroups($groups);
-	$res->setPublic($public);
-	$res->setQuick($quick);
-	$res->setNameId($nameid);
-	$res->setShowIndex($showindex);
-	$res->setFeatured($featured);
-	$res->setApproved($approvedres);
+	$res->setVar('title', $title);
+	$res->setVar('description', substr($desc, 0, 255));
+	$res->isNew() ? $res->setVar('created', time()) : $res->setVar('modified', time());
+	$res->setVar('editors', $editors);
+	$res->setVar('editor_approve', $approvededit);
+	$res->setVar('groups', $groups);
+	$res->setVar('public', $public);
+	$res->setVar('quick', $quick);
+	$res->setVar('nameid', $nameid);
+	$res->setVar('show_index', $showindex);
+	$res->setVar('featured', $featured);
+	$res->setVar('approved', $approvedres);
 	if ($res->isNew()){
-		$res->setOwner($xoopsUser->uid());
-		$res->setOwname($xoopsUser->uname());
-		$res->setModified(time());
-	}elseif ($owner!=$res->owner()){
+		$res->setVar('owner', $xoopsUser->uid());
+		$res->setVar('owname', $xoopsUser->uname());
+	}elseif ($owner!=$res->getVar('owner')){
 		$xuser=new $xoopsUser($owner);
-		$res->setOwner($owner);
-		$res->setOwname($xuser->uname());
+		$res->setVar('owner', $owner);
+		$res->setVar('owname', $xuser->uname());
 	}
-
-	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = XOOPS_UPLOAD_PATH.'/ahelp';
-    
-	if ($edit){
-		$filename=$res->image();
-	}
-	else{
-		$filename = '';
-	}
-	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['size_image']*1024);//tamaño
-
-	if ($up->fetchMedia('image')){
-
-	
-		if (!$up->upload()){
-			if ($res->isNew()){
-				redirectMsg('./resources.php?op=new&limit='.$limit.'&pag='.$pag, _AS_AH_ERRIMAGE."<br />".$up->getErrors(), 1);
-				die();
-			}else{
-				redirectMsg('./resources.php?op=edit&id='.$id.'limit='.$limit.'&pag='.$pag, _AS_AH_ERRIMAGE."<br />".$up->getErrors(), 1);
-				die();
-			}
-		}
-					
-		if ($edit && $res->image()!=''){
-			@unlink(XOOPS_UPLOAD_PATH.'/ahelp/'.$res->image());
-		}
-        
-		$filename = $up->getSavedFileName();
-		$fullpath = $up->getSavedDestination();
-		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
-        
-		if ($xoopsModuleConfig['redim_image']==0){
-			$redim->resizeAndCrop($xoopsModuleConfig['image'],$xoopsModuleConfig['image']);
-		}else{
-			$redim->resizeWidth($xoopsModuleConfig['image']);
-		}
-
-
-	}
-	
-	$res->setImage($filename);
 
 	if (!$res->save()){
-		if ($res->isNew()){
-			redirectMsg('./resources.php?op=new&limit='.$limit.'&pag='.$pag,_AS_AH_DBERROR."<br />".$res->errors(),1);
-			die();
-		}else{
-						
-			redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_DBERROR."<br />".$res->errors(),1);		die();
-		}
-	}
-	else{
+        redirectMsg('resources.php?'.$q, __('Resource could not be saved!','docs').'<br />'.$res->errors(), 1);
+        die();
+	}else{
 		if (!$res->isNew()){
 			
 			/**
@@ -292,16 +249,16 @@ function saveResources($edit=0){
 			* La notificación solo se envía si el dueño es distinto
 			* al administrador actual.
 			*/
-			if (!$app && $app!=$res->approved() && $xoopsUser->uid()!=$res->owner()){
+			if (!$app && $app!=$res->getVar('approved') && $xoopsUser->uid()!=$res->getVar('owner')){
 				include ('../include/functions.php');
 				$errors=mailApproved($res);
-				redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,$errors,1);				
+				redirectMsg('./resources.php?limit='.$limit.'&page='.$page,$errors,1);				
 			}
 
 
 		}
 
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBOK,0);
+		redirectMsg('./resources.php?limit='.$limit.'&page='.$page,__('Resource saved successfully!','docs'),0);
 	}
 
 
