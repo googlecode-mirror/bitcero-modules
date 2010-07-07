@@ -17,6 +17,7 @@ class XthemesCorePreload extends XoopsPreloadItem
 		$dir = XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'];
 		
 		if(is_file($dir.'/config/theme.php')){
+            $xoopsTpl->plugins_dir[] = XOOPS_ROOT_PATH.'/modules/xthemes/smarty';
 			$xoopsTpl->plugins_dir[] = $dir.'/plugins';
 		}
 		

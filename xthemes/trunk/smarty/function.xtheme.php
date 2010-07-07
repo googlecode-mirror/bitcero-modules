@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: function.xtheme.php 141 2010-01-19 16:24:37Z i.bitcero $
 // --------------------------------------------------------------
 // I.Themes
 // Module for manage themes by Red Mexico
