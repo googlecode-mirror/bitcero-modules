@@ -8,6 +8,12 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
 $modversion['name'] = 'Common Utilities';
 $modversion['version'] = 2.085;
 $modversion['releasedate'] = "08 Jan 2010";
