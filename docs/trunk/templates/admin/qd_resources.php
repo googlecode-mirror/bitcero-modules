@@ -1,65 +1,83 @@
 <h1 class="rmc_titles mw_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Available Resources','docs'); ?></h1>
 
+<form name="frm_resources" id="frm-resources" method="post" action="resources.php">
 <div class="rd_loptions">
     <?php $nav->display(false); ?>
-    <select name="op" id="bulk-top">
+    <select name="action" id="bulk-top">
         <option value=""><?php _e('Bulk actions...','docs'); ?></option>
         <option value="approve"><?php _e('Approve','docs'); ?></option>
-        <option value="unapprove"><?php _e('Unapprove','docs'); ?></option>
+        <option value="draft"><?php _e('Draft','docs'); ?></option>
         <option value="public"><?php _e('Set as public','docs'); ?></option>
-        <option value="draft"><?php _e('Set as draft','docs'); ?></option>
+        <option value="private"><?php _e('Set as private','docs'); ?></option>
         <option value="qindex"><?php _e('Enable quick index','docs'); ?></option>
         <option value="noqindex"><?php _e('Disable quick index','docs'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-resources');" />
 </div>
-<form name="frmres" method="POST" action="resources.php" id="frm-resources">
 <table class="outer" width="100%" cellspacing="1"> 
+    <thead>
 	<tr>
 	    <th width="20"><input type="checkbox" id="checkall" onclick='$("#frm-resources").toggleCheckboxes(":not(#checkall)");' /></th>
 		<th width="30"><?php _e('ID','docs'); ?></th>
 		<th align="left"><?php _e('Title','docs'); ?></th>
+        <th><?php _e('Owner','docs'); ?></th>
         <th align="left"><?php _e('Description','docs'); ?></th>
-		<th><?php _e('Date','docs'); ?></th>
 		<th><?php _e('Attributes','docs'); ?></th>
+        <th><?php _e('Date','docs'); ?></th>
 	</tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th width="20"><input type="checkbox" id="checkall2" onclick='$("#frm-resources").toggleCheckboxes(":not(#checkall2)");' /></th>
+        <th width="30"><?php _e('ID','docs'); ?></th>
+        <th align="left"><?php _e('Title','docs'); ?></th>
+        <th><?php _e('Owner','docs'); ?></th>
+        <th align="left"><?php _e('Description','docs'); ?></th>
+        <th><?php _e('Attributes','docs'); ?></th>
+        <th><?php _e('Date','docs'); ?></th>
+    </tr>
+    </tfoot>
+    <tbody>
 	<?php foreach($resources as $res): ?>
 		<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
 			<td><input type="checkbox" name="resources[]" value="<?php echo $res['id']; ?>" /></td>
 			<td><strong><?php echo $res['id']; ?></strong></td>
 			<td align="left">
-                <a href="./sections.php?id=<?php echo $res['id']; ?>" ><?php echo $res['title']; ?></a> (<?php echo $res['owname']; ?>)
+                <a href="./sections.php?id=<?php echo $res['id']; ?>" ><?php echo $res['title']; ?></a>
+                <?php if(!$res['approved']): ?>[Draft]<?php endif; ?>
                 <span class="rmc_options">
-                    <a href="./resources.php?op=edit&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><?php _e('Edit','docs'); ?></a>
-                    | <a href="./resources.php?op=del&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>" ><?php _e('Delete','docs'); ?></a>
-                    | <a href="./sections.php?id=<{$resource.id}>"><?php _e('Sections','docs'); ?></a>
-                    | <?php if($resource['featured']): ?><a href="./resources.php?op=recommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><?php _e('Featured','docs'); ?><?php else: ?><a href="./resources.php?op=norecommend&amp;id=<{$resource.id}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>"><?php _e('Not featured','docs'); ?><?php endif; ?></a>
+                    <a href="./resources.php?action=edit&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>" ><?php _e('Edit','docs'); ?></a>
+                    | <a href="./resources.php?action=del&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>" ><?php _e('Delete','docs'); ?></a>
+                    | <a href="./sections.php?id=<?php echo $res['id']; ?>"><?php _e('Sections','docs'); ?></a>
+                    | <?php if(!$res['featured']): ?><a href="./resources.php?action=recommend&amp;id=<?php echo $res['id']; ?>&amp;page=<? echo $page; ?>"><?php _e('Featured','docs'); ?><?php else: ?><a href="./resources.php?action=norecommend&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Not featured','docs'); ?><?php endif; ?></a>
                 </span>
             </td>
+            <td align="center"><a href="<?php echo XOOPS_URL; ?>/userinfo.php?uid=<?php echo $res['owner']; ?>"><?php echo $res['owname']; ?></a></td>
             <td align="left"><?php echo $res['description']; ?></td>
+            <td>
+                <?php if($res['featured']): ?><img src="../images/featured.png" border="0" title="<?php _e('Featured','docs'); ?>" alt="<?php _e('Featured','docs'); ?>" /><?php endif; ?>
+                <?php if($res['approved']): ?><img src="../images/approved.png" border="0" title="<?php _e('Approved','docs'); ?>" alt="<?php _e('Approved','docs'); ?>" /><?php endif; ?>
+                <?php if($res['public']): ?><img src="../images/public.png" border="0" title="<?php _e('Published','docs'); ?>" alt="<?php _e('Published','docs'); ?>" /><?php endif; ?>
+                <?php if($res['quick']): ?><img src="../images/quick.png" border="0" title="<?php _e('Quick Index','docs'); ?>" alt="<?php _e('Quick Index','docs'); ?>" /><?php endif; ?>
+            </td>
 			<td><?php echo $res['created']; ?></td>
-			<td>
-                <img src="../images/<?php echo $res['approved'] ? 'approved.png' : 'noapproved.png'; ?>" border="0" />
-			    <img src="../images/<?php echo $res['public'] ? 'public.png' : 'draft.png'; ?>" border="0" />
-			    <img src="../images/<?php echo $res['quick']; ?>" border="0" /></td>
 		</tr>
 	<?php endforeach; ?>
+    </tbody>
 </table>
 <div class="rd_loptions">
     <?php $nav->display(false); ?>
-    <select name="opb" id="bulk-bottom">
+    <select name="actionb" id="bulk-bottom">
         <option value=""><?php _e('Bulk actions...','docs'); ?></option>
         <option value="approve"><?php _e('Approve','docs'); ?></option>
-        <option value="unapprove"><?php _e('Unapprove','docs'); ?></option>
+        <option value="draft"><?php _e('Draft','docs'); ?></option>
         <option value="public"><?php _e('Set as public','docs'); ?></option>
-        <option value="draft"><?php _e('Set as draft','docs'); ?></option>
+        <option value="private"><?php _e('Set as private','docs'); ?></option>
         <option value="qindex"><?php _e('Enable quick index','docs'); ?></option>
         <option value="noqindex"><?php _e('Disable quick index','docs'); ?></option>
     </select>
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-resources');" />
 </div>
-<{$token}>
-<input type="hidden" name="op" value="" />
-<input type="hidden" name="limit" value="<{$limit}>" />
-<input type="hidden" name="pag" value="<{$pag}>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
 </form>

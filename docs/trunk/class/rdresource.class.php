@@ -31,7 +31,7 @@ class RDResource extends RMObject{
 		$this->setNew();
 		$this->initVarsFromTable();
 
-		$this->setVarType('editores', XOBJ_DTYPE_ARRAY);
+		$this->setVarType('editors', XOBJ_DTYPE_ARRAY);
 		$this->setVarType('groups', XOBJ_DTYPE_ARRAY);
 		
 				

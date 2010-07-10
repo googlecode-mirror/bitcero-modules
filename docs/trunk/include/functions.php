@@ -8,35 +8,6 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-function makeHeader(){
-	global $tpl,$xoopsModuleConfig,$xoopsUser;	
-	
-	$tpl->assign('lang_titleheader',$xoopsModuleConfig['title']);
-	$tpl->assign('lang_resource',_MS_AH_RESOURCE);
-	$tpl->assign('lang_find',_MS_AH_FIND);
-	$tpl->assign('lang_findlabel',_MS_AH_FINDLABEL);
-	//Crear publicación	
-	if ($xoopsModuleConfig['createres']){
-		$res=new AHResource();
-		if ($res->isAllowedNew(($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS),$xoopsModuleConfig['create_groups'])){
-			$tpl->assign('lang_new',_MS_AH_NEWRES);
-		}
-	}
-	$tpl->assign('lang_voted',_MS_AH_VOTED);
-	$tpl->assign('lang_popular',_MS_AH_POPULAR);
-	$tpl->assign('lang_recent',_MS_AH_RECENT);
-	
-}
-
-function makeFooter(){
-	global $xoopsModule, $tpl;
-	$util =& RMUtils::getInstance();
-	$module = $util->getVersion(true, 'ahelp');
-	$tpl->assign('ahelp_footer','Powered by <a href="'.formatURL($xoopsModule->getInfo('url')).'">'.$module.'</a>' .
-			' | Development by <strong><a href="http://redmexico.com.mx">Red México</a></strong>.<br />
-			Copyright &copy; 2007 - 2008 <strong><a href="http://www.redmexico.com.mx">Red México</a></strong>.');
-}
-
 /**
 * @desc Genera el arbol de categorías en un array
 * @param array Referencia del Array que se rellenará
@@ -202,51 +173,6 @@ function addRead(AHResource &$res){
 }
 
 
-/**
-* @desc Envía correo de aprobación de publicación
-* @param Object $res Publicación
-**/
-function mailApproved(&$res){
-	global $xoopsModuleConfig,$xoopsConfig;
-
-	$errors='';
-	$user=new XoopsUser($res->owner());
-	$member_handler =& xoops_gethandler('member');
-	$xoopsMailer =& getMailer();
-	$method=$user->getVar('notify_method');
-	switch ($method){
-		case '1':
-			$xoopsMailer->usePM();
-			$config_handler =& xoops_gethandler('config');
-			$xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
-			$xoopsMailer->setFromUser($member_handler->getUser($xoopsMailerConfig['fromuid']));
-		
-		break;
-		case '2':
-			$xoopsMailer->useMail();
-		break;
-	}
-	$xoopsMailer->setTemplate('user_approv_resource.tpl');
-	if ($xoopsModuleConfig['access']){
-		$xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/ahelp/resource/".$res->id()."/".$res->nameId());
-	}else{
-		$xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/ahelp/resources.php?id=".$res->id());
-	}
-				
-	$xoopsMailer->assign('NAME_RESOURCE',$res->title());
-	$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/ahelp/language/".$xoopsConfig['language']."/mail_template/");
-	$xoopsMailer->setToUsers($user);
-	$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
-	$xoopsMailer->setFromName($xoopsConfig['sitename']);
-	$xoopsMailer->setSubject(sprintf(_AS_AH_SUBJECT,$res->title()));
-	if (!$xoopsMailer->send(true)){
-		$errors.=$xoopsMailer->getErrors();
-	}
-		
-	return $errors;
-
-
-}
 
 function ah_make_link($link=''){
     global $xoopsModuleConfig;

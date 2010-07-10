@@ -14,9 +14,10 @@ include 'header.php';
 /**
 * @desc Muestra todas las publicaciones existentes
 **/
-function showResources(){
-	global $xoopsModule,$adminTemplate,$db,$tpl,$util,$xoopsConfig;
+function show_resources(){
+	global $xoopsModule,$xoopsConfig, $xoopsSecurity;
 	
+    $db = Database::getInstance();
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources');
 	list($num)=$db->fetchRow($db->queryF($sql));
@@ -45,21 +46,24 @@ function showResources(){
 		$resources[] = array(
             'id'=>$res->id(),
             'title'=>$res->getVar('title'),
-			'created'=>formatTimestamp($res->getVar('created'), 'c'),
+			'created'=>formatTimestamp($res->getVar('created'), 'm'),
             'public'=>$res->getVar('public'),
 			'quick'=>$res->getVar('quick'),
             'approvededit'=>$res->getVar('editor_approve'),
             'featured'=>$res->getVar('featured'),
 			'approved'=>$res->getVar('approved'),
             'owname'=>$res->getVar('owname'),
+            'owner'=>$res->getVar('owner'),
             'description'=>$res->getVar('description')
         );
 	}
 
 
     RMTemplate::get()->add_style('admin.css', 'docs');
-    
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_RESOURCES);
+    RMTemplate::get()->assign('xoops_pagetitle', __('Resources', 'docs'));
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script(XOOPS_URL.'/modules/docs/include/js/admin.js');
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Resources','docs'));
 	RDFunctions::toolbar();
 	xoops_cp_header();
 	
@@ -103,7 +107,6 @@ function qd_show_form($edit=0){
 	$form->addElement(new RMFormText(__('Resource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
 	if ($edit) $form->addElement(new RMFormText(__('Resource slug'),'nameid',50,150,$res->getVar('nameid')));
 	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description') : ''),true);
-
 	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$edit ? $res->getVar('editors') : '',30));
 
 	//Propietario de la publicacion
@@ -117,12 +120,12 @@ function qd_show_form($edit=0){
 
 	
 	//Mostrar índice a usuarios sin permiso de publicación
-	$form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex',$edit ? $res->showIndex() : 0));
-	$form->addElement(new RMFormYesno(__('Featured','docs'),'featured',$edit ? $res->featured() : 0));
-	$form->addElement(new RMFormYesno(__('Approve inmediatly','docs'),'approvedres',$edit ? $res->approved() : 1));
+	$form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex',$edit ? $res->getVar('show_index') : 0));
+	$form->addElement(new RMFormYesno(__('Featured','docs'),'featured',$edit ? $res->getVar('featured') : 0));
+	$form->addElement(new RMFormYesno(__('Approve inmediatly','docs'),'approvedres',$edit ? $res->getVar('approved') : 1));
 
 	$buttons =new RMFormButtonGroup();
-	$buttons->addButton('sbt',__('Create Resource','docs'),'submit');
+	$buttons->addButton('sbt',$edit ? __('Update Resource','docs') : __('Create Resource','docs'),'submit');
 	$buttons->addButton('cancel',__('Cancel','docs'),'button', 'onclick="window.location=\'resources.php\';"');
 
 	$form->addElement($buttons);
@@ -130,7 +133,7 @@ function qd_show_form($edit=0){
 	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit': 'save' ));
 	if ($edit) $form->addElement(new RMFormHidden('id',$id));
 	$form->addElement(new RMFormHidden('page',$page));
-	$form->addElement(new RMFormHidden('app',$edit ? $res->approved() : 0));
+	$form->addElement(new RMFormHidden('app',$edit ? $res->getVar('approved') : 0));
 	$form->display();
 
 
@@ -141,7 +144,7 @@ function qd_show_form($edit=0){
 /**
 * @desc Almacena la información de la publicación
 **/
-function saveResources($edit=0){
+function qd_save_resource($edit=0){
 	global $xoopsModuleConfig,$xoopsUser, $xoopsSecurity;
 	
 	$nameid = '';
@@ -250,9 +253,8 @@ function saveResources($edit=0){
 			* al administrador actual.
 			*/
 			if (!$app && $app!=$res->getVar('approved') && $xoopsUser->uid()!=$res->getVar('owner')){
-				include ('../include/functions.php');
-				$errors=mailApproved($res);
-				redirectMsg('./resources.php?limit='.$limit.'&page='.$page,$errors,1);				
+				$errors = RDfunctions::mail_approved($res);
+				redirectMsg('./resources.php?page='.$page,$errors,1);				
 			}
 
 
@@ -267,7 +269,7 @@ function saveResources($edit=0){
 /**
 * @desc Elimina publicaciones
 **/
-function delResources(){
+function qd_delete_resource(){
 	global $xoopsModule,$util;
 
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
@@ -335,22 +337,20 @@ function delResources(){
 /**
 * @desc Publica o no publicaciones
 **/
-function publicResources($pub=0){
-	global $util;
-	$resources=isset($_REQUEST['resources']) ? $_REQUEST['resources'] : array();
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-        $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
-	
+function public_resources($pub=0){
+	global $xoopsSecurity;
+    
+	$resources= rmc_server_var($_POST, 'resources', array());
+	$page = rmc_server_var($_POST, 'page', 1);	
 
-	if (!$util->validateToken()){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./resources.php?page='.$page, __('Session token expired!','docs'), 1);
 		die();
-	}
-	
+	}	
 
 	//Verifica que se haya proporcionado una publicación
 	if (!is_array($resources) || empty($resources)){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_NOTRESOURCE,1);
+		redirectMsg('./resources.php?page='.$page, __('You must select at least a single resource!','docs'),1);
 		die();		
 	}
 	
@@ -359,28 +359,28 @@ function publicResources($pub=0){
 		
 		//Comprueba si la publicación es válida
 		if ($k<=0){
-			$errors.=sprintf(_AS_AH_IDNOT, $k);
+			$errors.=sprintf(__('Provided resourse ID "%s" is not valid!','docs'), $k);
 			continue;
 		}
 		
 		//Comprueba si la publicación existe
-		$res= new AHResource($k);
+		$res= new RDResource($k);
 		if ($res->isNew()){
-			$errors.=sprintf(_AS_AH_NOEXIST, $k);
+			$errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
 			continue;
 		}
 		
-		$res->setPublic($pub);
+		$res->setVar('public', $pub);
 		if (!$res->save()){
-			$errors.=sprintf(_AS_AH_NOSAVE, $k);
+			$errors.=sprintf(__('Resource "%s" could not be updated!','docs'), $res->getVar('title'));
 		}		
 	}
 	
 	if ($errors!=''){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_ERRORS.$errors,1);
+		redirectMsg('./resources.php?page='.$page, __('Errors ocurred while trying to update resources.','docs').'<br />'.$errors,1);
 		die();		
 	}else{
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBOK,0);
+		redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
 	}
 
 }
@@ -388,95 +388,90 @@ function publicResources($pub=0){
 /**
 * @descActiva o no la opción de indice rápido
 **/
-function quickResources($quick=0){
-	global $util;
-	$resources=isset($_REQUEST['resources']) ? $_REQUEST['resources'] : array();
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-        $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
-	
-	if (!$util->validateToken()){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
-		die();
-	}
+function quick_resources($quick=0){
+	global $xoopsSecurity;
+    
+	$resources= rmc_server_var($_POST, 'resources', array());
+    $page = rmc_server_var($_POST, 'page', 1);    
 
+    if (!$xoopsSecurity->check()){
+        redirectMsg('./resources.php?page='.$page, __('Session token expired!','docs'), 1);
+        die();
+    }    
 
-	//Verifica que se haya proporcionado una publicación
-	if (!is_array($resources) || empty($resources)){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_NOTRESOURCE,1);
-		die();		
-	}
+    //Verifica que se haya proporcionado una publicación
+    if (!is_array($resources) || empty($resources)){
+        redirectMsg('./resources.php?page='.$page, __('You must select at least a single resource!','docs'),1);
+        die();        
+    }
 	
 	$errors='';
 	foreach ($resources as $k){
 		
 		//Comprueba si la publicación es válida
-		if ($k<=0){
-			$errors.=sprintf(_AS_AH_IDNOT, $k);
-			continue;
-		}
+        if ($k<=0){
+            $errors.=sprintf(__('Provided resourse ID "%s" is not valid!','docs'), $k);
+            continue;
+        }
+        
+        //Comprueba si la publicación existe
+        $res= new RDResource($k);
+        if ($res->isNew()){
+            $errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
+            continue;
+        }
 		
-		//Comprueba si la publicación existe
-		$res= new AHResource($k);
-		if ($res->isNew()){
-			$errors.=sprintf(_AS_AH_NOEXIST, $k);
-			continue;
-		}
-		
-		$res->setQuick($quick);
+		$res->setVar('quick', $quick);
 		if (!$res->save()){
-			$errors.=sprintf(_AS_AH_NOSAVE, $k);
+			$errors.=sprintf(__('Resource "%s" could not be updated!','docs'), $res->getVar('title'));
 		}		
 	}
 	
 	if ($errors!=''){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_ERRORS.$errors,1);
-		die();		
-	}else{
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBOK,0);
-	}
-
-
+        redirectMsg('./resources.php?page='.$page, __('Errors ocurred while trying to update resources.','docs').'<br />'.$errors,1);
+        die();        
+    }else{
+        redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
+    }
 
 }
 
 /**
 * @desc Permite recomendar una publicación
 **/
-function recommendResources($sw){
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
+function recommend_resource($sw){
+    
+	$id = rmc_server_var($_GET, 'id', 0);
+	$page = rmc_server_var($_GET, 'page', 0);
 	
-	$res = new AHResource($id);
-	$res->setFeatured($sw);
+	$res = new RDResource($id);
+	$res->setVar('featured', $sw);
 	if ($res->save()){
-		redirectMsg("resources.php?limit='.$limit.'&pag='.$pag", _AS_AH_DBOK, 0);
+		redirectMsg("resources.php?limit='.$limit.'&pag='.$pag", __('Database updated successfully!','docs'), 0);
 	} else {
-		redirectMsg("resources.php?limit='.$limit.'&pag='.$pag", _AS_AH_DBERROR.'<br />'.$res->errors(), 1);
+		redirectMsg("resources.php?limit='.$limit.'&pag='.$pag", __('Database coould not be updated!','docs').'<br />'.$res->errors(), 1);
 	}
 	
-	header ("location:./resources.php?limit='.$limit.'&pag='.$pag");
 }
 
 /**
 * @desc Permite aprobar o no una publicación
 **/
-function approvedResources($app=0){
+function approved_resources($app=0){
 
-	global $util,$xoopsConfig,$xoopsModuleConfig;
-	$resources=isset($_REQUEST['resources']) ? $_REQUEST['resources'] : array();
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-        $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
+	global $xoopsSecurity,$xoopsConfig,$xoopsModuleConfig;
+    
+	$resources = rmc_server_var($_POST, 'resources', array());
+	$page = rmc_server_var($_POST, 'page', 1);
 	
-	if (!$util->validateToken()){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./resources.php?page='.$page, __('Session token expired!','docs'), 1);
 		die();
 	}
 	
-
 	//Verifica que se haya proporcionado una publicación
 	if (!is_array($resources) || empty($resources)){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_NOTRESOURCE,1);
+		redirectMsg('./resources.php?page='.$page, __('Select at least a resource!','docs'),1);
 		die();		
 	}
 	
@@ -485,34 +480,34 @@ function approvedResources($app=0){
 		
 		//Comprueba si la publicación es válida
 		if ($k<=0){
-			$errors.=sprintf(_AS_AH_IDNOT, $k);
+			$errors.=sprintf(__('Resource ID "%s" is not valid!','docs'), $k);
 			continue;
 		}
 		
 		//Comprueba si la publicación existe
-		$res= new AHResource($k);
+		$res= new RDResource($k);
 		if ($res->isNew()){
-			$errors.=sprintf(_AS_AH_NOEXIST, $k);
+			$errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
 			continue;
 		}
-		$approved=$res->approved();
-		$res->setApproved($app);
+        
+		$approved=$res->getVar('approved');
+		$res->setVar('approved', $app);
+        
 		if (!$res->save()){
-			$errors.=sprintf(_AS_AH_NOSAVE, $k);
+			$errors.=sprintf(__('Resoource "%s" could not be saved!','docs'), $k);
 		}else{
 			if ($app && !$approved){
-				include ('../include/functions.php');
-				$errors=mailApproved($res);
+				$errors = RDFunctions::mail_approved($res);
 			}
 			
 		}	
 	}
 	
 	if ($errors!=''){
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_ERRORS.$errors,1);
-		die();		
+		redirectMsg('./resources.php?page='.$page,__('Errors ocurred while trying to update resources.').'<br />'.$errors,1);
 	}else{
-		redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBOK,0);
+		redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
 	}
 
 }
@@ -525,43 +520,43 @@ switch ($action){
 		qd_show_form();
 	break;
 	case 'edit':
-		showForm(1);
+		qd_show_form(1);
 	break;
 	case 'save':
-		saveResources();
+		qd_save_resource();
 	break;
 	case 'saveedit':
-		saveResources(1);
+		qd_save_resource(1);
 	break;
 	case 'del':
-		delResources();
+		qd_delete_resource();
 	break;
 	case 'recommend':
-		recommendResources(1);
+		recommend_resource(1);
 	break;
 	case 'norecommend':
-		recommendResources(0);
+		recommend_resource(0);
 	break;
 	case 'public':
-		publicResources(1);
+		public_resources(1);
 	break;
-	case 'nopublic':
-		publicResources();
+	case 'private':
+		public_resources(0);
 	break;
-	case 'quick':
-		quickResources(1);
+	case 'qindex':
+		quick_resources(1);
 	break;
-	case 'noquick':
-		quickResources();
+	case 'noqindex':
+		quick_resources(0);
 	break;	
-	case 'approved':
-		approvedResources(1);
+	case 'approve':
+		approved_resources(1);
 	break;
-	case 'noapproved':
-		approvedResources();
+	case 'draft':
+		approved_resources(0);
 	break;
 	default:
-		showResources();
+		show_resources();
 
 }
 ?>
