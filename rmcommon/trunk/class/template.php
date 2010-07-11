@@ -125,8 +125,19 @@ class RMTemplate
     * @param string Plugin name, only when type = plugin
     * @return string Template path
     */
-    public function get_template($file, $type='module',$module='',$plugin=''){
-		global $rmc_config;
+    public function get_template($file, $type='module',$module='rmcommon',$plugin=''){
+		global $rmc_config, $xoopsConfig;
+
+        if (!function_exists("xoops_cp_header")){
+
+            $theme = $xoopsConfig['theme_set'];
+            $where = XOOPS_THEME_PATH.'/'.$theme;
+            $where .= $type='module' ? '/modules/' : '/'.$plugin.'s/';
+            $where .= $module.($plugin!='' ? '/'.$plugin : '');
+
+            if(is_file($where.'/'.$file)) return $where.'/'.$file;
+
+        }
 		
 		$theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
 		
@@ -160,7 +171,7 @@ class RMTemplate
 		
 		$theme = $xoopsConfig['theme_set'];
 		$subdir = $subdir == '' ? 'templates' : $subdir;
-		
+
 		if(!is_dir(XOOPS_ROOT_PATH.'/modules/'.$module)) return;
 		
 		$tpath = XOOPS_THEME_PATH.'/'.$theme.'/modules/'.$module.'/'.($subdir!='templates'?$subdir.'/':'').$file;
