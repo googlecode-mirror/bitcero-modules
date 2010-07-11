@@ -84,7 +84,7 @@ $page = $page > $tpages ? $tpages : $page;
 $p = $page>0 ? $page-1 : $page;
 $start = $num<=0 ? 0 : $p * $limit;
 
-$xoopsTpl->assign('pactual', $pactual);
+$xoopsTpl->assign('page', $page);
 
 $nav = new RMPageNav($num, $limit, $page, 5);
 $nav->target_url($catego->permalink() . ($xoopsModuleConfig['permalinks']==1 ? '&page={PAGE_NUM}' : 'page/{PAGE_NUM}/'));
