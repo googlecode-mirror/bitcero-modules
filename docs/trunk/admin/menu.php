@@ -31,6 +31,7 @@ $adminmenu[1]['options'] = array(
 $adminmenu[2]['title'] = __('Sections','docs');
 $adminmenu[2]['link'] = "./admin/sections.php";
 $adminmenu[2]['icon'] = "../images/section.png";
+$adminmenu[2]['location'] = "sections";
 
 //Referencias
 $adminmenu[4]['title'] = __('Notes','docs');

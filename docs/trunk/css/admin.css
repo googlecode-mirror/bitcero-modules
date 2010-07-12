@@ -1,6 +1,20 @@
 .rd_loptions{
-    padding: 10px 0;
+    padding: 10px 5px;
 }
 .rmc_pages_navigation_container{
     float: right;
+}
+#rd-form-container .large{
+    width: 99%;
+    font-size: 1.8em;
+}
+#rd-form-container #section-url{
+    padding: 6px 2px;
+}
+#rd-form-container .info{
+    padding: 5px;
+    text-align: center;
+    margin: 5px 0;
+    background: #FFED97;
+    border: 1px solid #fed22f;
 }

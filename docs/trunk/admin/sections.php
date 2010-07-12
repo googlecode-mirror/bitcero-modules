@@ -9,22 +9,10 @@
 // @license: GPL v2
 
 
-define('AH_LOCATION', 'sections');
+define('RMCLOCATION', 'sections');
 include 'header.php';
 
 include_once '../include/functions.php';
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBarSections(){
-    global $tpl;
-    $id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-    $tpl->append('xoopsOptions', array('link' => './sections.php?id='.$id, 'title' => _AS_AH_SECTIONS, 'icon' => '../images/sections16.png'));
-    $tpl->append('xoopsOptions', array('link' => './sections.php?op=new&id='.$id, 'title' => _AS_AH_NEWSECTIONS, 'icon' => '../images/add.png'));
-    $tpl->append('xoopsOptions', array('link' => './resources.php', 'title' => _AS_AH_RESOURCES, 'icon' => '../images/res16.png'));
-}
-
 
 /**
 * @desc Obtiene las secciones hijas de una sección
@@ -52,55 +40,51 @@ function child($id,$parent,$indent){
 	}
 }
 
-function showSections(){
-	global $xoopsModule,$db,$tpl,$util,$adminTemplate;
-	include XOOPS_ROOT_PATH."/cache/recommends.php";
+function rd_show_sections(){
+	global $xoopsModule, $xoopsSecurity;
+    
+	include XOOPS_CACHE_PATH."/rdrecommends.php";
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;	
+	$id= rmc_server_var($_GET,'id', 0);
+    
+    $res = new RDResource($id);
+    
+    $db = Database::getInstance();
 
 	//Lista de Publicaciones
 	$sql="SELECT id_res,title FROM ".$db->prefix('pa_resources');
 	$result=$db->queryF($sql);
+    $resources = array();
 	while ($rows=$db->fetchArray($result)){
-		$res = new AHResource();
-		$res->assignVars($rows);
-		$tpl->append('resources',array('id'=>$res->id(),'title'=>$res->title()));
+		$r = new RDResource();
+		$r->assignVars($rows);
+		$resources[] = array('id'=>$r->id(),'title'=>$r->getVar('title'));
+        unset($r);
 	}
 
 	//Secciones
 	$sql="SELECT * FROM ".$db->prefix('pa_sections')." WHERE id_res='$id' AND parent=0 ORDER BY `order`";
 	$result=$db->queryF($sql);
+    $sections = array();
 	while ($rows=$db->fetchArray($result)){
 		$sec= new AHSection();
 		$sec->assignVars($rows);
 
-		$tpl->append('sections',array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
-				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>0,'featured'=>$sec->featured()));
+		$sections[] = array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
+				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>0,'featured'=>$sec->featured());
 		
 		child($id,$sec->id(),1);
 		
 	}
-
-	$tpl->assign('lang_secexist',_AS_AH_EXIST);
-	$tpl->assign('lang_id',_AS_AH_ID);
-	$tpl->assign('lang_title',_AS_AH_TITLE);
-	$tpl->assign('lang_order',_AS_AH_ORDER);
-	$tpl->assign('lang_res',_AS_AH_RESOURCES);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_select',_SELECT);
-	$tpl->assign('id',$id);
-	$tpl->assign('lang_notres',_AS_AH_NOTRES);
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_save',_AS_AH_SAVE);
-	$tpl->assign('lang_recommend',_AS_AH_RECOMMEND);
-	$tpl->assign('lang_norecommend',_AS_AH_NORECOMMEND);
-
-	optionsBarSections();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_SECTIONS);
-	$adminTemplate = 'admin/ahelp_sections.html';
+    
+	RDFunctions::toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Sections Management','docs'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Sections Management','docs'));
+    RMTemplate::get()->add_style('admin.css', 'docs');
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/rd_sections.php', 'module', 'docs');
+    
 	xoops_cp_footer();
 
 }
@@ -109,54 +93,57 @@ function showSections(){
 /**
 * @desc Formulario de creación y edición de sección
 **/
-function showForm($edit=0){
-	global $xoopsModule,$db, $xoopsConfig;
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;	
-	$id_sec=isset($_REQUEST['sec']) ? intval($_REQUEST['sec']) : 0;
-
-	//Verifica si se proporcionó una publicación para la sección
-	if ($id<=0){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_NOTRESOURCE,1);
-		die();
-	}
+function rd_show_form($edit=0){
+	global $xoopsModule, $xoopsConfig;
+    
+	$id=rmc_server_var($_GET, 'id', 0);
+    
+    if ($id<=0){
+        redirectMsg('sections.php?id='.$id, __('You must select a resource in order to create a new section','docs'),1);
+        die();
+    }
+    
+    // Check if provided resource exists
+    $res= new RDResource($id);
+    if ($res->isNew()){
+        redirectMsg('sections.php?id='.$id, __('Specified resource does not exists!','docs'),1);
+        die();
+    }
 	
-	//Verifica si la publicación existe
-	$res= new AHResource($id);
-	if ($res->isNew()){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_NOTEXIST,1);
-		die();
-	}
 
 	if ($edit){
-
+        
+        $id_sec = rmc_server_var($_GET, 'sec', 0);
+        
 		//Verifica si la sección es válida
 		if ($id_sec<=0){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_NOTSECTION,1);
+			redirectMsg('sections.php?id='.$id, __('Specify a section to edit','docs'),1);
 			die();
 		}
 		
 		//Comprueba si la sección es existente
-		$sec=new AHSection($id_sec);
+		$sec=new RDSection($id_sec);
 		if ($sec->isNew()){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_NOTEXISTSEC,1);
+			redirectMsg('sections.php?id='.$id, __('Specified section does not exists','docs'),1);
 			die();
 		}
 	}
 	
 
-	$form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
+	/*
+    $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
 	$form->tinyCSS(XOOPS_URL.'/modules/ahelp/styles/editor.css');
-	$form->addElement(new RMLabel(_AS_AH_RESOURCE,$res->title()));
-	$form->addElement(new RMText(_AS_AH_TITLE,'title',50,200,$edit ? $sec->title() : ''),true);
-	$form->addElement(new RMText(_AS_AH_SHORTNAME, 'nameid', 50, 200, $edit ? $sec->nameId() : ''));
+	$form->addElement(new RMFormLabel(_AS_AH_RESOURCE,$res->getVar('title')));
+	$form->addElement(new RMFormText(_AS_AH_TITLE,'title',50,200,$edit ? $sec->title() : ''),true);
+	$form->addElement(new RMFormText(_AS_AH_SHORTNAME, 'nameid', 50, 200, $edit ? $sec->nameId() : ''));
 	if ($edit){
 		$ele = new RMEditorAddons(_OPTIONS,'options','content',$xoopsConfig['editor_type'],$res->id(),$sec->id(),$id_sec);
 		$cHead = $ele->jsFunctions();
 		$form->addElement($ele);
 	} else {
-		$form->addElement(new RMLabel(_OPTIONS, _AS_AH_REFFIG));
+		$form->addElement(new RMFormLabel(_OPTIONS, _AS_AH_REFFIG));
 	}
-	$form->addElement(new RMEditor(_AS_AH_CONTENT,'content','90%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0));
+	$form->addElement(new RMFormEditor(_AS_AH_CONTENT,'content','90%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0));
 	if ($edit){
 		$dohtml = $sec->getVar('dohtml');
 		$doxcode = $sec->getVar('doxcode');
@@ -170,10 +157,10 @@ function showForm($edit=0){
 		$dosmiley = 0;
 		$doimage = 0;
 	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	$form->addElement(new RMFormTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
 	
 	// Arbol de Secciones
-	$ele= new RMSelect(_AS_AH_SECTION,'parent');
+	$ele= new RMFormSelect(_AS_AH_SECTION,'parent');
 	$ele->addOption(0,_SELECT);
 	$tree = array();
 	getSectionTree($tree, 0, 0, $res->id(), 'id_sec, title', $edit ? $sec->id() : 0);
@@ -183,27 +170,34 @@ function showForm($edit=0){
 	
 	$form->addElement($ele);
 
-	$form->addElement(new RMText(_AS_AH_ORDER,'order',5,5,$edit ? $sec->order() : ''),true);
+	$form->addElement(new RMFormText(_AS_AH_ORDER,'order',5,5,$edit ? $sec->order() : ''),true);
 	// Usuario
 	if ($edit) $form->addElement(new RMFormUserEXM(_AS_AH_FUSER, 'uid', 0, array($sec->uid()), 30));
 
-	$buttons =new RMButtonGroup();
+	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_AS_AH_SAVENOW,'submit');
 	$buttons->addButton('ret', _AS_AH_SAVERET, 'submit', 'onclick="document.forms[\'frmsec\'].op.value=\''.($edit ? 'saveretedit' : 'saveret').'\';"');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'sections.php?id='.$id.'\';"');
 
 	$form->addElement($buttons);
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit': 'save' ));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('id_sec',$id_sec));
-	
-	optionsBarSections();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_AH_EDITSECTION : _AS_AH_NEWSECTIONS));
-	xoops_cp_header($cHead);
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit': 'save' ));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('id_sec',$id_sec));
 	
 	$form->display();
-
+    */
+    
+    $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
+    $editor = new RMFormEditor(_AS_AH_CONTENT,'content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
+    
+    RMTemplate::get()->add_style('admin.css', 'docs');
+    RDFunctions::toolbar();
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_AH_EDITSECTION : _AS_AH_NEWSECTIONS));
+    xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/rd_sections_form.php', 'module', 'docs');
+    
 	xoops_cp_footer();
 }
 
@@ -462,12 +456,14 @@ function delRecommendSections(){
 	
 
 }
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 
-switch ($op){
+
+$action = rmc_server_var($_REQUEST, 'action', '');
+
+switch ($action){
 	case 'new':
-		showForm();
-	break;
+		rd_show_form();
+	    break;
 	case 'edit':
 		showForm(1);
 	break;
@@ -496,6 +492,6 @@ switch ($op){
 		recommendSections(0);
 	break;
 	default: 
-		showSections();
-
+		rd_show_sections();
+        break;
 }

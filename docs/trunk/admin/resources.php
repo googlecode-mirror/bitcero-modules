@@ -73,7 +73,7 @@ function show_resources(){
 	RDFunctions::toolbar();
 	xoops_cp_header();
 	
-	include RMTemplate::get()->get_template('admin/qd_resources.php', 'module', 'docs'); 
+	include RMTemplate::get()->get_template('admin/rd_resources.php', 'module', 'docs'); 
 	
 	xoops_cp_footer();
 
@@ -501,10 +501,10 @@ $action=isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 switch ($action){
 	case 'new':
-		qd_show_form();
+		rd_show_form();
 	break;
 	case 'edit':
-		qd_show_form(1);
+		rd_show_form(1);
 	break;
 	case 'save':
 		rd_save_resource();

@@ -131,7 +131,7 @@ $modversion['config'][3]['default'] =50;
 $modversion['config'][3]['order'] = 3;
 
 //Formato de acceso a información
-$modversion['config'][4]['name'] = 'access';
+$modversion['config'][4]['name'] = 'permalinks';
 $modversion['config'][4]['description'] = '_MI_AH_DESCACCESS';
 $modversion['config'][4]['size'] = 10;
 $modversion['config'][4]['title'] = '_MI_AH_ACCESS';
