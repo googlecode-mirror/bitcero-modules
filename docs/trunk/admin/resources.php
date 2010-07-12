@@ -63,6 +63,12 @@ function show_resources(){
     RMTemplate::get()->assign('xoops_pagetitle', __('Resources', 'docs'));
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script(XOOPS_URL.'/modules/docs/include/js/admin.js');
+    
+    RMTemplate::get()->add_head('<script type="text/javascript">
+    var rd_message = "'.__('Do you really wish to delete selected resources?','docs').'";
+    var rd_select_message = "'.__('You must select an element before to do this action!','docs').'";
+    </script>');
+    
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Resources','docs'));
 	RDFunctions::toolbar();
 	xoops_cp_header();
@@ -76,7 +82,7 @@ function show_resources(){
 /**
 * Formulario para crear publicaciones
 **/
-function qd_show_form($edit=0){
+function rd_show_form($edit=0){
 	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig;
 
     RDFunctions::toolbar();
@@ -144,7 +150,7 @@ function qd_show_form($edit=0){
 /**
 * @desc Almacena la información de la publicación
 **/
-function qd_save_resource($edit=0){
+function rd_save_resource($edit=0){
 	global $xoopsModuleConfig,$xoopsUser, $xoopsSecurity;
 	
 	$nameid = '';
@@ -263,74 +269,52 @@ function qd_save_resource($edit=0){
 		redirectMsg('./resources.php?limit='.$limit.'&page='.$page,__('Resource saved successfully!','docs'),0);
 	}
 
-
 }
 
 /**
 * @desc Elimina publicaciones
 **/
-function qd_delete_resource(){
-	global $xoopsModule,$util;
+function rd_delete_resource(){
+	global $xoopsModule,$xoopsSecurity;
 
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-        $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;  
+	$ids = rmc_server_var($_POST, 'ids', array());
+    $page = rmc_server_var($_POST, 'page', 1);
 
-	//Comprueba si la publicación es válida
-	if ($id<=0){
-		redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_IDNOTVALID,1);
-		die();		
-	}
-	
-	//Comprueba si la publicación existe
-	$res= new AHResource($id);
-	if ($res->isNew()){
-		redirectMsg('./resources.php?op=edit&id='.$id.'&limit='.$limit.'&pag='.$pag,_AS_AH_NOTEXIST,1);
+	if (!is_array($ids)){
+        redirectMsg("resources.php?page=".$page, __("Select at least one resources to delete!",'docs'), 1);
+        die();
+    }
+		
+	if (!$xoopsSecurity->check()){
+	    redirectMsg('./resources.php?page='.$page, __('Session token expired!','docs'), 1);
 		die();
-	}	
-
-
-	if ($ok){
-		
-		if (!$util->validateToken()){
-			redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_SESSINVALID, 1);
-			die();
-		}
-
-		if (!$res->delete()){
-			redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBERROR,1);
-			die();
-
-		}else{
-			redirectMsg('./resources.php?limit='.$limit.'&pag='.$pag,_AS_AH_DBOK,0);
-		}
-
-		
-	
-	}else{
-		optionsBarResource();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_RESOURCES);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$hiddens['op'] = 'del';
-		$hiddens['limit'] = $limit;
-		$hiddens['pag'] = $pag;
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'resources.php\';"';
-		
-		$util->msgBox($hiddens, 'resources.php', sprintf(_AS_AH_DELETECONF, $res->title()). '<br /><br />' . _AS_AH_ADV._AS_AH_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
 	}
-	
+    
+    $errors = '';
+    foreach($ids as $id){
+        
+        if ($id<=0){
+            $errors .= sprintf(__('"%s" is not a valid resource ID','docs'), $id);
+            continue;
+        }
+        
+        $res = new RDResource($id);
+        if ($res->isNew()){
+            $errors .= sprintf(__('Resource with ID "%s" does not exists','docs'), $id);
+            continue;
+        }
+        
+        if (!$res->delete()){
+            $errors .= sprintf(__('Resource "%s" could not be deleted!','docs'), $res->getVar('title')).'<br />'.$res->errors();
+        }
+        
+    }
+    
+    if ($errors!=''){
+        redirectMsg("resources.php?page=$page", __('Errors ocurred while deleting resources','docs').'<br />'.$errors, 1);
+    } else {
+        redirectMsg("resources.php?page=$page", __('Resources deleted susccessfully!','docs'), 0);
+    }
 
 }
 
@@ -523,13 +507,13 @@ switch ($action){
 		qd_show_form(1);
 	break;
 	case 'save':
-		qd_save_resource();
+		rd_save_resource();
 	break;
 	case 'saveedit':
-		qd_save_resource(1);
+		rd_save_resource(1);
 	break;
-	case 'del':
-		qd_delete_resource();
+	case 'delete':
+		rd_delete_resource();
 	break;
 	case 'recommend':
 		recommend_resource(1);

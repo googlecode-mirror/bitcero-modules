@@ -200,8 +200,6 @@ class RDResource extends RMObject{
 		$result=$this->db->queryF($sql);
 					
 		if (!$result) return $ret;
-		
-		@unlink(XOOPS_UPLOAD_PATH.'/ahelp/'.$this->image());
 
 		$ret=$this->deleteFromTable();
 											

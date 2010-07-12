@@ -11,6 +11,7 @@
         <option value="private"><?php _e('Set as private','docs'); ?></option>
         <option value="qindex"><?php _e('Enable quick index','docs'); ?></option>
         <option value="noqindex"><?php _e('Disable quick index','docs'); ?></option>
+        <option value="delete"><?php _e('Delete','docs'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-resources');" />
 </div>
@@ -40,14 +41,14 @@
     <tbody>
 	<?php foreach($resources as $res): ?>
 		<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
-			<td><input type="checkbox" name="resources[]" value="<?php echo $res['id']; ?>" /></td>
+			<td><input type="checkbox" name="ids[]" value="<?php echo $res['id']; ?>" id="item-<?php echo $res['id']; ?>" /></td>
 			<td><strong><?php echo $res['id']; ?></strong></td>
 			<td align="left">
                 <a href="./sections.php?id=<?php echo $res['id']; ?>" ><?php echo $res['title']; ?></a>
                 <?php if(!$res['approved']): ?>[Draft]<?php endif; ?>
                 <span class="rmc_options">
                     <a href="./resources.php?action=edit&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>" ><?php _e('Edit','docs'); ?></a>
-                    | <a href="./resources.php?action=del&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>" ><?php _e('Delete','docs'); ?></a>
+                    | <a href="javascript:;" onclick="rd_check_delete(<?php echo $res['id']; ?>,'frm-resources');"><?php _e('Delete','docs'); ?></a>
                     | <a href="./sections.php?id=<?php echo $res['id']; ?>"><?php _e('Sections','docs'); ?></a>
                     | <?php if(!$res['featured']): ?><a href="./resources.php?action=recommend&amp;id=<?php echo $res['id']; ?>&amp;page=<? echo $page; ?>"><?php _e('Featured','docs'); ?><?php else: ?><a href="./resources.php?action=norecommend&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Not featured','docs'); ?><?php endif; ?></a>
                 </span>
@@ -75,6 +76,7 @@
         <option value="private"><?php _e('Set as private','docs'); ?></option>
         <option value="qindex"><?php _e('Enable quick index','docs'); ?></option>
         <option value="noqindex"><?php _e('Disable quick index','docs'); ?></option>
+        <option value="delete"><?php _e('Delete','docs'); ?></option>
     </select>
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-resources');" />
 </div>
