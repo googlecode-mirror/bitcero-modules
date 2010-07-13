@@ -8,11 +8,11 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-load_mod_locale('mywords','admin_');
+load_mod_locale('mywords');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
-$modversion['version'] = '2.057';
+$modversion['version'] = '2.067';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
@@ -28,7 +28,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>057,'status'=>-3,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>067,'status'=>-2,'name'=>'MyWords');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
