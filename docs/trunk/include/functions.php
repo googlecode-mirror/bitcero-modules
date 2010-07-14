@@ -8,28 +8,7 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-/**
-* @desc Genera el arbol de categorías en un array
-* @param array Referencia del Array que se rellenará
-* @param int Id de la Sección padre
-* @param int Contador de sangría
-*/
-function getSectionTree(&$array, $parent = 0, $saltos = 0, $resource = 0, $fields='*', $exclude=0){
-	global $db;
-	$sql = "SELECT $fields FROM ".$db->prefix("pa_sections")." WHERE ".($resource>0 ? "id_res='$resource' AND" : '')."
-			parent='$parent' ".($exclude>0 ? "AND id_sec<>'$exclude'" : '')." ORDER BY `order`";
-	$result = $db->query($sql);
-	while ($row = $db->fetchArray($result)){
-		$ret = array();
-		$ret = $row;
-		$ret['saltos'] = $saltos;
-		$array[] = $ret;
-		getSectionTree($array, $row['id_sec'], $saltos + 1, $resource, $fields, $exclude);
-	}
-	
-	return true;
-	
-}
+
 
 /**
 * Assign vars to Smarty var, then this var can be used as index of the resource

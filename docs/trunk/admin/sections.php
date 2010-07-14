@@ -1,12 +1,12 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 
 define('RMCLOCATION', 'sections');
@@ -94,8 +94,9 @@ function rd_show_sections(){
 * @desc Formulario de creación y edición de sección
 **/
 function rd_show_form($edit=0){
-	global $xoopsModule, $xoopsConfig;
+	global $xoopsModule, $xoopsConfig, $xoopsSecurity;
     
+    define('RMCSUBLOCATION','newresource');
 	$id=rmc_server_var($_GET, 'id', 0);
     
     if ($id<=0){
@@ -104,6 +105,7 @@ function rd_show_form($edit=0){
     }
     
     // Check if provided resource exists
+    global $res;
     $res= new RDResource($id);
     if ($res->isNew()){
         redirectMsg('sections.php?id='.$id, __('Specified resource does not exists!','docs'),1);
@@ -122,11 +124,13 @@ function rd_show_form($edit=0){
 		}
 		
 		//Comprueba si la sección es existente
+        global $sec;
 		$sec=new RDSection($id_sec);
 		if ($sec->isNew()){
 			redirectMsg('sections.php?id='.$id, __('Specified section does not exists','docs'),1);
 			die();
 		}
+        
 	}
 	
 
@@ -192,6 +196,7 @@ function rd_show_form($edit=0){
     $editor = new RMFormEditor(_AS_AH_CONTENT,'content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
     
     RMTemplate::get()->add_style('admin.css', 'docs');
+    RMTemplate::get()->add_script('../include/js/scripts.php?file=metas.js');
     RDFunctions::toolbar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_AH_EDITSECTION : _AS_AH_NEWSECTIONS));
     xoops_cp_header();

@@ -5,11 +5,6 @@ CREATE TABLE `pa_figures` (
   `style` varchar(255) NOT NULL,
   `desc` varchar(255) NOT NULL,
   `text` text NOT NULL,
-  `dohtml` tinyint(1) NOT NULL default '1',
-  `doxcode` tinyint(1) NOT NULL default '0',
-  `dobr` tinyint(1) NOT NULL default '0',
-  `doimage` tinyint(1) NOT NULL default '0',
-  `dosmiley` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_fig`)
 ) TYPE=MyISAM ;
 
@@ -18,11 +13,6 @@ CREATE TABLE `pa_references` (
   `id_res` int(10) unsigned NOT NULL default '0',
   `title` varchar(150) NOT NULL,
   `text` text NOT NULL,
-  `dohtml` tinyint(1) NOT NULL default '0',
-  `doxcode` tinyint(1) NOT NULL default '1',
-  `dosmiley` tinyint(1) NOT NULL default '1',
-  `dobr` tinyint(1) NOT NULL default '1',
-  `doimage` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id_ref`)
 ) TYPE=MyISAM ;
 
@@ -108,3 +98,12 @@ CREATE TABLE `pa_edits` (
   KEY `nameid` (`nameid`),
   KEY `id_sec` (`id_sec`)
 ) TYPE=MyISAM;
+
+CREATE TABLE `pa_meta` (
+  `name` varchar(50) NOT NULL,
+  `value` text NOT NULL,
+  `section` int(11) NOT NULL,
+  `id_meta` bigint(20) NOT NULL auto_increment,
+  PRIMARY KEY  (`id_meta`),
+  KEY `name` (`name`,`section`)
+) ENGINE=MyISAM;

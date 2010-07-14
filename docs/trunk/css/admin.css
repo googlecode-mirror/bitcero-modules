@@ -18,3 +18,22 @@
     background: #FFED97;
     border: 1px solid #fed22f;
 }
+.rd_large{
+    display: block;
+    width: 98%;
+}
+.rd_widget_form{
+    
+}
+.rd_widget_form label{
+    display: block;
+    margin: 0 0 3px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+.rd_widget_form input,
+.rd_widget_form select{
+    width: 95%;
+    display: block;
+    margin: 0 0 8px 0;
+}

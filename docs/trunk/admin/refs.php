@@ -35,7 +35,6 @@ function showReferences(){
 		}	
 	}
 	
-	
 	list($num) = $db->fetchRow($db->query($sql.$sql1));
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
     $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;

@@ -62,6 +62,71 @@ class RDFunctions
             
         return $errors;
 
+    }
+    
+    /**
+    * @desc Genera el arbol de categorías en un array
+    * @param array Referencia del Array que se rellenará
+    * @param int Id de la Sección padre
+    * @param int Contador de sangría
+    */
+    function getSectionTree(&$array, $parent = 0, $saltos = 0, $resource = 0, $fields='*', $exclude=0){
+        global $db;
+        $sql = "SELECT $fields FROM ".$db->prefix("pa_sections")." WHERE ".($resource>0 ? "id_res='$resource' AND" : '')."
+                parent='$parent' ".($exclude>0 ? "AND id_sec<>'$exclude'" : '')." ORDER BY `order`";
+        $result = $db->query($sql);
+        while ($row = $db->fetchArray($result)){
+            $ret = array();
+            $ret = $row;
+            $ret['saltos'] = $saltos;
+            $array[] = $ret;
+            self::getSectionTree($array, $row['id_sec'], $saltos + 1, $resource, $fields, $exclude);
+        }
+        
+        return true;
+        
+    }
+    
+    /**
+    * Get all references list according to given parameters
+    * @param int Resource ID
+    * @param string Search keyword
+    * @param int Start results
+    * @param int Results number limit
+    * @return array
+    */
+    public function references($res=0, $search='', $start=0, $limit=15){
+        
+        $db = Database::getInstance();
+        
+        $sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references').($res>0 ? " WHERE id_res='$res'" : '');
+        
+        if ($search!='')
+            $sql .= ($res>0 ? " AND " : " WHERE ")." (title LIKE '%$k%' OR text LIKE '%$k%')";
+            
+        if ($res>0) $reso = new RDResource($res);
+        
+        list($num) = $db->fetchRow($db->query($sql));
+        $limit = $limit<=0 ? 15 : $limit;
+
+        //Fin de navegador de páginas    
+        $sql = str_replace("COUNT(*)","*", $sql);
+        $sql .= " LIMIT $start,$limit";
+        
+        $result=$db->query($sql);
+        $references = array();
+        while ($rows=$db->fetchArray($result)){
+            $ref= new RDResource();
+            $ref->assignVars($rows);
+
+            if($res<=0) $reso=new RDResource($ref->resource());
+        
+            $references[] = array('id'=>$ref->id(),'title'=>$ref->title(),'text'=>substr($util->filterTags($ref->reference()),0,50)."...",
+                    'resource'=>$res->title());
+        
+        }
+        
+        return $references;
 
     }
     
