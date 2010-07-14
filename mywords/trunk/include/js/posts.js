@@ -30,7 +30,7 @@ $(document).ready( function($) {
     
     $("#publish-submit").click(function() {
         if ($("#status option[value='publish']").val()==undefined){
-            $("#status").html($("#status").html() + "<option value='publish'><?php _e('Published','admin_mywords'); ?></option>");
+            $("#status").html($("#status").html() + "<option value='publish'><?php _e('Published','mywords'); ?></option>");
         }
         //$("#status option:selected").removeAttr("selected");
         //$("#status option[value='publish']").attr("selected", true);
@@ -44,14 +44,14 @@ $(document).ready( function($) {
     
     $("#publish-ok").click(function() {
     	if ($("#status").val()=='draft'){
-			$("#publish-status-legend").text('<?php _e('Draft','admin_mywords'); ?>');
-			$("#publish-submit").val("<?php _e('Save as Draft','admin_mywords'); ?>");
+			$("#publish-status-legend").text('<?php _e('Draft','mywords'); ?>');
+			$("#publish-submit").val("<?php _e('Save as Draft','mywords'); ?>");
     	} else if($("#status").val()=='pending') {
-			$("#publish-status-legend").text('<?php _e('Pending Review','admin_mywords'); ?>');
-			$("#publish-submit").val("<?php _e('Save as Pending','admin_mywords'); ?>");
+			$("#publish-status-legend").text('<?php _e('Pending Review','mywords'); ?>');
+			$("#publish-submit").val("<?php _e('Save as Pending','mywords'); ?>");
     	} else {
-            $("#publish-status-legend").text('<?php _e('Published','admin_mywords'); ?>');
-            $("#publish-submit").val("<?php _e('Publish','admin_mywords'); ?>");
+            $("#publish-status-legend").text('<?php _e('Published','mywords'); ?>');
+            $("#publish-submit").val("<?php _e('Publish','mywords'); ?>");
         }
 	
 		$("#publish-options").slideUp("fast");
@@ -77,22 +77,22 @@ $(document).ready( function($) {
         $("#vis-password").val($("#vis-password").val().replace(/[ ]/gi,""));
         if ($("#vis-password").val()=='' && $("#visibility-options input[type=radio]:checked").val()=='password'){
             $("#vis-password-text").addClass("span-error");
-            $("#vis-password-text").html($("#vis-password-text").html() + "<strong><?php _e('Password:','admin_mywords'); ?></strong>");
+            $("#vis-password-text").html($("#vis-password-text").html() + "<strong><?php _e('Password:','mywords'); ?></strong>");
             return;
         }
 		
 		// Verificamos si es privado
 		if ($("#visibility-options input[type=radio]:checked").val()=='private'){
 			$("#edit-publish").hide();
-            $("#publish-status-legend").text('<?php _e('Private','admin_mywords'); ?>');
+            $("#publish-status-legend").text('<?php _e('Private','mywords'); ?>');
 		} else {
             $("#edit-publish").show();
             if ($("#status").val()=='draft'){
-    			$("#publish-status-legend").text('<?php _e('Draft','admin_mywords'); ?>');
+    			$("#publish-status-legend").text('<?php _e('Draft','mywords'); ?>');
             } else if ($("#status").val()=='publish'){
-                $("#publish-status-legend").text('<?php _e('Published','admin_mywords'); ?>');
+                $("#publish-status-legend").text('<?php _e('Published','mywords'); ?>');
         	} else {
-    			$("#publish-status-legend").text('<?php _e('Pending Review','admin_mywords'); ?>');
+    			$("#publish-status-legend").text('<?php _e('Pending Review','mywords'); ?>');
         	}
 		}
 		
@@ -147,7 +147,7 @@ $(document).ready( function($) {
             $("#schedule-minute").val(minute);
             $("#schedule-month option:selected").removeAttr("selected");
             $("#schedule-month option[value="+month+"]").attr("selected", true);
-            $("strong#schedule-caption").text('<?php _e('Inmediatly','admin_mywords'); ?>');
+            $("strong#schedule-caption").text('<?php _e('Inmediatly','mywords'); ?>');
             
         } else {
             
@@ -271,7 +271,7 @@ $(document).ready( function($) {
 		if ($("table#metas-container input").length>0){
 			$("table#metas-container input").each(function(){
 				if ($(this).val()==name){
-					alert('<?php _e('There is already a meta with same name','admin_mywords'); ?>');
+					alert('<?php _e('There is already a meta with same name','mywords'); ?>');
 					exit = true;
 					return;
 				}
@@ -295,7 +295,7 @@ $(document).ready( function($) {
 		$("table#metas-container").show();
 		var html = '<tr class="even">';
 		html += '<td valign="top"><input type="text" name="meta['+count+'][key]" id="meta-key-'+count+'" value="'+name+'" class="mw_large" style="width: 95%;" />';
-		html += '<a href="javascript:;" onclick="remove_meta($(this));"><?php _e('Remove','admin_mywords'); ?></td>';
+		html += '<a href="javascript:;" onclick="remove_meta($(this));"><?php _e('Remove','mywords'); ?></td>';
 		html += '<td><textarea name="meta['+count+'][value]" id="meta['+count+'][value]" class="mw_large">'+value+'</textarea></td></tr>';
 		$("table#metas-container").append(html);
 		
@@ -324,7 +324,7 @@ $(document).ready( function($) {
         }
         
         if ($("#content").val()==''){
-            alert('<?php _e('Add content before to save this post','admin_mywords'); ?>');
+            alert('<?php _e('Add content before to save this post','mywords'); ?>');
             return false;
         }
         
