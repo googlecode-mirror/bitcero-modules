@@ -259,6 +259,7 @@ div.rmc_widget_content{
 }
 div#rmc-right-widgets div.rmc_widget_content{
 	margin-bottom: 7px;
+    padding: 5px;
 }
 div.rmc_widget_content_reduced{
     padding: 6px 4px;
