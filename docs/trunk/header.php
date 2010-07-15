@@ -12,6 +12,6 @@ include ('../../header.php');
 
 $mc =& $xoopsModuleConfig;
 
-include_once 'include/functions.php';
+//include_once 'include/functions.php';
 define('AHURL',$mc['access'] ? XOOPS_URL.$mc['htpath'] : XOOPS_URL.'/modules/ahelp/index.php?page=');
-$tpl->assign('ah_url',AHURL);
+$xoopsTpl->assign('ah_url',AHURL);

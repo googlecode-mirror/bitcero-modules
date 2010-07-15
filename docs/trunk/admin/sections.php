@@ -193,6 +193,9 @@ function rd_show_form($edit=0){
     */
     
     $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
+    $tiny = TinyEditor::getInstance();
+    $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
+    $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
     $editor = new RMFormEditor(_AS_AH_CONTENT,'content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
     
     RMTemplate::get()->add_style('admin.css', 'docs');

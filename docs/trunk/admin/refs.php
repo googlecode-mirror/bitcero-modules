@@ -8,21 +8,22 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-define('AH_LOCATION', 'refs');
 include 'header.php';
 
 /**
 * @desc Muestra todas las referencias existentes
 **/
 function showReferences(){
-	global $tpl,$db,$xoopsModule,$util,$adminTemplate;
+	global $xoopsModule;
 
-	$id_res=isset($_REQUEST['res']) ? intval($_REQUEST['res']) : 0;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+	$id_res = rmc_server_var($_GET, 'res', 0);
+	$search = rmc_server_var($_GET, 'search', 0);
 	
 	//Separamos frase en palabras
 	$words=explode(" ",$search);
-
+    
+    $db = Database::getInstance();
+    
 	//Navegador de páginas
 	$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references').($id_res ? " WHERE id_res='$id_res'" : '');
 	$sql1='';
@@ -36,7 +37,7 @@ function showReferences(){
 	}
 	
 	list($num) = $db->fetchRow($db->query($sql.$sql1));
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
+	$page = rmc_server_var($_GET, 'page', 1);
     $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$limit = $limit<=0 ? 15 : $limit;
 	
@@ -50,31 +51,24 @@ function showReferences(){
 		$pactual = $pactual - $rest + 1;
 		$start = ($pactual - 1) * $limit;
 	}
-		
-	if ($tpages > 1) {
-		$nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&search='.$search.'&res='.$id_res, 0);
-		$tpl->assign('refNavPage', $nav->renderNav(4, 1));
-	}
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_AH_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
 
 	//Fin de navegador de páginas	
-
 	$sql = str_replace("COUNT(*)","*", $sql);
         $sql2=" LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
+    $references = array();
 	while ($rows=$db->fetchArray($result)){
-		$ref= new AHReference();
+		$ref= new RDReference();
 		$ref->assignVars($rows);
 
-		$res=new AHResource($ref->resource());
+		$res=new RDResource($ref->resource());
 	
-		$tpl->append('refs',array('id'=>$ref->id(),'title'=>$ref->title(),'text'=>substr($util->filterTags($ref->reference()),0,50)."...",
-                'resource'=>$res->title()));
+		$references = array(
+            'id'=>$ref->id(),
+            'title'=>$ref->getVar('title'),
+            'text'=> substr(strip_tags($ref->getVar('text')), 0, 50).'...',
+            'resource' => $res->getVar('title')
+        );
 	
 	}
 
@@ -82,33 +76,18 @@ function showReferences(){
 	$sql="SELECT id_res,title FROM ".$db->prefix('pa_resources');
 	$result=$db->queryF($sql);
 	while ($rows=$db->fetchArray($result)){
-		$res=new AHResource();
+		$res=new RDResource();
 		$res->assignVars($rows);
 
-		$tpl->append('resources',array('id'=>$res->id(),'title'=>$res->title()));
+		$resources = array('id'=>$res->id(),'title'=>$res->getVar('title'));
 
 	}
-
-	$tpl->assign('lang_id',_AS_AH_ID);
-	$tpl->assign('lang_title',_AS_AH_TITLE);
-	$tpl->assign('lang_text',_AS_AH_TEXT);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_res',_AS_AH_RESOURCE);
-	$tpl->assign('lang_exist',_AS_AH_EXIST);
-	$tpl->assign('lang_select',_SELECT);
-	$tpl->assign('lang_search',_AS_AH_SEARCH);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_result',_AS_AH_RESULT);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('res',$id_res);
-	$tpl->assign('search',$search);
-	$tpl->assign('token', $util->getTokenHTML());
 	
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_REFS);
-	$adminTemplate = 'admin/ahelp_refs.html';
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('References','docs'));
 	xoops_cp_header();
-	 
+	
+    include RMTemplate::get()->get_template('admin/ahelp_refs.html','module','docs');
+    
 	xoops_cp_footer();
 
 }

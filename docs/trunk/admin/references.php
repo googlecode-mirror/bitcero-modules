@@ -8,30 +8,29 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-define('AH_LOCATION', 'references');
 include 'header.php';
 
 // Mensajes de Error
+/*
 if (isset($_SESSION['exmMsg'])){
 	$tpl->assign('showExmInfoMsg', 1);
 	$tpl->assign('exmInfoMessage', array('text'=>html_entity_decode($_SESSION['exmMsg']['text']),'level'=>$_SESSION['exmMsg']['level']));
 	unset($_SESSION['exmMsg']);
 }
+*/
 
 /**
 * @desc Visualiza todas las referencias existentes de la publicación
 **/
 function references($edit=0){
-	global $db,$tpl,$util;
-	$myts=&MyTextSanitizer::getInstance();
 	
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-	$id_ref=isset($_REQUEST['ref']) ? intval($_REQUEST['ref']) : 0;
-	$id_editor=isset($_REQUEST['editor']) ? intval($_REQUEST['editor']) : 0;
+	$id = rmc_server_var($_GET, 'id', 0);
+	$search = rmc_server_var($_GET, 'search', 0);
+	$id_ref = rmc_server_var($_GET, 'ref', 0);
+	$id_editor = rmc_server_var($_GET, 'editor', 0);
 	
-	
-	
+    $db = Database::getInstance();
+    
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
 	$sql1='';
@@ -49,8 +48,8 @@ function references($edit=0){
 	}
 	list($num)=$db->fetchRow($db->queryF($sql.$sql1));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$page = rmc_server_var($_GET, 'page', 0);
+    $limit = rmc_server_var($_GET, 'limit', 0);
 	$limit = $limit<=0 ? 15 : $limit;
 
 	if ($page > 0){ $page -= 1; }
@@ -63,18 +62,6 @@ function references($edit=0){
     	$pactual = $pactual - $rest + 1;
     	$start = ($pactual - 1) * $limit;
     }
-	
-    if ($tpages > 1) {
-    	$nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&id='.$id.'&text='.$id_text.'&search='.$search, 0);
-    	$tpl->assign('refNavPage', $nav->renderNav(4, 1));
-    }
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_AH_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin navegador de páginas
 
 	$ruta='?id='.$id.'&pag='.$page.'&limit='.$limit.'&search='.$search;
 	//Lista de Referencias existentes
@@ -94,30 +81,11 @@ function references($edit=0){
 	}
 	$sql2=" LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
+    $references = array();
+    
 	while ($rows=$db->fetchArray($result)){
-		$tpl->append('references',array('id'=>$rows['id_ref'],'title'=>$rows['title']));
-	}
-
-	$tpl->assign('lang_id',_AS_AH_ID);
-	$tpl->assign('lang_title',_AS_AH_TITLE);
-	$tpl->assign('lang_insert',_AS_AH_INSERT);
-	$tpl->assign('lang_new',_AS_AH_NEW);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_close',_CLOSE);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_exist',_AS_AH_EXIST);
-	$tpl->assign('id',$id);
-	$tpl->assign('id_sec',$id_sec);
-	$tpl->assign('lang_confirm',_AS_AH_CONFIRM);
-	$tpl->assign('lang_result',_AS_AH_RESULT);
-	$tpl->assign('lang_search',_AS_AH_SEARCH);
-	$tpl->assign('search',$search);
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_references',_AS_AH_REFEREN);
-	$tpl->assign('id_editor',$id_editor);
-	
+		$references = array('id'=>$rows['id_ref'],'title'=>$rows['title']);
+	}	
 	
 	if ($edit){
 		if ($id_ref<=0){

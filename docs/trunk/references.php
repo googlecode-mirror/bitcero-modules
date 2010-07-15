@@ -1,14 +1,13 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('AH_LOCATION','ref');
 include ('../../mainfile.php');
 include ('header.php');
 
@@ -19,35 +18,34 @@ if (isset($_SESSION['exmMsg'])){
 	unset($_SESSION['exmMsg']);
 }
 
-$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-$res=new AHresource($id);
+$id=rmc_server_var($_GET, 'id', 0);
+$res=new RDResource($id);
 //Verificamos si el usuario tiene permisos de edicion
 if (!$xoopsUser){
-	redirect_header(XOOPS_URL.'/modules/ahelp',2,_MS_AH_NOTPERMEDIT);
+	redirect_header(XOOPS_URL.'/modules/docs',2,__('You are not allowed to view this page','docs'));
 	die();
 }else{
-	if (!($xoopsUser->uid()==$res->owner()) && 
+	if (!($xoopsUser->uid()==$res->getVar('owner')) && 
 	!$res->isEditor($xoopsUser->uid()) && 
 	!$xoopsUser->isAdmin()){
-		redirect_header(XOOPS_URL.'/modules/ahelp',2,_MS_AH_NOTPERMEDIT);
+		redirect_header(XOOPS_URL.'/modules/ahelp',2,__('You are not allowed to view this page','docs'));
 		die();
 	}
 }
 
-
 /**
-* @desc Visualiza todas las referencias existentes de la publicación
+* Visualiza todas las referencias existentes de la publicación
 **/
 function references($edit=0){
-	global $db,$tpl,$util,$xoopsUser;
-	$myts=&MyTextSanitizer::getInstance();
+	global $xoopsUser, $xoopsTpl;
 	
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-	$id_ref=isset($_REQUEST['ref']) ? intval($_REQUEST['ref']) : 0;
-	$id_editor=isset($_REQUEST['editor']) ? intval($_REQUEST['editor']) : 0;
+	$id= rmc_server_var($_REQUEST, 'id', 0);
+	$search = rmc_server_var($_REQUEST, 'search', '');
+	$id_ref = rmc_server_var($_REQUEST, 'ref', 0);
+	$id_editor = rmc_server_var($_REQUEST, 'editor', 0);
 
-	
+	$db = Database::getInstance();
+    
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
 	$sql1='';
@@ -65,32 +63,9 @@ function references($edit=0){
 	}
 	list($num)=$db->fetchRow($db->queryF($sql.$sql1));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$page = rmc_server_var($_REQUEST, 'page', 1);
+    $limit = rmc_server_var($_REQUEST, 'limit', 15);
 	$limit = $limit<=0 ? 15 : $limit;
-
-	if ($page > 0){ $page -= 1; }
-    $start = $page * $limit;
-    $tpages = (int)($num / $limit);
-    if($num % $limit > 0) $tpages++;
-    $pactual = $page + 1;
-    if ($pactual>$tpages){
-    	$rest = $pactual - $tpages;
-    	$pactual = $pactual - $rest + 1;
-    	$start = ($pactual - 1) * $limit;
-    }
-	
-    if ($tpages > 1) {
-    	$nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&id='.$id.'&text='.$id_text.'&search='.$search, 0);
-    	$tpl->assign('refNavPage', $nav->renderNav(4, 1));
-    }
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_AH_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin navegador de páginas
 
 	$ruta='?id='.$id.'&pag='.$page.'&limit='.$limit.'&search='.$search;
 	//Lista de Referencias existentes
@@ -111,75 +86,43 @@ function references($edit=0){
 	
 	$sql2=" LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
+    $references = array();
 	while ($rows=$db->fetchArray($result)){
-		$tpl->append('references',array('id'=>$rows['id_ref'],'title'=>$rows['title']));
+		$references = array('id'=>$rows['id_ref'],'title'=>$rows['title']);
 	}
-
-	$tpl->assign('lang_id',_MS_AH_ID);
-	$tpl->assign('lang_title',_MS_AH_TITLE);
-	$tpl->assign('lang_insert',_MS_AH_INSERT);
-	$tpl->assign('lang_new',_MS_AH_NEW);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_close',_CLOSE);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_exist',_MS_AH_EXIST);
-	$tpl->assign('id',$id);
-	$tpl->assign('lang_confirm',_MS_AH_CONFIRM);
-	$tpl->assign('lang_result',_MS_AH_RESULT);
-	$tpl->assign('lang_search',_MS_AH_SEARCH);
-	$tpl->assign('search',$search);
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_references',_MS_AH_REFEREN);
-	$tpl->assign('id_editor',$id_editor);
 	
 	if ($edit){
 		if ($id_ref<=0){
-			redirectMsg('./references.php'.$ruta,_MS_AH_NOTREF,1);
+			redirectMsg('./references.php'.$ruta,__('A note has not been specified!','docs'),1);
 			die();
 		}
-		$ref=new AHReference($id_ref);
+		$ref=new RDReference($id_ref);
 		if ($ref->isNew()){
-			redirectMsg('./references.php'.$ruta,_MS_AH_NOTREFEXIST,1);
+			redirectMsg('./references.php'.$ruta,__('Specified does not exists!','docs'),1);
 			die();
 		}
 
 	}
 	//Formulario de nueva referencia
-	$form= new RMForm($edit ? _MS_AH_EDIT : _MS_AH_NEW,'frmref2','references.php');
-	$form->addElement(new RMText(_MS_AH_TITLE,'title',40,150,$edit ? $ref->title() : ''),true);
-	$form->addElement(new RMEditor(_MS_AH_REFERENCE,'reference','90%','200px',$edit ? $ref->reference() : '', 'textarea'),true);
+	$form= new RMForm($edit ? __('Edit Note','docs') : __('New Note','docs'),'frmref2','references.php');
+	$form->addElement(new RMFormText(__('Title','docs'),'title',40,150,$edit ? $ref->title() : ''),true);
+	$form->addElement(new RMFormEditor(__('Note content','docs'),'reference','90%','200px',$edit ? $ref->getVar('text','e') : '', 'simple'),true);
 	
-	if ($edit){
-		$dohtml = $ref->getVar('dohtml');
-		$doxcode = $ref->getVar('doxcode');
-		$dobr = $ref->getVar('dobr');
-		$doimage = $ref->getVar('doimage');
-		$dosmiley = $ref->getVar('dosmiley');
-	} else {
-		$dohtml = 0;
-		$doxcode = 1;
-		$dobr = 1;
-		$doimage = 1;
-		$dosmiley = 1;
-	}
-	
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
-	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('id_ref',$id_ref));
-	$form->addElement(new RMHidden('pag',$page));
-	$form->addElement(new RMHidden('limit',$limit));
-	$form->addElement(new RMHidden('search',$search));
-	$buttons=new RMButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$edit ? $buttons->addButton('cancel',_CANCEL,'button','onclick="window.location=\'references.php'.$ruta.'\';"') : '';
+	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('id_ref',$id_ref));
+	$form->addElement(new RMFormHidden('page',$page));
+	$form->addElement(new RMFormHidden('limit',$limit));
+	$form->addElement(new RMFormHidden('search',$search));
+	$buttons=new RMFormButtonGroup();
+	$buttons->addButton('sbt',$edit ? __('Save Changes','docs') : __('Create Note','docs'),'submit');
+	$edit ? $buttons->addButton('cancel',__('Cancel','docs'),'button','onclick="window.location=\'references.php'.$ruta.'\';"') : '';
 	$form->addElement($buttons);
-	$tpl->assign('content_form',$form->render());
 
-	echo $tpl->fetch('db:ahelp_references.html');
+    $theme_css = xoops_getcss();
+    $vars = $xoopsTpl->get_template_vars();
+    extract($vars);
+	include RMTemplate::get()->get_template('rd_references.php', 'module', 'docs');
 
 }
 

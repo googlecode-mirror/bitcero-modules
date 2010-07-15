@@ -32,42 +32,6 @@ class RDReference extends EXMObject{
 		return $this->getVar('id_ref');
 	}
 
-	//Recurso al que pertenece la referencia
-	public function resource(){
-		return $this->getVar('id_res');
-	}
-
-	public function setResource($resource){
-		return $this->setVar('id_res',$resource);
-	}
-
-	//Texto al que pertenece la referencia
-	public function section(){
-		return $this->getVar('id_sec');
-	}
-
-	public function setSection($text){
-		return $this->setVar('id_sec',$text);
-	}
-
-	//Título de la referencia
-	public function title(){
-		return $this->getVar('title');
-	}
-
-	public function setTitle($title){
-		return $this->setVar('title',$title);
-	}
-
-	//Texto de la referencia
-	public function reference(){
-		return $this->getVar('text');
-	}
-
-	public function setReference($reference){
-		return $this->setVar('text',$reference);
-	}
-
 
 	public function save(){
 		if ($this->isNew()){
