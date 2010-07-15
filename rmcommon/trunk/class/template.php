@@ -127,15 +127,24 @@ class RMTemplate
     */
     public function get_template($file, $type='module',$module='rmcommon',$plugin=''){
 		global $rmc_config, $xoopsConfig;
-
+        
+        
+        $type = $type=='' ? 'module' : $type;
+        
         if (!function_exists("xoops_cp_header")){
-
+            
             $theme = $xoopsConfig['theme_set'];
             $where = XOOPS_THEME_PATH.'/'.$theme;
-            $where .= $type='module' ? '/modules/' : '/'.$plugin.'s/';
+            $where .= $type=='module' ? '/modules/' : '/'.$plugin.'s/';
             $where .= $module.($plugin!='' ? '/'.$plugin : '');
 
             if(is_file($where.'/'.$file)) return $where.'/'.$file;
+            
+            $where = XOOPS_ROOT_PATH.'/modules/'.$module.'/templates';
+            $where .= $type!='module' ? "/$type" : '';
+            $where .= "/$file";
+            
+            if(is_file($where)) return $where;
 
         }
 		

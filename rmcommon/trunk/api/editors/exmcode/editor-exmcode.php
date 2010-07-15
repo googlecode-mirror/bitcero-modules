@@ -124,7 +124,7 @@ var exmCode<?php echo ucfirst($id); ?> = {
         }
         
         // New plugins from other components
-        RMEvents::get()->run_event('rmcommon.load_exmcode_plugins', $id);
+        RMEvents::get()->run_event('rmcommon.load.exmcode.plugins', $id);
         
         ?>
         
@@ -192,7 +192,6 @@ var exmCode<?php echo ucfirst($id); ?> = {
         
         }
         
-        
 	},
     add_button : function(n,d){
         
@@ -222,7 +221,6 @@ var exmCode<?php echo ucfirst($id); ?> = {
     },
     button_press : function(n){
         var x = this;
-        
         if (x.buttons[n]=='undefined') return;
         
         if (x.buttons[n].cmd_type=='auto'){
