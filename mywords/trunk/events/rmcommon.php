@@ -71,6 +71,7 @@ class MywordsRmcommonPreload
     */
 	public function eventRmcommonGetFeedsList($feeds){
 		
+        include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
 		load_mod_locale('mywords');
 		
 		$module = RMFunctions::load_module('mywords');

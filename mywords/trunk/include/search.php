@@ -40,7 +40,7 @@ function mywords_search($qa, $andor, $limit, $offset, $userid){
 	$sql .= " ORDER BY pubdate DESC";
 
 	$i = 0;
-	$result = $db->query($sql);
+	$result = $db->query($sql, $limit, $offset);
 	$ret = array();
 	while ($row = $db->fetchArray($result)){
 		$post = new MWPost();
