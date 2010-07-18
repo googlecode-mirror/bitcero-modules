@@ -116,7 +116,8 @@ $post_arr = array(
     'cats'  => $post->get_categories_names(),
     'tags'  => $tags_list,
     'trackback' => $post->getVar('pingstatus') ? MWFunctions::get_url(true).$post->id() : '',
-    'meta'  => $post->get_meta('', false)
+    'meta'  => $post->get_meta('', false),
+    'time' => $post->getVar('pubdate')
 );
 
 // Plugins?
