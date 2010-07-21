@@ -112,7 +112,7 @@ class RMTemplate
 		include_once RMCPATH.'/themes/'.$theme.'/admin_gui.php';
 		$output = ob_get_clean();
 		
-		$output = RMEvents::get()->run_event('rmcommon.admin_output', $output);
+		$output = RMEvents::get()->run_event('rmcommon.admin.output', $output);
 		
 		echo $output;
     }
