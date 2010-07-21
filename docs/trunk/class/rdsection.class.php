@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 
-class RDSection extends EXMObject{
+class RDSection extends RMObject{
     
     /**
     * Meta values container
@@ -94,13 +94,36 @@ class RDSection extends EXMObject{
 
 	public function save(){
 		if ($this->isNew()){
-			return $this->saveToTable();
+			$ret = $this->saveToTable();
 		}
 		else{
-			return $this->updateTable();
-		}		
+			$ret = $this->updateTable();
+		}
+        
+        if(!$ret) return false;
+        
+        return $this->save_metas();
+        
 
 	}
+    
+    private function save_metas(){
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("pa_meta")." WHERE section='".$this->id()."'");
+        if (empty($this->metas)) return true;
+        $sql = "INSERT INTO ".$this->db->prefix("pa_meta")." (`name`,`value`,`section`) VALUES ";
+        $values = '';
+        foreach ($this->metas as $name => $value){
+            if (is_array($value)) $value = $value['value'];
+            $values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->id()."')";
+        }
+        
+        if ($this->db->queryF($sql.$values)){
+            return true;
+        } else {
+            $this->addError($this->db->error());
+            return false;
+        }
+    }
 
 	public function delete(){
 		$ret=false;
@@ -114,7 +137,6 @@ class RDSection extends EXMObject{
 		$ret=$this->deleteFromTable();
 	
 		return $ret;
-
 		
 	}
 

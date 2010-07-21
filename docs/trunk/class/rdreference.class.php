@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class RDReference extends EXMObject{
+class RDReference extends RMObject{
 
 	function __construct($id=null){
 

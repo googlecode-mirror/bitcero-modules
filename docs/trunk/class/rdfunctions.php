@@ -104,7 +104,7 @@ class RDFunctions
         if ($search!='')
             $sql .= ($res>0 ? " AND " : " WHERE ")." (title LIKE '%$k%' OR text LIKE '%$k%')";
             
-        if ($res>0) $reso = new RDResource($res);
+        if ($res>0) $res = new RDResource($res);
         
         list($num) = $db->fetchRow($db->query($sql));
         $limit = $limit<=0 ? 15 : $limit;
@@ -116,13 +116,13 @@ class RDFunctions
         $result=$db->query($sql);
         $references = array();
         while ($rows=$db->fetchArray($result)){
-            $ref= new RDResource();
+            $ref= new RDReference();
             $ref->assignVars($rows);
 
-            if($res<=0) $reso=new RDResource($ref->resource());
+            if($res->isNew()) $res=new RDResource($ref->resource());
         
-            $references[] = array('id'=>$ref->id(),'title'=>$ref->title(),'text'=>substr($util->filterTags($ref->reference()),0,50)."...",
-                    'resource'=>$res->title());
+            $references[] = array('id'=>$ref->id(),'title'=>$ref->getVar('title'),'text'=>substr(TextCleaner::getInstance()->clean_disabled_tags($ref->getVar('text')),0,50)."...",
+                    'resource'=>$res->getVar('title'));
         
         }
         

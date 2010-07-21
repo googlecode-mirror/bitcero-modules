@@ -10,12 +10,15 @@
 
 include ('../../mainfile.php');
 include ('header.php');
+load_mod_locale('docs');
 
 // Mensajes de Error
-if (isset($_SESSION['exmMsg'])){
-	$tpl->assign('showExmInfoMsg', 1);
-	$tpl->assign('exmInfoMessage', array('text'=>html_entity_decode($_SESSION['exmMsg']['text']),'level'=>$_SESSION['exmMsg']['level']));
-	unset($_SESSION['exmMsg']);
+$rmc_messages = array();
+if (isset($_SESSION['rmMsg'])){
+    foreach ($_SESSION['rmMsg'] as $msg){
+        $rmc_messages[] = $msg;
+    }
+    unset($_SESSION['rmMsg']);
 }
 
 $id=rmc_server_var($_GET, 'id', 0);
@@ -37,12 +40,13 @@ if (!$xoopsUser){
 * Visualiza todas las referencias existentes de la publicación
 **/
 function references($edit=0){
-	global $xoopsUser, $xoopsTpl;
+	global $xoopsUser, $xoopsTpl, $rmc_messages, $xoopsSecurity;
 	
 	$id= rmc_server_var($_REQUEST, 'id', 0);
 	$search = rmc_server_var($_REQUEST, 'search', '');
 	$id_ref = rmc_server_var($_REQUEST, 'ref', 0);
 	$id_editor = rmc_server_var($_REQUEST, 'editor', 0);
+    $rmc_config = RMFunctions::configs();
 
 	$db = Database::getInstance();
     
@@ -64,10 +68,17 @@ function references($edit=0){
 	list($num)=$db->fetchRow($db->queryF($sql.$sql1));
 	
 	$page = rmc_server_var($_REQUEST, 'page', 1);
-    $limit = rmc_server_var($_REQUEST, 'limit', 15);
-	$limit = $limit<=0 ? 15 : $limit;
+    $limit = 15;
 
-	$ruta='?id='.$id.'&pag='.$page.'&limit='.$limit.'&search='.$search;
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url("?id=$id&amp;page={PAGE_NUM}");
+
+	$ruta='?id='.$id.'&page='.$page.'&limit='.$limit.'&search='.$search;
 	//Lista de Referencias existentes
 	$sql="SELECT id_ref,title FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
 	$sql1='';
@@ -88,7 +99,7 @@ function references($edit=0){
 	$result=$db->queryF($sql.$sql1.$sql2);
     $references = array();
 	while ($rows=$db->fetchArray($result)){
-		$references = array('id'=>$rows['id_ref'],'title'=>$rows['title']);
+		$references[] = array('id'=>$rows['id_ref'],'title'=>$rows['title']);
 	}
 	
 	if ($edit){
@@ -103,25 +114,41 @@ function references($edit=0){
 		}
 
 	}
-	//Formulario de nueva referencia
-	$form= new RMForm($edit ? __('Edit Note','docs') : __('New Note','docs'),'frmref2','references.php');
-	$form->addElement(new RMFormText(__('Title','docs'),'title',40,150,$edit ? $ref->title() : ''),true);
-	$form->addElement(new RMFormEditor(__('Note content','docs'),'reference','90%','200px',$edit ? $ref->getVar('text','e') : '', 'simple'),true);
-	
-	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMFormHidden('id',$id));
-	$form->addElement(new RMFormHidden('id_ref',$id_ref));
-	$form->addElement(new RMFormHidden('page',$page));
-	$form->addElement(new RMFormHidden('limit',$limit));
-	$form->addElement(new RMFormHidden('search',$search));
-	$buttons=new RMFormButtonGroup();
-	$buttons->addButton('sbt',$edit ? __('Save Changes','docs') : __('Create Note','docs'),'submit');
-	$edit ? $buttons->addButton('cancel',__('Cancel','docs'),'button','onclick="window.location=\'references.php'.$ruta.'\';"') : '';
-	$form->addElement($buttons);
 
     $theme_css = xoops_getcss();
     $vars = $xoopsTpl->get_template_vars();
     extract($vars);
+    
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_script('include/js/scripts.php?file=ajax.js');
+    if ($rmc_config['editor_type']=='tiny')
+        RMTemplate::get()->add_script(XOOPS_URL.'/modules/rmcommon/api/editors/tinymce/tiny_mce_popup.js');
+    RMTemplate::get()->add_style('refs.css','docs');
+    RMTemplate::get()->add_style('jquery.css','rmcommon');
+    RMTemplate::get()->add_head('<script type="text/javascript">$(document).ready(function(){$("frm-refs").validate();});</script>');
+    
+    // Options for table header
+    $options[] = array(
+        'title' => __('Select Resource','docs'),
+        'href'  => 'javascript:;',
+        'attrs' => 'id="option-resource" onclick="docsAjax.getSectionsList(1);"',
+        'tip'   => __('Select another resource to show the notes that belong to this.','docs')
+    );
+    $options[] = array(
+        'title' => __('Create Note','docs'),
+        'href'  => 'javascript:;',
+        'attrs' => 'id="option-new" onclick="docsAjax.displayForm();"',
+        'tip'   => __('Create a new note.','docs')
+    );
+    // Get additional options from other modules or plugins
+    $options = RMEvents::get()->run_event('docs.references.options',$options, $id, $edit, $edit ? $ref : null);
+    
+    // Insert adtional content in template
+    $other_content = '';
+    $other_content = RMEvents::get()->run_event('docs.additional.content', $other_content, $id, $edit, $edit ? $ref : null);
+    
 	include RMTemplate::get()->get_template('rd_references.php', 'module', 'docs');
 
 }
@@ -130,39 +157,42 @@ function references($edit=0){
 * @desc Almacena toda la información referente a la referencia
 **/
 function saveReferences($edit=0){
-	global $db,$util;
+	global $xoopsSecurity;
+    
+    $db = Database::getInstance();
+    
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
-	$ruta='?id='.$id.'&pag='.$pag.'&limit='.$limit.'&search='.$search;
+	$ruta='?id='.$id.'&page='.$page.'&limit='.$limit.'&search='.$search;
 
-	if (!$util->validateToken()){
-		redirectMsg('./references.php'.$ruta,_MS_AH_SESSINVALID, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./references.php'.$ruta, __('Session token expired!','docs'), 1);
 		die();
 	}
 
 	//Comprobar publicacion valida
 	if ($id<=0){
-		redirectMsg('./references.php'.$ruta,_MS_AH_ERRRESOURCE,1);
+		redirectMsg('./references.php'.$ruta, __('Resource ID not provided!','docs'),1);
 		die();
 	}
 	
 	//Comprobar publicación existente existente
-	$res=new AHResource($id);
+	$res=new RDResource($id);
 	if ($res->isNew()){
-		redirectMsg('./references.php'.$ruta,_MS_AH_ERRNOTEXIST,1);
+		redirectMsg('./references.php'.$ruta, __('Specified resource does not exists!','docs'),1);
 		die();
 
 	}
 
 	if ($edit){
 		if ($id_ref<=0){
-			redirectMsg('./references.php'.$ruta,_MS_AH_NOTREF,1);
+			redirectMsg('./references.php'.$ruta, __('Note id not provided!','docs'),1);
 			die();
 		}
-		$ref=new AHReference($id_ref);
+		$ref=new RDReference($id_ref);
 		if ($ref->isNew()){
-			redirectMsg('./references.php'.$ruta,_MS_AH_NOTREFEXIST,1);
+			redirectMsg('./references.php'.$ruta, __('Specified note does not exists!','docs'),1);
 			die();
 		}
 
@@ -170,7 +200,7 @@ function saveReferences($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE title='$title' AND id_res='$id' AND id_ref<>'$id_ref'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./references.php'.$ruta,_MS_AH_TITLEEXIST,1);
+			redirectMsg('./references.php'.$ruta, __('Another note with same title already exists','docs'),1);
 			die();
 		}
 
@@ -180,35 +210,21 @@ function saveReferences($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE title='$title' AND id_res='$id'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./references.php'.$ruta,_MS_AH_TITLEEXIST,1);
+			redirectMsg('./references.php'.$ruta, __('Another note with same title already exists','docs'),1);
 			die();
 		}
-		$ref=new AHReference();
+		$ref=new RDReference();
 	}
 	
-	$ref->setResource($id);
-	$ref->setTitle($title);
-	$ref->setReference($reference);
-	
-	if ($edit){
-		$dohtml = isset($dohtml) ? 1 : 0;
-		$doxcode = isset($doxcode) ? 1 : 0;
-		$dobr = isset($dobr) ? 1 : 0;
-		$doimage = isset($doimage) ? 1 : 0;
-		$dosmiley = isset($dosmiley) ? 1 : 0;
-	}
-	
-	$ref->setVar('dohtml', $dohtml);
-	$ref->setVar('doxcode', $doxcode);
-	$ref->setVar('dobr', $dobr);
-	$ref->setVar('doimage', $doimage);
-	$ref->setVar('dosmiley', $dosmiley);
+	$ref->setVar('id_res',$id);
+	$ref->setVar('title',$title);
+	$ref->setVar('text',$reference);
 	
 	if ($ref->save()){
-		redirectMsg('./references.php'.$ruta,_MS_AH_DBOK,0);
+		redirectMsg('./references.php'.$ruta, __('Note saved successfully','docs'),0);
 	}
 	else{
-		redirectMsg('./references.php'.$ruta,_MS_AH_DBERROR,1);
+		redirectMsg('./references.php'.$ruta, __('Errors ocurred while trying to save note','docs'),1);
 	}
 	
 }
@@ -263,9 +279,9 @@ function deleteReferences(){
 
 }
 
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$action= rmc_server_var($_REQUEST, 'action', '');
 
-switch ($op){
+switch ($action){
 	case 'edit':
 		references(1);
 	break;

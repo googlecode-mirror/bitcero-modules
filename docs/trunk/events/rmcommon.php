@@ -32,9 +32,11 @@ class DocsRmcommonPreload{
         
         // EXM Image Manager
         ?>
+        <?php $ret = parse_url($_SERVER['HTTP_REFERER']);
+                   parse_str($ret['query'], $str); ?>
             ed.addCommand('mceRapidDocsReferences', function() {
                 ed.windowManager.open({
-                    file : '<?php echo XOOPS_URL; ?>/modules/docs/references.php',
+                    file : '<?php echo XOOPS_URL; ?>/modules/docs/references.php?id=<?php echo $str['id']; ?>',
                     width : 600 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
                     height : 600 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
                     inline : 1,

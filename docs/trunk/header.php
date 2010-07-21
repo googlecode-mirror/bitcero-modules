@@ -8,7 +8,7 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-include ('../../header.php');
+include (XOOPS_ROOT_PATH.'/header.php');
 
 $mc =& $xoopsModuleConfig;
 
