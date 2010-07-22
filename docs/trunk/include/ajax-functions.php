@@ -68,11 +68,44 @@ function resources_list(){
     
 }
 
+/**
+* Sends the note data in json format
+*/
+function send_note_foredit(){
+    
+    $id = rmc_server_var($_GET, 'id', 0);
+    if($id<=0){
+        echo json_encode(array('message'=>__('Note id not provided!','docs'),'error'=>1));
+        die();
+    }
+    
+    $ref = new RDReference($id);
+    if ($ref->isNew()){
+        echo json_encode(array('message'=>__('Specified note does not exists!','docs'),'error'=>1));
+        die();
+    }
+    
+    $ret = array(
+        'id'=>$ref->id(),
+        'title'=>$ref->getVar('title'),
+        'res'=>$ref->getVar('id_res'),
+        'text'=>$ref->getVar('text','e'),
+        'error'=>0
+    );
+    
+    echo json_encode($ret);
+    die();
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 switch($action){
     case 'resources-list':
         resources_list();
+        break;
+    case 'note-edit':
+        send_note_foredit();
         break;
     default:
         break;

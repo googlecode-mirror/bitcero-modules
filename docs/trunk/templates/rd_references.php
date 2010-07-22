@@ -20,9 +20,15 @@
 			window.opener.insertReference(id_ref);	
 			window.close();	
 		}
+        
 	</script>
 </head>
 <body>
+<?php foreach($rmc_messages as $message): ?>
+<div class="<?php if($message['level']): ?>errorMsg<?php else: ?>infoMsg<?php endif; ?>">
+    <?php echo html_entity_decode($message['text']); ?>
+</div>
+<?php endforeach; ?>
 <div id='nav'>
  <form name="frm" method="POST" action="./references.php">
  <table class="outer" cellspacing="1" width="100%">
@@ -34,6 +40,9 @@
         <input name="section" value="<?php echo $id_sec; ?>" type="hidden" />
         <input name="pag" value="<?php echo $page; ?>" type="hidden" />    
 	    </td>
+        <td align="center">
+            <?php $nav->render(false); echo $nav->get_showing(); ?>
+        </td>
             <td align="right" class="options_top">
             <ul>
                 <li>
@@ -50,11 +59,7 @@
     </table>
   </form>
 </div>
-<?php foreach($rmc_messages as $message): ?>
-<div class="<?php if($message['level']): ?>errorMsg<?php else: ?>infoMsg<?php endif; ?>">
-    <?php echo html_entity_decode($message['text']); ?>
-</div>
-<?php endforeach; ?>
+
 <form name="frmref" method="POST" action="references.php">
 <table class='outer' cellspacing="1">
 	<tr>
@@ -68,35 +73,34 @@
 		
 	</tr>
 	<?php foreach($references as $ref): ?>
-	<tr align="center" class="<?php echo tpl_cycle("even,odd"); ?>">
+	<tr align="center" valign="top" class="<?php echo tpl_cycle("even,odd"); ?>">
 		<td width="20" align="center"><input type="checkbox" name="refs[]" value="<?php echo $ref['id']; ?>" /></td>
 		<td><?php echo $ref['id']; ?></td>
-		<td align="left"><a href="javascript:;" onclick="insert(<?php echo $ref['id']; ?>);"><?php echo $ref['title']; ?></a></td>
-		<td><a href="javascript:;" onclick="insert(<{$ref.id}>);"><{$lang_insert}></a> &bull; 
-		<a href="./references.php?op=edit&amp;section=<{$id_sec}>&amp;id=<{$id}>&amp;text=<{$id_text}>&amp;limit=<{$limit}>&amp;pag=<{$pag}>&amp;search=<{$search}>&amp;ref=<{$ref.id}>"><{$lang_edit}></a></td>
+		<td align="left">
+            <strong><a href="javascript:;" onclick="editor.insertNote(<?php echo $ref['id']; ?>);"><?php echo $ref['title']; ?></a><br /></strong>
+            <?php echo $ref['content']; ?>
+        </td>
+		<td nowrap="nowrap"><a href="javascript:;" onclick="editor.insertNote(<?php echo $ref['id']; ?>);"><?php _e('Insert','docs'); ?></a> |
+		<a href="javascript:;" onclick="docsAjax.editNote(<?php echo $ref['id']; ?>);"><?php _e('Edit','docs'); ?></a></td>
 	</tr>
 	<?php endforeach; ?>
 	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
-		<td colspan="3">
-		<input name="delete" class="formButton" type="submit" value="<{$lang_del}>" onclick="document.forms['frmref'].op.value='delete'; return confirm('<{$lang_confirm}>');" />
-		<input name="close" class="formButton" type="button" value="<{$lang_close}>" onclick="tinyMCEPopup.close();" />
-		</td>
+		<td colspan="4">
+		<input name="delete" class="formButton" type="submit" value="<?php _e('Delete','docs'); ?>" onclick="document.forms['frmref'].op.value='delete'; return confirm('<{$lang_confirm}>');" />
+		<input name="close" class="formButton" type="button" value="<?php _e('Close','docs'); ?>" onclick="tinyMCEPopup.close();" />
+		<?php $nav->display(false); ?></td>
 	</tr>
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input name="op" type="hidden" />
-<input name="id" value="<{$id}>" type="hidden" />
-<input name="id_sec" value="<{$id_sec}>" type="hidden" />
-<input name="limit" value="<{$limit}>" type="hidden" />
-<input name="pag" value="<{$pag}>" type="hidden" />
-<input name="search" value="<{$search}>" type="hidden" />
+<input name="id" value="<?php echo $id; ?>" type="hidden" />
+<input name="page" value="<?php echo $page; ?>" type="hidden" />
+<input name="search" value="<?php echo $search; ?>" type="hidden" />
 </form>
-<?php $nav->display(false); ?>
 
 <?php echo $other_content; ?>
 
-<div id="resources-list" title="<?php _e('Select Resource','docs'); ?>"></div>
+<div id="resources-list" title="<?php _e('Select Resource','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
 <div id="resources-form" title="<?php _e('Create Note','docs'); ?>">
 <form name="frmRefs" id="frm-refs" method="post" action="references.php">
 <label><?php _e('Title:','docs'); ?></label>
@@ -107,8 +111,10 @@
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 <input type="hidden" name="page" value="<?php echo $page; ?>" />
 <input type="hidden" name="search" value="<?php echo $search; ?>" />
+<input type="hidden" name="name" value="<?php echo rmc_server_var($_GET,'name',''); ?>" />
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
+<img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" />
 </div>
 </body>
 </html>

@@ -68,19 +68,20 @@ function references($edit=0){
 	list($num)=$db->fetchRow($db->queryF($sql.$sql1));
 	
 	$page = rmc_server_var($_REQUEST, 'page', 1);
-    $limit = 15;
+    $page = $page<=0 ? 1 : $page;
+    $limit = 13;
 
     $tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
 
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
     
-    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav = new RMPageNav($num, $limit, $page, 4);
     $nav->target_url("?id=$id&amp;page={PAGE_NUM}");
 
 	$ruta='?id='.$id.'&page='.$page.'&limit='.$limit.'&search='.$search;
 	//Lista de Referencias existentes
-	$sql="SELECT id_ref,title FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+	$sql="SELECT id_ref,title,text FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
 	$sql1='';
 	if ($search){
 		
@@ -95,11 +96,11 @@ function references($edit=0){
 	
 	}
 	
-	$sql2=" LIMIT $start,$limit";
+	$sql2=" ORDER BY id_ref DESC LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
     $references = array();
 	while ($rows=$db->fetchArray($result)){
-		$references[] = array('id'=>$rows['id_ref'],'title'=>$rows['title']);
+		$references[] = array('id'=>$rows['id_ref'],'title'=>$rows['title'],'content'=>TextCleaner::getInstance()->truncate($rows['text'], 150));
 	}
 	
 	if ($edit){
@@ -123,11 +124,16 @@ function references($edit=0){
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script('include/js/scripts.php?file=ajax.js');
+    RMTemplate::get()->add_script('include/js/references.js');
+    RMTemplate::get()->add_script('include/js/editor-'.$rmc_config['editor_type'].'.js');
+    
     if ($rmc_config['editor_type']=='tiny')
         RMTemplate::get()->add_script(XOOPS_URL.'/modules/rmcommon/api/editors/tinymce/tiny_mce_popup.js');
+    elseif($rmc_config['editor_type']=='xoops')
+        RMTemplate::get()->add_script(XOOPS_URL.'/modules/rmcommon/api/editors/exmcode/editor-popups.js');
+    
     RMTemplate::get()->add_style('refs.css','docs');
     RMTemplate::get()->add_style('jquery.css','rmcommon');
-    RMTemplate::get()->add_head('<script type="text/javascript">$(document).ready(function(){$("frm-refs").validate();});</script>');
     
     // Options for table header
     $options[] = array(

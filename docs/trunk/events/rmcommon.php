@@ -80,6 +80,8 @@ class DocsRmcommonPreload{
     // Plugins for XoopsCode Editor
     public function eventRmcommonLoadExmcodePlugins(){
     ?>
+    <?php $ret = parse_url($_SERVER['HTTP_REFERER']);
+                   parse_str($ret['query'], $str); ?>
         x.add_plugin('docsrefs', {
             show: function(){
                 
@@ -87,13 +89,10 @@ class DocsRmcommonPreload{
                     width: 600,
                     height: 600,
                     title: 'Notes & References',
-                    url: '<?php echo XOOPS_URL; ?>/modules/docs/references.php',
+                    url: '<?php echo XOOPS_URL; ?>/modules/docs/references.php?id=<?php echo $str['id']; ?>',
                     single: 1,
                     maximizable: 1
                 });
-                
-            },
-            check: function(s){
                 
             }
         });
@@ -105,13 +104,10 @@ class DocsRmcommonPreload{
                     width: 600,
                     height: 600,
                     title: 'Figures',
-                    url: '<?php echo XOOPS_URL; ?>/modules/docs/figures.php',
+                    url: '<?php echo XOOPS_URL; ?>/modules/docs/figures.php?id=<?php echo $str['id']; ?>',
                     single: 1,
                     maximizable: 1
                 });
-                
-            },
-            check: function(s){
                 
             }
         });
