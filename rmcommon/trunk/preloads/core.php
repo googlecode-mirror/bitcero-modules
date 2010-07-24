@@ -57,6 +57,10 @@ class RmcommonCorePreload extends XoopsPreloadItem
 		// 3 = Add redirect
 		// 4 = Allow external link
 		RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
+        if(!defined('XOOPS_CPFUNC_LOADED')) return;
+        
+        redirectMsg($params[0], $params[2]);
+        die();
 		
 	}
 	

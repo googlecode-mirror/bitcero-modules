@@ -112,7 +112,9 @@ class RMFormEditor extends RMFormElement
 	}
 	
 	public function renderTArea(){
-		return "<div id=\"ed-container\" style=\"width: $this->_width\"><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";'>".$this->_default."</textarea></div>";
+		return "<div id=\"ed-container\" style=\"width: $this->_width\">
+                 <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";'>".$this->_default."</textarea>
+                 </div>";
 	}
 	/**
 	 * Set de funciones útiles nicamente con el editor TinyMCE
@@ -139,7 +141,7 @@ class RMFormEditor extends RMFormElement
         <a id=\"edButtonPreview\" class=\"active\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
         </div>
         <div id=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
-        <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
+        <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
 		return $rtn;
 	}
 	

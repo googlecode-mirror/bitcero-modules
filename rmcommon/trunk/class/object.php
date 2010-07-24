@@ -316,14 +316,14 @@ class RMObject
             case 'e':
             case 'edit':
                 $ts = TextCleaner::getInstance();
-                return $ts->htmlSpecialChars($ts->$ret);
+                return $ts->specialchars($ret);
                 break;
             case 'p':
             case 'preview':
             case 'f':
             case 'formpreview':
                 $ts =& TextCleaner::getInstance();
-                return $ts->htmlSpecialChars($ts->stripSlashesGPC($ret));
+                return $ts->specialchars($ts->stripSlashesGPC($ret));
                 break 1;
             case 'n':
             case 'none':
@@ -733,7 +733,7 @@ class RMObject
 			if (!isset($efes[1])){
 				$efes[1] = $v['Type'];
 			}
-			
+
 			switch ($efes[1]){
 				case 'mediumint':
 				case 'int':
@@ -771,6 +771,7 @@ class RMObject
 				case 'tinytext':
 				case 'enum':
 				case 'set':
+                case 'varchar':
 					$type = XOBJ_DTYPE_TXTBOX;
 					$lon = isset($len[3]) ? $len[3] : null;
 					break;
