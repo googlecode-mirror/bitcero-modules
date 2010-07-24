@@ -19,6 +19,10 @@ var editor = jQuery.extend({
         ed = tinyMCEPopup.editor;
         ed.execCommand("mceInsertContent", true, '[figure:'+id+']');
         tinyMCEPopup.close();
+    },
+    
+    close: function(){
+        tinyMCEPopup.close();
     }
     
 });

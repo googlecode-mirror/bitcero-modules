@@ -20,6 +20,10 @@ var editor = jQuery.extend({
     insertFigure: function(id){
         exmPopup.insertText('[figure:'+id+']');
         exmPopup.closePopup();
+    },
+    
+    close: function(){
+        exmPopup.closePopup();
     }
     
 });

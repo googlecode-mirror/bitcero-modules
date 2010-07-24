@@ -98,6 +98,115 @@ function send_note_foredit(){
     
 }
 
+/**
+* Get a list of existing notes cording to given parameters
+*/
+function notes_list(){
+    global $rmc_config;
+    
+    $id= rmc_server_var($_REQUEST, 'id', 0);
+    $container = rmc_server_var($_GET, 'container', '');
+    
+    $rmc_config = RMFunctions::configs();
+
+    $db = Database::getInstance();
+    
+    //Navegador de páginas
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+    $sql1='';
+    if ($search){
+        
+        //Separamos la frase en palabras para realizar la búsqueda
+        $words = explode(" ",$search);
+        
+        foreach($words as $k){
+            //Verificamos el tamaño de la palabra
+            if (strlen($k) <= 2) continue;    
+            $sql1.=($sql1=='' ? ' AND ' : " OR "). " title LIKE '%$k%' ";
+        }    
+    
+    }
+    list($num)=$db->fetchRow($db->queryF($sql.$sql1));
+    
+    $page = rmc_server_var($_GET, 'page', 1);
+    $page = $page<=0 ? 1 : $page;
+    $limit = rmc_server_var($_GET,'limit',5);
+
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 4);
+    $nav->target_url('javascript:;" onclick="docsAjax.getNotes('.$id.',6,{PAGE_NUM},\''.$container.'\');"');
+
+    //Lista de Referencias existentes
+    $sql="SELECT id_ref,title,text FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+    $sql.=" ORDER BY id_ref DESC LIMIT $start,$limit";
+    $result=$db->query($sql);
+    $references = array();
+    while ($rows=$db->fetchArray($result)){
+        $references[] = array('id'=>$rows['id_ref'],'title'=>$rows['title'],'content'=>TextCleaner::getInstance()->truncate($rows['text'], 150));
+    }
+    
+    include RMTemplate::get()->get_template('ajax/rd_notes_list.php','module','docs');
+    die();
+}
+
+/**
+* Get a list of existing igures according to given parameters
+*/
+function figures_list(){
+    global $rmc_config;
+    
+    $id= rmc_server_var($_REQUEST, 'id', 0);
+    $container = rmc_server_var($_GET, 'container', '');
+    
+    $rmc_config = RMFunctions::configs();
+
+    $db = Database::getInstance();
+    
+    //Navegador de páginas
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_figures')." WHERE id_res='$id'";
+    $sql1='';
+    if ($search){
+        
+        //Separamos la frase en palabras para realizar la búsqueda
+        $words = explode(" ",$search);
+        
+        foreach($words as $k){
+            //Verificamos el tamaño de la palabra
+            if (strlen($k) <= 2) continue;    
+            $sql1.=($sql1=='' ? ' AND ' : " OR "). " desc LIKE '%$k%' ";
+        }    
+    
+    }
+    list($num)=$db->fetchRow($db->queryF($sql.$sql1));
+    
+    $page = rmc_server_var($_GET, 'page', 1);
+    $page = $page<=0 ? 1 : $page;
+    $limit = rmc_server_var($_GET,'limit',5);
+
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 4);
+    $nav->target_url('javascript:;" onclick="docsAjax.getFigures('.$id.',6,{PAGE_NUM},\''.$container.'\');"');
+
+    //Lista de Referencias existentes
+    $sql="SELECT id_fig,`desc`,content FROM ".$db->prefix('pa_figures')." WHERE id_res='$id'";
+    $sql.=" ORDER BY id_fig DESC LIMIT $start,$limit";
+    $result=$db->query($sql);
+    $figures = array();
+    while ($rows=$db->fetchArray($result)){
+        $figures[] = array('id'=>$rows['id_fig'],'desc'=>$rows['desc'],'content'=>TextCleaner::getInstance()->truncate($rows['content'], 150));
+    }
+    
+    include RMTemplate::get()->get_template('ajax/rd_figures_list.php','module','docs');
+    die();
+}
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 switch($action){
@@ -106,6 +215,12 @@ switch($action){
         break;
     case 'note-edit':
         send_note_foredit();
+        break;
+    case 'notes-list':
+        notes_list();
+        break;
+    case 'figures-list':
+        figures_list();
         break;
     default:
         break;

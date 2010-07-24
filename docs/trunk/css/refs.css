@@ -75,6 +75,10 @@
     background: url(../images/notenew.png) no-repeat left;
     padding-left: 20px;
 }
+#option-new-fig{
+    background: url(../images/figures.png) no-repeat left;
+    padding-left: 20px;
+}
 #option-resource{
     background: url(../images/select-res.png) no-repeat left;
     padding-left: 20px;

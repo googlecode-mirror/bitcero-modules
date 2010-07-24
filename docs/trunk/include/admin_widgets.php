@@ -22,27 +22,13 @@ function rd_widget_options(){
     global $res, $xoopsUser, $xoopsSecurity;
     
     $ret['title'] = __('Section Options','docs');
-    $sections = array();
-    RDFunctions::getSectionTree($sections, 0, 0, $res->id(), 'id_sec, title', isset($sec) ? $sec->id() : 0);
-    $usrfield = new RMFormUser('','uid',false,isset($sec) ? array($sec->getVar('uid')) : $xoopsUser->getVar('uid'));
+    
     ob_start();
 ?>
 <div class="rd_widget_form">
     <form name="frmoptions" method="post" action="">
-    <p><?php echo sprintf(__('Resource: %s','docs'), '<strong><a href="sections.php?id='.$res->id().'">'.$res->getVar('title').'</a></strong>'); ?></p>
-    <p>
-    <label for="sec-parent"><?php _e('Parent section:','docs'); ?></label>
-    <select name="parent" id="sec-parent">
-        <option value=""><?php _e('Select...','docs'); ?></option>
-        <?php foreach($sections as $k): ?>
-        <option value="<?php echo $k['id_sec']; ?>"<?php if(isset($sec) && $sec->parent()==$k['id_sec']): ?> selected="selected"<?php endif; ?>><?php echo str_repeat('--', $k['saltos']).' '.$k['title']; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <label for="sec-order"><?php _e('Display order:','docs'); ?></label>
-    <input type="text" size="5" id="sec-order" name="order" value="<?php echo isset($sec) ? $sec->getVar('order') : 0; ?>" />
-    <label><?php _e('Author:','docs'); ?></label>
-    <?php echo $usrfield->render(); ?>
-    </p>
+    <input type="submit" value="<?php _e('Save Section','docs'); ?>" />
+    <input type="button" value="<?php _e('Discard Section','docs'); ?>" onclick="history.go(-1);" />
     </form>
 </div>
 <?php
@@ -54,21 +40,30 @@ function rd_widget_options(){
 * Show the references created for a resource
 */
 function rd_widget_references(){
-    global $res;
+    global $res, $rmc_config;
     
-    $ret['title'] = __('Notes & References','docs');
-    $references = RDFunctions::references($res->id());
+    $ret['title'] = __('Notes &amp; References','docs');
+    $count = 0;
+    $references = RDFunctions::references($res->id(),&$count, '',0,6);
+
+    $nav = new RMPageNav($count, 6, 1, 3);
+    $nav->target_url('javascript:;" onclick="docsAjax.getNotes('.$res->id().',6,{PAGE_NUM},\'rd-wd-references\')');
+    RMTemplate::get()->add_script('../include/js/scripts.php?file=ajax.js');
+
     ob_start();
 ?>
-<div id="rd-wd-refrences">
-<?php
-    if(count($references)<=0) _e('There are not exists references for this resource yet!','docs');
-    foreach($references as $ref):
-?>
-    
-<?php
-    endforeach;
-?>
+<div id="rd-wd-references">
+    <ul>
+    <?php
+        if(count($references)<=0) _e('There are not exists references for this resource yet!','docs');
+        foreach($references as $ref):
+    ?>
+        <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[note:<?php echo $ref['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $ref['title']; ?></a></li>
+    <?php
+        endforeach;
+    ?>
+    </ul>
+    <?php $nav->display(false); ?>
 </div>
 <?php
     $ret['content'] = ob_get_clean();
@@ -80,9 +75,33 @@ function rd_widget_references(){
 * Shows the figures for a resource
 */
 function rd_widget_figures(){
+    global $res, $rmc_config;
     
     $ret['title'] = __('Resource Figures','docs');
-    $ret['content'] = 'Figures';
+    $count = 0;
+    $figures = RDFunctions::figures($res->id(),&$count, '',0,6);
+
+    $nav = new RMPageNav($count, 6, 1, 3);
+    $nav->target_url('javascript:;" onclick="docsAjax.getFigures('.$res->id().',6,{PAGE_NUM},\'rd-wd-figures\')');
+    RMTemplate::get()->add_script('../include/js/scripts.php?file=ajax.js');
+
+    ob_start();
+?>
+<div id="rd-wd-figures">
+    <ul>
+    <?php
+        if(count($figures)<=0) _e('There are not exists figures for this resource yet!','docs');
+        foreach($figures as $fig):
+    ?>
+        <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[figure:<?php echo $fig['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $fig['desc']; ?></a></li>
+    <?php
+        endforeach;
+    ?>
+    </ul>
+    <?php $nav->display(false); ?>
+</div>
+<?php
+    $ret['content'] = ob_get_clean();
     return $ret;
     
 }

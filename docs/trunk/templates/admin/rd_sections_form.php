@@ -9,6 +9,39 @@
     <?php endif; ?>
     <?php echo $editor->render(); ?>
     <br />
+    <table width="100%" cellspacing="0">
+        <tr>
+            <td style="padding: 4px; vertical-align: top;">
+            <div class="outer">
+                <div class="th"><?php _e('Section Author:','docs'); ?></div>
+                <div class="even" style="text-align: center;">
+                    <?php echo $usrfield->render(); ?>
+                </div>
+            </div>
+            </td>
+            <td style="padding: 4px; vertical-align: top;">
+                <table class="outer">
+                    <tr><th align="left" colspan="3"><?php _e('Sections Options','docs'); ?></th></tr>
+                    <tr class="even section_options">
+                        <td>
+                            <label for="sec-parent"><?php _e('Parent section:','docs'); ?></label>
+                            <select name="parent" id="sec-parent">
+                                <option value=""><?php _e('Select...','docs'); ?></option>
+                                <?php foreach($sections as $k): ?>
+                                <option value="<?php echo $k['id_sec']; ?>"<?php if(isset($sec) && $sec->parent()==$k['id_sec']): ?> selected="selected"<?php endif; ?>><?php echo str_repeat('--', $k['saltos']).' '.$k['title']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td>
+                             <label for="sec-order"><?php _e('Display order:','docs'); ?></label>
+                             <input type="text" size="5" id="sec-order" name="order" value="<?php echo isset($sec) ? $sec->getVar('order') : 0; ?>" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
     <div class="outer">
         <div class="th"><?php _e('Custom Fields','docs'); ?></div>
         <div class="even">

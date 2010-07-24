@@ -4,6 +4,17 @@
 .rmc_pages_navigation_container{
     float: right;
 }
+#rd-form-container .section_options td{
+    vertical-align: top;
+}
+#rd-form-container .section_options label{
+    display: block;
+    padding: 4px 0;
+}
+#rd-form-container .section_options input[type="text"],
+#rd-form-container .section_options select{
+    width: 94%;
+}
 #rd-form-container .large{
     width: 99%;
     font-size: 1.8em;
@@ -23,17 +34,46 @@
     width: 98%;
 }
 .rd_widget_form{
-    
+    text-align: center;
 }
-.rd_widget_form label{
-    display: block;
-    margin: 0 0 3px 0;
-    cursor: pointer;
-    font-weight: bold;
-}
-.rd_widget_form input,
-.rd_widget_form select{
+
+.rd_widget_form input{
     width: 95%;
+    margin: 5px 0;
+}
+#rd-wd-references,
+#rd-wd-figures{
+    overflow: hidden;
+    position: relative;
+}
+#rd-wd-references ul,
+#rd-wd-figures ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#rd-wd-references ul li,
+#rd-wd-figures ul li{
+    padding: 2px 2px;
+    border-bottom: 1px dotted #CCC;
+}
+#rd-wd-references ul li a{
     display: block;
-    margin: 0 0 8px 0;
+    background: url(../images/notes.png) no-repeat left;
+    padding: 2px 2px 2px 20px;
+}
+#rd-wd-references .loader,
+#rd-wd-figures .loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -16px;
+    display: none;
+}
+#rd-wd-figures ul li a{
+    display: block;
+    background: url(../images/figures.png) no-repeat left;
+    padding: 2px 2px 2px 20px;
 }

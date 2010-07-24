@@ -94,7 +94,7 @@ function rd_show_sections(){
 * @desc Formulario de creación y edición de sección
 **/
 function rd_show_form($edit=0){
-	global $xoopsModule, $xoopsConfig, $xoopsSecurity;
+	global $xoopsModule, $xoopsConfig, $xoopsSecurity, $xoopsUser;
     
     define('RMCSUBLOCATION','newresource');
 	$id=rmc_server_var($_GET, 'id', 0);
@@ -132,78 +132,25 @@ function rd_show_form($edit=0){
 		}
         
 	}
-	
-
-	/*
-    $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
-	$form->tinyCSS(XOOPS_URL.'/modules/ahelp/styles/editor.css');
-	$form->addElement(new RMFormLabel(_AS_AH_RESOURCE,$res->getVar('title')));
-	$form->addElement(new RMFormText(_AS_AH_TITLE,'title',50,200,$edit ? $sec->title() : ''),true);
-	$form->addElement(new RMFormText(_AS_AH_SHORTNAME, 'nameid', 50, 200, $edit ? $sec->nameId() : ''));
-	if ($edit){
-		$ele = new RMEditorAddons(_OPTIONS,'options','content',$xoopsConfig['editor_type'],$res->id(),$sec->id(),$id_sec);
-		$cHead = $ele->jsFunctions();
-		$form->addElement($ele);
-	} else {
-		$form->addElement(new RMFormLabel(_OPTIONS, _AS_AH_REFFIG));
-	}
-	$form->addElement(new RMFormEditor(_AS_AH_CONTENT,'content','90%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0));
-	if ($edit){
-		$dohtml = $sec->getVar('dohtml');
-		$doxcode = $sec->getVar('doxcode');
-		$dobr = $sec->getVar('dobr');
-		$dosmiley = $sec->getVar('dosmiley');
-		$doimage = $sec->getVar('doimage');
-	} else {
-		$dohtml = 1;
-		$doxcode = 0;
-		$dobr = 0;
-		$dosmiley = 0;
-		$doimage = 0;
-	}
-	$form->addElement(new RMFormTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
-	
-	// Arbol de Secciones
-	$ele= new RMFormSelect(_AS_AH_SECTION,'parent');
-	$ele->addOption(0,_SELECT);
-	$tree = array();
-	getSectionTree($tree, 0, 0, $res->id(), 'id_sec, title', $edit ? $sec->id() : 0);
-	foreach ($tree as $k){
-		$ele->addOption($k['id_sec'], str_repeat('--', $k['saltos']).' '.$k['title'], $edit ? ($sec->parent()==$k['id_sec'] ? 1 : 0) : 0);
-	}
-	
-	$form->addElement($ele);
-
-	$form->addElement(new RMFormText(_AS_AH_ORDER,'order',5,5,$edit ? $sec->order() : ''),true);
-	// Usuario
-	if ($edit) $form->addElement(new RMFormUserEXM(_AS_AH_FUSER, 'uid', 0, array($sec->uid()), 30));
-
-	$buttons =new RMFormButtonGroup();
-	$buttons->addButton('sbt',_AS_AH_SAVENOW,'submit');
-	$buttons->addButton('ret', _AS_AH_SAVERET, 'submit', 'onclick="document.forms[\'frmsec\'].op.value=\''.($edit ? 'saveretedit' : 'saveret').'\';"');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'sections.php?id='.$id.'\';"');
-
-	$form->addElement($buttons);
-
-	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit': 'save' ));
-	$form->addElement(new RMFormHidden('id',$id));
-	$form->addElement(new RMFormHidden('id_sec',$id_sec));
-	
-	$form->display();
-    */
     
     $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
-    $tiny = TinyEditor::getInstance();
-    $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
-    $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
+    if ($rmc_config['editor_type']=='tiny'){
+        $tiny = TinyEditor::getInstance();
+        $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
+        $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
+    }
     $editor = new RMFormEditor(_AS_AH_CONTENT,'content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
+    $usrfield = new RMFormUser('','uid',false,$edit ? array($sec->getVar('uid')) : $xoopsUser->getVar('uid'));
     
     RMTemplate::get()->add_style('admin.css', 'docs');
     RMTemplate::get()->add_script('../include/js/scripts.php?file=metas.js');
+    RMTemplate::get()->add_head('<script type="text/javascript">var docsurl = "'.XOOPS_URL.'/modules/docs";</script>');
     RDFunctions::toolbar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_AH_EDITSECTION : _AS_AH_NEWSECTIONS));
     xoops_cp_header();
     
+    $sections = array();
+    RDFunctions::getSectionTree($sections, 0, 0, $id, 'id_sec, title', isset($sec) ? $sec->id() : 0);
     include RMTemplate::get()->get_template('admin/rd_sections_form.php', 'module', 'docs');
     
 	xoops_cp_footer();

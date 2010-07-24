@@ -15,13 +15,6 @@
 			width: 100%;
 		}
 	</style>
-	<script type="text/javascript">
-		function insert(id_ref){
-			window.opener.insertReference(id_ref);	
-			window.close();	
-		}
-        
-	</script>
 </head>
 <body>
 <?php foreach($rmc_messages as $message): ?>
@@ -33,12 +26,12 @@
  <form name="frm" method="POST" action="./references.php">
  <table class="outer" cellspacing="1" width="100%">
         <tr class="even">
-	    <td><strong><?php _e('Buscar','docs'); ?></strong>
+	    <td><strong><?php _e('Search','docs'); ?></strong>
 		<input type="text" name="search" size="15" value="<?php echo $search; ?>"/>
-		<input name="sbtsearch" class="formButton" value="<?php _e('Buscar','docs'); ?>" type="submit"/>
+		<input name="sbtsearch" class="formButton" value="<?php _e('Ir','docs'); ?>" type="submit"/>
         <input name="id" value="<?php echo $id; ?>" type="hidden" />
         <input name="section" value="<?php echo $id_sec; ?>" type="hidden" />
-        <input name="pag" value="<?php echo $page; ?>" type="hidden" />    
+        <input name="page" value="<?php echo $page; ?>" type="hidden" />    
 	    </td>
         <td align="center">
             <?php $nav->render(false); echo $nav->get_showing(); ?>
@@ -60,13 +53,13 @@
   </form>
 </div>
 
-<form name="frmref" method="POST" action="references.php">
+<form name="frmref" id="frm-notes" method="POST" action="references.php">
 <table class='outer' cellspacing="1">
 	<tr>
 		<th colspan="4"><?php _e('Existing notes and references','docs'); ?></th>
 	</tr>
 	<tr class="head" align="center">
-		<td><input type="checkbox" name="checkAll" onchange="xoopsCheckAll('frmref', 'checkAll');"/></td>
+		<td><input type="checkbox" name="checkall" id="checkall" onchange="$('#frm-notes').toggleCheckboxes(':not(#checkall)');"/></td>
 		<td><?php _e('ID','docs'); ?></td>
 		<td><?php _e('Title','docs'); ?></td>
 		<td><?php _e('Options','docs'); ?></td>
@@ -86,13 +79,13 @@
 	<?php endforeach; ?>
 	<tr class="foot">
 		<td colspan="4">
-		<input name="delete" class="formButton" type="submit" value="<?php _e('Delete','docs'); ?>" onclick="document.forms['frmref'].op.value='delete'; return confirm('<{$lang_confirm}>');" />
-		<input name="close" class="formButton" type="button" value="<?php _e('Close','docs'); ?>" onclick="tinyMCEPopup.close();" />
+		<input name="delete" class="formButton" type="submit" value="<?php _e('Delete','docs'); ?>" onclick="return confirm('<?php _e('Do you really wish to delet selected notes?','docs'); ?>');" />
+		<input name="close" class="formButton" type="button" value="<?php _e('Close','docs'); ?>" onclick="editor.close();" />
 		<?php $nav->display(false); ?></td>
 	</tr>
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
-<input name="op" type="hidden" />
+<input name="action" type="hidden" value="delete" />
 <input name="id" value="<?php echo $id; ?>" type="hidden" />
 <input name="page" value="<?php echo $page; ?>" type="hidden" />
 <input name="search" value="<?php echo $search; ?>" type="hidden" />

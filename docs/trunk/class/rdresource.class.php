@@ -1,13 +1,12 @@
 <?php
-// $Id: ahresource.class.php 409 2010-05-13 18:00:22Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
-
+// Rapid Docs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 class RDResource extends RMObject{
 	

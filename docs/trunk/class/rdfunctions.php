@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Rapid Docs
+// RapidDocs
 // Documentation system for Xoops.
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
@@ -90,12 +90,13 @@ class RDFunctions
     /**
     * Get all references list according to given parameters
     * @param int Resource ID
+    * @param Referenced var to return results count
     * @param string Search keyword
     * @param int Start results
     * @param int Results number limit
     * @return array
     */
-    public function references($res=0, $search='', $start=0, $limit=15){
+    public function references($res=0, &$count, $search='', $start=0, $limit=15){
         
         $db = Database::getInstance();
         
@@ -108,10 +109,11 @@ class RDFunctions
         
         list($num) = $db->fetchRow($db->query($sql));
         $limit = $limit<=0 ? 15 : $limit;
+        $count = $num;
 
         //Fin de navegador de páginas    
         $sql = str_replace("COUNT(*)","*", $sql);
-        $sql .= " LIMIT $start,$limit";
+        $sql .= " ORDER BY id_ref DESC LIMIT $start,$limit";
         
         $result=$db->query($sql);
         $references = array();
@@ -127,6 +129,51 @@ class RDFunctions
         }
         
         return $references;
+
+    }
+    
+    /**
+    * Get all figures list according to given parameters
+    * @param int Resource ID
+    * @param Referenced var to return results count
+    * @param string Search keyword
+    * @param int Start results
+    * @param int Results number limit
+    * @return array
+    */
+    public function figures($res=0, &$count, $search='', $start=0, $limit=15){
+        
+        $db = Database::getInstance();
+        
+        $sql="SELECT COUNT(*) FROM ".$db->prefix('pa_figures').($res>0 ? " WHERE id_res='$res'" : '');
+        
+        if ($search!='')
+            $sql .= ($res>0 ? " AND " : " WHERE ")." (desc LIKE '%$k%' OR content LIKE '%$k%')";
+            
+        if ($res>0) $res = new RDResource($res);
+        
+        list($num) = $db->fetchRow($db->query($sql));
+        $limit = $limit<=0 ? 15 : $limit;
+        $count = $num;
+
+        //Fin de navegador de páginas    
+        $sql = str_replace("COUNT(*)","*", $sql);
+        $sql .= " ORDER BY id_fig DESC LIMIT $start,$limit";
+        
+        $result=$db->query($sql);
+        $figures = array();
+        while ($rows=$db->fetchArray($result)){
+            $ref= new RDFigure();
+            $ref->assignVars($rows);
+
+            if($res->isNew()) $res=new RDResource($ref->resource());
+        
+            $figures[] = array('id'=>$ref->id(),'desc'=>$ref->getVar('desc'),'content'=>substr(TextCleaner::getInstance()->clean_disabled_tags($ref->getVar('content')),0,50)."...",
+                    'resource'=>$res->getVar('title'));
+        
+        }
+        
+        return $figures;
 
     }
     

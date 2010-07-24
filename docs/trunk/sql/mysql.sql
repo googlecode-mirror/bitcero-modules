@@ -1,10 +1,9 @@
 CREATE TABLE `pa_figures` (
   `id_fig` int(10) unsigned NOT NULL auto_increment,
   `id_res` int(10) unsigned NOT NULL default '0',
-  `class` varchar(150) NOT NULL,
-  `style` varchar(255) NOT NULL,
+  `attrs` text NOT NULL,
   `desc` varchar(255) NOT NULL,
-  `text` text NOT NULL,
+  `content` text NOT NULL,
   PRIMARY KEY  (`id_fig`)
 ) TYPE=MyISAM ;
 
@@ -54,12 +53,6 @@ CREATE TABLE `pa_sections` (
   `uname` varchar(40) NOT NULL,
   `created` int(10) NOT NULL default '0',
   `modified` int(10) NOT NULL default '0',
-  `dohtml` tinyint(1) NOT NULL default '1',
-  `doxcode` tinyint(1) NOT NULL default '0',
-  `dobr` tinyint(1) NOT NULL default '0',
-  `doimage` tinyint(1) NOT NULL default '0',
-  `dosmiley` tinyint(1) NOT NULL default '0',
-  `featured` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_sec`),
   KEY `nameid` (`nameid`)
 ) TYPE=MyISAM ;

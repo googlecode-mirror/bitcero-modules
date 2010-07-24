@@ -49,7 +49,7 @@ class DocsRmcommonPreload{
             
             ed.addCommand('mceRapidDocsFigures', function() {
                 ed.windowManager.open({
-                    file : '<?php echo XOOPS_URL; ?>/modules/docs/figures.php',
+                    file : '<?php echo XOOPS_URL; ?>/modules/docs/figures.php?id=<?php echo $str['id']; ?>',
                     width : 600 + parseInt(ed.getLang('exmsystem.delta_width', 0)),
                     height : 600 + parseInt(ed.getLang('exmsystem.delta_height', 0)),
                     inline : 1,

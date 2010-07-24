@@ -30,8 +30,8 @@ if (!$xoopsUser){
 }else{
 	if (!($xoopsUser->uid()==$res->getVar('owner')) && 
 	!$res->isEditor($xoopsUser->uid()) && 
-	!$xoopsUser->isAdmin()){
-		redirect_header(XOOPS_URL.'/modules/ahelp',2,__('You are not allowed to view this page','docs'));
+	!$xoopsUser->isAdmin() && !$res->isNew()){
+		redirect_header(XOOPS_URL.'/modules/docs/references.php',2,__('You are not allowed to view this page','docs'));
 		die();
 	}
 }
@@ -77,9 +77,9 @@ function references($edit=0){
     $start = $num<=0 ? 0 : ($page - 1) * $limit;
     
     $nav = new RMPageNav($num, $limit, $page, 4);
-    $nav->target_url("?id=$id&amp;page={PAGE_NUM}");
+    $nav->target_url("?id=$id&amp;page={PAGE_NUM}&search=$search");
 
-	$ruta='?id='.$id.'&page='.$page.'&limit='.$limit.'&search='.$search;
+	$ruta='?id='.$id.'&page='.$page.'&search='.$search;
 	//Lista de Referencias existentes
 	$sql="SELECT id_ref,title,text FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
 	$sql1='';
@@ -149,11 +149,11 @@ function references($edit=0){
         'tip'   => __('Create a new note.','docs')
     );
     // Get additional options from other modules or plugins
-    $options = RMEvents::get()->run_event('docs.references.options',$options, $id, $edit, $edit ? $ref : null);
+    $options = RMEvents::get()->run_event('docs.notes.options',$options, $id, $edit, $edit ? $ref : null);
     
     // Insert adtional content in template
     $other_content = '';
-    $other_content = RMEvents::get()->run_event('docs.additional.content', $other_content, $id, $edit, $edit ? $ref : null);
+    $other_content = RMEvents::get()->run_event('docs.additional.notes.content', $other_content, $id, $edit, $edit ? $ref : null);
     
 	include RMTemplate::get()->get_template('rd_references.php', 'module', 'docs');
 
@@ -240,46 +240,30 @@ function saveReferences($edit=0){
 * @desc Elimina las referencias especificadas
 **/
 function deleteReferences(){
-	global $util;
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
- 	$references=isset($_REQUEST['refs']) ? $_REQUEST['refs'] : array();
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+	global $xoopsSecurity;
+	$id = rmc_server_var($_POST, 'id', 0);
+ 	$references = rmc_server_var($_POST, 'refs', array());
+	$page = rmc_server_var($_POST, 'page', 1);
+	$search = rmc_server_var($_POST, 'search', '');
 	
-	$ruta='?id='.$id.'&pag='.$pag.'&limit='.$limit.'&search='.$search;
-	if (!$util->validateToken()){
-		redirectMsg('./references.php'.$ruta,_MS_AH_SESSINVALID, 1);
+	$ruta='?id='.$id.'&page='.$page.'&search='.$search;
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./references.php'.$ruta, __('Session token expired!','docs'), 1);
 		die();
 	}
 
-	if (!is_array($references) || empty($references)){
-		redirectMsg('./references.php'.$ruta,_MS_AH_REF,1);
+	if (!is_array($references)){
+		redirectMsg('./references.php'.$ruta, __('Select a note to delete!','docs'),1);
 		die();
 	}
-
-	$errors='';
-	foreach ($references as $k){
-		//Comprueba si la referencia es válida		
-		if ($k<=0){
-			$errors.=sprintf(_MS_AH_REFNOTVALID, $k);		
-			continue;
-		}		
-		$ref=new AHReference($k);
-		if ($ref->isNew()){
-			$errors.=sprintf(_MS_AH_REFNOTEXIST, $k);			
-			continue;
-		}
-		$ref->delete();
-						
-	}
-
-	if ($errors==''){
-		redirectMsg('./references.php'.$ruta,_MS_AH_DBOK,0);
-	}
-	else{
-		redirectMsg('./references.php'.$ruta,_MS_AH_ERRORS.$errors,1);
+    
+    $db = Database::getInstance();
+	$sql = "DELETE FROM ".$db->prefix("pa_references")." WHERE id_ref IN(".implode(',',$references).")";
+    
+	if (!$db->queryF($sql)){
+		redirectMsg('./references.php'.$ruta, __('Errores ocurred while trying to delete notes.'),1);
+	}else{
+		redirectMsg('./references.php'.$ruta, __('Notes deleted successfully!','docs'),0);
 	}
 	
 

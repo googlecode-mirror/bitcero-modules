@@ -138,6 +138,81 @@ var docsAjax = jQuery.extend({
             
         }, 'json');
         
+    },
+    
+    getNotes: function(res,limit,page,c){
+        var params = {
+            'id': res,
+            'limit': limit,
+            'page': page,
+            'action': 'notes-list',
+            'container': c
+        }
+        
+        $("#"+c+" ul").css({"-moz-opacity":'0.5','filter':'alpha(opacity=50)','-khtml-opacity':'0.5','opacity':'0.5'});
+        $("#"+c).append('<img src="'+docsurl+'/images/wait.gif" class="loader" alt="" />')
+        $("#"+c+" .loader").fadeIn('slow');
+        
+        $.get(docsurl+'/include/ajax-functions.php', params, function(data){
+            $("#"+c).html(data);
+        }, 'html');
+        
+    },
+    
+    getFigures: function(res,limit,page,c){
+        var params = {
+            'id': res,
+            'limit': limit,
+            'page': page,
+            'action': 'figures-list',
+            'container': c
+        }
+        
+        $("#"+c+" ul").css({"-moz-opacity":'0.5','filter':'alpha(opacity=50)','-khtml-opacity':'0.5','opacity':'0.5'});
+        $("#"+c).append('<img src="'+docsurl+'/images/wait.gif" class="loader" alt="" />')
+        $("#"+c+" .loader").fadeIn('slow');
+        
+        $.get(docsurl+'/include/ajax-functions.php', params, function(data){
+            $("#"+c).html(data);
+        }, 'html');
+        
+    },
+    
+    insertIntoEditor: function(text,type){
+        if(type=='tiny'){
+            tinyMCE.execCommand("mceInsertContent", true, text);
+        }else if(type=='xoops'){
+            exmCodeContent.insertText(text)
+        }else if(type=='html'){
+            edInsertContent('content',text);
+        }else{
+            
+            myField = document.getElementById('content');
+            //IE support
+            if (document.selection) {
+                myField.focus();
+                sel = document.selection.createRange();
+                sel.text = text;
+                myField.focus();
+            }
+            //MOZILLA/NETSCAPE support
+            else if (myField.selectionStart || myField.selectionStart == '0') {
+                var startPos = myField.selectionStart;
+                var endPos = myField.selectionEnd;
+                var scrollTop = myField.scrollTop;
+                myField.value = myField.value.substring(0, startPos)
+                              + text 
+                              + myField.value.substring(endPos, myField.value.length);
+                myField.focus();
+                myField.selectionStart = startPos + text.length;
+                myField.selectionEnd = startPos + text.length;
+                myField.scrollTop = scrollTop;
+            } else {
+                myField.value += text;
+                myField.focus();
+            }
+            
+        }
     }
     
 });

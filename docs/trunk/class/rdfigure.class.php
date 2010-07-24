@@ -8,12 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class RDReference extends RMObject{
+class RDFigure extends RMObject{
+
 
 	function __construct($id=null){
 
 		$this->db =& Database::getInstance();
-		$this->_dbtable = $this->db->prefix("pa_references");
+		$this->_dbtable = $this->db->prefix("pa_figures");
 		$this->setNew();
 		$this->initVarsFromTable();
 
@@ -29,9 +30,8 @@ class RDReference extends RMObject{
 
 
 	public function id(){
-		return $this->getVar('id_ref');
+		return $this->getVar('id_fig');
 	}
-
 
 	public function save(){
 		if ($this->isNew()){
@@ -46,6 +46,7 @@ class RDReference extends RMObject{
 		return $this->deleteFromTable();
 
 	}
-
+    
 }
+
 ?>
