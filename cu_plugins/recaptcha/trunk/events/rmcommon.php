@@ -11,7 +11,7 @@
 class RecaptchaPluginRmcommonPreload
 {
     
-    public function eventRmcommonCommentsForm(&$form, $module, $params, $type){
+    public function eventRmcommonCommentsForm($form, $module, $params, $type){
         global $xoopsUser;
         
         $config = RMFunctions::get()->plugin_settings('recaptcha', true);
