@@ -307,13 +307,13 @@ function save_comment(){
 	}
     
     if ($id<=0){
-        redirectMsg('comments.php', __('Commend ID not specified!', 'rmcommon'), 1);
+        redirectMsg('comments.php', __('Comment ID not specified!', 'rmcommon'), 1);
         die();
     }
     
     $comment = new RMComment($id);
     if($comment->isNew()){
-        redirectMsg('comments.php?'.$qs, __('Specified comment does not exists!', 'rmcommon'), 1);
+        redirectMsg('comments.php?'.$qs, __('Specified comment does not exist!', 'rmcommon'), 1);
         die();
     }
 	

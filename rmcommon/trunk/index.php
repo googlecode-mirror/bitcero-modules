@@ -104,7 +104,7 @@ function rm_change_theme(){
         }
     }
     
-    redirectMsg('index.php', __('Specified theme does not exists!','rmcommon'), 1);
+    redirectMsg('index.php', __('Specified theme does not exist!','rmcommon'), 1);
     die();
     
 }

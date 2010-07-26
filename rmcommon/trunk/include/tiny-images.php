@@ -193,7 +193,7 @@ if ($action==''){
             'mime'      => isset($mimes[$fd['extension']]) ? $mimes[$fd['extension']] : 'application/octet-stream',
             'links'     => array(
                     'file'=>array('caption'=>__('File URL','rmcommon'),'value'=>XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/'.$img->getVar('file')),
-                    'none'=>array('caption'=>__('Ninguno','rmcommon'),'value'=>'')
+                    'none'=>array('caption'=>__('None','rmcommon'),'value'=>'')
             )
         );
         

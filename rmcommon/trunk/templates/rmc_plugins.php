@@ -1,6 +1,6 @@
 <h1 class="rmc_titles"><?php _e('Plugins Manager','rmcommon'); ?></h1>
 <div class="descriptions">
-<?php _e('Plugins allow to Common Utilities to improve its features and capabilities. Follow is a list with existing plugins, installed and available to install.','rmcommon'); ?>
+<?php _e('Plugins allows to Common Utilities to improve its features and capabilities. Following is a list with existing plugins, installed and available to install.','rmcommon'); ?>
 </div>
 
 <h3><?php _e('Installed Plugins', 'rmcommon'); ?></h3>

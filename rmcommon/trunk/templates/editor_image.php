@@ -68,7 +68,7 @@
             </td>
         </tr>
         <tr>
-            <td><?php _e('Enlace:','rmcommon'); ?></td>
+            <td><?php _e('Link:','rmcommon'); ?></td>
             <td><input type="text" id="url-link" value="" /></td>
         </tr>
         <tr>

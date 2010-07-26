@@ -35,7 +35,7 @@ function show_rss_content(){
 	$module = rmc_server_var($_GET,'mod','');
 	
 	if($module==''){
-		redirect_header('backend.php', 1, __('Choose an option to chose its feed','rmcommon'));
+		redirect_header('backend.php', 1, __('Choose an option to see its feed','rmcommon'));
 		die();
 	}
 	

@@ -2,7 +2,7 @@
 	<form name="search_form" method="get" action="comments.php">
 	<?php _e('Search:','rmcommon'); ?>
 	<input type="text" name="w" id="wsearch" value="<?php echo isset($keyw) ? $keyw : '' ?>" size="20" />
-	<input type="button" value="<?php _e('Apply','rmcommon'); ?>" onclick="$('#wsearch').val()==''?alert('<?php _e('You need a something to search!','rmcommon'); ?>'):submit();" />
+	<input type="button" value="<?php _e('Apply','rmcommon'); ?>" onclick="$('#wsearch').val()==''?alert('<?php _e('You need something to search!','rmcommon'); ?>'):submit();" />
 	<input type="hidden" name="action" value="" />
 	</form>
 </div>

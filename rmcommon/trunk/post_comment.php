@@ -183,7 +183,7 @@ if ($action=='save'){
     
     $comment = new RMComment($id);
     if ($comment->isNew()){
-        redirect_header(rmc_server_var($_REQUEST, 'ret', XOOPS_URL), 1, __('Specified comment does not exists!', 'rmcommon'));
+        redirect_header(rmc_server_var($_REQUEST, 'ret', XOOPS_URL), 1, __('Specified comment does not exist!', 'rmcommon'));
         die();
     }
     
@@ -270,7 +270,7 @@ if ($action=='save'){
     
     $comment = new RMComment($id);
     if($comment->isNew()){
-        redirect_header(XOOPS_URL, 1, __('Specified comment does not exists!','rmcommon'));
+        redirect_header(XOOPS_URL, 1, __('Specified comment does not exist!','rmcommon'));
         die();
     }
 	

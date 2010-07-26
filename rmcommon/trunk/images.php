@@ -263,7 +263,7 @@ function new_category($edit = 0){
 		$cat = new RMImageCategory($id);
 		
 		if ($cat->isNew()){
-			redirectMsg('images.php?action=showcats', __('The specified category does not exists!','rmcommon'), 1);
+			redirectMsg('images.php?action=showcats', __('The specified category does not exist!','rmcommon'), 1);
 			die();
 		}
 		
@@ -349,7 +349,7 @@ function save_category($edit = 0){
     // Check if there are a category with same name
     $num = RMFunctions::get_num_records('rmc_img_cats', "name='$name'".($edit ? " AND id_cat<>'".$cat->id()."'" : ''));
     if($num>0){
-		redirectMsg($q, __('There are already a category with same name!','rmcommon'), 1);
+		redirectMsg($q, __('There is already a category with the same name!','rmcommon'), 1);
 		die();
     }
     
@@ -363,7 +363,7 @@ function save_category($edit = 0){
     if ($cat->save()){
         redirectMsg('images.php?action=showcats', __($edit ? 'Category updated successfully!' : 'Category saved successfully!','rmcommon'), 0);
     } else {
-        redirectMsg($q, __('There was erros while trying to save this category.','rmcommon').'<br />'.$cat->errors(), 1);
+        redirectMsg($q, __('There were some erros while trying to save this category.','rmcommon').'<br />'.$cat->errors(), 1);
     }
     
 }
@@ -394,7 +394,7 @@ function category_status($action='open'){
 		redirectMsg('images.php?action=showcats', __('Database updated successfully!','rmcommon'), 0);
 		die();
 	} else {
-		redirectMsg('images.php?action=showcats', __('There was erros while updating database:','rmcommon').'<br />'.$db->error(), 1);
+		redirectMsg('images.php?action=showcats', __('There were some erros while updating database:','rmcommon').'<br />'.$db->error(), 1);
 		die();
 	}
 	
@@ -576,7 +576,7 @@ function update_image(){
 	$id = rmc_server_var($_POST, 'id', 0);
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('images.php', __('Operation not alloed!','rmcommon'), 1);
+		redirectMsg('images.php', __('Operation not allowed!','rmcommon'), 1);
 		die();
 	}
 	
@@ -586,7 +586,7 @@ function update_image(){
 	}
 	
 	if (trim($title)==''){
-		redirectMsg("images.php?action=edit&id=$id&page=$page", __('You must to provide a title for this image','rmcommon'), 1);
+		redirectMsg("images.php?action=edit&id=$id&page=$page", __('You must  provide a title for this image','rmcommon'), 1);
 		die();
 	}
 	
@@ -598,7 +598,7 @@ function update_image(){
 	
 	$cat = new RMImageCategory($category);
 	if ($cat->isNew()){
-		redirectMsg("images.php", __('Category not exists!','rmcommon'), 1);
+		redirectMsg("images.php", __('Category not exist!','rmcommon'), 1);
 		die();
 	}
 	

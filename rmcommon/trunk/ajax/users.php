@@ -91,7 +91,7 @@ $result = $db->query($sql);
 
 $users = array();
 if ($all){
-	$users[] = array('id'=>0,'name'=>__('Todos','rmcommon'),'check'=>in_array(0, $selected));
+	$users[] = array('id'=>0,'name'=>__('All','rmcommon'),'check'=>in_array(0, $selected));
 }
 
 while ($row = $db->fetchArray($result)){

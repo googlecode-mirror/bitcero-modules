@@ -8,7 +8,7 @@
 <?php if ($field_type=='checkbox'): ?>
 <div class="form_users_selected_list">
 	<div id="<?php echo $field; ?>-selected-title" class="form_users_selected_title">
-		<?php _e('Seleccionados:','rmcommon'); ?> (<strong><span><?php echo count($selected); ?></span></strong>)
+		<?php _e('Selected:','rmcommon'); ?> (<strong><span><?php echo count($selected); ?></span></strong>)
 	</div>
 	<ul id="<?php echo $field; ?>-selected-list">
 	<?php foreach($selecteds as $sel): ?>
@@ -18,7 +18,7 @@
 		</label></li>
 	<?php endforeach; ?>
 	</ul>
-	<div align="center"><input type="button" value="<?php echo _e('Insertar Usuarios','rmcommon'); ?>" onclick="usersField.insert_users(<?php echo $type; ?>);" /></div>
+	<div align="center"><input type="button" value="<?php echo _e('Insert Users','rmcommon'); ?>" onclick="usersField.insert_users(<?php echo $type; ?>);" /></div>
 </div>
 <?php endif; ?>
 <div<?php if ($field_type=='checkbox'): ?> style="margin-right: 160px;"<?php endif; ?>>
@@ -41,7 +41,7 @@
 			<div style="float: right; font-weight: normal; font-size: 0.9em;">
 				<?php echo $nav->get_showing(); ?>
 			</div>
-			<?php _e('Usuarios existentes','system'); ?>
+			<?php _e('Existing Users','system'); ?>
 		</th>	
 	</tr>
 	<tr class="even form_users_list">
