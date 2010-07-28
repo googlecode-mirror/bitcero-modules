@@ -73,6 +73,8 @@ $modversion['templates'][7]['file'] = 'mywords_password.html';
 $modversion['templates'][7]['description'] = '';
 $modversion['templates'][8]['file'] = 'mywords_tag.html';
 $modversion['templates'][8]['description'] = '';
+$modversion['templates'][9]['file'] = 'mywords_date.html';
+$modversion['templates'][9]['description'] = '';
 
 // Blog name
 $modversion['config'][0]['name'] = 'blogname';

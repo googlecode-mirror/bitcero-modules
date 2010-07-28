@@ -44,6 +44,12 @@ if (isset($vars['author'])){ $editor = $vars['author']; require 'author.php'; di
 if (isset($vars['tag'])){ $tag = $vars['tag']; require 'tag.php'; die(); }
 if (isset($vars['edit'])){ require 'submit.php'; die(); }
 if (isset($vars['trackback'])){ $id = $vars['trackback']; require 'trackbacks.php'; die(); }
+if (isset($vars['date'])){ 
+    $vars = explode("/", $vars['date']);
+    $time = mktime(0,0,0,$vars[1],$vars[0],$vars[2]);
+    $time2 = mktime(23,59,59,$vars[1],$vars[0],$vars[2]);
+    require 'date.php'; die();
+}
 
 $vars = explode('/', $request);
 
@@ -52,7 +58,15 @@ $vars = explode('/', $request);
 $db =& Database::getInstance();
 if (is_numeric($vars[0]) && is_numeric($vars[1]) && is_numeric($vars[2])){
 	
-	$time = mktime(0,0,0,$vars[1],$vars[0],$vars[2]);
+    $time = mktime(0,0,0,$vars[1],$vars[0],$vars[2]);
+    
+    // Check if query is for a date range
+    if (!isset($vars[3]) || $vars[3]=='page' || $vars[3]==''){
+        $time2 = mktime(23,59,59,$vars[1],$vars[0],$vars[2]);
+        require 'date.php';
+        die();
+    }
+    
 	$sql = "SELECT id_post FROM ".$db->prefix("mw_posts")." WHERE shortname='$vars[3]' AND (pubdate>=$time AND pubdate<=".($time + 86400).")";
 	$result = $db->query($sql);
 	list($post) = $db->fetchRow($result);

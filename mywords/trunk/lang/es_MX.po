@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyWords 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-19 19:26-0600\n"
-"PO-Revision-Date: 2010-07-19 19:29-0600\n"
+"POT-Creation-Date: 2010-07-28 01:54-0600\n"
+"PO-Revision-Date: 2010-07-28 01:55-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: BitC3R0 <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,25 @@ msgstr "Artículos en la categoría &#8216;%s&#8217;"
 #: D:\webserver\htdocs\xoops24\modules\mywords/categories.php:93
 msgid "Permalink to this post"
 msgstr "Enlace permanente a este artículo"
+
+#: D:\webserver\htdocs\xoops24\modules\mywords/categories.php:102
+#, php-format
+msgid "Posts published under \"%s\""
+msgstr "Entradas publicadas como %s"
+
+#: D:\webserver\htdocs\xoops24\modules\mywords/date.php:20
+msgid "There are not posts published on this date"
+msgstr "No existen entradas publicadas en esta fecha"
+
+#: D:\webserver\htdocs\xoops24\modules\mywords/date.php:48
+#, php-format
+msgid "Posts published on %s"
+msgstr "Entradas publicadas en la fecha %s"
+
+#: D:\webserver\htdocs\xoops24\modules\mywords/home.php:44
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:148
+msgid "Recent Posts"
+msgstr "Entradas Recientes"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/post.php:22
 msgid "Document not found"
@@ -159,6 +178,7 @@ msgid "Sorry, this tag does not exists!"
 msgstr "¡Lo sentimos, este etiqueta no existe!"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/tag.php:62
+#: D:\webserver\htdocs\xoops24\modules\mywords/tag.php:71
 #, php-format
 msgid "Posts tagged as \"%s\""
 msgstr "Artículos etiquetados como \"%s\""
@@ -175,28 +195,23 @@ msgstr "Lo sentimos, parace que esto es SPAM"
 msgid "We are unable to store your trackback. Please try again later!"
 msgstr "¡No se ha almacenado tu trackback! por favor intentelo nuevamente mas tarde."
 
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:92
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
 msgid "Default"
 msgstr "Por defecto"
 
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:92
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
 msgid "Based on date and name"
 msgstr "Basado en nombre y fecha"
 
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:92
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
 msgid "Numeric format"
 msgstr "Formato numérico"
 
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:137
-#: D:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:91
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:139
 msgid "Categories"
 msgstr "Categorías"
 
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:146
-msgid "Recent Posts"
-msgstr "Entradas Recientes"
-
-#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:155
+#: D:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:157
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -262,6 +277,7 @@ msgid "Please, specify a valid site ID!"
 msgstr "Por favor especifica un ID válido para un sitio!"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:74
+#: D:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:105
 #, php-format
 msgid "Do you really want to delete \\\"%s\\\""
 msgstr "¿Realmente deseas eliminar \\\"%s\\\"?"
@@ -337,6 +353,9 @@ msgid "You must select one category at least!"
 msgstr "¡Debes seleccionar al menos una categoría!"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:241
+#: D:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:187
+#: D:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:227
+#: D:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:86
 msgid "Session token expired!"
 msgstr "¡El identificador de sesión ha caducado!"
 
@@ -346,6 +365,7 @@ msgid "Category \"%s\" could not be deleted"
 msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:257
+#: D:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:207
 msgid "Database updated!"
 msgstr "¡Base de datos actualizada!"
 
@@ -731,76 +751,102 @@ msgid "Select an author to see the posts published recently."
 msgstr "Selecciona un autor para ver las entradas publicadas recientemente."
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:4
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:5
 msgid "Create Post"
 msgstr "Crear Entrada"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:6
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:6
 msgid "You must specify the title for this post!"
 msgstr "¡Debes especificar el título para esta entrada!"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:12
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:12
 msgid "This post has not been saved. Remember to save it before leave this page."
 msgstr "Este post no ha sido guardado todavía. Recuerda guardarlo antes de abandonar esta página."
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:19
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:19
 msgid "Send Trackbacks"
 msgstr "Enviar Trackbacks"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:21
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:22
 msgid "Send trackbacks to:"
 msgstr "Enviar trackbacks a:"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:23
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:24
 msgid "Separate multiple URLs with spaces"
 msgstr "Separa múltiples URLs con espacios"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:26
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:27
 msgid "Pinged:"
 msgstr "Enviados:"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:34
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:34
 msgid "Custom Fields"
 msgstr "Campos Personalizados"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:38
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:53
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:54
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:63
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:6
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:38
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:53
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:8
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:61
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:69
 msgid "Name"
 msgstr "Nombre"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:39
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:54
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:39
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:54
 msgid "Value"
 msgstr "Valor"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:50
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:50
 msgid "Add new field:"
 msgstr "Agregar nuevo campo:"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:61
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:61
 msgid "- Select -"
 msgstr "- Seleccionar -"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:67
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:67
 msgid "Enter New"
 msgstr "Crear Nuevo"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:80
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:80
 msgid "Add custom field"
 msgstr "Agregar campo personalizado"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:84
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:84
 msgid "Custom fields can be used to add extra metadata to a post that you can use in your theme."
 msgstr "Los campos personalizados pueden ser usados para agregar datos adicionales a una entrada. Esta información puede ser usada en tu tema o plantillas."
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:90
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:89
 msgid "Comments and Trackbacks"
 msgstr "Comentarios y Trackbacks"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:95
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:94
 msgid "Enable comments for this post"
 msgstr "Activar comentarios para esta entrada"
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:98
+#: D:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:97
 msgid "Allow trackbacks for this post"
 msgstr "Activar trackbacks para esta entrada"
 

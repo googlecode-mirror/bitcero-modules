@@ -41,4 +41,6 @@ $result = $db->query($sql);
 
 include 'post_data.php';
 
+$xoopsTpl->assign('xoops_pagetitle', __('Recent Posts','mywords'));
+
 include 'footer.php';

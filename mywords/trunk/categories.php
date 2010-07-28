@@ -99,4 +99,6 @@ $result = $db->query("SELECT $tbl3.* FROM $tbl2, $tbl3 WHERE $tbl2.cat='$categor
 
 require 'post_data.php';
 
+$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Posts published under "%s"', 'mywords'), $catego->getVar('name')));
+
 include 'footer.php';

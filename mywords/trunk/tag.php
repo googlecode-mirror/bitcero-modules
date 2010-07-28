@@ -68,4 +68,6 @@ $sql = "SELECT a.* FROM $table_posts as a, $table_tags as b WHERE b.tag='".$tag-
 $result = $db->query($sql);
 require 'post_data.php';
 
+$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Posts tagged as "%s"','mywords'), $tag->getVar('tag')));
+
 include 'footer.php';
