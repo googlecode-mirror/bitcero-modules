@@ -133,20 +133,20 @@ function rd_show_form($edit=0){
         
 	}
     
-    $form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','sections.php');
+    $form=new RMForm('','frmsec','sections.php');
     if ($rmc_config['editor_type']=='tiny'){
         $tiny = TinyEditor::getInstance();
         $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
         $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
     }
-    $editor = new RMFormEditor(_AS_AH_CONTENT,'content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
+    $editor = new RMFormEditor('','content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
     $usrfield = new RMFormUser('','uid',false,$edit ? array($sec->getVar('uid')) : $xoopsUser->getVar('uid'));
     
     RMTemplate::get()->add_style('admin.css', 'docs');
     RMTemplate::get()->add_script('../include/js/scripts.php?file=metas.js');
     RMTemplate::get()->add_head('<script type="text/javascript">var docsurl = "'.XOOPS_URL.'/modules/docs";</script>');
     RDFunctions::toolbar();
-    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_AH_EDITSECTION : _AS_AH_NEWSECTIONS));
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Section','docs') : __('Create Section','docs')));
     xoops_cp_header();
     
     $sections = array();
