@@ -13,8 +13,8 @@
         <div class="field_item">
             <div class="caption">&nbsp;</div>
             <div class="content">
-                <input type="submit" value="Save Configuration" class="button" />
-                <input type="button" value="Cancel" class="button" onclick="history.go(-1)" />
+                <input type="submit" value="<?php _e('Save Configuration','xthemes'); ?>" class="button" />
+                <input type="button" value="<?php _e('Cancel','xthemes'); ?>" class="button" onclick="history.go(-1)" />
             </div>
         </div>
 	</div>
