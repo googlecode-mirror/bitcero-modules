@@ -90,7 +90,7 @@ function cu_render_output($output){
 	$rtn .= substr($page, $pos+6);
 	
 	$rtn = RMEvents::get()->run_event('rmcommon.end.flush',$rtn);
-	
+    
 	return $rtn;
 }
 
@@ -99,7 +99,8 @@ include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-$rmc_config = RMFunctions::get()->configs();
+$GLOBAL['rmc_config'] = RMFunctions::get()->configs();
+$rmc_config = $GLOBAL['rmc_config'];
 define('RMCLANG',$rmc_config['lang']);
 
 // Load plugins
