@@ -8,9 +8,9 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'xThemes';
-$modversion['version'] = 1.01;
+$modversion['version'] = 1.018;
 $modversion['rmnative'] = '1';
-$modversion['rmversion'] = array('number'=>1,'revision'=>10,'status'=>0,'name'=>'Quick Pages');
+$modversion['rmversion'] = array('number'=>1,'revision'=>18,'status'=>0,'name'=>'Quick Pages');
 $modversion['description'] = 'A module to manage themes from TemasWeb.com';
 $modversion['credits'] = "Eduardo Cortés <i.bitcero@gmail.com>";
 $modversion['author'] = "BitC3R0";
