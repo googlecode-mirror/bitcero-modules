@@ -72,7 +72,7 @@ class RDFunctions
     */
     function getSectionTree(&$array, $parent = 0, $saltos = 0, $resource = 0, $fields='*', $exclude=0){
         global $db;
-        $sql = "SELECT $fields FROM ".$db->prefix("pa_sections")." WHERE ".($resource>0 ? "id_res='$resource' AND" : '')."
+        $sql = "SELECT $fields FROM ".$db->prefix("rd_sections")." WHERE ".($resource>0 ? "id_res='$resource' AND" : '')."
                 parent='$parent' ".($exclude>0 ? "AND id_sec<>'$exclude'" : '')." ORDER BY `order`";
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)){
@@ -100,7 +100,7 @@ class RDFunctions
         
         $db = Database::getInstance();
         
-        $sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references').($res>0 ? " WHERE id_res='$res'" : '');
+        $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references').($res>0 ? " WHERE id_res='$res'" : '');
         
         if ($search!='')
             $sql .= ($res>0 ? " AND " : " WHERE ")." (title LIKE '%$k%' OR text LIKE '%$k%')";
@@ -145,7 +145,7 @@ class RDFunctions
         
         $db = Database::getInstance();
         
-        $sql="SELECT COUNT(*) FROM ".$db->prefix('pa_figures').($res>0 ? " WHERE id_res='$res'" : '');
+        $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_figures').($res>0 ? " WHERE id_res='$res'" : '');
         
         if ($search!='')
             $sql .= ($res>0 ? " AND " : " WHERE ")." (desc LIKE '%$k%' OR content LIKE '%$k%')";

@@ -26,9 +26,13 @@ function rd_widget_options(){
     ob_start();
 ?>
 <div class="rd_widget_form">
-    <form name="frmoptions" method="post" action="">
-    <input type="submit" value="<?php _e('Save Section','docs'); ?>" />
-    <input type="button" value="<?php _e('Discard Section','docs'); ?>" onclick="history.go(-1);" />
+    <form name="frmoptions" method="post" onsubmit="return false;">
+    <label>
+        <input type="checkbox" name="return" id="wreturn" value="1" checked="checked" onchange="$(this).is(':checked')?$('#secreturn').val(1):$('#secreturn').val(0);" />
+        <?php _e('Save and return','docs'); ?>
+    </label>
+    <input type="submit" value="<?php _e('Save Section','docs'); ?>" onclick="$('#frm-section').submit();" />
+    <input type="button" value="<?php _e('Discard Section','docs'); ?>" onclick="window.location.href = 'sections.php?id=<?php echo $res->id(); ?>';" />
     </form>
 </div>
 <?php

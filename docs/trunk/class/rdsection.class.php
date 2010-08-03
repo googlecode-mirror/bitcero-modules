@@ -18,7 +18,7 @@ class RDSection extends RMObject{
 	function __construct($id=null, $res=0){
 
 		$this->db =& Database::getInstance();
-		$this->_dbtable = $this->db->prefix("pa_sections");
+		$this->_dbtable = $this->db->prefix("rd_sections");
 		$this->setNew();
 		$this->initVarsFromTable();
 
@@ -46,10 +46,25 @@ class RDSection extends RMObject{
     private function load_meta(){
         if (!empty($this->metas)) return;
 
-        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("pa_meta")." WHERE section='".$this->id()."'");
+        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."'");
         while($row = $this->db->fetchArray($result)){
             $this->metas[$row['name']] = $row;
         }
+    }
+    
+    /**
+    * Add metas to the current section
+    */
+    public function add_meta($key, $value){
+        if ($key=='') return;
+        $this->metas[$key] = $value;
+    }
+    
+    /**
+    * Clear metas array
+    */
+    public function clear_metas(){
+        $this->metas = array();
     }
     
     /**
@@ -73,7 +88,7 @@ class RDSection extends RMObject{
     * @return array
     */
     public function metas($values = true){
-    
+        $this->load_meta();
         $metas = array();
         
         if(!$values)
@@ -90,6 +105,26 @@ class RDSection extends RMObject{
 	public function id(){
 		return $this->getVar('id_sec');
 	}
+    
+    /**
+    * Get the permalink for this section
+    */
+    public function permalink($edit = 0){
+        $config = RMUtilities::module_config('docs');
+        if ($config['permalinks']){
+            
+            $res = new RDResource($this->getVar('id_res'));
+            $perma = XOOPS_URL.$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+            
+        } else {
+            
+            $perma = XOOPS_URL.'/modules/docs/content.php?id='.$this->id();
+            
+        }
+        
+        return $perma;
+        
+    }
 
 	public function save(){
 		if ($this->isNew()){
@@ -107,9 +142,9 @@ class RDSection extends RMObject{
 	}
     
     private function save_metas(){
-        $this->db->queryF("DELETE FROM ".$this->db->prefix("pa_meta")." WHERE section='".$this->id()."'");
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."'");
         if (empty($this->metas)) return true;
-        $sql = "INSERT INTO ".$this->db->prefix("pa_meta")." (`name`,`value`,`section`) VALUES ";
+        $sql = "INSERT INTO ".$this->db->prefix("rd_meta")." (`name`,`value`,`section`) VALUES ";
         $values = '';
         foreach ($this->metas as $name => $value){
             if (is_array($value)) $value = $value['value'];
@@ -128,7 +163,7 @@ class RDSection extends RMObject{
 		$ret=false;
 	
 		//Cambia las secciones hijas a secciones principales
-		$sql="UPDATE ".$this->db->prefix('pa_sections')." SET parent=0 WHERE parent='".$this->id()."'";
+		$sql="UPDATE ".$this->db->prefix('rd_sections')." SET parent=0 WHERE parent='".$this->id()."'";
 		$result=$this->db->queryF($sql);
 
 		if (!$result) return $ret;		

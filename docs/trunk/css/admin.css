@@ -22,6 +22,9 @@
 #rd-form-container #section-url{
     padding: 6px 2px;
 }
+#rd-form-container #section-url span{
+    background: #FFFFC0;
+}
 #rd-form-container .info{
     padding: 5px;
     text-align: center;
@@ -33,12 +36,14 @@
     display: block;
     width: 98%;
 }
-.rd_widget_form{
-    text-align: center;
-}
 
-.rd_widget_form input{
-    width: 95%;
+.rd_widget_form label{
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+}
+.rd_widget_form input[type='button'],
+.rd_widget_form input[type='submit']{
     margin: 5px 0;
 }
 #rd-wd-references,
@@ -76,4 +81,7 @@
     display: block;
     background: url(../images/figures.png) no-repeat left;
     padding: 2px 2px 2px 20px;
+}
+.rd_hidden{
+    display: none;
 }

@@ -24,7 +24,7 @@ function child($id,$parent,$indent){
 	include XOOPS_ROOT_PATH."/cache/recommends.php";
 
 	$child= array();
-	$sql="SELECT * FROM ".$db->prefix('pa_sections')." WHERE id_res='$id' AND parent='$parent' ORDER BY `order`";
+	$sql="SELECT * FROM ".$db->prefix('rd_sections')." WHERE id_res='$id' AND parent='$parent' ORDER BY `order`";
 	$result=$db->queryF($sql);
 	while ($rows=$db->fetchArray($result)){
 		$sec= new AHSection();
@@ -52,7 +52,7 @@ function rd_show_sections(){
     $db = Database::getInstance();
 
 	//Lista de Publicaciones
-	$sql="SELECT id_res,title FROM ".$db->prefix('pa_resources');
+	$sql="SELECT id_res,title FROM ".$db->prefix('rd_resources');
 	$result=$db->queryF($sql);
     $resources = array();
 	while ($rows=$db->fetchArray($result)){
@@ -63,15 +63,21 @@ function rd_show_sections(){
 	}
 
 	//Secciones
-	$sql="SELECT * FROM ".$db->prefix('pa_sections')." WHERE id_res='$id' AND parent=0 ORDER BY `order`";
+	$sql="SELECT * FROM ".$db->prefix('rd_sections')." WHERE id_res='$id' AND parent=0 ORDER BY `order`";
 	$result=$db->queryF($sql);
     $sections = array();
 	while ($rows=$db->fetchArray($result)){
-		$sec= new AHSection();
+		$sec= new RDSection();
 		$sec->assignVars($rows);
 
-		$sections[] = array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
-				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>0,'featured'=>$sec->featured());
+		$sections[] = array(
+            'id'=>$sec->id(),
+            'title'=>$sec->getVar('title'),
+            'order'=>$sec->getVar('order'),
+			'resource'=>$sec->getVar('id_res'),
+            'parent'=>$sec->getVar('parent'),
+            'indent'=>0
+        );
 		
 		child($id,$sec->id(),1);
 		
@@ -94,7 +100,7 @@ function rd_show_sections(){
 * @desc Formulario de creación y edición de sección
 **/
 function rd_show_form($edit=0){
-	global $xoopsModule, $xoopsConfig, $xoopsSecurity, $xoopsUser;
+	global $xoopsModule, $xoopsConfig, $xoopsSecurity, $xoopsUser, $xoopsModuleConfig;
     
     define('RMCSUBLOCATION','newresource');
 	$id=rmc_server_var($_GET, 'id', 0);
@@ -124,7 +130,6 @@ function rd_show_form($edit=0){
 		}
 		
 		//Comprueba si la sección es existente
-        global $sec;
 		$sec=new RDSection($id_sec);
 		if ($sec->isNew()){
 			redirectMsg('sections.php?id='.$id, __('Specified section does not exists','docs'),1);
@@ -133,7 +138,9 @@ function rd_show_form($edit=0){
         
 	}
     
+    $rmc_config = RMFunctions::configs();
     $form=new RMForm('','frmsec','sections.php');
+    
     if ($rmc_config['editor_type']=='tiny'){
         $tiny = TinyEditor::getInstance();
         $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
@@ -144,9 +151,11 @@ function rd_show_form($edit=0){
     
     RMTemplate::get()->add_style('admin.css', 'docs');
     RMTemplate::get()->add_script('../include/js/scripts.php?file=metas.js');
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
     RMTemplate::get()->add_head('<script type="text/javascript">var docsurl = "'.XOOPS_URL.'/modules/docs";</script>');
     RDFunctions::toolbar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Section','docs') : __('Create Section','docs')));
+    RMTemplate::get()->assign('xoops_pagetitle', ($edit ? __('Edit Section','docs') : __('Create Section','docs')));
     xoops_cp_header();
     
     $sections = array();
@@ -160,38 +169,39 @@ function rd_show_form($edit=0){
 * @desc Almacena información de las secciones
 **/
 function saveSections($edit=0, $ret = 0){
-	global $util,$db, $xoopsUser;
+	global $xoopsUser, $xoopsSecurity;
 	
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
-
-	if (!$util->validateToken()){
-		redirectMsg('./sections.php?op=new&id='.$id,_AS_AH_SESSINVALID, 1);
+    
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./sections.php?op=new&id='.$id, __('Session token expired!','docs'), 1);
 		die();
 	}
-
+    
+    $db = Database::getInstance();
 
 	if ($edit){
 
 		//Verifica si la sección es válida
 		if ($id_sec<=0){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_NOTSECTION,1);
+			redirectMsg('./sections.php?id='.$id, __('No section has been specified','docs'),1);
 			die();
 		}
 		
 		//Comprueba si la sección es existente
-		$sec=new AHSection($id_sec);
+		$sec=new RDSection($id_sec);
 		if ($sec->isNew()){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_NOTEXISTSEC,1);
+			redirectMsg('./sections.php?id='.$id, __('Section does not exists!','docs'),1);
 			die();
 		}
 		
 		//Comprueba que el título de la sección no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_sections')." WHERE title='$title' AND id_res='$id' AND id_sec<>$id_sec";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_sections')." WHERE title='$title' AND id_res='$id' AND id_sec<>$id_sec";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./sections.php?op=new&id='.$id,_AS_AH_ERRTITLE,1);	
+			redirectMsg('./sections.php?op=new&id='.$id, __('Already exists another section with same title!','docs'),1);	
 			die();
 		}
 
@@ -199,64 +209,75 @@ function saveSections($edit=0, $ret = 0){
 	}else{
 
 		//Comprueba que el título de la sección no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_sections')." WHERE title='$title' AND id_res='$id'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_sections')." WHERE title='$title' AND id_res='$id'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('./sections.php?op=new&id='.$id,_AS_AH_ERRTITLE,1);	
+			redirectMsg('./sections.php?op=new&id='.$id, __('Already exists another section with same title!','docs'),1);	
 			die();
 		}
-		$sec = new AHSection();
+		$sec = new RDSection();
 		
 	}
 
 	//Genera $nameid Nombre identificador
-	$nameid = $nameid=='' ? $util->sweetstring($title) : $nameid;
+	$nameid = !isset($nameid) || $nameid=='' ? TextCleaner::getInstance()->sweetstring($title) : $nameid;
 	
-	$sec->setTitle($title);
-	$sec->setContent($content);
-	$sec->setOrder($order);
-	$sec->setResource($id);
-	$sec->setNameId($nameid);
-	$sec->setParent($parent);
-	$sec->setVar('dohtml', $dohtml);
-	$sec->setVar('doxcode', $doxcode);
-	$sec->setVar('dobr', $dobr);
-	$sec->setVar('dosmiley', $dosmiley);
-	$sec->setVar('doimage', $doimage);
+	$sec->setVar('title', $title);
+	$sec->setVar('content', $content);
+	$sec->setVar('order', $order);
+	$sec->setVar('id_res', $id);
+	$sec->setVar('nameid', $nameid);
+	$sec->setVar('parent', $parent);
+    
 	if (!isset($uid)){
-		$sec->setUid($xoopsUser->uid());
-		$sec->setUname($xoopsUser->uname());
+		$sec->setVar('uid', $xoopsUser->uid());
+		$sec->setVar('uname', $xoopsUser->uname());
 	} else {
 		$xu = new XoopsUser($uid);
 		if ($xu->isNew()){
-			$sec->setUid($xoopsUser->uid());
-			$sec->setUname($xoopsUser->uname());
+			$sec->setVar('uid', $xoopsUser->uid());
+			$sec->setVar('uname', $xoopsUser->uname());
 		} else {
-			$sec->setUid($uid);
-			$sec->setUname($xu->uname());
+			$sec->setVar('uid', $uid);
+			$sec->setVar('uname', $xu->uname());
 		}
 	}
 	if ($sec->isNew()){
-		$sec->setCreated(time());
-		$sec->setModified(time());
+		$sec->setVar('created', time());
+		$sec->setVar('modified', time());
 	}else{
-		$sec->setModified(time());
+		$sec->setVar('modified', time());
 	}
+    
+    // Metas
+    if ($edit) $sec->clear_metas(); // Clear all metas
+    // Initialize metas array if not exists  
+    if (!isset($metas)) $metas = array();
+    // Get meta key if "select" is visible
+    if (isset($meta_name_sel) && $meta_name_sel!='') $meta_name = $meta_name_sel;
+    // Add meta to metas array
+    if (isset($meta_name) && $meta_name!=''){
+        array_push($metas, array('key'=>$meta_name, 'value'=>$meta_value));
+    }
+    // Assign metas
+    foreach($metas as $value){
+        $sec->add_meta($value['key'], $value['value']);
+    }
 	
 	if (!$sec->save()){
 		if ($sec->isNew()){
-			redirectMsg('./sections.php?op=new&id='.$id,_AS_AH_DBERROR . "<br />" . $sec->errors(),1);
+			redirectMsg('./sections.php?action=new&id='.$id, __('Database could not be updated!','docs') . "<br />" . $sec->errors(),1);
 			die();			
 		}else{
-			redirectMsg('./sections.php?op=edit&id='.$id.'&sec='.$id_sec,_AS_AH_DBERROR. "<br />" . $sec->errors(),1);
+			redirectMsg('./sections.php?action=edit&id='.$id.'&sec='.$id_sec, __('Sections has been saved but some errors ocurred','docs'). "<br />" . $sec->errors(),1);
 			die();
 		}		
 
 	}else{
-		if ($ret){
-			redirectMsg('./sections.php?op=edit&sec='.$sec->id().'&id='.$id,_AS_AH_DBOK,0);
+		if ($return){
+			redirectMsg('./sections.php?action=edit&sec='.$sec->id().'&id='.$id, __('Database updated successfully!','docs'),0);
 		} else {
-			redirectMsg('./sections.php?id='.$id,_AS_AH_DBOK,0);
+			redirectMsg('./sections.php?id='.$id, __('Database updated successfully!','docs'),0);
 		}
 	}
 
@@ -420,7 +441,7 @@ switch ($action){
 		rd_show_form();
 	    break;
 	case 'edit':
-		showForm(1);
+		rd_show_form(1);
 	break;
 	case 'save':
 		saveSections();

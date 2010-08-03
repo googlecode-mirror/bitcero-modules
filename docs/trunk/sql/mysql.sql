@@ -1,4 +1,4 @@
-CREATE TABLE `pa_figures` (
+CREATE TABLE `rd_figures` (
   `id_fig` int(10) unsigned NOT NULL auto_increment,
   `id_res` int(10) unsigned NOT NULL default '0',
   `attrs` text NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `pa_figures` (
   PRIMARY KEY  (`id_fig`)
 ) TYPE=MyISAM ;
 
-CREATE TABLE `pa_references` (
+CREATE TABLE `rd_references` (
   `id_ref` int(10) unsigned NOT NULL auto_increment,
   `id_res` int(10) unsigned NOT NULL default '0',
   `title` varchar(150) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `pa_references` (
   PRIMARY KEY  (`id_ref`)
 ) TYPE=MyISAM ;
 
-CREATE TABLE `pa_resources` (
+CREATE TABLE `rd_resources` (
   `id_res` int(11) unsigned NOT NULL auto_increment,
   `title` varchar(150) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `pa_resources` (
   KEY `title` (`title`)
 ) TYPE=MyISAM ;
 
-CREATE TABLE `pa_sections` (
+CREATE TABLE `rd_sections` (
   `id_sec` int(10) unsigned NOT NULL auto_increment,
   `title` varchar(200) NOT NULL,
   `content` text NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `pa_sections` (
   KEY `nameid` (`nameid`)
 ) TYPE=MyISAM ;
 
-CREATE TABLE `pa_votedata` (
+CREATE TABLE `rd_votedata` (
   `uid` int(11) NOT NULL default '0',
   `ip` varchar(15) NOT NULL,
   `date` int(10) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `pa_votedata` (
   KEY `uid` (`uid`,`ip`,`res`)
 ) TYPE=MyISAM;
 
-CREATE TABLE `pa_edits` (
+CREATE TABLE `rd_edits` (
   `id_edit` int(10) unsigned NOT NULL auto_increment,
   `id_sec` int(10) NOT NULL default '0',
   `title` varchar(200) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE `pa_edits` (
   KEY `id_sec` (`id_sec`)
 ) TYPE=MyISAM;
 
-CREATE TABLE `pa_meta` (
+CREATE TABLE `rd_meta` (
   `name` varchar(50) NOT NULL,
   `value` text NOT NULL,
   `section` int(11) NOT NULL,

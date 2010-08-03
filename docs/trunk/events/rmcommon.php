@@ -34,6 +34,7 @@ class DocsRmcommonPreload{
         ?>
         <?php $ret = parse_url($_SERVER['HTTP_REFERER']);
                    parse_str($ret['query'], $str); ?>
+            
             ed.addCommand('mceRapidDocsReferences', function() {
                 ed.windowManager.open({
                     file : '<?php echo XOOPS_URL; ?>/modules/docs/references.php?id=<?php echo $str['id']; ?>',

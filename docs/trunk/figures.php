@@ -49,7 +49,7 @@ function Figures(){
 
 	//Navegador de páginas
     $db = Database::getInstance();
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_figures')." WHERE id_res=$id";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_figures')." WHERE id_res=$id";
 	$sql1 = '';
 	if ($search){
 		
@@ -79,7 +79,7 @@ function Figures(){
     $ruta='?id='.$id.'&page='.$page.'&search='.$search;
 	//Fin navegador de páginas
 
-	$sql="SELECT * FROM ".$db->prefix('pa_figures')." WHERE id_res=$id";
+	$sql="SELECT * FROM ".$db->prefix('rd_figures')." WHERE id_res=$id";
 	$sql1='';
 	if ($search){
 		

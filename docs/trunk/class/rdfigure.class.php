@@ -14,7 +14,7 @@ class RDFigure extends RMObject{
 	function __construct($id=null){
 
 		$this->db =& Database::getInstance();
-		$this->_dbtable = $this->db->prefix("pa_figures");
+		$this->_dbtable = $this->db->prefix("rd_figures");
 		$this->setNew();
 		$this->initVarsFromTable();
 
@@ -48,5 +48,3 @@ class RDFigure extends RMObject{
 	}
     
 }
-
-?>

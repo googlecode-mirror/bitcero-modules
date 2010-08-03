@@ -28,7 +28,7 @@ function resources_list(){
 
     $db = Database::getInstance();
     //Navegador de páginas
-    $sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources');
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources');
     list($num)=$db->fetchRow($db->queryF($sql));
     
     $page = rmc_server_var($_REQUEST, 'page', 1);
@@ -44,7 +44,7 @@ function resources_list(){
 
     //Fin navegador de páginas
     
-    $sql="SELECT * FROM ".$db->prefix('pa_resources');
+    $sql="SELECT * FROM ".$db->prefix('rd_resources');
     if ($xoopsUser->isAdmin()){
         $sql .= " ORDER BY `created` DESC LIMIT $start,$limit";  
     } else {
@@ -112,7 +112,7 @@ function notes_list(){
     $db = Database::getInstance();
     
     //Navegador de páginas
-    $sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
     $sql1='';
     if ($search){
         
@@ -141,7 +141,7 @@ function notes_list(){
     $nav->target_url('javascript:;" onclick="docsAjax.getNotes('.$id.',6,{PAGE_NUM},\''.$container.'\');"');
 
     //Lista de Referencias existentes
-    $sql="SELECT id_ref,title,text FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+    $sql="SELECT id_ref,title,text FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
     $sql.=" ORDER BY id_ref DESC LIMIT $start,$limit";
     $result=$db->query($sql);
     $references = array();
@@ -167,7 +167,7 @@ function figures_list(){
     $db = Database::getInstance();
     
     //Navegador de páginas
-    $sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_figures')." WHERE id_res='$id'";
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_figures')." WHERE id_res='$id'";
     $sql1='';
     if ($search){
         
@@ -196,7 +196,7 @@ function figures_list(){
     $nav->target_url('javascript:;" onclick="docsAjax.getFigures('.$id.',6,{PAGE_NUM},\''.$container.'\');"');
 
     //Lista de Referencias existentes
-    $sql="SELECT id_fig,`desc`,content FROM ".$db->prefix('pa_figures')." WHERE id_res='$id'";
+    $sql="SELECT id_fig,`desc`,content FROM ".$db->prefix('rd_figures')." WHERE id_res='$id'";
     $sql.=" ORDER BY id_fig DESC LIMIT $start,$limit";
     $result=$db->query($sql);
     $figures = array();

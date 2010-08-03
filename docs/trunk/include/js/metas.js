@@ -64,9 +64,9 @@ $(document).ready(function(){
         
         $("table#metas-container").show();
         var html = '<tr class="even">';
-        html += '<td valign="top"><input type="text" name="meta['+count+'][key]" id="meta-key-'+count+'" value="'+name+'" class="rd_large" style="width: 95%;" />';
+        html += '<td valign="top"><input type="text" name="metas['+count+'][key]" id="meta-key-'+count+'" value="'+name+'" class="rd_large" style="width: 95%;" />';
         html += '<a href="javascript:;" onclick="remove_meta($(this));"><?php _e('Remove','docs'); ?></td>';
-        html += '<td><textarea name="meta['+count+'][value]" id="meta['+count+'][value]" class="rd_large">'+value+'</textarea></td></tr>';
+        html += '<td><textarea name="metas['+count+'][value]" id="metas['+count+'][value]" class="rd_large">'+value+'</textarea></td></tr>';
         $("table#metas-container").append(html);
         
         $("select#meta-name-sel option[selected='selected']").removeAttr('selected');
@@ -76,6 +76,12 @@ $(document).ready(function(){
         
         $("tr#row-"+count).effect('highlight',{},'2000');
         
+    });
+    
+    $("#section-url span").click(function(){
+        if($("#section-url span input").length>0) return;
+        $("#nameid").remove();
+        $("#section-url span").html('<input type="text" name="nameid" value="'+$(this).html()+'" size="20" />');
     });
     
 });

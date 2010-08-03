@@ -1,9 +1,20 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#frm-section").validate({
+        messages: {
+            title: "<?php _e('You must provide a title for this section!','docs'); ?>"
+        }
+    });
+});
+</script>
 <h1 class="rmc_titles mw_titles"><span style="background-position: left -32px;">&nbsp;</span><?php $edit ? _e('Edit Section','docs') : _e('Create Section','docs'); ?></h1>
 <form name="formSection" method="post" action="sections.php" id="frm-section">
 <div id="rd-form-container" class="form">
-    <input type="text" size="50" name="title" value="<?php $edit ? $sec->getVar('title') : ''; ?>" class="large" />
+    <input type="text" size="50" name="title" id="sectitle" value="<?php echo $edit ? $sec->getVar('title') : ''; ?>" class="required large" />
     <?php if($edit): ?>
-    <div id="section-url"><strong>Permalink:</strong> <?php echo XOOPS_URL; ?>/<?php if($xoopsModuleConfig['permalinks']): ?><?php echo $xoopsModuleConfig['htpath']; ?><?php else: ?>modules/docs/<?php endif; ?></div>
+    <div id="section-url">
+        <strong>Permalink:</strong> <?php echo $sec->permalink(1); ?>
+    </div>
     <?php else: ?>
     <div class="info"><?php _e('Remember to save this section in order to activate all options.','docs'); ?></div>
     <?php endif; ?>
@@ -45,18 +56,20 @@
     <div class="outer">
         <div class="th"><?php _e('Custom Fields','docs'); ?></div>
         <div class="even">
-        <table id="metas-container" class="outer<?php echo !$edit || (!isset($post) && !$post->fields()) ? ' mw_hidden' : ''; ?>" cellspacing="0" width="100%" />
+        <table id="metas-container" class="outer<?php echo !$edit || (!isset($sec) && !$sec->metas()) ? ' rd_hidden' : ''; ?>" cellspacing="0" width="100%" />
             <tr class="head">
                 <td width="30%"><?php _e('Name','docs'); ?></td>
                 <td><?php _e('Value','docs'); ?></td>
             </tr>
             <?php if($edit || (isset($sec) && $sec->metas())): ?>
-            <?php foreach($sec->metas() as $field): ?>
+            <?php $i=0;
+                foreach($sec->metas() as $key => $value): ?>
                 <tr class="<?php echo tpl_cycle("even,odd"); ?>">
-                    <td valign="top"><input type="text" name="meta[<?php echo $field['id']; ?>][key]" id="meta-key-<?php echo $field['id']; ?>" value="<?php echo $field['name']; ?>" /></td>
-                    <td><textarea name="meta[<?php echo $field['id']; ?>][value]" id="meta[<?php echo $field['id']; ?>][value]"><?php echo $field['value']; ?></textarea></td>
+                    <td valign="top"><input type="text" name="metas[<?php echo $i; ?>][key]" id="meta-key-<?php echo $i; ?>" value="<?php echo $key; ?>" /></td>
+                    <td><textarea class="rd_large" name="metas[<?php echo $i; ?>][value]" id="metas[<?php echo $i; ?>][value]"><?php echo $value; ?></textarea></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php $i++;
+                endforeach; ?>
             <?php endif; ?>
         </table><br />
         <label><strong><?php _e('Add new field:','docs'); ?></strong></label>
@@ -99,4 +112,9 @@
     
 </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
+<input type="hidden" name="id" value="<?php echo $id; ?>" />
+<input type="hidden" name="return" id="secreturn" value="1" />
+<input type="hidden" name="nameid" id="nameid" value="<?php echo $edit ? $sec->getVar('nameid') : ''; ?>" />
+<input type="hidden" name="action" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
+<?php if($edit): ?><input type="hidden" name="id_sec" value="<?php echo $id_sec; ?>" /><?php endif; ?>
 </form>

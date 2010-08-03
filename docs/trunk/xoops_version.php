@@ -82,12 +82,12 @@ $modversion['templates'][16]['description'] = '';
 //Base de datos
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
-$modversion['tables'][0] = 'pa_resources';
-$modversion['tables'][1] = 'pa_sections';
-$modversion['tables'][2] = 'pa_references';
-$modversion['tables'][3] = 'pa_figures';
-$modversion['tables'][4] = 'pa_votedata';
-$modversion['tables'][5] = 'pa_edits';
+$modversion['tables'][0] = 'rd_resources';
+$modversion['tables'][1] = 'rd_sections';
+$modversion['tables'][2] = 'rd_references';
+$modversion['tables'][3] = 'rd_figures';
+$modversion['tables'][4] = 'rd_votedata';
+$modversion['tables'][5] = 'rd_edits';
 
 // Homepage
 $modversion['config'][0]['name'] = 'homepage';
@@ -133,17 +133,14 @@ $modversion['config'][3]['order'] = 3;
 //Formato de acceso a información
 $modversion['config'][4]['name'] = 'permalinks';
 $modversion['config'][4]['description'] = '_MI_AH_DESCACCESS';
-$modversion['config'][4]['size'] = 10;
 $modversion['config'][4]['title'] = '_MI_AH_ACCESS';
 $modversion['config'][4]['formtype'] = 'select';
 $modversion['config'][4]['valuetype'] = 'int';
 $modversion['config'][4]['default'] =0;
-$modversion['config'][4]['order'] = 4;
 $modversion['config'][4]['options'] = array('_MI_AH_PHP'=>0,'_MI_AH_ALPHA'=>1);
 
-$modversion['config'][18]['name'] = 'htpath';
+$modversion['config'][4]['name'] = 'htpath';
 $modversion['config'][18]['description'] = '_MI_AH_BASEPATHD';
-$modversion['config'][18]['size'] = 50;
 $modversion['config'][18]['title'] = '_MI_AH_BASEPATH';
 $modversion['config'][18]['formtype'] = 'textbox';
 $modversion['config'][18]['valuetype'] = 'text';

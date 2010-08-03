@@ -19,7 +19,7 @@ function show_resources(){
 	
     $db = Database::getInstance();
 	//Navegador de páginas
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources');
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources');
 	list($num)=$db->fetchRow($db->queryF($sql));
 	
 	$page = rmc_server_var($_REQUEST, 'page', 1);
@@ -36,7 +36,7 @@ function show_resources(){
 
 	//Fin navegador de páginas
 	
-	$sql="SELECT * FROM ".$db->prefix('pa_resources')." ORDER BY `created` DESC LIMIT $start,$limit";
+	$sql="SELECT * FROM ".$db->prefix('rd_resources')." ORDER BY `created` DESC LIMIT $start,$limit";
 	$result=$db->queryF($sql);
 	$resources = array();
 	
@@ -188,7 +188,7 @@ function rd_save_resource($edit=0){
 		}	
 
 		//Comprueba que el título de publicación no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_resources')." WHERE title='$title' AND id_res<>'".$id."'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' AND id_res<>'".$id."'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);	
@@ -198,7 +198,7 @@ function rd_save_resource($edit=0){
 		
 	}else{
 		//Comprueba que el título de publicación no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_resources')." WHERE title='$title' ";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' ";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);    
@@ -213,7 +213,7 @@ function rd_save_resource($edit=0){
 		$i = 0;
 		do{
     		$nameid = TextCleaner::getInstance()->sweetstring($title).($found ? $i : '');
-        	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources'). " WHERE nameid = '$nameid'";
+        	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources'). " WHERE nameid = '$nameid'";
         	list ($num) =$db->fetchRow($db->queryF($sql));
         	if ($num>0){
         		$found =true;

@@ -25,8 +25,8 @@
 		<td align="left" style="padding-left:<?php echo($section['indent']*5); ?>px;">
             <?php if($section['indent']>0): ?><img src="<?php echo XOOPS_URL; ?>/images/root.gif" align="absmiddle" alt="" /><?php endif; ?> <?php echo $section['title']; ?>
             <span class="rmc_options">
-                <a href="./sections.php?op=edit&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Edit','docs'); ?></a> |
-                <a href="./sections.php?op=delete&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Delete','docs'); ?></a> &bull; 
+                <a href="./sections.php?action=edit&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Edit','docs'); ?></a> |
+                <a href="./sections.php?op=delete&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Delete','docs'); ?></a> |
                 <?php if(!$section['featured']): ?><a href="./sections.php?op=recommend&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Featured','docs'); ?></a><?php else: ?><a href="./sections.php?op=norecommend&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Normal','docs'); ?></a><?php endif; ?>
             </span>
         </td>

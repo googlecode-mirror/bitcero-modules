@@ -13,7 +13,7 @@ class RDReference extends RMObject{
 	function __construct($id=null){
 
 		$this->db =& Database::getInstance();
-		$this->_dbtable = $this->db->prefix("pa_references");
+		$this->_dbtable = $this->db->prefix("rd_references");
 		$this->setNew();
 		$this->initVarsFromTable();
 
@@ -48,4 +48,3 @@ class RDReference extends RMObject{
 	}
 
 }
-?>

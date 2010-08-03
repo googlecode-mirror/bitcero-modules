@@ -51,7 +51,7 @@ function references($edit=0){
 	$db = Database::getInstance();
     
 	//Navegador de páginas
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
 	$sql1='';
 	if ($search){
 		
@@ -81,7 +81,7 @@ function references($edit=0){
 
 	$ruta='?id='.$id.'&page='.$page.'&search='.$search;
 	//Lista de Referencias existentes
-	$sql="SELECT id_ref,title,text FROM ".$db->prefix('pa_references')." WHERE id_res='$id'";
+	$sql="SELECT id_ref,title,text FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
 	$sql1='';
 	if ($search){
 		
@@ -203,7 +203,7 @@ function saveReferences($edit=0){
 		}
 
 		//Comprobar si el título de la referencia en esa publicación existe
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE title='$title' AND id_res='$id' AND id_ref<>'$id_ref'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE title='$title' AND id_res='$id' AND id_ref<>'$id_ref'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('./references.php'.$ruta, __('Another note with same title already exists','docs'),1);
@@ -213,7 +213,7 @@ function saveReferences($edit=0){
 	}else{
 
 		//Comprobar si el título de la referencia en esa publicación existe
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_references')." WHERE title='$title' AND id_res='$id'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE title='$title' AND id_res='$id'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('./references.php'.$ruta, __('Another note with same title already exists','docs'),1);

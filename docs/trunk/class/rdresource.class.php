@@ -26,7 +26,7 @@ class RDResource extends RMObject{
 	function __construct($id=null){
 
 		$this->db =& Database::getInstance();
-		$this->_dbtable = $this->db->prefix("pa_resources");
+		$this->_dbtable = $this->db->prefix("rd_resources");
 		$this->setNew();
 		$this->initVarsFromTable();
 
@@ -94,12 +94,12 @@ class RDResource extends RMObject{
 	
 	public function addRead(){
 		if ($this->isNew()) return;
-		return $this->db->queryF("UPDATE ".$this->db->prefix("pa_resources")." SET `reads`=`reads`+1 WHERE id_res='".$this->id()."'");
+		return $this->db->queryF("UPDATE ".$this->db->prefix("rd_resources")." SET `reads`=`reads`+1 WHERE id_res='".$this->id()."'");
 	}
 	
 	public function addVote($rate){
 		if ($this->isNew()) return;
-		return $this->db->queryF("UPDATE ".$this->db->prefix("pa_resources")." SET `votes`=`votes`+1, `rating`='".($this->rating()+$rate)."' WHERE id_res='".$this->id()."'");
+		return $this->db->queryF("UPDATE ".$this->db->prefix("rd_resources")." SET `votes`=`votes`+1, `rating`='".($this->rating()+$rate)."' WHERE id_res='".$this->id()."'");
 		$this->setRating($this->rating()+$rate);
 	}
 	
@@ -183,19 +183,19 @@ class RDResource extends RMObject{
 		$ret=false;		
 
 		//Elimina secciones pertenecientes a la publicación
-		$sql="DELETE FROM ".$this->db->prefix('pa_sections')." WHERE id_res='".$this->id()."'";
+		$sql="DELETE FROM ".$this->db->prefix('rd_sections')." WHERE id_res='".$this->id()."'";
 		$result = $this->db->queryF($sql);
 
 		if (!$result) return $ret;	
 		
 		//Elimina Referencias pertenecientes a la publicación
-		$sql="DELETE FROM ".$this->db->prefix('pa_references')." WHERE id_res='".$this->id()."'";
+		$sql="DELETE FROM ".$this->db->prefix('rd_references')." WHERE id_res='".$this->id()."'";
 		$result=$this->db->queryF($sql);
 			
 		if (!$result) return $ret;
 	
 		//Elimina imágenes pertenecientes a la publicación
-		$sql="DELETE FROM ".$this->db->prefix('pa_figures')." WHERE id_res='".$this->id()."'";
+		$sql="DELETE FROM ".$this->db->prefix('rd_figures')." WHERE id_res='".$this->id()."'";
 		$result=$this->db->queryF($sql);
 					
 		if (!$result) return $ret;
