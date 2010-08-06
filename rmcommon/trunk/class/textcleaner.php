@@ -736,19 +736,19 @@ class TextCleaner
      * chars
      */
     public function sweetstring($value, $lower = true) {
-        
         // Tranformamos todo a minusculas        
-        $rtn = $lower ? strtolower($value) : $value;
+        $rtn = $lower ? strtolower(utf8_decode($value)) : $value;
+        
         //Rememplazamos caracteres especiales latinos
         $find = array('á', 'é', 'í', 'ó', 'ú', 'ñ');        
         $repl = array('a', 'e', 'i', 'o', 'u', 'n');        
-        $rtn = str_replace ($find, $repl, $rtn);
+        $rtn = str_replace ($find, $repl, utf8_encode($rtn));
 
-        // A?aadimos los guiones        
+        // Añadimos los guiones        
         $find = array(' ', '&', '\r\n', '\n', '+');
         $rtn = str_replace ($find, '-', $rtn);
         
-        // Eliminamos y Reemplazamos dem?s caracteres especiales        
+        // Eliminamos y Reemplazamos demás caracteres especiales        
         $find = array('/[^a-zA-Z0-9\-<>_]/', '/[\-]+/', '/<[^>]*>/');        
         $repl = array('', '-', '');        
         $url = preg_replace ($find, $repl, $rtn);
