@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MyWords 2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-28 01:54-0600\n"
-"PO-Revision-Date: 2010-07-28 01:55-0600\n"
+"PO-Revision-Date: 2010-08-03 13:00-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: BitC3R0 <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "%s por %s"
 #: D:\webserver\htdocs\xoops24\modules\mywords/post_data.php:62
 #, php-format
 msgid "Read more about \"%s\""
-msgstr "Leer mas de \"%s\""
+msgstr "Leer más de \"%s\""
 
 #: D:\webserver\htdocs\xoops24\modules\mywords/post_data.php:75
 msgid "Posted in:"

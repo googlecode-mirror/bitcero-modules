@@ -300,7 +300,14 @@ class MWFunctions
     	$year = date('Y', $time);
 		$format = __("Published on %s at %s",'mywords');
 		
-		$date = '<a href="'.MWFunctions::get_url()."$day/$month/$year/".'">'.date(__('D d M, Y','mywords'), $time).'</a>';
+        $config = RMUtilities::module_config('mywords');
+        if ($config['permalinks']>1){
+            $url = MWFunctions::get_url()."$day/$month/$year/";
+        } else {
+            $url = MWFunctions::get_url()."?date=$day/$month/$year/";
+        }
+        
+		$date = '<a href="'.$url.'">'.date(__('D d M, Y','mywords'), $time).'</a>';
 		$hour = date(__('H:i','mywords'), $time);
 		
 		$rtn = sprintf($format, $date, $hour);
