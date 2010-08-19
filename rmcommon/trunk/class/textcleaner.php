@@ -609,7 +609,7 @@ class TextCleaner
         }
 		
 		// Convert [code] tag
-		$text = $this->codePreConv($text, $rmc_config['doxcode']); // Ryuji_edit(2003-11-18)
+		$text = $this->codePreConv($text, $rmc_config['doxcode']);
 		
 		if ($rmc_config['dosmileys'])
 			$text = $this->smiley($text);

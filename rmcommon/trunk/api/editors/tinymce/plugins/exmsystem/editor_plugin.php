@@ -18,6 +18,8 @@ $xoopsLogger->activated = false;
     
     tinymce.create('tinymce.plugins.EXMSystem', {
         
+        <?php RMEvents::get()->run_event('rmcommon.tiny.plugin.controls'); ?>
+        
         init : function(ed, url){
             var t = this, tbId = ed.getParam('exmsystem_adv_toolbar','toolbar2');
             var moreHTML = '<img src="' + url + '/img/trans.gif" class="mceEXMmore mceItemNoResize" title="'+ed.getLang('exmsystem.exm_more_alt')+'" />';

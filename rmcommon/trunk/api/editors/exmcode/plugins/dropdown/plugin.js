@@ -6,9 +6,8 @@ x.add_plugin('dropdown',{
         });
     },
     add_dropdown: function(x, d){
-        
+
         var dd = '<ul class="dropdown_menu dropdown_'+d.name+'" style="width: '+(d.width!=undefined?d.width:'')+'; height: '+(d.height!=undefined?d.height:'')+';">'+d.content+'</ul>';
-        
         $("#"+x.ed+'-ed-container').append(dd);
         
     },

@@ -112,9 +112,18 @@ class RMFormEditor extends RMFormElement
 	}
 	
 	public function renderTArea(){
-		return "<div id=\"ed-container\" style=\"width: $this->_width\">
-                 <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";'>".$this->_default."</textarea>
+        RMTemplate::get()->add_style('xoops-editor.css', 'rmcommon');
+		$rtn = "<div class=\"ed-container\" style=\"width: $this->_width\">";
+        $plugins = array();
+        $plugins = RMEvents::get()->run_event('rmcommon.simple.editor.plugins', $plugins, $this->getName());
+        if (!empty($plugins)){
+            $rtn .= '<div class="ed-plugins">';
+            $rtn .= implode("", $plugins);
+            $rtn .= "</div>";
+        }
+        $rtn .= "<textarea class='xc-editor' id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";'>".$this->_default."</textarea>
                  </div>";
+        return $rtn;
 	}
 	/**
 	 * Set de funciones útiles nicamente con el editor TinyMCE
@@ -152,8 +161,15 @@ class RMFormEditor extends RMFormElement
 	private function renderHTML(){
 		RMTemplate::get()->add_script(RMCURL."/include/js/quicktags.js");
 		RMTemplate::get()->add_style('editor_html.css','rmcommon');
-		$rtn = "\n<div class='ed-container html_editor_container' style='width: $this->_width;' id='".$this->getName()."-ed-container'>
-		<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
+		$rtn = "\n<div class='ed-container html_editor_container' style='width: $this->_width;' id='".$this->getName()."-ed-container'>";
+        $plugins = array();
+        $plugins = RMEvents::get()->run_event('rmcommon.html.editor.plugins', $plugins, $this->getName());
+        if (!empty($plugins)){
+            $rtn .= '<div class="ed-plugins" style="padding: 4px 6px;">';
+            $rtn .= implode(" ", $plugins);
+            $rtn .= "</div>";
+        }
+		$rtn .= "<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
 		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
 		</div>";
 		return $rtn;
@@ -175,6 +191,7 @@ class RMFormEditor extends RMFormElement
         // buttons
         $tplugins = RMEvents::get()->run_event('rmcommon.exmcode.plugins', $this->ex_plugins);
         $tplugins = explode(',',$tplugins);
+        $plugins = '';
         foreach ($tplugins as $p){
             $plugins .= $plugins=='' ? $p.': true' : ','.$p.': true';
         }

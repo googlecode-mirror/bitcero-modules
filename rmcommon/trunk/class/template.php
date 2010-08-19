@@ -273,6 +273,14 @@ class RMTemplate
             $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type);
     }
     /**
+    * Add jQuery script to site header
+    */
+    public function add_jquery($ui=true){
+        $this->add_script(RMCURL.'/include/js/jquery.min.js');
+        if ($ui)
+            $this->add_script(RMCURL.'/include/js/jquery-ui.min.js');
+    }
+    /**
    	* Get all scripts stored in class
    	*/
     public function get_scripts(){

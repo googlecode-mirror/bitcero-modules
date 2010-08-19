@@ -291,7 +291,7 @@ class RMFunctions
         }
         
         $xoopsTpl->assign('enable_comments_form', 1);
-        
+
         $form = array(
             'show_name'     => !($xoopsUser),
             'lang_name'     => __('Name','rmcommon'),
@@ -314,6 +314,7 @@ class RMFunctions
         // You can include new content into Comments form
         // eg. Captcha checker, etc
         $form = RMEvents::get()->run_event('rmcommon.comments.form', $form, $obj, $params, $type);
+        RMTemplate::get()->add_jquery();
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
         RMTemplate::get()->add_head('<script type="text/javascript">
         $(document).ready(function(){
