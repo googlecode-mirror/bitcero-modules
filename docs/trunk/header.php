@@ -1,17 +1,18 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// RapidDocs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 include (XOOPS_ROOT_PATH.'/header.php');
 
 $mc =& $xoopsModuleConfig;
 
 //include_once 'include/functions.php';
-define('AHURL',$mc['access'] ? XOOPS_URL.$mc['htpath'] : XOOPS_URL.'/modules/ahelp/index.php?page=');
-$xoopsTpl->assign('ah_url',AHURL);
+define('RDURL', RDFunctions::url());
+define('RDPATH', XOOPS_ROOT_PATH.'/modules/docs');
+$xoopsTpl->assign('rdurl', RDURL);

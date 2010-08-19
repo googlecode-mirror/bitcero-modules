@@ -1,20 +1,17 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// RapidDocs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-
-define('AH_LOCATION','edit');
 include ('../../mainfile.php');
-include_once 'include/functions.php';
 
 if (!$xoopsUser){
-	redirect_header($url_link,2,_MS_AH_NOTPERMEDIT);
+	redirect_header($url_link,2, __('Operation not allowed!','dcos'));
 	die();
 }
 
@@ -49,87 +46,45 @@ function child(&$res,$parent,$indent){
 **/
 function showSection(){
 
-	global $xoopsModule,$db,$tpl,$util,$xoopsOption,$xoopsUser,$xoopsModuleConfig;
-	global $id_res;
+	global $xoopsModule,$xoopsUser,$xoopsModuleConfig, $xoopsTpl, $xoopsConfig;
+	global $id, $xoopsSecurity;
 	
-	$xoopsOption['template_main']='ahelp_viewsec.html';
-	$xoopsOption['module_subpage'] = 'edit';
 	include ('header.php');
 	
-	$retlink = AHURL;
-
 	//Verifica si se proporcionó una publicación para la sección
-	if (trim($id_res)==''){
-		redirect_header(AHURL,1,_MS_AH_ERRRESOURCE);
-		die();
-	}
+	if (trim($id)=='')
+		RDFunctions::error_404();
 	
 	//Verifica si la publicación existe
-	$res= new AHResource($id_res);
-	if ($res->isNew()){
-		redirect_header(AHURL,1,_MS_AH_ERRNOTEXIST);
-		die();
-	}
+	$section = new RDSection($id);
+	if ($section->isNew())
+        RDfunctions::error_404();
+    
+    $res = new RDResource($section->getVar('id_res'));
 	
 	//Verificamos si es una publicación aprobada
-	if (!$res->approved()){
-		redirect_header(AHURL,2,_MS_AH_NOTAPPROVED);
+	if (!$res->getVar('approved')){
+		redirect_header(RDURL, 2, __('Specified section does not exists!','docs'));
 		die();
 	}
-	
-	$url_link = ah_make_link($res->nameId());
 	
 	//Verificamos si el usuario tiene permisos de edicion
-	if (!$xoopsUser->uid()==$res->owner() && 
+	if (!$xoopsUser->uid()==$res->getVar('owner') && 
 		!$res->isEditor($xoopsUser->uid()) && 
 		!$xoopsUser->isAdmin()){
-		redirect_header($url_link,2,_MS_AH_NOTPERMEDIT);
+		redirect_header($section->permalink(), 1, __('Operation not allowed','docs'));
 		die();
 	}
+    
+    $sections = array();
+    RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $sections, false);
+    
+    array_walk($sections, 'rd_insert_edit');
 	
-	$location = "<a href='".ah_make_link()."'>"._MS_AH_HOME."</a> &raquo; <a href='".ah_make_link($res->nameId())."'>".$res->title()."</a> &raquo; "._MS_AH_EXIST;
-	$tpl->assign('location_bar', $location);
+	$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Editing %s','docs'), $section->getVar('title')));
 	
-	$id = $res->id();
-
-	//Secciones
-	$sql="SELECT * FROM ".$db->prefix('pa_sections')." WHERE id_res='$id' AND parent=0 ORDER BY `order`";
-	$result=$db->queryF($sql);
-	while ($rows=$db->fetchArray($result)){
-		$sec= new AHSection();
-		$sec->assignVars($rows);
-		
-		//Creamos link correcto para ir a contenido
-		$url_cont = $res->nameId().'/'.$sec->nameId();
-
-		$tpl->append('sections',array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
-				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>0,'link'=>$url_cont));
-		
-		child($res,$sec->id(),1);
-		
-	}
-
-	$tpl->assign('lang_secexist',_MS_AH_EXIST);
-	$tpl->assign('lang_id',_MS_AH_ID);
-	$tpl->assign('lang_title',_MS_AH_TITLE);
-	$tpl->assign('lang_order',_MS_AH_ORDER);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_select',_SELECT);
-	$tpl->assign('id',$id_res);
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_save',_MS_AH_SAVE);
-	$tpl->assign('lang_home',_MS_AH_HOME);
-	$tpl->assign('title',$res->title());
-	$tpl->assign('token',$util->getTokenHTML());
-	$tpl->assign('url_link',$url_link);
-	$tpl->assign('newpage_link',ah_make_link('newpage/'.$res->nameId()));
-	$tpl->assign('lang_newpage', _AS_AH_NEWPAGE);
-	
-	makeHeader();
-	$tpl->assign('lang_titleheader',$res->title());
-	makeFooter();
+    include RMEvents::get()->run_event('docs.template.editsection', RMTemplate::get()->get_template('rd_viewsec.php', 'module', 'docs'));
+    
 	include ('footer.php');
 
 }
@@ -139,127 +94,61 @@ function showSection(){
 * @desc Formulario para crear nueva sección
 **/
 function formSection($edit=0){
-	global $tpl,$xoopsConfig,$xoopsUser,$xoopsOption,$xoopsModuleConfig, $id_res, $id_sec;
-	
-	$cHead='';
-	//Verifica si se proporcionó una publicación para la sección
-	if ($id_res==''){
-		redirect_header(XOOPS_URL."/modules/ahelp/",1,_MS_AH_ERRRESOURCE);
-		die();
-	}
-	
-	//Verifica si la publicación existe
-	$res= new AHResource($id_res);
-	if ($res->isNew()){
-		redirect_header(XOOPS_URL."/modules/ahelp/",1,_MS_AH_ERRNOTEXIST);
-		die();
-	}
-
-
-	//Verificamos si es una publicación aprobada
-	if (!$res->approved()){
-		redirect_header(XOOPS_URL.'/modules/ahelp/',2,_MS_AH_NOTAPPROVED);
-		die();
-	}
-	
-	$url_link = ah_make_link($res->nameId());
-
-	//Verificamos si el usuario tiene permisos de edicion
-	if (!$xoopsUser->uid()==$res->owner() && !$res->isEditor($xoopsUser->uid()) && !$xoopsUser->isAdmin()){
-		redirect_header(ah_make_link('list/'.$res->nameId()),2,_MS_AH_NOTPERMEDIT);
-		die();
-	}
+	global $xoopsConfig,$xoopsUser,$xoopsModuleConfig, $id, $res;
+    
+    //Verifica si se proporcionó una publicación para la sección
+    if ($res<=0)
+        RDFunctions::error_404();
+    
+    
+    $res = new RDResource($res);
+    
+    if($res->isNew())
+        RDFunctions::error_404();
+    
+    //Verificamos si es una publicación aprobada
+    if (!$res->getVar('approved')){
+        redirect_header(RDURL, 2, __('Specified section does not exists!','docs'));
+        die();
+    }
+    
+    //Verificamos si el usuario tiene permisos de edicion
+    if (!$xoopsUser->uid()==$res->getVar('owner') && 
+        !$res->isEditor($xoopsUser->uid()) && 
+        !$xoopsUser->isAdmin()){
+        redirect_header($section->permalink(), 1, __('Operation not allowed','docs'));
+        die();
+    }
 
 	if ($edit){
 		//Verifica si la sección es válida
-		if ($id_sec==''){
-			redirect_header(ah_make_link('list/'.$res->nameId()),1,_MS_AH_ERRSECTION);
-			die();
-		}
+		if ($id=='')
+			RDfunctions::error_404();
 		
 		//Comprueba si la sección es existente
-		$sec=new AHSection($id_sec, $res->id());
-		if ($sec->isNew()){
-			redirect_header(ah_make_link('list/'.$res->nameId()),1,_MS_AH_ERRNOTSEC);
-			die();
-		}
+		$section = new RDSection($id);
+		if ($section->isNew())
+			RDFunctions::error_404();
 	}
 
-	$xoopsOption['template_main']='ahelp_sec.html';
-	$xoopsOption['module_subpage'] = 'edit';
 	include ('header.php');
-	
-	$location = "<a href='".ah_make_link()."'>"._MS_AH_HOME."</a> &raquo; <a href='".ah_make_link($res->nameId())."'>".$res->title()."</a> &raquo; "._MS_AH_EXIST;
-	$tpl->assign('location_bar', $location);
 
-	$form=new RMForm($edit ? _MS_AH_EDIT : _MS_AH_NEWSECTION,'frmsec',ah_make_link('edit/'.$res->nameId().'/'.($edit ? $sec->nameId() : '')));
-	
-	$form->addElement(new RMLabel(_MS_AH_PUBLISH,$res->title()));
-	$form->addElement(new RMText(_MS_AH_TITLE,'title',50,200,$edit ? $sec->title() : ''),true);
-	
-	if ($edit){
-		$ele = new RMEditorAddons(_OPTIONS,'options','content',$xoopsConfig['editor_type'],$res->id(),$sec->id(),$id_sec);
-		$cHead = $ele->jsFunctions();
-		$form->addElement($ele);
-	} else {
-		$form->addElement(new RMLabel(_OPTIONS, _MS_AH_REFFIG));
-	}
-
-	$form->addElement(new RMEditor(_MS_AH_CONTENT,'content','90%','300px',$edit ? $sec->getVar('content', 'e') : '', '', false));
-	if ($edit){
-		$dohtml = $sec->getVar('dohtml');
-		$doxcode = $sec->getVar('doxcode');
-		$dobr = $sec->getVar('dobr');
-		$dosmiley = $sec->getVar('dosmiley');
-		$doimage = $sec->getVar('doimage');
-	} else {
-		$dohtml = 1;
-		$doxcode = 0;
-		$dobr = 0;
-		$dosmiley = 0;
-		$doimage = 0;
-	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	include_once RMCPATH.'/class/form.class.php';
+    define('RD_NO_FIGURES', 1);
+	$rmc_config = RMFunctions::configs();
+	$editor = new RMFormEditor('','content','100%','300px',$edit ? $section->getVar('content', $rmc_config['editor_type']=='tiny' ? 's' : 'e') : '', '', false);
+    if ($rmc_config['editor_type']=='tiny'){
+        $tiny = TinyEditor::getInstance();
+        $tiny->configuration['content_css'] .= ','.XOOPS_URL.'/modules/docs/css/figures.css';
+    }
 
 	// Arbol de Secciones
-	$ele= new RMSelect(_MS_AH_PARENT,'parent');
-	$ele->addOption(0,_SELECT);
-	$tree = array();
-	getSectionTree($tree, 0, 0, $res->id(), 'id_sec, title', $edit ? $sec->id() : 0);
-	foreach ($tree as $k){
-		$ele->addOption($k['id_sec'], str_repeat('--', $k['saltos']).' '.$k['title'], $edit ? ($sec->parent()==$k['id_sec'] ? 1 : 0) : 0);
-	}
-	
-	$form->addElement($ele);
+	$sections = array();
+	RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $sections, false);
+    
+    RMTemplate::get()->add_style('forms.css', 'docs');
+    include RMEvents::get()->run_event('docs.template.formsections.front', RMTemplate::get()->get_template('rd_sec.php','module','docs'));
 
-	$form->addElement(new RMText(_MS_AH_ORDER,'order',5,5,$edit ? $sec->order() : ''),true);
-
-	$ele=new RMCheck('');
-	$ele->addOption(_MS_AH_GOTOSEC,'return',1,1);
-		
-	$form->addElement($ele);
-	// Usuario
-	$form->addElement(new RMLabel('',$res->approveEditors() ? _MS_AD_APPROVETIP : _MS_AD_NOAPPROVETIP));
-
-	$buttons =new RMButtonGroup();
-	$buttons->addButton('sbt',_MS_AH_SAVE,'submit');
-	$buttons->addButton('ret', _MS_AH_SAVERET, 'submit', 'onclick="document.forms[\'frmsec\'].op.value=\''.($edit ? 'saveretedit' : 'saveret').'\';"');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="history.go(-1);"');
-
-	$form->addElement($buttons);
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	
-	$tpl->assign('lang_home',_MS_AH_HOME);
-	$tpl->assign('lang_sec',$edit ? $sec->title() : _MS_AH_NEWSECTION);
-	$tpl->assign('title',$res->title());
-	$tpl->assign('id',$id_res);
-	$tpl->assign('url_link',$url_link);
-	$tpl->assign('chead',$cHead);
-	$tpl->assign('content',$form->render());
-
-	makeHeader();
-	$tpl->assign('lang_titleheader', $res->title());
-	makeFooter();
 	include ('footer.php');
 
 }
@@ -469,9 +358,9 @@ function changeOrderSections(){
 
 }
 
-$op = isset($_POST['op']) ? $_POST['op'] : $op;
+$action = rmc_server_var($_POST, 'action', isset($action) ? $action : '');
 
-switch ($op){
+switch ($action){
 	case 'new':
 		formSection();
 		break;	

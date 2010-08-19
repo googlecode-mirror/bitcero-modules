@@ -28,6 +28,7 @@ class RDSection extends RMObject{
 			
 			if (!$this->loadValues($id)) return;
 			$this->unsetNew();
+            
 		}else{
 			$sql = "SELECT * FROM ".$this->_dbtable." WHERE nameid='$id' AND id_res='$res'";
 			$result = $this->db->query($sql);
@@ -111,14 +112,31 @@ class RDSection extends RMObject{
     */
     public function permalink($edit = 0){
         $config = RMUtilities::module_config('docs');
+        
+        $res = new RDResource($this->getVar('id_res'));
+        
+        if ($res->getVar('single')){
+            return "#".$this->getVar('nameid');
+        }
+        
         if ($config['permalinks']){
             
-            $res = new RDResource($this->getVar('id_res'));
-            $perma = XOOPS_URL.$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+            if($this->getVar('parent')>0){
+                $sec = new RDSection($this->getVar('parent'));
+                $perma = $sec->permalink().'/#'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+            } else {
+                $perma = XOOPS_URL.$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+            }
+            
             
         } else {
             
-            $perma = XOOPS_URL.'/modules/docs/content.php?id='.$this->id();
+            if($this->getVar('parent')>0){
+                $sec = new RDSection($this->getVar('parent'));
+                $perma = $sec->permalink().'#'.$this->getVar('nameid');
+            } else {
+                $perma = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$this->id();
+            }
             
         }
         
@@ -162,7 +180,7 @@ class RDSection extends RMObject{
 	public function delete(){
 		$ret=false;
 	
-		//Cambia las secciones hijas a secciones principales
+		// Change the parent on child sections
 		$sql="UPDATE ".$this->db->prefix('rd_sections')." SET parent=0 WHERE parent='".$this->id()."'";
 		$result=$this->db->queryF($sql);
 

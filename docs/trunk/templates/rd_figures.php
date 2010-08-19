@@ -116,13 +116,15 @@
 <div id="form-figures">
     <form name="frmfig" id="frm-figs" method="post" accept="figures.php">
         <span class="resource"><?php _e('Resource:','docs'); ?> <strong><?php echo $res->getVar('title'); ?></strong></span>
+        <label for="title"><?php _e('Title:','docs'); ?></label>
+        <input type="text" name="title" id="title" size="50" value="<?php echo $edit ? $fig->getVar('title','e') : ''; ?>" />
         <label for="desc"><?php _e('Description:','docs'); ?></label>
         <input type="text" name="desc" id="desc" size="50" value="<?php echo $edit ? $fig->getVar('desc','e') : ''; ?>" />
         <span class="error_desc error"><?php _e('Description is a required attribute!','docs'); ?></span>
         <?php echo $editor->render(); ?>
         <span class="error_content error"><?php _e('You must input the content for this figure!','docs'); ?></span>
         <label for="attrs"><?php _e('Atributes:','docs'); ?></label>
-        <input type="text" name="attrs" id="attrs" value="<?php echo $edit ? $fig->getVar('attrs') : ''; ?>" />
+        <input type="text" name="attrs" id="attrs" value="<?php echo $edit ? $fig->getVar('attrs','e') : ''; ?>" />
         <span class="info"><?php _e('Here you can specify another atributes to include with the figure. You can specify a css class name, or an id for figure.','docs'); ?></span>
         <input type="hidden" name="action" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
         <input type="hidden" name="page" value="<?php echo $page; ?>" />

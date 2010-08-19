@@ -53,26 +53,7 @@ function assignSectionTree($parent = 0, $jumps = 0, AHResource $res, $var = 'ind
 * @desc Obtiene el primer parent de la sección especificada
 * @param int Id de la sección
 */
-function getSuperParent($id){
-	global $db;
-	
-	if ($id<=0) return;
-	
-	$sql = "SELECT id_sec, parent, nameid FROM ".$db->prefix("pa_sections")." WHERE id_sec='$id'";
-	$result = $db->query($sql);
-	if ($db->getRowsNum($result)<=0) return;
-	list($id_sec, $parent, $nameid) = $db->fetchRow($result);
-	if ($parent>0){
-		$section = getSuperParent($parent);
-	} else {
-		$section['id'] = $id_sec;
-		$section['parent'] = $parent;
-		$section['nameid'] = $nameid;
-	}
-	
-	return $section;
-	
-}
+
 
 function ahBuildReference($id){
 	global $xoopsModuleConfig, $tpl;
@@ -115,10 +96,7 @@ function ahBuildFigure($id){
 */
 function ahParseReferences($text){
 	
-    // Parseamos las referencias
-	$pattern = "/\[ref:(.*)]/esU";
-	$replacement = "ahBuildReference(\\1)";
-	$text = preg_replace($pattern, $replacement, $text);
+    
     
     // Parseamos las figuras
     $pattern = "/\[fig:(.*)]/esU";
@@ -128,30 +106,6 @@ function ahParseReferences($text){
 	return $text;
 	
 }
-
-/**
-* @desc Incrementa las lecturas en un recurso si es posible
-* @param object Objeto AHResource
-* @return bool
-*/
-function addRead(AHResource &$res){
-	
-	if (!isset($_SESSION['ahResources'])){
-		$_SESSION['ahResources'] = array($res->id());
-		$res->addRead();
-		return true;
-	} else {
-		
-		if (in_array($res->id(), $_SESSION['ahResources'])) return false;
-		
-		$_SESSION['ahResources'][] = $res->id();
-		$res->addRead();
-		return true;
-	}
-		
-}
-
-
 
 function ah_make_link($link=''){
     global $xoopsModuleConfig;

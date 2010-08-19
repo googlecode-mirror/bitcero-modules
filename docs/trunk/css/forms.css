@@ -1,0 +1,11 @@
+.form_container label{
+    display: block;
+    font-weight: bold;
+    padding: 3px 0;
+}
+.form_container input[type='text'],
+.form_container select{
+    width: 95%;
+    padding: 3px;
+    font-size: 1.2em;
+}

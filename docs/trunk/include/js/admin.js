@@ -57,3 +57,8 @@ function before_submit(form){
         $("#"+form).submit();
     }
 }
+
+function rd_show_figure_editor(){
+        
+    $("#rd-figures-editor").show('fast');
+}

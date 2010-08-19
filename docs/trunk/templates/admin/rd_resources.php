@@ -1,4 +1,14 @@
-<h1 class="rmc_titles mw_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Available Resources','docs'); ?></h1>
+<div id="rd_res_search">
+    <form action="resources.php" method="get">
+        <strong><?php _e('Search Resources:','docs'); ?></strong>
+        <input type="text" name="query" value="<?php echo isset($query) ? $query : ''; ?>" />
+    </form>
+</div>
+<?php if($query!=''): ?>
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo sprintf(__('Resources: results for "%s"','docs'), $query); ?></h1>
+<?php else: ?>
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Available Resources','docs'); ?></h1>
+<?php endif; ?>
 
 <form name="frm_resources" id="frm-resources" method="post" action="resources.php">
 <div class="rd_loptions">
@@ -14,6 +24,8 @@
         <option value="delete"><?php _e('Delete','docs'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-resources');" />
+    &nbsp; &nbsp;
+    <a href="resources.php"><?php _e('Show All','docs'); ?></a>
 </div>
 <table class="outer" width="100%" cellspacing="1"> 
     <thead>
@@ -22,9 +34,11 @@
 		<th width="30"><?php _e('ID','docs'); ?></th>
 		<th align="left"><?php _e('Title','docs'); ?></th>
         <th><?php _e('Owner','docs'); ?></th>
-        <th align="left"><?php _e('Description','docs'); ?></th>
-		<th><?php _e('Attributes','docs'); ?></th>
-        <th><?php _e('Date','docs'); ?></th>
+        <th><?php _e('Created','docs'); ?></th>
+        <th><?php _e('Sections','docs'); ?></th>
+        <th><?php _e('Notes','docs'); ?></th>
+        <th><?php _e('Figures','docs'); ?></th>
+        <th><?php _e('Attributes','docs'); ?></th>
 	</tr>
     </thead>
     <tfoot>
@@ -33,9 +47,11 @@
         <th width="30"><?php _e('ID','docs'); ?></th>
         <th align="left"><?php _e('Title','docs'); ?></th>
         <th><?php _e('Owner','docs'); ?></th>
-        <th align="left"><?php _e('Description','docs'); ?></th>
+        <th><?php _e('Created','docs'); ?></th>
+        <th><?php _e('Sections','docs'); ?></th>
+        <th><?php _e('Notes','docs'); ?></th>
+        <th><?php _e('Figures','docs'); ?></th>
         <th><?php _e('Attributes','docs'); ?></th>
-        <th><?php _e('Date','docs'); ?></th>
     </tr>
     </tfoot>
     <tbody>
@@ -49,19 +65,35 @@
                 <span class="rmc_options">
                     <a href="./resources.php?action=edit&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>" ><?php _e('Edit','docs'); ?></a>
                     | <a href="javascript:;" onclick="rd_check_delete(<?php echo $res['id']; ?>,'frm-resources');"><?php _e('Delete','docs'); ?></a>
-                    | <a href="./sections.php?id=<?php echo $res['id']; ?>"><?php _e('Sections','docs'); ?></a>
                     | <?php if(!$res['featured']): ?><a href="./resources.php?action=recommend&amp;id=<?php echo $res['id']; ?>&amp;page=<? echo $page; ?>"><?php _e('Featured','docs'); ?><?php else: ?><a href="./resources.php?action=norecommend&amp;id=<?php echo $res['id']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Not featured','docs'); ?><?php endif; ?></a>
                 </span>
             </td>
             <td align="center"><a href="<?php echo XOOPS_URL; ?>/userinfo.php?uid=<?php echo $res['owner']; ?>"><?php echo $res['owname']; ?></a></td>
-            <td align="left"><?php echo $res['description']; ?></td>
+			<td><?php echo $res['created']; ?></td>
+            <td>
+                <strong><a href="sections.php?id=<?php echo $res['id']; ?>" title="<?php _e('View Sections','docs'); ?>"><?php echo $res['sections']; ?></a></strong>
+                <span class="rmc_options">
+                    <a href="./sections.php?id=<?php echo $res['id']; ?>"><?php _e('Sections','docs'); ?></a>
+                </span>
+            </td>
+            <td>
+                <strong><a href="notes.php?res=<?php echo $res['id']; ?>" title="<?php _e('View Notes','docs'); ?>"><?php echo $res['notes']; ?></a></strong>
+                <span class="rmc_options">
+                    <a href="notes.php?res=<?php echo $res['id']; ?>"><?php _e('View Notes','docs'); ?></a>
+                </span>
+            </td>
+            <td>
+                <strong><a href="figures.php?res=<?php echo $res['id']; ?>" title="<?php _e('View Figures','docs'); ?>"><?php echo $res['figures']; ?></a></strong>
+                <span class="rmc_options">
+                    <a href="figures.php?res=<?php echo $res['id']; ?>"><?php _e('View Figures','docs'); ?></a>
+                </span>
+            </td>
             <td>
                 <?php if($res['featured']): ?><img src="../images/featured.png" border="0" title="<?php _e('Featured','docs'); ?>" alt="<?php _e('Featured','docs'); ?>" /><?php endif; ?>
                 <?php if($res['approved']): ?><img src="../images/approved.png" border="0" title="<?php _e('Approved','docs'); ?>" alt="<?php _e('Approved','docs'); ?>" /><?php endif; ?>
                 <?php if($res['public']): ?><img src="../images/public.png" border="0" title="<?php _e('Published','docs'); ?>" alt="<?php _e('Published','docs'); ?>" /><?php endif; ?>
                 <?php if($res['quick']): ?><img src="../images/quick.png" border="0" title="<?php _e('Quick Index','docs'); ?>" alt="<?php _e('Quick Index','docs'); ?>" /><?php endif; ?>
             </td>
-			<td><?php echo $res['created']; ?></td>
 		</tr>
 	<?php endforeach; ?>
     </tbody>

@@ -59,7 +59,7 @@ var docsAjax = jQuery.extend({
                     $("#resources-form input").hide('fast');
                     $("#resources-form textarea").hide('fast');
                     $("#resources-form .image_waiting").show('fast');
-                    $("#frm-refs").submit();
+                    $("#frm-notes").submit();
                 },
                 '<?php _e('Cancel','docs'); ?>': function(){
                     $("#resources-form input[type=text]").val('');
@@ -105,7 +105,7 @@ var docsAjax = jQuery.extend({
                     $("#resources-form input").hide('fast');
                     $("#resources-form textarea").hide('fast');
                     $("#resources-form .image_waiting").show('fast');
-                    $("#frm-refs").submit();
+                    $("#frm-notes").submit();
                 },
                 '<?php _e('Cancel','docs'); ?>': function(){
                     $("#resources-form input[type=text]").val('');

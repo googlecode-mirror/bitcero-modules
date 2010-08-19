@@ -1,6 +1,7 @@
 CREATE TABLE `rd_figures` (
   `id_fig` int(10) unsigned NOT NULL auto_increment,
   `id_res` int(10) unsigned NOT NULL default '0',
+  `title` varchar(150) NOT NULL,
   `attrs` text NOT NULL,
   `desc` varchar(255) NOT NULL,
   `content` text NOT NULL,
@@ -19,7 +20,6 @@ CREATE TABLE `rd_resources` (
   `id_res` int(11) unsigned NOT NULL auto_increment,
   `title` varchar(150) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `image` varchar(150) NOT NULL,
   `created` int(10) NOT NULL default '0',
   `modified` int(10) NOT NULL default '0',
   `owner` int(11) NOT NULL,
@@ -36,6 +36,7 @@ CREATE TABLE `rd_resources` (
   `rating` int(11) NOT NULL default '0',
   `approved` tinyint(1) NOT NULL default '1',
   `featured` tinyint(1) NOT NULL default '0',
+  `single` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_res`),
   KEY `nameid` (`nameid`),
   KEY `title` (`title`)
@@ -53,6 +54,7 @@ CREATE TABLE `rd_sections` (
   `uname` varchar(40) NOT NULL,
   `created` int(10) NOT NULL default '0',
   `modified` int(10) NOT NULL default '0',
+  `comments` smallint(6) NOT NULL default '0',
   PRIMARY KEY  (`id_sec`),
   KEY `nameid` (`nameid`)
 ) TYPE=MyISAM ;

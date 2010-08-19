@@ -1,7 +1,0 @@
-RewriteEngine On
-RewriteBase /modules/ahelp/
-
-RewriteCond %{REQUEST_URI} !/[A-Z]+-
-RewriteRule ^resource/(.*)/?$ resource.php?id=$1
-RewriteRule ^content/(.*)/?$ content.php?id=$1
-RewriteRule ^article/(.*)/?$ content.php?t=a&id=$1

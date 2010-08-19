@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Rapid Docs
+// RapidDocs
 // Documentation system for Xoops.
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
@@ -17,14 +17,18 @@ include 'header.php';
 function show_resources(){
 	global $xoopsModule,$xoopsConfig, $xoopsSecurity;
 	
+    $query = rmc_server_var($_REQUEST,'query','');
+    
     $db = Database::getInstance();
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources');
+    if($query)
+        $sql .= " WHERE title LIKE '%query%'";
+        
 	list($num)=$db->fetchRow($db->queryF($sql));
 	
 	$page = rmc_server_var($_REQUEST, 'page', 1);
-    $limit = rmc_server_var($_REQUEST, 'limit', 15);
-	$limit = $limit<=0 ? 15 : $limit;
+	$limit = 15;
 
 	$tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
@@ -36,7 +40,7 @@ function show_resources(){
 
 	//Fin navegador de páginas
 	
-	$sql="SELECT * FROM ".$db->prefix('rd_resources')." ORDER BY `created` DESC LIMIT $start,$limit";
+	$sql="SELECT * FROM ".$db->prefix('rd_resources').($query!='' ? " WHERE title LIKE '%$query%'" : '')." ORDER BY `created` DESC LIMIT $start,$limit";
 	$result=$db->queryF($sql);
 	$resources = array();
 	
@@ -54,7 +58,10 @@ function show_resources(){
 			'approved'=>$res->getVar('approved'),
             'owname'=>$res->getVar('owname'),
             'owner'=>$res->getVar('owner'),
-            'description'=>$res->getVar('description')
+            'description'=>$res->getVar('description'),
+            'sections'=>$res->sections_count(),
+            'notes'=>$res->notes_count(),
+            'figures'=>$res->figures_count()
         );
 	}
 
@@ -129,6 +136,8 @@ function rd_show_form($edit=0){
 	$form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex',$edit ? $res->getVar('show_index') : 0));
 	$form->addElement(new RMFormYesno(__('Featured','docs'),'featured',$edit ? $res->getVar('featured') : 0));
 	$form->addElement(new RMFormYesno(__('Approve inmediatly','docs'),'approvedres',$edit ? $res->getVar('approved') : 1));
+    $form->addElement(new RMFormYesno(__('Show content in a single page','docs'),'single',$edit ? $res->getVar('single') : 0));
+    $form->element('single')->setDescription(__('When you enable this option the resource content will show in a single page.','docs'));
 
 	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',$edit ? __('Update Resource','docs') : __('Create Resource','docs'),'submit');
@@ -237,6 +246,7 @@ function rd_save_resource($edit=0){
 	$res->setVar('show_index', $showindex);
 	$res->setVar('featured', $featured);
 	$res->setVar('approved', $approvedres);
+    $res->setVar('single', $single);
 	if ($res->isNew()){
 		$res->setVar('owner', $xoopsUser->uid());
 		$res->setVar('owname', $xoopsUser->uname());
@@ -543,4 +553,3 @@ switch ($action){
 		show_resources();
 
 }
-?>

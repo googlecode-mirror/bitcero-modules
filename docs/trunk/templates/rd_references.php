@@ -95,7 +95,7 @@
 
 <div id="resources-list" title="<?php _e('Select Resource','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
 <div id="resources-form" title="<?php _e('Create Note','docs'); ?>">
-<form name="frmRefs" id="frm-refs" method="post" action="references.php">
+<form name="frmRefs" id="frm-notes" method="post" action="references.php">
 <label><?php _e('Title:','docs'); ?></label>
 <input type="text" name="title" id="note-title" value="" class="required" />
 <label><?php _e('Content:','docs'); ?></label>

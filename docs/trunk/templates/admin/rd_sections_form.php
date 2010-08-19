@@ -39,13 +39,13 @@ $(document).ready(function(){
                             <select name="parent" id="sec-parent">
                                 <option value=""><?php _e('Select...','docs'); ?></option>
                                 <?php foreach($sections as $k): ?>
-                                <option value="<?php echo $k['id_sec']; ?>"<?php if(isset($sec) && $sec->parent()==$k['id_sec']): ?> selected="selected"<?php endif; ?>><?php echo str_repeat('--', $k['saltos']).' '.$k['title']; ?></option>
+                                <option value="<?php echo $k['id_sec']; ?>"<?php if(isset($sec) && $sec->getVar('parent')==$k['id_sec']): ?> selected="selected"<?php elseif(isset($parent) && $parent==$k['id_sec']): ?> selected="selected"<?php endif; ?>><?php echo str_repeat('&#8212;', $k['saltos']).' '.$k['title']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </td>
                         <td>
                              <label for="sec-order"><?php _e('Display order:','docs'); ?></label>
-                             <input type="text" size="5" id="sec-order" name="order" value="<?php echo isset($sec) ? $sec->getVar('order') : 0; ?>" />
+                             <input type="text" size="5" id="sec-order" name="order" value="<?php echo isset($sec) ? $sec->getVar('order') : $order++; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -109,7 +109,9 @@ $(document).ready(function(){
         <label><?php _e('Custom fields can be used to add extra metadata to a post that you can use in your theme.','docs'); ?></label>
         </div>
     </div>
-    
+    <!-- Extra fields -->
+    <?php RMEvents::get()->run_event('docs.sections.form.fields', $edit ? $sec : null); ?>
+    <!-- End Extra Fields -->
 </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input type="hidden" name="id" value="<?php echo $id; ?>" />

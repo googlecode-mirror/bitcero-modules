@@ -255,6 +255,7 @@ function saveFigures($edit=0){
 	$fig->setVar('attrs',$attrs);
 	$fig->setVar('desc',$desc);
 	$fig->setVar('content',$content);
+    $fig->setVar('title',$title);
 	
 	if (!$fig->save()){
 		redirectMsg('./figures.php?action=new&'.$ruta, __('Database could not be updated!','docs'),1);

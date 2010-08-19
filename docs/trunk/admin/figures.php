@@ -1,334 +1,310 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// RapidDocs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('AH_LOCATION', 'figures');
+define('RMCLOCATION', 'figures');
 include 'header.php';
 
-// Mensajes de Error
-if (isset($_SESSION['exmMsg'])){
-	$tpl->assign('showExmInfoMsg', 1);
-	$tpl->assign('exmInfoMessage', array('text'=>html_entity_decode($_SESSION['exmMsg']['text']),'level'=>$_SESSION['exmMsg']['level']));
-	unset($_SESSION['exmMsg']);
-}
-
-
 /**
-* @desc Visualiza  todas las figuras existentes de una publicación
+* @desc Muestra todas las figuras existentes
 **/
-function Figures(){
-	global $db,$tpl,$util;
+function rd_show_figures(){
+	global $xoopsModule, $xoopsSecurity;
 
-	$myts=&MyTextSanitizer::getInstance();
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-
-
-	//Navegador de páginas
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_figures')." WHERE id_res=$id";
-	$sql1='';
-	if ($search){
-		
-		//Separamos la frase en palabras para realizar la búsqueda
-		$words = explode(" ",$search);
-		
-		foreach($words as $k){
-			//Verificamos el tamaño de la palabra
-			if (strlen($k) <= 2) continue;	
-			$sql1.=($sql1=='' ? ' AND ' : " OR "). " `desc` LIKE '%$k%' ";
-		}	
-	
-	}
-	list($num)=$db->fetchRow($db->queryF($sql.$sql1));
-	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
+	$id_res=isset($_REQUEST['res']) ? intval($_REQUEST['res']) : 0;
+	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
     
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&id='.$id.'&search='.$search, 0);
-    	    $tpl->assign('figNavPage', $nav->renderNav(4, 1));
-    	}
+    if($id_res<=0){
+        redirectMsg('resources.php', __('First select a resource to view the figures.','docs'), 1);
+    }
+    
+    $res = new RDResource($id_res);
+    if($res->isNew()){
+        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+    }
+    
+	$search = rmc_server_var($_GET, 'search', '');
+    
+    //Separamos frase en palabras
+    $words=explode(" ",$search);
+    
+    $db = Database::getInstance();
+    
+    //Navegador de páginas
+    $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_figures').($id_res ? " WHERE id_res='$id_res'" : '');
+    $sql1='';
+    if ($search){
+        foreach ($words as $k){
+            //verifica que palabra sea mayor a 2 letras    
+            if (strlen($k)<=2) continue;
+            $sql1.=($sql1=='' ? ($id_res ? " AND " : " WHERE ") : " OR ")." (title LIKE '%$k%' OR desc LIKE '%$k%')";    
 
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_AH_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
-	//Fin navegador de páginas
+        }    
+    }
+    
+    list($num) = $db->fetchRow($db->query($sql.$sql1));
+    $page = rmc_server_var($_REQUEST, 'page', 1);
+    $limit = 15;
 
-	$sql="SELECT * FROM ".$db->prefix('pa_figures')." WHERE id_res=$id";
-	$sql1='';
-	if ($search){
-		
-		//Separamos la frase en palabras para realizar la búsqueda
-		$words = explode(" ",$search);
-		
-		foreach($words as $k){
-			//Verificamos el tamaño de la palabra
-			if (strlen($k) <= 2) continue;	
-			$sql1.=($sql1=='' ? ' AND ' : " OR "). " `desc` LIKE '%$k%' ";
-		}	
-	
-	}
-	$sql2=" LIMIT $start,$limit ";
-	
-	$result=$db->queryF($sql.$sql1.$sql2);
-	while ($rows=$db->fetchArray($result)){
-		$fig=new AHFigure();
-		$fig->assignVars($rows);
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
 
-		$tpl->append('figures',array('id'=>$fig->id(),'desc'=>$fig->desc()));		
-		
-	}
-	
-	$tpl->assign('lang_id',_AS_AH_ID);
-	$tpl->assign('lang_desc',_AS_AH_DESC);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_close',_CLOSE);
-	$tpl->assign('lang_exist',_AS_AH_EXIST);
-	$tpl->assign('lang_insert',_AS_AH_INSERT);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_new',_AS_AH_NEWF);
-	$tpl->assign('id',$id);
-	$tpl->assign('search',$search);	
-	$tpl->assign('token', $util->getTokenHTML());
-	$tpl->assign('lang_confirm',_AS_AH_CONFIRM);
-	$tpl->assign('lang_search',_AS_AH_SEARCH);
-	$tpl->assign('lang_submit',_SUBMIT);
-
-	echo $tpl->fetch('db:admin/ahelp_figures.html');
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('figures.php?res='.$id_res.'&amp;page={PAGE_NUM}');
+    
+    $sql = str_replace("COUNT(*)","*", $sql);
+    $sql2=" LIMIT $start,$limit";
+    $result=$db->queryF($sql.$sql1.$sql2);
+    $figures = array();
+    while ($rows=$db->fetchArray($result)){
+        $fig= new RDFigure();
+        $fig->assignVars($rows);
+    
+        $figures[] = array(
+            'id'=>$fig->id(),
+            'title'=>$fig->getVar('title'),
+            'text'=> substr(strip_tags($fig->getVar('desc')), 0, 150).(strlen($fig->getVar('desc')) <= 150 ? '' : '...')
+        );
+    
+    }
+    
+    // Event
+    $figures = RMEvents::get()->run_event('docs.loading.figures', $figures, $res);
+    
+    RMTemplate::get()->add_style('admin.css', 'docs');
+    RMTemplate::get()->add_style('jquery.css', 'rmcommon');
+    RMTemplate::get()->add_script('../include/js/admin.js');
+    RMTemplate::get()->assign('xoops_pagetitle', sprintf(__('Figures in %s', 'docs'), $res->getVar('title')));
+    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
+    RMTemplate::get()->add_head('<script type="text/javascript">
+    var rd_select_message = "'.__('You have not selected any figure!','docs').'";
+    var rd_message = "'.__('Do you really wish to delete selected figures?','docs').'";
+    </script>');
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Figures','docs'));
+    xoops_cp_header();
+    
+    include RMEvents::get()->run_event('docs.admin.template.figures', RMTemplate::get()->get_template('admin/rd_figures.php', 'module', 'docs'));
+	 
+	xoops_cp_footer();
 
 }
 
 /**
-* @desc Formulario de creación o edición de figuras
+* @desc Permite la edición de figuras
 **/
-function formFigures($edit=0){
-	global $xoopsConfig,$tpl;	
+function rd_figures_form($edit=0){
+	global $xoopsModule,$xoopsConfig;
+    
+    
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".$edit ? __('Edit Figure','docs') : __('Create Figure'));
+	xoops_cp_header();
+
+	$id = rmc_server_var($_GET, 'id', 0);
+	$id_res = rmc_server_var($_GET, 'res', 0);
+    
+    if($id_res<=0){
+        redirectMsg('resources.php', __('First select a resource to manage the figures.','docs'), 1);
+    }
+    
+    $res = new RDResource($id_res);
+    if($res->isNew()){
+        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+    }
+    
+    if($edit){
+        
+        if($id<=0){
+            redirectMsg('figures.php?res='.$id_res, __('You have not specified a figure to edit!','docs'));
+            break;
+        }
+        
+        $fig = new RDFigure($id);
+        if($fig->isNew()){
+            redirectMsg('figures.php?res='.$id_res, __('Specified figure does not exists!','docs'));
+            break;
+        }
+        
+    }
 	
-	$myts=&MyTextSanitizer::getInstance();
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$id_fig=isset($_REQUEST['fig']) ? intval($_REQUEST['fig']) : 0;
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-	$ruta='id='.$id.'&limit='.$limit.'&pag='.$pag.'&search='.$search;
-
-	if ($edit){
-		//Comprueba que la figura sea válida
-		if ($id_fig<=0){
-			redirectMsg('./figures.php?'.$ruta,_AS_AH_NOTFIG,1);
-			die();
-		}
-
-		//Comprueba  si existe la figura		
-		$fig=new AHFigure($id_fig);
-		if ($fig->isNew()){
-			redirectMsg('./figures.php?'.$ruta,_AS_AH_NOTFIGEXIST,1);
-			die();	
-		}
-
-	}
-
-
-	$form=new RMForm($edit ? _AS_AH_EDITF : _AS_AH_NEWF,'frmfig','figures.php');
-
-	$form->addElement(new RMText(_AS_AH_DESC,'desc',50,255,$edit ? $fig->desc() : ''),true);
-	$form->addElement(new RMEditor(_AS_AH_FIG,'figure','50%','20px',$edit ? $fig->figure() : '',$xoopsConfig['editor_type']),true);
+	$form=new RMForm($edit ? __('Editing Figure','docs') : __('Create Figure','docs'),'frmfig','figures.php');
 	
-	$form->addElement(new RMTextOptions(_OPTIONS,$edit ? $fig->HTML(): 1,$edit ? $fig->code() : 0,$edit ? $fig->image() : 0,$edit ? $fig->smiley() : 0,$edit ? $fig->br() : 0));
+	$form->addElement(new RMFormText(__('Title','docs'),'title',50,255,$edit ? $fig->getVar('title') : ''),true);
+    $form->addElement(new RMFormText(__('Description','docs'),'desc',50,255, $edit ? $fig->getVar('desc') : ''),true);
+	$form->addElement(new RMFormEditor(__('Content','docs'),'figure','100%','300px',$edit ? $fig->getVar('content','e') : ''),true);
 
-	$form->addElement(new RMText(_AS_AH_CLASS,'class',50,150,$edit ? $fig->_class() : ''));
-	$form->addElement(new RMText(_AS_AH_STYLE,'style',50,255,$edit ? $fig->style() : ''));
+	$form->addElement(new RMFormText(__('Attributes','docs'),'attrs',50,150, $edit ? $fig->getVar('attrs') : ''));
 
-	$buttons=new RMButtonGroup();
+	$buttons=new RMFormButtonGroup();
 
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button','onclick="window.location=\'figures.php?'.$ruta.'\';"');	
+	$buttons->addButton('sbt', $edit ? __('Save Changes','docs') : __('Save Figure','docs'),'submit');
+	$buttons->addButton('cancel', __('Cancel','docs'),'button','onclick="window.location=\'figures.php?res='.$id_res.'\';"');	
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('id_fig',$id_fig));
-	$form->addElement(new RMHidden('limit',$limit));	
-	$form->addElement(new RMHidden('pag',$pag));
-	$form->addElement(new RMHidden('search',$search));
 	$form->addElement($buttons);
 
-	$tpl->assign('content_form',$form->render());
+	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
+	if ($edit) $form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('res',$id_res));
 	
-	echo $tpl->fetch('db:admin/ahelp_figures.html');
 
+	$form->display();
+
+	xoops_cp_footer();
 }
 
 /**
-* @desc Almacena toda la información referente a la figura
+* @desc Almacena información perteneciente a la figura
 **/
-function saveFigures($edit=0){
-	global $util;
+function rd_save_figures($edit = 0){
+    global $xoopsSecurity;
+    
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
 
-	$ruta='id='.$id.'&limit='.$limit.'&pag='.$pag.'&search='.$search;
+	$ruta="?res=$res";
 
-	if (!$util->validateToken()){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_SESSINVALID, 1);
-		die();
-	}
-	
-	//Comprobar publicacion valida
-	if ($id<=0){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_RESOURCE,1);
-		die();
-	}
-	
-	//Comprobar publicación existente existente
-	$res=new AHResource($id);
-	if ($res->isNew()){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_RESNOEXIST,1);
-		die();
-
-	}	
+	if (!$xoopsSecurity->validateToken()){
+        redirectMsg('./figures.php'.$ruta, __('Session token expired!','docs'),1);
+        die();
+    }
 
 	if ($edit){
-		//Comprueba que la figura sea válida
-		if ($id_fig<=0){
-			redirectMsg('./figures.php?'.$ruta,_AS_AH_NOTFIG,1);
-			die();
-		}
+        //Verifica que referencia sea válida
+        if ($id<=0){
+            redirectMsg('./figures.php'.$ruta, __('Figure id not specified!','docs'),1);
+            die();
+        }
 
-		//Comprueba  si existe la figura		
-		$fig=new AHFigure($id_fig);
-		if ($fig->isNew()){
-			redirectMsg('./figures.php?'.$ruta,_AS_AH_NOTFIGEXIST,1);
-			die();	
-		}
+        //Verifica que referencia exista
+        $fig= new RDFigure($id);
+        if ($fig->isNew()){
+            redirectMsg('./figures.php'.$ruta, __('Specified figure does not exists!','docs'),1);
+            die();
+        }
+    } else {
+        
+        $fig = new RDFigure();
+        
+    }
 
-	}else{
+	$fig->setVar('title', $title);
+	$fig->setVar('desc', $desc);
+	$fig->setVar('content', $figure);
+    $fig->setVar('id_res', $res);
+    $fig->setVar('attrs', $attrs);
 
-		$fig=new AHFigure();
-	}
-
-	$fig->setResource($id);
-	$fig->setClass($class);
-	$fig->setStyle($style);
-	$fig->setDesc($desc);
-	$fig->setFigure($figure);
-	$fig->setHTML($dohtml);
-	$fig->setCode($doxcode);
-	$fig->setBr($dobr);
-	$fig->setImage($doimage);
-	$fig->setSmiley($dosmiley);
-	
-	if (!$fig->save()){
-		redirectMsg('./figures.php?op=new'.$ruta,_AS_AH_DBERROR,1);
-		die();
-	}else{
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_DBOK,0);
-	}
-	
-
-
+	if ($fig->save()){
+        redirectMsg('./figures.php?action=locate&res='.$res.'&id='.$fig->id(), __('Figure saved successfully!','docs'),0);
+        die();
+    }else{
+        redirectMsg('./figures.php?action=locate&id='.$fig->id().'&res='.$res, __('Figure could not be saved!','docs').'<br />'.$fig->errors(),1);
+        die();
+    }
+    
 }
-
 
 /**
 * @desc Elimina figuras
 **/
-function deleteFigures(){
-	global $util;
-	$myts=&MyTextSanitizer::getInstance();
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$id_fig=isset($_REQUEST['fig']) ? intval($_REQUEST['fig']) : 0;
-	$figs=isset($_REQUEST['figs']) ? $_REQUEST['figs'] : array();
-	$pag = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-	$ruta='id='.$id.'&limit='.$limit.'&pag='.$pag.'&search='.$search;
+function rd_delete_figures(){
+	global $xoopsModule, $xoopsSecurity;
 
-		
-	if (!$util->validateToken()){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_SESSINVALID, 1);
-		die();
-	}
-	
+	$ids = rmc_server_var($_POST, 'ids', array());
+	$page = rmc_server_var($_POST, 'page', 1);
+	$id_res = rmc_server_var($_POST, 'res', 0);
+	$search = rmc_server_var($_POST, 'search', '');
 
-	if (!is_array($figs) || empty($figs)){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_FIGS,1);
-		die();
-	}
-	$errors='';
-	foreach ($figs as $k){
+	$ruta="?res=$id_res&search=$search&page=$page";
 
-		//Verifica si la figura es válida
-		if ($k<=0){
-			$errors.=sprintf(_AS_AH_NOTVALID,$k);
-			continue;
-		}
-		//Verifica si existe la figura
-		$fig=new AHFigure($k);
-		if ($fig->isNew()){
-			$errors.=sprintf(_AS_AH_NOTEXIST,$k);
-			continue;
-		}
+	//Comprueba si se proporciono una referencia 
+    if (!is_array($ids)){
+        redirectMsg('./figures.php'.$ruta, __('You have not selected any figure!','docs'),1);
+        die();    
+    }
+    
+        
+    if (!$xoopsSecurity->check()){
+        redirectMsg('./figures.php'.$ruta, __('Session token expired','docs'), 1);
+        die();
+    }
 
-		$fig->delete();
-
-	}
-
-	if ($errors!=''){
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_ERRORS.$errors,1);
-		die();
-	}else{
-		redirectMsg('./figures.php?'.$ruta,_AS_AH_DBOK,0);
-
-	}
+    $errors='';
+    
+    $db = Database::getInstance();
+    $sql = "DELETE FROM ".$db->prefix("rd_figures")." WHERE id_fig IN(".implode(",",$ids).")";
+    if(!$db->queryF($sql)){
+        redirectMsg($ruta, __('Figures could not be deleted!','docs').'<br />'.$db->error(), 1);
+    } else {
+        redirectMsg($ruta, __('Figures deleted successfully!','docs'), 0);
+    }
 
 }
 
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+function rd_locate_figure(){
+    
+    $res = rmc_server_var($_GET, 'res', 0);
+    $id = rmc_server_var($_GET, 'id', 0);
+    
+    if ($res<=0 || $id<=0){
+        header('location: resources.php');
+        die();
+    }
+    
+    $limit = 15;
+    
+    $db = Database::getInstance();
+    $sql = "SELECT id_fig FROM ".$db->prefix("rd_figures")." WHERE id_res='$res'";
+    $result = $db->query($sql);
+    if ($db->getRowsNum($result)<=$limit){
+        header('location: figures.php?res='.$res);
+        die();
+    }
+    
+    $counter = 0;
+    while(list($fig) = $db->fetchRow($result)){
+        $counter++;
+        if ($fig==$id){
+            $page = ceil($counter/$limit);
+            break;
+        }
+    }
+    
+    header('location: figures.php?res='.$res.'&page='.$page.'#figure'.$id);
+    die();
+    
+}
 
-switch ($op){
-	case 'new':
-		formFigures();
-	    break;
+
+$action = rmc_server_var($_REQUEST, 'action', '');
+
+switch ($action){
+    case 'new':
+        rd_figures_form();
+        die();
 	case 'edit':
-		formFigures(1);
+		rd_figures_form(1);
 	    break;
 	case 'save':
-		saveFigures();
+		rd_save_figures();
 	    break;
-	case 'saveedit':
-		saveFigures(1);
-	    break;
+    case 'saveedit':
+        rd_save_figures(1);
+        break;
+    case 'locate':
+        rd_locate_figure();
+        break;
 	case 'delete':
-		deleteFigures();
+		rd_delete_figures();
 	    break;
-	default: 
-		figures();
+	default:
+		rd_show_figures();
         break;
 }
-
-?>

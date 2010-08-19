@@ -97,7 +97,7 @@ function rd_widget_figures(){
         if(count($figures)<=0) _e('There are not exists figures for this resource yet!','docs');
         foreach($figures as $fig):
     ?>
-        <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[figure:<?php echo $fig['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $fig['desc']; ?></a></li>
+        <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[figure:<?php echo $fig['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $fig['title']; ?></a></li>
     <?php
         endforeach;
     ?>
@@ -108,4 +108,34 @@ function rd_widget_figures(){
     $ret['content'] = ob_get_clean();
     return $ret;
     
+}
+
+/**
+* Show form to create new note
+*/
+function rd_widget_newnote(){
+    global $xoopsSecurity;
+    
+    $id_res = rmc_server_var($_GET, 'res', 0);
+    if($id_res<=0) return null;
+    $rtn['title'] = __('New Note','docs');
+    ob_start();
+?>
+<div class="rd_forms">
+<form name="frmNewNote" id="frm-wnotes" method="post" action="notes.php">
+<label for="note-title"><?php _e('Title:','docs'); ?></label>
+<input type="text" name="title" id="note-title" value="" class="required" />
+<label><?php _e('Content:','docs'); ?></label>
+<textarea name="reference" id="note-content" cols="45" rows="6" class="required"></textarea>
+<input type="hidden" name="action" value="save" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
+<input type="hidden" name="action" value="save" />
+<input type="hidden" name="res" value="<?php echo $id_res; ?>"
+<?php RMEvents::get()->run_event('docs.notes.form.fields'); ?>
+<input type="submit" value="<?php _e('Create Note','docs'); ?>" />
+</form>
+</div>
+<?php
+    $rtn['content'] = ob_get_clean();
+    return $rtn;
 }

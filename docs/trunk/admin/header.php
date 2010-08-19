@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Rapid Docs
+// RapidDocs
 // Documentation system for Xoops.
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com

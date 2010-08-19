@@ -1,38 +1,54 @@
 <h1 class="rmc_titles mw_titles"><span style="background-position: left -32px;">&nbsp;</span><?php if(!isset($res)): _e('Sections Management','docs'); else: echo sprintf(__('Sections in %s','docs'), $res->getVar('title')); endif; ?></h1>
-<form name="frmres" method="GET" action="sections.php">
-	<strong><{$lang_res}></strong>
-	<select name="id" onchange="submit()">
-		<option><{$lang_select}></option>
-		<{foreach item=resource from=$resources}>
-			<option value="<{$resource.id}>" <{if $id==$resource.id}>selected<{/if}>><{$resource.title}></option>
-		<{/foreach}>
-	</select>
-</form>
 
 <form name="frmsec" method="POST" action="sections.php" id="frm-sections">
 <div class="rd_loptions">
-    <a href="sections.php?id=<?php echo $id; ?>"><?php _e('List','docs'); ?></a> |
+    <strong><a href="resources.php"><?php _e('Choose another resource','docs'); ?></a></strong> |
+    <a href="sections.php?id=<?php echo $id; ?>"><?php _e('List Sections','docs'); ?></a> |
     <a href="sections.php?id=<?php echo $id; ?>&amp;action=new"><?php _e('New Section','docs'); ?></a>
+    <?php RMEvents::get()->run_event('docs.get.sections.options'); ?>
 </div>
 <table class="outer" width="100%" cellspacing="0">
+    <thead>
 	<tr class="head" align="center">
-		<th width="30"><?php _e('ID','docs'); ?></th>
 		<th align="left"><?php _e('Title','docs'); ?></th>
+        <th><?php _e('Order','docs'); ?></th>
+        <th><?php _e('Author','docs'); ?></th>
+        <th><?php _e('Created','docs'); ?></th>
+        <th><?php _e('Updated','docs'); ?></th>
+        <th><img src="../images/comment.png" alt="<?php _e('Comments','docs'); ?>" title="<?php _e('Comments','docs'); ?>" /></th>
 	</tr>
+    </thead>
+    <tfoot>
+    <tr class="head" align="center">
+        <th align="left"><?php _e('Title','docs'); ?></th>
+        <th><?php _e('Order','docs'); ?></th>
+        <th><?php _e('Author','docs'); ?></th>
+        <th><?php _e('Created','docs'); ?></th>
+        <th><?php _e('Updated','docs'); ?></th>
+        <th><img src="../images/comment.png" alt="<?php _e('Comments','docs'); ?>" title="<?php _e('Comments','docs'); ?>" /></th>
+    </tr>
+    </tfoot>
+    <tbody>
 	<?php foreach($sections as $section): ?>
-	<tr align="center"  class="<?php echo tpl_cycle("even,odd"); ?>">
-		<td><?php echo $section['id']; ?></td>
-		<td align="left" style="padding-left:<?php echo($section['indent']*5); ?>px;">
-            <?php if($section['indent']>0): ?><img src="<?php echo XOOPS_URL; ?>/images/root.gif" align="absmiddle" alt="" /><?php endif; ?> <?php echo $section['title']; ?>
+	<tr align="center" valign="top" class="<?php echo tpl_cycle("even,odd"); ?>">
+		<td align="left">
+            <strong><?php echo $section['number']; ?>.
+            <a href="?action=edit&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php echo $section['title']; ?></a></strong>
             <span class="rmc_options">
                 <a href="./sections.php?action=edit&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Edit','docs'); ?></a> |
-                <a href="./sections.php?op=delete&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Delete','docs'); ?></a> |
-                <?php if(!$section['featured']): ?><a href="./sections.php?op=recommend&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Featured','docs'); ?></a><?php else: ?><a href="./sections.php?op=norecommend&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Normal','docs'); ?></a><?php endif; ?>
+                <a href="./sections.php?action=delete&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>" onclick="return confirm('<?php echo sprintf(__("Do you really wish to delete %s?",'docs'), $section['title']); ?>');"><?php _e('Delete','docs'); ?></a> |
+                <a href="?action=new&amp;id=<?php echo $id; ?>&amp;parent=<?php echo $section['id']; ?>"><?php _e('Add Section','docs'); ?></a> |
+                <a href="<?php echo $section['permalink']; ?>">View</a>
             </span>
         </td>
 		<td><input type="text" name="orders[<?php echo $section['id']; ?>]" id="order-<?php echo $section['id']; ?>" size="1" value="<?php echo $section['order']; ?>" /></td>
+        <td><?php echo $section['author_name']; ?></td>
+        <td><?php echo $section['created']; ?></td>
+        <td><?php echo $section['modified']; ?></td>
+        <td><?php echo $section['comments']; ?></td>
 	</tr>
 	<?php endforeach; ?>
+    </tbody>
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input type="hidden" name="id" value="<?php echo $id; ?>" />

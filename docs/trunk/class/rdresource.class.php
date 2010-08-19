@@ -92,7 +92,7 @@ class RDResource extends RMObject{
 		return $this->figures;
 	}
 	
-	public function addRead(){
+	public function add_read(){
 		if ($this->isNew()) return;
 		return $this->db->queryF("UPDATE ".$this->db->prefix("rd_resources")." SET `reads`=`reads`+1 WHERE id_res='".$this->id()."'");
 	}
@@ -109,7 +109,7 @@ class RDResource extends RMObject{
 	**/	
 	public function isAllowed($gid){
     
-		$groups = $this->groups();
+		$groups = $this->getVar('groups');
 		
 		if (in_array(0, $groups)) return true;
 
@@ -166,8 +166,70 @@ class RDResource extends RMObject{
 
 	}
 
-
-
+    /**
+    * Permalink for a resource
+    * 
+    * Generates a permalink for resource according to configures parameters
+    * in RapidDocs.
+    * 
+    * @return string URL for this resource
+    */
+    public function permalink(){
+        $config = RMUtilities::module_config('docs');
+        if ($config['permalinks']){
+    
+            $perma = XOOPS_URL.$config['htpath'].'/'.$this->getVar('nameid').'/';
+            
+        } else {
+            
+            $perma = XOOPS_URL.'/modules/docs/?page=resource&amp;id='.$this->id();
+            
+        }
+        
+        return $perma;
+    }
+    
+    /**
+    * Get a sections counter
+    * @return int
+    */
+    public function sections_count(){
+        
+        $db = $this->db;
+        
+        $sql = "SELECT COUNT(*) FROM ".$db->prefix("rd_sections")." WHERE id_res=".$this->id();
+        list($num) = $db->fetchRow($db->query($sql));
+        return $num;
+        
+    }
+    
+    /**
+    * Get the notes counter
+    * @return int
+    */
+    public function notes_count(){
+        $db = $this->db;
+        
+        $sql = "SELECT COUNT(*) FROM ".$db->prefix("rd_references")." WHERE id_res=".$this->id();
+        list($num) = $db->fetchRow($db->query($sql));
+        return $num;
+    }
+    
+    /**
+    * Get the figures counter
+    * @return int
+    */
+    public function figures_count(){
+        $db = $this->db;
+        
+        $sql = "SELECT COUNT(*) FROM ".$db->prefix("rd_figures")." WHERE id_res=".$this->id();
+        list($num) = $db->fetchRow($db->query($sql));
+        return $num;
+    }
+    
+    /**
+    * Save Resource
+    */
 	public function save(){
 		if ($this->isNew()){
 			return $this->saveToTable();
@@ -177,7 +239,14 @@ class RDResource extends RMObject{
 		}		
 
 	}
-
+    
+    /**
+    * Delete resource
+    * 
+    * Delete resource and all its sections, notes and figures
+    * 
+    * @return bool
+    */
 	public function delete(){
 
 		$ret=false;		
@@ -194,7 +263,7 @@ class RDResource extends RMObject{
 			
 		if (!$result) return $ret;
 	
-		//Elimina imágenes pertenecientes a la publicación
+		//Elimina figuras pertenecientes a la publicación
 		$sql="DELETE FROM ".$this->db->prefix('rd_figures')." WHERE id_res='".$this->id()."'";
 		$result=$this->db->queryF($sql);
 					
@@ -205,6 +274,5 @@ class RDResource extends RMObject{
 		return $ret;	
 		
 	}
-	
 
 }

@@ -1,106 +1,110 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Ability Help
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// @author BitC3R0 <i.bitcero@gmail.com>
-// @license: GPL v2
+// RapidDocs
+// Documentation system for Xoops.
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
+require '../../mainfile.php';
 define('INCLUDED_INDEX',1);
+
 /**
 * This file redirects all petions directly to his content
 */
 
-$query = isset($_GET['page']) ? $_GET['page'] : '';
-if (substr($query, strlen($query)-1)=='/')
-	$query = substr($query, 0, strlen($query)-1);
-if (substr($query, 0, 1)=='/')
-	$query = substr($query, 1);
-
-if ($query==''){
-	require 'mainpage.php';
-	exit();
+if ($xoopsModuleConfig['permalinks']){
+    
+    // If friendly urls are activated
+    $path = str_replace(XOOPS_URL, '', RMFunctions::current_url());
+    $path = str_replace($xoopsModuleConfig['htpath'], '', $path);
+    $path = trim($path, '/');
+    
+    $params = explode("/", $path);
+    
+    
+} else {
+    
+    // If friendly urls are disabled
+    $path = parse_url(RMFunctions::current_url());
+    if(isset($path['query']))
+        parse_str($path['query']);
+    
+    if(!isset($page) || $page==''){
+        require 'mainpage.php';
+        die();
+    }
+    
+    $file = $page.'.php';
+    if(!file_exists(XOOPS_ROOT_PATH.'/modules/docs/'.$file)){
+        RDfunctions::error_404();
+    }
+    
+    include $file;
+    
+    die();
+    
 }
 
-$params = explode('/',$query);
-
-// Here must be the search verification
-
-
-// Error verification
-if (count($params)>2){
-	/**
-	* @todo Error 404 template
-	*/
+// Mainpage
+if(!isset($params[0]) || $params[0]==''){
+    include 'mainpage.php';
+    die();
 }
 
-if ($params[0]=='publish' && count($params)==1){
-	require 'publish.php';
-	exit();
+// PDF Book
+if($params[0]=='pdfbook'){
+    $id = $params[1];
+    $_GET['action'] = 'pdfbook';
+    include 'content.php';
+    die();
 }
 
-// Print
-if ($params[0]=='print' && count($params)>2){
-	$id_res = $params[1];
-	$id_sec = $params[2];
-	$print = true;
-	require 'content.php';
-	exit();
+// Print Book
+if($params[0]=='printbook'){
+    $id = $params[1];
+    $_GET['action'] = 'printbook';
+    include 'content.php';
+    die();
 }
 
-// Edit
-if ($params[0]=='edit' && count($params)>1){
-	$id_res = $params[1];
-	$id_sec = $params[2];
-	$op = 'edit';
-	require 'edit.php';
-	exit();
+// Print Book
+if($params[0]=='pdfsection'){
+    $id = $params[1];
+    $_GET['action'] = 'pdfsection';
+    include 'content.php';
+    die();
 }
 
-// LIsta de Secciones
-if (($params[0]=='list' || $params[0]=='newpage') && count($params)>1){
-	$id_res = $params[1];
-	$op = $params[0]=='list' ? '' : 'new';
-	require 'edit.php';
-	exit();
+// Print Section
+if($params[0]=='printsection'){
+    $id = $params[1];
+    $_GET['action'] = 'printsection';
+    include 'content.php';
+    die();
 }
 
-// Búsqueda
-if ($params[0]=='search'){
-	
-	require 'search.php';
-	exit();
-	
+if($params[0]=='edit'){
+    $id = $params[1];
+    $res = $params[2];
+    $action = 'edit';
+    include 'edit.php';
+    die();
 }
 
-// Figures
-if ($params[0]=='figures' || $params[0]=='references'){
-	$id = $params[1];
-	$special = $params[0];
-	require 'resource.php';
-	exit();
+// Section
+if (count($params)==2){
+    $res = new RDResource($params[0]);
+    if(!$res->isNew()){
+        $res = $res->id();
+        $id = $params[1];
+        include 'content.php';
+        die();
+    }
 }
 
-// Content
-if (count($params)>1){
-	$id_res = $params[0];
-	$id_sec = $params[1];
-	$print = 0;
-	require 'content.php';
-	exit();
-}
-
-/**
-* @todo Crear sección para revisar mis secciones
-*/
-
-// If at this point params count > 1 then seems to be an error 404
-if (count($params)>1){
-	require 'error.php';
-	exit;
-}
 // Once all verifications has been passed then the resource
 // param is present, then we will show it
 

@@ -1,13 +1,12 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Rapid Docs
+// RapidDocs
 // Documentation system for Xoops.
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-
 
 define('RMCLOCATION', 'sections');
 include 'header.php';
@@ -19,35 +18,47 @@ include_once '../include/functions.php';
 * @param int $id Publicación a que pertenece
 * @param int $parent Sección padre a qur pertenece
 **/
-function child($id,$parent,$indent){
+function child(&$sections, $id,$parent,$indent){
 	global $tpl,$db,$util;
-	include XOOPS_ROOT_PATH."/cache/recommends.php";
 
 	$child= array();
 	$sql="SELECT * FROM ".$db->prefix('rd_sections')." WHERE id_res='$id' AND parent='$parent' ORDER BY `order`";
 	$result=$db->queryF($sql);
 	while ($rows=$db->fetchArray($result)){
-		$sec= new AHSection();
+		$sec= new RDSection();
 		$sec->assignVars($rows);
-
-		$recommend=false;
-		if (!in_array(array('id'=>$sec->id(),'type'=>'section'),$items)) $recommend=true;
 		
-		$tpl->append('sections',array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
-				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>$indent,'recommend'=>$recommend));
+		$sections[] = array(
+            'id'=>$sec->id(),
+            'title'=>$sec->getVar('title'),
+            'order'=>$sec->getVar('order'),
+			'resource'=>$sec->getVar('id_res'),
+            'parent'=>$sec->getVar('parent'),
+            'indent'=>$indent,
+            'permalink'=>$sec->permalink(),
+            'author'=>$sec->getVar('uname'),
+            'created'=>formatTimestamp($sec->getVar('created'), 'l'),
+            'modified'=>formatTimestamp($sec->getVar('modified'), 'l')
+        );
 		
-		child($id,$sec->id(),$indent+1);	
+		child($sections, $id,$sec->id(),$indent+1);	
 	}
 }
 
 function rd_show_sections(){
 	global $xoopsModule, $xoopsSecurity;
-    
-	include XOOPS_CACHE_PATH."/rdrecommends.php";
 
 	$id= rmc_server_var($_GET,'id', 0);
+    if($id<=0){
+        redirectMsg('resources.php', __('Select a resource to see the sections inside this','docs'), 0);
+        die();
+    }
     
     $res = new RDResource($id);
+    if($res->isNew()){
+        redirectMsg('resources.php', __('The specified resource does not exists!','docs'), 1);
+        die();
+    }
     
     $db = Database::getInstance();
 
@@ -63,25 +74,11 @@ function rd_show_sections(){
 	}
 
 	//Secciones
-	$sql="SELECT * FROM ".$db->prefix('rd_sections')." WHERE id_res='$id' AND parent=0 ORDER BY `order`";
-	$result=$db->queryF($sql);
-    $sections = array();
-	while ($rows=$db->fetchArray($result)){
-		$sec= new RDSection();
-		$sec->assignVars($rows);
-
-		$sections[] = array(
-            'id'=>$sec->id(),
-            'title'=>$sec->getVar('title'),
-            'order'=>$sec->getVar('order'),
-			'resource'=>$sec->getVar('id_res'),
-            'parent'=>$sec->getVar('parent'),
-            'indent'=>0
-        );
-		
-		child($id,$sec->id(),1);
-		
-	}
+	$sections = array();
+    RDFunctions::sections_tree_index(0,0,$res,'','',false,$sections);
+    
+    // Event
+    $sections = RMEvents::get()->run_event('docs.loading.sections', $sections);
     
 	RDFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Sections Management','docs'));
@@ -89,7 +86,7 @@ function rd_show_sections(){
     RMTemplate::get()->add_style('admin.css', 'docs');
 	xoops_cp_header();
     
-    include RMTemplate::get()->get_template('admin/rd_sections.php', 'module', 'docs');
+    include RMEvents::get()->run_event('docs.get.sections.template', RMTemplate::get()->get_template('admin/rd_sections.php', 'module', 'docs'));
     
 	xoops_cp_footer();
 
@@ -104,6 +101,7 @@ function rd_show_form($edit=0){
     
     define('RMCSUBLOCATION','newresource');
 	$id=rmc_server_var($_GET, 'id', 0);
+    $parent=rmc_server_var($_GET, 'parent', 0);
     
     if ($id<=0){
         redirectMsg('sections.php?id='.$id, __('You must select a resource in order to create a new section','docs'),1);
@@ -138,6 +136,10 @@ function rd_show_form($edit=0){
         
 	}
     
+    // Get order
+    $order = RDFunctions::order('MAX', $parent, $res->id());
+    $order++;
+    
     $rmc_config = RMFunctions::configs();
     $form=new RMForm('','frmsec','sections.php');
     
@@ -145,8 +147,10 @@ function rd_show_form($edit=0){
         $tiny = TinyEditor::getInstance();
         $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
         $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
+        $tiny->add_config('theme_advanced_buttons1', 'rd_toc');
     }
-    $editor = new RMFormEditor('','content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
+    
+    $editor = new RMFormEditor('','content','100%','300px',$edit ? $sec->getVar('content', $rmc_config['editor_type']=='tiny' ? 's' : 'e') : '','', 0);
     $usrfield = new RMFormUser('','uid',false,$edit ? array($sec->getVar('uid')) : $xoopsUser->getVar('uid'));
     
     RMTemplate::get()->add_style('admin.css', 'docs');
@@ -160,7 +164,7 @@ function rd_show_form($edit=0){
     
     $sections = array();
     RDFunctions::getSectionTree($sections, 0, 0, $id, 'id_sec, title', isset($sec) ? $sec->id() : 0);
-    include RMTemplate::get()->get_template('admin/rd_sections_form.php', 'module', 'docs');
+    include RMEvents::get()->run_event('docs.get.secform.template', RMTemplate::get()->get_template('admin/rd_sections_form.php', 'module', 'docs'));
     
 	xoops_cp_footer();
 }
@@ -168,7 +172,7 @@ function rd_show_form($edit=0){
 /**
 * @desc Almacena información de las secciones
 **/
-function saveSections($edit=0, $ret = 0){
+function rd_save_sections($edit=0){
 	global $xoopsUser, $xoopsSecurity;
 	
 	foreach ($_POST as $k=>$v){
@@ -179,6 +183,17 @@ function saveSections($edit=0, $ret = 0){
 		redirectMsg('./sections.php?op=new&id='.$id, __('Session token expired!','docs'), 1);
 		die();
 	}
+    
+    if($id<=0){
+        redirectMsg('resources.php', __('A resource was not specified!','docs'), 1);
+        die();
+    }
+    
+    $res = new RDResource($id);
+    if($res->isNew()){
+        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+        die();
+    }
     
     $db = Database::getInstance();
 
@@ -263,6 +278,8 @@ function saveSections($edit=0, $ret = 0){
     foreach($metas as $value){
         $sec->add_meta($value['key'], $value['value']);
     }
+    
+    RMEvents::get()->run_event('docs.saving.section',$sec);
 	
 	if (!$sec->save()){
 		if ($sec->isNew()){
@@ -274,6 +291,9 @@ function saveSections($edit=0, $ret = 0){
 		}		
 
 	}else{
+        $res->setVar('modified', time());
+        $res->save();
+        RMEvents::get()->run_event('docs.section.saved',$sec);
 		if ($return){
 			redirectMsg('./sections.php?action=edit&sec='.$sec->id().'&id='.$id, __('Database updated successfully!','docs'),0);
 		} else {
@@ -287,62 +307,41 @@ function saveSections($edit=0, $ret = 0){
 /**
 * @desc Elimina la información de una sección
 **/
-function delSections(){
-global $xoopsModule,$util;
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;	
-	$id_sec = isset($_REQUEST['sec']) ? intval($_REQUEST['sec']) : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-
-	//Verifica si la sección es válida
+function rd_delete_sections(){
+    global $xoopsModule;
+	
+    $id = rmc_server_var($_GET, 'id', 0);
+	$id_sec = rmc_server_var($_GET, 'sec', 0);
+    
+    // Check if a resource id has been provided
+    if ($id<=0){
+        redirectMsg('resources.php', __('You have not specify a resource id','docs'), 1);
+        die();
+    }
+    
+    $res = new RDResource($id);
+    if($res->isNew()){
+        redirectMsg('The specified resource does not exists!','docs');
+        die();
+    }
+    
+    // Check if a section id has been provided
 	if ($id_sec<=0){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_NOTSECTION,1);
+		redirectMsg('./sections.php?id='.$id, __('You have not specified a section ID to delete!','docs'),1);
 		die();
 	}
 		
-	//Comprueba si la sección es existente
-	$sec=new AHSection($id_sec);
+	$sec=new RDSection($id_sec);
 	if ($sec->isNew()){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_NOTEXISTSEC,1);
+		redirectMsg('./sections.php?id='.$id, __('Specified section does not exists!','docs'),1);
 		die();
 	}
 
-	if ($ok){
-		
-		if (!$util->validateToken()){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_SESSINVALID, 1);
-			die();
-		}
-
-		if (!$sec->delete()){
-			redirectMsg('./sections.php?id='.$id,_AS_AH_DBERROR,1);
-			die();
-
-		}else{
-			redirectMsg('./sections.php?id='.$id,_AS_AH_DBOK,0);
-		}
-
-		
-	
+	if (!$sec->delete()){
+	    redirectMsg('./sections.php?id='.$id, __('Errors ocurred while trying to delete sections!','docs').'<br />'.$sec->errors(),1);
+		die();
 	}else{
-		optionsBarSections();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_SECTIONS);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$hiddens['sec'] = $id_sec;
-		$hiddens['op'] = 'delete';
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'sections.php?id='.$id.'\';"';
-		
-		$util->msgBox($hiddens, 'sections.php', sprintf(_AS_AH_DELETECONF, $sec->title()). '<br /><br />' . _AS_AH_ADV._AS_AH_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+	    redirectMsg('./sections.php?id='.$id, __('Sections deleted successfully!','docs'), 0);
 	}
 	
 }
@@ -444,20 +443,14 @@ switch ($action){
 		rd_show_form(1);
 	break;
 	case 'save':
-		saveSections();
-		break;
-	case 'saveret':
-		saveSections(0, 1);
+		rd_save_sections();
 		break;
 	case 'saveedit':
-		saveSections(1);
-		break;
-	case 'saveretedit':
-		saveSections(1, 1);
+		rd_save_sections(1);
 		break;
 	case 'delete':
-		delSections();
-	break;
+		rd_delete_sections();
+	    break;
 	case 'changeorder':
 		changeOrderSections();
 	break;

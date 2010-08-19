@@ -17,6 +17,7 @@ class RDFigure extends RMObject{
 		$this->_dbtable = $this->db->prefix("rd_figures");
 		$this->setNew();
 		$this->initVarsFromTable();
+        $this->setVarType('attrs', XOBJ_DTYPE_SOURCE);
 
 		if ($id==null) return;
 		
