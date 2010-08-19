@@ -28,19 +28,27 @@ function showPosts($aprovado = -1){
 	
 	$tbl1 = $db->prefix("mw_posts");
 	$tbl2 = $db->prefix("mw_catpost");
-	
+	$and = false;
+    
 	if ($cat>0){
 		$sql = "SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.cat='$cat' AND a.id_post=b.post";
+        $and = true;
 	} else {
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_posts");
 	}	
 	
 	if (isset($status) && $status!=''){
-		$sql .= $cat > 0 ? " AND a.status='$status'" : " WHERE status='$status'";
+		$sql .= $and ? " AND a.status='$status'" : " WHERE status='$status'";
+        $and = true;
 	}
+    
+    if(isset($author) && $author>0){
+        $sql .= $and ? " AND a.author=$author" : " WHERE author=$author";
+        $and = true;
+    }
 	
 	if (trim($keyw)!=''){
-		$sql .= ($aprovado>=0 ? " AND " : ($cat > 0 ? " AND " : " WHERE ")) . "title LIKE '%$keyw%'";
+		$sql .= $and ? " AND title LIKE '%$keyw%'" : " WHERE title LIKE '%$keyw%'";
 	}
 	
 	/**

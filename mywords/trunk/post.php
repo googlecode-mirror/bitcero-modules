@@ -67,7 +67,7 @@ $post->add_read();
 
 // Navegación entre artículos
 if($xoopsModuleConfig['shownav']){
-    $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post<".$post->id()." ORDER BY id_post DESC LIMIT 0, 1";
+    $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post<".$post->id()." AND status='publish' ORDER BY id_post DESC LIMIT 0, 1";
     $result = $db->query($sql);
     $pn = new MWPost();
     // Anterior
@@ -77,7 +77,7 @@ if($xoopsModuleConfig['shownav']){
     }
 
     // Siguiente
-    $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post>".$post->id()." ORDER BY id_post ASC LIMIT 0, 1";
+    $sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post>".$post->id()." AND status='publish' ORDER BY id_post ASC LIMIT 0, 1";
     $result = $db->query($sql);
     if ($db->getRowsNum($result)>0){
         $pn->assignVars($db->fetchArray($result));

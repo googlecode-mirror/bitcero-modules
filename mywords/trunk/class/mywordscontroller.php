@@ -50,7 +50,7 @@ class MywordsController
         if(!isset($post) || $post<=0) return __('Not found','mywords_admin');;
         
         if(isset($posts[$post])){
-        	$ret = '<a href="'.$posts[$post]->permalink().'#comment-'.$com->id().'" target="_blank">'.$posts[$post]->getVar('title').'</a>';
+        	$ret = '<a href="'.$posts[$post]->permalink().'#comment-'.$com->id().'">'.$posts[$post]->getVar('title').'</a>';
 			return $ret;
         }
         
@@ -63,7 +63,7 @@ class MywordsController
         
         if($url) return $item->permalink();
         
-        $ret = '<a href="'.$item->permalink().'#comment-'.$com->id().'" target="_blank">'.$item->getVar('title').'</a>';
+        $ret = '<a href="'.$item->permalink().'#comment-'.$com->id().'">'.$item->getVar('title').'</a>';
         $posts[$post] = $item;
         return $ret;
         
