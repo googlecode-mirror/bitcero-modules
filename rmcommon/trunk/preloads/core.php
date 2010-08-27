@@ -72,5 +72,14 @@ class RmcommonCorePreload extends XoopsPreloadItem
 		RMEvents::get()->run_event('rmcommon.xoops.common.end');
 		
 	}
+    
+    public function eventCoreHeaderAddmeta(){
+        global $xoopsTpl, $xoopsConfig;
+        
+        if(!$xoopsTpl) return;
+        
+        $xoopsTpl->plugins_dir[] = RMCPATH.'/include';
+        
+    }
 	
 }

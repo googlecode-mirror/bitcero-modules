@@ -126,6 +126,7 @@ class RMForm
     	
     	RMTemplate::get()->add_style('forms.css', 'rmcommon');
     	RMTemplate::get()->add_style('js-widgets.css','rmcommon');
+        RMTemplate::get()->add_jquery(true);
     	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
     	RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
     	

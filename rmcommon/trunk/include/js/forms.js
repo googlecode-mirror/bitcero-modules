@@ -74,7 +74,7 @@ var usersField = jQuery.extend({
 			
 		}
 		
-		usersField.change_title(users_field_namev);
+		usersField.change_title(users_field_name);
 		
 	},
 	
@@ -193,7 +193,7 @@ var usersField = jQuery.extend({
 				li = "<li id='"+users_field_name+"-exmuser-"+id+"'>";
 				li += "<label><input type='"+input+"' value='"+id+"' name='"+name+"' id='"+users_field_name+"-"+id+"' checked='checked' />";
 				li += " "+$("#user-"+users_field_name+"-caption-"+id).text();
-				li += "<a href='javascript:;' onclick='usersField.remove("+id+");'><span>remove</span></label></li>";
+				li += "<a href='javascript:;' onclick='usersField.remove("+id+");'><span>remove</span></a></label></li>";
 				$("#"+users_field_name+"-users-list").append(li);
 				
 			}

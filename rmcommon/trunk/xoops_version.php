@@ -193,15 +193,67 @@ $modversion['config'][18]['valuetype'] = 'int';
 $modversion['config'][18]['default'] = 6;
 
 $modversion['config'][19]['name'] = 'theme';
-$modversion['config'][19]['title'] = __('Admin theme','rmcommon');
+$modversion['config'][19]['title'] = '_MI_RMC_ADMTHEME';
 $modversion['config'][19]['description'] = '';
 $modversion['config'][19]['formtype'] = 'textbox';
 $modversion['config'][19]['valuetype'] = 'text';
 $modversion['config'][19]['default'] = 'default';
 
 $modversion['config'][20]['name'] = 'rssimage';
-$modversion['config'][20]['title'] = __('Image for rss feeds','rmcommon');
+$modversion['config'][20]['title'] = '_MI_RMC_RSSIMAGE';
 $modversion['config'][20]['description'] = '';
 $modversion['config'][20]['formtype'] = 'textbox';
 $modversion['config'][20]['valuetype'] = 'text';
 $modversion['config'][20]['default'] = XOOPS_URL.'/modules/rmcommon/images/rssimage.png';
+
+/** Mailer Configurations **/
+$modversion['config'][21]['name'] = 'transport';
+$modversion['config'][21]['title'] = '_MI_RMC_MAILERMETH';
+$modversion['config'][21]['description'] = '_MI_RMC_MAILERMETHD';
+$modversion['config'][21]['formtype'] = 'select';
+$modversion['config'][21]['valuetype'] = 'text';
+$modversion['config'][21]['options'] = array('_MI_RMC_PHPMAIL'=>'mail','_MI_RMC_SMTP'=>'smtp', '_MI_RMC_SENDMAIL'=>'sendmail');
+$modversion['config'][21]['default'] = XOOPS_URL.'/modules/rmcommon/images/rssimage.png';
+
+$modversion['config'][22]['name'] = 'smtp_server';
+$modversion['config'][22]['title'] = '_MI_RMC_SMTPSERVER';
+$modversion['config'][22]['description'] = '_MI_RMC_SMTPSERVERD';
+$modversion['config'][22]['formtype'] = 'textbox';
+$modversion['config'][22]['valuetype'] = 'text';
+$modversion['config'][22]['default'] = '';
+
+$modversion['config'][23]['name'] = 'smtp_crypt';
+$modversion['config'][23]['title'] = '_MI_RMC_ENCRYPT';
+$modversion['config'][23]['description'] = '_MI_RMC_ENCRYPTD';
+$modversion['config'][23]['formtype'] = 'select';
+$modversion['config'][23]['valuetype'] = 'text';
+$modversion['config'][23]['options'] = array('_MI_RMC_CRYPTNONE'=>'', '_MI_RMC_CRYPTSSL'=>'ssl', '_MI_RMC_CRYPTTLS'=>'tls');
+$modversion['config'][23]['default'] = 0;
+
+$modversion['config'][24]['name'] = 'smtp_port';
+$modversion['config'][24]['title'] = '_MI_RMC_SMTPPORT';
+$modversion['config'][24]['description'] = '_MI_RMC_SMTPPORTD';
+$modversion['config'][24]['formtype'] = 'textbox';
+$modversion['config'][24]['valuetype'] = 'text';
+$modversion['config'][24]['default'] = 25;
+
+$modversion['config'][25]['name'] = 'smtp_user';
+$modversion['config'][25]['title'] = '_MI_RMC_SMTPUSER';
+$modversion['config'][25]['description'] = '';
+$modversion['config'][25]['formtype'] = 'textbox';
+$modversion['config'][25]['valuetype'] = 'text';
+$modversion['config'][25]['default'] = '';
+
+$modversion['config'][26]['name'] = 'password';
+$modversion['config'][26]['title'] = '_MI_RMC_SMTPPASS';
+$modversion['config'][26]['description'] = '';
+$modversion['config'][26]['formtype'] = 'password';
+$modversion['config'][26]['valuetype'] = 'text';
+$modversion['config'][26]['default'] = '';
+
+$modversion['config'][27]['name'] = 'sendmail_path';
+$modversion['config'][27]['title'] = '_MI_RMC_SENDMAILPATH';
+$modversion['config'][27]['description'] = '';
+$modversion['config'][27]['formtype'] = 'textbox';
+$modversion['config'][27]['valuetype'] = 'text';
+$modversion['config'][27]['default'] = '/usr/sbin/sendmail -bs';

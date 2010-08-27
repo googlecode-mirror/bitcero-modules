@@ -73,7 +73,7 @@ class RMTemplate
 
         if (!isset($instance)) {
             $instance = new RMTemplate();
-	}
+	    }
 
         return $instance;
         
