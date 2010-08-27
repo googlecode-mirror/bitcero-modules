@@ -8,67 +8,58 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-
-define('AH_LOCATION','publish');
 include ('../../mainfile.php');
-include 'include/functions.php';
-
 
 /**
 * @desc Formulario para la creación de una nueva publicación
 **/
 function formPublish(){
-	global $xoopsModuleConfig,$xoopsUser,$tpl,$xoopsOption;
-
-	$xoopsOption['template_main']='ahelp_publish.html';
-	$xoopsOption['module_subpage'] = 'publish';
+	global $xoopsModuleConfig, $xoopsUser, $xoopsTpl, $xoopsConfig;
+    
 	include ('header.php');
+    
 	//Verificamos si existen permisos para crear un nuevo recurso
 	if (!$xoopsModuleConfig['createres']){
-		redirect_header(ah_make_link(),1,_MS_AH_ERRPERM);
+		redirect_header(RDFunctions::url(), 1, __('The creation of new resources has been disabled by administrator.','docs'));
 		die();
 	}
 
 	//Verificamos si usuario tiene permisos de crear nuevo recurso
-	$res=new AHResource();
-	if (!$res->isAllowedNew(($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS),$xoopsModuleConfig['create_groups'])){
-		redirect_header(ah_make_link(),1,_MS_AH_ERRPERMGROUP);
+	$res=new RDResource();
+	if (!RDFunctions::new_resource_allowed(($xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS)))){
+		redirect_header(RDFunctions::url(), 1, __('You can not create resources.','docs'));
 		die();
 	}
 	
+    $xoopsTpl->assign('xoops_pagetitle', __('Create Resource','docs'));
 
-	$form=new RMForm(_MS_AH_NEWRESOURCE,'frmres',ah_make_link('publish/'));
+	$form=new RMForm(__('Create Resource','docs'),'frmres', RMFunctions::current_url());
 	$form->setExtra("enctype='multipart/form-data'");
-	$form->addElement(new RMText(_MS_AH_TITLE,'title',50,150),true);
-	$form->addElement(new RMTextArea(_MS_AH_DESC,'desc',5,50),true);
-
-	//Imagen
-	$form->addElement(new RMFile(_MS_AH_IMAGE, 'image', 45, $xoopsModuleConfig['size_image']*1024));
+	$form->addElement(new RMFormText(__('Resource title','docs'),'title',50,150),true);
+	$form->addElement(new RMFormTextArea(__('Description','docs'),'desc',5,50),true);
 	
 	//editores de la publicación	
-	$form->addElement(new RMFormUserEXM(_MS_AH_EDITORS,'editors',1,'',30));
+	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$xoopsUser ? array($xoopsUser->uid()) : array(),30));
 
 	//Grupos con permiso de acceso
-	$form->addElement(new RMGroups(_MS_AH_GROUPS,'groups',1,1,5,array(1,2)),true);
-	$form->addElement(new RMYesno(_MS_AH_PUBLIC,'public'));
-	$form->addElement(new RMYesno(_MS_AH_QUICK,'quick'));
+	$form->addElement(new RMFormGroups(__('Groups that can read resource','docs'),'groups',1,1,1,array(1,2)),true);
+	$form->addElement(new RMFormYesno(__('Quick index','docs'),'quick'));
+    $form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex'));
+    $form->addElement(new RMFormYesno(__('Show content in a single page','docs'),'single'));
 
-	$form->addElement(new RMLabel(_MS_AH_APPROVED,$xoopsModuleConfig['approved'] ? _MS_AH_AUTOAPPR : _MS_AH_NOAPPR));
+	$form->addElement(new RMFormLabel(__('Approved','docs'),$xoopsModuleConfig['approved'] ? __('Inmediatly','docs') : __('Wait for approval','docs')));
 
-	$buttons =new RMButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
+	$buttons =new RMFormButtonGroup();
+	$buttons->addButton('sbt',__('Publish Resource'),'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="history.go(-1);"');
 
 	$form->addElement($buttons);
-	$form->addElement(new RMHidden('op','save'));
-	$form->addElement(new RMHidden('approved',$xoopsModuleConfig['approved']));
-	$tpl->assign('lang_home',_MS_AH_HOME);
-	$tpl->assign('lang_newres',_MS_AH_NEWRESOURCE);
+	$form->addElement(new RMFormHidden('action','save'));
 
-	$tpl->assign('content',$form->render());
-
-	makeHeader();
-	makeFooter();
+	$form->display();
+    
+    RMTemplate::get()->add_style('forms.css', 'docs');
+    
 	include ('footer.php');
 
 
@@ -78,35 +69,39 @@ function formPublish(){
 * @desc Almacena información perteneciente a una publicación
 **/
 function savePublish(){
-	global $util,$xoopsModuleConfig,$xoopsUser,$db,$xoopsConfig;
+	global $xoopsSecurity, $xoopsModuleConfig, $xoopsUser, $xoopsConfig;
 
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
+    
+    if ($xoopsModuleConfig['permalinks'])
+        $purl = RDFunctions::url().'/publish/';
+    else
+        $purl = RDFunctions::url().'?page=publish&action=publish';
 
-	$util=&RMUtils::getInstance();
-	if (!$util->validateToken()){
-		redirect_header(ah_make_link('publish/'),1,_MS_AH_SESSINVALID);
+	if (!$xoopsSecurity->check()){
+		redirect_header($prul, 1, __('Session token expired!','docs'));
 		die();
 	}
-
+    
+    $db = Database::getInstance();
 	//Comprueba que el título de publicación no exista
-	$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_resources')." WHERE title='$title' ";
+	$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' ";
 	list($num)=$db->fetchRow($db->queryF($sql));
 	if ($num>0){
-		redirect_header(ah_make_link('publish/'),1,_MS_AH_ERRTITLE);
+		redirect_header($purl, 1, __('Already exists a resource with same name!','docs'));
 		die();
 	}
 
-	$res= new AHResource();
+	$res= new RDResource();
 
 	//Genera $nameid Nombre identificador
 	$found=false; 
 	$i = 0;
-	$util=& RMUtils ::getInstance();
 	do{
-    		$nameid = $util->sweetstring($title).($found ? $i : '');
-        	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_resources'). " WHERE nameid = '$nameid'";
+    		$nameid = TextCleaner::getInstance()->sweetstring($title).($found ? $i : '');
+        	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources'). " WHERE nameid = '$nameid'";
         	list ($num) =$db->fetchRow($db->queryF($sql));
         	if ($num>0){
         		$found =true;
@@ -117,79 +112,49 @@ function savePublish(){
 	}while ($found==true);
 
 		
-	$res->setTitle($title);
-	$res->setDesc(substr($desc, 0, 255));
-	$res->isNew() ? $res->setCreated(time()) : $res->setModified(time());
-	$res->setEditors($editors);
-	$res->setGroups($groups);
-	$res->setPublic($public);
-	$res->setQuick($quick);
-	$res->setNameId($nameid);
-	$res->setOwner($xoopsUser->uid());
-	$res->setOwname($xoopsUser->uname());
-	$res->setApproved($approved);	
-
-	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = XOOPS_UPLOAD_PATH.'/ahelp';
-	$filename = '';
+	$res->setVar('title', $title);
+	$res->setVar('description',$desc);
+	$res->setVar('created', time());
+    $res->setVar('modified', time());
+	$res->setVar('editors', $editors);
+	$res->setVar('groups', $groups);
+	$res->setVar('public', 1);
+	$res->setVar('quick', $quick);
+	$res->setVar('nameid', $nameid);
+	$res->setVar('owner', $xoopsUser->uid());
+	$res->setVar('owname', $xoopsUser->uname());
+	$res->setVar('approved', $xoopsModuleConfig['approved']);	
+    $res->setVar('single', $single);
 	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['size_image']*1024);//tamaño
-
-	if ($up->fetchMedia('image')){
-
-	
-		if (!$up->upload()){
-			if ($res->isNew()){
-				redirect_header(ah_make_link('publish/'),1, _MS_AH_ERRIMAGE."<br />".$up->getErrors());
-				die();
-			}else{
-				redirect_header(ah_make_link(),1, _MS_AH_ERRIMAGE."<br />".$up->getErrors());
-				die();
-			}
-		}
-					
-		
-		$filename = $up->getSavedFileName();
-		$fullpath = $up->getSavedDestination();
-		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
-		if ($xoopsModuleConfig['redim_image']==0){
-			
-			$redim->resizeAndCrop($xoopsModuleConfig['image'],$xoopsModuleConfig['image']);
-		}else{
-			$redim->resizeWidth($xoopsModuleConfig['image']);
-		}
-
-
-	}
-	
-	$res->setImage($filename);
 	if (!$res->save()){
-		redirect_header(ah_make_link('publish/'),1,_MS_AH_DBERROR);
-		die();
+		redirect_header($prul, 1, __('Resource could not be created!','docs'));
 	}else{
 		//Si no se aprobó la publicación enviamos correo al administrador
 		if (!$xoopsModuleConfig['approved']){
-			$xoopsMailer =& getMailer();
-			$xoopsMailer->useMail();
-			$xoopsMailer->setTemplate('admin_approv_resource.tpl');
-			$xoopsMailer->assign('SITENAME', $xoopsConfig['sitename']);
-			$xoopsMailer->assign('ADMINMAIL', $xoopsModuleConfig['mail']);
-			$xoopsMailer->assign('SITEURL', XOOPS_URL."/");
-			$xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/ahelp/resources.php?id=".$res->id());
-			$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/ahelp/language/".$xoopsConfig['language']."/mail_template/");
-			$xoopsMailer->setToEmails($xoopsModuleConfig['mail']);
-			$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
-			$xoopsMailer->setFromName($xoopsConfig['sitename']);
-			$xoopsMailer->setSubject(sprintf(_MS_AH_SUBJECT,$res->title()));
-			if (!$xoopsMailer->send(true)){
-				redirect_header(ah_make_link('newpage/'.$res->nameId().'/'),2,$xoopsMailer->getErrors());
-			}
+			$mailer = new RMMailer('text/plain');
+            $mailer->add_user($xoopsConfig['from'], $xoopsConfig['fromname'], 'to');
+            $mailer->set_subject(__('New resource created at RapidDocs is waiting for approval','rmcommon'));
+            
+            $mailer->assign('to_name', $xoopsConfig['fromname']);
+            $mailer->assign('link_to_resource', XOOPS_URL.'/modules/docs/admin/resources.php?action=edit&id='.$res->id());
+            $mailer->template(RMTemplate::get()->get_template('mail/resource_for_approval.php', 'module', 'docs'));
+            
+            if (!$mailer->send()){
+                redirect_header(RDFunctions::url(), 1, implode('<br />', $mailer->errors()));
+                die();
+            }
+            
+            redirect_header(RDFunctions::url(), 1, __('Your resource has been created and is pending for approval. We eill sent an email when you can access to it and add content.','docs'));
+            die();
 			
 		}
-		redirect_header(ah_make_link('newpage/'.$res->nameId().'/'),1,_MS_AH_DBOK);
+        
+        if ($xoopsModuleConfig['permalinks'])
+            $purl = RDFunctions::url().'/list/'.$res->id().'/';
+        else
+            $purl = RDFunctions::url().'?page=edit&action=list&id='.$res->id();
+        
+		redirect_header($purl,1,__('Resource created successfully!','docs'));
 		die();
 		
 	}
@@ -197,10 +162,9 @@ function savePublish(){
 
 
 
+$action = rmc_server_var($_POST, 'action', isset($action) ? $action : '');
 
-
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-switch ($op){
+switch ($action){
 	case 'save':
 		savePublish();
 	break;

@@ -102,7 +102,7 @@ class RDFunctions
     */
     function sections_tree_index($parent = 0, $jumps = 0, RDResource $res, $var = 'rd_sections_index', $number='', $assign = true, &$array = null, $text = false){
         global $xoopsUser;
-        
+
         $db = Database::getInstance();
         
         if ($var=='' && $assign) return false;
@@ -130,7 +130,7 @@ class RDFunctions
                     'modified'=>$sec->getVar('modified'),
                     'number'=>$jumps==0 ? $num : ($number !='' ? $number.'.' : '').$i,
                     'comments'=>$sec->getVar('comments'),
-                    'edit'=>!$xoopsUser ? 0 : $res->isEditor($xoopsUser->uid()),
+                    'edit'=> !$xoopsUser ? 0 : ($xoopsUser->isAdmin() ? true : $res->isEditor($xoopsUser->uid())),
                     'resource' => $sec->getVar('id_res')
                 );
             
@@ -149,6 +149,7 @@ class RDFunctions
         }
         
         return true;
+        
     }
     
     /**
@@ -385,7 +386,7 @@ class RDFunctions
             'modified'=> $sec->getVar('modified'),
             'number'=>$number,
             'comments'=>$sec->getVar('comments'),
-            'edit'=>!$xoopsUser ? 0 : $res->isEditor($xoopsUser->uid()),
+            'edit'=>!$xoopsUser ? 0 : ($xoopsUser->isAdmin() ? true : $res->isEditor($xoopsUser->uid())),
             'resource' => $sec->getVar('id_res')
         );
             
@@ -396,6 +397,78 @@ class RDFunctions
         self::sections_tree_index($sec->id(), 1, $res, '', $number, false, $sections, $text);
 
         return $sections;
+    }
+    
+    /**
+    * @desc Determina si usuario tiene permiso para crear nueva publicación
+    * @param int array $gid  Ids de grupos a que pertenece usuario
+    * @param int array $groups Ids de grupos con permiso a crear publicación
+    **/    
+    public function new_resource_allowed($gid){
+        
+        $config = RMUtilities::module_config('docs');
+        
+        $groups = $config['create_groups'];
+        
+        if (!is_array($gid)){
+            if ($gid == XOOPS_GROUP_ADMIN) return true;
+            return in_array($gid, $groups);
+        }
+
+        if (in_array(XOOPS_GROUP_ADMIN,$gid)) return true;
+                
+        foreach ($gid as $k){
+
+            if (in_array($k, $groups)) return true;
+        }
+        
+        return false;
+
+    }
+    
+    /**
+    * Creates the BreadCrumb bar with basic options
+    */
+    public function breadcrumb(){
+        global $xoopsModule;
+        // Breadcrumb
+        $bc = RMBreadCrumb::get();
+        $bc->add_crumb(__('Home Page','docs'), XOOPS_URL);
+        $bc->add_crumb($xoopsModule->name(), RDFunctions::url());
+    }
+    
+    /**
+    * Make the correct link for a specific page
+    */
+    public function make_link($page, $params = array()){
+        
+        $config = RMUtilities::module_config('docs');
+        
+        if (!$config['permalinks']){
+            
+            $q = '';
+            foreach($params as $k => $v){
+                $q .= "&amp;$k=$v";
+            }
+            
+            $link = XOOPS_URL.'/modules/docs/index.php?page='.($page=='explore' ? 'search' : $page).$q;
+            return $link;
+            
+        }
+        
+        $base_url = XOOPS_URL.rtrim($config['htpath'], '/').'/';
+        
+        switch($page){
+            case 'explore':
+                $link = $base_url.$page.'/'.$params['by'].'/'.(isset($params['page']) ? 'page/'.$params['page'].'/' : '');
+                break;
+            case 'search':
+                $link = $base_url.$page.'/';
+                break;              
+        }
+        
+        return $link;
+        
     }
     
 }
@@ -410,10 +483,15 @@ function rd_insert_edit(&$item, $key){
     
     if (!$item['edit']) return;
     
+    if(!$res->isEditor($xoopsUser->uid()) && !$xoopsUser->isAdmin())
+        return array('editlink'=>'') ;
+    
     $config = RMUtilities::module_config('docs');
     
     if ($xoopsUser->isAdmin()){
+        
         $item['editlink'] = XOOPS_URL.'/modules/docs/admin/sections.php?action=edit&amp;id='.$res->id().'&amp;sec='.$item['id'];
+        
     }else{
     
         if($config['permalinks']){

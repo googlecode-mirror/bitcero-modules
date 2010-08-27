@@ -63,8 +63,21 @@
 		<td><?php _e('ID','docs'); ?></td>
 		<td><?php _e('Title','docs'); ?></td>
 		<td><?php _e('Options','docs'); ?></td>
-		
 	</tr>
+    <?php if(empty($references)): ?>
+    <tr clss="even" align="center">
+        <td colspan="4">
+            <?php _e('Notes was not found.','docs'); ?>
+            <?php if($id<=0): ?>
+                <br />
+                <a href="javascript:;" onclick="docsAjax.getSectionsList(1);"><?php _e('Select resource first','docs'); ?></a>
+            <?php else: ?>
+                <br />
+                <a href="javascript:;" onclick="docsAjax.displayForm();"><?php _e('Create new note','docs'); ?></a>
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php endif; ?>
 	<?php foreach($references as $ref): ?>
 	<tr align="center" valign="top" class="<?php echo tpl_cycle("even,odd"); ?>">
 		<td width="20" align="center"><input type="checkbox" name="refs[]" value="<?php echo $ref['id']; ?>" /></td>

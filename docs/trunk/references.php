@@ -50,6 +50,7 @@ function references($edit=0){
 
 	$db = Database::getInstance();
     
+    $id = intval($id);
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
 	$sql1='';

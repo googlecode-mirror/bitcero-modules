@@ -103,6 +103,8 @@ function showSection(RDResource &$res, RDSection &$section){
         }
         $print_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printbook/'.$section->id().'/';
         $print_section_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printsection/'.$section->id().'/';
+        if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
+            $publish_url = RDFunctions::url().'/publish/';
     } else {
         if (RMFunctions::plugin_installed('topdf')){
             $pdf_book_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$section->id().'&amp;action=pdfbook';
@@ -110,11 +112,17 @@ function showSection(RDResource &$res, RDSection &$section){
         }
         $print_book_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$section->id().'&amp;action=printbook';
         $print_section_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$section->id().'&amp;action=printsection';
+        if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
+            $publish_url = RDFunctions::url().'/?action=publish';
     }
     
     // Comments
     RMFunctions::get_comments('docs', 'res='.$res->id().'&id='.$section->id(), 'module', 0);
     RMFunctions::comments_form('docs', 'res='.$res->id().'&id='.$section->id(), 'module', RDPATH.'/class/mywordscontroller.php');
+    
+    RDFunctions::breadcrumb();
+    RMBreadCrumb::get()->add_crumb($res->getVar('title'), $res->permalink());
+    RMBreadCrumb::get()->add_crumb($section->getVar('title'), $section->permalink());
     
     include RMEvents::get()->run_event('docs.section.template', RMTemplate::get()->get_template('rd_section.php', 'module', 'docs'));
     

@@ -103,3 +103,34 @@
     padding: 1px;
     margin: 3px 0 5px 5px;
 }
+
+/** Search **/
+.rd_search_item{
+    padding: 8px;
+    border-bottom: 1px dotted #CCC;
+}
+.rd_search_item h4{
+    margin: 0 0 3px 0;
+    padding: 0;
+    font-size: 1.3em;
+}
+.rd_search_item .rd_info{
+    font-size: 0.85em;
+    display: block;
+    padding: 2px 0;
+}
+
+/** Header **/
+#rd-header{
+    padding: 4px;
+    font-size: 0.9em;
+    overflow: hidden;
+    border-bottom: 1px solid #CCC;
+}
+#rd-header .right{
+    float: right;
+}
+.rmc_pages_navigation_container{
+    margin: 10px 0;
+}
+

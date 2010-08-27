@@ -17,6 +17,12 @@ define('INCLUDED_INDEX',1);
 
 if ($xoopsModuleConfig['permalinks']){
     
+    $url = RMFunctions::current_url();
+    if (FALSE!==strpos($url, XOOPS_URL.'/modules/docs')){
+        header('location: '.RDFunctions::url());
+        die();
+    }
+    
     // If friendly urls are activated
     $path = str_replace(XOOPS_URL, '', RMFunctions::current_url());
     $path = str_replace($xoopsModuleConfig['htpath'], '', $path);
@@ -86,12 +92,50 @@ if($params[0]=='printsection'){
     die();
 }
 
+// Edit form
 if($params[0]=='edit'){
     $id = $params[1];
     $res = $params[2];
     $action = 'edit';
     include 'edit.php';
     die();
+}
+
+// Publish
+if($params[0]=='publish'){
+    $action = 'publish';
+    include 'publish.php';
+    die();
+}
+
+// New form
+if($params[0]=='new'){
+    $res = $params[1];
+    $action = 'new';
+    include 'edit.php';
+    die();
+}
+
+// Sections list
+if($params[0]=='list'){
+    $id = $params[1];
+    include 'edit.php';
+    die();
+}
+
+// Explore
+if($params[0]=='explore' || $params[0]=='search'){
+    
+    $action = $params[0];
+    
+    if (isset($params[3])){
+        $page = $params[3];
+    }
+    
+    $by = isset($params[1]) ? $params[1] : '';
+    include 'search.php';
+    die();
+    
 }
 
 // Section

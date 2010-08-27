@@ -33,11 +33,25 @@ class DocsRmcommonPreload{
     
     // Plugin for TinyMCE
     public function eventRmcommonTinymcePluginLoading(){
-
+        
+        $config = RMUtilities::module_config('docs');
+        
         $ret = parse_url($_SERVER['HTTP_REFERER']);
-
+        
+        if($config['permalinks']){
+            $ref = XOOPS_URL.'/'.trim($config['htpath'], '/').'/';
+        } else {
+            $ref = XOOPS_URL.'/modules/docs/edit.php';
+        }
+        
+        $ref = parse_url($ref);
+        $pass = false;
+        if (substr($ret['path'], 0, strlen($ref['path']))==$ref['path']){
+            $pass = true;
+        }
+        
         // Check if page is valid
-        if(substr($ret['path'], -12)=='sections.php'){
+        if(substr($ret['path'], -12)=='sections.php' || $pass){
           // Sections Editor
           // Show figures, references and TOC buttons
           parse_str($ret['query'], $str); ?>
@@ -90,6 +104,7 @@ class DocsRmcommonPreload{
                 image : '<?php echo XOOPS_URL; ?>/modules/docs/images/toc.png',
                 cmd : 'mceRapidDocsTOC'
             });
+          
             
         <?php
         } elseif(substr($ret['path'], -9)=='hpage.php') {
@@ -154,10 +169,9 @@ class DocsRmcommonPreload{
     
     // Plugins for XoopsCode Editor
     public function eventRmcommonLoadExmcodePlugins(){
-
         $ret = parse_url($_SERVER['HTTP_REFERER']);
         // Check if page is valid
-        if(substr($ret['path'], -12)=='sections.php'){
+        if(substr($ret['path'], -12)=='sections.php' || defined('RD_SECTION_FORM')){
           // Sections Editor
           // Show figures, references and TOC buttons
           parse_str($ret['query'], $str); ?>

@@ -1,10 +1,11 @@
-<form name="frmsec" method="POST" action="edit.php">
+<?php include RMTemplate::get()->get_template('rd_header.php', 'module', 'docs'); ?>
+<form name="frmsec" method="POST" action="<?php echo RMFunctions::current_url(); ?>">
 <table class="outer" width="100%" cellspacing="0">
 	<tr>
-		<td colspan="5" align="right"><a class="addpage" href="<{$newpage_link}>"><?php _e('New Page','docs'); ?></a></td>
+		<td colspan="5" align="right"><a class="addpage" href="<?php echo $new_link; ?>"><?php _e('New Section','docs'); ?></a></td>
 	</tr>
 	<tr>
-		<th colspan="5"><?php _e('Existing Pages','docs'); ?></th>
+		<th colspan="5"><?php _e('Existing Sections','docs'); ?></th>
 	</tr>
 	<tr class="head" align="center">
 		<td><?php _e('ID','docs'); ?></td>
@@ -23,9 +24,8 @@
 	</tr>
 	<?php endforeach; ?>
 	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
-		<td colspan="4">
-			<input type="submit" value="<{$lang_save}>" class="formButton" onclick="document.forms['frmsec'].op.value='changeorder';" />
+		<td colspan="5">
+			<input type="submit" value="<?php _e('Save Orders','docs'); ?>" class="formButton" onclick="document.forms['frmsec'].action.value='changeorder';" />
 		</td>
 
 	</tr>
@@ -33,6 +33,6 @@
 
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
-<input type="hidden" name="op" value="" />
+<input type="hidden" name="action" value="" />
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 </form>

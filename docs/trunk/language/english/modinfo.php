@@ -18,3 +18,7 @@ define('_MI_RD_COLS', __('Number of columns for index','docs'));
 define('_MI_RD_COLSD', __('This option is used only when display method is "as list"','docs'));
 define('_MI_RD_NUMRES', __('Number of resources on the index','docs'));
 define('_MI_RD_NUMRESD', __('This is the limit number for resources displayed on index','docs'));
+define('_MI_RD_CREATENEW', __('Groups with authorization to create new resources','docs'));
+define('_MI_RD_CREATENEWD', __('Select the groups that you wisth to authorize to create new resources.','docs'));
+define('_MI_RD_CREATEENABLED', __('Allow the creation of new resources','docs'));
+define('_MI_RD_APPROVE', __('Auto approve resources created for allowed users','docs'));

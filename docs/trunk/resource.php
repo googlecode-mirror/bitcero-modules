@@ -41,6 +41,9 @@ if (!$allowed && !$res->getVar('quick')){
 	die();
 }
 
+RDFunctions::breadcrumb();
+RMBreadCrumb::get()->add_crumb($res->getVar('title'), $res->permalink());
+
 // Check if we must show all content for resource
 if($res->getVar('single')){
     
@@ -52,10 +55,45 @@ if($res->getVar('single')){
     RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $toc, true);
     
     array_walk($toc, 'rd_insert_edit');
+    $last_modification = 0;
+    foreach($toc as $sec){
+        if($sec['modified']>$last_modification){
+            $last_modification = $sec['modified'];
+            $last_author = array(
+                'id' => $sec['author'],
+                'name' => $sec['author_name']
+            );
+        }
+    }
+    
+    RMTemplate::get()->add_jquery();
+    RMTemplate::get()->add_script(XOOPS_URL.'/modules/docs/include/js/docs.js');
     
     // Comments
     RMFunctions::get_comments('docs', 'res='.$res->id(), 'module', 0);
-    RMFunctions::comments_form('docs', 'res='.$res->id(), 'module', RDPATH.'/class/mywordscontroller.php');
+    RMFunctions::comments_form('docs', 'res='.$res->id(), 'module', RDPATH.'/class/docscontroller.php');
+    
+    $res->add_read();
+    
+    // URLs
+    if ($xoopsModuleConfig['permalinks']){
+        /**
+        * @todo Generate friendly links
+        */
+        if (RMFunctions::plugin_installed('topdf')){
+            $pdf_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/pdfbook/'.$toc[0]['id'].'/';
+        }
+        $print_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printbook/'.$toc[0]['id'].'/';
+        if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
+            $publish_url = RDFunctions::url().'/publish/';
+    } else {
+        if (RMFunctions::plugin_installed('topdf')){
+            $pdf_book_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$res->id().'&amp;action=pdfbook';
+        }
+        $print_book_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$res->id().'&amp;action=printbook';
+        if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
+            $publish_url = RDFunctions::url().'/?action=publish';
+    }
     
     include RMTemplate::get()->get_template('rd_resall.php','module','docs');
     

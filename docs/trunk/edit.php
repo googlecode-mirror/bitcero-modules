@@ -11,34 +11,8 @@
 include ('../../mainfile.php');
 
 if (!$xoopsUser){
-	redirect_header($url_link,2, __('Operation not allowed!','dcos'));
+	redirect_header(RDfunctions::url(),2, __('Operation not allowed!','docs'));
 	die();
-}
-
-/**
-* @desc Obtiene las secciones hijas de una sección
-* @param objeto $res Publicación a que pertenece
-* @param int $parent Sección padre a qur pertenece
-**/
-function child(&$res,$parent,$indent){
-	global $tpl,$db,$util, $xoopsModuleConfig;
-	
-	$retlink = XOOPS_URL.'/modules/ahelp/';
-	$child= array();
-	$sql="SELECT * FROM ".$db->prefix('pa_sections')." WHERE id_res='".$res->id()."' AND parent='$parent' ORDER BY `order`";
-	$result=$db->queryF($sql);
-	while ($rows=$db->fetchArray($result)){
-		$sec= new AHSection();
-		$sec->assignVars($rows);
-	
-		//Creamos link correcto para ir a contenido
-		$url_cont = $res->nameId().'/'.$sec->nameId();	
-
-		$tpl->append('sections',array('id'=>$sec->id(),'title'=>$sec->title(),'order'=>$sec->order(),
-				'resource'=>$sec->resource(),'parent'=>$sec->parent(),'indent'=>$indent,'link'=>$url_cont));
-		
-		child($res,$sec->id(),$indent+1);	
-	}
 }
 
 /**
@@ -48,7 +22,7 @@ function showSection(){
 
 	global $xoopsModule,$xoopsUser,$xoopsModuleConfig, $xoopsTpl, $xoopsConfig;
 	global $id, $xoopsSecurity;
-	
+
 	include ('header.php');
 	
 	//Verifica si se proporcionó una publicación para la sección
@@ -56,11 +30,10 @@ function showSection(){
 		RDFunctions::error_404();
 	
 	//Verifica si la publicación existe
-	$section = new RDSection($id);
-	if ($section->isNew())
+    global $res;
+	$res = new RDResource($id);
+	if ($res->isNew())
         RDfunctions::error_404();
-    
-    $res = new RDResource($section->getVar('id_res'));
 	
 	//Verificamos si es una publicación aprobada
 	if (!$res->getVar('approved')){
@@ -69,19 +42,31 @@ function showSection(){
 	}
 	
 	//Verificamos si el usuario tiene permisos de edicion
-	if (!$xoopsUser->uid()==$res->getVar('owner') && 
+	if ($xoopsUser->uid() != $res->getVar('owner') && 
 		!$res->isEditor($xoopsUser->uid()) && 
 		!$xoopsUser->isAdmin()){
-		redirect_header($section->permalink(), 1, __('Operation not allowed','docs'));
+		redirect_header(RDFunctions::url(), 1, __('Operation not allowed','docs'));
 		die();
 	}
     
     $sections = array();
     RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $sections, false);
     
+    //Breadcrumb
+    RDFunctions::breadcrumb();
+    RMBreadCrumb::get()->add_crumb(sprintf(__('Manage resource "%s"', 'docs'), $res->getVar('title')));
+    
+    RMTemplate::get()->add_style('docs.css','docs');
+    
     array_walk($sections, 'rd_insert_edit');
 	
-	$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Editing %s','docs'), $section->getVar('title')));
+	$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Pages in %s','docs'), $res->getVar('title')));
+    
+    if ($xoopsModuleConfig['permalinks']){
+        $new_link = RDFunctions::url().'/new/'.$res->id().'/';
+    } else {
+        $new_link = RDFunctions::url().'?page=edit&action=new&res='.$res->id();
+    }
 	
     include RMEvents::get()->run_event('docs.template.editsection', RMTemplate::get()->get_template('rd_viewsec.php', 'module', 'docs'));
     
@@ -94,8 +79,9 @@ function showSection(){
 * @desc Formulario para crear nueva sección
 **/
 function formSection($edit=0){
-	global $xoopsConfig,$xoopsUser,$xoopsModuleConfig, $id, $res;
+	global $xoopsConfig,$xoopsUser,$xoopsModuleConfig, $id, $res;    
     
+    $res = rmc_server_var($_GET, 'id', $res);
     //Verifica si se proporcionó una publicación para la sección
     if ($res<=0)
         RDFunctions::error_404();
@@ -121,6 +107,9 @@ function formSection($edit=0){
     }
 
 	if ($edit){
+        
+        $id = rmc_server_var($_GET, 'id', $id);
+        
 		//Verifica si la sección es válida
 		if ($id=='')
 			RDfunctions::error_404();
@@ -140,13 +129,27 @@ function formSection($edit=0){
     if ($rmc_config['editor_type']=='tiny'){
         $tiny = TinyEditor::getInstance();
         $tiny->configuration['content_css'] .= ','.XOOPS_URL.'/modules/docs/css/figures.css';
+        $tiny->add_config('theme_advanced_buttons1', 'rd_refs');
+        $tiny->add_config('theme_advanced_buttons1', 'rd_figures');
+        $tiny->add_config('theme_advanced_buttons1', 'rd_toc');
     }
 
 	// Arbol de Secciones
 	$sections = array();
 	RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $sections, false);
     
+    // Breadcrumb
+    RDFunctions::breadcrumb();
+    $res_edit = RDFunctions::url().($xoopsModuleConfig['permalinks'] ? '/list/'.$res->id().'/' : '?action=list&id='.$res->id());
+    RMBreadCrumb::get()->add_crumb($res->getVar('title'), $res_edit);
+    if ($edit)
+        RMBreadCrumb::get()->add_crumb(sprintf(__('Editing "%s"','docs'), $section->getVar('title')));
+    else
+        RMBreadCrumb::get()->add_crumb(__('Create new section', 'docs'));
+    
+    RMTemplate::get()->add_jquery(true);
     RMTemplate::get()->add_style('forms.css', 'docs');
+    RMTemplate::get()->add_script(XOOPS_URL.'/modules/docs/include/js/scripts.php?file=metas.js');
     include RMEvents::get()->run_event('docs.template.formsections.front', RMTemplate::get()->get_template('rd_sec.php','module','docs'));
 
 	include ('footer.php');
@@ -157,64 +160,68 @@ function formSection($edit=0){
 * @desc Almacena toda la información referente a la sección
 **/
 function saveSection($edit=0,$ret=0){
-	global $util,$db,$xoopsUser, $xoopsModuleConfig, $id_res, $id_sec;
+	global $xoopsUser, $xoopsModuleConfig;
 
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
 
-	$util=& RMUtils::getInstance();
-
 	//Verifica si se proporcionó una publicación para la sección
-	if ($id_res==''){
-		redirect_header(AHURL,1,_MS_AH_ERRRESOURCE);
+	if ($res<=0){
+		redirect_header(RDURL, 1, __('Operation not allowed','docs'));
 		die();
 	}
 	
 	//Verifica si la publicación existe
-	$res= new AHResource($id_res);
+	$res= new RDResource($res);
 	if ($res->isNew()){
-		redirect_header(AHURL,1,_MS_AH_ERRNOTEXIST);
+		redirect_header(RDURL, 1, __('Operation not allowed','docs'));
 		die();
 	}
 	
 	
 	//Verificamos si es una publicación aprobada
-	if (!$res->approved()){
-		redirect_header(AHURL,2,_MS_AH_NOTAPPROVED);
+	if (!$res->getVar('approved')){
+		redirect_header(RDURL, 2, __('This resource has not been approved yet!','docs'));
 		die();
 	}
 
 	// TODO: Crear el link correcto de retorno
-	$retlink = ah_make_link('list/'.$res->nameId().'/');
-		
+    if ($xoopsModuleConfig['permalinks']) {
+	    $retlink = RDFunctions::url().'/list/'.$res->getVar('nameid').'/';
+    } else {
+        $retlink = RDFunctions::url().'?page=edit&action=list&res='.$res->id();
+	}
+    	
 	//Verificamos si el usuario tiene permisos de edicion
-	if (!$xoopsUser->uid()==$res->owner() && 
+	if (!$xoopsUser->uid()==$res->getVar('owner') && 
 		!$res->isEditor($xoopsUser->uid()) &&
 		!$xoopsUser->isAdmin()){
-		redirect_header($retlink,2,_MS_AH_NOTPERMEDIT);
+		redirect_header(RDURL, 2, __('You can not edit this content!','docs'));
 		die();
 	}
+    
+    $db = Database::getInstance();
 
 	if ($edit){
 		//Verifica si la sección es válida
-		if ($id_sec==''){
-			redirect_header($retlink,1,_MS_AH_ERRSECTION);
+		if ($id==''){
+			redirect_header($retlink, 1, __('Specified section is not valid!','docs'));
 			die();
 		}
 		
 		//Comprueba si la sección es existente
-		$sec=new AHSection($id_sec, $res->id());
+		$sec = new RDSection($id);
 		if ($sec->isNew()){
-			redirect_header($retlink,1,_MS_AH_ERRNOTSEC);
+			redirect_header($retlink, 1, __('Specified section does not exists!','docs'));
 			die();
 		}
 
 		//Comprueba que el título de la sección no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_sections')." WHERE title='$title' AND id_res='$id_res' AND id_sec<>".$sec->id();
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_sections')." WHERE title='$title' AND id_res='$res' AND id_sec<>".$sec->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirect_header(ah_make_link('edit/'.$res->nameId().'/'.$sec->nameId()),1,_MS_AH_ERRTITLE);	
+			redirect_header($sec->editlink(), 1, __('Already exists another section with same title!','docs'));	
 			die();
 		}
 		
@@ -222,33 +229,30 @@ function saveSection($edit=0,$ret=0){
 		* Comprobamos si debemos almacenar las ediciones en la
 		* tabla temporal o directamente en la tabla de secciones
 		*/
-		if (!$res->approveEditors() && !$xoopsUser->isAdmin()){
-			$sec = new AHEdit($id_sec);
+		if (!$res->getVar('editor_approve') && !$xoopsUser->isAdmin()){
+			$sec = new RDEdit(null, $id_sec);
 		}
 		
 	}else{
 	
 
 		//Comprueba que el título de la sección no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('pa_sections')." WHERE title='$title' AND id_res='".$res->id()."'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_sections')." WHERE title='$title' AND id_res='".$res->id()."'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirect_header(ah_make_link('publish/'.$res->nameId().'/'),1,_MS_AH_ERRTITLE);	
 			die();
 		}
-		$sec = new AHSection();
+		$sec = new RDSection();
 	}
-	
-	//Creamos link correcto
-	$url_cont = ah_make_link($res->nameId().'/'.$sec->nameId());
 
 	//Genera $nameid Nombre identificador
-	if ($title<>$sec->title()){	
+	if ($title<>$sec->getVar('title')){	
 		$found=false; 
 		$i = 0;
 		do{
-    			$nameid = $util->sweetstring($title).($found ? $i : '');
-        		$sql = "SELECT COUNT(*) FROM ".$db->prefix('pa_sections'). " WHERE nameid = '$nameid'";
+    			$nameid = TextCleaner::getInstance()->sweetstring($title).($found ? $i : '');
+        		$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_sections'). " WHERE nameid = '$nameid'";
         		list ($num) =$db->fetchRow($db->queryF($sql));
         		if ($num>0){
         			$found =true;
@@ -260,45 +264,52 @@ function saveSection($edit=0,$ret=0){
     		}while ($found==true);
 	}
 	
-	if (!$res->approveEditors() && !$xoopsUser->isAdmin() && !($res->owner()==$xoopsUser->uid())) $sec->setSection($id_sec);
-	$sec->setTitle($title);
-	$sec->setContent($content);
-	$sec->setOrder($order);
-	$sec->setResource($res->id());
-	isset($nameid) ? $sec->setNameId($nameid) : '' ;
-	$sec->setParent($parent);
-	$sec->setVar('dohtml', $dohtml);
-	$sec->setVar('doxcode', isset($doxcode) ? $doxcode : 0);
-	$sec->setVar('dobr', isset($dobr) ? $dobr : 0);
-	$sec->setVar('dosmiley', isset($dosmiley) ? $dosmiley : 0);
-	$sec->setVar('doimage', isset($doimage) ? $doimage : 0);
-	$sec->setUid($xoopsUser->uid());
-	$sec->setUname($xoopsUser->uname());
+	if (!$res->getVar('editor_approve') && !$xoopsUser->isAdmin() && !($res->getVar('owner')==$xoopsUser->uid())) $sec->setVar('id_sec',$id_sec);
+	$sec->setVar('title', $title);
+	$sec->setVar('content',$content);
+	$sec->setVar('order', $order);
+	$sec->setVar('id_res', $res->id());
+	isset($nameid) ? $sec->setVar('nameid', $nameid) : '' ;
+	$sec->setVar('parent', $parent);
+	$sec->setVar('uid', $xoopsUser->uid());
+	$sec->setVar('uname', $xoopsUser->uname());
 	
 	if ($edit){
-		$sec->setModified(time());
+		$sec->setVar('modified', time());
 	}else{
-		$sec->setCreated(time());
-		$sec->setModified(time());
+		$sec->setVar('created', time());
+		$sec->setVar('modified', time());
 	}
+    
+    // Metas
+    if ($edit) $sec->clear_metas(); // Clear all metas
+    // Initialize metas array if not exists  
+    if (!isset($metas)) $metas = array();
+    // Get meta key if "select" is visible
+    if (isset($meta_name_sel) && $meta_name_sel!='') $meta_name = $meta_name_sel;
+    // Add meta to metas array
+    if (isset($meta_name) && $meta_name!=''){
+        array_push($metas, array('key'=>$meta_name, 'value'=>$meta_value));
+    }
+    // Assign metas
+    foreach($metas as $value){
+        $sec->add_meta($value['key'], $value['value']);
+    }
+    
+    RMEvents::get()->run_event('docs.saving.section',$sec);
 	
 	
 	if (!$sec->save()){
         
-		redirect_header(ah_make_link('edit/'.$res->nameId().'/'.$sec->nameId()),3,_MS_AH_DBERROR);
-		die();
+		redirect_header($sec->editlink(), 3, __('Section could not be saved!','docs'));
+        
 	}else{
-		if ($ret){
-			redirect_header(ah_make_link('edit/'.$res->nameId().'/'.$sec->nameId()),0,_MS_AH_DBOK);
-			die();
-		}else{	
-			if (isset($return)){
-				redirect_header($url_cont,1,_MS_AH_DBOK);
-				die();	
-			}else{
-				redirect_header($retlink,1,_MS_AH_DBOK);
-				die();	
-			}
+		if ($return==1){
+		    redirect_header($sec->permalink(),1, __('Database updated successfully!','docs'));
+        } elseif ($return==2){
+            redirect_header($sec->editlink(),1, __('Database updated successfully!','docs'));
+		}else{
+		    redirect_header($retlink, 1, __('Database updated successfully!','docs'));
 		}
 	}
 
@@ -308,53 +319,48 @@ function saveSection($edit=0,$ret=0){
 * @desc Modifica el orden de las secciones
 **/
 function changeOrderSections(){
-	global $util;
-	$orders=isset($_REQUEST['orders']) ? $_REQUEST['orders'] : array();
-	$id=isset($_REQUEST['id']) ? $_REQUEST['id'] : array();	
+	global $xoopsSecurity, $xoopsModuleConfig;
+    
+	$orders = rmc_server_var($_POST, 'orders', array());
+	$id = rmc_server_var($_POST, 'id', 0);
+    
+    if ($xoopsModuleConfig['permalinks'])
+        $url_ret = RDfunctions::url().'/list/'.$id.'/';
+    else
+        $url_ret = RDFunctions::url().'?page=edit&action=list&id='.$id;
 	
-	$util=& RMUtils::getInstance();
-	if (!$util->validateToken()){
-		redirectMsg(XOOPS_URL.'/modules/ahelp/edit.php?id='.$id,_MS_AH_SESSINVALID, 1);
+	if (!$xoopsSecurity->check()){
+		redirect_header($url_ret, 0, __('Sessión token expired!','docs'));
 		die();
 	}	
 
 	if (!is_array($orders) || empty($orders)){
-		redirectMsg(XOOPS_URL.'/modules/ahelp/edit.php?id='.$id,_MS_AH_NOTSECTION,1);
+		redirect_header($url_ret, 1, __('Sorry, the data provided contains some errors!','docs'),1);
 		die();
 	}
 	
 	$errors='';
 	foreach ($orders as $k=>$v){
-	
-		//Verifica si la sección es válida
-		if ($k<=0){
-			$errors.=sprintf(_MS_AH_NOTVALID, $k);
-			continue;
-		}	
 		
+        if($k<=0) continue;
+        
 		//Comprueba si la sección es existente
-		$sec=new AHSection($k);
-		if ($sec->isNew()){
-			$errors.=sprintf(_MS_AH_NOTEXISTSECT,$k);
-			continue;
-		}	
-		
+		$sec = new RDSection($k);
+		if ($sec->isNew()) continue;		
 
-		$sec->setOrder($v);		
+		$sec->setVar('order', $v);
+        
 		if (!$sec->save()){
-			$errors.=sprintf(_MS_AH_NOTSAVEORDER, $k);		
+			$errors.=sprintf(__('Order could not be saved for section %s','docs'), $sec->getVar('title')).'<br />';		
 		}
+        
 	}
 
 	if ($errors!=''){
-		redirect_header(XOOPS_URL.'/modules/ahelp/edit.php?id='.$id,1,_MS_AH_ERRORS.$errors);
-		die();
-
+		redirect_header($url_ret, 1, __('Errors ocurred while trying to update orders').'<br />'.$errors);
 	}else{
-		redirect_header(XOOPS_URL.'/modules/ahelp/edit.php?id='.$id,0,_MS_AH_DBOK);
+		redirect_header($url_ret, 0, __('Sections updated successfully!','docs'));
 	}
-
-
 
 }
 

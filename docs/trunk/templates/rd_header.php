@@ -1,16 +1,11 @@
-<div id="ahHeader">
-	<div class="ahNewResource">
-		<{if $lang_new!=''}><a href="<{$ah_url}>/publish/"><{$lang_new}></a> &bull;<{/if}>
-		<a href="<{$ah_url}>/search/&mode=1"><{$lang_voted}></a> &bull;
-		<a href="<{$ah_url}>/search/&mode=2"><{$lang_popular}></a> &bull;
-		<a href="<{$ah_url}>/search/&mode=3"><{$lang_recent}></a><br />
-		<{$location_bar}>
-	</div>
-	<div class="ahSearch">
-		<form name="frmSearch" method="POST" action="<{$ah_url}>/search/">
-			<{$lang_findlabel}>
-			<input name="search" size="15" type="text" />
-			<input name="submit" class="formButton" type="submit" value="<{$lang_find}>"/>
-		</form>
-	</div>
+<div id="rd-header">
+    <a href="<?php echo RDURL; ?>"><?php echo $xoopsModule->name(); ?></a> |
+    <a href="<?php echo RDFunctions::make_link('explore', array('by'=>'recent')); ?>"><?php _e('Recent Resources','docs'); ?></a> |
+    <a href="<?php echo RDFunctions::make_link('explore', array('by'=>'top')); ?>"><?php _e('Top Resources','docs'); ?></a>
+    <div class="right">
+        <form name="frmsearch" method="get" action="<?php echo RDFunctions::make_link('search'); ?>">
+            <input type="text" name="keyword" size="20" />
+            <input type="submit" value="<?php _e('Search','docs'); ?>" />
+        </form>
+    </div>
 </div>

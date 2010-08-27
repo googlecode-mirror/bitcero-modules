@@ -119,7 +119,7 @@ function rd_show_form($edit=0){
 	
 	$form->addElement(new RMFormText(__('Resource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
 	if ($edit) $form->addElement(new RMFormText(__('Resource slug'),'nameid',50,150,$res->getVar('nameid')));
-	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description') : ''),true);
+	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description','e') : ''),true);
 	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$edit ? $res->getVar('editors') : '',30));
 
 	//Propietario de la publicacion
@@ -235,7 +235,7 @@ function rd_save_resource($edit=0){
 	}
 	
 	$res->setVar('title', $title);
-	$res->setVar('description', substr($desc, 0, 255));
+	$res->setVar('description', $desc);
 	$res->isNew() ? $res->setVar('created', time()) : $res->setVar('modified', time());
 	$res->setVar('editors', $editors);
 	$res->setVar('editor_approve', $approvededit);
@@ -334,7 +334,7 @@ function rd_delete_resource(){
 function public_resources($pub=0){
 	global $xoopsSecurity;
     
-	$resources= rmc_server_var($_POST, 'resources', array());
+	$resources= rmc_server_var($_POST, 'ids', array());
 	$page = rmc_server_var($_POST, 'page', 1);	
 
 	if (!$xoopsSecurity->check()){
@@ -385,7 +385,7 @@ function public_resources($pub=0){
 function quick_resources($quick=0){
 	global $xoopsSecurity;
     
-	$resources= rmc_server_var($_POST, 'resources', array());
+	$resources= rmc_server_var($_POST, 'ids', array());
     $page = rmc_server_var($_POST, 'page', 1);    
 
     if (!$xoopsSecurity->check()){
@@ -455,7 +455,7 @@ function approved_resources($app=0){
 
 	global $xoopsSecurity,$xoopsConfig,$xoopsModuleConfig;
     
-	$resources = rmc_server_var($_POST, 'resources', array());
+	$resources = rmc_server_var($_POST, 'ids', array());
 	$page = rmc_server_var($_POST, 'page', 1);
 	
 	if (!$xoopsSecurity->check()){

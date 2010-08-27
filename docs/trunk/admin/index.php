@@ -8,96 +8,89 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('AH_LOCATION', 'index');
 include 'header.php';
 
-$tpl = RMTemplate::get();
+// Get top resources
 $db = Database::getInstance();
+$sql = "SELECT * FROM ".$db->prefix("rd_resources")." WHERE public=1 ORDER BY `reads` DESC LIMIT 0, 15";
+$result = $db->query($sql);
 
-// Opciones de la Página Inicial
-$tpl->append('options', array('text'=>_AS_AH_GOMOD, 'info'=>_AS_AH_CLICK,
-        'link'=>'../','icon'=>'../images/gomod.png'));
+$top_data = array();
 
-// Recursos
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_resources");
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_RES, 'info'=>sprintf(_AS_AH_RESNUM, $num),
-        'link'=>'resources.php','icon'=>'../images/res48.png'));
-        
-// Recursos Aprobados
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_resources")." WHERE approved='1'";
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_RES, 'info'=>sprintf(_AS_AH_RESAPPROVE, $num),
-        'link'=>'resources.php','icon'=>'../images/approved.png'));
-
-// Recursos Aprobados
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_resources")." WHERE approved='0'";
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_RES, 'info'=>sprintf(_AS_AH_RESNOAPPROVE, $num),
-        'link'=>'resources.php','icon'=>'../images/noapprove.png'));
-
-// Secciones
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_sections");
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_SECS, 'info'=>sprintf(_AS_AH_SECSNUM, $num),
-        'link'=>'sections.php','icon'=>'../images/sections48.png'));
-
-// Modificaciones
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_edits");
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_EDITS, 'info'=>sprintf(_AS_AH_EDITSNUM, $num),
-        'link'=>'edits.php','icon'=>'../images/edits48.png'));
-
-// Referencias
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_references");
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_REFS, 'info'=>sprintf(_AS_AH_REFSNUM, $num),
-        'link'=>'refs.php','icon'=>'../images/refs48.png'));
-
-// Figuras
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("pa_figures");
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_AH_FIGS, 'info'=>sprintf(_AS_AH_FIGSNUM, $num),
-        'link'=>'figs.php','icon'=>'../images/figs48.png'));
-        
-$tpl->append('options', array('text'=>'Red México', 'info'=>_AS_AH_CLICK,
-        'link'=>'http://www.redmexico.com.mx','icon'=>'../images/rm48.png'));
-        
-$tpl->append('options', array('text'=>'EXM System', 'info'=>_AS_AH_CLICK,
-        'link'=>'http://exmsystem.net','icon'=>'../images/exm.png'));
-
-$tpl->append('options', array('text'=>_AS_AH_HELP, 'info'=>_AS_AH_CLICK,
-        'link'=>'http://exmsystem.net/docs/manual-de-ability-help','icon'=>'../images/help.png'));
-
-if ($mc['access']){
-	
-	$tpl->assign('access', 1);
-	$tpl->assign('lang_showcode', _AS_AH_SHOWCODE);
-	$tpl->assign('lang_access', _AS_AH_ACCESS);
-	
-	$docroot = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-	$path = str_replace($docroot, '', XOOPS_ROOT_PATH.'/modules/ahelp/');
-	$code = "[code]#Begins Ability Help
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /wiki/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^wiki/?(.*)/?$ /modules/ahelp/index.php?page=$1 [L]
-</IfModule>
-#end Ability Help[/code]";
-	$tpl->assign('code', $myts->displayTarea($code, 0,0,1,0,1));
-	
+while($row = $db->fetchArray($result)){
+    $res = new RDResource();
+    $res->assignVars($row);
+    
+    $top_data['reads'][] = $res->getVar('reads');
+    $top_data['names'][] = $res->getVar('title').' ('.$res->getVar('reads').')';
+    
 }
 
-xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a>");
-$adminTemplate = 'admin/ahelp_index.html';
-$url = "http://redmexico.com.mx/modules/vcontrol/?id=8";
-$cHead = "<script type='text/javascript'>
-			var url = '".XOOPS_URL."/include/proxy.php?url=' + encodeURIComponent('$url');
-         	new Ajax.Updater('versionInfo',url);
-		 </script>\n";
-$cHead .= '<link href="../styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
-xoops_cp_header($cHead);
- 
+array_multisort($top_data['names'], SORT_STRING, $top_data['reads'], SORT_NUMERIC);
+
+$sql = "SELECT * FROM ".$db->prefix("rd_sections")." ORDER BY `comments` DESC LIMIT 0, 15";
+$result = $db->query($sql);
+
+$comm_data = array();
+
+while($row = $db->fetchArray($result)){
+    $sec = new RDSection();
+    $sec->assignVars($row);
+    
+    $comm_data['comments'][] = $sec->getVar('comments');
+    $comm_data['names'][] = $sec->getVar('title').' ('.$sec->getVar('comments').')';
+    
+}
+
+array_multisort($comm_data['names'], SORT_STRING, $comm_data['comments'], SORT_NUMERIC);
+
+// Resume data
+list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("rd_resources")));
+$resume_data['resources'] = $num;
+
+list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("rd_sections")));
+$resume_data['sections'] = $num;
+
+list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("rd_figures")));
+$resume_data['figures'] = $num;
+
+list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("rd_references")));
+$resume_data['notes'] = $num;
+
+// No published resoruces
+$sql = "SELECT * FROM ".$db->prefix("rd_resources")." WHERE public=0 ORDER BY created DESC LIMIT 0,5";
+$result = $db->query($sql);
+$nopublished = array();
+while($row = $db->fetchArray($result)){
+    $res = new RDResource();
+    $res->assignVars($row);
+    $nopublished[] = array(
+        'id' => $res->id(),
+        'title' => $res->getVar('title'),
+        'created' => $res->getVar('created'),
+        'desc' => TextCleaner::getInstance()->truncate($res->getVar('description'), 60)
+    );
+}
+
+// No published resoruces
+$sql = "SELECT * FROM ".$db->prefix("rd_resources")." WHERE approved=0 ORDER BY created DESC LIMIT 0,5";
+$result = $db->query($sql);
+$noapproved = array();
+while($row = $db->fetchArray($result)){
+    $res = new RDResource();
+    $res->assignVars($row);
+    $noapproved[] = array(
+        'id' => $res->id(),
+        'title' => $res->getVar('title'),
+        'created' => $res->getVar('created'),
+        'desc' => TextCleaner::getInstance()->truncate($res->getVar('description'), 60)
+    );
+}
+
+xoops_cp_header();
+
+RMTemplate::get()->add_style('admin.css','docs');
+RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.gcharts.js');
+include RMTemplate::get()->get_template('admin/rd_index.php', 'module', 'docs');
+
 xoops_cp_footer();

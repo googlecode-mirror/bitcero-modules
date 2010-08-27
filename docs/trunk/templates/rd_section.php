@@ -1,4 +1,5 @@
 <a name="rd_top"></a>
+<?php include RMTemplate::get()->get_template('rd_header.php', 'module', 'docs'); ?>
 <h1><?php echo $res->getVar('title'); ?></h1>
 
 <!-- Resource Content -->
@@ -31,6 +32,10 @@
         <a href="<?php echo $pdf_section_url; ?>"><?php _e('Generate PDF','docs'); ?></a><br />
         <a href="<?php echo $print_book_url; ?>"><?php _e('Print Book','docs'); ?></a><br />
         <a href="<?php echo $print_section_url; ?>"><?php _e('Print Section','docs'); ?></a>
+        <?php if(isset($publish_url)): ?>
+        <br />
+        <a href="<?php echo $publish_url; ?>"><?php _e('Create Resource','docs'); ?></a>
+        <?php endif; ?>
     </p>
     <p class="right">
         <?php echo sprintf(__('Published at %s.','docs'), '<strong>'.formatTimestamp($sections[0]['created'],'l').'</strong>'); ?><br />

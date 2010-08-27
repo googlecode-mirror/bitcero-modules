@@ -135,34 +135,10 @@ class RDResource extends RMObject{
 	* @param int $uid Id de usuario
 	**/	
 	public function isEditor($uid){
-    
+        
 		$editors = $this->getVar('editors');
 				
 		return in_array($uid,$editors);
-
-	}
-
-
-	/**
-	* @desc Determina si usuario tiene permiso para crear nueva publicación
-	* @param int array $gid  Ids de grupos a que pertenece usuario
-	* @param int array $groups Ids de grupos con permiso a crear publicación
-	**/	
-	public function isAllowedNew($gid,$groups){
-		
-		if (!is_array($gid)){
-			if ($gid == XOOPS_GROUP_ADMIN) return true;
-			return in_array($gid, $groups);
-		}
-
-		if (in_array(XOOPS_GROUP_ADMIN,$gid)) return true;
-				
-		foreach ($gid as $k){
-
-			if (in_array($k, $groups)) return true;
-		}
-		
-		return false;
 
 	}
 

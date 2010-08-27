@@ -112,6 +112,33 @@ $modversion['config'][] = array(
     'default' => 15
 );
 
+$modversion['config'][] = array(
+    'name' => 'createres',
+    'title' => '_MI_RD_CREATEENABLED',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
+);
+
+$modversion['config'][] = array(
+    'name' => 'create_groups',
+    'title' => '_MI_RD_CREATENEW',
+    'description' => '_MI_RD_CREATENEWD',
+    'formtype' => 'group_multi',
+    'valuetype' => 'array',
+    'default' => 1
+);
+
+$modversion['config'][] = array(
+    'name' => 'approved',
+    'title' => '_MI_RD_APPROVE',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
 
 // Bloques
 $modversion['blocks'][1]['file'] = "ahelp_resources.php";

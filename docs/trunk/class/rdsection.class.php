@@ -123,7 +123,7 @@ class RDSection extends RMObject{
             
             if($this->getVar('parent')>0){
                 $sec = new RDSection($this->getVar('parent'));
-                $perma = $sec->permalink().'/#'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+                $perma = $sec->permalink().'#'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid'));
             } else {
                 $perma = XOOPS_URL.$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
             }
@@ -141,6 +141,19 @@ class RDSection extends RMObject{
         }
         
         return $perma;
+        
+    }
+    
+    public function editlink(){
+        
+        $config = RMUtilities::module_config('docs');
+        if ($config['permalinks']){
+            $link = RDFunctions::url().'/edit/'.$this->id().'/'.$this->getVar('id_res');
+        } else {
+            $link = RDFunctions::url().'?page=edit&id='.$this->id().'&res='.$this->getVar('id_res');
+        }
+        
+        return $link;
         
     }
 

@@ -1,3 +1,4 @@
+<?php include RMTemplate::get()->get_template('rd_header.php', 'module', 'docs'); ?>
 <h1><?php echo $res->getVar('title'); ?></h1>
 <p class="rd_res_description"><?php echo $res->getVar('description'); ?></p>
 
