@@ -313,6 +313,7 @@ class RMFunctions
         
         // You can include new content into Comments form
         // eg. Captcha checker, etc
+        
         $form = RMEvents::get()->run_event('rmcommon.comments.form', $form, $obj, $params, $type);
         RMTemplate::get()->add_jquery();
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');

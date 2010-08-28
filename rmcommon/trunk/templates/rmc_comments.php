@@ -43,6 +43,7 @@
         <th align="left"><?php _e('Author','rmcommon'); ?></th>
         <th align="left"><?php _e('Comment','rmcommon'); ?></th>
         <th><?php _e('Status','rmcommon'); ?></th>
+        <th><?php _e('Module','docs'); ?></th>
         <th nowrap="nowrap"><?php _e('In reply to','rmcommon'); ?></th>
     </tr>
     </thead>
@@ -52,6 +53,7 @@
         <th align="left"><?php _e('Author','rmcommon'); ?></th>
         <th align="left"><?php _e('Comment','rmcommon'); ?></th>
         <th><?php _e('Status','rmcommon'); ?></th>
+        <th><?php _e('Module','docs'); ?></th>
         <th nowrap="nowrap"><?php _e('In reply to','rmcommon'); ?></th>
     </tr>
     </tfoot>
@@ -100,9 +102,9 @@
         		}
         	?>
         </td>
+        <td align="center"><?php echo $com['module']; ?></td>
         <td align="center">
-        	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?><br />
-        	<?php echo $com['module']; ?>
+        	<?php if(isset($com['item'])): ?><?php echo $com['item']; ?><?php else: echo "&nbsp;"; endif; ?>
         </td>
     </tr>
     <?php endforeach; ?>
