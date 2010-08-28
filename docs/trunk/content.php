@@ -13,6 +13,7 @@ if($id=='')
 
 $browser = $_SERVER['HTTP_USER_AGENT'];
 $pos = stripos($browser, 'Mozilla/5');
+define('RD_LOCATION', 'content');
 
 /**
 * @desc Muestra el contenido completo de una sección

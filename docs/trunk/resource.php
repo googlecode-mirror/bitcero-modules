@@ -21,6 +21,9 @@ if ($res->isNew()){
 	RDFunctions::error_404();
 }
 
+if($res->getVar('single'))
+    define('RD_LOCATION','resource_content');
+
 include ('header.php');
 
 //Verificamos si la publicacion esta aprobada

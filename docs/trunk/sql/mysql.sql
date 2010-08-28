@@ -37,6 +37,7 @@ CREATE TABLE `rd_resources` (
   `approved` tinyint(1) NOT NULL default '1',
   `featured` tinyint(1) NOT NULL default '0',
   `single` tinyint(1) NOT NULL default '0',
+  `comments` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id_res`),
   KEY `nameid` (`nameid`),
   KEY `title` (`title`)

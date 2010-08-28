@@ -141,28 +141,22 @@ $modversion['config'][] = array(
 
 
 // Bloques
-$modversion['blocks'][1]['file'] = "ahelp_resources.php";
-$modversion['blocks'][1]['name'] = '_MI_AH_BKRES';
-$modversion['blocks'][1]['description'] = '_MI_AH_BKRES_DESC';
-$modversion['blocks'][1]['show_func'] = "ahelp_block_resources";
-$modversion['blocks'][1]['edit_func'] = "ahelp_block_resources_edit";
-$modversion['blocks'][1]['template'] = 'ahelp_bk_resources.html';
-$modversion['blocks'][1]['options'] = array(2,'recents',5,0,1,1,0,0);
+$modversion['blocks'][] = array(
+    'file' => 'rd_resources.php',
+    'name' => __('Resources','docs'),
+    'description' => __('List of resources','docs'),
+    'show_func' => 'rd_block_resources',
+    'edit_func' => 'rd_block_resources_edit',
+    'template' => 'rd_bk_resources.html',
+    'options' => "recents|5|0|1|1|0|0"
+);
 
-// Index
-$modversion['blocks'][2]['file'] = "ahelp_index.php";
-$modversion['blocks'][2]['name'] = '_MI_AH_BKINDEX';
-$modversion['blocks'][2]['description'] = '_MI_AH_BKINDEXD';
-$modversion['blocks'][2]['show_func'] = "ahelp_block_index";
-$modversion['blocks'][2]['edit_func'] = "";
-$modversion['blocks'][2]['template'] = 'ahelp_bk_index.html';
-$modversion['blocks'][2]['options'] = array();
-
-/*
-$modversion['subpages']['index'] = _MI_AH_INDEX;
-$modversion['subpages']['resource'] = _MI_AH_RESOURCE;
-$modversion['subpages']['content'] = _MI_AH_CONTENT;
-$modversion['subpages']['edit'] = _MI_AH_EDIT;
-$modversion['subpages']['publish'] = _MI_AH_PUBLISH;
-$modversion['subpages']['search'] = _MI_AH_PSEARCH;
-*/
+$modversion['blocks'][] = array(
+    'file' => 'rd_index.php',
+    'name' => __('Resource TOC','docs'),
+    'description' => __('Table of content for a specific resource','docs'),
+    'show_func' => 'rd_block_index',
+    'edit_func' => '',
+    'template' => 'rd_bk_index.html',
+    'options' => ''
+);

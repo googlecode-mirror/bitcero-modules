@@ -1,5 +1,6 @@
+<ul class="rd_block_list">
 <{foreach item=section from=$block.sections}>
-<span class="block_index_item"<{if $section.jump>0}> style="padding-left: 10px;"<{/if}>>
+<li<{if $section.jump>0}> style="padding-left: 10px;"<{/if}>>
 	<{if $section.jump<=0}><strong><{/if}>
 	<{if $section.jump==0 && $section.nameid!=$block.section}>
 		<{assign var='switch' value=1}>
@@ -9,8 +10,9 @@
 	<{if $section.nameid==''}>
 		<{$section.number}> <{$section.title}>
 	<{else}>
-		<a href="<{if $switch}><{$block.ah_url}><{$block.resource}>/<{$section.nameid}><{else}>#<{$section.nameid}><{/if}>"><{$section.number}> <{$section.title}></a>
+		<a href="<{$section.link}>"><{$section.number}> <{$section.title}></a>
 	<{/if}>
 	<{if $section.jump<=0}></strong><{/if}>
-</span>
+</li>
 <{/foreach}>
+</ul>
