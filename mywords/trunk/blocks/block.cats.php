@@ -47,5 +47,3 @@ function mywordsBlockCatsEdit($options){
             </label>';
 	return $form;
 }
-
-?>

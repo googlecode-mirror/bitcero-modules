@@ -47,7 +47,7 @@ class MywordsController
         
         $params = urldecode($params);
         parse_str($params);
-        if(!isset($post) || $post<=0) return __('Not found','mywords_admin');;
+        if(!isset($post) || $post<=0) return __('Not found','mywords');;
         
         if(isset($posts[$post])){
         	$ret = '<a href="'.$posts[$post]->permalink().'#comment-'.$com->id().'">'.$posts[$post]->getVar('title').'</a>';
@@ -58,7 +58,7 @@ class MywordsController
         include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php');
         $item = new MWPost($post);
         if($item->isNew()){
-			return __('Not found','mywords_admin');
+			return __('Not found','mywords');
         }
         
         if($url) return $item->permalink();
