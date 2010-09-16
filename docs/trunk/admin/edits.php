@@ -8,16 +8,8 @@
 // @author BitC3R0 <i.bitcero@gmail.com>
 // @license: GPL v2
 
-define('AH_LOCATION', 'editions');
+define('RMCLOCATION', 'waiting');
 include 'header.php';
-
-include_once '../include/functions.php';
-
-function optionsBar(){
-	global $tpl;
-    
-    $tpl->append('xoopsOptions', array('link' => 'edits.php', 'title' => _AS_AH_EDITS, 'icon' => '../images/edits16.png'));
-}
 
 /**
 * @desc Muestra una lista con los elementos editados esperando aprovación
@@ -25,36 +17,49 @@ function optionsBar(){
 function showEdits(){
 	global $xoopsModule, $db, $adminTemplate, $tpl, $mc;
 	
-	$result = $db->query("SELECT * FROM ".$db->prefix("pa_edits")." ORDER BY modified");
+	$sql = "SELECT * FROM ".$db->prefix("rd_edits");
+    list($num) = $db->fetchRow($db->query($sql));
+    $page = rmc_server_var($_REQUEST, 'page', 1);
+    $limit = 15;
+
+    $tpages = ceil($num/$limit);
+    $page = $page > $tpages ? $tpages : $page; 
+
+    $start = $num<=0 ? 0 : ($page - 1) * $limit;
+    
+    $nav = new RMPageNav($num, $limit, $page, 5);
+    $nav->target_url('edits.php?page={PAGE_NUM}');
+    
+    $sql = "SELECT * FROM ".$db->prefix("rd_edits")." ORDER BY `modified` DESC LIMIT $start,$limit";
+    $result = $db->query($sql);
+    $sections = array();
 	
 	while ($row = $db->fetchArray($result)){
-		$edit = new AHEdit();
+		$edit = new RDEdit();
 		$edit->assignVars($row);
-		$sec = new AHSection($edit->section());
-		$link = XOOPS_URL.'/modules/ahelp/';
-		$link .= $mc['access'] ? 'content/'.$sec->id().'/'.$sec->nameId() : 'content.php?id='.$sec->id();
-		$tpl->append('edits', array('id'=>$edit->id(),'section'=>array('id'=>$sec->id(),'title'=>$sec->title(),
-				'link'=>$link),'title'=>$edit->title(),'date'=>formatTimeStamp($edit->modified()),
-				'uname'=>$edit->uname(),'msg'=>htmlspecialchars(sprintf(_AS_AH_CONFIRMMSG, $edit->title()))));
+		$sec = new RDSection($edit->getVar('id_sec'));
+		$sections[] = array(
+            'id'=>$edit->id(),
+            'section'=>array(
+                'id'=>$sec->id(),
+                'title'=>$sec->getVar('title'),
+				'link'=>$sec->permalink()
+            ),
+            'title'=>$edit->getVar('title'),
+            'date'=>RMTimeFormatter::get()->format($edit->getVar('modified'), __('%M% %d%, %Y%', 'docs')),
+			'uname'=>$edit->getVar('uname')
+        );
 	}
 	
-	$tpl->assign('lang_edits', _AS_AH_EDITSTITLE);
-	$tpl->assign('lang_title', _AS_AH_EDITEDTITLE);
-	$tpl->assign('lang_otitle', _AS_AH_ORINGINALTITLE);
-	$tpl->assign('lang_date', _AS_AH_MODIFIED);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_review', _AS_AH_REVIEW);
-	$tpl->assign('lang_approve', _AS_AH_APPROVE);
-	$tpl->assign('lang_by', _AS_AH_BY);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_confirmdel', _AS_AH_DELCONF);
-	
-	$adminTemplate = "admin/ahelp_edits.html";
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_AH_EDITLOC);
-	optionsBar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Waiting Content','docs'));
 	
 	xoops_cp_header();
+    
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('admin.js', 'docs', 'include');
+    RMTemplate::get()->add_style('admin.css', 'docs');
+    
+    include RMEvents::get()->run_event("docs.waiting.template", RMTemplate::get()->get_template("admin/rd_waiting.php",'module','docs'));
 	
 	xoops_cp_footer();
 }
@@ -63,50 +68,51 @@ function showEdits(){
 * @desc Muestra el contenido de las secciones editadas y original para su revisión
 */
 function reviewEdit(){
-	global $tpl, $xoopsModule, $db, $adminTemplate, $mc;
+	global $xoopsModule;
 	
-	$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+	$id = rmc_server_var($_GET, 'id', 0);
 	
 	if ($id<=0){
-		redirectMsg('./edits.php', _AS_AH_NOID, 1);
+		redirectMsg('edits.php', __('You have not specified any section!','docs'), 1);
 		die();
 	}
 	
-	$edit = new AHEdit($id);
+	$edit = new RDEdit($id);
 	if ($edit->isNew()){
-		redirectMsg('./edits.php', _AS_AH_NOTEXISTS, 1);
+		redirectMsg('edits.php', __('Specified content does not exists!','docs'), 1);
 		die();
 	}
 	
-	$sec = new AHSection($edit->section());
+	$sec = new RDSection($edit->getVar('id_sec'));
 	if ($sec->isNew()){
-		redirectMsg('./edits.php', _AS_AH_NOTEXISTSSEC, 1);
+		redirectMsg('edits.php', __('The section indicated by current element does not exists!','docs'), 1);
 		die();
 	}
 	
-	include_once '../include/functions.php';
 	// Datos de la Sección
-	$link = XOOPS_URL.'/modules/ahelp/';
-	$link .= $mc['access'] ? 'content/'.$sec->id().'/'.$sec->nameId() : 'content.php?id='.$sec->id();
-	$tpl->assign('section', array('id'=>$sec->id(), 'title'=>$sec->title(),
-			'text'=>ahParseReferences($sec->content()),'link'=>$link,'res'=>$sec->resource()));
+	$section = array(
+        'id'=>$sec->id(), 
+        'title'=>$sec->getVar('title'),
+		'text'=>$sec->getVar('content'),
+        'link'=>$sec->permalink(),
+        'res'=>$sec->getVar('id_res')
+    );
 	
 	// Datos de la Edición
-	$tpl->assign('edit', array('id'=>$edit->id(), 'title'=>$edit->title(),'text'=>ahParseReferences($edit->content())));
+	$new_content = array(
+        'id'=>$edit->id(),
+        'title'=>$edit->getVar('title'),
+        'text'=>$edit->getVar('content')
+    );
 	
-	$tpl->assign('lang_original', _AS_AH_ORIGINAL);
-	$tpl->assign('lang_edited', _AS_AH_EDITED);
-	$tpl->assign('lang_title', _AS_AH_TITLE);
-	$tpl->assign('lang_approve', _AS_AH_APPROVE);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_view', _AS_AH_VIEW);
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./edits.php'>".__('Waiting Content','docs')."</a> &raquo; ".sprintf(__('Editing %s','docs'), $sec->getVar('title')));
 	
-	$adminTemplate = "admin/ahelp_reviewedit.html";
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./edits.php'>"._AS_AH_EDITLOC."</a> &raquo; ".sprintf(_AS_AH_EDITREVLOC, $sec->title()));
-	optionsBar();
 	xoops_cp_header();
+    
+    RMTemplate::get()->add_style('admin.css', 'docs');
 	
+    include RMEvents::get()->run_event('docs.template.review.waiting', RMTemplate::get()->get_template('admin/rd_reviewedit.php', 'module', 'docs'));
+    
 	xoops_cp_footer();
 	
 }
@@ -214,76 +220,62 @@ function deleteEdits(){
 }
 
 function showFormEdits(){
-	global $xoopsModule,$db, $xoopsConfig;
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;	
+	global $xoopsModule, $xoopsConfig;
 	
-    $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $id = rmc_server_var($_GET, 'id', 0);
 	
 	if ($id<=0){
-		redirectMsg('./edits.php', _AS_AH_NOID, 1);
+		redirectMsg('edits.php', __('You have not specified any waiting section!','docs'), 1);
 		die();
 	}
 	
-	$edit = new AHEdit($id);
+	$edit = new RDEdit($id);
 	if ($edit->isNew()){
-		redirectMsg('./edits.php', _AS_AH_NOTEXISTS, 1);
+		redirectMsg('edits.php', __('Sepecified content does not exists!','docs'), 1);
 		die();
 	}
 	
-	$sec = new AHSection($edit->section());
+	$sec = new RDSection($edit->getVar('id_sec'));
 	if ($sec->isNew()){
-		redirectMsg('./edits.php', _AS_AH_NOTEXISTSSEC, 1);
+		redirectMsg('edits.php', __('This waiting content does not have any section assigned!','docs'), 1);
 		die();
 	}
 	
-	$res = new AHResource($sec->resource());
+	$res = new RDResource($sec->getVar('id_res'));
 
-	$form=new RMForm($edit ? _AS_AH_EDITSECTIONS : _AS_AH_NEWSECTIONS,'frmsec','edits.php');
-	$form->addElement(new RMLabel(_AS_AH_RESOURCE,$res->title()));
-	$form->addElement(new RMText(_AS_AH_TITLE,'title',50,200,$edit->title()),true);
-	if ($edit){
-		$ele = new RMEditorAddons(_OPTIONS,'options','content',$xoopsConfig['editor_type'],$edit->resource(), $edit->section());
-		$cHead = $ele->jsFunctions();
-		$form->addElement($ele);
-	} else {
-		$form->addElement(new RMLabel(_OPTIONS, _AS_AH_REFFIG));
-	}
-	$form->addElement(new RMEditor(_AS_AH_CONTENT,'content','90%','300px',$edit->getVar('content', 'e')),true);
-	$dohtml = $edit->getVar('dohtml');
-	$doxcode = $edit->getVar('doxcode');
-	$dobr = $edit->getVar('dobr');
-	$dosmiley = $edit->getVar('dosmiley');
-	$doimage = $edit->getVar('doimage');
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	$form=new RMForm(__('Editing Waiting Content','docs'),'frmsec','edits.php');
+	$form->addElement(new RMFormLabel(__('Belong to','docs'),$res->getVar('title')));
+	$form->addElement(new RMFormText(__('Title','docs'),'title',50,200,$edit->getVar('title')),true);
+	$form->addElement(new RMFormEditor(__('Contenido','docs'),'content','90%','300px',$edit->getVar('content', 'e')),true);
 	
 	// Arbol de Secciones
-	$ele= new RMSelect(_AS_AH_SECTION,'parent');
-	$ele->addOption(0,_SELECT);
+	$ele= new RMFormSelect(__('Parent Section','docs'),'parent');
+	$ele->addOption(0,__('Select section...','docs'));
 	$tree = array();
-	getSectionTree($tree, 0, 0, $res->id(), 'id_sec, title', $sec->id());
+	RDFunctions::sections_tree_index(0, 0, $res, '', '', false, $tree, false);
 	foreach ($tree as $k){
-		$ele->addOption($k['id_sec'], str_repeat('--', $k['saltos']).' '.$k['title'], $edit->parent()==$k['id_sec'] ? 1 : 0);
+		$ele->addOption($k['id'], str_repeat('&#151;', $k['jump']).' '.$k['title'], $edit->getVar('parent')==$k['id'] ? 1 : 0);
 	}
 	
 	$form->addElement($ele);
 
-	$form->addElement(new RMText(_AS_AH_ORDER,'order',5,5,$edit->order()),true);
+	$form->addElement(new RMFormText(__('Display order','docs'),'order',5,5,$edit->getVar('order')),true);
 	// Usuario
-	$form->addElement(new RMFormUserEXM(_AS_AH_FUSER, 'uid', 0, array($edit->uid()), 30));
+	$form->addElement(new RMFormUser(__('Owner','docs'), 'uid', 0, array($edit->getVar('uid')), 30));
 
-	$buttons =new RMButtonGroup();
-	$buttons->addButton('sbt',_AS_AH_SAVENOW,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'edits.php\';"');
+	$buttons =new RMFormButtonGroup();
+	$buttons->addButton('sbt',__('Save Now','docs'),'submit');
+	$buttons->addButton('cancel',__('Cancel','docs'),'button', 'onclick="window.location=\'edits.php\';"');
 
 	$form->addElement($buttons);
 
-	$form->addElement(new RMHidden('op','save'));
-	$form->addElement(new RMHidden('id',$edit->id()));
+	$form->addElement(new RMFormHidden('action','save'));
+	$form->addElement(new RMFormHidden('id',$edit->id()));
 	
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./edits.php'>"._AS_AH_EDITLOC."</a> &raquo; ".sprintf(_AS_AH_EDITEDTLOC, $edit->title()));
-	xoops_cp_header($cHead);
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./edits.php'>".__('Waiting Content','docs')."</a> &raquo; ".sprintf(__('Editing %s','docs'), $edit->getVar('title')));
+	xoops_cp_header();
 	
+    RMTemplate::get()->assign('xoops_pagetitle', __('Editing Waiting Content','docs'));
 	$form->display();
 
 	xoops_cp_footer();
@@ -377,9 +369,9 @@ function saveEdit(){
 }
 
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$action = rmc_server_var($_REQUEST, 'action', '');
 
-switch($op){
+switch($action){
 	case 'review':
 		reviewEdit();
 		break;

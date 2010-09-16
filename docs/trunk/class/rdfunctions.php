@@ -22,45 +22,40 @@ class RDFunctions
     * @desc Envía correo de aprobación de publicación
     * @param Object $res Publicación
     **/
-    function mail_approved(&$res){
+    function mail_approved(RDResource &$res){
         
         global $xoopsModuleConfig,$xoopsConfig;
+        
+         $config_handler =& xoops_gethandler('config');
+         $mconfig = $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
 
         $errors='';
         $user=new XoopsUser($res->getVar('owner'));
         $member_handler =& xoops_gethandler('member');
-        $xoopsMailer =& getMailer();
         $method=$user->getVar('notify_method');
+        
+        $mailer = new RMMailer('text/plain');
+        $mailer->add_xoops_users($user);
+        $mailer->set_subject(sprintf(__('Publication <%s> approved!', 'docs'),$res->getVar('title')));
+        $mailer->assign('dear_user', $user->getVar('name')!='' ? $user->getVar('name') : $user->getVar('uname'));
+        $mailer->assign('link_to_resource', $res->permalink());
+        $mailer->assign('site_name', $xoopsConfig['sitename']);
+        $mailer->assign('resource_name', $res->getVar('title'));
+        $mailer->template(RMTemplate::get()->get_template('mail/resource_approved.php', 'module', 'docs'));
+            
         switch ($method){
             case '1':
-                $xoopsMailer->usePM();
-                $config_handler =& xoops_gethandler('config');
-                $xoopsMailerConfig =& $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
-                $xoopsMailer->setFromUser($member_handler->getUser($xoopsMailerConfig['fromuid']));
-            
-            break;
+                $mailer->set_from_xuser($mconfig['fromuid']);
+                $ret = $mailer->send_pm();            
+                break;
             case '2':
-                $xoopsMailer->useMail();
-            break;
+                $ret = $mailer->send();
+                break;
         }
-        $xoopsMailer->setTemplate('user_approv_resource.tpl');
-        if ($xoopsModuleConfig['access']){
-            $xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/docs/resource/".$res->id()."/".$res->getVar('nameid'));
-        }else{
-            $xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/docs/resources.php?id=".$res->id());
-        }
+        
+        $page = rmc_server_var($_POST, 'page', 1);
                     
-        $xoopsMailer->assign('NAME_RESOURCE',$res->getVar('title'));
-        $xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/docs/language/".$xoopsConfig['language']."/mail_template/");
-        $xoopsMailer->setToUsers($user);
-        $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
-        $xoopsMailer->setFromName($xoopsConfig['sitename']);
-        $xoopsMailer->setSubject(sprintf(__('Publication %s approved', 'docs'),$res->getVar('title')));
-        if (!$xoopsMailer->send(true)){
-            $errors.=$xoopsMailer->getErrors();
-        }
-            
-        return $errors;
+        return $ret;
 
     }
     
@@ -267,8 +262,9 @@ class RDFunctions
     public function url(){
         $config = RMUtilities::module_config('docs');
         if ($config['permalinks']){
-    
-            $perma = XOOPS_URL.$config['htpath'];
+            
+            
+            $perma = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).$config['htpath'];
             
         } else {
             
@@ -456,7 +452,7 @@ class RDFunctions
             
         }
         
-        $base_url = XOOPS_URL.rtrim($config['htpath'], '/').'/';
+        $base_url = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).rtrim($config['htpath'], '/').'/';
         
         switch($page){
             case 'explore':

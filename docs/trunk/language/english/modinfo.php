@@ -10,6 +10,8 @@
 
 define('_MI_RD_DISPLAYMETH', __('Display method for Resources index','docs'));
 define('_MI_RD_DISPLAYMETHD',__('Choose the method that you wish to use when display the resources index. This option affects to All, Recent and Featured index of resources.','docs'));
+define('_MI_RD_SUBDOMAIN',__('Subdomain on wich RapidDocs will be used','docs'));
+define('_MI_RD_SUBDOMAIND', __('You can specify a subdomain if your htaccess file has been configurated for it (e.g. http://docs.xoops.org).','docs'));
 define('_MI_RD_URLSMODE', __('URLs mode:','docs'));
 define('_MI_RD_URLSMODED',__('This options indicate the way in wich RapidDocs will generate the urls for resources.','docs'));
 define('_MI_RD_BASEPATH',__('Base path for urls','docs'));

@@ -47,7 +47,7 @@ class RDSection extends RMObject{
     private function load_meta(){
         if (!empty($this->metas)) return;
 
-        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."'");
+        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."' AND edit='0'");
         while($row = $this->db->fetchArray($result)){
             $this->metas[$row['name']] = $row;
         }
@@ -115,7 +115,7 @@ class RDSection extends RMObject{
         
         $res = new RDResource($this->getVar('id_res'));
         
-        if ($res->getVar('single')){
+        if ($res->getVar('single') && defined('RD_LOCATION') && RD_LOCATION=='resource_content'){
             return "#".$this->getVar('nameid');
         }
         
@@ -125,7 +125,7 @@ class RDSection extends RMObject{
                 $sec = new RDSection($this->getVar('parent'));
                 $perma = $sec->permalink().'#'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid'));
             } else {
-                $perma = XOOPS_URL.$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+                $perma = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
             }
             
             
@@ -175,11 +175,11 @@ class RDSection extends RMObject{
     private function save_metas(){
         $this->db->queryF("DELETE FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."'");
         if (empty($this->metas)) return true;
-        $sql = "INSERT INTO ".$this->db->prefix("rd_meta")." (`name`,`value`,`section`) VALUES ";
+        $sql = "INSERT INTO ".$this->db->prefix("rd_meta")." (`name`,`value`,`section`,`edit`) VALUES ";
         $values = '';
         foreach ($this->metas as $name => $value){
             if (is_array($value)) $value = $value['value'];
-            $values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->id()."')";
+            $values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->id()."','0')";
         }
         
         if ($this->db->queryF($sql.$values)){

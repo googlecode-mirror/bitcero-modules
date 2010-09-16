@@ -101,10 +101,7 @@
         </div>
         <!-- End Drafts -->
         <br />
-        <div class="outer">
-            <div class="th"><?php _e('RapidDocs News','docs'); ?></div>
-        </div>
-        <br />
+        
         <?php echo RMEvents::get()->run_event('docs.dashboard.left.blocks'); ?>
         
     </div>
@@ -119,14 +116,9 @@
         </div>
         <!-- End Top Resources -->
         <br />
-        <!-- Most Commented Resources -->
         <div class="outer">
-            <div class="th"><?php _e('Most Commented Sections','docs'); ?></div>
-            <div class="even">
-                <div id="rd-comms-resources"><?php if(empty($comm_data)): ?><?php _e('There are not resources to show here.','docs'); ?><?php else: ?>&nbsp;<?php endif; ?></div>
-            </div>
+            <div class="th"><?php _e('RapidDocs News','docs'); ?></div>
         </div>
-        <!-- End Most Commented Resources  -->
         <br />
         <?php echo RMEvents::get()->run_event('docs.dashboard.right.blocks'); ?>
         

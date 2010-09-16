@@ -28,6 +28,11 @@ if ($xoopsModuleConfig['permalinks']){
     $path = str_replace($xoopsModuleConfig['htpath'], '', $path);
     $path = trim($path, '/');
     
+    if ($xoopsModuleConfig['subdomain']!=''){
+        $path = str_replace(rtrim($xoopsModuleConfig['subdomain'], '/'), '', $path);
+        $path = trim($path, '/');
+    }
+    
     $params = explode("/", $path);
     
     

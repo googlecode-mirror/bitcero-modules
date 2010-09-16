@@ -12,7 +12,7 @@ load_mod_locale('docs');
 
 $modversion['name'] = __('Rapid Docs','docs');
 $modversion['description'] = __('Create documentation in Xoops, quicky and an advanced way.','docs');
-$modversion['rmversion'] = array('number'=>1,'revision'=>0,'status'=>0,'name'=>'Ability Help');
+$modversion['rmversion'] = array('number'=>1,'revision'=>35,'status'=>-2,'name'=>__('Rapid Docs','docs'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.0';
 $modversion['icon32'] = 'images/icon32.png';
@@ -45,14 +45,6 @@ $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = "include/search.php";
 $modversion['search']['func'] = "ahelpSearch";
 
-//Templates
-$modversion['templates'][0]['file'] = 'rd_resall.html';
-$modversion['templates'][0]['description'] = '';
-$modversion['templates'][1]['file'] = 'rd_resindextoc.html';
-$modversion['templates'][1]['description'] = '';
-$modversion['templates'][2]['file'] = 'rd_header.html';
-$modversion['templates'][2]['description'] = '';
-
 //Base de datos
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
@@ -72,6 +64,15 @@ $modversion['config'][] = array(
     'valuetype' => 'int',
     'default' => 0,
     'options' => array(__('PHP Default','docs')=>0,__('Name based','docs')=>1)
+);
+
+$modversion['config'][] = array(
+    'name' => 'subdomain',
+    'title' => '_MI_RD_SUBDOMAIN',
+    'description' => '_MI_RD_SUBDOMAIND',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => ''
 );
 
 $modversion['config'][] = array(

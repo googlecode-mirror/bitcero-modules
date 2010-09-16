@@ -179,3 +179,36 @@
     border: 2px solid #CCC;
     padding: 10px;
 }
+
+/** REVIEW **/
+.rd_review_con{
+    overflow: hidden;
+    line-height: 150%;
+}
+.rd_review_con .rd_original{
+    width: 48%;
+    float: left;
+    border-right: 3px solid #CCC;
+    padding: 0 10px 10px 0;
+    margin: 0 10px 0 0;
+}
+.rd_review_con .rd_new{
+    width: 48%;
+    float: left;
+}
+.rd_review_con label{
+    display: block;
+    padding: 4px 0;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.rd_review_con .title{
+    display: block;
+    padding: 4px 0;
+}
+.rd_review_con .content{
+    overflow: auto;
+    max-height: 450px;
+    border: 1px dotted #CCC;
+    padding: 0px 5px;
+}

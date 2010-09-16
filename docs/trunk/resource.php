@@ -80,13 +80,15 @@ if($res->getVar('single')){
     
     // URLs
     if ($xoopsModuleConfig['permalinks']){
+        $config = array();
+        $config =& $xoopsModuleConfig;
         /**
         * @todo Generate friendly links
         */
         if (RMFunctions::plugin_installed('topdf')){
-            $pdf_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/pdfbook/'.$toc[0]['id'].'/';
+            $pdf_book_url = ($xoopsModuleConfig['subdomain']!='' ? $xoopsModuleConfig['subdomain'] : XOOPS_URL).$xoopsModuleConfig['htpath'].'/pdfbook/'.$toc[0]['id'].'/';
         }
-        $print_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printbook/'.$toc[0]['id'].'/';
+        $print_book_url = ($xoopsModuleConfig['subdomain']!='' ? $xoopsModuleConfig['subdomain'] : XOOPS_URL).$xoopsModuleConfig['htpath'].'/printbook/'.$toc[0]['id'].'/';
         if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
             $publish_url = RDFunctions::url().'/publish/';
     } else {

@@ -154,7 +154,7 @@ class RDResource extends RMObject{
         $config = RMUtilities::module_config('docs');
         if ($config['permalinks']){
     
-            $perma = XOOPS_URL.$config['htpath'].'/'.$this->getVar('nameid').'/';
+            $perma = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).$config['htpath'].'/'.$this->getVar('nameid').'/';
             
         } else {
             

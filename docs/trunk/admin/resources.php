@@ -492,12 +492,12 @@ function approved_resources($app=0){
 			$errors.=sprintf(__('Resoource "%s" could not be saved!','docs'), $k);
 		}else{
 			if ($app && !$approved){
-				$errors = RDFunctions::mail_approved($res);
+				$errors .= RDFunctions::mail_approved($res)!=true ? __('Notification email could not be sent!','docs').'<br />' : '';
 			}
 			
 		}	
 	}
-	
+    
 	if ($errors!=''){
 		redirectMsg('./resources.php?page='.$page,__('Errors ocurred while trying to update resources.').'<br />'.$errors,1);
 	}else{

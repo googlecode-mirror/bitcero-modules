@@ -99,11 +99,11 @@ function showSection(RDResource &$res, RDSection &$section){
         * @todo Generate friendly links
         */
         if (RMFunctions::plugin_installed('topdf')){
-            $pdf_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/pdfbook/'.$section->id().'/';
-            $pdf_section_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/pdfsection/'.$section->id().'/';
+            $pdf_book_url = RDFunctions::url().'/pdfbook/'.$section->id().'/';
+            $pdf_section_url = RDFunctions::url().'/pdfsection/'.$section->id().'/';
         }
-        $print_book_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printbook/'.$section->id().'/';
-        $print_section_url = XOOPS_URL.$xoopsModuleConfig['htpath'].'/printsection/'.$section->id().'/';
+        $print_book_url = RDFunctions::url().'/printbook/'.$section->id().'/';
+        $print_section_url = RDFunctions::url().'/printsection/'.$section->id().'/';
         if (RDFunctions::new_resource_allowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
             $publish_url = RDFunctions::url().'/publish/';
     } else {
@@ -159,6 +159,41 @@ function rd_section_forprint($all = 0){
     
 }
 
+function rd_section_forpdf($all = 0){
+    global $section, $res, $xoopsConfig, $xoopsModuleConfig;
+    
+    $plugin = RMFunctions::load_plugin('topdf');
+    
+    if($xoopsModuleConfig['permalinks']){
+        
+        $print_book_url = RDFunctions::url().'/printbook/'.$section->id().'/';
+        $print_section_url = RDFunctions::url().'/printsection/'.$section->id().'/';
+        
+    } else {
+        
+        $print_book_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$section->id().'&amp;action=printbook';
+        $print_section_url = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$section->id().'&amp;action=printsection';
+        
+    }
+    
+    // This options only works when pdfmyurl is enabled on topdf plugin
+    $options = array(
+        '--filename'=>$res->getVar('title').'.pdf',
+        '--header-left'=>'Prueba de Generación de documento',
+        '--header-right'=>'Impreso desde aqui',
+        '--header-line'=>'1'        
+    );
+    
+    header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+      
+    $plugin->create_pdf_url($all ? $print_book_url : $print_section_url, $res->getVar('title').'.pdf', $options);
+    
+}
+
 
 // Sección
 $section = new RDSection($id, isset($res) ? $res : null);
@@ -200,6 +235,12 @@ switch($action){
     case 'printsection':
         rd_section_forprint(0);
         die();
+    case 'pdfbook':
+        rd_section_forpdf(1);
+        break;
+    case 'pdfsection':
+        rd_section_forpdf(0);
+        break;
     default:
         showSection($res, $section);
         break;

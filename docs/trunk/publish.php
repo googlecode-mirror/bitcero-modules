@@ -70,6 +70,9 @@ function formPublish(){
 **/
 function savePublish(){
 	global $xoopsSecurity, $xoopsModuleConfig, $xoopsUser, $xoopsConfig;
+    
+    $config_handler =& xoops_gethandler('config');
+    $xconfig = $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
 
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
@@ -132,22 +135,22 @@ function savePublish(){
 		//Si no se aprobó la publicación enviamos correo al administrador
 		if (!$xoopsModuleConfig['approved']){
 			$mailer = new RMMailer('text/plain');
-            $mailer->add_user($xoopsConfig['from'], $xoopsConfig['fromname'], 'to');
+            $mailer->add_user($xconfig['from'], $xconfig['fromname'], 'to');
             $mailer->set_subject(__('New resource created at RapidDocs is waiting for approval','rmcommon'));
             
-            $mailer->assign('to_name', $xoopsConfig['fromname']);
+            $mailer->assign('to_name', $xconfig['fromname']);
             $mailer->assign('link_to_resource', XOOPS_URL.'/modules/docs/admin/resources.php?action=edit&id='.$res->id());
             $mailer->template(RMTemplate::get()->get_template('mail/resource_for_approval.php', 'module', 'docs'));
             
             if (!$mailer->send()){
-                redirect_header(RDFunctions::url(), 1, implode('<br />', $mailer->errors()));
+                redirect_header(RDFunctions::url(), 1, __('Your resource has been created, however the email to administrator could no be sent.','docs'));
                 die();
             }
-            
             redirect_header(RDFunctions::url(), 1, __('Your resource has been created and is pending for approval. We eill sent an email when you can access to it and add content.','docs'));
             die();
 			
 		}
+        
         
         if ($xoopsModuleConfig['permalinks'])
             $purl = RDFunctions::url().'/list/'.$res->id().'/';

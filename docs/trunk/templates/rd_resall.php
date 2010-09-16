@@ -12,10 +12,9 @@
 <div class="rd_nav_links">&nbsp;</div>
 <div class="rd_section_data">
     <p class="left">
-        <a href="<?php echo $pdf_book_url; ?>"><?php _e('Create PDF Book','docs'); ?></a><br />
-        <a href="<?php echo $print_book_url; ?>"><?php _e('Print Book','docs'); ?></a><br />
+        <?if(isset($pdf_book_url) && $pdf_book_url!=''): ?><a href="<?php echo $pdf_book_url; ?>"><?php _e('Create PDF Book','docs'); ?></a><br /><?php endif; ?>
+        <?if(isset($print_book_url) && $print_book_url!=''): ?><a href="<?php echo $print_book_url; ?>"><?php _e('Print Book','docs'); ?></a><br /><?php endif; ?>
         <?php if(isset($publish_url)): ?>
-        <br />
         <a href="<?php echo $publish_url; ?>"><?php _e('Create Resource','docs'); ?></a>
         <?php endif; ?>
     </p>

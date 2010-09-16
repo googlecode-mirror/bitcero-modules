@@ -16,3 +16,5 @@ $mc =& $xoopsModuleConfig;
 define('RDURL', RDFunctions::url());
 define('RDPATH', XOOPS_ROOT_PATH.'/modules/docs');
 $xoopsTpl->assign('rdurl', RDURL);
+
+RMTemplate::get()->add_style('docs.css','docs');

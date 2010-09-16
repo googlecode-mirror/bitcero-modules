@@ -18,9 +18,10 @@ class RDEdit extends RMObject{
 		$this->initVarsFromTable();
 
 		if ($id==null && $sec == null) return;
-		
+        
 		if ($id!=null){
 			if ($this->loadValues($id)) $this->unsetNew();
+            
 			return;
 		}
 		
@@ -37,12 +38,27 @@ class RDEdit extends RMObject{
 	public function id(){
 		return $this->getVar('id_edit');
 	}
+    
+    /**
+    * Add metas to the current section
+    */
+    public function add_meta($key, $value){
+        if ($key=='') return;
+        $this->metas[$key] = $value;
+    }
+    
+    /**
+    * Clear metas array
+    */
+    public function clear_metas(){
+        $this->metas = array();
+    }
 	
 	public function save(){
 		
 		if ($this->isNew()){
 			// Comprobamos que no exista un registro para la misma sección
-			$result = $this->db->query("SELECT id_edit FROM ".$this->_dbtable." WHERE id_sec='".$this->section()."'");
+			$result = $this->db->query("SELECT id_edit FROM ".$this->_dbtable." WHERE id_sec='".$this->getVar('id_sec')."'");
 			if ($this->db->getRowsNum($result)>0){
 				list($id) = $this->db->fetchRow($result);
 				$this->setVar('id_edit', $id);
@@ -55,6 +71,24 @@ class RDEdit extends RMObject{
 			return $this->updateTable();
 		}		
 	}
+    
+    private function save_metas(){
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("rd_meta")." WHERE section='".$this->id()."'");
+        if (empty($this->metas)) return true;
+        $sql = "INSERT INTO ".$this->db->prefix("rd_meta")." (`name`,`value`,`section`,`edit`) VALUES ";
+        $values = '';
+        foreach ($this->metas as $name => $value){
+            if (is_array($value)) $value = $value['value'];
+            $values .= ($values=='' ? '' : ',')."('".MyTextSanitizer::addSlashes($name)."','".MyTextSanitizer::addSlashes($value)."','".$this->getVar('id_sec')."','1')";
+        }
+        
+        if ($this->db->queryF($sql.$values)){
+            return true;
+        } else {
+            $this->addError($this->db->error());
+            return false;
+        }
+    }
 
 	public function delete(){
 		

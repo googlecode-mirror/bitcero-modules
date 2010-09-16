@@ -264,7 +264,10 @@ function saveSection($edit=0,$ret=0){
     		}while ($found==true);
 	}
 	
-	if (!$res->getVar('editor_approve') && !$xoopsUser->isAdmin() && !($res->getVar('owner')==$xoopsUser->uid())) $sec->setVar('id_sec',$id_sec);
+	if (!$res->getVar('editor_approve') && !$xoopsUser->isAdmin() && !($res->getVar('owner')==$xoopsUser->uid())){
+        $sec->setVar('id_sec',$id);
+    }
+    
 	$sec->setVar('title', $title);
 	$sec->setVar('content',$content);
 	$sec->setVar('order', $order);
@@ -304,6 +307,10 @@ function saveSection($edit=0,$ret=0){
 		redirect_header($sec->editlink(), 3, __('Section could not be saved!','docs'));
         
 	}else{
+        
+        if($edit)
+            $sec = new RDSection($sec->getVar('id_sec'));
+        
 		if ($return==1){
 		    redirect_header($sec->permalink(),1, __('Database updated successfully!','docs'));
         } elseif ($return==2){

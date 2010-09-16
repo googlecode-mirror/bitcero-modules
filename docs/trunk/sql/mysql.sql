@@ -81,13 +81,14 @@ CREATE TABLE `rd_edits` (
 `uname` varchar( 40 ) NOT NULL ,
 `modified` int( 10 ) NOT NULL default '0',
 PRIMARY KEY ( `id_edit` )
-) ENGINE = MYISAM DEFAULT CHARSET = utf8
+) ENGINE = MYISAM;
 
 CREATE TABLE `rd_meta` (
   `name` varchar(50) NOT NULL,
   `value` text NOT NULL,
   `section` int(11) NOT NULL,
   `id_meta` bigint(20) NOT NULL auto_increment,
+  `edit` tinyint(1) NOT NULL default 0,
   PRIMARY KEY  (`id_meta`),
   KEY `name` (`name`,`section`)
 ) ENGINE=MyISAM;
