@@ -40,6 +40,8 @@ class RMMailer
     private $vars = array();
     private $template = '';
     private $tpl_type = '';
+    
+    private $xusers = array();
 	
 	
 	/**
@@ -51,8 +53,10 @@ class RMMailer
 	* 		Default is 'text/plain' but can be changed later
 	*/
 	public function __construct($content_type = 'text/plain'){
-		
+        
         $config = RMFunctions::configs();
+        $config_handler =& xoops_gethandler('config');
+        $xconfig = $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
 		
 		// Instantiate the Swit Transport according to our preferences
 		// We can change this preferences later
@@ -61,7 +65,7 @@ class RMMailer
 				$this->swTransport = Swift_MailTransport::newInstance();
 				break;
 			case 'smtp':
-				$this->swTransport = Swift_SmtpTransport::newInstance($config['smtp_server'], $config['smtp_port'], $config['smtp_crypt']);
+				$this->swTransport = Swift_SmtpTransport::newInstance($config['smtp_server'], $config['smtp_port'], $config['smtp_crypt']!='none' ? $config['smtp_crypt'] : '');
 				$this->swTransport->setUsername($config['smtp_user']);
 				$this->swTransport->setPassword($config['smtp_pass']);
 				break;
@@ -73,11 +77,22 @@ class RMMailer
 		// Create the message object
 		// Also this object could be change later with message() method
 		$this->swMessage = Swift_Message::newInstance();
-		$this->swMessage->setReplyTo($config['replyto']);
-		$this->swMessage->setFrom(array($config['senderaddress'] => $config['sendername']));
+		$this->swMessage->setReplyTo($xconfig['from']);
+		$this->swMessage->setFrom(array($xconfig['from'] => $xconfig['fromname']));
 		$this->swMessage->setContentType($content_type);
 		
 	}
+    
+    public function set_from($mail, $name){
+        $this->swMessage->setFrom($mail, $name);
+    }
+    
+    public function set_from_xuser($user){
+        if (strtolower($user)=='xoopsuser')
+            $this->fromuser = $user;
+        elseif($user>0)
+            $this->fromuser = new XoopsUser($user);
+    }
 	
 	/**
 	* Creating the mail transport 
@@ -312,6 +327,33 @@ class RMMailer
                 break;
         }
     }
+    
+    /**
+    * Add xoops users object to recipients list
+    * 
+    * @param mixed A xoopsuser object or an array of xoopsuser objects
+    */
+    public function add_xoops_users($users, $field='to'){
+        
+        if (is_array($users)){
+            
+            foreach($users as $user){
+                if (strtolower(get_class($user))=='xoopsuser'){
+                    $this->xusers[] = $users;
+                    $this->add_user($user->getVar('email'), $user->getVar('name')!='' ? $user->getVar('name') : $user->getVar('uname'), 'to');
+                }
+            }
+            
+        } else {
+            
+            if (strtolower(get_class($users))=='xoopsuser'){
+                $this->xusers[] = $users;
+                $this->add_user($users->getVar('email'), $users->getVar('name')!='' ? $users->getVar('name') : $users->getVar('uname'), 'to');
+            }
+            
+        }
+        
+    }
 	
 	/**
 	* Sets the return path
@@ -376,6 +418,30 @@ class RMMailer
         $ret = ob_get_clean();
         
         $this->set_body($ret);
+        
+    }
+    
+    function send_pm(){
+        
+        if(empty($this->xusers))
+            return false;
+        
+        if (!$this->fromuser)
+            return false;
+        
+        $this->create_body();
+        
+        $pm_handler = &xoops_gethandler('privmessage');
+        $pm = &$pm_handler->create();
+        $pm->setVar("subject", $this->get_subject());
+        // RMV-NOTIFY
+        $pm->setVar('from_userid', $this->fromuser->uid());
+        $pm->setVar("msg_text", $this->get_body());
+        
+        foreach($this->xusers as $user){
+            $pm->setVar("to_userid", $user->uid());
+            $pm_handler->insert($pm);
+        }
         
     }
 	

@@ -15,6 +15,7 @@
 abstract class RMIPlugin
 {
 	protected $info = array();
+    protected $settings = array();
 	
     abstract public function on_install();
     abstract public function on_uninstall();
@@ -33,6 +34,17 @@ abstract class RMIPlugin
 	public function info(){
 		return $this->info;
 	}
+    
+    public function settings($name=''){
+        
+        $settings = empty($this->settings) ? RMFunctions::get()->plugin_settings($this->get_info('dir'), true) : $this->settings;
+        
+        if(isset($settings[$name]))
+            return $settings[$name];
+        
+        return $settings;
+        
+    }
 	
 	
 }

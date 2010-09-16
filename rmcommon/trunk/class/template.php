@@ -272,6 +272,47 @@ class RMTemplate
             
             $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type);
     }
+    
+    /**
+    * This function add a scritp directly from an element
+    */
+    public function add_local_script($file, $element='rmcommon', $subfolder='', $type='text/javascript', $more=''){
+        global $rmc_config, $xoopsConfig;
+        
+        // Id for element
+        $id = crc32($file.$element.$subfolder.$type.$more);
+        
+        if (isset($this->tpl_scripts[$id])) return;
+        
+        if (!defined('XOOPS_CPFUNC_LOADED')){
+            $theme = isset($xoopsConfig['theme_set']) ? $xoopsConfig['theme_set'] : 'default';
+            $themepath = XOOPS_THEME_PATH.'/'.$theme;
+            $themeurl = XOOPS_THEME_URL.'/'.$theme;
+        } else {
+            $theme = isset($rmc_config['theme']) ? $rmc_config['theme'] : 'default';
+            $themepath = RMCPATH.'/themes/'.$theme;
+            $themeurl = RMCURL.'/themes/'.$theme;
+        }
+
+        $theme_file = $themepath.'/js/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$file;
+
+        if (is_file($theme_file)){
+            $url = $themeurl.'/js/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$file;
+        } else {
+            $url = XOOPS_URL.'/'.($element!='' ? 'modules/'.$element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').'js/'.$file;
+        }
+        
+        if (strpos($url, "?")>1){
+            if (strpos($url, 'ver=')===FALSE){
+                $url .= "&ver=".RMCVERSION;
+             }
+        } else {
+            $url .= "?ver=".RMCVERSION;
+        }
+        
+        $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more);
+        
+    }
     /**
     * Add jQuery script to site header
     */

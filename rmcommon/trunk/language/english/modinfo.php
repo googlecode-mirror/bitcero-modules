@@ -8,6 +8,9 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!function_exists("__"))
+    include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
+
 // Configurations
 define('_MI_RMC_LANG', __('Language to use','rmcommon'));
 define('_MI_RMC_IMAGESTORE', __('Arrange images by date','rmcommon'));

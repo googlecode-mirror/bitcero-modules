@@ -15,6 +15,7 @@
 class RMPlugin extends RMObject
 {
     private $dir = '';
+    private $settings = array();
     /**
     * The plugin object
     */

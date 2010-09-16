@@ -32,7 +32,7 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>93,'status'=>-2,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>95,'status'=>-2,'name'=>'Common Utilities');
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
@@ -227,8 +227,8 @@ $modversion['config'][23]['title'] = '_MI_RMC_ENCRYPT';
 $modversion['config'][23]['description'] = '_MI_RMC_ENCRYPTD';
 $modversion['config'][23]['formtype'] = 'select';
 $modversion['config'][23]['valuetype'] = 'text';
-$modversion['config'][23]['options'] = array('_MI_RMC_CRYPTNONE'=>'', '_MI_RMC_CRYPTSSL'=>'ssl', '_MI_RMC_CRYPTTLS'=>'tls');
-$modversion['config'][23]['default'] = 0;
+$modversion['config'][23]['options'] = array('_MI_RMC_CRYPTNONE'=>'none', '_MI_RMC_CRYPTSSL'=>'ssl', '_MI_RMC_CRYPTTLS'=>'tls');
+$modversion['config'][23]['default'] = 'none';
 
 $modversion['config'][24]['name'] = 'smtp_port';
 $modversion['config'][24]['title'] = '_MI_RMC_SMTPPORT';
@@ -244,7 +244,7 @@ $modversion['config'][25]['formtype'] = 'textbox';
 $modversion['config'][25]['valuetype'] = 'text';
 $modversion['config'][25]['default'] = '';
 
-$modversion['config'][26]['name'] = 'password';
+$modversion['config'][26]['name'] = 'smtp_pass';
 $modversion['config'][26]['title'] = '_MI_RMC_SMTPPASS';
 $modversion['config'][26]['description'] = '';
 $modversion['config'][26]['formtype'] = 'password';

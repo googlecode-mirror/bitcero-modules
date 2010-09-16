@@ -41,13 +41,12 @@ foreach ($mods as $mod) {
         $rtn['absolute'] = 1;
         $rtn['url'] = XOOPS_URL . '/modules/'. $mod->getVar('dirname', 'n') . '/'; //add for sub menus
         $modOptions = $mod->getAdminMenu();//add for sub menus
-
         if ($modOptions){
             $options = array();
             foreach ($modOptions as $option){
                 $options[] = array(
                     'title'=>$option['title'],
-                    'link' => strpos($option['link'], array('http://','ftp://'))!==FALSE ? $option['link'] : XOOPS_URL.'/modules/'.$mod->getVar('dirname','n').'/'.$option['link']
+                    'link' => strpos($option['link'],'http://')!==FALSE && strpos($option['link'],'ftp://')!==FALSE ? $option['link'] : XOOPS_URL.'/modules/'.$mod->getVar('dirname','n').'/'.$option['link']
                 );
             }
             $rtn['options'] = $options;     //add for sub menus
