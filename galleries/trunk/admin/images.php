@@ -76,6 +76,7 @@ function showImages(){
 	$sql = "SELECT * FROM ".$db->prefix('gs_images');
 	$sql2 = " ORDER BY $sort ".($mode ? "DESC" : "ASC");
 	$sql2.= " LIMIT $start,$limit";
+
 	$result = $db->query($sql.$sql1.$sql2);
 
 	$users = array();
@@ -218,17 +219,8 @@ function formImages($edit = 0){
 		$ele->addOption($rows['id_set'],$rows['title']);
 	}
 	$form->addElement($ele);
-
-	//Etiquetas
-	$tgs = '';
-	if($edit){
-		$tags = $img->tags(false, 'tag');
-		foreach ($tags as $k => $tag){
-			$tgs .= $tgs=='' ? $tag : " ".$tag;
-		}
-	}
 	
-	$ele = new RMFormText(__('Tags','admin_galleries'),'tags',50,100,$edit ?  $tgs : '');
+	$ele = new RMFormText(__('Tags','admin_galleries'),'tags',50,100,$edit ?  implode(", ", $img->tags(false, 'tag')) : '');
 	$ele->setDescription(__('Separate each tag with a comma (,)','admin_galleries'));
 
 	$form->addElement($ele, true);
@@ -488,7 +480,7 @@ function saveImages($edit = 0){
 
 	} else {
 		echo $up->getErrors();
-		die();
+		
 	}
 	//Fin de Imagen
 	
@@ -570,14 +562,13 @@ function saveBulkImages(){
 	}
 	
 	// Insertamos las etiquetas
-	$tgs = explode(" ",$tags);
+	$tgs = explode(",",$tags);
 	/**
 	* @desc Almacena los ids de las etiquetas que se asignarán a la imágen
 	*/
 	$ret = array(); 
 	foreach ($tgs as $k){
 		$k = trim($k);
-		$k = TextCleaner::getInstance()->sweetstring($k);
 		if ($k=='') continue;
 		// Comprobamos que la palabra tenga la longitud permitida
 		if(strlen($k)<$mc['min_tag'] || strlen($k)>$mc['max_tag']){
@@ -618,7 +609,7 @@ function saveBulkImages(){
 		if ($up->fetchMedia('image',$k)){
 
 			if (!$up->upload()){
-				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','admin_galleries'), $title[$k], $up->getErrors());
+				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','admin_galleries'), $up->getErrors());
 				continue;
 			}
 					

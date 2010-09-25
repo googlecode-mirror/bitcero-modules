@@ -8,16 +8,17 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+
 /**
 * @desc Realiza una búsqueda en el módulo desde EXM
 */
 function gsSearch($queryarray, $andor, $limit, $offset, $userid){
-    global $myts;
+    global $db, $myts;
     
     include_once (XOOPS_ROOT_PATH."/modules/galleries/class/gsimage.class.php");
     include_once (XOOPS_ROOT_PATH."/modules/galleries/class/gsuser.class.php");
 
-    $mc = RMUtilities::module_config('galleries');
+    $mc = RMUtilities::get()->module_config('galleries');
     $db = Database::getInstance();
     
     $sql = "SELECT DISTINCT c.* FROM ".$db->prefix('gs_tags')." a INNER JOIN ".$db->prefix('gs_tagsimages')." b INNER JOIN ";

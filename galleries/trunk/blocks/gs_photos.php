@@ -32,6 +32,7 @@ function gs_photos_show($options){
 		
 		$rtn = array();
 		$rtn['title'] = $pic->title();
+		if ($options[4]) $rtn['desc'] = $pic->desc();
 		$rtn['created'] = formatTimestamp($pic->created(), 'string');
 		$rtn['views'] = $pic->views();
 		$rtn['by'] = sprintf(_BK_GS_BY, $user->userURL(), $user->uname());

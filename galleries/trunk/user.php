@@ -91,10 +91,10 @@ function showUserPics(){
 	
    	$urlnav = '';
    	if ($tpages > 1) {
-    	$urlnav .= isset($usr) ? 'usr/'.$user->uname() : 'user.php?id=usr/'.$user->uname();        
-        $nav = new RMPageNav($num, $limit, $pactual, 5);
+    	$urlnav .= isset($usr) ? 'usr/'.$user->uname() : 'user.php?id=usr/'.$user->uname();	    
+    	$nav = new RMPageNav($num, $limit, $pactual, 5);
         $nav->target_url(GS_URL.'/'.$urlnav . '/pag/{PAGE_NUM}/');
-        $tpl->assign('upNavPage', $nav->render(false));
+   	    $tpl->assign('upNavPage', $nav->render(false));
    	}
 
 	$showmax = $start + $limit;
@@ -236,30 +236,30 @@ function showImageDetails(){
 	// Imágenes anterior y siguiente
 	if (!isset($set)){
 		// Imágen Siguiente
-		$sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,1";
-		$result = $db->query($sql);
-		if ($db->getRowsNum($result)>0){
-			$row = $db->fetchArray($result);
-			$pn = new GSImage();
-			$pn->assignVars($row);
-			$tpl->assign('next', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-		} else {
-			$tpl->assign('is_last', 1);
-			$tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-		}
-		
-		// Imágen Anterior
-		$sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image<'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image DESC LIMIT 0,1";
-		$result = $db->query($sql);
-		if ($db->getRowsNum($result)>0){
-			$row = $db->fetchArray($result);
-			$pn = new GSImage();
-			$pn->assignVars($row);
-			$tpl->assign('prev', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-		} else {
-			$tpl->assign('is_first', 1);
-			$tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-		}
+        $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,1";
+        $result = $db->query($sql);
+        if ($db->getRowsNum($result)>0){
+            $row = $db->fetchArray($result);
+            $pn = new GSImage();
+            $pn->assignVars($row);
+            $tpl->assign('next', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
+        } else {
+            $tpl->assign('is_last', 1);
+            $tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
+        }
+        
+        // Imágen Anterior
+        $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image<'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image DESC LIMIT 0,1";
+        $result = $db->query($sql);
+        if ($db->getRowsNum($result)>0){
+            $row = $db->fetchArray($result);
+            $pn = new GSImage();
+            $pn->assignVars($row);
+            $tpl->assign('prev', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
+        } else {
+            $tpl->assign('is_first', 1);
+            $tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
+        }
 		
 		$tpl->assign('prevnext_title', sprintf(_MS_GS_PNTITLE, $user->uname()));
 		$tpl->assign('title_link', $user->userURL());
@@ -498,11 +498,11 @@ function showSetContent(){
 
    	$urlnav = '';
    	if ($tpages > 1) {
-    	$urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'user.php?id=usr/'.$user->uname().'/set/'.$set->id();
+        $urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'user.php?id=usr/'.$user->uname().'/set/'.$set->id();
         $nav = new RMPageNav($num, $limit, $pactual, 5);
         $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}');
-   	    $tpl->assign('upNavPage', $nav->renderNav(false));
-   	}
+        $tpl->assign('upNavPage', $nav->render(false));
+    }
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
@@ -512,7 +512,7 @@ function showSetContent(){
 	//Fin de barra de navegación
 	
 	$sql = str_replace("COUNT(*)",'*',$sql);
-	$sql .= " ORDER BY a.created ASC, a.modified DESC LIMIT $start, $limit";
+	$sql .= " ORDER BY a.id_image ASC, a.modified DESC LIMIT $start, $limit";
 	$result = $db->query($sql);
 	while ($row = $db->fetchArray($result)){
 		$img = new GSImage();
@@ -536,7 +536,7 @@ function showSetContent(){
 	
 	// Imagen grande del album
 	$sql = "SELECT * FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image $public AND owner='".$user->uid()."' 
-			ORDER BY a.created DESC LIMIT 0,$blimit";
+			ORDER BY a.id_image DESC LIMIT 0,$blimit";
 	$result = $db->query($sql);
 	$bi = 0;
 	// cremos la imagen grande para los albumes

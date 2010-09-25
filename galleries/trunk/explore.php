@@ -223,9 +223,9 @@ function pics(){
 	    }else{
 		$urlnav = 'explore.php?by=explore/photos';
 	    }
-
-    	    $nav = new GsPageNav($num, $limit, $start, 'pag',$urlnav,0);
-    	    $tpl->assign('picsNavPage', $nav->renderNav(4, 1));
+            $nav = new RMPageNav($num, $limit, $pactual, 5);
+            $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}/');
+            $tpl->assign('picsNavPage', $nav->render(false));
     	}
 
 	$showmax = $start + $limit;
@@ -449,7 +449,7 @@ function imgsTag(){
 	$sql.= " b ON (a.id_tag=".$tag->id()." AND a.id_image=b.id_image  AND b.public=2";
 	$sql.= $usr ? " AND b.owner=".$user->uid().") " : ")";
 	$sql.=" GROUP BY b.id_image";
-	$sql.= " LIMIT $start, $limit";
+	$sql.= " ORDER BY `created` DESC LIMIT $start, $limit";
 	$result = $db->query($sql);
 	while($rows = $db->fetchArray($result)){
 		$img = new GSImage();

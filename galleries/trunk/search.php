@@ -163,14 +163,5 @@ $tpl->assign('lang_found',sprintf(_MS_GS_FOUND, $num, $search));
 $tpl->assign('width', round(100/$cols));
 $tpl->assign('width_img', $width);
 
-$util =& RMUtils::getInstance();
-$xmh .= "\n<link href='".GS_URL."/include/css/lightbox.css' type='text/css' media='screen' rel='stylesheet' />\n
-	<script type='text/javascript'>\nvar gs_url='".GS_URL."';\n</script>";
-$util->addScript('prototype');
-$util->addScript('scriptaeffects');
-global $xoTheme;
-$xoTheme->addScript(GS_URL."/include/js/lightbox.js");	
-
-
 include 'footer.php';
 ?>

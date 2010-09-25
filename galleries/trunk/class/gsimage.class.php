@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+include_once 'gsuser.class.php';
+
 class GSImage extends RMObject
 {
 	
@@ -312,6 +314,15 @@ class GSImage extends RMObject
 		return $this->setVar('public', $value);
 	}
 	
+    // Permalink
+    public function permalink(){
+        
+        $user = new GSUser($this->owner());
+        
+        return $user->userURL().'img/'.$this->id().'/';
+        
+    }
+    
 	public function save(){
 		if ($this->isNew()){
 			return $this->saveToTable();
