@@ -141,7 +141,12 @@ unset($tags_list);
 // use of Common Utilities templates or use your own templates
 // We will use MyWords included templates
 if ($post->getVar('comstatus')){
-    RMFunctions::get_comments('mywords','post='.$post->id());
+    $comms = RMFunctions::get_comments('mywords','post='.$post->id(), 'module', 0, null, false);
+    if (count($comms)!=$post->getVar('comments')){
+        $post->setVar('comments', count($comms));
+        $xoopsDB->queryF("UPDATE ".$xoopsDB->prefix("mw_posts")." SET `comments`=".count($comms)." WHERE id_post=".$post->id());
+    }
+    $xoopsTpl->assign('comments', $comms);
     // Comments form
     RMFunctions::comments_form('mywords', 'post='.$post->id(), 'module', MW_PATH.'/class/mywordscontroller.php');
 }

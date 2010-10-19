@@ -32,6 +32,8 @@ function mywordsBlockCats($options){
 		$block['categos'][] = $ret;
 	}
 	
+    RMTemplate::get()->add_xoops_style('mwblocks.css', 'mywords');
+    
 	return $block;
 	
 }
