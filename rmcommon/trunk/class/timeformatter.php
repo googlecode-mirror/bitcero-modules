@@ -17,7 +17,7 @@ class RMTimeFormatter
     * Initialize this class
     * 
     * @param int Unix timestamp
-    * @param string Format for time (e.g. Created on %M% %dn%, %Y%)
+    * @param string Format for time (e.g. Created on %M% %d%, %Y%)
     * @return RMTimeFormater
     */
     function __construct($time=0, $format=''){
@@ -53,6 +53,7 @@ class RMTimeFormatter
             '%D%', // Day name
             '%m%', // Month number
             '%M%', // Month name
+            '%T%', // Month three letters
             '%y%', // Year with two digits (e.g. 04, 05, etc.)
             '%Y%', // Year with four digits (e.g. 2004, 2005, etc.)
             '%h%', // Hour
@@ -65,6 +66,7 @@ class RMTimeFormatter
             $this->days($time),
             date('m', $time),
             $this->months($time),
+            substr($this->months($time), 0, 3),
             date('y', $time),
             date('Y', $time),
             date('H', $time),

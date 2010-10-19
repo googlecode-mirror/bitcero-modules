@@ -144,6 +144,7 @@ class RMTemplate
             $where .= $type!='module' ? "/$type" : '';
             $where .= "/$file";
             
+            
             if(is_file($where)) return $where;
 
         }
@@ -260,11 +261,11 @@ class RMTemplate
     public function add_script($url,$type='text/javascript'){
    
             if (strpos($url, "?")>1){
-				if (strpos($url, 'ver=')===FALSE){
-					$url .= "&ver=".RMCVERSION;
-				}
+                if (strpos($url, 'ver=')===FALSE){
+                    $url .= "&ver=".RMCVERSION;
+                }
             } else {
-				$url .= "?ver=".RMCVERSION;
+                $url .= "?ver=".RMCVERSION;
             }
             
             $id = crc32($url);
@@ -280,7 +281,16 @@ class RMTemplate
         global $rmc_config, $xoopsConfig;
         
         // Id for element
-        $id = crc32($file.$element.$subfolder.$type.$more);
+        $url = XOOPS_URL.'/modules/'.$element.'/'.$subfolder.'/js/'.$file;
+        if (strpos($url, "?")>1){
+            if (strpos($url, 'ver=')===FALSE){
+                $url .= "&ver=".RMCVERSION;
+            }
+        } else {
+            $url .= "?ver=".RMCVERSION;
+        }
+        
+        $id = crc32($url);
         
         if (isset($this->tpl_scripts[$id])) return;
         

@@ -126,7 +126,7 @@ class RMPageNav
 		$end = $start+($steps-1);
 		$end = $end > $total_pages ? $total_pages : $end;
 		
-		include RMTemplate::get_template('navigation_pages.php', 'rmcommon');
+		include RMTemplate::get_template('navigation_pages.php', 'module', 'rmcommon');
 		
 		$this->displayed = true;
 		

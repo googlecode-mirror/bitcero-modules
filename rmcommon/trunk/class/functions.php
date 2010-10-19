@@ -252,10 +252,10 @@ class RMFunctions
         }
         
         $comms = RMEvents::get()->run_event('rmcommon.loading.comments', $comms, $obj, $params, $type, $parent, $user);
+        global $xoopsTpl;
+        $xoopsTpl->assign('lang_edit', __('Edit','rmcommon'));
         
         if ($assign){
-            global $xoopsTpl;
-            $xoopsTpl->assign('lang_edit', __('Edit','rmcommon'));
             $xoopsTpl->assign('comments', $comms);
             return true;
         } else {

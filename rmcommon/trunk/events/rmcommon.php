@@ -25,7 +25,11 @@ class RmcommonRmcommonPreload
 	}
 	
 	public function eventRmcommonXoopsCommonEnd(){
-		
+		global $xoopsConfig;
+        
+        // Get preloaders from current theme
+        RMEvents::get()->load_extra_preloads(XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'], ucfirst($xoopsConfig['theme_set'].'Theme'));
+        
 		$url = RMFunctions::current_url();
 		$p = parse_url($url);
 		

@@ -79,15 +79,15 @@ function cu_render_output($output){
 	    }
     }
 	
-	$pos = strpos($page, "<head>");
+	$pos = strpos($page, "</head>");
 	if($pos===FALSE) return $output;
 	include_once RMTemplate::get()->tpl_path('rmc_header.php', 'rmcommon');
 	    
-	$rtn = substr($page, 0, $pos+6)."\n";
+	$rtn = substr($page, 0, $pos)."\n";
 	$rtn .= $scripts;
 	$rtn .= $styles;
 	$rtn .= $heads;
-	$rtn .= substr($page, $pos+6);
+	$rtn .= substr($page, $pos);
 	
 	$rtn = RMEvents::get()->run_event('rmcommon.end.flush',$rtn);
     
