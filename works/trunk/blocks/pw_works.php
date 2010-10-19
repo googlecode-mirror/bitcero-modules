@@ -60,7 +60,7 @@ function pw_works_show($options){
 		$rtn = array();
 		$rtn['title'] = $work->title();
 		if ($options[6]) $rtn['desc'] = substr($work->descShort(),0,50);
-		$rtn['link'] = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'work/'.$work->id() : 'work.php?id='.$work->id());
+		$rtn['link'] = $work->link();
 		$rtn['created'] = formatTimestamp($work->created(), 's');
 		if ($options[5]) $rtn['image'] = XOOPS_UPLOAD_URL.'/works/ths/'.$work->image();
 		$linkcat = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'cat/'.$cat->nameId() : 'catego.php?id='.$cat->nameId());

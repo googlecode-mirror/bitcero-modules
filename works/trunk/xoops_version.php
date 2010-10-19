@@ -218,6 +218,22 @@ $modversion['config'][14]['valuetype'] = 'int';
 $modversion['config'][14]['default'] ='5';
 $modversion['config'][14]['order'] = 14;
 
+// Mostrar clientes e información de clientes
+$modversion['config'][15]['name'] = 'show_customer';
+$modversion['config'][15]['description'] = '_MI_PW_CUSTOMERSHOWD';
+$modversion['config'][15]['title'] = '_MI_PW_CUSTOMERSHOW';
+$modversion['config'][15]['formtype'] = 'yesno';
+$modversion['config'][15]['valuetype'] = 'int';
+$modversion['config'][15]['default'] = 1;
+
+// Mostrar información del sitio
+$modversion['config'][16]['name'] = 'show_web';
+$modversion['config'][16]['description'] = '_MI_PW_WEBSHOWD';
+$modversion['config'][16]['title'] = '_MI_PW_WEBSHOW';
+$modversion['config'][16]['formtype'] = 'yesno';
+$modversion['config'][16]['valuetype'] = 'int';
+$modversion['config'][16]['default'] = 1;
+
 //Páginas del módulo
 $modversion['subpages']['index'] = _MI_PW_PINDEX;
 $modversion['subpages']['recent'] = _MI_PW_PRECENTS;

@@ -35,7 +35,13 @@ $work_data = array(
 	'id'=>$work->id(),
 	'title'=>$work->title(),
 	'desc'=>$work->desc(),
-	'catego'=>$cat->name(),
+    'intro'=>$work->descShort(),
+	'category'=>array(
+        'name'=>$cat->name(),
+        'description'=>$cat->desc(),
+        'id'=>$cat->id(),
+        'nameid'=>$cat->nameId()
+    ),
 	'client'=>$client->businessName(),
 	'site'=>$work->nameSite(),
 	'url'=>$work->url(),
@@ -45,10 +51,13 @@ $work_data = array(
 	'cost'=>$mc['cost'] ? sprintf($mc['format_currency'],number_format($work->cost(),2)) : '',
 	'mark'=>$work->mark(),
 	'image'=>XOOPS_UPLOAD_URL.'/works/'.$work->image(),
+    'thumb'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
 	'linkcat'=>$link_cat,
 	'comment'=>$work->comment(),
 	'rating'=>PWFunctions::rating($work->rating()),
-	'views'=>$work->views());
+	'views'=>$work->views(),
+    'metas'=>$work->get_metas()
+);
 
 $work_data = RMEvents::get()->run_event('works.work.data',$work_data, $work);
 
@@ -94,9 +103,19 @@ if ($mc['other_works']>0){
 		$link = PW_URL.($mc['urlmode'] ? '/'.$wk->title_id().'/' : '/work.php?id='.$wk->id());
 		$link_cat = PW_URL.($mc['urlmode'] ? '/cat/'.$categos[$wk->category()]->nameId().'/' : '/catego.php?id='.$categos[$wk->category()]->nameId());
 
-		$tpl->append('other_works',array('id'=>$wk->id(),'title'=>$wk->title(),'desc'=>$wk->descShort(),'linkcat'=>$link_cat,
-		'catego'=>$categos[$wk->category()]->name(),'client'=>$clients[$wk->client()]->name(),'link'=>$link,
-		'created'=>formatTimeStamp($wk->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),'views'=>$wk->views()));
+		$tpl->append('other_works',array(
+            'id'=>$wk->id(),
+            'title'=>$wk->title(),
+            'desc'=>$wk->descShort(),
+            'linkcat'=>$link_cat,
+		    'catego'=>$categos[$wk->category()]->name(),
+            'client'=>$clients[$wk->client()]->name(),
+            'link'=>$link,
+		    'created'=>formatTimeStamp($wk->created(),'s'),
+            'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),
+            'views'=>$wk->views(),
+            'metas'=>$wk->get_metas()
+        ));
 	}
 	
 	RMEvents::get()->run_event('works.load.other.works', $work);

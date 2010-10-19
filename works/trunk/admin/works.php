@@ -156,20 +156,25 @@ function formWorks($edit = 0){
 	}
 	$form->addElement($ele,true,'noselect:0');
 
-	//Clientes Existentes
-	$ele = new RMFormSelect(__('Customer','admin_works'),'client');
-	$ele->addOption(0,__('Select...','admin_works'));
-	$sql = "SELECT * FROM ".$db->prefix('pw_clients');
-	$result = $db->query($sql);
-	while ($row = $db->fetchArray($result)){
-		$ele->addOption($row['id_client'],$row['name'],$edit ? ($work->client()==$row['id_client'] ? 1 : 0) : '');
-	}
+	if($xoopsModuleConfig['show_customer']){
+        //Clientes Existentes
+	    $ele = new RMFormSelect(__('Customer','admin_works'),'client');
+	    $ele->addOption(0,__('Select...','admin_works'));
+	    $sql = "SELECT * FROM ".$db->prefix('pw_clients');
+	    $result = $db->query($sql);
+	    while ($row = $db->fetchArray($result)){
+		    $ele->addOption($row['id_client'],$row['name'],$edit ? ($work->client()==$row['id_client'] ? 1 : 0) : '');
+	    }
 
-	$form->addElement($ele,true,'noselect:0');
-
-	$form->addElement(new RMFormTextArea(__('Customer comment','admin_works'),'comment',4,50,$edit ? $work->comment() : ''));
-	$form->addElement(new RMFormText(__('Web site','admin_works'),'site',50,150,$edit ? $work->nameSite() : ''));
-	$form->addElement(new RMFormText(__('Site URL','admin_works'),'url',50,255,$edit ? $work->url() : ''));
+	    $form->addElement($ele,true,'noselect:0');
+	    $form->addElement(new RMFormTextArea(__('Customer comment','admin_works'),'comment',4,50,$edit ? $work->comment() : ''));
+    }
+    
+    if($xoopsModuleConfig['show_web']){
+	    $form->addElement(new RMFormText(__('Web site','admin_works'),'site',50,150,$edit ? $work->nameSite() : ''));
+	    $form->addElement(new RMFormText(__('Site URL','admin_works'),'url',50,255,$edit ? $work->url() : ''));
+    }
+    
 	$form->addElement(new RMFormDate(__('Start date','admin_works'),'start',$edit ? $work->start() : time()));
 	$form->addElement(new RMFormText(__('Long time','admin_works'),'period',50,255,$edit ? $work->period() : ''));
 	$form->addElement(new RMFormText(__('Monetary cost','admin_works'),'cost',10,20,$edit ? $work->cost() : 0));

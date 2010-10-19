@@ -36,10 +36,10 @@
         </tr>
         <?php endif; ?>
         <?php foreach($metas as $meta): ?>
-        <tr class="<?php echo tpl_cycle("even,odd"); ?>">
+        <tr class="<?php echo tpl_cycle("even,odd"); ?>" valign="top">
             <td align="center"><input type="checkbox" name="ids[]" id="items-<?php echo $meta['id_meta']; ?>" value="<?php echo $meta['id_meta']; ?>" /></td>
             <td><strong><?php echo $meta['name']; ?></strong></td>
-            <td><?php echo $meta['value']; ?></td>
+            <td><?php echo TextCleaner::getInstance()->specialchars($meta['value']); ?></td>
         </tr>
         <?php endforeach; ?>
         </tbody>

@@ -16,6 +16,8 @@ include 'header.php';
 
 PWFunctions::makeHeader();
 
+$tpl->assign('works_subpage', 'index');
+
 //Barra de Navegación
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_works')." WHERE public=1";
 	
@@ -60,10 +62,20 @@ while ($row = $db->fetchArray($result)){
 	$link = PW_URL.($mc['urlmode'] ? '/'.$recent->title_id().'/' : '/work.php?id='.$recent->id());
 	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$recent->category()]->nameId().'/' : '/catego.php?id='.$categos[$recent->category()]->nameId());
 
-	$tpl->append('works',array('id'=>$recent->id(),'title'=>$recent->title(),'desc'=>$recent->descShort(),
-	'catego'=>$categos[$recent->category()]->name(),'client'=>$clients[$recent->client()]->businessName(),'link'=>$link,
-	'created'=>formatTimeStamp($recent->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$recent->image(),
-	'rating'=>PWFunctions::rating($recent->rating()),'featured'=>$recent->mark(),'linkcat'=>$link_cat));
+	$tpl->append('works',array(
+        'id'=>$recent->id(),
+        'title'=>$recent->title(),
+        'desc'=>$recent->descShort(),
+	    'catego'=>$categos[$recent->category()]->name(),
+        'client'=>$clients[$recent->client()]->businessName(),
+        'link'=>$link,
+	    'created'=>formatTimeStamp($recent->created(),'s'),
+        'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$recent->image(),
+	    'rating'=>PWFunctions::rating($recent->rating()),
+        'featured'=>$recent->mark(),
+        'linkcat'=>$link_cat,
+        'metas' => $recent->get_metas()
+    ));
 }
 
 

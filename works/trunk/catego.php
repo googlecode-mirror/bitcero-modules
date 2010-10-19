@@ -28,6 +28,8 @@ if ($cat->isNew()){
 	die();
 }
 
+RMEvents::get()->run_event('works.starting.categories', $cat);
+
 // Category
 $tpl->assign('category', array('id'=>$cat->id(),'title'=>$cat->name(),'name'=>$cat->nameId(),'desc'=>$cat->desc()));
 
@@ -52,7 +54,7 @@ $tpl->assign('navpage', $nav->render(false));
 
 
 $sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=1 AND catego='".$cat->id()."'";
-$sql.= " LIMIT $start,$limit";
+$sql.= " ORDER BY created DESC LIMIT $start,$limit";
 $result = $db->query($sql);
 
 // Numero de resultados en esta página
@@ -73,10 +75,20 @@ while ($row = $db->fetchArray($result)){
 	$link = PW_URL.($mc['urlmode'] ? '/'.$work->title_id().'/' : '/work.php?id='.$work->id());
 	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$work->category()]->nameId().'/' : '/catego.php?id='.$categos[$work->category()]->nameId());
 
-	$tpl->append('works',array('id'=>$work->id(),'title'=>$work->title(),'desc'=>$work->descShort(),
-	'catego'=>$categos[$work->category()]->name(),'client'=>$clients[$work->client()]->name(),'link'=>$link,
-	'created'=>formatTimeStamp($work->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
-	'rating'=>PWFunctions::rating($work->rating()),'featured'=>$work->mark(),'linkcat'=>$link_cat));
+	$tpl->append('works',array(
+        'id'=>$work->id(),'title'=>$work->title(),
+        'desc'=>$work->descShort(),
+	    'catego'=>$categos[$work->category()]->name(),
+        'client'=>$clients[$work->client()]->name(),
+        'link'=>$link,
+        'time'=>$work->created(),
+	    'created'=>formatTimeStamp($work->created(),'s'),
+        'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
+	    'rating'=>PWFunctions::rating($work->rating()),
+        'featured'=>$work->mark(),
+        'linkcat'=>$link_cat,
+        'metas'=>$work->get_metas()
+    ));
 }
 $tpl->assign('lang_works',sprintf(__('Works in "%s"','works'),$cat->name()));
 $tpl->assign('xoops_pagetitle', sprintf(__('Works in "%s"','works'),$cat->name())." &raquo; ".$mc['title']);
@@ -87,5 +99,8 @@ $tpl->assign('lang_rating',__('Our rate:','works'));
 $thSize = $mc['image_ths'];
 $tpl->assign('width',$thSize[0]+20);
 $tpl->assign('lang_featured', __('Featured','works'));
+
+RMBreadCrumb::get()->add_crumb(__('Portafolio','works'), PW_URL);
+RMBreadCrumb::get()->add_crumb($cat->getVar('name'), PW_URL);
 
 include 'footer.php';

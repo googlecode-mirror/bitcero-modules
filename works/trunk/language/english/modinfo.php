@@ -25,77 +25,76 @@
 // --------------------------------------------------------
 // @copyright: 2008 Red México
 
-define('_MI_PW_MODDESC','Module to manage professional portfolios');
-
-define('_MI_PW_MHOME', 'Home');
-define('_MI_PW_MCATS', 'Categories');
-define('_MI_PW_MWORKS', 'Works');
-define('_MI_PW_MCLIENTS', 'Clients');
-define('_MI_PW_MTYPECLIENT', 'Client Types');
+define('_MI_PW_MODDESC',__('Module to manage professional portfolios', 'works'));
 
 // Configuraciones
-define('_MI_PW_URLMODE','Use friendly URLs');
-define('_MI_PW_URLMODE_DESC','By enabling thios option the module will manage the urls trough mod_rewrite (Apache Only).');
+define('_MI_PW_URLMODE', __('Use friendly URLs','works'));
+define('_MI_PW_URLMODE_DESC', __('By enabling thios option the module will manage the urls trough mod_rewrite (Apache Only).','works'));
 
 //Título
-define('_MI_PW_TITLE','Header Title');
-define('_MI_PW_DESCTITLE','This title will be show as header of module');
+define('_MI_PW_TITLE',__('Header Title','works'));
+define('_MI_PW_DESCTITLE',__('This title will be show as header of module','works'));
 
 //Tamaño en pixeles de imagen
-define('_MI_PW_IMAGEMAIN','Size in pixels of the main image');
-define('_MI_PW_DESCIMAGEMAIN','This values must be specified in the format "width|height". Note the "|".');
-define('_MI_PW_IMAGE','Size in pixels of the normal image');
+define('_MI_PW_IMAGEMAIN',__('Size in pixels of the main image','works'));
+define('_MI_PW_DESCIMAGEMAIN',__('This values must be specified in the format "width|height". Note the "|".','works'));
+define('_MI_PW_IMAGE',__('Size in pixels of the normal image','works'));
 define('_MI_PW_DESCIMAGE',_MI_PW_DESCIMAGEMAIN);
-define('_MI_PW_THS','Size in pixels of the thumbnail');
+define('_MI_PW_THS',__('Size in pixels of the thumbnail','works'));
 define('_MI_PW_DESCTHS',_MI_PW_DESCIMAGEMAIN);
-define('_MI_PW_THSMAIN','Size in pixels fo the thumbnail for main image');
-define('_MI_PW_THSMAIN_DESC','This value will be used to resize main images to show in the works list. '._MI_PW_DESCIMAGEMAIN);
+define('_MI_PW_THSMAIN',__('Size in pixels fo the thumbnail for main image','works'));
+define('_MI_PW_THSMAIN_DESC',__('This value will be used to resize main images to show in the works list.','works').' '._MI_PW_DESCIMAGEMAIN);
 
 //Tipo de redimension
-define('_MI_PW_REDIMIMAGE','Resizing Method');
-define('_MI_PW_CROPTHS','Crop Thumbnail');
-define('_MI_PW_CROPBIG','Crop big image');
-define('_MI_PW_CROPBOTH','Crop both images');
-define('_MI_PW_REDIM','Resize');
+define('_MI_PW_REDIMIMAGE',__('Resizing Method','works'));
+define('_MI_PW_CROPTHS',__('Crop Thumbnail','works'));
+define('_MI_PW_CROPBIG',__('Crop big image','works'));
+define('_MI_PW_CROPBOTH',__('Crop both images','works'));
+define('_MI_PW_REDIM',__('Resize','works'));
 
 //Tamaño de archivo de imagen
-define('_MI_PW_SIZE','Image file size');
-define('_MI_PW_DESCSIZE','This value must be specified in KB');
+define('_MI_PW_SIZE',__('Image file size','works'));
+define('_MI_PW_DESCSIZE',__('This value must be specified in KB','works'));
 
 //Mostrar el costo del trabajo
-define('_MI_PW_COST','Show work cost');
+define('_MI_PW_COST',__('Show work cost','works'));
 
 //Formato de moneda
-define('_MI_PW_FORMATCURRENCY','Currency Format');
+define('_MI_PW_FORMATCURRENCY',__('Currency Format','works'));
 
 //Trabajos recientes
-define('_MI_PW_RECENT','Number of Recent Works');
-define('_MI_PW_DESCRECENT','The number of recent works that will be shown in the home page');
+define('_MI_PW_RECENT',__('Number of Recent Works','works'));
+define('_MI_PW_DESCRECENT',__('The number of recent works that will be shown in the home page','works'));
 //Trabajos destacados
-define('_MI_PW_FEATURED','Number of Featured Works');
-define('_MI_PW_DESCFEATURED','The number of featured works that will be shown in the home page');
+define('_MI_PW_FEATURED',__('Number of Featured Works','works'));
+define('_MI_PW_DESCFEATURED',__('The number of featured works that will be shown in the home page','works'));
 
-define('_MI_PW_BASEDIR','Base dir to friendly url management');
+define('_MI_PW_BASEDIR',__('Base dir to friendly url management','works'));
 
 //Otros trabajos
-define('_MI_PW_OTHERWORKS','Other Works');
-define('_MI_PW_DESCOTHERWORKS','The type of works that will be shown in the details page');
-define('_MI_PW_CATEGO','Same Category');
-define('_MI_PW_FEATUREDS','Featured');
-define('_MI_PW_NUMOTHER','Number of "Other Works"');
-define('_MI_PW_DESCNUMOTHER','The number of "Other Works" to show in the section');
+define('_MI_PW_OTHERWORKS',__('Other Works','works'));
+define('_MI_PW_DESCOTHERWORKS',__('The type of works that will be shown in the details page','works'));
+define('_MI_PW_NOSHOW',__('Disabled','works'));
+define('_MI_PW_CATEGO',__('Same Category','works'));
+define('_MI_PW_FEATUREDS',__('Featured','works'));
+define('_MI_PW_NUMOTHER',__('Number of "Other Works"','works'));
+define('_MI_PW_DESCNUMOTHER',__('The number of "Other Works" to show in the section','works'));
 
-define('_MI_PW_WORKS','Works');
-define('_MI_PW_COMMENTS','Comments');
+define('_MI_PW_WORKS',__('Works','works'));
+define('_MI_PW_COMMENTS',__('Comments','works'));
 
 //Páginas del módulo
-define('_MI_PW_PINDEX','Home Page');
-define('_MI_PW_PRECENTS','Recent');
-define('_MI_PW_PFEATUREDS','Fetured');
-define('_MI_PW_PCATEGOS','Category');
-define('_MI_PW_PWORK','Work Details');
+define('_MI_PW_PINDEX',__('Home Page','works'));
+define('_MI_PW_PRECENTS',__('Recent','works'));
+define('_MI_PW_PFEATUREDS',__('Fetured','works'));
+define('_MI_PW_PCATEGOS',__('Category','works'));
+define('_MI_PW_PWORK',__('Work Details','works'));
+
+define('_MI_PW_CUSTOMERSHOW',__('Show customer information','works'));
+define('_MI_PW_CUSTOMERSHOWD',__('When this option is enabled you will see the option to provide customer name and customer comment in works form.','works'));
+define('_MI_PW_WEBSHOW', __('Show web site information','works'));
+define('_MI_PW_WEBSHOWD',__('When this option is enabled you will see the option to provide web site name and url in works form.','works'));
 
 // Version 1.0
-define('_MI_PW_BKCATS','Categories');
+define('_MI_PW_BKCATS',__('Categories','works'));
 
-?>
