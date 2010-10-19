@@ -32,12 +32,12 @@
 			<span class="descs"><?php echo substr(strip_tags($theme['info']['description'], '<strong>'), 0, 60); ?></span>
 			<?php if($theme['valid']): ?>
 				<div class="theme_buttons">
-				<a href="?op=install-theme&amp;theme=<?php echo $theme['info']['dir']; ?>" class="button"><span><?php _e('Install','xthemes'); ?></span></a>
+				<a href="?op=install-theme&amp;theme=<?php echo $theme['info']['dir']; ?>"><span><?php _e('Install','xthemes'); ?></span></a>
 				<a href="<?php echo $theme['info']['url']; ?>"><span><?php _e('Web Site','xthemes'); ?></span></a>
 				</div>
 			<?php else: ?>
 				<div class="theme_buttons">
-				<a href="?op=install-normal&amp;theme=<?php echo $theme['info']['dir']; ?>" class="button"><span><?php _e('Install','xthemes'); ?></span></a>
+				<a href="?op=install-normal&amp;theme=<?php echo $theme['info']['dir']; ?>"><span><?php _e('Install','xthemes'); ?></span></a>
 				<a href="index.php?op=catalog"><span><?php _e('More themes','xthemes'); ?></span></a>
 				</div>
 			<?php endif; ?>
