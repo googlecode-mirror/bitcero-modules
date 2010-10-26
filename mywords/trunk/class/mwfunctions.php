@@ -350,7 +350,7 @@ class MWFunctions
 		if ($cat>0){
 			$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a, ".$db->prefix("mw_catpost")." as b WHERE
 				b.cat='$cat' AND a.id_post=b.post AND a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
-		} else {
+        } else {
 			$sql = "SELECT a.* FROM ".$db->prefix("mw_posts")." as a WHERE
 				a.status='$status' ORDER BY a.$orderby $order LIMIT $start,$limit";
 		}

@@ -12,7 +12,8 @@ $(document).ready(function(){
 	var url=encodeURIComponent("http://redmexico.com.mx/modules/vcontrol/?id=5&type=json");
 
 	$.post('<?php echo XOOPS_URL; ?>/modules/rmcommon/include/proxy.php', {url: url}, function(data){
-		$("#mw-recent-news").append(data);
+		if(data.indexOf("<html")>0 && data.indexOf("</html>")>0) return;
+        $("#mw-recent-news").append(data);
 	}, 'html');
 	
 });
