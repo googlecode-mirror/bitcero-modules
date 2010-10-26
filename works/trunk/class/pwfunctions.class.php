@@ -96,7 +96,7 @@ class PWFunctions
 	/**
 	* Get works based on given parameters
 	*/
-	public function get_works($limit, $category=null, $public=1, $object=true, $order="DESC"){
+	public function get_works($limit, $category=null, $public=1, $object=true, $order="created DESC"){
 		global $xoopsModule, $xoopsModuleConfig;
         
         include_once XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php';
@@ -134,6 +134,7 @@ class PWFunctions
 				'client'=>$clients[$work->client()]->name(),
 				'link'=>$work->link(),
 				'created'=>formatTimeStamp($work->created(),'s'),
+                'created_time'=>$work->created(),
 				'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
 				'rating'=>PWFunctions::rating($work->rating()),
 				'featured'=>$work->mark(),
