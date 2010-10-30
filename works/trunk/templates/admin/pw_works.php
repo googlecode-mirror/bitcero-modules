@@ -58,10 +58,10 @@
                 <strong><?php echo $work['title']; ?></strong>
             <?php endif; ?>
             <span class="rmc_options">
-            <a href="./works.php?op=edit&amp;id=<?php echo $work['id']; ?>&amp;pag=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
+            <a href="./works.php?op=edit&amp;id=<?php echo $work['id']; ?>&amp;page=<?php echo $page; ?>"><?php _e('Edit','admin_mywords'); ?></a> |
             <a href="javascript:;" onclick="select_option(<?php echo $work['id']; ?>,'delete','frm-works');"><?php echo _e('Delete','admin_works'); ?></a> |
             <a href="./images.php?work=<?php echo $work['id']; ?>"><?php _e('Images','admin_works'); ?></a> |
-            <a href="./works.php?id=<?php echo $work['id']; ?>&op=meta"><?php _e('Custom Fields','admin_works'); ?></a>
+            <a href="./works.php?page=<?php echo $page; ?>&amp;id=<?php echo $work['id']; ?>&op=meta"><?php _e('Custom Fields','admin_works'); ?></a>
             </span>
         </td>
         <td align="left"><?php echo $work['description']; ?></td>

@@ -201,7 +201,12 @@ function formWorks($edit = 0){
 	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Work','admin_works'), 'submit');
 	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'works.php?'.$ruta.'\';"');
 	$form->addElement($ele);
-
+    
+    if($edit){
+        include RMTemplate::get()->get_template("admin/pw_work_options.php", 'module', 'works');
+        RMTemplate::get()->add_style('admin.css', 'works');
+    }
+    
 	$form->display();
 
 	xoops_cp_footer();
@@ -532,6 +537,7 @@ function works_meta_data(){
     global $xoopsModule, $xoopsSecurity;
     
     $id = rmc_server_var($_GET, 'id', 0);
+    $page = rmc_server_var($_GET, 'page', 0);
     
     if ($id<=0){
         redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 0);

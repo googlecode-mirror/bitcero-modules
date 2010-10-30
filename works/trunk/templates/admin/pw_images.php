@@ -1,3 +1,4 @@
+<?php include RMTemplate::get()->get_template("admin/pw_work_options.php", 'module', 'works'); ?>
 <h1 class="rmc_titles"><span style="background-position: -64px -32px;">&nbsp;</span><?php echo $work->title(); ?> : <?php _e('Work Images','admin_works'); ?></h1>
 
 <div id="pw-right-table">
