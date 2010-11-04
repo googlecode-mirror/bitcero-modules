@@ -51,4 +51,25 @@ class RecaptchaCUPlugin extends RMIPlugin
         return true;
     }
     
+    public function show(){
+        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        
+        include_once(RMCPATH.'/plugins/recaptcha/recaptchalib.php');
+        $publickey = $config['public']; // you got this from the signup page
+        $field = recaptcha_get_html($publickey);
+        return $field;
+    }
+    
+    public function check(){
+        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        include_once(RMCPATH.'/plugins/recaptcha/recaptchalib.php');
+        $privatekey = $config['private'];
+        $resp = recaptcha_check_answer ($privatekey,
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $_POST["recaptcha_challenge_field"],
+                                        $_POST["recaptcha_response_field"]);
+
+        return $resp;
+    }
+    
 }
