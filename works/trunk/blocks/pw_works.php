@@ -25,9 +25,9 @@ function pw_works_show($options){
 		$mc =& RMUtilities::module_config('works');
 	}
 
-	$sql = "SELECT * FROM ".$db->prefix('pw_works');
-	$sql1 = $options[1] ? " WHERE catego='".$options[1]."'" : '';
-	$sql2 = $options[2] ? ($sql1=='' ? " WHERE " : " AND ")." client='".$options[2]."'" : ''; 
+	$sql = "SELECT * FROM ".$db->prefix('pw_works').' WHERE public=1';
+	$sql1 = $options[1] ? " AND catego='".$options[1]."'" : '';
+	$sql2 = $options[2] ? " AND  client='".$options[2]."'" : ''; 
 	$sql3 = '';
 	switch($options[0]){
 		case 0:

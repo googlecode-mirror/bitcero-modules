@@ -24,7 +24,7 @@ function showClients(){
 	list($num)=$db->fetchRow($db->query($sql));
 	
 	$page = rmc_server_var($_GET, 'page', 1);
-	$limit = 2;
+	$limit = 15;
     $tpages = ceil($num/$limit);
     $page = $page > $tpages ? $tpages : $page; 
 
