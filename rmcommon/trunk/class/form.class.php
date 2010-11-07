@@ -480,7 +480,7 @@ class RMForm
         }
         
         if ($this->_addtoken){
-            $form['fields'][] = array('type'=>'EXMHidden','content'=>$GLOBALS['exmSecurity']->getTokenHTML(),
+            $form['fields'][] = array('type'=>'EXMHidden','content'=>$GLOBALS['xoopsSecurity']->getTokenHTML(),
                     'caption'=>'','desc'=>'');
         }
         
