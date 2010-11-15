@@ -44,7 +44,6 @@ class RmcommonCorePreload extends XoopsPreloadItem
     }
 	
 	public function eventCoreFooterEnd(){
-		
 		ob_end_flush();
 
 	}
