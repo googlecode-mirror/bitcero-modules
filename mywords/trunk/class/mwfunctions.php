@@ -215,11 +215,17 @@ class MWFunctions
     public function author_name($uid){
         
         $db = Database::getInstance();
-        $result = $db->query("SELECT uname FROM ".$db->prefix("users")." WHERE uid='$uid'");
-        if ($db->getRowsNum($result)<=0) return false;
+        $result = $db->query("SELECT name FROM ".$db->prefix("mw_editors")." WHERE uid='$uid'");
+        if ($db->getRowsNum($result)>0){
+            $row = $db->fetchArray($result);
+            return $row['name'];
+        }
         
-        list($uname) = $db->fetchRow($result);
-        return $uname;
+        $result = $db->query("SELECT uname FROM ".$db->prefix("users")." WHERE uid='$uid'");
+        if ($db->getRowsNum($result)<=0) return;
+        
+        $row = $db->fetchArray($result);
+        return $row['uname'];
         
     }
     

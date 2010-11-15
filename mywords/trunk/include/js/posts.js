@@ -336,7 +336,7 @@ $(document).ready( function($) {
 
         // Send Post data
         $.post('<?php echo XOOPS_URL; ?>/modules/mywords/admin/ajax/ax-posts.php', params, function(data){
-
+            
             if(data['error']!=undefined && data['error']!=''){
                 $('div#mw-messages-post').addClass('messages_error');
                 $('div#mw-messages-post').html(data['error']);

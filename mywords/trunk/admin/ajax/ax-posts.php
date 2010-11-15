@@ -44,10 +44,10 @@ if (!isset($xoopsUser)){
 	return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
 }
 
-$author = new MWEditor();
-$author->from_user($xoopsUser->uid());
+$editor = new MWEditor();
+$editor->from_user($author);
 
-if ($author->isNew() && !$xoopsUser->isAdmin()){
+if ($editor->isNew() && !$xoopsUser->isAdmin()){
 	return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
 }
     
@@ -63,7 +63,7 @@ if ($op=='saveedit'){
         die();
     }
     
-    if (!$author->id()==$post->getVar('author') && !$xoopsUser->isAdmin()){
+    if (!$editor->id()==$post->getVar('author') && !$xoopsUser->isAdmin()){
 		return_error(__('You are not allowed to do this action!','mywords'), false, MW_URL);
     }
         
@@ -129,6 +129,7 @@ $post->setVar('author', $author);
 $post->setVar('comstatus', isset($comstatus) ? $comstatus : 0);
 $post->setVar('pingstatus', isset($pingstatus) ? $pingstatus : 0);
 $post->setVar('authorname', $authorname);
+
 if($edit) $post->setVar('modified', time());
 
 if ($schedule<=time() && !$edit){
