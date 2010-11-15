@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Utilities 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-17 10:01-0600\n"
-"PO-Revision-Date: 2010-10-17 10:06-0600\n"
+"POT-Creation-Date: 2010-11-09 21:59-0600\n"
+"PO-Revision-Date: 2010-11-09 22:10-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -532,7 +532,7 @@ msgstr "¡El plugin especificado no esta activo!"
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:243
 #, php-format
 msgid "%s configuration"
-msgstr "%s configuración"
+msgstr "Configuración de %s"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:359
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:365
@@ -666,7 +666,7 @@ msgstr "Seleccionar archivos"
 msgid "Required fields marked with \"*\""
 msgstr "Campos requeridos marcados con \"*\""
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:258
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:256
 msgid "Edit"
 msgstr "Editar"
 
@@ -719,82 +719,79 @@ msgstr "Mostrar <strong>%u</strong> to <strong>%u</strong> of <strong>%u</strong
 msgid "You must provide a valid time and format value to use RMTimeFormatter::format() method"
 msgstr "Debes proporcionar una fecha y un formato válidos para usar el método RMTimeFormatter::format()"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:91
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:93
 msgid "Sunday"
 msgstr "Domingo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:92
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:94
 msgid "Monday"
 msgstr "Lunes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:93
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:95
 msgid "Tuesday"
 msgstr "Martes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:94
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:96
 msgid "Wednesday"
 msgstr "Miércoles"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:95
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:97
 msgid "Thursday"
 msgstr "Jueves"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:96
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:98
 msgid "Friday"
 msgstr "Viernes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:97
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:99
 msgid "Saturday"
 msgstr "Sábado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:109
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:111
 msgid "January"
 msgstr "Enero"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:110
-#, fuzzy
-msgid "February"
-msgstr "Desde Biblioteca"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:111
-#, fuzzy
-msgid "March"
-msgstr "Buscar:"
-
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:112
-#, fuzzy
-msgid "April"
-msgstr "Aplicar"
+msgid "February"
+msgstr "Febrero"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:113
+msgid "March"
+msgstr "Marzo"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:114
+msgid "April"
+msgstr "Abril"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:115
 msgid "May"
 msgstr "Mayo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:114
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:116
 msgid "June"
 msgstr "Junio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:115
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:117
 msgid "July"
 msgstr "Julio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:116
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:118
 msgid "August"
 msgstr "Agosto"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:117
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:119
 msgid "September"
 msgstr "Septiembre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:118
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:120
 msgid "October"
 msgstr "Octubre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:119
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:121
 msgid "November"
 msgstr "Noviembre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:120
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:122
 msgid "December"
 msgstr "Diciembre"
 
@@ -913,9 +910,8 @@ msgid "Select the default editor"
 msgstr "Seleccionar el editor por defecto"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:20
-#, fuzzy
 msgid "XoopsCode Editor"
-msgstr "Editor de código EXM"
+msgstr "Editor de código XOOPS"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:22
 msgid "Number limit for image categories list."
@@ -938,19 +934,16 @@ msgid "Admin theme"
 msgstr "Administrador de tema"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:28
-#, fuzzy
 msgid "Allow HTMl in text"
-msgstr "Permitir HTML"
+msgstr "Permitir HTML en el texto"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:29
-#, fuzzy
 msgid "Allow smiles in text"
-msgstr "Permitir Smilies"
+msgstr "Permitir emoticones en texto"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:30
-#, fuzzy
 msgid "Allow XoopsCode"
-msgstr "Permitir Código Xoops"
+msgstr "Permitir código Xoops"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:31
 msgid "Allow images in text"
@@ -965,30 +958,28 @@ msgid "Modules number on dashboard"
 msgstr "Número de módulos en el panel de control"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:37
-#, fuzzy
 msgid "Enable comments"
-msgstr "Eliminar comentarios"
+msgstr "Habilitar comentarios"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:38
 msgid "Allow anonymous users to post comments"
-msgstr ""
+msgstr "Permitir a los usuarios anónimos enviar comentarios"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:39
 msgid "Automatically approve comments by registered users"
-msgstr ""
+msgstr "Aprovar automáticamente comentarios de usuarios registrados"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:40
 msgid "Automatically approve comments by anonymous users"
-msgstr ""
+msgstr "Aprovar automáticamente comentarios de usuarios anónimos"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:41
-#, fuzzy
 msgid "Allow users to edit their comments"
-msgstr "¡No estas autorizado para editar este comentario!"
+msgstr "Permitir a los usuarios editar sus comentarios"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:42
-msgid "Time limit to edit a comment. (in hours)"
-msgstr ""
+msgid "Time limit to edit a comment (in hours)."
+msgstr "Tiempo limite para poder editar un comentario (en horas)."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:45
 msgid "Image for rss feeds"
@@ -996,505 +987,84 @@ msgstr "imágen para menús rss"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:48
 msgid "Mailer method"
-msgstr ""
+msgstr "Método para envío de correo"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:49
 msgid "Common Utilities will use this method to send emails."
-msgstr ""
+msgstr "Common Utilities utilizará este método para enviar emails."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:50
 msgid "PHP Mail()"
-msgstr ""
+msgstr "PHP Mail()"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:51
 msgid "SMTP"
-msgstr ""
+msgstr "SMTP"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:52
 msgid "Sendmail"
-msgstr ""
+msgstr "Sendmail"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:53
 msgid "SMTP server to use"
-msgstr ""
+msgstr "Servidor SMTP a usar"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:54
-msgid "Specify the server through width the emails will be sent."
-msgstr ""
+msgid "Specify the server through with the emails will be sent."
+msgstr "Especifique el servidor a través del cual se enviaran los emails."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:55
-#, fuzzy
 msgid "SMTP encryption"
-msgstr "Descripción"
+msgstr "Encriptación SMTP"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:56
 msgid "For SSL or TLS encryption to work your PHP installation must have appropriate OpenSSL transports wrappers."
-msgstr ""
+msgstr "Para que SSL o TLS funcionen la instalación PHP debe tener los transportes apropiados."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:58
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:59
 msgid "TLS"
-msgstr ""
+msgstr "TLS"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:60
 msgid "SMTP server port"
-msgstr ""
+msgstr "Puerto del servidor SMTP"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:61
 msgid "Note that you must to write the apropiate port based on your encryption type selection."
-msgstr ""
+msgstr "Note que debe especificar el puerto apropiado basado en el tipo de encriptación seleccionado."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:62
-#, fuzzy
 msgid "SMTP username"
-msgstr "Nombre de usuario"
+msgstr "Usuario SMTP"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:63
 msgid "SMTP password"
-msgstr ""
+msgstr "Contraseña SMTP"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:64
 msgid "Sendmail path"
-msgstr ""
+msgstr "Ruta de Sendmail"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:65
 msgid "Input the command for sendmail, including the correct command line flags. The default to use is \"/usr/sbin/sendmail -bs\" if this is not specified."
-msgstr ""
+msgstr "Ingrese el comando para Sendmail, incluyendo las banderas correctas de la linea de comandos. Si no se especifica se usará por defecto \"/usr/sbin/sendmail -bs\"."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:72
-#, fuzzy
 msgid "New Category"
-msgstr "Nueva categoría"
+msgstr "Nueva Categoría"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:73
-#, fuzzy
 msgid "New Image"
-msgstr "Imágenes"
+msgstr "Nueva Imagen"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:74
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:16
 msgid "Create Images"
 msgstr "Crear Imágenes"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/akismet/akismet-plugin.php:19
-msgid "Akismet Plugin"
-msgstr "Plugin Akismet"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/akismet/akismet-plugin.php:20
-msgid "Maintan SPAM aware from your comments and your posts"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/akismet/events/rmcommon.php:84
-#, fuzzy
-msgid "Akismet options"
-msgstr "Plugin Akismet"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/akismet/include/options.php:13
-msgid "You Akismet API Key"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/akismet/include/options.php:14
-#, php-format
-msgid "You can obtain it directly from %s"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/avatars-plugin.php:19
-#, fuzzy
-msgid "Avatars Plugin"
-msgstr "Plugins Disponibles"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/avatars-plugin.php:20
-msgid "Plugin to use gravatar or other avatars system in Common Utilities"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/events/rmcommon.php:59
-msgid "Gravatar options"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/events/rmcommon.php:83
-msgid "Avatars options"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/include/options.php:12
-msgid "Avatars size in pixels"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/avatars/include/options.php:20
-msgid "Default avatar URL"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/booster-plugin.php:22
-msgid "Xoops Booster"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/booster-plugin.php:23
-msgid "Plugin to speed up your Xoops Web site by reducing load times."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:20
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:35
-msgid "Booster Zone"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:88
-#, fuzzy
-msgid "Expired pages deleted successfully"
-msgstr "¡Imágenes eliminadas exitosamente!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:104
-#, fuzzy
-msgid "You must specify a file to delete!"
-msgstr "¡Debes especificar el id de la categoría para editar!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:110
-#, fuzzy
-msgid "Selected file does not exists!"
-msgstr "¡El tema especificado no existe!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:117
-#, fuzzy
-msgid "File deleted successfully!"
-msgstr "¡Imágenes eliminadas exitosamente!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:128
-msgid "booster has been disabled"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:134
-msgid "booster has been enabled"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:145
-msgid "Settings saved!"
-msgstr "¡Configuraciones guardadas!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/main.php:153
-#, fuzzy
-msgid "Cache deleted successfully!"
-msgstr "¡Categoría eliminada exitosamente!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/events/rmcommon.php:35
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:26
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:23
-msgid "Clean cache"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/events/rmcommon.php:36
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:27
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:24
-#, fuzzy
-msgid "View files"
-msgstr "Ver Sitio"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/events/rmcommon.php:48
-#, fuzzy
-msgid "Booster"
-msgstr "Envió"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:1
-msgid "Booster Cached Files"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:25
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:22
-#, fuzzy
-msgid "Booster status"
-msgstr "Estado de la Categoría"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:30
-msgid "Next are the files cached by booster. You can delete files by clicking delete button."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:33
-#, php-format
-msgid "If you wish to delete manually this files then go to %s directory."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:39
-#, php-format
-msgid "%u cached pages"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:40
-#, php-format
-msgid "%u expired pages"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:43
-#, fuzzy
-msgid "Delete expired"
-msgstr "¡El identificador de sesión expiró!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:49
-#, fuzzy, php-format
-msgid "%s secs."
-msgstr "%s bytes"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_files.php:52
-msgid "Delete"
-msgstr "Eliminar"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:1
-#, fuzzy
-msgid "Booster Status"
-msgstr "Estado de la Categoría"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:16
-msgid "Do you really wish to delete all cached files?"
-msgstr "¿Realmente deseas eliminar los archivos almacenados en caché?"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:29
-#, php-format
-msgid "Current status of booster is: %s"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:29
-msgid "<strong>Enabled</strong>"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:29
-msgid "<strong>Disabled</strong>"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:31
-msgid "Change booster status"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:32
-#, fuzzy
-msgid "Disable booster"
-msgstr "Deshabilitar"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:32
-#, fuzzy
-msgid "Enable booster"
-msgstr "Habilitar"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:35
-msgid "Cache duration specify the time inteval to rewrite cache files. A small value indicates small interval. The value must be specified in seconds."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:37
-msgid "Cache duration"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:38
-msgid "seconds"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:40
-msgid "Pages to exclude from cache"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/booster/templates/cache_index.php:42
-msgid "Add an URL per line."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/flickr-plugin.php:22
-msgid "MyFlickr"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/flickr-plugin.php:23
-msgid "Plugin to show flickr photos wherever you want."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/options.php:12
-msgid "Your flickr API key"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/options.php:13
-#, php-format
-msgid "Input here your API key. If you do'nt have any key yet, please goto to %s and get one."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/options.php:20
-msgid "Do you want to show Flickr block in Control Panel?"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/flickr/options.php:21
-msgid "By enabling this option, MyFlickr will show a block in the Control Panel start page."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/lightbox-plugin.php:19
-msgid "LighBox Plugin"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/lightbox-plugin.php:20
-msgid "This plugin allows to use jQuery LightBox in modules and other elements."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:12
-msgid "Lightbox theme"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:13
-#, fuzzy
-msgid "Select the appearance taht you wish for Lightbox plugin"
-msgstr "Selecciona la categoría donde deseas cargar las imágenes"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:30
-msgid "Lightbox transition type"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:36
-msgid "Elastic"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:37
-msgid "Fade"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:44
-msgid "Transition speed"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:45
-msgid "Sets the speed of the fade and elastic transitions, in milliseconds."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:53
-msgid "Max width"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:54
-msgid "Set a maximum width for loaded content. Example: \"100%\", 500, \"500px\". Leave 0 for no limit."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:62
-msgid "Max height"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:63
-msgid "Set a maximum height for loaded content. Example: \"100%\", 500, \"500px\". Leave 0 for no limit."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:71
-msgid "Scale images"
-msgstr "Redimensionar imágenes"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:72
-msgid "If \"yes\" and if Max width or Max height have been defined, ColorBox will scale photos to fit within the those values."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:80
-msgid "Addtitional settings"
-msgstr "Configuraciones adicionales"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:81
-#, php-format
-msgid "Use this field to add extra configurations to lightbox. You can view all available options %s."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/lightbox/include/options.php:81
-#, fuzzy
-msgid "here"
-msgstr "Temas"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/metaseo-plugin.php:19
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/events/rmcommon.php:19
-msgid "Meta Optimizer"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/metaseo-plugin.php:20
-msgid "Plugin to optimize search engines by adding meta description and keywords to your theme heads"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:12
-#, fuzzy
-msgid "Description length"
-msgstr "Descripción"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:13
-msgid "Specify the text length to insert in meta description."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:21
-msgid "Use a custom field from MyWords and Quick Pages"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:22
-msgid "You can use a custom field value directly from MyWords in order to specify the content for meta description tag."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:29
-msgid "Custom field name for descriptions"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:30
-msgid "Specify here the custom field name to use as description (eg. meta_desc)."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:37
-msgid "Custom field name for keywords"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/metaseo/include/options.php:38
-msgid "Specify here the custom field name to use as keywords. Remember that each word in MyWords custom field must be separated by comma (eg. xoops,cms,etc)."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/recaptcha-plugin.php:20
-#, fuzzy
-msgid "Recaptcha Plugin"
-msgstr "Plugin Akismet"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/recaptcha-plugin.php:21
-msgid "Plugin to insert a recaptcha field on comments and other forms"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/events/rmcommon.php:55
-msgid "Please verify that recaptcha words are correct!"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/events/rmcommon.php:83
-msgid "Recaptcha"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/events/rmcommon.php:107
-msgid "Recaptcha options"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:12
-msgid "Your public key"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:13
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:22
-msgid "You can get it directly from your recaptcha account."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:21
-msgid "Your private key"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:30
-msgid "Show captcha to Webmasters?"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/recaptcha/include/options.php:31
-msgid "If this options is disble, recaptcha will not show to webmasters"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/topdf/options.php:12
-msgid "Use next service:"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/topdf/options.php:13
-msgid "Select the service that you wish to use in order to generate pdf documents."
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/topdf/options.php:17
-msgid "Local service"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/topdf/topdf-plugin.php:20
-msgid "ToPDF"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins/topdf/topdf-plugin.php:21
-msgid "Plugin to generate PDF file directly from your content. Based on PDFmyURL.com service."
-msgstr ""
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:1
 msgid "Create New Category"
@@ -1557,6 +1127,16 @@ msgstr "Debes especificar todos los tamaños que desees de acuerdoa tus necesida
 msgid "Size name"
 msgstr "Nombre del tamaño"
 
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:65
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:93
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:8
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:35
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:7
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:44
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:78
+msgid "Delete"
+msgstr "Eliminar"
+
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:72
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:100
 msgid "Width:"
@@ -1579,6 +1159,7 @@ msgstr "Recortar"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:82
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:110
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:49
 msgid "No Resize"
 msgstr "NO Redimensionar"
 
@@ -1609,14 +1190,17 @@ msgstr "Selecciona la categoría donde deseas cargar las imágenes"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:19
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:91
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:7
 msgid "Select..."
 msgstr "Seleccionar..."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:35
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:32
 msgid "Resizing images"
 msgstr "Redimensionar Imágenes"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:40
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:36
 msgid "Please, do not close the window until resizing process has finished!"
 msgstr "¡Por favor, no cierres la ventana hasta que el proceso de redimensionar haya terminado!"
 
@@ -1625,26 +1209,33 @@ msgid "Image URL"
 msgstr "URL de imágen"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:53
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:24
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:34
 msgid "Title:"
 msgstr "Título:"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:57
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:38
 msgid "Alternative text:"
 msgstr "Texto alternativo:"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:61
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:56
 msgid "Alignment:"
 msgstr "Alineación"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:65
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:59
 msgid "Left"
 msgstr "Izquierda"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:66
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:60
 msgid "Center"
 msgstr "Centro"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:67
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:61
 msgid "Right"
 msgstr "Derecha"
 
@@ -1698,8 +1289,6 @@ msgstr "Usuarios Existentes"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:7
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:6
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:14
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:117
 msgid "Bulk Actions..."
 msgstr "Acciones en bloque"
 
@@ -1713,9 +1302,6 @@ msgstr "Abrir categoría"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:12
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:10
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:5
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:20
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:122
 msgid "Apply"
 msgstr "Aplicar"
 
@@ -1763,7 +1349,6 @@ msgstr "Categoría:"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:38
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:42
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:101
 msgid "Description:"
 msgstr "Descripción:"
 
@@ -1772,7 +1357,6 @@ msgid "Update Image!"
 msgstr "¡Actualizar Imágen!"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:1
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:50
 msgid "Images Manager"
 msgstr "Administrador de imágenes"
 
@@ -1789,12 +1373,6 @@ msgid "Details"
 msgstr "Detalles"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:23
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:43
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:53
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:13
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:22
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:83
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:91
 msgid "Author"
 msgstr "Autor"
 
@@ -2150,6 +1728,8 @@ msgid "There are not plugins installed yet!"
 msgstr "Aún no hay plugins instalados"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:49
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:95
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:183
 msgid "Settings"
 msgstr "Opciones"
 
@@ -2178,72 +1758,6 @@ msgstr "Todos %s los menús Rss se enlistan a continuación. Da click a una opci
 msgid "URL:"
 msgstr "URL:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/theme.php:36
-msgid "View Site"
-msgstr "Ver Sitio"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/theme.php:37
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:43
-msgid "Logout"
-msgstr "Salir"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/theme.php:41
-msgid "Powered by Anaia Theme"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/templates/modules/rmcommon/navigation_pages.php:10
-msgid "&laquo; prev"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/templates/modules/rmcommon/navigation_pages.php:30
-msgid "next &raquo;"
-msgstr ""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:67
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
-msgid "Management"
-msgstr "Administración"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:102
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:101
-msgid "General Settings"
-msgstr "General"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:106
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:105
-msgid "Users Settings"
-msgstr "Usuarios"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:110
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:109
-msgid "Metas and Footer"
-msgstr "Encabezado y pie de página"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:114
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:113
-msgid "Words Censor"
-msgstr "Censor de Palabras"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:118
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
-msgid "Searchs Settings"
-msgstr "Buscar Actualizaciones"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:122
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
-msgid "Mail Settings"
-msgstr "Opciones de correo"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:126
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
-msgid "Authentication"
-msgstr "Autentificación"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/anaia/widgets/mods_and_settings.php:143
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
-msgid "Modules Settings"
-msgstr "Configuración de Módulos"
-
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:41
 msgid "Visit Site"
 msgstr "Visitar Sitio"
@@ -2252,10 +1766,143 @@ msgstr "Visitar Sitio"
 msgid "Welcome,"
 msgstr "Bienvenido,"
 
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:43
+msgid "Logout"
+msgstr "Salir"
+
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:44
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:52
 msgid "Help"
 msgstr "Ayuda"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
+msgid "Management"
+msgstr "Administración"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:101
+msgid "General Settings"
+msgstr "General"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:105
+msgid "Users Settings"
+msgstr "Usuarios"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:109
+msgid "Metas and Footer"
+msgstr "Encabezado y pie de página"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:113
+msgid "Words Censor"
+msgstr "Censor de Palabras"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
+msgid "Searchs Settings"
+msgstr "Buscar Actualizaciones"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
+msgid "Mail Settings"
+msgstr "Opciones de correo"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
+msgid "Authentication"
+msgstr "Autentificación"
+
+#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
+msgid "Modules Settings"
+msgstr "Configuración de Módulos"
+
+#~ msgid "View Site"
+#~ msgstr "Ver Sitio"
+
+#~ msgid "Akismet Plugin"
+#~ msgstr "Plugin Akismet"
+
+#~ msgid "Akismet options"
+#~ msgstr "Opciones de Akismet"
+
+#, fuzzy
+#~ msgid "Avatars Plugin"
+#~ msgstr "Plugins Disponibles"
+
+#, fuzzy
+#~ msgid "Expired pages deleted successfully"
+#~ msgstr "¡Imágenes eliminadas exitosamente!"
+
+#, fuzzy
+#~ msgid "You must specify a file to delete!"
+#~ msgstr "¡Debes especificar el id de la categoría para editar!"
+
+#, fuzzy
+#~ msgid "Selected file does not exists!"
+#~ msgstr "¡El tema especificado no existe!"
+
+#, fuzzy
+#~ msgid "File deleted successfully!"
+#~ msgstr "¡Imágenes eliminadas exitosamente!"
+
+#~ msgid "Settings saved!"
+#~ msgstr "¡Configuraciones guardadas!"
+
+#, fuzzy
+#~ msgid "Cache deleted successfully!"
+#~ msgstr "¡Categoría eliminada exitosamente!"
+
+#, fuzzy
+#~ msgid "View files"
+#~ msgstr "Ver Sitio"
+
+#, fuzzy
+#~ msgid "Booster"
+#~ msgstr "Envió"
+
+#, fuzzy
+#~ msgid "Booster status"
+#~ msgstr "Estado de la Categoría"
+
+#, fuzzy
+#~ msgid "Delete expired"
+#~ msgstr "¡El identificador de sesión expiró!"
+
+#, fuzzy
+#~ msgid "%s secs."
+#~ msgstr "%s bytes"
+
+#, fuzzy
+#~ msgid "Booster Status"
+#~ msgstr "Estado de la Categoría"
+
+#~ msgid "Do you really wish to delete all cached files?"
+#~ msgstr "¿Realmente deseas eliminar los archivos almacenados en caché?"
+
+#, fuzzy
+#~ msgid "Disable booster"
+#~ msgstr "Deshabilitar"
+
+#, fuzzy
+#~ msgid "Enable booster"
+#~ msgstr "Habilitar"
+
+#, fuzzy
+#~ msgid "Select the appearance taht you wish for Lightbox plugin"
+#~ msgstr "Selecciona la categoría donde deseas cargar las imágenes"
+
+#~ msgid "Scale images"
+#~ msgstr "Redimensionar imágenes"
+
+#~ msgid "Addtitional settings"
+#~ msgstr "Configuraciones adicionales"
+
+#, fuzzy
+#~ msgid "here"
+#~ msgstr "Temas"
+
+#, fuzzy
+#~ msgid "Description length"
+#~ msgstr "Descripción"
+
+#, fuzzy
+#~ msgid "Recaptcha Plugin"
+#~ msgstr "Plugin Akismet"
 
 #~ msgid "Configure"
 #~ msgstr "Configurar"

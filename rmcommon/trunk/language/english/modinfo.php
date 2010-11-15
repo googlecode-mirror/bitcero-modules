@@ -39,7 +39,7 @@ define('_MI_RMC_ANONCOMS',__('Allow anonymous users to post comments','rmcommon'
 define('_MI_RMC_APPROVEREG',__('Automatically approve comments by registered users','rmcommon'));
 define('_MI_RMC_APPROVEANON',__('Automatically approve comments by anonymous users','rmcommon'));
 define('_MI_RMC_ALLOWEDIT',__('Allow users to edit their comments','rmcommon'));
-define('_MI_RMC_EDITLIMIT',__('Time limit to edit a comment. (in hours)','rmcommon'));
+define('_MI_RMC_EDITLIMIT',__('Time limit to edit a comment (in hours).','rmcommon'));
 
 // RSS
 define('_MI_RMC_RSSIMAGE', __('Image for rss feeds','rmcommon'));
@@ -51,7 +51,7 @@ define('_MI_RMC_PHPMAIL', __('PHP Mail()','rmcommon'));
 define('_MI_RMC_SMTP', __('SMTP','rmcommon'));
 define('_MI_RMC_SENDMAIL', __('Sendmail','rmcommon'));
 define('_MI_RMC_SMTPSERVER',__('SMTP server to use','rmcommon'));
-define('_MI_RMC_SMTPSERVERD', __('Specify the server through width the emails will be sent.','rmcommon'));
+define('_MI_RMC_SMTPSERVERD', __('Specify the server through with the emails will be sent.','rmcommon'));
 define('_MI_RMC_ENCRYPT', __('SMTP encryption','rmcommon'));
 define('_MI_RMC_ENCRYPTD', __('For SSL or TLS encryption to work your PHP installation must have appropriate OpenSSL transports wrappers.','rmcommon'));
 define('_MI_RMC_CRYPTNONE', __('None','rmcommon'));

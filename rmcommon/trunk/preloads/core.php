@@ -11,7 +11,13 @@
 class RmcommonCorePreload extends XoopsPreloadItem
 {
 	public function eventCoreIncludeCommonStart(){
-
+        global $xoopsOption;
+        
+        if(substr($_SERVER['REQUEST_URI'], -10)=='/admin.php' && strpos($_SERVER['REQUEST_URI'], 'modules')===FALSE){
+            header('location: '.XOOPS_URL.'/modules/rmcommon/');
+            die();
+        }
+        
         if(substr($_SERVER['REQUEST_URI'], -16)=='system/admin.php' && empty($_POST)){
             header('location: '.XOOPS_URL.'/modules/rmcommon/');
             die();

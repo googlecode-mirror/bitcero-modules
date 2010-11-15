@@ -23,7 +23,7 @@
                 <span class="modimg" style="background: url(../<?php echo $module->getInfo('dirname'); ?>/<?php echo $module->getInfo('image'); ?>) no-repeat center;">&nbsp;</span>
                 <strong><?php echo $module->getInfo('name'); ?></strong><br />
                 <span class="moddesc"><?php echo $module->getInfo('description'); ?></span><br />
-                <a href="<?php echo XOOPS_URL; ?>/modules/system/admin.php?fct=modulesadmin&op=install&module=<?php echo $module->getInfo('dirname'); ?>"><?php _e('Install', 'rmcommon'); ?></a>
+                <a href="modules.php?action=install&dir=<?php echo $module->getInfo('dirname'); ?>"><?php _e('Install', 'rmcommon'); ?></a>
             </div>
             <?php endforeach; ?>
             <span class="description">

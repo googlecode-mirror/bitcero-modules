@@ -97,27 +97,30 @@ $Id$
     margin: 0 5px 5px 10px;
     border: 1px solid #999;
 }
-.rmc_news{
+.news_item{
     padding: 0 0 8px 0;
     margin-bottom: 5px;
     border-bottom: 1px dotted #CCC;
     overflow: hidden;
 }
-.rmc_news a.link{
-    display: block;
-    padding: 0 0 2px 0;
-    font-weight: bold;
+#rmc-recent-news .news_item:last-child{
+    border-bottom: none;
 }
-.rmc_news .text{
-    display: block;
-    color: #666;
-    font-size: 0.9em;
+.news_item h3{
+    margin: 0 0 10px 0;
 }
-.rmc_news .image{
+.news_item a.thumb img{
     float: left;
-    margin: 0 3px 3px 0;
+    margin: 0 5px 2px 0;
+    padding: 1px;
+    border: 1px solid #CCC;
     width: 60px;
 }
-.even .rmc_news:last-child{
-    border-bottom: 0;
+.news_item .news_content{
+    line-height: 150%;
+    color: #444;
+}
+.news_item .link{
+    display: block;
+    margin: 10px 0 0 0;
 }
