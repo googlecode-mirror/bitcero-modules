@@ -1,0 +1,91 @@
+#es-editor{
+    overflow: hidden;
+    height: 30px;
+}
+#es-editor #edButtonHTML, #es-editor #edButtonPreview{
+    display: block;
+    height: 18px;
+    margin: 5px 0 0 5px;
+    padding: 4px 5px 2px;
+    float: left;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -khtml-border-top-right-radius: 3px;
+    -khtml-border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    background-color: #F5F5F5;
+    border-color: #E1E1E1;
+    color: #999;
+}
+#es-editor #edButtonPreview {
+    margin-left: 5px;
+}
+#es-editor #edButtonHTML{
+    margin-left: 15px;
+}
+a#edButtonHTML:hover, a#edButtonPreview:hover{
+    text-decoration: none;
+}
+#es-editor a#edButtonHTML.active{
+    background-color: #E1E1E1;
+    color: #333;
+}
+#es-editor a#edButtonPreview.active{
+    background-color: #E1E1E1;
+    color: #333;
+}
+
+#quicktags{
+    background: #DFDFDF url(../images/ed-bg.png) repeat-x top;
+    padding: 3px;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -khtml-border-top-right-radius: 5px;
+    -khtml-border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-bottom: -1px;
+	display: none;
+    border: 1px solid #CCC;
+    border-bottom: 0;
+}
+#quicktags input{
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-image: url(../images/butt2.png);
+    background-position: left top;
+    background-repeat: repeat-x;
+    padding: 4px;
+    font-size: 0.85em;
+    color: #333;
+    border: 1px solid #CCC;
+    margin: 1px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    text-shadow: none;
+}
+#ed-container textarea{
+    font-family: Tahoma, Geneva, sans-serif;
+	font-size: 1.05em;
+	color: #333;
+	padding: 10px 3px;
+    background: #FFF;
+    border: 1px solid #E1E1E1;
+	-moz-border-radius: 0 0 5px 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -khtml-border-bottom-right-radius: 5px;
+    -khtml-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#ed-container textarea:focus{
+	border-color: #e1e1e1;
+}
