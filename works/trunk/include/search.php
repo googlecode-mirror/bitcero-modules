@@ -54,4 +54,3 @@ function pwSearch($queryarray, $andor, $limit, $offset, $userid){
     
     return $ret;
 }
-?>
