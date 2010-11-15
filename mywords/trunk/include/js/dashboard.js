@@ -9,11 +9,11 @@
 
 $(document).ready(function(){
 	
-	var url=encodeURIComponent("http://redmexico.com.mx/modules/vcontrol/?id=5&type=json");
+	var url=encodeURIComponent("http://redmexico.com.mx/modules/vcontrol/?id=2&type=json");
 
 	$.post('<?php echo XOOPS_URL; ?>/modules/rmcommon/include/proxy.php', {url: url}, function(data){
 		if(data.indexOf("<html")>0 && data.indexOf("</html>")>0) return;
-        $("#mw-recent-news").append(data);
+        $("#mw-recent-news").html(data);
 	}, 'html');
 	
 });

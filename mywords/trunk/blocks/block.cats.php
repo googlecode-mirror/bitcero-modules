@@ -26,7 +26,7 @@ function mywordsBlockCats($options){
 		$cat->loadPosts();
 		$ret['id'] = $cat->id();
 		$ret['name'] = $cat->getVar('name');
-		if ($options[1]) $ret['posts'] = $cat->getVar('posts');
+		if (isset($options[1]) && $options[1]) $ret['posts'] = $cat->getVar('posts');
 		$ret['indent'] = $k['indent'] * 2;
 		$ret['link'] = $cat->permalink();
 		$block['categos'][] = $ret;

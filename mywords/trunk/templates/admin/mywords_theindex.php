@@ -26,9 +26,11 @@
         <!-- / End quick publishing -->
         
         <!-- Recent News -->
-        <div class="outer" id="mw-recent-news">
+        <div class="outer">
         	<div class="th"><?php _e('Recent News','mywords'); ?></div>
-        	
+        	<div id="mw-recent-news">
+            
+            </div>
         </div>
         <!-- /End recent news -->
         
