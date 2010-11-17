@@ -151,6 +151,8 @@ $post->add_categories($categories, true);
 // Add tags
 $post->add_tags($tags);
 
+$post->clear_metas();
+
 foreach($meta as $data){
     $post->add_meta($data['key'], $data['value']);
 }

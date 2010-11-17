@@ -373,6 +373,13 @@ class MWPost extends RMObject
 		
 		$this->metas[$name] = $value;
 	}
+    
+    /**
+    * Clean metas array
+    */
+    public function clear_metas(){
+        $this->metas = array();
+    }
 	
 	/**
 	* Determines if current or given user can read this post
