@@ -105,7 +105,7 @@ function rd_edit_note(){
 	global $xoopsModule;
     
     RMTemplate::get()->assign('xoops_pagetitle', __('Editing Note','docs'));
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Editing note','docs'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Editing Note','docs'));
 	xoops_cp_header();
 
 	$id = rmc_server_var($_GET, 'id', 0);

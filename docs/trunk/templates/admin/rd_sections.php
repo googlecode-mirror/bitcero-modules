@@ -38,7 +38,7 @@
                 <a href="./sections.php?action=edit&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>"><?php _e('Edit','docs'); ?></a> |
                 <a href="./sections.php?action=delete&amp;sec=<?php echo $section['id']; ?>&amp;id=<?php echo $id; ?>" onclick="return confirm('<?php echo sprintf(__("Do you really wish to delete %s?",'docs'), $section['title']); ?>');"><?php _e('Delete','docs'); ?></a> |
                 <a href="?action=new&amp;id=<?php echo $id; ?>&amp;parent=<?php echo $section['id']; ?>"><?php _e('Add Section','docs'); ?></a> |
-                <a href="<?php echo $section['permalink']; ?>">View</a>
+                <a href="<?php echo $section['link']; ?>">View</a>
             </span>
         </td>
 		<td><input type="text" name="orders[<?php echo $section['id']; ?>]" id="order-<?php echo $section['id']; ?>" size="1" value="<?php echo $section['order']; ?>" /></td>

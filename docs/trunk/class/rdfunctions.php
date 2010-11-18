@@ -110,6 +110,7 @@ class RDFunctions
         $sec = new RDSection();
         $i = 1; // Counter
         $num = 1;
+        
         while ($row = $db->fetchArray($result)){
             $sec->assignVars($row);
             $section = array(
@@ -121,8 +122,8 @@ class RDFunctions
                     'order'=>$sec->getVar('order'),
                     'author'=>$sec->getVar('uid'),
                     'author_name'=>$sec->getVar('uname'),
-                    'created'=>$sec->getVar('created'),
-                    'modified'=>$sec->getVar('modified'),
+                    'created'=>RMTimeFormatter::get()->format($sec->getVar('created'), '%M% %d%, %Y%'),
+                    'modified'=>RMTimeFormatter::get()->format($sec->getVar('modified'), '%M% %d%, %Y%'),
                     'number'=>$jumps==0 ? $num : ($number !='' ? $number.'.' : '').$i,
                     'comments'=>$sec->getVar('comments'),
                     'edit'=> !$xoopsUser ? 0 : ($xoopsUser->isAdmin() ? true : $res->isEditor($xoopsUser->uid())),

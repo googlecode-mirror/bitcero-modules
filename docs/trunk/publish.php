@@ -146,7 +146,7 @@ function savePublish(){
                 redirect_header(RDFunctions::url(), 1, __('Your resource has been created, however the email to administrator could no be sent.','docs'));
                 die();
             }
-            redirect_header(RDFunctions::url(), 1, __('Your resource has been created and is pending for approval. We eill sent an email when you can access to it and add content.','docs'));
+            redirect_header(RDFunctions::url(), 1, __('Your resource has been created and is pending for approval. We will sent an email when you can access to it and add content.','docs'));
             die();
 			
 		}

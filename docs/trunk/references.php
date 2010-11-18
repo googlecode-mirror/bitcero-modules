@@ -111,7 +111,7 @@ function references($edit=0){
 		}
 		$ref=new RDReference($id_ref);
 		if ($ref->isNew()){
-			redirectMsg('./references.php'.$ruta,__('Specified does not exists!','docs'),1);
+			redirectMsg('./references.php'.$ruta,__('Specified note does not exists!','docs'),1);
 			die();
 		}
 

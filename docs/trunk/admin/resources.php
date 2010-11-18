@@ -117,19 +117,19 @@ function rd_show_form($edit=0){
 
 	$form = new RMForm($edit ? sprintf(__('Edit Resource: %s','docs'), $res->getVar('title')) : __('New Resource','docs'),'frmres','resources.php');
 	
-	$form->addElement(new RMFormText(__('Resource title'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
-	if ($edit) $form->addElement(new RMFormText(__('Resource slug'),'nameid',50,150,$res->getVar('nameid')));
-	$form->addElement(new RMFormTextArea(__('Description'),'desc',5,50,$edit ? $res->getVar('description','e') : ''),true);
+	$form->addElement(new RMFormText(__('Resource title', 'docs'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
+	if ($edit) $form->addElement(new RMFormText(__('Resource slug', 'docs'),'nameid',50,150,$res->getVar('nameid')));
+	$form->addElement(new RMFormTextArea(__('Description', 'docs'),'desc',5,50,$edit ? $res->getVar('description','e') : ''),true);
 	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$edit ? $res->getVar('editors') : '',30));
 
 	//Propietario de la publicacion
 	if ($edit){
-		$form->addElement(new RMFormUser(__('Resource owner'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
+		$form->addElement(new RMFormUser(__('Resource owner', 'docs'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
 	}
-	$form->addElement(new RMFormYesno(__('Approve content and changes by editors'),'approvededit',$edit ? $res->getVar('editor_approve') : 0));
-	$form->addElement(new RMFormGroups(__('Groups that can see this resource'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
-	$form->addElement(new RMFormYesno(__('Set as public','docs'),'public',$edit ? $res->getVar('public') : 0));
-	$form->addElement(new RMFormYesNo(__('Quick index'),'quick',$edit ? $res->getVar('quick') : 0));
+	$form->addElement(new RMFormYesno(__('Approve content and changes by editors', 'docs'),'approvededit',$edit ? $res->getVar('editor_approve') : 0));
+	$form->addElement(new RMFormGroups(__('Groups that can see this resource', 'docs'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
+	$form->addElement(new RMFormYesno(__('Set as public','docs', 'docs'),'public',$edit ? $res->getVar('public') : 0));
+	$form->addElement(new RMFormYesNo(__('Quick index', 'docs'),'quick',$edit ? $res->getVar('quick') : 0));
 
 	
 	//Mostrar índice a usuarios sin permiso de publicación
@@ -176,7 +176,7 @@ function rd_save_resource($edit=0){
         $q .= "&amp;action=edit";
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('resources.php?'.$q, __('Sessiontoken expired!','docs'), 1);
+		redirectMsg('resources.php?'.$q, __('Session token expired!','docs'), 1);
         die();
 	}
     

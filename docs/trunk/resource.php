@@ -40,7 +40,7 @@ if (!$allowed && !$res->getVar('show_index')){
 }
 
 if (!$allowed && !$res->getVar('quick')){
-	redirect_header(RDURL, 2, __('Sorry, you are not allowed to view this resource','docs'));
+	redirect_header(RDURL, 2, __('Sorry, you are not authorized to view this resource','docs'));
 	die();
 }
 

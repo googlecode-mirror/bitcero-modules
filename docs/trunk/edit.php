@@ -45,7 +45,7 @@ function showSection(){
 	if ($xoopsUser->uid() != $res->getVar('owner') && 
 		!$res->isEditor($xoopsUser->uid()) && 
 		!$xoopsUser->isAdmin()){
-		redirect_header(RDFunctions::url(), 1, __('Operation not allowed','docs'));
+		redirect_header(RDFunctions::url(), 1, __('Operation not allowed!','docs'));
 		die();
 	}
     
@@ -102,7 +102,7 @@ function formSection($edit=0){
     if (!$xoopsUser->uid()==$res->getVar('owner') && 
         !$res->isEditor($xoopsUser->uid()) && 
         !$xoopsUser->isAdmin()){
-        redirect_header($section->permalink(), 1, __('Operation not allowed','docs'));
+        redirect_header($section->permalink(), 1, __('Operation not allowed!','docs'));
         die();
     }
 
@@ -168,14 +168,14 @@ function saveSection($edit=0,$ret=0){
 
 	//Verifica si se proporcionó una publicación para la sección
 	if ($res<=0){
-		redirect_header(RDURL, 1, __('Operation not allowed','docs'));
+		redirect_header(RDURL, 1, __('Operation not allowed!','docs'));
 		die();
 	}
 	
 	//Verifica si la publicación existe
 	$res= new RDResource($res);
 	if ($res->isNew()){
-		redirect_header(RDURL, 1, __('Operation not allowed','docs'));
+		redirect_header(RDURL, 1, __('Operation not allowed!','docs'));
 		die();
 	}
 	
@@ -337,7 +337,7 @@ function changeOrderSections(){
         $url_ret = RDFunctions::url().'?page=edit&action=list&id='.$id;
 	
 	if (!$xoopsSecurity->check()){
-		redirect_header($url_ret, 0, __('Sessión token expired!','docs'));
+		redirect_header($url_ret, 0, __('Session token expired!','docs'));
 		die();
 	}	
 

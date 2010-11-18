@@ -231,7 +231,7 @@ function showFormEdits(){
 	
 	$edit = new RDEdit($id);
 	if ($edit->isNew()){
-		redirectMsg('edits.php', __('Sepecified content does not exists!','docs'), 1);
+		redirectMsg('edits.php', __('Specified content does not exists!','docs'), 1);
 		die();
 	}
 	

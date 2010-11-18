@@ -50,7 +50,7 @@
     <tr class="even">
 	    <td><strong><?php _e('Search:','docs'); ?></strong>
 		<input type="text" name="search" size="15" value="<?php echo $search; ?>"/>
-		<input name="sbtsearch" class="formButton" value="<?php _e('Ir','docs'); ?>" type="submit"/>
+		<input name="sbtsearch" class="formButton" value="<?php _e('Go','docs'); ?>" type="submit"/>
         <input name="id" value="<?php echo $id; ?>" type="hidden" />
         <input name="page" value="<?php echo $page; ?>" type="hidden" /> 
 	    </td>

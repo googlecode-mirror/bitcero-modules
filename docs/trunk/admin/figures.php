@@ -232,7 +232,7 @@ function rd_delete_figures(){
     
         
     if (!$xoopsSecurity->check()){
-        redirectMsg('./figures.php'.$ruta, __('Session token expired','docs'), 1);
+        redirectMsg('./figures.php'.$ruta, __('Session token expired!','docs'), 1);
         die();
     }
 

@@ -162,7 +162,7 @@ function formFigures($edit=0){
     
     $res = new RDResource($id);
     if($res->isNew()){
-        redirectMsg('?'.$ruta, __('A resources has not been specified!','docs'), 1);
+        redirectMsg('?'.$ruta, __('A resource has not been specified!','docs'), 1);
         die();
     }
 
