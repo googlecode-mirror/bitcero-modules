@@ -46,13 +46,18 @@ while ($row = $db->fetchArray($result)){
 
 	if (!isset($clients[$feat->client()])) $clients[$feat->client()] = new PWClient($feat->client());
 
-	$link = PW_URL.($mc['urlmode'] ? '/'.$feat->title_id().'/' : '/work.php?id='.$feat->id());
-	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$feat->category()]->nameId().'/' : '/catego.php?id='.$categos[$feat->category()]->nameId());
-
-	$tpl->append('featureds',array('id'=>$feat->id(),'title'=>$feat->title(),'desc'=>$feat->descShort(),
-	'catego'=>$categos[$feat->category()]->name(),'client'=>$clients[$feat->client()]->name(),'link'=>$link,
-	'created'=>formatTimeStamp($feat->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$feat->image(),
-	'rating'=>PWFunctions::rating($feat->rating()),'linkcat'=>$link_cat));
+	$tpl->append('featureds',array(
+        'id'=>$feat->id(),
+        'title'=>$feat->title(),
+        'desc'=>$feat->descShort(),
+	    'catego'=>$categos[$feat->category()]->name(),
+        'client'=>$clients[$feat->client()]->name(),
+        'link'=>$feat->link(),
+	    'created'=>formatTimeStamp($feat->created(),'s'),
+        'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$feat->image(),
+	    'rating'=>PWFunctions::rating($feat->rating()),
+        'linkcat'=>$categos[$feat->category()]->link()
+    ));
 
 }
 $tpl->assign('lang_feats',__('Featured Works','works'));
@@ -65,4 +70,3 @@ $tpl->assign('width',$thSize[0]+20);
 $tpl->assign('xoops_pagetitle', __('Featured Works','works')." &raquo; ".$mc['title']);
 
 include 'footer.php';
-?>

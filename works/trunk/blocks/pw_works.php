@@ -64,7 +64,7 @@ function pw_works_show($options){
 		$rtn['created'] = formatTimestamp($work->created(), 's');
 		if ($options[5]) $rtn['image'] = XOOPS_UPLOAD_URL.'/works/ths/'.$work->image();
 		$linkcat = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'cat/'.$cat->nameId() : 'catego.php?id='.$cat->nameId());
-		$rtn['cat'] = sprintf(__('Category: %s','works'),'<a href="'.$linkcat.'">'.$cat->name().'</a>');
+		$rtn['cat'] = sprintf(__('Category: %s','works'),'<a href="'.$cat->link().'">'.$cat->name().'</a>');
 		$rtn['client'] = sprintf(__('Customer: %s','works'),$client->businessName());
 		$block['works'][] = $rtn;
 

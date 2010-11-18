@@ -21,8 +21,8 @@ class PWFunctions
 		$xoopsTpl->assign('lang_recentsall', __('Recent works','works'));
 		$xoopsTpl->assign('lang_featuredall', __('Featured works','works'));
 		
-		$recent = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/recent/' : XOOPS_URL.'/modules/works/recent.php';
-		$featured = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/featured/' : XOOPS_URL.'/modules/works/featured.php';
+		$recent = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/recent/' : XOOPS_URL.'/modules/works/index.php?page=recent';
+		$featured = $xoopsModuleConfig['urlmode'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'], '/').'/featured/' : XOOPS_URL.'/modules/works/index.php?page=featured';
 		
 		$xoopsTpl->assign('url_recent', $recent);
 		$xoopsTpl->assign('url_featured', $featured);

@@ -10,6 +10,27 @@
 
 include '../../mainfile.php';
 
+if($xoopsModuleConfig['urlmode']<=0){
+    // PHP Default URLs mode
+    $page = rmc_server_var($_REQUEST, 'page', '');
+    $id = rmc_server_var($_REQUEST, 'id', '');
+    
+    switch($page){
+        case 'category':
+            include 'catego.php';
+            break;
+        case 'work':
+            include 'work.php';
+            break;
+        default:
+            include $page.'.php';
+            break;
+    }
+    
+    if (trim($page)!='') exit();
+    
+}
+
 $docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
 $root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
 $request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);

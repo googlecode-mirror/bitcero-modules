@@ -8,6 +8,9 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!defined('XOOPS_ROOT_PATH'))
+    require '../../mainfile.php';
+
 $xoopsOption['template_main'] = 'pw_work.html';
 $xoopsOption['module_subpage'] = 'work';
 include 'header.php';
@@ -29,8 +32,6 @@ if($work->isNew()){
 $cat = new PWCategory($work->category());
 $client = new PWClient($work->client());
 
-$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$cat->nameId().'/' : '/catego.php?id='.$cat->nameId());
-
 $work_data = array(
 	'id'=>$work->id(),
 	'title'=>$work->title(),
@@ -40,7 +41,8 @@ $work_data = array(
         'name'=>$cat->name(),
         'description'=>$cat->desc(),
         'id'=>$cat->id(),
-        'nameid'=>$cat->nameId()
+        'nameid'=>$cat->nameId(),
+        'link' => $cat->link()
     ),
 	'client'=>$client->businessName(),
 	'site'=>$work->nameSite(),
@@ -52,7 +54,6 @@ $work_data = array(
 	'mark'=>$work->mark(),
 	'image'=>XOOPS_UPLOAD_URL.'/works/'.$work->image(),
     'thumb'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
-	'linkcat'=>$link_cat,
 	'comment'=>$work->comment(),
 	'rating'=>PWFunctions::rating($work->rating()),
 	'views'=>$work->views(),
@@ -99,18 +100,15 @@ if ($mc['other_works']>0){
 		if (!isset($categos[$wk->category()])) $categos[$wk->category()] = new PWCategory($wk->category());
 
 		if (!isset($clients[$wk->client()])) $clients[$wk->client()] = new PWClient($wk->client());
-
-		$link = PW_URL.($mc['urlmode'] ? '/'.$wk->title_id().'/' : '/work.php?id='.$wk->id());
-		$link_cat = PW_URL.($mc['urlmode'] ? '/cat/'.$categos[$wk->category()]->nameId().'/' : '/catego.php?id='.$categos[$wk->category()]->nameId());
-
+        echo "1 - ";
 		$tpl->append('other_works',array(
             'id'=>$wk->id(),
             'title'=>$wk->title(),
             'desc'=>$wk->descShort(),
-            'linkcat'=>$link_cat,
+            'linkcat'=>$categos[$wk->category()]->link(),
 		    'catego'=>$categos[$wk->category()]->name(),
             'client'=>$clients[$wk->client()]->name(),
-            'link'=>$link,
+            'link'=>$wk->link(),
 		    'created'=>formatTimeStamp($wk->created(),'s'),
             'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$wk->image(),
             'views'=>$wk->views(),

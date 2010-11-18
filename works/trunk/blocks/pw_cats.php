@@ -30,9 +30,11 @@ function pw_categories_show($options){
 	$block = array();
 	
 	while($row = $db->fetchArray($result)){
+        $cat = new PWCategory();
+        $cat->assignVars($row);
 		$ret = array();
 		$ret['name'] = $row['name'];
-		$ret['link'] = ($mc['urlmode'] ? XOOPS_URL.$mc['htbase'].'/cat/'.$row['id_cat'] : XOOPS_URL.'/modules/works/catego.php?id='.$row['id_cat']);
+		$ret['link'] = $cat->link();
 		$block['categos'][] = $ret;
 	}
 	

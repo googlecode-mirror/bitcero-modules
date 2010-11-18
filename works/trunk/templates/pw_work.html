@@ -13,7 +13,7 @@
 		<table cellspacing="0" border="0">
 			<tr class="<{cycle values="even,odd"}>">
 				<td><strong><{$lang_catego}></strong></td>
-				<td><a href="<{$work.linkcat}>"><{$work.category.name}></a></td>
+				<td><a href="<{$work.category.link}>"><{$work.category.name}></a></td>
 			</tr>
 			<{if $work.client}>
 			<tr class="<{cycle values="even,odd"}>">
@@ -72,28 +72,28 @@
 
 <!-- //Fin de Detalles del Trabajo -->
 
+<!-- Otros Trabajos -->
+<{if $other_works}>
+<h2 class="pwWorks"><{$lang_others}></h2>
+<div class="pw_grid_container">
+    <{foreach item=feat from=$other_works}>
+    <div class="<{cycle values="even,odd"}> pw_works_grid">
+        <a href="<{$feat.link}>"><img src="<{$feat.image}>" alt="<{$feat.title}>" /></a>
+        <div>        
+        <h3><a href="<{$feat.link}>"><{$feat.title}></a></h3>
+        <span class="desc"><{$feat.desc}></span>    
+        <span class="info"><strong><{$lang_catego}></strong> <a href="<{$feat.linkcat}>"><{$feat.catego}></a> |
+        <strong><{$lang_date}></strong> <{$feat.created}> |
+        <{if $feat.client}><strong><{$lang_client}></strong> <{$feat.client}><{/if}></span>
+        </div>
+    </div>
+    <{/foreach}>
+</div>
+<{/if}>
+<!-- //Fin de otros trabajos -->
+
 <!-- Start Comments -->
 <a name="comments"></a>
 <{include file="db:rmc_comments_display.html"}>
 <{include file="db:rmc_comments_form.html"}>
 <!-- /End comments -->
-
-<!-- Otros Trabajos -->
-<{if $other_works}>
-<h2 class="pwWorks"><{$lang_others}></h2>
-<div class="pw_grid_container">
-	<{foreach item=feat from=$works}>
-	<div class="<{cycle values="even,odd"}> pw_works_grid">
-		<a href="<{$feat.link}>"><img src="<{$feat.image}>" alt="<{$feat.title}>" /></a>
-		<div>		
-		<h3><a href="<{$feat.link}>"><{$feat.title}></a></h3>
-		<span class="desc"><{$feat.desc}></span>	
-		<span class="info"><strong><{$lang_catego}></strong> <a href="<{$feat.linkcat}>"><{$feat.catego}></a> |
-		<strong><{$lang_date}></strong> <{$feat.created}> |
-		<{if $feat.client}><strong><{$lang_client}></strong> <{$feat.client}><{/if}></span>
-		</div>
-	</div>
-	<{/foreach}>
-</div>
-<{/if}>
-<!-- //Fin de otros trabajos -->

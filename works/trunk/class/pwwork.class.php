@@ -260,7 +260,7 @@ class PWWork extends RMObject
 		if ($mc['urlmode']){
 			$link .= trim($mc['htbase'], '/').'/'.$this->title_id().'/';
 		} else {
-			$link .= 'work.php?id='.$this->id();
+			$link .= 'modules/works/index.php?page=work&amp;id='.$this->id();
 		}
 		
 		return $link;

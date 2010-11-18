@@ -72,21 +72,18 @@ while ($row = $db->fetchArray($result)){
 
 	if (!isset($clients[$work->client()])) $clients[$work->client()] = new PWClient($work->client());
 
-	$link = PW_URL.($mc['urlmode'] ? '/'.$work->title_id().'/' : '/work.php?id='.$work->id());
-	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$work->category()]->nameId().'/' : '/catego.php?id='.$categos[$work->category()]->nameId());
-
 	$tpl->append('works',array(
         'id'=>$work->id(),'title'=>$work->title(),
         'desc'=>$work->descShort(),
 	    'catego'=>$categos[$work->category()]->name(),
         'client'=>$clients[$work->client()]->name(),
-        'link'=>$link,
+        'link'=>$work->link(),
         'time'=>$work->created(),
 	    'created'=>formatTimeStamp($work->created(),'s'),
         'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$work->image(),
 	    'rating'=>PWFunctions::rating($work->rating()),
         'featured'=>$work->mark(),
-        'linkcat'=>$link_cat,
+        'linkcat'=>$categos[$work->category()]->link(),
         'metas'=>$work->get_metas()
     ));
 }

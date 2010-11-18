@@ -41,14 +41,13 @@ function pwSearch($queryarray, $andor, $limit, $offset, $userid){
 
 	$rtn = array();
 	$rtn['image'] = 'images/works.png';
-	$link = ($mc['urlmode'] ? "work/".$work->id() : "work.php?id=".$work->id());
 	
 	
         $rtn['title'] = $work->title();
         $rtn['time'] = $work->created();
 	$rtn['uid'] = '';
         $rtn['desc'] = $work->descShort();
-        $rtn['link'] = $link;
+        $rtn['link'] = $work->link();
         $ret[] = $rtn;
     }
     

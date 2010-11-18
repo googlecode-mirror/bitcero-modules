@@ -37,7 +37,7 @@ function pw_comments_show($options){
 		
 		$rtn = array();
 		$rtn['client'] = $client->businessName();
-		$rtn['link'] = XOOPS_URL.'/modules/works/'.($mc['urlmode'] ? 'work/'.$work->id() : 'work.php?id='.$work->id());
+		$rtn['link'] = $work->link();
 		$rtn['comment'] = $work->comment();
 	
 		$block['works'][] = $rtn;

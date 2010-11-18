@@ -46,13 +46,18 @@ while ($row = $db->fetchArray($result)){
 
 	if (!isset($clients[$recent->client()])) $clients[$recent->client()] = new PWClient($recent->client());
 
-	$link = PW_URL.($mc['urlmode'] ? '/'.$recent->title_id().'/' : '/work.php?id='.$recent->id());
-	$link_cat = PW_URL.($mc['urlmode'] ? '/category/'.$categos[$recent->category()]->nameId().'/' : '/catego.php?id='.$categos[$recent->category()]->nameId());
-
-	$tpl->append('recents',array('id'=>$recent->id(),'title'=>$recent->title(),'desc'=>$recent->descShort(),
-	'catego'=>$categos[$recent->category()]->name(),'client'=>$clients[$recent->client()]->name(),'link'=>$link,
-	'created'=>formatTimeStamp($recent->created(),'s'),'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$recent->image(),
-	'rating'=>PWFunctions::rating($recent->rating()),'featured'=>$recent->mark(),'linkcat'=>$link_cat));
+	$tpl->append('recents',array(
+        'id'=>$recent->id(),'title'=>$recent->title(),
+        'desc'=>$recent->descShort(),
+	    'catego'=>$categos[$recent->category()]->name(),
+        'client'=>$clients[$recent->client()]->name(),
+        'link'=>$recent->link(),
+	    'created'=>formatTimeStamp($recent->created(),'s'),
+        'image'=>XOOPS_UPLOAD_URL.'/works/ths/'.$recent->image(),
+	    'rating'=>PWFunctions::rating($recent->rating()),
+        'featured'=>$recent->mark(),
+        'linkcat'=>$categos[$recent->category()]->link()
+    ));
 
 }
 $tpl->assign('lang_recents',__('Recent Works','works'));
