@@ -160,8 +160,8 @@ function formFigures($edit=0){
 	$search = rmc_server_var($_GET, 'search', 0);
 	$ruta='id='.$id.'&page='.$page.'&search='.$search;
     
-    $res = new RDResource($id);
-    if($res->isNew()){
+    $resource = new RDResource($id);
+    if($resource->isNew()){
         redirectMsg('?'.$ruta, __('A resource has not been specified!','docs'), 1);
         die();
     }

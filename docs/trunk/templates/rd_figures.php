@@ -5,6 +5,7 @@
     <meta http-equiv="content-language" content="<?php echo $xoops_langcode; ?>" />
     <title><?php _e('Notes and References','docs'); ?> &raquo; <?php echo $xoops_sitename; ?></title>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo $theme_css; ?>" />
+    <!-- RMTemplateHeader -->
     <style type="text/css">
         body{
             background:#FFF;
@@ -115,7 +116,7 @@
 <h1><?php $edit ? _e('Edit Figure','docs') : _e('Create Figure','docs'); ?></h1>
 <div id="form-figures">
     <form name="frmfig" id="frm-figs" method="post" accept="figures.php">
-        <span class="resource"><?php _e('Resource:','docs'); ?> <strong><?php echo $res->getVar('title'); ?></strong></span>
+        <span class="resource"><?php _e('Resource:','docs'); ?> <strong><?php echo $resource->getVar('title'); ?></strong></span>
         <label for="title"><?php _e('Title:','docs'); ?></label>
         <input type="text" name="title" id="title" size="50" value="<?php echo $edit ? $fig->getVar('title','e') : ''; ?>" />
         <label for="desc"><?php _e('Description:','docs'); ?></label>
