@@ -64,6 +64,9 @@ define('_MI_RMC_SMTPPASS', __('SMTP password','rmcommon'));
 define('_MI_RMC_SENDMAILPATH', __('Sendmail path','rmcommon'));
 define('_MI_RMC_SENDMAILPATHD', __('Input the command for sendmail, including the correct command line flags. The default to use is "/usr/sbin/sendmail -bs" if this is not specified.','rmcommon'));
 
+// RSS
+define('_MI_RMC_RSSENABLE', __('Enable RSS Center','rmcommon'));
+
 // Admin Menu
 define('_MI_RMC_MENUDASH',__('Dashboard','rmcommon'));
 define('_MI_RMC_MENUPLUGS',__('Plugins','rmcommon'));

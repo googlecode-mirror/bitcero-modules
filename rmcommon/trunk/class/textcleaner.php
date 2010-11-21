@@ -59,7 +59,7 @@ class TextCleaner
 		// Only a few icons due to these can be extended by plugins or modules
 		$url = RMCURL.'/images/emots';
 		$this->emots[] = array('code'=>array(':)',':-)'),'icon'=>$url.'/smile.png');
-		$this->emots[] = array('code'=>array(':-S',':S',':s','O.o'),'icon'=>$url.'/confused.png');
+		$this->emots[] = array('code'=>array(':-S','O.o'),'icon'=>$url.'/confused.png');
 		$this->emots[] = array('code'=>array(":'("),'icon'=>$url.'/cry.png');
 		$this->emots[] = array('code'=>array(':->',':>'),'icon'=>$url.'/grin.png');
 		$this->emots[] = array('code'=>array(':D',':-D'),'icon'=>$url.'/happy.png');
@@ -67,7 +67,7 @@ class TextCleaner
 		$this->emots[] = array('code'=>array(':p',':-p',':-P',':P'),'icon'=>$url.'/tongue.png');
 		$this->emots[] = array('code'=>array(':-(',':('),'icon'=>$url.'/unhappy.png');
 		$this->emots[] = array('code'=>array(';)',';-)'),'icon'=>$url.'/wink.png');
-		$this->emots[] = array('code'=>array(':|',':-|'),'icon'=>$url.'/neutral.png');
+		$this->emots[] = array('code'=>array(':-|'),'icon'=>$url.'/neutral.png');
 		$this->emots[] = array('code'=>array('8)','8-)','B)','B-)'),'icon'=>$url.'/cool.png');
 		$this->emots[] = array('code'=>array('>:(','>:-('),'icon'=>$url.'/mad.png');
 		$this->emots[] = array('code'=>array(':oops:'),'icon'=>$url.'/red.png');

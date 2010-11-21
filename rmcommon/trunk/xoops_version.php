@@ -257,3 +257,10 @@ $modversion['config'][27]['description'] = '';
 $modversion['config'][27]['formtype'] = 'textbox';
 $modversion['config'][27]['valuetype'] = 'text';
 $modversion['config'][27]['default'] = '/usr/sbin/sendmail -bs';
+
+$modversion['config'][28]['name'] = 'rss_enable';
+$modversion['config'][28]['title'] = '_MI_RMC_RSSENABLE';
+$modversion['config'][28]['description'] = '';
+$modversion['config'][28]['formtype'] = 'yesno';
+$modversion['config'][28]['valuetype'] = 'int';
+$modversion['config'][28]['default'] = 1;

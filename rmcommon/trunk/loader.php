@@ -69,29 +69,38 @@ spl_autoload_register('rmc_autoloader');
 */
 function cu_render_output($output){
 	global $xoTheme, $xoopsTpl;
-	
+    
     if (function_exists('xoops_cp_header')) return $output;
     
-	$page = $output;
+    $page = $output;
     if($xoopsTpl){
-	    if(defined('COMMENTS_INCLUDED') && COMMENTS_INCLUDED){
-		    RMTemplate::get()->add_xoops_style('comments.css', 'rmcommon');
-	    }
+        if(defined('COMMENTS_INCLUDED') && COMMENTS_INCLUDED){
+            RMTemplate::get()->add_xoops_style('comments.css', 'rmcommon');
+        }
     }
-	
-	$pos = strpos($page, "</head>");
-	if($pos===FALSE) return $output;
-	include_once RMTemplate::get()->tpl_path('rmc_header.php', 'rmcommon');
-	    
-	$rtn = substr($page, 0, $pos)."\n";
-	$rtn .= $scripts;
-	$rtn .= $styles;
-	$rtn .= $heads;
-	$rtn .= substr($page, $pos);
-	
-	$rtn = RMEvents::get()->run_event('rmcommon.end.flush',$rtn);
     
-	return $rtn;
+    include_once RMTemplate::get()->tpl_path('rmc_header.php', 'rmcommon');
+    $rtn .= $scripts;
+    $rtn .= $styles;
+    $rtn .= $heads;
+    
+    $pos = strpos($page, "<!-- RMTemplateHeader -->");
+    if($pos!==FALSE){
+        $page = str_replace('<!-- RMTemplateHeader -->', $rtn, $page);
+        $page = RMEvents::get()->run_event('rmcommon.end.flush',$page);
+        return $page;
+    }
+    
+    $pos = strpos($page, "</head>");
+    if($pos===FALSE) return $output;
+        
+    $ret = substr($page, 0, $pos)."\n";
+    $ret .= $rtn;
+    $ret .= substr($page, $pos);
+    
+    $ret = RMEvents::get()->run_event('rmcommon.end.flush',$ret);
+    
+    return $ret;
 }
 
 include_once XOOPS_ROOT_PATH.'/class/logger/xoopslogger.php';

@@ -32,8 +32,10 @@ class RmcommonRmcommonPreload
         
 		$url = RMFunctions::current_url();
 		$p = parse_url($url);
+        
+        $config = RMFunctions::configs();
 		
-		if(substr($p['path'], -11)=='backend.php'){
+		if(substr($p['path'], -11)=='backend.php' && $config['rss_enable']){
 			include_once RMCPATH.'/rss.php';
 			die();
 		}
