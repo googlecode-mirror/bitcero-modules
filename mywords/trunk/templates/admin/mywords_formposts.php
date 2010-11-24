@@ -2,7 +2,7 @@
 
 </div>
 <form name="mwposts" id="mw-form-posts" action="posts.php" method="post">
-<h1 class="rmc_titles mw_titles" style="background-image: url(../images/post32.png);"><?php $edit ? _e('Edit Post','mywords') : _e('Create Post','mywords'); ?></h1>
+<h1 class="rmc_titles mw_titles"><?php $edit ? _e('Edit Post','mywords') : _e('Create Post','mywords'); ?></h1>
 <label class="error" for ="post-title" style="display: none;"><?php _e('You must specify the title for this post!','mywords'); ?></label>
 <input type="text" name="title" id="post-title" class="mw_biginput required" value="<?php echo $edit ? $post->getVar('title','e') : ''; ?>" />
 <div class="mw_permacont <?php if(!$edit): ?>mw_permainfo<?php endif; ?>" id="mw-perma-link">
