@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Common Utilities 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-09 21:59-0600\n"
-"PO-Revision-Date: 2010-11-09 22:10-0600\n"
+"PO-Revision-Date: 2010-11-19 19:32-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -931,7 +931,7 @@ msgstr "Proporciona una clave secreta usada para encriptar la infromación."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:26
 msgid "Admin theme"
-msgstr "Administrador de tema"
+msgstr "Tema del panel de control"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:28
 msgid "Allow HTMl in text"
@@ -967,11 +967,11 @@ msgstr "Permitir a los usuarios anónimos enviar comentarios"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:39
 msgid "Automatically approve comments by registered users"
-msgstr "Aprovar automáticamente comentarios de usuarios registrados"
+msgstr "Aprobar  automáticamente comentarios de usuarios registrados"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:40
 msgid "Automatically approve comments by anonymous users"
-msgstr "Aprovar automáticamente comentarios de usuarios anónimos"
+msgstr "Aprobar  automáticamente comentarios de usuarios anónimos"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:41
 msgid "Allow users to edit their comments"
