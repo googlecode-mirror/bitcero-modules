@@ -22,7 +22,7 @@
 	</div>
 	<div class="mod_data">
         <?php if($mod['active']): ?>
-		<span class="name"><a href="<?php echo $mod['link']; ?>"><?php echo $mod['name']; ?></a></span>
+		<span class="name"><a href="<?php echo $mod['link']; ?>"><?php echo strlen($mod['name'])>20 ? substr($mod['name'], 0, 20) : $mod['name']; ?></a></span>
         <?php else: ?>
         <span class="name"><?php echo $mod['name']; ?></span>
         <?php endif; ?>
