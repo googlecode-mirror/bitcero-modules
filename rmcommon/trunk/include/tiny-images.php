@@ -179,6 +179,11 @@ if ($action==''){
         $fd = pathinfo($img->getVar('file'));
         $filesurl = XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date'));
         
+        $thumb = date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'];
+        if(!file_exists(XOOPS_UPLOAD_PATH.'/'.$thumb)){
+            $thumb = date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/'.$fd['filename'].'.'.$fd['extension'];
+        }
+        
         $ret = array(
             'id'        => $img->id(),
             'title'        => $img->getVar('title'),
@@ -186,7 +191,7 @@ if ($action==''){
             'desc'      => $img->getVar('desc', 'n'),
             'cat'        => $categories[$img->getVar('cat')]->getVar('name'),
             'author'    => $authors[$img->getVar('uid')],
-            'thumb'      => XOOPS_UPLOAD_URL.'/'.date('Y',$img->getVar('date')).'/'.date('m',$img->getVar('date')).'/sizes/'.$fd['filename'].'_'.$current_size['width'].'x'.$current_size['height'].'.'.$fd['extension'],
+            'thumb'      => XOOPS_UPLOAD_URL.'/'.$thumb,
             'url'		=> $filesurl,
             'file'      => $fd['filename'],
             'extension' => $fd['extension'],
