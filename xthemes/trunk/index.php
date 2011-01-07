@@ -8,8 +8,7 @@
 // --------------------------------------------------------------
 
 define('RMCLOCATION','dashboard');
-include_once '../../mainfile.php';
-include_once '../../include/cp_header.php';
+require '../../include/cp_header.php';
 include_once 'include/functions.php';
 include_once 'class/theme.php';
 

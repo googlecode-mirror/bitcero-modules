@@ -153,9 +153,14 @@ div#it-form-container div.field_item span.descriptions{
 	font-family: georgia, times, serif;
 	margin-top: 5px;
 }
-div#it-form-container div.field_item div.content{
+div#it-form-container div.field_item .content{
 	float: right;
 	width: 65%;
+}
+div#it-form-container div.field_item .xpand{
+    float: none;
+    width: auto;
+    overflow: hidden;
 }
 div#it-form-container input[type='text'], div#it-form-container select, div#it-form-container textarea{
 	padding: 3px;
