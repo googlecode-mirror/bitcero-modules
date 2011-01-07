@@ -59,3 +59,51 @@ CREATE TABLE `rmc_settings` (
 `valuetype` VARCHAR( 20 ) NOT NULL ,
 INDEX ( `element` , `name` )
 ) ENGINE = MYISAM ;
+
+CREATE TABLE `rmc_blocks` (
+  `bid` mediumint(8) unsigned NOT NULL auto_increment,
+  `element` varchar(50)   NOT NULL,
+  `element_type` varchar(20)   NOT NULL,
+  `options` text   NOT NULL,
+  `name` varchar(150)   NOT NULL default '',
+  `description` varchar(255)   NOT NULL,
+  `canvas` tinyint(1) unsigned NOT NULL default '0',
+  `weight` smallint(5) unsigned NOT NULL default '0',
+  `visible` tinyint(1) unsigned NOT NULL default '0',
+  `type` varchar(6)   NOT NULL,
+  `content_type` varchar(20)   NOT NULL,
+  `isactive` tinyint(1) unsigned NOT NULL default '0',
+  `dirname` varchar(50)   NOT NULL default '',
+  `file` varchar(150)   NOT NULL,
+  `show_func` varchar(50) NOT NULL default '',
+  `edit_func` varchar(50) NOT NULL default '',
+  `template` varchar(150) NOT NULL,
+  PRIMARY KEY  (`bid`),
+  KEY `element` (`element`),
+  KEY `visible` (`visible`)
+) ENGINE=MyISAM;
+
+CREATE TABLE `rmc_blocks_positions` (
+  `id_position` int(11) NOT NULL auto_increment,
+  `name` varchar(150) collate latin1_general_ci NOT NULL,
+  `tag` varchar(150) collate latin1_general_ci NOT NULL,
+  `active` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`id_position`),
+  UNIQUE KEY `tag` (`tag`)
+) ENGINE=MyISAM;
+
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (1, 'Left Blocks', 'canvas_left', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (2, 'Right Blocks', 'canvas_right', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (3, 'Top-Left Blocks', 'page_topleft', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (4, 'Top-Center Blocks', 'page_topcenter', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (5, 'Top-Right Blocks', 'page_topright', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (6, 'Bottom-Left Blocks', 'page_bottomleft', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (7, 'Bottom-Right Blocks', 'page_bottomright', 1);
+INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (8, 'Bottom-Center Blocks', 'page_bottomcenter', 1);
+
+CREATE TABLE `rmc_bkmod` (
+`bid` INT NOT NULL ,
+`mid` INT NOT NULL ,
+`page` VARCHAR( 50 ) NOT NULL ,
+INDEX ( `bid` , `mid` )
+) ENGINE = MYISAM ;

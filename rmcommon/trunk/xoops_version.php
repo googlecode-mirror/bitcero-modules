@@ -264,3 +264,10 @@ $modversion['config'][28]['description'] = '';
 $modversion['config'][28]['formtype'] = 'yesno';
 $modversion['config'][28]['valuetype'] = 'int';
 $modversion['config'][28]['default'] = 1;
+
+$modversion['config'][29]['name'] = 'blocks_enable';
+$modversion['config'][29]['title'] = '_MI_RMC_BLOCKSENABLE';
+$modversion['config'][29]['description'] = '';
+$modversion['config'][29]['formtype'] = 'yesno';
+$modversion['config'][29]['valuetype'] = 'int';
+$modversion['config'][29]['default'] = 1;

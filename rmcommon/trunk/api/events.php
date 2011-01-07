@@ -118,7 +118,7 @@ class RMEvents
         $xoopsLogger = XoopsLogger::getInstance();
         
         foreach ($this->_events[$event_name] as $event) {
-            $args[1] = $value;
+            $args[1] =& $value;
             $xoopsLogger->addExtra($pre, $event['class_name'].'::'.$event['method']);
             $value = call_user_func_array(array($event['class_name'], $event['method']), array_slice($args, 1));
         }

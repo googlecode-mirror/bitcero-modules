@@ -10,6 +10,11 @@
 
 class RmcommonCorePreload extends XoopsPreloadItem
 {
+    
+    public function eventCoreHeaderStart(){
+        
+    }
+    
 	public function eventCoreIncludeCommonStart(){
         global $xoopsOption;
         
@@ -50,7 +55,23 @@ class RmcommonCorePreload extends XoopsPreloadItem
 	
 	public function eventCoreClassTheme_blocksRetrieveBlocks($params){
 		
-		RMEvents::get()->run_event('rmcommon.retrieve.blocks', $params);
+        // xos_logos_PageBuilder
+        $xpb = $params[0];
+        // Template
+        $tpl = $params[1];
+        // Blocks
+        $blocks =& $params[2];
+        
+        /**
+        * Use internal blocks manager if enabled
+        */
+        $config = RMFunctions::configs();
+        if($config['blocks_enable']){
+            $blocks = array();
+        }
+        
+		RMEvents::get()->run_event('rmcommon.retrieve.blocks', &$blocks, &$xpb, &$tpl);
+        
 		
 	}
 	

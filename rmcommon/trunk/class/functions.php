@@ -77,6 +77,7 @@ class RMFunctions
 		
 		RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
 		RMTemplate::get()->add_tool(__('Modules','rmcommon'), 'modules.php', 'images/modules.png', 'modules');
+        RMTemplate::get()->add_tool(__('Blocks','rmcommon'), 'blocks.php', 'images/blocks.png', 'blocks');
 		RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
 		RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
         RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');
@@ -465,5 +466,28 @@ class RMFunctions
 		
 		return $m;
     }
+    
+    /**
+    * Get modules list
+    */
+    public function get_modules_list($active=-1){
+        
+        $db = Database::getInstance();
+        
+        $sql = "SELECT mid, name, dirname FROM " . $db->prefix("modules");
+        if($active>-1 && $active<2)
+            $sql .= " WHERE isactive=$active";
+        
+        $sql .= " ORDER BY name";
+        $result = $db->query($sql);
+        $modules = array();
+        while ($row = $db->fetchArray($result)) {
+            $modules[] = $row;
+        }
+        
+        return $modules;
+    }
+    
+    
 	
 }

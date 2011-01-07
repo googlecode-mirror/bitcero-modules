@@ -1,0 +1,57 @@
+.rmc_blocks_options{
+    padding: 5px 0;
+    overflow: hidden;
+}
+.rmc_blocks_options label{
+    float: left;
+    margin: 0 10px 0 0;
+}
+.rmc_blocks_options input,
+.rmc_blocks_options select{
+    margin: 3px 0 0 0;
+}
+.disabled{
+    font-style: italic;
+    background: url(../images/modbk.png) no-repeat left;
+    padding: 2px 0 2px 16px;
+}
+
+.bkbk_forms{
+    overflow: hidden;
+}
+.bkbk_forms label{
+    font-weight: bold;
+    display: block;
+    margin: 0 0 3px 0;
+}
+.bkbk_forms input[type='text'],
+.bkbk_forms select{
+    width: 95%;
+    margin: 0 0 10px 0;
+}
+.bkbk_forms .desc{
+    font-size: 0.9em;
+    color: #666;
+    display: block;
+    margin: -8px 0 10px 0;
+}
+.bkbk_forms .other_options{
+    display: block;
+    margin: 10px 0;
+}
+#existing-positions{
+    display: none;
+    padding: 10px;
+    font-size: 0.9em;
+    line-height: 140%;
+}
+#existing-positions span{
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px dotted #CCC;
+    padding: 3px 0;
+}
+#existing-positions span a{
+    display: block;
+    float: right;
+}

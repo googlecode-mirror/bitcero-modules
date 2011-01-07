@@ -66,6 +66,7 @@ define('_MI_RMC_SENDMAILPATHD', __('Input the command for sendmail, including th
 
 // RSS
 define('_MI_RMC_RSSENABLE', __('Enable RSS Center','rmcommon'));
+define('_MI_RMC_BLOCKSENABLE', __('Enable internal blocks manager','rmcommon'));
 
 // Admin Menu
 define('_MI_RMC_MENUDASH',__('Dashboard','rmcommon'));
