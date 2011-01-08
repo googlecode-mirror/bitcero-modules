@@ -21,8 +21,8 @@ class RmcommonRmcommonPreload
 			$widgets[] = rmc_available_mods();
         
         if (RMCLOCATION=='blocks' && $xoopsModule->dirname()=='rmcommon'){
-            $widgets[] = rmc_blocks_new();
-            $widgets[] = rmc_blocks_addpos();
+            //$widgets[] = rmc_blocks_new();
+            //$widgets[] = rmc_blocks_addpos();
         }
 		
 		return $widgets;

@@ -18,6 +18,12 @@
 
 .bkbk_forms{
     overflow: hidden;
+    width: 300px;
+    display: none;
+    float: left;
+    margin: 0 10px 0 0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 .bkbk_forms label{
     font-weight: bold;
@@ -54,4 +60,65 @@
 #existing-positions span a{
     display: block;
     float: right;
+}
+
+/** Menus **/
+.megamenu{
+position: absolute;
+display: none;
+left: 0;
+top: 0;
+background: #fff;
+border: 1px solid #507BA0;
+border-width: 5px 1px;
+font: normal 12px Verdana;
+z-index: 100;
+}
+
+.megamenu .column{
+float: left;
+width: 180px; /*width of each menu column*/
+margin-right: 5px;
+margin-bottom: 5px;
+}
+
+.megamenu .column ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+.megamenu .column ul li{
+padding-bottom: 5px;
+padding-left: 5px;
+}
+
+.megamenu .column h3{
+    font: bold 13px Arial;
+    margin: 0 0 5px 0;
+    border-bottom: 1px solid #666;
+    padding: 0 0 2px 0;
+}
+.rmc_menus{
+    float: right;
+    padding: 6px 6px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    border: 1px solid #ccc;
+    background: url(../images/down.png) no-repeat right;
+    padding-right: 16px;
+    margin: 0 2px;
+}
+.menucont{
+    max-height: 300px;
+    padding: 10px 0 10px 10px;
+    overflow: auto;
+    width: 580px;
+}
+#newban{
+    
+}
+.rmc_menus:hover{
+    background-color: #ebebeb;
 }

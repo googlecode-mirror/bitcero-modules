@@ -87,7 +87,7 @@ function show_rm_blocks()
         $used_blocks[] = array(
             'id' => $row['wid'], 
             'title' => $row['name'],
-            'application' => array('id' => $mod->mid(), 'dir' => $mod->dirname(), 'name' => $mod->name()), 'side' => $row['side'], 
+            'module' => array('id' => $mod->mid(), 'dir' => $mod->dirname(), 'name' => $mod->name()), 'side' => $row['side'], 
             'order' => $row['weight'], 
             'visible'=>$row['visible'],
             'type'=>$row['type'],
@@ -112,6 +112,9 @@ function show_rm_blocks()
         '</a> &raquo; ' . __('Blocks','rmcommon'));
     RMTemplate::get()->add_style('blocks.css', 'rmcommon');
     RMTemplate::get()->add_local_script('blocks.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('jkmenu.js', 'rmcommon', 'include');
+    
+    
     
     xoops_cp_header();
     
