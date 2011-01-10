@@ -78,6 +78,7 @@ CREATE TABLE `rmc_blocks` (
   `show_func` varchar(50) NOT NULL default '',
   `edit_func` varchar(50) NOT NULL default '',
   `template` varchar(150) NOT NULL,
+  `bcachetime` int(10) NOT NULL,
   PRIMARY KEY  (`bid`),
   KEY `element` (`element`),
   KEY `visible` (`visible`)

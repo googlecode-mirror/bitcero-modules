@@ -77,30 +77,34 @@ function show_rm_blocks()
     while ($row = $db->fetchArray($result)) {
         $groups[] = array('id' => $row['groupid'], 'name' => $row['name']);
     }
+    
+    // Cargamos las posiciones de bloques
+    $bpos = RMBlocksFunctions::block_positions();
 
     $sql = createSQL();
     $result = $db->query($sql);
     $blocks = array();
     $used_blocks = array();
     while ($row = $db->fetchArray($result)) {
-        $mod = RMFunctions::load_module($row['mid']);
+        $mod = RMFunctions::load_module($row['element']);
+        if(!$mod) continue;
         $used_blocks[] = array(
-            'id' => $row['wid'], 
+            'id' => $row['bid'], 
             'title' => $row['name'],
-            'module' => array('id' => $mod->mid(), 'dir' => $mod->dirname(), 'name' => $mod->name()), 'side' => $row['side'], 
-            'order' => $row['weight'], 
+            'module' => array('id' => $mod->mid(), 'dir' => $mod->dirname(), 'name' => $mod->name()), 
+            'canvas' => $bpos[$row['canvas']], 
+            'weight' => $row['weight'], 
             'visible'=>$row['visible'],
             'type'=>$row['type'],
             'options'=>$row['edit_func']!='' ? 1 : 0,
-            'description'=>$row['description']);
+            'description'=>$row['description']
+        );
     }
     
     // ** API **
     // Event for manege the used widgets list
     $used_blocks = RMEvents::get()->run_event('rmcommon.used.blocks.list', $used_blocks);
 
-    // Cargamos las posiciones de bloques
-    $bpos = RMBlocksFunctions::block_positions();
     $positions = array();
     foreach ($bpos as $row){
         $positions[] = array('id' => $row['id_position'], 'name' => $row['name']);

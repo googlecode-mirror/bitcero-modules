@@ -122,3 +122,60 @@ padding-left: 5px;
 .rmc_menus:hover{
     background-color: #ebebeb;
 }
+.bk-waiting{
+    display: none;
+    float: right;
+    padding: 6px 6px 6px 26px;
+    font-size: 0.9em;
+    background: url(../images/wait.gif) no-repeat 6px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-style: italic;
+    color: #666;
+}
+.description{
+    display: block;
+    padding: 3px 0;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/** Settings  Form **/
+.bk_hightlight{
+    background: #FFF9DD;
+}
+#tr-block-form{
+    padding: 2px;
+    background: #f2f2f2;
+}
+#block-config-form{
+    padding: 10px;
+    overflow: hidden;
+}
+#block-config-form .left{
+    width: 47%;
+    float: left;
+    overflow: hidden;
+}
+#block-config-form .right{
+    width: 47%;
+    float: right;
+    overflow: hidden;
+}
+fieldset{
+    background: #FFF;
+    color: #666;
+}
+fieldset legend{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    margin-top: -5px;
+    color: #000;
+}
+fieldset label{
+    display: block;
+    font-weight: bold;
+    padding: 0 0 3px 0;
+    margin: 10px 0 0 0;
+}

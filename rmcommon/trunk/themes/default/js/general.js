@@ -15,7 +15,12 @@ $(document).ready(function(){
     $("form table td.head").css('width','300px');
     $("table.outer").attr("cellspacing",'0');
     
-    setTimeout("hideMessages();", 10000);
+    $(".msg-close").click(function(){
+        $(this).parent(".errorMsg").slideUp();
+        $(this).parent(".infoMsg").slideUp();
+    });
+    
+    //setTimeout("hideMessages();", 10000);
 });
 
 function hideMessages(){

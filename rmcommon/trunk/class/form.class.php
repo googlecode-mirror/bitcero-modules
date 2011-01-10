@@ -24,7 +24,7 @@ include_once RMCPATH.'/class/fields/security.class.php';
 include_once RMCPATH.'/class/fields/formuser.class.php';
 include_once RMCPATH.'/class/fields/theme.class.php';
 include_once RMCPATH.'/class/fields/language.class.php';
-include_once RMCPATH.'/class/fields/apps.class.php';
+include_once RMCPATH.'/class/fields/modules.class.php';
 include_once RMCPATH.'/class/fields/timezone.class.php';
 include_once RMCPATH.'/class/fields/cachemod.class.php';
 include_once RMCPATH.'/class/fields/avatar.class.php';

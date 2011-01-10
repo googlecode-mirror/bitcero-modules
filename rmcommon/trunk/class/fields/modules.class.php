@@ -1,30 +1,12 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// XOOPS EXM
-// Nueva Versión Mejorada de XOOPS
-// CopyRight  2005 - 2006. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Red México Common Utilities
+// A framework for Red México Modules
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright:  2005 - 2006. BitC3R0. Red México
-// @author: BitC3R0
 
 
 class RMFormModules extends RMFormElement
@@ -140,7 +122,7 @@ class RMFormModules extends RMFormElement
 					$rtn .= "</tr><tr>";
 					$i = 1;
 				}
-                $app = new EXMApplication($k);
+                $app = new XoopsModule($k);
 				$rtn .= "<td width='".((int)(100/$this->cols))."%'>";
                 $name = $this->multi ? $this->getName()."[$k]" : $this->getName();
 				if ($this->multi){

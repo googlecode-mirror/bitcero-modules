@@ -52,7 +52,7 @@ class RMBlocksFunctions
         $result = $db->query("SELECT * FROM " . $db->prefix("rmc_blocks_positions"));
         $pos = array();
         while($row = $db->fetchArray($result)){
-            $pos[] = $row;
+            $pos[$row['id_position']] = $row;
         }
         return $pos;
     }

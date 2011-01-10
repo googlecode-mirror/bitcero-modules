@@ -327,6 +327,7 @@ div.errorMsg{
     border: 1px solid #cd0a0a;
     color: #ffffff;
     margin-bottom: 10px;
+    position: relative;
 }
 div.infoMsg{
     -moz-border-radius: 5px;
@@ -338,6 +339,21 @@ div.infoMsg{
     border: 1px solid #fed22f;
     color: #363636;
     margin-bottom: 10px;
+    position: relative;
+}
+div.errorMsg .msg-close,
+div.infoMsg .msg-close{
+    display: block;
+    float: right;
+    background: #FFF url(../images/close.png) no-repeat center;
+    width: 14px;
+    height: 14px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    cursor: pointer;
+}
+div.infoMsg .msg-close{
+    border: 1px solid #fed22f;
 }
 
 .outer{
