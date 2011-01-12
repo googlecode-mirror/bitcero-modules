@@ -115,20 +115,23 @@ class RMFormModules extends RMFormElement
         }
 		
 		if ($this->type){
-			$rtn = "<table cellpadding='2' cellspacing='1' border='0'><tr>";
+            // Add js script
+            RMTemplate::get()->add_local_script('modules_field.js', 'rmcommon', 'include');
+            
+			$rtn = '<div class="modules_field"><table cellpadding="2" cellspacing="1" border="0"><tr>';
 			$i = 1;
 			foreach ($modules as $k => $v){
 				if ($i>$this->cols){
 					$rtn .= "</tr><tr>";
 					$i = 1;
 				}
-                $app = new XoopsModule($k);
+                $app = RMFunctions::load_module($k);
 				$rtn .= "<td width='".((int)(100/$this->cols))."%'>";
                 $name = $this->multi ? $this->getName()."[$k]" : $this->getName();
 				if ($this->multi){
-					$rtn .= "<label id='rm_module_$k' class='field_module_names'><input type='checkbox' value='$k' name='".$name."' id='".$name."'".(is_array($this->selected) ? (in_array($k, $this->selected) ? " checked='checked'" : '') : '')." onclick=\"modCheckAll('subpages_$k','".$name."',0);\" /> $v</label>";
+					$rtn .= "<label id='rm_module_$k' class='field_module_names'><input type='checkbox' value='$k' name='".$name."' id='".$this->getName()."-$k'".(is_array($this->selected) ? (in_array($k, $this->selected) ? " checked='checked'" : '') : '')." /> $v</label>";
 				} else {
-					$rtn .= "<label><input type='radio' value='$k' name='".$this->getName()."' id='".$this->getName()."'".(!empty($this->selected) ? ($k == $this->selected ? " checked='checked'" : '') : '')." /> $v</label>";
+					$rtn .= "<label><input type='radio' value='$k' name='".$this->getName()."' id='".$this->getName()."-$k'".(!empty($this->selected) ? ($k == $this->selected ? " checked='checked'" : '') : '')." /> $v</label>";
 				}
 				
 				$rtn .= ($this->subpages && $k>0) ? " <a href='javascript:;' onclick=\"\$('.subpages_container:visible').slideUp('slow');\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' title='".__('Show module sections','rmcommon')."'><img src='".ABSURL."/rmcommon/images/subpages.gif' align='absmiddle' /></a>" : "";
@@ -137,10 +140,11 @@ class RMFormModules extends RMFormElement
 				* Mostramos las subpáginas
 				*/
 				if ($this->subpages && $k>0){
+                    
 					$subpages = $app->getInfo('subpages');
 					$selected = $this->selectedSubPages;
 					$cr = 0;
-					$rtn.="<div id=\"subpages-".$app->dirname()."\" class=\"subpages_container\">
+					$rtn.="<div id=\"subpages-".$k."\" class=\"subpages_container\">
                             <table class='outer' cellspacing='0'>
 							<tr><th class='round_top_left round_top_right' colspan='2'>
 							<a href='javascript:;'><img src='".ABSURL."/rmcommon/images/close16.png' width='16' alt='' style='float: right;' onclick=\"\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' /></a>".sprintf(_RMS_CF_MODSUBS, $v)."</th></tr>
@@ -167,7 +171,7 @@ class RMFormModules extends RMFormElement
 				$i++;
 			}
 
-			$rtn .= "</tr></table>";
+			$rtn .= "</tr></table></div>";
 		} else {
 			if ($this->multi){
                 $name = $this->getName()."[$k]";

@@ -45,6 +45,8 @@ var blocksAjax = {
             $("#tr-block-form").fadeIn("slow");
             $("#tr-"+id).addClass("bk_hightlight");
             
+            blocksAjax.eventChange();
+            
         }, 'json');
         
         blocksAjax.scrollId("tr-"+id);
@@ -59,6 +61,10 @@ var blocksAjax = {
             scrollTop: pos.top
         }, 2000);
         
+    },
+    
+    eventChange: function(){
+        $.getScript("include/js/modules_field.js");
     }
     
 }

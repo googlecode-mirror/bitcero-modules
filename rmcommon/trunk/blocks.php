@@ -117,8 +117,7 @@ function show_rm_blocks()
     RMTemplate::get()->add_style('blocks.css', 'rmcommon');
     RMTemplate::get()->add_local_script('blocks.js', 'rmcommon', 'include');
     RMTemplate::get()->add_local_script('jkmenu.js', 'rmcommon', 'include');
-    
-    
+    RMTemplate::get()->add_style('forms.css', 'rmcommon');    
     
     xoops_cp_header();
     

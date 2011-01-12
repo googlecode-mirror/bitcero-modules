@@ -150,17 +150,15 @@ padding-left: 5px;
 }
 #block-config-form{
     padding: 10px;
-    overflow: hidden;
+    position: relative;
 }
 #block-config-form .left{
     width: 47%;
     float: left;
-    overflow: hidden;
 }
 #block-config-form .right{
     width: 47%;
     float: right;
-    overflow: hidden;
 }
 fieldset{
     background: #FFF;

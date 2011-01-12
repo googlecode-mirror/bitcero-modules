@@ -157,3 +157,13 @@ div.form_users_container ul li label{
 div.form_container label.hidden{
     display: none;
 }
+
+/** Modules **/
+.modules_field{
+    position: relative;
+}
+.subpages_container{
+    display: none;
+    position: absolute;
+    background: #FFF;
+}
