@@ -103,3 +103,8 @@
 </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
+<div id="blocker"></div>
+<div id="loading"><img src="images/loadinga.gif" width="16" height="16" alt="<?php _e('Loading','rmcomon'); ?>" /><?php _e('Loading data...','rmcommon'); ?></div>
+<div id="form-window">
+    
+</div>

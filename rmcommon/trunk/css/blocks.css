@@ -144,13 +144,79 @@ padding-left: 5px;
 .bk_hightlight{
     background: #FFF9DD;
 }
-#tr-block-form{
-    padding: 2px;
-    background: #f2f2f2;
+#blocker{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: #000;
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+    filter: Alpha(Opacity=70);
+    *filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}
+#loading{
+    display: none;
+    position: fixed;
+    width: 200px;
+    height: 15px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #333;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -120px;
+    margin-top: -50px;
+    font-style: italic;
+    color: #999;
+    border: 2px solid #999;
+    box-shadow: 0 0 10px #333;
+    -moz-box-shadow: 0 0 10px #333;
+}
+#loading img{
+    margin: 0 10px 0 0;
+    float: left;
+}
+
+#form-window{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    min-width: 600px;
+    max-height: 400px;
+    background: #fff;
+    border: 2px solid #999;
+    padding: 1px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    box-shadow: 0 0 20px #333;
+    -moz-box-shadow: 0 0 20px #333;
 }
 #block-config-form{
-    padding: 10px;
     position: relative;
+}
+#block-config-form .title{
+    border-radius: 7px 7px 0 0;
+    -moz-border-radius: 7px 7px 0 0;
+}
+#block-config-form .close{
+    display: block;
+    float: left;
+    width: 24px;
+    height: 24px;
+    background: url(../images/closeb.png) no-repeat center;
+    margin: -5px 0 0 -6px;
+    cursor: pointer;
+}
+#block-config-form .content{
+    padding: 1%;
+    /*overflow: auto;*/
 }
 #block-config-form .left{
     width: 47%;
@@ -171,9 +237,14 @@ fieldset legend{
     margin-top: -5px;
     color: #000;
 }
-fieldset label{
+fieldset label.options{
     display: block;
     font-weight: bold;
     padding: 0 0 3px 0;
     margin: 10px 0 0 0;
+    color: #000;
+}
+#block-config-form .big{
+    width: 98%;
+    font-size: 1.4em;
 }

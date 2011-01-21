@@ -118,23 +118,17 @@ class RMFormModules extends RMFormElement
             // Add js script
             RMTemplate::get()->add_local_script('modules_field.js', 'rmcommon', 'include');
             
-			$rtn = '<div class="modules_field"><table cellpadding="2" cellspacing="1" border="0"><tr>';
+			$rtn = '<div class="modules_field">';
 			$i = 1;
 			foreach ($modules as $k => $v){
-				if ($i>$this->cols){
-					$rtn .= "</tr><tr>";
-					$i = 1;
-				}
                 $app = RMFunctions::load_module($k);
-				$rtn .= "<td width='".((int)(100/$this->cols))."%'>";
+				$rtn .= "<div class=\"mod_item\">";
                 $name = $this->multi ? $this->getName()."[$k]" : $this->getName();
 				if ($this->multi){
-					$rtn .= "<label id='rm_module_$k' class='field_module_names'><input type='checkbox' value='$k' name='".$name."' id='".$this->getName()."-$k'".(is_array($this->selected) ? (in_array($k, $this->selected) ? " checked='checked'" : '') : '')." /> $v</label>";
+					$rtn .= "<label id=\"modlabel-$k\" class='field_module_names'><input type='checkbox' value='$k' name='".$name."' id='".$this->getName()."-$k'".(is_array($this->selected) ? (in_array($k, $this->selected) ? " checked='checked'" : '') : '')." /> $v</label>";
 				} else {
-					$rtn .= "<label><input type='radio' value='$k' name='".$this->getName()."' id='".$this->getName()."-$k'".(!empty($this->selected) ? ($k == $this->selected ? " checked='checked'" : '') : '')." /> $v</label>";
+					$rtn .= "<label id=\"modlabel-$k\" class=\"field_module_names\"><input type='radio' value='$k' name='".$this->getName()."' id='".$this->getName()."-$k'".(!empty($this->selected) ? ($k == $this->selected ? " checked='checked'" : '') : '')." /> $v</label>";
 				}
-				
-				$rtn .= ($this->subpages && $k>0) ? " <a href='javascript:;' onclick=\"\$('.subpages_container:visible').slideUp('slow');\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' title='".__('Show module sections','rmcommon')."'><img src='".ABSURL."/rmcommon/images/subpages.gif' align='absmiddle' /></a>" : "";
 
 				/**
 				* Mostramos las subpáginas
@@ -145,33 +139,27 @@ class RMFormModules extends RMFormElement
 					$selected = $this->selectedSubPages;
 					$cr = 0;
 					$rtn.="<div id=\"subpages-".$k."\" class=\"subpages_container\">
-                            <table class='outer' cellspacing='0'>
-							<tr><th class='round_top_left round_top_right' colspan='2'>
-							<a href='javascript:;'><img src='".ABSURL."/rmcommon/images/close16.png' width='16' alt='' style='float: right;' onclick=\"\$('#subpages-".$app->dirname()."').slideToggle('slow');\"' /></a>".sprintf(_RMS_CF_MODSUBS, $v)."</th></tr>
-							<tr class='odd'><td>
-							<label><input type='checkbox' name='subpages[$k][null]' id='subpages[$k][null]' value='--'".(!is_array($subpages) || @in_array('--', $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][null]','$k',$k);\" /> ".__('All')."</label></td>";
+                            <div class='sp_title'><span id=\"close-$k\"></span>".__('Inner pages','rmcommon')."</div>
+							<div class='sub_item'>
+							<label><input type='checkbox' name='subpages[$k][null]' id='subpages[$k][null]' value='--'".(!is_array($subpages) || @in_array('--', $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][null]','$k',$k);\" /> ".__('All','rmcommon')."</label></div>";
 					$j = 2;
 					$cr = 2;
 					if (!is_array($subpages)) $subpages = array();
 					
 					foreach ($subpages as $page=>$caption){
 						
-						if ($cr>2){
-							$rtn .= "</tr><tr class='odd'>";
-							$cr = 1;
-						}
-						$rtn.="<td><label><input type='checkbox' name='subpages[$k][$page]' id='subpages[$k][$page]' value='$page'".(is_array($subpages) && @in_array($page, $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][$page]', $k);\" /> $caption</label></td>";
+						$rtn.="<div class=\"sub_item\"><label><input type='checkbox' name='subpages[$k][$page]' id='subpages[$k][$page]' value='$page'".(is_array($subpages) && @in_array($page, $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][$page]', $k);\" /> $caption</label></div>";
 						$j++;
 						$cr++;
 					}
-			   		$rtn.='</tr></table></div>';
+			   		$rtn.='</div>';
 			   
 				}
-				$rtn .= "</td>";
+				$rtn .= "</div>";
 				$i++;
 			}
 
-			$rtn .= "</tr></table></div>";
+			$rtn .= "</div>";
 		} else {
 			if ($this->multi){
                 $name = $this->getName()."[$k]";

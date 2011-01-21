@@ -162,8 +162,55 @@ div.form_container label.hidden{
 .modules_field{
     position: relative;
 }
+.modules_field .mod_item{
+    padding: 3px 0;
+    float: left;
+    margin: 0 3px;
+}
 .subpages_container{
     display: none;
     position: absolute;
-    background: #FFF;
+    background: #333;
+    padding: 8px;
+    border: 2px solid #999;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+}
+.subpages_container .sp_title{
+    padding: 0 0 4px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #CCC;
+}
+.subpages_container .sp_title span{
+    width: 10px;
+    height: 10px;
+    margin: -6px -6px 0 8px;
+    border: 1px solid #666;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    display: block;
+    float: right;
+    background: #222 url(../themes/default/images/close.png) no-repeat left;
+    cursor: pointer;
+}
+.subpages_container .sp_title span:hover{
+    background-position: right;
+    background-color: #FFF;
+}
+.subpages_container .sub_item{
+    
+}
+.subpages_container .sub_item label{
+    padding: 2px 0;
+    cursor: pointer;
+    display: block;
+}
+.subpages_container .sub_item label:hover{
+    background: #222;
+    color: #666;
 }

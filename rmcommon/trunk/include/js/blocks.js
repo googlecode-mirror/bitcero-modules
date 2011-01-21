@@ -12,7 +12,13 @@ var blocksAjax = {
             action: 'settings'
         };
         
+        $("#blocker").slideDown('fast', function(){
+            $("#loading").fadeIn("slow");
+        });
+        
         $.post('ajax/blocks.php', params, function(data){
+            
+            $("#loading").fadeOut("fast");
             
             if(data.error){  
                 $("#bk-messages").removeClass("infoMsg");
@@ -40,16 +46,19 @@ var blocksAjax = {
                 $("#XOOPS_TOKEN_REQUEST").val(data.token);
             }
             
-            $("#tr-"+id).after('<tr id="tr-block-form" class="even bk_trform" valign="top" style="display: none;"><td colspan="5">'+data.content+'</td></tr>');
+            //$("#tr-"+id).after('<tr id="tr-block-form" class="even bk_trform" valign="top" style="display: none;"><td colspan="5">'+data.content+'</td></tr>');
             
-            $("#tr-block-form").fadeIn("slow");
+            $("#form-window").html(data.content);
             $("#tr-"+id).addClass("bk_hightlight");
+            $("#form-window").css("margin-top", "-"+$("#form-window").height()/2+"px");
+            $("#form-window").show("fast", function(){
+            });
             
             blocksAjax.eventChange();
             
         }, 'json');
         
-        blocksAjax.scrollId("tr-"+id);
+        //blocksAjax.scrollId("tr-"+id);
         
     },
 
@@ -64,7 +73,20 @@ var blocksAjax = {
     },
     
     eventChange: function(){
-        $.getScript("include/js/modules_field.js");
+
+        //$.getScript("include/js/modules_field.js");
+        $.ajax({
+            url: "include/js/modules_field.js",
+            dataType: 'script',
+            cache: false
+        });
+    },
+    
+    close: function(){
+        $("#form-window").fadeOut("fast", function(){
+            $("#blocker").slideUp('fast');
+            $("#table-blocks .bk_hightlight").removeClass("bk_hightlight");
+        });
     }
     
 }
