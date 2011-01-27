@@ -15,6 +15,7 @@ function pw_categories_show($options){
 
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
 
 	$db =& Database::getInstance();
 
