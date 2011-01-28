@@ -9,17 +9,16 @@
 
 class XthemesCorePreload extends XoopsPreloadItem
 {
-	public function eventCoreHeaderAddmeta(){
-		global $xoopsTpl, $xoopsConfig;
-		
-		if(!$xoopsTpl) return;
-		
-		$dir = XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'];
-		
-		if(is_file($dir.'/config/theme.php')){
-            $xoopsTpl->plugins_dir[] = XOOPS_ROOT_PATH.'/modules/xthemes/smarty';
-			$xoopsTpl->plugins_dir[] = $dir.'/plugins';
-		}
-		
-	}
+    
+    public function eventCoreClassTheme_blocksRetrieveBlocks($options){
+        global $xoopsConfig;
+        
+        $dir = XOOPS_THEME_PATH.'/'.$xoopsConfig['theme_set'];
+        if(is_file($dir.'/config/theme.php')){
+            $options[0]->theme->template->plugins_dir[] = XOOPS_ROOT_PATH.'/modules/xthemes/smarty';
+            $options[0]->theme->template->plugins_dir[] = $dir.'/plugins';
+        }
+        
+    }
+    
 }
