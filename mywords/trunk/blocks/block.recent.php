@@ -52,8 +52,13 @@ function mywordsBlockRecent($options){
         } elseif($options[1]=='comm'){
             $ret['comments'] = sprintf(__('%u Comments','mywords'), $post->getVar('comments'));
         }
+        $ret['time'] = $post->getVar('pubdate');
 		$block['posts'][] = $ret;
+        
 	}
+    
+    RMTemplate::get()->add_xoops_style('mwblocks.css', 'mywords');
+    
 	return $block;
 }
 
