@@ -119,10 +119,10 @@ if ($mc['related']){
 }
 
 $tpl->assign('show_related', $mc['related']);
-$tpl->assign('lang_related', _MS_QP_RELATED);
-$tpl->assign('lang_page', _MS_QP_PAGE);
-$tpl->assign('lang_modified', _MS_QP_MOD);
-$tpl->assign('lang_hits', _MS_QP_HITS);
+$tpl->assign('lang_related', __('Related Pages','qpages'));
+$tpl->assign('lang_page', __('Page','qpages'));
+$tpl->assign('lang_modified', __('Last modification','qpages'));
+$tpl->assign('lang_hits', __('Hits','qpages'));
 
 RMEvents::get()->run_event('qpages.view.page', $page);
 
