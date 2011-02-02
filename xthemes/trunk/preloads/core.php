@@ -19,6 +19,11 @@ class XthemesCorePreload extends XoopsPreloadItem
             $options[0]->theme->template->plugins_dir[] = $dir.'/plugins';
         }
         
+        load_theme_locale($xoopsConfig['theme_set']);
+        
+        include_once XOOPS_ROOT_PATH.'/modules/xthemes/controller.php';
+        XThemesController::get()->get_config($options[0]->theme->template, array());
+        
     }
     
 }
