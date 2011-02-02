@@ -134,6 +134,14 @@ $modversion['config'][6]['formtype'] = 'yesno';
 $modversion['config'][6]['valuetype'] = 'int';
 $modversion['config'][6]['default'] = 1;
 
+// Social bookmarks
+$modversion['config'][7]['name'] = 'showbookmarks';
+$modversion['config'][7]['title'] = '_MI_MW_SHOWBOOKMARKS';
+$modversion['config'][7]['description'] = '';
+$modversion['config'][7]['formtype'] = 'yesno';
+$modversion['config'][7]['valuetype'] = 'int';
+$modversion['config'][7]['default'] = 1;
+
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";
 $modversion['blocks'][1]['name'] = __('Categories','mywords');

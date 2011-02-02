@@ -125,13 +125,15 @@ $post_arr = RMEvents::get()->run_event('mywords.view.post', $post_arr, $post);
 $xoopsTpl->assign('post', $post_arr);
 
 // Social sites
-foreach($socials as $site){
-    $xoopsTpl->append('socials', array(
-        'title' => $site->getVar('title'),
-        'icon'    => $site->getVar('icon'),
-        'url'    => $site->link($post->getVar('title'), $post->permalink(), TextCleaner::truncate($post->content(true), 60)),
-        'alt'    => $site->getVar('alt')
-    ));
+if($xoopsModuleConfig['showbookmarks']){
+    foreach($socials as $site){
+        $xoopsTpl->append('socials', array(
+            'title' => $site->getVar('title'),
+            'icon'    => $site->getVar('icon'),
+            'url'    => $site->link($post->getVar('title'), $post->permalink(), TextCleaner::truncate($post->content(true), 60)),
+            'alt'    => $site->getVar('alt')
+        ));
+    }
 }
 
 unset($tags_list);

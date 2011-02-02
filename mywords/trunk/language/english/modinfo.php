@@ -8,59 +8,61 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('_MI_MW_DESC','Modules for the publishing and management of news style blog');
+define('_MI_MW_DESC', __('Modules for the publishing and management of news style blog', 'mywords'));
 
-define('_MI_MW_AMENU1','Module Status');
-define('_MI_MW_AMENU2','Categories');
-define('_MI_MW_AMENU3','Articles');
-define('_MI_MW_AMENU4','Editors');
-define('_MI_MW_AMENU5','Bookmarks');
+define('_MI_MW_AMENU1', __('Module Status', 'mywords'));
+define('_MI_MW_AMENU2', __('Categories', 'mywords'));
+define('_MI_MW_AMENU3', __('Articles', 'mywords'));
+define('_MI_MW_AMENU4', __('Editors', 'mywords'));
+define('_MI_MW_AMENU5', __('Bookmarks', 'mywords'));
                                       
 // Menu principal
-define('_MI_MW_SEND', 'Send Article');
+define('_MI_MW_SEND', __('Send Article', 'mywords'));
 
 # Permalinks
-define('_MI_MW_PERMAFORMAT','Links Format');
-define('_MI_MW_PERMA_DESC','Determines the way the links in the module will be shown and will be processed.');
-define('_MI_MW_PERMA_DEF','Default');
-define('_MI_MW_PERMA_DATE','Basado en Fecha y Nombre');
-define('_MI_MW_PERMA_NUMS','Numérico');
+define('_MI_MW_PERMAFORMAT', __('Links Format', 'mywords'));
+define('_MI_MW_PERMA_DESC', __('Determines the way the links in the module will be shown and will be processed.', 'mywords'));
+define('_MI_MW_PERMA_DEF', __('Default', 'mywords'));
+define('_MI_MW_PERMA_DATE', __('Basado en Fecha y Nombre', 'mywords'));
+define('_MI_MW_PERMA_NUMS', __('Numérico', 'mywords'));
 // Base path for permalinks
-define('_MI_MW_BASEPATH','Base Path');
-define('_MI_MW_BASEPATHD','This path is used when the links format has been stablished as based in dates or numbers.');
+define('_MI_MW_BASEPATH', __('Base Path', 'mywords'));
+define('_MI_MW_BASEPATHD', __('This path is used when the links format has been stablished as based in dates or numbers.', 'mywords'));
 // Widget tags
-define('_MI_MW_WIDGETTAGS','Number of tags on admin widget');
+define('_MI_MW_WIDGETTAGS', __('Number of tags on admin widget', 'mywords'));
 // Posts number per page
-define('_MI_MW_PPP','Posts per page');
-define('_MI_MW_CSS','Use CSS file');
-define('_MI_MW_CSSFILE','CSS file to use');
-define('_MI_MW_SHOWNAV', 'Show navigation bar between posts');
+define('_MI_MW_PPP', __('Posts per page', 'mywords'));
+define('_MI_MW_CSS', __('Use CSS file', 'mywords'));
+define('_MI_MW_CSSFILE', __('CSS file to use', 'mywords'));
+define('_MI_MW_SHOWNAV', __('Show navigation bar between posts', 'mywords'));
 // Blog name
-define('_MI_MW_BLOGNAME','Blog name (section name)');
-define('_MI_MW_BLOGNAMED','This name will be used in trackbacks.');
+define('_MI_MW_BLOGNAME', __('Blog name (section name)', 'mywords'));
+define('_MI_MW_BLOGNAMED', __('This name will be used in trackbacks.', 'mywords'));
 
 # Imágenes para los bloques
-define('_MI_MW_BIMGSIZE','Image Size for the Blocks');
-define('_MI_MW_BIMGSIZE_DESC','The specified image in the article will be resized with this sizes. Format: "width|height"');
-define('_MI_MW_DEFIMG','Defaul Image for the articles in blocks');
-define('_MI_MW_DEFIMG_DESC','When the "graphic" mode is enable in the "Recent Articles" blocks this image will use when there is not a specified one for the article');
+define('_MI_MW_BIMGSIZE', __('Image Size for the Blocks', 'mywords'));
+define('_MI_MW_BIMGSIZE_DESC', __('The specified image in the article will be resized with this sizes. Format: "width|height"', 'mywords'));
+define('_MI_MW_DEFIMG', __('Defaul Image for the articles in blocks', 'mywords'));
+define('_MI_MW_DEFIMG_DESC', __('When the "graphic" mode is enable in the "Recent Articles" blocks this image will use when there is not a specified one for the article', 'mywords'));
 
-define('_MI_MW_FILESIZE','Maximum file size');
+define('_MI_MW_FILESIZE', __('Maximum file size', 'mywords'));
+
+define('_MI_MW_SHOWBOOKMARKS', __('Show social bookmarks', 'mywords'));
 
 // BLOQUES
-define('_MI_MW_BKCATEGOS','Categories');
-define('_MI_MW_BKRECENT','Recent Articles');
-define('_MI_MW_BKCOMMENTS','Recent Comments');
+define('_MI_MW_BKCATEGOS', __('Categories', 'mywords'));
+define('_MI_MW_BKRECENT', __('Recent Articles', 'mywords'));
+define('_MI_MW_BKCOMMENTS', __('Recent Comments', 'mywords'));
 
-define('_MI_MW_RSSNAME','Posts Syndication');
-define('_MI_MW_RSSNAMECAT','Articles Syndication in %s');
-define('_MI_MW_RSSDESC','Syndication Description');
-define('_MI_MW_RSSALL','All Recent Posts');
-define('_MI_MW_RSSALLDESC','Show all recent posts');
+define('_MI_MW_RSSNAME', __('Posts Syndication', 'mywords'));
+define('_MI_MW_RSSNAMECAT', __('Articles Syndication in %s', 'mywords'));
+define('_MI_MW_RSSDESC', __('Syndication Description', 'mywords'));
+define('_MI_MW_RSSALL', __('All Recent Posts', 'mywords'));
+define('_MI_MW_RSSALLDESC', __('Show all recent posts', 'mywords'));
 
 // Subpáginas
-define('_MI_MW_SPINDEX','Home Page');
-define('_MI_MW_SPPOST','Post');
-define('_MI_MW_SPCATEGO','Category');
-define('_MI_MW_SPAUTHOR','Author');
-define('_MI_MW_SPSUBMIT','Post Article');
+define('_MI_MW_SPINDEX', __('Home Page', 'mywords'));
+define('_MI_MW_SPPOST', __('Post', 'mywords'));
+define('_MI_MW_SPCATEGO', __('Category', 'mywords'));
+define('_MI_MW_SPAUTHOR', __('Author', 'mywords'));
+define('_MI_MW_SPSUBMIT', __('Post Article', 'mywords'));
