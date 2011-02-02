@@ -271,7 +271,7 @@ function saveWorks($edit = 0){
 	$work->setClient($client);
 	$work->setComment($comment);
 	$work->setNameSite($site);
-	$work->setUrl($url);
+	$work->setUrl(formatURL($url));
 	$work->setStart($start);
 	$work->setPeriod($period);
 	$work->setCost($cost);

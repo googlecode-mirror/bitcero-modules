@@ -46,7 +46,7 @@ $work_data = array(
     ),
 	'client'=>$client->businessName(),
 	'site'=>$work->nameSite(),
-	'url'=>$work->url(),
+	'url'=>formatURL($work->url()),
 	'created'=>formatTimeStamp($work->created(),'s'),
 	'start'=>formatTimeStamp($work->start(),'s'),
 	'period'=>$work->period(),
