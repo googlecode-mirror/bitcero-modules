@@ -36,6 +36,10 @@ $modversion['adminmenu'] = "admin/menu.php";
 // Menu Principal
 $modversion['hasMain'] = 1;
 
+// Database
+$modversion['sqlfile']['mysql'] = "sql/mysql.sql";
+$modversion['tables'][0] = "contactme";
+
 // Plantillas del Módulo
 $modversion['templates'][1]['file'] = 'contact_form.html';
 $modversion['templates'][1]['description'] = '';
