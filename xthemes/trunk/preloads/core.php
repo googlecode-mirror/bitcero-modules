@@ -26,4 +26,18 @@ class XthemesCorePreload extends XoopsPreloadItem
         
     }
     
+    public function eventCoreHeaderStart(){
+        global $xoopsConfig;
+        
+        include XOOPS_ROOT_PATH.'/modules/xthemes/include/functions.php';
+        include XOOPS_ROOT_PATH.'/modules/xthemes/class/theme.php';
+        include XOOPS_ROOT_PATH.'/modules/xthemes/controller.php';
+        
+        if(FALSE == ($object = xt_is_valid($xoopsConfig['theme_set']))) return;
+    
+        if($object->get_info("jquery"))
+            RMTemplate::get()->add_jquery();
+        
+    }
+    
 }

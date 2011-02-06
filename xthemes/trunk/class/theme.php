@@ -15,9 +15,13 @@ abstract class XThemesTheme
 {
 	protected $info = array();
 	protected $errors = array();
+    
+    function __construct(){
+        $this->info = $this->theme_info();
+    }
 	
 	protected function set_config(){
-		$info = $this->get_info();
+		$this->info = $this->theme_info();
 	}
 	
 	public function name(){
@@ -45,6 +49,18 @@ abstract class XThemesTheme
 		return $this->errors;
 	}
 	
-	abstract public function get_info();
+	public function get_info($index = ''){
+        
+        $info = $this->info;
+        
+        if($index=='') return $this->info;
+        
+        if(!isset($this->info[$index])) return;
+        
+        return $this->info[$index];
+        
+    }
+    
+    abstract protected function theme_info();
 	
 }

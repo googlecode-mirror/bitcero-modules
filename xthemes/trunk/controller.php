@@ -194,7 +194,7 @@ class XThemesController
     /**
     * Generate script tags for jQuery
     */
-    public function get_jquery(&$smarty, $params){
+    public function get_jquery($smarty, $params){
 		
 		$ret = '<script type="text/javascript" src="'.RMCURL.'/include/js/jquery.min.js"></script>';
 		if ($params['ui']){

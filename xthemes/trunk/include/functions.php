@@ -23,7 +23,7 @@ define('ITURL', XOOPS_URL.'/modules/xthemes');
 * @param string $theme
 * @return bool|string
 */
-function &xt_is_valid($theme){
+function xt_is_valid($theme){
 	global $xoopsConfig;
 
 	if (!is_file(XOOPS_THEME_PATH.'/'.$theme.'/config/theme.php'))
