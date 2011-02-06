@@ -20,3 +20,7 @@ textarea{
     float: left;
     width: 48%;
 }
+.textrequired{
+    text-align: right;
+    font-style: italic;
+}

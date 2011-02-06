@@ -26,6 +26,15 @@ function show_form(){
     $xoopsTpl->assign('lang_subject', __('Asunto:','contact'));
     $xoopsTpl->assign('lang_message', __('Message:','contact'));
     $xoopsTpl->assign('lang_sendnow', __('Send Message','contact'));
+    $xoopsTpl->assign('lang_required', __('Fields marked with * are required.','contact'));
+    
+    RMTemplate::get()->add_local_script('jquery.validate.min.js', 'rmcommon', 'include');
+    
+    $captcha = RMEvents::get()->run_event('rmcommon.recaptcha.field');
+    if($captcha!=''){
+        $xoopsTpl->assign('captcha', $captcha);
+        $xoopsTpl->assign('lang_captcha', __('Write next words to verify that you are human','contact'));
+    }
 
     include '../../footer.php';
 }

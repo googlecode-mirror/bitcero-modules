@@ -3,12 +3,12 @@
 <form name="frmContact" id="frm-contact" method="post" action="index.php">
     
     <div class="ct_field">
-    <label for="name"><{$lang_name}></label>
-    <input type="text" name="name" id="name" value="" size="50" />
+    <label for="name"><{$lang_name}>*</label>
+    <input type="text" name="name" id="name" value="" size="50" class="required" />
     </div>
     
     <div class="ct_field">
-    <label for="email"><{$lang_email}></label>
+    <label for="email"><{$lang_email}>*</label>
     <input type="text" name="email" id="email" value="" size="50" />
     </div>
     
@@ -25,17 +25,28 @@
     </div>
     
     <div class="ct_field">
-        <label for="subject"><{$lang_subject}></label>
+        <label for="subject"><{$lang_subject}>*</label>
         <input type="text" name="subject" id="subject" value="" />
     </div>
     
     <div class="ct_field">
-        <label for="message"><{$lang_message}></label>
+        <label for="message"><{$lang_message}>*</label>
         <textarea name="message" id="message" rows="5" cols="45"></textarea>
     </div>
     
+    <{if $captcha}>
+        <div class="ct_field">
+            <label for="recaptcha_challenge_field"><{$lang_captcha}>*</label>
+            <{$captcha}>
+        </div>
+    <{/if}>
+    
     <div class="ct_field">
         <input type="submit" value="<{$lang_sendnow}>" />
+    </div>
+    
+    <div class="ct_field textrequired">
+        <{$lang_required}>
     </div>
     
 </form>
