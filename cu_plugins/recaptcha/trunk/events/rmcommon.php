@@ -14,13 +14,9 @@ class RecaptchaPluginRmcommonPreload
     public function eventRmcommonCommentsForm($form, $module, $params, $type){
         global $xoopsUser;
         
-        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
-        
         if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $form;
         
-        include_once(RMCPATH.'/plugins/recaptcha/recaptchalib.php');
-        $publickey = $config['public']; // you got this from the signup page
-        $form['fields'] = recaptcha_get_html($publickey);
+        $form['fields'] = self::get_html();
         return $form;
         
     }
@@ -28,13 +24,27 @@ class RecaptchaPluginRmcommonPreload
     /**
     * This method allows to other modules or plugins to get a recaptcha field
     */
-    public function evenRmcommonRecaptchaField(){
+    public function eventRmcommonRecaptchaField(){        
+        $field = self::get_html();
+        return $field;
+    }
+    
+    private function get_html(){
+        
         $config = RMFunctions::get()->plugin_settings('recaptcha', true);
         
         include_once(RMCPATH.'/plugins/recaptcha/recaptchalib.php');
         $publickey = $config['public']; // you got this from the signup page
-        $field = recaptcha_get_html($publickey);
-        return $field;
+        
+        RMTemplate::get()->add_head('
+            <script type="text/javascript">
+                var RecaptchaOptions = {
+                    theme: \''.$config['theme'].'\'
+                };
+            </script>
+        ');
+        
+        return recaptcha_get_html($publickey);
     }
     
     public function eventRmcommonCommentPostdata($ret){

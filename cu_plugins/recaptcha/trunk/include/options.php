@@ -33,3 +33,17 @@ $options['show'] = array(
         'valuetype' =>  'int',
         'value'   =>  1
 );
+
+$options['theme'] = array(
+        'caption'   =>  __('Theme for widget','recaptcha'),
+        'desc'      =>  __('Select the theme that you wisth to use for recaptcha widget.','recaptcha'),
+        'fieldtype'      =>  'select',
+        'valuetype' =>  'text',
+        'value'   =>  'red',
+        'options' => array(
+            __('Red (default theme)', 'recaptcha') => 'red',
+            __('White', 'recaptcha') => 'white',
+            __('Black Glass', 'recaptcha') => 'blackglass',
+            __('Clean',  'recaptcha') => 'clean'
+        )
+);
