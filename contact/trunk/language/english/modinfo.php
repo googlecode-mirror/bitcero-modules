@@ -13,6 +13,7 @@ define('_MI_CT_DESC', __('A simple contact module for Xoops','contact'));
 // Settings
 define('_MI_CT_EMAIL',__('Receiver Email','contact'));
 define('_MI_CT_EMAILD',__('Specify the email where messages will be sent','contact'));
+define('_MI_CT_INFO', __('Information message','contact'));
 
 // Block
 define('_MI_CT_BLOCK',__('Contact Me!','contact'));

@@ -17,7 +17,12 @@ require 'header.php';
 function cm_show_messages(){
     global $xoopsDB;
     
+    // Styles
+    RMTemplate::get()->add_style('admin.css', 'contact');
+    
     xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/ct_dashboard.php', 'module', 'contact');
     
     xoops_cp_footer();    
     

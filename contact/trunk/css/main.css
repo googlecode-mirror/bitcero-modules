@@ -1,0 +1,22 @@
+.ct_field{
+    margin: 0 0 5px 0;
+    overflow: hidden;
+}
+.ct_field label{
+    display: block;
+    padding: 5px 0;
+    font-weight: bold;
+}
+.ct_field input[type='text'],
+textarea{
+    width: 90%;
+}
+.ct_field .left{
+    float: left;
+    width: 48%;
+    margin-right: 1.5%;
+}
+.ct_field .right{
+    float: left;
+    width: 48%;
+}

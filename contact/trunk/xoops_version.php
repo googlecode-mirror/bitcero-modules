@@ -57,7 +57,9 @@ $modversion['blocks'][] = array(
     'template' => 'bk_contact.html'
 );
 
-// Module Settings
+// MODULE SETTINGS //
+
+// Module Email
 $modversion['config'][] = array(
     'name' => 'mail',
     'title' => '_MI_CT_EMAIL',
@@ -67,3 +69,12 @@ $modversion['config'][] = array(
     'default' => $xoopsConfig['adminmail']
 );
 
+// Welcome message
+$modversion['config'][] = array(
+    'name' => 'information',
+    'title' => '_MI_CT_INFO',
+    'description' => '',
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
+    'default' => ''
+);
