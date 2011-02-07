@@ -1,3 +1,7 @@
+.ct_dashboard{
+    background: url(../images/logo32.png) no-repeat left;
+    padding-left: 38px;
+}
 #ct-about{
     width: 30%;
     float: left;
@@ -5,4 +9,20 @@
 
 #ct-messages{
     margin-left: 32%;
+}
+.sender_data{
+    font-size: 0.9em;
+    line-height: 130%;
+}
+.small_date{
+    font-size: 0.85em;
+    color: #666;
+    display: block;
+}
+.ct_options{
+    overflow: hidden;
+    padding: 4px 0;
+}
+.ct_options .rmc_pages_navigation_container{
+    float: right;
 }

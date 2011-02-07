@@ -78,3 +78,23 @@ $modversion['config'][] = array(
     'valuetype' => 'text',
     'default' => ''
 );
+
+// Module URL
+$modversion['config'][] = array(
+    'name' => 'url',
+    'title' => '_MI_CT_URL',
+    'description' => '_MI_CT_URLD',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => XOOPS_URL.'/modules/contact/'
+);
+
+// Pagination
+$modversion['config'][] = array(
+    'name' => 'limit',
+    'title' => '_MI_CT_LIMIT',
+    'description' => '_MI_CT_LIMITD',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 10
+);
