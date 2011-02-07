@@ -9,7 +9,7 @@
     
     <div class="ct_field">
     <label for="email"><{$lang_email}>*</label>
-    <input type="text" name="email" id="email" value="" size="50" />
+    <input type="text" name="email" id="email" value="" size="50" class="required email" />
     </div>
     
     <div class="ct_field">
@@ -26,12 +26,12 @@
     
     <div class="ct_field">
         <label for="subject"><{$lang_subject}>*</label>
-        <input type="text" name="subject" id="subject" value="" />
+        <input type="text" name="subject" id="subject" value="" class="required" />
     </div>
     
     <div class="ct_field">
         <label for="message"><{$lang_message}>*</label>
-        <textarea name="message" id="message" rows="5" cols="45"></textarea>
+        <textarea name="message" id="message" rows="5" cols="45" class="required"></textarea>
     </div>
     
     <{if $captcha}>
@@ -43,6 +43,7 @@
     
     <div class="ct_field">
         <input type="submit" value="<{$lang_sendnow}>" />
+        <input type="hidden" name="action" value="send" />
     </div>
     
     <div class="ct_field textrequired">

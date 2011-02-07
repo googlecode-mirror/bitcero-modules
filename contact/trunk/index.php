@@ -29,6 +29,7 @@ function show_form(){
     $xoopsTpl->assign('lang_required', __('Fields marked with * are required.','contact'));
     
     RMTemplate::get()->add_local_script('jquery.validate.min.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('contact.js', 'contact');
     
     $captcha = RMEvents::get()->run_event('rmcommon.recaptcha.field');
     if($captcha!=''){
