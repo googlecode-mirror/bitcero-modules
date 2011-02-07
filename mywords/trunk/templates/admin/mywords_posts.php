@@ -30,7 +30,7 @@
 		<option value="status-draft"><?php _e('Set status as Draft','mywords'); ?></option>
 		<option value="status-published"><?php _e('Set status as published','mywords'); ?></option>
 	</select>
-	<input type="button" value="<?php _e('Apply', 'admin_mywords'); ?>" onclick="submit();" />
+	<input type="button" value="<?php _e('Apply', 'mywords'); ?>" onclick="submit();" />
 </div>
 <table border="0" cellspacing="1" cellpadding="0" class="outer" style="margin: 5px 0;">
   <tr class="head" align="center">
