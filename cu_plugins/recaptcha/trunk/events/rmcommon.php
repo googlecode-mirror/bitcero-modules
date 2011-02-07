@@ -14,6 +14,8 @@ class RecaptchaPluginRmcommonPreload
     public function eventRmcommonCommentsForm($form, $module, $params, $type){
         global $xoopsUser;
         
+        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        
         if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $form;
         
         $form['fields'] = self::get_html();
@@ -24,7 +26,14 @@ class RecaptchaPluginRmcommonPreload
     /**
     * This method allows to other modules or plugins to get a recaptcha field
     */
-    public function eventRmcommonRecaptchaField(){        
+    public function eventRmcommonRecaptchaField(){
+        
+        global $xoopsUser;
+        
+        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        
+        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $form;
+               
         $field = self::get_html();
         return $field;
     }
@@ -68,16 +77,20 @@ class RecaptchaPluginRmcommonPreload
 
     }
     
-    public function eventRmcommonCaptchaCheck(){
+    public function eventRmcommonCaptchaCheck($value){
+        global $xoopsUser;
+        
         $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        
+        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $value;
+        
         include_once(RMCPATH.'/plugins/recaptcha/recaptchalib.php');
         $privatekey = $config['private'];
         $resp = recaptcha_check_answer ($privatekey,
                                         $_SERVER["REMOTE_ADDR"],
                                         $_POST["recaptcha_challenge_field"],
-                                        $_POST["recaptcha_response_field"]);
-
-        return $resp;
+                                        $_POST["recaptcha_response_field"]);                        
+        return $resp->is_valid;
     }
     
     public function eventRmcommonModulesMenu($menu){
