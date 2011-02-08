@@ -322,8 +322,8 @@ div.errorMsg{
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: #cd0a0a url(../images/error.png) no-repeat 5px;
-    padding: 10px 10px 10px 23px;
+    background: #cd0a0a url(../images/error.png) no-repeat 5px 10px;
+    padding: 10px 10px 10px 26px;
     border: 1px solid #cd0a0a;
     color: #ffffff;
     margin-bottom: 10px;
@@ -334,8 +334,8 @@ div.infoMsg{
     -khtml-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: #FFED97 url(../images/info.png) no-repeat 5px;
-    padding: 10px 10px 10px 23px;
+    background: #FFED97 url(../images/info.png) no-repeat 5px 10px;
+    padding: 10px 10px 10px 26px;
     border: 1px solid #fed22f;
     color: #363636;
     margin-bottom: 10px;
