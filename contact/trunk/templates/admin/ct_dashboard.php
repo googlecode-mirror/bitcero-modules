@@ -1,5 +1,14 @@
 <h1 class="rmc_titles ct_dashboard"><?php _e('ContactMe! Dashboard','contact'); ?></h1>
 
+<script type="text/javascript">
+    <!--
+    var cm_select_message = '<?php _e('You must select at least one message to delete!','contact'); ?>';
+    var cm_message = '<?php _e('Do you really wish to delete selected messages?','contact'); ?>';
+    -->
+</script>
+
+<form name="frmMsgs" id="frm-messages" method="post" action="index.php">
+
 <div class="ct_options">
     <?php $nav->display(false); ?>
     <select name="action" id="bulk-top">
@@ -8,15 +17,15 @@
     </select>
     <input type="button" value="<?php _e('Apply', 'contact'); ?>" onclick="submit();" />
 </div>
-    
+
     <table class="outer" cellspacing="0" border="0">
         <thead>
             <tr>
                 <th width="20" align="center"><input type="checkbox" name="checkall" id="checkall" /></th>
                 <th><?php _e('ID', 'contact'); ?></th>
-                <th><?php _e('Sender','contact'); ?></th>
-                <th><?php _e('Sender Data','contact'); ?></th>
-                <th><?php _e('Message', 'contact'); ?></th>
+                <th align="left"><?php _e('Sender','contact'); ?></th>
+                <th align="left"><?php _e('Sender Data','contact'); ?></th>
+                <th align="left"><?php _e('Message', 'contact'); ?></th>
                 <th><?php _e('XOOPS User', 'contact'); ?></th>
             </tr>
         </thead>
@@ -38,16 +47,16 @@
         <?php endif; ?>
         <?php foreach($messages as $msg): ?>
             <tr valign="top" class="<?php echo tpl_cycle("even,odd"); ?>">
-                <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $msg['id']; ?>" /></td>
+                <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $msg['id']; ?>" value="<?php echo $msg['id']; ?>" /></td>
                 <td align="center"><?php echo $msg['id']; ?></td>
                 <td>
                     <strong><?php echo $msg['name']; ?></strong>
                     <span class="rmc_options">
-                        <a href="?action=delete"><?php _e('Delete','contact'); ?></a> |
-                        <a href="?action=reply"><?php _e('Reply','contact'); ?></a>
+                        <a href="#" class="delete" id="delete-<?php echo $msg['id']; ?>"><?php _e('Delete','contact'); ?></a> |
+                        <a href="?action=reply&amp;id=<?php echo $msg['id']; ?>"><?php _e('Reply','contact'); ?></a>
                     </span>
                 </td>
-                <td class="sender_data">
+                <td class="sender_data" nowrap="nowrap">
                     <strong><?php _e('Email:','contact'); ?></strong> <a href="mailto:<?php echo $msg['email']; ?>"><?php echo $msg['email']; ?></a><br />
                     <?php if($msg['company']!=''): ?><strong><?php _e('Company:','contact'); ?></strong> <?php echo $msg['company']; ?><br /><?php endif; ?>
                     <?php if($msg['phone']!=''): ?><strong><?php _e('Phone:','contact'); ?></strong> <?php echo $msg['phone']; ?><br /><?php endif; ?>
@@ -67,6 +76,8 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 <div class="ct_options">
     <?php $nav->display(false); ?>
     <select name="actionb" id="bulk-bottom">
@@ -75,4 +86,4 @@
     </select>
     <input type="button" value="<?php _e('Apply', 'contact'); ?>" onclick="submit();" />
 </div>
-    
+</form>

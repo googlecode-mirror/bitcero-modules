@@ -69,10 +69,10 @@ function send_message(){
     $xoopsMailer->setFromEmail($email);
     $xoopsMailer->setFromName($name);
     $xoopsMailer->setSubject($subject);
-    /*if (!$xoopsMailer->send(true)){
+    if (!$xoopsMailer->send(true)){
         redirect_header($xoopsModuleConfig['url'], 1, __('Message could not be delivered. Please try again.','contact'));
         die();
-    }*/
+    }
     
     // Save message on database for further use
     $msg = new CTMessage();

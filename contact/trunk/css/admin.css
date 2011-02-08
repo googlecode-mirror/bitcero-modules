@@ -2,6 +2,10 @@
     background: url(../images/logo32.png) no-repeat left;
     padding-left: 38px;
 }
+.ct_reply{
+    background: url(../images/reply.png) no-repeat left;
+    padding-left: 38px;
+}
 #ct-about{
     width: 30%;
     float: left;
@@ -25,4 +29,10 @@
 }
 .ct_options .rmc_pages_navigation_container{
     float: right;
+}
+.cm_reply .head{
+    vertical-align: top;
+}
+.cm_reply .head td:nth-child(2n+2){
+    font-weight: normal;
 }
