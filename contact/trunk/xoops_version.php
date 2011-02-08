@@ -47,16 +47,6 @@ $modversion['templates'][1]['description'] = '';
 // Search
 $modversion['hasSearch'] = 0;
 
-// Bloque Categorias
-$modversion['blocks'][] = array(
-    'file' => "contact_block.php",
-    'name' => _MI_CT_BLOCK,
-    'description' => _MI_CT_BLOCKD,
-    'show_func' => "contact_block_show",
-    'edit_func' => "",
-    'template' => 'bk_contact.html'
-);
-
 // MODULE SETTINGS //
 
 // Module Email
