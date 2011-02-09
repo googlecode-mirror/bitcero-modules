@@ -209,6 +209,8 @@ function xt_install_theme(){
     if (!$db->queryF("UPDATE ".$db->prefix("config")." SET `conf_value`='$dir' WHERE `conf_name`='theme_set' AND conf_modid='0'"))
         redirectMsg('index.php',__('The theme has not been installed!','xthemes').'<br />'.$db->error(), 1);
         
+    $db->queryF("UPDATE ".$db->prefix("config")." SET `conf_value`='".serialize(array($dir))." WHERE `conf_name`='theme_set_allowed' AND conf_modid='0'");
+        
     $_SESSION['xoopsUserTheme'] = $dir;
     // Delete previous data if valid
     if (false !== ($previous = xt_is_valid($previous))){
