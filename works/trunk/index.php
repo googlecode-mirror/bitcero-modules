@@ -12,7 +12,7 @@ include '../../mainfile.php';
 
 if($xoopsModuleConfig['urlmode']<=0){
     // PHP Default URLs mode
-    $page = rmc_server_var($_REQUEST, 'page', '');
+    $page = rmc_server_var($_REQUEST, 'page', 'home');
     $id = rmc_server_var($_REQUEST, 'id', '');
     
     switch($page){
