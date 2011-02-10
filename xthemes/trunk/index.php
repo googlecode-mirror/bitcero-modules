@@ -12,6 +12,8 @@ require '../../include/cp_header.php';
 include_once 'include/functions.php';
 include_once 'class/theme.php';
 
+load_theme_locale($xoopsConfig['theme_set']);
+
 // Jquery
 function xt_show_init(){
 	global $xoopsConfig;

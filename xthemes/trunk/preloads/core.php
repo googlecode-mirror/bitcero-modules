@@ -34,7 +34,9 @@ class XthemesCorePreload extends XoopsPreloadItem
         include XOOPS_ROOT_PATH.'/modules/xthemes/controller.php';
         
         if(FALSE == ($object = xt_is_valid($xoopsConfig['theme_set']))) return;
-    
+        
+        load_theme_locale($xoopsConfig['theme_set']);
+        
         if($object->get_info("jquery"))
             RMTemplate::get()->add_jquery();
         
