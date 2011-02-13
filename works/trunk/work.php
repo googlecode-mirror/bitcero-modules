@@ -29,6 +29,15 @@ if($work->isNew()){
 	die();
 }
 
+if(!$work->isPublic() && !($xoopsUser && $xoopsUser->isAdmin())){
+    redirect_header(PW_URL, 1, __('The required content is not available!','works'));
+    die();
+}
+
+if(!$work->isPublic()){
+    $xoopsTpl->assign('lang_preview', __('You are in preview mode! This work is hidden for all other users.','works'));
+}
+
 $cat = new PWCategory($work->category());
 $client = new PWClient($work->client());
 
@@ -57,7 +66,8 @@ $work_data = array(
 	'comment'=>$work->comment(),
 	'rating'=>PWFunctions::rating($work->rating()),
 	'views'=>$work->views(),
-    'metas'=>$work->get_metas()
+    'metas'=>$work->get_metas(),
+    'public'=>$work->isPublic()
 );
 
 $work_data = RMEvents::get()->run_event('works.work.data',$work_data, $work);

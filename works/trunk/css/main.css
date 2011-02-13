@@ -98,3 +98,10 @@ h2.pw_title{
 .pw_works_grid .info{
 	font-size: 0.85em;
 }
+.pw-preview{
+    padding: 5px;
+    text-align: center;
+    background: #FFFFE6;
+    border: 1px solid #FFEFB9;
+    margin-bottom: 10px;
+}
