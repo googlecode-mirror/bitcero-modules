@@ -44,7 +44,10 @@ function get_locale(){
 */
 function load_locale_file($domain, $file) {
 	global $l10n;
-
+    
+    if(isset($l10n[$domain]))
+        return;
+    
 	if ( is_readable($file))
 		$cache = new CachedFileReader($file);
 	else
