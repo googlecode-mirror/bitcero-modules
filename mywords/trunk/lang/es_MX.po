@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyWords 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-09 22:50-0600\n"
-"PO-Revision-Date: 2010-11-09 22:50-0600\n"
+"POT-Creation-Date: 2011-02-12 20:31-0600\n"
+"PO-Revision-Date: 2011-02-12 20:33-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: BitC3R0 <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,1493 +14,1635 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: MEXICO\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\xoops24\\modules\\mywords\n"
+"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\x25\\modules\\mywords\n"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/author.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/author.php:26
 msgid "Sorry, We don't know to this editor"
 msgstr "Lo sentimos, no conocemos a este editor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/author.php:66
+#: E:\webserver\htdocs\x25\modules\mywords/author.php:66
 #, php-format
 msgid "Posts by \"%s\""
 msgstr "Artículos de \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/categories.php:55
+#: E:\webserver\htdocs\x25\modules\mywords/categories.php:55
 msgid "Specified category could not be found"
 msgstr "No se encontró la categoría especificada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/categories.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/categories.php:61
 #, php-format
 msgid "Posts in &#8216;%s&#8217; Category"
 msgstr "Artículos en la categoría &#8216;%s&#8217;"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/categories.php:93
+#: E:\webserver\htdocs\x25\modules\mywords/categories.php:93
 msgid "Permalink to this post"
 msgstr "Enlace permanente a este artículo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/categories.php:102
+#: E:\webserver\htdocs\x25\modules\mywords/categories.php:102
 #, php-format
 msgid "Posts published under \"%s\""
 msgstr "Entradas publicadas como %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/date.php:20
+#: E:\webserver\htdocs\x25\modules\mywords/date.php:20
 msgid "There are not posts published on this date"
 msgstr "No existen entradas publicadas en esta fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/date.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/date.php:48
 #, php-format
 msgid "Posts published on %s"
 msgstr "Entradas publicadas en la fecha %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/home.php:44
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:148
+#: E:\webserver\htdocs\x25\modules\mywords/home.php:44
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:156
 msgid "Recent Posts"
 msgstr "Entradas Recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:22
 msgid "Document not found"
 msgstr "Documento no encontrado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:27
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:27
 msgid "Sorry, you are not allowed to view this post"
 msgstr "Lo sentimos, no tienes autorización para ver este artículo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:90
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:90
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:76
 msgid "Edit Post"
 msgstr "Editar Artículo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:95
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:95
 #, php-format
 msgid "%u views"
 msgstr "%u lecturas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:114
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:114
 #, php-format
 msgid "Published on %s at %s by %s"
 msgstr "Publicado el %s a las %s por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:114
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:114
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:38
 msgid "Anonymous"
 msgstr "Anónimo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:168
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:170
 msgid "Published in"
 msgstr "Publicado en"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:169
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:171
 msgid "Tagged as"
 msgstr "Etiquetado como"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:170
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:60
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:172
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:62
 #, php-format
 msgid "%u Comments"
 msgstr "%u Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:171
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:173
 #, php-format
 msgid "%u trackbacks"
 msgstr "%u trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:172
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:174
 msgid "Trackback"
 msgstr "Trackback"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post.php:173
+#: E:\webserver\htdocs\x25\modules\mywords/post.php:175
 msgid "Main Page"
 msgstr "Página Principal"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:38
 #, php-format
 msgid "%s by %s"
 msgstr "%s por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:64
 #, php-format
 msgid "Read more about \"%s\""
 msgstr "Leer más de \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:75
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:77
 msgid "Posted in:"
 msgstr "Publicado en:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/post_data.php:76
+#: E:\webserver\htdocs\x25\modules\mywords/post_data.php:78
 msgid "Tagged as:"
 msgstr "Etiquetado como:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:24
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:24
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:30
 msgid "Sorry, specified category was not foud!"
 msgstr "¡Lo sentimos, no se encontró la cetegoría especificada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:62
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:68
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:68
 msgid "Sorry, specified tag was not foud!"
 msgstr "¡Lo sentimos, no se encontró la etiqueta especificada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:74
 #, php-format
 msgid "Posts tagged as %s"
 msgstr "Entradas etiquetados como %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:100
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:106
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:100
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:106
 msgid "Sorry, specified author was not foud!"
 msgstr "¡Lo sentimos, no se encontró el autor especificado!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:112
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:112
 #, php-format
 msgid "Posts published by %s."
 msgstr "Entradas publicadas por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/rss.php:138
+#: E:\webserver\htdocs\x25\modules\mywords/rss.php:138
 msgid "All recent published posts"
 msgstr "Todos los artículos publicados recientemente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/submit.php:16
-#: E:\webserver\htdocs\xoops24\modules\mywords/submit.php:23
-#: E:\webserver\htdocs\xoops24\modules\mywords/submit.php:44
+#: E:\webserver\htdocs\x25\modules\mywords/submit.php:16
+#: E:\webserver\htdocs\x25\modules\mywords/submit.php:23
+#: E:\webserver\htdocs\x25\modules\mywords/submit.php:44
 msgid "You are not allowed to do this action!"
 msgstr "¡No tienes autorización para relizar esta acción!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/submit.php:33
+#: E:\webserver\htdocs\x25\modules\mywords/submit.php:33
 msgid "Please, specify a valid post ID"
 msgstr "Por favor especifica un ID válido de una entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/submit.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/submit.php:38
 msgid "Specified post does not exists!"
 msgstr "¡La entrada especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/tag.php:18
+#: E:\webserver\htdocs\x25\modules\mywords/tag.php:18
 msgid "Sorry, this tag does not exists!"
 msgstr "¡Lo sentimos, este etiqueta no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/tag.php:62
-#: E:\webserver\htdocs\xoops24\modules\mywords/tag.php:71
+#: E:\webserver\htdocs\x25\modules\mywords/tag.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/tag.php:71
 #, php-format
 msgid "Posts tagged as \"%s\""
 msgstr "Artículos etiquetados como \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/trackbacks.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/trackbacks.php:38
 msgid "Sorry, your trackback seems to be invalid!"
 msgstr "¡Lo sentimos, parece que tu trackback no es válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/trackbacks.php:54
+#: E:\webserver\htdocs\x25\modules\mywords/trackbacks.php:54
 msgid "Sorry, your trackback seems to be SAPM"
 msgstr "Lo sentimos, parace que esto es SPAM"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/trackbacks.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/trackbacks.php:67
 msgid "We are unable to store your trackback. Please try again later!"
 msgstr "¡No se ha almacenado tu trackback! por favor intentelo nuevamente mas tarde."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:94
 msgid "Default"
 msgstr "Por defecto"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:94
 msgid "Based on date and name"
 msgstr "Basado en nombre y fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:94
 msgid "Numeric format"
 msgstr "Formato numérico"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:139
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:147
 msgid "Categories"
 msgstr "Categorías"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/xoops_version.php:157
+#: E:\webserver\htdocs\x25\modules\mywords/xoops_version.php:165
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:45
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:45
 msgid "Bookmark Sites"
 msgstr "Redes Sociales"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:49
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:87
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:49
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:87
 msgid "Bookmarks Management"
 msgstr "Administración de Redes Sociales"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:65
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:110
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:65
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:110
 msgid "Site ID not provided!"
 msgstr "¡No se ha proporcionado un ID de sitio!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:71
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:116
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:71
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:116
 msgid "Social site not exists!"
 msgstr "¡No existe el sitio especificado!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:82
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:82
 msgid "Social Sites"
 msgstr "Redes Sociales"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:82
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:82
 msgid "Editing Social Site"
 msgstr "Editando Sitio"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:102
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:102
 msgid "Operation not allowed!"
 msgstr "¡Operación no permitida!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:134
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:134
 msgid "You must specify a title for this site!"
 msgstr "¡Debes especificar un título para este sitio!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:139
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:139
 msgid "You must specify a formatted URL for this site!"
 msgstr "¡Debes especificar una URL formateada para este sitio!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:152
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:181
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:210
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:152
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:181
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:210
 msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:154
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:183
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:212
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:154
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:183
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:212
 msgid "Errors ocurred while trying to update database!"
 msgstr "¡Ocurrieron algunos errores al intentar actualizar la base de datos!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:168
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:197
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:168
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:197
 msgid "Sorry, operation not allowed!"
 msgstr "¡Lo sentimos, esta operación no esta permitida!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:173
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/bookmarks.php:202
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:173
+#: E:\webserver\htdocs\x25\modules\mywords/admin/bookmarks.php:202
 msgid "Please, specify a valid site ID!"
 msgstr "Por favor especifica un ID válido para un sitio!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:74
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:113
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:113
 #, php-format
 msgid "Do you really want to delete \\\"%s\\\""
 msgstr "¿Realmente deseas eliminar \\\"%s\\\"?"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:97
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:97
 msgid "Categories Management"
 msgstr "Administración de Categorías"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:114
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:180
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:114
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:180
 msgid "You must specify a valid category"
 msgstr "Debes especificar una categoría válida"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:121
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:186
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:121
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:186
 msgid "Specified category not exists!"
 msgstr "¡La categoría especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:126
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:126
 msgid "New Category"
 msgstr "Nueva Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:132
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:132
 msgid "Edit Category"
 msgstr "Editar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:134
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:134
 msgid "Category name"
 msgstr "Nombre de la categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:135
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:135
 msgid "Category slug"
 msgstr "Nombre corto de la categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:136
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:136
 msgid "Category description"
 msgstr "Descripción de la categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:137
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:137
 msgid "Category Parent"
 msgstr "Categoría Padre"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:148
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:148
 msgid "Update Category"
 msgstr "Actualizar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:149
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:149
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:165
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:165
 msgid "Sorry, session token expired!"
 msgstr "Lo sentimos ¡el identificador de sesión ha caducado!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:194
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:194
 msgid "Please specify a name for this category!"
 msgstr "¡Por favor especifica un nombre para esta categoría!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:205
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:205
 msgid "There is already a category with the same name!"
 msgstr "¡Ya existe una categoría con el mismo nombre!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:219
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:219
 msgid "Category created succesfully!"
 msgstr "¡Categoría creada satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:221
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:221
 msgid "There was an error!"
 msgstr "¡Ocurrió un error!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:236
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:236
 msgid "You must select one category at least!"
 msgstr "¡Debes seleccionar al menos una categoría!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:241
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:195
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:235
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:86
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:241
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:195
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:235
+#: E:\webserver\htdocs\x25\modules\mywords/admin/trackbacks.php:86
 msgid "Session token expired!"
 msgstr "¡El identificador de sesión ha caducado!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:253
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:253
 #, php-format
 msgid "Category \"%s\" could not be deleted"
 msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/categories.php:257
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:215
+#: E:\webserver\htdocs\x25\modules\mywords/admin/categories.php:257
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:215
 msgid "Database updated!"
 msgstr "¡Base de datos actualizada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:22
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:80
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:56
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:56
 msgid "Editors"
 msgstr "Editores"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:23
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:23
 msgid "Editors Management"
 msgstr "Administración de Editores"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:67
 msgid "Editor ID not provided!."
 msgstr "¡No se ha proporcionado un ID de Editor!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:73
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:73
 msgid "Editor does not exists!"
 msgstr "¡El editor no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:80
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:81
 msgid "Editing Editor"
 msgstr "Editando Editor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:106
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:106
 msgid "Editor ID has not been provided!"
 msgstr "¡El ID del editor no ha sido proporcionado!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:112
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:112
 msgid "Editor has not been found!"
 msgstr "¡No se ha encontrado el editor!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:129
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:129
 msgid "You must provide a display name for this editor!"
 msgstr "¡Debes proporcionar un nombre para mostrar para el editor!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:134
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:134
 msgid "You must specify a registered user ID for this editor!"
 msgstr "¡Debes especificar un ID de usuario registrado para este editor!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:145
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:145
 msgid "This user has been registered as editor before."
 msgstr "Este usuario ya ha sido registrado como un editor previamente."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:156
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:156
 msgid "Errors occurs while trying to save editor data"
 msgstr "Ocurrieron algunos errores al intentar almacenar los datos del editor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:159
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:224
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:203
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:159
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:224
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:203
 msgid "Database updated succesfully!"
 msgstr "¡Base de datos actualizada satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:178
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:206
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:178
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:206
 msgid "Please, specify a valid editor ID!"
 msgstr "¡Por favor especifica un ID válido para el editor!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:214
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/editors.php:220
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:214
+#: E:\webserver\htdocs\x25\modules\mywords/admin/editors.php:220
 msgid "Errors ocurred while trying to delete editors!"
 msgstr "¡Ocurrieron errores al intentar eliminar estos editores!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/index.php:50
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:15
+#: E:\webserver\htdocs\x25\modules\mywords/admin/index.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:15
 msgid "Dashboard"
 msgstr "Panel de Control"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:37
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:37
 msgid "List"
 msgstr "Lista"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:42
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:42
 msgid "Add New"
 msgstr "Crear"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:48
 msgid "Posts"
 msgstr "Artículos"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/menu.php:70
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/admin/menu.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/admin/trackbacks.php:67
 msgid "Trackbacks"
 msgstr "Trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:88
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:88
 msgid "Not published"
 msgstr "No publicado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:129
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:129
 msgid "Existing Posts"
 msgstr "Entradas Existentes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:156
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:156
 msgid "Editing post"
 msgstr "Editando entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:156
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:156
 msgid "Creating a new post"
 msgstr "Creando una nueva entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:190
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:230
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:190
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:230
 msgid "Select one post at least!"
 msgstr "¡Selecciona al menos una entrada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:208
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:208
 #, php-format
 msgid "Errors ocurred while deleting \"%s\""
 msgstr "Ocurrieron errores al eliminar \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:242
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:242
 msgid "Posts could not be updated!"
 msgstr "¡La entradas no pudieron ser actualizadas!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/posts.php:246
+#: E:\webserver\htdocs\x25\modules\mywords/admin/posts.php:246
 msgid "Posts updated successfully!"
 msgstr "¡Entradas actualizadas correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:22
 msgid "Tags Management"
 msgstr "Administración de Etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:86
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:86
 msgid "You must provide a name!"
 msgstr "¡Debes porporcionar un nombre!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:94
 msgid "Tag id not provided!"
 msgstr "¡No se ha porporcionado el ID de la etiqueta!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:100
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:155
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:100
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:155
 msgid "Tag does not exists!"
 msgstr "¡La etiqueta no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:127
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:127
 msgid "A tag with same name or same short name already exists!"
 msgstr "¡Ya existe una etiqueta con el mismo nombre (o con el mismo nombre corto)!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:137
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:137
 msgid "A problem occurs while trying to save tag."
 msgstr "Ocurrión un error al intentar almacenar la etiqueta."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:150
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:150
 msgid "Tag ID not provided!."
 msgstr "¡No se ha porporcionado el ID de la etiqueta!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:160
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:160
 msgid "Edit Tag"
 msgstr "Editar Etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:161
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:161
 msgid "Editing Tag"
 msgstr "Editando Etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:185
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:220
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:185
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:220
 msgid "Please, specify a valid tag id!"
 msgstr "¡Por favor especifica un ID válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:193
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:199
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:193
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:199
 msgid "Errors ocurred while trying to delete tags!"
 msgstr "¡Ocurrieron algunos errores al intentar eliminar las etiquetas!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/tags.php:233
+#: E:\webserver\htdocs\x25\modules\mywords/admin/tags.php:233
 msgid "Tags updated!"
 msgstr "¡Etiquetas actualizadas!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:14
+#: E:\webserver\htdocs\x25\modules\mywords/admin/trackbacks.php:14
 msgid "Trackbacks management"
 msgstr "Administración de Trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/admin/trackbacks.php:81
 msgid "Select one trackback at least!"
 msgstr "¡Selecciona al manos un trackback!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/trackbacks.php:100
+#: E:\webserver\htdocs\x25\modules\mywords/admin/trackbacks.php:100
 msgid "Trackbacks deleted successfully"
 msgstr "Trackbacks eliminados correctamente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-categories.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-categories.php:26
 msgid "You are not allowed to do this operation!"
 msgstr "¡No estas autorizado para realizar esta acción!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-categories.php:34
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-categories.php:34
 msgid "A name is neccesary to create a new category!"
 msgstr "¡Es necesario un nombre para crear una categoría!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-categories.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-categories.php:48
 msgid "There is already a category with same name!"
 msgstr "¡Ya existe una categoría con el mismo nombre!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-categories.php:57
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-categories.php:57
 msgid "Category could not inserted!"
 msgstr "¡La categoría no pudo ser creada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-categories.php:65
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-categories.php:65
 msgid "Category created successfully!"
 msgstr "¡Categoría creada satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:56
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:56
 msgid "You must provide a valid post ID"
 msgstr "Debes proporcionar un ID válido de una entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:62
 msgid "You must provide an existing post ID"
 msgstr "Debes proporcionar un ID de una entrada existente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:85
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:85
 msgid "You must provide a title for this post"
 msgstr "Debes porporcionar un título para esta entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:97
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:97
 msgid "Content for this post has not been provided!"
 msgstr "¡No has porporcionado contenido "
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:108
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:108
 msgid "You must provide a password for this post or select another visibility option"
 msgstr "Debes porporcionar una contraseña para esta entrada o seleccionar otra opción de visibilidad"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:143
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:144
 msgid "There is already another post with same title for same date"
 msgstr "Ya existe otra entrada con el mismo nombre en la misma fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:188
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:190
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:191
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:193
 msgid "Post updated successfully"
 msgstr "Entrada actualizada correctamente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:188
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:190
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:191
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:193
 msgid "Post saved successfully"
 msgstr "Entrada almacenada correctamente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:192
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:195
 msgid "Permalink:"
 msgstr "Enlace permanente:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/admin/ajax/ax-posts.php:198
+#: E:\webserver\htdocs\x25\modules\mywords/admin/ajax/ax-posts.php:201
 msgid "Errors ocurred while trying to save this post."
 msgstr "Ocurrieron errores al intentar almacenar esta entrada."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:42
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:42
 msgid "Show subcategories:"
 msgstr "Mostrar subcategorías:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:43
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:47
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:74
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:79
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:43
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:79
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:84
 msgid "Yes"
 msgstr "Sí"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:44
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:48
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:75
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:44
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:85
 msgid "No"
 msgstr "No"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.cats.php:46
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.cats.php:46
 msgid "Show posts number:"
 msgstr "Mostrar número de entradas:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:51
 #, php-format
 msgid "%u Reads"
 msgstr "%u Lecturas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:64
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:69
 msgid "Posts Number:"
 msgstr "Número de Entradas:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:66
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:71
 msgid "Block type:"
 msgstr "Tipo de bloque:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:75
 msgid "Popular Posts"
 msgstr "Entradas Populares"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:72
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:77
 msgid "Most Commented"
 msgstr "Lo mas comentado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:73
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:78
 msgid "Show text:"
 msgstr "Mostrar texto:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:78
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:83
 msgid "Show date:"
 msgstr "Mostrar fecha:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:84
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:89
 msgid "Posts form category:"
 msgstr "Entradas de categoría:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.recent.php:86
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.recent.php:91
 msgid "Select category..."
 msgstr "Seleccionar categoría..."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.tags.php:41
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.tags.php:41
 msgid "Number of tags"
 msgstr "Número de etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/blocks/block.tags.php:43
+#: E:\webserver\htdocs\x25\modules\mywords/blocks/block.tags.php:43
 msgid "Size increment per post"
 msgstr "Incremento de tamaño por entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:301
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:307
 #, php-format
 msgid "Published on %s at %s"
 msgstr "Publicado el %s a las %s"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:310
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:316
 msgid "D d M, Y"
 msgstr "d/m/Y"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:311
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:317
 msgid "H:i"
 msgstr "H:i"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:333
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:339
 msgid "This post has been protected by a password. To read it you must provide the correct password."
 msgstr "Esta entrada ha sido protegida por una contraseña. Para poder leerla debes introducir la contraseña correctamente."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:334
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:340
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mwfunctions.php:335
+#: E:\webserver\htdocs\x25\modules\mywords/class/mwfunctions.php:341
 msgid "Show Post"
 msgstr "Mostrar Entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mywordscontroller.php:50
-#: E:\webserver\htdocs\xoops24\modules\mywords/class/mywordscontroller.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/class/mywordscontroller.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/class/mywordscontroller.php:61
 msgid "Not found"
 msgstr "No se encontró"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:42
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:42
 msgid "MyWords Administration"
 msgstr "Administración de MyWords"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:64
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:64
 msgid "Link to post"
 msgstr "Enlace a la entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:87
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:87
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:63
 msgid "All Recent Posts"
 msgstr "Todas las entradas recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:89
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:89
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:64
 msgid "Show all recent posts"
 msgstr "Mostrar todas las entradas recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:108
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:108
 msgid "Posts by category"
 msgstr "Entradas por categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:109
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:109
 msgid "Select a category to see the posts published recently."
 msgstr "Selecciona una categoría para ver todas las entradas publicadas recientemente."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:129
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:129
 msgid "Show posts by tag"
 msgstr "Mostrar entradas por etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:130
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:130
 msgid "Select a tag to see the posts published recently."
 msgstr "Selecciona una etiqueta para ver las entradas publicadas recientemente."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:158
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:158
 msgid "Show posts by author"
 msgstr "Mostrar entradas por autor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/events/rmcommon.php:159
+#: E:\webserver\htdocs\x25\modules\mywords/events/rmcommon.php:159
 msgid "Select an author to see the posts published recently."
 msgstr "Selecciona un autor para ver las entradas publicadas recientemente."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:4
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:5
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:14
+msgid "Modules for the publishing and management of news style blog"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:16
+msgid "Module Status"
+msgstr "Estado del Módulo"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:18
+msgid "Articles"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:20
+msgid "Bookmarks"
+msgstr "Marcadores"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:23
+msgid "Send Article"
+msgstr "Enviar Artículo"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:26
+msgid "Links Format"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:27
+msgid "Determines the way the links in the module will be shown and will be processed."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:29
+msgid "Basado en Fecha y Nombre"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:30
+#, fuzzy
+msgid "Numérico"
+msgstr "Formato numérico"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:32
+msgid "Base Path"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:33
+msgid "This path is used when the links format has been stablished as based in dates or numbers."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:35
+#, fuzzy
+msgid "Number of tags on admin widget"
+msgstr "Número de etiquetas"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:37
+#, fuzzy
+msgid "Posts per page"
+msgstr "Administración de Entradas"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:38
+msgid "Use CSS file"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:39
+msgid "CSS file to use"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:40
+#, fuzzy
+msgid "Show navigation bar between posts"
+msgstr "Mostrar todas las entradas recientes"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:42
+msgid "Blog name (section name)"
+msgstr "Nombre del Blog (Sección)"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:43
+msgid "This name will be used in trackbacks."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:46
+msgid "Image Size for the Blocks"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:47
+msgid "The specified image in the article will be resized with this sizes. Format: \"width|height\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:48
+msgid "Defaul Image for the articles in blocks"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:49
+msgid "When the \"graphic\" mode is enable in the \"Recent Articles\" blocks this image will use when there is not a specified one for the article"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:51
+msgid "Maximum file size"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:53
+msgid "Show social bookmarks"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:57
+#, fuzzy
+msgid "Recent Articles"
+msgstr "Borradores Recientes"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:58
+#, fuzzy
+msgid "Recent Comments"
+msgstr "Entradas Recientes"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:60
+#, fuzzy
+msgid "Posts Syndication"
+msgstr "Entradas por categoría"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:61
+#, php-format
+msgid "Articles Syndication in %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:62
+#, fuzzy
+msgid "Syndication Description"
+msgstr "Descripción de la categoría"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:67
+msgid "Home Page"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:68
+msgid "Post"
+msgstr "Entrada"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:69
+#, fuzzy
+msgid "Category"
+msgstr "Nueva Categoría"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:70
+msgid "Author"
+msgstr "Autor"
+
+#: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:71
+msgid "Post Article"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:4
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:5
 msgid "Create Post"
 msgstr "Crear Entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:6
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:6
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:6
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:6
 msgid "You must specify the title for this post!"
 msgstr "¡Debes especificar el título para esta entrada!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:12
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:12
 msgid "This post has not been saved. Remember to save it before leave this page."
 msgstr "Este post no ha sido guardado todavía. Recuerda guardarlo antes de abandonar esta página."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:19
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:19
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:19
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:19
 msgid "Send Trackbacks"
 msgstr "Enviar Trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:21
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:21
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:22
 msgid "Send trackbacks to:"
 msgstr "Enviar trackbacks a:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:23
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:24
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:23
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:24
 msgid "Separate multiple URLs with spaces"
 msgstr "Separa múltiples URLs con espacios"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:26
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:27
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:27
 msgid "Pinged:"
 msgstr "Enviados:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:34
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:34
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:34
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:34
 msgid "Custom Fields"
 msgstr "Campos Personalizados"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:38
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:53
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:54
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:63
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:6
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:38
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:53
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:8
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:61
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:69
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:53
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:54
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:63
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:6
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:54
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:8
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:69
 msgid "Name"
 msgstr "Nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:39
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:54
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:39
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:54
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:39
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:54
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:39
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:55
 msgid "Value"
 msgstr "Valor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:50
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:51
 msgid "Add new field:"
 msgstr "Agregar nuevo campo:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:61
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:62
 msgid "- Select -"
 msgstr "- Seleccionar -"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:67
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:68
 msgid "Enter New"
 msgstr "Crear Nuevo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:80
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:81
 msgid "Add custom field"
 msgstr "Agregar campo personalizado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:84
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:84
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:84
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:85
 msgid "Custom fields can be used to add extra metadata to a post that you can use in your theme."
 msgstr "Los campos personalizados pueden ser usados para agregar datos adicionales a una entrada. Esta información puede ser usada en tu tema o plantillas."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:90
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:89
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:90
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:90
 msgid "Comments and Trackbacks"
 msgstr "Comentarios y Trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:95
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:95
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:95
 msgid "Enable comments for this post"
 msgstr "Activar comentarios para esta entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/mywords_submit_form.php:98
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_formposts.php:97
+#: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:98
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:98
 msgid "Allow trackbacks for this post"
 msgstr "Activar trackbacks para esta entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:7
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:81
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:90
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:20
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:7
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:90
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:20
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:30
 msgid "Title"
 msgstr "Título"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:10
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:10
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:47
 msgid "Short description:"
 msgstr "Descripción corta:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:13
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:49
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:13
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:49
 msgid "Formated URL:"
 msgstr "URL formateada:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:16
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:52
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:16
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:52
 msgid "Icon:"
 msgstr "Icono:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:22
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:58
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:58
 #, php-format
 msgid "You can create new icons by uploading files to %s folder."
 msgstr "Puedes crear nuevos iconos subiendo los archivos de imágen al directorio %s."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:26
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:30
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:15
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:15
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:38
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:38
 msgid "Social Sites allows to publish directly, on these sites, links and content from MyWords posts."
 msgstr "Las redes sociales te permiten publicar directamente, en esos sitios, los enlaces y contenido de las entradas de MyWords."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:39
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:39
 msgid "You can add new sites easily by configuring parameters for each site (eg. Twitter, Facebook, etc.), then your visitors can recommend posts to other users from these social networks."
 msgstr "Puedes agregar nuevos sitios fácilmente configurando los parámetros para cada uno de ellos (ej. Twitter, Facebook, etc.), entonces los visitantes podrán recomendar las entradas a otros usuarios de esas redes sociales."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:44
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:60
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:44
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:60
 msgid "Create Site"
 msgstr "Crear Sitio"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:45
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:45
 msgid "Site title:"
 msgstr "Título del sitio:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:51
 msgid "Please, note that the URL can contain parameters {TITLE}, {URL} and {DESC} that will be replaced with their respective values."
 msgstr "Ten en cuenta que la URL puede contener los parámetros {TITLE}, {URL} y {DESC} que serán reemplzados con sus respectivos valores."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:69
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:127
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:46
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:93
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:76
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:157
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:51
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:100
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:11
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:64
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:69
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:127
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:46
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:93
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:76
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:157
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:100
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:11
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:64
 msgid "Bulk actions"
 msgstr "Acciones en bloque"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:70
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:128
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:77
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:158
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:128
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:77
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:158
 msgid "Activate"
 msgstr "Activar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:71
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:129
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:78
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:159
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:71
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:129
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:78
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:159
 msgid "Deactivate"
 msgstr "Desactivar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:72
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:115
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:130
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:47
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:82
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:94
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:79
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:120
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:160
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:70
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:53
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:88
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:102
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:12
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:50
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:65
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:72
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:115
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:130
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:82
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:94
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:79
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:120
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:160
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:53
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:88
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:102
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:65
 msgid "Delete"
 msgstr "Eliminar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:74
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:132
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:49
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:96
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:81
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:162
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:33
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:55
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:104
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:14
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:67
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:74
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:99
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:140
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:132
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:49
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:96
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:162
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:33
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:55
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:104
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:14
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:99
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:140
 msgid "Apply"
 msgstr "Aplicar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:82
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:91
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:55
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:64
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:82
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:91
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:55
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:64
 msgid "Description"
 msgstr "Descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:83
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:92
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:83
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:92
 msgid "URL"
 msgstr "URL"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:98
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:98
 msgid "There are not social sites registered yet!"
 msgstr "¡Aún no existen redes sociales registradas!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:107
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:112
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:107
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:112
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:109
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:80
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:114
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:69
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:86
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:67
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:81
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:106
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:109
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:80
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:114
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:69
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:86
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:106
 msgid "Edit"
 msgstr "Editar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:111
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:116
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:111
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:116
 msgid "Desactivar"
 msgstr "Desactivar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_bookmarks.php:113
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:118
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_bookmarks.php:113
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:118
 msgid "Activar"
 msgstr "Activar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:5
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:36
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:5
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:36
 msgid "Add Category"
 msgstr "Agregar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:8
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:8
 msgid "Category Name"
 msgstr "Nombre de la Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:12
 msgid "Category Slug"
 msgstr "Nombre corto de la categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:14
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:14
 msgid "The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
 msgstr "El \"nombre corto\" es la versión amigable del nombre para URLs. Usualmente se forma con letras minúsculas y contiene solo letras, números y guiones."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:19
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:19
 msgid "None"
 msgstr "Ninguna"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:24
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:24
 msgid "Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional."
 msgstr "Las categorías, a diferencia de las etiquetas, pueden tener una jerarquía. Puedes tener probablemente una categoría llamada Jazz y bajo ella, tener categorías hijas como Bebop y Big Band. Totalmente opcional."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:56
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:65
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:56
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:65
 msgid "Slug"
 msgstr "Nombre Corto"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_categories.php:71
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_categories.php:71
 msgid "There are not categories registered yet!"
 msgstr "¡Todavía no hay categorías registradas!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:9
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:11
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:37
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:62
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:9
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:11
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:37
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:70
 msgid "Short name"
 msgstr "Nombre corto"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:12
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:50
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:50
 msgid "Biography:"
 msgstr "Biografía:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:15
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:52
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:15
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:52
 msgid "Registered user:"
 msgstr "Usuario registrado:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:21
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:21
 msgid "Permissions:"
 msgstr "Permisos:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:23
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:59
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:130
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:23
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:59
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:130
 msgid "Create tags"
 msgstr "Crear etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:24
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:60
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:134
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:24
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:60
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:134
 msgid "Create categories"
 msgstr "Crear categorías"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:25
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:25
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:61
 msgid "Send trackbacks"
 msgstr "Enviar trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:26
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:62
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:62
 msgid "Manage discussions"
 msgstr "Administrar discusiones"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:42
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:42
 msgid "Editors are people that can send and publish content without admin approval. You can create new editors and assign individuals permissions for them."
 msgstr "Los editores son personas que pueden enviar y publicar contenido sin la aprovación del administrador. Puedes crear editores y aignarles permisos individuales."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:43
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:43
 msgid "All webmasters are allowed as editors with all privileges."
 msgstr "Todos los webmasters estan autorizados como editores con todos los privilegios."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:47
 msgid "Register Editor"
 msgstr "Registrar Editor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:48
 msgid "Display name:"
 msgstr "Nombre para mostrar:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:57
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:57
 msgid "Privilieges:"
 msgstr "Privilegios:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:65
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:65
 msgid "Create Editor"
 msgstr "Crear Editor"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:87
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:96
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:87
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:96
 msgid "Display name"
 msgstr "Mostrar nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:88
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:97
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:88
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:97
 msgid "User"
 msgstr "Usuario"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:89
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:98
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:89
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:98
 msgid "Permissions"
 msgstr "Permisos"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:105
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:105
 msgid "There are not editors registered yet."
 msgstr "Todavía no hay editores registrados."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:123
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:123
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:138
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:138
 msgid "Send trackbacks and pings"
 msgstr "Enviar trackabacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_editors.php:142
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_editors.php:142
 msgid "Enable/disable discussions"
 msgstr "Activar/Desactivar discusiones"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:1
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:45
+msgid "Remove"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:1
 msgid "Posts Management"
 msgstr "Administración de Entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:6
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:6
 msgid "Search:"
 msgstr "Buscar:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:10
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:10
 msgid "Results:"
 msgstr "Resultados:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:12
 msgid "Go!"
 msgstr "Ir!"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:16
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:16
 msgid "Show all"
 msgstr "Mostrar todo"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:17
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:48
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:70
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:17
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:48
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:70
 msgid "Published"
 msgstr "Publicados"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:18
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:55
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:18
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:55
 msgid "Drafts"
 msgstr "Borradores"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:19
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:19
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:61
 msgid "Pending of Review"
 msgstr "Pendientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:27
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:27
 msgid "Bulk Actions"
 msgstr "Acciones en Bloque"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:28
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:28
 msgid "Delete Posts"
 msgstr "Eliminar Entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:29
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:29
 msgid "Set status as Pending review"
 msgstr "Establecer como pendiente de revisión"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:30
 msgid "Set status as Draft"
 msgstr "Establecer como Borrador"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:31
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:31
 msgid "Set status as published"
 msgstr "Establecer como Publicado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:38
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:24
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:34
-msgid "Post"
-msgstr "Entrada"
-
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:39
-msgid "Author"
-msgstr "Autor"
-
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:43
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:23
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:33
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:43
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:23
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:33
 msgid "Date"
 msgstr "Fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:47
 msgid "No posts where found"
 msgstr "No se encontraron entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:58
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:42
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:71
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:58
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:42
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:71
 msgid "Draft"
 msgstr "Borrador"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:61
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:51
 msgid "Scheduled"
 msgstr "Programado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:64
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:64
 msgid "Pending"
 msgstr "Pendiente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:72
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:72
 msgid "Preview"
 msgstr "Previsualizar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_posts.php:74
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:74
 msgid "View"
 msgstr "Ver"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:26
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:26
 msgid "More used tags"
 msgstr "Etiquetas mas usadas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:30
 #, php-format
 msgid "%u Posts"
 msgstr "%u Entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:33
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:33
 msgid "New Tag"
 msgstr "Nueva Etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:35
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:35
 msgid "Tag name"
 msgstr "Nombre de etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:39
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:39
 msgid "Add Tag"
 msgstr "Agregar etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:52
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:101
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:52
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:101
 msgid "Update posts number"
 msgstr "Actualizar número de entradas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:77
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:77
 msgid "There is not any tag yet!"
 msgstr "Todavía no existe ninguna etiqueta"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_tags.php:87
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_tags.php:87
 msgid "Update"
 msgstr "Actualizar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:8
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:8
 msgid "MyWords Resources"
 msgstr "Recursos de MyWords"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:11
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:11
 msgid "MyWords documentation"
 msgstr "Documentación de MyWords"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:12
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:12
 msgid "Learn more about MyWords. Installation, configuration and all information to improve thsi module."
 msgstr "Aprender mas sobre MyWords, instalación, configuración y toda la información para mejorar este módulo."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:17
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:17
 msgid "Red México"
 msgstr "Red México"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:18
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:18
 msgid "New modules, themes and awesome resources for XOOPS."
 msgstr "Nuevos módulos, temas y recursos geniales para XOOPS."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:30
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:30
 msgid "Recent News"
 msgstr "Noticias Recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:45
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:45
 msgid "Quick Overview"
 msgstr "Vista Rápida"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:51
 msgid "Comments"
 msgstr "Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:63
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:63
 msgid "Social sites"
 msgstr "Redes Sociales"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:72
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:72
 msgid "Current version:"
 msgstr "Versión actual:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:78
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:78
 msgid "Recent Drafts"
 msgstr "Borradores Recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:93
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:93
 msgid "Posts pending for review"
 msgstr "Entras pendientes"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:112
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:112
 msgid "Credits"
 msgstr "Créditos"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:115
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:115
 msgid "MyWords has been created by <strong><a href=\"http://redmexico.com.mx\">Red México</a></strong>"
 msgstr "MyWords ha sido creado por <strong><a href=\"http://redmexico.com.mx\">Red México</a></strong>"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:116
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:116
 msgid "And developed by <strong>BitC3R0</strong>"
 msgstr "Y desarrollado por <strong>BitC3R0</strong>"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:117
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:117
 msgid "You can contact me trough <strong>i.bitcero@gmail.com</strong>"
 msgstr "Puedes contactarme por email a <strong>i.bitcero@gmail.com</strong>"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_theindex.php:118
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_theindex.php:118
 msgid "Some icons has been designed by <a href=\"http://dryicons.com/free-icons/\">dryicons</a>."
 msgstr "Algunos iconos han sido diseñados por <a href=\"http://dryicons.com/free-icons/\">dryicons</a>."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:3
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:3
 msgid "A trackback is one of three types of linkbacks, methods for Web authors to request notification when somebody links to one of their documents."
 msgstr "Un trackback es uno de los tres tipos de enlaces inversos, métodos para los autores web para solicitar información cuando alguien enlaza algún documento."
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:4
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:4
 msgid "Learn more"
 msgstr "Aprender mas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:21
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:31
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:21
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:31
 msgid "Blog name"
 msgstr "Nombre del blog"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:22
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:32
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:22
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:32
 msgid "Excerpt"
 msgstr "Extracto"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:40
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:40
 msgid "There are not trackbacks yet"
 msgstr "Todavía no hay trackbacks"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/templates/admin/mywords_trackbacks.php:56
+#: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_trackbacks.php:56
 msgid "Unknow"
 msgstr "Desconocido"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_categories.php:51
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_categories.php:51
 msgid "+ Add Categories"
 msgstr "+ Agregar Categorías"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_categories.php:53
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_categories.php:53
 msgid "Please provide a name"
 msgstr "Por favor proporciona un nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_categories.php:56
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_categories.php:56
 msgid "Parent category"
 msgstr "Categoría padre"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_categories.php:61
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_categories.php:61
 msgid "Add"
 msgstr "Agregar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:24
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:106
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:24
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:106
 msgid "Publish"
 msgstr "Publicar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:45
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:45
 msgid "Pending review"
 msgstr "Pendiente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:67
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:67
 msgid "Status:"
 msgstr "Estado:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:72
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:72
 msgid "Pending Review"
 msgstr "Pendiente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:81
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:81
 msgid "Visibility:"
 msgstr "Visibilidad:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:90
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:90
 msgid "Public"
 msgstr "Publico"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:91
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:91
 msgid "Password protected"
 msgstr "Protegido por contraseña"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:92
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:92
 msgid "password"
 msgstr "contraseña"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:98
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:98
 msgid "Private"
 msgstr "Privado"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:106
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:106
 msgid "Inmediatly"
 msgstr "Inmediatamente"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:117
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:117
 msgid "Jan"
 msgstr "Ene"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:118
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:118
 msgid "Feb"
 msgstr "Feb"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:119
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:119
 msgid "Mar"
 msgstr "Mar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:120
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:120
 msgid "Apr"
 msgstr "Abr"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:121
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:121
 msgid "May"
 msgstr "May"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:122
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:122
 msgid "Jun"
 msgstr "Jun"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:123
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:123
 msgid "Jul"
 msgstr "Jul"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:124
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:124
 msgid "Aug"
 msgstr "Ago"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:125
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:125
 msgid "Sep"
 msgstr "Sep"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:126
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:126
 msgid "Oct"
 msgstr "Oct"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:127
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:127
 msgid "Nov"
 msgstr "Nov"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:128
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:128
 msgid "Dec"
 msgstr "Dic"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:147
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:147
 msgid "Author:"
 msgstr "Autor:"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_publish.php:157
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_publish.php:157
 msgid "Update Post"
 msgstr "Actualizar Entrada"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_tags.php:17
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_tags.php:17
 msgid "Add Tags"
 msgstr "Agregar Etiquetas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_tags.php:40
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_tags.php:40
 msgid "+ Add"
 msgstr "+ Agregar"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_tags.php:41
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_tags.php:41
 msgid "Separate multiple tags with commas"
 msgstr "Separar múltiples etiquetas con coma"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_tags.php:47
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_tags.php:47
 msgid "Used Tags"
 msgstr "Etiquetas Utilizadas"
 
-#: E:\webserver\htdocs\xoops24\modules\mywords/widgets/widget_tags.php:57
+#: E:\webserver\htdocs\x25\modules\mywords/widgets/widget_tags.php:57
 msgid "Choose between most populars tags"
 msgstr "Seleccionar entre las etiquetas mas usadas"
 

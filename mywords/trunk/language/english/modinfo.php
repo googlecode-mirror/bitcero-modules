@@ -8,6 +8,9 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+
+load_mod_locale("mywords");
+
 define('_MI_MW_DESC', __('Modules for the publishing and management of news style blog', 'mywords'));
 
 define('_MI_MW_AMENU1', __('Module Status', 'mywords'));
