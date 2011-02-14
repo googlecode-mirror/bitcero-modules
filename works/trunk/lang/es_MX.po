@@ -2,984 +2,1283 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyWorks 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-06 17:49-0600\n"
-"PO-Revision-Date: 2010-05-06 18:01-0600\n"
+"POT-Creation-Date: 2011-02-14 14:42-0600\n"
+"PO-Revision-Date: 2011-02-14 14:42-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: MEXICO\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: F:\\webserver\\htdocs\\xoops24\\modules\\works\n"
+"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\x25\\modules\\works\n"
+"X-Poedit-SearchPath-1: E:\\webserver\\htdocs\\x25\\modules\\works\\include\n"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:27
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:130
+#: E:\webserver\htdocs\x25\modules\works/catego.php:27
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:130
 msgid "Specified category does not exists!"
-msgstr "¡La ctegoría especificada no existe!"
+msgstr "¡La categoría especificada no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:81
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:82
+#: E:\webserver\htdocs\x25\modules\works/catego.php:90
+#: E:\webserver\htdocs\x25\modules\works/catego.php:91
 #, php-format
 msgid "Works in \"%s\""
 msgstr "Trabajos en \"%s\""
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:83
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:60
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:61
+#: E:\webserver\htdocs\x25\modules\works/catego.php:92
+#: E:\webserver\htdocs\x25\modules\works/featured.php:65
+#: E:\webserver\htdocs\x25\modules\works/recent.php:66
 msgid "Category:"
 msgstr "Categoría:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:84
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:59
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:72
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:60
+#: E:\webserver\htdocs\x25\modules\works/catego.php:93
+#: E:\webserver\htdocs\x25\modules\works/featured.php:64
+#: E:\webserver\htdocs\x25\modules\works/home.php:81
+#: E:\webserver\htdocs\x25\modules\works/recent.php:65
 msgid "Date:"
 msgstr "Fecha:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:85
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:73
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:62
+#: E:\webserver\htdocs\x25\modules\works/catego.php:94
+#: E:\webserver\htdocs\x25\modules\works/featured.php:66
+#: E:\webserver\htdocs\x25\modules\works/home.php:82
+#: E:\webserver\htdocs\x25\modules\works/recent.php:67
 msgid "Customer:"
 msgstr "Cliente:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:86
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:62
+#: E:\webserver\htdocs\x25\modules\works/catego.php:95
+#: E:\webserver\htdocs\x25\modules\works/featured.php:67
 msgid "Our rate:"
 msgstr "Valoración:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/catego.php:89
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:79
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:66
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:118
+#: E:\webserver\htdocs\x25\modules\works/catego.php:98
+#: E:\webserver\htdocs\x25\modules\works/home.php:88
+#: E:\webserver\htdocs\x25\modules\works/recent.php:71
+#: E:\webserver\htdocs\x25\modules\works/work.php:145
 msgid "Featured"
 msgstr "Destacado"
 
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:58
-#: F:\webserver\htdocs\xoops24\modules\works/featured.php:65
+#: E:\webserver\htdocs\x25\modules\works/catego.php:100
+msgid "Portfolio"
+msgstr "Portafolio"
+
+#: E:\webserver\htdocs\x25\modules\works/featured.php:63
+#: E:\webserver\htdocs\x25\modules\works/featured.php:70
 msgid "Featured Works"
 msgstr "Trabajos Destacados"
 
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:70
+#: E:\webserver\htdocs\x25\modules\works/home.php:79
 msgid "Our Work"
 msgstr "Nuestro Trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:71
+#: E:\webserver\htdocs\x25\modules\works/home.php:80
 msgid "Cetegory:"
 msgstr "Categoría:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/home.php:74
+#: E:\webserver\htdocs\x25\modules\works/home.php:83
 msgid "View all recent works"
 msgstr "Ver todos los trabajos recientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:58
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:59
+#: E:\webserver\htdocs\x25\modules\works/recent.php:63
+#: E:\webserver\htdocs\x25\modules\works/recent.php:64
 msgid "Recent Works"
 msgstr "Trabajos Recientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/recent.php:63
+#: E:\webserver\htdocs\x25\modules\works/recent.php:68
 msgid "Our Rate:"
 msgstr "Valoración:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:18
+#: E:\webserver\htdocs\x25\modules\works/work.php:21
 msgid "Work id not provided!"
 msgstr "No fue especificado el identificador del trabajo!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:25
+#: E:\webserver\htdocs\x25\modules\works/work.php:28
 msgid "Specified id does not exists!"
 msgstr "¡El id especificado no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:107
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:88
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:111
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:143
+#: E:\webserver\htdocs\x25\modules\works/work.php:33
+msgid "The requested content is not available!"
+msgstr "¡El contenido solicitado no esta disponible!"
+
+#: E:\webserver\htdocs\x25\modules\works/work.php:38
+msgid "You are in preview mode! This work is hidden for all other users."
+msgstr "¡Te encuentras en el modo de previsualización! Esta trabajo permanece oculto para todos los demás usuarios."
+
+#: E:\webserver\htdocs\x25\modules\works/work.php:134
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:88
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:111
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:143
 msgid "Description"
 msgstr "Descripción"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:108
+#: E:\webserver\htdocs\x25\modules\works/work.php:135
 msgid "Category"
 msgstr "Categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:109
+#: E:\webserver\htdocs\x25\modules\works/work.php:136
 msgid "Customer"
 msgstr "Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:110
+#: E:\webserver\htdocs\x25\modules\works/work.php:137
 msgid "Begins"
 msgstr "Inicio"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:111
+#: E:\webserver\htdocs\x25\modules\works/work.php:138
 msgid "Time length"
 msgstr "Duración"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:112
+#: E:\webserver\htdocs\x25\modules\works/work.php:139
 msgid "Comment"
 msgstr "Commentario"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:113
+#: E:\webserver\htdocs\x25\modules\works/work.php:140
 msgid "Price"
 msgstr "Precio"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:114
+#: E:\webserver\htdocs\x25\modules\works/work.php:141
 msgid "Related Works"
 msgstr "Trabajos Relacionados"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:115
+#: E:\webserver\htdocs\x25\modules\works/work.php:142
 msgid "Date"
 msgstr "Fecha"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:116
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:73
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:130
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:131
+#: E:\webserver\htdocs\x25\modules\works/work.php:143
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:73
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:130
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:131
 msgid "Work Images"
 msgstr "Imágenes del Trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:117
+#: E:\webserver\htdocs\x25\modules\works/work.php:144
 msgid "Web site"
 msgstr "Sitio Web"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:119
+#: E:\webserver\htdocs\x25\modules\works/work.php:146
 msgid "Our Rate"
 msgstr "Valoración"
 
-#: F:\webserver\htdocs\xoops24\modules\works/work.php:121
+#: E:\webserver\htdocs\x25\modules\works/work.php:148
 msgid "Views"
 msgstr "Lecturas"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:40
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:41
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:40
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:41
 msgid "Works Categories"
 msgstr "Categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:45
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:45
 msgid "Do you really want to delete selected categories?"
 msgstr "¿Realmente deseas eliminar las categorías seleccionadas?"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:46
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:46
 msgid "You must select some category before to execute this action!"
 msgstr "¡Debes seleccionar al menos una categoría para poder ejecutar esta acción!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:59
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:83
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:59
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:61
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:83
 msgid "Edit Category"
 msgstr "Editar Categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:59
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:83
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:24
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:59
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:61
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:83
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:26
 msgid "Add Category"
 msgstr "Crear Categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:18
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:61
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:20
 msgid "Categories"
 msgstr "Categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:70
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:70
 msgid "Provide a category ID!"
 msgstr "¡Especifica un identificador de categoría!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:77
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:77
 msgid "Specified category was not found!"
 msgstr "¡La categoría especificada no se encontró!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:85
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:108
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:85
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:108
 msgid "Name"
 msgstr "Nombre"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:87
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:87
 msgid "Short name"
 msgstr "Nombre corto"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:89
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:89
 msgid "Enable category"
 msgstr "Activar categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:90
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:90
 msgid "Display order"
 msgstr "Orden de presentación"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:96
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:96
 msgid "Save Changes!"
 msgstr "Guardar Cambios"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:96
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:96
 msgid "Add Now!"
 msgstr "Agregar Ahora"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:116
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:218
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:267
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:318
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:156
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:218
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:187
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:312
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:116
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:218
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:267
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:318
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:156
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:218
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:187
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:312
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:124
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:187
 msgid "Session token expired!"
 msgstr "¡El identificador de sesión ha expirado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:123
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:123
 msgid "Wrong category ID!"
 msgstr "¡ID de categoría incorrecto!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:138
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:138
 msgid "A category with same name already exists!"
-msgstr ""
+msgstr "¡Ya existe una categoría con el mismo nombre!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:147
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:147
 msgid "There are already a category with same name id!"
-msgstr ""
+msgstr "¡Ya existe una categoría con el mismo nombre identificados!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:186
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:186
 msgid "Errors ocurred while trying to update database!"
-msgstr ""
+msgstr "¡Ocurrieron errores al intentar actualizar la base de datos!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:189
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:252
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:302
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:359
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:192
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:249
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:287
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:189
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:252
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:302
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:359
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:192
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:249
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:287
 msgid "Database updated successfully!"
-msgstr ""
+msgstr "¡Base de datos actualizada satisfactoriamente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:207
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:207
 msgid "No categories selected!"
-msgstr ""
+msgstr "¡No se eleccionaron categorías!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:226
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:226
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:276
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:334
 #, php-format
-msgid "Category id \"%s\" invalid!"
-msgstr ""
+msgid "Category id \"%s\" is not valid!"
+msgstr "¡El id de categoría \"%s\" no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:233
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:233
 #, php-format
 msgid "Category \"%s\" does not exists!"
-msgstr ""
+msgstr "¡La categoría \"%s\" no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:240
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:240
 #, php-format
 msgid "Category \"%s\" could not be deleted!"
-msgstr ""
+msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:249
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:249
 msgid "Errors ocurred while trying to delete categories"
-msgstr ""
+msgstr "Ocurrieron errores al intentar eliminar las categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:276
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:334
-#, php-format
-msgid "Category id \"%s\" not valid!"
-msgstr ""
-
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:283
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:341
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:283
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:341
 #, php-format
 msgid "Specified category \"%s\" does not exists!"
-msgstr ""
+msgstr "La categoría \"%s\" no existe!¡"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:294
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:351
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:294
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:351
 #, php-format
 msgid "Category \"%s\" could not be saved!"
-msgstr ""
+msgstr "¡La categoría \"%s\" no pudo ser guardada!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:299
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:356
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:299
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:356
 msgid "Errors ocurred while trying to save category"
-msgstr ""
+msgstr "Ocurrieron errores al intentar almacenar la categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/categos.php:325
+#: E:\webserver\htdocs\x25\modules\works/admin/categos.php:325
 msgid "You must select a category to enable/disable"
-msgstr ""
+msgstr "Debes seleccionar una categoría para activar/desactivar"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:62
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:101
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:102
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:36
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:61
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:62
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:101
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:102
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:40
 msgid "Customers"
 msgstr "Clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:64
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:64
 msgid "Do you really want to delete selected customers?"
-msgstr ""
+msgstr "¿Realmente deseas eliminar los clientes seleccionados?"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:65
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:65
 msgid "You must select some customer before to execute this action!"
-msgstr ""
+msgstr "¡Debes seleccionar al menos un cliente para ejecutar esta acción!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:89
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:89
 msgid "You must provide a customer ID"
-msgstr ""
+msgstr "Debes proporcionar un ID de cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:96
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:170
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:96
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:170
 msgid "Specified customer does not exists!"
-msgstr ""
+msgstr "¡El cliente especificado no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:101
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:106
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:101
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:106
 msgid "Edit Customer"
 msgstr "Editar Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:101
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:106
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:101
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:106
 msgid "New Customer"
 msgstr "Nuevo Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:109
-msgid "Business"
-msgstr ""
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:109
+msgid "Company"
+msgstr "Empresa"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:110
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:110
 msgid "Email address"
-msgstr ""
+msgstr "Dirección de email"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:114
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:114
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:130
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:130
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:99
 msgid "Save Changes"
-msgstr ""
+msgstr "Guardar Cambios"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:130
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:130
 msgid "Create Customer"
 msgstr "Crear Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:131
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:131
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:100
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:163
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:163
 msgid "Customer ID not provided!"
-msgstr ""
+msgstr "¡No se proporciono el ID del cliente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:189
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:189
 msgid "Errores ocurred while trying to update database"
-msgstr ""
+msgstr "Ocurrieron errores al intentar acutalizar la base de datos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:213
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:213
 msgid "You must specify a customer to delete!"
-msgstr ""
+msgstr "¡Debes especificar un cliente para eliminar!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:226
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:226
 #, php-format
-msgid "Customer ID \"%u\" not valid!"
-msgstr ""
+msgid "Customer ID \"%u\" is not valid!"
+msgstr "¡El ID de cliente \"%u\" no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:233
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:233
 #, php-format
 msgid "Customer with ID \"%u\" does not exists!"
-msgstr ""
+msgstr "¡El cliente con ID \"%u\" no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:241
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:241
 #, php-format
 msgid "Customer with ID \"%u\" could not be deleted!"
-msgstr ""
+msgstr "¡El cliente con ID \"%u\" no pudo ser eliminado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/clients.php:246
+#: E:\webserver\htdocs\x25\modules\works/admin/clients.php:246
 msgid "Errors ocurred while trying to delete customers:"
-msgstr ""
+msgstr "Ocurrieron errores al intentar eliminar los clientes:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:23
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:23
 msgid "Provided work ID is not valid!"
-msgstr ""
+msgstr "¡El ID de trabajo proporcionado no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:30
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:108
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:182
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:30
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:108
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:182
 msgid "Specified work does not exists!"
-msgstr ""
+msgstr "¡No existe el trabajo especificado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:77
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:77
 msgid "Do you really want to delete selected images?"
-msgstr ""
+msgstr "¿Realemtne deseas eliminar las imágenes seleccionadas?"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:78
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:78
 msgid "You must select an image before to execute this action!"
-msgstr ""
+msgstr "¡Debes seleccionar una imágen para poder ejecutar esta acción!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:101
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:175
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:101
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:175
 msgid "You must specify a work ID!"
-msgstr ""
+msgstr "¡Especifica un ID de trabajo!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:116
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:194
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:116
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:194
 msgid "You must specify an image ID!"
-msgstr ""
+msgstr "¡Especifica un ID de imagen!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:123
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:201
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:123
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:201
 msgid "Specified image does not exists!"
-msgstr ""
+msgstr "¡La imagen especificada no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:131
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:134
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:131
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:134
 msgid "Edit Image"
 msgstr "Editar imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:131
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:134
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:131
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:134
 msgid "Add Image"
 msgstr "Agregar imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:137
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:137
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:138
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:138
 msgid "Image file"
-msgstr ""
+msgstr "Archivo de imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:140
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:140
 msgid "Current image file"
-msgstr ""
+msgstr "Archivo de imagen actual"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:284
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:284
 msgid "Errors ocurred while trying to save the image"
-msgstr ""
+msgstr "Ocurrieron errores al intentar almacenar la imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:307
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:307
 msgid "You must select an image to delete!"
-msgstr ""
+msgstr "¡Debes seleccionar una imagen para eliminar!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:320
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:320
 #, php-format
 msgid "Image ID \"%s\" is not valid!"
-msgstr ""
+msgstr "¡El ID de imagen \"%s\" no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:327
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:327
 #, php-format
 msgid "Image with ID \"%s\" does not exists!"
-msgstr ""
+msgstr "¡La imagen con ID \"%s\" no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:332
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:332
 #, php-format
 msgid "Image \"%s\" could not be deleted!"
-msgstr ""
+msgstr "¡La imagen \"%s\" no pudo ser eliminada!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:337
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:337
 msgid "Errors ocurred while trying to delete images"
-msgstr ""
+msgstr "Ocurrieron errores al internar eliminar las imágenes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/images.php:340
+#: E:\webserver\htdocs\x25\modules\works/admin/images.php:340
 msgid "Images deleted successfully!"
-msgstr ""
+msgstr "¡Imágenes eliminadas correctamente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:13
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:14
 msgid "Dashboard"
 msgstr "Panel de Control"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:23
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:25
 msgid "List all"
 msgstr "Mostrar todos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:27
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:30
 msgid "Customer Types"
 msgstr "Tipos de Clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:32
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:41
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:50
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:35
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:45
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:55
 msgid "List"
 msgstr "Lista"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:33
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:36
 msgid "Add multiple types"
 msgstr "Agregar múltiples tipos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:42
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:46
 msgid "Add Customer"
 msgstr "Agregar Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:45
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:50
 msgid "Works"
 msgstr "Trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/menu.php:51
+#: E:\webserver\htdocs\x25\modules\works/admin/menu.php:56
 msgid "Add Work"
 msgstr "Agregar Trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:32
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:33
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:68
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:32
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:33
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:68
 msgid "Customer types"
-msgstr ""
+msgstr "Tipo de clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:37
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:37
 msgid "Do you really want to delete selected types?"
-msgstr ""
+msgstr "¿Realmente deseas eliminar los tipos seleccionados?"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:38
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:38
 msgid "You must select some type before to execute this action!"
-msgstr ""
+msgstr "¡Debes seleccionar al menos un tipo antes de ejecutar esta acción!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:57
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:57
 msgid "You must provide a type ID at least"
-msgstr ""
+msgstr "Debes proporcionar al menos un ID de tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:68
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:68
 msgid "Edit type"
-msgstr ""
+msgstr "Editar tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:68
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:68
 msgid "New type"
-msgstr ""
+msgstr "Nuevo tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:69
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:69
 msgid "Add Customers types"
 msgstr "Agregar tipos de clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:72
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:72
 msgid "Edit Type"
-msgstr ""
+msgstr "Ediatar Tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:72
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:72
 msgid "New Type"
-msgstr ""
+msgstr "Nuevo Tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:84
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:92
-#: F:\webserver\htdocs\xoops24\modules\works/include/widgets.php:41
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:84
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:92
 msgid "Type name"
-msgstr ""
+msgstr "Nombre del tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:99
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:99
 msgid "Save Customer Types"
-msgstr ""
+msgstr "Guardar Tipos de Clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:140
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:148
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:140
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:148
 msgid "Another type with same name already exists!"
-msgstr ""
+msgstr "¡Ya existe otro tipo con el mismo nombre!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:157
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:157
 #, php-format
 msgid "Type \"%s\" could not be saved!"
-msgstr ""
+msgstr "¡El tipo \"%s\" no pudo ser almacenado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:162
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:162
 msgid "Errors ocurred while saving types"
-msgstr ""
+msgstr "Ocurrieron errores al intentar almacenar los tipos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/types.php:165
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:165
 msgid "Types added successfully!"
-msgstr ""
+msgstr "¡Tipos agregados correctaamente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:81
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:182
+msgid "You has not selected any customer type to delete!"
+msgstr "¡No has seleccionado ningún tipo de cliente para eliminar!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:195
+#, php-format
+msgid "Customer type id \"%u\" is not valid!"
+msgstr "¡El ID del tipo de cliente \"%u\" no es válido!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:202
+#, php-format
+msgid "Customer type with id \"%u\" does not exists!"
+msgstr "¡El tipo de cliente con id \"%u\" no existe!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:207
+#, php-format
+msgid "Type %s could not be deleted!"
+msgstr "¡El tipo %s no pudo ser eliminado!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:212
+msgid "Errors ocurred while trying to delete selected types"
+msgstr "Ocurrieron errores al intentar eliminar los tipos seleccionados"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/types.php:215
+msgid "Customer types deleted successfully!"
+msgstr "¡Tipos de clientes eliminados correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:81
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:557
 msgid "Do you really want to delete selected works?"
-msgstr ""
+msgstr "¿Realmente deseas eliminar los trabajos seleccionados?"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:82
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:82
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:558
 msgid "You must select some work before to execute this action!"
-msgstr ""
+msgstr "¡Debes seleccionar al menos un trabajo antes de ejecutar esta acción!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:104
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:104
 msgid "Works Management"
-msgstr ""
+msgstr "Administrador de Trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:104
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:104
 msgid "Editing work"
-msgstr ""
+msgstr "Editando un trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:104
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:104
 msgid "New work"
-msgstr ""
+msgstr "Nuevo trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:113
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:113
 msgid "Provided Work ID is not valid!"
-msgstr ""
+msgstr "¡El ID de trabajo porporcionado no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:127
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:127
 msgid "Edit Work"
-msgstr ""
+msgstr "Editar Trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:127
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:196
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:127
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:201
 msgid "Create Work"
-msgstr ""
+msgstr "Crear Trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:131
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:131
 msgid "Short description"
-msgstr ""
+msgstr "Descripción corta"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:149
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:161
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:149
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:162
 msgid "Select..."
-msgstr ""
+msgstr "Seleccionar..."
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:170
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:170
 msgid "Customer comment"
 msgstr "Comentario del Cliente"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:172
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:175
 msgid "Site URL"
-msgstr ""
+msgstr "URL del sitio"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:173
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:178
 msgid "Start date"
-msgstr ""
+msgstr "Fecha de inicio"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:174
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:179
 msgid "Long time"
-msgstr ""
+msgstr "Duración"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:175
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:180
 msgid "Monetary cost"
-msgstr ""
+msgstr "Costo monetario"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:177
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:182
 msgid "Visible"
-msgstr ""
+msgstr "Visible"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:179
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:184
 msgid "Work image"
-msgstr ""
+msgstr "Imagen del trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:181
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:186
 msgid "Current image"
-msgstr ""
+msgstr "Imagen actual"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:184
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:189
 msgid "Rating"
-msgstr ""
+msgstr "Valoración"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:228
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:238
 msgid "Work ID not valid!"
-msgstr ""
+msgstr "¡ID de trabajo no válida!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:252
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:262
 msgid "A work with same name already exists!"
-msgstr ""
+msgstr "¡Ya existe un trabajo con el mismo nombre!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:374
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:384
 msgid "You must select a work at least!"
-msgstr ""
+msgstr "¡Debes seleccionar al menos un trabajo!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:387
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:439
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:494
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:397
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:449
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:504
 #, php-format
 msgid "Work ID \"%s\" is not valid!"
-msgstr ""
+msgstr "¡El ID de trabajo \"%s\" no es válido!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:394
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:446
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:501
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:404
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:456
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:511
 #, php-format
 msgid "Work with ID \"%s\" does not exists!"
-msgstr ""
+msgstr "¡El trabajo con ID \"%s\" no existe!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:399
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:409
 #, php-format
 msgid "Work \"%s\" could not be deleted!"
-msgstr ""
+msgstr "¡El trabajo \"%s\" no pudo ser eliminado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:404
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:414
 msgid "Errors ocurred while trying to delete works"
-msgstr ""
+msgstr "Ocurrieron errores al intentar eliminar los trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:407
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:417
 msgid "Works deleted successfully!"
-msgstr ""
+msgstr "¡Trabajos eliminados correctamente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:427
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:482
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:437
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:492
 msgid "You must specify a work ID"
-msgstr ""
+msgstr "Debes especificar un ID de trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:453
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:508
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:463
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:518
 #, php-format
 msgid "Work \"%s\" could not be saved!"
-msgstr ""
+msgstr "¡El trabajo \"%s\" no pudo ser almacenado!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:458
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:513
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:468
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:523
 msgid "Errors ocurred while trying to update works"
-msgstr ""
+msgstr "Ocurrieron errores al intentar actualizar los trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:461
-#: F:\webserver\htdocs\xoops24\modules\works/admin/works.php:516
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:471
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:526
 msgid "Works updated successfully!"
-msgstr ""
+msgstr "¡Trabajos actualizados correctamente!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_comments.php:55
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:86
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:543
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:584
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:635
+msgid "You must provide a work ID!"
+msgstr "¡Debes especificar un ID del trabajo!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:559
+msgid "Work Custom Fields"
+msgstr "Campos Personalizados para el Trabajo"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:603
+msgid "Please, fill all data!"
+msgstr "¡Por favor rellena toda la información!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:622
+msgid "Custom field added successfully!"
+msgstr "¡Campo personalizado agregado correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:624
+msgid "Custom field could not be added. Please try again!"
+msgstr "¡El campo personalizado no pudo ser agregado. Por favor inténtalo de nuevo!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:652
+msgid "Select some fields to delete!"
+msgstr "¡Selecciona al menos un campo para eliminar!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:660
+msgid "Custom fields deleted successfully!"
+msgstr "¡Campos personalizados eliminados correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\works/admin/works.php:662
+msgid "Custom fields could not be deleted!"
+msgstr "¡Los campos personalizados no pudieron eliminarse!"
+
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_comments.php:55
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:86
 msgid "Block Options"
 msgstr "Opciones del bloque"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_comments.php:56
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_comments.php:56
 msgid "Comments number"
 msgstr "Número de comentarios"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_comments.php:57
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:87
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_comments.php:57
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:87
 msgid "Works type"
 msgstr "Tipo de trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_comments.php:58
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_comments.php:58
 msgid "Random"
 msgstr "Aleatorio"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_comments.php:59
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:90
-#: F:\webserver\htdocs\xoops24\modules\works/class/pwfunctions.class.php:21
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_comments.php:59
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:90
+#: E:\webserver\htdocs\x25\modules\works/class/pwfunctions.class.php:21
 msgid "Recent works"
 msgstr "Trabajos recientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:67
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:67
 #, php-format
 msgid "Category: %s"
 msgstr "Categoría: %s"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:68
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:68
 #, php-format
 msgid "Customer: %s"
 msgstr "Cliente: %s"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:88
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:88
 msgid "Reandom works"
 msgstr "Trabajos aleatorios"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:89
-#: F:\webserver\htdocs\xoops24\modules\works/class/pwfunctions.class.php:22
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:89
+#: E:\webserver\htdocs\x25\modules\works/class/pwfunctions.class.php:22
 msgid "Featured works"
 msgstr "Trabajos destacados"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:96
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:96
 msgid "All categories"
 msgstr "Todas las categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:109
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:109
 msgid "All customers"
 msgstr "Todos los clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:120
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:120
 msgid "Works number"
 msgstr "Número de trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:121
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:121
 msgid "Columns"
 msgstr "Columnas"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:122
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:122
 msgid "Show work image"
 msgstr "Mostrar imagen del trabajo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/blocks/pw_works.php:123
+#: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:123
 msgid "Show description"
 msgstr "Mostrar descripción"
 
-#: F:\webserver\htdocs\xoops24\modules\works/class/workscontroller.php:44
+#: E:\webserver\htdocs\x25\modules\works/class/workscontroller.php:44
 msgid "Not found"
 msgstr "No encontrado"
 
-#: F:\webserver\htdocs\xoops24\modules\works/class/workscontroller.php:55
+#: E:\webserver\htdocs\x25\modules\works/class/workscontroller.php:55
 msgid "Unknow"
 msgstr "Desconocido"
 
-#: F:\webserver\htdocs\xoops24\modules\works/include/widgets.php:26
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:15
+msgid "Quick Categories"
+msgstr "Categoría Rápida"
+
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:27
 msgid "Create Category"
 msgstr "Crear Categoría"
 
-#: F:\webserver\htdocs\xoops24\modules\works/include/widgets.php:46
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:37
+msgid "Quick Customers Types"
+msgstr "Tipos de Clientes Rápidos"
+
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:47
 msgid "Create Type"
 msgstr "Crear Tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/include/widgets.php:64
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:56
+msgid "About Professional Works"
+msgstr "Acerca de Professional Works"
+
+#: E:\webserver\htdocs\x25\modules\works/include/widgets.php:65
 #, php-format
 msgid "You can contact me at %s."
-msgstr ""
+msgstr "Puedes contactarme en %s"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:6
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:64
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:7
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:50
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:8
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:58
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:7
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:45
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:6
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:78
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:11
+msgid "Module to manage professional portfolios"
+msgstr "Módulo para el manejo de portafolios profesionales"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:14
+msgid "Use friendly URLs"
+msgstr "Usar URLs amigables"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:15
+msgid "By enabling this option the module will manage the urls trough mod_rewrite (Apache Only)."
+msgstr "Al activar esta opción el módulo procesará las urls haciendo uso de mod_rewrite o equivalente."
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:18
+msgid "Header Title"
+msgstr "Título del Encabezado"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:19
+msgid "This title will be show as header of module"
+msgstr "Este título será mostrado como encabezado el módulo"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:22
+msgid "Size in pixels of the main image"
+msgstr "Tamaño en pixeles de la imagen principal"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:23
+msgid "This values must be specified in the format \"width|height\". Note the \"|\"."
+msgstr "Estos valores deben ser especificado en el formato \"ancho|alto\". Utilice \"|\" para separar los valores."
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:24
+msgid "Size in pixels of the normal image"
+msgstr "Tamaño en pixeles de la imagen normal"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:26
+msgid "Size in pixels of the thumbnail"
+msgstr "Tamaño en pixeles de la miniatura"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:28
+msgid "Size in pixels fo the thumbnail for main image"
+msgstr "Tamaño en pixeles de la miniatura para la imagen principal"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:29
+msgid "This value will be used to resize main images to show in the works list."
+msgstr "Este valor será utilizado para redimensionar las imágenes mostradas en la lista de trabajos."
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:32
+msgid "Resizing Method"
+msgstr "Método de Redimensión"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:33
+msgid "Crop Thumbnail"
+msgstr "Recortar miniatura"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:34
+msgid "Crop big image"
+msgstr "Recortar imagen grande"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:35
+msgid "Crop both images"
+msgstr "Recortar ambas imagenes"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:36
+msgid "Resize"
+msgstr "Redimensionar"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:39
+msgid "Image file size"
+msgstr "Tamaño del archivo de imagen"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:40
+msgid "This value must be specified in KB"
+msgstr "Este valor debe ser especificado en kilobytes"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:43
+msgid "Show work cost"
+msgstr "Mostrar costo del trabajo"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:46
+msgid "Currency Format"
+msgstr "Formato de moneda"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:49
+msgid "Number of Recent Works"
+msgstr "Número de Trabajos Recientes"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:50
+msgid "The number of recent works that will be shown in the home page"
+msgstr "El número de trabajos recientes que serán mostrados en la página inicial"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:52
+msgid "Number of Featured Works"
+msgstr "Numero de Trabajos Destacados"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:53
+msgid "The number of featured works that will be shown in the home page"
+msgstr "El número de trabajos destacados que serán mostrados en la página incial"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:55
+msgid "Base dir to friendly url management"
+msgstr "Directorio base para el manejo de urls amigables"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:58
+msgid "Other Works"
+msgstr "Otros Trabajos"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:59
+msgid "The type of works that will be shown in the details page"
+msgstr "El tipo de trabajos que serán mostrados en la página de detalles"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:60
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:61
+msgid "Same Category"
+msgstr "Misma Categoría"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:63
+msgid "Number of \"Other Works\""
+msgstr "Número de \"Otros Trabajos\""
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:64
+msgid "The number of \"Other Works\" to show in the section"
+msgstr "El número de \"Otros Trabajos\" mostrados en la sección"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:67
+msgid "Comments"
+msgstr "Commentarios"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:70
+msgid "Home Page"
+msgstr "Página Inicial"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:71
+msgid "Recent"
+msgstr "Reciente"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:72
+msgid "Fetured"
+msgstr "Destacado"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:74
+msgid "Work Details"
+msgstr "Detalles del Trabajo"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:76
+msgid "Show customer information"
+msgstr "Mostrar información del cliente"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:77
+msgid "When this option is enabled you will see the option to provide customer name and customer comment in works form."
+msgstr "Cuando esta opción esta activada podrás ver la opción para porporcionarl el nombre del cliente y su comentario en el formulario de creación de trabajos."
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:78
+msgid "Show web site information"
+msgstr "Mostrar información del sitio web"
+
+#: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:79
+msgid "When this option is enabled you will see the option to provide web site name and url in works form."
+msgstr "Cuando esta opción esta activa podrás ver la opción para proporcionar el nombre y url del sitio web del cliente en el formulario de creación de trabajos."
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:6
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:64
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:7
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:50
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:9
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:59
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:13
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:50
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:7
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:45
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:6
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:79
 msgid "Bulk actions..."
-msgstr ""
+msgstr "Acciones en bloque..."
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:7
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:65
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:7
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:65
 msgid "Save changes"
-msgstr ""
+msgstr "Guardar cambios"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:8
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:50
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:66
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:8
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:38
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:51
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:9
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:47
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:59
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:9
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:36
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:47
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:11
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:62
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:83
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:8
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:50
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:66
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:8
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:38
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:51
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:10
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:48
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:60
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:14
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:51
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:9
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:36
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:47
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:11
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:62
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:84
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:9
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:67
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:9
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:67
 msgid "Enable categories"
-msgstr ""
+msgstr "Activar categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:10
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:68
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:10
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:68
 msgid "Disable categories"
-msgstr ""
+msgstr "Desactivar categorías"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:12
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:70
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:10
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:53
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:11
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:61
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:11
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:49
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:13
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:85
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:12
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:70
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:10
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:53
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:12
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:62
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:16
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:53
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:11
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:49
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:13
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:86
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:19
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:32
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:19
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:17
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:26
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:17
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:24
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:22
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:34
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:19
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:32
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:19
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:18
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:27
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:17
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:24
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:22
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:34
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:24
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:37
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:24
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:37
 msgid "Active"
-msgstr ""
+msgstr "Activa"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:25
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:38
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:25
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:38
 msgid "Order"
-msgstr ""
+msgstr "Posición"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_categories.php:49
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:37
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:46
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:8
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:35
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:46
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:61
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:49
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:37
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:47
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:8
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:35
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:46
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:61
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_work_options.php:2
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:21
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:21
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_clients.php:27
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:22
+msgid "Business"
+msgstr "Empresa"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:27
 msgid "There are not customers registered in Professional Works yet!"
-msgstr ""
+msgstr "¡Aún no hay clientes registrados en Professional Works!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:18
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:27
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:19
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:28
 msgid "Image"
 msgstr "Imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:35
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:36
 msgid "There are not images for this work yet!"
 msgstr "¡Todavía no hay imágenes creadas para ete trabajo!"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:70
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:71
 msgid "Add image"
-msgstr ""
+msgstr "Agregar imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:72
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:73
 msgid "Image title"
-msgstr ""
+msgstr "Título de la imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_images.php:76
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:77
 msgid "Image description"
-msgstr ""
+msgstr "Descripción de la imagen"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:14
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:14
 msgid "Quick Overview"
-msgstr ""
+msgstr "Vista Rápida"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:22
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:22
 msgid "Customers types"
 msgstr "Tipos de clientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:26
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:26
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:63
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_work_options.php:3
 msgid "Images"
 msgstr "Imágenes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:27
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:27
 msgid "Current version:"
-msgstr ""
+msgstr "Versión actual:"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:34
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:34
 msgid "Works not published"
-msgstr ""
+msgstr "Trabajos no publicados"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:44
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:44
 msgid "View all works"
-msgstr ""
+msgstr "Ver todos los trabajos"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_index.php:50
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_index.php:50
 msgid "Recent News"
-msgstr ""
+msgstr "Noticias recientes"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:56
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:2
+#, php-format
+msgid "%s Custom Fields"
+msgstr "Campos Personalizados de %s"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:5
+msgid "Custom fields allows you to store additional data with your work. This data can be used later in your themes, plugins or another xoops component."
+msgstr "Los campos personalizados te permiten almacenar información adicional con tu trabajo. Esta información puede ser utilizada en tus temas, plugins o cualquier otro componente XOOPS que acceda a ella."
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:23
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:30
+msgid "Value"
+msgstr "Valor"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:36
+msgid "There are not metas for this work"
+msgstr "No hay campos personalizados para este trabajo"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:63
+msgid "Field name"
+msgstr "Nombre del campo"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:65
+msgid "Field value"
+msgstr "Valor del campo"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:67
+msgid "Add Custom Field"
+msgstr "Agrear Campo Personalziado"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:73
+msgid "To edit some custom field, please input an existing name and the new value. Custom field will be updated automatically."
+msgstr "Para editar algún campo, simplemente escribe el nombre de un campo existente y el nuevo calor, el campo se actualizará cuando guardes el valor."
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:57
 msgid "Add new type"
-msgstr ""
+msgstr "Agregar nuevo tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_types.php:59
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_types.php:60
 msgid "Add type"
 msgstr "Nuevo tipo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:8
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:16
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:80
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:8
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:16
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:81
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:10
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:82
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:10
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:83
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:14
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:14
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todo"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:15
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:15
 msgid "Published"
-msgstr ""
+msgstr "Publicados"
 
-#: F:\webserver\htdocs\xoops24\modules\works/templates/admin/pw_works.php:46
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:46
 msgid "There are not works registered yet!"
 msgstr "¡Todavía no hay trabajos registrados!"
+
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:64
+#: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_work_options.php:4
+msgid "Custom Fields"
+msgstr "Campos Personalizados"
 

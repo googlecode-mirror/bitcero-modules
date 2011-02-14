@@ -29,13 +29,13 @@ function showTypes(){
 	}
 
 	PWFunctions::toolbar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customer types','admin_works'));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Customer types','admin_works'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customer types','works'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Customer types','works'));
 	RMTemplate::get()->add_style('admin.css','works');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-	RMTemplate::get()->add_script('../include/js/admin_works.js');
-	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected types?','admin_works')."';\n
-		var pw_select_message = '".__('You must select some type before to execute this action!','admin_works')."';</script>");
+	RMTemplate::get()->add_script('../include/js/works.js');
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected types?','works')."';\n
+		var pw_select_message = '".__('You must select some type before to execute this action!','works')."';</script>");
 	xoops_cp_header();
     include RMTemplate::get()->get_template("admin/pw_types.php",'module','works');
 	xoops_cp_footer();
@@ -54,7 +54,7 @@ function formTypes($edit = 0){
 	if ($edit){
 		//Verificamos si nos proporcionaron al menos un tipo para editar
 		if (!is_array($ids)){
-			redirectMsg('./types.php',__('You must provide a type ID at least','admin_works'),1);
+			redirectMsg('./types.php',__('You must provide a type ID at least','works'),1);
 			die();		
 		}
 	
@@ -65,11 +65,11 @@ function formTypes($edit = 0){
 	}
 
 	PWFunctions::toolbar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./types.php'>".__('Customer types','admin_works')."</a> &raquo; ".($edit ? __('Edit type','admin_works') : __('New type','admin_works')));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Add Customers types','admin_works'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./types.php'>".__('Customer types','works')."</a> &raquo; ".($edit ? __('Edit type','works') : __('New type','works')));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Add Customers types','works'));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? __('Edit Type','admin_works') : __('New Type','admin_works'),'frmtype','types.php');
+	$form = new RMForm($edit ? __('Edit Type','works') : __('New Type','works'),'frmtype','types.php');
 	
 	$num = 10;	
 	if ($edit){
@@ -81,7 +81,7 @@ function formTypes($edit = 0){
 			$type = new PWType($k);
 			if ($type->isNew()) continue;
 
-			$form->addElement(new RMFormText(__('Type name','admin_works'),'type['.$type->id().']',50,100,$edit ? $type->type() : ''));
+			$form->addElement(new RMFormText(__('Type name','works'),'type['.$type->id().']',50,100,$edit ? $type->type() : ''));
 
 
 		}
@@ -89,15 +89,15 @@ function formTypes($edit = 0){
 
 	}else{
 		for ($i=1; $i<=$num; $i++){
-			$form->addElement(new RMFormText(__('Type name','admin_works'),'type['.$i.']',50,100,$edit ? '' : ''));
+			$form->addElement(new RMFormText(__('Type name','works'),'type['.$i.']',50,100,$edit ? '' : ''));
 		}
 	}
 
 	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
 
 	$ele = new RMFormButtonGroup();
-	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Save Customer Types','admin_works'), 'submit');
-	$ele->addButton('cancel', __('Cancel', 'admin_works'), 'button', 'onclick="window.location=\'types.php\';"');
+	$ele->addButton('sbt', $edit ? __('Save Changes','works') : __('Save Customer Types','works'), 'submit');
+	$ele->addButton('cancel', __('Cancel', 'works'), 'button', 'onclick="window.location=\'types.php\';"');
 	$form->addElement($ele);
 
 
@@ -121,7 +121,7 @@ function saveTypes($edit = 0){
 
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./types.php'.($edit ? '?op=edit&ids='.$ids : ''), __('Session token expired!','admin_works'), 1);
+		redirectMsg('./types.php'.($edit ? '?op=edit&ids='.$ids : ''), __('Session token expired!','works'), 1);
 		die();
 	}
 
@@ -137,7 +137,7 @@ function saveTypes($edit = 0){
 			//Verificamos si ya existe el nombre del tipo
 			$tpe = new PWType($v);
 			if (!$tpe->isNew() && $tp->id()!=$tpe->id()){
-				$errors .= sprintf(__('Another type with same name already exists!','admin_works'),$v);
+				$errors .= sprintf(__('Another type with same name already exists!','works'),$v);
 				continue;
 			}
 
@@ -145,7 +145,7 @@ function saveTypes($edit = 0){
 			//Verificamos si ya existe el nombre del tipo
 			$tp = new PWType($v);
 			if (!$tp->isNew()){
-				$errors .= sprintf(__('Another type with same name already exists!','admin_works'),$v);
+				$errors .= sprintf(__('Another type with same name already exists!','works'),$v);
 				continue;
 			}
 
@@ -154,15 +154,15 @@ function saveTypes($edit = 0){
 		$tp->setType($v);
 		$tp->isNew() ? $tp->setCreated(time()) : '';
 		if (!$tp->save()){
-			$errors .= sprintf(__('Type "%s" could not be saved!','admin_works'), $v);
+			$errors .= sprintf(__('Type "%s" could not be saved!','works'), $v);
 		}
 	}
 
 	if ($errors!=''){
-		redirectMsg('./types.php',__('Errors ocurred while saving types','admin_works').$errors,1);
+		redirectMsg('./types.php',__('Errors ocurred while saving types','works').$errors,1);
 		die();
 	}else{
-		redirectMsg($return!='' ? XOOPS_URL.'/modules/works/'.urldecode($return) : './types.php',__('Types added successfully!','admin_works'),0);
+		redirectMsg($return!='' ? XOOPS_URL.'/modules/works/'.urldecode($return) : './types.php',__('Types added successfully!','works'),0);
 		die();
 	}
 	

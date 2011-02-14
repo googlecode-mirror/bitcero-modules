@@ -58,11 +58,11 @@ function showClients(){
 
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customers','admin_works'));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','admin_works'));
-    RMTemplate::get()->add_script('../include/js/admin_works.js');
-    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected customers?','admin_works')."';\n
-        var pw_select_message = '".__('You must select some customer before to execute this action!','admin_works')."';</script>");
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customers','works'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','works'));
+    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected customers?','works')."';\n
+        var pw_select_message = '".__('You must select some customer before to execute this action!','works')."';</script>");
 	xoops_cp_header();
     
     include RMTemplate::get()->get_template('admin/pw_clients.php', 'module', 'works');
@@ -86,32 +86,32 @@ function formClients($edit = 0){
 	if ($edit){
 		//Verificamos si el cliente es válido
 		if ($id<=0){
-			redirectMsg('./clients.php?'.$ruta, __('You must provide a customer ID','admin_works'),1);
+			redirectMsg('./clients.php?'.$ruta, __('You must provide a customer ID','works'),1);
 			die();
 		}
 
 		//Verificamos si el cliente existe
 		$client = new PWClient($id);
 		if ($client->isNew()){
-			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','admin_works'),1);
+			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','works'),1);
 			die();
 		}
 	}
 
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./clients.php'>".__('Customers', 'admin_works')."</a> &raquo;".($edit ? __('Edit Customer','admin_works') : __('New Customer','admin_works')));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','admin_works'));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./clients.php'>".__('Customers', 'works')."</a> &raquo;".($edit ? __('Edit Customer','works') : __('New Customer','works')));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','works'));
 	PWFunctions::toolbar();
 	xoops_cp_header();
 	
-	$form = new RMForm($edit ? __('Edit Customer','admin_works') : __('New Customer','admin_works'),'frmClient','clients.php');
+	$form = new RMForm($edit ? __('Edit Customer','works') : __('New Customer','works'),'frmClient','clients.php');
 
-	$form->addElement(new RMFormText(__('Name','admin_works'),'name',50,200,$edit ? $client->name() : ''),true);
-	$form->addElement(new RMFormText(__('Business','admin_works'),'business',50,200,$edit ? $client->businessName() : ''));
-	$form->addElement(new RMFormText(__('Email address','admin_works'),'mail',50,100,$edit ? $client->email() : ''));
-	$form->addElement(new RMFormTextArea(__('Description','admin_works'),'desc',4,50,$edit ? $client->desc() : ''),true);
+	$form->addElement(new RMFormText(__('Name','works'),'name',50,200,$edit ? $client->name() : ''),true);
+	$form->addElement(new RMFormText(__('Company','works'),'business',50,200,$edit ? $client->businessName() : ''));
+	$form->addElement(new RMFormText(__('Email address','works'),'mail',50,100,$edit ? $client->email() : ''));
+	$form->addElement(new RMFormTextArea(__('Description','works'),'desc',4,50,$edit ? $client->desc() : ''),true);
 
 	//Tipos de Cliente
-	$ele = new RMFormSelect(__('Type','admin_works'),'type');
+	$ele = new RMFormSelect(__('Type','works'),'type');
 	$ele->addOption(0,_SELECT);
 	$result = $db->query("SELECT * FROM ".$db->prefix('pw_types'));	
 	while ($row = $db->fetchArray($result)){
@@ -127,8 +127,8 @@ function formClients($edit = 0){
 	$form->addElement(new RMFormHidden('limit',$limit));
 
 	$ele = new RMFormButtonGroup();
-	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Customer','admin_works'), 'submit');
-	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'clients.php?'.$ruta.'\';"');
+	$ele->addButton('sbt', $edit ? __('Save Changes','works') : __('Create Customer','works'), 'submit');
+	$ele->addButton('cancel', __('Cancel','works'), 'button', 'onclick="window.location=\'clients.php?'.$ruta.'\';"');
 	$form->addElement($ele);
     
     //Event
@@ -153,21 +153,21 @@ function saveClients($edit = 0){
 	$ruta = "pag=$page&limit=$limit";
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./clients.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Session token expired!','admin_works'), 1);
+		redirectMsg('./clients.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Session token expired!','works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos si el cliente es válido
 		if ($id<=0){
-			redirectMsg('./clients.php?'.$ruta, __('Customer ID not provided!','admin_works'),1);
+			redirectMsg('./clients.php?'.$ruta, __('Customer ID not provided!','works'),1);
 			die();
 		}
 
 		//Verificamos si el cliente existe
 		$client = new PWClient($id);
 		if ($client->isNew()){
-			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','admin_works'),1);
+			redirectMsg('./clients.php?'.$ruta, __('Specified customer does not exists!','works'),1);
 			die();
 		}
 
@@ -186,10 +186,10 @@ function saveClients($edit = 0){
     $client = RMEvents::get()->run_event('works.save.customer', $client);
     
 	if (!$client->save()){
-		redirectMsg('./clients.php?'.$ruta, __('Errores ocurred while trying to update database','admin_works').'<br />'.$client->errors(),1);
+		redirectMsg('./clients.php?'.$ruta, __('Errores ocurred while trying to update database','works').'<br />'.$client->errors(),1);
 		die();
 	}else{
-		redirectMsg('./clients.php?'.$ruta, __('Database updated successfully!','admin_works'),0);
+		redirectMsg('./clients.php?'.$ruta, __('Database updated successfully!','works'),0);
 		die();
 	}
 }
@@ -210,12 +210,12 @@ function deleteClients(){
 
 	//Verificamos que nos hayan proporcionado un cliente para eliminar
 	if (!is_array($ids)){
-		redirectMsg('./clients.php?'.$ruta,__('You must specify a customer to delete!','admin_works'),1);
+		redirectMsg('./clients.php?'.$ruta,__('You must specify a customer to delete!','works'),1);
 		die();
 	}
 
 	if (!$xoopsSecurity->check()){
-	    redirectMsg('./clients.php?'.$ruta,__('Session token expired!','admin_works'), 1);
+	    redirectMsg('./clients.php?'.$ruta,__('Session token expired!','works'), 1);
 		die();
 	}
 
@@ -223,14 +223,14 @@ function deleteClients(){
 	foreach ($ids as $k){
 	    //Verificamos si el cliente es válido
 		if ($k<=0){
-		    $errors.=sprintf(__('Customer ID "%u" not valid!','admin_works'), $k);
+		    $errors.=sprintf(__('Customer ID "%u" is not valid!','works'), $k);
 			continue;
 		}
 
 		//Verificamos si el cliente existe
 		$client = new PWClient($k);
 		if ($client->isNew()){
-		    $errors.=sprintf(__('Customer with ID "%u" does not exists!','admin_works'), $k);
+		    $errors.=sprintf(__('Customer with ID "%u" does not exists!','works'), $k);
 			continue;
 		}
 		
@@ -238,15 +238,15 @@ function deleteClients(){
         RMEvents::get()->run_event('works.deleting.customer', $client);
         
 		if (!$client->delete()){
-		    $errors.=sprintf(__('Customer with ID "%u" could not be deleted!','admin_works'),$k);
+		    $errors.=sprintf(__('Customer with ID "%u" could not be deleted!','works'),$k);
 		}
 	}
 	
 	if ($errors!=''){
-	    redirectMsg('./clients.php?'.$ruta,__('Errors ocurred while trying to delete customers:','admin_works').'<br />'.$errors,1);
+	    redirectMsg('./clients.php?'.$ruta,__('Errors ocurred while trying to delete customers:','works').'<br />'.$errors,1);
 		die();
 	}else{
-	    redirectMsg('./clients.php?'.$ruta,__('Database updated successfully!','admin_works'),0);
+	    redirectMsg('./clients.php?'.$ruta,__('Database updated successfully!','works'),0);
 		die();
 	}
 

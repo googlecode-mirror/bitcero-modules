@@ -30,7 +30,7 @@ if($work->isNew()){
 }
 
 if(!$work->isPublic() && !($xoopsUser && $xoopsUser->isAdmin())){
-    redirect_header(PW_URL, 1, __('The required content is not available!','works'));
+    redirect_header(PW_URL, 1, __('The requested content is not available!','works'));
     die();
 }
 

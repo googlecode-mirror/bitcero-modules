@@ -77,10 +77,10 @@ function showWorks(){
 	PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/admin_works.js');
-    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','admin_works')."';\n
-        var pw_select_message = '".__('You must select some work before to execute this action!','admin_works')."';</script>");
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works','admin_works'));
+    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','works')."';\n
+        var pw_select_message = '".__('You must select some work before to execute this action!','works')."';</script>");
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works','works'));
 	xoops_cp_header();
     
     include RMTemplate::get()->get_template("admin/pw_works.php", 'module', 'works');
@@ -101,7 +101,7 @@ function formWorks($edit = 0){
 
 	
 	PWFunctions::toolbar();
-	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./works.php'>".__('Works Management','admin_works')."</a> &raquo; ".($edit ? __('Editing work','admin_works'): __('New work','admin_works')));
+	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./works.php'>".__('Works Management','works')."</a> &raquo; ".($edit ? __('Editing work','works'): __('New work','works')));
 	xoops_cp_header();
 
 	$id = rmc_server_var($_REQUEST, 'id', 0);
@@ -110,26 +110,26 @@ function formWorks($edit = 0){
 
 		//Verificamos que el trabajo sea válido
 		if ($id<=0){
-			redirectMsg('./works.php?'.$ruta,__('Provided Work ID is not valid!','admin_works'),1);
+			redirectMsg('./works.php?'.$ruta,__('Provided Work ID is not valid!','works'),1);
 			die();
 		}
 
 		//Verificamos que el trabajo exista
 		$work = new PWWork($id);
 		if ($work->isNew()){
-			redirectMsg('./works.php?'.$ruta,__('Specified work does not exists!','admin_works'),1);
+			redirectMsg('./works.php?'.$ruta,__('Specified work does not exists!','works'),1);
 			die();
 
 		}	
 	}
 
 
-	$form = new RMForm($edit ? __('Edit Work','admin_works') : __('Create Work','admin_works'),'frmwork','works.php');
+	$form = new RMForm($edit ? __('Edit Work','works') : __('Create Work','works'),'frmwork','works.php');
 	$form->setExtra("enctype='multipart/form-data'");
 
-	$form->addElement(new RMFormText(__('Title','admin_works'),'title',50,200,$edit ? $work->title() : ''),true);
-	$form->addElement(new RMFormTextArea(__('Short description','admin_works'),'short',4,50,$edit ? $work->descShort() : ''),true);
-	$form->addElement(new RMFormEditor(__('Description','admin_works'),'desc','90%','200px',$edit ? $work->desc('e') : ''),true);
+	$form->addElement(new RMFormText(__('Title','works'),'title',50,200,$edit ? $work->title() : ''),true);
+	$form->addElement(new RMFormTextArea(__('Short description','works'),'short',4,50,$edit ? $work->descShort() : ''),true);
+	$form->addElement(new RMFormEditor(__('Description','works'),'desc','90%','200px',$edit ? $work->desc('e') : ''),true);
 	if ($edit){
 		$dohtml = $work->getVar('dohtml');
 		$doxcode = $work->getVar('doxcode');
@@ -145,8 +145,8 @@ function formWorks($edit = 0){
 	}
 	$form->addElement(new RMFormTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
 	
-	$ele = new RMFormSelect(__('Category','admin_works'),'catego');
-	$ele->addOption(0,__('Select...','admin_works'));
+	$ele = new RMFormSelect(__('Category','works'),'catego');
+	$ele->addOption(0,__('Select...','works'));
 	//Categorias existentes
     $db = Database::getInstance();
 	$result = $db->query("SELECT * FROM ".$db->prefix("pw_categos")." ORDER BY `order`");
@@ -158,8 +158,8 @@ function formWorks($edit = 0){
 
 	if($xoopsModuleConfig['show_customer']){
         //Clientes Existentes
-	    $ele = new RMFormSelect(__('Customer','admin_works'),'client');
-	    $ele->addOption(0,__('Select...','admin_works'));
+	    $ele = new RMFormSelect(__('Customer','works'),'client');
+	    $ele->addOption(0,__('Select...','works'));
 	    $sql = "SELECT * FROM ".$db->prefix('pw_clients');
 	    $result = $db->query($sql);
 	    while ($row = $db->fetchArray($result)){
@@ -167,26 +167,26 @@ function formWorks($edit = 0){
 	    }
 
 	    $form->addElement($ele,true,'noselect:0');
-	    $form->addElement(new RMFormTextArea(__('Customer comment','admin_works'),'comment',4,50,$edit ? $work->comment() : ''));
+	    $form->addElement(new RMFormTextArea(__('Customer comment','works'),'comment',4,50,$edit ? $work->comment() : ''));
     }
     
     if($xoopsModuleConfig['show_web']){
-	    $form->addElement(new RMFormText(__('Web site','admin_works'),'site',50,150,$edit ? $work->nameSite() : ''));
-	    $form->addElement(new RMFormText(__('Site URL','admin_works'),'url',50,255,$edit ? $work->url() : ''));
+	    $form->addElement(new RMFormText(__('Web site','works'),'site',50,150,$edit ? $work->nameSite() : ''));
+	    $form->addElement(new RMFormText(__('Site URL','works'),'url',50,255,$edit ? $work->url() : ''));
     }
     
-	$form->addElement(new RMFormDate(__('Start date','admin_works'),'start',$edit ? $work->start() : time()));
-	$form->addElement(new RMFormText(__('Long time','admin_works'),'period',50,255,$edit ? $work->period() : ''));
-	$form->addElement(new RMFormText(__('Monetary cost','admin_works'),'cost',10,20,$edit ? $work->cost() : 0));
-	$form->addElement(new RMFormYesno(__('Featured','admin_works'),'mark',$edit ? $work->mark() : 0));
-	$form->addElement(new RMFormYesno(__('Visible','admin_works'),'public',$edit ? $work->isPublic() : 1));
+	$form->addElement(new RMFormDate(__('Start date','works'),'start',$edit ? $work->start() : time()));
+	$form->addElement(new RMFormText(__('Long time','works'),'period',50,255,$edit ? $work->period() : ''));
+	$form->addElement(new RMFormText(__('Monetary cost','works'),'cost',10,20,$edit ? $work->cost() : 0));
+	$form->addElement(new RMFormYesno(__('Featured','works'),'mark',$edit ? $work->mark() : 0));
+	$form->addElement(new RMFormYesno(__('Visible','works'),'public',$edit ? $work->isPublic() : 1));
 
-	$form->addElement(new RMFormFile(__('Work image','admin_works'),'image',45, $xoopsModuleConfig['size_image']*1024));
+	$form->addElement(new RMFormFile(__('Work image','works'),'image',45, $xoopsModuleConfig['size_image']*1024));
 	if ($edit){
-		$form->addElement(new RMFormLabel(__('Current image','admin_works'),"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$work->image()."' />"));
+		$form->addElement(new RMFormLabel(__('Current image','works'),"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$work->image()."' />"));
 	}
 
-	$ele = new RMFormSelect(__('Rating','admin_works'),'rating');
+	$ele = new RMFormSelect(__('Rating','works'),'rating');
 	for ($i=0; $i<=10; $i++){
 		$ele->addOption($i,$i,$edit ? ($work->rating()==$i ? 1 : 0) : 0);
 	}
@@ -198,8 +198,8 @@ function formWorks($edit = 0){
 	$form->addElement(new RMFormHidden('page',$page));
 
 	$ele = new RMFormButtonGroup();
-	$ele->addButton('sbt', $edit ? __('Save Changes','admin_works') : __('Create Work','admin_works'), 'submit');
-	$ele->addButton('cancel', __('Cancel','admin_works'), 'button', 'onclick="window.location=\'works.php?'.$ruta.'\';"');
+	$ele->addButton('sbt', $edit ? __('Save Changes','works') : __('Create Work','works'), 'submit');
+	$ele->addButton('cancel', __('Cancel','works'), 'button', 'onclick="window.location=\'works.php?'.$ruta.'\';"');
 	$form->addElement($ele);
     
     if($edit){
@@ -228,21 +228,21 @@ function saveWorks($edit = 0){
 	}
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./works.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$query, __('Session token expired!','admin_works'), 1);
+		redirectMsg('./works.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$query, __('Session token expired!','works'), 1);
 		die();
 	}
 
 	if ($edit){
 		//Verificamos que el trabajo sea válido
 		if ($id<=0){
-			redirectMsg('./works.php?'.$query,__('Work ID not valid!','admin_works'),1);
+			redirectMsg('./works.php?'.$query,__('Work ID not valid!','works'),1);
 			die();
 		}
 
 		//Verificamos que el trabajo exista
 		$work = new PWWork($id);
 		if ($work->isNew()){
-			redirectMsg('./works.php?'.$query,__('Specified work does not exists!','admin_works'),1);
+			redirectMsg('./works.php?'.$query,__('Specified work does not exists!','works'),1);
 			die();
 
 		}
@@ -259,7 +259,7 @@ function saveWorks($edit = 0){
 	}
 	list($num)=$db->fetchRow($db->query($sql));
 	if ($num>0){
-		redirectMsg("works.php?".$query, __('A work with same name already exists!','admin_works'), 1);
+		redirectMsg("works.php?".$query, __('A work with same name already exists!','works'), 1);
 		die();
 	}
 
@@ -357,10 +357,10 @@ function saveWorks($edit = 0){
 	$work->setImage($filename);
 	
 	if (!$work->save()){
-		redirectMsg('./works.php?'.$query,__('Errors ocurred while trying to update database!','admin_works').$work->errors(),1);
+		redirectMsg('./works.php?'.$query,__('Errors ocurred while trying to update database!','works').$work->errors(),1);
 		die();
 	}else{	
-		redirectMsg('./works.php?op=edit&id='.$work->id(),__('Database updated successfully!','admin_works'),0);
+		redirectMsg('./works.php?op=edit&id='.$work->id(),__('Database updated successfully!','works'),0);
 		die();
 
 	}
@@ -381,12 +381,12 @@ function deleteWorks(){
 
 	//Verificamos que nos hayan proporcionado un trabajo para eliminar
 	if (!is_array($ids)){
-		redirectMsg('./works.php?'.$ruta, __('You must select a work at least!','admin_works'),1);
+		redirectMsg('./works.php?'.$ruta, __('You must select a work at least!','works'),1);
 		die();
 	}
 
      if (!$xoopsSecurity->check()){
-	    redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
+	    redirectMsg('./works.php?'.$ruta, __('Session token expired!','works'), 1);
 		die();
 	 }
 
@@ -394,27 +394,27 @@ function deleteWorks(){
 	 foreach ($ids as $k){
 	    //Verificamos si el trabajo es válido
 		if ($k<=0){
-		    $errors.=sprintf(__('Work ID "%s" is not valid!','admin_works'), $k);
+		    $errors.=sprintf(__('Work ID "%s" is not valid!','works'), $k);
 			continue;
 		}
 
 		//Verificamos si el trabajo existe
 		$work = new PWWork($k);
 		if ($work->isNew()){
-		    $errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
+		    $errors.=sprintf(__('Work with ID "%s" does not exists!','works'), $k);
 			continue;
 		}
 		
 		if (!$work->delete()){
-		    $errors.=sprintf(__('Work "%s" could not be deleted!','admin_works'),$work->title());
+		    $errors.=sprintf(__('Work "%s" could not be deleted!','works'),$work->title());
 		}
 	 }
 	
 	if ($errors!=''){
-	    redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to delete works','admin_works').'<br />'.$errors,1);
+	    redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to delete works','works').'<br />'.$errors,1);
 		die();
 	}else{
-	    redirectMsg('./works.php?'.$ruta,__('Works deleted successfully!','admin_works'),0);
+	    redirectMsg('./works.php?'.$ruta,__('Works deleted successfully!','works'),0);
 		die();
 	}
 
@@ -434,33 +434,33 @@ function publicWorks($pub = 0){
 
 	//Verificamos que nos hayan proporcionado un trabajo para publicar
 	if (!is_array($ids)){
-		redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','admin_works'),1);
+		redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','works'),1);
 		die();
 	}
 	
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
+		redirectMsg('./works.php?'.$ruta, __('Session token expired!','works'), 1);
 		die();
 	}
 	$errors = '';
 	foreach ($ids as $k){
 		//Verificamos si el trabajo es válido
 		if ($k<=0){
-			$errors.=sprintf(__('Work ID "%s" is not valid!', 'admin_works'), $k);
+			$errors.=sprintf(__('Work ID "%s" is not valid!', 'works'), $k);
 			continue;
 		}
 
 		//Verificamos si el trabajo existe
 		$work = new PWWork($k);
 		if ($work->isNew()){
-			$errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
+			$errors.=sprintf(__('Work with ID "%s" does not exists!','works'), $k);
 			continue;
 		}
 
 		$work->setPublic($pub);
 		
 		if (!$work->save()){
-			$errors.=sprintf(__('Work "%s" could not be saved!','admin_works'),$k);
+			$errors.=sprintf(__('Work "%s" could not be saved!','works'),$k);
 		}
 	}
 	
@@ -468,7 +468,7 @@ function publicWorks($pub = 0){
 		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update works').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','admin_works'),0);
+		redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','works'),0);
 		die();
 	}
 
@@ -489,33 +489,33 @@ function markWorks($mark = 0){
 
 	//Verificamos que nos hayan proporcionado un trabajo para destacar
 	if (!is_array($ids)){
-        redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','admin_works'),1);
+        redirectMsg('./works.php?'.$ruta, __('You must specify a work ID','works'),1);
         die();
     }
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('./works.php?'.$ruta, __('Session token expired!','admin_works'), 1);
+        redirectMsg('./works.php?'.$ruta, __('Session token expired!','works'), 1);
         die();
     }
 	$errors = '';
 	foreach ($ids as $k){
 		//Verificamos si el trabajo es válido
 		if ($k<=0){
-            $errors.=sprintf(__('Work ID "%s" is not valid!', 'admin_works'), $k);
+            $errors.=sprintf(__('Work ID "%s" is not valid!', 'works'), $k);
             continue;
         }
 
         //Verificamos si el trabajo existe
         $work = new PWWork($k);
         if ($work->isNew()){
-            $errors.=sprintf(__('Work with ID "%s" does not exists!','admin_works'), $k);
+            $errors.=sprintf(__('Work with ID "%s" does not exists!','works'), $k);
             continue;
         }
 
 		$work->setMark($mark);
 		
 		if (!$work->save()){
-            $errors.=sprintf(__('Work "%s" could not be saved!','admin_works'),$k);
+            $errors.=sprintf(__('Work "%s" could not be saved!','works'),$k);
         }
 	}
 	
@@ -523,7 +523,7 @@ function markWorks($mark = 0){
 		redirectMsg('./works.php?'.$ruta,__('Errors ocurred while trying to update works').'<br />'.$errors,1);
         die();
     }else{
-        redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','admin_works'),0);
+        redirectMsg('./works.php?'.$ruta,__('Works updated successfully!','works'),0);
         die();
 	}
 
@@ -540,23 +540,23 @@ function works_meta_data(){
     $page = rmc_server_var($_GET, 'page', 0);
     
     if ($id<=0){
-        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 0);
+        redirectMsg('works.php', __('You must provide a work ID!','works'), 0);
         die();
     }
     
     $work = new PWWork($id);
     if ($work->isNew()){
-        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 0);
+        redirectMsg('works.php', __('Specified work does not exists!','works'), 0);
         die();
     }
     
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/admin_works.js');
-    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','admin_works')."';\n
-        var pw_select_message = '".__('You must select some work before to execute this action!','admin_works')."';</script>");
-    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Custom Fields','admin_works'));
+    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','works')."';\n
+        var pw_select_message = '".__('You must select some work before to execute this action!','works')."';</script>");
+    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Custom Fields','works'));
     
     // Load metas
     $metas = array();
@@ -581,18 +581,18 @@ function works_save_meta(){
     $id = rmc_server_var($_POST, 'id', 0);
     
     if ($id<=0){
-        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 1);
+        redirectMsg('works.php', __('You must provide a work ID!','works'), 1);
         die();
     }
     
     $work = new PWWork($id);
     if ($work->isNew()){
-        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 1);
+        redirectMsg('works.php', __('Specified work does not exists!','works'), 1);
         die();
     }
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','admin_works'), 1);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','works'), 1);
         die();
     }
     
@@ -600,7 +600,7 @@ function works_save_meta(){
     $value = rmc_server_var($_POST, 'value', '');
     
     if ($name=='' || $value==''){
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Please, fill all data!','admin_works'), 1);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Please, fill all data!','works'), 1);
         die();
     }
     
@@ -619,9 +619,9 @@ function works_save_meta(){
     }
     
     if ($db->queryF($sql)){
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field added successfully!','admin_works'), 0);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field added successfully!','works'), 0);
     } else {
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field could not be added. Please try again!','admin_works').'<br />'.$db->error(), 1);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom field could not be added. Please try again!','works').'<br />'.$db->error(), 1);
     }
     
 }
@@ -632,24 +632,24 @@ function works_delete_meta(){
     $id = rmc_server_var($_POST, 'id', 0);
     
     if ($id<=0){
-        redirectMsg('works.php', __('You must provide a work ID!','admin_works'), 1);
+        redirectMsg('works.php', __('You must provide a work ID!','works'), 1);
         die();
     }
     
     $work = new PWWork($id);
     if ($work->isNew()){
-        redirectMsg('works.php', __('Specified work does not exists!','admin_works'), 1);
+        redirectMsg('works.php', __('Specified work does not exists!','works'), 1);
         die();
     }
     
     if (!$xoopsSecurity->check()){
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','admin_works'), 1);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Session token expired!','works'), 1);
         die();
     }
     
     $ids = rmc_server_var($_POST, 'ids', array()); 
     if (!is_array($ids) || empty($ids)){
-        redirectMsg('works.php', __('Select some fields to delete!','admin_works'), 1);
+        redirectMsg('works.php', __('Select some fields to delete!','works'), 1);
         die();
     }
     
@@ -657,9 +657,9 @@ function works_delete_meta(){
     $sql = "DELETE FROM ".$db->prefix("pw_meta")." WHERE id_meta IN(".implode(",",$ids).")";
     
     if ($db->queryF($sql)){
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields deleted successfully!','admin_works'), 0);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields deleted successfully!','works'), 0);
     } else {
-        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields could not be deleted!','admin_works').'<br />'.$db->error(), 1);
+        redirectMsg('works.php?id='.$id.'&op=meta', __('Custom fields could not be deleted!','works').'<br />'.$db->error(), 1);
     }
     
 }

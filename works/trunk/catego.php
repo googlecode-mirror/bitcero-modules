@@ -97,7 +97,7 @@ $thSize = $mc['image_ths'];
 $tpl->assign('width',$thSize[0]+20);
 $tpl->assign('lang_featured', __('Featured','works'));
 
-RMBreadCrumb::get()->add_crumb(__('Portafolio','works'), PW_URL);
+RMBreadCrumb::get()->add_crumb(__('Portfolio','works'), PW_URL);
 RMBreadCrumb::get()->add_crumb($cat->getVar('name'), PW_URL);
 
 include 'footer.php';
