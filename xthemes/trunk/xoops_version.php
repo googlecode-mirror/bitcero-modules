@@ -7,11 +7,11 @@
 // License: GPL v2
 // --------------------------------------------------------------
 
-$modversion['name'] = 'xThemes';
+$modversion['name'] = 'XThemes';
 $modversion['version'] = 1.018;
 $modversion['rmnative'] = '1';
-$modversion['rmversion'] = array('number'=>1,'revision'=>18,'status'=>0,'name'=>'Quick Pages');
-$modversion['description'] = 'A module to manage themes from TemasWeb.com';
+$modversion['rmversion'] = array('number'=>1,'revision'=>18,'status'=>0,'name'=>'XThemes');
+$modversion['description'] = 'A module to manage themes from Red México';
 $modversion['credits'] = "Eduardo Cortés <i.bitcero@gmail.com>";
 $modversion['author'] = "BitC3R0";
 $modversion['authormail'] = "i.bitcero@gmail.com";
