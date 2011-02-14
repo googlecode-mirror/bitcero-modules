@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyWords 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-12 20:31-0600\n"
-"PO-Revision-Date: 2011-02-12 20:33-0600\n"
+"POT-Creation-Date: 2011-02-14 00:10-0600\n"
+"PO-Revision-Date: 2011-02-14 00:13-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: BitC3R0 <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -753,8 +753,8 @@ msgid "Select an author to see the posts published recently."
 msgstr "Selecciona un autor para ver las entradas publicadas recientemente."
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:14
-msgid "Modules for the publishing and management of news style blog"
-msgstr ""
+msgid "Module for the publishing and management of news and blogs"
+msgstr "Módulo para la publicación y administración de blogs"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:16
 msgid "Module Status"
@@ -762,7 +762,7 @@ msgstr "Estado del Módulo"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:18
 msgid "Articles"
-msgstr ""
+msgstr "Entradas"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:20
 msgid "Bookmarks"
@@ -774,51 +774,47 @@ msgstr "Enviar Artículo"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:26
 msgid "Links Format"
-msgstr ""
+msgstr "Formato de Enlaces"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:27
 msgid "Determines the way the links in the module will be shown and will be processed."
-msgstr ""
+msgstr "Determina la forma en que los vínculos dentro del módulo serán mostrados y procesados ."
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:29
-msgid "Basado en Fecha y Nombre"
-msgstr ""
+msgid "Based on name and date"
+msgstr "Basado en nombre y fecha"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:30
-#, fuzzy
-msgid "Numérico"
-msgstr "Formato numérico"
+msgid "Numeric"
+msgstr "Numérico"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:32
 msgid "Base Path"
-msgstr ""
+msgstr "Ruta Base"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:33
 msgid "This path is used when the links format has been stablished as based in dates or numbers."
-msgstr ""
+msgstr "Esta ruta es utilizada cuando el formato de enlaces ha sido establecido como basado en fechas o en números."
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:35
-#, fuzzy
 msgid "Number of tags on admin widget"
-msgstr "Número de etiquetas"
+msgstr "Número de etiquetas en el widget de administración"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:37
-#, fuzzy
 msgid "Posts per page"
-msgstr "Administración de Entradas"
+msgstr "Entradas por página"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:38
 msgid "Use CSS file"
-msgstr ""
+msgstr "Usar archivo CSS"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:39
 msgid "CSS file to use"
-msgstr ""
+msgstr "Archivo CSS a utilizar"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:40
-#, fuzzy
 msgid "Show navigation bar between posts"
-msgstr "Mostrar todas las entradas recientes"
+msgstr "Mostrar barra de navegación entre artículos"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:42
 msgid "Blog name (section name)"
@@ -826,69 +822,64 @@ msgstr "Nombre del Blog (Sección)"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:43
 msgid "This name will be used in trackbacks."
-msgstr ""
+msgstr "Este nombre será usado en los trackbacks."
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:46
-msgid "Image Size for the Blocks"
-msgstr ""
+msgid "Image Size for the Block"
+msgstr "Tamaño de la imágen para el bloque"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:47
 msgid "The specified image in the article will be resized with this sizes. Format: \"width|height\""
-msgstr ""
+msgstr "La imágen proporcionada con el artículo será redimensionada con estos tamaños. Formato: \"ancho|alto\""
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:48
 msgid "Defaul Image for the articles in blocks"
-msgstr ""
+msgstr "Imágen por defecto para ´las entradas en el bloque"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:49
 msgid "When the \"graphic\" mode is enable in the \"Recent Articles\" blocks this image will use when there is not a specified one for the article"
-msgstr ""
+msgstr "Cuando el modo gráfico ha sido activado en el bloque de entradas recientes, esta imágen será utilizada si no se ha proporcionado una para la entrada."
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:51
 msgid "Maximum file size"
-msgstr ""
+msgstr "Tamaño máximo de archivo"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:53
 msgid "Show social bookmarks"
-msgstr ""
+msgstr "Mostrar marcadores sociales"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:57
-#, fuzzy
 msgid "Recent Articles"
-msgstr "Borradores Recientes"
+msgstr "Entradas  Recientes"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:58
-#, fuzzy
 msgid "Recent Comments"
-msgstr "Entradas Recientes"
+msgstr "Comentarios Recientes"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:60
-#, fuzzy
 msgid "Posts Syndication"
-msgstr "Entradas por categoría"
+msgstr "Sindicación de Entradas"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:61
 #, php-format
 msgid "Articles Syndication in %s"
-msgstr ""
+msgstr "Sindicación de artículos en %s"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:62
-#, fuzzy
 msgid "Syndication Description"
-msgstr "Descripción de la categoría"
+msgstr "Descripción de la sindicación"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:67
 msgid "Home Page"
-msgstr ""
+msgstr "Página Inicial"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:68
 msgid "Post"
 msgstr "Entrada"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:69
-#, fuzzy
 msgid "Category"
-msgstr "Nueva Categoría"
+msgstr "Categoría"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:70
 msgid "Author"
@@ -896,7 +887,7 @@ msgstr "Autor"
 
 #: E:\webserver\htdocs\x25\modules\mywords/language/english/modinfo.php:71
 msgid "Post Article"
-msgstr ""
+msgstr "Enviar Entrada"
 
 #: E:\webserver\htdocs\x25\modules\mywords/templates/mywords_submit_form.php:4
 #: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:5
@@ -1294,7 +1285,7 @@ msgstr "Activar/Desactivar discusiones"
 
 #: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_formposts.php:45
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: E:\webserver\htdocs\x25\modules\mywords/templates/admin/mywords_posts.php:1
 msgid "Posts Management"

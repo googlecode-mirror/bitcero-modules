@@ -11,7 +11,7 @@
 
 load_mod_locale("mywords");
 
-define('_MI_MW_DESC', __('Modules for the publishing and management of news style blog', 'mywords'));
+define('_MI_MW_DESC', __('Module for the publishing and management of news and blogs', 'mywords'));
 
 define('_MI_MW_AMENU1', __('Module Status', 'mywords'));
 define('_MI_MW_AMENU2', __('Categories', 'mywords'));
@@ -26,8 +26,8 @@ define('_MI_MW_SEND', __('Send Article', 'mywords'));
 define('_MI_MW_PERMAFORMAT', __('Links Format', 'mywords'));
 define('_MI_MW_PERMA_DESC', __('Determines the way the links in the module will be shown and will be processed.', 'mywords'));
 define('_MI_MW_PERMA_DEF', __('Default', 'mywords'));
-define('_MI_MW_PERMA_DATE', __('Basado en Fecha y Nombre', 'mywords'));
-define('_MI_MW_PERMA_NUMS', __('Numérico', 'mywords'));
+define('_MI_MW_PERMA_DATE', __('Based on name and date', 'mywords'));
+define('_MI_MW_PERMA_NUMS', __('Numeric', 'mywords'));
 // Base path for permalinks
 define('_MI_MW_BASEPATH', __('Base Path', 'mywords'));
 define('_MI_MW_BASEPATHD', __('This path is used when the links format has been stablished as based in dates or numbers.', 'mywords'));
@@ -43,7 +43,7 @@ define('_MI_MW_BLOGNAME', __('Blog name (section name)', 'mywords'));
 define('_MI_MW_BLOGNAMED', __('This name will be used in trackbacks.', 'mywords'));
 
 # Imágenes para los bloques
-define('_MI_MW_BIMGSIZE', __('Image Size for the Blocks', 'mywords'));
+define('_MI_MW_BIMGSIZE', __('Image Size for the Block', 'mywords'));
 define('_MI_MW_BIMGSIZE_DESC', __('The specified image in the article will be resized with this sizes. Format: "width|height"', 'mywords'));
 define('_MI_MW_DEFIMG', __('Defaul Image for the articles in blocks', 'mywords'));
 define('_MI_MW_DEFIMG_DESC', __('When the "graphic" mode is enable in the "Recent Articles" blocks this image will use when there is not a specified one for the article', 'mywords'));
