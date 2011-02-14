@@ -46,6 +46,8 @@ class RmcommonCorePreload extends XoopsPreloadItem
             if ($xoopsUser->isAdmin()) $xoopsConfig['closesite'] = 0;
         }
         
+        RMEvents::get()->run_event('rmcommon.include.common.language');
+        
     }
 	
 	public function eventCoreFooterEnd(){

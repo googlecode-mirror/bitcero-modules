@@ -15,7 +15,7 @@ if (!function_exists("__")){
 }
 
 $modversion['name'] = 'Common Utilities';
-$modversion['version'] = 2.098;
+$modversion['version'] = 2.099;
 $modversion['releasedate'] = "08 Jan 2010";
 $modversion['status'] = "Stable";
 $modversion['description'] = 'Container a lot of clases and functions used by Red México Modules';
@@ -32,7 +32,7 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>98,'status'=>0,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>99,'status'=>0,'name'=>'Common Utilities');
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";

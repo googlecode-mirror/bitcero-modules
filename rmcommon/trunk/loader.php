@@ -108,9 +108,10 @@ include_once XOOPS_ROOT_PATH.'/class/database/databasefactory.php';
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-$GLOBAL['rmc_config'] = RMFunctions::get()->configs();
-$rmc_config = $GLOBAL['rmc_config'];
-define('RMCLANG',$rmc_config['lang']);
+$GLOBALS['rmc_config'] = RMFunctions::get()->configs();
+$rmc_config = $GLOBALS['rmc_config'];
+
+define('RMCLANG', RMEvents::get()->run_event('rmcommon.set.language', $rmc_config['lang']));
 
 // Load plugins
 $file = XOOPS_CACHE_PATH.'/plgs.cnf';
