@@ -12,7 +12,7 @@ load_mod_locale('mywords');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
-$modversion['version'] = '2.096';
+$modversion['version'] = '2.092';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
@@ -28,7 +28,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>096,'status'=>0,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>092,'status'=>0,'name'=>'MyWords');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
