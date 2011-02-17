@@ -39,7 +39,7 @@ $(document).ready(function(){
 		<strong><?php echo sprintf(__('%u cached pages','booster'), count($files)); ?></strong> | 
 		<strong><?php echo sprintf(__('%u expired pages','booster'), $count_expired); ?></strong>
 	</td>
-	<td colspan="2" align="right">
+	<td colspan="3" align="right">
 		<?php if($count_expired>0): ?><input type="button" value="<?php _e('Delete expired','booster'); ?>" id="del-exp" /><?php else: ?>&nbsp;<?php endif; ?>
 	</td>
 </tr>
