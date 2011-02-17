@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ContactMe!\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-02-16 21:27-0600\n"
+"PO-Revision-Date: 2011-02-16 21:27-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: MEXICO\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\x25\\modules\\contact\n"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:22
+msgid "Your name:"
+msgstr "Tu nombre:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:23
+msgid "Your email address:"
+msgstr "Dirección de email:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:24
+msgid "Your company:"
+msgstr "Empresa:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:25
+msgid "Your phone:"
+msgstr "Teléfono:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:26
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:6
+msgid "Subject:"
+msgstr "Asunto:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:27
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:14
+msgid "Message:"
+msgstr "Mensaje:"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:28
+msgid "Send Message"
+msgstr "Enviar Mensaje"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:29
+msgid "Fields marked with * are required."
+msgstr "Los campos marcados con * son obligatorios."
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:37
+msgid "Write next words to verify that you are human"
+msgstr "Escribe las siguientes palabras para verificar que eres humano"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:55
+msgid "Please fill all required fileds before to send this message!"
+msgstr "¡Por favor completa todos los campos obligatorios antes de enviar este mensaje!"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:61
+msgid "Please check the security words and write it correctly!"
+msgstr "¡Por favor comprueba que las palabras de verificación esten escritas correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:67
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:187
+msgid "Message sent with ContactMe!"
+msgstr "¡Mensaje enviado con ContactMe!"
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:73
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:194
+msgid "Message could not be delivered. Please try again."
+msgstr "El mensaje no pudo ser enviado. Por favor inténtalo de nuevo."
+
+#: E:\webserver\htdocs\x25\modules\contact/index.php:92
+msgid "Your message has been sent successfully!"
+msgstr "¡Tu mensaje ha sido enviado correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:43
+msgid "%M% %d%, %Y%"
+msgstr "%d% de %M%, %Y%"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:89
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:166
+msgid "Session token expired!"
+msgstr "¡El identificador de sesión ha caducado!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:94
+msgid "Select at least one message to delete!"
+msgstr "¡Selecciona al menos un menaje para eliminar!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:101
+msgid "Messages deleted successfully!"
+msgstr "¡Mensajes eliminados correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:103
+msgid "Messages could not be deleted!"
+msgstr "¡Los mensajes no pudieron ser eliminados!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:119
+msgid "You must specify a message to reply!"
+msgstr "¡Debes seleccionar un mensaje para responder!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:127
+msgid "M/d/Y - H:i:s"
+msgstr "d/M/Y - H:i:s"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:131
+msgid "Original text"
+msgstr "Texto original"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:131
+msgid "Received on:"
+msgstr "Recibido:"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:131
+msgid "Remote address:"
+msgstr "IP remota:"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:161
+msgid "You must specify a message ID"
+msgstr "Debes especificar un ID de mensaje"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:173
+msgid "Sorry, specified message does not exists!"
+msgstr "¡Lo siento, el mensaje especificado no existe!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:181
+msgid "Please fill al required fields!"
+msgstr "¡Por favor completa todos los campos obligatorios!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/index.php:198
+msgid "Message sent successfully!"
+msgstr "¡Mensaje enviado correctamente!"
+
+#: E:\webserver\htdocs\x25\modules\contact/admin/menu.php:12
+msgid "Dashboard"
+msgstr "Tablero"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:11
+msgid "A simple contact module for Xoops"
+msgstr "Sencillo módulo de contactos para XOOPS"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:14
+msgid "Recipient Email"
+msgstr "Email del destinatario"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:15
+msgid "Specify the email where messages will be sent"
+msgstr "Especifica la dirección de email a donde será enviado el mensaje"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:16
+msgid "Information message"
+msgstr "Mensaje de información"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:17
+msgid "Module URL"
+msgstr "URL del módulo"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:18
+msgid "Specify here the URL where ContactMe! will work. This will be used for redirections and other things."
+msgstr "Especifique la URL donde ContactMe! funcionará. Será utilizada para redirecciones y otras cosas."
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:19
+msgid "Messages per page"
+msgstr "Mensajes por página"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:20
+msgid "This value specify the limit of messages to show on each page in dashboard."
+msgstr "Este valor especifica el limite de mensajes que se muestran en cada página en el tablero."
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:21
+msgid "Quote message text when reply"
+msgstr "Citar el texto original en las repsuestas"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:22
+msgid "When this option is enabled, ContactMe! will include the original message as a quote text in reply."
+msgstr "Cuando esta opción esta activada, ContactMe! incluirá el texto iriginal del mensaje como una cita en el texto de respuesta."
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:25
+msgid "ContactMe!"
+msgstr "ContactMe!"
+
+#: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:26
+msgid "Shows a block with a contact form that can be put in any block canvas."
+msgstr "Muestra un bloque con un formulario de contacto que puede ser puesto en cualqueir posición."
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:1
+msgid "Reply Message"
+msgstr "Responder Mensaje"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:10
+msgid "Replay to:"
+msgstr "Responder a:"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:20
+msgid "Send Email"
+msgstr "Enviar Email"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:21
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:1
+msgid "ContactMe! Dashboard"
+msgstr "Tablero de ContactMe!"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:5
+msgid "You must select at least one message to delete!"
+msgstr "¡Debes seleccionar al menos un mensaje para eliminar!"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:6
+msgid "Do you really wish to delete selected messages?"
+msgstr "¿Realmente deseas eliminar los mensajes seleccionados?"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:15
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:84
+msgid "Bulk Actions"
+msgstr "Acciones en Bloque"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:16
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:55
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:85
+msgid "Delete"
+msgstr "Eliminar"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:18
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:87
+msgid "Apply"
+msgstr "Aplicar"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:25
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:35
+msgid "ID"
+msgstr "ID"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:26
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:36
+msgid "Sender"
+msgstr "Remitente"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:27
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:37
+msgid "Sender Data"
+msgstr "Datos del Remitente"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:28
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:38
+msgid "Message"
+msgstr "Mensaje"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:29
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:39
+msgid "XOOPS User"
+msgstr "Usuario XOOPS"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:45
+msgid "There are not messages stored in ContactMe! currently."
+msgstr "Todavía no existen mensajes en ContactMe!"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:56
+msgid "Reply"
+msgstr "Responder"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:60
+msgid "Email:"
+msgstr "Email:"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:61
+msgid "Company:"
+msgstr "Empresa:"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:62
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:63
+msgid "IP:"
+msgstr "IP:"
+
+#~ msgid "Message could not be delivered. Please try again.<br />"
+#~ msgstr "El mensaje no pudo ser enviado"

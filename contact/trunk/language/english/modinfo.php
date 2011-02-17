@@ -11,7 +11,7 @@
 define('_MI_CT_DESC', __('A simple contact module for Xoops','contact'));
 
 // Settings
-define('_MI_CT_EMAIL',__('Receiver Email','contact'));
+define('_MI_CT_EMAIL',__('Recipient Email','contact'));
 define('_MI_CT_EMAILD',__('Specify the email where messages will be sent','contact'));
 define('_MI_CT_INFO', __('Information message','contact'));
 define('_MI_CT_URL', __('Module URL', 'contact'));
@@ -22,5 +22,5 @@ define('_MI_CT_QUOTE', __('Quote message text when reply','contact'));
 define('_MI_CT_QUOTED', __('When this option is enabled, ContactMe! will include the original message as a quote text in reply.','contact'));
 
 // Block
-define('_MI_CT_BLOCK',__('Contact Me!','contact'));
+define('_MI_CT_BLOCK',__('ContactMe!','contact'));
 define('_MI_CT_BLOCKD', __('Shows a block with a contact form that can be put in any block canvas.','contact'));

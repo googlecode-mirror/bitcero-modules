@@ -100,7 +100,7 @@ function cm_delete_messages(){
     if($xoopsDB->queryF($sql)){
         redirectMsg('index.php?page='.$page, __('Messages deleted successfully!','contact'), 0);
     } else {
-        redirectMsg('index.php?page='.$page, __('Messages could not be deleted!<br />'.$xoopsDB->error(),'contact'), 0);
+        redirectMsg('index.php?page='.$page, __('Messages could not be deleted!','contact')."<br />".$xoopsDB->error(), 0);
     }
     
 }
@@ -191,7 +191,7 @@ function cm_send_reply(){
     $xoopsMailer->setSubject($subject);
     
     if (!$xoopsMailer->send(true)){
-        redirectMsg('index.php?action=reply&id='.$id.'&page='.$page, __('Message could not be delivered. Please try again.<br />'.$xoopsMailer->getErrors(),'contact'), 1);
+        redirectMsg('index.php?action=reply&id='.$id.'&page='.$page, __('Message could not be delivered. Please try again.','contact').'<br />'.$xoopsMailer->getErrors(), 1);
         die();
     }
     

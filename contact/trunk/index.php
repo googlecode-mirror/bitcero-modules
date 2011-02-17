@@ -23,7 +23,7 @@ function show_form(){
     $xoopsTpl->assign('lang_email', __('Your email address:','contact'));
     $xoopsTpl->assign('lang_business', __('Your company:','contact'));
     $xoopsTpl->assign('lang_phone', __('Your phone:','contact'));
-    $xoopsTpl->assign('lang_subject', __('Asunto:','contact'));
+    $xoopsTpl->assign('lang_subject', __('Subject:','contact'));
     $xoopsTpl->assign('lang_message', __('Message:','contact'));
     $xoopsTpl->assign('lang_sendnow', __('Send Message','contact'));
     $xoopsTpl->assign('lang_required', __('Fields marked with * are required.','contact'));
