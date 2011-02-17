@@ -46,6 +46,7 @@ $(document).ready(function(){
 <?php foreach($files as $file): ?>
 <tr class="<?php echo tpl_cycle("even,odd"); ?>">
 	<td><a href="<?php echo $file['url']; ?>"><?php echo str_replace('http://', '', $file['url']); ?></a></td>
+    <td align="center"><?php echo $file['lang']; ?></td>
 	<td align="center"<?php echo (time()-$file['time'])>=$plugin->get_config('time') ? ' class="warn"' : ''; ?>><?php echo sprintf(__('%s secs.','booster'), (time()-$file['time'])); ?></td>
 	<td align="center"><?php echo RMUtilities::formatBytesSize($file['size']); ?></td>
 	<td align="center">

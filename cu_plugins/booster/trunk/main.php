@@ -51,6 +51,7 @@ function cache_view_files(){
 			'url'	=> $content['uri'],
 			'date'	=> formatTimestamp($content['created'], 'l'),
 			'time'	=> $content['created'],
+            'lang'  => $content['language'],
 			'size'	=> filesize(XOOPS_CACHE_PATH.'/booster/files/'.$tmp[0].'.html')
 		);
 		$count_expired = time()-$content['created']>=$plugin->get_config('time') ? $count_expired+1 : $count_expired;

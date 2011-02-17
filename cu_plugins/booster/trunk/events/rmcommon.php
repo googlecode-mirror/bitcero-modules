@@ -53,7 +53,8 @@ class BoosterPluginRmcommonPreload
     * This event init the cache engine
     */
     public function eventRmcommonPluginsLoaded($plugins){
-		
+		global $xoopsConfig;
+        
 		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/booster/booster-plugin.php';
 		$plugin = new boosterCUPlugin();
 		
@@ -73,9 +74,9 @@ class BoosterPluginRmcommonPreload
 		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
 			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
 	
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['booster_session']);
+		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['booster_session'].$xoopsConfig['language']);
 		if (!file_exists($file.'.html'))
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$xoopsConfig['language']);
 		
 		if (file_exists($file.'.html')){
 			
@@ -101,7 +102,7 @@ class BoosterPluginRmcommonPreload
     * This event save the current page if is neccesary
     */
     public function eventRmcommonEndFlush($output){
-		global $xoopsUser;
+		global $xoopsUser, $xoopsConfig;
 
         $plugin = RMFunctions::load_plugin('booster');
         
@@ -119,14 +120,15 @@ class BoosterPluginRmcommonPreload
         	return $output;
 			
 		if ($xoopsUser){
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.session_id());
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.session_id().$xoopsConfig['language']);
 			setcookie('booster_session', session_id(), 0, '/');
 		} else {
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url);
+			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$xoopsConfig['language']);
 		}
         $data = array(
             'uri' => $url,
             'created' => time(),
+            'language' => $xoopsConfig['language']
         );
 		
 		$pos = strpos($output, '<div id="xo-logger-output">');
@@ -143,26 +145,15 @@ class BoosterPluginRmcommonPreload
     }
     
     public function eventRmcommonCommentSaved($com, $ret){
+        global $xoopsConfig;
         
-        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret.$_COOKIE['xoops_user']);
+        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret.$_COOKIE['xoops_user'].$xoopsConfig['language']);
         
         @unlink($file.'.html');
         @unlink($file.'.meta');
         
     }
     
-    /**
-    * This event must be triggered when you wish to update cache for a specific url
-    * Specially util to use in your modules or another components
-    */
-    public function eventRmcommonUpdateCache($url){
-        
-        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($ret);
-        
-        @unlink($file.'.html');
-        @unlink($file.'.meta');
-        
-    }
     
     public function eventRmcommonRedirectHeader($url, $time, $message, $addredir, $allowext){
 		
