@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: QuickPages 1.3.35\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-23 21:11-0600\n"
-"PO-Revision-Date: 2010-11-23 21:16-0600\n"
+"POT-Creation-Date: 2011-02-16 01:01-0600\n"
+"PO-Revision-Date: 2011-02-16 01:02-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,7 @@ msgid "Subcategories"
 msgstr "Subcategorías"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/catego.php:117
+#: E:\Webserver\htdocs\x25\modules\qpages/page.php:123
 msgid "Page"
 msgstr "Página"
 
@@ -70,6 +71,18 @@ msgstr "Última actualización: %s"
 #, php-format
 msgid "Read %u times"
 msgstr "Leído %u veces"
+
+#: E:\Webserver\htdocs\x25\modules\qpages/page.php:122
+msgid "Related Pages"
+msgstr "Páginas Relacionadas"
+
+#: E:\Webserver\htdocs\x25\modules\qpages/page.php:124
+msgid "Last modification"
+msgstr "Última modificación"
+
+#: E:\Webserver\htdocs\x25\modules\qpages/page.php:125
+msgid "Hits"
+msgstr "Lecturas"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:42
 msgid "Categories management"
