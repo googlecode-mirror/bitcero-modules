@@ -60,7 +60,7 @@ function showClients(){
     RMTemplate::get()->add_style('admin.css', 'works');
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Customers','works'));
 	RMTemplate::get()->assign('xoops_pagetitle',__('Customers','works'));
-    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected customers?','works')."';\n
         var pw_select_message = '".__('You must select some customer before to execute this action!','works')."';</script>");
 	xoops_cp_header();

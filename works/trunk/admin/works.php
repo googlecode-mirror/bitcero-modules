@@ -77,7 +77,7 @@ function showWorks(){
 	PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','works')."';\n
         var pw_select_message = '".__('You must select some work before to execute this action!','works')."';</script>");
 	xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Works','works'));
@@ -553,7 +553,7 @@ function works_meta_data(){
     PWFunctions::toolbar();
     RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected works?','works')."';\n
         var pw_select_message = '".__('You must select some work before to execute this action!','works')."';</script>");
     xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Work Custom Fields','works'));

@@ -12,10 +12,10 @@ include '../../mainfile.php';
 
 if($xoopsModuleConfig['urlmode']<=0){
     // PHP Default URLs mode
-    $page = rmc_server_var($_REQUEST, 'page', 'home');
+    $p = rmc_server_var($_REQUEST, 'p', 'home');
     $id = rmc_server_var($_REQUEST, 'id', '');
-    
-    switch($page){
+
+    switch($p){
         case 'category':
             include 'catego.php';
             break;
@@ -23,11 +23,11 @@ if($xoopsModuleConfig['urlmode']<=0){
             include 'work.php';
             break;
         default:
-            include $page.'.php';
+            include $p.'.php';
             break;
     }
     
-    if (trim($page)!='') exit();
+    if (trim($p)!='') exit();
     
 }
 

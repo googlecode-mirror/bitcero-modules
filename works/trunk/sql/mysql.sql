@@ -51,6 +51,7 @@ CREATE TABLE `pw_works` (
   `mark` tinyint(1) NOT NULL default '0',
   `image` varchar(255)  NOT NULL,
   `created` int(10) NOT NULL default '0',
+  `modified` int(10) NOT NULL default '0',
   `date_start` int(10) NOT NULL default '0',
   `period` varchar(255)  NOT NULL,
   `cost` float NOT NULL,

@@ -33,7 +33,7 @@ function showTypes(){
 	RMTemplate::get()->assign('xoops_pagetitle',__('Customer types','works'));
 	RMTemplate::get()->add_style('admin.css','works');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-	RMTemplate::get()->add_script('../include/js/works.js');
+	RMTemplate::get()->add_script('../include/js/admin_works.js');
 	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected types?','works')."';\n
 		var pw_select_message = '".__('You must select some type before to execute this action!','works')."';</script>");
 	xoops_cp_header();

@@ -105,7 +105,7 @@ class PWCategory extends RMObject
 		if ($mc['urlmode']){
 			$link .= trim($mc['htbase'], '/').'/category/'.$this->nameId().'/';
 		} else {
-			$link .= 'modules/works/index.php?page=category&amp;id='.$this->nameId();
+			$link .= 'modules/works/index.php?p=category&amp;id='.$this->nameId();
 		}
 		
 		return $link;

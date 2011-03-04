@@ -41,7 +41,7 @@ function showCategories(){
 	RMTemplate::get()->assign('xoops_pagetitle', __('Works Categories','works'));
 	RMTemplate::get()->add_style('admin.css', 'works');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/works.js');
+    RMTemplate::get()->add_script('../include/js/admin_works.js');
     RMTemplate::get()->add_head("<script type='text/javascript'>\nvar pw_message='".__('Do you really want to delete selected categories?','works')."';\n
         var pw_select_message = '".__('You must select some category before to execute this action!','works')."';</script>");
     xoops_cp_header();
