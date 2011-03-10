@@ -24,3 +24,6 @@ define('_MI_RD_CREATENEW', __('Groups with authorization to create new resources
 define('_MI_RD_CREATENEWD', __('Select the groups that you wisth to authorize to create new resources.','docs'));
 define('_MI_RD_CREATEENABLED', __('Allow the creation of new resources','docs'));
 define('_MI_RD_APPROVE', __('Auto approve resources created for allowed users','docs'));
+define('_MI_RD_ATTRS','Default attributes for figures');
+define('_MI_RD_ATTRSD','You can specify the attributes that will be added to figures when you create a new figure.');
+define('_MI_RD_FIGEDITOR','Editor type fpr figures');

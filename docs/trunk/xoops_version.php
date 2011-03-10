@@ -12,7 +12,7 @@ load_mod_locale('docs');
 
 $modversion['name'] = __('RapidDocs','docs');
 $modversion['description'] = __('Create documentation in Xoops, quicky and an advanced way.','docs');
-$modversion['rmversion'] = array('number'=>1,'revision'=>35,'status'=>-2,'name'=>__('RapidDocs','docs'));
+$modversion['rmversion'] = array('number'=>1,'revision'=>36,'status'=>-2,'name'=>__('RapidDocs','docs'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.0';
 $modversion['icon32'] = 'images/icon32.png';
@@ -138,6 +138,15 @@ $modversion['config'][] = array(
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 0
+);
+
+$modversion['config'][] = array(
+    'name' => 'attrs',
+    'title' => '_MI_RD_ATTRS',
+    'description' => '_MI_RD_ATTRSD',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'class="figures" style="float: left; margin: 0 10px 5px 0;"'
 );
 
 

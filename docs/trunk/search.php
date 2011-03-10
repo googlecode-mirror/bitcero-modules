@@ -118,10 +118,11 @@ function search_resources(){
 
 
 switch($action){
-    case 'explore':
-        show_resources($by=='recent' ? 'created' : 'reads');
-        break;
     case 'search':
         search_resources();
+        break;
+    case 'explore':
+    default:
+        show_resources($by=='recent' ? 'created' : 'reads');
         break;
 }

@@ -151,7 +151,7 @@ function Figures(){
 * @desc Formulario de creación o edición de figuras
 **/
 function formFigures($edit=0){
-	global $xoopsConfig,$xoopsTpl, $xoopsSecurity, $rmc_messages;	
+	global $xoopsConfig,$xoopsTpl, $xoopsSecurity, $rmc_messages, $xoopsModuleConfig;	
 	
     define('DF_LOCATION','form');
 	$id = rmc_server_var($_GET, 'id', 0);
