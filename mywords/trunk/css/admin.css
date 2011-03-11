@@ -59,7 +59,7 @@ textare.mw_large{
 .form_options{
 	float: left;
 	padding: 0 10px 0 0;
-	width: 350px;
+	width: 30%;
 }
 .form_options .description{
 	color: #666;
@@ -109,10 +109,11 @@ form#mw-form-posts input.mw_biginput{
 }
 
 #tableItems{
-    margin-left: 370px;
+    float: right;
     font-family: Tahoma, Arial, Helvetica, sans-serif;
     padding: 10px;
     overflow: hidden;
+    width: 67%;
 }
 
 div.mw_all_container{

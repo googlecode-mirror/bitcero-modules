@@ -1,5 +1,4 @@
 <h1 class="rmc_titles mw_titles"><span style="background-position: -64px 0;">&nbsp;</span><?php _e('Tags','mywords'); ?></h1>
-<br clear="all" />
 
 <?php if(isset($show_edit) && $show_edit): ?>
 	
@@ -22,6 +21,7 @@
 	</div>
 	
 <?php else: ?>
+<div class="mw_all_container">
 <div id="tags-form" class="form_options">
 	<h4><?php _e('More used tags','mywords'); ?></h4>
 	<div class="more_used">
@@ -106,6 +106,7 @@
 	<input type="hidden" name="XOOPS_TOKEN_REQUEST" id="xtoken" value="<?php echo $xoopsSecurity->createToken(); ?>" />
 	<input type="hidden" name="page" value="<?php echo $page; ?>" />
 	</form>
+</div>
 </div>
 <?php endif; ?>
 <div id="mw-dialog" title=''>
