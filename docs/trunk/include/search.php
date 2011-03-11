@@ -14,17 +14,16 @@
 function ahelpSearch($queryarray, $andor, $limit, $offset, $userid){
     global $myts;
     
-	include_once (XOOPS_ROOT_PATH."/modules/ahelp/class/ahsection.class.php");
-	include_once (XOOPS_ROOT_PATH."/modules/ahelp/class/ahresource.class.php");
+	include_once (XOOPS_ROOT_PATH."/modules/docs/class/rdsection.class.php");
+	include_once (XOOPS_ROOT_PATH."/modules/docs/class/rdresource.class.php");
 
     $mc = RMUtilities::module_config('docs');
     
     $db = Database::getInstance();
-    $tbl1 = $db->prefix("pa_resources");
-    $tbl2 = $db->prefix("pa_sections");
+    $tbl1 = $db->prefix("rd_resources");
+    $tbl2 = $db->prefix("rd_sections");
     
-    $sql = "SELECT a.id_res,a.title,a.description,a.image,a.created,a.modified,a.public,a.nameid,
-	a.type,a.owner,a.owname,a.approved,b.id_sec,b.title AS stitle,b.content,b.id_res AS sid_res,
+    $sql = "SELECT a.id_res,a.title,a.description,a.created,a.modified,a.public,a.nameid,a.owner,a.owname,a.approved,b.id_sec,b.title AS stitle,b.content,b.id_res AS sid_res,
 	b.nameid AS snameid,b.uid,b.uname,b.created AS screated FROM $tbl1 a, $tbl2 b ";
     $sql1 = '';
     foreach ($queryarray as $k){
@@ -40,37 +39,24 @@ function ahelpSearch($queryarray, $andor, $limit, $offset, $userid){
     $ret = array();
     while ($row = $db->fetchArray($result)){
 	
-	$res=new AHResource();
-	$res->assignVars($row);
-	
-	$sec=new AHSection();
-	$sec->assignVars($row);
-	$sec->assignVar('title',$row['stitle']);
-	$sec->assignVar('id_res',$row['sid_res']);
-	$sec->assignVar('nameid',$row['snameid']);
-	$sec->assignVar('created',$row['screated']);
+	    $res=new RDResource();
+	    $res->assignVars($row);
+	    
+	    $sec=new RDSection();
+	    $sec->assignVars($row);
+	    $sec->assignVar('title',$row['stitle']);
+	    $sec->assignVar('id_res',$row['sid_res']);
+	    $sec->assignVar('nameid',$row['snameid']);
+	    $sec->assignVar('created',$row['screated']);
 
         $rtn = array();
-        $rtn['image'] = 'images/sections.png';
-	if ($mc['access']){
-		if (!$res->type()){
-		        $rtn['link'] = "content/".$sec->id()."/".$sec->nameId();
-		}else{
-			$rtn['link'] = "article/".$res->id()."/".$res->nameId()."/#".$sec->id().$sec->nameId();
-		}
-	}else{
-		
-		if (!$res->type()){
-			$rtn['link'] = "content.php?id=".$res->id();
-		}else{
-			$rtn['link'] = "content.php?t=a&id=".$res->id()."#".$sec->id().$sec->nameId();
-		}	 
-	}
+        $rtn['image'] = 'images/result.png';
+	    $rtn['link'] = $sec->permalink();
 	
-        $rtn['title'] = $sec->title();
-        $rtn['time'] = $sec->created();
-        $rtn['uid'] = $sec->uid();
-        $rtn['desc'] = substr($util->filterTags($sec->content()), 0, 150).'...';
+        $rtn['title'] = $sec->getVar('title');
+        $rtn['time'] = $sec->getVar('created');
+        $rtn['uid'] = $sec->getVar('uid');
+        $rtn['desc'] = TextCleaner::getInstance()->truncate($sec->getVar('content'), 150);
         $ret[] = $rtn;
     }
     

@@ -29,9 +29,6 @@ $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "docs";
 $modversion['icon48'] = "images/logo.png";
-$modversion['onUninstall']="include/uninstall.php";
-$modversion['updatable'] = 1;
-$modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=8';
 
 // Administración
 $modversion['hasAdmin'] = 1;
