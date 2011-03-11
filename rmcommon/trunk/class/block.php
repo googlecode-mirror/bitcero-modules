@@ -344,15 +344,15 @@ class RMBlock extends RMObject
      */
     function getOptions()
     {
-        global $exmConfig;
+        global $xoopsConfig;
         
         $edit_func = $this->getVar('edit_func');
         if (trim($edit_func)=='') return;
         
         switch($this->getVar('element_type')){
-            case 'app':
-                $file = ABSPATH.'/apps/'.$this->getVar('element').'/widgets/'.$this->getVar('file');
-                $lang = "load_app_locale";
+            case 'module':
+                $file = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('element').'/blocks/'.$this->getVar('file');
+                $lang = "load_mod_locale";
                 break;
             case 'plugin':
                 
@@ -361,20 +361,18 @@ class RMBlock extends RMObject
         
         // Check if widget file exists
         if (!is_file($file)){
-            return __('The configuration file for this widget does not exists!','system');
+            return __('The configuration file for this widget does not exists!','rmcommon');
         }
         
         include_once $file;
         
         // Check if edit function exists
         if (!function_exists($edit_func)){
-            return __('There was a problem trying to show the configuration options for this widget!','system');
+            return __('There was a problem trying to show the configuration options for this widget!','rmcommon');
         }
         
         // Get language for this widget
-        $lang($this->getVar('element'), 'widgets_');
-        
-        $form = new EXMForm('','','');
+        $lang($this->getVar('element'));
         
         return $edit_func($this->getVar('options'));
         

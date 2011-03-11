@@ -157,6 +157,8 @@ function configure_block(){
     $form = new RMForm('','','');
     $canvas = new RMFormModules('', 'bk_mod', 1, 1, array(), 3, null, false, 1);
     
+    $block_options = $block->getOptions();
+    
     ob_start();
     include RMTemplate::get()->get_template('rmc_block_form.php', 'module', 'rmcommon');
     $form = ob_get_clean();

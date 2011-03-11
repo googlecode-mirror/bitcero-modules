@@ -43,6 +43,7 @@
     </fieldset>
     <fieldset class="right">
         <legend><?php _e('Block Custom Options','rmcommon'); ?></legend>
+        <?php echo $block_options; ?>
     </fieldset>
     </div>
 </div>
