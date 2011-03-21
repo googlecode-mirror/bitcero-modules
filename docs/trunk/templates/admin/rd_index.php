@@ -117,7 +117,10 @@
         <!-- End Top Resources -->
         <br />
         <div class="outer">
-            <div class="th"><?php _e('RapidDocs News','docs'); ?></div>
+            <div class="th"><img src="../images/loading.gif" class="rd_loading_image" /> <?php _e('RapidDocs News','docs'); ?></div>
+            <div id="rd-news">
+            
+            </div>
         </div>
         <br />
         <?php echo RMEvents::get()->run_event('docs.dashboard.right.blocks'); ?>
