@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Common Utilities 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-09 21:59-0600\n"
-"PO-Revision-Date: 2010-11-19 19:32-0600\n"
+"PO-Revision-Date: 2011-03-22 13:14-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1675,7 +1675,7 @@ msgstr "Bloques a insertar"
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:67
 #, php-format
 msgid "%s Details"
-msgstr "%s Detalles"
+msgstr "Detalles de %s"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:96
 msgid "Author Web:"
