@@ -15,7 +15,7 @@ class RMLightbox
 	* 
 	* @var mixed
 	*/
-	private $elements = array();
+	public $elements = array();
 	
 	public function get(){
 		static $instance;
@@ -36,6 +36,7 @@ class RMLightbox
 		$css = $config['theme']!='' ? $config['theme'] : 'default';
 		
 		RMTemplate::get()->add_style($css.'/colorbox.css', 'rmcommon', 'plugins/lightbox');
+        RMTemplate::get()->add_head('<!--LightBoxPlugin-->');
 	}
 	
 	/**
@@ -85,11 +86,11 @@ class RMLightbox
 		}
 		
 		$script .= "});\n</script>\n";
-		RMTemplate::get()->add_head($script);
+		return $script;
 	}
 	
 	public function __destruct(){
-		self::render();
+		//self::get()->render();
 	}
 }
 

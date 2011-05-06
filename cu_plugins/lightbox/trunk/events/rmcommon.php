@@ -12,22 +12,28 @@ class LightboxPluginRmcommonPreload{
 	
 	public function eventRmcommonBaseLoaded(){
 		include_once RMCPATH.'/plugins/lightbox/lightbox.php';
+        RMLightbox::get();
 	}
 	
-	/**
-	* Replace [lighbox=#element a] by <div class="lightbox_container"> to include lightbox effects in texts
-	*/
-	public function eventRmcommonCodeDecode($text){
-		
-		$pattern = "/\[lightbox=(['\"]?)([^\"'<>]*)\\1](.*)\[\/lightbox\]/sU";
-		$text = preg_replace_callback($pattern, 'found_lightbox', $text);
-		
-		$pattern = "/\[lightbox](.*)\[\/lightbox\]/sU";
-		$text = preg_replace_callback($pattern, 'found_lightbox', $text);
-	
-		return $text;
-		
-	}
-	
+    /**
+    * Replaces all ocrrencies for lightbox with the apropiate code
+    * @param string $output XOOPS output
+    * @return string $text Output converted 	
+    */
+    public function eventRmcommonEndFlush($output){
+        
+        $pattern = "/\[lightbox=(['\"]?)([^\"'<>]*)\\1](.*)\[\/lightbox\]/sU";
+        $text = preg_replace_callback($pattern, 'found_lightbox', $output);
+        
+        $pattern = "/\[lightbox](.*)\[\/lightbox\]/sU";
+        $text = preg_replace_callback($pattern, 'found_lightbox', $output);
+        
+        if(RMLightbox::get()->elements){
+            $text = str_replace("<!--LightBoxPlugin-->", RMLightbox::get()->render(), $text);
+        }
+        
+        return $text;
+        
+    }
 }
 
