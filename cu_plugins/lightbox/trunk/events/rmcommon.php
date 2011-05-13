@@ -22,6 +22,9 @@ class LightboxPluginRmcommonPreload{
     */
     public function eventRmcommonEndFlush($output){
         
+        if(defined('XOOPS_CPFUNC_LOADED'))
+            return $output;
+        
         $pattern = "/\[lightbox=(['\"]?)([^\"'<>]*)\\1](.*)\[\/lightbox\]/sU";
         $text = preg_replace_callback($pattern, 'found_lightbox', $output);
         
