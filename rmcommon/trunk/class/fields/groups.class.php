@@ -196,7 +196,7 @@ class RMFormGroups extends RMFormElement
 				$rtn .= " selected='selected'";
 			}
 			
-			$rtn .= ">"._RMS_CF_ALL."</option>";
+			$rtn .= ">".__('All','rmcommon')."</option>";
 			
 			while ($row = $db->fetchArray($result)){
 				$rtn .= "<option value='$row[groupid]'";

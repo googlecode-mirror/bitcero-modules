@@ -60,7 +60,7 @@ class RMBlock extends RMObject
      * Obtiene un array con los identificadores
      * de los grupos con permiso de lectura
      */
-    public function readGroups($object = false){
+    public function readGroups(){
         
         if (empty($this->rgroups)){
             $sql = "SELECT gperm_groupid FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read'";
@@ -72,18 +72,8 @@ class RMBlock extends RMObject
                 
             }
         }
-        
-        if ($object){
-            // Devolvemos los objectos EXMGroup en un array            
-            $ret = array();
-            foreach ($this->rgroups as $k){
-                $ret[] = new EXMGroup($row['gperm_groupid']);
-            }
-            return $ret;            
-        } else {
-            // Devolvemos unicamente los ids
-            return $this->rgroups;
-        }
+
+        return $this->rgroups;
         
     }
     /**
@@ -165,7 +155,7 @@ class RMBlock extends RMObject
         $result = $this->db->query($sql);
         $ret = array();
         while ($row = $this->db->fetchArray($result)){
-            $ret[$row['app_id']][] = $row['subpage'];
+            $ret[$row['mid']][] = $row['subpage'];
             
         }
         return $ret;
@@ -412,7 +402,7 @@ class RMBlock extends RMObject
         // Guardamos los permisos
         if (count($this->rgroups)>0 || count($this->wgroups)>0){
             if (!$this->isNew()){
-                $this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read' AND gperm_name='block_admin'");
+                $this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND (gperm_name='block_read' OR gperm_name='block_admin')");
             }
             
             $sql = "INSERT INTO ".$this->db->prefix("group_permission")." (`gperm_groupid`,`gperm_itemid`,`gperm_modid`,`gperm_name`) VALUES ";

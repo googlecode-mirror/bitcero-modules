@@ -155,7 +155,10 @@ function configure_block(){
     
     $positions = RMBlocksFunctions::block_positions();
     $form = new RMForm('','','');
-    $canvas = new RMFormModules('', 'bk_mod', 1, 1, array(), 3, null, false, 1);
+    $canvas = new RMFormModules('', 'bk_mod', 1, 1, array(0), 3, null, false, 1);
+    
+    // Groups
+    $groups = new RMFormGroups('', 'bk_groups', true, 1, 3, $block->readGroups());
     
     $block_options = $block->getOptions();
     
@@ -173,6 +176,51 @@ function configure_block(){
     
 }
 
+function save_block_config(){
+    global $xoopsSecurity;
+    
+    foreach($_POST as $k => $v){
+        $$k = $v;
+    }
+    
+    if(!$xoopsSecurity->check($XOOPS_TOKEN_REQUEST)){
+        response(array('message'=>__('Session token expired. Please try again.','rmcommon')), 1, 0);
+        die();
+    }
+    
+    if($bid<=0){
+        response(array('message'=>__('You must provide a block ID!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    $block = new RMBlock($bid);
+    if($block->isNew()){
+        response(array('message'=>__('Specified block does not exists!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    if(isset($options)) $block->setVar('options', serialize($options));
+    $block->setVar('name', $bk_name);
+    $block->setVar('canvas', $bk_pos);
+    $block->setVar('weight', $bk_weight);
+    $block->setVar('visible', $bk_visible);
+    $block->setVar('bcachetime', $bk_cache);
+    
+    // Set modules
+    $block->sections($bk_mod);
+    // Set Groups
+    $block->setReadGroups($bk_groups);
+    
+    if($block->save()){
+        response(array(
+            'message' => __('Block updated successfully!','rmcommon')
+        ), 0, 1);
+    }
+    
+    die();
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -182,5 +230,8 @@ switch($action){
         break;
     case 'settings':
         configure_block();
+        break;
+    case 'saveconfig':
+        save_block_config();
         break;
 }

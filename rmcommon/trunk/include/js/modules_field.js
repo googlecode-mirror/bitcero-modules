@@ -8,7 +8,7 @@ $(document).ready(function(){
         $("#subpages-"+id).hide();
     });
     
-    $(".field_module_names").hover(function(){
+    $(".field_module_names").click(function(){
         id = $(this).attr("id").replace("modlabel-","");
         if($("#subpages-"+id).is(":visible")) return;
         $(".subpages_container:visible").hide();

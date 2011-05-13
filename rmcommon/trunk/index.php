@@ -80,7 +80,7 @@ function show_dashboard(){
     RMTemplate::get()->add_style('dashboard.css', 'rmcommon');
     RMTemplate::get()->add_script(RMCURL.'/include/js/dashboard.js');
     RMTemplate::get()->add_style('pagenav.css', 'rmcommon');
-    RMTemplate::get()->set_help('http://redmexico.com.mx/docs/common-utilities');
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/common-utilities');
     include RMTemplate::get()->get_template('rmc_dashboard.php', 'module', 'rmcommon');
 
     xoops_cp_footer();

@@ -183,11 +183,11 @@ padding-left: 5px;
 
 #form-window{
     display: none;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
-    margin-left: -35%;
-    width: 70%;
+    margin-left: -250px;
+    width: 500px;
     min-width: 600px;
     max-height: 400px;
     background: #fff;
@@ -218,26 +218,7 @@ padding-left: 5px;
     padding: 1%;
     /*overflow: auto;*/
 }
-#block-config-form .left{
-    width: 47%;
-    float: left;
-}
-#block-config-form .right{
-    width: 47%;
-    float: right;
-}
-fieldset{
-    background: #FFF;
-    color: #666;
-}
-fieldset legend{
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    margin-top: -5px;
-    color: #000;
-}
-fieldset label.options{
+label.options{
     display: block;
     font-weight: bold;
     padding: 0 0 3px 0;
@@ -247,4 +228,55 @@ fieldset label.options{
 #block-config-form .big{
     width: 98%;
     font-size: 1.4em;
+}
+.bk_tab_titles{
+    overflow: hidden;
+}
+.bk_tab_titles span{
+    display: block;
+    float: left;
+    padding: 4px 10px;
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    margin-right: 1px;
+    border: 1px solid #CCC;
+    border-bottom: 0;
+    cursor: pointer;
+    color: #666;
+    font-size: 0.9em;
+}
+.bk_tab_titles span.selected{
+    font-weight: bold;
+    color: #000;
+    background: #ebebeb;
+}
+.bk_tab_titles span:hover{
+    background: #E0E0E0;
+    color: #333;
+}
+.bk_tab{
+    border: 1px solid #CCC;
+    padding: 5px;
+    border-radius: 0 5px 5px 5px;
+    -moz-border-radius: 0 5px 5px 5px;    
+}
+#custom-content,
+#block-permissions{
+    display: none;
+}
+.content .left{
+    float: left;
+    width: 48%;
+}
+.content .right{
+    float: right;
+    width: 48%;
+}
+.bk_buttons{
+    padding: 4px 0;
+    text-align: left;
+}
+.subpages_container .sub_item label{
+    color: #999;
 }

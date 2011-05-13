@@ -91,7 +91,9 @@
             <strong><?php echo $block['title']; ?></strong>
             <span class="description"><?php echo $block['description']; ?></span>
             <span class="rmc_options">
-                <a class="bk_edit" href="#" id="edit-<?php echo $block['id']; ?>"><?php _e('Settings','rmcommon'); ?></a>
+                <a class="bk_edit" href="#" id="edit-<?php echo $block['id']; ?>"><?php _e('Settings','rmcommon'); ?></a> |
+                <a href="#" class="bk_delete" id="delete-<?php echo $block['id']; ?>"><?php _e('Delete','rmcommon'); ?></a> |
+                <a href="#" class="bk_disable" id="disable-<?php echo $block['id']; ?>"><?php _e('Disable','rmcommon'); ?></a>
             </span>
         </td>
         <td align="center"><?php echo $block['canvas']['name']; ?></td>

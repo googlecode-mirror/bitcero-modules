@@ -26,7 +26,7 @@ var blocksAjax = {
                 $("#bk-messages").addClass("errorMsg");
                 $("#bk-messages").slideDown('slow');
                 if(data.token==null || data.token==''){
-                    window.location.reload();
+                    window.location.href = 'blocks.php';
                 } else {
                     $("#XOOPS_TOKEN_REQUEST").val(data.token)
                 }
@@ -55,6 +55,8 @@ var blocksAjax = {
             });
             
             blocksAjax.eventChange();
+            
+            blocksAjax.prepareTabs();
             
         }, 'json');
         
@@ -87,6 +89,81 @@ var blocksAjax = {
             $("#blocker").slideUp('fast');
             $("#table-blocks .bk_hightlight").removeClass("bk_hightlight");
         });
+    },
+    
+    prepareTabs: function(){
+        
+        $(".bk_tab_titles span").click(function(){
+            
+            var id = $(this).attr("id").replace("tab-",'');
+            if(id=='custom'){
+                $("#general-content").slideUp('slow');
+                $("#block-permissions").slideUp('slow');
+                $("#custom-content").slideDown('slow');
+                $("#tab-custom").addClass("selected");
+                $("#tab-general").removeClass("selected");
+                $("#tab-permissions").removeClass("selected");
+            } else if(id=='general') {
+                $("#custom-content").slideUp('slow');
+                $("#general-content").slideDown('slow');
+                $("#tab-general").addClass("selected");
+                $("#tab-custom").removeClass("selected");
+                $("#block-permissions").slideUp('slow');
+                $("#tab-permissions").removeClass("selected");
+            } else {
+                $("#custom-content").slideUp('slow');
+                $("#general-content").slideUp('slow');
+                $("#tab-custom").removeClass("selected");
+                $("#tab-general").removeClass("selected");
+                $("#block-permissions").slideDown('slow');
+                $("#tab-permissions").addClass("selected");
+            }
+            
+        });
+        
+    },
+    
+    sendConfig: function(){
+        
+        var vars = $("#frm-block-config").serialize();
+        blocksAjax.close();
+        
+        $("#blocker").slideDown('fast', function(){
+            $("#loading").fadeIn("slow");
+        });
+        
+        $.post("ajax/blocks.php", vars, function(data){
+            
+            $("#loading").fadeOut("fast");
+            
+            if(data.error){  
+                $("#bk-messages").removeClass("infoMsg");
+                $("#bk-messages .msg").html(data.message);
+                $("#bk-messages").addClass("errorMsg");
+                $("#bk-messages").slideDown('slow');
+                if(data.token==null || data.token==''){
+                    window.location.href = 'blocks.php';
+                } else {
+                    $("#XOOPS_TOKEN_REQUEST").val(data.token)
+                }
+                return;
+            }
+            
+            if(data.message!=null && data.message!=''){
+                $("#bk-messages").removeClass("errorMsg");
+                $("#bk-messages .msg").html(data.message);
+                $("#bk-messages").addClass("infoMsg");
+                $("#bk-messages").slideDown('slow');
+            }
+            
+            if(data.token==null || data.token==''){
+                window.location.reload();
+            } else {
+                $("#XOOPS_TOKEN_REQUEST").val(data.token);
+            }
+            
+        }, 'json');
+        
     }
     
 }
@@ -113,7 +190,7 @@ $(document).ready(function(){
     $("#newpos").click(function(){
         $("#form-pos").toggle('slow', function(){
             if($(this).is(":visible")){
-                $(this).effect('highlight', {}, 1000);
+                $("#form-pos").effect('highlight', {}, 1000);
             }
         });
     });
@@ -193,7 +270,7 @@ $(document).ready(function(){
         var id = $(this).attr("id").replace("edit-",'');
         
         blocksAjax.loadForm(id,'');
-        
+        return false;
     });
 
 });

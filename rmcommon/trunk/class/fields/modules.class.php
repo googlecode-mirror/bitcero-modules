@@ -109,6 +109,7 @@ class RMFormModules extends RMFormElement
         $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $modules = array();
+        $modules[0] = __('All','rmcommon');
         if (is_array($this->inserted)) $modules = $this->inserted;
         foreach ($module_handler->getList($criteria, $this->dirnames) as $k => $v){
         	$modules[$k] = $v;
@@ -119,6 +120,7 @@ class RMFormModules extends RMFormElement
             RMTemplate::get()->add_local_script('modules_field.js', 'rmcommon', 'include');
             
 			$rtn = '<div class="modules_field">';
+            
 			$i = 1;
 			foreach ($modules as $k => $v){
                 $app = RMFunctions::load_module($k);
@@ -141,14 +143,14 @@ class RMFormModules extends RMFormElement
 					$rtn.="<div id=\"subpages-".$k."\" class=\"subpages_container\">
                             <div class='sp_title'><span id=\"close-$k\"></span>".__('Inner pages','rmcommon')."</div>
 							<div class='sub_item'>
-							<label><input type='checkbox' name='subpages[$k][null]' id='subpages[$k][null]' value='--'".(!is_array($subpages) || @in_array('--', $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][null]','$k',$k);\" /> ".__('All','rmcommon')."</label></div>";
+							<label><input type='checkbox' name='".$name."[subpages][0]' id='subpages[$k][0]' value='--'".(!is_array($subpages) || @in_array('--', $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][0]','$k',$k);\" /> ".__('All','rmcommon')."</label></div>";
 					$j = 2;
 					$cr = 2;
 					if (!is_array($subpages)) $subpages = array();
 					
 					foreach ($subpages as $page=>$caption){
 						
-						$rtn.="<div class=\"sub_item\"><label><input type='checkbox' name='subpages[$k][$page]' id='subpages[$k][$page]' value='$page'".(is_array($subpages) && @in_array($page, $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][$page]', $k);\" /> $caption</label></div>";
+						$rtn.="<div class=\"sub_item\"><label><input type='checkbox' name='".$name."[subpages][$page]' id='subpages[$k][$page]' value='$page'".(is_array($subpages) && @in_array($page, $selected[$k]) ? " checked='checked'" : '')." onclick=\"checkSubpageClick('subpages[$k][$page]', $k);\" /> $caption</label></div>";
 						$j++;
 						$cr++;
 					}
