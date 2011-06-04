@@ -52,3 +52,14 @@ CREATE TABLE `mch_coaches` (
   KEY `team` (`team`),
   KEY `lastname` (`lastname`)
 ) ENGINE=MyISAM;
+
+CREATE TABLE `mch_champs` (
+  `id_champ` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `nameid` varchar(200) NOT NULL,
+  `start` int(10) NOT NULL,
+  `end` int(10) NOT NULL,
+  `description` TEXT NOT NULL,
+  PRIMARY KEY (`id_champ`),
+  KEY `nameid` (`nameid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -28,7 +28,7 @@ $modversion['dirname'] = "match";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>0,'revision'=>1,'status'=>-2,'name'=>'Matches');
+$modversion['rmversion'] = array('number'=>0,'revision'=>30,'status'=>-2,'name'=>'Matches');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
@@ -50,7 +50,8 @@ $modversion['tables'] = array(
     "mch_categories",
     "mch_teams",
     'mch_players',
-    'mch_coaches'
+    'mch_coaches',
+    'mch_champs'
 );
 
 // Configuration
