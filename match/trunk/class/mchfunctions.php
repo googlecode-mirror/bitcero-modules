@@ -13,7 +13,7 @@ class MCHFunctions
     public function toolbar(){
         RMTemplate::get()->add_tool(__('Dashboard','match'), './index.php', '../images/dashboard.png', 'dashboard');
         RMTemplate::get()->add_tool(__('Categories','match'), './categories.php', '../images/category.png', 'categories');
-        RMTemplate::get()->add_tool(__('Championships','match'), './champ.php', '../images/champ.png', 'championship');
+        RMTemplate::get()->add_tool(__('Championships','match'), './champ.php', '../images/champ.png', 'championships');
         RMTemplate::get()->add_tool(__('Teams','match'), './teams.php', '../images/teams.png', 'teams');
         RMTemplate::get()->add_tool(__('Players','match'), './roster.php', '../images/players.png', 'roster');
         RMTemplate::get()->add_tool(__('Coaches','match'), './coaches.php', '../images/coaches.png', 'coaches');

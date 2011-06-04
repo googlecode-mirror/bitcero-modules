@@ -122,3 +122,20 @@ div.rmc_pages_navigation_container{
     -moz-border-radius: 8px;
     margin-top: 4px;
 }
+
+/* Championships */
+#mch-champform{
+    width: 300px;
+    float: left;
+}
+#mch-champform label{
+    padding: 0 0 4px 0;
+    display: block;
+}
+#mch-champform input[type='text']{
+    width: 95%;
+    margin-bottom: 5px;
+}
+#mch-champtable{
+    margin-left: 320px;
+}
