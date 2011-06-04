@@ -15,27 +15,22 @@ class RMFormDate extends RMFormElement
 	
 	private $_date = 0;
 	private $_showtime = 0;
+    private $year_range = '';
 
         /**
       * Constructor
       * @param <string> $caption
       * @param <string> $name Nombre identificador del campo
       * @param <string> $date Fecha en formato 'yyyy-mm-14'
+      * @param string Year range (eg. 2000:2020)
       */
-	function __construct($caption, $name, $date='', $showtime=0){
+	function __construct($caption, $name, $date='', $year_range=''){
 		$this->setCaption($caption);
 		$this->setName($name);
 		$this->_date = $date;
-		$this->_showtime = $showtime;
-		if (!defined('RM_FRAME_DATETIME_CREATED')) define('RM_FRAME_DATETIME_CREATED',1); // Necesario para incluir el script de fechas
-		if (!defined('SCRIPT_PROTOTYPE_INCLUDED')){
-			$util =& RMUtilities::get();
-		}
-
-                if (defined('EXM_IS_CP') && EXM_IS_CP==true){
-                    // This class must be instantiated before that the method ExmGUI::cp_head();
-                    RMTemplate::get()->add_script(RMCURL.'/include/js/dates.js');
-                }
+        $this->year_range = $year_range=='' ? (date('Y',time()) - 15).':'.(date('Y',time()) + 15) : $year_range;
+        
+        RMTemplate::get()->add_local_script('dates.js', 'rmcommon', 'include');
 
 	}
 	
@@ -54,7 +49,7 @@ class RMFormDate extends RMFormElement
 
                 $rtn = "\n<script type='text/javascript'>
             \n$(function(){
-            \n$(\"#exmdate-".$this->getName()."\").datepicker({changeMonth: true,changeYear: true});
+            \n$(\"#exmdate-".$this->getName()."\").datepicker({changeMonth: true,changeYear: true, yearRange: '".$this->year_range."'});
             \n});\n</script>
             \n";
                 $rtn .= "<input type='text' class='exmdates_field' name='text_".$this->getName()."' id=\"exmdate-".$this->getName()."\"' size='15' maxlength='10' value='".($this->_date>0 ? date('m/d/Y', $this->_date) : '')."' />
