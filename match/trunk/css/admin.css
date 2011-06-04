@@ -1,0 +1,124 @@
+.mch_options{
+    padding: 5px 10px 5px 0;
+    overflow: hidden;
+}
+div.rmc_pages_navigation_container{
+    float: right;
+}
+.mch_teams_field{
+    padding: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px dashed #FFF;
+}
+.mch_teams_field:hover{
+    background: #f2f2f2;
+    border: 1px dashed #d0d0d0;
+}
+.mch_teams_field img{
+    float: left;
+    margin: 0 5px 0 0;
+}
+.mch_teams_field img.logo{
+    width: 50px;
+    padding: 1px;
+    border: 1px solid #CCC;
+}
+.mch_teams_field .noselected{
+    display: block;
+    color: #666;
+    font-style: italic;
+}
+.mch_teams_field strong{
+    display: block;
+    margin: 0 0 2px 0;
+}
+.mch_teams_field span{
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+}
+.mch_teams_field span.date{
+    display: block;
+    color: #999;
+    font-size: 0.85em;
+}
+.mch_teams_pop{
+    display: none;
+    background: #f2f2f2;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding: 10px;
+}
+.mch_teams_pop .mch_tf_icontainer{
+    max-height: 300px;
+    overflow: auto;
+}
+.mch_teams_pop .loader{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -16px;
+}
+.mch_tf_item{
+    float: left;
+    width: 200px;
+    margin: 0 5px 5px 0;
+    height: 45px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.mch_tf_item img{
+    float: left;
+    width: 40px;
+    border: 1px solid #ccc;
+    padding: 1px;
+    margin: 0 5px 0 0;
+}
+.mch_tf_item strong{
+    color: #000;
+    display: block;
+    margin: 0 0 2px 0;
+}
+.mch_tf_item span{
+    display: block;
+    color: #666;
+    font-size: 0.85em;
+}
+.mch_tf_item span.date{
+    display: block;
+    color: #999;
+    font-size: 0.85em;
+}
+.mch_tf_item:hover{
+    background: url(../images/trans.png);
+}
+.mch_tf_item:hover strong{
+    color: #FFF;
+}
+.mch_tf_item:hover span{
+    color: #CCC;
+}
+.mch_tf_item:hover span.date{
+    color: #999;
+}
+.mch_pbirth{
+    display: block;
+    padding: 2px 0;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: #666;
+    cursor: default;
+}
+.players_filters{
+    padding: 5px;
+    background: #f2f2f2;
+    border: 1px dashed #CCC;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    margin-top: 4px;
+}
