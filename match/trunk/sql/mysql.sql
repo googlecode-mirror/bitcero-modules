@@ -63,3 +63,31 @@ CREATE TABLE `mch_champs` (
   PRIMARY KEY (`id_champ`),
   KEY `nameid` (`nameid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mch_fields` (
+  `id_field` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `nameid` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id_field`),
+  KEY `nameid` (`nameid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mch_role` (
+`id_role` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`local` INT NOT NULL ,
+`visitor` INT NOT NULL ,
+`time` INT( 10 ) NOT NULL ,
+`field` INT NOT NULL ,
+`champ` INT NOT NULL ,
+`category` INT NOT NULL
+) ENGINE = MYISAM ;
+
+CREATE TABLE  `mch_score` (
+`id_score` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`item` INT NOT NULL ,
+`local` TINYINT NOT NULL ,
+`visitor` TINYINT NOT NULL ,
+`other` TINYINT NOT NULL ,
+`comments` VARCHAR( 255 ) NOT NULL
+) ENGINE = MYISAM ;

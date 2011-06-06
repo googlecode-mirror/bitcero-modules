@@ -139,3 +139,76 @@ div.rmc_pages_navigation_container{
 #mch-champtable{
     margin-left: 320px;
 }
+.mch_bc_role{
+    padding: 6px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: #006B9F;
+}
+.mch_bc_role .msg{
+    color: #FF5809;
+}
+
+/* Role Play */
+#mch-rnform{
+    margin-bottom: 8px;
+}
+#mch-rnform select{
+    width: 130px;
+}
+#mch-rnform option.disabled{
+    color: #666;
+    font-style: italic;
+}
+#local-data img.logo,
+#visitor-data img.logo{
+    height: 80px;
+    border: 1px solid #CCC;
+    padding: 1px;
+}
+#local-data span,
+#visitor-data span{
+    font-weight: bold;
+    display: block;
+    padding: 3px;
+}
+#mch-rndata{
+
+}
+#mch-rndata .outer img{
+    height: 50px;
+    max-width: 50px;
+    border: 1px solid #CCC;
+    padding: 1px;
+}
+tr.title td{
+    color: #FB5200;
+    padding: 3px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    background: #ebebeb;
+    border-bottom: 1px dotted #CCC;
+}
+.played{
+    color: #0A80A7;
+}
+.tplayed{
+    text-decoration: line-through;
+    color: #FB5200;
+}
+.pending{
+    text-transform: uppercase;
+    color: #FB5200;
+    font-size: 0.8em;
+}
+.score_editor{
+    background: #0A80A7;
+}
+.score_editor td{
+    padding: 4px;
+    font-size: 0.9em;
+    color: #FFF;
+}
+.empty{
+    background: #0A80A7;
+}

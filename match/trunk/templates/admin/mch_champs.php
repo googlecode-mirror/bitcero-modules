@@ -40,7 +40,7 @@
         
         <tfoot>
         <tr class="head" align="center">
-            <th width="20"><input type="checkbox" id="checkall" onclick='$("#frm-champs").toggleCheckboxes(":not(#checkall)");' /></th>
+            <th width="20"><input type="checkbox" id="checkall2" onclick='$("#frm-champs").toggleCheckboxes(":not(#checkall2)");' /></th>
             <th width="30"><?php _e('ID','match'); ?></th>
             <th align="left"><?php _e('Name','match'); ?></th>
             <th><?php _e('Short name','match'); ?></th>

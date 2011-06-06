@@ -14,6 +14,7 @@ class MCHFunctions
         RMTemplate::get()->add_tool(__('Dashboard','match'), './index.php', '../images/dashboard.png', 'dashboard');
         RMTemplate::get()->add_tool(__('Categories','match'), './categories.php', '../images/category.png', 'categories');
         RMTemplate::get()->add_tool(__('Championships','match'), './champ.php', '../images/champ.png', 'championships');
+        RMTemplate::get()->add_tool(__('Fields','match'), './fields.php', '../images/field.png', 'fields');
         RMTemplate::get()->add_tool(__('Teams','match'), './teams.php', '../images/teams.png', 'teams');
         RMTemplate::get()->add_tool(__('Players','match'), './roster.php', '../images/players.png', 'roster');
         RMTemplate::get()->add_tool(__('Coaches','match'), './coaches.php', '../images/coaches.png', 'coaches');
@@ -41,7 +42,7 @@ class MCHFunctions
             $row['link'] = $cat->permalink();
             $row['description'] = $cat->getVar('description');
             $row['id'] = $cat->id();
-            $categories[] = $row;
+            $categories[$row['id_cat']] = $row;
             if ($include_subs) MCHFunctions::categories_tree($categories, $row['id_cat'], $indent+1, $include_subs, $exclude);
         }        
         
@@ -95,7 +96,7 @@ class MCHFunctions
     public function all_teams($o = false, $q=''){
         
         $db = Database::getInstance();
-        $sql = "SELECT * FROM ".$db->prefix("mch_teams").($q!=''?" WHERE name LIKE '$q%'":'')." ORDER BY `name`,category";
+        $sql = "SELECT * FROM ".$db->prefix("mch_teams").($q!=''?" WHERE $q":'')." ORDER BY `name`,category";
         $result = $db->query($sql);
         
         if($db->getRowsNum($result)<=0) return;
@@ -167,6 +168,38 @@ class MCHFunctions
         );
         
         return $names[$charge];
+        
+    }
+    
+    /**
+    * Get the fields list
+    * @return array
+    */
+    public function all_fields($obj = false){
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_fields")." ORDER BY `name`";
+        $result = $db->query($sql);
+        
+        if($db->getRowsNum($result)<=0) return;
+        
+        $fields = array();
+        
+        while($row = $db->fetchArray($result)){
+            
+            if($obj){
+                
+                $fields[$row['id_field']] = new MCHField();
+                $fields[$row['id_field']]->assignVars($row);
+                
+            } else {
+                
+                $fields[] = $row;
+            }            
+            
+        }
+        
+        return $fields;
         
     }
     

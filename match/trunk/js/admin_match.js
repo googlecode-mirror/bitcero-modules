@@ -17,6 +17,82 @@ $(document).ready(function(){
         return false;
     });
     
+    // Role play
+    $("#champ").change(function(){
+        
+        if($(this).val()<=0){
+            $(".mch_bc_role").html('&raquo; <span class="msg">Select Championship</span>');
+            return;    
+        }
+        
+        if($("#category").val()<=0){
+            $(".mch_bc_role").html('&raquo; <span class="msg">Select Category</span>');
+            return;
+        }
+        
+        $("#frm-filter").submit();
+        
+    });
+    
+    $("#category").change(function(){
+        
+        if($(this).val()<=0){
+            $(".mch_bc_role").html('&raquo; <span class="msg">Select Category</span>');
+            return;
+        }
+        
+        if($("#champ").val()<=0) return;
+        
+        $("#frm-filter").submit();
+        
+    });
+    
+    $("#local-team").change(function(){
+        
+        $("#visitor-team option").removeAttr("disabled");
+        $("#visitor-team option").removeClass("disabled");
+        
+        if($(this).val()==0){
+            $("#local-data").html('');
+            return;
+        }
+        
+        $("#visitor-team option[value='"+$(this).val()+"']").attr("disabled",'disabled');
+        $("#visitor-team option[value='"+$(this).val()+"']").addClass("disabled");
+        
+    });
+    
+    $("#visitor-team").change(function(){
+        
+        if($(this).val()==0){
+            $("#visitor-data").html('');
+            return;
+        }
+        
+    });
+    
+    $("a.set_score").click(function(){
+        
+        var id = $(this).attr("id").replace('score-','');
+        
+        params = {
+            action: 'get-score',
+            id: id
+        };
+        
+        $(".score_editor").remove();
+        $("td.empty").removeClass('empty');
+        
+        $.get('../include/utils.php', params, function(data){
+            
+            $("#role-"+id).after(data);
+            $("#score-editor-"+id+" input[name='local']").focus();
+            
+        },'html');
+        
+        return false;
+    })
+    
 });
 
 function before_submit(id){
@@ -62,4 +138,30 @@ function select_option(id,action,form){
 			$("#"+form).submit();
 	}
 	
+}
+
+function set_score(id){
+    $("#score-editor-"+id+" input").each(function(i){
+        switch($(this).attr("name")){
+            case 'local':
+                if($(this).val()=='' || isNaN($(this).val()) || $(this).val()<0){
+                    $(this).css({background:'#f00',color:'#FFF'});
+                    $(this).focus();
+                    return;
+                } else {
+                    $(this).css({background:'',color:''});
+                }
+                var local = $(this).val();
+                break;
+            case 'visitor':
+                if($(this).val()=='' || isNaN($(this).val()) || $(this).val()<0){
+                    $(this).css({background:'#f00',color:'#FFF'});
+                    return;
+                } else {
+                    $(this).css({background:'',color:''});
+                }
+                var visitor = $(this).val();
+                break;
+        }
+    });
 }

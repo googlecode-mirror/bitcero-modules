@@ -36,7 +36,16 @@ $adminmenu[] = array(
     'location'=>"championships",
     'options' => array(
         array('title'=>__('List all', 'match'),'link'=>'champ.php', 'selected'=>'championships'),
-        array('title'=>__('Add Championship', 'match'),'link'=>'champ.php?action=new', 'selected'=>'newchamp')
+    )
+);
+
+$adminmenu[] = array(
+    'title'=>__('Fields','match'),
+    'link'=>"admin/fields.php",
+    'icon'=>"../images/field.png",
+    'location'=>"fields",
+    'options' => array(
+        array('title'=>__('List all', 'match'),'link'=>'fields.php', 'selected'=>'fields')
     )
 );
 

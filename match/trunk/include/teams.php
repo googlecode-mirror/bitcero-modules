@@ -23,7 +23,7 @@ if(!$xoopsSecurity->checkReferer()){
 
 $q = rmc_server_var($_GET, 'q', '');
 
-$teams = MCHFunctions::all_teams(false, $q);
+$teams = MCHFunctions::all_teams(false, "name LIKE '%$q%'");
 
 if($q!=''){
     

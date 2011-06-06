@@ -186,7 +186,7 @@ function m_championship_form($edit = 0){
 
         //Verificamos si la categoría existe
         $champ = new MCHChampionship($id);
-        if ($coach->isNew()){
+        if ($champ->isNew()){
             redirectMsg('./champ.php',__('Specified championship was not found!','match'),1);
             die();
         }
@@ -201,31 +201,17 @@ function m_championship_form($edit = 0){
     
     $form->addElement(new RMFormEditor(__('Description','match'), 'description', '100%','250px', $edit ? $champ->getVar('description','e') : ''));
     
-    $form->addElement(new MCHTeamsField(__('Start date','match'), 'start', $edit ? $coach->getVar('team') : 0), true);
-    
-    $form->addElement(new RMFormDate(__('Registered','match'), 'created', $edit ? $coach->getVar('created') : time(), $xoopsModuleConfig['year_range']), 1);
-    
-    $charges = new RMFormSelect(__('Charge', 'match'), 'charge', 0, $edit ? array($coach->getVar('charge')) : 0);
-    $charges->addOption(0, __('Select position...','match'));
-    $charges->addOption(1, __('Manager','match'));
-    $charges->addOption(2, __('Coach','match'));
-    $charges->addOption(3, __('Assistant','match'));
-    $form->addElement($charges);
-    
-    $form->addElement(new RMFormFile(__('Picture','match'), 'photo', 45));
-    
-    if($edit){
-        $form->addElement(new RMFormLabel(__('Current picture','match'), '<img src="'.MCH_UP_URL.'/coaches/ths/'.$coach->getVar('photo').'" alt="'.$coach->getVar('name').'" />'));
-    }
+    $form->addElement(new RMFormDate(__('Start date','match'), 'start', $edit ? $champ->getVar('start') : 0), true);
+    $form->addElement(new RMFormDate(__('End date','match'), 'end', $edit ? $champ->getVar('end') : 0), true);
     
     $form->addElement(new RMFormHidden('action', $edit ? 'saveedit' : 'save'));
-    if ($edit) $form->addElement(new RMFormHidden('id', $coach->id()));
+    if ($edit) $form->addElement(new RMFormHidden('id', $champ->id()));
     $ele = new RMFormButtonGroup();
     $ele->addButton('sbt', $edit ? __('Save Changes!','match') : __('Add Now!','match'), 'submit');
-    $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'coaches.php\';"');
+    $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'champ.php\';"');
     $form->addElement($ele);
     
-    $form = RMEvents::get()->run_event('match.form.coaches', $form);
+    $form = RMEvents::get()->run_event('match.form.championships', $form);
     
     $form->display();
     

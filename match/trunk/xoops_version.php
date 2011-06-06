@@ -51,7 +51,10 @@ $modversion['tables'] = array(
     "mch_teams",
     'mch_players',
     'mch_coaches',
-    'mch_champs'
+    'mch_champs',
+    'mch_fields',
+    'mch_role',
+    'mch_score'
 );
 
 // Configuration
