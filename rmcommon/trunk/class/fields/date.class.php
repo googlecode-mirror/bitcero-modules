@@ -14,8 +14,9 @@ class RMFormDate extends RMFormElement
 {
 	
 	private $_date = 0;
-	private $_showtime = 0;
+	private $options = 0;
     private $year_range = '';
+    private $time;
 
         /**
       * Constructor
@@ -23,16 +24,32 @@ class RMFormDate extends RMFormElement
       * @param <string> $name Nombre identificador del campo
       * @param <string> $date Fecha en formato 'yyyy-mm-14'
       * @param string Year range (eg. 2000:2020)
+      * @param int Show time and time format (0 = Hide, 1 = Show date and time, 2 = Show only time)
       */
-	function __construct($caption, $name, $date='', $year_range=''){
+	function __construct($caption, $name, $date='', $year_range='', $time=0){
 		$this->setCaption($caption);
 		$this->setName($name);
 		$this->_date = $date;
         $this->year_range = $year_range=='' ? (date('Y',time()) - 15).':'.(date('Y',time()) + 15) : $year_range;
         
+        if ($time==0) $this->options = "showHour: false, showMinute: false, showSecond: false";
+        $this->time = $time;
+        
+        RMTemplate::get()->add_local_script('jquery-ui-timepicker-addon.js', 'rmcommon', 'include');
         RMTemplate::get()->add_local_script('dates.js', 'rmcommon', 'include');
 
 	}
+    
+    /**
+    * Set options for widget
+    * See documentation in http://trentrichardson.com/examples/timepicker/
+    * @param string Options in javascript format (eg. showHour: false, showMinute: false)
+    */
+    public function options($options){
+        
+        $this->options = $options;
+        
+    }
 	
 	public function render(){
 		global $exmConfig;
@@ -46,17 +63,43 @@ class RMFormDate extends RMFormElement
 			$rtn .= "<div id='exmDatesContainer' class='exmDates'></div>";
 			define('RM_FRAME_DATETIME_DIVOK', 1);
 		}*/
-
-                $rtn = "\n<script type='text/javascript'>
+        
+        if ($this->time==1){
+                RMTemplate::get()->add_head("\n<script type='text/javascript'>
+                \nvar ".$this->getName()."_time = 1;
             \n$(function(){
-            \n$(\"#exmdate-".$this->getName()."\").datepicker({changeMonth: true,changeYear: true, yearRange: '".$this->year_range."'});
+            \n$(\"#exmdate-".$this->getName()."\").datetimepicker({changeMonth: true,changeYear: true, yearRange: '".$this->year_range."'".($this->options!=''?",".$this->options:"")."});
             \n});\n</script>
-            \n";
-                $rtn .= "<input type='text' class='exmdates_field' name='text_".$this->getName()."' id=\"exmdate-".$this->getName()."\"' size='15' maxlength='10' value='".($this->_date>0 ? date('m/d/Y', $this->_date) : '')."' />
-                    <input type='hidden' name='".$this->getName()."' id='".$this->getName()."' value='".($this->_date>0 ? $this->_date : '')."' />";
-                if ($this->_showtime){
-                    
-                }
+            \n");
+            
+            if($this->_date>0) $date = date('m/d/y H:i:s', $this->_date);
+            
+        } elseif($this->time==0) {
+            RMTemplate::get()->add_head("\n<script type='text/javascript'>
+            \nvar ".$this->getName()."_time = 0;
+            \n$(function(){
+            \n$(\"#exmdate-".$this->getName()."\").datepicker({changeMonth: true,changeYear: true, yearRange: '".$this->year_range."'".($this->options!=''?",".$this->options:"")."});
+            \n});\n</script>
+            \n");
+            
+            if($this->_date>0) $date = date('m/d/y', $this->_date);
+            
+        } elseif($this->time==2){
+            RMTemplate::get()->add_head("\n<script type='text/javascript'>
+            \nvar ".$this->getName()."_time = 2;
+            \n$(function(){
+            \n$(\"#exmdate-".$this->getName()."\").timepicker({changeMonth: true,changeYear: true, yearRange: '".$this->year_range."'".($this->options!=''?",".$this->options:"").", timeOnlyTitle: '".__('Choose Time','rmcommon')."'});
+            \n});\n</script>
+            \n");
+            
+            if($this->_date!='') $date = $this->_date;
+            
+        }
+        
+        
+        
+        $rtn = "<input type='text' class='exmdates_field' name='text_".$this->getName()."' id=\"exmdate-".$this->getName()."\"' size='20' maxlength='19' value='".$date."' />
+                    <input type='hidden' name='".$this->getName()."' id='".$this->getName()."' value='".$date."' />";
 		return $rtn;
 	}
 	

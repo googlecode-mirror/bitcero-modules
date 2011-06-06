@@ -266,10 +266,26 @@ $(document).ready(function(){
 
     $('input.exmdates_field').change(function(){
         
-        str = $(this).val().split("/", 3);
-        time = exmDates.mktime(1,1,1,str[0],str[1],str[2]);
+        var str = $(this).val().split(" ", 3);
+        var date = str[0].split("/", 3);
+        
+        if(str.length>1){
+            time = str[1].split(":",3);
+        }
+        
         field = $(this).attr('id').replace('exmdate-','');
-        $("#"+field).val(time);
+        eval('var convert = '+field+'_time==2?false:true;');
+        
+        if(convert){
+            if(time.length>0)
+                valtime = exmDates.mktime(time[0]-7,time[1],time[2]>=0?time[2]:1,date[0],date[1],date[2]);        
+            else
+                valtime = exmDates.mktime(1,1,1,date[0],date[1],date[2]);
+            
+            $("#"+field).val(valtime);
+        } else {
+            $("#"+field).val($(this).val());
+        }
 
     })
 });
