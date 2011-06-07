@@ -86,9 +86,12 @@ $adminmenu[] = array(
     'title'=>__('Role Play','match'),
     'link'=>"admin/role.php",
     'icon'=>"../images/role.png",
-    'location'=>"role",
-    'options' => array(
-        array('title'=>__('List all', 'match'),'link'=>'role.php', 'selected'=>'role'),
-        array('title'=>__('Add Role Play', 'match'),'link'=>'role.php?action=new', 'selected'=>'newrole')
-    )
+    'location'=>"role"
+);
+
+$adminmenu[] = array(
+    'title'=>__('Ranking','match'),
+    'link'=>"admin/ranking.php",
+    'icon'=>"../images/rank.png",
+    'location'=>"ranking"
 );

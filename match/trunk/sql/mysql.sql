@@ -89,5 +89,7 @@ CREATE TABLE  `mch_score` (
 `local` TINYINT NOT NULL ,
 `visitor` TINYINT NOT NULL ,
 `other` TINYINT NOT NULL ,
-`comments` VARCHAR( 255 ) NOT NULL
+`win` INT( 11 ) NOT NULL,
+`comments` VARCHAR( 255 ) NOT NULL,
+`champ` INT(11) NOT NULL
 ) ENGINE = MYISAM ;

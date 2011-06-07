@@ -10,6 +10,7 @@
 
 class MCHTeam extends RMObject
 {
+    private $cache_wons = array();
     
     public function __construct($id=null){
         
@@ -109,6 +110,26 @@ class MCHTeam extends RMObject
         }
         
         return $ret;
+        
+    }
+    
+    /**
+    * Get wins
+    */
+    public function won_games($champ){
+        
+        if($champ<=0) return;
+        
+        if(isset($this->cache_wons[$champ]))
+            return $this->cache_wons[$champ];
+        
+        $result = $this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix("mch_score")." WHERE win=".$this->id()." AND champ=$champ");
+        
+        list($total) = $this->db->fetchRow($result);
+        
+        $this->cache_wons[$champ] = $total;
+        
+        return $total;
         
     }
     

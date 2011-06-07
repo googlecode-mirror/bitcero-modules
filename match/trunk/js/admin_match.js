@@ -47,6 +47,22 @@ $(document).ready(function(){
         
     });
     
+    $("#team").change(function(){
+              
+        if($("#champ").val()<=0 || $("#category").val()<=0) return;
+        
+        $("#frm-filter").submit();
+        
+    });
+    
+    $("#sday").change(function(){
+              
+        if($("#champ").val()<=0 || $("#category").val()<=0) return;
+        
+        $("#frm-filter").submit();
+        
+    });
+    
     $("#local-team").change(function(){
         
         $("#visitor-team option").removeAttr("disabled");
@@ -141,6 +157,11 @@ function select_option(id,action,form){
 }
 
 function set_score(id){
+    
+    $("#score-editor-"+id+" td.empty").html('<img src="../images/loadb.gif" alt="" />');
+    
+    var local, visitor, other, comments, token, win;
+    
     $("#score-editor-"+id+" input").each(function(i){
         switch($(this).attr("name")){
             case 'local':
@@ -151,7 +172,7 @@ function set_score(id){
                 } else {
                     $(this).css({background:'',color:''});
                 }
-                var local = $(this).val();
+                local = $(this).val();
                 break;
             case 'visitor':
                 if($(this).val()=='' || isNaN($(this).val()) || $(this).val()<0){
@@ -160,8 +181,53 @@ function set_score(id){
                 } else {
                     $(this).css({background:'',color:''});
                 }
-                var visitor = $(this).val();
+                visitor = $(this).val();
+                break;
+            case 'other':
+                if($(this).is(":checked"))
+                    other = $(this).val();
+                break;
+            case 'comments':
+                comments = $(this).val();
+                break;
+            case 'token':
+                token = $(this).val();
+                break;
+            case 'win':
+                if($(this).is(":checked"))
+                    win = $(this).val();
                 break;
         }
     });
+    
+    var params = {
+        id: id,
+        local: local,
+        visitor: visitor,
+        other: other,
+        comments: comments,
+        token: token,
+        action: 'set-score',
+        win: win
+    };
+    
+    $.post('../include/utils.php', params, function(data){
+        
+        if(data.error){
+            alert(data.msg);
+        }
+        
+        $(".score_editor").fadeOut('fast', function(){
+            $(".score_editor").remove();
+        });
+        
+    },'json');
+    
+    
+}
+
+function hide_score(){
+    $(".score_editor").fadeOut('fast', function(){
+            $(".score_editor").remove();
+        });
 }

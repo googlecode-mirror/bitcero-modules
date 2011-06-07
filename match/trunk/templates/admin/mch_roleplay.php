@@ -21,7 +21,21 @@
         </select>
         &#160;
         <select name="team" id="team">
-            <option value=""><?php _e('Select Team...','match'); ?></option>
+            <option value=""><?php _e('All Teams...','match'); ?></option>
+            <?php if($champ && $category): ?>
+            <?php foreach($teams as $t): ?>
+            <option value="<?php echo $t['id_team']; ?>"<?php echo $team==$t['id_team']?' selected="selected"':''; ?>><?php echo $t['name']; ?></option>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+        &#160;
+        <select name="sday" id="sday">
+            <option value=""><?php _e('All Days...','match'); ?></option>
+            <?php if($champ && $category): ?>
+            <?php foreach($days as $d): ?>
+            <option value="<?php echo $d; ?>"<?php echo $sday==$d?' selected="selected"':''; ?>><?php echo $tf->format($d,'%M% %d%, %Y%'); ?></option>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </select>
     </div>
     <div class="mch_bc_role">
@@ -44,14 +58,14 @@
         <tr>
             <th colspan="5"><?php _e('Add Match to Role Play','match'); ?></th>
         </tr>
-        <tr class="head" align="left">
+        <tr class="role_form_tr" align="left">
             <td><?php _e('Local Team:','match'); ?></td>
             <td><?php _e('Visitor Team:','match'); ?></td>
             <td><?php _e('Field:','match'); ?></td>
             <td><?php _e('Date:','match'); ?></td>
             <td>&nbsp;</td>
         </tr>
-        <tr class="head" align="left">
+        <tr class="role_form_tr" align="left">
             <td>
                 <select name="local" id="local-team">
                     <option value="0" selected="selected"><?php _e('Select team...','match'); ?></option>
@@ -144,12 +158,14 @@
             <td colspan="8"><?php echo $tf->format($day, __('%M% %d%, %Y%','match')); ?></td>
         </tr>
         <?php endif; ?>
-        <tr class="<?php echo tpl_cycle("even,odd"); ?><?php echo $item['past']?' played':''; ?>" id="role-<?php echo $item['id']; ?>">
+        <tr valign="top" class="<?php echo tpl_cycle("even,odd"); ?><?php echo $item['past']?' played':''; ?>" id="role-<?php echo $item['id']; ?>">
             <td><input type="checkbox" name="ids[]" id="item-<?php echo $item['id']; ?>" /></td>
             <td align="left"><?php echo $item['field']['name']; ?></td>
             <td align="center"><?php echo $item['hour']; ?></td>
-            <td><strong><?php echo $item['local']['name']; ?></strong></td>
-            <td align="left"><strong><?php echo $item['visitor']['name']; ?></strong></td>
+            <td><strong><?php echo $item['local']['name']; ?></strong>
+            <?php if($item['past']): ?><span class="score_leg">(<?php echo $item['local']['score']; ?>)</span><?php endif;?></td>
+            <td align="left"><strong><?php echo $item['visitor']['name']; ?></strong>
+            <?php if($item['past']): ?><span class="score_leg">(<?php echo $item['visitor']['score']; ?>)</span><?php endif;?></td>
             <td align="center"><?php echo $item['past']?__('Played','match'):'<span class="pending">'.__('Pending','match').'</span>'; ?></td>
             <td align="center">
                 <span class="rmc_options">

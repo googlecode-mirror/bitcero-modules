@@ -16,40 +16,31 @@ function m_show_roleplay(){
     
     $champ = rmc_server_var($_REQUEST,'champ',0);
     $category = rmc_server_var($_REQUEST,'category',0);
+    $team = rmc_server_var($_REQUEST,'team',0);
+    $sday = rmc_server_var($_REQUEST,'sday',0);
     
     $db = Database::getInstance();
-    $sql = "SELECT * FROM ".$db->prefix("mch_champs")." ORDER BY start DESC";
-    $result = $db->query($sql);
     
-    $champs = array();
-    while($row = $db->fetchArray($result)){
-        
-        $ch = new MCHChampionship();
-        $ch->assignVars($row);
-        
-        $champs[$ch->id()] = array(
-            'id' => $ch->id(),
-            'name' => $ch->getVar('name'),
-            'nameid' => $ch->getVar('nameid'),
-            'start' => $ch->getVar('start'),
-            'end' => $ch->getVar('end'),
-            'current' => $ch->getVar('start')<=time() && $ch->getVar('end')>=time()?true:false
-        );
-        
-        unset($ch);
-        
-    }
+    $champs = MCHFunctions::all_championships();
     
     // Select role item
     if($champ>0 && $category>0){
         
-        $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ."' AND category='".$category."' ORDER BY `time`";
+        $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ."' AND category='".$category."'";
+        if($team>0) $sql .= " AND (local='$team' OR visitor='$team')";
+        if($sday>0) $sql .= " AND time>=$sday AND time<".($sday+86400);
+        $sql .= " ORDER BY `time`";
         $result = $db->query($sql);
         
         $role = array();
         $tcache = array();
         $fcache = array();
         $tf = new RMTimeFormatter('',__('%M% %d%, %Y% - %h%:%i%','match'));
+        $i = 0;
+        
+        $days = array();
+        $pday = 0;
+        
         while($row = $db->fetchArray($result)){
             $item = new MCHRoleItem();
             $item->assignVars($row);
@@ -75,7 +66,7 @@ function m_show_roleplay(){
                 $field = $fcache[$item->getVar('field')];
             }
             
-            $role[] = array(
+            $role[$i] = array(
                 'id' => $item->id(),
                 'local' => array(
                     'id' => $local->id(),
@@ -97,6 +88,55 @@ function m_show_roleplay(){
                 'past' => $item->getVar('time')<time()?true:false
             );
             
+            if($role[$i]['past']){
+                $score = new MCHScoreItem();
+                $score->byRole($item->id());
+                $role[$i]['local']['score'] = $score->getVar('local');
+                $role[$i]['visitor']['score'] = $score->getVar('visitor');
+            }
+            
+            // Add days to combo
+            if($pday<=0){
+                $pday = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+                $days[] = $pday;
+            }
+            
+            $now = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+            if($now>$pday+(86400)){
+                $pday = $now;
+                $days[] = $pday;
+            }
+            
+            $i++;
+            
+        }
+        
+    }
+    
+    // Charge days if incomplete
+    if($champ>0 && $category>0 && $sday>0){
+        
+        $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ."' AND category='".$category."'";
+        if($team>0) $sql .= " AND (local='$team' OR visitor='$team')";
+        $sql .= " ORDER BY `time`";
+        $result = $db->query($sql);
+        
+        $days = array();
+        $pday = 0;
+        while($row = $db->fetchArray($result)){
+            $item = new MCHRoleItem();
+            $item->assignVars($row);
+            // Add days to combo
+            if($pday<=0){
+                $pday = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+                $days[] = $pday;
+            }
+            
+            $now = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+            if($now>$pday+(86400)){
+                $pday = $now;
+                $days[] = $pday;
+            }
         }
         
     }

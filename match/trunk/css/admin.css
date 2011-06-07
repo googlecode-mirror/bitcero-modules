@@ -175,12 +175,6 @@ div.rmc_pages_navigation_container{
 #mch-rndata{
 
 }
-#mch-rndata .outer img{
-    height: 50px;
-    max-width: 50px;
-    border: 1px solid #CCC;
-    padding: 1px;
-}
 tr.title td{
     color: #FB5200;
     padding: 3px;
@@ -211,4 +205,31 @@ tr.title td{
 }
 .empty{
     background: #0A80A7;
+}
+.score_leg{
+    font-size: 0.9em;
+    color: #666;
+}
+.role_form_tr td{
+    font-size: 0.9em;
+    padding: 2px 4px;
+    background: #f2f2f2;
+}
+.position{
+    font-size: 2em;
+    font-weight: bold;
+    font-family: georgia, times, serif;
+}
+.teamd{
+    font-size: 1.1em;
+}
+.teamd img{
+    width: 60px;
+    padding: 1px;
+    background: #FFF;
+    box-shadow: 0 0 10px #000;
+}
+.teamd strong{
+    display: block;
+    padding: 4px 0;
 }

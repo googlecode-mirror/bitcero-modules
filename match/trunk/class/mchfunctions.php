@@ -203,4 +203,72 @@ class MCHFunctions
         
     }
     
+    /**
+    * Get championships list
+    */
+    public function all_championships(){
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_champs")." ORDER BY start DESC";
+        $result = $db->query($sql);
+        
+        while($row = $db->fetchArray($result)){
+        
+            $ch = new MCHChampionship();
+            $ch->assignVars($row);
+            
+            $champs[$ch->id()] = array(
+                'id' => $ch->id(),
+                'name' => $ch->getVar('name'),
+                'nameid' => $ch->getVar('nameid'),
+                'start' => $ch->getVar('start'),
+                'end' => $ch->getVar('end'),
+                'current' => $ch->getVar('start')<=time() && $ch->getVar('end')>=time()?true:false
+            );
+            
+            unset($ch);
+            
+        }
+        
+        return $champs;
+    }
+    
+    public function get_ranking($champ, $category){
+        
+        function sort_teams($a, $b){
+            if($a==$b) return 0;
+            
+            return $a<$b?1:-1;
+        }
+        
+        
+        $teams = MCHFunctions::all_teams(true, "category=$category");
+        $tranking = array();
+        foreach($teams as $team){
+            $tranking[$team->id()] = array(
+                'wons' => $team->won_games($champ),
+                'id' => $team->id(),
+                'name' => $team->getVar('name'),
+                'logo' => $team->getVar('logo')
+            );
+        }
+        
+        $ord = array();
+        foreach($tranking as $r){
+            $ord[$r['id']] = $r['wons'];
+        }
+        
+        uasort($ord, 'sort_teams');
+        
+        $ranking = array();
+        foreach($ord as $k => $v){
+            $ranking[] = $tranking[$k];
+        }
+        
+        unset($tranking);
+        
+        return $ranking;
+    
+    }
+    
 }
