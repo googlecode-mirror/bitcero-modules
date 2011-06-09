@@ -122,6 +122,25 @@ $modversion['config'][] = array(
     'default' => '1990:2020'
 );
 
+// Days of game
+$modversion['config'][] = array(
+    'name' => 'days',
+    'title' => '_MI_MCH_DAYS',
+    'description' => '_MI_MCH_DAYSD',
+    'formtype' => 'select_multi',
+    'valuetype' => 'array',
+    'default' => '6|7',
+    'options' => array(
+        __('Monday','match') => 1,
+        __('Tuesday','match') => 2,
+        __('Wednesday','match') => 3,
+        __('Thursday','match') => 4,
+        __('Friday','match') => 5,
+        __('Saturday','match') => 6,
+        __('Sunday','match') => 7
+    )
+);
+
 // Plantillas
 //$modversion['templates'][1]['file'] = 'mywords_index.html';
 //$modversion['templates'][1]['description'] = '';

@@ -142,10 +142,10 @@
             $title = false;
             if($day<=0){
                 $title = true;
-                $day = $item['time'];
+                $day = mktime(0, 0, 1, date("m",$item['time']), date("d", $item['time']), date('Y', $item['time']));
             }
             
-            $now = mktime(0, 0, 1, date("m",$item['time']), date("d", $item['time']), date('Y', $item['time']));
+            $now = mktime(23, 59, 0, date("m",$item['time']), date("d", $item['time']), date('Y', $item['time']));
             if($now>$day+(86400)){
                 $pday = $day;
                 $day = $now;

@@ -8,6 +8,10 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+include_once XOOPS_ROOT_PATH.'/modules/match/class/mchcategory.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/match/class/mchteam.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/match/class/mchfield.class.php';
+
 class MCHFunctions
 {
     public function toolbar(){
@@ -233,6 +237,28 @@ class MCHFunctions
         return $champs;
     }
     
+    /**
+    * Get current championship
+    * @return object {MCHChampionship}
+    */
+    public function current_championship(){
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_champs")." WHERE start<=".time()." AND `end`>=".time();
+        $result = $db->query($sql);
+        
+        if($db->getRowsNum($result)<=0) return 0;
+        
+        $row = $db->fetchArray($result);
+        
+        $champ = new MCHChampionship();
+        $champ->assignVars($row);
+        
+        return $champ;
+        
+    }
+    
+    
     public function get_ranking($champ, $category){
         
         function sort_teams($a, $b){
@@ -240,7 +266,6 @@ class MCHFunctions
             
             return $a<$b?1:-1;
         }
-        
         
         $teams = MCHFunctions::all_teams(true, "category=$category");
         $tranking = array();
@@ -251,6 +276,7 @@ class MCHFunctions
                 'name' => $team->getVar('name'),
                 'logo' => $team->getVar('logo')
             );
+            
         }
         
         $ord = array();
@@ -261,14 +287,181 @@ class MCHFunctions
         uasort($ord, 'sort_teams');
         
         $ranking = array();
+        
         foreach($ord as $k => $v){
-            $ranking[] = $tranking[$k];
+            $ranking[] = $tranking[$k];            
         }
         
         unset($tranking);
         
+        $ranking = self::ranking_verified($ranking, $champ);
+        
         return $ranking;
     
+    }
+    
+    private function ranking_verified($ranking, $champ){
+        
+        $pe = array();
+        $i = 0;
+        $ret = array();
+        
+        $db = Database::getInstance();
+        $ts = $db->prefix("mch_score");
+        $tr = $db->prefix("mch_role");
+        
+        $found = false;
+        
+        foreach($ranking as $r){
+            
+            $ret[$i] = $r;
+            
+            if($pe['wons']==$r['wons']){
+                
+                $sql = "SELECT COUNT(*) FROM $ts s, $tr r WHERE s.champ=$champ AND s.win=".$r['id']." AND r.champ=$champ AND r.id_role=s.item AND (r.local=$pe[id] OR r.visitor=$pe[id])";
+                $sql1 = "SELECT COUNT(*) FROM $ts s, $tr r WHERE s.champ=$champ AND s.win=".$pe['id']." AND r.champ=$champ AND r.id_role=s.item AND (r.local=$r[id] OR r.visitor=$r[id])";
+                
+                //$sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_score")." WHERE champ=$champ AND win=".$team->id()." AND (local=$pe[id] OR visitor=$pe[id])";
+                //$sql1 .= "SELECT COUNT(*) FROM ".$db->prefix("mch_score")." WHERE champ=$champ AND win=".$pe['id']." AND (local=".$team->id()." OR visitor=".$team->id().")";
+                
+                list($a) = $db->fetchRow($db->query($sql));
+                list($b) = $db->fetchRow($db->query($sql1));
+                
+                if($a>$b){
+                    $temp = $ranking[$i];
+                    $ret[$i] = $pe;
+                    $ret[$i-1] = $temp;
+                    unset($temp);
+                    $found = true;
+                }
+                
+                
+            } else {
+                $pe = $r;
+            }
+            $i++;
+            
+        }
+        
+        if($found) $ret = self::ranking_verified($ret, $champ);
+        
+        return $ret;
+        
+    }
+    
+    /**
+    * Get next matches
+    * 
+    * @param int Category identifier
+    * @param int Number of items per category
+    * @param int Championship identifier. If not is provided or 0 is provided then will be used the current championship.
+    * @return array
+    */
+    public function next_matches($cat=0, $c=0, $limit=0){
+        
+        if($c<=0){
+            $champ = self::current_championship();
+        } else {            
+            $champ = new MCHChampionship($c);            
+        }
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ->id()."' AND time>=".time();
+        if($cat>0) $sql .= " AND category='".$cat."'";
+        $sql .= " ORDER BY time";
+        
+        if($limit>0) $sql .= " LIMIT 0,$limit";
+        
+        $result = $db->query($sql);
+        $data = array();
+        $tf = new RMTimeFormatter();
+        
+        while($row = $db->fetchArray($result)){
+            
+            $local = new MCHTeam($row['local']);
+            $visitor = new MCHTeam($row['visitor']);
+            $category = new MCHCategory($row['category']);
+            $field = new MCHField($row['field']);
+            
+            $data[] = array(
+                'local' => array(
+                    'name' => $local->getVar('name'),
+                    'logo' => XOOPS_UPLOAD_URL.'/teams/'.$local->getVar('logo')
+                ),
+                'visitor' => array(
+                    'name' => $visitor->getVar('name'),
+                    'logo'  => XOOPS_UPLOAD_URL.'/teams/'.$visitor->getVar('logo')
+                ),
+                'day' => $tf->format($row['time'], __('%M% %d%','match')),
+                'hour' => $tf->format($row['time'], __('%h%:%i%','match')),
+                'category' => array(
+                    'name' => $category->getVar('name'),
+                    'link' => $category->permalink()
+                ),
+                'field' => $field->getVar('name')
+            );
+            
+        }
+        
+        return $data;
+        
+    }
+    
+    /**
+    * Get results
+    */
+    public function latest_results($cat = 0, $c = 0, $limit = 0){
+        
+        if($c<=0){
+            $champ = self::current_championship();
+        } else {            
+            $champ = new MCHChampionship($c);            
+        }
+
+        
+        $db = Database::getInstance();
+        
+        $tbr = $db->prefix("mch_role");
+        $tbs = $db->prefix("mch_score");
+        
+        $sql = "SELECT a.*, s.item, s.local as loc, s.visitor as vis, s.win, s.champ FROM $tbr as a, $tbs as s WHERE a.champ='".$champ->id()."' AND a.time<".time();
+        if($cat>0) $sql .= " AND a.category='".$cat."'";
+        $sql .= " AND s.item=a.id_role ORDER BY a.time DESC LIMIT 0, $limit";
+        
+        $result = $db->query($sql);
+        $tf = new RMTimeFormatter();
+        while($row = $db->fetchArray($result)){
+            $local = new MCHTeam($row['local']);
+            $visitor = new MCHTeam($row['visitor']);
+            $category = new MCHCategory($row['category']);
+            $field = new MCHField($row['field']);
+            
+            $data[] = array(
+                'local' => array(
+                    'id' => $local->id(),
+                    'name' => $local->getVar('name'),
+                    'logo' => XOOPS_UPLOAD_URL.'/teams/'.$local->getVar('logo'),
+                    'score' => $row['loc']
+                ),
+                'visitor' => array(
+                    'id' => $visitor->id(),
+                    'name' => $visitor->getVar('name'),
+                    'logo'  => XOOPS_UPLOAD_URL.'/teams/'.$visitor->getVar('logo'),
+                    'score' => $row['vis']
+                ),
+                'day' => $tf->format($row['time'], __('%M% %d%','match')),
+                'hour' => $tf->format($row['time'], __('%h%:%i%','match')),
+                'category' => array(
+                    'name' => $category->getVar('name'),
+                    'link' => $category->permalink()
+                ),
+                'field' => $field->getVar('name'),
+                'win' => $row['win']
+            );
+        }
+        
+        return $data;
+        
     }
     
 }

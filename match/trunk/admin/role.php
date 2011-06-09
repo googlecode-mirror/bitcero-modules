@@ -28,7 +28,7 @@ function m_show_roleplay(){
         
         $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ."' AND category='".$category."'";
         if($team>0) $sql .= " AND (local='$team' OR visitor='$team')";
-        if($sday>0) $sql .= " AND time>=$sday AND time<".($sday+86400);
+        if($sday>0) $sql .= " AND time<=$sday AND time>=".($sday-86400);
         $sql .= " ORDER BY `time`";
         $result = $db->query($sql);
         
@@ -101,7 +101,7 @@ function m_show_roleplay(){
                 $days[] = $pday;
             }
             
-            $now = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+            $now = mktime(23, 59, 0, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
             if($now>$pday+(86400)){
                 $pday = $now;
                 $days[] = $pday;
@@ -132,7 +132,7 @@ function m_show_roleplay(){
                 $days[] = $pday;
             }
             
-            $now = mktime(0, 0, 1, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
+            $now = mktime(23, 59, 0, date("m",$item->getVar('time')), date("d", $item->getVar('time')), date('Y', $item->getVar('time')));
             if($now>$pday+(86400)){
                 $pday = $now;
                 $days[] = $pday;
