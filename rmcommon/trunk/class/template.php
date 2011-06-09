@@ -412,6 +412,43 @@ class RMTemplate
     }
     
     /**
+    * Add a style provided by theme
+    * @param string File name
+    * @param string Theme name where css sheet resides
+    * @param string Subfolder inside theme css folder
+    * @param string media type
+    * @param string Another <style> tag attribs
+    */
+    public function add_theme_style($sheet, $theme='', $subfolder='', $media='all', $more=''){
+        global $xoopsConfig;
+        
+        if($theme=='')
+            $theme = $xoopsConfig['theme_set'];
+            
+        $file = XOOPS_THEME_PATH.'/'.$theme.'/css/'.($subfolder!=''?$subfolder.'/':'').$sheet;
+        
+        if(!file_exists($file)) return;
+        
+        $url = str_replace(XOOPS_THEME_PATH, XOOPS_THEME_URL, $file);
+        
+        if (strpos($url, "?")>1){
+            if (strpos($url, 'ver=')===FALSE){
+                $url .= "&ver=".RMCVERSION;
+             }
+        } else {
+            $url .= "?ver=".RMCVERSION;
+        }
+         
+         $this->tpl_styles[$id] = array(
+             'url'=>$url,
+            'rel'=>'stylesheet',
+            'media'=>$media,
+            'more'=>$more
+         );
+        
+    }
+    
+    /**
     * Get a style url formatted
     */
     public function style_url($sheet, $element='rmcommon', $subfolder=''){

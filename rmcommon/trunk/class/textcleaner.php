@@ -309,7 +309,9 @@ class TextCleaner
      * @return
      */
     public function truncate($text, $len){
+        $text = preg_replace("[\n|\r|\n\r]", ' ', $text);
         $ret = substr(strip_tags($text), 0, $len);
+        
         if (strlen($text)>$len) $ret .= '...';
         return $ret;
     }
