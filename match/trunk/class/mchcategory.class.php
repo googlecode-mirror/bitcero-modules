@@ -78,9 +78,9 @@ class MCHCategory extends RMObject
 		
 		$link = XOOPS_URL.'/';
 		if ($mc['urlmode']){
-			$link .= trim($mc['htbase'], '/').'/category/'.$this->getVar('nameid').'/';
+			$link .= trim($mc['htbase'], '/').'/?category='.$this->id();
 		} else {
-			$link .= 'modules/match/index.php?p=category&amp;id='.$this->getVar('nameid');
+			$link .= 'modules/match/index.php?cat='.$this->id();
 		}
 		
 		return $link;

@@ -1,0 +1,68 @@
+<div class="mch_change_items">
+    <select name="champ" id="champ">
+            <option value=""<{if $champ.id<=0}> selected="selected"<{/if}>><{$lang_selectchamp}></option>
+            <{foreach item=ch from=$champs}>
+            <option value="<{$ch.id}>"<{if $champ.id==$ch.id}> selected="selected"<{/if}><{if $ch.current}> style="font-weight: bold;"<{/if}>><{$ch.name}><{if $ch.current}> <{$lang_current}><{/if}></option>
+            <{/foreach}>
+        </select>
+    <select name="category" id="category">
+            <option value=""<{if $category.id<=0}> selected="selected"<{/if}>><{$lang_selectcat}></option>
+            <{foreach item=ch from=$categories}>
+            <option value="<{$ch.id}>"<{if $category.id==$ch.id}> selected="selected"<{/if}>><{$ch.guion}> <{$ch.name}></option>
+            <{/foreach}>
+        </select>
+</div>
+<h1 class="mh_championship"><{$lang_roleplay}></h1>
+<{if $category}>
+    <h2 class="mch_cat_title"><{$champ.name}> &raquo; <{$category.name}></h2>
+<{/if}>
+
+
+<div id="mch-results" class="mch_blocks mch_rolel">
+    <h3><{if $team}><span><a href="?ch=<{$champ.id}>&amp;cat=<{$category.id}>"><{$lang_viewall}></a></span><{$lang_forteam}><{else}><{$lang_roleplay}><{/if}></h3>
+    <div class="content">
+        <table class="outer" width="100%" cellpadding="0">
+            <tr>
+                <th><{$lang_date}></th>
+                <th><{$lang_time}></th>
+                <th><{$lang_field}></th>
+                <th colspan="2"><{$lang_local}></th>
+                <th width="20">&nbsp;</th>
+                <th colspan="2"><{$lang_visitor}></th>
+            </tr>
+            <{assign var=i value=0}>
+            <{foreach item=p from=$roleplay}>
+            <{if $i>1}><{assign var="i" value=0}><{/if}>
+            <tr class="<{if $i==0}>even<{else}>odd<{/if}>" valign="middle" align="center">
+                <td><{$p.day}></td>
+                <td><{$p.hour}></td>
+                <td><{$p.field}></td>
+                <td width="40">
+                    <img class="logo" src="<{$p.local.logo}>" alt="<{$p.local.name}>" />
+                </td>
+                <td align="left"><strong><a href="?cat=<{$category.id}>&amp;ch=<{$champ.id}>&amp;team=<{$p.local.id}>"><{$p.local.name}></a></strong></td>
+                <td align="center">vs</td>
+                <td align="right"><strong><a href="?cat=<{$category.id}>&amp;ch=<{$champ.id}>&amp;team=<{$p.visitor.id}>"><{$p.visitor.name}></a></strong></td>
+                <td width="40">
+                    <img class="logo" src="<{$p.visitor.logo}>" alt="<{$p.visitor.name}>" />
+                </td>
+            </tr>
+            <{assign var="i" value=$i+1}>
+            <{/foreach}>
+        </table>
+    </div>
+</div>
+
+<{foreach item=p from=$nextMatches}>
+            <div class="item">
+                <img class="local" src="<{$p.local.logo}>" alt="<{$p.local.name}>" title="<{$p.local.name}>" />
+                <img class="visitor" src="<{$p.visitor.logo}>" alt="<{$p.visitor.name}>" />
+                <span class="time">
+                    <strong><{$p.day}></strong><br />
+                    <{$p.hour}><br />
+                    <a href="<{$p.category.link}>"><{$p.category.name}></a>
+                </span>
+            </div>
+            <{/foreach}>
+
+<div class="clearer">&nbsp;</div>

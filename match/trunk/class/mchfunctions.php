@@ -11,6 +11,7 @@
 include_once XOOPS_ROOT_PATH.'/modules/match/class/mchcategory.class.php';
 include_once XOOPS_ROOT_PATH.'/modules/match/class/mchteam.class.php';
 include_once XOOPS_ROOT_PATH.'/modules/match/class/mchfield.class.php';
+include_once XOOPS_ROOT_PATH.'/modules/match/class/mchchampionship.class.php';
 
 class MCHFunctions
 {
@@ -227,7 +228,7 @@ class MCHFunctions
                 'nameid' => $ch->getVar('nameid'),
                 'start' => $ch->getVar('start'),
                 'end' => $ch->getVar('end'),
-                'current' => $ch->getVar('start')<=time() && $ch->getVar('end')>=time()?true:false
+                'current' => $ch->getVar('end')<=time()?false:$ch->getVar('current')
             );
             
             unset($ch);
@@ -244,7 +245,7 @@ class MCHFunctions
     public function current_championship(){
         
         $db = Database::getInstance();
-        $sql = "SELECT * FROM ".$db->prefix("mch_champs")." WHERE start<=".time()." AND `end`>=".time();
+        $sql = "SELECT * FROM ".$db->prefix("mch_champs")." WHERE `current`=1 and `end`>=".time();
         $result = $db->query($sql);
         
         if($db->getRowsNum($result)<=0) return 0;
@@ -316,7 +317,7 @@ class MCHFunctions
             
             $ret[$i] = $r;
             
-            if($pe['wons']==$r['wons']){
+            if(isset($pe['wons'])&&$pe['wons']==$r['wons']){
                 
                 $sql = "SELECT COUNT(*) FROM $ts s, $tr r WHERE s.champ=$champ AND s.win=".$r['id']." AND r.champ=$champ AND r.id_role=s.item AND (r.local=$pe[id] OR r.visitor=$pe[id])";
                 $sql1 = "SELECT COUNT(*) FROM $ts s, $tr r WHERE s.champ=$champ AND s.win=".$pe['id']." AND r.champ=$champ AND r.id_role=s.item AND (r.local=$r[id] OR r.visitor=$r[id])";
@@ -357,7 +358,7 @@ class MCHFunctions
     * @param int Championship identifier. If not is provided or 0 is provided then will be used the current championship.
     * @return array
     */
-    public function next_matches($cat=0, $c=0, $limit=0){
+    public function next_matches($cat=0, $c=0, $limit=0, $team = 0){
         
         if($c<=0){
             $champ = self::current_championship();
@@ -368,6 +369,7 @@ class MCHFunctions
         $db = Database::getInstance();
         $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ->id()."' AND time>=".time();
         if($cat>0) $sql .= " AND category='".$cat."'";
+        if($team>0) $sql .= " AND (local=$team OR visitor=$team)";
         $sql .= " ORDER BY time";
         
         if($limit>0) $sql .= " LIMIT 0,$limit";
@@ -386,11 +388,13 @@ class MCHFunctions
             $data[] = array(
                 'local' => array(
                     'name' => $local->getVar('name'),
-                    'logo' => XOOPS_UPLOAD_URL.'/teams/'.$local->getVar('logo')
+                    'logo' => XOOPS_UPLOAD_URL.'/teams/'.$local->getVar('logo'),
+                    'id' => $local->id()
                 ),
                 'visitor' => array(
                     'name' => $visitor->getVar('name'),
-                    'logo'  => XOOPS_UPLOAD_URL.'/teams/'.$visitor->getVar('logo')
+                    'logo'  => XOOPS_UPLOAD_URL.'/teams/'.$visitor->getVar('logo'),
+                    'id' => $visitor->id()
                 ),
                 'day' => $tf->format($row['time'], __('%M% %d%','match')),
                 'hour' => $tf->format($row['time'], __('%h%:%i%','match')),
@@ -461,6 +465,24 @@ class MCHFunctions
         }
         
         return $data;
+        
+    }
+    
+    /**
+    * Get the first category
+    */
+    public function first_category(){
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_categories")." ORDER BY id_cat LIMIT 0,1";
+        $result = $db->query($sql);
+        if($db->getRowsNum($result)<=0) return false;
+        
+        while($row = $db->fetchArray($result)){
+            $cat = new MCHCategory();
+            $cat->assignVars($row);
+            return $cat;
+        }
         
     }
     

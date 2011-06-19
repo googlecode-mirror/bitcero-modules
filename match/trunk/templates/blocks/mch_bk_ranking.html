@@ -1,0 +1,13 @@
+<div class="mch_bk_ranking">
+<{assign var="i" value=1}>
+<{foreach item=rank from=$block.ranking}>
+<{if $i<=$block.limit}>
+<div class="item">
+    <img src="<{$xoops_url}>/uploads/teams/<{$rank.logo}>" alt="<{$rank.name}>" class="logo" />
+    <div class="number">#<{$i}></div>
+    <div class="data"><{$rank.name}><br /><span><{$block.lang_wons}> <{$rank.wons}></span></div>
+</div>
+<{/if}>
+<{assign var="i" value=$i+1}>
+<{/foreach}>
+</div>

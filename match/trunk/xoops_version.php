@@ -45,6 +45,12 @@ $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = "include/search.php";
 $modversion['search']['func'] = "mywords_search";
 
+// Templates
+$modversion['templates'] = array(
+    0 => array('file' => 'mch_index.html', 'description' => ''),
+    1 => array('file' => 'mch_rol.html', 'description' => '')
+);
+
 // Tables
 $modversion['tables'] = array(
     "mch_categories",
@@ -57,7 +63,39 @@ $modversion['tables'] = array(
     'mch_score'
 );
 
+// Blocks
+// Ranking
+$modversion['blocks'][] = array(
+    'file' => 'mch_ranking.php',
+    'name' => __('Ranking', 'match'),
+    'description' => __('Show the positions in ranking for all teams','match'),
+    'show_func' => 'mch_ranking_bkshow',
+    'edit_func' => 'mch_ranking_bkedit',
+    'template' => 'mch_bk_ranking.html',
+    'options' => '0|0|6'
+);
+
+// Roleplay
+$modversion['blocks'][] = array(
+    'file' => 'mch_roleplay.php',
+    'name' => __('Role Play', 'match'),
+    'description' => __('Show the role play for a single category','match'),
+    'show_func' => 'mch_role_bkshow',
+    'edit_func' => 'mch_role_bkedit',
+    'template' => 'mch_bk_roleplay.html',
+    'options' => '0|0|6'
+);
+
 // Configuration
+$modversion['config'][] = array(
+    'name' => 'title',
+    'title' => '_MI_MCH_TITLE',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => __('Match','match')
+);
+
 $modversion['config'][] = array(
     'name' => 'urlmode',
     'title' => '_MI_MCH_URLMODE',
@@ -122,29 +160,25 @@ $modversion['config'][] = array(
     'default' => '1990:2020'
 );
 
-// Days of game
+// Role play block
 $modversion['config'][] = array(
-    'name' => 'days',
-    'title' => '_MI_MCH_DAYS',
-    'description' => '_MI_MCH_DAYSD',
-    'formtype' => 'select_multi',
-    'valuetype' => 'array',
-    'default' => '6|7',
-    'options' => array(
-        __('Monday','match') => 1,
-        __('Tuesday','match') => 2,
-        __('Wednesday','match') => 3,
-        __('Thursday','match') => 4,
-        __('Friday','match') => 5,
-        __('Saturday','match') => 6,
-        __('Sunday','match') => 7
-    )
+    'name' => 'rolenum',
+    'title' => '_MI_MCH_ROLENUM',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '10'
 );
 
-// Plantillas
-//$modversion['templates'][1]['file'] = 'mywords_index.html';
-//$modversion['templates'][1]['description'] = '';
-
+// Rankign block
+$modversion['config'][] = array(
+    'name' => 'ranknum',
+    'title' => '_MI_MCH_RANKNUM',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '6'
+);
 
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,

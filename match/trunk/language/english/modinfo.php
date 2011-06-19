@@ -19,5 +19,6 @@ define('_MI_MCH_PHOTOSIZED',__('All pictures will be resized to this width. Note
 define('_MI_MCH_THSIZE',__('Players and coaches thumbnail picture size','match'));
 define('_MI_MCH_THSIZED',__('This is the width value for small pictures of players and coaches','match'));
 define('_MI_MCH_YEARRANGE',__('Year range for ages','match'));
-define('_MI_MCH_DAYS',__('Days of game','match'));
-define('_MI_MCH_DAYSD',__('This options indicate wich days the maths are played','match'));
+define('_MI_MCH_ROLENUM',__('Number of games in the next matches block','match'));
+define('_MI_MCH_RANKNUM',__('Number of teams in ranking block','match'));
+define('_MI_MCH_TITLE',__('Section title','match'));

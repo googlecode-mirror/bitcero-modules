@@ -51,7 +51,8 @@ function m_show_championships(){
             'nameid'          => $champ->getVar('nameid'),
             'start'          => $timef->format($champ->getVar('start')),
             'end'          => $timef->format($champ->getVar('end')),
-            'description'        => $champ->getVar('description')
+            'description'        => $champ->getVar('description'),
+            'current'       => $champ->getVar('current')
         );
     }
     
@@ -272,6 +273,28 @@ function m_delete_championships(){
     
 }
 
+function m_set_current(){
+    global $xoopsModule, $xoopsSecurity;
+
+    $id = rmc_server_var($_GET, 'id', 0);
+    
+    //Verificamos que nos hayan proporcionado una categoría para eliminar
+    if ($id<=0){
+        redirectMsg('./champ.php',__('No championships specified!','match'),1);
+        die();
+    }
+    
+    $db = Database::getInstance();
+    $db->queryF("UPDATE ".$db->prefix("mch_champs")." SET current='0'");
+    
+    if($db->queryF("UPDATE ".$db->prefix("mch_champs")." SET current='1' WHERE id_champ=$id")){
+        redirectMsg('champ.php', __("Championship updated successfully!",'match'), 0);
+    } else {
+        redirectMsg('champ.php', __("Championship ucould not be pdated!",'match'), 1);
+    }
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -288,6 +311,9 @@ switch($action){
         break;
     case 'delete':
         m_delete_championships();
+        break;
+    case 'current':
+        m_set_current();
         break;
     default:
         m_show_championships();

@@ -1,0 +1,77 @@
+/**
+* $Id$
+**/
+.mch_cat_title{
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.mch_blocks{
+    border: 1px solid #CCC;
+    padding: 3px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.mch_blocks .content{
+    padding: 5px;
+}
+
+#mch-results{
+    /*width: 446px;
+    float: left;*/
+}
+#mch-results h3{
+    background: #c00;
+    padding: 5px;
+    color: #FFF;
+    text-shadow: 1px 1px 3px #000;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+}
+#mch-results div.content{
+    padding: 0;
+}
+#mch-results td{
+    vertical-align: middle;
+    overflow: hidden;
+}
+#mch-results td.team{
+    vertical-align: middle;
+}
+#mch-results img.logo{
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+    border: 1px solid #CCC;
+}
+#mch-results td.score{
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+#mch-results td.data{
+    font-size: 0.9em;
+    color: #666;
+    line-height: 150%;
+}
+.mch_change_items{
+    float: right;
+    padding: 8px 0 0 0;
+}
+.mch_change_items select{
+    width: 130px;
+}
+.mch_rolel h3 span{
+    font-size: 0.8em;
+    text-transform: none;
+    float: right;
+    display: block;
+    padding: 2px 0 0 0;
+    font-weight: normal;
+}
+.mch_rolel h3 span a{
+    color: #FFF;
+}

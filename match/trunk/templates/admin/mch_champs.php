@@ -59,10 +59,18 @@
         <tr align="center" class="<?php echo tpl_cycle('even,odd'); ?>" valign="top">
             <td><input type="checkbox" name="ids[]" value="<?php echo $champ['id']; ?>" id="item-<?php echo $champ['id']; ?>" /></td>
             <td><strong><?php echo $champ['id']; ?></strong></td>
-            <td align="left"><a href="<?php echo $champ['link']; ?>"><?php echo $champ['name']; ?></a>
+            <td align="left">
+            <?php if($champ['current']): ?>
+            <strong><a href="<?php echo $champ['link']; ?>"><?php echo $champ['name']; ?></a></strong> <em>(<?php _e('Current','match'); ?>)</em>
+            <?php else: ?>
+            <a href="<?php echo $champ['link']; ?>"><?php echo $champ['name']; ?></a>
+            <?php endif; ?>
             <span class="rmc_options">
                 <a href="./champ.php?action=edit&amp;id=<?php echo $champ['id']; ?>"><?php _e('Edit','match'); ?></a> | 
                 <a href="javascript:;" onclick="select_option(<?php echo $champ['id']; ?>,'delete','frm-champs');"><?php _e('Delete','match'); ?></a>
+                <?php if(!$champ['current']): ?>
+                | <a href="./champ.php?action=current&amp;id=<?php echo $champ['id']; ?>"><?php _e('Set Current','match'); ?></a>
+                <?php endif; ?>
             </span>
             </td>
             <td align="center"><?php echo $champ['nameid']; ?></td>

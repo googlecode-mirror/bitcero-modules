@@ -1,0 +1,81 @@
+.mch_bk_ranking,
+.mch_bk_role{
+
+}
+.mch_bk_ranking .item{
+    overflow: hidden;
+    padding: 5px;
+    background: url(../../../themes/jjpacho/images/bgscore.jpg) repeat-x left top;
+    border-bottom: 1px solid #CCC;
+}
+.mch_bk_ranking .item:last-child{
+    border: 0;
+    border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+}
+.mch_bk_ranking .item .logo{
+    width: 30px;
+    height: 30px;
+    padding: 1px;
+    border: 1px solid #CCC;
+    float: left;
+    margin: 0 5px 0 0;
+}
+.mch_bk_ranking .item .number{
+    float: right;
+    text-align: center;
+    padding: 7px 0 0 0px;
+    width: 40px;
+    height: 27px;
+    font-size: 1.5em;
+    border-left: 1px solid #FFF;
+}
+.mch_bk_ranking .item .data{
+    font-weight: bold;
+    padding: 3px 0 0 0;
+    border-right: 1px solid #CCC;
+    margin-right: 41px;
+    height: 31px;
+}
+.mch_bk_ranking .item .data span{
+    font-size: 0.85em;
+    font-weight: normal;
+}
+
+/** ROLE **/
+.mch_bk_role .item{
+    padding: 5px 0;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 1px dotted #CCC;
+}
+.mch_bk_role .local{
+    width: 50px;
+    height: 50px;
+    padding: 1px;
+    float: left;
+}
+.mch_bk_role .visitor{
+    width: 50px;
+    height: 50px;
+    padding: 1px;
+    float: right;
+}
+.mch_bk_role .time{
+    display: block;
+    line-height: 150%;
+    padding-top: 8px;
+    font-size: 0.9em;
+    color: #c00;
+}
+.mch_bk_role .time strong{
+    color: #000;
+    font-size: 1.1em;
+}
+.more a{
+    color: #c00;
+    font-weight: bold;
+    display: block;
+    padding: 8px 0 4px 0;
+    text-align: center;
+}

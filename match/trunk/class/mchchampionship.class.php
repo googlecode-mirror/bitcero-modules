@@ -51,9 +51,9 @@ class MCHChampionship extends RMObject
 		
 		$link = XOOPS_URL.'/';
 		if ($mc['urlmode']){
-			$link .= trim($mc['htbase'], '/').'/cs/'.$this->getVar('nameid').'/';
+			$link .= trim($mc['htbase'], '/').'/cs.php?id='.$this->id();
 		} else {
-			$link .= 'modules/match/index.php?p=cs&amp;id='.$this->getVar('nameid');
+			$link .= 'modules/match/cs.php?id='.$this->id();
 		}
 		
 		return $link;

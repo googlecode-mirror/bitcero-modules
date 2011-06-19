@@ -1,0 +1,61 @@
+<div class="mch_change_items">
+    <select name="champ" id="champ">
+            <option value=""<{if $champ.id<=0}> selected="selected"<{/if}>><{$lang_selectchamp}></option>
+            <{foreach item=ch from=$champs}>
+            <option value="<{$ch.id}>"<{if $champ.id==$ch.id}> selected="selected"<{/if}><{if $ch.current}> style="font-weight: bold;"<{/if}>><{$ch.name}><{if $ch.current}> <{$lang_current}><{/if}></option>
+            <{/foreach}>
+        </select>
+    <select name="category" id="category">
+            <option value=""<{if $category.id<=0}> selected="selected"<{/if}>><{$lang_selectcat}></option>
+            <{foreach item=ch from=$categories}>
+            <option value="<{$ch.id}>"<{if $category.id==$ch.id}> selected="selected"<{/if}>><{$ch.guion}> <{$ch.name}></option>
+            <{/foreach}>
+        </select>
+</div>
+<h1 class="mh_championship"><{$champ.name}></h1>
+<{if $category}>
+    <h2 class="mch_cat_title"><{$category.name}></h2>
+<{/if}>
+
+
+<div id="mch-results" class="mch_blocks">
+    <h3><{$lang_results}></h3>
+    <div class="content">
+        <table class="outer" width="100%" cellpadding="0">
+            <tr>
+                <th align="left" colspan="2"><{$lang_local}></th>
+                <th width="20" colspan="3"><{$lang_score}></th>
+                <th colspan="2" align="right"><{$lang_visitor}></th>
+                <th align="right"><{$lang_info}></th>
+            </tr>
+            <{assign var=i value=0}>
+            <{foreach item=p from=$results}>
+            <{if $i>1}><{assign var="i" value=0}><{/if}>
+            <tr class="<{if $i==0}>even<{else}>odd<{/if}>" valign="middle">
+                <td width="40">
+                    <img class="logo" src="<{$p.local.logo}>" alt="<{$p.local.name}>" title="<{$p.local.name}>" />
+                </td>
+                <td class="team">
+                    <{$p.local.name}><{if $p.local.id==$p.win}><img src="<{$xoops_imageurl}>images/ok.png" alt="" /><{/if}>
+                </td>
+                <td class="score" width="30"><{$p.local.score}></td>
+                <td width="20" align="center">-</td>
+                <td class="score" width="30"><{$p.visitor.score}></td>
+                <td class="team teamv" align="right">
+                    <{if $p.visitor.id==$p.win}><img src="<{$xoops_imageurl}>images/ok.png" alt="" /> <{/if}><{$p.visitor.name}>
+                </td>
+                <td width="40">
+                    <img class="logo" src="<{$p.visitor.logo}>" alt="<{$p.visitor.name}>" />
+                </td>
+                <td class="data" align="right">
+                    <{$p.day}><br />
+                    <{$p.hour}>
+                </td>
+            </tr>
+            <{assign var="i" value=$i+1}>
+            <{/foreach}>
+        </table>
+    </div>
+</div>
+
+<div class="clearer">&nbsp;</div>

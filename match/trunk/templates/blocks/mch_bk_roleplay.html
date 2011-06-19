@@ -1,0 +1,13 @@
+<div class="mch_bk_role">
+<{foreach item=p from=$block.role}>
+<div class="item">
+    <img class="local" src="<{$p.local.logo}>" alt="<{$p.local.name}>" title="<{$p.local.name}>" />
+    <img class="visitor" src="<{$p.visitor.logo}>" alt="<{$p.visitor.name}>" />
+    <span class="time">
+        <strong><{$p.day}></strong><br />
+        <{$p.hour}>
+    </span>
+</div>
+<{/foreach}>
+<span class="more"><a href="<{$block.link}>/rol.php?cat=<{$block.category}>"><{$block.lang_viewrol}></a></span>
+</div>

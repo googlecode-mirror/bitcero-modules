@@ -60,6 +60,7 @@ CREATE TABLE `mch_champs` (
   `start` int(10) NOT NULL,
   `end` int(10) NOT NULL,
   `description` TEXT NOT NULL,
+  `current` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_champ`),
   KEY `nameid` (`nameid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
