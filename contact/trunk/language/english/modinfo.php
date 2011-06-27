@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('contact');
+
 define('_MI_CT_DESC', __('A simple contact module for Xoops','contact'));
 
 // Settings
