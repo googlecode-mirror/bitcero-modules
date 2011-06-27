@@ -19,9 +19,8 @@ function showUsers(){
 	global $xoopsModule, $db, $tpl, $xoopsSecurity;
 
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+	$limit = 15;
+	$search = rmc_server_var($_REQUEST, 'search', '');
 
 	$db = Database::getInstance();
 	//Barra de Navegación
@@ -39,7 +38,7 @@ function showUsers(){
 	$start = $num<=0 ? 0 : ($page-1) * $limit;
     $tpages = ceil($num / $limit);
 	$nav = new RMPageNav($num, $limit, $page, 5);
-	$nav->target_url("users.php?page={PAGE_NUM}&amp;limit=$limit&amp;search=$search");
+	$nav->target_url("users.php?page={PAGE_NUM}&amp;search=$search");
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
@@ -97,7 +96,7 @@ function formUsers($edit = 0){
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
-	$ruta = "pag=$page&limit=$limit&search=$search";
+	$ruta = "pag=$page&search=$search";
 
 	if($edit){
 		//Verificamos que el usuario sea válido
@@ -132,8 +131,7 @@ function formUsers($edit = 0){
 
 	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
 	$form->addElement(new RMFormHidden('id',$id));	
-	$form->addElement(new RMFormHidden('page',$page));	
-	$form->addElement(new RMFormHidden('limit',$limit));	
+	$form->addElement(new RMFormHidden('page',$page));		
 	$form->addElement(new RMFormHidden('search',$search));
 
 	$buttons = new RMFormButtonGroup();
@@ -159,7 +157,7 @@ function saveUsers($edit = 0){
 		$$k = $v;
 	}
 
-	$ruta = "&pag=$page&limit=$limit&search=$search";
+	$ruta = "&pag=$page&search=$search";
 
 	if (!$xoopsSecurity->check()){
 		redirectMsg('users.php?'.($edit ? "op=edit&id=$id&" : '').$ruta, __('Session token expired!','admin_galleries'), 1);
@@ -239,10 +237,9 @@ function deleteUsers(){
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
-	$ruta = "pag=$page&limit=$limit&search=$search";
+	$ruta = "pag=$page&search=$search";
 	
 	//Verificamos si nos proporcionaron al menos un usuario para eliminar
 	if (!is_array($ids)){
@@ -297,10 +294,9 @@ function blockUsers(){
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
-	$ruta = "pag=$page&limit=$limit&search=$search";
+	$ruta = "pag=$page&search=$search";
 	
 	//Verificamos si nos proporcionaron al menos un usuario para bloquear/desbloquear
 	if (!is_array($ids)){
@@ -342,7 +338,7 @@ function blockUsers(){
 }
 
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$op = rmc_server_var($_REQUEST, 'op', '');
 
 switch($op){
 	case 'new':

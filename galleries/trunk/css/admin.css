@@ -5,6 +5,13 @@
 .gs_options .rmc_pages_navigation_container{
     float: right;
 }
+#gs-filters{
+    background: #f2f2f2;
+    padding: 7px;
+    margin: 5px 0;
+    display: none;
+    border: 1px solid #CCC;
+}
 /** Página de Inicio **/
 div#gsOptions{
     padding: 6px;
@@ -93,8 +100,32 @@ span.imgDesc{
 	font-size: 0.9em;
 	color: #666;
 }
-div#gsPrivacyInfo{
+.gs_visibility{
 	float: right;
 	font-size: 0.8em;
 	font-weight: normal;
+}
+.gs_upload_container{
+    overflow: hidden;
+}
+.gs_upload_options{
+    width: 250px;
+    float: left;
+    padding-right: 10px;
+    border-right: 1px solid #CCC;
+}
+.gs_upload_options select,
+.gs_upload_options input[type='text']{
+    width: 246px;
+    margin: 5px 0 10px 0;
+}
+.gs_upload_options input[type='text']{
+    width: 235px;
+}
+.gs_upload_control{
+    overflow: hidden;
+    margin-left: 270px;
+}
+#resizer-bar{
+    display: none;
 }

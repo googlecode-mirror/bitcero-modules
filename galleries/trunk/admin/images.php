@@ -11,6 +11,13 @@
 define('RMCLOCATION','images');
 include 'header.php';
 
+function send_error($message){
+    $data['error'] = 1;
+    $data['message'] = $message;
+    echo json_encode($data);
+    die();
+}
+
 /**
 * @desc Visualiza todas las imágenes existentes
 **/
@@ -120,11 +127,11 @@ function showImages(){
 	$tpl->assign('maxdate_field', $ele->render());
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Images Management','admin_galleries'));
-    RMTemplate::get()->assign('xoops_pagetitle', __('Images','admin_galleries'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Images Management','galleries'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Images','galleries'));
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-images');
-	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected images?','admin_galleries')."';\n</script>");
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected images?','galleries')."';\n</script>");
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/gs_images.php",'module','galleries');
@@ -154,52 +161,52 @@ function formImages($edit = 0){
 	if($edit){
 		//Verificamos si la imagen es válida
 		if($id<=0){
-			redirectMsg('./images.php?'.$ruta,__('Image ID not valid!','admin_galleries'), 1);
+			redirectMsg('./images.php?'.$ruta,__('Image ID not valid!','galleries'), 1);
 			die();
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($id);
 		if ($img->isNew()){
-			redirectMsg('./images.php?'.$ruta,__('Specified image does not exists!','admin_galleries'), 1);
+			redirectMsg('./images.php?'.$ruta,__('Specified image does not exists!','galleries'), 1);
 			die();
 		}
 
 	}
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./images.php'>".__('Images','admin_galleries')."</a> &raquo; ".($edit ? __('Edit image','admin_galleries') : __('Add image','admin_galleries')));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./images.php'>".__('Images','galleries')."</a> &raquo; ".($edit ? __('Edit image','galleries') : __('Add image','galleries')));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? __('Editing image','admin_galleries') : __('Add image','admin_galleries'), 'frmimg','images.php');
+	$form = new RMForm($edit ? __('Editing image','galleries') : __('Add image','galleries'), 'frmimg','images.php');
 	$form->setExtra("enctype='multipart/form-data'");
 	
 	if (!$edit){
-		$ele = new RMFormUser(__('User','admin_galleries'),'uid',0,($uid ? array($uid) : ($edit ? array($img->owner()) : array($xoopsUser->uid()))),50);
+		$ele = new RMFormUser(__('User','galleries'),'uid',0,($uid ? array($uid) : ($edit ? array($img->owner()) : array($xoopsUser->uid()))),50);
 		$ele->onChange("$('op').value='".($edit ? 'edit' : 'new')."'; $('frmimg').submit();");
 		$form->addElement($ele);
 	}else{
 		$xu = new XoopsUser($img->owner());
-		$form->addElement(new RMFormLabel(__('User','admin_galleries'),$xu->uname()));
+		$form->addElement(new RMFormLabel(__('User','galleries'),$xu->uname()));
 		$form->addElement(new RMFormHidden('uid',$img->owner()));
 	}
 
-	$form->addElement(new RMFormText(__('Title','admin_galleries'),'title',50,100,$edit ? $img->title() : ''));
-	$form->addElement(new RMFormFile(__('Image file','admin_galleries'),'image',45, $mc['size_image']*1024));
+	$form->addElement(new RMFormText(__('Title','galleries'),'title',50,100,$edit ? $img->title() : ''));
+	$form->addElement(new RMFormFile(__('Image file','galleries'),'image',45, $mc['size_image']*1024));
 	if ($edit){
 		$user = new GSUser($img->owner(),1);
 		$url = $user->filesURL();
 
-		$form->addElement(new RMFormLabel(__('Current image','admin_galleries'),"<img src='".$url."/ths/".$img->image()."' />"));
+		$form->addElement(new RMFormLabel(__('Current image','galleries'),"<img src='".$url."/ths/".$img->image()."' />"));
 		
 	}
 
-	$form->addElement(new RMFormTextArea(__('Description','admin_galleries'),'desc',4,50,$edit ? $img->desc() : ''));
+	$form->addElement(new RMFormTextArea(__('Description','galleries'),'desc',4,50,$edit ? $img->desc() : ''));
 	
-	$ele = new RMFormSelect(__('Privacy','admin_galleries'),'public');
-	$ele->addOption(0,__('Private','admin_galleries'),$edit ? ($img->isPublic()==0 ? 1 : 0) : 0);
-	$ele->addOption(1,__('Visible for friends','admin_galleries'),$edit ? ($img->isPublic()==1 ? 1 : 0) : 0);
-	$ele->addOption(2,__('Visible for all','admin_galleries'),$edit ? ($img->isPublic()==2 ? 1 : 0) : 1);
+	$ele = new RMFormSelect(__('Privacy','galleries'),'public');
+	$ele->addOption(0,__('Private','galleries'),$edit ? ($img->isPublic()==0 ? 1 : 0) : 0);
+	$ele->addOption(1,__('Visible for friends','galleries'),$edit ? ($img->isPublic()==1 ? 1 : 0) : 0);
+	$ele->addOption(2,__('Visible for all','galleries'),$edit ? ($img->isPublic()==2 ? 1 : 0) : 1);
 
 	$form->addElement($ele,true);
 
@@ -212,7 +219,7 @@ function formImages($edit = 0){
 			$sets[] = $v['id_set'];
 		}
 	}
-	$ele = new RMFormSelect(__('Albums','admin_galleries'),'albums[]',1,$edit ? $sets : '');
+	$ele = new RMFormSelect(__('Albums','galleries'),'albums[]',1,$edit ? $sets : '');
 	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".($uid ? $uid : ($edit ? $img->owner() : $xoopsUser->uid()))."'";
 	$result = $db->query($sql);
 	while($rows = $db->fetchArray($result)){
@@ -220,8 +227,8 @@ function formImages($edit = 0){
 	}
 	$form->addElement($ele);
 	
-	$ele = new RMFormText(__('Tags','admin_galleries'),'tags',50,100,$edit ?  implode(", ", $img->tags(false, 'tag')) : '');
-	$ele->setDescription(__('Separate each tag with a comma (,)','admin_galleries'));
+	$ele = new RMFormText(__('Tags','galleries'),'tags',50,100,$edit ?  implode(", ", $img->tags(false, 'tag')) : '');
+	$ele->setDescription(__('Separate each tag with a comma (,)','galleries'));
 
 	$form->addElement($ele, true);
 
@@ -237,8 +244,8 @@ function formImages($edit = 0){
 	$form->addElement(new RMFormHidden('mode',$mode));
 
 	$buttons = new RMFormButtonGroup();
-	$buttons->addButton('sbt',$edit ? __('Save changes','admin_galleries') : __('Add image','admin_galleries'),'submit');
-	$buttons->addButton('cancel',__('Cancel','admin_galleries'),'button','onclick="window.location=\'images.php?'.$ruta.'\'"');
+	$buttons->addButton('sbt',$edit ? __('Save changes','galleries') : __('Add image','galleries'),'submit');
+	$buttons->addButton('cancel',__('Cancel','galleries'),'button','onclick="window.location=\'images.php?'.$ruta.'\'"');
 	$form->addElement($buttons);
 
 	$form->display();
@@ -252,20 +259,17 @@ function formImages($edit = 0){
 **/
 function formBulkImages(){
 	
-	global $mc,$xoopsUser, $tpl, $xoopsModule;
+	global $mc,$xoopsUser, $tpl, $xoopsModule, $xoopsSecurity;
 
-	$num_fields = isset($_REQUEST['num']) ? intval($_REQUEST['num']) : 10;
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : '';
-	$uid = isset($_REQUEST['uid']) ? intval($_REQUEST['uid']) : 0;
-	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : 0;
-	$file = isset($_REQUEST['image']) ? $_REQUEST['image'] : 0;
-	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 1;
+	$page = rmc_server_var($_REQUEST, 'page', 1);
+	$owner = rmc_server_var($_REQUEST, 'owner', 0);
+	$uid = rmc_server_var($_REQUEST, 'uid', 0);
+	$sort = rmc_server_var($_REQUEST, 'sort', 'created');
+	$mode = rmc_server_var($_REQUEST, 'mode', 1);
+    $psets = rmc_server_var($_REQUEST, 'albums', array());
+    $tags = rmc_server_var($_REQUEST, 'tags', '');
 
-	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
+	$ruta = "page=$page&owner=$owner&sort=$sort&mode=$mode";
 
 	$db = Database::getInstance();
 	
@@ -274,23 +278,77 @@ function formBulkImages(){
 	$result = $db->query($sql);
 	$sets = array();
 	while($rows = $db->fetchArray($result)){
-		$sets[] = array('id'=>$rows['id_set'],'title'=>$rows['title']);
+		$sets[] = array('id'=>$rows['id_set'],'title'=>$rows['title'],'selected'=>in_array($rows['id_set'], $psets));
 	}
+    
+    $show_controls = false;
+    
+    if($uid>0 && !empty($sets)){
+        $show_controls = true;
+        $uploader = new RMFlashUploader('files-container', 'images.php');
+        $uploader->add_setting('scriptData', array(
+            'op'=>'savebulk',
+            'set'=>implode(',',$psets),
+            'uid'=>$uid,
+            'owner'=>$owner,
+            'sort'=>$sort,
+            'mode'=>$mode,
+            'page'=>$page,
+            'tags'=>$tags,
+            'token'=>$xoopsSecurity->createToken()
+            // Need better code
+        ));
+        $uploader->add_setting('multi', true);
+        $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
+        $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
+        $uploader->add_setting('sizeLimit', $mc['size_image']*1024);
+        $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
+        $uploader->add_setting('queueSizeLimit', 100);
+        $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
+                eval('ret = '+resp);
+                alert(resp);
+                if (ret.error){
+                    \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
+                } else {
+                    total++;
+                    ids[total-1] = ret.id;
+                    \$('#upload-errors').append('<span class=\"done\"><strong>'+file.name+'</strong>: ".__('Uploaded successfully!','rmcommon')."</span>');
+                }
+                return true;
+            }");
+        $uploader->add_setting('onAllComplete', "function(event, data){
+                
+                if(total<=0){ return; }
+                
+                \$('.select_image_cat').hide('slow');
+                \$('#upload-errors').hide('slow');
+                \$('#upload-errors').html('');
+                \$('#upload-controls').hide('slow');
+                \$('#resizer-bar').show('slow');
+                \$('#resizer-bar').effect('highlight',{},1000);
+                \$('#gen-thumbnails').show();
+                
+                var increments = 1/total*100;
+                url = '".GS_URL."/admin/images.php';
+                
+                params = {token: '".$xoopsSecurity->createToken()."'};
+                resize_image(params);
+                
+            }");
+            RMTemplate::get()->add_head($uploader->render());
+    }
 
 
 	$form = new RMForm('','frmImgs','images.php');
 
 	$ele = new RMFormUser('','uid',0,($uid ? array($uid) : array($xoopsUser->uid())),0);
-	$ele->setForm('frmImgs');
-	$ele->onChange("sendData();");
 	
 	$users_field = $ele->render();
-	$file_size = $mc['size_image']*1024;	
 	
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Create batch images','admin_galleries'));
-	RMTemplate::get()->assign('xoops_pagetitle', __('Create batch images','admin_galleries'));
-	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=bulkimages');
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Create batch images','galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Create batch images','galleries'));
+	RMTemplate::get()->add_local_script('images.js', 'galleries');
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/gs_formimages.php",'module','galleries');
@@ -314,7 +372,7 @@ function saveImages($edit = 0){
 	$ruta = "page=$page&limit=$limit&search=$search&owner=$owner&sort=$sort&mode=$mode";
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./images.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
+		redirectMsg('./images.php?'.$ruta,__('Session token expired!','galleries'),1);
 		die();
 	}
 
@@ -322,14 +380,14 @@ function saveImages($edit = 0){
 	if ($edit){
 		//Verificamos si la imagen es válida
 		if($id<=0){
-			redirectMsg('./images.php?op=edit&id='.$id.'&'.$ruta,__('Image ID not valid!','admin_galleries'), 1);
+			redirectMsg('./images.php?op=edit&id='.$id.'&'.$ruta,__('Image ID not valid!','galleries'), 1);
 			die();
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($id);
 		if ($img->isNew()){
-			redirectMsg('./images.php?op=edit&id='.$id.'&'.$ruta,__('Specified image does not exists!','admin_galleries'), 1);
+			redirectMsg('./images.php?op=edit&id='.$id.'&'.$ruta,__('Specified image does not exists!','galleries'), 1);
 			die();
 		}
 
@@ -387,7 +445,7 @@ function saveImages($edit = 0){
 			$user->setDate(time());
 
 			if(!$user->save()){
-				redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,__('New user owner could not be saved!','admin_galleries'), 1);
+				redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,__('New user owner could not be saved!','galleries'), 1);
 				die();
 			}else{
 				mkdir($mc['storedir']."/".$user->uname());
@@ -489,7 +547,7 @@ function saveImages($edit = 0){
 	
 	$new = $img->isNew();
 	if(!$img->save()){
-		redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,__('Errors ocurred while trying to save image.','admin_galleries').$img->errors(), 1);
+		redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,__('Errors ocurred while trying to save image.','galleries').$img->errors(), 1);
 		die();
 	}else{
 		$user->addPic();
@@ -513,7 +571,7 @@ function saveImages($edit = 0){
 		$sql = "DELETE FROM ".$db->prefix("gs_setsimages")." WHERE id_image='".$img->id()."' ".($sets!='' ? " AND ($sets)" : '');
 		$db->queryF($sql);
 
-		redirectMsg('./images.php?'.$ruta,__('Database updated successfully!','admin_galleries'), 0);
+		redirectMsg('./images.php?'.$ruta,__('Database updated successfully!','galleries'), 0);
 		die();
 	}
 }
@@ -524,12 +582,15 @@ function saveImages($edit = 0){
 function saveBulkImages(){
 	global $util, $mc, $xoopsUser;
 	
+    XoopsLogger::getInstance()->activated = false;
+    XoopsLogger::getInstance()->renderingEnabled = false;
+    
 	set_time_limit(0);
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
-	$ruta = "page=$page&limit=$limit&search=$search&owner=$uid&sort=$sort&mode=$mode";
+	$ruta = "page=$page&search=$search&owner=$uid&sort=$sort&mode=$mode";
 	
 	if ($xoopsUser->uid()==$uid){
 		$xu = $xoopsUser;
@@ -548,7 +609,7 @@ function saveBulkImages(){
 		$user->setDate(time());
 
 		if(!$user->save()){
-			redirectMsg('./images.php?'.$ruta,__('User owner could not be created!','admin_galleries')."<br />".$user->errors(), 1);
+			send_error(__('User owner could not be created!','galleries')."<br />".$user->errors());
 			die();
 		}else{
 			mkdir($mc['storedir']."/".$user->uname());
@@ -591,17 +652,52 @@ function saveBulkImages(){
 	$errors = '';
 	$k = 1;
 	include_once RMCPATH.'/class/uploader.php';
-    $folder = $mc['storedir']."/".$xu->uname();
-    $folderths = $mc['storedir']."/".$xu->uname()."/ths";
-    $up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
+    $updir = $mc['storedir']."/".$xu->uname();
+    $upths = $mc['storedir']."/".$xu->uname()."/ths";
+    
+    send_error($updir);
+    
+    // Cargamos la imágen
+    if (!file_exists($updir)){
+        mkdir($updir,511);
+    }
+
+    if (!file_exists($upths)){
+        mkdir($upths, 511);
+    }
+
+    $uploader = new RMFileUploader($updir, $mc['size_image']*1024, array('gif', 'jpg', 'jpeg', 'png'));
+
+    $err = array();
+    if (!$uploader->fetchMedia('Filedata')){
+        error($uploader->getErrors());
+    }
+
+    if (!$uploader->upload()){
+        error($uploader->getErrors());
+    }
+
+    // Insertamos el archivo en la base de datos
+    $img = new GSImage();
+    $img->setTitle($uploader->savedFileName);
+    $img->setOwner($uid);
+    $img->setPublic(2);
+    $img->setCreated(time());
+    $img->setImage($uploader->getSavedFileName());
+
+    if (!$image->save()){
+        unlink($uploader->savedDestination);
+        send_error(__('File could not be inserted to database!','galleries'));
+    }
+
+    $ret['message'] = '1';
+    $ret['id'] = $image->id();
+    echo json_encode($ret);
 	
-	foreach ($_FILES['image']['name'] as $k => $v){
+	/*
+    foreach ($_FILES['image']['name'] as $k => $v){
 		if ($v=='') continue;
-		$img = new GSImage();
-		$img->setTitle($title[$k]);
-		$img->setOwner($uid);
-		$img->setPublic(2);
-		$img->setCreated(time());
+		
 		
 		//Imagen
 		$filename = '';
@@ -609,7 +705,7 @@ function saveBulkImages(){
 		if ($up->fetchMedia('image',$k)){
 
 			if (!$up->upload()){
-				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','admin_galleries'), $up->getErrors());
+				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','galleries'), $up->getErrors());
 				continue;
 			}
 					
@@ -667,7 +763,7 @@ function saveBulkImages(){
 		
 		if ($up->getErrors()==''){
 			if (!$img->save()){
-				$errors .= sprintf(__('Image could not be inserted in database!','admin_galleries'), $v)." (".$img->errors().")";
+				$errors .= sprintf(__('Image could not be inserted in database!','galleries'), $v)." (".$img->errors().")";
 			} else {
 				$user->addPic();
 				$img->setTags($ret);
@@ -689,12 +785,12 @@ function saveBulkImages(){
 	}
 
 	if($errors!=''){
-		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to upload images.','admin_galleries').$errors,1);
+		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to upload images.','galleries').$errors,1);
 		die();
 	}else{
-		redirectMsg('./images.php?'.$ruta,__('Images uploaded successfully!','admin_galleries'),0);
+		redirectMsg('./images.php?'.$ruta,__('Images uploaded successfully!','galleries'),0);
 		die();
-	}
+	}*/
 
 }
 
@@ -719,12 +815,12 @@ function deleteImages(){
 	
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
 	if (!is_array($ids)){
-		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','admin_galleries'),1);
+		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','galleries'),1);
 		die();
 	}
 	
     if (!$xoopsSecurity->check()){
-	    redirectMsg('./images.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
+	    redirectMsg('./images.php?'.$ruta,__('Session token expired!','galleries'),1);
 		die();
 	}
 
@@ -733,20 +829,20 @@ function deleteImages(){
 
 	    //Verificamos si la imagen es válida
 		if($k<=0){
-		    $errors .= sprintf(__('Image ID "%s" not valid','admin_galleries'), $k);
+		    $errors .= sprintf(__('Image ID "%s" not valid','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-		    $errors .= sprintf(__('Image "%s" does not exists!','admin_galleries'), $k);
+		    $errors .= sprintf(__('Image "%s" does not exists!','galleries'), $k);
 			continue;
 		}	
 
 		$sets = $img->sets();
 		if(!$img->delete()){
-		    $errors .= sprintf(__('Image "%s" could not be deleted!', 'admin_galleries'), $k);
+		    $errors .= sprintf(__('Image "%s" could not be deleted!', 'galleries'), $k);
 		}else{
 	        //Decrementamos el número de imágenes de los albumes
 			foreach ($sets as $k => $set){
@@ -756,10 +852,10 @@ function deleteImages(){
 	}
 
 	if($erros!=''){
-	    redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to delete images','admin_galleries').$errors,1);
+	    redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to delete images','galleries').$errors,1);
 		die();
 	}else{
-	    redirectMsg('./images.php?'.$ruta,__('Images deleted successfully!','admin_galleries'),0);
+	    redirectMsg('./images.php?'.$ruta,__('Images deleted successfully!','galleries'),0);
 		die();
 	}
 		
@@ -786,7 +882,7 @@ function publicImages($pub = 0){
 
 	//Verificamos si nos proporcionaron al menos una imagen
 	if (!is_array($ids)){
-		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','admin_galleries'),1);
+		redirectMsg('./images.php?'.$ruta,__('No images has been selected!','galleries'),1);
 		die();
 	}
 
@@ -795,19 +891,19 @@ function publicImages($pub = 0){
 	
 		//Verificamos si la imagen es válida
 		if($k<=0){
-			$errors .= sprintf(__('Image ID "%s" is not valid','admin_galleries'), $k);
+			$errors .= sprintf(__('Image ID "%s" is not valid','galleries'), $k);
 			continue;			
 		}
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(__('Image "%s" does not exists!','admin_galleries'), $k);
+			$errors .= sprintf(__('Image "%s" does not exists!','galleries'), $k);
 			continue;
 		}	
 		
 		$img->setPublic($pub);
 		if(!$img->save()){
-			$errors .= sprintf(__('Image could not be updated!','admin_galleries'), $k);
+			$errors .= sprintf(__('Image could not be updated!','galleries'), $k);
 		}
 	}
 
@@ -815,7 +911,7 @@ function publicImages($pub = 0){
 		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to update images!').$errors,1);
 		die();
 	}else{
-		redirectMsg('./images.php?'.$ruta,__('Images updated successfully!','admin_galleries'),0);
+		redirectMsg('./images.php?'.$ruta,__('Images updated successfully!','galleries'),0);
 		die();
 	}
 

@@ -27,3 +27,7 @@
 
 define('GS_LOCATION','images');
 include '../../mainfile.php';
+
+
+
+?>

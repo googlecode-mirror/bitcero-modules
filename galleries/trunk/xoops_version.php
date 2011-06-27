@@ -10,14 +10,17 @@
 
 $modversion['name'] = "MyGalleries 3.0";
 $modversion['version'] = 3;
-$modversion['rmversion'] = array('number'=>3,'revision'=>001,'status'=>0,'name'=>'MyGalleries');
-$modversion['description'] = _MI_GS_MODDESC;
+$modversion['rmversion'] = array('number'=>3,'revision'=>015,'status'=>0,'name'=>'MyGalleries');
+$modversion['description'] = __('Módulo para el manejo de galerías de imágenes en XOOPS y Common Utilities', 'galleries');
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
-$modversion['icon16'] = 'images/images16.png';
+$modversion['icon16'] = 'images/images.png';
 $modversion['author'] = "BitC3R0";
+$modversion['authormail'] = "i.bitcero@gmail.com";
+$modversion['authorweb'] = "Red México";
+$modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['credits'] = "Red México";
-$modversion['help'] = "http://www.redmexico.com.mx/modules/ahelp/";
+$modversion['help'] = "http://www.redmexico.com.mx/modules/galleries/";
 $modversion['license'] = "GPL see LICENSE";
 $modversion['rmnative'] = 1;
 $modversion['image'] = "images/logo.png";

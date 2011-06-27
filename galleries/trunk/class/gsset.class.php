@@ -160,8 +160,7 @@ class GSSet extends RMObject
 		if (isset($xoopsModule) && $xoopsModule->dirname()=='galleries'){
 			$mc =& $xoopsModuleConfig;
 		} else {
-			$util =& RMUtils::getInstance();
-			$mc =& $util->moduleConfig('galleries');
+			$mc = RMUtilities::module_config('galleries');
 		}
 		
 		$url = XOOPS_URL.'/modules/galleries/';
