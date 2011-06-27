@@ -312,6 +312,9 @@ function xt_save_settings(){
 			$errors[] = $db->error();
 		
 	}
+    
+    RMEvents::get()->run_event('xtheme.save.settings', $xt_to_save, $errors);
+    
 	if (!empty($errors)){
 		redirectMsg('index.php?op=config', __('There was errors during this operation:','xthemes').'<br />'.implode('<br />', $errors), 1);
 	} else {
