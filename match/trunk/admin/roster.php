@@ -179,7 +179,7 @@ function m_players_form($edit=0){
 
     if ($edit) $form->addElement(new RMFormText(__('Short name','match'), 'nameid', 50, 200, $player->getVar('nameid')), true);
     
-    $form->addElement(new RMFormDate(__('Birth','match'), 'birth', $edit ? $player->getVar('birth') : '', $xoopsModuleConfig['year_range']), 1);
+    $form->addElement(new RMFormDate(__('Birthday','match'), 'birth', $edit ? $player->getVar('birth') : '', $xoopsModuleConfig['year_range']), 1);
     
     $form->addElement(new RMFormEditor(__('Biography','match'), 'bio', '100%','250px', $edit ? $player->getVar('bio','e') : ''));
     

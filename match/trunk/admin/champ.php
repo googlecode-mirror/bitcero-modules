@@ -290,7 +290,7 @@ function m_set_current(){
     if($db->queryF("UPDATE ".$db->prefix("mch_champs")." SET current='1' WHERE id_champ=$id")){
         redirectMsg('champ.php', __("Championship updated successfully!",'match'), 0);
     } else {
-        redirectMsg('champ.php', __("Championship ucould not be pdated!",'match'), 1);
+        redirectMsg('champ.php', __("Championship could not be pdated!",'match'), 1);
     }
     
 }
