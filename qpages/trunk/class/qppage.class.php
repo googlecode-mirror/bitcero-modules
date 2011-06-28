@@ -192,7 +192,7 @@ class QPPage extends RMObject
 	 * Obtiene el enlace permanente al artículo
 	 */
 	public function getPermaLink(){
-		global $mc;
+		$mc = RMUtilities::module_config('qpages');
 		$rtn = QP_URL.'/';
 		$rtn .= $mc['links']==0 ? 'page.php?page='.$this->getFriendTitle() : $this->getFriendTitle().'/';
 		return $rtn;
