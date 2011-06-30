@@ -52,11 +52,45 @@ $modversion['templates'] = array(
 
 // Tables
 $modversion['tables'] = array(
-    "show_categories"
+    "show_categories",
+    'shop_catprods'
 );
 
-// Blocks
-// Ranking
+// Options
+$modversion['config'][] = array(
+    'name' => 'urlmode',
+    'title' => '_MI_MS_URLMODE',
+    'description' => '_MI_MS_URLMODED',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
+$modversion['config'][] = array(
+    'name' => 'htbase',
+    'title' => '_MI_MS_BASEDIR',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '/modules/shop'
+);
+
+$modversion['config'][] = array(
+    'name' => 'editor',
+    'title' => '_MI_MS_EDITOR',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'text',
+    'default' => 'tiny',
+    'options' => array(
+        '_MI_MS_EDITOR_VISUAL'=>'tiny',
+        '_MI_MS_EDITOR_HTML'=>'html',
+        '_MI_MS_EDITOR_XOOPS'=>'xoops',
+        '_MI_MS_EDITOR_SIMPLE'=>'simple'
+    )
+);
+
+
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,
 							    'post'=>_MI_MW_SPPOST,

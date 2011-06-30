@@ -1,0 +1,116 @@
+div.shop_all_container{
+    overflow: hidden;
+    padding: 0 10px 0 10px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+.form_options{
+    float: left;
+    padding: 0 0 0 0;
+    width: 30%;
+}
+.form_options .description{
+    color: #666;
+    font-size: 0.9em;
+    display: block;
+    margin: 3px 0 0 0;
+    line-height: 150%;
+    font-style: italic;
+}
+h3.form_titles{
+    font-size: 1.3em;
+    margin: 0 0 20px 0;
+    color: #2E2E2E;
+}
+.form_options form{
+    padding: 0 10px;
+}
+.form_options label{
+    cursor: pointer;
+    display: block;
+    margin: 20px 0 2px 0;
+}
+.form_options label span{
+    display: block;
+    margin: 20px 0 2px 0;
+}
+.form_options label em{
+    font-size: 0.85em;
+    font-style: italic;
+    color: #666666;
+    display: block;
+    margin-top: 3px;
+}
+.form_options input[type='text'],
+.form_options select,
+.form_options textarea{
+    width: 95%;
+}
+#tableItems{
+    float: right;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 10px;
+    overflow: hidden;
+    width: 67%;
+}
+
+h1.shop_titles span{
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    margin: 0 5px 0 0;
+}
+span.shop_tform{background-position: -96px;}
+.shop_form_bks{
+    overflow: hidden;
+}
+#shop-form-prods{
+    overflow: hidden;
+}
+#shop-form-prods label.block,
+.rmc_widget_content label.block{
+    padding: 4px 0;
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#shop-form-prods label.block:first-child,
+.rmc_widget_content label.block:first-child{
+    margin-top: 0;
+}
+#shop-form-prods .fullw{
+    width: 98%;
+    padding: 4px;
+    font-size: 1.5em;
+}
+.shop_metas{
+    margin-top: 10px;
+}
+.meta_control{
+    overflow: hidden;
+    padding: 0 4px;
+}
+.meta_control .meta_name{
+    float: left;
+    width: 20%;
+    margin-right: 2%;
+}
+.meta_control .meta_value{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 77%
+}
+.meta_control .meta_name input,
+.meta_control .meta_name select{
+    width: 99%;
+}
+.meta_control .meta_value textarea{
+    width: 98%;
+}
+
+.rmc_widget_content input[type='text']{
+    width: 95%;
+}

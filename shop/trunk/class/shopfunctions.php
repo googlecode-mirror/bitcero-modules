@@ -34,4 +34,51 @@ class ShopFunctions
         }
         
     }
+    
+    /**
+    * Show admin menu and include the javascript files
+    */
+    public function include_required_files(){
+        RMTemplate::get()->add_style('admin.css','shop');
+        include '../include/toolbar.php';
+    }
+    
+    /**
+    * Get correct base url for links
+    */
+    function get_url(){
+        global $xoopsModule, $xoopsModuleConfig;
+        if(!$xoopsModule || $xoopsModule->dirname()!='shop')
+            $mc = RMUtilities::get()->module_config('shop');
+        else
+            $mc = $xoopsModuleConfig;
+        
+        if ($mc['urlmode']){
+            
+            $ret = XOOPS_URL.'/'.trim($mc['htbase'], "/").'/';
+            
+        } else {
+            
+            $ret = XOOPS_URL.'/modules/mywords/';
+            
+        }
+        
+        return $ret;
+    }
+    
+    /**
+    * @desc Devuelve la categoría "uncategorized"
+    * @return array
+    */
+    public function default_category_id(){
+        
+        $db = Database::getInstance();
+        $result = $db->query("SELECT id_cat FROM ".$db->prefix("shop_categories")." WHERE id_cat='1'");
+        if ($db->getRowsNum($result)<=0) return false;
+        
+        list($id) = $db->fetchRow($result);
+        return $id;
+        
+    }
+    
 }
