@@ -64,7 +64,7 @@ function send_message(){
     
     $xoopsMailer =& getMailer();
     $xoopsMailer->useMail();
-    $xoopsMailer->setBody($message.'\n--------------\n'.__('Message sent with ContactMe!','contact').'\n'.$xoopsModuleConfig['url']);
+    $xoopsMailer->setBody($message."\n--------------\n".__('Message sent with ContactMe!','contact')."\n".$xoopsModuleConfig['url']);
     $xoopsMailer->setToEmails($xoopsModuleConfig['mail']);
     $xoopsMailer->setFromEmail($email);
     $xoopsMailer->setFromName($name);
