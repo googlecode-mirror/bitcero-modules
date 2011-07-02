@@ -41,9 +41,9 @@ $modversion['hasMain'] = 1;
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 // Search
-$modversion['hasSearch'] = 1;
-$modversion['search']['file'] = "include/search.php";
-$modversion['search']['func'] = "mywords_search";
+$modversion['hasSearch'] = 0;
+//$modversion['search']['file'] = "include/search.php";
+//$modversion['search']['func'] = "mywords_search";
 
 // Templates
 $modversion['templates'] = array(
