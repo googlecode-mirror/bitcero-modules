@@ -12,3 +12,11 @@ require '../../../include/cp_header.php';
 
 define('SHOP_PATH',XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->dirname());
 define('SHOP_URL', XOOPS_URL.'/modules/'.$xoopsModule->dirname());
+
+define('SHOP_UPPATH', XOOPS_UPLOAD_PATH.'/minishop');
+define('SHOP_UPURL', XOOPS_UPLOAD_URL.'/minishop');
+
+if(!is_dir(SHOP_UPPATH)){
+    mkdir(SHOP_UPPATH, 511);
+    mkdir(SHOP_UPPATH.'/ths', 511);
+}

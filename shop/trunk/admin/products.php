@@ -18,8 +18,6 @@ function shop_show_products(){
     global $xoopsModuleConfig, $xoopsConfig, $xoopsSecurity;
     
     
-    
-    
     // Show GUI
     xoops_cp_header();
     
@@ -72,12 +70,50 @@ function shop_new_product($edit = 0){
 }
 
 
+function shop_upload_image(){
+    global $xoopsModuleConfig, $xoopsConfig;
+    
+    $options = array(
+        'upload_dir' => SHOP_UPPATH,
+        'upload_url' => SHOP_UPURL,
+        'param_name' => 'image',
+        'max_file_size' => $xoopsModuleConfig['maxsize']*1024,
+        'min_file_size' => 1,
+        'accept_file_types' => '/.+$/i',
+        'max_number_of_files' => 1,
+        'discard_aborted_uploads' => true
+    );
+    
+    $up = new RMUploadHandler($options);
+    
+    $info = $up->post();
+    
+    header('Vary: Accept');
+    if (isset($_SERVER['HTTP_ACCEPT']) &&
+        (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)) {
+        header('Content-type: application/json');
+    } else {
+        header('Content-type: text/plain');
+    }
+    echo json_encode($info); die();
+    
+    
+}
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
     
     case 'new':
         shop_new_product();
+        break;
+    
+    case 'upload':
+        // Deactivate the logger
+        error_reporting(0);
+        $xoopsLogger->activated = false;
+        shop_upload_image();
         break;
         
     default:

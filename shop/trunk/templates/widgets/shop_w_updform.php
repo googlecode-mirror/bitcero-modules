@@ -1,13 +1,14 @@
 <div id="<?php echo $this->id(); ?>">
-    <form action="products.php?action=upload" method="POST" enctype="multipart/form-data">
+    <form action="products.php" method="POST" enctype="multipart/form-data">
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">
                 <span><?php _e('+ Files','shop'); ?></span>
-                <input type="file" name="files[]" multiple>
+                <input type="file" name="image" />
             </label>
             <button type="submit" class="start"><?php _e('Upload','shop'); ?></button>
             <button type="reset" class="cancel"><?php _e('Cancel','shop'); ?></button>
         </div>
+        <input type="hidden" name="action" value="upload" />
     </form>
     <div class="fileupload-content">
         <table class="files" width="100%"></table>

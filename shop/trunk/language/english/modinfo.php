@@ -18,3 +18,5 @@ define('_MI_MS_EDITOR_VISUAL',__('Visual Editor','rmcommon'));
 define('_MI_MS_EDITOR_HTML',__('HTML Editor','rmcommon'));
 define('_MI_MS_EDITOR_XOOPS',__('XoopsCode Editor','rmcommon'));
 define('_MI_MS_EDITOR_SIMPLE',__('Simple Editor','rmcommon'));
+define('_MI_MS_MAXSIZE',__('Image max file size','rmcommon'));
+define('_MI_MS_MAXSIZED',__('Specify this value in KB','rmcommon'));

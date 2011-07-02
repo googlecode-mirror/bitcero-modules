@@ -90,6 +90,15 @@ $modversion['config'][] = array(
     )
 );
 
+$modversion['config'][] = array(
+    'name' => 'maxsize',
+    'title' => '_MI_MS_MAXSIZE',
+    'description' => '_MI_MS_MAXSIZED',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '1024'
+);
+
 
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,
