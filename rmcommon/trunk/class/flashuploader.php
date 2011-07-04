@@ -68,8 +68,6 @@ class RMFlashUploader
         
         $this->name = $name;
         
-        RMTemplate::get()->add_script(RMCURL.'/include/js/swfupload.js');
-        
     }
     
     public function add_setting($name, $value){

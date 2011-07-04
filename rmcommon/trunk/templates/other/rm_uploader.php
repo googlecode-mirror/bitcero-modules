@@ -20,7 +20,7 @@ $(document).ready(function () {
         <?php endforeach; ?>
     });
     
-    $('#fileupload .files a:not([target^=_blank])').live('click', function (e) {
+    $('#<?php echo $this->id; ?> .files a:not([target^=_blank])').live('click', function (e) {
         e.preventDefault();
         $('<iframe style="display:none;"></iframe>')
             .prop('src', this.href)
