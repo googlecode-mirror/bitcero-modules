@@ -190,7 +190,7 @@ class ShopProduct extends RMObject
     */
     private function save_metas(){
         
-        $this->db->queryF("DELETE FROM ".$this->db->prefix("shop_meta")." WHERE product='".$this->getID()."'");
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("shop_meta")." WHERE product='".$this->id()."'");
         if (empty($this->metas)) return true;
         $sql = "INSERT INTO ".$this->db->prefix("shop_meta")." (`name`,`value`,`product`) VALUES ";
         $values = '';
@@ -240,7 +240,6 @@ class ShopProduct extends RMObject
         }
         $this->save_categories();
         $this->save_metas();
-        $this->save_tags();
         
         RMEvents::get()->run_event('shop.save.product', $this, $this->isNew());
                

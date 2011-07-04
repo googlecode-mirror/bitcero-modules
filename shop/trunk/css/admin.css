@@ -114,3 +114,8 @@ span.shop_tform{background-position: -96px;}
 .rmc_widget_content input[type='text']{
     width: 95%;
 }
+.cats_field{
+    max-height: 200px;
+    overflow:auto;
+    float: left;
+}

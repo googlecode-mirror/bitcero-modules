@@ -99,6 +99,45 @@ $modversion['config'][] = array(
     'default' => '1024'
 );
 
+// Images
+$modversion['config'][] = array(
+    'name' => 'imgsize',
+    'title' => '_MI_MS_IMGSIZE',
+    'description' => '_MI_MS_IMGSIZED',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '800|800'
+);
+
+$modversion['config'][] = array(
+    'name' => 'imgredim',
+    'title' => '_MI_MS_IMGREDIM',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => '0',
+    'options' => array(__('Resize','shop')=>0,__('Crop to fit width and height','shop')=>1)
+);
+
+$modversion['config'][] = array(
+    'name' => 'thssize',
+    'title' => '_MI_MS_THSSIZE',
+    'description' => '_MI_MS_THSSIZED',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '100|100'
+);
+
+$modversion['config'][] = array(
+    'name' => 'thsredim',
+    'title' => '_MI_MS_THSREDIM',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => '1',
+    'options' => array(__('Resize','shop')=>0,__('Crop to fit width and height','shop')=>1)
+);
+
 
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,

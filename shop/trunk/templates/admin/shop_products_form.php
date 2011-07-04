@@ -1,14 +1,6 @@
-<h1 class="rmc_titles shop_titles"><span class="shop_tform">&nbsp;</span><?php $edit ? _e('Edit Product','shop') : _e('Create Product','shop'); ?></h1>
-
-<div class="shop_form_bks">
-    <div id="shop-form-prods">
-        <label class="block" for="p-name"><?php _e('Product Name:','shop'); ?></label>
-        <input type="text" name="name" id="p-name" value="<?php echo $edit ? $product->getVar('name') : ''; ?>" class="fullw required" />
-        <?php echo $editor->render(); ?>
-        
-        <div class="shop_metas">
+<div class="shop_metas">
         <table class="outer" cellspacing="0" cellpadding="4" width="100%" id="existing_meta">
-            <tr><th colspan="2"><?php _e('Custom Fields','shop'); ?></th></tr>
+            <tr class="head"><td colspan="2"><?php _e('Custom Fields','shop'); ?></td></tr>
         <?php foreach($metas as $name => $value): ?>
         <tr valign="top" class="even">
             <td width="100">
@@ -49,6 +41,4 @@
             <td><input type="button" id="add_field" value="Add Field" />
         </tr>
         </table>
-        </div>
-    </div>
 </div>
