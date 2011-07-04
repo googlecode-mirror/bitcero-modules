@@ -7,7 +7,6 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-
 define('RMCLOCATION','images');
 include 'header.php';
 
@@ -285,7 +284,7 @@ function formBulkImages(){
     
     if($uid>0 && !empty($sets)){
         $show_controls = true;
-        $uploader = new RMFlashUploader('files-container', 'images.php');
+        $uploader = new RMFlashUploader('files-container', '../include/upload.php');
         $uploader->add_setting('scriptData', array(
             'op'=>'savebulk',
             'set'=>implode(',',$psets),
@@ -296,6 +295,7 @@ function formBulkImages(){
             'page'=>$page,
             'tags'=>$tags,
             'token'=>$xoopsSecurity->createToken()
+            //'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)
             // Need better code
         ));
         $uploader->add_setting('multi', true);
@@ -305,8 +305,8 @@ function formBulkImages(){
         $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
         $uploader->add_setting('queueSizeLimit', 100);
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
-                eval('ret = '+resp);
                 alert(resp);
+                eval('ret = '+resp);
                 if (ret.error){
                     \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
                 } else {
@@ -335,12 +335,14 @@ function formBulkImages(){
                 resize_image(params);
                 
             }");
+        $uploader->add_setting('onError', 'function (event,ID,fileObj,errorObj) {
+          alert(errorObj.type + \' Error: \' + errorObj.info);
+        }');
             RMTemplate::get()->add_head($uploader->render());
     }
 
 
 	$form = new RMForm('','frmImgs','images.php');
-
 	$ele = new RMFormUser('','uid',0,($uid ? array($uid) : array($xoopsUser->uid())),0);
 	
 	$users_field = $ele->render();
@@ -361,7 +363,6 @@ function formBulkImages(){
 * @desc almacena la información de la imagen
 **/
 function saveImages($edit = 0){
-
 
 	global $mc, $xoopsSecurity, $db, $xoopsUser, $db;
 	
@@ -655,8 +656,6 @@ function saveBulkImages(){
     $updir = $mc['storedir']."/".$xu->uname();
     $upths = $mc['storedir']."/".$xu->uname()."/ths";
     
-    send_error($updir);
-    
     // Cargamos la imágen
     if (!file_exists($updir)){
         mkdir($updir,511);
@@ -670,11 +669,11 @@ function saveBulkImages(){
 
     $err = array();
     if (!$uploader->fetchMedia('Filedata')){
-        error($uploader->getErrors());
+        send_error($uploader->getErrors());
     }
 
     if (!$uploader->upload()){
-        error($uploader->getErrors());
+        send_error($uploader->getErrors());
     }
 
     // Insertamos el archivo en la base de datos
@@ -693,6 +692,7 @@ function saveBulkImages(){
     $ret['message'] = '1';
     $ret['id'] = $image->id();
     echo json_encode($ret);
+    die();
 	
 	/*
     foreach ($_FILES['image']['name'] as $k => $v){
@@ -917,7 +917,7 @@ function publicImages($pub = 0){
 
 }
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$op = rmc_server_var($_REQUEST, 'op', '');
 
 switch($op){
 	case 'new':
@@ -936,6 +936,8 @@ switch($op){
 		saveImages(1);
 	break;
 	case 'savebulk':
+        XoopsLogger::getInstance()->activated = false;
+        XoopsLogger::getInstance()->renderingEnabled = false;
 		saveBulkImages();
 	break;
 	case 'delete':
