@@ -64,10 +64,15 @@ function shop_new_product($edit = 0){
     
     $categories = array();
     ShopFunctions::categos_list($categories);
+    if($edit){
+        $pcats = $product->get_categos();
+    } else {
+        $pcats = array();
+    }
     
     $cats = new RMFormCheck('');
     foreach($categories as $c){
-        $cats->addOption(str_repeat("&#8212;",$c['indent']).' '.$c['name'], 'cats[]', $c['id_cat']);
+        $cats->addOption(str_repeat("&#8212;",$c['indent']).' '.$c['name'], 'cats[]', $c['id_cat'], in_array($c['id_cat'], $pcats) ? 1 : 0);
     }
     
     $form->addElement(new RMFormLabel(__('Categories','shop'), '<div class="cats_field">'.$cats->render().'</div>'));
@@ -79,7 +84,7 @@ function shop_new_product($edit = 0){
     unset($ele);
     $form->addElement(new RMFormYesNo(__('Available','shop'), 'available', 1));
     $form->addElement(new RMFormFile(__('Default image', 'shop'), 'image'));
-    if($edit){
+    if($edit ){
         $form->addElement(new RMFormLabel(__('Current Image','shop'), '<img src="'.XOOPS_UPLOAD_URL.'/minishop/ths/'.$product->getVar('image').'" />'));
     }
     
@@ -179,7 +184,7 @@ function shop_save_product($edit=0){
         $product->add_meta($v, $meta_value[$k]);
     }
 
-    $product->add_categories($cats);
+    $product->add_categories($cats, true);
     
     //Imagen
     include_once RMCPATH.'/class/uploader.php';
@@ -263,7 +268,7 @@ switch($action){
         shop_save_product();
         break;
     
-    case 'new':
+    case 'saveedit':
         shop_save_product(1);
         break;
            

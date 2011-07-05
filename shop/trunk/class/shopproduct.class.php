@@ -11,6 +11,8 @@
 class ShopProduct extends RMObject
 {
     private $metas = array();
+    private $categos = array();
+    private $lcats = array();
     
     function __construct($id=null){
         $this->db =& Database::getInstance();
@@ -97,7 +99,7 @@ class ShopProduct extends RMObject
         global $mc;
         
         $tbl1 = $this->db->prefix("shop_categories");
-        $tbl2 = $this->db->prefix("shop_catpost");
+        $tbl2 = $this->db->prefix("shop_catprods");
         
         $objs = array();
         if (empty($this->categos)){    
@@ -213,8 +215,8 @@ class ShopProduct extends RMObject
         if (empty($this->categos)){
             $this->add_categories(ShopFunctions::default_category_id());
         }
-        $this->db->queryF("DELETE FROM ".$this->db->prefix("shop_catpost")." WHERE product='".$this->id()."'");
-        $sql = "INSERT INTO ".$this->db->prefix("shop_catpost")." (`product`,`cat`) VALUES ";
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("shop_catprods")." WHERE product='".$this->id()."'");
+        $sql = "INSERT INTO ".$this->db->prefix("shop_catprods")." (`product`,`cat`) VALUES ";
         foreach ($this->categos as $k){
             $sql .= "('".$this->id()."','$k'), ";
         }
