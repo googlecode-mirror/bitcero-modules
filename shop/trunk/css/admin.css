@@ -119,3 +119,45 @@ span.shop_tform{background-position: -96px;}
     overflow:auto;
     float: left;
 }
+.shop_options{
+    overflow: hidden;
+    padding: 5px 0;
+}
+.prdimg img{
+    width: 50px;
+}
+.rmc_pages_navigation_container{
+    float: right;
+}
+#shop-right-table{
+    float: right;
+    width: 65%;
+}
+#shop-left-form{
+    float: left;
+    width: 32%;
+}
+#shop-left-form h3{
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+#shop-left-form label{
+    display: block;
+    padding: 0 0 3px 0;
+    cursor: pointer;
+}
+#shop-left-form input[type='text']{
+    width: 90%;
+    display: block;
+    margin: 0 0 5px 0;
+}
+#shop-left-form input[type='file']{
+    width: 90%;
+    display: block;
+    margin: 0 0 5px 0;
+}
+#shop-left-form textarea{
+    width: 90%;
+    margin: 0 0 5px 0;
+}

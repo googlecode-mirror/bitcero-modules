@@ -230,14 +230,16 @@ class ShopProduct extends RMObject
     }
     
     /**
-     * Guardamos los datos en la base de datos
+     * Save data
      */
     public function save(){    
         
         if ($this->isNew()){
+            $this->setVar('created', time());
             if(!$this->saveToTable()) return false;
             $this->setVar('id_post', $this->db->getInsertId());
         } else {
+            $this->setVar('modified', time());
             if(!$this->updateTable()) return false;
         }
         $this->save_categories();
@@ -246,6 +248,25 @@ class ShopProduct extends RMObject
         RMEvents::get()->run_event('shop.save.product', $this, $this->isNew());
                
         return true;
+    }
+    
+    /**
+    * Delete products and all realted data (and files)
+    */
+    public function delete(){
+        
+        // Delete metas
+        $this->db->queryF("DELETE FROM ".$this->db->prefix("shop_meta")." WHERE product=".$this->id());
+        
+        // Delete image
+        if($this->getVar('image')!=''){
+            @unlink(XOOPS_UPLOAD_PATH.'/minishop/'.$this->getVar('image'));
+            @unlink(XOOPS_UPLOAD_PATH.'/minishop/ths/'.$this->getVar('image'));
+        }
+        
+        return $this->deleteFromTable();
+        
+        
     }
     
 }

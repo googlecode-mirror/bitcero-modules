@@ -36,3 +36,11 @@ CREATE TABLE `shop_meta` (
 INDEX ( `name` , `product` )
 ) ENGINE = MYISAM;
 
+CREATE TABLE shop_images (
+`id_image` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`title` VARCHAR( 100 ) NOT NULL ,
+`file` VARCHAR( 50 ) NOT NULL ,
+`product` INT NOT NULL ,
+`description` TEXT NOT NULL
+) ENGINE = MYISAM ;
+
