@@ -45,7 +45,7 @@ class RMFileUploader extends XoopsMediaUploader
             $this->maxHeight = intval($maxHeight);
         }
 
-        if (!include_once $GLOBALS['xoops']->path('language/' . $GLOBALS['xoopsConfig']['language'] . '/uploader.php')) {
+        if (!@include_once $GLOBALS['xoops']->path('language/' . $GLOBALS['xoopsConfig']['language'] . '/uploader.php')) {
             include_once $GLOBALS['xoops']->path('language/english/uploader.php');
         }
         

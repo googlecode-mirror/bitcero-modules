@@ -43,7 +43,7 @@ class RMTimeFormatter
         $time = $time<=0 ? $this->time : $time;
         $format = $format=='' ? $this->format : $format;
         
-        if ($format=='' || $time<=0){
+        if ($format=='' || $time<0){
             trigger_error(__('You must provide a valid time and format value to use RMTimeFormatter::format() method','rmcommon'));
             return;
         }
