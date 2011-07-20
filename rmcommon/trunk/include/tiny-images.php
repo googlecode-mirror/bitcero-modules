@@ -29,9 +29,9 @@ $en = rmc_server_var($_REQUEST, 'name', '');
 
 if ($action==''){
 	
-	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.min.js');
-    RMTemplate::get()->add_script(RMCURL.'/include/js/jquery-ui.min.js');
-    RMTemplate::get()->add_script(RMCURL.'/include/js/images_editor.js');
+	RMTemplate::get()->add_local_script('jquery.min.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('jquery-ui.min.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('images_editor.js', 'rmcommon', 'include');
 	
     if (!$cat->isNew()){
         $uploader = new RMFlashUploader('files-container', 'upload.php');

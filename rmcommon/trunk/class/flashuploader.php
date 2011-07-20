@@ -102,8 +102,8 @@ class RMFlashUploader
     
     public function render(){
         
-        RMTemplate::get()->add_script(RMCURL.'/include/js/swfobject.js');
-        RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.uploadify.js');
+        RMTemplate::get()->add_local_script('swfobject.js', 'rmcommon', 'include');
+        RMTemplate::get()->add_local_script('jquery.uploadify.js', 'rmcommon', 'include');
         RMTemplate::get()->add_style('uploadify.css', 'rmcommon');
         
         ob_start();
