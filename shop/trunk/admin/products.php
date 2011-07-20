@@ -425,67 +425,68 @@ function shop_form_images($edit = 0){
 
     global $xoopsModule, $xoopsModuleConfig;
 
+    $idimg = rmc_server_var($_REQUEST, 'idimg', 0);
     $id = rmc_server_var($_REQUEST, 'id', 0);
-    $work = rmc_server_var($_REQUEST, 'work', 0);
     $page = rmc_server_var($_REQUEST, 'page', 0);
+    $bname = rmc_server_var($_REQUEST, 'bname', 0);
 
-    $ruta = "&page=$page";
+    $ruta = "action=images&page=$page&bname=$bname&id=$id";
     
     //Verificamos que el trabajo sea válido
-    if ($work<=0){
-        redirectMsg('./works.php', __('You must specify a work ID!', 'works'),1);
+    if ($id<=0){
+        redirectMsg('products.php', __('You must specify a product ID!', 'shop'),1);
         die();
     }
 
     //Verificamos que el trabajo exista
-    $work = new PWWork($work);
-    if ($work->isNew()){
-        redirectMsg('./works.php', __('Specified work does not exists!', 'works'),1);
+    $product = new ShopProduct($id);
+    if ($product->isNew()){
+        redirectMsg('products.php', __('Specified product does not exists!', 'shop'),1);
         die();
     }
 
     
     if ($edit){
         //Verificamos que la imagen sea válida
-        if ($id<=0){
-            redirectMsg('./images.php?work='.$work->id().$ruta,__('You must specify an image ID!', 'works'),1);
+        if ($idimg<=0){
+            redirectMsg('products.php?'.$ruta,__('You must specify an image ID!', 'shop'),1);
             die();
         }
 
         //Verificamos que la imagen exista
-        $img = new PWImage($id);
+        $img = new ShopImage($idimg);
         if ($img->isNew()){
-            redirectMsg('./images.php?work='.$work->id().$ruta,__('Specified image does not exists!', 'works'),1);
+            redirectMsg('products.php?'.$ruta,__('Specified image does not exists!', 'shop'),1);
             die();
         }
     }
 
 
-    PWFunctions::toolbar();
-    RMTemplate::get()->assign('xoops_pagetitle', $work->title().' &raquo; '.__('Work Images','works'));
-    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='./images.php?work=".$work->id()."'>".__('Work Images','works')."</a> &raquo;".($edit ? __('Edit Image','works') : __('Add Image','works')));
+    ShopFunctions::include_required_files();
+    RMTemplate::get()->assign('xoops_pagetitle', $product->getVar('name').' &raquo; '.__('Product Images','shop'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; <a href='products.php?id=".$product->id()."'>".__('Product Images','shop')."</a> &raquo;".($edit ? __('Edit Image','shop') : __('Add Image','shop')));
     xoops_cp_header();
 
-    $form = new RMForm($edit ? __('Edit Image','works') : __('Add Image','works'),'frmImg','images.php');
+    $form = new RMForm($edit ? __('Edit Image','shop') : __('Add Image','shop'),'frmImg','products.php');
     $form->setExtra("enctype='multipart/form-data'");
 
-    $form->addElement(new RMFormText(__('Title','works'),'title',50,100,$edit ? $img->title() : ''), true);
-    $form->addElement(new RMFormFile(__('Image file','works'),'image',45, $xoopsModuleConfig['size_image']*1024), $edit ? false : true);
+    $form->addElement(new RMFormText(__('Title','shop'),'title',50,100,$edit ? $img->getVar('title') : ''), true);
+    $form->addElement(new RMFormFile(__('Image file','shop'),'file',45, $xoopsModuleConfig['size_image']*1024), $edit ? false : true);
     if ($edit){
-        $form->addElement(new RMFormLabel(__('Current image file','works'),"<img src='".XOOPS_UPLOAD_URL."/works/ths/".$img->image()."' />"));
+        $form->addElement(new RMFormLabel(__('Current image file','shop'),"<img src='".XOOPS_UPLOAD_URL."/minishop/ths/".$img->getVar('file')."' />"));
     }
 
-    $form->addElement(new RMFormTextArea(__('Description','works'),'desc',4,50,$edit ? $img->desc() : ''));
+    $form->addElement(new RMFormTextArea(__('Description','shop'),'desc',4,50,$edit ? $img->getVar('description','e') : ''));
     
-    $form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+    $form->addElement(new RMFormHidden('action',$edit ? 'saveeditedimage' : 'saveimage'));
     $form->addElement(new RMFormHidden('id',$id));
-    $form->addElement(new RMFormHidden('work',$work->id()));
+    $form->addElement(new RMFormHidden('idimg',$img->id()));
     $form->addElement(new RMFormHidden('page',$page));
-    $form->addElement(new RMFormHidden('limit',$limit));
+    $form->addElement(new RMFormHidden('bname',$bname));
 
     $ele = new RMFormButtonGroup();
     $ele->addButton('sbt', _SUBMIT, 'submit');
-    $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'images.php?work='.$work->id().$ruta.'\';"');
+    $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'products.php?id='.$product->id().'\';"');
     $form->addElement($ele);
 
     $form->display();
@@ -503,76 +504,76 @@ function shop_save_image($edit = 0){
         $$k = $v;
     }
 
-    $ruta = "&page=$page";
+    $ruta = "action=images&page=$page&bname=$bname&id=$id";
 
     //Verificamos que el trabajo sea válido
     if ($id<=0){
-        redirectMsg('./products.php',__('You must specify a work ID!', 'works'),1);
+        redirectMsg('products.php',__('You must specify a product ID!', 'shop'),1);
+        die();
+    }
+    
+    if (!$xoopsSecurity->check()){
+        redirectMsg('products.php?'.$ruta,__('Session token expired!', 'shop'), 1);
         die();
     }
 
     //Verificamos que el trabajo exista
-    $work = new PWWork($work);
-    if ($work->isNew()){
-        redirectMsg('./works.php',__('Specified work does not exists!', 'works'),1);
-        die();
-    }
-
-    if (!$xoopsSecurity->check()){
-        redirectMsg('./images.php?work='.$work->id().$ruta,__('Session token expired!', 'works'), 1);
+    $product = new ShopProduct($id);
+    if ($product->isNew()){
+        redirectMsg('products.php',__('Specified product does not exists!', 'shop'),1);
         die();
     }
 
     if ($edit){
         //Verificamos que la imagen sea válida
-        if ($id<=0){
-            redirectMsg('./images.php?work='.$work->id().$ruta,__('You must specify an image ID!', 'works'),1);
+        if ($idimg<=0){
+            redirectMsg('products.php?'.$ruta,__('You must specify an image ID!', 'shop'),1);
             die();
         }
 
         //Verificamos que la imagen exista
-        $img = new PWImage($id);
+        $img = new ShopImage($idimg);
         if ($img->isNew()){
-            redirectMsg('./images.php?work='.$work->id().$ruta,__('Specified image does not exists!', 'works'),1);
+            redirectMsg('products.php?'.$ruta,__('Specified image does not exists!', 'shop'),1);
             die();
         }
     }else{
-        $img = new PWImage();
+        $img = new ShopImage();
     }
 
-    $img->setTitle($title);
-    $img->setDesc(substr($desc,0,100));
-    $img->setWork($work->id());
+    $img->setVar('title', $title);
+    $img->setVar('description', $description);
+    $img->setVar('product', $product->id());
     
     //Imagen
     include_once RMCPATH.'/class/uploader.php';
-    $folder = XOOPS_UPLOAD_PATH.'/works';
-    $folderths = XOOPS_UPLOAD_PATH.'/works/ths';
+    $folder = XOOPS_UPLOAD_PATH.'/minishop';
+    $folderths = XOOPS_UPLOAD_PATH.'/minishop/ths';
+    
     if ($edit){
-        $image = $img->image();
-        $filename=$img->image();
-    }
-    else{
+        $image = $img->getVar('file');
+        $filename=$img->getVar('file');
+    }else{
         $filename = '';
     }
 
     //Obtenemos el tamaño de la imagen
-    $thSize = $xoopsModuleConfig['image_ths'];
-    $imgSize = $xoopsModuleConfig['image'];
+    $thSize = explode("|", $xoopsModuleConfig['thssize']);
+    $imgSize = explode("|", $xoopsModuleConfig['imgsize']);
 
-    $up = new RMFileUploader($folder, $xoopsModuleConfig['size_image']*1024, array('jpg','png','gif'));
+    $up = new RMFileUploader($folder, $xoopsModuleConfig['maxsize']*1024, array('jpg','png','gif'));
 
-    if ($up->fetchMedia('image')){
+    if ($up->fetchMedia('file')){
 
     
         if (!$up->upload()){
-            redirectMsg('./images.php?op='.($edit ? 'edit' : 'new').'&work='.$work->id().$ruta,$up->getErrors(), 1);
+            redirectMsg('products.php?action='.($edit ? 'edit' : 'new').'&'.$ruta,$up->getErrors(), 1);
             die();
         }
                     
-        if ($edit && $img->image()!=''){
-            @unlink(XOOPS_UPLOAD_PATH.'/works/'.$img->image());
-            @unlink(XOOPS_UPLOAD_PATH.'/works/ths/'.$img->image());
+        if ($edit && $img->getVar('file')!=''){
+            @unlink(XOOPS_UPLOAD_PATH.'/minishop/'.$img->getVar('file'));
+            @unlink(XOOPS_UPLOAD_PATH.'/minishop/ths/'.$img->getVar('file'));
             
         }
 
@@ -580,46 +581,33 @@ function shop_save_image($edit = 0){
         $fullpath = $up->getSavedDestination();
         // Redimensionamos la imagen
         $redim = new RMImageResizer($fullpath, $fullpath);
-        switch ($xoopsModuleConfig['redim_image']){
-            
-            case 0:
-                //Recortar miniatura
-                $redim->resizeWidth($imgSize[0]);
-                $redim->setTargetFile($folderths."/$filename");                
-                $redim->resizeAndCrop($thSize[0],$thSize[1]);
-                break;    
-            case 1: 
-                //Recortar imagen grande
-                $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-                $redim->setTargetFile($folderths."/$filename");
-                $redim->resizeWidth($thSize[0]);            
-                break;
-            case 2:
-                //Recortar ambas
-                $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-                $redim->setTargetFile($folderths."/$filename");
-                $redim->resizeAndCrop($thSize[0],$thSize[1]);
-                break;
-            case 3:
-                //Redimensionar
-                $redim->resizeWidth($imgSize[0]);
-                $redim->setTargetFile($folderths."/$filename");
-                $redim->resizeWidth($thSize[0]);
-                break;                
+        
+        if($xoopsModuleConfig['imgredim']){
+            $redim->resizeAndCrop($imgSize[0],$imgSize[1]);
+        } else {
+            $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+        }
+        
+        $redim->setTargetFile($folderths."/$filename"); 
+        
+        if($xoopsModuleConfig['thsredim']){
+            $redim->resizeAndCrop($thSize[0],$thSize[1]);
+        } else {
+            $redim->resizeWidthOrHeight($thSize[0],$thSize[1]);
         }
 
     }
 
     
-    $img->setImage($filename);
+    $img->setVar('file', $filename);
     
-    RMEvents::get()->run_event('works.save.image', $img);
+    RMEvents::get()->run_event('shop.save.image', $img);
     
     if (!$img->save()){
-        redirectMsg('./images.php?work='.$work->id().$ruta,__('Errors ocurred while trying to save the image', 'works').'<br />'.$img->errors(),1);
+        redirectMsg('products.php?action=images&'.$ruta,__('Errors ocurred while trying to save the image', 'shop').'<br />'.$img->errors(),1);
         die();
     }else{    
-        redirectMsg('./images.php?work='.$work->id().$ruta,__('Database updated successfully!', 'works'),0);
+        redirectMsg('products.php?'.$ruta,__('Database updated successfully!', 'shop'),0);
         die();
 
     }
@@ -678,6 +666,59 @@ function deleteImages(){
 }
 
 
+function shop_delete_images(){
+    global $xoopsSecurity, $xoopsModule;
+    
+    $ids = rmc_server_var($_REQUEST, 'ids', 0);
+    $id = rmc_server_var($_REQUEST, 'id', 0);
+    $page = rmc_server_var($_REQUEST, 'page', 0);
+    $bname = rmc_server_var($_REQUEST, 'bname', 0);
+
+    $ruta = "action=images&page=$page&id=$id&bname=$bname";
+
+    //Verificamos que nos hayan proporcionado una imagen para eliminar
+    if (!is_array($ids)){
+        redirectMsg('products.php?'.$ruta, __('You must select an image to delete!', 'shop'),1);
+        die();
+    }
+
+    if (!$xoopsSecurity->check()){
+        redirectMsg('products.php?'.$ruta,__('Session token expired!', 'shop'), 1);
+        die();
+    }
+    
+    $errors = '';
+    foreach ($ids as $k){
+        //Verificamos si la imagen es válida
+        if ($k<=0){
+            $errors.=sprintf(__('Image ID "%s" is not valid!', 'shop'), $k);
+            continue;
+        }
+
+        //Verificamos si la imagen existe
+        $img = new ShopImage($k);
+        if ($img->isNew()){
+            $errors.=sprintf(__('Image with ID "%s" does not exists!', 'shop'), $k);
+            continue;
+        }
+        
+        if (!$img->delete()){
+            $errors.=sprintf(__('Image "%s" could not be deleted!', 'shop'),$img->getVar('title'));
+        }
+        
+    }
+        
+    if ($errors!=''){
+        redirectMsg('products.php?'.$ruta,__('Errors ocurred while trying to delete images', 'shop').'<br />'.$errors,1);
+        die();
+    }else{
+        redirectMsg('products.php?'.$ruta,__('Images deleted successfully!', 'shop'),0);
+        die();
+    }
+}
+
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
@@ -712,6 +753,14 @@ switch($action){
     
     case 'saveimage':
         shop_save_image();
+        break;
+    
+    case 'saveeditedimage':
+        shop_save_image(1);
+        break;
+    
+    case 'deleteimages':
+        shop_delete_images();
         break;
            
     default:

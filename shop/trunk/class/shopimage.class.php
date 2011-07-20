@@ -28,7 +28,7 @@ class ShopImage extends RMObject
 	}	
 
 	public function id(){
-		return $this->getVar('id_img');
+		return $this->getVar('id_image');
 	}
 
 	public function save(){
@@ -41,9 +41,8 @@ class ShopImage extends RMObject
 
 	public function delete(){
 		//Eliminamos las imágenes
-		@unlink(XOOPS_UPLOAD_PATH.'/minishop/'.$this->image());
-		@unlink(XOOPS_UPLOAD_PATH.'/minishop/ths/'.$this->image());
-
+		@unlink(XOOPS_UPLOAD_PATH.'/minishop/'.$this->getVar('file'));
+		@unlink(XOOPS_UPLOAD_PATH.'/minishop/ths/'.$this->getVar('file'));
 
 		return $this->deleteFromTable();
 	}

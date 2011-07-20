@@ -26,9 +26,13 @@ class ShopFunctions
         
         $sql = "SELECT * FROM ".$db->prefix("shop_categories")." WHERE parent='$parent' ORDER BY $order";
         $result = $db->query($sql);
+        
         while ($row = $db->fetchArray($result)){
             if ($row['id_cat']==$exclude) continue;
             $row['indent'] = $indent;
+            $cat = new ShopCategory();
+            $cat->assignVars($row);
+            $row['link'] = $cat->permalink();
             $categories[] = $row;
             if ($include_subs) ShopFunctions::categos_list($categories, $row['id_cat'], $indent+1, $include_subs, $exclude);
         }
@@ -40,6 +44,7 @@ class ShopFunctions
     */
     public function include_required_files(){
         RMTemplate::get()->add_style('admin.css','shop');
+        RMTemplate::get()->add_local_script('admin.js', 'shop');
         include '../include/toolbar.php';
     }
     
@@ -59,7 +64,7 @@ class ShopFunctions
             
         } else {
             
-            $ret = XOOPS_URL.'/modules/mywords/';
+            $ret = XOOPS_URL.'/modules/shop/';
             
         }
         
@@ -79,6 +84,83 @@ class ShopFunctions
         list($id) = $db->fetchRow($result);
         return $id;
         
+    }
+    
+    /**
+    * Get parameters from url
+    */
+    public function url_params(){
+        $mc = RMUtilities::module_config('shop');
+        
+        $category = '';
+        $page = 1;
+        $id = '';
+        $contact = '';
+        
+        if($mc['urlmode']){
+            
+            $params = str_replace(XOOPS_URL, '', RMFunctions::current_url());
+            $params = str_replace($mc['htbase'], '', $params);
+            $params = trim($params, '/');
+            $params = explode("/", $params);
+            
+            $fc = false; // Switch to category path
+            
+            foreach($params as $i => $k){
+                switch($k){
+                    case 'category':
+                        $category = $params[$i+1];
+                        $fc = true;
+                        break;
+                    case 'page':
+                        $page = $params[$i+1];
+                        $fc = false;
+                        break;
+                    case 'contact':
+                        $contact = $params[$i+1];
+                        $fc = false;
+                        break;
+                    default:
+                        if($category!='' && $category!=$k && $fc)
+                            $category .= '/'.$k;
+                        $id = $category==''&&$page<=1&&$contact==''?$params[0]:'';
+                        break;
+                }
+            }
+        
+        } else {
+            
+            $category = rmc_server_var($_GET, 'cat', 0);
+            $id = rmc_server_var($_GET, 'id', 0);
+            $page = rmc_server_var($_GET, 'page', 0);
+            $contact = rmc_server_var($_GET, 'contact', 0);
+            
+        }
+        
+        $ret['category'] = $category;
+        $ret['page'] = $page;
+        $ret['id'] = $id;
+        $ret['contact'] = $contact;
+        
+        return $ret;
+        
+    }
+    
+    /**
+    * Error 404
+    */
+    public function error404(){
+        global $xoopsLogger;
+        $xoopsLogger->renderingEnabled = false;
+        $xoopsLogger->activated = false;
+        header("HTTP/1.0 404 Not Found");
+        if (substr(php_sapi_name(), 0, 3) == 'cgi')
+              header('Status: 404 Not Found', TRUE);
+              else
+              header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+
+        echo __("ERROR 404. Document not Found",'shop');
+        die();
     }
     
 }

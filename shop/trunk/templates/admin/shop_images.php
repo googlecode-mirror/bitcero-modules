@@ -1,11 +1,11 @@
 <h1 class="rmc_titles"><span style="background-position: -64px -32px;">&nbsp;</span><?php echo $product->getVar('name'); ?> : <?php _e('Product Images','shop'); ?></h1>
 
 <div id="shop-right-table">
-	<form name="frmImgs" id="frm-images" method="POST" action="images.php">
+	<form name="frmImgs" id="frm-images" method="POST" action="products.php">
 	<div class="pw_options">
-	    <select name="op" id="bulk-top">
+	    <select name="action" id="bulk-top">
 	        <option value=""><?php _e('Bulk actions...','shop'); ?></option>
-	        <option value="delete"><?php _e('Delete','shop'); ?></option>
+	        <option value="deleteimages"><?php _e('Delete','shop'); ?></option>
 	    </select>
 	    <input type="button" id="the-op-top" value="<?php _e('Apply','shop'); ?>" onclick="before_submit('frm-images');" />
 	</div>
@@ -38,12 +38,12 @@
 		<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center" valign="top">
 			<td><input type="checkbox" name="ids[]" id="item-<?php echo $img['id']; ?>" value="<?php echo $img['id']; ?>" /></td>
 			<td><strong><?php echo $img['id']; ?></strong></td>
-			<td><img src="<?php echo XOOPS_URL; ?>/uploads/works/ths/<?php echo $img['image']; ?>" style="width: 50px;" /></td>
+			<td><img src="<?php echo XOOPS_URL; ?>/uploads/minishop/ths/<?php echo $img['file']; ?>" style="width: 50px;" /></td>
 			<td align="left">
 				<strong><?php echo $img['title']; ?></strong>
 				<span class="rmc_options">
-					<a href="./images.php?action=editimage&amp;id=<?php echo $img['id']; ?>&amp;product=<?php echo $product->id(); ?>&amp;page=<?php echo $page; ?>&amp;bname=<?php echo $bname; ?>"><?php _e('Edit', 'shop'); ?></a> |
-					<a href="javascript:;" onclick="select_option(<?php echo $img['id']; ?>,'delete','frm-images');"><?php _e('Delete', 'shop'); ?></a>
+					<a href="products.php?action=editimage&amp;idimg=<?php echo $img['id']; ?>&amp;id=<?php echo $product->id(); ?>&amp;page=<?php echo $page; ?>&amp;bname=<?php echo $bname; ?>"><?php _e('Edit', 'shop'); ?></a> |
+					<a href="javascript:;" onclick="select_option(<?php echo $img['id']; ?>,'deleteimages','frm-images');"><?php _e('Delete', 'shop'); ?></a>
 				</span>
 			</td>
 			<td align="left"><?php echo $img['desc']; ?></td>
@@ -52,13 +52,13 @@
 	    </tbody>
 	</table>
 	<div class="pw_options">
-	    <select name="opb" id="bulk-bottom">
+	    <select name="actionb" id="bulk-bottom">
 	        <option value=""><?php _e('Bulk actions...','shop'); ?></option>
-	        <option value="delete"><?php _e('Delete','shop'); ?></option>
+	        <option value="deleteimages"><?php _e('Delete','shop'); ?></option>
 	    </select>
 	    <input type="button" id="the-op-bottom" value="<?php _e('Apply','shop'); ?>" onclick="before_submit('frm-categos');" />
 	</div>
-	<input type="hidden" name="work" value="<?php echo $product->id(); ?>" />
+	<input type="hidden" name="id" value="<?php echo $product->id(); ?>" />
 	<input type="hidden" name="page" value="<?php echo $page; ?>" />
     <input type="hidden" name="bname" value="<?php echo $bname; ?>" />
 	<?php echo $xoopsSecurity->getTokenHTML(); ?>
@@ -67,9 +67,9 @@
 
 <div id="shop-left-form">
 	<h3><?php _e('Add image', 'shop'); ?></h3>
-	<form name="frm_images" id="frm-images" method="post" action="images.php" enctype="multipart/form-data">
+	<form name="frm_images" id="frm-new-images" method="post" action="products.php" enctype="multipart/form-data">
 		<label for="name"><?php _e('Image title','shop'); ?></label>
-		<input type="text" size="30" name="name" id="name" value="" class="required" />
+		<input type="text" size="30" name="title" id="name" value="" class="required" />
 		<label for="image-file"><?php _e('Image file','shop'); ?></label>
 		<input type="file" name="file" id="image-file" />
 		<label for="description"><?php _e('Image description','shop'); ?></label>

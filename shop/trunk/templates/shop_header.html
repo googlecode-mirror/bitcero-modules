@@ -1,0 +1,13 @@
+<{if $shopConfig.showhead}>
+<div id="shop-head">
+    <h3><{$shopConfig.modtitle}></h3>
+    <{if !$product_details}>
+    <select class="shop_cat_list" name="category">
+        <option onclick="window.location.href = '<{$shop_url}>';" value=""<{if !$category}> selected="selected"<{/if}>><{$lang_selcat}></option>
+        <{foreach item=cat from=$categories_list}>
+        <option value="<{$cat.id_cat}>" onclick="window.location.href = '<{$cat.link}>';"<{if $category.id==$cat.id_cat}> selected="selected"<{/if}>><{$cat.dash}> <{$cat.name}></option>
+        <{/foreach}>
+    </select>
+    <{/if}>
+</div>
+<{/if}>

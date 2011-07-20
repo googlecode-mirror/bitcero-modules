@@ -1,0 +1,20 @@
+<{include file="db:shop_header.html"}>
+
+<div class="shop_contact_form">
+    <h2><{$lang_requesting_info}></h2>
+    <div class="fields">
+    <form action="<{$form_action}>" method="post" id="frm-contact">
+        <label for="name"><{$lang_yname}></label>
+        <input type="text" name="name" id="name" value="<{$shop_name}>" />
+        <label for="email"><{$lang_ymail}></label>
+        <input type="text" name="email" id="email" value="<{$shop_email}>" />
+        <label for="product"><{$lang_prod}></label>
+        <input type="text" name="product" id="product" value="<{$product.name}>" disabled="disabled" />
+        <label for="message"><{$lang_message}></label>
+        <textarea cols="30" rows="5" name="message" id="message"></textarea>
+        <{$captcha}>
+        <input type="submit" value="<{$lang_send}>" />
+        <input type="hidden" name="action" value="send" />
+    </form>
+    </div>
+</div>

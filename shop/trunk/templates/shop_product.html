@@ -1,0 +1,25 @@
+<{include file="db:shop_header.html"}>
+
+<div class="shop_product_data">
+    <h1 class="prod_name"><{$product.name}></h1>
+    <div class="prod_images">
+        <img src="<{$xoops_url}>/uploads/minishop/<{$product.image}>" alt="<{$product.name}>" class="prod_image" />
+        <div class="prod_thumbs">
+            <a href="<{$xoops_url}>/uploads/minishop/<{$product.image}>" rel="product-images" title="<{$product.name}>"><img src="<{$xoops_url}>/uploads/minishop/ths/<{$product.image}>" alt="<{$product.name}>" /></a>
+            <{foreach item=img from=$product.images}>
+                <a href="<{$xoops_url}>/uploads/minishop/<{$img.file}>" rel="product-images" title="<{$img.title}>"><img src="<{$xoops_url}>/uploads/minishop/ths/<{$img.file}>" alt="<{$img.title}>" /></a>
+            <{/foreach}>
+        </div>
+    </div>
+    <ul class="prod_details">
+        <li><{$product.price}></li>
+        <li><span class="stock <{if $product.stock}>instock<{else}>nostock<{/if}>"><{if $product.stock}><{$lang_instock}><{else}><{$lang_outstock}><{/if}></span></li>
+        <li><{if $product.updated!=''}><{$product.updated}><{else}><{$product.created}><{/if}></li>
+        <{foreach item=opt from=$options}>
+        <li><{$opt}></li>
+        <{/foreach}>
+    </ul>
+    <div class="prod_description">
+        <{$product.description}>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="shop_products_grid">
+    <{assign var="i" value=1}>
+    <{foreach item=prod from=$products}>
+        <{if $i>$columns}>
+            <div class="shop_clearer">&nbsp;</div>
+            <{assign var="i" value=1}>
+        <{/if}>
+        <div class="shop_item" style="width: <{math equation="floor(100/$columns)"}>%;">
+            <div class="shop_item_data">
+                <a href="<{$prod.link}>" title="<{$prod.name}>"><img src="<{$prod.image}>" alt="<{$prod.name}>" /></a>
+                <a href="<{$prod.link}>" class="name"><{$prod.name}></a>
+                <span class="stock <{if $prod.stock}>instock<{else}>nostock<{/if}>"><{if $prod.stock}><{$lang_instock}><{else}><{$lang_outstock}><{/if}></span>
+                <span class="price"><{$prod.price}></span>
+                <span class="date"><{if $prod.updated!=''}><{$prod.updated}><{else}><{$prod.created}><{/if}></span>
+            </div>
+        </div>
+        <{assign var="i" value=$i+1}>
+    <{/foreach}>
+</div>

@@ -56,9 +56,9 @@ class ShopCategory extends RMObject
      * Obtiene el enlace a la categor?a
      */
     public function permalink(){
-        $mc = RMUtilities::get()->module_config('shop');
+        $mc = RMUtilities::module_config('shop');
         $link = ShopFunctions::get_url();
-        $link .= ($mc['urlmode']==1 ? '?cat='.$this->id() : 'category/'.$this->path());
+        $link .= ($mc['urlmode']==0 ? '?cat='.$this->id() : 'category/'.$this->path());
         return $link;
     }
 

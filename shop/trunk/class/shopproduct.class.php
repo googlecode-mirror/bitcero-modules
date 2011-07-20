@@ -230,6 +230,32 @@ class ShopProduct extends RMObject
     }
     
     /**
+    * Get all images
+    * @param Indicates if return objects or array
+    * @return array
+    */
+    public function get_images($obj = false){
+        
+        $result = $this->db->query("SELECT * FROM ".$this->db->prefix("shop_images")." WHERE product=".$this->id());
+        
+        $ret = array();
+        $i = 0;
+        
+        while($row = $this->db->fetchArray($result)){
+            if($obj){                
+                $ret[$i] = new ShopImage();
+                $ret[$i]->assignVars($row);
+                $i++;
+            } else {                
+                $ret[] = $row;                
+            }            
+        }
+        
+        return $ret;
+        
+    }
+    
+    /**
      * Save data
      */
     public function save(){    
@@ -262,6 +288,14 @@ class ShopProduct extends RMObject
         if($this->getVar('image')!=''){
             @unlink(XOOPS_UPLOAD_PATH.'/minishop/'.$this->getVar('image'));
             @unlink(XOOPS_UPLOAD_PATH.'/minishop/ths/'.$this->getVar('image'));
+        }
+        
+        // Delete images
+        $images = $this->get_images(true);
+        foreach($images as $img){
+            
+            $img->delete();
+            
         }
         
         return $this->deleteFromTable();

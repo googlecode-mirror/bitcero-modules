@@ -44,9 +44,9 @@ function select_option(id,action,form){
 		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item-"+id).attr("checked","checked");
 		$("#"+form).submit();
-	}else if(action=='delete'){
-		$("#bulk-top").val('delete');
-		$("#bulk-bottom").val('delete');
+	}else if(action=='delete'||action=='deleteimages'){
+		$("#bulk-top").val(action);
+		$("#bulk-bottom").val(action);
 		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item-"+id).attr("checked","checked");
 		if (confirm(shop_message))

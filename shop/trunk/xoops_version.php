@@ -47,7 +47,12 @@ $modversion['hasSearch'] = 0;
 
 // Templates
 $modversion['templates'] = array(
-    //0 => array('file' => 'mch_index.html', 'description' => ''),
+    array('file' => 'shop_index.html', 'description' => ''),
+    array('file' => 'shop_header.html', 'description' => ''),
+    array('file' => 'shop_prodsgrid.html', 'description' => ''),
+    array('file' => 'shop_category.html', 'description' => ''),
+    array('file' => 'shop_product.html', 'description' => ''),
+    array('file' => 'shop_contact.html', 'description' => '')
 );
 
 // Tables
@@ -57,6 +62,24 @@ $modversion['tables'] = array(
 );
 
 // Options
+$modversion['config'][] = array(
+    'name' => 'modtitle',
+    'title' => '_MI_MS_MODTITLE',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'MiniShop 3'
+);
+
+$modversion['config'][] = array(
+    'name' => 'showhead',
+    'title' => '_MI_MS_SHOWHEAD',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
+);
+
 $modversion['config'][] = array(
     'name' => 'urlmode',
     'title' => '_MI_MS_URLMODE',
@@ -136,6 +159,49 @@ $modversion['config'][] = array(
     'valuetype' => 'int',
     'default' => '1',
     'options' => array(__('Resize','shop')=>0,__('Crop to fit width and height','shop')=>1)
+);
+
+// Catalog
+$modversion['config'][] = array(
+    'name' => 'sort',
+    'title' => '_MI_MS_HOMEPRODS',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => 0,
+    'options' => array(__('Sort by date','shop')=>0, __('Sort by name','shop')=>1)
+);
+$modversion['config'][] = array(
+    'name' => 'numxpage',
+    'title' => '_MI_MS_XPAGE',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 9
+);
+$modversion['config'][] = array(
+    'name' => 'columns',
+    'title' => '_MI_MS_COLS',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 3
+);
+$modversion['config'][] = array(
+    'name' => 'format',
+    'title' => '_MI_MS_CURFOR',
+    'description' => '_MI_MS_CURFORD',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '$%s'
+);
+$modversion['config'][] = array(
+    'name' => 'email',
+    'title' => '_MI_MS_EMAIL',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => $xoopsConfig['adminmail']
 );
 
 
