@@ -8,7 +8,15 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 define('RMCLOCATION','images');
-include '../admin/header.php';
+include '../../../mainfile.php';
+
+define('GS_URL', XOOPS_URL.'/modules/galleries');
+define('GS_PATH', XOOPS_ROOT_PATH.'/modules/galleries');
+
+include GS_PATH.'/class/gsuser.class.php';
+include GS_PATH.'/class/gstag.class.php';
+include GS_PATH.'/class/gsimage.class.php';
+include GS_PATH.'/class/gsset.class.php';
 
 function send_error($message){
     $data['error'] = 1;
@@ -18,12 +26,22 @@ function send_error($message){
 }
 
 function saveBulkImages(){
-    global $util, $mc, $xoopsUser;
+    
+    $mc = RMUtilities::module_config('galleries');
     
     XoopsLogger::getInstance()->activated = false;
     XoopsLogger::getInstance()->renderingEnabled = false;
-    
+      
     set_time_limit(0);
+    
+    $security = TextCleaner::getInstance()->decrypt(rmc_server_var($_POST, 'rmsecurity', 0), true);
+    $data = explode("|", $security);
+    
+    $xoopsUser = new XoopsUser($data[1]);
+    
+    if (!isset($data[1]) || $data[1]!=XOOPS_URL.'/modules/galleries/admin/images.php'){
+        send_error(__('You are not allowed to do this action','galleries'));
+    }
     
     foreach ($_POST as $k => $v){
         $$k = $v;
@@ -121,153 +139,149 @@ function saveBulkImages(){
     $img->setCreated(time());
     $img->setImage($uploader->getSavedFileName());
 
-    if (!$image->save()){
+    if (!$img->save()){
         unlink($uploader->savedDestination);
         send_error(__('File could not be inserted to database!','galleries'));
     }
-
-    $ret['message'] = '1';
-    $ret['id'] = $image->id();
-    echo json_encode($ret);
-    die();
     
-    /*
-    foreach ($_FILES['image']['name'] as $k => $v){
-        if ($v=='') continue;
-        
-        
-        //Imagen
-        $filename = '';
-        
-        if ($up->fetchMedia('image',$k)){
-
-            if (!$up->upload()){
-                $errors .= sprintf(__('Image could not be uploaded due to next reason: %s','galleries'), $up->getErrors());
-                continue;
-            }
-                    
-            $filename = $up->getSavedFileName();
-            $fullpath = $up->getSavedDestination();
+    $user->addPic();
+    $img->setTags($ret);
             
-            $thSize = $mc['image_ths'];
-            $imgSize = $mc['image'];
-            
-            if ($thSize[0]<=0) $thSize[0] = 100;
-            if (!isset($thSize[1]) || $thSize[1]<=0) $thSize[1] = $thSize[0];
-            
-            if ($imgSize[0]<=0) $imgSize[0] = 500;
-            if (!isset($imgSize[1]) || $imgSize[1]<=0) $imgSize[1] = $imgSize[0];
-            
-            // Almacenamos la imágen original
-            if ($mc['saveoriginal']){
-                copy($fullpath, $mc['storedir'].'/originals/'.$filename);
-            }
-            
-            // Redimensionamos la imagen
-            $redim = new RMImageResizer($fullpath, $fullpath);
-            switch ($mc['redim_image']){
-                case 0:
-                    //Recortar miniatura
-                    $redim->resizeWidth($imgSize[0]);
-                    $redim->setTargetFile($folderths."/$filename");                
-                    $redim->resizeAndCrop($thSize[0],$thSize[1]);
-                break;    
-                case 1: 
-                    //Recortar imagen grande
-                    $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-                    $redim->setTargetFile($folderths."/$filename");
-                    $redim->resizeWidth($thSize[0]);            
-                break;
-                case 2:
-                    //Recortar ambas
-                    $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-                    $redim->setTargetFile($folderths."/$filename");
-                    $redim->resizeAndCrop($thSize[0],$thSize[1]);
-                break;
-                case 3:
-                    //Redimensionar
-                    $redim->resizeWidth($imgSize[0]);
-                    $redim->setTargetFile($folderths."/$filename");
-                    $redim->resizeWidth($thSize[0]);
-                break;            
-            }
-
-
+    //Albumes
+    $sets = explode(",", $sets);
+    if (!empty($sets)){
+        foreach ($sets as $k => $v){
+            $album = new GSSet($v);
+            $album->addPic($img->id());
         }
-        
-        //Fin de Imagen
-        $img->setImage($filename);
-        
-        if ($up->getErrors()==''){
-            if (!$img->save()){
-                $errors .= sprintf(__('Image could not be inserted in database!','galleries'), $v)." (".$img->errors().")";
-            } else {
-                $user->addPic();
-                $img->setTags($ret);
-            
-                //Albumes
-                if (!empty($albums)){
-                    foreach ($albums as $k => $v){
-                        $album = new GSSet($v);
-                        $album->addPic($img->id());
-                    }
-                }
-            }
-        }else{
-            $errors .= $up->getErrors();
-        }
-
-        
-        ++$k;
     }
 
-    if($errors!=''){
-        redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to upload images.','galleries').$errors,1);
-        die();
-    }else{
-        redirectMsg('./images.php?'.$ruta,__('Images uploaded successfully!','galleries'),0);
-        die();
-    }*/
+    $ret['message'] = '1';
+    $ret['id'] = $img->id();
+    echo json_encode($ret);
+    die();
 
+}
+
+/**
+* Resize images
+*/
+function gs_resize_images(){
+    global $xoopsUser, $xoopsLogger, $xoopsSecurity;
+    
+    set_time_limit(0);
+    
+    $mc = RMUtilities::module_config('galleries');
+    
+    $params = rmc_server_var($_GET, 'data','');
+    $id = rmc_server_var($_GET, 'img', 0);
+    
+    if ($params==''){
+        send_error(__('Unauthorized!','galleries'));
+    }
+    
+    if ($id<=0){
+        send_error(__('Invalid image!','galleries'));
+    }
+    
+    $params = TextCleaner::decrypt($params);
+    $data = explode('|', $params);
+    
+    if ($data[0]!=$xoopsUser->uid()){
+        send_error(__('Unauthorized!','galleries'));
+    }
+    
+    if ($data[1]!=GS_URL.'/admin/images.php'){
+        send_error(__('Unauthorized!','galleries'));
+    }
+    
+    if (!$xoopsSecurity->check(false, $data[2])){
+        send_error(__('Unauthorized!','galleries'));
+    }
+    
+    $image = new GSImage($id);
+    if ($image->isNew()){
+        send_error(__('Image not found!','galleries'));
+    }
+    
+    $thSize = $mc['image_ths'];
+    $imgSize = $mc['image'];
+    
+    
+    if ($thSize[0]<=0) $thSize[0] = 100;
+    if (!isset($thSize[1]) || $thSize[1]<=0) $thSize[1] = $thSize[0];
+            
+    if ($imgSize[0]<=0) $imgSize[0] = 500;
+    if (!isset($imgSize[1]) || $imgSize[1]<=0) $imgSize[1] = $imgSize[0];
+    
+    $xu = new GSUser($image->owner(), 1);
+    
+    $updir = rtrim($mc['storedir'], '/')."/".$xu->uname();
+    $upurl = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $updir);
+    $upths = rtrim($mc['storedir'], '/')."/".$xu->uname()."/ths";
+    
+    $width = 0;
+    $tfile = '';
+    
+    // Almacenamos la imágen original
+    if ($mc['saveoriginal']){
+        copy($updir.'/'.$image->image(), $mc['storedir'].'/originals/'.$image->image());
+    }
+
+    $fd = pathinfo($updir.'/'.$image->image());
+    $filename = $image->image();
+        
+    $redim = new RMImageResizer($updir.'/'.$image->image(), $updir.'/'.$image->image());
+    switch ($mc['redim_image']){
+        case 0:
+            //Recortar miniatura
+            $redim->resizeWidth($imgSize[0]);
+            $redim->setTargetFile($upths."/$filename");                
+            $redim->resizeAndCrop($thSize[0],$thSize[1]);
+            break;    
+        case 1: 
+            //Recortar imagen grande
+            $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+            $redim->setTargetFile($upths."/".$image->image());
+            $redim->resizeWidth($thSize[0]);            
+            break;
+        case 2:
+            //Recortar ambas
+            $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+            $redim->setTargetFile($upths."/$filename");
+            $redim->resizeAndCrop($thSize[0],$thSize[1]);
+            break;
+        case 3:
+            //Redimensionar
+            $redim->resizeWidth($imgSize[0]);
+            $redim->setTargetFile($upths."/$filename");
+            $redim->resizeWidth($thSize[0]);
+            break;            
+    }
+    
+    $tfile = $upurl.'/ths/'.$image->image();
+    
+    $ret['message'] = sprintf(__('%s done!', 'galleries'), $image->image());
+    $ret['done'] = 1;
+    $ret['file'] = $tfile;
+    $ret['title'] = $image->image();
+    echo json_encode($ret);
+        
+    die();
 }
 
 $op = rmc_server_var($_REQUEST, 'op', '');
 
 switch($op){
-    case 'new':
-        formImages();
-    break;
-    case 'newbulk':
-        formBulkImages();
-    break;
-    case 'edit':
-        formImages(1);
-    break;
-    case 'save':
-        saveImages();
-    break;
-    case 'saveedit':
-        saveImages(1);
-    break;
     case 'savebulk':
         XoopsLogger::getInstance()->activated = false;
         XoopsLogger::getInstance()->renderingEnabled = false;
         saveBulkImages();
-    break;
-    case 'delete':
-        deleteImages();
-    break;
-    case 'public':
-        publicImages(2);
-    break;
-    case 'private':
-        publicImages(0);
-    break;
-    case 'privatef':
-        publicImages(1);
-    break;
-    default:
-        showImages();
+        break;
+    case 'resize':
+        XoopsLogger::getInstance()->activated = false;
+        XoopsLogger::getInstance()->renderingEnabled = false;
+        gs_resize_images();
         break;
 }
 

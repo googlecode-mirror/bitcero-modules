@@ -47,6 +47,7 @@ function showUsers(){
 	$sql = "SELECT * FROM ".$db->prefix('gs_users');
 	$sql2 = " LIMIT $start,$limit";
 	$result = $db->query($sql.$sql1.$sql2);
+    
 	while($rows = $db->fetchArray($result)){
 		$uname = eregi_replace("($search)","<span class='searchResalte'>\\1</span>", $rows['uname']);
 
@@ -67,7 +68,7 @@ function showUsers(){
 		);
 
 	}
-
+    
 	GSFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Users management','admin_galleries'));
 	RMTemplate::get()->assign('xoops_pagetitle', __('Users management','admin_galleries'));
@@ -212,13 +213,13 @@ function saveUsers($edit = 0){
 		die();
 	}else{
 		if($edit){
-			@mkdir($mc['storedir']."/".$user->uname());
-			@mkdir($mc['storedir']."/".$user->uname()."/ths");
-			@mkdir($mc['storedir']."/".$user->uname()."/formats");
+			@mkdir($mc['storedir']."/".$user->uname(), 511);
+			@mkdir($mc['storedir']."/".$user->uname()."/ths", 511);
+			@mkdir($mc['storedir']."/".$user->uname()."/formats", 511);
 		}else{
-			mkdir($mc['storedir']."/".$user->uname());
-			mkdir($mc['storedir']."/".$user->uname()."/ths");
-			mkdir($mc['storedir']."/".$user->uname()."/formats");
+			mkdir($mc['storedir']."/".$user->uname(), 511);
+			mkdir($mc['storedir']."/".$user->uname()."/ths", 511);
+			mkdir($mc['storedir']."/".$user->uname()."/formats", 511);
 		}
 		
 		redirectMsg('./users.php?'.$ruta,__('User saved successfully!','admin_galleries'),0);

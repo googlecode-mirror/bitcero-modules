@@ -33,6 +33,20 @@
 
             </div>
         </div>
+        <div id="resizer-bar">
+            <span class="message"></span>
+            <strong><?php _e('Resizing images','galleries'); ?></strong>
+            <div class="thebar">
+            <div class="indicator" id="bar-indicator">0</div>
+            </div>
+            <span><?php _e('Please, do not close the window until resizing process has finished!','galleries'); ?></span>
+                <div class="donebutton">
+                    <?php if(!$isupdate): ?><input type="button" class="donebutton" value="<?php _e('Done! Upload more...','rmcommon'); ?>" onclick="imgcontinue();" /><?php endif; ?>
+                    <input type="button" class="" value="<?php _e('Done! Show images...','rmcommon'); ?>" onclick="window.location = 'images.php?<?php echo $ruta; ?>';" />
+                </div>
+            </div>
+            <div id="gen-thumbnails"></div>
+        </div>
         <?php endif; ?>
     </div>
 </div>
@@ -45,16 +59,3 @@
 <input type="hidden" name="mode" value="<?php echo $mode; ?>" />
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
-<div id="resizer-bar">
-<span class="message"></span>
-<strong><?php _e('Resizing images','galleries'); ?></strong>
-<div class="thebar">
-<div class="indicator" id="bar-indicator">0</div>
-</div>
-<span><?php _e('Please, do not close the window until resizing process has finished!','galleries'); ?></span>
-    <div class="donebutton">
-        <?php if(!$isupdate): ?><input type="button" class="donebutton" value="<?php _e('Done! Click to continue...','rmcommon'); ?>" onclick="imgcontinue();" /><?php endif; ?>
-        <input type="button" class="" value="<?php _e('Done! Show images...','rmcommon'); ?>" onclick="window.location = 'images.php?<?php echo $ruta; ?>';" />
-    </div>
-</div>
-<div id="gen-thumbnails"></div>

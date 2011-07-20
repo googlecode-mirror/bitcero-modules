@@ -15,8 +15,9 @@ var url = '';
 var current = 0;
 
 function send_resize(id,params){
-
-    $.get(url, {token: params, img: id, action: 'resize'}, function(data){
+  
+    $.get(url, {data: params, img: id, op: 'resize'}, function(data){
+        
         if (data['error']){
             $("#resizer-bar span.message").html('<span>'+data['message']+'</span>');
             resize_image(params);

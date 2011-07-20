@@ -287,25 +287,24 @@ function formBulkImages(){
         $uploader = new RMFlashUploader('files-container', '../include/upload.php');
         $uploader->add_setting('scriptData', array(
             'op'=>'savebulk',
-            'set'=>implode(',',$psets),
+            'sets'=>implode(',',$psets),
             'uid'=>$uid,
             'owner'=>$owner,
             'sort'=>$sort,
             'mode'=>$mode,
             'page'=>$page,
             'tags'=>$tags,
-            'token'=>$xoopsSecurity->createToken()
-            //'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)
+            'token'=>$xoopsSecurity->createToken(),
+            'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.GS_URL.'/admin/images.php'.'|'.$xoopsSecurity->createToken(), true)
             // Need better code
         ));
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
-        $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
+        $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','galleries'));
         $uploader->add_setting('sizeLimit', $mc['size_image']*1024);
-        $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
+        $uploader->add_setting('buttonText', __('Browse Images...','galleries'));
         $uploader->add_setting('queueSizeLimit', 100);
         $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
-                alert(resp);
                 eval('ret = '+resp);
                 if (ret.error){
                     \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
@@ -329,9 +328,8 @@ function formBulkImages(){
                 \$('#gen-thumbnails').show();
                 
                 var increments = 1/total*100;
-                url = '".GS_URL."/admin/images.php';
-                
-                params = {token: '".$xoopsSecurity->createToken()."'};
+                url = '".GS_URL."/include/upload.php';
+                params = '".TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.GS_URL.'/admin/images.php'.'|'.$xoopsSecurity->createToken(), true)."';
                 resize_image(params);
                 
             }");
@@ -351,6 +349,7 @@ function formBulkImages(){
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Create batch images','galleries'));
 	RMTemplate::get()->assign('xoops_pagetitle', __('Create batch images','galleries'));
 	RMTemplate::get()->add_local_script('images.js', 'galleries');
+    RMTemplate::get()->add_style('uploader.css', 'galleries');
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/gs_formimages.php",'module','galleries');
