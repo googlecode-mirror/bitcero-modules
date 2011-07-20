@@ -30,7 +30,7 @@ class RMLightbox
 	public function __construct(){
         
 		RMTemplate::get()->add_local_script('jquery.min.js','rmcommon','include');
-		RMTemplate::get()->add_script(RMCURL.'/plugins/lightbox/js/jquery.colorbox-min.js');
+		//RMTemplate::get()->add_local_script('jquery.colorbox-min.js', 'rmcommon', 'plugins/lightbox');
 		
 		$config = RMFunctions::get()->plugin_settings('lightbox', true);
 		
@@ -72,8 +72,8 @@ class RMLightbox
 		$params = "{";
 		$params .= "transition:'$config[transition]'";
 		$params .= ",speed:$config[speed]";
-		$params .= $config['width']>0 ? ",maxWidth:$config[width]" : '';
-		$params .= $config['height']>0 ? ",maxHeight:$config[height]" : '';
+		$params .= $config['width']!='' ? ",maxWidth:$config[width]" : '';
+		$params .= $config['height']!='' ? ",maxHeight:$config[height]" : '';
 		$params .= ",scalePhotos:$config[scale]";
 		$params .= $config['configs']!='' ? ",$config[configs]" : '';
 		$params .= "}";
@@ -87,6 +87,9 @@ class RMLightbox
 		}
 		
 		$script .= "});\n</script>\n";
+        
+        RMTemplate::get()->add_local_script('jquery.colorbox-min.js', 'rmcommon', 'plugins/lightbox');
+        
 		return $script;
 	}
 	

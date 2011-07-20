@@ -53,7 +53,7 @@ $options['width'] = array(
         'caption'   =>  __('Max width','lightbox'),
         'desc'      =>  __('Set a maximum width for loaded content. Example: "100%", 500, "500px". Leave 0 for no limit.','lightbox'),
         'fieldtype'      =>  'text',
-        'valuetype' =>  'int',
+        'valuetype' =>  'text',
         'value'   =>  '0'
 );
 
@@ -62,7 +62,7 @@ $options['height'] = array(
         'caption'   =>  __('Max height','lightbox'),
         'desc'      =>  __('Set a maximum height for loaded content. Example: "100%", 500, "500px". Leave 0 for no limit.','lightbox'),
         'fieldtype'      =>  'text',
-        'valuetype' =>  'int',
+        'valuetype' =>  'text',
         'value'   =>  '0'
 );
 
