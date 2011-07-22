@@ -1,0 +1,13 @@
+<div class="shop_bk_products<{if $block.display}> shop_bk_products_grid<{else}> shop_bk_products_list<{/if}>">
+    <ul>
+        <{foreach item=p from=$block.products}>
+        <li<{if $block.display}> style="width: <{$block.width+30}>px;"<{/if}>>
+            <{if $block.show_image}><a href="<{$p.link}>"><img src="<{$xoops_url}>/uploads/minishop/ths/<{$p.image}>" alt="<{$p.name}>" style="width: <{$block.width}>px;<{if $block.height>0}> height: <{$block.height}>px;<{/if}>" /></a><{/if}>
+            <{if $block.name}><span class="pname"><a href="<{$p.link}>"><{$p.name}></a></span><{/if}>
+            <{if $block.price}><span class="pprice"><{$p.price}></span><{/if}>
+            <{if $block.type}><span class="ptype"><{$p.type}></span><{/if}>
+            <{if $block.stock}><span class="pstock<{if !$p.stock}> poutstock<{/if}>"><{if $p.stock}><{$block.lang_stock}><{else}><{$block.lang_nostock}><{/if}></span><{/if}>
+        </li>
+        <{/foreach}>
+    </ul>
+</div>

@@ -1,0 +1,8 @@
+<div class="shop_bk_categories">
+    <ul>
+        <{foreach item=cat from=$block}>
+        <{assign var=jump value=$cat.indent}>
+        <li<{if $jump>0}> style="padding-left: <{$jump*5+11}>px; background-position: <{$jump*5}>px; font-weight: normal;"<{/if}>><a href="<{$cat.link}>"><{$cat.name}></a></li>
+        <{/foreach}>
+    </ul>
+</div>

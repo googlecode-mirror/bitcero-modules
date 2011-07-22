@@ -164,3 +164,9 @@ class ShopFunctions
     }
     
 }
+
+function shop_dashed(&$item, $key){
+    
+    $item['dash'] = str_repeat("&#8212;",$item['indent']);
+        
+}

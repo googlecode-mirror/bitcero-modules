@@ -204,6 +204,25 @@ $modversion['config'][] = array(
     'default' => $xoopsConfig['adminmail']
 );
 
+// Blocks
+$modversion['blocks'][] = array(
+    'file' => 'shop_bk_products.php',
+    'name' => __('Products', 'shop'),
+    'description' => __('Show products according to multiple options','shop'),
+    'show_func' => 'shop_bk_products_show',
+    'edit_func' => 'shop_bk_products_edit',
+    'template' => 'shop_bk_products.html',
+    'options' => '1||5|1|60|0|name|price|type|stock|1'
+);
+
+$modversion['blocks'][] = array(
+    'file' => 'shop_bk_categories.php',
+    'name' => __('Categories', 'shop'),
+    'description' => __('Show categeries tree for minishop','shop'),
+    'show_func' => 'shop_bk_categories_show',
+    'edit_func' => '',
+    'template' => 'shop_bk_categories.html'
+);
 
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,

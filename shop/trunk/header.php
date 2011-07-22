@@ -19,8 +19,3 @@ define('SHOP_UPURL', XOOPS_UPLOAD_URL.'/minishop');
 $xoopsTpl->assign('shopConfig', $xoopsModuleConfig);
 $xoopsTpl->assign('shop_url', ShopFunctions::get_url());
 
-function shop_dashed(&$item, $key){
-    
-    $item['dash'] = str_repeat("&#8212;",$item['indent']);
-    
-}
