@@ -242,7 +242,9 @@ function m_save_player($edit){
     }
     
     if($name=='' || $birth<=0 || $team<=0 || $lastname=='' || $surname==''){
-        redirectMsg('roster.php?action='.($edit ? 'edit&id='.$id : 'new').'&'.$query, __('Please fill all required data!','match'), 1);
+        echo "$name<br />$birth<br />$team<br />$lastname<br />$surname";
+        die();
+        //redirectMsg('roster.php?action='.($edit ? 'edit&id='.$id : 'new').'&'.$query, __('Please fill all required data!','match'), 1);
     }
 
     if ($edit){
