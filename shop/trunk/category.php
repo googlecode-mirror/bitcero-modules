@@ -39,7 +39,7 @@ if ($catego->isNew()){
 
 // Category data
 $xoopsTpl->assign('category', array('id'=>$catego->id(),'name'=>$catego->getVar('name')));
-$xoopsTpl->assign('lang_prodsincat', sprintf(__('Posts in &#8216;%s&#8217; Category','shop'), $catego->getVar('name')));
+$xoopsTpl->assign('lang_prodsincat', sprintf(__('Products in &#8216;%s&#8217; Category','shop'), $catego->getVar('name')));
 
 $limit = $xoopsModuleConfig['numxpage'];
 list($num) = $db->fetchRow($db->query("SELECT COUNT($tbl2.product) FROM $tbl2, $tbl3 WHERE $tbl2.cat='$category' 

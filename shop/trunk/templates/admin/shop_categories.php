@@ -54,7 +54,7 @@
                 <th><?php _e('Name','shop'); ?></th>
                 <th><?php _e('Description','shop'); ?></th>
                 <th><?php _e('Slug','shop'); ?></th>
-                <th><?php _e('Posts','shop'); ?></th>
+                <th><?php _e('Products','shop'); ?></th>
             </tr>
             </thead>
             <tfoot>
@@ -63,7 +63,7 @@
                 <th><?php _e('Name','shop'); ?></th>
                 <th><?php _e('Description','shop'); ?></th>
                 <th><?php _e('Slug','shop'); ?></th>
-                <th><?php _e('Posts','shop'); ?></th>
+                <th><?php _e('Products','shop'); ?></th>
             </tr>
             </tfoot>
             <?php if(empty($categories)): ?>
@@ -76,7 +76,7 @@
                     <td valign="top"><?php if($cat['id_cat']): ?><input type="checkbox" name="cats[]" id="cat-<?php echo $cat['id_cat']; ?>" value="<?php echo $cat['id_cat'] ?>" /><?php endif; ?></td>
                     <td nowrap="nowrap">
                         <strong><a href="categories.php?action=edit&amp;id=<?php echo $cat['id_cat']?>"><?php echo str_repeat("&#8212;",$cat['indent']).' '.$cat['name']; ?></a></strong>
-                        <span class="shop_options">
+                        <span class="rmc_options">
                         <a href="categories.php?action=edit&amp;id=<?php echo $cat['id_cat']?>"><?php _e('Edit','shop'); ?></a>
                         <?php if($cat['id_cat']!=1): ?> |
                         <a href="javascript:;" onclick="return cat_del_confirm('<?php echo $cat['name']; ?>',<?php echo $cat['id_cat']; ?>);"><?php _e('Delete','shop'); ?></a><?php endif; ?>

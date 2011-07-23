@@ -72,7 +72,7 @@ function shop_show_categos(){
         '<script type="text/javascript">
             function cat_del_confirm(cat, id){
       
-              var string = "'.__('Do you really want to delete \"%s\"','shop').'";
+              var string = "'.__('Do you really want to delete "%s"','shop').'";
                      string = string.replace("%s", cat);
                      var ret = confirm(string);
                      

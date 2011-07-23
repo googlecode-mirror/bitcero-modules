@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('shop');
+
 function shop_bk_products_show($options){
     
     include_once XOOPS_ROOT_PATH.'/modules/shop/class/shopproduct.class.php';

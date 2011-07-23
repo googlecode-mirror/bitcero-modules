@@ -12,7 +12,7 @@ load_mod_locale("shop");
 
 define('_MI_MS_MODTITLE',__('Section Title','shop'));
 define('_MI_MS_SHOWHEAD',__('Show module header','shop'));
-define('_MI_MS_URLMODE',__('Enable friendly URLs:','shop'));
+define('_MI_MS_URLMODE',__('Enable friendly URLs','shop'));
 define('_MI_MS_URLMODED',__('Define the way in wich MiniShop will be format the products and categories URLs. Firendly URLs needs mod_rewirte or equivalent system.','shop'));
 define('_MI_MS_BASEDIR',__('Base path for friendly URLs','shop'));
 define('_MI_MS_EDITOR',__('Editor type for products from','shop'));
