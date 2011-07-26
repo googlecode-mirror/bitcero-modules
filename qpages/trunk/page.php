@@ -7,7 +7,6 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
-load_mod_locale('qpages');
 
 if (!defined("XOOPS_MAINFILE_INCLUDED")){
 	require '../../mainfile.php';
@@ -16,6 +15,8 @@ if (!defined("XOOPS_MAINFILE_INCLUDED")){
 		$header[$k] = $v;
 	}
 }
+
+load_mod_locale('qpages');
 
 $xoopsOption['template_main'] = 'qpages_page.html';
 $xoopsOption['module_subpage'] = 'page';

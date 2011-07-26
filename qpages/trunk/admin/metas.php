@@ -15,7 +15,7 @@ ob_start();
 </table>
 <br />
 <table cellspacing="0" cellpadding="4" width="99%" class="outer">
-<tr><th colspan="2">Add new field</th></tr>
+<tr><th colspan="2"><?php _e('Custom Fields','qpages'); ?></th></tr>
 <tr valign="top" class="even">
 	<td width="100">
 		<?php if(count($available_metas)>0): ?>
@@ -26,7 +26,7 @@ ob_start();
 		</select>
 		<input type="text" name="dmeta_name" id="dmeta" value="" size="30" style="display: none;" />
 		<br />		
-		<a href="javascript:;" id="add_field_name">Add New</a>
+		<a href="javascript:;" id="add_field_name"><?php _e('Add New','qpages'); ?></a>
 		<?php else: ?>
 		<input type="text" name="dmeta_name" id="dmeta" value="" size="30" />
 		<?php endif; ?>
@@ -37,7 +37,7 @@ ob_start();
 </tr>
 <tr class="foot">
 	<td>&nbsp;</td>
-	<td><input type="button" id="add_field" value="Add Field" />
+	<td><input type="button" id="add_field" value="<?php _e('Add Field','qpages'); ?>" />
 </tr>
 </table>
 <?php

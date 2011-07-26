@@ -171,7 +171,7 @@ function newForm($edit = 0, $redir = false){
 	$page_metas = $edit ? $page->get_meta() : array();
 	$available_metas = qp_get_metas();
 	include 'metas.php';
-	$form->addElement(new RMFormLabel(__('Additional Fields', 'qpages'), $meta_data));
+	$form->addElement(new RMFormLabel(__('Custom Fields', 'qpages'), $meta_data));
 	
 	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', $edit ? __('Update Page','qpages') : __('Save Page','qpages'), 'submit');
