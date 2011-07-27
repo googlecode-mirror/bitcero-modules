@@ -11,10 +11,6 @@
 define('GS_PATH',XOOPS_ROOT_PATH.'/modules/galleries');
 define('GS_URL',XOOPS_URL.'/modules/galleries');
 
-if (!file_exists(GS_PATH.'/language/'.$xoopsConfig['language'].'/main.php')){
-	include_once GS_PATH.'/language/spanish/main.php';
-}
-
 include '../../header.php';
 
 $mc =& $xoopsModuleConfig;
@@ -23,3 +19,5 @@ $tpl = $xoopsTpl;
 $db = Database::getInstance();
 
 $tpl->assign('gs_url', GS_URL);
+$tpl->assign('ths_width', $xoopsModuleConfig['image_ths'][0]);
+$tpl->assign('quickview', $xoopsModuleConfig['quickview']);

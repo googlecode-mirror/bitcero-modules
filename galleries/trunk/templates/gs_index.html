@@ -1,34 +1,21 @@
 <{include file="db:gs_header.html"}>
 <div class="lastContent">
-	<div class="gsBrowseLinks">
-		<a href="<{$explore_sets_link}>" id="sets"><{$lang_setbrowse}></a>
-		<a href="<{$explore_imgs_link}>" id="imgs"><{$lang_imgbrowse}></a>
-		<a href="<{$explore_tags_link}>" id="tags"><{$lang_tagbrowse}></a>
-	</div>
+	<ul class="gsBrowseLinks">
+		<li><a href="<{$explore_sets_link}>" id="sets"><{$lang_setbrowse}></a></li>
+		<li><a href="<{$explore_imgs_link}>" id="imgs"><{$lang_imgbrowse}></a></li>
+		<li><a href="<{$explore_tags_link}>" id="tags"><{$lang_tagbrowse}></a></li>
+	</ul>
 	
 	<div class="gsLastPhotos">
 		<h2><{$lang_lastphotos}></h2>
-		<table cellspacing="0" border="0" align="center">
-		<tr class="gsPhotos">
-		<{assign var="i" value=1}>
 		<{foreach item=img from=$last_images}>
-			<{if $i>$last_cols}>
-				</tr><tr class="gsPhotos">
-				<{assign var="i" value=1}>
-			<{/if}>
-			<td style="width: <{$td_width}>px;">
-			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
-			<{if $img.title!=''}><a href="<{$img.link}>" title="<{$img.title}>"><{$img.title}></a><br /><{/if}>
-			<{$img.by}>
-			</td>
-			<{assign var="i" value=$i+1}>
+			<{include file="db:gs_item_data.html"}>
 		<{/foreach}>
-		</tr>
-		</table>
 	</div>
 
 	<div class="lastSets">
 		<h2><{$last_sets}></h2>
+        <{math equation="w / 2" w=$ths_width assign="ths_width"}>
 		<{foreach item=set from=$sets}>
 			<div class="gsSet">
 				<h3><a href="<{$set.link}>"><{$set.title}></a></h3>
@@ -38,17 +25,12 @@
 					| <strong><{$lang_pics}></strong> <em><{$set.picsnum}></em>
 					| <img src="images/view.png" alt="" align="absmiddle" /> <a href="<{$set.link}>"><{$lang_view}></a>
 				</span>
-				<table cellspacing="0" border="0">
-					<tr class="gsPhotos">
+                
+				<div class="gsPhotos">
 						<{foreach item=img from=$set.images}>
-						<td style="width: <{$td_width}>px;">
-						<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
-						<a href="<{$img.link}>" title="<{$img.title}>"><{$img.title}></a><br />
-						<{$img.by}>
-						</td>
+						<{include file="db:gs_item_data.html"}>
 						<{/foreach}>
-					</tr>
-				</table>
+				</div>
 			</div>
 		<{/foreach}>
 	</div>

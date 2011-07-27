@@ -489,7 +489,6 @@ function imgsTag(){
 	include('footer.php');
 }
 
-
 switch ($explore){
 	case 'sets':
 		sets();

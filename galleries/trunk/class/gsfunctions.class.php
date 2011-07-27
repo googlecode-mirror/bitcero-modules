@@ -53,23 +53,23 @@ class GSFunctions
 		
 		$mc =& $xoopsModuleConfig;
 		$tpl->assign('gs_title', $mc['section_title']);
-		$tpl->assign('lang_home', _MS_GS_HOME);
-		$tpl->assign('lang_tags', _MS_GS_TAG);
-		$tpl->assign('lang_sets', _MS_GS_SETS);
-		$tpl->assign('lang_hphotos', _MS_GS_HPHOTOS);
+		$tpl->assign('lang_home', __('Home','galleries'));
+		$tpl->assign('lang_tags', __('Tags','galleries'));
+		$tpl->assign('lang_sets', __('Albums','galleries'));
+		$tpl->assign('lang_hphotos', __('Photos','galleries'));
 		$tpl->assign('gs_tagslink', GS_URL.($mc['urlmode'] ? '/explore/tags' : '/explore.php?by=explore/tags'));
 		$tpl->assign('gs_setslink', GS_URL.($mc['urlmode'] ? '/explore/sets' : '/explore.php?by=explore/sets'));
 		$tpl->assign('gs_photoslink', GS_URL.($mc['urlmode'] ? '/explore/photos' : '/explore.php?by=explore/photos'));
-		$tpl->assign('lang_search',_MS_GS_SEARCH);
+		$tpl->assign('lang_search',__('Search','galleries'));
 		
 		if($xoopsUser && in_array($xoopsUser->uid(),GSFunctions::getAllowedUsers())){
-			$tpl->assign('lang_myphotos',_MS_GS_MYPHOTOS);
+			$tpl->assign('lang_myphotos',__('My Photos','galleries'));
 			$tpl->assign('gs_myphotoslink', GS_URL.($mc['urlmode'] ? '/cpanel/' : '/cpanel.php'));
 		}
 		
 		if (GSFunctions::canSubmit($xoopsUser)){
 			$tpl->assign('can_submit', 1);
-			$tpl->assign('lang_sendpics', _MS_GS_SENDPICS);
+			$tpl->assign('lang_sendpics', __('Upload Photos','galleries'));
 			$tpl->assign('gs_sendlink', GS_URL.($mc['urlmode'] ? '/submit/' : '/submit.php'));
 		}
 		
@@ -243,5 +243,45 @@ class GSFunctions
 		
 		RMTemplate::get()->add_style('admin.css', 'galleries');
 	}
-	
+    
+    /**
+    * Get image data
+    */
+    public function process_image_data($result){
+        
+        $users = array();
+        $ret = array();
+        $tf = new RMTimeFormatter(0, "%M%/%d%/%Y%");
+        
+        $db = Database::getInstance();
+        while ($row = $db->fetchArray($result)){
+            $img = new GSImage();
+            $img->assignVars($row);
+            if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
+            $imglink = $users[$img->owner()]->userURL().'img/'.$img->id().'/';
+            $ret[] = array(
+                'id'=>$img->id(),
+                'title'=>$img->title(),
+                'thumbnail'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image(),
+                'image'=>$users[$img->owner()]->filesURL().'/'.$img->image(),
+                'by'=>sprintf(__('by %s','galleries'), '<a href="'.$users[$img->owner()]->userUrl().'">'.$users[$img->owner()]->uname().'</a>'),
+                'link'=>$imglink,
+                'created' => $tf->format($img->created())
+            );
+        }
+        
+        $mc = RMUtilities::module_config('galleries');
+        if(!$mc['quickview']) return $ret;
+            
+        if(RMFunctions::plugin_installed('lightbox')){
+            
+            RMLightbox::get()->add_element('.pic_qview a');
+            RMLightbox::get()->render();
+            
+        }
+        
+        return $ret;
+        
+    }
+    
 }

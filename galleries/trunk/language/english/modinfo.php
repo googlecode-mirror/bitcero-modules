@@ -71,6 +71,12 @@ define('_MI_GS_DELORIGINAL','Conservar Imágenes Originales despuésa de elimina
 define('_MI_GS_LASTNUM','Número de imágenes recientes en la página inicial');
 define('_MI_GS_LASTCOLS','Columnas para las imágenes recientes');
 define('_MI_GS_SETSNUM','Número de álbumes recientes en la página inicial');
+define('_MI_GS_SETSNUMIMGS',__('Images number for recent albums','galleries'));
+define('_MI_GS_SETSNUMIMGSD',__('Specify the number of images that will be shown for each recent album in home page.','galleries'));
+
+// Quickview
+define('_MI_GS_QUICKVIEW',__('Enable quick view','galleries'));
+define('_MI_GS_QUICKVIEWD',__('When quick view is enabled, MyGalleries will show an option on every image that can show the big image using lightbox plugin for Common Utilities.','galleries'));
 
 //Número de albumes
 define('_MI_GS_LIMITSETS','Número de albumes en lista de albumes');

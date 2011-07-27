@@ -17,38 +17,26 @@ include 'header.php';
 
 GSFunctions::makeHeader();
 
-$tpl->assign('lang_lastphotos', _MS_GS_LASTPHOTOS);
-$tpl->assign('th_width', $mc['image_ths'][0]);
-$tpl->assign('last_cols', $mc['last_cols']>0 ? $mc['last_cols'] : 3);
-$tpl->assign('td_width', floor(100/$mc['last_cols']));
-$tpl->assign('last_sets', _MS_GS_LASTSETS);
-$tpl->assign('lang_created', _MS_GS_SETCREATED);
-$tpl->assign('lang_by', _MS_GS_SETBY);
-$tpl->assign('lang_pics', _MS_GS_SETPICS);
-$tpl->assign('lang_other', _MS_GS_OTHERSETS);
-$tpl->assign('lang_view', _MS_GS_VIEW);
-$tpl->assign('lang_moresets', _MS_GS_MORE);
+$tpl->assign('lang_lastphotos', __('Recent Photos','galleries'));
+$tpl->assign('last_sets', __('Recent Albums','galleries'));
+$tpl->assign('lang_created', __('Created on:','galleries'));
+$tpl->assign('lang_by', __('Created by:','galleries'));
+$tpl->assign('lang_pics', __('Photos:','galleries'));
+$tpl->assign('lang_other', __('Other Albums','galleries'));
+$tpl->assign('lang_view', __('View Photos','galleries'));
+$tpl->assign('lang_moresets', __('More albums','galleries'));
 $tpl->assign('explore_sets_link', GS_URL.($mc['urlmode'] ? '/explore/sets/' : '/explore.php?by=explore/sets'));
-$tpl->assign('lang_setbrowse', _MS_GS_BROWSESET);
+$tpl->assign('lang_setbrowse', __('Browse albums','galleries'));
 $tpl->assign('explore_imgs_link', GS_URL.($mc['urlmode'] ? '/explore/photos/' : '/explore.php?by=explore/photos'));
-$tpl->assign('lang_imgbrowse', _MS_GS_BROWSEIMGS);
+$tpl->assign('lang_imgbrowse', __('Browse photos','galleries'));
 $tpl->assign('explore_tags_link', GS_URL.($mc['urlmode'] ? '/explore/tags/' : '/explore.php?by=explore/tags'));
-$tpl->assign('lang_tagbrowse', _MS_GS_BROWSETAGS);
+$tpl->assign('lang_tagbrowse', __('Browse tags','galleries'));
 
 // ültimas Fotos
 $mc['last_num'] = $mc['last_num']<=0 ? 10 : $mc['last_num'];
 $result = $db->query("SELECT * FROM ".$db->prefix("gs_images")." WHERE public=2 ORDER BY created DESC LIMIT 0,$mc[last_num]");
-$users = array();
-while ($row = $db->fetchArray($result)){
-	$img = new GSImage();
-	$img->assignVars($row);
-	if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
-	$imglink = $users[$img->owner()]->userURL().'img/'.$img->id().'/';
-	$tpl->append('last_images', array('id'=>$img->id(),'title'=>$img->title(),
-			'image'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image(),
-			'by'=>sprintf(_MS_GS_BY, '<a href="'.$users[$img->owner()]->userUrl().'">'.$users[$img->owner()]->uname().'</a>'),
-			'link'=>$imglink));
-}
+
+$tpl->assign('last_images', GSFunctions::process_image_data($result));
 
 // Álbumes Recientes
 $result = $db->query("SELECT * FROM ".$db->prefix("gs_sets")." WHERE public='2' ORDER BY date DESC LIMIT 0,".($mc['sets_num']>0 ? $mc['sets_num'] : 5));
@@ -56,7 +44,7 @@ while ($row = $db->fetchArray($result)){
 	$set = new GSSet();
 	$set->assignVars($row);
 	$pics = $set->getPics('RAND()');
-	$imgs = @array_slice($pics, 0, 4);
+	$imgs = @array_slice($pics, 0, $xoopsModuleConfig['sets_num_images']);
 	if (!isset($users[$set->owner()])) $users[$set->owner()] = new GSUser($set->owner(), 1);
 	$images = array();
 	if (!empty($imgs)){
@@ -68,14 +56,19 @@ while ($row = $db->fetchArray($result)){
 			if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
 			$imglink = $users[$img->owner()]->userURL().'img/'.$img->id().'/';
 			$images[] = array('id'=>$img->id(),'title'=>$img->title(),
-				'image'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image(),
-				'by'=>sprintf(_MS_GS_BY, '<a href="'.$users[$img->owner()]->userUrl().'">'.$users[$img->owner()]->uname().'</a>'),
+				'thumbnail'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image(),
+                'image'=>$users[$img->owner()]->filesURL().'/'.$img->image(),
+				'by'=>sprintf(__('by %s','galleries'), '<a href="'.$users[$img->owner()]->userUrl().'">'.$users[$img->owner()]->uname().'</a>'),
 				'link'=>$imglink);
 		}
 	}
-	$tpl->append('sets', array('id'=>$set->id(),'title'=>$set->title(),'images'=>$images,
+	$tpl->append('sets', array(
+        'id'=>$set->id(),
+        'title'=>$set->title(),
+        'images'=>$images,
 		'link'=>$users[$set->owner()]->userUrl().'set/'.$set->id(),
-		'date'=>formatTimestamp($set->date(), 'string'), 'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
+		'date'=>formatTimestamp($set->date(), 'c'), 
+        'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
 		'picsnum'=>count($pics)));
 }
 
@@ -84,11 +77,15 @@ while ($row = $db->fetchArray($result)){
 	$set = new GSSet();
 	$set->assignVars($row);
 	if (!isset($users[$set->owner()])) $users[$set->owner()] = new GSUser($set->owner(), 1);
-	$tpl->append('other_sets', array('id'=>$set->id(),'title'=>$set->title(),'link'=>$users[$set->owner()]->userUrl().'set/'.$set->id(),
-		'date'=>formatTimestamp($set->date(), 'string'), 'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
+	$tpl->append('other_sets', array(
+        'id'=>$set->id(),
+        'title'=>$set->title(),
+        'link'=>$users[$set->owner()]->userUrl().'set/'.$set->id(),
+		'date'=>formatTimestamp($set->date(), 'c'), 
+        'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
 		'picsnum'=>count($pics)));
 }
 
-$xmh .= "<link href='".GS_URL."/styles/index.css' type='text/css' media='all' rel='stylesheet' />\n";
+RMTemplate::get()->add_style('index.css', 'galleries');
 
 include 'footer.php';

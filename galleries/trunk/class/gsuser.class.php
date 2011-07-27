@@ -178,12 +178,8 @@ class GSUser extends RMObject
 		} else {
 			$mc =& RMUtilities::get()->module_config('galleries');
 		}
-		
-		if ($mc['storemode']){
-			$url = XOOPS_URL.'/modules/galleries/getimage.php?image=';
-		} else {
-			$url = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $this->filesPath());
-		}
+	
+		$url = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $this->filesPath());
 		
 		$this->_furl = $url;
 		
