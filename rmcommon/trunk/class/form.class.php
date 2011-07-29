@@ -387,63 +387,10 @@ class RMForm
         /**
          * Generamos el cdigo JavaScript para comprobación del formulario
          */
-                
-        $ret = '';
-        $req = '';
-        $callmethod = '';
-        foreach ($this->_fields as $field){
-            
-            $element = $field['field'];
-            if (is_a($element, 'RMSubTitle') || is_a($element, 'EXMHidden')){
-                $ret .= $element->render();
-            } else {
-                $ret .= "<tr id='row_".$element->getName()."' align='left'";
-                $ret .= isset($this->row_extras['row_'.$element->getName()]) ? " ".$this->row_extras['row_'.$element->getName()] : '';
-                $ret .= ">\n<td valign='top' class='$this->_oddClass'".($this->_oddStyle!='' ? " style=\"$this->_oddStyle\"":'')."><strong>".($field['required'] ? '*' : '').$element->getCaption()."</strong>";
-                if ($element->getDescription()!=''){
-                    $ret .= "\n<span style='".($this->_oddSpanStyle!='' ? $this->_oddSpanStyle : '')."'>".$element->getDescription()."</span>\n";
-                }
-                $ret .= "</td><td class='$this->_evenClass' valign='top'".($this->_evenStyle!='' ? " style=\"$this->_evenStyle\"":'').">".$element->render()."</td>\n</tr>\n";
-            }
-            
-            // Comprobamos los elementos requeridos
-            if ($field['type']!='' || $field['required']){
-                $req .= $req == '' ? $element->getName()."|".$this->getType($field['type'])."|$field[required]|".$element->getCaption() : ",".$element->getName()."|".$this->getType($field['type'])."|$field[required]|".$element->getCaption();
-            }
-            
-            if (is_a($element, 'EXMEditor')){
-                if ($element->getType()=='tiny'){
-                    $callmethod = 'tinyMCE.triggerSave(); ';
-                    $rtn .= $this->tinyJs($this->editores);
-                }
-            }
-            
-        }
-        
-        if ($form_tag){
-        	$req .= $req=='' ? ($this->_othervalidates!='' ? $this->_othervalidates : '') : ($this->_othervalidates!='' ? ','.$this->_othervalidates : '');
-        
-        	$rtn .= "<form name='".$this->_name."' id='".$this->_name."' action='".$this->_action."' method='".$this->_method."'";
-        	if ($req!=''){
-            	$rtn .= " onsubmit=\"".$callmethod."rmValidateForm(this, '$req');return document.rmValidateReturnValue;\"";
-        	}
-        	if ($this->_extra != ''){
-            	$rtn .= " ".$this->_extra;
-        	}
-        	$rtn .= ">\n";
-        }
-        
-        $rtn .= "<table class='$this->_tableClass' cellspacing='1'>
-                    <tr><th colspan='2'".(($this->_thClass!='') ? " class='".$this->_thClass."'" : '').($this->_thStyle!='' ? " style=\"$this->_thStyle\"":'').">".$this->_title."</th></tr>";
-        if ($this->_addtoken && $form_tag){
-            $rtn .= $GLOBALS['xoopsSecurity']->getTokenHTML();
-        }
-        $rtn .= $ret . "<tr class='$this->_footClass'".($this->_footStyle!='' ? " style=\"$this->_footStyle\"":'')."><td colspan='2' align='right'>".__('Required fields marked with "*"','rmcommon')."</td></tr></table>\n";
-        
-        if ($form_tag){
-        	$rtn .= "</form>\n";
-		}
-        return $rtn;
+        $form =& $this;
+        ob_start();
+        include RMTemplate::get_template('forms.php','rmcommon');
+        return ob_get_clean();
         
     }
     /**
