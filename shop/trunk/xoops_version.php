@@ -12,7 +12,7 @@ load_mod_locale('shop');
 
 $modversion['name'] = "MiniShop 3";
 $modversion['description'] = __('Module to create and manage online catalogs','shop');
-$modversion['version'] = '3';
+$modversion['version'] = 3.012;
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
@@ -28,7 +28,7 @@ $modversion['dirname'] = "shop";
 $modversion['icon48'] = "images/icon48.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>3,'revision'=>0,'status'=>-2,'name'=>'MiniShop 3');
+$modversion['rmversion'] = array('number'=>3,'revision'=>12,'status'=>-2,'name'=>'MiniShop 3');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
