@@ -9,8 +9,8 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Contact Me!";
-$modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>0,'revision'=>32,'status'=>0,'name'=>'Contact Me!');
+$modversion['rmnative'] = 1.036;
+$modversion['rmversion'] = array('number'=>0,'revision'=>36,'status'=>0,'name'=>'Contact Me!');
 $modversion['version'] = 0.001;
 $modversion['description'] = _MI_CT_DESC;
 $modversion['author'] = "BitC3R0";
