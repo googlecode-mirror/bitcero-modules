@@ -1,8 +1,21 @@
-<div class="gs_pic_item" style="width: <{$ths_width+35}>px;">
-    <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.thumbnail}>" alt="<{$img.title}>" class="the_image" style="width: <{$ths_width}>px;" /></a>
+<{if $gs_user_format}>
+<div class="gs_pic_item" style="width: <{$ths_usr_width+35}>px;">
+    <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.thumbuser}>" alt="<{$img.title}>" class="the_image" style="width: <{$ths_usr_width}>px;" /></a>
     <div class="gs_pic_data">
+        <span class="pic_title"><{$img.title}></span>
+        <{if $show_desc}><span class="pic_desc"><{$img.desc}></span><{/if}>
         <{if $quickview}><span class="pic_qview"><a href="<{$img.image}>" rel="mgs-images" title="<{$img.title}>">Quick view</a></span><{/if}>
         <span class="pic_date"><{$img.created}></span>
         <span class="pic_by"><{$img.by}></span>
     </div>
 </div>
+<{else}>
+<div class="gs_pic_item" style="width: <{$ths_width+35}>px;">
+    <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.thumbnail}>" alt="<{$img.title}>" class="the_image" style="width: <{$ths_width}>px;" /></a>
+    <div class="gs_pic_data">
+        <{if $quickview}><span class="pic_qview"><a href="<{$img.image}>" rel="mgs-images" title="<{$img.title}>"><{$lang_qview}></a></span><{/if}>
+        <span class="pic_date"><{$img.created}></span>
+        <span class="pic_by"><{$img.by}></span>
+    </div>
+</div>
+<{/if}>

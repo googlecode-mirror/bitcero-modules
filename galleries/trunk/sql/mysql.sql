@@ -65,6 +65,7 @@ CREATE TABLE `gs_setsimages` (
 CREATE TABLE `gs_tags` (
   `id_tag` int(11) NOT NULL auto_increment,
   `tag` varchar(100) NOT NULL,
+  `nameid` varchar(100) NOT NULL,
   `hits` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_tag`)
 ) TYPE=MyISAM ;

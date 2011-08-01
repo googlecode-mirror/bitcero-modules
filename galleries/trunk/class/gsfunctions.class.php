@@ -57,20 +57,21 @@ class GSFunctions
 		$tpl->assign('lang_tags', __('Tags','galleries'));
 		$tpl->assign('lang_sets', __('Albums','galleries'));
 		$tpl->assign('lang_hphotos', __('Photos','galleries'));
-		$tpl->assign('gs_tagslink', GS_URL.($mc['urlmode'] ? '/explore/tags' : '/explore.php?by=explore/tags'));
-		$tpl->assign('gs_setslink', GS_URL.($mc['urlmode'] ? '/explore/sets' : '/explore.php?by=explore/sets'));
-		$tpl->assign('gs_photoslink', GS_URL.($mc['urlmode'] ? '/explore/photos' : '/explore.php?by=explore/photos'));
+		$tpl->assign('gs_tagslink', GSFunctions::get_url().($mc['urlmode'] ? 'explore/tags/' : 'explore.php?explore=tags'));
+		$tpl->assign('gs_setslink', GSFunctions::get_url().($mc['urlmode'] ? 'explore/sets/' : 'explore.php?explore=sets'));
+		$tpl->assign('gs_photoslink', GSFunctions::get_url().($mc['urlmode'] ? 'explore/photos/' : 'explore.php?explore=photos'));
+        $tpl->assign('gs_searchlink', GSFunctions::get_url().($mc['urlmode'] ? 'search/' : '?search=1'));
 		$tpl->assign('lang_search',__('Search','galleries'));
 		
 		if($xoopsUser && in_array($xoopsUser->uid(),GSFunctions::getAllowedUsers())){
 			$tpl->assign('lang_myphotos',__('My Photos','galleries'));
-			$tpl->assign('gs_myphotoslink', GS_URL.($mc['urlmode'] ? '/cpanel/' : '/cpanel.php'));
+			$tpl->assign('gs_myphotoslink', GSFunctions::get_url().($mc['urlmode'] ? 'cp/images/' : 'cpanel.php'));
 		}
 		
 		if (GSFunctions::canSubmit($xoopsUser)){
 			$tpl->assign('can_submit', 1);
 			$tpl->assign('lang_sendpics', __('Upload Photos','galleries'));
-			$tpl->assign('gs_sendlink', GS_URL.($mc['urlmode'] ? '/submit/' : '/submit.php'));
+			$tpl->assign('gs_sendlink', GSFunctions::get_url().($mc['urlmode'] ? 'submit/' : 'submit.php'));
 		}
 		
 	}
@@ -81,23 +82,23 @@ class GSFunctions
 	* @param {@link EXMUser}
 	* @return false;
 	*/
-	public function canSubmit(EXMUser &$exmUser){
+	public function canSubmit($xoopsUser){
 		global $xoopsModuleConfig;
 		
-		if ($exmUser && $exmUser->isAdmin()) return true;
+		if ($xoopsUser && $xoopsUser->isAdmin()) return true;
 		
 		$users = GSFunctions::getAllowedUsers();
 		
-		if ($exmUser && in_array($exmUser->uid(), $users)) return true;
+		if ($xoopsUser && in_array($xoopsUser->uid(), $users)) return true;
 		
 		$mc =& $xoopsModuleConfig;
 		if ($mc['submit']){
 			
 			if (in_array(0, $mc['groups'])) return true;
 			
-			if (!$exmUser) return false;
+			if (!$xoopsUser) return false;
 			
-			foreach ($exmUser->groups() as $k){
+			foreach ($xoopsUser->groups() as $k){
 				if (in_array($k, $groups)) return true;
 			}
 			
@@ -170,9 +171,11 @@ class GSFunctions
 	**/
 	public function deletePostcard(){
 
-		global $xoopsModuleConfig, $db;
+		global $xoopsModuleConfig;
 	
 		$mc =& $xoopsModuleConfig;
+        
+        $db = Database::getInstance();
 	
 		$time = time() - $mc['time_postcard']*86400;
 		
@@ -249,28 +252,63 @@ class GSFunctions
     */
     public function process_image_data($result){
         
+        $mc = RMUtilities::module_config('galleries');
+        
         $users = array();
         $ret = array();
         $tf = new RMTimeFormatter(0, "%M%/%d%/%Y%");
         
         $db = Database::getInstance();
+        $i = 0;
         while ($row = $db->fetchArray($result)){
             $img = new GSImage();
             $img->assignVars($row);
             if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
-            $imglink = $users[$img->owner()]->userURL().'img/'.$img->id().'/';
-            $ret[] = array(
+            $imglink = $users[$img->owner()]->userURL().($mc['urlmode'] ? 'img/'.$img->id().'/' : '&amp;img='.$img->id());
+            $ret[$i] = array(
                 'id'=>$img->id(),
                 'title'=>$img->title(),
                 'thumbnail'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image(),
+                'thumbuser' => $users[$img->owner()]->filesURL().'/'.($mc['user_format_mode'] ? 'formats/user_' : 'ths/').$img->image(),
+                'thumbsrh' => $users[$img->owner()]->filesURL().'/'.($mc['search_format_mode'] ? 'formats/srh_' : 'ths/').$img->image(),
                 'image'=>$users[$img->owner()]->filesURL().'/'.$img->image(),
                 'by'=>sprintf(__('by %s','galleries'), '<a href="'.$users[$img->owner()]->userUrl().'">'.$users[$img->owner()]->uname().'</a>'),
                 'link'=>$imglink,
-                'created' => $tf->format($img->created())
+                'created' => $tf->format($img->created()),
+                'public' => $img->isPublic(),
+                'desc' => $img->desc()
             );
+            
+            // Format resize
+            if (!$img->userFormat() && $mc['user_format_mode']){
+                $format = $mc['user_format_values'];
+                GSFunctions::resizeImage($format[0], $users[$img->owner()]->filesPath().'/'.$img->image(),$users[$img->owner()]->filesPath().'/formats/user_'.$img->image(), $format[1], $format[2]);
+                $img->setUserFormat(1, 1);
+            }
+            
+            if (!$img->searchFormat() && $mc['search_format_mode']){
+                $format = $mc['search_format_values'];
+                GSFunctions::resizeImage($format[0], $users[$img->owner()]->filesPath().'/'.$img->image(),$users[$img->owner()]->filesPath().'/formats/srh_'.$img->image(), $format[1], $format[2]);
+                $img->setSearchFormat(1, 1);
+            }
+            
+            if ($mc['search_format_mode']){
+                $ret[$i]['viewmore'] = sprintf(__('Ver <a href="%s">más fotos</a>.','galleries'), $users[$img->owner()]->userURL());
+                $tags = $img->tags(true);
+                $tagurl = self::get_url().($mc['urlmode'] ? 'explore/tags/tag/' : '?explore=tags&amp;tag=');
+                $strtag = '';
+                foreach ($tags as $tag){
+                    $strtag .= $strtag=='' ? "<a href=\"$tagurl".$tag->getVar('nameid')."\">".$tag->tag()."</a>" : ", <a href=\"$tagurl".$tag->getVar('nameid')."\">".$tag->tag()."</a>";
+                }
+                $ret[$i]['tags'] = $strtag;
+            }
+            
+            $i++;
+            
         }
         
-        $mc = RMUtilities::module_config('galleries');
+        RMTemplate::get()->add_local_script('photos.js', 'galleries');
+        
         if(!$mc['quickview']) return $ret;
             
         if(RMFunctions::plugin_installed('lightbox')){
@@ -282,6 +320,29 @@ class GSFunctions
         
         return $ret;
         
+    }
+    
+    /**
+    * Get correct base url for links
+    */
+    function get_url(){
+        global $xoopsModule, $xoopsModuleConfig;
+        if(!$xoopsModule || $xoopsModule->dirname()!='galleries')
+            $mc = RMUtilities::get()->module_config('galleries');
+        else
+            $mc = $xoopsModuleConfig;
+        
+        if ($mc['urlmode']){
+            
+            $ret = XOOPS_URL.'/'.trim($mc['urlbase'], "/").'/';
+            
+        } else {
+            
+            $ret = XOOPS_URL.'/modules/galleries/';
+            
+        }
+        
+        return $ret;
     }
     
 }

@@ -1,68 +1,49 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 define('GS_LOCATION','panel');
-include '../../mainfile.php';
 $xoopsOption['module_subpage'] = 'panel';
 
 $toget = 's';
 include("include/parse.php");
 
 //Verificamos que sea un usuario registrado
-if(!$exmUser){
-	redirect_header(XOOPS_URL.'/modules/galleries/',2,_MS_GS_ERRUSER);
+if(!$xoopsUser){
+	redirect_header(XOOPS_URL.'/modules/galleries/',2, __('You don\'t have authorization to view this section','galleries'));
 	die();
 }
 
 function createLinks(){
-	global $tpl, $xoopsModuleConfig, $xmh, $exmUser;
+	global $tpl, $xoopsModuleConfig, $xmh, $xoopsUser;
 	
 	$mc =& $xoopsModuleConfig;
-	$tpl->assign('link_bookmarks', GS_URL.'/'.($mc['urlmode'] ? "cpanel/bookmarks/" : "cpanel.php?s=cpanel/bookmarks"));
-	$tpl->assign('lang_favourites',_MS_GS_FAVOURITES);
+	$tpl->assign('link_bookmarks', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "cp.php?s=cp/bookmarks"));
+	$tpl->assign('lang_favourites',__('Favorites','galleries'));
 	
 	$tpl->assign('user',0);
 	$users = GSFunctions::getAllowedUsers();
-	if(in_array($exmUser->uid(),$users)){
-		$tpl->assign('link_friends', GS_URL.'/'.($mc['urlmode'] ? "cpanel/friends/" : "cpanel.php?s=cpanel/friends"));
-		$tpl->assign('link_photos', GS_URL.'/'.($mc['urlmode'] ? "cpanel/" : "cpanel.php"));
-		$tpl->assign('link_sets', GS_URL.'/'.($mc['urlmode'] ? "cpanel/sets/" : "cpanel.php?s=cpanel/sets"));
-		$tpl->assign('lang_friends',_MS_GS_FRIENDS);
-		$tpl->assign('lang_msets',_MS_GS_MSETS);
-		$tpl->assign('lang_mpics',_MS_GS_MPICS);
+	if(in_array($xoopsUser->uid(),$users)){
+		$tpl->assign('link_friends', GSFunctions::get_url().($mc['urlmode'] ? "cp/friends/" : "cp.php?s=cp/friends"));
+		$tpl->assign('link_photos', GSFunctions::get_url().($mc['urlmode'] ? "cp/images/" : "cp.php"));
+		$tpl->assign('link_sets', GSFunctions::get_url().($mc['urlmode'] ? "cp/sets/" : "cp.php?s=cp/sets"));
+		$tpl->assign('lang_friends',__('Friends','galleries'));
+		$tpl->assign('lang_msets',__('My Albums','galleries'));
+		$tpl->assign('lang_mpics',__('My Images','galleries'));
 		$tpl->assign('user',1);
 	}
-	
 	
 }
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-$cpanel = $op!='' ? $op : $cpanel;
-switch($cpanel){
+$cp = $op!='' ? $op : $cp;
+switch($cp){
 	case 'new':
 		include XOOPS_ROOT_PATH.'/modules/galleries/include/cp_images.php';
 		formImages();
@@ -136,10 +117,10 @@ switch($cpanel){
 	case 'deletefriend':
 		include XOOPS_ROOT_PATH.'/modules/galleries/include/cp_friends.php';
 		deleteFriends();
-		break;	
+		break;
+    case 'images':
 	default:
 		include XOOPS_ROOT_PATH.'/modules/galleries/include/cp_images.php';
 		showImages();
 		break;
 }
-?>

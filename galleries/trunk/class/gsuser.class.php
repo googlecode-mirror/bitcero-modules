@@ -201,8 +201,8 @@ class GSUser extends RMObject
 			$mc =& RMUtilities::get()->module_config('galleries');
 		}
 		
-		$url = XOOPS_URL.'/modules/galleries/';
-		$url .= $mc['urlmode'] ? 'usr/'.$this->uname()."/" : "user.php?id=usr/".$this->uname().'/';
+		$url = GSFunctions::get_url();
+		$url .= $mc['urlmode'] ? 'usr/'.$this->uname()."/" : "?usr=".$this->uname();
 		$this->_url = $url;
 		return $url;
 	}

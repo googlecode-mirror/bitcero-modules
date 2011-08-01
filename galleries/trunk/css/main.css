@@ -41,8 +41,7 @@ div.userData img.avatar{
 	float: left;
 	margin: 0 5px 0 0;
 }
-div.userData h1{
-	font-size: 18px;
+div.userData h2{
 	margin: 5px 0 0 0;
 }
 div.userData ul{
@@ -65,6 +64,7 @@ div.gsShowInfo{
 	padding: 3px;
 	text-align: right;
 	color: #666;
+    font-size: 0.9em;
 }
 table.userPics{
 	margin-top: 5px;
@@ -230,6 +230,10 @@ div.alsoBelong div.item a.link:hover{
 	color: #FF4400;
 	border: 1px solid #d0d0d0;
 }
+.gsTags{line-height: 200%;}
+.gsTags a{
+    padding: 4px 10px;
+}
 div.tags{
 	padding: 2px;
 	float: right;
@@ -252,33 +256,26 @@ div.tags img.avatar{
 	float: left;
 }
 
-/**Gina**/
 /** Albumes **/
+.setsContainer{
+    overflow: hidden;
+}
 div.gsSets{
-	border: 1px dashed #c8c8c8;
+	border-bottom: 1px dashed #c8c8c8;
 	overflow: hidden;
-	width: 90%;
 	font-size: 11px;
-	float: left;
 	margin: 5px;
+    padding: 10px;
 }
 div.gsSets div.gsSetsImg{
-	padding: 5px 10px;
 	float: left;
 }
 div.gsSetsImg img{
 	padding: 1px;
 	border: 1px solid #666;
 }
-div.gsSetsInfo{
-	color: #666;
-}
-div.gsSetsInfo h3{
-	margin: 0px 0px 10px 0px;
-	font-size: 14px;
-}
-div.gsSetsInfo h3 a{
-	color: #000;
+div.gsSetsInfo h4{
+	margin: 0px 0px 5px 0px;
 }
 div.gsSetsInfo strong{
 	font-weight: normal;
@@ -419,6 +416,10 @@ div.gsComments h3.send{
 	margin-top: 20px;
 }
 
+.gs_photos_container{
+    overflow: hidden;
+    margin: 10px 0;
+}
 .gs_pic_item{
     padding: 10px;
     float: left;
@@ -427,13 +428,28 @@ div.gsComments h3.send{
     padding: 1px;
     border: 1px solid #CCC;
 }
-.gs_pic_item .gs_pic_data{
+.gs_pic_data{
     font-size: 0.9em;
     line-height: 110%;
 }
 .gs_pic_data .pic_date{
     display: block;
     font-size: 0.9em;
+}
+.gs_pic_data .pic_title{
+    font-weight: bold;
+    display: block;
+}
+.gs_pic_data .pic_desc{
+    display: block;
+    font-size: 0.9em;
+    padding: 4px 0;
+}
+.gs_pic_data .pic_tags{
+    display: block;
+    font-size: 0.9em;
+    background: url(../images/tags16.png) no-repeat left;
+    padding: 0 0 0 20px;
 }
 .gs_pic_data .pic_by{
     font-size: 0.9em;

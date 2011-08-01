@@ -35,6 +35,7 @@ define('_MI_GS_GROUPSPICS','Grupos que pueden subir imágenes');
 
 //Url amigables
 define('_MI_GS_URLMODE','Utilizar URLs amigables');
+define('_MI_GS_URLBASE', __('Base path for URLs','galleries'));
 
 //directorio de imágenes
 define('_MI_GS_STOREDIR','Directorio para almacenar las imágenes');
@@ -152,5 +153,3 @@ define('_MI_GS_TAGS','Etiquetas Populares');
 define('_MI_GS_EXPLORETAGS','Explorar Etiqueta');
 define('_MI_GS_SUBMIT','Subir Imágenes');
 define('_MI_GS_SEARCH','Búsqueda');
-
-?>

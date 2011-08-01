@@ -92,7 +92,7 @@ function saveBulkImages(){
             continue;
         }
         // Creamos la etiqueta
-        $tag = new GSTag($k);
+        $tag = new GSTag(TextCleaner::getInstance()->sweetstring($k));
         if (!$tag->isNew()){
             // Si ya existe nos saltamos
             $ret[] = $tag->id(); 

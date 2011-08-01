@@ -20,4 +20,7 @@ $db = Database::getInstance();
 
 $tpl->assign('gs_url', GS_URL);
 $tpl->assign('ths_width', $xoopsModuleConfig['image_ths'][0]);
+$tpl->assign('ths_usr_width', $mc['user_format_mode'] ? $mc['user_format_values'][1] : $xoopsModuleConfig['image_ths'][0]);
 $tpl->assign('quickview', $xoopsModuleConfig['quickview']);
+
+$tpl->assign('lang_qview', __('Quick View','galleries'));

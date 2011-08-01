@@ -19,7 +19,7 @@ include("include/parse.php");
 * @desc Visualiza todos los albumes existentes
 **/
 function sets(){
-	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db, $pag, $usr;
+	global $tpl, $xoopsOption, $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $db, $pag, $usr;
 	
 	$mc =& $xoopsModuleConfig;
 	
@@ -110,7 +110,7 @@ function sets(){
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWINGSET, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Albums %u to %u from %u', 'galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);	
 	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
@@ -122,6 +122,9 @@ function sets(){
 	$sql.= " LIMIT $start,$limit";
 	$result = $db->query($sql);
 	$users = array();
+    
+    $tf = new RMTimeFormatter(0, __("%M% %d%, %Y%", 'galleries'));
+    
 	while ($rows = $db->fetchArray($result)){
 		$set = new GSSet();
 		$set->assignVars($rows);
@@ -147,31 +150,25 @@ function sets(){
 			$urlimg = '';
 		}
 	
-		$tpl->append('sets',array('id'=>$set->id(),'title'=>$set->title(),'date'=>formatTimeStamp($set->date(),'string'),
+		$tpl->append('sets',array('id'=>$set->id(),'title'=>$set->title(),'date'=>$tf->format($set->date()),
 		'owner'=>$set->owner(),'uname'=>$set->uname(),'pics'=>$set->pics(),'img'=>$urlimg,
 		'link'=>$users[$set->owner()]->userURL().'set/'.$set->id().'/',
 		'linkuser'=>$users[$set->owner()]->userURL()));
 
 	}
 	
-	$tpl->assign('lang_date',_MS_GS_DATE);
-	$tpl->assign('lang_by',_MS_GS_BY);
-	$tpl->assign('lang_pics',_MS_GS_PICS);
-	$tpl->assign('lang_view',_MS_GS_VIEW);
+	$tpl->assign('lang_date',__('Created on:','galleries'));
+	$tpl->assign('lang_by',__('Owned by:','galleries'));
 	$tpl->assign('max_cols',$cols);
 	$tpl->assign('margin',$width+20);
-	$tpl->assign('lang_bmark',_MS_GS_BOOKMARK);
-	$tpl->assign('lang_sets', _MS_GS_SETS);
-	$tpl->assign('lang_pics',_MS_GS_PIC);
-	$tpl->assign('lang_imgs',_MS_GS_IMGS);
-	$tpl->assign('lang_tags', _MS_GS_TAGS);
+	$tpl->assign('lang_imgs', __('Images:','galleries'));
 	$tpl->assign('usr',isset($owner) ? 1 : 0);
-	$tpl->assign('lang_setsexist',_MS_GS_SETSEXIST);
+	$tpl->assign('lang_setsexist',__('Existing Albums','galleries'));
 
 	if (isset($owner)){
 		$tpl->assign('user', array('id'=>$owner->uid(),'uname'=>$owner->uname(),'avatar'=>$owner->userVar('user_avatar')));
 	
-	$tpl->assign('lang_setsof',sprintf(_MS_GS_SETOF,$owner->uname()));
+	$tpl->assign('lang_setsof',sprintf(__('Sets of %s','galleries'),$owner->uname()));
 	$tpl->assign('pics_link', GS_URL.'/'.($mc['urlmode'] ? "usr/".$owner->uname() : "user.php?id=usr/".$owner->uname()."/"));
 	$tpl->assign('tags_link', GS_URL.'/'.($mc['urlmode'] ? "explore/tags/usr/".$owner->uname() : "explore.php?by=explore/tags/usr/".$owner->uname()."/"));
 	$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
@@ -187,7 +184,7 @@ function sets(){
 **/
 function pics(){
 
-	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db, $pag;
+	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db;
 	
 	$mc =& $xoopsModuleConfig;
 	
@@ -199,8 +196,8 @@ function pics(){
 
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_images')." WHERE public=2";
-
-	$page = isset($pag) ? $pag : 0;
+    
+    global $page;
 	$limit = $mc['limit_pics'];
 
 	list($num)=$db->fetchRow($db->query($sql));
@@ -218,19 +215,14 @@ function pics(){
 	
     	
     	if ($tpages > 1) {
-	    if($mc['urlmode']){
-		$urlnav = 'explore/photos';
-	    }else{
-		$urlnav = 'explore.php?by=explore/photos';
-	    }
             $nav = new RMPageNav($num, $limit, $pactual, 5);
-            $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}/');
+            $nav->target_url(GSFunctions::get_url().($mc['urlmode'] ? 'explore/photos/pag/{PAGE_NUM}/' : '?explore=photos&amp;pag={PAGE_NUM}'));
             $tpl->assign('picsNavPage', $nav->render(false));
     	}
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Showing <strong>%u</strong> to <strong>%u</strong> from <strong>%u</strong> photos.','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);
 	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
@@ -239,33 +231,10 @@ function pics(){
 	$sql = "SELECT * FROM ".$db->prefix('gs_images')." WHERE public=2";
 	$sql .= " ORDER BY created DESC LIMIT $start,$limit";
 	$result = $db->query($sql);
-	$users = array();
-	while($rows = $db->fetchArray($result)){
-		
-		$img = new GSImage();
-		$img->assignVars($rows);
-
-		if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
 	
-		
-		$urlimg = $users[$img->owner()]->filesURL()."/ths/".$img->image();
-		
-		$tpl->append('images',array('id'=>$img->id(),'title'=>$img->title(),'by'=>$users[$img->owner()]->uname(),
-		'image'=>$urlimg,'link'=>$users[$img->owner()]->userURL()."img/".$img->id(),
-		'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-		'bigimage'=>$users[$img->owner()]->filesURL().'/'.$img->image(),'userurl'=>$users[$img->owner()]->userURL(),
-		'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments())));
-	}
+    $tpl->assign('images', GSFunctions::process_image_data($result));
 
-	$tpl->assign('lang_exist',_MS_GS_EXISTIMGS);
-	$tpl->assign('lang_by',_MS_GS_BY);
-	$tpl->assign('lang_date',_MS_GS_DATE);
-	$tpl->assign('max_cols',$mc['cols_pics']);
-	$tpl->assign('lang_quickview',_MS_GS_QUICK);
-
-	
-	global $xoTheme;
-	$xoTheme->addScript(GS_URL."/include/js/lightbox.js");	
+	$tpl->assign('lang_exist',__('Existing photos','galleries'));
 
 	include ('footer.php');
 }
@@ -275,7 +244,7 @@ function pics(){
 **/
 function tags(){
 
-	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db, $pag, $usr;
+	global $tpl, $xoopsOption, $xoopsUser, $xoopsModuleConfig, $db, $pag, $usr, $xoopsConfig, $tag;
 	
 	$xoopsOption['template_main'] = 'gs_tags.html';
 	$xoopsOption['module_subpage'] = 'tags';
@@ -289,7 +258,7 @@ function tags(){
 	if (isset($usr)){
 		$user = new GSUser($usr);
 		if($user->isNew()){
-			redirect_header(XOOPS_URL.'/modules/galleries/',1,_MS_GS_ERRUSER);
+			redirect_header(XOOPS_URL.'/modules/galleries/',1,__('Specified user does not exists!','galleries'));
 			die();
 		}
 	}
@@ -308,15 +277,16 @@ function tags(){
 
 	//Obtenemos la lista de etiquetas
 	if (!$usr){
-		$sql = "SELECT * FROM ".$db->prefix('gs_tags')." WHERE hits>=".$mc['hits_tags']." ORDER BY tag";
+		$sql = "SELECT * FROM ".$db->prefix('gs_tags')." ORDER BY tag";
 	}else{
 		$sql = "SELECT a.* FROM ".$db->prefix('gs_tags')." a INNER JOIN ".$db->prefix('gs_tagsimages');
 		$sql.=" b INNER JOIN ".$db->prefix('gs_images')." c ON (a.id_tag=b.id_tag AND  b.id_image=c.id_image ";
-		$sql.= " AND c.owner=".$user->uid().") WHERE hits>=".$mc['hits_tags'];
+		$sql.= " AND c.owner=".$user->uid().")";
 		$sql.= "  GROUP BY a.id_tag ORDER BY tag LIMIT 0,".$mc['num_tags'];
 	}
 
 	$result = $db->query($sql);
+    
 	$sz = $maxhit>0 ? $mc['font_tags']/$maxhit : 11;
 	while($rows = $db->fetchArray($result)){
 		
@@ -329,11 +299,11 @@ function tags(){
 		}	
 
 		if ($mc['urlmode']){
-			$link = XOOPS_URL."/modules/galleries/explore/tags/tag/".$tag->tag();
-			$link.= ($usr ? "/usr/".$user->uname()."/" : '/');
+			$link = GSFunctions::get_url()."explore/tags/tag/".$tag->getVar('nameid').'/';
+			$link.= ($usr ? "usr/".$user->uname()."/" : '');
 		}else{
-			$link = XOOPS_URL."/modules/galleries/explore.php?by=explore/tags/tag/".$tag->tag();
-			$link.= ($usr ? "/usr/".$user->uname()."/" : '/');
+			$link = GSFunctions::get_url()."?explore=tags&amp;tag=".$tag->getVar('nameid');
+			$link.= $usr ? "&amp;usr=".$user->uname() : '';
 		}
 
 		$tpl->append('tags',array('id'=>$tag->id(),'tag'=>$tag->tag(),'hits'=>$tag->hits(),'size'=>$size,
@@ -341,10 +311,10 @@ function tags(){
 	}
 
 	$tpl->assign('font',$mc['font_tags']);
-	$tpl->assign('lang_hits',_MS_GS_HITS);
-	$tpl->assign('lang_tagsof',$usr ? sprintf(_MS_GS_TAGSOF,$user->uname()) : _MS_GS_TAGSEX);
-	$tpl->assign('lang_pics',_MS_GS_PIC);
-	$tpl->assign('lang_bmark',_MS_GS_BOOKMARK);
+	$tpl->assign('lang_hits', __('Hits:','galleries'));
+	$tpl->assign('lang_tagsof',$usr ? sprintf(__('Tags of %s','galleries'),$user->uname()) : __('Existing tags','galleries'));
+	$tpl->assign('lang_pics',__('Pictures','galleries'));
+	$tpl->assign('lang_bmark',__('Favorites','galleries'));
 	$tpl->assign('usr',$usr);
 
 	if ($usr){
@@ -363,7 +333,7 @@ function tags(){
 **/
 function imgsTag(){
 
-	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db, $pag, $tag, $usr, $hits;
+	global $tpl, $xoopsOption, $xoopsUser, $xoopsConfig, $xoopsModuleConfig, $db, $page, $tag, $usr, $hits;
 	
 	$xoopsOption['template_main'] = 'gs_imagestag.html';
 	$xoopsOption['module_subpage'] = 'exploretags';
@@ -376,7 +346,7 @@ function imgsTag(){
 	//Verificamos si la etiqueta existe
 	$tag = new GSTag($tag);
 	if($tag->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries',1,_MS_GS_ERRTAG);
+		redirect_header(GSFunctions::get_url(),1, __('Specified tag does not exists!','galleries'));
 		die();
 	}
 
@@ -394,7 +364,7 @@ function imgsTag(){
 	if (isset($usr)){
 		$user = new GSUser($usr);
 		if($user->isNew()){
-			redirect_header(XOOPS_URL.'/modules/galleries/',1,_MS_GS_ERRUSER);
+			redirect_header(GSFunctions::get_url(),1, __('Specified user does not exists!','galleries'));
 			die();
 		}
 		$users[$user->uid()] = $user;
@@ -406,7 +376,6 @@ function imgsTag(){
 	$sql.= " b ON (a.id_tag=".$tag->id()." AND a.id_image=b.id_image  AND b.public=2";
 	$sql.= $usr ? " AND b.owner=".$user->uid().") " : ")";
 
-	$page = isset($pag) ? $pag : 0;
 	$limit = $xoopsModuleConfig['num_imgstags'];
 
 	list($num)=$db->fetchRow($db->query($sql));
@@ -424,21 +393,22 @@ function imgsTag(){
 	
     	
     	if ($tpages > 1) {
-	    if($mc['urlmode']){
-		$urlnav = 'explore/tags/tag/'.$tag->tag().'';
-	    }else{
-		$urlnav = 'explore.php?by=explore/tags/tag/'.$tag->tag();
-	    }
-		$urlnav.= $usr ? 'usr/'.$user->uname().'' : '';
+	        if($mc['urlmode']){
+		        $urlnav = 'explore/tags/tag/'.$tag->getVar('nameid').'/';
+                $urlnav.= $usr ? 'usr/'.$user->uname().'/' : '';
+	        }else{
+		        $urlnav = '?xplore=tags&amp;tag='.$tag->getVar('nameid');
+                $urlnav.= $usr ? '&amp;usr='.$user->uname() : '';
+	        }
 
     	    $nav = new RMPageNav($num, $limit, $pactual, 5);
-    	    $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}/');
+    	    $nav->target_url(GSFunctions::get_url().$urlnav.($mc['urlmode'] ? 'pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
     	    $tpl->assign('tagsNavPage', $nav->render(false));
     	}
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Showing photos %u to %u from %u.','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);
 	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
@@ -451,32 +421,11 @@ function imgsTag(){
 	$sql.=" GROUP BY b.id_image";
 	$sql.= " ORDER BY `created` DESC LIMIT $start, $limit";
 	$result = $db->query($sql);
-	while($rows = $db->fetchArray($result)){
-		$img = new GSImage();
-		$img->assignVars($rows);
-		
-		
-		if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
-		$urlimg = $users[$img->owner()]->filesURL()."/ths/".$img->image();
 	
-
-		$tpl->append('images',array('id'=>$img->id(),'title'=>$img->title(),'by'=>$users[$img->owner()]->uname(),
-		'image'=>$urlimg,'link'=>$users[$img->owner()]->userURL()."img/".$img->id()."/",
-		'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-		'bigimage'=>$users[$img->owner()]->filesURL().'/'.$img->image(),'userurl'=>$users[$img->owner()]->userURL().'/',
-		'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments())));
-
-	}
+    $tpl->assign('images', GSFunctions::process_image_data($result));
 	
-	$tpl->assign('max_cols',$mc['cols_imgstags']);
-	$tpl->assign('lang_quickview',_MS_GS_QUICK);
-	$tpl->assign('lang_by',_MS_GS_BY);
-	$tpl->assign('lang_picstag',$usr ? sprintf(_MS_GS_PICSTAGUSR,$user->uname(),$tag->tag()) : sprintf(_MS_GS_PICSTAG,$tag->tag()));
+	$tpl->assign('lang_picstag',$usr ? sprintf(__('%s: tagged as %s','galleries'),$user->uname(),$tag->tag()) : sprintf(__('Images tagged as "%s"','galleries'),$tag->tag()));
 	$tpl->assign('tagname',$tag->tag());
-	$tpl->assign('lang_bmark',_MS_GS_BOOKMARK);
-	$tpl->assign('lang_sets', _MS_GS_SETS);
-	$tpl->assign('lang_pics',_MS_GS_PIC);
-	$tpl->assign('lang_tags', _MS_GS_TAGS);
 	$tpl->assign('usr',$usr);
 	
 	if ($usr){
@@ -497,13 +446,10 @@ switch ($explore){
 		pics();
 		break;
 	case 'tags':
-		if (isset($tag) && $tag){
+		if (isset($tag)){
 			imgsTag();
 		} else {
 			tags();
 		}
 		break;
 }
-
-
-?>

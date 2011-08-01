@@ -1,29 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: gina
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 define('GS_LOCATION','search');
 include '../../mainfile.php';
@@ -40,9 +23,7 @@ GSFunctions::makeHeader();
 
 $myts =& MyTextSanitizer::getInstance();
 
-$search = isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-$page = isset($_REQUEST['pag']) ? intval($_REQUEST['pag']) : '';
-
+$search = isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : ($search!=1?$search:'');
 
 //Dividimos la búsqueda en palabras
 $words = explode(" ",$search);
@@ -66,12 +47,10 @@ $sql1.="))";
 */
 if ($mc['search_format_mode']){
 	$format = $mc['search_format_values'];
-	$crop = $format[0]; // 0 = Redimensionar, 1 = Cortar
-	$width = $format[1];
-	$height = $format[2];
 	$limit = $format[3];
 	$cols = $format[4];
 	$showdesc = @$format[5];
+    $tpl->assign('width_img', $format[1]);
 } else {
 	$limit = $mc['num_search'];
 	$cols = $mc['cols_search'];
@@ -97,13 +76,13 @@ if ($pactual>$tpages){
 if ($tpages > 1) {
    	
    	$nav = new RMPageNav($num, $limit, $pactual, 5);
-   	$nav->target_url('search.php?search='.$search.'&pag={PAGE_NUM}');
+   	$nav->target_url($mc['urlmode'] ? GSFunctions::get_url().'/search/'.$search.'/pag/{PAGE_NUM}/' : '?search='.$search.'&amp;pag={PAGE_NUM}');
     $tpl->assign('searchNavPage', $nav->render(false));
 }
 
 $showmax = $start + $limit;
 $showmax = $showmax > $num ? $num : $showmax;
-$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+$tpl->assign('lang_showing', sprintf(__('Showing pictures %u to %u from %u'), $start + 1, $showmax, $num));
 $tpl->assign('limit',$limit);
 $tpl->assign('pag',$pactual);
 //Fin de barra de navegación
@@ -125,7 +104,10 @@ $sql1.="))";
 $sql2 = " GROUP BY c.id_image ORDER BY c.created DESC LIMIT $start,$limit";
 $result = $db->query($sql.$sql1.$sql2);
 $users = array();
-while ($rows = $db->fetchArray($result)){
+
+$tpl->assign('images', GSFunctions::process_image_data($result));
+
+/*while ($rows = $db->fetchArray($result)){
 
 	$img = new GSImage();
 	$img->assignVars($rows);
@@ -154,14 +136,10 @@ while ($rows = $db->fetchArray($result)){
 	'link'=>$users[$img->owner()]->userURL()."img/".$img->id(),'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),
 	'tags'=>$strtag));
 
-}
+}*/
 
 
 $tpl->assign('max_cols',$cols);
-$tpl->assign('lang_quickview',_MS_GS_QUICK);
-$tpl->assign('lang_found',sprintf(_MS_GS_FOUND, $num, $search));
-$tpl->assign('width', round(100/$cols));
-$tpl->assign('width_img', $width);
+$tpl->assign('lang_found',sprintf(__('Found %s pictures for "%s"','galleries'), '<strong>'.$num.'</strong>', $search));
 
 include 'footer.php';
-?>

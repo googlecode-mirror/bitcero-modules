@@ -15,12 +15,12 @@ define('GS_LOCATION','user');
 include '../../mainfile.php';
 
 function showUserPics(){
-	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $exmUser, $xoopsOption, $tpl;
-	global $pag, $set;
+	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $xoopsOption, $tpl;
+	global $page, $set;
 	
 	$user = new GSUser($usr);
 	if ($user->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRUSR);
+		redirect_header(XOOPS_URL.'/modules/galleries', 0, __('Specified user does not exists','galleries'));
 		die();
 	}
 	
@@ -31,25 +31,22 @@ function showUserPics(){
 	GSFunctions::makeHeader();
 	
 	// Información del Usuario
-	$tpl->assign('lang_picsof', sprintf(_MS_GS_PICSOF, $user->uname()));
+	$tpl->assign('lang_picsof', sprintf(__('Pictures of %s'), $user->uname()));
 	$tpl->assign('user', array('id'=>$user->uid(),'uname'=>$user->uname(),'avatar'=>$user->userVar('user_avatar'),'link'=>$user->userURL()));
 	
 	// Lenguaje
-	$tpl->assign('lang_sets', _MS_GS_SETS);
-	$tpl->assign('lang_tags', _MS_GS_TAGS);
-	$tpl->assign('lang_bmark', _MS_GS_BMARK);
-	$tpl->assign('lang_pics', _MS_GS_PICS);
-	$tpl->assign('lang_quickview', _MS_GS_QUICK);
-	$tpl->assign('sets_link', GS_URL.'/'.($mc['urlmode'] ? "explore/sets/usr/".$user->uname() : "explore.php?by=explore/sets/usr/".$user->uname()));
-	$tpl->assign('tags_link', GS_URL.'/'.($mc['urlmode'] ? "explore/tags/usr/".$user->uname() : "explore.php?by=explore/tags/usr/".$user->uname()));
-	$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
-	$tpl->assign('xoops_pagetitle', sprintf(_MS_GS_PICSOF, $user->uname()).' &raquo; '.$mc['section_title']);
+	$tpl->assign('lang_bmark', __('Favorites','galleries'));
+	$tpl->assign('lang_pics', __('Pictures','galleries'));
+	$tpl->assign('sets_link', GSFunctions::get_url() ? "explore/sets/usr/".$user->uname().'/' : "?explore=sets&amp;usr=".$user->uname());
+	$tpl->assign('tags_link', GSFunctions::get_url() ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname());
+	$tpl->assign('bmark_link', GSFunctions::get_url() ? "cp/booksmarks/" : "?cpanel=bookmarks");
+	$tpl->assign('xoops_pagetitle', sprintf(__('Pictures of %s','galleries'), $user->uname()).' &raquo; '.$mc['section_title']);
 
 	//Verificamos si el usuario es dueño o amigo
-	if ($exmUser && $exmUser->uid()==$user->uid()){
+	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
 		$public = '';
 	}else{
-		if($exmUser && $user->isFriend($exmUser->uid())){
+		if($xoopsUser && $user->isFriend($xoopsUser->uid())){
 			$public = " AND public<>'0'";
 		}else{
 			$public = " AND public='2'";
@@ -58,8 +55,7 @@ function showUserPics(){
 
 	
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_images")." WHERE owner='".$user->uid()."' $public";
-	
-	$page = isset($pag) ? $pag : 0;
+
 	/**
 	* @desc Formato para el manejo de las imágenes
 	*/
@@ -91,43 +87,28 @@ function showUserPics(){
 	
    	$urlnav = '';
    	if ($tpages > 1) {
-    	$urlnav .= isset($usr) ? 'usr/'.$user->uname() : 'user.php?id=usr/'.$user->uname();	    
+    	$urlnav .= isset($usr) ? 'usr/'.$user->uname().'/' : '?usr='.$user->uname();	    
     	$nav = new RMPageNav($num, $limit, $pactual, 5);
-        $nav->target_url(GS_URL.'/'.$urlnav . '/pag/{PAGE_NUM}/');
+        $nav->target_url(GSFunctions::get_url().$urlnav . ($mc['urlmode'] ? 'pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
    	    $tpl->assign('upNavPage', $nav->render(false));
    	}
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Showing pictures %u to %u from %u','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);
 	$tpl->assign('pag',$pactual);
+    $tpl->assign('show_desc', $showdesc);
 	//Fin de barra de navegación
 	
 	$sql = str_replace("COUNT(*)",'*',$sql);
 	$sql .= " ORDER BY created DESC, modified DESC LIMIT $start, $limit";
 	$result = $db->query($sql);
-	while ($row = $db->fetchArray($result)){
-		$img = new GSImage();
-		$img->assignVars($row);
-		$imglink = $user->userURL().'img/'.$img->id().'/';
-		$imgfile = $user->filesURL().'/'.($mc['user_format_mode'] ? 'formats/user_' : 'ths/').$img->image();
-		
-		// Conversion de los formatos
-		if (!$img->userFormat() && $mc['user_format_mode']){
-			GSFunctions::resizeImage($crop, $user->filesPath().'/'.$img->image(),$user->filesPath().'/formats/user_'.$img->image(), $width, $height);
-			$img->setUserFormat(1, 1);
-		}
-		
-		$tpl->append('images', array('id'=>$img->id(),'title'=>$img->title(),
-			'image'=>$imgfile,'link'=>$imglink,
-			'bigimage'=>$user->filesURL().'/'.$img->image(),
-			'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-			'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),'desc'=>$showdesc ? $img->desc() : ''));
-	}
+    
+	$tpl->assign('images', GSFunctions::process_image_data($result));
 	
 	// Datos para el formato
-	$tpl->assign('max_cols', $cols);
+	$tpl->assign('gs_user_format', 1);
 	
 	include 'footer.php';
 	
@@ -137,17 +118,17 @@ function showUserPics(){
 * @desc Mostramos los detalles de una imágen
 */
 function showImageDetails(){
-	global $usr, $set, $img, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $exmUser, $xoopsOption, $tpl;
+	global $usr, $set, $img, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $xoopsOption, $tpl;
 	
 	$user = new GSUser($usr);
 	if ($user->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRUSR);
+		redirect_header(GSFunctions::get_url(), 0, __('Specified user does not exists!','galleries'));
 		die();
 	}
 	
 	$image = new GSImage($img);
 	if ($image->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRIMG);
+		redirect_header(GSFunctions::get_url(), 0, __('Specified image does not exists!','galleries'));
 		die();
 	}
 	$user = new GSUser($image->owner(),1);
@@ -155,16 +136,16 @@ function showImageDetails(){
 	//Verificamos la privacidad de la imagen
 	if (!$image->isPublic()){
 		//Privada, Verificamos si el usuario es el dueño de la imagen
-		if(!$exmUser || $exmUser->uid()!=$image->owner()){
-			redirect_header(XOOPS_URL.'/modules/galleries',1,_MS_GS_ERRPRIVACY);
+		if(!$xoopsUser || $xoopsUser->uid()!=$image->owner()){
+			redirect_header(GSFunctions::get_url(),1, __('You can not view this image!','galleries'));
 			die();		
 		}
 	}else{
 		if($image->isPublic()==1){//Privada y amigos
-			if (!$exmUser || $exmUser->uid()!=$image->owner()){
+			if (!$xoopsUser || $xoopsUser->uid()!=$image->owner()){
 				//Verificamos si es un amigo
-				if (!$exmUser || !$user->isFriend($exmUser->uid())){
-					redirect_header(XOOPS_URL.'/modules/galleries',1,_MS_GS_ERRNOTFRIEND);
+				if (!$xoopsUser || !$user->isFriend($xoopsUser->uid())){
+					redirect_header(GSFunctions::get_url(),1, __('You are not authorized to view this image!','galleries'));
 					die();	
 				}
 			}			
@@ -177,7 +158,7 @@ function showImageDetails(){
 	if (isset($set)){
 		$set = new GSSet($set);
 		if ($set->isNew()){
-			redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRSET);
+			redirect_header(GSFunctions::get_url(), 0, __('Specified album does not exists!','galleries'));
 			die();
 		}
 	}
@@ -192,27 +173,23 @@ function showImageDetails(){
 			'avatar'=>$user->userVar('user_avatar')!='' ? XOOPS_URL.'/uploads/avatars/'.$user->userVar('user_avatar') : GS_URL.'/images/avatar.png'));
 	
 	$tpl->assign('user_link', $user->userURL());
-	$tpl->assign('lang_photos', _MS_GS_PHOTOS);
-	$tpl->assign('lang_browse', _MS_GS_BROWSE);
-	$tpl->assign('lang_alsobelong', _MS_GS_BELONG);
-	$tpl->assign('lang_tags', _MS_GS_TAGS);
-	$tpl->assign('lang_postcards', _MS_GS_POSTCARDS);
-	$tpl->assign('lang_bookmark', _MS_GS_BOOKMARK);
-	$tpl->assign('lang_toset', _MS_GS_TOSET);
-	$tpl->assign('lang_lastpic', _MS_GS_LASTPIC);
-	$tpl->assign('lang_firstpic', _MS_GS_FIRSTPIC);
-	$tpl->assign('toset_link', GS_URL.'/'.($mc['urlmode'] ? 'cpanel/toset/' : 'cpanel.php?s=cpanel/toset/'));
-	$tpl->assign('edit_link', GS_URL.'/'.($mc['urlmode'] ? 'cpanel/edit/&amp;id=' : 'cpanel.php?op=edit&amp;id='));
-	$tpl->assign('bookmark_link', GS_URL.'/'.($mc['urlmode'] ? 'cpanel/bookmarks/add/'.$image->id().'/referer/'.base64_encode($_SERVER['REQUEST_URI']) : 'cpanel.php?s=cpanel/bookmarks/add/'.$image->id().'/referer/'.base64_encode($_SERVER['REQUEST_URI'])));
-	$tpl->assign('postcard_link', GS_URL.'/'.($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : 'postcard.php?id=postcard/new/img/'.$image->id()));
-	$where = $user->userURL().(isset($set) ? 'set/'.$set->id().'/' : '');
-	$tpl->assign('del_return', base64_encode($where));
-	$tpl->assign('delete_link', GS_URL.'/'.($mc['urlmode'] ? 'cpanel/delete/&amp;ids=' : 'cpanel.php?op=delete&amp;ids='));
-	$tpl->assign('lang_confirmdel', sprintf(_MS_GS_CONFDEL, $image->title()));
+	$tpl->assign('lang_alsobelong', __('Also belongs to:','galleries'));
+	$tpl->assign('lang_postcards', __('Send postcard','galleries'));
+	$tpl->assign('lang_bookmark', __('+ Bookmark','galleries'));
+	$tpl->assign('lang_toset', __('+ to Ablum','galleries'));
+	$tpl->assign('lang_lastpic', __('This is the last picture','galleries'));
+	$tpl->assign('lang_firstpic', __('This is the first picture','galleries'));
+	$tpl->assign('toset_link', GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/toset/' : '?cpanel=toset'));
+	$tpl->assign('edit_link', GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/edit/id/' : '?cpanel=edit&amp;id='));
+	$tpl->assign('bookmark_link', GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/bookmarks/add/'.$image->id().'/referer/'.base64_encode($_SERVER['REQUEST_URI']) : '?cpanel=bookmarks&amp;add='.$image->id().'&amp;referer='.base64_encode($_SERVER['REQUEST_URI'])));
+	$tpl->assign('postcard_link', GSFunctions::get_url().($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : '?postcard=new&amp;img='.$image->id()));
+	$tpl->assign('del_return', base64_encode(RMFunctions::current_url()));
+	$tpl->assign('delete_link', GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/delete/ids/' : '?cpanel=delete&amp;ids='));
+	$tpl->assign('lang_confirmdel', sprintf(__('Dow you really want to delete this picture?\n(%s)','galleries'), $image->title()));
 	
-	if ($exmUser && $exmUser->uid()==$image->owner()){
-		$tpl->assign('lang_edit', _EDIT);
-		$tpl->assign('lang_delete', _DELETE);
+	if ($xoopsUser && $xoopsUser->uid()==$image->owner()){
+		$tpl->assign('lang_edit', __('Edit','galleries'));
+		$tpl->assign('lang_delete', __('Delete','galleries'));
 		$tpl->assign('isowner', 1);
 	}
 	
@@ -224,10 +201,10 @@ function showImageDetails(){
 	$tpl->assign('xoops_pagetitle', $image->title().' &raquo; '.$xoopsModule->name());
 	
 	//Verificamos si el usuario es dueño o amigo
-	if ($exmUser && $exmUser->uid()==$user->uid()){
+	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
 		$public = '';
 	}else{
-		if($exmUser && $user->isFriend($exmUser->uid())){
+		if($xoopsUser && $user->isFriend($xoopsUser->uid())){
 			$public = " AND public<>'0'";
 		}else{
 			$public = " AND public='2'";
@@ -261,7 +238,7 @@ function showImageDetails(){
             $tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
         }
 		
-		$tpl->assign('prevnext_title', sprintf(_MS_GS_PNTITLE, $user->uname()));
+		$tpl->assign('prevnext_title', sprintf(__('Pictures of %s'), $user->uname()));
 		$tpl->assign('title_link', $user->userURL());
 		
 		$result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("gs_images")." WHERE owner='".$user->uid()."' $public");
@@ -279,11 +256,11 @@ function showImageDetails(){
 
 			//Verificamos la privacidad del album
 			if (!$oset->ispublic()){
-				if(!$exmUser) continue;
+				if(!$xoopsUser) continue;
 				
-				if($exmUser->uid()!=$oset->owner()) continue;
+				if($xoopsUser->uid()!=$oset->owner()) continue;
 			}else{
-				if (!$exmUser && $oset->isPublic()==1 && !$user->isFriend($exmUser->uid())) continue;
+				if (!$xoopsUser && $oset->isPublic()==1 && !$user->isFriend($xoopsUser->uid())) continue;
 			}
 
 			$tpl->append('sets', array('id'=>$oset->id(),'title'=>$oset->title(),'link'=>$user->userURL().'set/'.$oset->id().'/'));
@@ -321,7 +298,7 @@ function showImageDetails(){
 			$tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
 		}
 		
-		$tpl->assign('prevnext_title', sprintf(_MS_GS_PNTITLE, $set->title()));
+		$tpl->assign('prevnext_title', sprintf(__('Pictures of %s','galleries'), $set->title()));
 		$tpl->assign('title_link', $user->userURL().'set/'.$set->id().'/');
 		
 		$result = $db->query("SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.owner='".$user->uid()."' $public");
@@ -332,17 +309,17 @@ function showImageDetails(){
 		$tbl1 = $db->prefix("gs_sets");
 		$sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set<>'".$set->id()."' AND b.id_image='".$image->id()."' AND a.id_set=b.id_set";
 		$result = $db->query($sql);
-		$tpl->append('sets', array('id'=>0, 'title'=>sprintf(_MS_GS_GALFROM, $user->uname()),'link'=>$user->userURL()));
+		$tpl->append('sets', array('id'=>0, 'title'=>sprintf(__('Galleries of %s','galleries'), $user->uname()),'link'=>$user->userURL()));
 		while ($row = $db->fetchArray($result)){
 			$oset = new GSSet();
 			$oset->assignVars($row);
 
 			//Verificamos la privacidad del album
 			if (!$oset->ispublic()){
-				if(!$exmUser) continue;
-				if($exmUser->uid()!=$oset->owner()) continue;
+				if(!$xoopsUser) continue;
+				if($xoopsUser->uid()!=$oset->owner()) continue;
 			}else{
-				if (!$exmUser && $oset->isPublic()==1 && !$user->isFriend($exmUser->uid())) continue;
+				if (!$xoopsUser && $oset->isPublic()==1 && !$user->isFriend($xoopsUser->uid())) continue;
 			}
 			
 			$tpl->append('sets', array('id'=>$oset->id(),'title'=>$oset->title(),'link'=>$user->userURL().'set/'.$oset->id(),'/'));
@@ -352,20 +329,17 @@ function showImageDetails(){
 	
 	// Etiquetas
 	$tags = $image->tags(true, '*');
-	$link = GS_URL.'/'.($mc['urlmode'] ? 'explore/tags/tag/' : "explore.php?by=explore/tags/tag/");
+	$link = GSFunctions::get_url().($mc['urlmode'] ? 'explore/tags/tag/' : "?explore=tags&amp;tag=");
 	foreach ($tags as $tag){
 		$tpl->append('tags', array('id'=>$tag->id(),'tag'=>$tag->tag(),'link'=>$link.$tag->tag()));
 	}
 	
 	// Comentarios
-	$tpl->assign('users_link', GS_URL.'/'.($mc['urlmode'] ? 'usr/' : 'user.php?id=usr/'));
-	$tpl->assign('lang_usays', _MS_GS_USAYS);
-	$tpl->assign('lang_comments', _MS_GS_TCOMMENTS);
-	$tpl->assign('lang_send', _MS_GS_SEND);
+	$tpl->assign('users_link', GSFunctions::get_url().($mc['urlmode'] ? 'usr/' : '?usr='));
 	
 	RMFunctions::get_comments('galleries','image='.$image->id());
 	// Comments form
-	RMFunctions::comments_form('galleries', 'image='.$image->id(), 'module', MW_PATH.'/class/galleriescontroller.php');
+	RMFunctions::comments_form('galleries', 'image='.$image->id(), 'module', GS_PATH.'/class/galleriescontroller.php');
 	
 	include 'footer.php';
 	
@@ -375,31 +349,31 @@ function showImageDetails(){
 * @desc Mostramos el contenido de un Álbum
 */
 function showSetContent(){
-	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $exmUser, $xoopsOption, $tpl;
+	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $xoopsOption, $tpl;
 	global $pag, $set;
-	
+    
 	$mc =& $xoopsModuleConfig;
 	$user = new GSUser($usr);
 	if ($user->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRUSR);
+		redirect_header(GSFunctions::get_url(), 0, __('Specified users does not exists!','galleries'));
 		die();
 	}
 	
 	$set = new GSSet($set);
 	if ($set->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries', 0, _MS_GS_ERRSET);
+		redirect_header(GSFunctions::get_url(), 0, __('Specified album does not exists!','galleries'));
 		die();
 	}
 
 	//Verificamos la privacidad del album
 	if (!$set->ispublic()){
-		if(!$exmUser || $exmUser->uid()!=$set->owner()){
-			redirect_header(XOOPS_URL.'/modules/galleries/',1,_MS_GS_ERRSETPRIVACY);
+		if(!$xoopsUser || $xoopsUser->uid()!=$set->owner()){
+			redirect_header(GSFunctions::get_url(),1, __('You can not view this private album!','galleries'));
 			die();
 		}
 	}else{
-		if (!$exmUser && $set->isPublic()==1 && !$user->isFriend($exmUser->uid())){
-			redirect_header(XOOPS_URL.'/modules/galleries/',1,_MS_GS_ERRNOTFRIENDSET);
+		if (!$xoopsUser && $set->isPublic()==1 && !$user->isFriend($xoopsUser->uid())){
+			redirect_header(GSFunctions::get_url(),1, sprintf(__('You must be a friend of %s in order to see this album!','galleries'), $user->uname()));
 			die();
 		}
 	}
@@ -422,29 +396,26 @@ function showSetContent(){
 	GSFunctions::makeHeader();
 	
 	// Información del Usuario
-	$tpl->assign('lang_picsof', sprintf(_MS_GS_PICSOFIN, $set->title()));
+	$tpl->assign('lang_picsof', sprintf(__('Images in %s'), $set->title()));
 	$tpl->assign('user', array('id'=>$user->uid(),'uname'=>$user->uname(),'avatar'=>$user->userVar('user_avatar'),'link'=>$user->userURL()));
 	
 	// Lenguaje
-	$tpl->assign('lang_sets', _MS_GS_SETS);
-	$tpl->assign('lang_tags', _MS_GS_TAGS);
-	$tpl->assign('lang_bmark', _MS_GS_BMARK);
-	$tpl->assign('lang_pics', _MS_GS_PICS);
-	$tpl->assign('lang_quickview', _MS_GS_QUICK);
-	$tpl->assign('sets_link', GS_URL.'/'.($mc['urlmode'] ? "explore/sets/usr/".$user->uname() : "explore.php?by=explore/sets/usr/".$user->uname()));
-	$tpl->assign('tags_link', GS_URL.'/'.($mc['urlmode'] ? "explore/tags/usr/".$user->uname() : "explore.php?by=explore/tags/usr/".$user->uname()));
-	$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
-	$tpl->assign('xoops_pagetitle', sprintf(_MS_GS_PICSOFIN, $set->title()).' &raquo; '.$mc['section_title']);
+	$tpl->assign('lang_bmark', __('Favorites','galleries'));
+	$tpl->assign('lang_pics', __('My Images','galleries'));
+	$tpl->assign('sets_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/sets/usr/".$user->uname().'/' : "?explore=sets&amp;usr=".$user->uname()));
+	$tpl->assign('tags_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname()));
+	$tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "?cp=bookmarks"));
+	$tpl->assign('xoops_pagetitle', sprintf(__('Images in %s'), $set->title()).' &raquo; '.$mc['section_title']);
 	$tpl->assign('lang_inset', _MS_GS_INSET);
-	$tpl->assign('lang_numpics', sprintf(_MS_GS_NUMPICS, $set->pics()));
-	$tpl->assign('lang_numviews', sprintf(_MS_GS_NUMVIEWS, $set->hits()));
+	$tpl->assign('lang_numpics', sprintf(__('Pictures: %s','galleries'), $set->pics()));
+	$tpl->assign('lang_numviews', sprintf(__('Hits: %s'), $set->hits()));
 
 
 	//Verificamos la privacidad de las imágenes
-	if ($exmUser && $exmUser->uid()==$user->uid()){
+	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
 		$public = '';
 	}else{
-		if ($exmUser && $user->isFriend($exmUser->uid())){
+		if ($xoopsUser && $user->isFriend($xoopsUser->uid())){
 			$public = " AND public<>0";
 		}else{
 			$public = "AND public='2'";
@@ -527,7 +498,7 @@ function showSetContent(){
 		}
 		
 		$tpl->append('images', array('id'=>$img->id(),'title'=>$img->title(),
-			'image'=>$imgfile,'link'=>$imglink,
+			'thumbnail'=>$imgfile,'link'=>$imglink,
 			'bigimage'=>$user->filesURL().'/'.$img->image(),
 			'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
 			'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),'desc'=>$showdesc ? $img->desc() : ''));
@@ -579,7 +550,7 @@ function showSetContent(){
 * @desc Busca la posición exacta de una etiqueta
 */
 function browsePic(){
-	global $usr, $mc, $xoopsModuleConfig, $xoopsConfig, $exmUser, $pag, $set, $browse;
+	global $usr, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $pag, $set, $browse;
 	
 	$mc =& $xoopsModuleConfig;
 	$user = new GSUser($usr);
@@ -616,5 +587,3 @@ if (isset($set) && !isset($img)){
 } else {
 	showUserPics();
 }
-
-?>

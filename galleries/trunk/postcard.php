@@ -1,29 +1,12 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 $toget = 'id';
 include 'include/parse.php';
@@ -31,8 +14,8 @@ include 'include/parse.php';
 define('GS_LOCATION','postcards');
 include '../../mainfile.php';
 
-if (!$exmModuleConfig['postcards']){
-	redirect_header(XOOPS_URL.'/modules/galleries/', 1, _MS_GS_SRVDISABLED);
+if (!$xoopsModuleConfig['postcards']){
+	redirect_header(XOOPS_URL.'/modules/galleries/', 1, __('The postcards service is currently disabled!','galleries'));
 	die();
 }
 
@@ -40,16 +23,16 @@ if (!$exmModuleConfig['postcards']){
 * @desc Muestra el formulario para la creación de la postal
 */
 function newPostcard(){
-	global $exmUser, $exmModule, $exmModuleConfig, $mc, $tpl, $img, $xoopsOption;
+	global $xoopsUser, $xoopsModule, $xoopsModuleConfig, $mc, $tpl, $img, $xoopsOption;
 	
-	if (!$exmUser){
-		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
+	if (!$xoopsUser){
+		redirect_header(XOOPS_URL.'/user.php#register', 1, __('You must be a registered user in order to send postcards!','galleries'));
 		die();
 	}
 	
 	$image = new GSImage($img);
 	if ($image->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries/', 1, _MS_GS_ERRIMG);
+		redirect_header(GSFunctions::get_url(), 1, __('Specified image does not exists!','galleries'));
 		die();
 	}
 	
@@ -62,28 +45,28 @@ function newPostcard(){
 	GSFunctions::makeHeader();
 	$tpl->assign('xoops_pagetitle', sprintf(_MS_GS_NEWPOST, $image->title()));
 
-	$postlink = GS_URL.'/'.($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : GS_URL.'/postcard.php?id=postcard/new/img/'.$image->id());
+	$postlink = GSFunctions::get_url().($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : '?postcard=new&amp;img='.$image->id());
 	$sendlink = str_replace('/new/','/send/',$postlink);
 	$form = new RMForm(_MS_GS_NEWTITLE, 'frmNewPostcard', $sendlink);
-	$form->addElement(new RMText(_MS_GS_YNAME, 'fname', 50, 100, $exmUser->getVar('name')), true);
-	$form->addElement(new RMText(_MS_GS_YEMAIL, 'fmail', 50, 150, $exmUser->getVar('email')), true, 'email');
-	$form->addElement(new RMText(_MS_GS_TNAME, 'tname', 50, 100, ''), true);
-	$form->addElement(new RMText(_MS_GS_TEMAIL, 'tmail', 50, 150, ''), true, 'email');
-	$form->addElement(new RMText(_MS_GS_TITLE, 'title', 50, 150, $image->title(false)), true);
-	$form->addElement(new RMTextArea(_MS_GS_MESSAGE, 'msg', 0,0,'','90%','150px'), true);
-	$ele = new RMSecurityCode(_MS_GS_CODE, 'code', 5);
+	$form->addElement(new RMFormText(_MS_GS_YNAME, 'fname', 50, 100, $xoopsUser->getVar('name')), true);
+	$form->addElement(new RMFormText(_MS_GS_YEMAIL, 'fmail', 50, 150, $xoopsUser->getVar('email')), true, 'email');
+	$form->addElement(new RMFormText(_MS_GS_TNAME, 'tname', 50, 100, ''), true);
+	$form->addElement(new RMFormText(_MS_GS_TEMAIL, 'tmail', 50, 150, ''), true, 'email');
+	$form->addElement(new RMFormText(_MS_GS_TITLE, 'title', 50, 150, $image->title(false)), true);
+	$form->addElement(new RMFormTextArea(_MS_GS_MESSAGE, 'msg', 0,0,'','90%','150px'), true);
+	/*$ele = new RMSecurityCode(_MS_GS_CODE, 'code', 5);
 	$ele->setDescription(_MS_GS_CODE_DESC);
 	$ele->setRefreshAction("\$('frmNewPostcard').action='$postlink';\$('frmNewPostcard').submit();");
-	$form->addElement($ele, true);
-	$ele = new RMButtonGroup();
+	$form->addElement($ele, true);*/
+	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', _SUBMIT, 'submit','onclick="$(\'op\').value=\'send\';"');
 	$previewlink = str_replace('/new/','/preview/',$postlink);
-	$ele->addButton('preview', _MS_GS_PREVIEW, 'button','onclick="$(\'frmNewPostcard\').action=\''.$previewlink.'\'; $(\'sbt\').click();"');
+	$ele->addButton('preview', __('Previe Postcard','galleries'), 'button','onclick="$(\'frmNewPostcard\').action=\''.$previewlink.'\'; $(\'sbt\').click();"');
 	$form->addElement($ele);
-	$form->addElement(new RMHidden('op','send'));
-	$form->addElement(new RMHidden('img',$image->id()));
-	$form->addElement(new RMHidden('uid',$exmUser->uid()));
-	$form->addElement(new RMHidden('return',base64_encode($postlink)));
+	$form->addElement(new RMFormHidden('op','send'));
+	$form->addElement(new RMFormHidden('img',$image->id()));
+	$form->addElement(new RMFormHidden('uid',$xoopsUser->uid()));
+	$form->addElement(new RMFormHidden('return',base64_encode($postlink)));
 	
 	$tpl->assign('postcard_form', $form->render());
 	
@@ -95,20 +78,20 @@ function newPostcard(){
 * @desc Muestra una previsualización de la postal
 */
 function previewPostcard(){
-	global $tpl, $exmModule, $exmModuleConfig, $xoopsModuleConfig, $mc, $exmUser;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser;
 	
 	$tpl = new XoopsTpl();
-	$mc =& $exmModuleConfig;
+	$mc =& $xoopsModuleConfig;
 	__autoload('RMForm');
 	
 	foreach ($_POST as $k => $v){
 		if ($k=='sbt'||$k=='op') continue;
 		$$k = $v;
-		$ele = new RMHidden($k,$v);
+		$ele = new RMFormHidden($k,$v);
 		$tpl->append('hiddens',$ele->render());
 	}
 	
-	if (!$exmUser){
+	if (!$xoopsUser){
 		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
 		die();
 	}
@@ -149,13 +132,13 @@ function previewPostcard(){
 * @desc Envia la postal
 */
 function sendPostcard(){
-	global $tpl, $exmModule, $exmModuleConfig, $xoopsModuleConfig, $mc, $exmUser, $xoopsConfig,$util;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser, $xoopsConfig,$util;
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
 	}
 	
-	if (!$exmUser){
+	if (!$xoopsUser){
 		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
 		die();
 	}
@@ -224,12 +207,12 @@ function sendPostcard(){
 **/
 function viewPostcard(){
 
-	global $tpl, $exmModule, $exmModuleConfig, $xoopsModuleConfig, $mc, $exmUser, $id;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser, $id;
 	
 	$tpl = new XoopsTpl();
-	$mc =& $exmModuleConfig;
+	$mc =& $xoopsModuleConfig;
 		
-	if (!$exmUser){
+	if (!$xoopsUser){
 		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
 		die();
 	}

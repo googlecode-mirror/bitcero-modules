@@ -16,7 +16,7 @@
 <form name="frmBookMarks" method="POST" action="<{$gs_url}>/cpanel.php">
 <table class="outer" width="100%" cellspacing="1">
 	<tr class="even">
-		<td colspan="4"><{$lang_showing}></td>
+		<td colspan="4"><{if $lang_showing}><{$lang_showing}><{else}>&nbsp;<{/if}></td>
 		<td colspan="3" align="right"><{$bookmarksNavPage}></td>
 	</tr>
 	<tr>
@@ -45,10 +45,9 @@
 	</tr>
 	<{/foreach}>
 	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
-		<td colspan="6">
-			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmBookMarks'].op.value='delbookmarks'; return confirm('<{$lang_confirms}>');" />		</td>
-
+		<td colspan="7">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmBookMarks'].op.value='delbookmarks'; return confirm('<{$lang_confirms}>');" />
+        </td>
 	</tr>
 </table>
 <input type="hidden" name="op" />

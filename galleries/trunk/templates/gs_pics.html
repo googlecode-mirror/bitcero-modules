@@ -6,26 +6,14 @@
 <div class="gsShowInfo">
 	<{$lang_showing}>
 </div>
-<table class="userPics" cellspacing="1">
-	<tr class="rowPic">
+
+<div class="gs_photos_container">
 	<{assign var="i" value=1}>
 	<{foreach item=img from=$images}>
-		<{if $i>$max_cols}>
-			</tr><tr class="rowPic">
-			<{assign var="i" value=1}>
-		<{/if}>
-		<td>
-			<span class="title"><{$img.title}></span>
-			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
-			<{$lang_by}> <a href="<{$img.userurl}>"><{$img.by}></a><br />
-			<{$img.created}><br />
-			<a href="<{$img.link}>/#comments"><{$img.comments}></a>
-			<a href="<{$img.bigimage}>" class="quick" rel="lightbox[roadtrip]"><{$lang_quickview}></a>
-		</td>
-		<{assign var="i" value=$i+1}>
+		<{include file="db:gs_item_data.html"}>
 	<{/foreach}>
-	</tr>
-</table>
+</div>
+
 <div class="gsNavPages">
 	<{$picsNavPage}>
 </div>

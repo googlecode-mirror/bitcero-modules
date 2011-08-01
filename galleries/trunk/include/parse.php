@@ -8,22 +8,52 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-/**
-* @desc Obtenemos el valor de la variable $toget
-* $toget debe definirse antes de la inclusión de etse archivo
-*/
-$params = isset($_REQUEST[$toget]) ? $_REQUEST[$toget] : '';
-
+// Get parameters directly from URL when mod_rewrite is enabled
+$params = str_replace(XOOPS_URL, '', RMFunctions::current_url());
+$params = str_replace($xoopsModuleConfig['urlbase'], '', $params);
+$params = trim($params, '/');
 $params = explode("/", $params);
-$number = intval(count($params)/2);
-/**
-* @desc Generamos las variable sen base a los parámetros
-* Los parámetros son divididos por "/". Es importante que
-* siempre esten en pares para que todo funcione
-*/
-if ($number>0){
-	for ($i=0;$i<($number*2);$i+=2){
-		$$params[$i] = $params[$i+1];
-	}
-}
 
+foreach($params as $i => $p){
+    
+    switch($p){
+        case 'cp':
+            // Control Panel
+            $cp = isset($params[$i+1]) ? $params[$i+1] : 'images';
+            break;
+        case 'pag':
+            // Page number
+            $page = $params[$i+1];
+            break;
+        case 'usr':
+            // User
+            $usr = $params[$i+1];
+            break;
+        case 'explore':
+            // Browse photos
+            $explore = $params[$i+1];
+            break;
+        case 'postcard':
+            $postcard = $params[$i+1];
+            break;
+        case 'submit':
+            $submit = true;
+            break;
+        case 'img':
+            $img = $params[$i+1];
+            break;
+        case 'tag':
+            $tag = $params[$i+1];
+            break;
+        case 'set':
+            $set = $params[$i+1];
+            break;
+        case 'search':
+            $search = isset($params[$i+1]) ? $params[$i+1] : 1;
+            break;
+        case 'postcard':
+            $postcard = isset($params[$i+1]);
+            break;
+    }
+    
+}

@@ -1,37 +1,19 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
-
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 /**
 * @desc Visualiza la lista de amigos del usuario
 **/
 function showFriends(){
 
-	global $xoopsOption, $tpl, $db, $exmUser, $xoopsModuleConfig,$pag;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig,$pag;
 	
 	$xoopsOption['template_main'] = 'gs_panel_friends.html';
 	include 'header.php';
@@ -41,7 +23,7 @@ function showFriends(){
 	GSFunctions::makeHeader();
 
 	//Barra de Navegación
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$exmUser->uid()."'";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$xoopsUser->uid()."'";
 
 	$page = isset($pag) ? $pag : '';
 	$limit = 30;
@@ -80,7 +62,7 @@ function showFriends(){
 	//Fin de barra de navegación
 
 
-	$sql = "SELECT * FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$exmUser->uid()."'";
+	$sql = "SELECT * FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$xoopsUser->uid()."'";
 	$sql.=" LIMIT $start,$limit";
 	$result = $db->query($sql);
 	while($row = $db->fetchArray($result)){
@@ -106,7 +88,7 @@ function showFriends(){
 	$tpl->assign('lang_confirms',_MS_GS_CONFIRMFRIENDS);
 	$tpl->assign('max_cols',$cols);
 
-	$xmh.= '<link rel="stylesheet" type="text/css" media="screen" href="'.GS_URL.'/styles/panel.css" />';
+	RMTemplate::get()->add_style('panel.css','galleries');
 	
 	createLinks();
 	include 'footer.php';
@@ -118,7 +100,7 @@ function showFriends(){
 **/
 function addFriends(){
 
-	global $add, $exmUser, $xoopsModuleConfig, $db;
+	global $add, $xoopsUser, $xoopsModuleConfig, $db;
 		
 	$mc =& $xoopsModuleConfig;
 
@@ -138,14 +120,14 @@ function addFriends(){
 	}
 
 	//Verificamos que el usuario no se encuentre registrado
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$exmUser->uid()."' AND uid='".$exu->uid()."'";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$xoopsUser->uid()."' AND uid='".$exu->uid()."'";
 	list($num) = $db->fetchRow($db->query($sql));
 	if ($num>0){
 		redirect_header($link,1,_MS_GS_FRIENDEXIST);
 		die();
 	}
 
-	$sql = "INSERT INTO ".$db->prefix('gs_friends')." (`gsuser`,`uid`) VALUES ('".$exmUser->uid()."','".$exu->uid()."')";
+	$sql = "INSERT INTO ".$db->prefix('gs_friends')." (`gsuser`,`uid`) VALUES ('".$xoopsUser->uid()."','".$exu->uid()."')";
 	$result = $db->queryF($sql);
 	
 	if (!$result){
@@ -164,7 +146,7 @@ function addFriends(){
 **/
 function deleteFriends(){
 
-	global $xoopsModuleConfig, $db,$exmUser;
+	global $xoopsModuleConfig, $db,$xoopsUser;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$pag = isset($_REQUEST['pag']) ? intval($_REQUEST['pag']) : '';
@@ -202,13 +184,13 @@ function deleteFriends(){
 		}	
 
 		//Verificamos si se trata de un amigo
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$exmUser->uid()."'";
+		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$xoopsUser->uid()."'";
 		list($num) = $db->fetchRow($db->query($sql));
 		if ($num<=0){
 			continue;
 		}
 
-		$sql = "DELETE FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$exmUser->uid()."'";
+		$sql = "DELETE FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$xoopsUser->uid()."'";
 		$result = $db->queryF($sql);
 
 		if(!$result){

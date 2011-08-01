@@ -1,7 +1,7 @@
 <{include file="db:gs_header.html"}>
 <div class="userData">
-	<img class="avatar" src="<{$gs_url}>/images/tags48.png" alt="" />
-	<h1><{$lang_tagsof}></h1>
+	<img class="avatar" src="<{$gs_url}>/images/browse_tags.png" alt="" />
+	<h2><{$lang_tagsof}></h2>
 	<{if $usr}>
 	<ul>
 		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$pics_link}>"><{$lang_pics}></a></li>
@@ -10,8 +10,8 @@
 	</ul>
 	<{/if}>
 </div>
-<div id="gsTags">
+<div class="gsTags">
 	<{foreach item=tag from=$tags}>
-		<a href="<{$tag.link}>" style="font-size: <{$tag.size}>px;" title="<{$lang_hits}><{$tag.hits}>"><{$tag.tag}></a>
+		<a href="<{$tag.link}>" style="font-size: <{$tag.size}>px;" title="<{$lang_hits}> <{$tag.hits}>"><{$tag.tag}></a>
 	<{/foreach}>
 </div>

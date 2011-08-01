@@ -1,35 +1,18 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 /**
 * @desc Visualiza todos los albumes existentes del usuario
 **/
 function showSets($edit = 0){
-	global $xoopsOption, $tpl, $db, $exmUser, $xoopsModuleConfig, $pag;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $pag;
 	
 	$xoopsOption['template_main'] = 'gs_panel_sets.html';
 	include 'header.php';
@@ -67,7 +50,7 @@ function showSets($edit = 0){
 
 
 	//Barra de Navegación
-	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_sets')." WHERE owner='".$exmUser->uid()."'";
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_sets')." WHERE owner='".$xoopsUser->uid()."'";
 	$page = isset($pag) ? $pag : '';
 	$limit = 10;
 
@@ -106,7 +89,7 @@ function showSets($edit = 0){
 
 
 
-	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".$exmUser->uid()."'";
+	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".$xoopsUser->uid()."'";
 	$sql.=" LIMIT $start,$limit";
 	$result = $db->query($sql);
 	while($rows = $db->fetchArray($result)){
@@ -139,8 +122,7 @@ function showSets($edit = 0){
 
 	$tpl->assign('link_imgs',GS_URL.($mc['urlmode'] ? '/cpanel/imgs/set' : '/cpanel.php?s=cpanel/imgs/set'));
 	
-
-	$xmh.= '<link rel="stylesheet" type="text/css" media="screen" href="'.GS_URL.'/styles/panel.css" />';
+	RMTemplate::get()->add_style('panel.css', 'galleries');
 	
 	createLinks();
 
@@ -154,7 +136,7 @@ function showSets($edit = 0){
 **/
 function saveSets($edit = 0){
 
-	global $exmUser, $xoopsModuleConfig;
+	global $xoopsUser, $xoopsModuleConfig;
 
 	$mc =& $xoopsModuleConfig;
 
@@ -185,8 +167,8 @@ function saveSets($edit = 0){
 
 	$set->setTitle($title);
 	$set->setPublic($public);
-	$set->setOwner($exmUser->uid());
-	$set->setUname($exmUser->uname());
+	$set->setOwner($xoopsUser->uid());
+	$set->setUname($xoopsUser->uname());
 	$set->setDate(time());
 
 	if (!$set->save()){

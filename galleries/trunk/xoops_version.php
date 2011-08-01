@@ -9,8 +9,8 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "MyGalleries 3.0";
-$modversion['version'] = 3;
-$modversion['rmversion'] = array('number'=>3,'revision'=>015,'status'=>0,'name'=>'MyGalleries');
+$modversion['version'] = 3.018;
+$modversion['rmversion'] = array('number'=>3,'revision'=>018,'status'=>0,'name'=>'MyGalleries');
 $modversion['description'] = __('Módulo para el manejo de galerías de imágenes en XOOPS y Common Utilities', 'galleries');
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
@@ -134,6 +134,16 @@ $modversion['config'][] = array(
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' =>'1'
+);
+
+//Url Amigables
+$modversion['config'][] = array(
+    'name' => 'urlbase',
+    'description' => '',
+    'title' => '_MI_GS_URLBASE',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' =>'/modules/galleries'
 );
 
 //Permitir a todos los usuarios subir imágenes

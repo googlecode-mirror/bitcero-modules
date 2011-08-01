@@ -21,7 +21,7 @@ class GSTag extends RMObject
         if (is_numeric($id)){
         	if (!$this->loadValues($id)) return;
 		} else {
-			$this->primary = 'tag';
+			$this->primary = 'nameid';
 			if ($this->loadValues($id)) $this->unsetNew();
 			$this->primary = 'id_tag';
 			return;
@@ -38,6 +38,7 @@ class GSTag extends RMObject
 		return $this->getVar('tag');
 	}
 	public function setTag($tag){
+        $this->setVar('nameid', TextCleaner::getInstance()->sweetstring($tag));
 		return $this->setVar('tag', $tag);
 	}
 	
