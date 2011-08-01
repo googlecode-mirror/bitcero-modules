@@ -8,9 +8,9 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = 'XThemes';
-$modversion['version'] = 1.018;
+$modversion['version'] = 1.022;
 $modversion['rmnative'] = '1';
-$modversion['rmversion'] = array('number'=>1,'revision'=>18,'status'=>0,'name'=>'XThemes');
+$modversion['rmversion'] = array('number'=>1,'revision'=>22,'status'=>0,'name'=>'XThemes');
 $modversion['description'] = 'A module to manage themes from Red México';
 $modversion['credits'] = "Eduardo Cortés <i.bitcero@gmail.com>";
 $modversion['author'] = "BitC3R0";
