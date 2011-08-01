@@ -129,7 +129,7 @@ function showImages(){
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Images Management','galleries'));
     RMTemplate::get()->assign('xoops_pagetitle', __('Images','galleries'));
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-images');
+    //RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-images');
 	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected images?','galleries')."';\n</script>");
 	xoops_cp_header();
 	

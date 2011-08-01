@@ -23,7 +23,7 @@ if (!$xoopsModuleConfig['postcards']){
 * @desc Muestra el formulario para la creación de la postal
 */
 function newPostcard(){
-	global $xoopsUser, $xoopsModule, $xoopsModuleConfig, $mc, $tpl, $img, $xoopsOption;
+	global $xoopsUser, $xoopsModule, $xoopsModuleConfig, $mc, $tpl, $img, $xoopsOption, $xoopsConfig;
 	
 	if (!$xoopsUser){
 		redirect_header(XOOPS_URL.'/user.php#register', 1, __('You must be a registered user in order to send postcards!','galleries'));
@@ -43,17 +43,17 @@ function newPostcard(){
 	GSFunctions::deletePostcard();
 
 	GSFunctions::makeHeader();
-	$tpl->assign('xoops_pagetitle', sprintf(_MS_GS_NEWPOST, $image->title()));
+	$tpl->assign('xoops_pagetitle', sprintf(__('Send Postcard','galleries'), $image->title()));
 
 	$postlink = GSFunctions::get_url().($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : '?postcard=new&amp;img='.$image->id());
 	$sendlink = str_replace('/new/','/send/',$postlink);
-	$form = new RMForm(_MS_GS_NEWTITLE, 'frmNewPostcard', $sendlink);
-	$form->addElement(new RMFormText(_MS_GS_YNAME, 'fname', 50, 100, $xoopsUser->getVar('name')), true);
-	$form->addElement(new RMFormText(_MS_GS_YEMAIL, 'fmail', 50, 150, $xoopsUser->getVar('email')), true, 'email');
-	$form->addElement(new RMFormText(_MS_GS_TNAME, 'tname', 50, 100, ''), true);
-	$form->addElement(new RMFormText(_MS_GS_TEMAIL, 'tmail', 50, 150, ''), true, 'email');
-	$form->addElement(new RMFormText(_MS_GS_TITLE, 'title', 50, 150, $image->title(false)), true);
-	$form->addElement(new RMFormTextArea(_MS_GS_MESSAGE, 'msg', 0,0,'','90%','150px'), true);
+	$form = new RMForm(__('Send Postcard','galleries'), 'frmNewPostcard', $sendlink);
+	$form->addElement(new RMFormText(__('Your name','galleries'), 'fname', 50, 100, $xoopsUser->getVar('name')), true);
+	$form->addElement(new RMFormText(__('Your email','galleries'), 'fmail', 50, 150, $xoopsUser->getVar('email')), true, 'email');
+	$form->addElement(new RMFormText(__('Friend name','galleries'), 'tname', 50, 100, ''), true);
+	$form->addElement(new RMFormText(__('Friend email','galleries'), 'tmail', 50, 150, ''), true, 'email');
+	$form->addElement(new RMFormText(__('Postcard title','galleries'), 'title', 50, 150, $image->title(false)), true);
+	$form->addElement(new RMFormTextArea(__('Postcard text','galleries'), 'msg', 0,0,'','90%','150px'), true);
 	/*$ele = new RMSecurityCode(_MS_GS_CODE, 'code', 5);
 	$ele->setDescription(_MS_GS_CODE_DESC);
 	$ele->setRefreshAction("\$('frmNewPostcard').action='$postlink';\$('frmNewPostcard').submit();");
@@ -61,7 +61,7 @@ function newPostcard(){
 	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', _SUBMIT, 'submit','onclick="$(\'op\').value=\'send\';"');
 	$previewlink = str_replace('/new/','/preview/',$postlink);
-	$ele->addButton('preview', __('Previe Postcard','galleries'), 'button','onclick="$(\'frmNewPostcard\').action=\''.$previewlink.'\'; $(\'sbt\').click();"');
+	$ele->addButton('preview', __('Preview Postcard','galleries'), 'button','onclick="$(\'#frmNewPostcard\').attr(\'action\', \''.$previewlink.'\'); $(\'#frmNewPostcard\').submit();"');
 	$form->addElement($ele);
 	$form->addElement(new RMFormHidden('op','send'));
 	$form->addElement(new RMFormHidden('img',$image->id()));
@@ -78,11 +78,13 @@ function newPostcard(){
 * @desc Muestra una previsualización de la postal
 */
 function previewPostcard(){
-	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser, $xoopsConfig;
 	
+    include_once XOOPS_ROOT_PATH.'/class/template.php';
 	$tpl = new XoopsTpl();
 	$mc =& $xoopsModuleConfig;
-	__autoload('RMForm');
+	
+    include_once RMCPATH.'/class/form.class.php';
 	
 	foreach ($_POST as $k => $v){
 		if ($k=='sbt'||$k=='op') continue;
@@ -92,13 +94,13 @@ function previewPostcard(){
 	}
 	
 	if (!$xoopsUser){
-		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
+		redirect_header(XOOPS_URL.'/user.php#register', 1, __('You must be a registered user in order to send postcards!','galleries'));
 		die();
 	}
 	
 	$img = new GSImage($img);
 	if ($img->isNew()){
-		redirect_header(XOOPS_URL.'/modules/galleries/', 1, _MS_GS_ERRIMG);
+		redirect_header(GSfunctions::get_url(), 1, __('Specified image does not exists!','galleries'));
 		die();
 	}
 	
@@ -106,21 +108,24 @@ function previewPostcard(){
 	$file = $user->filesPath().'/'.$img->image();
 	list($ancho,$alto) = getimagesize($file);
 	
-	$tpl->assign('gs_url', XOOPS_URL.'/modules/galleries');
+	$tpl->assign('gs_url', GSFunctions::get_url());
 	$tpl->assign('img', array('id'=>$img->id(),'width'=>$ancho,'height'=>$alto,
 			'url'=>$user->filesURL().'/'.$img->image(),'link'=>$user->userURL().'img/'.$img->id().'/'));
 	$tpl->assign('title', $title);
 	$tpl->assign('message', $msg);
-	$tpl->assign('lang_says', sprintf(_MS_GS_SAYS, $fname));
-	$tpl->assign('xoops_pagetitle', sprintf(_MS_GS_PTITLE, $title).' &raquo; '.$mc['section_title']);
-	$tpl->assign('lang_see', _MS_GS_SEE);
+	$tpl->assign('lang_says', sprintf(__('%s Dice:','galleries'), $fname));
+	$tpl->assign('xoops_pagetitle', sprintf(__('Preview "%s" postcard','galleries'), $title).' &raquo; '.$mc['section_title']);
+	$tpl->assign('lang_see', __('View picture','galleries'));
 	$tpl->assign('user_link', $user->userURL().'browse/'.$img->id().'/');
-	$tpl->assign('lang_seeuser', _MS_GS_SEEUSER);
+	$tpl->assign('lang_seeuser', __('View user pictures','galleries'));
 	$tpl->assign('preview', 1);
-	$tpl->assign('lang_submit', _SUBMIT);
-	$tpl->assign('lang_edit', _EDIT);
+	$tpl->assign('lang_submit', __('Send Postcard','galleries'));
+	$tpl->assign('lang_edit', __('Edit Postcard','galleries'));
 	$tpl->assign('postcard_link', base64_decode($return));
-	$sendlink = XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? '' : 'postcard.php?id=').'postcard/send/img/'.$img->id();
+	$sendlink = GSfunctions::get_url().($mc['urlmode'] ? 'postcard/send/imag/'.$img->id() : '?postcard=send&amp;img='.$img->id());
+    
+    RMTemplate::get()->add_xoops_style('postcard.css', 'galleries');
+    
 	$tpl->assign('send_link',$sendlink);
 	
 		

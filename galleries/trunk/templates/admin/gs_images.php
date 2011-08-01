@@ -5,6 +5,7 @@
     <?php $nav->display(false); ?>
 	<select name="op" id="select-op-top">
 		<option value=""><?php _e('Bulk actions...','galleries'); ?></option>
+        <option value="redo" class="redo-thumbs"><?php _e('Generate Thumbnails','galleries'); ?></option>
 		<option value="public"><?php _e('Set as public','galleries'); ?></option>
 		<option value="private"><?php _e('Set as private','galleries'); ?></option>
 		<option value="privatef"><?php _e('Set as public for friends','galleries'); ?></option>
@@ -64,6 +65,7 @@
 			<?php if($img['desc']!=''): ?><span class="imgDesc"><br /><?php echo $img['desc']; ?></span><?php endif; ?>
 			<span class="rmc_options">
 				<a href="./images.php?op=edit&amp;id=<?php echo $img['id']; ?>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<?php echo $sort; ?>&amp;mode=<?php echo $mode; ?>"><?php _e('Edit','galleries'); ?></a> | 
+                <a href="#" class="regenerate"><?php _e('Re do Thumbnail','galleries'); ?></a> |
                 <a href="javascript:;" class="gs_delete_option" id="delete-<?php echo $img['id']; ?>"><?php _e('Delete','galleries'); ?></a>
 			</span>
 		</td>
@@ -78,6 +80,7 @@
     <?php $nav->display(false); ?>
     <select name="opb" id="select-op-bottom">
         <option value=""><?php _e('Bulk actions...','galleries'); ?></option>
+        <option value="redo" class="redo-thumbs"><?php _e('Generate Thumbnails','galleries'); ?></option>
         <option value="public"><?php _e('Set as public','galleries'); ?></option>
         <option value="private"><?php _e('Set as private','galleries'); ?></option>
         <option value="privatef"><?php _e('Set as public for friends','galleries'); ?></option>
