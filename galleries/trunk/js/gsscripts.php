@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: gsscripts.php 651 2011-06-27 05:24:56Z i.bitcero $
 // --------------------------------------------------------------
 // MyGalleries
 // Module for advanced image galleries management
@@ -14,6 +14,9 @@ $form = isset($_GET['form']) ? $_GET['form'] : 'frm-sets';
 switch ($file){
 	
 	case 'sets':
+        $params =  isset($_GET['p']) ? $_GET['p'] : '';
+        $xoopsOption["nocommon"] = 1;
+        include_once '../../../mainfile.php';
 ?>
 
 $(document).ready(function(){
@@ -38,9 +41,21 @@ $(document).ready(function(){
 		
 		if ($("#select-op-top").val()=='delete'){
 			return confirm(delete_warning);
-		}
+		}else if($("#select-op-top").val()=='redo'){
+            params = '<?php echo $params; ?>';
+            url = '<?php echo XOOPS_URL.'/modules/galleries/include/upload.php'; ?>';
+            redo_thumbnails(params);
+            return false;
+        }
 		
 	});
+    
+    $("a.regenerate").click(function(){
+        ids[0] = $(this).attr("id").replace("imgr-",'');
+        url = '<?php echo XOOPS_URL.'/modules/galleries/include/upload.php'; ?>';
+        resize_image_fromlist('<?php echo $params; ?>');
+        return false;
+    });
 	
 	$("a.gs_delete_option").click(function(){
 		id = $(this).attr("id").replace("delete-",'');

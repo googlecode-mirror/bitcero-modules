@@ -54,10 +54,9 @@ function newPostcard(){
 	$form->addElement(new RMFormText(__('Friend email','galleries'), 'tmail', 50, 150, ''), true, 'email');
 	$form->addElement(new RMFormText(__('Postcard title','galleries'), 'title', 50, 150, $image->title(false)), true);
 	$form->addElement(new RMFormTextArea(__('Postcard text','galleries'), 'msg', 0,0,'','90%','150px'), true);
-	/*$ele = new RMSecurityCode(_MS_GS_CODE, 'code', 5);
-	$ele->setDescription(_MS_GS_CODE_DESC);
-	$ele->setRefreshAction("\$('frmNewPostcard').action='$postlink';\$('frmNewPostcard').submit();");
-	$form->addElement($ele, true);*/
+	
+    $form->addElement(new RMFormLabel(__('Please enter the captcha below','galleries'), RMEvents::get()->run_event('rmcommon.recaptcha.field')));
+    
 	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', _SUBMIT, 'submit','onclick="$(\'op\').value=\'send\';"');
 	$previewlink = str_replace('/new/','/preview/',$postlink);
@@ -122,7 +121,9 @@ function previewPostcard(){
 	$tpl->assign('lang_submit', __('Send Postcard','galleries'));
 	$tpl->assign('lang_edit', __('Edit Postcard','galleries'));
 	$tpl->assign('postcard_link', base64_decode($return));
-	$sendlink = GSfunctions::get_url().($mc['urlmode'] ? 'postcard/send/imag/'.$img->id() : '?postcard=send&amp;img='.$img->id());
+	$sendlink = GSfunctions::get_url().($mc['urlmode'] ? 'postcard/send/img/'.$img->id() : '?postcard=send&amp;img='.$img->id());
+    
+    $tpl->assign('captcha', RMEvents::get()->run_event('rmcommon.recaptcha.field'));
     
     RMTemplate::get()->add_xoops_style('postcard.css', 'galleries');
     
@@ -137,7 +138,7 @@ function previewPostcard(){
 * @desc Envia la postal
 */
 function sendPostcard(){
-	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser, $xoopsConfig,$util;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $rmc_config, $mc, $xoopsUser, $xoopsConfig,$util;
 	
 	foreach ($_POST as $k => $v){
 		$$k = $v;
@@ -153,14 +154,12 @@ function sendPostcard(){
 		redirect_header(XOOPS_URL.'/modules/galleries/', 1, _MS_GS_ERRIMG);
 		die();
 	}
-	
-	$util =& RMUtils::getInstance();
-	if (!$util->checkSecurityCode($code)){
-		redirect_header(base64_decode($return), 2, _MS_GS_ERRCODE);
-		die();
-	}
-	
-	$user = new GSUser($img->owner(), 1);
+    
+     // Recaptcha check
+    if (!RMEvents::get()->run_event('rmcommon.captcha.check', true)){
+        redirect_header(GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? 'postcard/new/img/'.$img->id().'/' : '?postcard=new&amp;img='.$img->id()), 1, __('Please check the security words and write it correctly!','contact'));
+        die();
+    }
 	
 	$post = new GSPostcard();
 	$post->setTitle($title);
@@ -176,24 +175,25 @@ function sendPostcard(){
 	$post->setViewed(0);
 
 	//Generamos el código de la postal
-	$post->setCode($util->randomString(5));
+	$post->setCode(RMUtilities::randomString(10,1,1,1,1));
 
 	if (!$post->save()){
-		redirect_header(base64_decode($return), 2, _MS_GS_ERRSEND);
+		redirect_header(base64_decode($return), 2, __('Unable to send e-card. Please try again!','galleries'));
 		die();
 	}
 	
 	$xoopsMailer =& getMailer();
 	$xoopsMailer->useMail();
-	$xoopsMailer->setTemplate('postcard.tpl');
+    $ectpl = is_file(XOOPS_ROOT_PATH.'/modules/galleries/lang/'.'postcard-'.$rmc_config['language'].'.tpl') ? $rmc_config['language'].'.tpl' : 'postcard-en_US.tpl';
+	$xoopsMailer->setTemplate($ectpl);
 	$xoopsMailer->assign('SITENAME', $xoopsConfig['sitename']);
 	$xoopsMailer->assign('SITEURL', XOOPS_URL."/");
 	$xoopsMailer->assign('FNAME', $fname);
 	$xoopsMailer->assign('FMAIL', $fmail);
 	$xoopsMailer->assign('TNAME', $tname);
-	$xoopsMailer->assign('MODULE_LINK', XOOPS_URL.'/modules/galleries/');
-	$xoopsMailer->assign('POSTAL_LINK', XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? 'postcard/view/id/'.$post->code().'/' : 'postcard.php?id=postcard/view/id/'.$post->code()));
-	$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/galleries/language/".$xoopsConfig['language']."/");
+	$xoopsMailer->assign('MODULE_LINK', GSfunctions::get_url());
+	$xoopsMailer->assign('POSTAL_LINK', GSfunctions::get_url().($mc['urlmode'] ? 'postcard/view/id/'.$post->code().'/' : '?postcard=view&amp;id='.$post->code()));
+	$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/galleries/lang/");
 	$xoopsMailer->setFromEmail($fmail);
 	$xoopsMailer->setFromName($fname);
 	$xoopsMailer->setToEmails($tmail);
@@ -201,7 +201,7 @@ function sendPostcard(){
 	if (!$xoopsMailer->send(true)){
 		redirect_header(base64_decode($return),2,$xoopsMailer->getErrors());
 	} else {
-		redirect_header($user->userURL().'img/'.$img->id().'/',1,_MS_GS_SENDOK);
+		redirect_header($user->userURL().'img/'.$img->id().'/',1,__('E-card sent successfully!','galleries'));
 	}
 	
 }
@@ -214,8 +214,9 @@ function viewPostcard(){
 
 	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsModuleConfig, $mc, $xoopsUser, $id;
 	
-	$tpl = new XoopsTpl();
-	$mc =& $xoopsModuleConfig;
+	include_once XOOPS_ROOT_PATH.'/class/template.php';
+    $tpl = new XoopsTpl();
+    $mc =& $xoopsModuleConfig;
 		
 	if (!$xoopsUser){
 		redirect_header(XOOPS_URL.'/user.php#register', 1, _MS_GS_ERRUSR);
@@ -251,6 +252,8 @@ function viewPostcard(){
 	$tpl->assign('user_link', $user->userURL().'browse/'.$img->id().'/');
 	$tpl->assign('lang_seeuser', _MS_GS_SEEUSER);
 	$tpl->assign('preview', 0);
+    
+    RMTemplate::get()->add_xoops_style('postcard.css', 'galleries');
 
 	//Actualizar datos de postal
 	$post->setViewed(1);

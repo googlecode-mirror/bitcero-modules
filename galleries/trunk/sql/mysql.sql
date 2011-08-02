@@ -39,7 +39,7 @@ CREATE TABLE `gs_postcards` (
   `uid` int(11) NOT NULL default '0',
   `ip` varchar(20) NOT NULL,
   `view` tinyint(1) NOT NULL default '0',
-  `code` varchar(5) NOT NULL,
+  `code` varchar(10) NOT NULL,
   PRIMARY KEY  (`id_post`),
   UNIQUE KEY `code` (`code`)
 ) TYPE=MyISAM ;

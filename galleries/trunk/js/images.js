@@ -112,3 +112,59 @@ function show_image_pop(url){
     //alert($('#image-loader img').attr('src'));
 
 }
+
+function send_resize_fromlist(id,params){
+  
+    $.get(url, {data: params, img: id, op: 'resize'}, function(data){
+        
+        if (data['error']){
+            $("#img"+id).attr('src','../images/no.png');
+            resize_image_fromlist(params);
+            return;
+        }
+        
+        $("#img-"+id).attr("src", data['file']);
+        $("#img-"+id).css("width",'50px');
+        resize_image_fromlist(params);
+        
+    }, "json");
+    
+}
+
+function resize_image_fromlist(params){
+    
+    if (ids.length<=0) return;    
+    
+    if(ids[current]==undefined){
+        current = 0;
+        total = 0;
+        ids = new Array();
+        return;
+    }
+    
+    $("#img-"+ids[current]).attr("src",'../images/ajax-loader.gif');
+    $("#img-"+ids[current]).css("width",'');
+    send_resize_fromlist(ids[current], params);
+    
+    current++;
+    
+}
+
+function redo_thumbnails(params){
+    
+    items = $("input[name='ids[]']");
+    
+    var c = 0;
+    
+    for(i=0;i<items.length;i++){
+        
+        if($(items[i]).is(":checked")){
+            ids[c] = $(items[i]).attr("id").replace("item-",'');
+            c++;
+        }
+        
+    }
+    
+    resize_image_fromlist(params);
+    
+}

@@ -52,7 +52,10 @@ foreach($params as $i => $p){
             $search = isset($params[$i+1]) ? $params[$i+1] : 1;
             break;
         case 'postcard':
-            $postcard = isset($params[$i+1]);
+            $postcard = $params[$i+1];
+            break;
+        case 'id':
+            $id = $params[$i+1];
             break;
     }
     

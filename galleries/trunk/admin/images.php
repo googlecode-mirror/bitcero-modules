@@ -22,14 +22,14 @@ function send_error($message){
 **/
 function showImages(){
 
-	global $xoopsModule, $tpl, $xoopsConfig, $xoopsSecurity;
+	global $xoopsModule, $tpl, $xoopsConfig, $xoopsSecurity, $xoopsUser;
 	
 	$db = Database::getInstance();
 
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $page = $page<=0 ? 1 : $page;
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
-	$limit = $limit<=0 ? 10 : $limit;
+  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
+	$limit = $limit<=0 ? 15 : $limit;
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 	$owner = isset($_REQUEST['owner']) ? $_REQUEST['owner'] : '';
 	$mindate = isset($_REQUEST['mindate']) ? $_REQUEST['mindate'] : '';
@@ -129,7 +129,8 @@ function showImages(){
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Images Management','galleries'));
     RMTemplate::get()->assign('xoops_pagetitle', __('Images','galleries'));
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-    //RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-images');
+    RMTemplate::get()->add_local_script('images.js','galleries');
+    RMTemplate::get()->add_local_script('gsscripts.php?file=sets&form=frm-images&p='.TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.GS_URL.'/admin/images.php'.'|'.$xoopsSecurity->createToken(), true), 'galleries');
 	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected images?','galleries')."';\n</script>");
 	xoops_cp_header();
 	
@@ -692,104 +693,6 @@ function saveBulkImages(){
     $ret['id'] = $image->id();
     echo json_encode($ret);
     die();
-	
-	/*
-    foreach ($_FILES['image']['name'] as $k => $v){
-		if ($v=='') continue;
-		
-		
-		//Imagen
-		$filename = '';
-		
-		if ($up->fetchMedia('image',$k)){
-
-			if (!$up->upload()){
-				$errors .= sprintf(__('Image could not be uploaded due to next reason: %s','galleries'), $up->getErrors());
-				continue;
-			}
-					
-			$filename = $up->getSavedFileName();
-			$fullpath = $up->getSavedDestination();
-			
-			$thSize = $mc['image_ths'];
-			$imgSize = $mc['image'];
-			
-			if ($thSize[0]<=0) $thSize[0] = 100;
-			if (!isset($thSize[1]) || $thSize[1]<=0) $thSize[1] = $thSize[0];
-			
-			if ($imgSize[0]<=0) $imgSize[0] = 500;
-			if (!isset($imgSize[1]) || $imgSize[1]<=0) $imgSize[1] = $imgSize[0];
-			
-			// Almacenamos la imágen original
-			if ($mc['saveoriginal']){
-				copy($fullpath, $mc['storedir'].'/originals/'.$filename);
-			}
-			
-			// Redimensionamos la imagen
-			$redim = new RMImageResizer($fullpath, $fullpath);
-			switch ($mc['redim_image']){
-				case 0:
-					//Recortar miniatura
-					$redim->resizeWidth($imgSize[0]);
-					$redim->setTargetFile($folderths."/$filename");				
-					$redim->resizeAndCrop($thSize[0],$thSize[1]);
-				break;	
-				case 1: 
-					//Recortar imagen grande
-					$redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-					$redim->setTargetFile($folderths."/$filename");
-					$redim->resizeWidth($thSize[0]);			
-				break;
-				case 2:
-					//Recortar ambas
-					$redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-					$redim->setTargetFile($folderths."/$filename");
-					$redim->resizeAndCrop($thSize[0],$thSize[1]);
-				break;
-				case 3:
-					//Redimensionar
-					$redim->resizeWidth($imgSize[0]);
-					$redim->setTargetFile($folderths."/$filename");
-					$redim->resizeWidth($thSize[0]);
-				break;			
-			}
-
-
-		}
-		
-		//Fin de Imagen
-		$img->setImage($filename);
-		
-		if ($up->getErrors()==''){
-			if (!$img->save()){
-				$errors .= sprintf(__('Image could not be inserted in database!','galleries'), $v)." (".$img->errors().")";
-			} else {
-				$user->addPic();
-				$img->setTags($ret);
-			
-				//Albumes
-				if (!empty($albums)){
-					foreach ($albums as $k => $v){
-						$album = new GSSet($v);
-						$album->addPic($img->id());
-					}
-				}
-			}
-		}else{
-			$errors .= $up->getErrors();
-		}
-
-		
-		++$k;
-	}
-
-	if($errors!=''){
-		redirectMsg('./images.php?'.$ruta,__('Errors ocurred while trying to upload images.','galleries').$errors,1);
-		die();
-	}else{
-		redirectMsg('./images.php?'.$ruta,__('Images uploaded successfully!','galleries'),0);
-		die();
-	}*/
 
 }
 

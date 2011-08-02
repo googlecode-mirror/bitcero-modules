@@ -29,20 +29,20 @@
 	<span class="message">
 		<{$message}>
 	</span>
-	<div class="options">
-		<a href="<{$img.link}>"><{$lang_see}></a> &nbsp; &nbsp; &nbsp;
-		<a href="<{$user_link}>"><{$lang_seeuser}></a>
-	</div>
+    <div class="options">
+        <a href="<{$img.link}>"><{$lang_see}></a> &nbsp; &nbsp; &nbsp;
+        <a href="<{$user_link}>"><{$lang_seeuser}></a>
+    </div>
 	<{if $preview}>
+    <form name="frmSendPostcard" action="<{$xoops_url}>/modules/galleries/postcard.php" method="post">
 	<div class="formSend">
-		<form name="frmSendPostcard" action="<{$xoops_url}>/modules/galleries/postcard.php" method="post">
 		<input type="submit" value="<{$lang_submit}>" class="formButton" onclick="document.forms['frmSendPostcard'].action='<{$send_link}>';"/>
 		<input type="submit" value="<{$lang_edit}>" class="formButton" onclick="document.forms['frmSendPostcard'].action='<{$postcard_link}>';" />
 		<{foreach item=hidden from=$hiddens}>
 			<{$hidden}>
 		<{/foreach}>
-		</form>
 	</div>
+    </form>
 	<{/if}>
 </div>
 </body>
