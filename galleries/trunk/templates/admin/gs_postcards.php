@@ -2,6 +2,7 @@
 
 <form name="frmPost"  method="POST" id="frm-postcards" action="postcards.php">
 <div class="gs_options">
+    <?php $nav->display(false); ?>
     <select name="op" id="select-op-top">
         <option value=""><?php _e('Bulk actions...','admin_galleries'); ?></option>
         <option value="delete"><?php _e('Delete','admin_galleries'); ?></option>
@@ -37,18 +38,30 @@
     </tr>
     <?php endif; ?>
 	<?php foreach($posts as $post): ?>
-	<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center">	
-		<td><input type="checkbox" name="ids[]" value="<{$post.id}>" /></td>
-		<td><strong><{$post.id}></strong></td>
-		<td align="left"><a href="<{$post.link}>"><{$post.title}></a></td>
-		<td><{$post.date}></td>
-		<td><{$post.name}></td>
-		<td><{$post.view}></td>
-		<td><a href="./postcards.php?op=delete&amp;ids=<{$post.id}>&amp;pag=<{$pag}>&amp;limit=<{$limit}>"><{$lang_del}></a></td>
+	<tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center" valign="top">	
+		<td><input type="checkbox" name="ids[]" value="<?php echo $post['id']; ?>" id="item-<?php echo $post['id']; ?>" /></td>
+		<td><strong><?php echo $post['id']; ?></strong></td>
+		<td align="left">
+            <a href="<?php echo $post['link']; ?>"><?php echo $post['title']; ?></a>
+            <span class="rmc_options">
+                <a href="#" class="gs_delete_option" id="delete-<?php echo $post['id']; ?>"><?php _e('Delete','galleries'); ?></a>
+            </span>
+        </td>
+		<td><?php echo $post['date']; ?></td>
+		<td><?php echo $post['name']; ?></td>
+		<td><?php echo $post['view']; ?></td>
 	</tr>
 	<?php endforeach; ?>
     </tbody>
 </table>
-<input type="hidden" name="op" />
-<input type="hidden" name="limit" value="<{$limit}>" />
+<div class="gs_options">
+    <?php $nav->display(false); ?>
+    <select name="opb" id="select-op-bottom">
+        <option value=""><?php _e('Bulk actions...','admin_galleries'); ?></option>
+        <option value="delete"><?php _e('Delete','admin_galleries'); ?></option>
+    </select>
+</div>
+<input type="hidden" name="limit" value="<?php echo $limit; ?>" />
+<input type="hidden" name="page" value="<?php echo $page; ?>" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

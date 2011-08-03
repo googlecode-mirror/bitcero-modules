@@ -55,9 +55,6 @@ function showAlbums(){
 	
 	$nav = new RMPageNav($num, $limit, $page, 5);
     $nav->target_url("sets.php?page={PAGE_NUM}&sort=$sort&mode=$mode&search=$search");
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
 	//Fin de barra de navegación
 
 	

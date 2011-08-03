@@ -175,7 +175,7 @@ function sendPostcard(){
 	$post->setViewed(0);
 
 	//Generamos el código de la postal
-	$post->setCode(RMUtilities::randomString(10,1,1,1,1));
+	$post->setCode(RMUtilities::randomString(10,1,false,1,1));
 
 	if (!$post->save()){
 		redirect_header(base64_decode($return), 2, __('Unable to send e-card. Please try again!','galleries'));
