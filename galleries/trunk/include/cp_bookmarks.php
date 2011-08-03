@@ -93,8 +93,10 @@ function showBookMarks(){
 	$tpl->assign('lang_options',__('Options','galleries'));
 	$tpl->assign('lang_edit',__('Edit','galleries'));
 	$tpl->assign('lang_del', __('Delete','galleries'));
-	$tpl->assign('lang_confirm',_MS_GS_CONFIRMBK);
-	$tpl->assign('lang_confirms',_MS_GS_CONFIRMBKS);
+	$tpl->assign('lang_confirm',__('Do you really wish to deleted selected favorite?','galleries'));
+	$tpl->assign('lang_confirms',__('Do you really wish to deleted selected favorites?','galleries'));
+    
+    $tpl->assign('delete_link', GSFunctions::get_url().($xoopsModuleConfig['urlmode']) ? 'cp/delbookmarks/' : '?cp=delbookmarks');
 	
 	
 	RMTemplate::get()->add_style('panel.css', 'galleries');
@@ -110,32 +112,32 @@ function showBookMarks(){
 **/
 function addBookMarks(){
 
-	global $xoopsUser, $db, $add, $xoopsModuleConfig,$referer;
+	global $xoopsUser, $add, $xoopsModuleConfig,$referer;
 
 	$mc =& $xoopsModuleConfig;
 
 	$referer = base64_decode($referer);	
 
 	if (!$referer){
-		$referer = XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? 'cpanel/bookmarks/' : 'cpanel.php?s=cpanel/bookmarks');
+		$referer = GSFunctions::get_url().($mc['urlmode'] ? 'cp/bookmarks/' : '?cp=bookmarks');
 	}
 
 	//Verificamos que la imagen sea válida
 	if($add<=0){
-		redirect_header($referer,1,_MS_GS_ERRIMGVALID);
+		redirect_header($referer,1, __('Image id is not valid!','galleries'));
 		die();
 	}
 
 	//Verificamos que la imagen exista
 	$img = new GSImage($add);
 	if($img->isNew()){
-		redirect_header($referer,1,_MS_GS_ERRIMGEXIST);
+		redirect_header($referer,1, __('Specified image does not exists!','galleries'));
 		die();
 	}
 
 	//Verificamos que la imagen sea pública o de amigos
 	if ($img->isPublic()==0){
-		redirect_header($referer,1,_MS_GS_ERRPRIVACY);
+		redirect_header($referer,1, __('You don\'t have authorization to view this picture!','galleries'));
 		die();
 	}
 
@@ -144,16 +146,18 @@ function addBookMarks(){
 	if ($img->isPublic()==1){
 	
 		if(!$user->isFriend($xoopsUser->uid())){
-			redirect_header($referer,1,_MS_GS_ERRNOTFRIEND);
+			redirect_header($referer,1, __('You must be a friend of this user in order to view this picture!','galleries'));
 			die();
 		}
 	}
+    
+    $db = Database::getInstance();
 
 	//Verificamos si la imagen se encuentra ya registrada en favoritos
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_favourites')." WHERE uid='".$xoopsUser->uid()."' AND id_image='".$img->id()."'";
 	list($num) = $db->fetchRow($db->query($sql));
 	if($num>0){
-		redirect_header($referer,1,_MS_GS_ERRIMGADD);
+		redirect_header($referer,1, __('This picture already is in your favorites','galleries'));
 		die();
 	}
 
@@ -162,10 +166,10 @@ function addBookMarks(){
 	$result = $db->queryF($sql);
 	
 	if(!$result){
-		redirect_header($referer,1,_MS_GS_DBERROR);
+		redirect_header($referer,1, __('Picture could not be added to your favorites!','galleries'));
 		die();
 	}else{
-		redirect_header($referer,1,_MS_GS_DBOK);
+		redirect_header($referer,1, __('Picture added to your favorites successfully!','galleries'));
 		die();
 	}
 
@@ -177,7 +181,7 @@ function addBookMarks(){
 **/
 function deleteBookMarks(){
 
-	global $xoopsUser, $db, $xoopsModuleConfig;
+	global $xoopsUser, $xoopsModuleConfig;
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
@@ -185,11 +189,11 @@ function deleteBookMarks(){
 	$mc =& $xoopsModuleConfig;
 	
 
-	$link = XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? 'cpanel/bookmarks/pag/'.$page : 'cpanel.php?s=cpanel/bookmarks/pag/'.$page);
+	$link = GSFunctions::get_url().($mc['urlmode'] ? 'cp/bookmarks/pag/'.$page.'/' : '?cp=bookmarks&amp;pag='.$page);
 
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
-	if (!is_array($ids) && $ids<=0){
-		redirect_header($link,2,_MS_GS_ERRIMGDELETE);
+	if (!is_array($ids)){
+		redirect_header($link,2,__('You must select one picture at least!','galleries'));
 		die();
 	}
 
@@ -197,20 +201,21 @@ function deleteBookMarks(){
 		$ids = array($ids);
 	}
 	
+    $db = Database::getInstance();
 	
 	$errors = '';
 	foreach ($ids as $k){
 
 		//Verificamos si la imagen sea válida
 		if($k<=0){
-			$errors .= sprintf(_MS_GS_ERRNOTVALID, $k);
+			$errors .= sprintf( __('ID %u is not valid!','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(_MS_GS_ERRNOTEXIST, $k);
+			$errors .= sprintf(__('Image with id %u is not valid!','galleries'), $k);
 			continue;
 		}	
 
@@ -218,18 +223,16 @@ function deleteBookMarks(){
 		$result = $db->queryF($sql);
 
 		if(!$result){
-			$errors .= sprintf(_MS_GS_ERRDELETE, $k);
+			$errors .= sprintf(__('Favorite picture "%s" could not be deleted!','galleries'), $img->title());
 		}
 	}
 
 	if($errors!=''){
-		redirect_header($link,2,_MS_GS_DBERRORS.$errors);
+		redirect_header($link,2,__('Errors ocurred while trying to delete favorites!','galleries').$errors);
 		die();
 	}else{
-		redirect_header($link,1,_MS_GS_DBOK);
+		redirect_header($link,1, __('Favorites deleted successfully!','galleries'));
 		die();
 	}	
 
 }
-
-?>

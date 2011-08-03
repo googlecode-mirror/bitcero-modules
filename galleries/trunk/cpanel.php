@@ -16,7 +16,7 @@ include("include/parse.php");
 
 //Verificamos que sea un usuario registrado
 if(!$xoopsUser){
-	redirect_header(XOOPS_URL.'/modules/galleries/',2, __('You don\'t have authorization to view this section','galleries'));
+	redirect_header(GSFunctions::get_url(),2, __('You don\'t have authorization to view this section','galleries'));
 	die();
 }
 

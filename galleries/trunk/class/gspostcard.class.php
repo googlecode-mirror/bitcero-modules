@@ -144,7 +144,7 @@ class GSPostcard extends RMObject
 	public function url(){
 		global $mc;
 		
-		$url = XOOPS_URL.'/modules/galleries/';
+		$url = GSFunctions::get_url();
 		$url .= $mc['urlmode'] ? "postcard/".$this->id().'/' : 'postcard.php?id='.$this->id();
 		
 		return $url;

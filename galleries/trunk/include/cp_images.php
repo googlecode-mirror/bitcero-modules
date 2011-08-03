@@ -550,9 +550,8 @@ function saveAll(){
 **/
 function formSets(){
 
-	global $xoopsUser, $db, $xoopsConfig, $xoopsOption, $tpl;
+	global $xoopsUser, $db, $xoopsConfig, $xoopsOption, $tpl, $ids;
 	
-	$ids = rmc_server_var($_REQUEST, 'ids', 0);
 	$page = rmc_server_var($_REQUEST, 'pag', 1);
   	$referer = rmc_server_var($_REQUEST, 'referer', '');
     
@@ -657,7 +656,7 @@ function saveSets(){
 	}
 
 	if(!$referer){
-		$referer = XOOPS_URL.'/modules/galleries/cpanel.php?pag='.$page;
+		$referer = GSFunctions::get_url();
 	}
 
 	if($errors!=''){
