@@ -13,7 +13,7 @@
 **/
 function showFriends(){
 
-	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig,$pag;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig,$pag, $xoopsConfig;
 	
 	$xoopsOption['template_main'] = 'gs_panel_friends.html';
 	include 'header.php';
@@ -56,7 +56,7 @@ function showFriends(){
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Sowing friends %u to %u from %u.','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);	
 	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
@@ -66,27 +66,24 @@ function showFriends(){
 	$sql.=" LIMIT $start,$limit";
 	$result = $db->query($sql);
 	while($row = $db->fetchArray($result)){
-		$xu = new ExmUser($row['uid']);
+		$xu = new XoopsUser($row['uid']);
 		
-		$tpl->append('users',array('uid'=>$xu->uid(),'uname'=>$xu->uname(),
-		'link'=>XOOPS_URL."/modules/galleries/".($mc['urlmode'] ? "usr/".$xu->uname()."/" : "user.php?id=usr/".$xu->uname()),
-		'avatar'=>$xu->user_avatar()!='' ? XOOPS_URL.'/uploads/avatars/'.$xu->user_avatar() : GS_URL.'/images/avatar.png'));
+		$tpl->append('users',array(
+            'uid'=>$xu->uid(),
+            'uname'=>$xu->uname(),
+		    'link'=>XOOPS_URL."/modules/galleries/".($mc['urlmode'] ? "usr/".$xu->uname()."/" : "user.php?id=usr/".$xu->uname()),
+		    'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $xu->email(), 0, $xu->user_avatar()!='' ? XOOPS_URL.'/uploads/avatars/'.$xu->user_avatar() : GS_URL.'/images/avatar.png'))
+        );
 	}
 
-	$cols = 3;
-	for ($i=1; $i<=$cols; $i++){
-		$tpl->append('heads',array('i'=>$i));
-	}
-
-	$tpl->assign('lang_exist',_MS_GS_EXISTFRIEND);
-	$tpl->assign('lang_uname',_MS_GS_UNAME);
-	$tpl->assign('lang_user',_MS_GS_USER);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_newfriend',_MS_GS_NEWFRIEND);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_confirm',_MS_GS_CONFIRMFRIEND);
-	$tpl->assign('lang_confirms',_MS_GS_CONFIRMFRIENDS);
-	$tpl->assign('max_cols',$cols);
+	$tpl->assign('lang_uname', __('User name','galleries'));
+	$tpl->assign('lang_newfriend',__('New Friend','galleries'));
+	$tpl->assign('lang_del', __('Delete','galleries'));
+	$tpl->assign('lang_confirm',__('Do you really wish to delete specified friend?','galleries'));
+	$tpl->assign('lang_confirms',__('Do you really wish to delete selected friends?','galleries'));
+    $tpl->assign('form_action_add', GSFunctions::get_url().($mc['urlmode'] ? 'cp/add/' : '?cp=add'));
+    $tpl->assign('form_action_del', GSFunctions::get_url().($mc['urlmode'] ? 'cp/delete/' : '?cp=delete'));
+    $tpl->assign('delete_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/deletefriend/pag/'.$pactual.'/id/' : '?cp=deletefriend&amp;page='.$pactual.'&amp;id='));
 
 	RMTemplate::get()->add_style('panel.css','galleries');
 	
@@ -108,22 +105,24 @@ function addFriends(){
 	$pag = isset($_REQUEST['pag']) ? intval($_REQUEST['pag']) : '';
 
 		
-	$link = XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? 'cpanel/friends/pag/'.$pag : 'cpanel.php?s=cpanel/friends/pag/'.$pag);
+	$link = GSFunctions::get_url().($mc['urlmode'] ? 'cp/friends/pag/'.$pag.'/' : '?cp=friends&amp;pag='.$pag);
 
 	//Verificamos que exista el usuario
 	$add = $add ? $add : $id;
-	$exu = new ExmUser($add);
+	$exu = GSFunctions::get_xoops_user($add);
 	
-	if($exu->isNew()){
-		redirect_header($link, 1 , _MS_GS_ERRUSEREXIST);
+	if(!$exu){
+		redirect_header($link, 1 , sprintf(__('User "%s" could not be found!','galleries'), $add));
 		die();
 	}
+    
+    $db = Database::getInstance();
 
 	//Verificamos que el usuario no se encuentre registrado
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$xoopsUser->uid()."' AND uid='".$exu->uid()."'";
 	list($num) = $db->fetchRow($db->query($sql));
 	if ($num>0){
-		redirect_header($link,1,_MS_GS_FRIENDEXIST);
+		redirect_header($link,1, sprintf(__('%s is your friend already!','galleries'), $exu->uname()));
 		die();
 	}
 
@@ -131,10 +130,10 @@ function addFriends(){
 	$result = $db->queryF($sql);
 	
 	if (!$result){
-		redirect_header($link,1,_MS_GS_DBERROR);
+		redirect_header($link,1, sprintf(__('User %s could not be added as a friend!','galleries'), $exu->uname()));
 		die();
 	}else{
-		redirect_header($link,1,_MS_GS_DBOK);
+		redirect_header($link,1, sprintf(__('User %s has been added to your friends list!','galleries'), $exu->uname()));
 		die();
 	}
 	
@@ -146,64 +145,44 @@ function addFriends(){
 **/
 function deleteFriends(){
 
-	global $xoopsModuleConfig, $db,$xoopsUser;
-
-	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$pag = isset($_REQUEST['pag']) ? intval($_REQUEST['pag']) : '';
+	global $xoopsModuleConfig, $db,$xoopsUser, $page, $id;
 
 	$mc =& $xoopsModuleConfig;
 	
-
-	$link = XOOPS_URL.'/modules/galleries/'.($mc['urlmode'] ? 'cpanel/friends/pag/'.$pag : 'cpanel.php?s=cpanel/friends/pag/'.$pag);
+	$link = GSFunctions::get_url().($mc['urlmode'] ? 'cp/friends/pag/'.$page.'/' : 'cp=friends&amp;pag='.$page);
 
 	//Verificamos si nos proporcionaron al menos un amigo para eliminar
-	if (!is_array($ids) && $ids<=0){
-		redirect_header($link,2,_MS_GS_ERRFRIENDDEL);
+	if ($id<=0){
+		redirect_header($link,2, __('Specified id for friend is not valid!','galleries'));
 		die();
-	}
-
-	if (!is_array($ids)){
-		$ids = array($ids);
 	}
 	
-	
-	$errors = '';
-	foreach ($ids as $k){
+	//Verificamos si el amigo existe
+	$exu = new XoopsUser($id);
+	if ($exu->isNew()){
+	    redirect_header($link,2, __('Specified user does not exists!','galleries'));
+        die();
+	}
+    
+    $db = Database::getInstance();
 
-		//Verificamos si el amigo es válido
-		if($k<=0){
-			$errors .= sprintf(_MS_GS_ERRNOTVALIDFRIEND, $k);
-			continue;			
-		}
-
-		//Verificamos si el amigo existe
-		$exu = new ExmUser($k);
-		if ($exu->isNew()){
-			$errors .= sprintf(_MS_GS_ERRNOTEXISTFRIEND, $k);
-			continue;
-		}	
-
-		//Verificamos si se trata de un amigo
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$xoopsUser->uid()."'";
-		list($num) = $db->fetchRow($db->query($sql));
-		if ($num<=0){
-			continue;
-		}
-
-		$sql = "DELETE FROM ".$db->prefix('gs_friends')." WHERE uid='".$k."' AND gsuser='".$xoopsUser->uid()."'";
-		$result = $db->queryF($sql);
-
-		if(!$result){
-			$errors .= sprintf(_MS_GS_ERRDELFRIEND, $k);
-		}
+	//Verificamos si se trata de un amigo
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE uid='".$id."' AND gsuser='".$xoopsUser->uid()."'";
+	list($num) = $db->fetchRow($db->query($sql));
+	if ($num<=0){
+	    redirect_header($link,2, __('Specified user is not yoru friend!','galleries'));
+        die();
 	}
 
-	if($errors!=''){
-		redirect_header($link,2,_MS_GS_DBERRORS.$errors);
-		die();
-	}else{
-		redirect_header($link,1,_MS_GS_DBOK);
-		die();
-	}	
+	$sql = "DELETE FROM ".$db->prefix('gs_friends')." WHERE uid='".$id."' AND gsuser='".$xoopsUser->uid()."'";
+	$result = $db->queryF($sql);
+
+	if(!$result){
+	    redirect_header($link,2, __('Friend could not be deleted!','galleries'));
+        die();
+	} else {
+        redirect_header($link,1,__('Friend deleted successfully!','galleries'));
+        die();
+    }
+	
 }
-?>

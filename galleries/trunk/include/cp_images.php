@@ -24,13 +24,13 @@ function showImages(){
 	if($set){
 		//Verificamos si el album es válido
 		if($set<=0){
-			redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/sets' : 'cpanel.php?s=cpanel/sets'),1, __('Specified album is not valid!','galleries'));
+			redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cp/sets/' : '?cp=sets'),1, __('Specified album is not valid!','galleries'));
 			die();
 		}
 		//Verificamos que el album exista
 		$album = new GSSet($set);
 		if($album->isNew()){
-			redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cpanel/sets' : 'cpanel.php?s=cpanel/sets'),1, __('Specified album does not exists!','galleries'));
+			redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cp/sets/' : '?cp=sets'),1, __('Specified album does not exists!','galleries'));
 			die();
 		}
 
@@ -41,6 +41,7 @@ function showImages(){
 	$sql.= $set ? " INNER JOIN ".$db->prefix('gs_setsimages')." b ON (a.id_image=b.id_image AND b.id_set='".$set."' AND a.owner='".$xoopsUser->uid()."') " : " WHERE a.owner=".$xoopsUser->uid();
     
     global $page;
+    $page = $page<=0 ? 1 : $page;
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 10;
 	$limit = $limit<=0 ? 10 : $limit;
 	$user = new GSUser($xoopsUser->uid(),1);
@@ -88,15 +89,17 @@ function showImages(){
 	$tpl->assign('lang_del',__('Delete','galleries'));
 	$tpl->assign('lang_options',__('Options','galleries'));	
 	$tpl->assign('lang_set', __('Add to Album...','galleries'));
-	$tpl->assign('lang_confirm',_MS_GS_CONFIRM);
-	$tpl->assign('lang_confirms',_MS_GS_CONFIRMS);
+	$tpl->assign('lang_confirm',__('Do you really wish to delete specified picture?','galleries'));
+	$tpl->assign('lang_confirms',__('Do you really wish to deleted selected pictures?','galleries'));
 	$tpl->assign('lang_save', __('Save Changes','galleries'));
 	$tpl->assign('lang_changename',__('Change name','galleries'));
 	$tpl->assign('lang_changedesc',__('Change description','galleries'));
 	$tpl->assign('lang_adddesc',__('Add Description','galleries'));
 
 	//Links de menu
-	$tpl->assign('link_sets',GS_URL.($mc['urlmode'] ? "/cpanel/sets" : ""));
+	$tpl->assign('link_sets',GSFunctions::get_url().($mc['urlmode'] ? "cp/sets" : "?cp=sets"));
+    $tpl->assign('edit_link',GSFunctions::get_url().($mc['urlmode'] ? "cp/edit/pag/$pactual/id/" : "?cp=edit&amp;pag=$page&amp;id="));
+    $tpl->assign('delete_link',GSFunctions::get_url().($mc['urlmode'] ? "cp/delete/pag/$pactual/ids/" : "?cp=delete&amp;pag=$page&amp;ids="));
     
     RMTemplate::get()->add_local_script('panel.js', 'galleries');
     RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
@@ -114,17 +117,15 @@ function showImages(){
 **/
 function formImages($edit = 0){
 
-	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $xoopsUser, $xoopsConfig;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $xoopsUser, $xoopsConfig, $id, $referer, $page;
 	
 	$mc =& $xoopsModuleConfig;
-
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-	$referer = isset($_REQUEST['referer']) ? $_REQUEST['referer'] : '';
 	
 	if(!$referer){
-		$referer = XOOPS_URL.'/modules/galleries/cpanel.php?pag='.$page;
-	}
+		$referer = GSFunctions::get_url().($mc['urlmode'] ? 'cp/images/pag/'.$page.'/' : '?cp=images&amp;pag='.$page);
+	} else {
+        $referer = base64_decode($referer);
+    }
 
 	if($edit){
 		//Verificamos si la imagen es válida
@@ -154,7 +155,7 @@ function formImages($edit = 0){
 
 	GSFunctions::makeHeader();
 
-	$form = new RMForm($edit ? __('Edit Image','galleries') : __('New Image','galleries'), 'frmimg','cpanel.php');
+	$form = new RMForm($edit ? __('Edit Image','galleries') : __('New Image','galleries'), 'frmimg',GSFunctions::get_url().($mc['urlmode'] ? 'cp/saveedit/' : '?cp=saveedit'));
 	$form->setExtra("enctype='multipart/form-data'");
 
 	$form->addElement(new RMFormText(__('Image title','galleries'),'title',50,100,$edit ? $img->title(false) : ''));
@@ -426,20 +427,17 @@ function saveImages($edit = 0){
 * @desc Elimina las imágenes especificadas
 **/
 function deleteImages(){
-	global $util, $xoopsModule, $db;
-
-	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-	$referer = isset($_REQUEST['referer']) ? base64_decode($_REQUEST['referer']) : '';
+	global $db, $ids, $page, $referer, $xoopsModuleConfig;
 
 	if(!$referer){
-		$referer = XOOPS_URL.'/modules/galleries/cpanel.php?pag='.$page;
-	}
-
+        $referer = GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? 'cp/images/page/'.$page : '?cp=images&amp;pag='.$page);
+	} else {
+        $referer = base64_decode($referer);
+    }
 	
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
 	if (!is_array($ids) && $ids<=0){
-		redirect_header($referer,2,_MS_GS_ERRIMGDELETE);
+		redirect_header($referer,2, __('You must specify one picture at least!','galleries'));
 		die();
 	}
 
@@ -452,20 +450,20 @@ function deleteImages(){
 
 		//Verificamos si la imagen es válida
 		if($k<=0){
-			$errors .= sprintf(_MS_GS_ERRNOTVALID, $k);
+			$errors .= sprintf(__('Picture with id %u is not valid!','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(_MS_GS_ERRNOTEXIST, $k);
+			$errors .= sprintf(__('Picture with id %u does not exists!','galleries'), $k);
 			continue;
 		}	
 
 		$sets = $img->sets();
 		if(!$img->delete()){
-			$errors .= sprintf(_MS_GS_ERRDELETE, $k);
+			$errors .= sprintf(__('Picture "%s" could not be deleted!','galleries'), $k);
 		}else{
 
 			//Decrementamos el número de imágenes de los albumes
@@ -476,10 +474,10 @@ function deleteImages(){
 	}
 
 	if($errors!=''){
-		redirect_header($referer,2,_MS_GS_DBERRORS.$errors);
+		redirect_header($referer,2,__('Errors ocurred while trying to delete pictures','galleries').$errors);
 		die();
 	}else{
-		redirect_header($referer,1,_MS_GS_DBOK);
+		redirect_header($referer,1, __('Pictures deleted succesfully!','galleries'));
 		die();
 	}
 		
@@ -550,14 +548,15 @@ function saveAll(){
 **/
 function formSets(){
 
-	global $xoopsUser, $db, $xoopsConfig, $xoopsOption, $tpl, $ids;
+	global $xoopsUser, $db, $xoopsConfig, $xoopsOption, $xoopsModuleConfig, $tpl, $ids, $referer;
 	
 	$page = rmc_server_var($_REQUEST, 'pag', 1);
-  	$referer = rmc_server_var($_REQUEST, 'referer', '');
     
 	if(!$referer){
-		$referer = XOOPS_URL.'/modules/galleries/cpanel.php?pag='.$page;
+		$referer = GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? 'cp/images/pag/'.$page.'/' : '?cp=images&amp;pag='.$page);
 	}
+    
+    $ids = empty($ids) ? rmc_server_var($_REQUEST, 'ids', 0) : $ids;
 
 	$xoopsOption['template_main'] = 'gs_formaddsets.html';
 	include 'header.php';
@@ -622,14 +621,14 @@ function saveSets(){
 
 		//Verificamos si la imagen es válida
 		if($k<=0){
-			$errors .= sprintf(__('Image with id %u is not valid!','galleries'), $k);
+			$errors .= sprintf(__('Picture with id %u is not valid!','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(__('Image with id %u does not exists!','galleries'), $k);
+			$errors .= sprintf(__('Picture with id %u does not exists!','galleries'), $k);
 			continue;
 		}	
 	
@@ -660,10 +659,10 @@ function saveSets(){
 	}
 
 	if($errors!=''){
-		redirect_header($referer,2,__('Errors ocurred while trying to update images!','galleries').$errors);
+		redirect_header($referer,2,__('Errors ocurred while trying to update picture!','galleries').$errors);
 		die();
 	}else{
-		redirect_header($referer,2, __('Images updated successfully!','galleries'));
+		redirect_header($referer,2, __('Pictures updated successfully!','galleries'));
 		die();
 	}
 }

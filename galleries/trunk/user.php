@@ -180,11 +180,10 @@ function showImageDetails(){
 	$tpl->assign('lang_lastpic', __('This is the last picture','galleries'));
 	$tpl->assign('lang_firstpic', __('This is the first picture','galleries'));
 	$tpl->assign('toset_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/toset/ids/'.$image->id().'/referer/'.base64_encode(RMFunctions::current_url()).'/' : '?cp=toset&amp;ids='.$image->id().'&amp;referer='.base64_encode(RMFunctions::current_url())));
-	$tpl->assign('edit_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/edit/id/' : '?cpanel=edit&amp;id='));
+	$tpl->assign('edit_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/edit/id/'.$image->id().'/referer/'.base64_encode(RMFunctions::current_url()).'/' : '?cp=edit&amp;id='.$image->id().'&amp;referer='.base64_encode(RMFunctions::current_url())));
 	$tpl->assign('bookmark_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/bookmarks/add/'.$image->id().'/referer/'.base64_encode($_SERVER['REQUEST_URI']) : '?cpanel=bookmarks&amp;add='.$image->id().'&amp;referer='.base64_encode($_SERVER['REQUEST_URI'])));
 	$tpl->assign('postcard_link', GSFunctions::get_url().($mc['urlmode'] ? 'postcard/new/img/'.$image->id().'/' : '?postcard=new&amp;img='.$image->id()));
-	$tpl->assign('del_return', base64_encode(RMFunctions::current_url()));
-	$tpl->assign('delete_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/delete/ids/' : '?cpanel=delete&amp;ids='));
+	$tpl->assign('delete_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/delete/referer/'.base64_encode(RMFunctions::current_url()).'/ids/' : '?cpanel=delete&amp;referer='.base64_encode(RMFunctions::current_url()).'&amp;ids='));
 	$tpl->assign('lang_confirmdel', sprintf(__('Dow you really want to delete this picture?\n(%s)','galleries'), $image->title()));
 	
 	if ($xoopsUser && $xoopsUser->uid()==$image->owner()){

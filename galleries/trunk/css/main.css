@@ -420,11 +420,13 @@ div.gsComments h3.send{
     overflow: hidden;
     margin: 10px 0;
 }
-.gs_pic_item{
+.gs_pic_item,
+.gs_pic_item_index{
     padding: 10px;
     float: left;
 }
-.gs_pic_item .the_image{
+.gs_pic_item .the_image,
+.gs_pic_item_index .the_image{
     padding: 1px;
     border: 1px solid #CCC;
 }

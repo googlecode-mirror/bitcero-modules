@@ -12,64 +12,54 @@
 	</ul>
 </div>
 <!-- // Opciones del Panel -->
-<form name="frmFriend" method="POST" action="<{$gs_url}>/cpanel.php">
+<form name="frmFriend" id="frm-friends" method="POST" action="">
 <table class="outer" cellspacing="1">
 	<tr class="even">
 		<td><{$lang_showing}></td>
 		<td align="right"><{$friendsNavPage}></td>
 	</tr>
 </table>
-<table class="outer" cellspacing="1">
+<table class="outer" cellspacing="1" width="100%">
 	<tr class="head">
-		<td colspan="<{$max_cols*2}>"><{$lang_newfriend}></td>
+		<td><{$lang_newfriend}></td>
 	</tr>
 	<tr class="odd">
-		<td colspan="<{$max_cols*2}>">
+		<td>
 		<strong><{$lang_uname}></strong> 
 		<input type="text" size="30" name="uname" /> &nbsp;
-		<input type="submit" class="formButton" value="<{$lang_newfriend}>" onclick="document.forms['frmFriend'].op.value='add'"/>
+		<input type="submit" class="formButton" value="<{$lang_newfriend}>" onclick="$('#frm-friends').attr('action', '<{$form_action_add}>'); $('#frm-friends').submit();"/>
 
 		</td>
 	</tr>
-	<tr>
-		<th colspan="<{$max_cols*2}>"><{$lang_exist}></th>
-	</tr>
-	<tr class="head" align="center">
-		<{assign var="i" value=1}>
-		<{foreach item=head from=$heads}>
-		<{if $i>$max_cols}>
-			</tr><tr  class="head">
-			<{assign var="i" value=1}>
-		<{/if}>
-		<td><{if $i==1}><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmFriend','checkAll')" /><{else}>&nbsp;<{/if}></td>
-		<td><{$lang_user}></td>
-		<{assign var="i" value=$i+1}>
-	<{/foreach}>
-	</tr>
-		
-	</tr>
 	<tr class="<{cycle values='even,odd'}>">
-	<{assign var="i" value=1}>
-	<{foreach item=user from=$users}>
-		<{if $i>$max_cols}>
-			</tr><tr  class="<{cycle values='even,odd'}>">
-			<{assign var="i" value=1}>
-		<{/if}>
-		<td width="20"><input type="checkbox" name="ids[]" value="<{$user.uid}>" /></td>
-		<td><img id="panelFriendAvatar" src="<{$user.avatar}>" alt="<{$user.uname}>" />
-		<span id="panelFriend"><a href="<{$user.link}>"><{$user.uname}></a></span>
-		<span id="panelFriend"><a href="<{$gs_url}>/cpanel.php?op=deletefriend&amp;ids=<{$user.uid}>&amp;pag=<{$pag}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></span>
-		</td>
-	<{assign var="i" value=$i+1}>
-	<{/foreach}>
-	</tr>
-	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
-		<td colspan="<{$max_cols*2}>">
-		<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmFriend'].op.value='deletefriend'; return confirm('<{$lang_confirms}>');" />	
-		</td>
+        <td style="overflow: hidden;">
+            <{foreach item=user from=$users}>
+            <div class="item_friend_data">
+                <img class="friend_avatar" src="<{$user.avatar}>" alt="<{$user.uname}>" style="max-width: 60px;" /><br />
+                <span class="friend_uname"><a href="<{$user.link}>"><{$user.uname}></a></span><br />
+                <span class="friend_del"><a href="<{$delete_link}><{$user.uid}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></span>
+            </div>
+            <{/foreach}>
+        </td>
 	</tr>
 </table>
-<input type="hidden" name="op" />
 <input type="hidden" name="pag" value="<{$pag}>" />
 </form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var items = $(".item_friend_data");
+        
+        if(items.length>0){
+            
+            h = 0;
+            for(i=0;i<items.length;i++){
+                
+                if ($(items[i]).height()>h)
+                    h = $(items[i]).height();
+                
+            }
+            
+            $(".item_friend_data").height(h);
+        }
+    });
+</script>

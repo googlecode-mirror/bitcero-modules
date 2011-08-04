@@ -11,30 +11,28 @@
 	</ul>
 </div>
 <!-- // Opciones del Panel -->
+<div class="cp_showing">
+    <{$lang_showing}>
+    <{$setsNavPage}>
+</div>
+
+<form name="frmNewSet" id="frm-newset" method="POST" action="<{if $edit}><{$action_editset}><{else}><{$action_addset}><{/if}>">
+<div class="head"><{if $edit}><{$lang_editset}><{else}><{$lang_newset}><{/if}></div>
+<div class="odd">
+    <strong><{$lang_name}></strong> <input type="text" size="30" name="title" value="<{$title}>" /> &nbsp;
+            <strong><{$lang_public}></strong> 
+            <input type="radio" name="public" value=2 checked/> <{$lang_publicset}>  &nbsp;
+            <input type="radio" name="public" value=0 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privateme}>    &nbsp;
+            <input type="radio" name="public" value=1 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privatef}>  &nbsp;
+            <{if $edit}>
+            <input type="submit" value="<{$lang_editset}>" />
+            <{else}>
+            <input type="submit" value="<{$lang_newset}>"  />
+            <{/if}>
+</div>
+
 <form name="frmSet" method="POST" action="<{$gs_url}>/cpanel.php">
 <table class="outer" width="100%" cellspacing="1">
-	<tr class="even">
-		<td colspan="4"><{$lang_showing}></td>
-		<td colspan="3" align="right"><{$setsNavPage}></td>
-	</tr>
-	<tr class="head">
-		<td colspan="7"><{if $edit}><{$lang_editset}><{else}><{$lang_newset}><{/if}></td>
-	</tr>
-	<tr class="odd">
-		<td colspan="7"><strong><{$lang_name}></strong> <input type="text" size="30" name="title" value="<{$title}>" /> &nbsp;
-		    <strong><{$lang_public}></strong> 
-			<input type="radio" name="public" value=2 checked/> <{$lang_publicset}>  &nbsp;
-			<input type="radio" name="public" value=0 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privateme}>	&nbsp;
-			<input type="radio" name="public" value=1 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privatef}>  &nbsp;
-			<{if $edit}>
-			<input type="submit" value="<{$lang_editset}>" class="formButton" onclick="document.forms['frmSet'].op.value='saveeditset';" />
-			<{else}>
-			<input type="submit" value="<{$lang_newset}>" class="formButton" onclick="document.forms['frmSet'].op.value='saveset';" />
-			<{/if}>
-		</td>
-		
-
-	</tr>
 	<tr>
 		<th colspan="7"><{$lang_setexists}></th>
 	</tr>
@@ -52,11 +50,11 @@
 	<tr class="<{cycle values='even,odd'}>" align="center">
 		<td width="20"><input type="checkbox" name="ids[]" value="<{$set.id}>" /></td>
 		<td width="30"><strong><{$set.id}></strong></td>
-		<td align="left"><a href="<{$link_imgs}>/<{$set.id}>"><{$set.name}></a></td>
+		<td align="left"><a href="<{$set.link}>"><{$set.name}></a></td>
 		<td><{$set.pics}></td>
 		<td><{if $set.public}><img src="<{$gs_url}>/images/ok.png" /><{else}><img src="<{$gs_url}>/images/no.png" /><{/if}></td>
 		<td><{$set.date}></td>
-		<td><a href="<{$gs_url}>/cpanel.php?op=editset&amp;id=<{$set.id}>&amp;pag=<{$pag}>"><{$lang_edit}></a> &bull; <a href="<{$gs_url}>/cpanel.php?op=deleteset&amp;ids=<{$set.id}>&amp;pag=<{$pag}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></td>
+		<td><a href="<{$gs_url}>/cpanel.php?op=editset&amp;id=<{$set.id}>&amp;pag=<{$pag}>"><{$lang_edit}></a></td>
 	</tr>
 	<{/foreach}>
 	<tr class="foot">
@@ -68,5 +66,5 @@
 </table>
 <input type="hidden" name="op" />
 <input type="hidden" name="id" value="<{$id}>" />
-<input type="hidden" name="pag" value="<{$pag}>" /
+<input type="hidden" name="pag" value="<{$pag}>" />
 </form>

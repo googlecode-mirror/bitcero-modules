@@ -345,4 +345,24 @@ class GSFunctions
         return $ret;
     }
     
+    /**
+    * Get a XoopsUser object based on username
+    * @param string Username
+    * @return object XoopsUser instance
+    */
+    public function get_xoops_user($uname){
+        
+        $db = Database::getInstance();
+        
+        $sql = "SELECT uid FROM ".$db->prefix("users")." WHERE uname='".$uname."'";
+        $result = $db->query($sql);
+        if($db->getRowsNum($result)<=0) return false;
+        
+        list($id) = $db->fetchRow($result);
+        
+        $user = new XoopsUser($id);
+        return $user;
+        
+    }
+    
 }

@@ -163,8 +163,8 @@ class GSSet extends RMObject
 			$mc = RMUtilities::module_config('galleries');
 		}
 		
-		$url = XOOPS_URL.'/modules/galleries/';
-		$url .= $mc['urlmode'] ? 'usr/'.$this->uname()."/set/".$this->id().'/' : "user.php?id=usr/".$this->uname()."/set/".$this->id();
+		$url = GSFunctions::get_url();
+		$url .= $mc['urlmode'] ? 'usr/'.$this->uname()."/set/".$this->id().'/' : "?usr=".$this->uname()."&amp;set=".$this->id();
 		return $url;
 	}
 	
@@ -179,7 +179,7 @@ class GSSet extends RMObject
 	public function delete(){
 		
 		$db =& $this->db;
-		$sql = "SELECT * FROM ".$db->prefix("gs_setsimages")." WHERE id_set='".$this->id()."'";
+		$sql = "DELETE FROM ".$db->prefix("gs_setsimages")." WHERE id_set='".$this->id()."'";
 		
 		if (!$this->deleteFromTable()) return false;
 		

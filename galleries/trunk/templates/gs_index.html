@@ -27,9 +27,16 @@
 				</span>
                 
 				<div class="gsPhotos">
-						<{foreach item=img from=$set.images}>
-						<{include file="db:gs_item_data.html"}>
-						<{/foreach}>
+				    <{foreach item=img from=$set.images}>
+					<div class="gs_pic_item_index" style="width: <{$ths_width+35}>px;">
+                        <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.thumbnail}>" alt="<{$img.title}>" class="the_image" style="width: <{$ths_width}>px;" /></a>
+                        <div class="gs_pic_data">
+                            <{if $quickview}><span class="pic_qview"><a href="<{$img.image}>" rel="mgs-images" title="<{$img.title}>"><{$lang_qview}></a></span><{/if}>
+                            <span class="pic_date"><{$img.created}></span>
+                            <span class="pic_by"><{$img.by}></span>
+                        </div>
+                    </div>
+					<{/foreach}>
 				</div>
 			</div>
 		<{/foreach}>

@@ -50,8 +50,8 @@
 		<td><{if $img.public}><img src="<{$gs_url}>/images/ok.png" /><{else}><img src="<{$gs_url}>/images/no.png" /><{/if}></td>	
 		<td><{$img.created}></td>
 		<td nowrap="nowrap">
-			<a href="<{$gs_url}>/cpanel.php?op=edit&amp;id=<{$img.id}>&amp;pag=<{$pag}>" title="<{$lang_edit}>"><img src="<{$gs_url}>/images/edit.png" alt="<{$lang_edit}>" width="16" /></a> |
-			<a href="<{$gs_url}>/cpanel.php?op=delete&amp;ids=<{$img.id}>&amp;pag=<{$pag}>" title="<{$lang_del}>" onclick="return confirm('<{$lang_confirm}>');"><img src="<{$gs_url}>/images/delete.png" alt="<{$lang_del}>" width="16" /></a></td>
+			<a href="<{$edit_link}><{$img.id}>" title="<{$lang_edit}>"><img src="<{$gs_url}>/images/edit.png" alt="<{$lang_edit}>" width="16" /></a> |
+			<a href="<{$delete_link}><{$img.id}>" title="<{$lang_del}>" onclick="return confirm('<{$lang_confirm}>');"><img src="<{$gs_url}>/images/delete.png" alt="<{$lang_del}>" width="16" /></a></td>
 	</tr>
 	<{/foreach}>
 	<tr class="foot">
