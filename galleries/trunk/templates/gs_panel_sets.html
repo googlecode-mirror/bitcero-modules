@@ -21,17 +21,18 @@
 <div class="odd">
     <strong><{$lang_name}></strong> <input type="text" size="30" name="title" value="<{$title}>" /> &nbsp;
             <strong><{$lang_public}></strong> 
-            <input type="radio" name="public" value=2 checked/> <{$lang_publicset}>  &nbsp;
-            <input type="radio" name="public" value=0 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privateme}>    &nbsp;
-            <input type="radio" name="public" value=1 <{if $edit && !$public}>checked<{/if}>/> <{$lang_privatef}>  &nbsp;
+            <input type="radio" name="public" value=2<{if $edit && $public==2}> checked="checked"<{/if}> /> <{$lang_publicset}>  &nbsp;
+            <input type="radio" name="public" value=0<{if $edit && !$public}> checked="checked"<{/if}>/> <{$lang_privateme}>    &nbsp;
+            <input type="radio" name="public" value=1<{if $edit && $public==1}> checked="checked"<{/if}> /> <{$lang_privatef}>  &nbsp;
             <{if $edit}>
             <input type="submit" value="<{$lang_editset}>" />
             <{else}>
             <input type="submit" value="<{$lang_newset}>"  />
             <{/if}>
 </div>
-
-<form name="frmSet" method="POST" action="<{$gs_url}>/cpanel.php">
+<input type="hidden" name="id" value="<{$id}>" />
+</form>
+<form name="frmSet" method="POST" action="<{$action_delset}>">
 <table class="outer" width="100%" cellspacing="1">
 	<tr>
 		<th colspan="7"><{$lang_setexists}></th>
@@ -52,19 +53,17 @@
 		<td width="30"><strong><{$set.id}></strong></td>
 		<td align="left"><a href="<{$set.link}>"><{$set.name}></a></td>
 		<td><{$set.pics}></td>
-		<td><{if $set.public}><img src="<{$gs_url}>/images/ok.png" /><{else}><img src="<{$gs_url}>/images/no.png" /><{/if}></td>
+		<td><img src="<{$gs_url}>/images/<{if $set.public==2}>ok.png<{elseif $set.public==1}>friend.png<{else}>no.png<{/if}>" /></td>
 		<td><{$set.date}></td>
-		<td><a href="<{$gs_url}>/cpanel.php?op=editset&amp;id=<{$set.id}>&amp;pag=<{$pag}>"><{$lang_edit}></a></td>
+		<td><a href="<{$edit_link}><{$set.id}>"><{$lang_edit}></a></td>
 	</tr>
 	<{/foreach}>
 	<tr class="foot">
 		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
 		<td colspan="6">
-			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmSet'].op.value='deleteset'; return confirm('<{$lang_confirms}>');" />
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="return confirm('<{$lang_confirms}>');" />
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="op" />
-<input type="hidden" name="id" value="<{$id}>" />
 <input type="hidden" name="pag" value="<{$pag}>" />
 </form>

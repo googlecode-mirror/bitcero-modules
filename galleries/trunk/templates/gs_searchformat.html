@@ -16,7 +16,7 @@
 			<h3><{$img.title}></h3>
 			<span class="pic_created"><{$img.created}></span>
 			<div class="uinfo">
-			<a href="<{$img.userurl}>"><img class="avatar" src="<{if $img.avatar!=''}><{$xoops_url}>/uploads/avatars/<{$img.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$img.uname}>" /></a>
+			<a href="<{$img.userurl}>"><img class="avatar" src="<{if $img.avatar!=''}><{$img.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$img.uname}>" /></a>
 			<h4><{$img.by}></h4>
 			<{$img.viewmore}>
             <{if $quickview}><span class="pic_qview"><a href="<{$img.image}>" rel="mgs-images" title="<{$img.title}>"><{$lang_qview}></a></span><{/if}>

@@ -32,7 +32,12 @@ function showUserPics(){
 	
 	// Información del Usuario
 	$tpl->assign('lang_picsof', sprintf(__('Pictures of %s'), $user->uname()));
-	$tpl->assign('user', array('id'=>$user->uid(),'uname'=>$user->uname(),'avatar'=>$user->userVar('user_avatar'),'link'=>$user->userURL()));
+	$tpl->assign('user', array(
+        'id'=>$user->uid(),
+        'uname'=>$user->uname(),
+        'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $user->userVar('email'), 0, $user->userVar('user_avatar')),
+        'link'=>$user->userURL())
+    );
 	
 	// Lenguaje
 	$tpl->assign('lang_bmark', __('Favorites','galleries'));
@@ -332,6 +337,16 @@ function showImageDetails(){
 	foreach ($tags as $tag){
 		$tpl->append('tags', array('id'=>$tag->id(),'tag'=>$tag->tag(),'link'=>$link.$tag->tag()));
 	}
+    
+    //Script for image details
+    $script = '<script type="text/javascript">
+        var details = {
+        img: "'.$user->filesURL().'/'.$image->image().'",
+        title: "'.$image->title().'"
+    };</script>';
+    
+    RMTemplate::get()->add_head($script);
+    RMTemplate::get()->add_local_script('picdetails.js','galleries');
 	
 	// Comentarios
 	$tpl->assign('users_link', GSFunctions::get_url().($mc['urlmode'] ? 'usr/' : '?usr='));
@@ -348,7 +363,7 @@ function showImageDetails(){
 * @desc Mostramos el contenido de un Álbum
 */
 function showSetContent(){
-	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $xoopsOption, $tpl;
+	global $usr, $db, $xoopsModule, $mc, $xoopsModuleConfig, $xoopsConfig, $xoopsUser, $xoopsOption, $tpl, $page;
 	global $pag, $set;
     
 	$mc =& $xoopsModuleConfig;
@@ -395,16 +410,21 @@ function showSetContent(){
 	GSFunctions::makeHeader();
 	
 	// Información del Usuario
-	$tpl->assign('lang_picsof', sprintf(__('Images in %s'), $set->title()));
-	$tpl->assign('user', array('id'=>$user->uid(),'uname'=>$user->uname(),'avatar'=>$user->userVar('user_avatar'),'link'=>$user->userURL()));
+	$tpl->assign('lang_picsof', sprintf(__('Pictures in %s'), $set->title()));
+	$tpl->assign('user', array(
+        'id'=>$user->uid(),
+        'uname'=>$user->uname(),
+        'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $user->userVar('email'), 0, $user->userVar('user_avatar')),
+        'link'=>$user->userURL())
+    );
 	
 	// Lenguaje
 	$tpl->assign('lang_bmark', __('Favorites','galleries'));
-	$tpl->assign('lang_pics', __('My Images','galleries'));
+	$tpl->assign('lang_pics', __('Pictures','galleries'));
 	$tpl->assign('sets_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/sets/usr/".$user->uname().'/' : "?explore=sets&amp;usr=".$user->uname()));
 	$tpl->assign('tags_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname()));
 	$tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "?cp=bookmarks"));
-	$tpl->assign('xoops_pagetitle', sprintf(__('Images in %s'), $set->title()).' &raquo; '.$mc['section_title']);
+	$tpl->assign('xoops_pagetitle', sprintf(__('Pictures in %s'), $set->title()).' &raquo; '.$mc['section_title']);
 	$tpl->assign('lang_inset', _MS_GS_INSET);
 	$tpl->assign('lang_numpics', sprintf(__('Pictures: %s','galleries'), $set->pics()));
 	$tpl->assign('lang_numviews', sprintf(__('Hits: %s'), $set->hits()));
@@ -425,7 +445,7 @@ function showSetContent(){
 	$tbl2 = $db->prefix("gs_setsimages");
 	$sql = "SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image $public AND owner='".$user->uid()."'";
 	
-	$page = isset($pag) ? $pag : 1;
+	$page = $page>0 ? $page : 1;
 	/**
 	* @desc Formato para el manejo de las imágenes
 	*/
@@ -468,15 +488,15 @@ function showSetContent(){
 
    	$urlnav = '';
    	if ($tpages > 1) {
-        $urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'user.php?id=usr/'.$user->uname().'/set/'.$set->id();
+        $urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'usr='.$user->uname().'&amp;set='.$set->id();
         $nav = new RMPageNav($num, $limit, $pactual, 5);
-        $nav->target_url(GS_URL.'/'.$urlnav.'/pag/{PAGE_NUM}');
+        $nav->target_url(GSFunctions::get_url().$urlnav.($mc['urlmode'] ? '/pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
         $tpl->assign('upNavPage', $nav->render(false));
     }
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_MS_GS_SHOWING, $start + 1, $showmax, $num));
+	$tpl->assign('lang_showing', sprintf(__('Showing pictures %u to %u out of %u.','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);
 	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
@@ -509,6 +529,7 @@ function showSetContent(){
 			ORDER BY a.id_image DESC LIMIT 0,$blimit";
 	$result = $db->query($sql);
 	$bi = 0;
+    $tf = new RMTimeFormatter(0, __('%m%/%d%/%Y% %h%:%i%','galleries'));
 	// cremos la imagen grande para los albumes
 	while ($row = $db->fetchArray($result)){
 		$img = new GSImage();
@@ -527,7 +548,7 @@ function showSetContent(){
 		// ASignamos las imagenes grandes para los albumes
 		$imgfile = $user->filesURL().'/'.($mc['set_format_mode'] ? 'formats/bigset_' : 'ths/').$img->image();
 		if ($bi==0){
-			$tpl->assign('lang_updated', sprintf(_MS_GS_UPDATED, formatTimestamp($img->created(),'c')));
+			$tpl->assign('lang_updated', sprintf(__('Updated on %s','galleries'), $tf->format($img->created())));
 		}
 		$tpl->append('bigs', array('id'=>$img->id(),'title'=>$img->title(),
 		'image'=>$imgfile,'link'=>$imglink,

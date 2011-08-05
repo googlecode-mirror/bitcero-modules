@@ -31,7 +31,7 @@ function sets(){
 	if ($usr){
 		$owner = new GSUser($usr);
 		if ($owner->isNew()){
-			redirect_header(XOOPS_URL."/modules/galleries",1,_MS_GS_ERRUSER);
+			redirect_header(GSFunctions::get_url(),1, __('Specified user does not exists!','galleries'));
 			die();
 		}
 
@@ -40,11 +40,11 @@ function sets(){
 	GSFunctions::makeHeader();
 
 	//Verificamos si el usuario es dueño o amigo
-	if($usr && $exmUser){
-		if($owner->uid()==$exmUser->uid()){
+	if($usr && $xoopsUser){
+		if($owner->uid()==$xoopsUser->uid()){
 			$public = '';
 		}else{
-			if ($owner->isFriend($exmUser->uid())){
+			if ($owner->isFriend($xoopsUser->uid())){
 				$public = " WHERE public<>'0'";
 			}else{
 				$public = " WHERE public='2'";
@@ -159,19 +159,24 @@ function sets(){
 	
 	$tpl->assign('lang_date',__('Created on:','galleries'));
 	$tpl->assign('lang_by',__('Owned by:','galleries'));
-	$tpl->assign('max_cols',$cols);
 	$tpl->assign('margin',$width+20);
 	$tpl->assign('lang_imgs', __('Images:','galleries'));
 	$tpl->assign('usr',isset($owner) ? 1 : 0);
 	$tpl->assign('lang_setsexist',__('Existing Albums','galleries'));
 
 	if (isset($owner)){
-		$tpl->assign('user', array('id'=>$owner->uid(),'uname'=>$owner->uname(),'avatar'=>$owner->userVar('user_avatar')));
-	
-	$tpl->assign('lang_setsof',sprintf(__('Sets of %s','galleries'),$owner->uname()));
-	$tpl->assign('pics_link', GS_URL.'/'.($mc['urlmode'] ? "usr/".$owner->uname() : "user.php?id=usr/".$owner->uname()."/"));
-	$tpl->assign('tags_link', GS_URL.'/'.($mc['urlmode'] ? "explore/tags/usr/".$owner->uname() : "explore.php?by=explore/tags/usr/".$owner->uname()."/"));
-	$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
+		$tpl->assign('user', array(
+            'id'=>$owner->uid(),
+            'uname'=>$owner->uname(),
+            'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $owner->userVar('email'), 0, $owner->userVar('user_avatar')))
+        );
+        $tpl->assign('lang_setsof',sprintf(__('Sets of %s','galleries'),$owner->uname()));
+        $tpl->assign('pics_link', GSFunctions::get_url().($mc['urlmode'] ? "usr/".$owner->uname().'/' : "usr=".$owner->uname()));
+        $tpl->assign('lang_bmark', __('Favorites','galleries'));
+        $tpl->assign('lang_pics', __('Pictures','galleries'));
+        $tpl->assign('sets_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/sets/usr/".$owner->uname().'/' : "?explore=sets&amp;usr=".$owner->uname()));
+        $tpl->assign('tags_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/tags/usr/".$owner->uname().'/' : "?explore=tags&amp;usr=".$owner->uname()));
+        $tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/booksmarks/" : "?cpanel=bookmarks"));
 	}
 	
 
@@ -184,7 +189,7 @@ function sets(){
 **/
 function pics(){
 
-	global $tpl, $xoopsOption, $exmUser, $xoopsModuleConfig, $db;
+	global $tpl, $xoopsOption, $xoopsUser, $xoopsModuleConfig, $db;
 	
 	$mc =& $xoopsModuleConfig;
 	
@@ -258,7 +263,7 @@ function tags(){
 	if (isset($usr)){
 		$user = new GSUser($usr);
 		if($user->isNew()){
-			redirect_header(XOOPS_URL.'/modules/galleries/',1,__('Specified user does not exists!','galleries'));
+			redirect_header(GSFunctions::get_url(),1,__('Specified user does not exists!','galleries'));
 			die();
 		}
 	}
@@ -318,9 +323,9 @@ function tags(){
 	$tpl->assign('usr',$usr);
 
 	if ($usr){
-		$tpl->assign('pics_link', GS_URL.'/'.($mc['urlmode'] ? "usr/".$user->uname() : "user.php?id=usr/".$user->uname()."/"));
-		$tpl->assign('sets_link', GS_URL.'/'.($mc['urlmode'] ? "explore/sets/usr/".$user->uname()."/" : "explore.php?by=explore/sets/usr/".$user->uname()."/"));
-		$tpl->assign('bmark_link', GS_URL.'/'.($mc['urlmode'] ? "cpanel/booksmarks/" : "cpanel.php?s=cpanel/bookmarks"));
+		$tpl->assign('pics_link', GSFunctions::get_url().($mc['urlmode'] ? "usr/".$user->uname().'/' : "?usr=".$user->uname()));
+		$tpl->assign('sets_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/sets/usr/".$user->uname()."/" : "?explore=sets&amp;usr=".$user->uname()));
+		$tpl->assign('bmark_link', GSFunctions::get_url().'/'.($mc['urlmode'] ? "cp/bookmarks/" : "?cp=bookmarks"));
 	}
 
 	

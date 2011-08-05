@@ -12,7 +12,7 @@
 * @desc Visualiza todos los albumes existentes del usuario
 **/
 function showSets($edit = 0){
-	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $page, $xoopsConfig;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $page, $xoopsConfig, $id;
 	
 	$xoopsOption['template_main'] = 'gs_panel_sets.html';
 	include 'header.php';
@@ -21,8 +21,6 @@ function showSets($edit = 0){
     $limit = rmc_server_var($_REQUEST, 'limit', 15);
 
 	GSFunctions::makeHeader();
-
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 
 	$link = GSFunctions::get_url().($mc['urlmode'] ? '/cpanel/sets/pag/'.$page : '/cpanel.php?s=cpanel/sets/'.$page);
 
@@ -104,7 +102,10 @@ function showSets($edit = 0){
 	
 	RMTemplate::get()->add_style('panel.css', 'galleries');
     
-    $tpl->assign('action_addset', GSFunctions::get_url().($mc['urlmode'] ? 'cp/saveset/pag/'.$page.'/' : '?cp=saveset&amp;pag='.$page));
+    $tpl->assign('action_addset', GSFunctions::get_url().($mc['urlmode'] ? 'cp/saveset/pag/'.$page.'/' : '?cp=saveset'));
+    $tpl->assign('pag', $page);
+    $tpl->assign('action_delset', GSFunctions::get_url().($mc['urlmode'] ? 'cp/deleteset/pag/'.$page.'/' : '?cp=deleteset'));
+    $tpl->assign('edit_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/editset/pag/'.$page.'/id/' : '?cp=editset&amp;pag='.$page.'&amp;id='));
 	
 	createLinks();
 
@@ -118,7 +119,7 @@ function showSets($edit = 0){
 **/
 function saveSets($edit = 0){
 
-	global $xoopsUser, $xoopsModuleConfig, $page;
+	global $xoopsUser, $xoopsModuleConfig, $page, $id;
 
 	$mc =& $xoopsModuleConfig;
 
@@ -173,47 +174,42 @@ function deleteSets(){
 
 	$ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : 0;
 
-	$mc =& $xoopsModuleConfig;
-	
+	$mc =& $xoopsModuleConfig;	
 
 	$link = GSFunctions::get_url().($mc['urlmode'] ? 'cp/sets/pag/'.$pag.'/' : '?cp=sets&amp;pag='.$pag);
 
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
-	if (!is_array($ids) && $ids<=0){
-		redirect_header($link,2,_MS_GS_ERRSETDELETE);
+	if (!is_array($ids)){
+		redirect_header($link,2, __('You must selecte one album at least!','galleries'));
 		die();
 	}
 
-	if (!is_array($ids)){
-		$ids = array($ids);
-	}
-	
 	$errors = '';
 	foreach ($ids as $k){
 
 		//Verificamos si el album es válido
 		if($k<=0){
-			$errors .= sprintf(_MS_GS_ERRNOTVALIDSET, $k);
+			$errors .= sprintf(__('Album id %u is not valid!','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si el album existe
 		$set = new GSSet($k);
 		if ($set->isNew()){
-			$errors .= sprintf(_MS_GS_ERRNOTEXISTSET, $k);
+			$errors .= sprintf( __('Album with id %u does not exists!','galleries'), $k);
 			continue;
 		}	
 
 		if(!$set->delete()){
-			$errors .= sprintf(_MS_GS_ERRDELETESET, $k);
+			$errors .= sprintf(__('Album "%s" could not be deleted!','galleries'), $set->title());
 		}
 	}
 
 	if($errors!=''){
-		redirect_header($link,2,_MS_GS_DBERRORS.$errors);
+		redirect_header($link,2, __('Errors ocurred while trying to delete albums','galleries').'<br />'.$errors);
 		die();
 	}else{
-		redirect_header($link,1,_MS_GS_DBOK);
+		redirect_header($link,1, __('Abums deleted successfully!','galleries'));
 		die();
 	}
 		

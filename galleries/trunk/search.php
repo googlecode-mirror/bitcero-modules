@@ -107,38 +107,6 @@ $users = array();
 
 $tpl->assign('images', GSFunctions::process_image_data($result));
 
-/*while ($rows = $db->fetchArray($result)){
-
-	$img = new GSImage();
-	$img->assignVars($rows);
-
-	if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);	
-	
-	// Conversion de los formatos
-	if (!$img->searchFormat() && $mc['search_format_mode']){
-		GSFunctions::resizeImage($crop, $users[$img->owner()]->filesPath().'/'.$img->image(),$users[$img->owner()]->filesPath().'/formats/srh_'.$img->image(), $width, $height);
-		$img->setSearchFormat(1, 1);
-	}
-	
-	$urlimg = $users[$img->owner()]->filesURL().'/'.($mc['search_format_mode'] ? 'formats/srh_' : 'ths/').$img->image();
-	$tags = $img->tags(false, 'tag');
-	$tagurl = GS_URL.'/'.($mc['urlmode'] ? 'explore/tags/tag/' : 'explore.php?by=explore/tags/tag/');
-	$strtag = '';
-	foreach ($tags as $tag){
-		$strtag .= $strtag=='' ? "<a href='$tagurl$tag/'>$tag</a>" : ", <a href='$tagurl$tag/'>$tag</a>";
-	}
-	
-	$tpl->append('images',array('id'=>$img->id(),'title'=>$img->title(),'by'=>sprintf(_MS_GS_BY, $users[$img->owner()]->userURL(), $users[$img->owner()]->uname()),
-	'viemore'=>sprintf(_MS_GS_VIEMORE, $users[$img->owner()]->userURL(), XOOPS_URL.'/user.php?uid='.$users[$img->owner()]->uid()),
-	'avatar'=>$users[$img->owner()]->userVar('user_avatar'),'uid'=>$img->owner(),'desc'=>($showdesc ? $img->desc() : ''),
-	'linkuser'=>$users[$img->owner()]->userURL(),'image'=>$urlimg,'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-	'bigimage'=>$users[$img->owner()]->filesURL().'/'.$img->image(),'userurl'=>$users[$img->owner()]->userURL(),
-	'link'=>$users[$img->owner()]->userURL()."img/".$img->id(),'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),
-	'tags'=>$strtag));
-
-}*/
-
-
 $tpl->assign('max_cols',$cols);
 $tpl->assign('lang_found',sprintf(__('Found %s pictures for "%s"','galleries'), '<strong>'.$num.'</strong>', $search));
 

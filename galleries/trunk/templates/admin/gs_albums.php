@@ -59,7 +59,8 @@
 			<a href="<?php echo $set['url']; ?>"><?php echo $set['title']; ?></a>
 			<span class="rmc_options">
 			<a href="sets.php?op=edit&amp;id=<?php echo $set['id']; ?>&amp;<?php echo $query; ?>"><?php _e('Edit','galleries'); ?></a> | 
-			<a href="javascript:;" class="gs_delete_option" id="delete-<?php echo $set['id']; ?>"><?php _e('Delete','galleries'); ?></a>
+			<a href="javascript:;" class="gs_delete_option" id="delete-<?php echo $set['id']; ?>"><?php _e('Delete','galleries'); ?></a> |
+            <a href="sets.php?op=delformats&amp;id=<?php echo $set['id']; ?>&amp;page=<?php echo $page; ?>" onclick="return confirm(delete_formats);"><?php _e('Delete Formats','galleries'); ?></a>
 			</span>
 		</td>
 		<td><?php echo $set['owner']; ?></td>

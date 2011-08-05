@@ -294,6 +294,7 @@ class GSFunctions
             
             if ($mc['search_format_mode']){
                 $ret[$i]['viewmore'] = sprintf(__('Ver <a href="%s">más fotos</a>.','galleries'), $users[$img->owner()]->userURL());
+                $ret[$i]['avatar'] = RMEvents::get()->run_event('rmcommon.get.avatar', $users[$img->owner()]->userVar('email'), 0, $users[$img->owner()]->userVar('user_avatar'));
                 $tags = $img->tags(true);
                 $tagurl = self::get_url().($mc['urlmode'] ? 'explore/tags/tag/' : '?explore=tags&amp;tag=');
                 $strtag = '';

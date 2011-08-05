@@ -93,7 +93,10 @@ function showAlbums(){
 	RMTemplate::get()->assign('xoops_pagetitle','Albums management');
 	
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected albums?','galleries')."';\n</script>");
+	RMTemplate::get()->add_head("<script type='text/javascript'>\n
+    var delete_warning='".__('Do you really wish to delete selected albums?','galleries')."';\n
+    var delete_formats='".__('Do you really wish to delete all images formats for this album?\nOnly deletes formats for albums, search and others, except normal thumbnails.','galleries')."';\n
+    </script>");
 	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets');
 	
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
@@ -386,13 +389,73 @@ function publicAlbums($pub = 0){
 		die();
 	}
 		
-
-	
-
-	
-
-
 }
+
+
+/**
+* This function deletes all image formats, except thumbnails, for specified albums.
+* This is useful when you need to regenerate images
+*/
+function delete_formats(){
+    global $xoopsModuleConfig;
+    
+    $id = rmc_server_var($_GET, 'id', 0);
+    $page = rmc_server_var($_GET, 'page', 1);
+    
+    if($id<=0){
+        redirectMsg("sets.php?page=$page", __('Sorry, this is not a valid album!','galleries'), 1);
+        die();
+    }
+    
+    $set = new GSSet($id);
+    if($set->isNew()){
+        redirectMsg("sets.php?page=$page", __('Specified Album does not exists!','galleries'), 1);
+        die();
+    }
+    
+    $db = Database::getInstance();
+    $t1 = $db->prefix("gs_images");
+    $t2 = $db->prefix("gs_setsimages");
+    
+    $sql = "SELECT a.image FROM $t1 a, $t2 b WHERE b.id_set=$id AND a.id_image=b.id_image";
+    $result = $db->query($sql);
+    
+    $dir = rtrim($xoopsModuleConfig['storedir'], '/');
+    if($set->uname()==''){
+        $user = new XoopsUser($set->owner());
+        $uname = $user->uname();
+    } else {
+        $uname = $set->uname();
+    }
+    
+    if($uname==''){
+        redirectMsg('sets.php?page='.$page, __('Sorry, we were unable to find the album owner!','galleries'), 1);
+        break;
+    }
+    
+    $dir .= '/'.$uname.'/formats';
+    if(!is_dir($dir)){
+        redirectMsg('sets.php?page='.$page, __('There are not image formats for this album.','galleries'), 0);
+        die();
+    }
+    
+    while(list($image) = $db->fetchRow($result)){    
+        @unlink($dir.'/bigset_'.$image);
+        @unlink($dir.'/set_'.$image);
+        @unlink($dir.'/user_'.$image);
+        @unlink($dir.'/srh_'.$image);
+        
+    }
+    
+    $pics = $set->getPics();
+    
+    $sql = "UPDATE $t1 SET user_format=0, set_format=0, bigset_format=0, search_format=0 WHERE id_image IN (".implode(",",$pics).")";
+    $db->queryF($sql);
+    
+    redirectMsg('sets.php?page='.$page, __('Image formats deleted!','galleries'), 0);
+    
+}
+
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 
@@ -420,7 +483,10 @@ switch($op){
 	break;
 	case 'privatef':
 		publicAlbums(1);
-	break;
+	    break;
+    case 'delformats':
+        delete_formats();
+        break;
 	default:
 		showAlbums();
 		break;

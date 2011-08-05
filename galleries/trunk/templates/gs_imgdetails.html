@@ -2,7 +2,17 @@
 
 <div class="gsImage">
 	<h1 class="title"><{$image.title}></h1>
-	<a href="<{$next.link}>" title="Siguiente fotograf&iacute;a"><img class="theImage" src="<{$image.file}>" alt="<{$image.title}>" /></a>
+    <div id="gs-the-image" style="background-image: url(<{$image.file}>);" title="<{$image.title}>">
+        <div>
+            <{if !$is_first}>
+            <a href="<{$prev.link}>" class="prev"><span><{$prev.title}></span></a></td>
+            <{/if}>
+            <{if !$is_last}>
+            <a href="<{$next.link}>" class="next"><span><{$next.title}></span></a></td>
+            <{/if}>
+        </div>
+    </div>
+	<a href="<{$next.link}>" title="Siguiente fotograf&iacute;a"></a>
 	<{$image.desc}>
 </div>
 <div class="userData">

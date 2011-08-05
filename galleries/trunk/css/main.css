@@ -121,11 +121,26 @@ div.gsImage h1{
 	margin: 0 0 5px 0;
 	font-size: 18px;
 }
-div.gsImage img.theImage{
-	padding: 1px;
-	border: 1px solid #666;
-	display: block;
+#gs-the-image{
+    border: 1px solid #666;
 	margin: 5px auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+#gs-the-image div{
+    border: 1px solid #FFF;
+}
+#gs-the-image .prev{
+    display: block;
+    float: left;
+    width: 48%;
+    background: url(../images/prev.png) no-repeat 5px;
+}
+#gs-the-image .next{
+    display: block;
+    float: right;
+    width: 48%;
+    background: url(../images/next.png) no-repeat right;
 }
 div.gsImageExtras{
 	overflow: hidden;
@@ -142,17 +157,6 @@ div.gsPrevNext td.gsPNTitle{
 }
 div.gsPrevNext td{
 	border-bottom: 1px solid #e0e0e0;
-}
-div.gsPrevNext td.prev{
-	padding: 4px;
-	background-color: #ebebeb;
-	border-left: 1px solid #e0e0e0;
-	border-bottom: 0;
-}
-div.gsPrevNext td.next{
-	padding: 4px;
-	background-color: #ebebeb;
-	border-bottom: 0;
 }
 td.next div.lastImage, td.prev div.lastImage{
 	background: #FFF;
