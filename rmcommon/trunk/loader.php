@@ -122,7 +122,7 @@ if (file_exists($file)){
     $plugins = json_decode(file_get_contents($file), true);
 }
 
-if (empty($plugins)){
+if (empty($plugins) || !is_array($plugins)){
 
     $result = $db->query("SELECT dir FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
     while($row = $db->fetchArray($result)){

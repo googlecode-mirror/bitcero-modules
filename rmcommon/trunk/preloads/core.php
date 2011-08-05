@@ -49,6 +49,10 @@ class RmcommonCorePreload extends XoopsPreloadItem
         RMEvents::get()->run_event('rmcommon.include.common.language');
         
     }
+    
+    public function eventCoreFooterStart(){
+        RMEvents::get()->run_event('rmcommon.footer.start');
+    }
 	
 	public function eventCoreFooterEnd(){
 		ob_end_flush();
