@@ -21,9 +21,21 @@ $(document).ready(function(){
         .css('max-width', $(this).width())
         .attr("title", details.title);
         $('#gs-the-image div').css('height',$(this).height()-2+'px');
-        $('#gs-the-image a').css('height',$(this).height()-2+'px');
+        $('#gs-the-image div a').css('height',$(this).height()-2+'px');
         $(preloader).remove();
     }
     preloader.src = details.img;
+    
+    $(".gs_nav_images a img").hover(function(){
+        
+        $(this).css("width", $(this).width()+3+'px');
+        
+    });
+    
+    $(".gs_nav_images a img").mouseleave(function(){
+        
+        $(this).css("width", ($(this).width()-3)+'px');
+        
+    });
     
 });

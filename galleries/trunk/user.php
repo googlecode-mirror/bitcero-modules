@@ -181,6 +181,7 @@ function showImageDetails(){
 	$tpl->assign('lang_alsobelong', __('Also belongs to:','galleries'));
 	$tpl->assign('lang_postcards', __('Send postcard','galleries'));
 	$tpl->assign('lang_bookmark', __('+ Bookmark','galleries'));
+    $tpl->assign('lang_photos', __('Pictures','galleries'));
 	$tpl->assign('lang_toset', __('+ to Ablum','galleries'));
 	$tpl->assign('lang_lastpic', __('This is the last picture','galleries'));
 	$tpl->assign('lang_firstpic', __('This is the first picture','galleries'));
@@ -216,6 +217,60 @@ function showImageDetails(){
 	}
 	// Imágenes anterior y siguiente
 	if (!isset($set)){
+        
+        if($xoopsModuleConfig['navimages']){
+            
+            $limit_n = $xoopsModuleConfig['navimages_num'];
+            $limit_p = $xoopsModuleConfig['navimages_num'];
+            // Count images
+            $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,".$xoopsModuleConfig['navimages_num'];
+            $resultn = $db->query($sql);
+            if ($db->getRowsNum($resultn)<$xoopsModuleConfig['navimages_num']){
+                $limit_p = $limit_p + ($xoopsModuleConfig['navimages_num']-$db->getRowsNum($resultn));
+            }
+            
+            $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image<'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image DESC, created DESC LIMIT 0,".$limit_p;
+            $resultp = $db->query($sql);
+            if ($db->getRowsNum($resultp)<$xoopsModuleConfig['navimages_num']){
+                $limit_n = $limit_n + ($xoopsModuleConfig['navimages_num']-$db->getRowsNum($resultp));
+            }
+            
+            if($limit_n>$db->getRowsNum($resultn) && $limit_p==$xoopsModuleConfig['navimages_num']){
+                $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,".$limit_n;
+                $resultn = $db->query($sql);
+            }
+            
+            // Previous Images
+            while($row = $db->fetchArray($resultp)){
+                $pn = new GSImage();
+                $pn->assignVars($row);
+                $previous_images[] = array(
+                    'link'=>$user->userURL().'img/'.$pn->id().'/',
+                    'id'=>$pn->id(),'title'=>$pn->title(),
+                    'file'=>$user->filesURL().'/ths/'.$pn->image()
+                );
+            }
+            
+            $tpl->assign('previous_images', array_reverse($previous_images));
+            
+            // Next Images
+            while($row = $db->fetchArray($resultn)){
+                $pn = new GSImage();
+                $pn->assignVars($row);
+                $tpl->append('next_images', array(
+                    'link'=>$user->userURL().'img/'.$pn->id().'/',
+                    'id'=>$pn->id(),'title'=>$pn->title(),
+                    'file'=>$user->filesURL().'/ths/'.$pn->image())
+                );
+            }
+            
+            $tpl->assign('current_image', array(
+                'title' => $image->title(),
+                'file' => $user->filesURL().'/ths/'.$image->image()
+            ));
+        
+        }
+        
 		// Imágen Siguiente
         $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,1";
         $result = $db->query($sql);

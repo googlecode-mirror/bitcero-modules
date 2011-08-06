@@ -1,14 +1,14 @@
 <{include file="db:gs_header.html"}>
 
 <div class="gsImage">
-	<h1 class="title"><{$image.title}></h1>
+	<h1 class="title"><{$image.title}></h1><a name="picture" id="picture"></a>
     <div id="gs-the-image" style="background-image: url(<{$image.file}>);" title="<{$image.title}>">
         <div>
             <{if !$is_first}>
-            <a href="<{$prev.link}>" class="prev"><span><{$prev.title}></span></a></td>
+            <div class="prev"><a href="<{$prev.link}>#picture" title="<{$prev.title}>"><span><{$prev.title}></span></a></div>
             <{/if}>
             <{if !$is_last}>
-            <a href="<{$next.link}>" class="next"><span><{$next.title}></span></a></td>
+            <div class="next"><a href="<{$next.link}>#picture" title="<{$next.title}>"><span><{$next.title}></span></a></div>
             <{/if}>
         </div>
     </div>
@@ -34,6 +34,17 @@
 	</ul>
 </div>
 <div class="gsImageExtras">
+    <{if $previuous_images || $next_images}>
+    <div class="gs_nav_images">
+        <{foreach item=img from=$previous_images}>
+        <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
+        <{/foreach}>
+        <img src="<{$current_image.file}>" alt="<{$current_image.title}>" class="current" />
+        <{foreach item=img from=$next_images}>
+        <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
+        <{/foreach}>
+    </div>
+    <{/if}>
 	<div class="tags">
 		<h3><{$lang_tags}></h3>
 		<{foreach item=tag from=$tags}>
@@ -47,7 +58,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="prev">
+				<td>
 					<{if $is_first}>
 						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
 							<{$lang_firstpic}>
@@ -55,7 +66,7 @@
 					<{else}>
 						<a href="<{$prev.link}>"><img src="<{$prev.file}>" alt="<{$prev.title}>" /></a></td>
 					<{/if}>
-				<td class="next">
+				<td>
 					<{if $is_last}>
 						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
 							<{$lang_lastpic}>
@@ -64,18 +75,6 @@
 						<a href="<{$next.link}>"><img src="<{$next.file}>" alt="<{$next.title}>" /></a></td>
 					<{/if}>
 				<td class="count"><span><{$pics_count}></span><{$lang_photos}></td>
-			</tr>
-			<tr class="arrows">
-				<td colspan="2">
-					<{if !$is_first}>
-					<a href="<{$prev.link}>"><img src="<{$gs_url}>/images/prev.png" alt="" class="left" /></a>
-					<{/if}>
-					<{if !$is_last}>
-					<a href="<{$next.link}>"><img src="<{$gs_url}>/images/next.png" alt="" class="right" /></a>
-					<{/if}>
-					<a href="<{$user_link}>browse/<{$image.id}>/"><{$lang_browse}></a>
-				</td>
-				<td class="empty">&nbsp;</td>
 			</tr>
 		</table>
 	</div>

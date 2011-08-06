@@ -37,6 +37,11 @@ define('_MI_GS_GROUPSPICS','Grupos que pueden subir imágenes');
 define('_MI_GS_URLMODE','Utilizar URLs amigables');
 define('_MI_GS_URLBASE', __('Base path for URLs','galleries'));
 
+define('_MI_GS_NAVIMAGES', __('Show navigation bar as images','galleries'));
+define('_MI_GS_NAVIMAGESD', __('When this option is enabled MyGalleries will show navigation bar in Picture Details using next and previous images.','galleries'));
+define('_MI_GS_NAVIMAGESNUM', __('Number of images in navigation','galleries'));
+define('_MI_GS_NAVIMAGESNUMD', __('Specify the number of images to show in navigation bar. This value is used for previous and next images.','galleries'));
+
 //directorio de imágenes
 define('_MI_GS_STOREDIR','Directorio para almacenar las imágenes');
 define('_MI_GS_STOREMODE','Modo para mostrar imágenes');

@@ -394,6 +394,24 @@ $modversion['config'][] = array(
     'category' => 'format'
 );
 
+// Show navigation bar as images
+$modversion['config'][] = array(
+    'name' => 'navimages',
+    'title' => '_MI_GS_NAVIMAGES',
+    'description' => '_MI_GS_NAVIMAGESD',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
+);
+$modversion['config'][] = array(
+    'name' => 'navimages_num',
+    'title' => '_MI_GS_NAVIMAGESNUM',
+    'description' => '_MI_GS_NAVIMAGESNUMD',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 2
+);
+
 //Formato de imágenes de usuario
 $modversion['config'][] = array(
     'name' => 'user_format_mode',
@@ -555,4 +573,3 @@ $modversion['subpages']['tags'] = _MI_GS_TAGS;
 $modversion['subpages']['exploretags'] = _MI_GS_EXPLORETAGS;
 $modversion['subpages']['submit'] = _MI_GS_SUBMIT;
 $modversion['subpages']['search'] = _MI_GS_SEARCH;
-?>

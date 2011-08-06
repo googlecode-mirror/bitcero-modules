@@ -134,19 +134,50 @@ div.gsImage h1{
     display: block;
     float: left;
     width: 48%;
-    background: url(../images/prev.png) no-repeat 5px;
+    border: 0;
+}
+#gs-the-image .prev a{
+    background: url(../images/prev.png) no-repeat left;
+    display: none;
+}
+#gs-the-image .prev:hover a{
+    display: block;
 }
 #gs-the-image .next{
     display: block;
     float: right;
     width: 48%;
+    border: 0;
+}
+#gs-the-image .next a{
+    display: none;
     background: url(../images/next.png) no-repeat right;
+}
+#gs-the-image .next:hover a{
+    display: block;
+}
+#gs-the-image a span{
+    display: none;
 }
 div.gsImageExtras{
 	overflow: hidden;
 }
 div.gsImageExtras div.gsPrevNext{
 	padding: 3px;
+}
+.gs_nav_images{
+    overflow: hidden;
+    text-align: center;
+}
+.gs_nav_images img{
+    width: 80px;
+    padding: 1px;
+    border: 1px solid #999;
+    margin-bottom: 7px;
+}
+.gs_nav_images img.current{
+    width: 95px;
+    margin-bottom: 0;
 }
 div.gsPrevNext td.gsPNTitle{
 	background-color: #FFF;
@@ -157,6 +188,11 @@ div.gsPrevNext td.gsPNTitle{
 }
 div.gsPrevNext td{
 	border-bottom: 1px solid #e0e0e0;
+}
+div.gsPrevNext td img{
+    padding: 1px;
+    border: 1px solid #666;
+    margin: 5px;
 }
 td.next div.lastImage, td.prev div.lastImage{
 	background: #FFF;
