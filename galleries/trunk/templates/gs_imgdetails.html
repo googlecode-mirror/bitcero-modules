@@ -34,50 +34,28 @@
 	</ul>
 </div>
 <div class="gsImageExtras">
-    <{if $previuous_images || $next_images}>
+    <{if $previous_images || $next_images}>
     <div class="gs_nav_images">
         <{foreach item=img from=$previous_images}>
-        <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
+        <a href="<{$img.link}>#picture" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
         <{/foreach}>
         <img src="<{$current_image.file}>" alt="<{$current_image.title}>" class="current" />
         <{foreach item=img from=$next_images}>
-        <a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
+        <a href="<{$img.link}>#picture" title="<{$img.title}>"><img src="<{$img.file}>" alt="<{$img.title}>" /></a>
         <{/foreach}>
     </div>
     <{/if}>
+    <div class="set_info">
+        <span class="number"><span><{$pics_count}></span> <{$lang_photos}></span>
+        <a href="<{$title_link}>"><{$prevnext_title}></a>
+    </div>
 	<div class="tags">
 		<h3><{$lang_tags}></h3>
 		<{foreach item=tag from=$tags}>
 			<a class="tag" href="<{$tag.link}>"><{$tag.tag}></a>
 		<{/foreach}>
 	</div>
-	<div class="gsPrevNext">
-		<table cellspacing="0" border="0">
-			<tr>
-				<td colspan="2" class="gsPNTitle"><a href="<{$title_link}>"><{$prevnext_title}></a></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>
-					<{if $is_first}>
-						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
-							<{$lang_firstpic}>
-						</div>
-					<{else}>
-						<a href="<{$prev.link}>"><img src="<{$prev.file}>" alt="<{$prev.title}>" /></a></td>
-					<{/if}>
-				<td>
-					<{if $is_last}>
-						<div class="lastImage" style="width: <{$img_size.width}>px; height: <{$img_size.height}>px;">
-							<{$lang_lastpic}>
-						</div>
-					<{else}>
-						<a href="<{$next.link}>"><img src="<{$next.file}>" alt="<{$next.title}>" /></a></td>
-					<{/if}>
-				<td class="count"><span><{$pics_count}></span><{$lang_photos}></td>
-			</tr>
-		</table>
-	</div>
+	
 	<div class="alsoBelong">
 		<h3><{$lang_alsobelong}></h3>
 		<{foreach item=set from=$sets}>

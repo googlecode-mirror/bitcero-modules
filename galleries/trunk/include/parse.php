@@ -67,6 +67,9 @@ if($xoopsModuleConfig['urlmode']){
             case 'referer':
                 $referer = $params[$i+1];
                 break;
+            case 'submit':
+                $submit = true;
+                break;
         }
         
     }

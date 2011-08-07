@@ -202,8 +202,6 @@ function showImageDetails(){
 	
 	$tpl->assign('image',array('title'=>$image->title(),'id'=>$image->id(),'file'=>$user->filesURL().'/'.$image->image(),
 		'desc'=>$image->desc()));
-		
-	$tpl->assign('xoops_pagetitle', $image->title().' &raquo; '.$xoopsModule->name());
 	
 	//Verificamos si el usuario es dueño o amigo
 	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
@@ -218,6 +216,7 @@ function showImageDetails(){
 	// Imágenes anterior y siguiente
 	if (!isset($set)){
         
+        // Navigation as images
         if($xoopsModuleConfig['navimages']){
             
             $limit_n = $xoopsModuleConfig['navimages_num'];
@@ -245,20 +244,21 @@ function showImageDetails(){
                 $pn = new GSImage();
                 $pn->assignVars($row);
                 $previous_images[] = array(
-                    'link'=>$user->userURL().'img/'.$pn->id().'/',
+                    'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$pn->id().'/' : '&amp;img='.$pn->id()),
                     'id'=>$pn->id(),'title'=>$pn->title(),
                     'file'=>$user->filesURL().'/ths/'.$pn->image()
                 );
             }
             
-            $tpl->assign('previous_images', array_reverse($previous_images));
+            if(!empty($previous_images))
+                $tpl->assign('previous_images', array_reverse($previous_images));
             
             // Next Images
             while($row = $db->fetchArray($resultn)){
                 $pn = new GSImage();
                 $pn->assignVars($row);
                 $tpl->append('next_images', array(
-                    'link'=>$user->userURL().'img/'.$pn->id().'/',
+                    'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$pn->id().'/' : '&amp;img='.$pn->id()),
                     'id'=>$pn->id(),'title'=>$pn->title(),
                     'file'=>$user->filesURL().'/ths/'.$pn->image())
                 );
@@ -270,34 +270,9 @@ function showImageDetails(){
             ));
         
         }
-        
-		// Imágen Siguiente
-        $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image>'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image ASC LIMIT 0,1";
-        $result = $db->query($sql);
-        if ($db->getRowsNum($result)>0){
-            $row = $db->fetchArray($result);
-            $pn = new GSImage();
-            $pn->assignVars($row);
-            $tpl->assign('next', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-        } else {
-            $tpl->assign('is_last', 1);
-            $tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-        }
-        
-        // Imágen Anterior
-        $sql = "SELECT * FROM ".$db->prefix("gs_images")." WHERE id_image<'".$image->id()."' AND owner='".$user->uid()."' $public ORDER BY id_image DESC LIMIT 0,1";
-        $result = $db->query($sql);
-        if ($db->getRowsNum($result)>0){
-            $row = $db->fetchArray($result);
-            $pn = new GSImage();
-            $pn->assignVars($row);
-            $tpl->assign('prev', array('link'=>$user->userURL().'img/'.$pn->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-        } else {
-            $tpl->assign('is_first', 1);
-            $tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-        }
 		
 		$tpl->assign('prevnext_title', sprintf(__('Pictures of %s'), $user->uname()));
+        $tpl->assign('xoops_pagetitle', $image->title().' &raquo; '.sprintf(__('Pictures of %s'), $user->uname()).' &raquo; '.$xoopsModuleConfig['section_title']);
 		$tpl->assign('title_link', $user->userURL());
 		
 		$result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("gs_images")." WHERE owner='".$user->uid()."' $public");
@@ -330,35 +305,75 @@ function showImageDetails(){
 		// Imágen Siguiente
 		$tbl1 = $db->prefix("gs_images");
 		$tbl2 = $db->prefix("gs_setsimages");
+        
+        // Navigation as images
+        if($xoopsModuleConfig['navimages']){
+            
+            $limit_n = $xoopsModuleConfig['navimages_num'];
+            $limit_p = $xoopsModuleConfig['navimages_num'];
+            // Count images
+            $sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.id_image>'".$image->id()."' AND a.owner='".$user->uid()."' $public ORDER BY a.id_image ASC LIMIT 0,".$xoopsModuleConfig['navimages_num'];
+            $resultn = $db->query($sql);
+            if ($db->getRowsNum($resultn)<$xoopsModuleConfig['navimages_num']){
+                $limit_p = $limit_p + ($xoopsModuleConfig['navimages_num']-$db->getRowsNum($resultn));
+            }
+            
+            $sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.id_image<'".$image->id()."' AND a.owner='".$user->uid()."' $public ORDER BY a.id_image DESC LIMIT 0,$limit_p";
+            $resultp = $db->query($sql);
+            if ($db->getRowsNum($resultp)<$xoopsModuleConfig['navimages_num']){
+                $limit_n = $limit_n + ($xoopsModuleConfig['navimages_num']-$db->getRowsNum($resultp));
+            }
+            
+            if($limit_n>$db->getRowsNum($resultn) && $limit_p==$xoopsModuleConfig['navimages_num']){
+                $sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.id_image>'".$image->id()."' AND a.owner='".$user->uid()."' $public ORDER BY a.id_image ASC LIMIT 0,".$limit_n;
+                $resultn = $db->query($sql);
+            }
+            
+            // Previous Images
+            while($row = $db->fetchArray($resultp)){
+                $pn = new GSImage();
+                $pn->assignVars($row);
+                $previous_images[] = array(
+                    'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$pn->id().'/set/'.$set->id().'/' : '&amp;img='.$pn->id().'&amp;set='.$set->id()),
+                    'id'=>$pn->id(),'title'=>$pn->title(),
+                    'file'=>$user->filesURL().'/ths/'.$pn->image()
+                );
+            }
+            
+            if(!empty($previous_images)){
+                $tpl->assign('prev', $previous_images[0]);
+                $tpl->assign('previous_images', array_reverse($previous_images));
+            }
+            
+            // Next Images
+            while($row = $db->fetchArray($resultn)){
+                $pn = new GSImage();
+                $pn->assignVars($row);
+                $next_images[] = array(
+                    'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$pn->id().'/set/'.$set->id().'/' : '&amp;img='.$pn->id().'&amp;set='.$set->id()),
+                    'id'=>$pn->id(),'title'=>$pn->title(),
+                    'file'=>$user->filesURL().'/ths/'.$pn->image()
+                );
+            }
+            
+            if(!empty($next_images)){
+                $tpl->assign('next', $next_images[0]);
+                $tpl->assign('next_images', $next_images);
+            }
+            
+            $tpl->assign('current_image', array(
+                'title' => $image->title(),
+                'file' => $user->filesURL().'/ths/'.$image->image()
+            ));
+            
+            if($db->getRowsNum($resultp)<=0) $tpl->assign('is_first', 1);
+            if($db->getRowsNum($resultn)<=0) $tpl->assign('is_last', 1);
+        
+        }
 		
-		$sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.id_image>'".$image->id()."' AND a.owner='".$user->uid()."' $public ORDER BY a.id_image ASC LIMIT 0,1";
-		$result = $db->query($sql);
-		if ($db->getRowsNum($result)>0){
-			$row = $db->fetchArray($result);
-			$pn = new GSImage();
-			$pn->assignVars($row);
-			$tpl->assign('next', array('link'=>$user->userURL().'img/'.$pn->id().'/set/'.$set->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-		} else {
-			$tpl->assign('is_last', 1);
-			$tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-		}
-		
-		// Imágen Anterior
-		
-		$sql = "SELECT a.* FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.id_image<'".$image->id()."' AND a.owner='".$user->uid()."' $public ORDER BY a.id_image DESC LIMIT 0,1";
-		$result = $db->query($sql);
-		if ($db->getRowsNum($result)>0){
-			$row = $db->fetchArray($result);
-			$pn = new GSImage();
-			$pn->assignVars($row);
-			$tpl->assign('prev', array('link'=>$user->userURL().'img/'.$pn->id().'/set/'.$set->id().'/','id'=>$pn->id(),'title'=>$pn->title(),'file'=>$user->filesURL().'/ths/'.$pn->image()));;
-		} else {
-			$tpl->assign('is_first', 1);
-			$tpl->assign('img_size', array('width'=>$mc['image_ths'][0], 'height'=>$mc['image_ths'][1]));
-		}
-		
-		$tpl->assign('prevnext_title', sprintf(__('Pictures of %s','galleries'), $set->title()));
-		$tpl->assign('title_link', $user->userURL().'set/'.$set->id().'/');
+		$tpl->assign('prevnext_title', sprintf(__('Pictures in %s','galleries'), $set->title()));
+        $tpl->assign('xoops_pagetitle', $image->title().' &raquo; '.sprintf(__('Pictures in %s'), $set->title()).' &raquo; '.$xoopsModuleConfig['section_title']);
+		$tpl->assign('title_link', $user->userURL().($xoopsModuleConfig['urlmode'] ? 'set/'.$set->id().'/' : '&amp;set='.$set->id()));
 		
 		$result = $db->query("SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image AND a.owner='".$user->uid()."' $public");
 		list($num) = $db->fetchRow($result);
@@ -390,7 +405,7 @@ function showImageDetails(){
 	$tags = $image->tags(true, '*');
 	$link = GSFunctions::get_url().($mc['urlmode'] ? 'explore/tags/tag/' : "?explore=tags&amp;tag=");
 	foreach ($tags as $tag){
-		$tpl->append('tags', array('id'=>$tag->id(),'tag'=>$tag->tag(),'link'=>$link.$tag->tag()));
+		$tpl->append('tags', array('id'=>$tag->id(),'tag'=>$tag->tag(),'link'=>$link.$tag->getVar('nameid')));
 	}
     
     //Script for image details

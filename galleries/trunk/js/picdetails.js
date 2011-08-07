@@ -26,16 +26,4 @@ $(document).ready(function(){
     }
     preloader.src = details.img;
     
-    $(".gs_nav_images a img").hover(function(){
-        
-        $(this).css("width", $(this).width()+3+'px');
-        
-    });
-    
-    $(".gs_nav_images a img").mouseleave(function(){
-        
-        $(this).css("width", ($(this).width()-3)+'px');
-        
-    });
-    
 });

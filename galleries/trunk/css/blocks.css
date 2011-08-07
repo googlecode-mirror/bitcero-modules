@@ -1,0 +1,28 @@
+.gs_block_container{
+    overflow: hidden;
+}
+
+/** Pictures Block **/
+.gs_photo_item{
+    float: left;
+    padding: 4px;
+    text-align: center;
+    font-size: 0.9em;
+}
+.gs_photo_item img{
+    width: 80px;
+    padding: 1px;
+    border: 1px solid #666;
+}
+.gs_photo_item .title{
+    font-weight: bold;
+}
+.gs_photo_item .picby{
+    font-size: 0.9em;
+}
+.gs_photo_item .date{
+    font-size: 0.9em;
+}
+.gs_photo_item .photos{
+    font-size: 0.9em;
+}

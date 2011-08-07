@@ -162,9 +162,6 @@ div.gsImage h1{
 div.gsImageExtras{
 	overflow: hidden;
 }
-div.gsImageExtras div.gsPrevNext{
-	padding: 3px;
-}
 .gs_nav_images{
     overflow: hidden;
     text-align: center;
@@ -175,122 +172,68 @@ div.gsImageExtras div.gsPrevNext{
     border: 1px solid #999;
     margin-bottom: 7px;
 }
+.gs_nav_images a img:hover{
+    border-color: #000;
+    background-color: #000;
+}
 .gs_nav_images img.current{
     width: 95px;
     margin-bottom: 0;
 }
-div.gsPrevNext td.gsPNTitle{
-	background-color: #FFF;
-	padding: 2px;
-	font-weight: bold;
-	margin-bottom: 2px;
-	border: 1px solid #e0e0e0;
+.set_info{
+    overflow: hidden;
+    padding: 5px 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
 }
-div.gsPrevNext td{
-	border-bottom: 1px solid #e0e0e0;
+.set_info .number{
+    float: right;
+    font-size: 0.7em;
+    font-weight: normal;
+    text-align: center;
 }
-div.gsPrevNext td img{
-    padding: 1px;
-    border: 1px solid #666;
-    margin: 5px;
+.set_info .number span{
+    font-weight: bold;
+    font-size: 1.3em;
 }
-td.next div.lastImage, td.prev div.lastImage{
-	background: #FFF;
-	border: 1px solid #ccc;
-	color: #999;
-	font-size: 10px;
-	text-align: center;
-	vertical-align: middle;
-	display: table-cell;
-	text-transform: uppercase;
-}
-div.gsPrevNext td.count{
-	text-align: center;
-	padding: 4px 10px 4px 10px;
-	background-color: #ebebeb;
-	border-right: 1px solid #e0e0e0;
-	border-left: 0;
-	border-bottom: 0;
-	color: #C0C0C0;
-}
-td.count span{
-	font-size: 20px;
-	font-weight: bold;
-	display: block;
-}
-div.gsPrevNext tr.arrows td{
-	padding: 4px;
-	background-color: #ebebeb;
-	border-left: 1px solid #e0e0e0;
-	text-align: center;
-	font-size: 10px;
-	color: #999;
-}
-tr.arrows a{
-	color: #999;
-	text-decoration: none;
-}
-div.gsPrevNext tr.arrows td.empty{
-	border-left: 0;
-	border-right: 1px solid #e0e0e0;
-}
-tr.arrows img.left{
-	float: left;
-}
-tr.arrows img.right{
-	float: right;
-}
+
 div.alsoBelong{
 	padding: 2px;
-	margin-top: 10px;
+    overflow: hidden;
+    float: left;
+    min-width: 200px;
 }
 div.gsImageExtras h3{
-	font-size: 14px;
 	font-weight: normal;
 	color: #666;
 	margin: 0 0 5px 0;
+    font-size: 1.3em;
 }
 div.alsoBelong div.item{
 	padding: 2px;
-	overflow: hidden;
-	width: 250px;
 }
 div.alsoBelong div.item img{
 	float: left;
+    margin: 2px 5px 0 0;
 }
-div.alsoBelong div.item a.link{
-	color: #999;
-	text-decoration: none;
-	border: 1px solid #ebebeb;
-	padding: 2px;
+div.alsoBelong div.item a{
 	display: block;
-	margin: 2px 2px 2px 17px;
-}
-div.alsoBelong div.item a.link:hover{
-	color: #FF4400;
-	border: 1px solid #d0d0d0;
 }
 .gsTags{line-height: 200%;}
 .gsTags a{
     padding: 4px 10px;
 }
 div.tags{
-	padding: 2px;
-	float: right;
-	width: 200px;
+	padding: 5px 20px 5px 5px;
+    float: right;
 }
 div.tags a{
 	background: url(../images/tag_gray.png) no-repeat left;
 	display: block;
-	height: 18px;
 	padding: 2px 2px 2px 18px;
-	text-decoration: none;
-	color: #999;
-}
-div.tags a:hover{
-	color: #FF4400;
-	background: url(../images/tag_color.png) no-repeat left;
-	text-decoration: underline;
+    text-transform: uppercase;
+    font-size: 0.8em;
 }
 div.tags img.avatar{
 	float: left;

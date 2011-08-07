@@ -10,7 +10,4 @@
 
 RMTemplate::get()->add_style('main.css', 'galleries');
 
-$tpl->assign('xoops_module_header', $xmh);
 include '../../footer.php';
-
-?>

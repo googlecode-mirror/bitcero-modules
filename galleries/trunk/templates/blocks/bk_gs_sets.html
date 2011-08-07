@@ -1,108 +1,16 @@
-<{if $block.format==1}>
-
-<style type="text/css">
-<!--
-    .bkGsSets td{
-        padding: 2px;
-        font-size: 11px;
-    }
-    .bkGsSets .thePic{
-        padding: 1px;
-        border: 1px solid #000;
-    }
-    .bkGsSets strong{
-        font-size: 12px;
-    }
-    .bkGsSets span{
-        color: #999;
-    }
--->
-</style>
-
-<!-- Albumes (Horizontal) -->
-<table cellpadding="0" cellspacing="0" border="0">
-    <{assign var="ic" value=1}>
-    <tr class="even bkGsSets">
-    <{foreach item=set from=$block.sets}>
-            <{if $ic>$block.numcols}>
-                </tr><tr class="<{cycle values="odd,even"}> bkGsSets">
-                <{assign var="ic" value=1}>
-            <{/if}>
-            <{if $block.showimg}>
-                <td>
-                    <{if $set.img==''}>&nbsp;<{else}><a href="<{$set.link}>"><img src="<{$set.img}>" class="thePic" /></a><{/if}>
-                </td>
-            <{/if}>
-            <td>
-                <strong><a href="<{$set.link}>"><{$set.title}></a></strong>
-                <{if $block.showinfo}>
-                <br />
-                <span>Por:</span> <a href="<{$set.linkuser}>"><{$set.uname}></a><br />
-                <span>Creado:</span> <{$set.date}><br />
-                <span>Fotografías:</span> <{$set.pics}>
-                <{/if}>
-            </td>
-            <{assign var="ic" value=$ic+1}>
-    <{/foreach}>
-    </tr>
-</table>
-<!-- /Albumes (Horizontal) -->
-
-<{elseif $block.format==0}>
-
-<style type="text/css">
-<!--
-    .bkGsSets td{
-        padding: 2px;
-        font-size: 11px;
-    }
-    .bkGsSets .thePic{
-        padding: 1px;
-        border: 1px solid #000;
-        display: block;
-    }
-    .bkGsSets strong{
-        font-size: 12px;
-    }
-    .bkGsSets span{
-        color: #999;
-    }
--->
-</style>
-
-<!-- Albumes (Vertical) -->
-<table cellpadding="0" cellspacing="0" border="0">
-    <{assign var="ic" value=1}>
-    <tr class="even bkGsSets">
-    <{foreach item=set from=$block.sets}>
-            <{if $ic>$block.numcols}>
-                </tr><tr class="<{cycle values="odd,even"}> bkGsSets">
-                <{assign var="ic" value=1}>
-            <{/if}>
-            <td>
-            <{if $block.showimg}>
-                    <{if $set.img==''}>&nbsp;<{else}><a href="<{$set.link}>"><img src="<{$set.img}>" class="thePic" /></a><{/if}>
-            <{/if}>
-                <strong><a href="<{$set.link}>"><{$set.title}></a></strong>
-                <{if $block.showinfo}>
-                <br />
-                <span>Por:</span> <a href="<{$set.linkuser}>"><{$set.uname}></a><br />
-                <span>Creado:</span> <{$set.date}><br />
-                <span>Fotografías:</span> <{$set.pics}>
-                <{/if}>
-            </td>
-            <{assign var="ic" value=$ic+1}>
-    <{/foreach}>
-    </tr>
-</table>
-<!-- /Albumes (Vertical) -->
-
-<{elseif $block.format==2}>
-
-<ul>
- <{foreach item=set from=$block.sets}>
-    <li><a href="<{$set.link}>"><{$set.title}></a></li>
- <{/foreach}>
-</ul>
-
-<{/if}>
+<div class="gs_block_container gs_block_sets">
+<{foreach item=set from=$block.sets}>
+    <div class="gs_photo_item" style="width: <{$block.item_width}>px;">
+        <{if $block.showimg}>
+        <{if $set.img!=''}><a href="<{$set.link}>"><img src="<{$set.img}>" class="thePic" /></a><br /><{/if}>
+        <{/if}>
+        <span class="title"><a href="<{$set.link}>"><{$set.title}></a></span>
+        <{if $block.showinfo}>
+        <br />
+        <span class="picby">Por:</span> <a href="<{$set.linkuser}>"><{$set.uname}></a><br />
+        <span class="date">Creado:</span> <{$set.date}><br />
+        <span class="photos">Fotografías:</span> <{$set.pics}>
+        <{/if}>
+    </div>
+<{/foreach}>
+</div>

@@ -435,6 +435,10 @@ function deleteImages(){
         $referer = base64_decode($referer);
     }
 	
+    if(!is_array($ids) && $ids<=0){
+        $ids = rmc_server_var($_REQUEST, 'ids', array());
+    }
+    
 	//Verificamos si nos proporcionaron al menos un imagen para eliminar
 	if (!is_array($ids) && $ids<=0){
 		redirect_header($referer,2, __('You must specify one picture at least!','galleries'));
@@ -497,14 +501,14 @@ function saveAll(){
 		
 		//Verificamos si la imagen es válida
 		if($k<=0){
-			$errors .= sprintf(_MS_GS_ERRNOTVALID, $k);
+			$errors .= sprintf(__('Picture %s is not valid!','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si la imagen existe
 		$img = new GSImage($k);
 		if ($img->isNew()){
-			$errors .= sprintf(_MS_GS_ERRNOTEXIST, $k);
+			$errors .= sprintf(__('Picture %s does not exists','galleries'), $k);
 			continue;
 		}	
 
@@ -523,7 +527,7 @@ function saveAll(){
 			$img->setModified(time());
 			
 			if(!$img->save()){
-				$errors .= sprintf(_MS_GS_ERRSAVE, $k);
+				$errors .= sprintf(__('Picture %s could not be saved!','galleries'), $img->title());
 			}
 
 		}
@@ -531,10 +535,10 @@ function saveAll(){
 	}
 
 	if($errors!=''){
-		redirect_header('./cpanel.php?pag='.$page,2,_MS_GS_DBERRORS.$errors);
+		redirect_header('./cpanel.php?pag='.$page,2, __('Errors ocurred while trying to save changes.','galleries').$errors);
 		die();
 	}else{
-		redirect_header('./cpanel.php?pag='.$page,2,_MS_GS_DBOK);
+		redirect_header('./cpanel.php?pag='.$page,2, __('Changes applied successfully!','galleries'));
 		die();
 	}
 
@@ -554,7 +558,9 @@ function formSets(){
     
 	if(!$referer){
 		$referer = GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? 'cp/images/pag/'.$page.'/' : '?cp=images&amp;pag='.$page);
-	}
+	} else {
+        $referer = base64_decode($referer);
+    }
     
     $ids = empty($ids) ? rmc_server_var($_REQUEST, 'ids', 0) : $ids;
 

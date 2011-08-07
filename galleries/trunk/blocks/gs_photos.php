@@ -10,6 +10,7 @@
 
 function gs_photos_show($options){
 	
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsuser.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
 	
@@ -17,12 +18,14 @@ function gs_photos_show($options){
 	$db =& Database::getInstance();
 	
 	$sql = "SELECT * FROM ".$db->prefix("gs_images");
-	$order = $options[2]=='0' ? "created DESC" : ($options[2]=='1' ? 'RAND()' : 'views DESC');
+	$order = $options[1]=='0' ? "created DESC" : ($options[1]=='1' ? 'RAND()' : 'views DESC');
 	$sql .= " ORDER BY $order LIMIT 0,$options[0]";
 	$result = $db->query($sql);
-	$mc =& RMUtilities::get()->module_config('galleries');
+	$mc =& RMUtilities::module_config('galleries');
 	$block = array();
 	
+    $tf = new RMTimeFormatter(0, '%T% %d%, %Y%');
+    
 	while ($row = $db->fetchArray($result)){
 		$pic = new GSImage();
 		$pic->assignVars($row);
@@ -31,31 +34,33 @@ function gs_photos_show($options){
 		$user =& $users[$pic->owner()];
 		
 		$rtn = array();
-		$rtn['title'] = $pic->title();
-		if ($options[4]) $rtn['desc'] = $pic->desc();
-		$rtn['created'] = formatTimestamp($pic->created(), 'string');
+		if($options[3]) $rtn['title'] = $pic->title();
+		$rtn['created'] = $tf->format($pic->created());
 		$rtn['views'] = $pic->views();
-		$rtn['by'] = sprintf(_BK_GS_BY, $user->userURL(), $user->uname());
-		$rtn['link'] = $user->userURL().'img/'.$pic->id().'/';
+		$rtn['by'] = sprintf(__('by %s','galleries'), '<a href="'.$user->userURL().'">'.$user->uname().'</a>');
+		$rtn['link'] = $user->userURL().($mc['urlmode'] ? 'img/'.$pic->id().'/' : '&amp;img='.$pic->id());
 		$rtn['file'] = $user->filesURL().'/ths/'.$pic->image();
 		$block['pics'][] = $rtn;
 	}
+    
+    RMTemplate::get()->add_xoops_style('blocks.css', 'galleries');
+    RMTemplate::get()->add_local_script('blocks.js','galleries');
 	
-	$block['cols'] = $options[1];
-	$block['width'] = floor(100/$options[1]);
-	$block['imgw'] = $options[3];
+	$block['item_width'] = $options[2];
 	return $block;
 	
 }
 
 function gs_photos_edit($options){
     
-    $form = _BK_GS_PICNUM." <input type='text' name='options[0]' value='$options[0]' /><br />";
-    $form .= _BK_GS_COLSNUM." <input type='text' name='options[1]' value='$options[1]' /><br />";
-    $form .= _BK_GS_PICTYPE." <select name='options[2]'><option value='0'>"._BK_GS_PICRECENT."</option>";
-    $form .= "<option value='1'>"._BK_GS_PICRANDOM."</option>";
-    $form .= "<option value='2'>"._BK_GS_PICVIEWED."</option></select><br />";
-    $form .= _BK_GS_IMGWIDTH." <input type='text' name='options[3]' value='$options[3]' /><br />";
+    $form = __('Number of pictures:','galleries')."<br /> <input type='text' name='options[0]' value='$options[0]' /><br />";
+    $form .= __('Type of pictures:','galleries')."<br /> <select name='options[1]'><option value='0'".($options[1]==0?' checked="checked"' : '').">".__('Recent','galleries')."</option>";
+    $form .= "<option value='1'".($options[1]==1?' checked="checked"' : '').">".__('Random','galleries')."</option>";
+    $form .= "<option value='2'".($options[1]==2?' checked="checked"' : '').">".__('Top viewed','galleries')."</option></select><br />";
+    $form .= __('Item width:','galleries')."<br /> <input type='text' name='options[2]' value='$options[2]' /><br />";
+    $form .= __('Show title:','galleries')."<br />";
+    $form .= '<label><input type="radio" name="options[3]" value="1"'.($options[3]==1?' checked="checked"':'').' /> '.__('Yes','galleries').'</label>';
+    $form .= '<label><input type="radio" name="options[3]" value="0"'.($options[3]==0?' checked="checked"':'').' /> '.__('No','galleries').'</label>';
 	
 	/*include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsusers.class.php';
 	

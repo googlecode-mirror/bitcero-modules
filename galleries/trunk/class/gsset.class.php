@@ -52,7 +52,8 @@ class GSSet extends RMObject
 	}
 	
 	public function pics(){
-		return $this->getVar('pics');
+        $this->getPics();
+		return count($this->_pics);
 	}
 	public function setPics($value){
 		return $this->setVar('pics', $value);

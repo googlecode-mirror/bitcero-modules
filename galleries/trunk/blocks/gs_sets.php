@@ -9,13 +9,13 @@
 // --------------------------------------------------------------
 
 function gs_sets_show($options){
-    global $xoopsUser, $xoopsModuleConfig, $db;
+    global $xoopsUser, $xoopsModuleConfig;
     
+    $db = Database::getInstance();
     $wo = '';
     $tsets = $db->prefix("gs_sets");
     $tfriends = $db->prefix("gs_friends");
-    $util = RMUtils::getInstance();
-    $mc = $util->moduleConfig('galleries');
+    $mc = RMUtilities::module_config('galleries');
     
     $format = $mc['set_format_values'];
     $crop = $format[0]; // 0 = Redimensionar, 1 = Cortar
@@ -34,6 +34,7 @@ function gs_sets_show($options){
     
     $block = array();
     $users = array();
+    $tf = new RMTimeFormatter(0, '%T% %d%, %Y%');
     
     while ($row = $db->fetchArray($result)){
         $rtn = array();
@@ -43,7 +44,7 @@ function gs_sets_show($options){
         if (!isset($users[$set->owner()])) $users[$set->owner()] = new GSUser($set->owner(), 1);
         
         // Si se ha seleccionado la opción para mostrar imágenes entonces...
-        if ($options[2]){
+        if ($options[1]){
             //Obtenemos una imagen del album
             $sql = "SELECT b.* FROM ".$db->prefix('gs_setsimages')." a, ".$db->prefix('gs_images')." b WHERE";
             $sql.= " a.id_set='".$set->id()."' AND b.id_image=a.id_image AND b.public=2 AND b.owner='".$set->owner()."' ORDER BY b.created DESC LIMIT 0,1" ;
@@ -72,9 +73,9 @@ function gs_sets_show($options){
         $rtn['id'] = $set->id();
         $rtn['title'] = $set->title();
         $rtn['owner'] = $set->owner();
-        $rtn['link'] = $users[$set->owner()]->userURL().'set/'.$set->id().'/';
-        if ($options[3]){
-            $rtn['date'] = formatTimeStamp($set->date(),'string');
+        $rtn['link'] = $users[$set->owner()]->userURL().($mc['urlmode'] ? 'set/'.$set->id().'/' : '?set='.$set->id());
+        if ($options[2]){
+            $rtn['date'] = $tf->format($set->date());
             $rtn['pics'] = $set->pics();
             $rtn['uname'] = $set->uname();
             $rtn['linkuser'] = $users[$set->owner()]->userURL();
@@ -84,28 +85,32 @@ function gs_sets_show($options){
         
     }
     
-    $block['showimg'] = $options[2];
-    $block['numcols'] = $options[1];
-    $block['format'] = $options[4];
-    $block['showinfo'] = $options[3];
+    $block['showimg'] = $options[1];
+    $block['showinfo'] = $options[2];
+    $block['item_width'] = $options[3];
+    
+    RMTemplate::get()->add_xoops_style('blocks.css', 'galleries');
+    RMTemplate::get()->add_local_script('blocks.js','galleries');
     
     return $block;
     
 }
 
-function gs_sets_edit($options, &$form){
-       $form->addElement(new RMSubTitle(_AS_BKM_BOPTIONS, 1, 'head'));
-       $form->addElement(new RMText(_BK_GS_SETSNUM, 'options[0]', 5, 2, $options[0]), true, 'num');
-       $form->addElement(new RMText(_BK_GS_COLSNUM, 'options[1]', 5, 2, $options[1]), true, 'num');
-       $form->addElement(new RMYesNo(_BK_GS_SHOWIMG, 'options[2]', $options[2]));
-       $form->addElement(new RMYesNo(_BK_GS_SHOWINFO, 'options[3]', $options[3]));
+function gs_sets_edit($options){
+    
+    $form =  '</td></tr>';
+    $form .= '<tr class="head"><td colspan="2">'.__('Albums block options','galleries').'</td></tr>';
+    $form .= '<tr><td class="head">'.__('Number of albums','galleries').'</td><td class="odd">';
+    $form .= '<input type="text" name="options[0]" value="'.$options[0].'" size="5" /></td></tr>';
+    $form .= '<tr><td class="head">'.__('Show picture','galleries').'</td><td class="odd">';
+    $form .= '<label><input type="radio" name="options[1]" value="1"'.($options[1]==1?' checked="checked"':'').' />'.__('Yes','galleries').'</label>';
+    $form .= '<label><input type="radio" name="options[1]" value="0"'.($options[1]==0?' checked="checked"':'').' />'.__('No','galleries').'</label></td></tr>';
+    $form .= '<tr><td class="head">'.__('Show information','galleries').'</td><td class="odd">';
+    $form .= '<label><input type="radio" name="options[2]" value="1"'.($options[2]==1?' checked="checked"':'').' />'.__('Yes','galleries').'</label>';
+    $form .= '<label><input type="radio" name="options[2]" value="0"'.($options[2]==0?' checked="checked"':'').' />'.__('No','galleries').'</label></td></tr>';
+    $form .= '<tr><td class="head">'.__('Item width:','galleries').'</td><td class="odd"><input type="text" name="options[3]" size="5" value="'.$options[3].'" />';
+    $form .= '<tr class="head"><td colspan="2" style="font-size: 1px;">&nbsp;';
+    
+    return $form;
        
-       $ele = new RMSelect(_BK_GS_BKFORMAT, 'options[4]', 0, array($options[4]));
-       $ele->addOption(1, _BK_GS_HORIZONTAL);
-       $ele->addOption(0, _BK_GS_VERTICAL);
-       $ele->addOption(2, _BK_GS_LIST);
-       $form->addElement($ele);
-       
-       $form->addElement(new RMLabel(_BK_GS_IMPORTANT,_BK_GS_USETIP));
-       return $form;
 }

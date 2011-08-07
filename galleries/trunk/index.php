@@ -23,6 +23,8 @@ if(isset($explore) && $explore!=''){
     include 'search.php';
 }elseif(isset($postcard)){
     include 'postcard.php';
+}elseif(isset($submit) && $submit){
+    include 'submit.php';
 } else {
     include 'home.php';
 }

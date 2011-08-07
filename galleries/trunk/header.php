@@ -14,7 +14,6 @@ define('GS_URL',XOOPS_URL.'/modules/galleries');
 include '../../header.php';
 
 $mc =& $xoopsModuleConfig;
-$xmh = '';
 $tpl = $xoopsTpl;
 $db = Database::getInstance();
 

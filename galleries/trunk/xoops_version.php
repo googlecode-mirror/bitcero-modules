@@ -545,8 +545,8 @@ $modversion['rss']['show'] = 'gs_rssshow';			// Devuelve el archivo xml
 
 // Bloque de Fotografías
 $modversion['blocks'][0]['file'] = "gs_photos.php";
-$modversion['blocks'][0]['name'] = '_MI_GS_BKPICS';
-$modversion['blocks'][0]['description'] = "";
+$modversion['blocks'][0]['name'] = __('Pictures','galleries');
+$modversion['blocks'][0]['description'] = __('Show pictures based on configured parameters','galleries');
 $modversion['blocks'][0]['show_func'] = "gs_photos_show";
 $modversion['blocks'][0]['edit_func'] = "gs_photos_edit";
 $modversion['blocks'][0]['template'] = 'bk_gs_photos.html';
@@ -554,12 +554,12 @@ $modversion['blocks'][0]['options'] = array(4, 2, 0, 0, 1);
 
 // Bloque de Albumes
 $modversion['blocks'][1]['file'] = "gs_sets.php";
-$modversion['blocks'][1]['name'] = '_MI_GS_BKSETS';
+$modversion['blocks'][1]['name'] = __('Albums','galleries');
 $modversion['blocks'][1]['description'] = "";
 $modversion['blocks'][1]['show_func'] = "gs_sets_show";
 $modversion['blocks'][1]['edit_func'] = "gs_sets_edit";
 $modversion['blocks'][1]['template'] = 'bk_gs_sets.html';
-$modversion['blocks'][1]['options'] = array(4, 2, 1, 1, 1);
+$modversion['blocks'][1]['options'] = array(4, 2, 1, 1);
 
 //Páginas del módulo
 $modversion['subpages']['index'] = _MI_GS_INDEX;

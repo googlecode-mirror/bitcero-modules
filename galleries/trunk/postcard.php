@@ -279,5 +279,3 @@ switch($postcard){
 		newPostcard();
 		break;
 }
-
-?>

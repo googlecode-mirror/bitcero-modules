@@ -1,52 +1,34 @@
 <?php
 // $Id$
-// --------------------------------------------------------
-// Gallery System
-// Manejo y creación de galerías de imágenes
-// CopyRight © 2008. Red México
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.exmsystem.org
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// --------------------------------------------------------
-// @copyright: 2008 Red México
+// --------------------------------------------------------------
+// MyGalleries
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
 define('GS_LOCATION','submit');
 include '../../mainfile.php';
 
 if (!GSFunctions::canSubmit($xoopsUser)){
-	redirect_header(XOOPS_URL.'/modules/galleries/', 2, _MS_GS_ERRACCESS);
+	redirect_header(GSFunctions::get_url(), 2, __('Sorry, you have not permission to upload pictures.','galleries'));
 	die();
 }
 
-if ($exmUser){
-	$user = new GSUser($exmUser->uid(), 1);
+if ($xoopsUser){
+	$user = new GSUser($xoopsUser->uid(), 1);
 	
-	if ($user->usedQuota()>=$user->quota() && !$exmUser->isAdmin()){
-		redirect_header(XOOPS_URL.'/modules/galleries/', 2, _MS_GS_QUOTAEX);
+	if ($user->usedQuota()>=$user->quota() && !$xoopsUser->isAdmin()){
+		redirect_header(GSFunctions::get_url(), 2, __('Sorry, you have exceed your quota limit!','galleries'));
 		die();
 	}
 	
 }
 
 function showForm(){
-	global $db, $xoopsOption, $exmUser, $mc, $tpl, $xmh, $xoopsModuleConfig, $user;
-	
-	$util =& RMUtils::getInstance();
+	global $db, $xoopsOption, $xoopsUser, $mc, $tpl, $xoopsConfig, $xoopsModuleConfig, $user, $xoopsSecurity;
+
 	
 	$xoopsOption['template_main'] = "gs_submit.html";
 	$xoopsOption['module_subpage'] = 'submit';
@@ -55,29 +37,29 @@ function showForm(){
 	GSFunctions::makeHeader();
 	$mc =& $xoopsModuleConfig;
 	
-	$tpl->assign('lang_uploadyour', _MS_GS_UPLOADY);
+	$tpl->assign('lang_uploadyour', __('Upload your Pictures','galleries'));
 	
-	$tpl->assign('lang_step1', _MS_GS_STEP1);
-	$tpl->assign('lang_step2', _MS_GS_STEP2);
-	$tpl->assign('lang_step3', _MS_GS_STEP3);
-	$tpl->assign('lang_step4', _MS_GS_STEP4);
-	$tpl->assign('lang_choose', _MS_GS_CHOOSE);
-	$tpl->assign('lang_privacy', _MS_GS_PRIVACY);
-	$tpl->assign('lang_privateme', _MS_GS_PRIVATEME);
-	$tpl->assign('lang_privatef', _MS_GS_PRIVATEF);
-	$tpl->assign('lang_public', _MS_GS_PUBLIC);
-	$tpl->assign('lang_upload', _MS_GS_UPLOAD);
-	$tpl->assign('lang_clicktou', _MS_GS_CLICKTOU);
-	$tpl->assign('lang_tags', _MS_GS_TAG);
-	$tpl->assign('lang_tagsesp',_MS_GS_TAGSESP);
-	$tpl->assign('lang_maxsize', sprintf(_MS_GS_MAXSIZE, formatBytesSize($mc['size_image'] * 1024)));
+	$tpl->assign('lang_step1', __('Step 1:','galleries'));
+	$tpl->assign('lang_step2', __('Step 2:','galleries'));
+	$tpl->assign('lang_step3', __('Step 3:','galleries'));
+	$tpl->assign('lang_step4', __('Step 4:','galleries'));
+	$tpl->assign('lang_choose', __('Select Files','galleries'));
+	$tpl->assign('lang_privacy', __('Set Privacy','galleries'));
+	$tpl->assign('lang_privateme', __('Private (<em>Only you will seee these pictures</em>)','galleries'));
+	$tpl->assign('lang_privatef', __('For Friends (<em>Only you and your friends will see these pictures</em>)','galleries'));
+	$tpl->assign('lang_public', __('Public (<em>Pictures will visible for all</em>)'));
+	$tpl->assign('lang_upload', __('Upload Files','galleries'));
+	$tpl->assign('lang_clicktou', __('Click to Upload','galleries'));
+	$tpl->assign('lang_tagsesp',__('Specify tags to use','galleries'));
+    $tpl->assign('lang_tagsdesc', __('Separate each tag with a comma (,).','galleries'));
+	$tpl->assign('lang_maxsize', sprintf(__('The maximum file size allowed is <strong>%s</strong>.','galleries'), RMUtilities::formatBytesSize($mc['size_image'] * 1024)));
 	$tpl->assign('used_graph', GSFunctions::makeQuota($user, false));
-	$tpl->assign('form_action', GS_URL.'/'.($mc['urlmode'] ? 'submit/' : 'submit.php'));
-	$tpl->assign('token', $util->getTokenHTML());
-	$used = round($user->usedQuota()*(100/$user->quota())).'%';
-	$tpl->assign('lang_used', sprintf(_MS_GS_USED, $used, formatBytesSize($user->quota()), formatBytesSize($user->usedQuota()>=$user->quota() ? 0 : $user->quota()- $user->usedQuota())));
+	$tpl->assign('form_action', GSFunctions::get_url().($mc['urlmode'] ? 'submit/' : '?submit=submit'));
+	$tpl->assign('token', $xoopsSecurity->getTokenHTML());
+	$used = round($user->usedQuota()/$user->quota()*100).'%';
+	$tpl->assign('lang_used', sprintf(__('You have used <strong>%s</strong> of <strong>%s</strong> available. You left <strong>%s</strong>','galleries'), $used, RMUtilities::formatBytesSize($user->quota()), RMUtilities::formatBytesSize($user->usedQuota()>=$user->quota() ? 0 : $user->quota()- $user->usedQuota())));
 	
-	$xmh .= "<link href='".GS_URL."/styles/submit.css' type='text/css' media='all' rel='stylesheet' />\n";
+	RMTemplate::get()->add_xoops_style('submit.css', 'galleries');
 	include 'footer.php';
 	
 }
@@ -86,9 +68,8 @@ function showForm(){
 * @desc Almacena las imágenes en la base de datos y en el disco duro
 */
 function saveImages(){
-	global $db, $xoopsOption, $exmUser, $mc, $tpl, $xmh, $xoopsModuleConfig, $util;
+	global $db, $xoopsOption, $xoopsUser, $mc, $tpl, $xmh, $xoopsModuleConfig, $util;
 	
-	$util =&RMUtils::getInstance();
 	$mc =& $xoopsModuleConfig;
 
 	foreach ($_POST as $k => $v){
@@ -96,16 +77,16 @@ function saveImages(){
 	}
 
 	//Verificamos si el usuario se encuentra registrado	
-	$user = new GSUser($exmUser->uname());
+	$user = new GSUser($xoopsUser->uname());
 	if($user->isNew()){
 		//Insertamos información del usuario
-		$user->setUid($exmUser->uid());
-		$user->setUname($exmUser->uname());
+		$user->setUid($xoopsUser->uid());
+		$user->setUname($xoopsUser->uname());
 		$user->setQuota($mc['quota']*1024*1024);
 		$user->setDate(time());
 
 		if(!$user->save()){
-			redirect_header('./submit.php',1,_MS_GS_ERRUSER);
+			redirect_header('./submit.php',1, __('Sorry, an error ocurred while trying to register your permissions on database. Try again later!','galleries'));
 			die();
 		}
 	}
@@ -122,10 +103,10 @@ function saveImages(){
 	$ret = array(); 
 	foreach ($tgs as $k){
 		$k = trim($k);
-		$k = $util->sweetstring($k);
-		if ($k=='') continue;
+		$kf = TextCleaner::getInstance()->sweetstring($k);
+		if ($kf=='') continue;
 		// Comprobamos que la palabra tenga la longitud permitida
-		if(strlen($k)<$mc['min_tag'] || strlen($k)>$mc['max_tag']){
+		if(strlen($kf)<$mc['min_tag'] || strlen($kf)>$mc['max_tag']){
 			continue;
 		}
 		// Creamos la etiqueta
@@ -137,6 +118,7 @@ function saveImages(){
 		}
 
 		$tag->setTag($k);
+        $tag->setVar('nameid', $kf);
 		if ($tag->save()){
 			$ret[] = $tag->id();
 		}
@@ -144,22 +126,23 @@ function saveImages(){
 
 	$errors = '';
 	$k = 1;
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = $mc['storedir']."/".$exmUser->uname();
-	$folderths = $mc['storedir']."/".$exmUser->uname()."/ths";
+	
+    include_once RMCPATH.'/class/uploader.php';
+	$up = new RMFileUploader(true);
+	$folder = $mc['storedir']."/".$xoopsUser->uname();
+	$folderths = $mc['storedir']."/".$xoopsUser->uname()."/ths";
 	
 	foreach ($_FILES['images']['name'] as $k => $v){
 		if ($v=='') continue;
 		$img = new GSImage();
-		$img->setOwner($exmUser->uid());
+		$img->setOwner($xoopsUser->uid());
 		$img->setPublic($privacy);
 		$img->setCreated(time());
 		
 		//Imagen
 		$filename = '';
-			
-		$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $mc['size_image']*1024);//tamaño
+		
+        $up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
 		
 		if ($up->fetchMedia('images',$k)){
 
@@ -186,7 +169,7 @@ function saveImages(){
 			}
 			
 			// Redimensionamos la imagen
-			$redim = new RMImageControl($fullpath, $fullpath);
+			$redim = new RMImageResizer($fullpath, $fullpath);
 			switch ($mc['redim_image']){
 				case 0:
 					//Recortar miniatura
@@ -221,7 +204,7 @@ function saveImages(){
 		$img->setImage($filename);
 		if ($up->getErrors()==''){
 			if (!$img->save()){
-				$errors .= sprintf(_MS_GS_ERRSAVEIMG, $v)." (".$img->errors().")";
+				$errors .= sprintf(__('Picture %s could not be uploaded!','galleries'), $v)." (".$img->errors().")";
 			} else {
 				$user->addPic();
 				if ($ret) $img->setTags($ret);
@@ -235,10 +218,11 @@ function saveImages(){
 	}
 
 	if($errors!=''){
-		redirect_header(XOOPS_URL.'/modules/galleries/submit.php',2,_MS_GS_DBERRORS.$errors);
+		redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cp/images' : '?cp=images'),2, __('Errors ocurred while trying to upload images!','galleries').$errors);
 		die();
+        
 	}else{
-		redirect_header(XOOPS_URL.'/modules/galleries/cpanel.php',2,_MS_GS_DBOK);
+		redirect_header(GSFunctions::get_url().($mc['urlmode'] ? 'cp/images' : '?cp=images'),2, __('Pictures stored successfully!','galleries'));
 		die();
 	}
 	
@@ -254,5 +238,3 @@ switch($op){
 		showForm();
 		break;
 }
-
-?>

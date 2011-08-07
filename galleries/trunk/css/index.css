@@ -75,6 +75,13 @@ div.gsLinkMore{
 ul.gsBrowseLinks{
 	margin: 0 0 10px 10px;
 	overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.gsBrowseLinks li{
+    list-style: none;
+    float: left;
 }
 ul.gsBrowseLinks li a{
 	padding: 8px 4px 4px 38px;
