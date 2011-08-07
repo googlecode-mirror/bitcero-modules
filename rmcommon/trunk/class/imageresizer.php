@@ -81,7 +81,8 @@ class RMImageResizer
         }
         
         list($wo, $ho) = getimagesize($this->file);
-        $height = $ho * $percent;; $width = $wo * $percent;;
+        $percent = 0;
+        $height = $ho * $percent; $width = $wo * $percent;
         
         $format = $this->getFormat();
 
