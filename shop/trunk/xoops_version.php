@@ -57,7 +57,7 @@ $modversion['templates'] = array(
 
 // Tables
 $modversion['tables'] = array(
-    "show_categories",
+    "shop_categories",
     'shop_catprods'
 );
 
