@@ -92,8 +92,8 @@ function showUserPics(){
 	
    	$urlnav = '';
    	if ($tpages > 1) {
-    	$urlnav .= isset($usr) ? 'usr/'.$user->uname().'/' : '?usr='.$user->uname();	    
-    	$nav = new RMPageNav($num, $limit, $pactual, 5);
+    	$urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/' : '?usr='.$user->uname();	    
+        $nav = new RMPageNav($num, $limit, $pactual, 5);
         $nav->target_url(GSFunctions::get_url().$urlnav . ($mc['urlmode'] ? 'pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
    	    $tpl->assign('upNavPage', $nav->render(false));
    	}
@@ -250,24 +250,16 @@ function showImageDetails(){
                 );
             }
             
-            if(!empty($previous_images))
-                $tpl->assign('previous_images', array_reverse($previous_images));
-            
             // Next Images
             while($row = $db->fetchArray($resultn)){
                 $pn = new GSImage();
                 $pn->assignVars($row);
-                $tpl->append('next_images', array(
+                $next_images[] = array(
                     'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$pn->id().'/' : '&amp;img='.$pn->id()),
                     'id'=>$pn->id(),'title'=>$pn->title(),
-                    'file'=>$user->filesURL().'/ths/'.$pn->image())
+                    'file'=>$user->filesURL().'/ths/'.$pn->image()
                 );
             }
-            
-            $tpl->assign('current_image', array(
-                'title' => $image->title(),
-                'file' => $user->filesURL().'/ths/'.$image->image()
-            ));
         
         }
 		
@@ -297,7 +289,7 @@ function showImageDetails(){
 				if (!$xoopsUser && $oset->isPublic()==1 && !$user->isFriend($xoopsUser->uid())) continue;
 			}
 
-			$tpl->append('sets', array('id'=>$oset->id(),'title'=>$oset->title(),'link'=>$user->userURL().'set/'.$oset->id().'/'));
+			$tpl->append('sets', array('id'=>$oset->id(),'title'=>$oset->title(),'link'=>$user->userURL().($xoopsModuleConfig['urlmode'] ? 'set/'.$oset->id().'/' : '&amp;set='.$oset->id())));
 		}
 		
 	} else {
@@ -340,11 +332,6 @@ function showImageDetails(){
                 );
             }
             
-            if(!empty($previous_images)){
-                $tpl->assign('prev', $previous_images[0]);
-                $tpl->assign('previous_images', array_reverse($previous_images));
-            }
-            
             // Next Images
             while($row = $db->fetchArray($resultn)){
                 $pn = new GSImage();
@@ -355,19 +342,6 @@ function showImageDetails(){
                     'file'=>$user->filesURL().'/ths/'.$pn->image()
                 );
             }
-            
-            if(!empty($next_images)){
-                $tpl->assign('next', $next_images[0]);
-                $tpl->assign('next_images', $next_images);
-            }
-            
-            $tpl->assign('current_image', array(
-                'title' => $image->title(),
-                'file' => $user->filesURL().'/ths/'.$image->image()
-            ));
-            
-            if($db->getRowsNum($resultp)<=0) $tpl->assign('is_first', 1);
-            if($db->getRowsNum($resultn)<=0) $tpl->assign('is_last', 1);
         
         }
 		
@@ -400,6 +374,25 @@ function showImageDetails(){
 		}
 		
 	}
+    
+    if(!empty($previous_images)){
+        $tpl->assign('prev', $previous_images[0]);
+        $tpl->assign('previous_images', array_reverse($previous_images));
+    } else {
+        $tpl->assign('is_first', 1);
+    }
+            
+    if(!empty($next_images)){
+        $tpl->assign('next', $next_images[0]);
+        $tpl->assign('next_images', $next_images);
+    } else {
+        $tpl->assign('is_last', 1);
+    }
+            
+    $tpl->assign('current_image', array(
+        'title' => $image->title(),
+        'file' => $user->filesURL().'/ths/'.$image->image()
+    ));
 	
 	// Etiquetas
 	$tags = $image->tags(true, '*');
@@ -495,7 +488,6 @@ function showSetContent(){
 	$tpl->assign('tags_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname()));
 	$tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "?cp=bookmarks"));
 	$tpl->assign('xoops_pagetitle', sprintf(__('Pictures in %s'), $set->title()).' &raquo; '.$mc['section_title']);
-	$tpl->assign('lang_inset', _MS_GS_INSET);
 	$tpl->assign('lang_numpics', sprintf(__('Pictures: %s','galleries'), $set->pics()));
 	$tpl->assign('lang_numviews', sprintf(__('Hits: %s'), $set->hits()));
 
@@ -577,7 +569,7 @@ function showSetContent(){
 	while ($row = $db->fetchArray($result)){
 		$img = new GSImage();
 		$img->assignVars($row);
-		$imglink = $user->userURL().'img/'.$img->id().'/set/'.$set->id().'/';
+		$imglink = $user->userURL().($mc['urlmode'] ? 'img/'.$img->id().'/set/'.$set->id().'/' : '&amp;img='.$img->id().'&amp;set='.$set->id());
 		$imgfile = $user->filesURL().'/'.($mc['set_format_mode'] ? 'formats/set_' : 'ths/').$img->image();
 		
 		// Conversion de los formatos
@@ -588,9 +580,7 @@ function showSetContent(){
 		
 		$tpl->append('images', array('id'=>$img->id(),'title'=>$img->title(),
 			'thumbnail'=>$imgfile,'link'=>$imglink,
-			'bigimage'=>$user->filesURL().'/'.$img->image(),
-			'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-			'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),'desc'=>$showdesc ? $img->desc() : ''));
+			'bigimage'=>$user->filesURL().'/'.$img->image()));
 		
 	}
 	
@@ -621,14 +611,12 @@ function showSetContent(){
 			$tpl->assign('lang_updated', sprintf(__('Updated on %s','galleries'), $tf->format($img->created())));
 		}
 		$tpl->append('bigs', array('id'=>$img->id(),'title'=>$img->title(),
-		'image'=>$imgfile,'link'=>$imglink,
-		'created'=>sprintf(_MS_GS_CREATED, formatTimestamp($img->created(),'string')),
-		'comments'=>sprintf(_MS_GS_COMMENTS, $img->comments()),'desc'=>$bshowdesc ? $img->desc() : ''));
+		'image'=>$imgfile,'link'=>$imglink));
 	}
 	
 	RMFunctions::get_comments('galleries','set='.$set->id());
 	// Comments form
-	RMFunctions::comments_form('galleries', 'set='.$set->id(), 'module', MW_PATH.'/class/galleriescontroller.php');
+	RMFunctions::comments_form('galleries', 'set='.$set->id(), 'module', GS_PATH.'/class/galleriescontroller.php');
 	
 	// Datos para el formato
 	$tpl->assign('max_cols', $cols);

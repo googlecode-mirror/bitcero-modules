@@ -50,6 +50,7 @@ div.userData ul{
 	margin: 0;
 }
 div.userData ul li{
+    list-style: none;
 	float: left;
 	padding: 0 6px 0 0;
 	margin: 0 6px 0 0;

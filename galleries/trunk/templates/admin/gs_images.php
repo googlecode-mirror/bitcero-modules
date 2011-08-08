@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Images Management','galleries'); ?></h1>
+<h1 class="rmc_titles gs_titles"><span style="background-position: -128px;">&nbsp;</span><?php _e('Images Management','galleries'); ?></h1>
 
 <form name="frmImgs"  method="POST" id="frm-images" action="images.php">
 <div class="gs_options">

@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Users Management','galleries'); ?></h1>
+<h1 class="rmc_titles gs_titles"><span style="background-position: -96px;">&nbsp;</span><?php _e('Users Management','galleries'); ?></h1>
 
 <form name="frmUsers" method="POST" id="frm-users" action="users.php">
 <div class="gs_options">

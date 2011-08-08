@@ -316,10 +316,10 @@ class GSImage extends RMObject
 	
     // Permalink
     public function permalink(){
-        
+        $mc = RMUtilities::module_config('galleries');
         $user = new GSUser($this->owner());
         
-        return $user->userURL().'img/'.$this->id().'/';
+        return $user->userURL().($mc['urlmode'] ? 'img/'.$this->id().'/' : '&amp;img='.$this->id());
         
     }
     

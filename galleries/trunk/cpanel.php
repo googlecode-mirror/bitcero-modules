@@ -24,15 +24,15 @@ function createLinks(){
 	global $tpl, $xoopsModuleConfig, $xmh, $xoopsUser;
 	
 	$mc =& $xoopsModuleConfig;
-	$tpl->assign('link_bookmarks', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "cp.php?s=cp/bookmarks"));
+	$tpl->assign('link_bookmarks', GSFunctions::get_url().($mc['urlmode'] ? "cp/bookmarks/" : "?cp=bookmarks"));
 	$tpl->assign('lang_favourites',__('Favorites','galleries'));
 	
 	$tpl->assign('user',0);
 	$users = GSFunctions::getAllowedUsers();
 	if(in_array($xoopsUser->uid(),$users)){
-		$tpl->assign('link_friends', GSFunctions::get_url().($mc['urlmode'] ? "cp/friends/" : "cp.php?s=cp/friends"));
-		$tpl->assign('link_photos', GSFunctions::get_url().($mc['urlmode'] ? "cp/images/" : "cp.php"));
-		$tpl->assign('link_sets', GSFunctions::get_url().($mc['urlmode'] ? "cp/sets/" : "cp.php?s=cp/sets"));
+		$tpl->assign('link_friends', GSFunctions::get_url().($mc['urlmode'] ? "cp/friends/" : "?cp=friends"));
+		$tpl->assign('link_photos', GSFunctions::get_url().($mc['urlmode'] ? "cp/images/" : "?cp=images"));
+		$tpl->assign('link_sets', GSFunctions::get_url().($mc['urlmode'] ? "cp/sets/" : "?cp=sets"));
 		$tpl->assign('lang_friends',__('Friends','galleries'));
 		$tpl->assign('lang_msets',__('My Albums','galleries'));
 		$tpl->assign('lang_mpics',__('My Images','galleries'));

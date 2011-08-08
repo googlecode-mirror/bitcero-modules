@@ -13,7 +13,7 @@
 **/
 function showBookMarks(){
 
-	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $pag;
+	global $xoopsOption, $tpl, $db, $xoopsUser, $xoopsModuleConfig, $pag, $xoopsConfig;
 	
 
 	$xoopsOption['template_main'] = 'gs_panel_bookmarks.html';

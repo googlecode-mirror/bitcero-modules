@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Tags Management','galleries'); ?></h1>
+<h1 class="rmc_titles gs_titles"><span style="background-position: -64px;">&nbsp;</span><?php _e('Tags Management','galleries'); ?></h1>
 
 <form name="frmTags" id="frm-tags" method="post" action="tags.php">
 <div class="gs_options">

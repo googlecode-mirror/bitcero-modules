@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Albums Management','galleries'); ?></h1>
+<h1 class="rmc_titles gs_titles"><span style="background-position: -32px;">&nbsp;</span><?php _e('Albums Management','galleries'); ?></h1>
 
 <form name="frmSets" id="frm-sets" method="POST" action="sets.php">
 <div class="gs_options">

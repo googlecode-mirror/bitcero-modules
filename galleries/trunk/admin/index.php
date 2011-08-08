@@ -8,95 +8,168 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-define('GS_LOCATION','index');
+define('RMCLOCATION','dashboard');
 include 'header.php';
 
-$db = Database::getInstance();
-$myts =& MyTextSanitizer::getInstance();
-//Inicio
-$tpl->append('options', array('text'=>_AS_GS_HOME, 'info'=>_AS_GS_CLICK,
-		'link'=>'../','icon'=>'../images/home48.png'));
+function count_files($path){
+    
+    $file_count = 0;
+    $dir = opendir($path);
+    while (($file = readdir($dir)) !== false){
+        if ($file == '.' || $file=='..') continue;
+        if (is_dir($path . '/'.$file)){
+            $file_count += count_files($path . '/'.$file);
+        } else {
+            $file_count++;
+        }
+    }
+    closedir($dir);
+    return $file_count;
+    
+}
 
-//Albumes
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_sets');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_GS_SETS, 'info'=>sprintf(_AS_GS_SETSNUM, $num),
-		'link'=>'sets.php','icon'=>'../images/album48.png'));
+function show_dashboard(){
+    global $xoopsModuleConfig;
+    
+    $db = Database::getInstance();
+    // Sets count
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_sets");
+    list($set_count) = $db->fetchRow($db->query($sql));
+    // Pictures count
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_images");
+    list($pic_count) = $db->fetchRow($db->query($sql));
+    // Users count
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_users");
+    list($user_count) = $db->fetchRow($db->query($sql));
+    // Tags count
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_tags");
+    list($tag_count) = $db->fetchRow($db->query($sql));
+    // E-Cards count
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_postcards");
+    list($post_count) = $db->fetchRow($db->query($sql));
+    // Used space
+    $space = RMUtilities::formatBytesSize(GSFunctions::folderSize($xoopsModuleConfig['storedir']));
+    // Number of files
+    $file_count = count_files(rtrim($xoopsModuleConfig['storedir'], '/'));
+    // First picture
+    $sql = "SELECT * FROM ".$db->prefix("gs_images")." ORDER BY `created` ASC LIMIT 0,1";
+    $result = $db->query($sql);
+    if($db->getRowsNum($result)>0){
+        $img = new GSImage();
+        $img->assignVars($db->fetchArray($result));
+        $user = new GSUser($img->owner(), 1);
+        $tf = new RMTimeFormatter(0, '%M% %d%, %Y%');
+        $first_pic['date'] = $tf->format($img->created());
+        $first_pic['link'] = $user->userURL().($xoopsModuleConfig['urlmode'] ? 'img/'.$img->id().'/set/' : '&amp;img='.$img->id());
+    }
 
-//Etiquetas
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_tags');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_GS_TAGS, 'info'=>sprintf(_AS_GS_TAGSNUM, $num),
-		'link'=>'tags.php','icon'=>'../images/tags48.png'));
+    xoops_cp_header();
+    
+    GSFunctions::toolbar();
+    RMTemplate::get()->add_style('dashboard.css','galleries');
+    RMTemplate::get()->add_style('admin.css','galleries');
+    RMTemplate::get()->add_head('<script type="text/javascript">var xurl = "'.XOOPS_URL.'";</script>');
+    RMTemplate::get()->add_local_script('dashboard.js','galleries');
+    include RMTemplate::get()->get_template('admin/gs_dashboard.php', 'module', 'galleries');
 
-//Usuarios
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_users');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_GS_USERS, 'info'=>sprintf(_AS_GS_USERSNUM, $num),
-		'link'=>'users.php','icon'=>'../images/users48.png'));
+    xoops_cp_footer();
 
-//Imágenes
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_images');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_GS_IMGS, 'info'=>sprintf(_AS_GS_IMGSNUM, $num),
-		'link'=>'images.php','icon'=>'../images/images48.png'));
+}
 
-//Postales
-$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_postcards');
-list($num) = $db->fetchRow($db->query($sql));
-$tpl->append('options', array('text'=>_AS_GS_POSTCARDS, 'info'=>sprintf(_AS_GS_POSTCARDSNUM, $num),
-		'link'=>'postcards.php','icon'=>'../images/postcard48.png'));
+function send_pictures(){
+    
+    global $xoopsLogger;
+    $xoopsLogger->renderingEnabled = false;
+    error_reporting(0);
+    $xoopsLogger->activated = false;
+    
+    $db = Database::getInstance();
+    $limit = rmc_server_var($_GET, 'limit', 5);
+    // recent pictures
+    $sql = "SELECT * FROM ".$db->prefix("gs_images")." ORDER BY `created` DESC LIMIT 0,$limit";
+    $result = $db->query($sql);
+    $recents = GSFunctions::process_image_data($result);
+    
+    ob_start();
+    ?>
+    <?php foreach($recents as $pic): ?>
+    <a href="<?php echo $pic['link']; ?>" target="_blank" title="<?php echo $pic['title']; ?>"><img src="<?php echo $pic['thumbnail']; ?>" alt="<?php echo $pic['title']; ?>" /></a>
+    <?php endforeach; ?>
+    <?php
+    $recents = ob_get_clean();
+    echo $recents; die();
+    
+}
 
-//Espacio utilizado en disco
-$dir = str_replace(XOOPS_URL,XOOPS_ROOT_PATH,$xoopsModuleConfig['storedir']);
-$num = GSFunctions::folderSize($dir);
-$tpl->append('options', array('text'=>_AS_GS_SIZE, 'info'=>sprintf(_AS_GS_SIZENUM, RMUtilities::formatBytesSize($num)),
-		'link'=>'','icon'=>'../images/hd48.png'));
+function send_sets(){
+    
+    global $xoopsLogger, $xoopsModuleConfig;
+    $xoopsLogger->renderingEnabled = false;
+    error_reporting(0);
+    $xoopsLogger->activated = false;
+    
+    $mc =& $xoopsModuleConfig;
+    $db = Database::getInstance();
+    $limit = rmc_server_var($_GET, 'limit', 5);
 
-
-$tpl->append('options', array('text'=>"Red México", 'info'=>_AS_GS_CLICK,
-		'link'=>'http://redmexico.com.mx','icon'=>'../images/rm48.png'));
-
-$tpl->append('options', array('text'=>"EXM System", 'info'=>_AS_GS_CLICK,
-		'link'=>'http://exmsystem.org','icon'=>'../images/exm.png'));
-
-$tpl->append('options', array('text'=>_AS_GS_HELP, 'info'=>_AS_GS_CLICK,
-		'link'=>'http://exmsystem.org','icon'=>'../images/help.png'));
-
-
-$access = GSFunctions::accessInfo();
-if (!$access){
-	$tpl->assign('err_access', 1);
-	$tpl->assign('lang_showcode', _AS_GS_SHOWCODE);
-	$tpl->assign('lang_erraccess', _AS_GS_ERRACCESS);
-	
-	$docroot = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-	$path = str_replace($docroot, '', XOOPS_ROOT_PATH.'/modules/galleries/');
-	$code="[code]RewriteEngine On\nRewriteBase $path\nRewriteCond %{REQUEST_URI} !/[A-Z]+-\nRewriteRule ^usr/(.*)/?$ user.php?id=usr/$1 [L]\nRewriteRule ^explore/(.*)/?$ explore.php?by=explore/$1 [L]\nRewriteRule ^submit/(.*)/?$ submit.php?submit=submit/$1 [L]\nRewriteRule ^cpanel/(.*)/?$ cpanel.php?s=cpanel/$1 [L]\nRewriteRule ^postcard/(.*)/?$ postcard.php?id=postcard/$1 [L][/code]";
-	$tpl->assign('code', $myts->displayTarea($code, 0,0,1,0,1));
-	
-} else {
-	// Comprobamos que el archivo .htaccess no tenga permisos de escritura
-	$file = XOOPS_ROOT_PATH.'/modules/galleries/.htaccess';
-	if (is_writable($file)){
-		$tpl->assign('err_access', 1);
-		$tpl->assign('lang_erraccess', _AS_GS_ERRACCWRITE);
-	}
+    // recent pictures
+    $sql = "SELECT * FROM ".$db->prefix("gs_sets")." ORDER BY `date` DESC LIMIT 0,$limit";
+    $result = $db->query($sql);
+    $sets = array();
+    $users = array();
+    while($row = $db->fetchArray($result)){
+        $set = new GSSet();
+        $set->assignVars($row);
+        
+        $pics = $set->getPics('RAND()');
+        $img = new GSImage($pics[0]);
+        if (!isset($users[$img->owner()])) $users[$img->owner()] = new GSUser($img->owner(), 1);
+        
+        if($img->isNew()){
+            $image = array(
+                'title' => __('Empty album','galleries'),
+                'link' => '',
+                'thumbnail' => GS_URL.'/images/empty.jpg'
+            );
+        } else {
+            $image = array(
+                'title' => $img->title(),
+                'link' => $users[$img->owner()]->userURL().($mc['urlmode'] ? 'img/'.$img->id().'/' : '&amp;img='.$img->id()),
+                'thumbnail'=>$users[$img->owner()]->filesURL().'/ths/'.$img->image()
+            );
+        }
+        
+        $sets[] = array(
+            'title' => $set->title(),
+            'link' => $set->url(),
+            'image' => $image
+        );
+        
+    }
+    
+    ob_start();
+    ?>
+    <?php foreach($sets as $set): ?>
+    <a href="<?php echo $set['link']; ?>" target="_blank" title="<?php echo $set['title']; ?>"><img src="<?php echo $set['image']['thumbnail']; ?>" alt="<?php echo $set['title']; ?>" /></a>
+    <?php endforeach; ?>
+    <?php
+    $recents = ob_get_clean();
+    echo $recents; die();
+    
 }
 
 
-$adminTemplate = "admin/gs_index.html";
-xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a>");
+$action = rmc_server_var($_REQUEST, 'action', '');
 
-
-$ver=$xoopsModule->getVar('version');
-$version=$ver['number'].'.'.$ver['revision'].'.'.$ver['status'];
-$url = "http://redmexico.com.mx/modules/versions/gallery-system/$version/module";
-$cHead = "<script type='text/javascript'>
-			var url = '".XOOPS_URL."/include/proxy.php?url=' + encodeURIComponent('$url');
-         	new Ajax.Updater('versionInfo',url);
-		 </script>\n";
-$cHead .= '<link href="../styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
-xoops_cp_header($cHead);
-
-xoops_cp_footer();
+switch($action){
+    case 'pictures':
+        send_pictures();
+        break;
+    case 'sets':
+        send_sets();
+        break;
+    default:
+        show_dashboard();
+        break;
+    
+}

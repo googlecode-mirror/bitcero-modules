@@ -65,7 +65,7 @@ class GSFunctions
 		
 		if($xoopsUser && in_array($xoopsUser->uid(),GSFunctions::getAllowedUsers())){
 			$tpl->assign('lang_myphotos',__('My Photos','galleries'));
-			$tpl->assign('gs_myphotoslink', GSFunctions::get_url().($mc['urlmode'] ? 'cp/images/' : 'cpanel.php'));
+			$tpl->assign('gs_myphotoslink', GSFunctions::get_url().($mc['urlmode'] ? 'cp/images/' : '?cp=images'));
 		}
 		
 		if (GSFunctions::canSubmit($xoopsUser)){

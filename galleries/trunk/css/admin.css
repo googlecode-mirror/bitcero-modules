@@ -12,73 +12,7 @@
     display: none;
     border: 1px solid #CCC;
 }
-/** Página de Inicio **/
-div#gsOptions{
-    padding: 6px;
-    max-width: 420px;
-    *width: 420px;
-    float: left;
-    margin-right: 10px;
-}
-div#gsOptions a{
-    width: 120px;
-    height: 100px;
-    display: block;
-    float: left;
-    padding: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    margin: 3px;
-    background: url(../../system/images/bgoptions.png) no-repeat 0 115px;
-}
-div#gsOptions a img{
-    border: 0;
-    margin: 4px auto 8px auto;
-    display: block;
-}
-div#gsOptions a span{
-    font-size: 0.85em;
-    font-weight: normal;
-    display: block;
-    color: #ff4400;
-}
-div#gsOptions a:hover{
-    background-position: 0 0;
-    /*border: 1px solid #ccc;*/
-}
-div#gsOptions a:hover span{
-    color: #333;
-    text-decoration: underline;
-}
-div#gsVersion{
-	font-size: 0.9em;
-	padding: 0 5px 0 30px;
-	height: 100%;
-	margin-left: 420px;
-	border-left: 2px solid #c8c8c8;
-	margin-bottom: 20px;
-	font-size: 12px;
-}
-div#gsVersion div.gsErrAccess{
-	padding: 5px;
-	background-color: #FEFCEB;
-	border: 1px dotted #FFCC00;
-	color: #666;
-}
-div#gsVersion div#htcode{
-	display: none;
-	margin: 10px;
-	background-color: #FFF;
-	border: 1px dashed #CCC;
-	padding: 8px;
-}
-div#versionInfo{
-	min-height: 500px;
-}
-div#versionInfo div#xo-logger-output{
-	display: none;
-}
+
 /** Fin de Página de inicio **/
 .searchResalte{
 	background-color: #FFFF00;
@@ -128,4 +62,13 @@ span.imgDesc{
 }
 #resizer-bar{
     display: none;
+}
+.gs_titles span{
+    background-image: url(../images/title_icons.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    margin: 0 8px 0 0;
 }

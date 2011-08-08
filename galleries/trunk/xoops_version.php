@@ -562,14 +562,14 @@ $modversion['blocks'][1]['template'] = 'bk_gs_sets.html';
 $modversion['blocks'][1]['options'] = array(4, 2, 1, 1);
 
 //Páginas del módulo
-$modversion['subpages']['index'] = _MI_GS_INDEX;
-$modversion['subpages']['userpics'] = _MI_GS_USERPICS;
-$modversion['subpages']['picsdetails'] = _MI_GS_PICSDETAILS;
-$modversion['subpages']['userset'] = _MI_GS_USERSET;
-$modversion['subpages']['panel'] = _MI_GS_CPANEL;
-$modversion['subpages']['exploresets'] = _MI_GS_EXPLORESETS;
-$modversion['subpages']['explorepics'] = _MI_GS_EXPLOREPICS;
-$modversion['subpages']['tags'] = _MI_GS_TAGS;
-$modversion['subpages']['exploretags'] = _MI_GS_EXPLORETAGS;
-$modversion['subpages']['submit'] = _MI_GS_SUBMIT;
-$modversion['subpages']['search'] = _MI_GS_SEARCH;
+$modversion['subpages']['index'] = __('Index','galleries');
+$modversion['subpages']['userpics'] = __('User pictures','galleries');
+$modversion['subpages']['picsdetails'] = __('Picture details','galleries');
+$modversion['subpages']['userset'] = __('User album','galleries');
+$modversion['subpages']['panel'] = __('Control panel','galleries');
+$modversion['subpages']['exploresets'] = __('Explore albums','galleries');
+$modversion['subpages']['explorepics'] = __('Explore pictures','galleries');
+$modversion['subpages']['tags'] = __('Tags','galleries');
+$modversion['subpages']['exploretags'] = __('Explore tags','galleries');
+$modversion['subpages']['submit'] = __('Upload pictures','galleries');
+$modversion['subpages']['search'] = __('Search','galleries');

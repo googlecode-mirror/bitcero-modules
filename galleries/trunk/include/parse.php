@@ -73,4 +73,17 @@ if($xoopsModuleConfig['urlmode']){
         }
         
     }
+
+} else {
+    
+    foreach($_REQUEST as $k => $v){
+        
+        if($k=='pag'){
+            $page = $v;
+        } else {
+            $$k = $v;
+        }
+        
+    }
+    
 }
