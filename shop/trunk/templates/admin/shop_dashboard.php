@@ -50,5 +50,8 @@
     
     <div class="outer">
         <div class="th"><?php _e('About MiniShop', 'shop'); ?></div>
+        <div class="even" id="shop-dsh-about">
+            <div align="center" style="font-style: italic; font-size: 0.9em;"><img src="../images/loader.gif" alt="" /><br /><?php _e('Loading...','shop'); ?></div>
+        </div>
     </div>
 </div>

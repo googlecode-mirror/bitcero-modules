@@ -85,3 +85,6 @@ ul.recent li a:last-child{
 ul.recent li:hover a:last-child{
     display: block;
 }
+#shop-dsh-about ul li span{
+    font-weight: bold;
+}

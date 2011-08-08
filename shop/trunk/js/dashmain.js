@@ -14,12 +14,18 @@ $(document).ready(function(){
     var url=encodeURIComponent("http://redmexico.com.mx/modules/vcontrol/?id=6&action=info");
     
     $.post(xurl+'/modules/rmcommon/include/proxy.php', {url: url}, function(data){
-        if(data.indexOf("<html")>0 && data.indexOf("</html>")>0) return;
+        
+        //if(data.indexOf("<html")>0 && data.indexOf("</html>")>0) return;
+        if(data.description==undefined) return;
         
         $("#mini-info div").fadeOut('fast', function(){
-            $("#mini-info").html(data);
+            $("#mini-info").html(data.description);
         });
         
-    }, 'html');
+        $("#shop-dsh-about div").fadeOut('fast', function(){
+            $("#shop-dsh-about").html(data.credits);
+        });
+        
+    }, 'json');
     
 });
