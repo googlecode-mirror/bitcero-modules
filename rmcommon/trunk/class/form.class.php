@@ -232,7 +232,7 @@ class RMForm
     /**
      * Agregamos nuevos elementos
      * Estos elementos son instanacias de algun elemento de formulario
-     * @param EXMFormElement $element
+     * @param RMFormElement $element
      * @param bool $required true = Elemento requerido
      * @param string $css_type Content Type: email,url, etc.
      */

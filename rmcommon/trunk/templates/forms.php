@@ -13,7 +13,7 @@
 		
 		if ($data['class']=='RMFormHidden'):
 			echo $field->render();
-		elseif($data['class']=='RMFormSubtitle'):
+		elseif($data['class']=='RMFormSubTitle'):
 ?>
 <tr>
 	<td colspan="2"><?php echo $field->render(); ?>

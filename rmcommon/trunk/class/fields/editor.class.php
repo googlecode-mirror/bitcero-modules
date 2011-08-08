@@ -180,8 +180,6 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_script(RMCURL."/include/js/colorpicker.js");
 		RMTemplate::get()->add_style('editor-exmcode.css','rmcommon');
 		RMTemplate::get()->add_style('colorpicker.css','rmcommon');
-        $lang = is_file(ABSPATH.'/api/editors/exmcode/language/'.EXMLANG.'.js') ? EXMLANG : 'en_US';
-        RMTemplate::get()->add_script(RMCURL.'/api/editors/exmcode/language/'.$lang.".js");
 		$rtn = 	"<div class='ed-container' id='".$this->getName()."-ed-container' width='$this->_width'>";
 		$rtn .= "<div class='ed_buttons' id='".$this->getName()."-ec-container'>";
         $rtn .= "<div class='row_top'></div><div class='row_bottom'></div>";
