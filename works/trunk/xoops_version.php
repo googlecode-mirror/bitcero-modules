@@ -29,6 +29,9 @@ $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "works";
 $modversion['icon48'] = "images/logo.png";
 
+// To update version 2.0.46 to 2.0.49
+$modversion['onUpdate'] = 'include/update.php';
+
 //Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
