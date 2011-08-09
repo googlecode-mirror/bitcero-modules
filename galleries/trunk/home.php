@@ -24,11 +24,11 @@ $tpl->assign('lang_pics', __('Photos:','galleries'));
 $tpl->assign('lang_other', __('Other Albums','galleries'));
 $tpl->assign('lang_view', __('View Photos','galleries'));
 $tpl->assign('lang_moresets', __('More albums','galleries'));
-$tpl->assign('explore_sets_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/sets/' : 'explore.php?explore=sets'));
+$tpl->assign('explore_sets_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/sets/' : '?explore=sets'));
 $tpl->assign('lang_setbrowse', __('Browse albums','galleries'));
-$tpl->assign('explore_imgs_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/photos/' : 'explore.php?bexplore=photos'));
+$tpl->assign('explore_imgs_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/photos/' : '?explore=photos'));
 $tpl->assign('lang_imgbrowse', __('Browse photos','galleries'));
-$tpl->assign('explore_tags_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/tags/' : 'explore.php?byexplore=tags'));
+$tpl->assign('explore_tags_link', GSFunctions::get_url().($mc['urlmode'] ? 'explore/tags/' : '?explore=tags'));
 $tpl->assign('lang_tagbrowse', __('Browse tags','galleries'));
 
 // ültimas Fotos
@@ -65,7 +65,7 @@ while ($row = $db->fetchArray($result)){
         'id'=>$set->id(),
         'title'=>$set->title(),
         'images'=>$images,
-		'link'=>$users[$set->owner()]->userUrl().'set/'.$set->id(),
+		'link'=>$users[$set->owner()]->userUrl().($mc['urlmode'] ? 'set/'.$set->id() : '&amp;set='.$set->id()),
 		'date'=>formatTimestamp($set->date(), 'c'), 
         'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
 		'picsnum'=>count($pics)));
@@ -79,7 +79,7 @@ while ($row = $db->fetchArray($result)){
 	$tpl->append('other_sets', array(
         'id'=>$set->id(),
         'title'=>$set->title(),
-        'link'=>$users[$set->owner()]->userUrl().'set/'.$set->id(),
+        'link'=>$users[$set->owner()]->userUrl().($mc['urlmode'] ? 'set/'.$set->id() : '&amp;set='.$set->id()),
 		'date'=>formatTimestamp($set->date(), 'c'), 
         'by'=>'<a href="'.$users[$set->owner()]->userUrl().'">'.$users[$set->owner()]->uname().'</a>',
 		'picsnum'=>count($pics)));

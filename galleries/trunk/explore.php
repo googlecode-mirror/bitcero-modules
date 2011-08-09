@@ -98,13 +98,14 @@ function sets(){
     	if ($tpages > 1) {
 		if($mc['urlmode']){
 			$urlnav = 'explore/sets/';
+            $urlnav.= isset($usr) ? 'usr/'.$usr.'/' : '';
 		}else{
-			$urlnav = 'explore.php?by=explore/sets/';
-		}
-		$urlnav.= isset($usr) ? 'usr/'.$usr.'/' : '';		    
+			$urlnav = '?explore=sets';
+            $urlnav.= isset($usr) ? '&amp;usr='.$usr : '';
+		}		    
 
     	    $nav = new RMPageNav($num, $limit, $pactual, 5);
-            $nav->target_url(GS_URL.'/'.$urlnav.'pag/{PAGE_NUM}/');
+            $nav->target_url(GSFunctions::get_url().$urlnav.($mc['urlmode'] ? 'pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
     	    $tpl->assign('setsNavPage', $nav->render(false));
     	}
 
@@ -152,7 +153,7 @@ function sets(){
 	
 		$tpl->append('sets',array('id'=>$set->id(),'title'=>$set->title(),'date'=>$tf->format($set->date()),
 		'owner'=>$set->owner(),'uname'=>$set->uname(),'pics'=>$set->pics(),'img'=>$urlimg,
-		'link'=>$users[$set->owner()]->userURL().'set/'.$set->id().'/',
+		'link'=>$users[$set->owner()]->userURL().($mc['urlmode'] ? 'set/'.$set->id().'/' : '&amp;set='.$set->id()),
 		'linkuser'=>$users[$set->owner()]->userURL()));
 
 	}
@@ -171,12 +172,12 @@ function sets(){
             'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $owner->userVar('email'), 0, $owner->userVar('user_avatar')))
         );
         $tpl->assign('lang_setsof',sprintf(__('Sets of %s','galleries'),$owner->uname()));
-        $tpl->assign('pics_link', GSFunctions::get_url().($mc['urlmode'] ? "usr/".$owner->uname().'/' : "usr=".$owner->uname()));
+        $tpl->assign('pics_link', GSFunctions::get_url().($mc['urlmode'] ? "usr/".$owner->uname().'/' : "?usr=".$owner->uname()));
         $tpl->assign('lang_bmark', __('Favorites','galleries'));
         $tpl->assign('lang_pics', __('Pictures','galleries'));
         $tpl->assign('sets_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/sets/usr/".$owner->uname().'/' : "?explore=sets&amp;usr=".$owner->uname()));
         $tpl->assign('tags_link', GSFunctions::get_url().($mc['urlmode'] ? "explore/tags/usr/".$owner->uname().'/' : "?explore=tags&amp;usr=".$owner->uname()));
-        $tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/booksmarks/" : "?cpanel=bookmarks"));
+        $tpl->assign('bmark_link', GSFunctions::get_url().($mc['urlmode'] ? "cp/booksmarks/" : "?cp=bookmarks"));
 	}
 	
 

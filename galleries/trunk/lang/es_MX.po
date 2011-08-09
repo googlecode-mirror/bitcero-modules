@@ -1,0 +1,1957 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MyGalleries 3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-09 13:03-0600\n"
+"PO-Revision-Date: 2011-08-09 13:08-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: MEXICO\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\x25\\modules\\galleries\n"
+
+#: E:\webserver\htdocs\x25\modules\galleries/cpanel.php:19
+msgid "You don't have authorization to view this section"
+msgstr "No tienes autorización para ver esta sección"
+
+#: E:\webserver\htdocs\x25\modules\galleries/cpanel.php:28
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:176
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:323
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:43
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:485
+msgid "Favorites"
+msgstr "Favoritos"
+
+#: E:\webserver\htdocs\x25\modules\galleries/cpanel.php:36
+msgid "Friends"
+msgstr "Amigos"
+
+#: E:\webserver\htdocs\x25\modules\galleries/cpanel.php:37
+msgid "My Albums"
+msgstr "Mis Álbumes"
+
+#: E:\webserver\htdocs\x25\modules\galleries/cpanel.php:38
+msgid "My Images"
+msgstr "Mis Imágenes"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:34
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:267
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:373
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:130
+msgid "Specified user does not exists!"
+msgstr "¡No existe el usuario especificado!"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:114
+#, php-format
+msgid "Albums %u to %u from %u"
+msgstr "Álbumes %u a %u de %u"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:127
+msgid "%M% %d%, %Y%"
+msgstr "%d% de %M%, %Y%"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:161
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:21
+msgid "Created on:"
+msgstr "Creado en:"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:162
+msgid "Owned by:"
+msgstr "Propietario:"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:164
+msgid "Images:"
+msgstr "Imágenes:"
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:166
+msgid "Existing Albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:174
+#, php-format
+msgid "Sets of %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:177
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:322
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:44
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:184
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:486
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:548
+msgid "Pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:231
+#, php-format
+msgid "Showing <strong>%u</strong> to <strong>%u</strong> from <strong>%u</strong> photos."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:243
+msgid "Existing photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:320
+msgid "Hits:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:321
+#, php-format
+msgid "Tags of %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:321
+msgid "Existing tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:355
+msgid "Specified tag does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:417
+#, php-format
+msgid "Showing photos %u to %u from %u."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:433
+#, php-format
+msgid "%s: tagged as %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/explore.php:433
+#, php-format
+msgid "Images tagged as \"%s\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/header.php:25
+msgid "Quick View"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:19
+msgid "Recent Photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:20
+msgid "Recent Albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:22
+msgid "Created by:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:23
+msgid "Photos:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:24
+msgid "Other Albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:25
+msgid "View Photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:26
+msgid "More albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:28
+msgid "Browse albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:30
+msgid "Browse photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:32
+msgid "Browse tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/home.php:60
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:18
+msgid "The postcards service is currently disabled!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:29
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:96
+msgid "You must be a registered user in order to send postcards!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:35
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:102
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:136
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:171
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:391
+msgid "Specified image does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:46
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:50
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:121
+msgid "Send Postcard"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:51
+msgid "Your name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:52
+msgid "Your email"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:53
+msgid "Friend name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:54
+msgid "Friend email"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:55
+msgid "Postcard title"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:56
+msgid "Postcard text"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:58
+msgid "Please enter the captcha below"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:63
+msgid "Preview Postcard"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:115
+#, php-format
+msgid "%s Dice:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:116
+#, php-format
+msgid "Preview \"%s\" postcard"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:117
+msgid "View picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:119
+msgid "View user pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:122
+msgid "Edit Postcard"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:160
+msgid "Please check the security words and write it correctly!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:181
+msgid "Unable to send e-card. Please try again!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/postcard.php:204
+msgid "E-card sent successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/search.php:85
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:103
+#, php-format
+msgid "Showing pictures %u to %u from %u"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/search.php:111
+#, php-format
+msgid "Found %s pictures for \"%s\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:15
+msgid "Sorry, you have not permission to upload pictures."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:23
+msgid "Sorry, you have exceed your quota limit!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:40
+msgid "Upload your Pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:42
+msgid "Step 1:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:43
+msgid "Step 2:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:44
+msgid "Step 3:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:45
+msgid "Step 4:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:46
+msgid "Select Files"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:47
+msgid "Set Privacy"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:48
+msgid "Private (<em>Only you will seee these pictures</em>)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:49
+msgid "For Friends (<em>Only you and your friends will see these pictures</em>)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:50
+msgid "Public (<em>Pictures will visible for all</em>)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:51
+msgid "Upload Files"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:52
+msgid "Click to Upload"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:53
+msgid "Specify tags to use"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:54
+msgid "Separate each tag with a comma (,)."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:55
+#, php-format
+msgid "The maximum file size allowed is <strong>%s</strong>."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:60
+#, php-format
+msgid "You have used <strong>%s</strong> of <strong>%s</strong> available. You left <strong>%s</strong>"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:89
+msgid "Sorry, an error ocurred while trying to register your permissions on database. Try again later!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:207
+#, php-format
+msgid "Picture %s could not be uploaded!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:221
+msgid "Errors ocurred while trying to upload images!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/submit.php:225
+msgid "Pictures stored successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:23
+msgid "Specified user does not exists"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:34
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:48
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:266
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:267
+#, php-format
+msgid "Pictures of %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:145
+msgid "You can not view this image!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:153
+msgid "You are not authorized to view this image!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:166
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:441
+msgid "Specified album does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:181
+msgid "Also belongs to:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:182
+msgid "Send postcard"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:183
+msgid "+ Bookmark"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:185
+msgid "+ to Ablum"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:186
+msgid "This is the last picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:187
+msgid "This is the first picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:193
+#, php-format
+msgid ""
+"Dow you really want to delete this picture?\\n"
+"(%s)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:196
+msgid "Edit"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:197
+msgid "Delete"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:348
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:349
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:476
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:490
+#, php-format
+msgid "Pictures in %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:360
+#, php-format
+msgid "Galleries of %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:435
+msgid "Specified users does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:448
+msgid "You can not view this private album!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:453
+#, php-format
+msgid "You must be a friend of %s in order to see this album!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:491
+#, php-format
+msgid "Pictures: %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:492
+#, php-format
+msgid "Hits: %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:561
+#, php-format
+msgid "Showing pictures %u to %u out of %u."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:592
+msgid "%m%/%d%/%Y% %h%:%i%"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/user.php:611
+#, php-format
+msgid "Updated on %s"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:14
+msgid "Módulo para el manejo de galerías de imágenes en XOOPS y Common Utilities"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+msgid "Crop thumbnail"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+msgid "Crop image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+msgid "Crop both"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+msgid "Only resize"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:549
+msgid "Show pictures based on configured parameters"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:557
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:222
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:18
+msgid "Albums"
+msgstr "Álbumes"
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:565
+msgid "Index"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:566
+msgid "User pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:567
+msgid "Picture details"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:568
+msgid "User album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:569
+msgid "Control panel"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:570
+msgid "Explore albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:571
+msgid "Explore pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:572
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:230
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:27
+msgid "Tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:573
+msgid "Explore tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:574
+msgid "Upload pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:575
+msgid "Search"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:129
+msgid "Images Management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:130
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:178
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:45
+msgid "Images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:134
+msgid "Do you really wish to delete selected images?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:164
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:384
+msgid "Image ID not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:178
+msgid "Edit image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:178
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:181
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:247
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:51
+msgid "Add image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:181
+msgid "Editing image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:185
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:190
+msgid "User"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:194
+msgid "Title"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:195
+msgid "Image file"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:200
+msgid "Current image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:204
+msgid "Description"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:206
+msgid "Privacy"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:207
+msgid "Private"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:208
+msgid "Visible for friends"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:209
+msgid "Visible for all"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:231
+msgid "Separate each tag with a comma (,)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:247
+msgid "Save changes"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:248
+msgid "Cancel"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:304
+msgid "All Images (*.jpg, *.png, *.gif)"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:306
+msgid "Browse Images..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:315
+msgid "Uploaded successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:350
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:351
+msgid "Create batch images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:376
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:725
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:99
+msgid "Session token expired!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:449
+msgid "New user owner could not be saved!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:551
+msgid "Errors ocurred while trying to save image."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:575
+msgid "Database updated successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:613
+msgid "User owner could not be created!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:689
+msgid "File could not be inserted to database!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:720
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:787
+msgid "No images has been selected!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:734
+#, php-format
+msgid "Image ID \"%s\" not valid"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:741
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:802
+#, php-format
+msgid "Image \"%s\" does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:747
+#, php-format
+msgid "Image \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:757
+msgid "Errors ocurred while trying to delete images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:760
+msgid "Images deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:796
+#, php-format
+msgid "Image ID \"%s\" is not valid"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:808
+msgid "Image could not be updated!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:813
+msgid "Errors ocurred while trying to update images!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:816
+msgid "Images updated successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/index.php:130
+msgid "Empty album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:13
+msgid "Dashboard"
+msgstr "Tablero"
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:23
+msgid "List albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:24
+msgid "Add album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:32
+msgid "List tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:33
+msgid "Add tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:36
+msgid "Users"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:41
+msgid "List users"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:42
+msgid "New user"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:50
+msgid "List images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:52
+msgid "Add multiple images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:55
+msgid "Postcards"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:47
+msgid "%M% %d%, %Y% - %h%:%i%:%s%"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:68
+msgid "E-cards"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:72
+msgid "Do you really wish to delete selected e-cards?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:94
+msgid "You must select one e-card at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:107
+#, php-format
+msgid "The ID \"%s\" is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:114
+#, php-format
+msgid "E-Card with id \"%s\" does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:119
+#, php-format
+msgid "E-Card \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:124
+msgid "Errors ocurred while trying to delete e-cards"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/postcards.php:127
+msgid "E-Cards deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:92
+msgid "Albums managemenet"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:97
+msgid "Do you really wish to delete selected albums?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:98
+msgid ""
+"Do you really wish to delete all images formats for this album?\\n"
+"Only deletes formats for albums, search and others, except normal thumbnails."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:132
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:209
+msgid "Please provide a valid ID!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:146
+msgid "Albums management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:146
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:150
+msgid "Edit album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:146
+msgid "New album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:150
+msgid "New Album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:151
+msgid "Album title"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:154
+msgid "Privacy level"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:156
+msgid "Public for friends"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:157
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:92
+msgid "Public"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:161
+msgid "Owner"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:172
+msgid "Save Changes!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:172
+msgid "Create Album!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:223
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:233
+msgid "You have another album with same name. Please specify a different name."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:251
+msgid "Database could not be updated!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:285
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:354
+msgid "Select one album at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:305
+#, php-format
+msgid "ID \"%u\" is not valid"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:312
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:374
+#, php-format
+msgid "Album \"%u\" does not exists"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:317
+#, php-format
+msgid "Album \"%u\" could not be deleted"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:326
+msgid "Errors ocurred while trying to delete albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:368
+#, php-format
+msgid "\"%u\" is not a valid ID"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:380
+#, php-format
+msgid "Error ocurred while trying to update album \"%u\"!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:385
+msgid "Errors ocurred while trying to update albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:406
+msgid "Sorry, this is not a valid album!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:412
+msgid "Specified Album does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:432
+msgid "Sorry, we were unable to find the album owner!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:438
+msgid "There are not image formats for this album."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:455
+msgid "Image formats deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:83
+msgid "Tags managemenet"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:92
+msgid "Do you really wish to delete selected tags?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:118
+msgid "Specify some valid IDs"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:130
+msgid "Tags management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:131
+msgid "Edit Tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:131
+msgid "Add Tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:134
+msgid "Editing tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:142
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:229
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:322
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:261
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:313
+#, php-format
+msgid "ID \"%s\" is not valid"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:149
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:329
+#, php-format
+msgid "Tag \"%s\" does not exists"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:153
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:161
+msgid "Tag name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:171
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:139
+msgid "Save Changes"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:171
+msgid "Create tags"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:215
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:257
+#, php-format
+msgid "Tag \"%s\" does not have the correct length!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:223
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:266
+#, php-format
+msgid "There are another tag with name \"%s\" already registered!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:243
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:274
+#, php-format
+msgid "Errors while trying to save tag \"%s\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:283
+msgid "Errors ocurred while trying to save tags."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:286
+msgid "Tags saved successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:308
+msgid "Select at least one tag to delete"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:334
+#, php-format
+msgid "Tag \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:339
+msgid "Errors ocurred while trying to delete tags."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:342
+msgid "Tags deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:73
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:74
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:120
+msgid "Users management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:77
+msgid "Do you really wish to delete selected users?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:105
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:172
+msgid "User id is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:120
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:121
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:124
+msgid "Edit User"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:120
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:121
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:124
+msgid "New User"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:126
+msgid "Xoops User"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:127
+msgid "Max Quota"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:128
+msgid "This value determines the total disc quota to be used for user and must be specified in megabytes."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:131
+msgid "Blocked"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:139
+msgid "Create User"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:187
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:197
+msgid "This is user has been registered already!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:212
+msgid "Errors ocurred while trying to save this user."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:225
+msgid "User saved successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:247
+msgid "You must provide a user id to delete"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:268
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:320
+#, php-format
+msgid "User with id \"%s\" does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:273
+#, php-format
+msgid "User with id \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:279
+msgid "Errors ocurred while trying to delete users."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:282
+msgid "Users deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:304
+msgid "Select at least one user to update"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:327
+#, php-format
+msgid "User with id \"%s\" could not be updated!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:332
+msgid "Errors ocurred while trying to update users"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/admin/users.php:335
+msgid "Users updated successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:56
+msgid "Number of pictures:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:57
+msgid "Type of pictures:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:57
+msgid "Recent"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:58
+msgid "Random"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:59
+msgid "Top viewed"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:60
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:111
+msgid "Item width:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:61
+msgid "Show title:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:62
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:106
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:109
+msgid "Yes"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_photos.php:63
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:107
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:110
+msgid "No"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:102
+msgid "Albums block options"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:103
+msgid "Number of albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:105
+msgid "Show picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/blocks/gs_sets.php:108
+msgid "Show information"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/galleriescontroller.php:45
+#: E:\webserver\htdocs\x25\modules\galleries/class/galleriescontroller.php:62
+msgid "Unknow element"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/gsfunctions.class.php:56
+msgid "Home"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/gsfunctions.class.php:59
+msgid "Photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/gsfunctions.class.php:67
+msgid "My Photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/gsfunctions.class.php:73
+msgid "Upload Photos"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/class/gsfunctions.class.php:296
+#, php-format
+msgid "Ver <a href=\"%s\">más fotos</a>."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:86
+msgid "Existing Bookmarks"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:87
+msgid "ID"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:89
+msgid "Created"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:90
+msgid "by user"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:91
+msgid "Picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:93
+msgid "Options"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:96
+msgid "Do you really wish to deleted selected favorite?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:97
+msgid "Do you really wish to deleted selected favorites?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:127
+msgid "Image id is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:140
+msgid "You don't have authorization to view this picture!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:149
+msgid "You must be a friend of this user in order to view this picture!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:160
+msgid "This picture already is in your favorites"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:169
+msgid "Picture could not be added to your favorites!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:172
+msgid "Picture added to your favorites successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:196
+msgid "You must select one picture at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:211
+#, php-format
+msgid "ID %u is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:218
+#, php-format
+msgid "Image with id %u is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:226
+#, php-format
+msgid "Favorite picture \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:231
+msgid "Errors ocurred while trying to delete favorites!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_bookmarks.php:234
+msgid "Favorites deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:59
+#, php-format
+msgid "Sowing friends %u to %u from %u."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:79
+msgid "User name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:80
+msgid "New Friend"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:82
+msgid "Do you really wish to delete specified friend?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:83
+msgid "Do you really wish to delete selected friends?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:115
+#, php-format
+msgid "User \"%s\" could not be found!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:125
+#, php-format
+msgid "%s is your friend already!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:133
+#, php-format
+msgid "User %s could not be added as a friend!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:136
+#, php-format
+msgid "User %s has been added to your friends list!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:156
+msgid "Specified id for friend is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:173
+msgid "Specified user is not yoru friend!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:181
+msgid "Friend could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_friends.php:184
+msgid "Friend deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:27
+msgid "Specified album is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:70
+#, php-format
+msgid "Showing images %u to %u of %u"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:82
+#, php-format
+msgid "Existing images for user \"%s\" in album \"%s\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:82
+#, php-format
+msgid "Existing images for user \"%s\""
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:85
+msgid "Image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:91
+msgid "Add to Album..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:92
+msgid "Do you really wish to delete specified picture?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:93
+msgid "Do you really wish to deleted selected pictures?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:95
+msgid "Change name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:96
+msgid "Change description"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:97
+msgid "Add Description"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:133
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:236
+msgid "Sepecified images is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:140
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:243
+msgid "Sepecified image does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:146
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:249
+msgid "You are not authorized!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:158
+msgid "Edit Image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:158
+msgid "New Image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:161
+msgid "Image title"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:167
+msgid "Current picture"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:174
+msgid "Access level"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:177
+msgid "Public for all"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:197
+msgid "Separe each tag with commas."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:207
+msgid "Create Image"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:394
+msgid "Errores ocurred while trying to update database!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:444
+msgid "You must specify one picture at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:457
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:630
+#, php-format
+msgid "Picture with id %u is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:464
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:637
+#, php-format
+msgid "Picture with id %u does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:470
+#, php-format
+msgid "Picture \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:481
+msgid "Errors ocurred while trying to delete pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:484
+msgid "Pictures deleted succesfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:504
+#, php-format
+msgid "Picture %s is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:511
+#, php-format
+msgid "Picture %s does not exists"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:530
+#, php-format
+msgid "Picture %s could not be saved!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:538
+msgid "Errors ocurred while trying to save changes."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:541
+msgid "Changes applied successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:574
+msgid "You must select one image at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:583
+msgid "Add images to an album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:587
+msgid "Select the albums where you want to assign the selected images."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:642
+msgid "You don't have authorization!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:668
+msgid "Errors ocurred while trying to update picture!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_images.php:671
+msgid "Pictures updated successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:32
+msgid "Album ID is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:86
+msgid "Name"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:87
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:33
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:46
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:17
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:28
+msgid "Date"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:88
+msgid "Privacy:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:92
+msgid "Do you really wish to delete specified album?"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:94
+msgid "Add Album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:95
+msgid "Edit Album"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:136
+msgid "Provided ID is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:158
+msgid "Album could not be saved. Please try again."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:161
+msgid "Album saved successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:183
+msgid "You must selecte one album at least!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:192
+#, php-format
+msgid "Album id %u is not valid!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:199
+#, php-format
+msgid "Album with id %u does not exists!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:204
+#, php-format
+msgid "Album \"%s\" could not be deleted!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/cp_sets.php:212
+msgid "Abums deleted successfully!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:43
+msgid "You are not allowed to do this action"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:180
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:191
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:195
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:199
+msgid "Unauthorized!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:184
+msgid "Invalid image!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:204
+msgid "Image not found!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/include/upload.php:264
+#, php-format
+msgid "%s done!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:38
+msgid "Base path for URLs"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:40
+msgid "Show navigation bar as images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:41
+msgid "When this option is enabled MyGalleries will show navigation bar in Picture Details using next and previous images."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:42
+msgid "Number of images in navigation"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:43
+msgid "Specify the number of images to show in navigation bar. This value is used for previous and next images."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:80
+msgid "Images number for recent albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:81
+msgid "Specify the number of images that will be shown for each recent album in home page."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:84
+msgid "Enable quick view"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:85
+msgid "When quick view is enabled, MyGalleries will show an option on every image that can show the big image using lightbox plugin for Common Utilities."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:1
+msgid "Albums Management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:7
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:77
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:7
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:82
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:7
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:60
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:7
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:61
+msgid "Bulk actions..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:8
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:78
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:9
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:84
+msgid "Set as public"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:9
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:79
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:10
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:85
+msgid "Set as private"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:13
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:83
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:14
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:26
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:89
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:11
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:15
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:65
+msgid "Apply"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:17
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:21
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:13
+msgid "Search:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:21
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:17
+msgid "Show all"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:32
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:45
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:37
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:49
+msgid "Visibility"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:52
+msgid "There are not albums yet!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:63
+msgid "Delete Formats"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:67
+msgid "Publico"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:5
+msgid "Quick Overview"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:8
+msgid "Albums:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:9
+msgid "Pictures:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:10
+msgid "Users:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:11
+msgid "Tags:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:12
+msgid "E-Cards:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:13
+msgid "Space used:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:14
+msgid "Files:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:15
+msgid "First picture:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:18
+msgid "* Could be more files than pictures if you have activated diferent formats in module settings."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:24
+msgid "Last uploaded pictures"
+msgstr "Últimas fotos cargadas"
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:26
+msgid "Loading pictures..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:29
+msgid "Manage Pictures"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:34
+msgid "Last created albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:36
+msgid "Loading albums..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:39
+msgid "Manage Albums"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:47
+msgid "MyGalleries News"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:49
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:58
+msgid "Loading news..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:55
+msgid "About MyGalleries"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:1
+msgid "Add batch images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:6
+msgid "User:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:10
+msgid "Assign to albums:"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:20
+msgid "Show Controls"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:27
+msgid "Upload"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:28
+msgid "Clear All"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:38
+msgid "Resizing images"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:42
+msgid "Please, do not close the window until resizing process has finished!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:44
+msgid "Done! Upload more..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_formimages.php:45
+msgid "Done! Show images..."
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:8
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:83
+msgid "Generate Thumbnails"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:11
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:86
+msgid "Set as public for friends"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:15
+msgid "Filter Options"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:23
+msgid "Entre"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:24
+msgid "y"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:38
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:50
+msgid "Creation"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:57
+msgid "There are not images created yet!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:68
+msgid "Re do Thumbnail"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:1
+msgid "Postcards Management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:18
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:29
+msgid "Sender"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:19
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:30
+msgid "View"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_postcards.php:37
+msgid "There are not postcards created yet!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:1
+msgid "Tags Management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:24
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:33
+msgid "Tag"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:41
+msgid "There are any tags yet!"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:1
+msgid "Users Management"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:8
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:76
+msgid "Block user"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:25
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:39
+msgid "Quota"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:26
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:40
+msgid "Used quota"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:29
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:43
+msgid "Albumes"
+msgstr ""
+
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:50
+msgid "There are not users registered yet!"
+msgstr ""
+

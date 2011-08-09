@@ -26,7 +26,7 @@
             <div><img src="../images/loader.gif" alt="" class="loader" /><br /><?php _e('Loading pictures...','galleries'); ?></div>
         </div>
         <div class="odd tright">
-            <a href="images.php"><?php __('Manage Pictures','galleries'); ?></a>
+            <a href="images.php"><?php _e('Manage Pictures','galleries'); ?></a>
         </div>
     </div>
     <br />
@@ -36,13 +36,10 @@
             <div><img src="../images/loader.gif" alt="" class="loader" /><br /><?php _e('Loading albums...','galleries'); ?></div>
         </div>
         <div class="odd tright">
-            <a href="sets.php">Manage Albums</a>
+            <a href="sets.php"><?php _e('Manage Albums','galleries'); ?></a>
         </div>
     </div>
     <br />
-    <div class="outer">
-        <div class="th"><?php _e('Top Users','galleries'); ?></div>
-    </div>
 </div>
 
 <div class="gs_right">

@@ -73,7 +73,7 @@ function gs_sets_show($options){
         $rtn['id'] = $set->id();
         $rtn['title'] = $set->title();
         $rtn['owner'] = $set->owner();
-        $rtn['link'] = $users[$set->owner()]->userURL().($mc['urlmode'] ? 'set/'.$set->id().'/' : '?set='.$set->id());
+        $rtn['link'] = $users[$set->owner()]->userURL().($mc['urlmode'] ? 'set/'.$set->id().'/' : '&amp;set='.$set->id());
         if ($options[2]){
             $rtn['date'] = $tf->format($set->date());
             $rtn['pics'] = $set->pics();
