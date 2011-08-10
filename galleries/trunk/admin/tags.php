@@ -80,8 +80,8 @@ function showTags(){
 	}
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Tags managemenet','galleries'));
-	RMTemplate::get()->assign('xoops_pagetitle',__('Tags','galleries'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Tags Management','galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle',__('Tags Management','galleries'));
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
 	xoops_cp_header($cHead);
 	
@@ -127,7 +127,7 @@ function formTags($edit = 0){
 
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./tags.php'>".__('Tags management','galleries')."</a> &raquo; ".($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./tags.php'>".__('Tags Management','galleries')."</a> &raquo; ".($edit ? _AS_GS_EDITTAG : _AS_GS_NEWTAG));
 	RMTemplate::get()->assign('xoops_pagetitle',$edit ? __('Edit Tags','galleries') : __('Add Tags','galleries'));
 	xoops_cp_header();
 

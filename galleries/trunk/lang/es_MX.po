@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyGalleries 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-09 13:03-0600\n"
-"PO-Revision-Date: 2011-08-09 13:08-0600\n"
+"POT-Creation-Date: 2011-08-09 22:23-0600\n"
+"PO-Revision-Date: 2011-08-09 22:25-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -71,47 +71,47 @@ msgstr "Imágenes:"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:166
 msgid "Existing Albums"
-msgstr ""
+msgstr "Álbumes Existentes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:174
 #, php-format
 msgid "Sets of %s"
-msgstr ""
+msgstr "Álbumes de %s"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:177
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:322
 #: E:\webserver\htdocs\x25\modules\galleries/user.php:44
 #: E:\webserver\htdocs\x25\modules\galleries/user.php:184
 #: E:\webserver\htdocs\x25\modules\galleries/user.php:486
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:548
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:550
 msgid "Pictures"
-msgstr ""
+msgstr "Imágenes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:231
 #, php-format
 msgid "Showing <strong>%u</strong> to <strong>%u</strong> from <strong>%u</strong> photos."
-msgstr ""
+msgstr "Mostrando <strong>%u</strong> a <strong>%u</strong> de <strong>%u</strong> imágenes."
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:243
 msgid "Existing photos"
-msgstr ""
+msgstr "Imágenes Existentes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:320
 msgid "Hits:"
-msgstr ""
+msgstr "Hits:"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:321
 #, php-format
 msgid "Tags of %s"
-msgstr ""
+msgstr "Etiquetas de %s"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:321
 msgid "Existing tags"
-msgstr ""
+msgstr "Etiquetas existentes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:355
 msgid "Specified tag does not exists!"
-msgstr ""
+msgstr "¡No existe la etiqueta especificada!"
 
 #: E:\webserver\htdocs\x25\modules\galleries/explore.php:417
 #, php-format
@@ -482,81 +482,81 @@ msgstr ""
 msgid "Updated on %s"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:14
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:16
 msgid "Módulo para el manejo de galerías de imágenes en XOOPS y Common Utilities"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:226
 msgid "Crop thumbnail"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:226
 msgid "Crop image"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:226
 msgid "Crop both"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:224
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:226
 msgid "Only resize"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:549
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:551
 msgid "Show pictures based on configured parameters"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:557
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:559
 #: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:222
 #: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:18
 msgid "Albums"
 msgstr "Álbumes"
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:565
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:567
 msgid "Index"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:566
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:568
 msgid "User pictures"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:567
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:569
 msgid "Picture details"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:568
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:570
 msgid "User album"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:569
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:571
 msgid "Control panel"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:570
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:572
 msgid "Explore albums"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:571
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:573
 msgid "Explore pictures"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:572
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:574
 #: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:230
 #: E:\webserver\htdocs\x25\modules\galleries/admin/menu.php:27
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:573
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:575
 msgid "Explore tags"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:574
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:576
 msgid "Upload pictures"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:575
+#: E:\webserver\htdocs\x25\modules\galleries/xoops_version.php:577
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/images.php:129
 msgid "Images Management"
@@ -818,8 +818,8 @@ msgid "E-Cards deleted successfully!"
 msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:92
-msgid "Albums managemenet"
-msgstr ""
+msgid "Albums Management"
+msgstr "Administración de Álbumes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/sets.php:97
 msgid "Do you really wish to delete selected albums?"
@@ -951,8 +951,10 @@ msgid "Image formats deleted!"
 msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:83
-msgid "Tags managemenet"
-msgstr ""
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:84
+#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:130
+msgid "Tags Management"
+msgstr "Administración de Etiquetas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:92
 msgid "Do you really wish to delete selected tags?"
@@ -960,10 +962,6 @@ msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:118
 msgid "Specify some valid IDs"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:130
-msgid "Tags management"
 msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/admin/tags.php:131
@@ -1638,44 +1636,40 @@ msgstr ""
 msgid "%s done!"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:38
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:40
 msgid "Base path for URLs"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:40
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:42
 msgid "Show navigation bar as images"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:41
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:43
 msgid "When this option is enabled MyGalleries will show navigation bar in Picture Details using next and previous images."
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:42
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:44
 msgid "Number of images in navigation"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:43
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:45
 msgid "Specify the number of images to show in navigation bar. This value is used for previous and next images."
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:80
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:82
 msgid "Images number for recent albums"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:81
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:83
 msgid "Specify the number of images that will be shown for each recent album in home page."
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:84
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:86
 msgid "Enable quick view"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:85
+#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:87
 msgid "When quick view is enabled, MyGalleries will show an option on every image that can show the big image using lightbox plugin for Common Utilities."
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:1
-msgid "Albums Management"
 msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:7
@@ -1687,7 +1681,7 @@ msgstr ""
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:7
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:61
 msgid "Bulk actions..."
-msgstr ""
+msgstr "Acciones en bloque..."
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:8
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:78
@@ -1712,18 +1706,18 @@ msgstr ""
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:15
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:65
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:17
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_images.php:21
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:13
 msgid "Search:"
-msgstr ""
+msgstr "Buscar:"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:21
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:17
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todo"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:32
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:45
@@ -1762,7 +1756,7 @@ msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:11
 msgid "Tags:"
-msgstr ""
+msgstr "Etiquetas:"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_dashboard.php:12
 msgid "E-Cards:"
@@ -1914,14 +1908,10 @@ msgstr ""
 msgid "There are not postcards created yet!"
 msgstr ""
 
-#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:1
-msgid "Tags Management"
-msgstr ""
-
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:24
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:33
 msgid "Tag"
-msgstr ""
+msgstr "Etiqueta"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_tags.php:41
 msgid "There are any tags yet!"

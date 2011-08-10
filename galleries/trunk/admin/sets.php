@@ -89,8 +89,8 @@ function showAlbums(){
 	}
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Albums managemenet','galleries'));
-	RMTemplate::get()->assign('xoops_pagetitle','Albums management');
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Albums Management','galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle','Albums Management');
 	
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
 	RMTemplate::get()->add_head("<script type='text/javascript'>\n

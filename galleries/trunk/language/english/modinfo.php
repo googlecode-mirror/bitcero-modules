@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('galleries');
+
 // Menu de Administración
 define('_MI_GS_MHOME','Inicio');
 define('_MI_GS_MALBUMS','Albumes');

@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_mod_locale('galleries');
+
 $modversion['name'] = "MyGalleries 3.0";
 $modversion['version'] = 3.018;
 $modversion['rmversion'] = array('number'=>3,'revision'=>018,'status'=>0,'name'=>'MyGalleries');
