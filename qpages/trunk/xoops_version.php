@@ -9,9 +9,9 @@
 // --------------------------------------------------------------
 
 $modversion['name'] = "Quick Pages";
-$modversion['rmnative'] = 1.359;
+$modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>1,'revision'=>359,'status'=>0,'name'=>'Quick Pages');
-$modversion['version'] = 1.357;
+$modversion['version'] = 1.359;
 $modversion['description'] = _MI_QP_DESC;
 $modversion['author'] = "BitC3R0";
 $modversion['authormail'] = "i.bitcero@gmail.com";
