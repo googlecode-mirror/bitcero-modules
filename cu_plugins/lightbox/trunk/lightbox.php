@@ -75,6 +75,13 @@ class RMLightbox
 		$params .= $config['width']!='' ? ",maxWidth:$config[width]" : '';
 		$params .= $config['height']!='' ? ",maxHeight:$config[height]" : '';
 		$params .= ",scalePhotos:$config[scale]";
+        $params .= ",loop:".($config['loop'] ? 'true':'false');
+        if($config['slideshow']){
+            $params .= ",slideshow:true";
+            $params .= ",slideshowSpeed:".$config['slspeed'];
+            $params .= ",slideshowStart:'".__('Start Slideshow','lightbox')."'";
+            $params .= ",slideshowStop:'".__('Stop Slideshow','lightbox')."'";
+        }
 		$params .= $config['configs']!='' ? ",$config[configs]" : '';
 		$params .= "}";
 		

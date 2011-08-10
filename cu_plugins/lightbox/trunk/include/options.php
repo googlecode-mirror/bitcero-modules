@@ -76,6 +76,33 @@ $options['scale'] = array(
 );
 
 // Configuraciones adicionales
+$options['loop'] = array(
+        'caption'   =>  __('Loop images:','lightbox'),
+        'desc'      =>  __('If "Yes", will disable the ability to loop back to the beginning of the group when on the last element.','lightbox'),
+        'fieldtype'      =>  'yesno',
+        'valuetype' =>  'int',
+        'value'   =>  '0'
+);
+
+// Configuraciones adicionales
+$options['slideshow'] = array(
+        'caption'   =>  __('Enable slideshow:','lightbox'),
+        'desc'      =>  __('If "Yes", adds an automatic slideshow to a content group / gallery.','lightbox'),
+        'fieldtype'      =>  'yesno',
+        'valuetype' =>  'int',
+        'value'   =>  '0'
+);
+
+// Configuraciones adicionales
+$options['slspeed'] = array(
+        'caption'   =>  __('Slideshow speed:','lightbox'),
+        'desc'      =>  __('Sets the speed of the slideshow, in milliseconds.','lightbox'),
+        'fieldtype'      =>  'text',
+        'valuetype' =>  'int',
+        'value'   =>  '2500'
+);
+
+// Configuraciones adicionales
 $options['configs'] = array(
         'caption'   =>  __('Addtitional settings','lightbox'),
         'desc'      =>  sprintf(__('Use this field to add extra configurations to lightbox. You can view all available options %s.','lightbox'), '<a href="http://colorpowered.com/colorbox/" target="_blank">'.__('here','lightbox')),
@@ -83,3 +110,4 @@ $options['configs'] = array(
         'valuetype' =>  'text',
         'value'   =>  ''
 );
+
