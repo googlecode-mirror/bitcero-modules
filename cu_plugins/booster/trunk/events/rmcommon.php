@@ -61,6 +61,20 @@ class BoosterPluginRmcommonPreload
 		if (!$plugin->get_config('enabled'))
 			return $plugins;
         
+        /**
+        * Re order the plugins array beacouse a lot of problems
+        * caould happen if booster not is at the end of array
+        */
+        $keys = array_keys($plugins);
+        if($keys[count($keys)-1]!='booster'){
+            unset($plugins['booster']);
+            $plugins['booster'] = 1;
+            file_put_contents(XOOPS_CACHE_PATH.'/plgs.cnf', json_encode(array_keys($plugins)));
+            // avoid to cache the file in order to prevent problems with other plugins
+            return $plugins;
+            
+        }
+        
 		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/class/functions.php';
 		$url = RMFunctions::current_url();
         
