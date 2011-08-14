@@ -72,8 +72,8 @@ class RMLightbox
 		$params = "{";
 		$params .= "transition:'$config[transition]'";
 		$params .= ",speed:$config[speed]";
-		$params .= $config['width']!='' ? ",maxWidth:$config[width]" : '';
-		$params .= $config['height']!='' ? ",maxHeight:$config[height]" : '';
+		$params .= $config['width']!='' ? ",maxWidth:'$config[width]'" : '';
+		$params .= $config['height']!='' ? ",maxHeight:'$config[height]'" : '';
 		$params .= ",scalePhotos:$config[scale]";
         $params .= ",loop:".($config['loop'] ? 'true':'false');
         if($config['slideshow']){
