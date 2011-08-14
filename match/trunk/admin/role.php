@@ -157,7 +157,7 @@ function m_show_roleplay(){
     $datetime->options('stepMinute: 15');
     
     MCHFunctions::toolbar();
-    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Coaches','match'));
+    xoops_cp_location('<a href="./">'.$xoopsModule->name()."</a> &raquo; ".__('Role Play','match'));
     RMTemplate::get()->assign('xoops_pagetitle', __('Coaches','match'));
     RMTemplate::get()->add_style('admin.css', 'match');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
