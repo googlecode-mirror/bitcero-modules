@@ -112,7 +112,7 @@ function previewPostcard(){
 			'url'=>$user->filesURL().'/'.$img->image(),'link'=>$user->userURL().'img/'.$img->id().'/'));
 	$tpl->assign('title', $title);
 	$tpl->assign('message', $msg);
-	$tpl->assign('lang_says', sprintf(__('%s Dice:','galleries'), $fname));
+	$tpl->assign('lang_says', sprintf(__('%s Says:','galleries'), $fname));
 	$tpl->assign('xoops_pagetitle', sprintf(__('Preview "%s" postcard','galleries'), $title).' &raquo; '.$mc['section_title']);
 	$tpl->assign('lang_see', __('View picture','galleries'));
 	$tpl->assign('user_link', $user->userURL().'browse/'.$img->id().'/');

@@ -182,7 +182,7 @@ function showImageDetails(){
 	$tpl->assign('lang_postcards', __('Send postcard','galleries'));
 	$tpl->assign('lang_bookmark', __('+ Bookmark','galleries'));
     $tpl->assign('lang_photos', __('Pictures','galleries'));
-	$tpl->assign('lang_toset', __('+ to Ablum','galleries'));
+	$tpl->assign('lang_toset', __('+ to Album','galleries'));
 	$tpl->assign('lang_lastpic', __('This is the last picture','galleries'));
 	$tpl->assign('lang_firstpic', __('This is the first picture','galleries'));
 	$tpl->assign('toset_link', GSFunctions::get_url().($mc['urlmode'] ? 'cp/toset/ids/'.$image->id().'/referer/'.base64_encode(RMFunctions::current_url()).'/' : '?cp=toset&amp;ids='.$image->id().'&amp;referer='.base64_encode(RMFunctions::current_url())));
