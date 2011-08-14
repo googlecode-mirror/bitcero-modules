@@ -46,7 +46,7 @@
 
 <?php if(defined('DF_LOCATION') && DF_LOCATION=='list'): ?>
 <div id='nav'>
- <form name="frm" method="POST" action="./figures.php">
+ <form name="frm" method="post" action="./figures.php">
  <table class="outer" cellspacing="1" width="100%">
     <tr class="even">
 	    <td><strong><?php _e('Search:','docs'); ?></strong>
