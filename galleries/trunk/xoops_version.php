@@ -11,7 +11,7 @@
 load_mod_locale('galleries');
 
 $modversion['name'] = "MyGalleries 3.0";
-$modversion['version'] = 3.018;
+$modversion['version'] = 3.0;
 $modversion['rmversion'] = array('number'=>3,'revision'=>018,'status'=>0,'name'=>'MyGalleries');
 $modversion['description'] = __('Module to publish and manage photo galleries in XOOPS using Common Utilities', 'galleries');
 $modversion['icon32'] = 'images/icon32.png';
@@ -135,7 +135,7 @@ $modversion['config'][] = array(
     'title' => '_MI_GS_URLMODE',
     'formtype' => 'yesno',
     'valuetype' => 'int',
-    'default' =>'1'
+    'default' =>'0'
 );
 
 //Url Amigables
