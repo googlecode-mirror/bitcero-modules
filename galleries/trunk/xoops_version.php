@@ -104,19 +104,6 @@ $modversion['tables'][6] = 'gs_users';
 $modversion['tables'][7] = 'gs_favourites';
 $modversion['tables'][8] = 'gs_friends';
 
-
-$modversion['category'][0]['name'] = '_MI_GS_GENERALCNF';
-$modversion['category'][0]['desc'] = '';
-$modversion['category'][0]['id'] = 'general';
-$modversion['category'][0]['order'] = 0;
-$modversion['category'][0]['icon'] = '';
-
-$modversion['category'][1]['name'] = '_MI_GS_FORMATCNF';
-$modversion['category'][1]['desc'] = '';
-$modversion['category'][1]['id'] = 'format';
-$modversion['category'][1]['order'] = 0;
-$modversion['category'][1]['icon'] = '';
-
 // Titulo de la Sección
 $modversion['config'][] = array(
     'name' => 'section_title',

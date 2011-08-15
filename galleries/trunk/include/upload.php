@@ -7,6 +7,7 @@
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
+
 define('RMCLOCATION','images');
 include '../../../mainfile.php';
 

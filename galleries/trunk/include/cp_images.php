@@ -672,5 +672,3 @@ function saveSets(){
 		die();
 	}
 }
-
-?>
