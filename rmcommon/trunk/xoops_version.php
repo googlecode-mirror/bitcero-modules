@@ -61,9 +61,22 @@ $modversion['templates'][2]['description'] = 'Shows the comments form';
 $modversion['config'][1]['name'] = 'lang';
 $modversion['config'][1]['title'] = '_MI_RMC_LANG';
 $modversion['config'][1]['description'] = '';
-$modversion['config'][1]['formtype'] = 'textbox';
+$modversion['config'][1]['formtype'] = 'select';
 $modversion['config'][1]['valuetype'] = 'text';
+
+$files = XoopsLists::getFileListAsArray(XOOPS_ROOT_PATH.'/modules/rmcommon/lang', '');
+$options = array();
+$options['en_US'] = 'en_US';
+foreach($files as $file => $v){
+    
+    if(substr($file, -3)!='.mo') continue;
+    
+    $options[substr($file, 0, -3)] = substr($file, 0, -3);
+    
+}
 $modversion['config'][1]['default'] = 'en_US';
+$modversion['config'][1]['options'] = $options;
+unset($options, $files, $file, $v);
 
 // Images store type
 $modversion['config'][2]['name'] = 'imagestore';
