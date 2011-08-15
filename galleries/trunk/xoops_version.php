@@ -84,11 +84,11 @@ $modversion['templates'][19]['description'] = '';
 $modversion['templates'][20]['file'] = 'gs_panel_bookmarks.html';
 $modversion['templates'][20]['description'] = '';
 $modversion['templates'][21]['file'] = 'gs_panel_friends.html';
+$modversion['templates'][21]['description'] = '';
+$modversion['templates'][22]['file'] = 'gs_postcard.html';
 $modversion['templates'][22]['description'] = '';
-$modversion['templates'][23]['file'] = 'gs_postcard.html';
+$modversion['templates'][23]['file'] = 'gs_item_data.html';
 $modversion['templates'][23]['description'] = '';
-$modversion['templates'][24]['file'] = 'gs_item_data.html';
-$modversion['templates'][24]['description'] = '';
 
 // SQL
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
@@ -526,17 +526,6 @@ $modversion['config'][] = array(
     'size' => 5,
     'category' => 'format'
 );
-
-// Comentarios
-$modversion['hasComments'] = 1;
-$modversion['comments']['pageName'] = 'user.php';
-$modversion['comments']['itemName'] = 'id';
-$modversion['comments']['extraParams']=array();
-
-// Comment callback functions
-$modversion['comments']['callbackFile'] = 'include/comments.php';
-$modversion['comments']['callback']['approve'] = '';
-$modversion['comments']['callback']['update'] = 'gs_com_update';
 
 // Sindicación RSS
 $modversion['rss']['name'] = '_MI_GS_RSSNAME'; 			// Nombre del elemento
