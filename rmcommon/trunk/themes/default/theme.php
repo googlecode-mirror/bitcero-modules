@@ -67,14 +67,23 @@ foreach ($this->tpl_head as $head){
 	</div>
 	<?php endif; ?>
 	<!-- // -->
-    
+    <?php 
+        $hv = explode("|", $_COOKIE['widgets']); // Widgets visibility
+        $widv = array();
+        foreach($hv as $v){
+            $t = explode(":",$v);
+            $widv[$t[0]] = $t[1];            
+        }
+        unset($t,$hv);
+    ?>
     <!-- Left Widgets -->
     <?php if(count($left_widgets)>0 || $this->get_menus()): ?>
     <div id="rmc-left-widgets">
         <!-- Module Menu -->
+        <div class="menu_widget">
         <?php if ($this->get_menus()): ?>
-        <div class="rmc_widget_title"><span<?php echo $xoopsModule->getInfo('icon24') ? ' style="background-image: url('.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/'.$xoopsModule->getInfo('icon24').'); padding-left: 26px;"': ''; ?>><?php echo strlen($xoopsModule->getVar('name'))>20?substr($xoopsModule->getVar('name'), 0, 17).'...':$xoopsModule->getVar('name'); ?></span></div>
-        <div class="rmc_widget_content mod_menu">
+        <div class="rmc_widget_title<?php echo isset($widv[$xoopsModule->dirname()]) && $widv[$xoopsModule->dirname()]=='false' ? ' title-collapsed' : '';?>" id="wid-title-<?php echo $xoopsModule->dirname(); ?>"><span<?php echo $xoopsModule->getInfo('icon24') ? ' style="background-image: url('.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/'.$xoopsModule->getInfo('icon24').'); padding-left: 26px;"': ''; ?>><?php echo strlen($xoopsModule->getVar('name'))>20?substr($xoopsModule->getVar('name'), 0, 17).'...':$xoopsModule->getVar('name'); ?></span></div>
+        <div class="rmc_widget_content mod_menu" id="wid-content-<?php echo $xoopsModule->dirname(); ?>"<?php echo isset($widv[$xoopsModule->dirname()]) && $widv[$xoopsModule->dirname()]=='false' ? ' style="display: none;"' : ''; ?>>
         <?php 
         foreach($this->get_menus() as $menu): 
             $wcounter++;
@@ -95,11 +104,12 @@ foreach ($this->tpl_head as $head){
         <?php endforeach; ?>
         </div>
         <?php endif; ?>
+        </div>
         <!-- // -->
         <div class="other_widgets">
-        <?php foreach($left_widgets as $widget): ?>
-        <div class="rmc_widget_title"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
-        <div class="rmc_widget_content"><?php echo $widget['content']; ?></div>
+        <?php foreach($left_widgets as $k => $widget): ?>
+        <div class="rmc_widget_title<?php echo isset($widv[$k]) && $widv[$k]=='false' ? ' title-collapsed' : '';?>" id="wid-title-<?php echo $k; ?>"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
+        <div class="rmc_widget_content" id="wid-content-<?php echo $k; ?>"<?php echo isset($widv[$k]) && $widv[$k]=='false' ? ' style="display: none;"' : ''; ?>><?php echo $widget['content']; ?></div>
         <?php endforeach; ?>
         </div>
     </div>

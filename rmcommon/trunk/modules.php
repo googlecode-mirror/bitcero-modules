@@ -266,11 +266,11 @@ function xoops_module_update($dirname){
     
     $log = '';
     if (!$module_handler->insert($module)) {
-        $log .=  '<p>Could not update '.$module->getVar('name').'</p>';
+        $log .=  sprintf(__('Could not update %s','rmcommon'), $module->getVar('name'));
     } else {
         $newmid = $module->getVar('mid');
         $msgs = array();
-        $msgs[] = _MD_AM_MODULE_DATA_UPDATE;
+        $msgs[] = sprintf(__('Updating module %s','rmcommon'), $module->getVar('name'));
         $tplfile_handler =& xoops_gethandler('tplfile');
         $deltpl = $tplfile_handler->find('default', 'module', $module->getVar('mid'));
         $delng = array();
@@ -285,7 +285,7 @@ function xoops_module_update($dirname){
         }
         $templates = $module->getInfo('templates');
         if ($templates != false) {
-            $msgs[] = _MD_AM_TEMPLATES_UPDATE;
+            $msgs[] = __('Updating templates...','rmcommon');
             foreach ($templates as $tpl) {
                 $tpl['file'] = trim($tpl['file']);
                 if (!in_array($tpl['file'], $delng)) {
@@ -305,26 +305,26 @@ function xoops_module_update($dirname){
                     $tplfile->setVar('tpl_file', $tpl['file'], true);
                     $tplfile->setVar('tpl_desc', $tpl['description'], true);
                     if (!$tplfile_handler->insert($tplfile)) {
-                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_ADD_ERROR, "<strong>".$tpl['file']."</strong>").'</span>';
+                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('Template %s could not be inserted!','rmcommon'), "<strong>".$tpl['file']."</strong>").'</span>';
                     } else {
                         $newid = $tplfile->getVar('tpl_id');
-                        $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_TEMPLATE_INSERT_DATA, "<strong>".$tpl['file']."</strong>");
+                        $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Template %s inserted to the database.','rmcommon'), "<strong>".$tpl['file']."</strong>");
                         if ($xoopsConfig['template_set'] == 'default') {
                             if (!xoops_template_touch($newid)) {
-                                $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_RECOMPILE_ERROR, "<strong>".$tpl['file']."</strong>").'</span>';
+                                $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not recompile template %s','rmcommon'), "<strong>".$tpl['file']."</strong>").'</span>';
                             } else {
-                                $msgs[] = '&nbsp;&nbsp;<span>'.sprintf(_MD_AM_TEMPLATE_RECOMPILE, "<strong>".$tpl['file']."</strong>").'</span>';
+                                $msgs[] = '&nbsp;&nbsp;<span>'.sprintf(__('Template %s recompiled','rmcommon'), "<strong>".$tpl['file']."</strong>").'</span>';
                             }
                         }
                     }
                     unset($tpldata);
                 } else {
-                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_DELETE_OLD_ERROR, "<strong>".$tpl['file']."</strong>").'</span>';
+                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not delete old template %s. Aborting update of this file.','rmcommon'), "<strong>".$tpl['file']."</strong>").'</span>';
                 }
             }
         }
         $blocks = $module->getInfo('blocks');
-        $msgs[] = _MD_AM_BLOCKS_REBUILD;
+        $msgs[] = __('Rebuilding blocks...','rmcommon');
         if ($blocks != false) {
             $showfuncs = array();
             $funcfiles = array();
@@ -354,9 +354,9 @@ function xoops_module_update($dirname){
                         $sql = "UPDATE ".$xoopsDB->prefix("newblocks")." SET name='".addslashes($block['name'])."', edit_func='".addslashes($editfunc)."', content='', template='".$template."', last_modified=".time()." WHERE bid=".$fblock['bid'];
                         $result = $xoopsDB->query($sql);
                         if (!$result) {
-                            $msgs[] = "&nbsp;&nbsp;".sprintf(_MD_AM_UPDATE_ERROR, $fblock['name']);
+                            $msgs[] = "&nbsp;&nbsp;".sprintf(__('ERROR: Could not update %s'), $fblock['name']);
                         } else {
-                            $msgs[] = "&nbsp;&nbsp;".sprintf(_MD_AM_BLOCK_UPDATE, $fblock['name']).sprintf(_MD_AM_BLOCK_ID, "<strong>".$fblock['bid']."</strong>");
+                            $msgs[] = "&nbsp;&nbsp;".sprintf(__('Block %s updated.','rmcommon'), $fblock['name']).sprintf(__('Block ID: %s','rmcommon'), "<strong>".$fblock['bid']."</strong>");
                             if ($template != '') {
                                 $tplfile = $tplfile_handler->find('default', 'block', $fblock['bid']);
                                 if (count($tplfile) == 0) {
@@ -374,14 +374,14 @@ function xoops_module_update($dirname){
                                 $tplfile_new->setVar('tpl_lastmodified', time());
                                 $tplfile_new->setVar('tpl_lastimported', 0);
                                 if (!$tplfile_handler->insert($tplfile_new)) {
-                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_UPDATE_ERROR, "<strong>".$block['template']."</strong>").'</span>';
+                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not update %s template.','rmcommon'), "<strong>".$block['template']."</strong>").'</span>';
                                 } else {
-                                    $msgs[] = "&nbsp;&nbsp;".sprintf(_MD_AM_TEMPLATE_UPDATE, "<strong>".$block['template']."</strong>");
+                                    $msgs[] = "&nbsp;&nbsp;".sprintf(__('Template %s updated.','rmcommon'), "<strong>".$block['template']."</strong>");
                                     if ($xoopsConfig['template_set'] == 'default') {
                                         if (!xoops_template_touch($tplfile_new->getVar('tpl_id'))) {
-                                            $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_RECOMPILE_ERROR, "<strong>".$block['template']."</strong>").'</span>';
+                                            $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not recompile template %s','rmcommon'), "<strong>".$block['template']."</strong>").'</span>';
                                         } else {
-                                            $msgs[] = "&nbsp;&nbsp;".sprintf(_MD_AM_TEMPLATE_RECOMPILE, "<strong>".$block['template']."</strong>");
+                                            $msgs[] = "&nbsp;&nbsp;".sprintf(__('Template %s recompiled','rmcommon'), "<strong>".$block['template']."</strong>");
                                         }
                                     }
 
@@ -396,7 +396,7 @@ function xoops_module_update($dirname){
                         $sql = "INSERT INTO ".$xoopsDB->prefix("newblocks")." (bid, mid, func_num, options, name, title, content, side, weight, visible, block_type, isactive, dirname, func_file, show_func, edit_func, template, last_modified) VALUES (".$newbid.", ".$module->getVar('mid').", ".$i.",'".addslashes($options)."','".$block_name."', '".$block_name."', '', 0, 0, 0, '{$block_type}', 1, '".addslashes($dirname)."', '".addslashes($block['file'])."', '".addslashes($block['show_func'])."', '".addslashes($editfunc)."', '".$template."', ".time().")";
                         $result = $xoopsDB->query($sql);
                         if (!$result) {
-                            $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_SQL_NOT_CREATE, $block['name']);$log .=  $sql;
+                            $msgs[] = '&nbsp;&nbsp;'.sprintf(_('ERROR: Could not create %s','rmcommon'), $block['name']);$log .=  $sql;
                         } else {
                             if (empty($newbid)) {
                                 $newbid = $xoopsDB->getInsertId();
@@ -414,9 +414,9 @@ function xoops_module_update($dirname){
                                 $bperm->setVar('gperm_name', 'block_read');
                                 $bperm->setVar('gperm_modid', 1);
                                 if (!$gperm_handler->insert($bperm)) {
-                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'._MD_AM_BLOCK_ACCESS_ERROR .sprintf(_MD_AM_BLOCK_ID, "<strong>".$newbid."</strong>"). sprintf(_MD_AM_GROUP_ID, "<strong>".$mygroup."</strong>").'</span>';
+                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.__('ERROR: Could not add block access right','rmcommon') .' '.sprintf(__("Block__('Blockk ID: %s",'rmcommon'), "<strong>".$newbid."</strong>"). ' '.sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>").'</span>';
                                 } else {
-                                    $msgs[] = '&nbsp;&nbsp;'._MD_AM_BLOCK_ACCESS.  sprintf(_MD_AM_BLOCK_ID, "<strong>".$newbid."</strong>") . sprintf(_MD_AM_GROUP_ID, "<strong>".$mygroup."</strong>");
+                                    $msgs[] = '&nbsp;&nbsp;'.__('Added block access right','rmcommon'). ' ' . sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>") . ' ' . sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>");
                                 }
                             }
 
@@ -432,20 +432,20 @@ function xoops_module_update($dirname){
                                 $tplfile->setVar('tpl_lastmodified', time());
                                 $tplfile->setVar('tpl_desc', $block['description'], true);
                                 if (!$tplfile_handler->insert($tplfile)) {
-                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_ADD_ERROR, "<strong>".$block['template']."</strong>").'</span>';
+                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not insert template %s to the database.','rmcommon'), "<strong>".$block['template']."</strong>").'</span>';
                                 } else {
                                     $newid = $tplfile->getVar('tpl_id');
-                                    $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_TEMPLATE_ADD_DATA, "<strong>".$block['template']."</strong>");
+                                    $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Template %s added to the database','rmcommon'), "<strong>".$block['template']."</strong>");
                                     if ($xoopsConfig['template_set'] == 'default') {
                                         if (!xoops_template_touch($newid)) {
-                                            $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_TEMPLATE_RECOMPILE_FAILD, "<strong>".$block['template']."</strong>").'</span>';
+                                            $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Template %s recompile failed','rmcommon'), "<strong>".$block['template']."</strong>").'</span>';
                                         } else {
-                                            $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_TEMPLATE_RECOMPILE, "<strong>".$block['template']."</strong>");
+                                            $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Template %s recompiled','rmcommon'), "<strong>".$block['template']."</strong>");
                                         }
                                     }
                                 }
                             }
-                            $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_BLOCK_CREATED, "<strong>".$block['name']."</strong>").sprintf(_MD_AM_BLOCK_ID, "<strong>".$newbid."</strong>");
+                            $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Block %s created','rmcommon'), "<strong>".$block['name']."</strong>").sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>");
                             $sql = 'INSERT INTO '.$xoopsDB->prefix('block_module_link').' (block_id, module_id) VALUES ('.$newbid.', -1)';
                             $xoopsDB->query($sql);
                         }
@@ -457,7 +457,7 @@ function xoops_module_update($dirname){
                 if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
                     $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
                     if(!$xoopsDB->query($sql)) {
-                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(_MD_AM_BLOCK_DELETE_ERROR, "<strong>".$block->getVar('name')."</strong>").sprintf(_MD_AM_BLOCK_ID, "<strong>".$block->getVar('bid')."</strong>").'</span>';
+                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not delete block %s','rmcommon'), "<strong>".$block->getVar('name')."</strong>").sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$block->getVar('bid')."</strong>").'</span>';
                     } else {
                         $msgs[] = '&nbsp;&nbsp;Block <strong>'.$block->getVar('name').' deleted. Block ID: <strong>'.$block->getVar('bid').'</strong>';
                         if ($block->getVar('template') != '') {
@@ -466,9 +466,9 @@ function xoops_module_update($dirname){
                                 $btcount = count($tplfiles);
                                 for ($k = 0; $k < $btcount; $k++) {
                                     if (!$tplfile_handler->delete($tplfiles[$k])) {
-                                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'._MD_AM_BLOCK_DEPRECATED_ERROR. '(ID: <strong>'.$tplfiles[$k]->getVar('tpl_id').'</strong>)</span>';
+                                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.__('ERROR: Could not remove deprecated block template.','rmcommon'). '(ID: <strong>'.$tplfiles[$k]->getVar('tpl_id').'</strong>)</span>';
                                     } else {
-                                        $msgs[] = '&nbsp;&nbsp;'.sprintf(_MD_AM_BLOCK_DEPRECATED, "<strong>".$tplfiles[$k]->getVar('tpl_file')."</strong>");
+                                        $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Block template %s deprecated','rmcommon'), "<strong>".$tplfiles[$k]->getVar('tpl_file')."</strong>");
                                     }
                                 }
                             }
@@ -487,23 +487,24 @@ function xoops_module_update($dirname){
         $confcount = count($configs);
         $config_delng = array();
         if ($confcount > 0) {
-            $msgs[] = _MD_AM_MODULE_DATA_DELETE;
+            $msgs[] = __('Deleting module config options...','rmcommon');
             for ($i = 0; $i < $confcount; $i++) {
                 if (!$config_handler->deleteConfig($configs[$i])) {
-                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'._MD_AM_GONFIG_DATA_DELETE_ERROR. sprintf(_MD_AM_GONFIG_ID, "<strong>".$configs[$i]->getvar('conf_id')."</strong>").'</span>';
+                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.__('ERROR: Could not delete config data from the database','rmcommon'). sprintf(__('Config ID: %s','rmcommon'), "<strong>".$configs[$i]->getvar('conf_id')."</strong>").'</span>';
                     // save the name of config failed to delete for later use
                     $config_delng[] = $configs[$i]->getvar('conf_name');
                 } else {
                     $config_old[$configs[$i]->getvar('conf_name')]['value'] = $configs[$i]->getvar('conf_value', 'N');
                     $config_old[$configs[$i]->getvar('conf_name')]['formtype'] = $configs[$i]->getvar('conf_formtype');
                     $config_old[$configs[$i]->getvar('conf_name')]['valuetype'] = $configs[$i]->getvar('conf_valuetype');
-                    $msgs[] = "&nbsp;&nbsp;"._MD_AM_GONFIG_DATA_DELETE. sprintf(_MD_AM_GONFIG_ID, "<strong>".$configs[$i]->getVar('conf_id')."</strong>");
+                    $msgs[] = "&nbsp;&nbsp;".__('Config data deleted from the database.','rmcommon'). ' ' . sprintf(__('Config ID: %s','rmcommon'), "<strong>".$configs[$i]->getVar('conf_id')."</strong>");
                 }
             }
         }
 
         // now reinsert them with the new settings
         $configs = $module->getInfo('config');
+        // Include 
         if ($configs != false) {
             if ($module->getVar('hascomments') != 0) {
                 include_once(XOOPS_ROOT_PATH.'/include/comment_constants.php');
@@ -586,16 +587,16 @@ function xoops_module_update($dirname){
                             $confop->setVar('confop_name', $key, true);
                             $confop->setVar('confop_value', $value, true);
                             $confobj->setConfOptions($confop);
-                            $confop_msgs .= '<br />&nbsp;&nbsp;&nbsp;&nbsp; ' . _MD_AM_CONFIG_ADD . _MD_AM_NAME . ' <strong>' . ( defined($key) ? constant($key) : $key ) . '</strong> ' . _MD_AM_VALUE . ' <strong>' . $value . '</strong> ';
+                            $confop_msgs .= '<br />&nbsp;&nbsp;&nbsp;&nbsp; ' . __('Config option added','rmcommon') . ' ' . __('Name:','rmcommon') . ' <strong>' . ( defined($key) ? constant($key) : $key ) . '</strong> ' . __('Value:','rmcommon') . ' <strong>' . $value . '</strong> ';
                             unset($confop);
                         }
                     }
                     $order++;
                     if (false != $config_handler->insertConfig($confobj)) {
                         //$msgs[] = '&nbsp;&nbsp;Config <strong>'.$config['name'].'</strong> added to the database.'.$confop_msgs;
-                        $msgs[] = "&nbsp;&nbsp;".sprintf(_MD_AM_CONFIG_DATA_ADD, "<strong>" . $config['name'] . "</strong>") . $confop_msgs;
+                        $msgs[] = "&nbsp;&nbsp;".sprintf(__('Config %s added to the database','rmcommon'), "<strong>" . $config['name'] . "</strong>") . $confop_msgs;
                     } else {
-                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">' . sprintf(_MD_AM_CONFIG_DATA_ADD_ERROR, "<strong>" . $config['name'] . "</strong>") . '</span>';
+                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">' . sprintf(__('ERROR: Could not insert config %s to the database.','rmcommon'), "<strong>" . $config['name'] . "</strong>") . '</span>';
                     }
                     unset($confobj);
                 }
@@ -610,9 +611,9 @@ function xoops_module_update($dirname){
             if (function_exists('xoops_module_update_'.$dirname)) {
                 $func = 'xoops_module_update_'.$dirname;
                 if (!$func($module, $prev_version)) {
-                    $msgs[] = "<p>".sprintf(_MD_AM_FAILED_EXECUTE, $func)."</p>";
+                    $msgs[] = "<p>".sprintf(__('Failed to execute %s','rmcommon'), $func)."</p>";
                 } else {
-                    $msgs[] = "<p>".sprintf(_MD_AM_FAILED_SUCESS, "<strong>".$func."</strong>")."</p>";
+                    $msgs[] = "<p>".sprintf(__('%s executed successfully.','rmcommon'), "<strong>".$func."</strong>")."</p>";
                 }
             }
         }
@@ -620,7 +621,7 @@ function xoops_module_update($dirname){
         foreach ($msgs as $msg) {
             $log .=  $msg.'<br />';
         }
-        $log .=  "<p>".sprintf(_MD_AM_OKUPD, "<strong>".$module->getVar('name')."</strong>")."</p>";
+        $log .=  "<p>".sprintf(__('Module %s updated successfully!','rmcommon'), "<strong>".$module->getVar('name')."</strong>")."</p>";
     }
     
     // Flush cache files for cpanel GUIs

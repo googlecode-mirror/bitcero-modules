@@ -165,7 +165,7 @@ div#rmc-toolbar a.selected{
 div#rmc-container{
     overflow: hidden;
     margin: 0 auto;
-    background: #f2f2f2;
+    background: #ebebeb;
     padding: 10px;
     min-width: 950px;
 }
@@ -221,7 +221,7 @@ div.reduce_left{
 div.reduce_right{
     margin-right: 260px;
 }
-div.mod_menu{
+div.menu_widget{
     margin-bottom: 10px;
 }
 div#rmc-left-widgets div.rmc_widget_title:first-child,
@@ -251,7 +251,9 @@ div.rmc_widget_title span{
     display: block;
     background-repeat: no-repeat;
     padding: 2px 0 2px 2px;
+    height: 20px;
 }
+
 div.rmc_widget_content{
     background: #FFF;
     border: 1px solid #999;
@@ -290,7 +292,7 @@ div.rmc_widget_content div.selected a{
 }
 div.rmc_widget_content div.menu span{
     display: block;
-    width: 20px;
+    width: 19px;
     height: 26px;
     float: right;
     background: url(../images/down.png) no-repeat center;
@@ -507,4 +509,32 @@ label.error{
 }
 .clear{
     clear: both;
+}
+
+div#rmc-left-widgets div.other_widgets div.title-collapsed:first-child{
+    border-bottom: 0;
+}
+div#rmc-left-widgets .menu_widget div.title-collapsed:first-child{
+    padding: 0;
+    overflow: hidden;
+    height: auto;
+    border-top: 0;
+    border-left: 0;
+    border-right: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+    height: 31px;
+    
+}
+div#rmc-left-widgets .menu_widget div.title-collapsed:first-child span{
+    padding: 6px 6px 9px 6px;
+    height: 14px;
+    background-position: 4px;
+    border: 1px solid #2D4760;
+    border-radius: 5px;
+}
+div.other_widgets{
+    border: 1px solid #FFF;
+    border-top: 0;
+    border-left: 0;
+    border-radius: 5px;
 }

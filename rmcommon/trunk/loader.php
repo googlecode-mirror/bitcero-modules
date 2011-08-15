@@ -70,7 +70,8 @@ spl_autoload_register('rmc_autoloader');
 function cu_render_output($output){
 	global $xoTheme, $xoopsTpl;
     
-    if (function_exists('xoops_cp_header')) return $output;
+    if (function_exists('xoops_cp_header')) return $output;    
+    
     
     $page = $output;
     if($xoopsTpl){
