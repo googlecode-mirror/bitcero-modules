@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Common Utilities 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-09 21:59-0600\n"
-"PO-Revision-Date: 2011-03-22 13:14-0600\n"
+"PO-Revision-Date: 2011-08-15 02:50-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1797,11 +1797,11 @@ msgstr "Censor de Palabras"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
 msgid "Searchs Settings"
-msgstr "Buscar Actualizaciones"
+msgstr "Búsquedas"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
 msgid "Mail Settings"
-msgstr "Opciones de correo"
+msgstr "Correo"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
 msgid "Authentication"
@@ -1809,7 +1809,7 @@ msgstr "Autentificación"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
 msgid "Modules Settings"
-msgstr "Configuración de Módulos"
+msgstr "Módulos"
 
 #~ msgid "View Site"
 #~ msgstr "Ver Sitio"

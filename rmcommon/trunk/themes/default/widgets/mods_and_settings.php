@@ -99,31 +99,31 @@ $menu = array();
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=1',
     'title'     => __('General Settings','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/general.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=2',
     'title'     => __('Users Settings','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/users.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=3',
     'title'     => __('Metas and Footer','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/header.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=4',
     'title'     => __('Words Censor','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/words.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=5',
     'title'     => __('Searchs Settings','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/search.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=6',
     'title'     => __('Mail Settings','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/mail.png');
 $menu[] = array(
     'link'      => XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=show&amp;confcat_id=7',
     'title'     => __('Authentication','rmcommon'),
-    'icon'     => XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png');
+    'icon'     => RMCURL . '/themes/default/images/login.png');
 
 $options = array();
 foreach ($mods as $mod) {
@@ -133,7 +133,7 @@ foreach ($mods as $mod) {
 		$rtn['link'] = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid');
 		$rtn['title'] = $mod->name();
 		$rtn['absolute'] = 1;
-		$rtn['icon'] = XOOPS_URL . '/modules/system/class/gui/oxygen/images/navIcons/prefs_small.png';
+		$rtn['icon'] = XOOPS_URL . '/modules/system/themes/default/icons/prefs_small.png';
 		$options[] = $rtn;
     }
 }
