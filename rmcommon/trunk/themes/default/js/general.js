@@ -23,12 +23,8 @@ $(document).ready(function(){
         if ($("span.toggle", $(eles[i])).height($(eles[i]).height()));
         
     });
-	
-    if ($("#rmc-left-widgets").height() > $(window).height()-240){
-        $("#rmc-center-content").css('min-height', ($("#rmc-left-widgets").height())+'px');
-    } else {
-	    $("#rmc-center-content").css('min-height', ($(window).height()-240)+'px');
-    }
+
+    resizeCenterContent();
 	
     $(".toggle").click(function(){
         id = $(this).attr("id").replace("switch-",'');
@@ -54,8 +50,11 @@ $(document).ready(function(){
             if($(this).is(":visible")){
                 
                 $("#wid-title-"+id).removeClass("title-collapsed");
-                if(id==eles.length - 2 || id==0){
-                    $("#wid-title-"+id).css('border-radius', '');
+                if(id==eles.length - 2){
+                    $("#wid-title-"+id).css('border-radius', '0');
+                } else if(isNaN(id)){
+                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    $("#wid-title-"+id).css('-moz-border-radius', '5px 5px 0 0');
                 }
                 
             } else {
@@ -70,6 +69,7 @@ $(document).ready(function(){
                 
             }
             saveCookieTitles();
+            resizeCenterContent();
         });
         
     });
@@ -88,6 +88,7 @@ function saveCookieTitles(){
 
     var ts = '';
     
+    try{
     $(eles).each(function(i){
         
         id = $(eles[i]).attr('id').replace("wid-title-",'');
@@ -95,8 +96,19 @@ function saveCookieTitles(){
         ts += id+":"+($("#wid-content-"+id).is(':visible'));
         
     });
+    }catch(err){
+        
+    }
     
     $.cookie('widgets', ts, {expires: 365, path: '/'});
     
     
+}
+
+function resizeCenterContent(){
+    if ($("#rmc-left-widgets").height() > $(window).height()-240){
+        $("#rmc-center-content").css('min-height', ($("#rmc-left-widgets").height())+'px');
+    } else {
+        $("#rmc-center-content").css('min-height', ($(window).height()-240)+'px');
+    }
 }
