@@ -300,7 +300,7 @@ function formBulkImages(){
             // Need better code
         ));
         $uploader->add_setting('multi', true);
-        $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
+        $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif;*.JPG');
         $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','galleries'));
         $uploader->add_setting('sizeLimit', $mc['size_image']*1024);
         $uploader->add_setting('buttonText', __('Browse Images...','galleries'));
