@@ -1,12 +1,12 @@
 CREATE TABLE `gs_favourites` (
   `uid` int(11) NOT NULL,
   `id_image` int(11) NOT NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `gs_friends` (
   `gsuser` int(11) NOT NULL,
   `uid` int(11) NOT NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `gs_images` (
   `id_image` int(11) NOT NULL auto_increment,
@@ -24,7 +24,7 @@ CREATE TABLE `gs_images` (
   `search_format` tinyint(1) NOT NULL default '0',
   `views` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_image`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `gs_postcards` (
   `id_post` int(11) NOT NULL auto_increment,
@@ -42,7 +42,7 @@ CREATE TABLE `gs_postcards` (
   `code` varchar(10) NOT NULL,
   PRIMARY KEY  (`id_post`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `gs_sets` (
   `id_set` int(11) NOT NULL auto_increment,
@@ -54,13 +54,13 @@ CREATE TABLE `gs_sets` (
   `uname` varchar(50) NOT NULL,
   `hits` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_set`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `gs_setsimages` (
   `id_set` int(11) NOT NULL,
   `id_image` int(11) NOT NULL,
   KEY `id_set` (`id_set`,`id_image`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `gs_tags` (
   `id_tag` int(11) NOT NULL auto_increment,
@@ -68,13 +68,13 @@ CREATE TABLE `gs_tags` (
   `nameid` varchar(100) NOT NULL,
   `hits` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_tag`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `gs_tagsimages` (
   `id_tag` int(11) NOT NULL,
   `id_image` int(11) NOT NULL,
   KEY `id_tag` (`id_tag`,`id_image`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `gs_users` (
   `id_user` int(11) NOT NULL auto_increment,
@@ -87,4 +87,4 @@ CREATE TABLE `gs_users` (
   `blocked` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_user`),
   UNIQUE KEY `uid` (`uid`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
