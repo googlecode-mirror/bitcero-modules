@@ -64,7 +64,7 @@ foreach ($mods as $mod) {
  
  $menu[] = array(
  	'title'		=> __('Management','rmcommon'),
- 	'link'		=> XOOPS_URL.'/modules/system/admin.php?fct=modulesadmin',
+ 	'link'		=> RMCURL.'/modules.php',
     'icon'      => RMTHEMEURL.'/images/modules.gif'
  );
 

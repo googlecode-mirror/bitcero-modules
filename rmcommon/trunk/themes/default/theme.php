@@ -108,7 +108,7 @@ foreach ($this->tpl_head as $head){
         <!-- // -->
         <div class="other_widgets">
         <?php foreach($left_widgets as $k => $widget): ?>
-        <div class="rmc_widget_title<?php echo isset($widv[$k]) && $widv[$k]=='false' ? ' title-collapsed' : '';?>" id="wid-title-<?php echo $k; ?>"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
+        <div class="rmc_widget_title<?php echo isset($widv[$k]) && $widv[$k]=='false' ? ' title-collapsed' : '';?><?php if($k==count($left_widgets)-1): ?> last-widget<?php endif; ?>" id="wid-title-<?php echo $k; ?>"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
         <div class="rmc_widget_content" id="wid-content-<?php echo $k; ?>"<?php echo isset($widv[$k]) && $widv[$k]=='false' ? ' style="display: none;"' : ''; ?>><?php echo $widget['content']; ?></div>
         <?php endforeach; ?>
         </div>
@@ -125,7 +125,6 @@ foreach ($this->tpl_head as $head){
             </div>
         <?php endforeach; ?>
         <?php echo $content; ?>
-        
     </div>
     <!-- // -->
 </div>

@@ -165,7 +165,7 @@ div#rmc-toolbar a.selected{
 div#rmc-container{
     overflow: hidden;
     margin: 0 auto;
-    background: #ebebeb;
+    background: #E0E0E0;
     padding: 10px;
     min-width: 950px;
 }
@@ -237,14 +237,16 @@ div#rmc-right-widgets div.rmc_widget_title{
     border: 1px solid #2D4760;
 }
 div.rmc_widget_title{
+    background: #507BA0 url(../images/bgw.png) repeat-x top;
     padding: 4px 6px 6px 4px;
     font-family: georgia, times, serif;
     font-size: 1.1em;
     color: #FFF;
     text-shadow: 0 0 2px #000;
     height: 20px;
-    background: #507BA0;
+    /*background: #507BA0;*/
     border: 1px solid #2D4760;
+    cursor: pointer;
 }
 div.rmc_widget_title span{
     background-position: left;
@@ -316,6 +318,12 @@ div.rmc_widget_content div.submenu a:hover{
 }
 div.rmc_widget_content div.submenu a:last-child{
     border-bottom: 1px solid #CCC;
+}
+#rmc-left-widgets div.rmc_widget_content:last-child{
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
 }
 
 /** XOOPS **/
@@ -511,8 +519,12 @@ label.error{
     clear: both;
 }
 
+div#rmc-left-widgets div.other_widgets div.title-collapsed,
 div#rmc-left-widgets div.other_widgets div.title-collapsed:first-child{
     border-bottom: 0;
+}
+div#rmc-left-widgets div.other_widgets div.last-widget{
+    border-bottom: 1px solid #2D4760;
 }
 div#rmc-left-widgets .menu_widget div.title-collapsed:first-child{
     padding: 0;
