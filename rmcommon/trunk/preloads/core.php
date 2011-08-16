@@ -76,7 +76,7 @@ class RmcommonCorePreload extends XoopsPreloadItem
             $blocks = array();
         }
         
-		RMEvents::get()->run_event('rmcommon.retrieve.blocks', &$blocks, &$xpb, &$tpl);
+		RMEvents::get()->run_event('rmcommon.retrieve.blocks', $blocks, $xpb, $tpl);
         
 		
 	}
