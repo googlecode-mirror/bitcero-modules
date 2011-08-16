@@ -32,7 +32,7 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>100,'status'=>0,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>115,'status'=>0,'name'=>'Common Utilities');
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
