@@ -23,4 +23,35 @@ class GalleriesRmcommonPreload
         
     }
     
+    public function eventRmcommonGetFeedsList($feeds){
+        
+        load_mod_locale('galleries');
+        
+        $module = RMFunctions::load_module('galleries');
+        $config = RMUtilities::module_config('galleries');
+
+        $data = array(
+                'title'    => $module->name(),
+                'url'    => GSFunctions::get_url(),
+                'module' => 'galleries'
+        );
+        
+        $options[] = array(
+            'title'    => __('All Recent Pictures', 'galleries'),
+            'params' => 'show=pictures',
+            'description' => __('Show all recent pictures','galleries')
+        );
+        
+        $options[] = array(
+            'title'    => __('All Recent Albums', 'galleries'),
+            'params' => 'show=albums',
+            'description' => __('Show all recent albums','galleries')
+        );
+        
+        $feed = array('data'=>$data,'options'=>$options);
+        $feeds[] = $feed;
+        return $feeds;
+        
+    }
+    
 }

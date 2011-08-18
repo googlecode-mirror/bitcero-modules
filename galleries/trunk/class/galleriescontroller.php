@@ -29,6 +29,7 @@ class GalleriesController
         $params = urldecode($params);        
         parse_str($params);
         
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gstag.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';

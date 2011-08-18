@@ -109,32 +109,32 @@ define('_MI_GS_SEARCHFORMAT', __('Format specifications for pictures in search l
 define('_MI_GS_TIMEPOSTCARD', __('Days to maintain postcards','galleries'));
 
 // Servicio RSS
-define('_MI_GS_RSSNAME', __('Pictures RSS','galleries'));
-define('_MI_GS_RSSDESC', __('Suscribete a las actualizaciones en nuestra fotografías a través de RSS.','galleries'));
-define('_MI_GS_RSSIMGS', __('Fotografías Recientes','galleries'));
-define('_MI_GS_RSSIMGS_DESC', __('Ultimas fotografías agregadas a nuestras galerías.','galleries'));
-define('_MI_GS_RSSSETS', __('Albumes Recientes','galleries'));
-define('_MI_GS_RSSSETS_DESC', __('Los álbumes mas nuevos creados por los usuarios de nuestras galerías','galleries'));
-define('_MI_GS_RSSUSRS', __('Usuarios Recientes','galleries'));
-define('_MI_GS_RSSUSRS_DESC', __('Muestra la lista de los últimos usuarios inscritos en las galerías.','galleries'));
+define('_MI_GS_RSSNAME', __('RSS of Pictures','galleries'));
+define('_MI_GS_RSSDESC', __('Subscribe to updates on our photos via RSS.','galleries'));
+define('_MI_GS_RSSIMGS', __('Recent Pictures','galleries'));
+define('_MI_GS_RSSIMGS_DESC', __('Last pictures added to our galleries.','galleries'));
+define('_MI_GS_RSSSETS', __('Recent Albums','galleries'));
+define('_MI_GS_RSSSETS_DESC', __('The newest album created by users of our galleries.','galleries'));
+define('_MI_GS_RSSUSRS', __('Recent Users','galleries'));
+define('_MI_GS_RSSUSRS_DESC', __('Displays list of recently registered users in the galleries.','galleries'));
 
-define('_MI_GS_RSSIMGDESC', __('Descripción: %s<br />Creada: %s | Usuario: %s | %u Accesos','galleries'));
+define('_MI_GS_RSSIMGDESC', __('Description: %s<br />Created on: %s | User: %s | %u Hits','galleries'));
 $gu = XOOPS_URL.'/modules/galleries/images';
-define('_MI_GS_RSSSETDESC', __('Por: %s<br />Creado: %s<br />Fotografías: %u','galleries'));
+define('_MI_GS_RSSSETDESC', __('By: %s<br />Created on: %s<br />Pictures: %u','galleries'));
 
 // Bloques
-define('_MI_GS_BKPICS', __('Fotografías','galleries'));
-define('_MI_GS_BKSETS', __('Albumes','galleries'));
+define('_MI_GS_BKPICS', __('Pictures','galleries'));
+define('_MI_GS_BKSETS', __('Albums','galleries'));
 
 //Páginas del módulo
-define('_MI_GS_INDEX', __('Página Inicial','galleries'));
-define('_MI_GS_USERPICS', __('Imágenes de Usuario','galleries'));
-define('_MI_GS_PICSDETAILS', __('Detalles de Imagen','galleries'));
-define('_MI_GS_USERSET', __('Album de Usuario','galleries'));
-define('_MI_GS_CPANEL', __('Panel de Control','galleries'));
-define('_MI_GS_EXPLORESETS', __('Explorar Albumes','galleries'));
-define('_MI_GS_EXPLOREPICS', __('Explorar Fotografías','galleries'));
-define('_MI_GS_TAGS', __('Etiquetas Populares','galleries'));
-define('_MI_GS_EXPLORETAGS', __('Explorar Etiqueta','galleries'));
-define('_MI_GS_SUBMIT', __('Subir Imágenes','galleries'));
-define('_MI_GS_SEARCH', __('Búsqueda','galleries'));
+define('_MI_GS_INDEX', __('Home page','galleries'));
+define('_MI_GS_USERPICS', __('User pictures','galleries'));
+define('_MI_GS_PICSDETAILS', __('Picture details','galleries'));
+define('_MI_GS_USERSET', __('User album','galleries'));
+define('_MI_GS_CPANEL', __('Control panel','galleries'));
+define('_MI_GS_EXPLORESETS', __('Explore albums','galleries'));
+define('_MI_GS_EXPLOREPICS', __('Explore pictures','galleries'));
+define('_MI_GS_TAGS', __('Popular tags','galleries'));
+define('_MI_GS_EXPLORETAGS', __('Explore tags','galleries'));
+define('_MI_GS_SUBMIT', __('Upload pictures','galleries'));
+define('_MI_GS_SEARCH', __('Search','galleries'));

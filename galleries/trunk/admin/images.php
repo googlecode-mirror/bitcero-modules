@@ -36,6 +36,7 @@ function showImages(){
 	$maxdate = isset($_REQUEST['maxdate']) ? $_REQUEST['maxdate'] : '';
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'created';
 	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 1;
+    $mode = $mode=='' ? 1 : $mode;
 	
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_images');
