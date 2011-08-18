@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MyGalleries 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 12:54-0600\n"
-"PO-Revision-Date: 2011-08-15 12:57-0600\n"
+"POT-Creation-Date: 2011-08-17 12:02-0600\n"
+"PO-Revision-Date: 2011-08-17 12:02-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1651,11 +1651,11 @@ msgstr "Título de la sección"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:17
 msgid "Tag min char length"
-msgstr ""
+msgstr "Longitud mínima de la etiqueta"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:20
 msgid "Tags max char length"
-msgstr ""
+msgstr "Longitud máxima de la etiqueta"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:23
 msgid "All users can upload pictures"
@@ -1667,7 +1667,7 @@ msgstr "Grupos con permiso para cargar imágenes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:29
 msgid "Enable friendly URLs"
-msgstr ""
+msgstr "Activar URLs amigables"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:30
 msgid "Base path for URLs"
@@ -1691,7 +1691,7 @@ msgstr "Especifica el número de imágenes para mostrar en la barra de navegaci�
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:38
 msgid "Directory where pictures will be stored"
-msgstr ""
+msgstr "Directorio donde las imágenes serán almacenadas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:41
 msgid "Users default quota"
@@ -1699,23 +1699,23 @@ msgstr "Cuota por defecto para usuarios"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:42
 msgid "This value must be specified in megabytes"
-msgstr ""
+msgstr "Este valor debe ser especificado en megabytes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:45
 msgid "Size in pixels for normal pictures"
-msgstr ""
+msgstr "Tamaño en pixeles para las imágenes normales"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:46
 msgid "Specify the size of the normal image. Values must be specified in format width|height."
-msgstr ""
+msgstr "Especifica el tamaño de las imágenes normales. Los valores deben contener el formato \"ancho|alto\"."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:47
 msgid "Size in pixels for thumbnail picture."
-msgstr ""
+msgstr "Tamaño en pixeles para la miniatura."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:48
 msgid "Specify the size for thumbnail image. Values must be specified in format width|height."
-msgstr ""
+msgstr "Especifica el tamaño de la miniatura de imágenes. Los valores deben contener el formato \"ancho|alto\"."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:51
 msgid "Resizing type"
@@ -1739,7 +1739,7 @@ msgstr "Almacenar imágenes originales"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:63
 msgid "Maintain original pictures after delete the picture from database"
-msgstr ""
+msgstr "Conservar imágenes originales después de haber eliminado las imágnes de la base de datos"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:66
 msgid "Number of recent pictures in home page"
@@ -1771,15 +1771,15 @@ msgstr "Núermo de álbumes en la lista de álbumes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:79
 msgid "Modify picture format for user pictures list"
-msgstr ""
+msgstr "Modificar el formato de imágenes para la lista de imágenes de usuario"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:80
 msgid "User pictures format specifications"
-msgstr ""
+msgstr "Formato para las imágenes de usuario"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:81
 msgid "Values must be specified according next format: Crop(must be 1 or 0)|Width|Height|Results(per page)|Columns|Description|Format name"
-msgstr ""
+msgstr "Los valores deben especificarse de acuerdo al siguiente formato: \"Recortar(valores 1 o 0)|Ancho|Alto|Resultados(por página)|Columnas(obsoleto)|Descripción|Nombre del formato\". El carácter \"|\" separa cada valor."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:84
 msgid "Number of images in images list"
@@ -1791,15 +1791,15 @@ msgstr "Número de etiquetas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:88
 msgid "Min hits to show tags"
-msgstr ""
+msgstr "Accesos mínimos para mostrar etiquetas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:89
 msgid "Max font size for top tags"
-msgstr ""
+msgstr "Tamaño máximo de letra para las etiquetas populares."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:90
 msgid "Size in points"
-msgstr ""
+msgstr "Tamaño en puntos"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:93
 msgid "Number of images in tagged pictures"
@@ -1807,15 +1807,15 @@ msgstr "Número de imágenes en imágenes de etiquetas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:96
 msgid "Modify picture format for album pictures list"
-msgstr ""
+msgstr "Modificar formato de imágenes para las lista de imágenes en álbumes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:97
 msgid "Format specifications for albums images"
-msgstr ""
+msgstr "Formato para las imágenes de álbumes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:98
 msgid "Format specifications for large albums images"
-msgstr ""
+msgstr "Formato para la imágen grande en el álbum"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:101
 msgid "Enable postcards"
@@ -1827,117 +1827,61 @@ msgstr "Número de imágenes en los resultados de búsquedas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:105
 msgid "Modify the format for pictures in search listing"
-msgstr ""
+msgstr "Modificar el formato de imágenes en los resultados de búsquedas."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:106
 msgid "Format specifications for pictures in search listing"
-msgstr ""
+msgstr "Formato para las imágenes de los resultados de búsqueda"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:109
 msgid "Days to maintain postcards"
-msgstr ""
+msgstr "Días para almacenar postales depués de haber sido leídas"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:112
-msgid "Pictures RSS"
-msgstr "RSS de imágenes"
+msgid "RSS of Pictures"
+msgstr "RSS para imágenes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:113
-msgid "Suscribete a las actualizaciones en nuestra fotografías a través de RSS."
-msgstr ""
+msgid "Subscribe to updates on our photos via RSS."
+msgstr "Suscribe a las actualizaciones en nuestras imágenes vía RSS"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:114
-msgid "Fotografías Recientes"
-msgstr ""
+msgid "Recent Pictures"
+msgstr "Imagenes Recientes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:115
-msgid "Ultimas fotografías agregadas a nuestras galerías."
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:116
-#, fuzzy
-msgid "Albumes Recientes"
-msgstr "Administración de Álbumes"
+msgid "Last pictures added to our galleries."
+msgstr "Últimas imágenes agregadas a nuestras galerías."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:117
-msgid "Los álbumes mas nuevos creados por los usuarios de nuestras galerías"
-msgstr ""
+msgid "The newest album created by users of our galleries."
+msgstr "Los álbumes recientes creados por usuarios de nuestras galerías."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:118
-msgid "Usuarios Recientes"
-msgstr ""
+msgid "Recent Users"
+msgstr "Usuarios Recientes"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:119
-msgid "Muestra la lista de los últimos usuarios inscritos en las galerías."
-msgstr ""
+msgid "Displays list of recently registered users in the galleries."
+msgstr "Mostrar la lista de usuarios registrados recientemente."
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:121
 #, php-format
-msgid "Descripción: %s<br />Creada: %s | Usuario: %s | %u Accesos"
-msgstr ""
+msgid "Description: %s<br />Created on: %s | User: %s | %u Hits"
+msgstr "Descripción: %s<br />Creado el:%s | Usuario: %s | %u Hits"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:123
 #, php-format
-msgid "Por: %s<br />Creado: %s<br />Fotografías: %u"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:126
-msgid "Fotografías"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:127
-#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:29
-#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:43
-msgid "Albumes"
-msgstr "Álbumes"
+msgid "By: %s<br />Created on: %s<br />Pictures: %u"
+msgstr "Por: %s<br />Creado el: %s<br />Imágenes: %u"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:130
-msgid "Página Inicial"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:131
-msgid "Imágenes de Usuario"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:132
-#, fuzzy
-msgid "Detalles de Imagen"
-msgstr "Crear Imagen"
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:133
-#, fuzzy
-msgid "Album de Usuario"
-msgstr "Álbumes"
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:134
-msgid "Panel de Control"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:135
-#, fuzzy
-msgid "Explorar Albumes"
-msgstr "Explorar álbumes"
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:136
-#, fuzzy
-msgid "Explorar Fotografías"
-msgstr "Explorar etiquetas"
+msgid "Home page"
+msgstr "Pagina inicial"
 
 #: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:137
-msgid "Etiquetas Populares"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:138
-#, fuzzy
-msgid "Explorar Etiqueta"
-msgstr "Explorar etiquetas"
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:139
-msgid "Subir Imágenes"
-msgstr ""
-
-#: E:\webserver\htdocs\x25\modules\galleries/language/english/modinfo.php:140
-msgid "Búsqueda"
-msgstr ""
+msgid "Popular tags"
+msgstr "Etiquetas populares"
 
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:7
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_albums.php:77
@@ -2210,9 +2154,41 @@ msgstr "Cuota"
 msgid "Used quota"
 msgstr "Cuota usada"
 
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:29
+#: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:43
+msgid "Albumes"
+msgstr "Álbumes"
+
 #: E:\webserver\htdocs\x25\modules\galleries/templates/admin/gs_users.php:50
 msgid "There are not users registered yet!"
 msgstr "¡Aún no hay usuarios registrados!"
+
+#~ msgid "Pictures RSS"
+#~ msgstr "RSS de imágenes"
+
+#, fuzzy
+#~ msgid "Albumes Recientes"
+#~ msgstr "Administración de Álbumes"
+
+#, fuzzy
+#~ msgid "Detalles de Imagen"
+#~ msgstr "Crear Imagen"
+
+#, fuzzy
+#~ msgid "Album de Usuario"
+#~ msgstr "Álbumes"
+
+#, fuzzy
+#~ msgid "Explorar Albumes"
+#~ msgstr "Explorar álbumes"
+
+#, fuzzy
+#~ msgid "Explorar Fotografías"
+#~ msgstr "Explorar etiquetas"
+
+#, fuzzy
+#~ msgid "Explorar Etiqueta"
+#~ msgstr "Explorar etiquetas"
 
 #, fuzzy
 #~ msgid "Normal"
