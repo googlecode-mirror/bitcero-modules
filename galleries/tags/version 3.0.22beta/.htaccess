@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /x25/modules/galleries/
+RewriteCond %{REQUEST_URI} !/[A-Z]+-
+RewriteRule ^usr/(.*)/?$ user.php?id=usr/$1 [L]
+RewriteRule ^explore/(.*)/?$ explore.php?by=explore/$1 [L]
+RewriteRule ^submit/(.*)/?$ submit.php?submit=submit/$1 [L]
+RewriteRule ^cpanel/(.*)/?$ cpanel.php?s=cpanel/$1 [L]
+RewriteRule ^postcard/(.*)/?$ postcard.php?id=postcard/$1 [L]

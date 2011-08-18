@@ -1,0 +1,19 @@
+<{include file="db:gs_header.html"}>
+<div class="userData">
+	<img class="avatar" src="<{$gs_url}>/images/images48.png" alt="" />
+	<h1><{$lang_exist}></h1>
+</div>
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+
+<div class="gs_photos_container">
+	<{assign var="i" value=1}>
+	<{foreach item=img from=$images}>
+		<{include file="db:gs_item_data.html"}>
+	<{/foreach}>
+</div>
+
+<div class="gsNavPages">
+	<{$picsNavPage}>
+</div>

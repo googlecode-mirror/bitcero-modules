@@ -1,0 +1,16 @@
+<div class="gs_block_container gs_block_sets">
+<{foreach item=set from=$block.sets}>
+    <div class="gs_photo_item" style="width: <{$block.item_width}>px;">
+        <{if $block.showimg}>
+        <{if $set.img!=''}><a href="<{$set.link}>"><img src="<{$set.img}>" class="thePic" /></a><br /><{/if}>
+        <{/if}>
+        <span class="title"><a href="<{$set.link}>"><{$set.title}></a></span>
+        <{if $block.showinfo}>
+        <br />
+        <span class="picby">Por:</span> <a href="<{$set.linkuser}>"><{$set.uname}></a><br />
+        <span class="date">Creado:</span> <{$set.date}><br />
+        <span class="photos">Fotografías:</span> <{$set.pics}>
+        <{/if}>
+    </div>
+<{/foreach}>
+</div>

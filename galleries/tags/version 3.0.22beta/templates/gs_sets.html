@@ -1,0 +1,38 @@
+<{include file="db:gs_header.html"}>
+<div class="userData">
+	<{if $usr}>
+	<img class="avatar" src="<{if $user.avatar!=''}><{$user.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$user.uname}>" />
+	<h2><{$lang_setsof}></h2>
+	<ul>
+		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$pics_link}>"><{$lang_pics}></a></li>
+		<li><img src="<{$gs_url}>/images/tag.png" align="absmiddle" /> <a href="<{$tags_link}>"><{$lang_tags}></a></li>
+		<li class="last"><img src="<{$gs_url}>/images/mark.png" align="absmiddle" /> <a href="<{$bmark_link}>"><{$lang_bmark}></a></li>
+	</ul>
+	<{else}>
+		<img class="avatar" src="<{$gs_url}>/images/album48.png" alt="<{$setname}>" />
+		 <h2><{$lang_setsexist}></h2>
+	<{/if}>
+</div>
+
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+<div class="setsContainer">
+<{foreach item=set from=$sets}>
+	<div class="gsSets">
+		<div class="gsSetsImg">
+			<{if $set.img!=''}><a href="<{$set.link}>" title="<{$set.title}>"><img src="<{$set.img}>" alt="<{$set.title}>" /></a><{else}>&nbsp;<{/if}>
+		</div>
+		<div class="gsSetsInfo" style="margin-left:<{$margin}>px" >
+			<h4><a href="<{$set.link}>"><{$set.title}></a></h4>
+			<img src="<{$xoops_url}>/modules/galleries/images/user.png" alt="" align="absmiddle" /> <strong><{$lang_by}></strong> <a href="<{$set.linkuser}>"><{$set.uname}></a> |
+			<img src="<{$xoops_url}>/modules/galleries/images/time.png" alt="" align="absmiddle" /> <strong><{$lang_date}></strong> <{$set.date}> |
+			<img src="<{$xoops_url}>/modules/galleries/images/usrimage.png" alt="" align="absmiddle" /> <strong><{$lang_imgs}></strong> <{$set.pics}>
+		</div>
+	</div>
+<{/foreach}>
+</div>
+<br clear="all" />
+<div class="gsNavPages">
+	<{$setsNavPage}>
+</div>

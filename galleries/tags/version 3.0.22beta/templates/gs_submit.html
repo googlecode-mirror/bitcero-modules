@@ -1,0 +1,33 @@
+<{include file="db:gs_header.html"}>
+<div class="gsSubmit">
+<h1><{$lang_uploadyour}></h1>
+<span class="usedGraph"><{$used_graph}></span>
+<span class="used"><{$lang_used}></span>
+
+<form name="uploads" method="post" action="<{$form_action}>" enctype="multipart/form-data">
+<span class="steps"><{$lang_step1}></span>
+<h2 class="choose"><{$lang_choose}></h2>
+<span class="fucsia"><{$lang_maxsize}></span><br />
+	<input type="file" name="images[]" id="images[]" size="40" class="imagesfiles" /><br />
+	<input type="file" name="images[]" id="images[]" size="40" class="imagesfiles" /><br />
+	<input type="file" name="images[]" id="images[]" size="40" class="imagesfiles" /><br />
+	<input type="file" name="images[]" id="images[]" size="40" class="imagesfiles" /><br />
+	<input type="file" name="images[]" id="images[]" size="40" class="imagesfiles" /><br />
+
+<span class="steps"><{$lang_step2}></span>
+<h2 class="choose"><{$lang_privacy}></h2>
+<label><input type="radio" name="privacy" value="0" /><{$lang_privateme}></label><br />
+<label><input type="radio" name="privacy" value="1" /><{$lang_privatef}></label><br />
+<label><input type="radio" name="privacy" value="2" checked="checked" /><{$lang_public}></label><br />
+
+<span class="steps"><{$lang_step3}></span>
+<h2 class="choose"><{$lang_tagsesp}></h2>
+<input type="text" name="tags" size="50" /><br /><{$lang_tagsdesc}><br />
+
+<span class="steps"><{$lang_step4}></span>
+<h2 class="choose"><{$lang_upload}></h2>
+<input type="submit" class="formButton bigButton" value="<{$lang_clicktou}>" />
+<input type="hidden" name="op" value="save" />
+<{$token}>
+</form>
+</div>

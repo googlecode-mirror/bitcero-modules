@@ -1,0 +1,31 @@
+<{include file="db:gs_header.html"}>
+<div class="userData">
+	<img class="avatar" src="<{$gs_url}>/images/search48.png" alt="" />
+	<h1><{$lang_found}></h1>
+</div>
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+<table class="outer" cellspacing="5" align="center">
+	<tr class="rowPic" valign="bottom">
+	<{assign var="i" value=1}>
+	<{foreach item=img from=$images}>
+		<{if $i>$max_cols}>
+			</tr><tr class="rowPic" valign="bottom">
+			<{assign var="i" value=1}>
+		<{/if}>
+		<td width="<{$width}>%">
+			<span class="title"><{$img.title}></span>
+			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.image}>" alt="<{$img.title}>" /></a>
+			<{$img.by}><br />
+			<{$img.created}><br />
+			<a href="<{$img.link}>/#comments"><{$img.comments}></a>
+			<a href="<{$img.bigimage}>" class="quick" rel="lightbox[roadtrip]"><{$lang_quickview}></a>
+		</td>
+		<{assign var="i" value=$i+1}>
+	<{/foreach}>
+	</tr>
+</table>
+<div class="gsNavPages">
+	<{$searchNavPage}>
+</div>

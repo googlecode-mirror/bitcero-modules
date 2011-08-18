@@ -1,0 +1,74 @@
+<{include file="db:gs_header.html"}>
+
+<!-- Opciones del panel -->
+<div class="panelOptions">
+	<ul>
+		<{if $user}>
+			<li class="sets"><a href="<{$link_sets}>"><{$lang_msets}></a></li>
+			<li class="photos"><a href="<{$link_photos}>"><{$lang_mpics}></a></li>
+			<li class="friends"><a href="<{$link_friends}>"><{$lang_friends}></a></li>
+		<{/if}>
+		<li class="bookmarks"><a href="<{$link_bookmarks}>"><{$lang_favourites}></a></li>
+	</ul>
+</div>
+<!-- // Opciones del Panel -->
+
+<table class="outer" widht="100%">
+	<tr>
+		<td><{$lang_showing}></td>
+		<td align="right"><{$picsNavPage}></td>
+	</tr>
+</table>
+<form name="frmImage" id="frm-images" method="POST" action="cpanel.php">
+<table class="outer lists" width="100%">
+	<tr>
+		<th colspan="7"><{$lang_exists}></th>
+	</tr>
+	<tr align="center" class="head">
+		<td><{$lang_id}></td>
+		<td><input type="checkbox" name="checkall" onclick="$('#frm-images').toggleCheckboxes(':not(#checkall)');" /></td>
+		<td><{$lang_image}></td>
+		<td align="left"><{$lang_title}></td>
+		<td><{$lang_public}></td>
+		<td><{$lang_created}></td>
+		<td><{$lang_options}></td>
+
+	</tr>
+	<{foreach item=img from=$images}>
+	<tr align="center"  valign="top" class="<{cycle values='even,odd'}>">
+		<td width="30"><strong><{$img.id}></strong></td>
+		<td width="20"><input type="checkbox" name="ids[]" value="<{$img.id}>" /></td>
+		<td width="50"><a href="<{$img.link}>"><img src="<{$img.thumbnail}>" width="50" /></a></td>
+		<td align="left">
+			<strong id="sname-<{$img.id}>"><a href="<{$img.link}>"><{$img.title}></a></strong>
+			<a href="javascript:;" class="add_name" title="<{$lang_changename}>" id="addname-<{$img.id}>"><img src="<{$gs_url}>/images/edit_name.png" border="0" alt="<{$lang_changename}>" align="absmiddle" /></a>
+            <input type="text" size="30" name="names[<{$img.id}>]" id="name-<{$img.id}>" value="<{$img.title}>" class="gsEdit" />		
+			<br />
+			<span<{if $img.desc!=''}> title="<{$lang_changedesc}>"<{/if}> id="spans-<{$img.id}>" class="img_descs<{if $img.desc==''}> noDesc<{else}> withDesc<{/if}>"><{if $img.desc==''}><{$lang_adddesc}><{else}><{$img.desc}><{/if}></span>
+            <textarea name="descs[<{$img.id}>]" id="descs-<{$img.id}>" class="gsEdit" cols="30" rows="4"><{$img.desc}></textarea>	
+		</td>
+		<td><{if $img.public}><img src="<{$gs_url}>/images/ok.png" /><{else}><img src="<{$gs_url}>/images/no.png" /><{/if}></td>	
+		<td><{$img.created}></td>
+		<td nowrap="nowrap">
+			<a href="<{$edit_link}><{$img.id}>" title="<{$lang_edit}>"><img src="<{$gs_url}>/images/edit.png" alt="<{$lang_edit}>" width="16" /></a> |
+			<a href="<{$delete_link}><{$img.id}>" title="<{$lang_del}>" onclick="return confirm('<{$lang_confirm}>');"><img src="<{$gs_url}>/images/delete.png" alt="<{$lang_del}>" width="16" /></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td>&nbsp;</td>
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="5">
+		<input type="submit" class="formButton" value="<{$lang_save}>" onclick="document.forms['frmImage'].op.value='saveAll';" />		
+		<input type="submit" class="formButton" value="<{$lang_set}>" onclick="document.forms['frmImage'].op.value='toset';" />
+		<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmImage'].op.value='delete'; return confirm('<{$lang_confirms}>');" />
+		</td>
+	</tr>
+</table>	
+<input type="hidden" name="op" />
+<input type="hidden" name="pag" value="<{$pag}>" />
+</form>
+<table class="outer" widht="100%">
+	<tr>
+		<td align="right"><{$picsNavPage}></td>
+	</tr>
+</table>
