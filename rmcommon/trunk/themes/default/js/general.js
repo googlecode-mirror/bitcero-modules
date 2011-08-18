@@ -1,3 +1,7 @@
+var last_wid = '';
+var first_wid = '';
+var second_wid = '';
+
 $(document).ready(function(){
 
     // Show or hide widgets content
@@ -8,9 +12,12 @@ $(document).ready(function(){
         if(id[1]=='false'){
             if(i==vals.length - 1){
                 $("#wid-title-"+id[0]).css('border-radius', '0 0 5px 5px');
-            }
-            if(isNaN(id[0])){
+                last_wid = id[0];
+            }else if(i==0){
                 $("#wid-title-"+id[0]).css('border-radius', '5px');
+                first_wid = id[0];
+            }else if(i==1){
+                second_wid = id[0];
             }
         }
     }
@@ -50,21 +57,26 @@ $(document).ready(function(){
             if($(this).is(":visible")){
 
                 $("#wid-title-"+id).removeClass("title-collapsed");
-                if(id==eles.length - 2){
-                    $("#wid-title-"+id).css('border-radius', '0');
-                } else if(isNaN(id)){
+                if(id==first_wid){
                     $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
-                    $("#wid-title-"+id).css('-moz-border-radius', '5px 5px 0 0');
+                } else if(id==second_wid){
+                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                } else{
+                    $("#wid-title-"+id).css('border-radius', '0');
                 }
 
             } else {
 
                 $("#wid-title-"+id).addClass("title-collapsed");
 
-                if(id==eles.length - 2){
+                if(id==last_wid){
                     $("#wid-title-"+id).css('border-radius', '0 0 5px 5px');
-                }else if(isNaN(id)){
+                }else if(id==first_wid){
                     $("#wid-title-"+id).css('border-radius', '5px');
+                }else if(id==second_wid){
+                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                } else{
+                    $("#wid-title-"+id).css('border-radius', '0');
                 }
 
             }
