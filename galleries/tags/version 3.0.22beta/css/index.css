@@ -1,0 +1,111 @@
+div.lastContent{
+	overflow: hidden;
+}
+div.lastContent h2{
+	font-size: 18px;
+	border-bottom: 1px solid #CCC;
+	margin: 0 0 5px 0;
+	padding: 0 0 3px 0;
+}
+div.gsLastPhotos{
+	margin-bottom: 20px;
+    overflow: hidden;
+}
+.gsPhotos{
+	overflow: hidden;
+}
+
+div.lastSets{
+	padding: 3px;
+}
+div.gsSet{
+	margin: 0 0 10px 0;
+	border: 1px dashed #CCC;
+	background-color: #f2f2f2;
+}
+div.gsSet h3{
+	font-size: 16px;
+	margin: 0 0 2px 0;
+	background-color: #e6e6e6;
+	border-bottom: 1px solid #ccc;
+	padding: 0 0 1px 3px;
+}
+div.gsSet h3 a{
+	text-decoration: none;
+}
+div.gsSet span.gsSetinfo{
+	font-size: 11px;
+	color: #666;
+	display: block;
+	margin: 0 0 5px 0;
+}
+div.gsSet span.gsSetinfo strong{
+	color: #666;
+	font-weight: normal;
+	border-bottom: 1px dashed #ccc;
+}
+div.gsSet span.gsSetinfo em{
+	color: #FF3300;
+	font-style: normal;
+}
+div.gsSet span.span.gsSetinfo img{
+	border: 0;
+}
+.gsSet .gs_pic_item{
+    font-size: 0.8em;
+}
+div.otherSets h3{
+	font-size: 14px;
+	margin: 0;
+}
+div.otherSets table{
+	width: 100%;
+	*width: 95%;
+	margin-bottom: 10px;
+}
+div.otherSets td.otherInfo{
+	text-align: center;
+	font-size: 11px;;
+}
+div.gsLinkMore{
+	padding: 2px;
+	text-align: right;
+	font-weight: bold;
+}
+ul.gsBrowseLinks{
+	margin: 0 0 10px 10px;
+	overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.gsBrowseLinks li{
+    list-style: none;
+    float: left;
+}
+ul.gsBrowseLinks li a{
+	padding: 8px 4px 4px 38px;
+	font-size: 20px;
+	font-weight: bold;
+	border: 2px solid #FFF;
+	height: 28px;
+	margin: 0 8px 10px 0;
+	text-decoration: none;
+	display: block;
+	float: left;
+}
+ul.gsBrowseLinks li a#sets{
+	background-image: url(../images/browse_set.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+ul.gsBrowseLinks li a#imgs{
+	background-image: url(../images/browse_imgs.png);
+	background-repeat: no-repeat;
+	background-position: 3px;
+}
+ul.gsBrowseLinks li a#tags{
+	background-image: url(../images/browse_tags.png);
+	background-repeat: no-repeat;
+	background-position: 3px;
+}

@@ -1,0 +1,74 @@
+.gs_options{
+	overflow: hidden;
+	padding: 4px;
+}
+.gs_options .rmc_pages_navigation_container{
+    float: right;
+}
+#gs-filters{
+    background: #f2f2f2;
+    padding: 7px;
+    margin: 5px 0;
+    display: none;
+    border: 1px solid #CCC;
+}
+
+/** Fin de Página de inicio **/
+.searchResalte{
+	background-color: #FFFF00;
+}
+td.listimg img{
+	padding: 1px;
+	border: 1px solid #666;
+}
+tr.evenSearch td{
+	font-size: 0.9em;
+	background: #f2f2f2;
+	border-top: 1px solid #c8c8c8;
+	border-bottom: 1px solid #c8c8c8;
+}
+tr.searchImages td{
+	border: 0;
+}
+span.imgDesc{
+	font-size: 0.9em;
+	color: #666;
+}
+.gs_visibility{
+	float: right;
+	font-size: 0.8em;
+	font-weight: normal;
+}
+.gs_upload_container{
+    overflow: hidden;
+}
+.gs_upload_options{
+    width: 250px;
+    float: left;
+    padding-right: 10px;
+    border-right: 1px solid #CCC;
+}
+.gs_upload_options select,
+.gs_upload_options input[type='text']{
+    width: 246px;
+    margin: 5px 0 10px 0;
+}
+.gs_upload_options input[type='text']{
+    width: 235px;
+}
+.gs_upload_control{
+    overflow: hidden;
+    margin-left: 270px;
+}
+#resizer-bar{
+    display: none;
+}
+.gs_titles span{
+    background-image: url(../images/title_icons.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+    float: left;
+    margin: 0 8px 0 0;
+}

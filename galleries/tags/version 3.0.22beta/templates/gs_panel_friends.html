@@ -1,0 +1,65 @@
+<{include file="db:gs_header.html"}>
+
+<!-- Opciones del panel -->
+<div class="panelOptions">
+	<ul>
+		<{if $user}>
+			<li class="sets"><a href="<{$link_sets}>"><{$lang_msets}></a></li>
+			<li class="photos"><a href="<{$link_photos}>"><{$lang_mpics}></a></li>
+			<li class="friends"><a href="<{$link_friends}>"><{$lang_friends}></a></li>
+		<{/if}>
+		<li class="bookmarks"><a href="<{$link_bookmarks}>"><{$lang_favourites}></a></li>
+	</ul>
+</div>
+<!-- // Opciones del Panel -->
+<form name="frmFriend" id="frm-friends" method="POST" action="">
+<table class="outer" cellspacing="1">
+	<tr class="even">
+		<td><{$lang_showing}></td>
+		<td align="right"><{$friendsNavPage}></td>
+	</tr>
+</table>
+<table class="outer" cellspacing="1" width="100%">
+	<tr class="head">
+		<td><{$lang_newfriend}></td>
+	</tr>
+	<tr class="odd">
+		<td>
+		<strong><{$lang_uname}></strong> 
+		<input type="text" size="30" name="uname" /> &nbsp;
+		<input type="submit" class="formButton" value="<{$lang_newfriend}>" onclick="$('#frm-friends').attr('action', '<{$form_action_add}>'); $('#frm-friends').submit();"/>
+
+		</td>
+	</tr>
+	<tr class="<{cycle values='even,odd'}>">
+        <td style="overflow: hidden;">
+            <{foreach item=user from=$users}>
+            <div class="item_friend_data">
+                <img class="friend_avatar" src="<{$user.avatar}>" alt="<{$user.uname}>" style="max-width: 60px;" /><br />
+                <span class="friend_uname"><a href="<{$user.link}>"><{$user.uname}></a></span><br />
+                <span class="friend_del"><a href="<{$delete_link}><{$user.uid}>" onclick="return confirm('<{$lang_confirm}>');"><{$lang_del}></a></span>
+            </div>
+            <{/foreach}>
+        </td>
+	</tr>
+</table>
+<input type="hidden" name="pag" value="<{$pag}>" />
+</form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var items = $(".item_friend_data");
+        
+        if(items.length>0){
+            
+            h = 0;
+            for(i=0;i<items.length;i++){
+                
+                if ($(items[i]).height()>h)
+                    h = $(items[i]).height();
+                
+            }
+            
+            $(".item_friend_data").height(h);
+        }
+    });
+</script>

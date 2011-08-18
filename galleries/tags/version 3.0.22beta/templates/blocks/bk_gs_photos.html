@@ -1,0 +1,10 @@
+<div class="gs_block_container gs_block_photos">
+    <{foreach item=pic from=$block.pics}>
+    <div class="gs_photo_item" style="width: <{$block.item_width}>px;">
+        <a href="<{$pic.link}>"><img src="<{$pic.file}>" alt="<{$pic.title}>" /></a><br />
+        <{if $pic.title}><span class="title"><a href="<{$pic.link}>"><{$pic.title}></a></span><br /><{/if}>
+        <span class="picby"><{$pic.by}></span><br />
+        <span style="color: #999"><{$pic.created}></span>
+    </div>
+    <{/foreach}>
+</div>

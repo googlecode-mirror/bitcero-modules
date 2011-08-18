@@ -1,0 +1,49 @@
+div.gsSubmit{
+	margin: 5px;
+}
+.imagesfiles{
+	margin: 4px;
+}
+div.gsSubmit h1{
+	font-size: 18px;
+	margin: 0;
+}
+div.gsSubmit span.used{
+	color: #666;
+	font-size: 11px;
+}
+div.gsSubmit span.used strong{
+	color: #800080;
+	border-bottom: 1px dotted #800080;
+}
+div.gsSubmit span.steps{
+	font-weight: bold;
+	color: #999;
+	display: block;
+	margin-top: 15px;
+}
+div.gsSubmit h2.choose{
+	margin: 0 0 15px 0;
+	font-weight: normal;
+	font-size: 22px;
+	color: #0066ff;
+}
+input.bigButton{
+	font-size: 20px;
+	font-weight: normal;
+	text-transform: none;
+	font-weight: normal;
+}
+div.gsSubmit span.gray{
+	font-size: 11px;
+	color: #999;
+}
+div.gsSubmit span.fucsia{
+	font-size: 11px;
+	color: #FF00FF;
+}
+span.usedGraph{
+	display: block;
+	float: right;
+	text-align: center;
+}

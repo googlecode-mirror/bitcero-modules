@@ -1,0 +1,69 @@
+<{include file="db:gs_header.html"}>
+<!-- Opciones del panel -->
+<div class="panelOptions">
+	<ul>
+		<{if $user}>
+			<li class="sets"><a href="<{$link_sets}>"><{$lang_msets}></a></li>
+			<li class="photos"><a href="<{$link_photos}>"><{$lang_mpics}></a></li>
+			<li class="friends"><a href="<{$link_friends}>"><{$lang_friends}></a></li>
+		<{/if}>
+		<li class="bookmarks"><a href="<{$link_bookmarks}>"><{$lang_favourites}></a></li>
+	</ul>
+</div>
+<!-- // Opciones del Panel -->
+<div class="cp_showing">
+    <{$lang_showing}>
+    <{$setsNavPage}>
+</div>
+
+<form name="frmNewSet" id="frm-newset" method="POST" action="<{if $edit}><{$action_editset}><{else}><{$action_addset}><{/if}>">
+<div class="head"><{if $edit}><{$lang_editset}><{else}><{$lang_newset}><{/if}></div>
+<div class="odd">
+    <strong><{$lang_name}></strong> <input type="text" size="30" name="title" value="<{$title}>" /> &nbsp;
+            <strong><{$lang_public}></strong> 
+            <input type="radio" name="public" value=2<{if $edit && $public==2}> checked="checked"<{/if}> /> <{$lang_publicset}>  &nbsp;
+            <input type="radio" name="public" value=0<{if $edit && !$public}> checked="checked"<{/if}>/> <{$lang_privateme}>    &nbsp;
+            <input type="radio" name="public" value=1<{if $edit && $public==1}> checked="checked"<{/if}> /> <{$lang_privatef}>  &nbsp;
+            <{if $edit}>
+            <input type="submit" value="<{$lang_editset}>" />
+            <{else}>
+            <input type="submit" value="<{$lang_newset}>"  />
+            <{/if}>
+</div>
+<input type="hidden" name="id" value="<{$id}>" />
+</form>
+<form name="frmSet" method="POST" action="<{$action_delset}>">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="7"><{$lang_setexists}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmSet','checkAll')" /></td>
+		<td><{$lang_id}></td>
+		<td><{$lang_name}></td>
+		<td><{$lang_pics}></td>
+		<td><{$lang_public}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_options}></td>
+
+	</tr>
+	<{foreach item=set from=$sets}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td width="20"><input type="checkbox" name="ids[]" value="<{$set.id}>" /></td>
+		<td width="30"><strong><{$set.id}></strong></td>
+		<td align="left"><a href="<{$set.link}>"><{$set.name}></a></td>
+		<td><{$set.pics}></td>
+		<td><img src="<{$gs_url}>/images/<{if $set.public==2}>ok.png<{elseif $set.public==1}>friend.png<{else}>no.png<{/if}>" /></td>
+		<td><{$set.date}></td>
+		<td><a href="<{$edit_link}><{$set.id}>"><{$lang_edit}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" /></td>
+		<td colspan="6">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="return confirm('<{$lang_confirms}>');" />
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="pag" value="<{$pag}>" />
+</form>

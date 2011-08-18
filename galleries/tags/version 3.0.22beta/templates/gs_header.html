@@ -1,0 +1,18 @@
+<div class="gsHeader">
+    <h1><{$gs_title}></h1>
+	<ul class="links">
+	    <li><a href="<{$gs_url}>" class="first"><{$lang_home}></a>
+	    <li><a href="<{$gs_photoslink}>"><{$lang_hphotos}></a></li>
+	    <li><a href="<{$gs_tagslink}>"><{$lang_tags}></a></li>
+	    <li><a href="<{$gs_setslink}>"><{$lang_sets}></a></li>
+	    <li><a href="<{$gs_myphotoslink}>"><{$lang_myphotos}></a></li>
+	    <{if $can_submit}><li><a href="<{$gs_sendlink}>" class="last"><{$lang_sendpics}></a></li><{/if}>
+	</ul>
+	<div class="gsSearch">
+	<form name="frmSearch" method="GET" action="<{$gs_searchlink}>">
+		<{$lang_search}>
+		<input type="text" name="search"  size="20" />
+		<input type="submit" value="<{$lang_search}>" class="formButton" />
+	</form>
+	</div>
+</div>

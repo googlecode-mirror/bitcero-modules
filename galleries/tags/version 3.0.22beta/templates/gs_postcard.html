@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="author" content="Red México">
+<meta name="generator" content="Galleries System 3">
+<title><{$xoops_pagetitle}></title>
+
+<style type="text/css">
+	<!--
+	div.imgContainer{
+		width: <{$img.width}>px;
+		height: <{$img.height}>px;
+		background-image: url(<{$img.url}>);
+		background-repeat: no-repeat;
+	}
+	-->
+</style>
+</head>
+<body>
+<div class="allContainer" style="width: <{$img.width}>;">
+	<h3><{$title}></h3>
+	<div class="postContainer imgContainer" onclick="window.location.href='<{$img.link}>';">&nbsp;
+	</div>
+	<span class="says"><{$lang_says}></span>
+	<span class="message">
+		<{$message}>
+	</span>
+    <div class="options">
+        <a href="<{$img.link}>"><{$lang_see}></a> &nbsp; &nbsp; &nbsp;
+        <a href="<{$user_link}>"><{$lang_seeuser}></a>
+    </div>
+	<{if $preview}>
+    <form name="frmSendPostcard" action="<{$xoops_url}>/modules/galleries/postcard.php" method="post">
+	<div class="formSend">
+		<input type="submit" value="<{$lang_submit}>" class="formButton" onclick="document.forms['frmSendPostcard'].action='<{$send_link}>';"/>
+		<input type="submit" value="<{$lang_edit}>" class="formButton" onclick="document.forms['frmSendPostcard'].action='<{$postcard_link}>';" />
+		<{foreach item=hidden from=$hiddens}>
+			<{$hidden}>
+		<{/foreach}>
+	</div>
+    </form>
+	<{/if}>
+</div>
+</body>
+</html>

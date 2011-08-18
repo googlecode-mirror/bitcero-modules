@@ -1,0 +1,25 @@
+<{include file="db:gs_header.html"}>
+
+<div class="userData">
+	<img class="avatar" src="<{if $user.avatar!=''}><{$user.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$user.uname}>" />
+	<h2><{$lang_picsof}></h2>
+	<ul>
+		<li><img src="<{$gs_url}>/images/usrimage.png" align="absmiddle" /> <a href="<{$user.link}>"><{$lang_pics}></a></li>
+		<li><img src="<{$gs_url}>/images/set.png" align="absmiddle" /> <a href="<{$sets_link}>"><{$lang_sets}></a></li>
+		<li><img src="<{$gs_url}>/images/tag.png" align="absmiddle" /> <a href="<{$tags_link}>"><{$lang_tags}></a></li>
+		<li class="last"><img src="<{$gs_url}>/images/mark.png" align="absmiddle" /> <a href="<{$bmark_link}>"><{$lang_bmark}></a></li>
+	</ul>
+</div>
+
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+<div class="gs_photos_container">
+	<{foreach item=img from=$images}>
+        <{include file="db:gs_item_data.html"}>
+	<{/foreach}>
+</div>
+
+<div class="gsNavPages">
+	<{$upNavPage}>
+</div>

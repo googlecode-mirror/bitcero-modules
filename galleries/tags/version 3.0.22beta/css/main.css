@@ -1,0 +1,450 @@
+div.gsHeader{
+	margin-bottom: 15px;
+	border-bottom: 1px dotted #CCC;
+	padding: 0 0 5px 0;
+	overflow: hidden;
+}
+div.gsHeader ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+div.gsHeader li{
+	display: block;
+	padding: 0px 12px 0px 12px;
+	float: left;
+	border-right: 1px dotted #CCC;
+}
+div.gsHeader li:first-child{
+	padding-left: 0;
+}
+div.gsHeader li:last-child{
+	padding-right: 0;
+	border-right: 0;
+}
+div.gsHeader h1{
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+div.gsHeader div.gsSearch{
+	margin-top: 10px;
+}
+
+
+/** Datos del Usuario **/
+div.userData{
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+div.userData img.avatar{
+	float: left;
+	margin: 0 5px 0 0;
+}
+div.userData h2{
+	margin: 5px 0 0 0;
+}
+div.userData ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+div.userData ul li{
+    list-style: none;
+	float: left;
+	padding: 0 6px 0 0;
+	margin: 0 6px 0 0;
+	background: url(../images/separator.gif) no-repeat right;
+}
+div.userData ul li.last{
+	background-image: none;
+}
+
+/** Lista de Imágenes **/
+div.gsShowInfo{
+	padding: 3px;
+	text-align: right;
+	color: #666;
+    font-size: 0.9em;
+}
+table.userPics{
+	margin-top: 5px;
+	width: 100%;
+	*width: 96%;
+}
+tr.rowPic td{
+	padding: 5px;
+	vertical-align: bottom;
+	font-size: 11px;
+	color: #666;
+}
+tr.rowPic img{
+	padding: 1px;
+	border: 1px solid #666;
+	display: block;
+}
+tr.rowPic span{
+	color: #0099ff;
+}
+tr.rowPic span.title{
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	color: #000;
+}
+tr.rowPic span.desc{
+	display: block;
+	margin-bottom: 5px;
+	color: #666;
+	margin-top: 4px;
+}
+tr.rowPic a.quick{
+	display: block;
+	padding: 2px;
+	background: url(../images/view.png) no-repeat left;
+	padding: 0 0 0 17px;
+	margin-top: 3px;
+}
+div.gsNavPages{
+	padding: 3px;
+	margin-top: 15px;
+	margin-bottom: 6px;
+	text-align: center;
+	font-size: 16px;
+}
+
+/** Detalles de la IMágen **/
+div.gsImage{
+	padding: 0px;
+	font-size: 11px;
+}
+div.gsImage h1{
+	margin: 0 0 5px 0;
+	font-size: 18px;
+}
+#gs-the-image{
+    border: 1px solid #666;
+	margin: 5px auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+#gs-the-image div{
+    border: 1px solid #FFF;
+}
+#gs-the-image .prev{
+    display: block;
+    float: left;
+    width: 48%;
+    border: 0;
+}
+#gs-the-image .prev a{
+    background: url(../images/prev.png) no-repeat left;
+    display: none;
+}
+#gs-the-image .prev:hover a{
+    display: block;
+}
+#gs-the-image .next{
+    display: block;
+    float: right;
+    width: 48%;
+    border: 0;
+}
+#gs-the-image .next a{
+    display: none;
+    background: url(../images/next.png) no-repeat right;
+}
+#gs-the-image .next:hover a{
+    display: block;
+}
+#gs-the-image a span{
+    display: none;
+}
+div.gsImageExtras{
+	overflow: hidden;
+}
+.gs_nav_images{
+    overflow: hidden;
+    text-align: center;
+}
+.gs_nav_images img{
+    width: 80px;
+    padding: 1px;
+    border: 1px solid #999;
+    margin-bottom: 7px;
+}
+.gs_nav_images a img:hover{
+    border-color: #000;
+    background-color: #000;
+}
+.gs_nav_images img.current{
+    width: 95px;
+    margin-bottom: 0;
+}
+.set_info{
+    overflow: hidden;
+    padding: 5px 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
+}
+.set_info .number{
+    float: right;
+    font-size: 0.7em;
+    font-weight: normal;
+    text-align: center;
+}
+.set_info .number span{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+div.alsoBelong{
+	padding: 2px;
+    overflow: hidden;
+    float: left;
+    min-width: 200px;
+}
+div.gsImageExtras h3{
+	font-weight: normal;
+	color: #666;
+	margin: 0 0 5px 0;
+    font-size: 1.3em;
+}
+div.alsoBelong div.item{
+	padding: 2px;
+}
+div.alsoBelong div.item img{
+	float: left;
+    margin: 2px 5px 0 0;
+}
+div.alsoBelong div.item a{
+	display: block;
+}
+.gsTags{line-height: 200%;}
+.gsTags a{
+    padding: 4px 10px;
+}
+div.tags{
+	padding: 5px 20px 5px 5px;
+    float: right;
+}
+div.tags a{
+	background: url(../images/tag_gray.png) no-repeat left;
+	display: block;
+	padding: 2px 2px 2px 18px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+div.tags img.avatar{
+	float: left;
+}
+
+/** Albumes **/
+.setsContainer{
+    overflow: hidden;
+}
+div.gsSets{
+	border-bottom: 1px dashed #c8c8c8;
+	overflow: hidden;
+	font-size: 11px;
+	margin: 5px;
+    padding: 10px;
+}
+div.gsSets div.gsSetsImg{
+	float: left;
+}
+div.gsSetsImg img{
+	padding: 1px;
+	border: 1px solid #666;
+}
+div.gsSetsInfo h4{
+	margin: 0px 0px 5px 0px;
+}
+div.gsSetsInfo strong{
+	font-weight: normal;
+	color: #999;
+}
+div.gsSrhResults{
+	padding: 3px 3px 3px 20px;
+	background: url(../images/ok.png) no-repeat left;
+	font-size: 12px;
+}
+div.gsSrhResults span{
+	color: #FF00FF;
+	font-weight: bold;
+	border-bottom: 1px dotted #FF00FF;
+}
+div.searchItem{
+	overflow: hidden;
+	padding: 2px 2px 2px 2px;
+	margin-bottom: 10px;
+}
+div.searchItem div.gsImgSearch{
+	float: left;
+	margin-right: 15px;
+	text-align: center;
+}
+div.searchItem h3{
+	margin: 0;
+	font-size: 16px;
+}
+div.searchItem span.created{
+	font-size: 11px;
+	color: #999;
+	display: block;
+	margin-bottom: 10px;
+}
+div.searchItem span.created span{
+	color: #0066ff;
+}
+div.searchItem div.uinfo{
+	overflow: hidden;
+	font-size: 11px;
+	margin-bottom: 10px;
+}
+div.searchItem div.uinfo img.avatar{
+	float: left;
+	margin-right: 5px;
+}
+div.searchItem div.uinfo h4{
+	font-size: 12px;
+	margin: 6px 0 0 0;
+}
+div.searchItem div.uinfo h4 a{
+	font-weight: bold;
+	color: #0066ff;
+}
+div.searchItem span.tags{
+	display: block;
+	background: url(../images/tag.png) no-repeat left;
+	padding: 2px 0 2px 18px;
+	min-height: 18px;
+}
+
+/**Fin Gina **/
+div.gsImageOptions{
+	padding: 3px;
+	border-bottom: 1px dotted #CCC;
+	margin-bottom: 10px;
+}
+
+/** Albumes de Usuario**/
+div.theSet{
+	overflow: hidden;
+}
+div.theSet td.setImages{
+	padding: 0 0 0 6px;
+	vertical-align: top;
+}
+div.theSet td.setBigImages{
+	vertical-align: top;
+	color: #666;
+	font-size: 11px;
+}
+td.setBigImages img{
+	display: block;
+	padding: 1px;
+	border: 1px solid #666;
+	margin-bottom: 5px;
+}
+td.setBigImages span.desc{
+	color: #000;
+	display: block;
+	margin-bottom: 10px;
+	line-height: 150%;
+}
+
+/** Comentarios **/
+div.gsComments{
+	margin-top: 10px;
+	padding: 4px 0;
+	border-top: 3px solid #000;
+}
+div.gsComments h3{
+	font-size: 16px;
+	color: #FF00FF;
+	margin: 0 0 10px 0;
+}
+div.gsComments tr.gsCommentItem td{
+	padding: 3px 3px 20px 3px;
+	vertical-align: top;
+}
+div.gsComments tr.gsCommentItem td.avatar{
+	text-align: left;
+	padding-right: 10px;;
+}
+div.gsComments tr.gsCommentItem span.says{
+	font-weight: bold;
+	font-size: 12px;;
+	display: block;
+	margin-bottom: 15px;
+	font-size: 12px;
+}
+div.gsComments tr.gsCommentItem span.publish{
+	font-size: 11px;
+	color: #999;
+	display: block;
+}
+span.publish a{
+	color: #0099ff;
+	text-decoration: none;
+}
+span.publish a:hover{
+	text-decoration: underline;
+	color: #FF00FF;
+}
+div.gsComments h3.send{
+	font-size: 18px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.gs_photos_container{
+    overflow: hidden;
+    margin: 10px 0;
+}
+.gs_pic_item,
+.gs_pic_item_index{
+    padding: 10px;
+    float: left;
+}
+.gs_pic_item .the_image,
+.gs_pic_item_index .the_image{
+    padding: 1px;
+    border: 1px solid #CCC;
+}
+.gs_pic_data{
+    font-size: 0.9em;
+    line-height: 110%;
+}
+.gs_pic_data .pic_date{
+    display: block;
+    font-size: 0.9em;
+}
+.gs_pic_data .pic_title{
+    font-weight: bold;
+    display: block;
+}
+.gs_pic_data .pic_desc{
+    display: block;
+    font-size: 0.9em;
+    padding: 4px 0;
+}
+.gs_pic_data .pic_tags{
+    display: block;
+    font-size: 0.9em;
+    background: url(../images/tags16.png) no-repeat left;
+    padding: 0 0 0 20px;
+}
+.gs_pic_data .pic_by{
+    font-size: 0.9em;
+}
+.gs_pic_data .pic_qview{
+    display: block;
+}
+.gs_pic_data .pic_qview a{
+    display: block;
+    background: url(../images/qview.png) no-repeat left;
+    padding: 2px 0 2px 18px;
+}

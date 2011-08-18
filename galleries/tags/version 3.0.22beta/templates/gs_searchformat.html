@@ -1,0 +1,33 @@
+<{include file="db:gs_header.html"}>
+<div class="gsSrhResults">
+	<{$lang_found}>
+</div>
+<div class="gsShowInfo">
+	<{$lang_showing}>
+</div>
+
+<div class="gs_photos_container">
+<{foreach item=img from=$images}>
+	<div class="searchItem">
+		<div class="gsImgSearch" style="width: <{$width_img}>px;">
+			<a href="<{$img.link}>" title="<{$img.title}>"><img src="<{$img.thumbsrh}>" alt="<{$img.title}>" /></a>
+		</div>
+		<div class="gsInfoSearch gs_pic_data" style="margin-left: <{$width_img+20}>px;">
+			<h3><{$img.title}></h3>
+			<span class="pic_created"><{$img.created}></span>
+			<div class="uinfo">
+			<a href="<{$img.userurl}>"><img class="avatar" src="<{if $img.avatar!=''}><{$img.avatar}><{else}><{$gs_url}>/images/avatar.png<{/if}>" alt="<{$img.uname}>" /></a>
+			<h4><{$img.by}></h4>
+			<{$img.viewmore}>
+            <{if $quickview}><span class="pic_qview"><a href="<{$img.image}>" rel="mgs-images" title="<{$img.title}>"><{$lang_qview}></a></span><{/if}>
+			</div>
+            <span class="pic_desc"><{$img.desc}></span>
+			<span class="pic_tags"><{$img.tags}></span>
+		</div>
+	</div>
+<{/foreach}>
+</div>
+
+<div class="gsNavPages">
+	<{$searchNavPage}>
+</div>
