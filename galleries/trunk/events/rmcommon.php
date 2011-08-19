@@ -26,7 +26,7 @@ class GalleriesRmcommonPreload
     public function eventRmcommonGetFeedsList($feeds){
         
         load_mod_locale('galleries');
-        
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
         $module = RMFunctions::load_module('galleries');
         $config = RMUtilities::module_config('galleries');
 
