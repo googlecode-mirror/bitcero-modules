@@ -1,26 +1,35 @@
-var last_wid = '';
-var first_wid = '';
-var second_wid = '';
+var lwid = '';
+var fwid = '';
+var swid = '';
+var twid = 0;
 
 $(document).ready(function(){
 
     // Show or hide widgets content
-    var cookie = $.cookie('widgets');
-    var vals = cookie.split("|");
+    var vals = $.cookie('widgets').split("|");
+
     for(i=0;i<vals.length;i++){
         id = vals[i].split(':');
-        if(id[1]=='false'){
-            if(i==vals.length - 1){
-                $("#wid-title-"+id[0]).css('border-radius', '0 0 5px 5px');
-                last_wid = id[0];
-            }else if(i==0){
-                $("#wid-title-"+id[0]).css('border-radius', '5px');
-                first_wid = id[0];
-            }else if(i==1){
-                second_wid = id[0];
-            }
+        if(i==vals.length - 1){
+            if(id[1]=='false') $("#wid-title-"+id[0]).css('border-radius', '0 0 5px 5px');
+        }else if(i==0){
+            if(id[1]=='false') $("#wid-title-"+id[0]).css('border-radius', '5px');
         }
     }
+    
+    eles = $("div.rmc_widget_title");
+    twid = eles.length;
+    $(eles).each(function(i){
+        
+        if(i==eles.length - 1){
+            lwid = $(eles[i]).attr("id").replace("wid-title-",'');
+        }else if(i==0){
+            fwid = $(eles[i]).attr("id").replace("wid-title-",'');
+        }else if(i==1){
+            swid = $(eles[i]).attr("id").replace("wid-title-",'');
+        }
+        
+    })
 
     eles = $("div.rmc_widget_content:visible div.menu");
     $(eles).each(function(i){
@@ -55,28 +64,51 @@ $(document).ready(function(){
 
         $("#wid-content-"+id).slideToggle('fast', function(){
             if($(this).is(":visible")){
-
                 $("#wid-title-"+id).removeClass("title-collapsed");
-                if(id==first_wid){
-                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
-                } else if(id==second_wid){
-                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
-                } else{
-                    $("#wid-title-"+id).css('border-radius', '0');
+    
+                if(twid>2){
+                    if(id==fwid){
+                        $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    } else if(id==swid){
+                        $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    } else{
+                        $("#wid-title-"+id).css('border-radius', '0');
+                    }
+                
+                } else {
+                    
+                    if(id==fwid){
+                        $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    } else {
+                        $("#wid-title-"+id).css('border-radius', '0');
+                    }
+                    
                 }
 
             } else {
 
                 $("#wid-title-"+id).addClass("title-collapsed");
-
-                if(id==last_wid){
-                    $("#wid-title-"+id).css('border-radius', '0 0 5px 5px');
-                }else if(id==first_wid){
-                    $("#wid-title-"+id).css('border-radius', '5px');
-                }else if(id==second_wid){
-                    $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
-                } else{
-                    $("#wid-title-"+id).css('border-radius', '0');
+                
+                if(twid>2){
+                    
+                    if(id==lwid){
+                        $("#wid-title-"+id).css('border-radius', '0 0 5px 5px');
+                    }else if(id==fwid){
+                        $("#wid-title-"+id).css('border-radius', '5px');
+                    }else if(id==swid){
+                        $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    } else{
+                        $("#wid-title-"+id).css('border-radius', '0');
+                    }
+                    
+                } else {
+                    
+                    if(id==fwid){
+                        $("#wid-title-"+id).css('border-radius', '5px 5px 0 0');
+                    } else {
+                        $("#wid-title-"+id).css('border-radius', '0 0 5px 5px');
+                    }
+                    
                 }
 
             }
@@ -97,7 +129,6 @@ function hideMessages(){
 function saveCookieTitles(){
 
     var eles = $("div.rmc_widget_title");
-
     var ts = '';
 
     try{
