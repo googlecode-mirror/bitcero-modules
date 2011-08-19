@@ -6,6 +6,9 @@ var twid = 0;
 $(document).ready(function(){
 
     // Show or hide widgets content
+    if($.cookie('widgets')==null)
+        saveCookieTitles();
+        
     var vals = $.cookie('widgets').split("|");
 
     for(i=0;i<vals.length;i++){
