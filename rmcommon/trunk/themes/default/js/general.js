@@ -20,10 +20,9 @@ $(document).ready(function(){
         }
     }
     
-    eles = $("div.rmc_widget_title");
+    var eles = $("#rmc-left-widgets div.rmc_widget_title");
     twid = eles.length;
     $(eles).each(function(i){
-        
         if(i==eles.length - 1){
             lwid = $(eles[i]).attr("id").replace("wid-title-",'');
         }else if(i==0){
@@ -63,7 +62,7 @@ $(document).ready(function(){
         if($(this).attr("id")==undefined) return;
         id = $(this).attr("id").replace("wid-title-",'');
 
-        var eles = $("div.rmc_widget_title");
+        var eles = $("#rmc-left-widgets div.rmc_widget_title");
 
         $("#wid-content-"+id).slideToggle('fast', function(){
             if($(this).is(":visible")){
