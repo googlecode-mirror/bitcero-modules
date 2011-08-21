@@ -8,14 +8,14 @@ CREATE TABLE `mw_categories` (
   PRIMARY KEY  (`id_cat`),
   KEY `shortname` (`shortname`),
   KEY `parent` (`parent`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `mw_catpost` (
   `post` int(11) NOT NULL,
   `cat` int(11) NOT NULL,
   KEY `post` (`post`),
   KEY `cat` (`cat`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `mw_editors` (
   `id_editor` int(11) NOT NULL auto_increment,
@@ -63,7 +63,7 @@ CREATE TABLE `mw_trackbacks` (
   PRIMARY KEY  (`id_t`),
   KEY `post` (`post`),
   KEY `url` (`url`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `mw_bookmarks` (
 `id_book` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
