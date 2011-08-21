@@ -7,7 +7,7 @@ CREATE TABLE `pw_categos` (
   `nameid` varchar(150) NOT NULL,
   `created` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id_cat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `pw_clients` (
   `id_client` int(11) NOT NULL auto_increment,
@@ -19,7 +19,7 @@ CREATE TABLE `pw_clients` (
   `created` int(10) NOT NULL default '0',
   `modified` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id_client`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `pw_images` (
   `id_img` int(11) NOT NULL auto_increment,
@@ -28,14 +28,14 @@ CREATE TABLE `pw_images` (
   `image` varchar(200) NOT NULL,
   `work` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_img`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `pw_types` (
   `id_type` int(11) NOT NULL auto_increment,
   `type` varchar(100) NOT NULL,
   `created` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id_type`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `pw_works` (
   `id_work` int(11) NOT NULL auto_increment,
