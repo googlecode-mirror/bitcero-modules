@@ -17,6 +17,8 @@ $mc =& $xoopsModuleConfig;
 $tpl = $xoopsTpl;
 $db = Database::getInstance();
 
+load_mod_locale('galleries');
+
 $tpl->assign('gs_url', GS_URL);
 $tpl->assign('ths_width', $xoopsModuleConfig['image_ths'][0]);
 $tpl->assign('ths_usr_width', $mc['user_format_mode'] ? $mc['user_format_values'][1] : $xoopsModuleConfig['image_ths'][0]);

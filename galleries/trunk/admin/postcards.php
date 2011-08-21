@@ -21,7 +21,7 @@ function showPostCards(){
 	$mc =& $xoopsModuleConfig;
 
 	$page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
-  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 1;
+  	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$limit = $limit<=0 ? 15 : $limit;
     
     $db = Database::getInstance();
