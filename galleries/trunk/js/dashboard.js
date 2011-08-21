@@ -1,7 +1,7 @@
 var redmex = {
     
     news : function(){
-        var url=encodeURIComponent("http://www.redmexico.com.mx/modules/vcontrol/?id=7&type=json");
+        var url=encodeURIComponent("http://www.redmexico.com.mx/modules/vcontrol/?id=7&type=json&limit=3");
 
         $.post(xurl+'/modules/rmcommon/include/proxy.php', {url: url}, function(data){
             if(data.indexOf("<html")>0 && data.indexOf("</html>")>0) return;
