@@ -6,7 +6,7 @@ CREATE TABLE `rd_figures` (
   `desc` varchar(255) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY  (`id_fig`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `rd_references` (
   `id_ref` int(10) unsigned NOT NULL auto_increment,
@@ -14,7 +14,7 @@ CREATE TABLE `rd_references` (
   `title` varchar(150) NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY  (`id_ref`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `rd_resources` (
   `id_res` int(11) unsigned NOT NULL auto_increment,
@@ -41,7 +41,7 @@ CREATE TABLE `rd_resources` (
   PRIMARY KEY  (`id_res`),
   KEY `nameid` (`nameid`),
   KEY `title` (`title`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `rd_sections` (
   `id_sec` int(10) unsigned NOT NULL auto_increment,
@@ -58,7 +58,7 @@ CREATE TABLE `rd_sections` (
   `comments` smallint(6) NOT NULL default '0',
   PRIMARY KEY  (`id_sec`),
   KEY `nameid` (`nameid`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `rd_votedata` (
   `uid` int(11) NOT NULL default '0',
@@ -66,7 +66,7 @@ CREATE TABLE `rd_votedata` (
   `date` int(10) NOT NULL,
   `res` int(11) NOT NULL,
   KEY `uid` (`uid`,`ip`,`res`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `rd_edits` (
 `id_edit` int( 10 ) unsigned NOT NULL AUTO_INCREMENT ,
