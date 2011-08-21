@@ -5,7 +5,7 @@ CREATE TABLE `qpages_categos` (
   `parent` int(11) NOT NULL default '0',
   `descripcion` text NOT NULL,
   PRIMARY KEY  (`id_cat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `qpages_pages` (
   `id_page` int(11) NOT NULL auto_increment,
@@ -31,7 +31,7 @@ CREATE TABLE `qpages_pages` (
   PRIMARY KEY  (`id_page`),
   KEY `titulo_amigo` (`titulo_amigo`),
   KEY `cat` (`cat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `qpages_meta` (
 `name` VARCHAR( 50 ) NOT NULL ,
