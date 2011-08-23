@@ -1,0 +1,39 @@
+.exmbb_options{
+    padding: 0 0 5px 0;
+}
+.exmbb_2cols{
+    overflow: hidden;
+}
+.exmbb_2cols .exmbb_colleft{
+    width: 30%;
+    float: left;
+    margin-right: 20px;
+}
+.exmbb_2cols .exmbb_colright{
+    width: 65%;
+    float: left;
+}
+
+.exmbb_2cols label{
+    display: block;
+    padding: 2px 0;
+    margin: 5px 0;
+    font-weight: bold;
+}
+.exmbb_colleft input[type='text'],
+.exmbb_colleft textarea{
+    width: 90%;
+}
+.exmbb_colleft textarea{
+    height: 70px;
+}
+.exmbb_colleft .groups{
+    overflow: hidden;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #CCC;
+}
+.exmbb_colleft .groups label{
+    font-weight: normal;
+    padding: 0;
+    margin: 2px 0;
+}
