@@ -1,0 +1,47 @@
+<form name="frmForums" method="post" action="forums.php">
+<table class="outer" cellspacing="1" cellpadding="0" width="100%">
+    <tr>
+        <th colspan="10"><{$lang_forumslist}></th>
+    </tr>
+    <tr align="center" class="head">
+        <td width="20"><input type="checkbox" name="checkall" onchange="xoopsCheckAll('frmForums', 'checkall');"></td>
+        <td width="50"><{$lang_id}></td>
+        <td><{$lang_name}></td>
+        <td width="50"><{$lang_numtopics}></td>
+        <td width="50"><{$lang_numposts}></td>
+        <td><{$lang_catego}></td>
+        <td width="26"><{$lang_active}></td>
+        <td width="26"><{$lang_attachments}></td>
+        <td><{$lang_order}></td>
+        <td><{$lang_options}></td>
+    </tr>
+    <{foreach item=forum from=$forums}>
+        <tr class="<{cycle values="even,odd"}>" align="center">
+            <td><input type="checkbox" name="forums[<{$forum.id}>]" value="<{$forum.id}>" /></td>
+            <td><strong><{$forum.id}></strong></td>
+            <td align="left"><a href="../forum.php?id=<{$forum.id}>"><{$forum.title}></a></td>
+            <td><{$forum.topics}></td>
+            <td><{$forum.posts}></td>
+            <td><{$forum.catego}></td>
+            <td><img src="../images/<{if $forum.active}>ok<{else}>no<{/if}>.png" border="0" alt="" /></td>
+            <td><img src="../images/<{if $forum.attach}>ok<{else}>no<{/if}>.png" border="0" alt="" /></td>
+            <td><input type="text" name="orders[<{$forum.id}>]" value="<{$forum.order}>" size="5" style="text-align: center;" /></td>
+            <td>
+                <a href="?op=edit&amp;id=<{$forum.id}>"><{$lang_edit}></a> &bull;
+                <a href="?op=delete&amp;id=<{$forum.id}>"><{$lang_delete}></a> &bull;
+		<a href="?op=moderator&amp;id=<{$forum.id}>"><{$lang_moderator}></a>
+            </td>
+        </tr>
+    <{/foreach}>
+    <tr class="foot">
+    	<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
+    	<td colspan="9">
+		<input type="submit" value="<{$lang_save}>" class="formButtonOk" onclick="document.forms['frmForums'].op.value='savechanges';" />    	
+		<input type="submit" value="<{$lang_activate}>" class="formButtonBlue" onclick="document.forms['frmForums'].op.value='activate';" />
+    		<input type="submit" value="<{$lang_deactivate}>" class="formButtonRed" onclick="document.forms['frmForums'].op.value='deactivate';" />
+    	</td>
+    </tr>
+</table>
+<{$token}>
+<input type="hidden" name="op" value="" />
+</form>
