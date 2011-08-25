@@ -550,7 +550,7 @@ function showSetContent(){
 
    	$urlnav = '';
    	if ($tpages > 1) {
-        $urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : 'usr='.$user->uname().'&amp;set='.$set->id();
+        $urlnav .= $mc['urlmode'] ? 'usr/'.$user->uname().'/set/'.$set->id() : '?usr='.$user->uname().'&amp;set='.$set->id();
         $nav = new RMPageNav($num, $limit, $pactual, 5);
         $nav->target_url(GSFunctions::get_url().$urlnav.($mc['urlmode'] ? '/pag/{PAGE_NUM}/' : '&amp;pag={PAGE_NUM}'));
         $tpl->assign('upNavPage', $nav->render(false));
