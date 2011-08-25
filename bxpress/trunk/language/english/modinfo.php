@@ -1,45 +1,18 @@
 <?php
-// $Id: modinfo.php 66 2008-04-08 17:26:58Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress
+// A simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
-
-# Información del Módulo
-define('_MI_RMF_NAME','EXM Forums');
-define('_MI_RMF_DESC','Module to manage discussion forums in EXM');
-
-# Menu de la secci?n administrativa
-define('_MI_RMF_ADM1','Current Status');
-define('_MI_RMF_ADM2','Categories');
-define('_MI_RMF_ADM3','Forums');
-define('_MI_RMF_ADM4','Announcements');
-define('_MI_RMF_ADM5','Reports');
-define('_MI_RMF_ADM6','Prune');
 
 # Opciones de configuración del módulo
-define('_MI_RMF_CNFTITLE','Forum Title');
-define('_MI_RMF_CNFTITLE_DESC','This title will be show in the Home page and in special sections.');
+define('_MI_BX_CNFTITLE',__('Forum Title','bxpress'));
+define('_MI_BX_CNFTITLE_DESC', __('This title will be show in the Home page and in special sections.','bxpress'));
+define('_MI_BX_URLMODE', __('Enable URLs rewriting','bxpress'));
+define('_MI_BX_URLMODED', __('By enabling this option, bXpress will be capable to use friendly urls.','bxpress'));
 
 define('_MI_RMF_CNFSTOREFILES','Directory for the file storage');
 define('_MI_RMF_CNFSTOREFILES_DESC','In this folder will be stored the posts attachments and the categories images');
@@ -149,4 +122,3 @@ define('_MI_BB_EDIT','Post Editing');
 define('_MI_BB_MODERATE','Forum Moderation');
 define('_MI_BB_REPORT','Reports');
 define('_MI_BB_SEARCH','Search');
-?>

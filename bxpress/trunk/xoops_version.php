@@ -1,16 +1,16 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// EXMBB Forums
-// An simple forums module for XOOPS and Common Utilities
+// bXpress
+// A simple forums module for XOOPS and Common Utilities
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-$modversion['name'] = __('EXMBB Forums','exmbb');
-$modversion['description'] = __('A simple forums module for XOOPS and common utilities.','exmbb');
-$modversion['rmversion'] = array('number'=>1,'revision'=>36,'status'=>-2,'name'=>__('RapidDocs','exmbb'));
+$modversion['name'] = __('bXpress','bxpress');
+$modversion['description'] = __('A simple forums module for XOOPS and common utilities.','bxpress');
+$modversion['rmversion'] = array('number'=>2,'revision'=>0,'status'=>-2,'name'=>__('bXpress','bxpress'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.3';
 $modversion['icon32'] = 'images/forum32.png';
@@ -25,7 +25,7 @@ $modversion['help'] = "";
 $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
-$modversion['dirname'] = "exmbb";
+$modversion['dirname'] = "bxpress";
 $modversion['icon48'] = "images/logo.png";
 
 // Admin things
@@ -39,52 +39,75 @@ $modversion['hasMain'] = 1;
 // Search
 $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = "include/search.php";
-$modversion['search']['func'] = "exmbbSearch";
+$modversion['search']['func'] = "bxpressSearch";
 
 // SQL
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // DB Tables
-$modversion['tables'][0] = 'exmbb_announcements';
-$modversion['tables'][1] = 'exmbb_attachments';
-$modversion['tables'][2] = 'exmbb_categories';
-$modversion['tables'][3] = 'exmbb_forums';
-$modversion['tables'][4] = 'exmbb_posts';
-$modversion['tables'][5] = 'exmbb_posts_text';
-$modversion['tables'][6] = 'exmbb_report';
-$modversion['tables'][6] = 'exmbb_topics';
+$modversion['tables'][0] = 'bxpress_announcements';
+$modversion['tables'][1] = 'bxpress_attachments';
+$modversion['tables'][2] = 'bxpress_categories';
+$modversion['tables'][3] = 'bxpress_forums';
+$modversion['tables'][4] = 'bxpress_posts';
+$modversion['tables'][5] = 'bxpress_posts_text';
+$modversion['tables'][6] = 'bxpress_report';
+$modversion['tables'][6] = 'bxpress_topics';
 
-$modversion['templates'][] = array('file'=>'exmbb_index_categos.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_index_forums.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_forum.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_header.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_postform.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_topic.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_powered.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_moderate.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_moderateforms.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_announcements.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_report.html','description'=>'');
-$modversion['templates'][] = array('file'=>'exmbb_search.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_index_categos.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_index_forums.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_forum.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_header.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_postform.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_topic.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_powered.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_moderate.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_moderateforms.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_announcements.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_report.html','description'=>'');
+$modversion['templates'][] = array('file'=>'bxpress_search.html','description'=>'');
 
 /**
  * Settings
  */
-$modversion['config'][1]['name'] = 'forum_title';
-$modversion['config'][1]['title'] = '_MI_RMF_CNFTITLE';
-$modversion['config'][1]['description'] = '_MI_RMF_CNFTITLE_DESC';
-$modversion['config'][1]['formtype'] = 'textbox';
-$modversion['config'][1]['valuetype'] = 'text';
-$modversion['config'][1]['default'] = 'Bienvenido a RMSOFT Forum 1.0';
-$modversion['config'][1]['order'] = 2;
+$modversion['config'][] = array(
+    'name' => 'forum_title',
+    'title' => '_MI_BX_CNFTITLE',
+    'description' => '_MI_BX_CNFTITLE_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => __('Welcome to bXpress Forums','bxpress'),
+);
 
-$modversion['config'][3]['name'] = 'maxfilesize';
-$modversion['config'][3]['title'] = '_MI_RMF_CNFMAXFILESIZE';
-$modversion['config'][3]['description'] = '_MI_RMF_CNFMAXFILESIZE_DESC';
-$modversion['config'][3]['formtype'] = 'textbox';
-$modversion['config'][3]['valuetype'] = 'text';
-$modversion['config'][3]['default'] = 500;
-$modversion['config'][3]['order'] = 4;
+// URL rewriting
+$modversion['config'][] => array( 
+    'name' => 'urlmode',
+    'title' => '_MI_BX_URLMODE',
+    'description' => '_MI_BX_URLMODED',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1,
+);
+
+$modversion['config'][] = array(
+    'name' => 'forum_title',
+    'title' => '_MI_BX_CNFTITLE',
+    'description' => '_MI_BX_CNFTITLE_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => __('Welcome to bXpress Forums','bxpress'),
+    'order' => 2
+);
+
+$modversion['config'][] = array(
+    'name' => 'maxfilesize',
+    'title' => '_MI_BX_CNFMAXFILESIZE',
+    'description' => '_MI_BX_CNFMAXFILESIZE_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 500,
+    'order' => 4
+);
 
 $modversion['config'][4]['name'] = 'showcats';
 $modversion['config'][4]['title'] = '_MI_BB_SHOWCATS';
@@ -199,7 +222,7 @@ $modversion['config'][18]['title'] = '_MI_BB_ATTACHDIR';
 $modversion['config'][18]['description'] = '_MI_BB_ATTACHDIR_DESC';
 $modversion['config'][18]['formtype'] = 'textbox';
 $modversion['config'][18]['valuetype'] = 'text';
-$modversion['config'][18]['default'] = XOOPS_UPLOAD_PATH.'/exmbb';
+$modversion['config'][18]['default'] = XOOPS_UPLOAD_PATH.'/bxpress';
 $modversion['config'][18]['order'] = 18;
 $modversion['config'][18]['size'] = 50;
 
@@ -341,17 +364,17 @@ $modversion['notification']['event'][4]['mail_subject'] = '_MI_BB_NOTNEPOSTFORUM
 // Sindicación RSS
 $modversion['rss']['name'] = '_MI_BB_RSSNAME'; 			// NOmbre del elemento
 $modversion['rss']['file'] = 'include/rss.php';			// Archivo donde se localizan las funciones
-$modversion['rss']['desc'] = 'exmbb_rssdesc';			// Devuelve la descripción del elemento
-$modversion['rss']['feed'] = 'exmbb_rssfeed';			// Devuelve el menu de opciones del elemento
-$modversion['rss']['show'] = 'exmbb_rssshow';			// Devuelve el archivo xml
+$modversion['rss']['desc'] = 'bxpress_rssdesc';			// Devuelve la descripción del elemento
+$modversion['rss']['feed'] = 'bxpress_rssfeed';			// Devuelve el menu de opciones del elemento
+$modversion['rss']['show'] = 'bxpress_rssshow';			// Devuelve el archivo xml
 
 // Bloque Recientes
-$modversion['blocks'][0]['file'] = "exmbb_recents.php";
+$modversion['blocks'][0]['file'] = "bxpress_recents.php";
 $modversion['blocks'][0]['name'] = '_MI_BB_BKRECENT';
 $modversion['blocks'][0]['description'] = "";
-$modversion['blocks'][0]['show_func'] = "exmbb_recents_show";
-$modversion['blocks'][0]['edit_func'] = "exmbb_recents_edit";
-$modversion['blocks'][0]['template'] = 'bk_exmbb_recents.html';
+$modversion['blocks'][0]['show_func'] = "bxpress_recents_show";
+$modversion['blocks'][0]['edit_func'] = "bxpress_recents_edit";
+$modversion['blocks'][0]['template'] = 'bk_bxpress_recents.html';
 $modversion['blocks'][0]['options'] = array(10,1,1,1,0);
 
 //Páginas del Módulo
