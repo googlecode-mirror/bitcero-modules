@@ -284,3 +284,13 @@ $modversion['config'][29]['description'] = '';
 $modversion['config'][29]['formtype'] = 'yesno';
 $modversion['config'][29]['valuetype'] = 'int';
 $modversion['config'][29]['default'] = 1;
+
+$modversion['blocks'][] = array(
+    'file' => "comments.php",
+    'name' => __('Comments','rmcommon'),
+    'description' => __('Show comments from internal comments system','rmcommon');
+    'show_func' => "rmc_bkcomments_show",
+    'edit_func' => "rmc_bkcomments_edit";
+    'template' => 'rmc_bk_comments.html';
+    'options' => "5|1|1|1"
+);
