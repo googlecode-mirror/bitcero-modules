@@ -158,7 +158,7 @@ foreach($meta as $data){
 }
 
 // before to save post
-RMEvents::get()->run_event('mywords.saving.post', &$post);
+RMEvents::get()->run_event('mywords.saving.post', $post);
 
 // Add trackbacks uris
 $toping = array();
