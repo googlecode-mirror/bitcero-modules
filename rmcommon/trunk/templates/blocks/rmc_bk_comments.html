@@ -1,1 +1,19 @@
-Hola
+<div class="rm_bkcoms_container">
+<{foreach item=com from=$block.comments}>
+    <div class="bk_com_item">
+        <span class="text"><a href="<{$com.item_url}>"><{$com.text}></a></span>
+        <span class="data">
+            <{$com.item}>
+        </span>
+        <span class="data">
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$com.poster.id}>"><{$com.poster.name}></a>
+        </span>
+        <span class="data">
+            <{$com.item}>
+        </span>
+        <span class="data">
+            <{$com.module}>
+        </span>
+    </div>
+<{/foreach}>
+</div>

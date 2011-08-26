@@ -1,0 +1,17 @@
+.rm_bkcoms_container{
+    overflow: hidden;
+}
+.rm_bkcoms_container .bk_com_item{
+    overflow: hidden;
+    padding: 2px 0;
+    border-bottom: 1px dotted #CCC;
+}
+.rm_bkcoms_container .bk_com_item .text{
+    display: block;
+    padding: 2px 0;
+}
+.rm_bkcoms_container .bk_com_item .data{
+    font-size: 0.9em;
+    float: left;
+    width: 25%;
+}
