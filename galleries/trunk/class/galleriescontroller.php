@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class GalleriesController
+class GalleriesController implements iCommentsController
 {
     public function increment_comments_number($comment){
         
@@ -37,15 +37,14 @@ class GalleriesController
         if(isset($set) && $set>0){
 
             if (isset($csets[$set])){
-                $ret = '<a href="'.$csets[$set]->url().'#comment-'.$com->id().'">'.$csets[$set]->title().'</a>';
-                return $ret;
+                return $csets[$set]->title();
             }
             
             $sobj = new GSSet($set);
             if($sobj->isNew())
                 return __('Unknow element','galleries');
             
-            $ret = '<a href="'.$sobj->url().'#comment-'.$com->id().'">'.$sobj->title().'</a>';
+            $ret = $sobj->title();
             $csets[$set] = $sobj;
             
             return $ret;
@@ -53,7 +52,7 @@ class GalleriesController
         } elseif(isset($image) && $image>0) {
             
             if (isset($cimgs[$image])){
-                $ret = '<a href="'.$cimgs[$image]->permalink().'#comment-'.$com->id().'">'.$cresources[$res]->getVar('title').'</a>';
+                $ret = $cresources[$res]->getVar('title');
                 return $ret;
             }
             
@@ -62,7 +61,7 @@ class GalleriesController
             if($img->isNew())
                 return __('Unknow element','docs');
             
-            $ret = '<a href="'.$img->permalink().'#comment-'.$com->id().'">'.$img->title(true).'</a>';
+            $ret = $img->title(true);
             $cimgs[$image] = $img;
             
             return $ret;
@@ -70,6 +69,54 @@ class GalleriesController
         }
         
         
+    }
+    
+    public function get_item_url($params, $com){
+        static $cimgs;
+        static $csets;
+        
+        $params = urldecode($params);        
+        parse_str($params);
+        
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gstag.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
+        
+        if(isset($set) && $set>0){
+
+            if (isset($csets[$set])){
+                $ret = $csets[$set]->url().'#comment-'.$com->id();
+                return $ret;
+            }
+            
+            $sobj = new GSSet($set);
+            if($sobj->isNew())
+                return '';
+            
+            $ret = $sobj->url().'#comment-'.$com->id();
+            $csets[$set] = $sobj;
+            
+            return $ret;
+            
+        } elseif(isset($image) && $image>0) {
+            
+            if (isset($cimgs[$image])){
+                $ret = $cimgs[$image]->permalink().'#comment-'.$com->id();
+                return $ret;
+            }
+            
+            $img = new GSImage($image);
+        
+            if($img->isNew())
+                return '';
+            
+            $ret = $img->permalink().'#comment-'.$com->id();
+            $cimgs[$image] = $img;
+            
+            return $ret;
+            
+        }
     }
     
     public function get_main_link(){
