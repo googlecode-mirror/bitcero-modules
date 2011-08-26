@@ -14,7 +14,7 @@
 * like update comments
 */
 
-class DocsController
+class DocsController implements iCommentsController
 {
     public function increment_comments_number($comment){
         
@@ -66,7 +66,7 @@ class DocsController
         if(isset($id) && $id>0){
 
             if (isset($csections[$id])){
-                $ret = '<a href="'.$csections[$id]->permalink().'#comment-'.$com->id().'">'.$csections[$id]->getVar('title').'</a>';
+                $ret = $csections[$id]->getVar('title');
                 return $ret;
             }
             
@@ -74,7 +74,7 @@ class DocsController
             if($sec->isNew())
                 return __('Unknow element','docs');
             
-            $ret = '<a href="'.$sec->permalink().'#comment-'.$com->id().'">'.$sec->getVar('title').'</a>';
+            $ret = $sec->getVar('title');
             $csections[$id] = $sec;
             
             return $ret;
@@ -82,7 +82,7 @@ class DocsController
         } else {
             
             if (isset($cresources[$res])){
-                $ret = '<a href="'.$cresources[$res]->permalink().'#comment-'.$com->id().'">'.$cresources[$res]->getVar('title').'</a>';
+                $ret = $cresources[$res]->getVar('title');
                 return $ret;
             }
             
@@ -90,7 +90,7 @@ class DocsController
             if($resoruce->isNew())
                 return __('Unknow element','docs');
             
-            $ret = '<a href="'.$resoruce->permalink().'#comment-'.$com->id().'">'.$resoruce->getVar('title').'</a>';
+            $ret = $resoruce->getVar('title');
             $cresources[$res] = $resoruce;
             
             return $ret;
@@ -99,6 +99,52 @@ class DocsController
         
         
     }
+	
+	public function get_item_url($params, $com){
+		static $cresources;
+        static $csections;
+        
+        $params = urldecode($params);
+        parse_str($params);
+        if(!isset($res) || $res<=0) return __('Unknow element','docs');;
+        
+        include_once XOOPS_ROOT_PATH.'/modules/docs/class/rdresource.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/docs/class/rdsection.class.php';
+        
+        if(isset($id) && $id>0){
+
+            if (isset($csections[$id])){
+                $ret = $csections[$id]->permalink().'#comment-'.$com->id();
+                return $ret;
+            }
+            
+            $sec = new RDSection($id);
+            if($sec->isNew())
+                return '';
+            
+            $ret = $sec->permalink().'#comment-'.$com->id();
+            $csections[$id] = $sec;
+            
+            return $ret;
+            
+        } else {
+            
+            if (isset($cresources[$res])){
+                $ret = $cresources[$res]->permalink().'#comment-'.$com->id();
+                return $ret;
+            }
+            
+            $resoruce = new RDResource($res);
+            if($resoruce->isNew())
+                return '';
+            
+            $ret = $resoruce->permalink().'#comment-'.$com->id();
+            $cresources[$res] = $resoruce;
+            
+            return $ret;
+            
+        }
+	}
     
     public function get_main_link(){
 		
