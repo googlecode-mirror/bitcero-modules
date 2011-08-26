@@ -98,10 +98,12 @@ function show_comments(){
 			$class = ucfirst($row['id_obj']).'Controller';
 			$controller = new $class();
 			$item = $controller->get_item($row['params'], $com);
+			$item_url = $controller->get_item_url($row['params'], $com);
 			
         } else {
 			
 			$item = __('Unknow','rmcommon');
+			$item_url = '';
 			
         }
         
@@ -109,9 +111,10 @@ function show_comments(){
             'id'        => $row['id_com'],
             'text'      => TextCleaner::getInstance()->clean_disabled_tags(TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content')))),
             'poster'    => $poster,
-            'posted'    => sprintf(__('Posted on %s'), formatTimestamp($com->getVar('posted'), 'l')),
+            'posted'    => sprintf(__('Posted on %s','rmcommon'), formatTimestamp($com->getVar('posted'), 'l')),
             'ip'        => $com->getVar('ip'),
             'item'		=> $item,
+			'item_url'  => $item_url,
             'module'	=> $row['id_obj'],
             'status'	=> $com->getVar('status')
         );
