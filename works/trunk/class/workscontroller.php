@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class WorksController
+class WorksController implements iCommentsController
 {
 	public function increment_comments_number($comment){
         
@@ -36,32 +36,52 @@ class WorksController
 		
     }
     
-    public function get_item($params, $com, $url = false){
+    public function get_item($params, $com){
         static $works;
         
         $params = urldecode($params);
         parse_str($params);
-        if(!isset($work) || $work<=0) return __('Not found','admin_works');;
+        if(!isset($work) || $work<=0) return __('Not found','works');;
         
         if(isset($works[$work])){
-        	if ($url) return $works[$work]->link();
-        	$ret = '<a href="'.$works[$work]->link().'#comment-'.$com->id().'" target="_blank">'.$works[$work]->title().'</a>';
+        	$ret = $works[$work]->title();
 			return $ret;
         }
         
         include_once (XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php');
         $item = new PWWork($work);
         if($item->isNew()){
-			return __('Unknow','admin_works');
+			return __('Unknow','works');
         }
         
-        if($url) return $item->link();
-        
-        $ret = '<a href="'.$item->link().'#comment-'.$com->id().'" target="_blank">'.$item->title().'</a>';
+        $ret = $item->title();
         $works[$work] = $item;
         return $ret;
         
     }
+	
+	public function get_item_url($params, $com){
+		static $works;
+        
+        $params = urldecode($params);
+        parse_str($params);
+        if(!isset($work) || $work<=0) return '';
+        
+        if(isset($works[$work])){
+        	$ret = $works[$work]->link().'#comment-'.$com->id();
+			return $ret;
+        }
+        
+        include_once (XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php');
+        $item = new PWWork($work);
+        if($item->isNew()){
+			return '';
+        }
+        
+        $ret = $item->link().'#comment-'.$com->id();
+        $works[$work] = $item;
+        return $ret;
+	}
     
     public function get_main_link(){
 		
