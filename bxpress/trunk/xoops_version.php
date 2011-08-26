@@ -80,7 +80,7 @@ $modversion['config'][] = array(
 );
 
 // URL rewriting
-$modversion['config'][] => array( 
+$modversion['config'][] = array( 
     'name' => 'urlmode',
     'title' => '_MI_BX_URLMODE',
     'description' => '_MI_BX_URLMODED',
