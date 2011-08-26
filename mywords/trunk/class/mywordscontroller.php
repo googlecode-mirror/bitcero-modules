@@ -14,7 +14,7 @@
 * like update comments
 */
 
-class MywordsController
+class MywordsController implements iCommentsController
 {
     public function increment_comments_number($comment){
         
@@ -42,7 +42,7 @@ class MywordsController
 		
     }
     
-    public function get_item($params, $com, $url = false){
+    public function get_item($params, $com){
         static $posts;
         
         $params = urldecode($params);
@@ -50,8 +50,7 @@ class MywordsController
         if(!isset($post) || $post<=0) return __('Not found','mywords');;
         
         if(isset($posts[$post])){
-        	$ret = '<a href="'.$posts[$post]->permalink().'#comment-'.$com->id().'">'.$posts[$post]->getVar('title').'</a>';
-			return $ret;
+        	return $posts[$post]->getVar('title');
         }
         
         include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php');
@@ -61,13 +60,35 @@ class MywordsController
 			return __('Not found','mywords');
         }
         
-        if($url) return $item->permalink();
-        
-        $ret = '<a href="'.$item->permalink().'#comment-'.$com->id().'">'.$item->getVar('title').'</a>';
         $posts[$post] = $item;
-        return $ret;
+        return $item->getVar('title');
         
     }
+	
+	public function get_item_url($params, $com){
+		static $posts;
+        
+        $params = urldecode($params);
+        parse_str($params);
+        if(!isset($post) || $post<=0) return '';
+        
+        if(isset($posts[$post])){
+        	$ret = $posts[$post]->permalink();
+			return $ret;
+        }
+        
+        include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php');
+        include_once (XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php');
+        $item = new MWPost($post);
+        if($item->isNew()){
+			return '';
+        }
+		
+		$posts[$post] = $item;
+        
+        return $item->permalink();
+        
+	}
     
     public function get_main_link(){
 		
