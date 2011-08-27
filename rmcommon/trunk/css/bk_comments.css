@@ -3,15 +3,21 @@
 }
 .rm_bkcoms_container .bk_com_item{
     overflow: hidden;
-    padding: 2px 0;
+    padding: 5px 0;
     border-bottom: 1px dotted #CCC;
 }
 .rm_bkcoms_container .bk_com_item .text{
     display: block;
     padding: 2px 0;
+    font-weight: bold;
+}
+.rm_bkcoms_container .bk_com_item .text .module{
+    font-style: italic;
+    font-size: 0.9em;
+    font-weight: normal;
 }
 .rm_bkcoms_container .bk_com_item .data{
     font-size: 0.9em;
     float: left;
-    width: 25%;
+    width: 32%;
 }
