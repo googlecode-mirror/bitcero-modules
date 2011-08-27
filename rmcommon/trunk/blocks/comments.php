@@ -94,8 +94,8 @@ function rmc_bkcomments_show($options){
         $comments[] = array(
             'id'        => $row['id_com'],
             'text'      => TextCleaner::truncate(TextCleaner::getInstance()->clean_disabled_tags(TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content')))), 50),
-            'poster'    => $poster,
-            'posted'    => sprintf(__('Posted on %s','rmcommon'), formatTimestamp($com->getVar('posted'), 'l')),
+            'poster'    => isset($poster) ? $poster : null,
+            'posted'    => formatTimestamp($com->getVar('posted'), 'l'),
             'item'		=> $item,
 			'item_url'  => $item_url,
             'module'	=> $row['id_obj'],
