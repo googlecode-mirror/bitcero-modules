@@ -10,9 +10,7 @@
 
 include("../../mainfile.php");
 
-$docroot = strtolower(str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']));
-$root = strtolower(rtrim(XOOPS_ROOT_PATH, '/'));
-$request = str_replace($root, '', $docroot.$_SERVER['REQUEST_URI']);
+$request = str_replace(XOOPS_URL, '', RMFunctions::current_url());
 $request = str_replace("/modules/mywords/", '', $request);
 
 if ($xoopsModuleConfig['permalinks']>1 && $xoopsModuleConfig['basepath']!='/'){
