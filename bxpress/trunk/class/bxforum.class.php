@@ -1,46 +1,29 @@
 <?php
-// $Id: bbforum.class.php 61 2008-03-15 19:46:48Z ginis $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Constantes para selección de permisos del usuario
 */
-define('EXMBB_PERM_VIEW','view');
-define('EXMBB_PERM_TOPIC','topic');
-define('EXMBB_PERM_REPLY','reply');
-define('EXMBB_PERM_EDIT','edit');
-define('EXMBB_PERM_DELETE','delete');
-define('EXMBB_PERM_VOTE','vote');
-define('EXMBB_PERM_ATTACH','attach');
-define('EXMBB_PERM_APPROVE','approve');
+define('BXPRESS_PERM_VIEW','view');
+define('BXPRESS_PERM_TOPIC','topic');
+define('BXPRESS_PERM_REPLY','reply');
+define('BXPRESS_PERM_EDIT','edit');
+define('BXPRESS_PERM_DELETE','delete');
+define('BXPRESS_PERM_VOTE','vote');
+define('BXPRESS_PERM_ATTACH','attach');
+define('BXPRESS_PERM_APPROVE','approve');
 
 /**
 * @desc Clase para el manejo de objetos foro
 */
-class BBForum extends EXMObject
+class bXForum extends RMObject
 {
     /**
     * @param int $id Identificador del Foro
@@ -48,7 +31,7 @@ class BBForum extends EXMObject
     */
     public function __construct($id=null){
         $this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_forums");
+        $this->_dbtable = $this->db->prefix("bxpress_forums");
         $this->setNew();
         $this->initVarsFromTable();
         
@@ -337,7 +320,7 @@ class BBForum extends EXMObject
     * @param int $mode 0 por Defecto, 1 Basado en Nombres
     */
     public function makeLink($mode = 0){
-        $link = XOOPS_URL.'/modules/exmbb/';
+        $link = XOOPS_URL.'/modules/bxpress/';
         $link .= "forum.php?id=".$this->id();
         return $link;
     }
@@ -391,8 +374,8 @@ class BBForum extends EXMObject
     * @param int $level 0 = Sticky, 1 = Sticky y Multiples, 2 = Todos
     */
     public function getTopics($level = 2){
-        $tbl1 = $this->db->prefix("exmbb_topics");
-        $tbl2 = $this->db->prefix("exmbb_forumtopics");
+        $tbl1 = $this->db->prefix("bxpress_topics");
+        $tbl2 = $this->db->prefix("bxpress_forumtopics");
         
         $sql = "SELECT tbl1.* FROM $tbl1,$tbl2 WHERE $tbl2.forum='".$this->id()."' AND 
                 $tbl1.id_topic=$tbl2.topic ORDER BY sticky, date DESC";
@@ -404,7 +387,7 @@ class BBForum extends EXMObject
     public function getLastPost(){
 	$post = 0;
 
-	$sql = "SELECT a.* FROM ".$this->db->prefix('exmbb_posts')." a INNER JOIN ".$this->db->prefix('exmbb_topics')." b ON ";
+	$sql = "SELECT a.* FROM ".$this->db->prefix('bxpress_posts')." a INNER JOIN ".$this->db->prefix('bxpress_topics')." b ON ";
 	$sql.= " (a.id_topic=b.id_topic AND a.id_forum=".$this->id()." AND b.approved=1) ORDER BY a.post_time DESC";
 	$result = $this->db->query($sql);
 	while ($rows = $this->db->fetchArray($result)){
@@ -432,7 +415,7 @@ class BBForum extends EXMObject
     */
     public function delete(){
     	
-    	$sql = "SELECT * FROM ".$this->db->prefix("exmbb_topics")." WHERE id_forum='".$this->id()."'";
+    	$sql = "SELECT * FROM ".$this->db->prefix("bxpress_topics")." WHERE id_forum='".$this->id()."'";
     	$result = $this->db->query($sql);
     	while ($row = $this->db->fetchArray($result)){
     		$topic = new BBTopic();
@@ -449,14 +432,14 @@ class BBForum extends EXMObject
 /**
 * @desc Manejador para la tabla de foros
 */
-class BBForumHandler
+class bXForumHandler
 {
     private $db;
     private $table = '';
     
     function __construct(){
         $this->db =& Database::getInstance();
-        $this->table = $this->db->prefix("exmbb_forums");
+        $this->table = $this->db->prefix("bxpress_forums");
     }
     /**
     * @desc Obtiene todos los foros de la base de datos
@@ -469,7 +452,7 @@ class BBForumHandler
         
         $db =& Database::getInstance();
         
-        $sql = "SELECT * FROM ".$db->prefix("exmbb_forums")." WHERE ".($active>-1 ? " active='$active' " : '').
+        $sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE ".($active>-1 ? " active='$active' " : '').
                 ($category>0 ? " AND cat='$category' " : '')." ORDER BY `cat`,`order`";
         $result = $db->queryF($sql);
         $retorno = array();
@@ -511,4 +494,3 @@ class BBForumHandler
     }
     
 }
-?>

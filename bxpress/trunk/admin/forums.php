@@ -1,50 +1,25 @@
 <?php
-// $Id: forums.php 55 2008-01-28 23:50:07Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
-define('BB_LOCATION', 'forums');
+define('RMCLOCATION', 'forums');
 include 'header.php';
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl;
-    
-    $tpl->append('xoopsOptions', array('link' => './forums.php', 'title' => _AS_BB_FORUMS, 'icon' => '../images/forum16.png'));
-    $tpl->append('xoopsOptions', array('link' => './forums.php?op=new', 'title' => _AS_BB_NEWFORUM, 'icon' => '../images/add.png'));
-}
 
 /**
 * @desc Muestra la lista de foros existentes
 */
-function showForums(){
-    global $xoopsModule, $adminTemplate, $db, $tpl, $util;
+function bx_show_forums(){
+    global $xoopsModule, $xoopsSecurity;
     
-    $catid = isset($_REQUEST['catid']) ? intval($_REQUEST['catid']) : 0;
+    $catid = rmc_server_var($_REQUEST, 'catid', 0);
+
+    $db = Database::getInstance();
     
     $sql = "SELECT * FROM ".$db->prefix("exmbb_forums");
     if ($catid>0){
@@ -55,7 +30,7 @@ function showForums(){
     $result = $db->query($sql);
     $categos = array();
     while ($row = $db->fetchArray($result)){
-        $forum = new BBForum();
+        $forum = new bXForum();
         $forum->assignVars($row);
         // Cargamos la categoría
         if (isset($categos[$forum->category()])){
@@ -70,30 +45,14 @@ function showForums(){
                      'catego'=>$catego->title(),'active'=>$forum->active(),
                      'attach'=>$forum->attachments(),'order'=>$forum->order()));
     }
-    
-    // Lenguaje para la tabla
-    $tpl->assign('lang_forumslist', _AS_BB_LFORUMS);
-    $tpl->assign('lang_id', _AS_BB_ID);
-    $tpl->assign('lang_name', _AS_BB_LNAME);
-    $tpl->assign('lang_numtopics', _AS_BB_LNUMTOPICS);
-    $tpl->assign('lang_numposts', _AS_BB_LNUMPOSTS);
-    $tpl->assign('lang_catego', _AS_BB_LCATEGO);
-    $tpl->assign('lang_active', _AS_BB_LACTIVE);
-    $tpl->assign('lang_attachments', _AS_BB_LATTACH);
-    $tpl->assign('lang_options', _OPTIONS);
-    $tpl->assign('lang_edit', _EDIT);
-    $tpl->assign('lang_delete', _DELETE);
-    $tpl->assign('lang_order', _AS_BB_LORDER);
-    $tpl->assign('lang_deactivate', _AS_BB_LDEACTIVATE);
-    $tpl->assign('lang_activate', _AS_BB_LACTIVATE);
-    $tpl->assign('lang_save', _AS_BB_LSAVE);
-    $tpl->assign('lang_moderator',_AS_BB_MODERATORS);
-    $tpl->assign('token', $util->getTokenHTML());
-    
-    $adminTemplate = "admin/forums_forums.html";
-    optionsBar();
-    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_BB_FORUMS);
+
+    bXFunctions::menu_bar();
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Forums Management','bxpress'));
     xoops_cp_header();
+
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
+    RMTemplate::get()->add_local_script('admin.js','bxpress');
+    include RMTemplate::get()->get_template('admin/forums_forums.php', 'module', 'bxpress');
     
     xoops_cp_footer();
     
@@ -103,92 +62,78 @@ function showForums(){
 * @desc Muestra el formulario para creación de Foros
 * @param int $edit Determina si se esta editando un foro existente
 */
-function showForm($edit = 0){
-    global $xoopsModule, $db, $xoopsConfig;
+function bx_show_form($edit = 0){
+    global $xoopsModule, $xoopsConfig;
     
     if ($edit){
-        $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+        $id = rmc_server_var($_REQUEST, 'id', 0);
         if ($id<=0){
-            redirectMsg('forums.php', _AS_BB_NOID, 1);
+            redirectMsg('forums.php', __('Provided ID is not valid!','bxpress'), 1);
             die();
         }
         
-        $forum = new BBForum($id);
+        $forum = new bXForum($id);
         if ($forum->isNew()){
-            redirectMsg('forums.php', _AS_BB_NOEXISTS, 1);
+            redirectMsg('forums.php', __('Specified forum does not exists!','bxpress'), 1);
             die();
         }
     }
     
-    optionsBar();
-    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? _AS_BB_FEDIT : _AS_BB_FNEW));
+    bXFunctions::menu_bar();
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Forum','bxpress') : __('New Forum','bxpress')));
     xoops_cp_header();
     
-    $bcHand = new BBCategoryHandler();
-    $bfHand = new BBForumHandler();
+    $bcHand = new bXCategoryHandler();
+    $bfHand = new bXForumHandler();
     
-    $form = new RMForm($edit ? _AS_BB_FEDIT : _AS_BB_FNEW, 'frmForum', 'forums.php');
+    $form = new RMForm($edit ? __('Edit Forum','bxpress') : __('New Forum','bxpress'), 'frmForum', 'forums.php');
     // Categorias
-    $ele = new RMSelect(_AS_BB_FCATEGO, 'cat', 0, $edit ? array($forum->category()) : null);
-    $ele->addOption(0, _SELECT, $edit ? 0 : 1);
+    $ele = new RMFormSelect(__('Category','bxpress'), 'cat', 0, $edit ? array($forum->category()) : null);
+    $ele->addOption(0, __('Select category...','bxpress'), $edit ? 0 : 1);
     $ele->addOptionsArray($bcHand->getForSelect());
     $form->addElement($ele, true, 'noselect:0');
     // NOmbre
-    $form->addElement(new RMText(_AS_BB_FNAME, 'name', 50, 150, $edit ? $forum->name() : ''), true);
+    $form->addElement(new RMFormText(__('Forum name','bxpress'), 'name', 50, 150, $edit ? $forum->name() : ''), true);
     // Descripcion
-    $form->addElement(new RMEditor(_AS_BB_FDESC, 'desc', '90%', '300px', $edit ? $forum->description() : '',$xoopsConfig['editor_type']));
-    if ($edit){
-    	$dohtml = $forum->getVar('dohtml');
-    	$doxcode = $forum->getVar('doxcode');
-    	$dobr = $forum->getVar('dobr');
-    	$doimage = $forum->getVar('doimage');
-    	$dosmiley = $forum->getVar('dosmiley');
-	} else {
-		$dohtml = $xoopsConfig['editor_type']=='tiny' || $xoopsConfig['editor_type']=='fck' ? 1 : 0;
-		$doxcode = $xoopsConfig['editor_type']=='tiny' || $xoopsConfig['editor_type']=='fck' ? 0 : 1;
-    	$dobr = $xoopsConfig['editor_type']=='tiny' || $xoopsConfig['editor_type']=='fck' ? 0 : 1;
-    	$doimage = $xoopsConfig['editor_type']=='tiny' || $xoopsConfig['editor_type']=='fck' ? 0 : 1;
-    	$dosmiley = 1;
-	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+    $form->addElement(new RMFormEditor(__('Forum description','bxpress'), 'desc', '90%', '300px', $edit ? $forum->description() : '',$xoopsConfig['editor_type']));
 
     // Activo
-    $form->addElement(new RMYesNo(_AS_BB_FACTIVATE, 'active', $edit ? $forum->active() : 1));
+    $form->addElement(new RMFormYesNo(_AS_BB_FACTIVATE, 'active', $edit ? $forum->active() : 1));
     // Firmas
-    $form->addElement(new RMYesNo(_AS_BB_FALLOWSIG, 'sig', $edit ? $forum->signature() : 1));
+    $form->addElement(new RMFormYesNo(_AS_BB_FALLOWSIG, 'sig', $edit ? $forum->signature() : 1));
     // Prefijos
-    $form->addElement(new RMYesNo(_AS_BB_FALLOWPREFIX, 'prefix', $edit ? $forum->prefix() : 1));
+    $form->addElement(new RMFormYesNo(_AS_BB_FALLOWPREFIX, 'prefix', $edit ? $forum->prefix() : 1));
     // Temas Populares
-    $form->addElement(new RMText(_AS_BB_FTHRESHOLD, 'hot_threshold', 10, 5, $edit ? $forum->hotThreshold() : 10), true, 'bigger:1');
+    $form->addElement(new RMFormText(_AS_BB_FTHRESHOLD, 'hot_threshold', 10, 5, $edit ? $forum->hotThreshold() : 10), true, 'bigger:1');
     // Orden en la lista
-    $form->addElement(new RMText(_AS_BB_FORDER, 'order', 10, 5, $edit ? $forum->order() : 0), false, 'bigger:-1');
+    $form->addElement(new RMFormText(_AS_BB_FORDER, 'order', 10, 5, $edit ? $forum->order() : 0), false, 'bigger:-1');
     // Adjuntos
-    $form->addElement(new RMYesNo(_AS_BB_FATTACH, 'attachments', $edit ? $forum->attachments() : 1));
-    $ele = new RMText(_AS_BB_FATTACHSIZE, 'attach_maxkb', 10, 20, $edit ? $forum->maxSize() : 50);
+    $form->addElement(new RMFormYesNo(_AS_BB_FATTACH, 'attachments', $edit ? $forum->attachments() : 1));
+    $ele = new RMFormText(_AS_BB_FATTACHSIZE, 'attach_maxkb', 10, 20, $edit ? $forum->maxSize() : 50);
     $ele->setDescription(_AS_BB_FATTACHSIZE_DESC);
     $form->addElement($ele, false, 'bigger:0');
-    $ele = new RMText(_AS_BB_FATTACHEXT, 'attach_ext', 50, 0, $edit ? implode("|", $forum->extensions()) : 'zip|tar|jpg|gif|png|gz');
+    $ele = new RMFormText(_AS_BB_FATTACHEXT, 'attach_ext', 50, 0, $edit ? implode("|", $forum->extensions()) : 'zip|tar|jpg|gif|png|gz');
     $ele->setDescription(_AS_BB_FATTACHEXT_DESC);
     $form->addElement($ele);
     // Grupos con permiso
     if ($edit){
         $grupos = $forum->permissions();
     }
-    $form->addElement(new RMGroups(_AS_BB_GROUPSVIEW, 'perm_view', 1, 1, 5, $edit ? $grupos['view'] : array(0)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSTOPIC, 'perm_topic', 1, 1, 5, $edit ? $grupos['topic'] : array(1,2)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSREPLY, 'perm_reply', 1, 1, 5, $edit ? $grupos['reply'] : array(1,2)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSEDIT, 'perm_edit', 1, 1, 5, $edit ? $grupos['edit'] : array(1,2)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSDELETE, 'perm_delete', 1, 1, 5, $edit ? $grupos['delete'] : array(1)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSVOTE, 'perm_vote', 1, 1, 5, $edit ? $grupos['vote'] : array(1,2)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSATTACH, 'perm_attach', 1, 1, 5, $edit ? $grupos['attach'] : array(1,2)));
-    $form->addElement(new RMGroups(_AS_BB_GROUPSAPPROVE, 'perm_approve', 1, 1, 5, $edit ? $grupos['approve'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSVIEW, 'perm_view', 1, 1, 5, $edit ? $grupos['view'] : array(0)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSTOPIC, 'perm_topic', 1, 1, 5, $edit ? $grupos['topic'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSREPLY, 'perm_reply', 1, 1, 5, $edit ? $grupos['reply'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSEDIT, 'perm_edit', 1, 1, 5, $edit ? $grupos['edit'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSDELETE, 'perm_delete', 1, 1, 5, $edit ? $grupos['delete'] : array(1)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSVOTE, 'perm_vote', 1, 1, 5, $edit ? $grupos['vote'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSATTACH, 'perm_attach', 1, 1, 5, $edit ? $grupos['attach'] : array(1,2)));
+    $form->addElement(new RMFormGroups(_AS_BB_GROUPSAPPROVE, 'perm_approve', 1, 1, 5, $edit ? $grupos['approve'] : array(1,2)));
     
-    $ele = new RMButtonGroup();
+    $ele = new RMFormButtonGroup();
     $ele->addButton('sbt', $edit ? _AS_BB_FEDIT : _AS_BB_FCREATE, 'submit', '', 1);
     $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'forums.php\';"');
     $form->addElement($ele);
-    $form->addElement(new RMHidden('op', $edit ? 'saveedit' : 'save'));
-    if ($edit) $form->addElement(new RMHidden('id', $forum->id()));
+    $form->addElement(new RMFormHidden('action', $edit ? 'saveedit' : 'save'));
+    if ($edit) $form->addElement(new RMFormHidden('id', $forum->id()));
     $form->display();
     
     xoops_cp_footer();
@@ -197,7 +142,7 @@ function showForm($edit = 0){
 /**
 * @desc Almacena los datos de un foro
 */
-function saveForum($edit = 0){
+function bx_save_forum($edit = 0){
     global $db, $util, $myts;
     
     if (!$util->validateToken()){
@@ -278,7 +223,7 @@ function saveForum($edit = 0){
 /**
 * @desc Almacena los cambios realizados en la lista de foros
 */
-function saveChanges(){
+function bx_save_changes(){
 	global $db,$util;
 	
 	if (!$util->validateToken()){
@@ -310,7 +255,7 @@ function saveChanges(){
 /**
 * @desc Activa o desactiva un foro
 */
-function activateForum($status=1){
+function bx_activate_forums($status=1){
 	global $db,$util;
 	
 	if (!$util->validateToken()){
@@ -339,7 +284,7 @@ function activateForum($status=1){
 /**
 * @desc Eliminar un foro
 */
-function deleteForum(){
+function bx_delete_forums(){
 	global $tpl, $xoopsModule, $xoopsConfig, $util;
 	
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
@@ -396,7 +341,7 @@ function deleteForum(){
 /**
 * @desc Visualiza lista de usuarios para determinar moderadores
 **/
-function moderators(){
+function bx_moderators(){
 	global $xoopsModule;
 
 	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
@@ -447,7 +392,7 @@ function moderators(){
 /**
 * @desc Almacena los usuarios moderadores
 **/
-function saveModerators(){
+function bx_save_moderators(){
 	global $db, $util;
 	
 	if (!$util->validateToken()){
@@ -484,14 +429,14 @@ function saveModerators(){
 }
 
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$action = rmc_server_var($_REQUEST, 'action', '');
 
-switch($op){
+switch($action){
     case 'new':
-        showForm();
+        bx_show_form();
         break;
     case 'edit':
-        showForm(1);
+        bx_show_form(1);
         break;
     case 'save':
         saveForum();
@@ -512,13 +457,12 @@ switch($op){
     	deleteForum();
     	break;
     case 'moderator':
-	moderators();
-    break;
+        moderators();
+        break;
     case 'savemoderat':
 	saveModerators();
     break;
     default:
-        showForums();
+        bx_show_forums();
         break;
 }
-?>

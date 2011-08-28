@@ -1,45 +1,37 @@
 <?php
-// $Id: bbfunctions.class.php 76 2009-02-15 10:52:06Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Clase para el manejo de funciones internas del foro
 */
-class BBFunctions
+class bXFunctions
 {
     private $db;
     
     public function __construct(){
         $this->db =& Database::getInstance();
     }
+
+    public function menu_bar(){
+        RMTemplate::get()->add_tool(__('Dashboard','exmbb'), './index.php', '../images/dash.png', 'dashboard');
+        RMTemplate::get()->add_tool(__('Categories','exmbb'), './categos.php', '../images/categos.png', 'categories');
+        RMTemplate::get()->add_tool(__('Forums','exmbb'), './categos.php', '../images/forums.png', 'forums');
+        RMTemplate::get()->add_tool(__('Announcements','exmbb'), './announcements.php', '../images/bell.png', 'messages');
+        RMTemplate::get()->add_tool(__('Reports','exmbb'), './reports.php', '../images/reports.png', 'reports');
+        RMTemplate::get()->add_tool(__('Prune','exmbb'), './prune.php', '../images/prune.png', 'prune');
+    }
     
-    public function getInstance(){
+    public function get(){
         static $instance;
         if (!isset($instance)) {
-            $instance =& new BBFunctions();
+            $instance = new bXFunctions();
         }
         return $instance;
     }
@@ -96,7 +88,7 @@ class BBFunctions
     */
     public function totalTopics(){
         $db =& Database::getInstance();
-        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("exmbb_topics")));
+        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_topics")));
         return $num;
     }
     /**
@@ -104,7 +96,7 @@ class BBFunctions
     */
     public function totalPosts(){
         $db =& Database::getInstance();
-        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("exmbb_posts")));
+        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_posts")));
         return $num;
     }
     /**
@@ -169,13 +161,13 @@ class BBFunctions
 		
 		$db =& Database::getInstance();
 		
-		$result = $db->query('SELECT id_topic FROM '.$db->prefix('exmbb_posts')." WHERE id_post='$pid'");
+		$result = $db->query('SELECT id_topic FROM '.$db->prefix('bxpress_posts')." WHERE id_post='$pid'");
 		if (!$db->getRowsNum($result)) return;
 
 		list($id) = $db->fetchRow($result);
 
 		// Determine on what page the post is located (depending on $pun_user['disp_posts'])
-		$result = $db->query("SELECT id_post FROM ".$db->prefix('exmbb_posts')." WHERE id_topic='$id' ORDER BY post_time");
+		$result = $db->query("SELECT id_post FROM ".$db->prefix('bxpress_posts')." WHERE id_topic='$id' ORDER BY post_time");
 		$num = $db->getRowsNum($result);
 		
 		for ($i = 0; $i < $num; ++$i)
@@ -196,7 +188,7 @@ class BBFunctions
 	public function getFirstId($topic_id){
 		
 		$db =& Database::getInstance();
-		$sql = "SELECT MIN(id_post) FROM ".$db->prefix("exmbb_posts")." WHERE id_topic='".$topic_id."'";
+		$sql = "SELECT MIN(id_post) FROM ".$db->prefix("bxpress_posts")." WHERE id_topic='".$topic_id."'";
 		list($first_id) = $db->fetchRow($db->query($sql));
 		return $first_id;
 		
@@ -205,7 +197,7 @@ class BBFunctions
 	public function forumList($varname = 'forums'){
 		global $db, $tpl;
 		$db =& Database::getInstance();
-		$sql = "SELECT * FROM ".$db->prefix("exmbb_forums")." WHERE active='1' ORDER BY cat,`order`";
+		$sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE active='1' ORDER BY cat,`order`";
 		$result = $db->query($sql);
 		while ($row = $db->fetchArray($result)){
 			$forum = new BBForum();
@@ -220,11 +212,11 @@ class BBFunctions
 		$db =& Database::getInstance();
 		
 		// Primero purgamos la tabla
-		$db->queryF("DELETE FROM ".$db->prefix("exmbb_announcements")." WHERE expire<='".time()."'");
+		$db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");
 		
 		if (!$xoopsModuleConfig['announcements']) return;
 		$mc =& $xoopsModuleConfig;
-		$sql = "SELECT * FROM ".$db->prefix("exmbb_announcements");
+		$sql = "SELECT * FROM ".$db->prefix("bxpress_announcements");
 		
 		switch ($w){
 			case 0:
@@ -272,16 +264,16 @@ class BBFunctions
 		$users = $moderators;
 		
 		if (!$edit){
-			if (file_exists(XOOPS_ROOT_PATH.'/modules/exmbb/language/'.$xoopsConfig['language'].'/mail_template/admin_notify.tpl')){
-				$tpldir = XOOPS_ROOT_PATH.'/modules/exmbb/language/'.$xoopsConfig['language'].'/mail_template';
+			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template/admin_notify.tpl')){
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template';
 			} else {
-				$tpldir = XOOPS_ROOT_PATH.'/modules/exmbb/language/spanish/mail_template';
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/spanish/mail_template';
 			}
 		}else{
-			if (file_exists(XOOPS_ROOT_PATH.'/modules/exmbb/language/'.$xoopsConfig['language'].'/mail_template/admin_notify_post.tpl')){
-				$tpldir = XOOPS_ROOT_PATH.'/modules/exmbb/language/'.$xoopsConfig['language'].'/mail_template';
+			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template/admin_notify_post.tpl')){
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template';
 			} else {
-				$tpldir = XOOPS_ROOT_PATH.'/modules/exmbb/language/spanish/mail_template';
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/spanish/mail_template';
 			}
 		}
 	
@@ -304,9 +296,9 @@ class BBFunctions
 			$xoopsMailer->assign('TOPIC_UNAME', $topic->posterName());
 			$xoopsMailer->assign('TOPIC_NAME', $topic->title());
 			$xoopsMailer->assign('TOPIC_APPROVED', $topic->approved() ? _YES : _NO);
-			$xoopsMailer->assign('TOPIC_LINK', XOOPS_URL.'/modules/exmbb/moderate.php?id='.$forum->id());
+			$xoopsMailer->assign('TOPIC_LINK', XOOPS_URL.'/modules/bxpress/moderate.php?id='.$forum->id());
 			$xoopsMailer->assign('POST_UNAME',$post->uname());
-			$xoopsMailer->assign('POST_LINK',XOOPS_URL.'/modules/exmbb/topic.php?pid='.$post->id()."#p".$post->id());
+			$xoopsMailer->assign('POST_LINK',XOOPS_URL.'/modules/bxpress/topic.php?pid='.$post->id()."#p".$post->id());
 
 			$user = new XoopsUser($k);
 			$xoopsMailer->setToUsers($user);
@@ -322,4 +314,3 @@ class BBFunctions
 	
 	}
 }
-?>

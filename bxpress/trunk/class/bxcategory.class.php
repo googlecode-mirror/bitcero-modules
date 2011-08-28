@@ -1,14 +1,14 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// EXMBB Forums
+// bXpress Forums
 // An simple forums module for XOOPS and Common Utilities
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class BBCategory extends RMObject
+class bXCategory extends RMObject
 {
 
 	private $_tbl = '';
@@ -17,7 +17,7 @@ class BBCategory extends RMObject
 
 	function __construct($id=null){
 		$this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_categories");
+        $this->_dbtable = $this->db->prefix("bxpress_categories");
         $this->setNew();
         $this->initVarsFromTable();
         
@@ -132,31 +132,31 @@ class BBCategory extends RMObject
     /**
     * @desc Elimina las categorías
     **/
-     function delete(){
+    function delete(){
 	
-	//Eliminamos foros que pertenecen a la categoria
-	$sql="DELETE FROM ".$this->db->prefix('exmbb_forums')." WHERE cat=".$this->id();
-	$result=$this->db->queryF($sql);
+        //Eliminamos foros que pertenecen a la categoria
+        $sql="DELETE FROM ".$this->db->prefix('bxpress_forums')." WHERE cat=".$this->id();
+        $result=$this->db->queryF($sql);
+
+        if (!$result) return false;
+
+        return $this->deleteFromTable();
 	
-	if (!$result) return false;
-	
-	return $this->deleteFromTable();
-	
-     }
+    }
     
 }
 
 /**
 * @desc Manejador para las categorías
 */
-class BBCategoryHandler
+class bXCategoryHandler
 {
     private $db;
     private $table = '';
     
     function __construct(){
         $this->db =& Database::getInstance();
-        $this->table = $this->db->prefix("exmbb_categories");
+        $this->table = $this->db->prefix("bxpress_categories");
     }
     
     /**
@@ -177,7 +177,7 @@ class BBCategoryHandler
     */
     public function getObjects($active = 1){
         $db =& Database::getInstance();
-        $sql = "SELECT * FROM ".$db->prefix("exmbb_categories");
+        $sql = "SELECT * FROM ".$db->prefix("bxpress_categories");
         if ($active==1 || $active==0){
             $sql .= " WHERE status='$active'";
         }
@@ -193,5 +193,3 @@ class BBCategoryHandler
     }
     
 }
-
-?>
