@@ -13,7 +13,7 @@ CREATE TABLE `exmbb_announcements` (
   `dobr` tinyint(1) NOT NULL default '1',
   `dosmiley` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id_an`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_attachments` (
   `attach_id` int(8) NOT NULL auto_increment,
@@ -25,7 +25,7 @@ CREATE TABLE `exmbb_attachments` (
   `downloads` int(10) NOT NULL default '0',
   PRIMARY KEY  (`attach_id`),
   KEY `post_id` (`post_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_categories` (
   `id_cat` smallint(3) NOT NULL auto_increment,
@@ -38,7 +38,7 @@ CREATE TABLE `exmbb_categories` (
   `friendname` varchar(100) NOT NULL,
   PRIMARY KEY  (`id_cat`),
   UNIQUE KEY `friendname` (`friendname`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_forums` (
   `id_forum` int(10) NOT NULL auto_increment,
@@ -68,7 +68,7 @@ CREATE TABLE `exmbb_forums` (
   `dosmiley` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY  (`id_forum`),
   UNIQUE KEY `friendname` (`friendname`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_posts` (
   `id_post` int(8) NOT NULL auto_increment,
@@ -96,7 +96,7 @@ CREATE TABLE `exmbb_posts` (
   KEY `forumid_uid` (`id_forum`,`uid`),
   KEY `topicid_uid` (`id_topic`,`uid`),
   KEY `topicid_postid_pid` (`id_topic`,`id_post`,`pid`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_posts_text` (
   `post_id` int(8) NOT NULL default '0',
@@ -104,7 +104,7 @@ CREATE TABLE `exmbb_posts_text` (
   `post_edit` text collate utf8_spanish_ci,
   PRIMARY KEY  (`post_id`),
   FULLTEXT KEY `search` (`post_text`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_report` (
   `report_id` int(8) NOT NULL auto_increment,
@@ -119,7 +119,7 @@ CREATE TABLE `exmbb_report` (
   `zapped` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`report_id`),
   KEY `post_id` (`post_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `exmbb_topics` (
   `id_topic` int(11) NOT NULL auto_increment,
@@ -147,4 +147,4 @@ CREATE TABLE `exmbb_topics` (
   KEY `topic_forum` (`id_topic`,`id_forum`),
   KEY `topic_sticky` (`sticky`),
   KEY `topic_digest` (`digest`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
