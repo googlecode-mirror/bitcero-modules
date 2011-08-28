@@ -95,8 +95,7 @@ $modversion['config'][] = array(
     'description' => '_MI_BX_CNFTITLE_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'text',
-    'default' => __('Welcome to bXpress Forums','bxpress'),
-    'order' => 2
+    'default' => __('Welcome to bXpress Forums','bxpress')
 );
 
 $modversion['config'][] = array(
@@ -105,203 +104,210 @@ $modversion['config'][] = array(
     'description' => '_MI_BX_CNFMAXFILESIZE_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'text',
-    'default' => 500,
-    'order' => 4
+    'default' => 500
 );
 
-$modversion['config'][4]['name'] = 'showcats';
-$modversion['config'][4]['title'] = '_MI_BB_SHOWCATS';
-$modversion['config'][4]['description'] = '_MI_BB_SHOWCATS_DESC';
-$modversion['config'][4]['formtype'] = 'yesno';
-$modversion['config'][4]['valuetype'] = 'int';
-$modversion['config'][4]['default'] = 0;
-$modversion['config'][4]['order'] = 5;
+$modversion['config'][] = array(
+    'name' => 'showcats',
+    'title' => '_MI_BB_SHOWCATS',
+    'description' => '_MI_BB_SHOWCATS_DESC',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
 
 // Búsqueda
-$modversion['config'][7]['name'] = 'search';
-$modversion['config'][7]['title'] = '_MI_BB_SEARCHANON';
-$modversion['config'][7]['description'] = '';
-$modversion['config'][7]['formtype'] = 'yesno';
-$modversion['config'][7]['valuetype'] = 'int';
-$modversion['config'][7]['default'] = 0;
-$modversion['config'][7]['order'] = 8;
+$modversion['config'][] = array(
+    'name' => 'search',
+    'title' => '_MI_BB_SEARCHANON',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
 
 // Editor
-$modversion['config'][8]['name'] = 'editor';
-$modversion['config'][8]['title'] = '_MI_BB_EDITOR';
-$modversion['config'][8]['description'] = '';
-$modversion['config'][8]['formtype'] = 'select';
-$modversion['config'][8]['valuetype'] = 'text';
-$modversion['config'][8]['default'] = 'dhtml';
-$modversion['config'][8]['order'] = 9;
-$modversion['config'][8]['options'] = array('_MI_BB_EDITOR1'=>'dhtml','_MI_BB_EDITOR2'=>'tiny',
-											'_MI_BB_EDITOR3'=>'fck','_MI_BB_EDITOR4'=>'textarea');
+$modversion['config'][] = array(
+    'name' => 'editor',
+    'title' => '_MI_BB_EDITOR',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'text',
+    'default' => 'dhtml',
+    'options' => array('_MI_BB_EDITOR1'=>'dhtml','_MI_BB_EDITOR2'=>'tiny',
+                                                '_MI_BB_EDITOR3'=>'fck','_MI_BB_EDITOR4'=>'textarea')
+);
 
 // HTML
-$modversion['config'][9]['name'] = 'html';
-$modversion['config'][9]['title'] = '_MI_BB_HTML';
-$modversion['config'][9]['description'] = '';
-$modversion['config'][9]['formtype'] = 'yesno';
-$modversion['config'][9]['valuetype'] = 'int';
-$modversion['config'][9]['default'] = 0;
-$modversion['config'][9]['order'] = 9;
+$modversion['config'][] = array(
+    'name' => 'html',
+    'title' => '_MI_BB_HTML',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
 
 // Prefijo para usuarios Anónimos
-$modversion['config'][11]['name'] = 'anonymous_prefix';
-$modversion['config'][11]['title'] = '_MI_BB_APREFIX';
-$modversion['config'][11]['description'] = '';
-$modversion['config'][11]['formtype'] = 'textbox';
-$modversion['config'][11]['valuetype'] = 'text';
-$modversion['config'][11]['default'] = 'guest_';
-$modversion['config'][11]['order'] = 11;
-$modversion['config'][11]['size'] = 15;
+$modversion['config'][] = array(
+    'name' => 'anonymous_prefix',
+    'title' => '_MI_BB_APREFIX',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'guest_'
+);
 
 // Mensajes Nuevos
-$modversion['config'][12]['name'] = 'time_new';
-$modversion['config'][12]['title'] = '_MI_BB_TIMENEW';
-$modversion['config'][12]['description'] = '_MI_BB_TIMENEW_DESC';
-$modversion['config'][12]['formtype'] = 'textbox';
-$modversion['config'][12]['valuetype'] = 'int';
-$modversion['config'][12]['default'] = 600;
-$modversion['config'][12]['order'] = 12;
-$modversion['config'][12]['size'] = 15;
+$modversion['config'][] = array(
+    'name' => 'time_new',
+    'title' => '_MI_BB_TIMENEW',
+    'description' => '_MI_BB_TIMENEW_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 600
+);
 
 // Numero de mensajes en el formulario de envio
-$modversion['config'][13]['name'] = 'numpost';
-$modversion['config'][13]['title'] = '_MI_BB_NUMPOST';
-$modversion['config'][13]['description'] = '_MI_BB_NUMPOST_DESC';
-$modversion['config'][13]['formtype'] = 'textbox';
-$modversion['config'][13]['valuetype'] = 'int';
-$modversion['config'][13]['default'] = 10;
-$modversion['config'][13]['order'] = 13;
-$modversion['config'][13]['size'] = 8;
+$modversion['config'][] = array(
+    'name' => 'numpost',
+    'title' => '_MI_BB_NUMPOST',
+    'description' => '_MI_BB_NUMPOST_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 10
+);
 
 // Numero de mensajes en cada página
-$modversion['config'][14]['name'] = 'perpage';
-$modversion['config'][14]['title'] = '_MI_BB_PERPAGE';
-$modversion['config'][14]['description'] = '_MI_BB_PERPAGE_DESC';
-$modversion['config'][14]['formtype'] = 'textbox';
-$modversion['config'][14]['valuetype'] = 'int';
-$modversion['config'][14]['default'] = 15;
-$modversion['config'][14]['order'] = 14;
-$modversion['config'][14]['size'] = 8;
+$modversion['config'][] = array(
+    'name' => 'perpage',
+    'title' => '_MI_BB_PERPAGE',
+    'description' => '_MI_BB_PERPAGE_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 15
+);
 
 // Numero de temas en cada página
-$modversion['config'][15]['name'] = 'topicperpage';
-$modversion['config'][15]['title'] = '_MI_BB_TPERPAGE';
-$modversion['config'][15]['description'] = '';
-$modversion['config'][15]['formtype'] = 'textbox';
-$modversion['config'][15]['valuetype'] = 'int';
-$modversion['config'][15]['default'] = 30;
-$modversion['config'][15]['order'] = 15;
-$modversion['config'][15]['size'] = 8;
+$modversion['config'][] = array(
+    'name' => 'topicperpage',
+    'title' => '_MI_BB_TPERPAGE',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 30
+);
 
 // formato de Fechas
-$modversion['config'][16]['name'] = 'dates';
-$modversion['config'][16]['title'] = '_MI_BB_DATES';
-$modversion['config'][16]['description'] = '';
-$modversion['config'][16]['formtype'] = 'textbox';
-$modversion['config'][16]['valuetype'] = 'text';
-$modversion['config'][16]['default'] = 'm/d/Y';
-$modversion['config'][16]['order'] = 16;
-$modversion['config'][16]['size'] = 15;
+$modversion['config'][] = array(
+    'name' => 'dates',
+    'title' => '_MI_BB_DATES',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => 'm/d/Y'
+);
 
 // Límite de archivos adjuntos por mensaje
-$modversion['config'][17]['name'] = 'attachlimit';
-$modversion['config'][17]['title'] = '_MI_BB_ATTACHLIMIT';
-$modversion['config'][17]['description'] = '';
-$modversion['config'][17]['formtype'] = 'textbox';
-$modversion['config'][17]['valuetype'] = 'int';
-$modversion['config'][17]['default'] = 5;
-$modversion['config'][17]['order'] = 17;
-$modversion['config'][17]['size'] = 5;
+$modversion['config'][] = array(
+    'name' => 'attachlimit',
+    'title' => '_MI_BB_ATTACHLIMIT',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 5
+);
 
 // Directorio para adjuntos
-$modversion['config'][18]['name'] = 'attachdir';
-$modversion['config'][18]['title'] = '_MI_BB_ATTACHDIR';
-$modversion['config'][18]['description'] = '_MI_BB_ATTACHDIR_DESC';
-$modversion['config'][18]['formtype'] = 'textbox';
-$modversion['config'][18]['valuetype'] = 'text';
-$modversion['config'][18]['default'] = XOOPS_UPLOAD_PATH.'/bxpress';
-$modversion['config'][18]['order'] = 18;
-$modversion['config'][18]['size'] = 50;
+$modversion['config'][] = array(
+    'name' => 'attachdir',
+    'title' => '_MI_BB_ATTACHDIR',
+    'description' => '_MI_BB_ATTACHDIR_DESC',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => XOOPS_UPLOAD_PATH.'/bxpress'
+);
 
 // Mensajes Fijos
-$modversion['config'][19]['name'] = 'sticky';
-$modversion['config'][19]['title'] = '_MI_BB_STICKY';
-$modversion['config'][19]['description'] = '_MI_BB_STICKY_DESC';
-$modversion['config'][19]['formtype'] = 'yesno';
-$modversion['config'][19]['valuetype'] = 'int';
-$modversion['config'][19]['default'] = 1;
-$modversion['config'][19]['order'] = 19;
+$modversion['config'][] = array(
+    'name' => 'sticky',
+    'title' => '_MI_BB_STICKY',
+    'description' => '_MI_BB_STICKY_DESC',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
+);
 
 // Rangos para mensajes fijos
-$modversion['config'][20]['name'] = 'sticky_posts';
-$modversion['config'][20]['title'] = '_MI_BB_STICKYPOSTS';
-$modversion['config'][20]['description'] = '';
-$modversion['config'][20]['formtype'] = 'textbox';
-$modversion['config'][20]['valuetype'] = 'int';
-$modversion['config'][20]['default'] = 1000;
-$modversion['config'][20]['order'] = 20;
-$modversion['config'][20]['size'] = 20;
+$modversion['config'][] = array(
+    'name' => 'sticky_posts',
+    'title' => '_MI_BB_STICKYPOSTS',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 1000
+);
 
 // Anuncios en el módulo
-$modversion['config'][21]['name'] = 'announcements';
-$modversion['config'][21]['title'] = '_MI_BB_ANNOUNCEMENTS';
-$modversion['config'][21]['description'] = '';
-$modversion['config'][21]['formtype'] = 'yesno';
-$modversion['config'][21]['valuetype'] = 'int';
-$modversion['config'][21]['default'] = 1;
-$modversion['config'][21]['order'] = 21;
+$modversion['config'][] = array(
+    'name' => 'announcements',
+    'title' => '_MI_BB_ANNOUNCEMENTS',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
+);
 
 // Numero de Anuncios en el módulo
-$modversion['config'][22]['name'] = 'announcements_max';
-$modversion['config'][22]['title'] = '_MI_BB_ANNOUNCEMENTSMAX';
-$modversion['config'][22]['description'] = '';
-$modversion['config'][22]['formtype'] = 'textbox';
-$modversion['config'][22]['valuetype'] = 'int';
-$modversion['config'][22]['default'] = 1;
-$modversion['config'][22]['order'] = 22;
-$modversion['config'][22]['size'] = 5;
+$modversion['config'][] = array(
+    'name' => 'announcements_max',
+    'title' => '_MI_BB_ANNOUNCEMENTSMAX',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 1
+);
 
 // Modo para los anuncios
-$modversion['config'][23]['name'] = 'announcements_mode';
-$modversion['config'][23]['title'] = '_MI_BB_ANNOUNCEMENTSMODE';
-$modversion['config'][23]['description'] = '';
-$modversion['config'][23]['formtype'] = 'select';
-$modversion['config'][23]['valuetype'] = 'int';
-$modversion['config'][23]['default'] = 0;
-$modversion['config'][23]['order'] = 23;
-$modversion['config'][23]['options'] = array('_MI_BB_ANNOUNCEMENTSMODE1'=>0,'_MI_BB_ANNOUNCEMENTSMODE2'=>1);
+$modversion['config'][] = array(
+    'name' => 'announcements_mode',
+    'title' => '_MI_BB_ANNOUNCEMENTSMODE',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => 0,
+    'options' => array('_MI_BB_ANNOUNCEMENTSMODE1'=>0,'_MI_BB_ANNOUNCEMENTSMODE2'=>1)
+);
 
 //Tiempo de temas recientes
-$modversion['config'][24]['name'] = 'time_topics';
-$modversion['config'][24]['title'] = '_MI_BB_TIMETOPICS';
-$modversion['config'][24]['description'] = '_MI_BB_DESCTIMETOPICS';
-$modversion['config'][24]['formtype'] = 'textbox';
-$modversion['config'][24]['valuetype'] = 'int';
-$modversion['config'][24]['default'] = 24;
-$modversion['config'][24]['order'] = 24;
-$modversion['config'][24]['size'] = 5;
+$modversion['config'][] = array(
+    'name' => 'time_topics',
+    'title' => '_MI_BB_TIMETOPICS',
+    'description' => '_MI_BB_DESCTIMETOPICS',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 24
+);
 
 //Tiempo de temas recientes
-$modversion['config'][25]['name'] = 'rssdesc';
-$modversion['config'][25]['title'] = '_MI_BB_RSSDESC';
-$modversion['config'][25]['description'] = '';
-$modversion['config'][25]['formtype'] = 'textarea';
-$modversion['config'][25]['valuetype'] = 'text';
-$modversion['config'][25]['default'] = '';
-$modversion['config'][25]['order'] = 25;
-$modversion['config'][25]['size'] = 50;
+$modversion['config'][] = array(
+    'name' => 'rssdesc',
+    'title' => '_MI_BB_RSSDESC',
+    'description' => '',
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
+    'default' => ''
+);
 
 //Ordenar por mensajes recientes
-$modversion['config'][26]['name'] = 'order_post';
-$modversion['config'][26]['title'] = '_MI_BB_ORDERPOST';
-$modversion['config'][26]['description'] = '_MI_BB_DESCORDERPOST';
-$modversion['config'][26]['formtype'] = 'yesno';
-$modversion['config'][26]['valuetype'] = 'int';
-$modversion['config'][26]['default'] = '0';
-$modversion['config'][26]['order'] = 26;
+$modversion['config'][] = array(
+    'name' => 'order_post',
+    'title' => '_MI_BB_ORDERPOST',
+    'description' => '_MI_BB_DESCORDERPOST',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => '0'
+);
 
 // Notificaciones
 $modversion['hasNotification'] = 1;

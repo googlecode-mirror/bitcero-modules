@@ -41,7 +41,7 @@ function showCategories(){
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Categories','exmbb'));
     xoops_cp_header();
     
-    include RMTemplate::get()->get_template('admin/forums_categos.php', 'module', 'exmbb');
+    include RMTemplate::get()->get_template('admin/forums_categos.php', 'module', 'bxpress');
     
     xoops_cp_footer();
     
