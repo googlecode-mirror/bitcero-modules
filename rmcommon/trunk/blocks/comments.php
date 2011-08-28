@@ -17,7 +17,7 @@ function rmc_bkcomments_show($options){
     $sql .= " LIMIT 0,$limit";
     $result = $db->query($sql);
     $comments = array();
-    
+
     $ucache = array();
     $ecache = array();
     $mods = array();
@@ -94,7 +94,7 @@ function rmc_bkcomments_show($options){
         $comments[] = array(
             'id'        => $row['id_com'],
             'text'      => TextCleaner::truncate(TextCleaner::getInstance()->clean_disabled_tags(TextCleaner::getInstance()->popuplinks(TextCleaner::getInstance()->nofollow($com->getVar('content')))), 50),
-            'poster'    => isset($poster) ? $poster : null,
+            'poster'    => isset($poster) ?  $poster : null,
             'posted'    => formatTimestamp($com->getVar('posted'), 'l'),
             'item'		=> $item,
 			'item_url'  => $item_url,
@@ -104,12 +104,15 @@ function rmc_bkcomments_show($options){
         );
     }
     
-    $comments = RMEvents::get()->run_event('rmcommon.loading.admin.comments', $comments);
+    $comments = RMEvents::get()->run_event('rmcommon.loading.block.comments', $comments);
     $block['comments'] = $comments;
     $block['show_module'] = $options[1];
     $block['show_name'] = $options[2];
     $block['show_user'] = $options[3];
     $block['show_date'] = $options[4];
+	
+	$num = $options[2] + $options[3] + $options[4];
+	$block['data_width'] = floor(100/$num);
     
     RMTemplate::get()->add_xoops_style('bk_comments.css', 'rmcommon');
     
