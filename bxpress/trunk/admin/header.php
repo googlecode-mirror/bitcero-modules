@@ -36,4 +36,4 @@ if (!file_exists($mc['attachdir'])){
 }
 
 // Add css
-RMTemplate::get()->add_style('admin.css', 'exmbb');
+RMTemplate::get()->add_style('admin.css', 'bxpress');

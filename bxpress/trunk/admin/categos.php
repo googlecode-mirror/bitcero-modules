@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// EXMBB Forums
+// bXpress Forums
 // An simple forums module for XOOPS and Common Utilities
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
@@ -19,11 +19,11 @@ function showCategories(){
     
     $db = Database::getInstance();
     
-    $result = $db->query("SELECT * FROM ".$db->prefix("exmbb_categories")." ORDER BY `order`, title");
+    $result = $db->query("SELECT * FROM ".$db->prefix("bxpress_categories")." ORDER BY `order`, title");
     $categos = array();
     
     while ($row = $db->fetchArray($result)){
-        $catego = new BBCategory();
+        $catego = new bXCategory();
         $catego->assignVars($row);
         $categos[] = array(
             'id'=>$catego->id(),
@@ -33,14 +33,22 @@ function showCategories(){
         );
     }
     
-    BBFunctions::menu_bar();
+    bXFunctions::menu_bar();
     
     $form = new RMForm('','','');
     $groups = new RMFormGroups('','groups', 1, 1, 2, array(0));
     
-    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Categories','exmbb'));
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Categories','bxpress'));
     xoops_cp_header();
-    
+
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
+    RMTemplate::get()->add_local_script('admin.js','bxpress');
+
+    RMTemplate::get()->add_head('<script type="text/javascript">
+        var bx_select_message = "'.__('You must select a category at least in order to run this action!','bxpress').'";
+        var bx_message = "'.__('Do you really wish to delete selected categories?\n\nAll forums under this category will be deleted also!','bxpress').'";
+    </script>');
+
     include RMTemplate::get()->get_template('admin/forums_categos.php', 'module', 'bxpress');
     
     xoops_cp_footer();
@@ -58,35 +66,35 @@ function showForm($edit = 0){
     if ($edit){
         $id = rmc_server_var($_GET, 'id', 0);
         if ($id<=0){
-            redirectMsg('categos.php', __('You had not provided a category ID','exmbb'), 1);   
+            redirectMsg('categos.php', __('You had not provided a category ID','bxpress'), 1);
             die();
         }
         
-        $catego = new BBCategory($id);
+        $catego = new bXCategory($id);
         if ($catego->isNew()){
-            redirectMsg('categos.php', __('Specified category does not exists!','exmbb'), 1);   
+            redirectMsg('categos.php', __('Specified category does not exists!','bxpress'), 1);
             die();
         }
     }
     
-    BBFunctions::menu_bar();
-    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Category','exmbb') : __('New Category','exmbb')));
+    bXFunctions::menu_bar();
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Category','bxpress') : __('New Category','bxpress')));
     xoops_cp_header();
     
-    $form = new RMForm($edit ? __('Edit Category','exmbb') : __('New Category','exmbb'), 'frmCat', 'categos.php');
-    $form->addElement(new RMFormText(__('Name','exmbb'), 'title', 50, 100, $edit ? $catego->title() : ''), true);
+    $form = new RMForm($edit ? __('Edit Category','bxpress') : __('New Category','bxpress'), 'frmCat', 'categos.php');
+    $form->addElement(new RMFormText(__('Name','bxpress'), 'title', 50, 100, $edit ? $catego->title() : ''), true);
     if ($edit){
-        $form->addElement(new RMFormText(__('Short name','exmbb'), 'friendname', 50, 100, $catego->friendName()))   ;
+        $form->addElement(new RMFormText(__('Short name','bxpress'), 'friendname', 50, 100, $catego->friendName()))   ;
     }
-    $form->addElement(new RMFormEditor(__('Description','exmbb'), 'desc', '90%', '300px', $edit ? $catego->description() : '', $xoopsConfig['editor_type']));
-    $form->addElement(new RMFormYesNo(__('Show description','exmbb'), 'showdesc', $edit ? $catego->showDesc() : 1));
-    $form->addElement(new RMFormYesNo(__('Activate','exmbb'), 'status', $edit ? $catego->status() : 1));
-    $form->addElement(new RMFormGroups(__('Groups','exmbb'), 'groups', 1, 1, 4, $edit ? $catego->groups() : array(0)), true, 'checked');
-    $form->addElement(new RMFormHidden('op', $edit ? 'saveedit' : 'save'));
+    $form->addElement(new RMFormEditor(__('Description','bxpress'), 'desc', '90%', '300px', $edit ? $catego->description() : ''));
+    $form->addElement(new RMFormYesNo(__('Show description','bxpress'), 'showdesc', $edit ? $catego->showDesc() : 1));
+    $form->addElement(new RMFormYesNo(__('Activate','bxpress'), 'status', $edit ? $catego->status() : 1));
+    $form->addElement(new RMFormGroups(__('Groups','bxpress'), 'groups', 1, 1, 4, $edit ? $catego->groups() : array(0)), true, 'checked');
+    $form->addElement(new RMFormHidden('action', $edit ? 'saveedit' : 'save'));
     if ($edit) $form->addElement(new RMFormHidden('id', $catego->id()));
     $buttons = new RMFormButtonGroup();
-    $buttons->addButton('sbt', __('Submit','exmbb'), 'submit', '', true);
-    $buttons->addButton('cancel', __('Cancel','exmbb'), 'button', 'onclick="window.location=\'categos.php\';"');
+    $buttons->addButton('sbt', __('Submit','bxpress'), 'submit', '', true);
+    $buttons->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="window.location=\'categos.php\';"');
     $form->addElement($buttons);
     
     $form->display();
@@ -100,48 +108,50 @@ function showForm($edit = 0){
 function saveCatego($edit = 0){
     global $xoopsConfig, $xoopsModuleConfig, $xoopsSecurity;
     
-    if (!$xoopsSecurity->check()){
-        redirectMsg('categos.php', __('Session token expired!','exmbb'), 1);
-        die();
-    }
-    
     $db = Database::getInstance();
     
     $friendname = '';
     $showdesc = 0;
     $status = 0;
-    
+    $q = ''; //Query string
     foreach ($_POST as $k => $v){
         $$k = $v;
+        if($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
+        $q = ($q==''?'':'&').$k.'='.urlencode($v);
+    }
+
+    if (!$xoopsSecurity->check()){
+        redirectMsg('categos.php', __('Session token expired!','bxpress'), 1);
+        die();
     }
     
     if($title==''){
-        redirectMsg('categos.php', __('Please provide a name for this category!','exmbb'), 1);
+        redirectMsg('categos.php?'.$q, __('Please provide a name for this category!','bxpress'), 1);
         die();
     }
     
     if ($edit){
         
         if ($id<=0){
-            redirectMsg('categos.php', __('The specified category ID is not valid!','exmbb'), 1);   
+            redirectMsg('categos.php', __('The specified category ID is not valid!','bxpress'), 1);
             die();
         }
         
-        $catego = new BBCategory($id);
+        $catego = new bXCategory($id);
         if ($catego->isNew()){
-            redirectMsg('categos.php', __('Specified category does not exists!','exmbb'), 1);   
+            redirectMsg('categos.php', __('Specified category does not exists!','bxpress'), 1);
             die();
         }
         
         // Comprobamos que no exista el nombre
-        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("exmbb_categories")." WHERE title='$title' AND id_cat<>'$id'"));
+        list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_categories")." WHERE title='$title' AND id_cat<>'$id'"));
         if ($num>0){
-            redirectMsg('categos.php?op=edit&id='.$id, _AS_BB_ERREXISTS, 1);
+            redirectMsg('categos.php?'.$q, __('Already exists a category with same name!','bxpress'), 1);
             die();
         }
         
     } else {
-        $catego = new BBCategory();   
+        $catego = new bXCategory();
     }
     
     // Asignamos valores
@@ -149,9 +159,9 @@ function saveCatego($edit = 0){
     $friendname = $friendname!='' ? TextCleaner::getInstance()->sweetstring($friendname) : TextCleaner::getInstance()->sweetstring($title);
     
     // Comprobamos que el nombre no este asignada a otra categoría
-    list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("exmbb_categories")." WHERE friendname='$friendname' AND id_cat<>'$id'"));
+    list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_categories")." WHERE friendname='$friendname' AND id_cat<>'$id'"));
     if ($num>0){
-        redirectMsg('categos.php?op=edit&id='.$id, __('Already exist a category with the same name for the URL','exmbb'), 1);
+        redirectMsg('categos.php?op=edit&id='.$id, __('Already exist a category with the same short name!','bxpress'), 1);
         die();
     }
     
@@ -163,9 +173,9 @@ function saveCatego($edit = 0){
     $catego->setStatus($status);
     
     if ($catego->save()){
-        redirectMsg('categos.php', __('Category saved succesfully!','exmbb'), 0);
+        redirectMsg('categos.php', __('Category saved succesfully!','bxpress'), 0);
     } else {
-        redirectMsg('categos.php', __('Category could not be saved!','exmbb') . '<br />' . $catego->errors(), 1);
+        redirectMsg('categos.php', __('Category could not be saved!','bxpress') . '<br />' . $catego->errors(), 1);
     }
     
 }
@@ -181,12 +191,12 @@ function deleteCatego(){
 	
 	//Verificamos si se ha proporcionado una categoría
 	if (empty($ids)){
-		redirectMsg('./categos.php',__('You must select at least one category','exmbb'),1);
+		redirectMsg('./categos.php',__('You must select at least one category','bxpress'),1);
 		die();		
 	}	
 
 	if (!$xoopsSecurity->check()){
-	    redirectMsg('categos.php', __('Session token expired!','exmbb'), 1);
+	    redirectMsg('categos.php', __('Session token expired!','bxpress'), 1);
 		die();
 	}
 
@@ -194,27 +204,27 @@ function deleteCatego(){
 	foreach ($ids as $k){
 	    //Verificamos que la categoría sea válida
 		if ($k<=0){
-		    $errors.=sprintf(__('Category ID %s is not valid!','exmbb'), '<strong>'.$k.'</strong>').'<br />';
+		    $errors.=sprintf(__('Category ID %s is not valid!','bxpress'), '<strong>'.$k.'</strong>').'<br />';
 			continue;
 		}	
 	
 	    //Verificamos que categoría exista
-		$cat=new BBCategory($k);
+		$cat=new bXCategory($k);
 		if ($cat->isNew()){
-		    $errors.=sprintf(__('Category with id %s does not exists!','exmbb'), '<strong>'.$k.'</strong>').'<br />';
+		    $errors.=sprintf(__('Category with id %s does not exists!','bxpress'), '<strong>'.$k.'</strong>').'<br />';
 			continue;
 		}
 	
 	    if (!$cat->delete()){
-		    $errors.=sprintf(__('Category %s could not be deleted!','exmbb'),'<strong>'.$k.'</strong>').'<br />';
+		    $errors.=sprintf(__('Category %s could not be deleted!','bxpress'),'<strong>'.$k.'</strong>').'<br />';
 		}
 	}
 	
 	if ($errors!=''){
-	    redirectMsg('./categos.php',__('There was errors during this operation','exmbb').'<br />'.$errors,1);
+	    redirectMsg('./categos.php',__('There was errors during this operation','bxpress').'<br />'.$errors,1);
 		die();
 	}else{
-	    redirectMsg('./categos.php',__('Categories deleted successfully!','exmbb'),0);
+	    redirectMsg('./categos.php',__('Categories deleted successfully!','bxpress'),0);
 		die();
 	}
 
@@ -230,12 +240,12 @@ function activeCatego($act=0){
 
 	//Verificamos si se ha proporcionado una categoría
 	if (empty($cats)){
-		redirectMsg('./categos.php', __('You must select at least one category','exmbb'),1);
+		redirectMsg('./categos.php', __('You must select at least one category','bxpress'),1);
 		die();		
 	}
 
 	if (!$xoopsSecurity->check()){
-	        redirectMsg('categos.php', __('Session token expired!','exmbb'), 1);
+	        redirectMsg('categos.php', __('Session token expired!','bxpress'), 1);
 	        die();
 	}
 
@@ -245,11 +255,11 @@ function activeCatego($act=0){
 		
 		//Verificamos que la categoría sea válida
 		if ($k<=0){
-			$errors.=sprintf(__('Category ID %s is not valid!','exmbb'), '<strong>'.$k.'</strong>').'<br />';
+			$errors.=sprintf(__('Category ID %s is not valid!','bxpress'), '<strong>'.$k.'</strong>').'<br />';
 			continue;
 		}	
 		//Verificamos que categoría exista
-		$cat=new BBCategory($k);
+		$cat=new bXCategory($k);
 		if ($cat->isNew()){
 			$errors.=sprintf(_AS_BB_ERRCATNOEXIST,$k);
 			continue;
@@ -296,7 +306,7 @@ function updateOrderCatego(){
 			continue;
 		}	
 		//Verificamos que categoría exista
-		$cat=new BBCategory($k);
+		$cat=new bXCategory($k);
 		if ($cat->isNew()){
 			$errors.=sprintf(_AS_BB_ERRCATNOEXIST,$k);
 			continue;
@@ -323,8 +333,6 @@ function updateOrderCatego(){
 }
 
 
-
-
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
@@ -346,10 +354,10 @@ switch($action){
     case 'delete':
 	    deleteCatego();
         break;
-    case 'activebulk':
+    case 'enable':
 	    activeCatego(1);
         break;
-    case 'disablebulk':
+    case 'disable':
 	    activeCatego();
         break;
     default:

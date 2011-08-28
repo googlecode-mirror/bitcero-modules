@@ -1,4 +1,4 @@
-CREATE TABLE `exmbb_announcements` (
+CREATE TABLE `bxpress_announcements` (
   `id_an` int(11) NOT NULL auto_increment,
   `text` text NOT NULL,
   `by` int(11) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `exmbb_announcements` (
   PRIMARY KEY  (`id_an`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_attachments` (
+CREATE TABLE `bxpress_attachments` (
   `attach_id` int(8) NOT NULL auto_increment,
   `post_id` int(10) default NULL,
   `file` varchar(255) default NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `exmbb_attachments` (
   KEY `post_id` (`post_id`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_categories` (
+CREATE TABLE `bxpress_categories` (
   `id_cat` smallint(3) NOT NULL auto_increment,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `exmbb_categories` (
   UNIQUE KEY `friendname` (`friendname`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_forums` (
+CREATE TABLE `bxpress_forums` (
   `id_forum` int(10) NOT NULL auto_increment,
   `name` varchar(150) NOT NULL,
   `desc` text collate utf8_spanish_ci,
@@ -61,16 +61,11 @@ CREATE TABLE `exmbb_forums` (
   `subforums` int(10) NOT NULL default '0',
   `friendname` varchar(150) NOT NULL,
   `permissions` text NOT NULL,
-  `dohtml` tinyint(1) NOT NULL DEFAULT '0',
-  `doxcode` tinyint(1) NOT NULL DEFAULT '1',
-  `dobr` tinyint(1) NOT NULL DEFAULT '1',
-  `doimage` tinyint(1) NOT NULL DEFAULT '1',
-  `dosmiley` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY  (`id_forum`),
   UNIQUE KEY `friendname` (`friendname`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_posts` (
+CREATE TABLE `bxpress_posts` (
   `id_post` int(8) NOT NULL auto_increment,
   `pid` int(8) NOT NULL default '0',
   `id_topic` int(8) NOT NULL default '0',
@@ -98,7 +93,7 @@ CREATE TABLE `exmbb_posts` (
   KEY `topicid_postid_pid` (`id_topic`,`id_post`,`pid`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_posts_text` (
+CREATE TABLE `bxpress_posts_text` (
   `post_id` int(8) NOT NULL default '0',
   `post_text` text collate utf8_spanish_ci,
   `post_edit` text collate utf8_spanish_ci,
@@ -106,7 +101,7 @@ CREATE TABLE `exmbb_posts_text` (
   FULLTEXT KEY `search` (`post_text`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_report` (
+CREATE TABLE `bxpress_report` (
   `report_id` int(8) NOT NULL auto_increment,
   `post_id` int(10) default NULL,
   `reporter_uid` int(10) default NULL,
@@ -121,7 +116,7 @@ CREATE TABLE `exmbb_report` (
   KEY `post_id` (`post_id`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `exmbb_topics` (
+CREATE TABLE `bxpress_topics` (
   `id_topic` int(11) NOT NULL auto_increment,
   `title` varchar(255) default NULL,
   `poster` int(5) NOT NULL default '0',
