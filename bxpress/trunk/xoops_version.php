@@ -392,4 +392,3 @@ $modversion['subpages']['edit'] = _MI_BB_EDIT;
 $modversion['subpages']['moderate'] = _MI_BB_MODERATE;
 $modversion['subpages']['report'] = _MI_BB_REPORT;
 $modversion['subpages']['search'] = _MI_BB_SEARCH;
-?>

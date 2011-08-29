@@ -1,40 +1,24 @@
 <?php
-// $Id: bbpost.class.php 61 2008-03-15 19:46:48Z ginis $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Clase para el manejo de mensajes
 */
-class BBPost extends EXMObject
+class bXPost extends RMObject
 {
 	private $havetext = false;
 	private $numposts = 0;
 		
 	public function __construct($id = null){
 		$this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_posts");
+        $this->_dbtable = $this->db->prefix("bxpress_posts");
         $this->setNew();
         $this->initVarsFromTable();
         $this->initVar('post_text', XOBJ_DTYPE_TXTAREA);
@@ -47,7 +31,7 @@ class BBPost extends EXMObject
         $this->unsetNew();
         
         // Cargamos el texto
-        $sql = "SELECT * FROM ".$this->db->prefix("exmbb_posts_text")." WHERE post_id='".$this->id()."'";
+        $sql = "SELECT * FROM ".$this->db->prefix("bxpress_posts_text")." WHERE post_id='".$this->id()."'";
         $result = $this->db->queryF($sql);
         if ($this->db->getRowsNum($result)<=0) return;
         
@@ -170,7 +154,7 @@ class BBPost extends EXMObject
 	public function text(){
 		if (!$this->havetext && $this->getVar('post_text','n')==''){
 			// Cargamos el texto
-	        $sql = "SELECT * FROM ".$this->db->prefix("exmbb_posts_text")." WHERE post_id='".$this->id()."'";
+	        $sql = "SELECT * FROM ".$this->db->prefix("bxpress_posts_text")." WHERE post_id='".$this->id()."'";
 	        $result = $this->db->queryF($sql);
 	        if ($this->db->getRowsNum($result)<=0) return;
 	        
@@ -195,7 +179,7 @@ class BBPost extends EXMObject
 	
 	public function totalAttachments(){
 		if ($this->numposts==0){
-			$result = $this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix("exmbb_attachments")." WHERE post_id='".$this->id()."'");
+			$result = $this->db->query("SELECT COUNT(*) FROM ".$this->db->prefix("bxpress_attachments")." WHERE post_id='".$this->id()."'");
 			list($num) = $this->db->fetchRow($result);
 			$this->numposts = $num;
 		}
@@ -219,7 +203,7 @@ class BBPost extends EXMObject
 	*/
 	function attachments($object = true, $id_as_keys = false){
 		
-		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("exmbb_attachments")." WHERE post_id='".$this->id()."'");
+		$result = $this->db->query("SELECT * FROM ".$this->db->prefix("bxpress_attachments")." WHERE post_id='".$this->id()."'");
 		$ret = array();
 		while ($row = $this->db->fetchArray($result)){
 			if ($object){
@@ -250,7 +234,7 @@ class BBPost extends EXMObject
 		if ($this->isNew()){
 			if (!$this->saveToTable()) return false;
 			// Guardamos el texto
-			$sql = "INSERT INTO ".$this->db->prefix("exmbb_posts_text")." (`post_id`,`post_text`,`post_edit`)
+			$sql = "INSERT INTO ".$this->db->prefix("bxpress_posts_text")." (`post_id`,`post_text`,`post_edit`)
 					VALUES ('".$this->id()."','".$myts->addSlashes($this->getVar('post_text','n'))."','".$myts->addSlashes($this->getVar('post_edit','n'))."')";
 			
 			if (!$this->db->queryF($sql)){
@@ -264,11 +248,11 @@ class BBPost extends EXMObject
 			if (!$this->updateTable())  return false;
 			
 			if ($this->havetext){
-				$sql = "UPDATE ".$this->db->prefix("exmbb_posts_text")." SET 
+				$sql = "UPDATE ".$this->db->prefix("bxpress_posts_text")." SET
 						`post_text`='".$myts->addSlashes($this->getVar('post_text','n'))."',`post_edit`='".$myts->addSlashes($this->getVar('post_edit','n'))."' WHERE
 						post_id='".$this->id()."'";
 			} else {
-				$sql = "INSERT INTO ".$this->db->prefix("exmbb_posts_text")." (`post_id`,`post_text`,`post_edit`)
+				$sql = "INSERT INTO ".$this->db->prefix("bxpress_posts_text")." (`post_id`,`post_text`,`post_edit`)
 					VALUES ('".$this->id()."','".$this->getVar('post_text')."','".$this->getVar('post_edit')."')";
 			}
 			
@@ -286,8 +270,8 @@ class BBPost extends EXMObject
 	* @desc Eliminar un post
 	*/
 	public function delete(){
-		$tbl1 = $this->db->prefix("exmbb_posts_text");
-		$tbl2 = $this->db->prefix("exmbb_attachments");
+		$tbl1 = $this->db->prefix("bxpress_posts_text");
+		$tbl2 = $this->db->prefix("bxpress_attachments");
 		$sql = "DELETE FROM $tbl1 WHERE post_id='".$this->id()."'";
 		if (!$this->db->queryF($sql)){
 			$this->addError($this->db->error());
@@ -300,13 +284,12 @@ class BBPost extends EXMObject
 		}
 		
 		// Restamos uno al número de mensajes en temas y foros
-		$sql = "UPDATE ".$this->db->prefix("exmbb_forums")." SET `posts`=`posts`-1 WHERE id_forum='".$this->forum()."'";
+		$sql = "UPDATE ".$this->db->prefix("bxpress_forums")." SET `posts`=`posts`-1 WHERE id_forum='".$this->forum()."'";
 	    	$this->db->queryF($sql);
-	    	$sql = "UPDATE ".$this->db->prefix("exmbb_topics")." SET `replies`=`replies`-1 WHERE id_topic='".$this->topic()."'";
+	    	$sql = "UPDATE ".$this->db->prefix("bxpress_topics")." SET `replies`=`replies`-1 WHERE id_topic='".$this->topic()."'";
 	    	$this->db->queryF($sql);
 	
 		return $this->deleteFromTable();
 	}
 	
 }
-?>

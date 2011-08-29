@@ -21,7 +21,7 @@ function bx_show_forums(){
 
     $db = Database::getInstance();
     
-    $sql = "SELECT * FROM ".$db->prefix("exmbb_forums");
+    $sql = "SELECT * FROM ".$db->prefix("bxpress_forums");
     if ($catid>0){
         $sql .= " WHERE cat='$catid'";
     }
@@ -29,6 +29,8 @@ function bx_show_forums(){
     
     $result = $db->query($sql);
     $categos = array();
+    $forums = array();
+
     while ($row = $db->fetchArray($result)){
         $forum = new bXForum();
         $forum->assignVars($row);
@@ -36,14 +38,20 @@ function bx_show_forums(){
         if (isset($categos[$forum->category()])){
             $catego = $categos[$forum->category()];   
         } else {
-            $categos[$forum->category()] = new BBCategory($forum->category());
+            $categos[$forum->category()] = new bXCategory($forum->category());
             $catego = $categos[$forum->category()];
         }
         // Asignamos los valores
-        $tpl->append('forums', array('id'=>$forum->id(), 'title'=>$forum->name(),
-                     'topics'=>$forum->topics(), 'posts'=>$forum->posts(),
-                     'catego'=>$catego->title(),'active'=>$forum->active(),
-                     'attach'=>$forum->attachments(),'order'=>$forum->order()));
+        $forums[] = array(
+            'id'=>$forum->id(),
+            'title'=>$forum->name(),
+            'topics'=>$forum->topics(),
+            'posts'=>$forum->posts(),
+            'catego'=>$catego->title(),
+            'active'=>$forum->active(),
+            'attach'=>$forum->attachments(),
+            'order'=>$forum->order()
+        );
     }
 
     bXFunctions::menu_bar();
@@ -95,42 +103,42 @@ function bx_show_form($edit = 0){
     // NOmbre
     $form->addElement(new RMFormText(__('Forum name','bxpress'), 'name', 50, 150, $edit ? $forum->name() : ''), true);
     // Descripcion
-    $form->addElement(new RMFormEditor(__('Forum description','bxpress'), 'desc', '90%', '300px', $edit ? $forum->description() : '',$xoopsConfig['editor_type']));
+    $form->addElement(new RMFormEditor(__('Forum description','bxpress'), 'desc', '90%', '300px', $edit ? $forum->description() : ''));
 
     // Activo
-    $form->addElement(new RMFormYesNo(_AS_BB_FACTIVATE, 'active', $edit ? $forum->active() : 1));
+    $form->addElement(new RMFormYesNo(__('Activate forum','bxpress'), 'active', $edit ? $forum->active() : 1));
     // Firmas
-    $form->addElement(new RMFormYesNo(_AS_BB_FALLOWSIG, 'sig', $edit ? $forum->signature() : 1));
+    $form->addElement(new RMFormYesNo(__('Allow signatures in the posts','bxpress'), 'sig', $edit ? $forum->signature() : 1));
     // Prefijos
-    $form->addElement(new RMFormYesNo(_AS_BB_FALLOWPREFIX, 'prefix', $edit ? $forum->prefix() : 1));
+    $form->addElement(new RMFormYesNo(__('Allow Prefixes in the posts','bxpress'), 'prefix', $edit ? $forum->prefix() : 1));
     // Temas Populares
-    $form->addElement(new RMFormText(_AS_BB_FTHRESHOLD, 'hot_threshold', 10, 5, $edit ? $forum->hotThreshold() : 10), true, 'bigger:1');
+    $form->addElement(new RMFormText(__('Answers to match a topic as popular','bxpress'), 'hot_threshold', 10, 5, $edit ? $forum->hotThreshold() : 10), true, 'bigger:1');
     // Orden en la lista
-    $form->addElement(new RMFormText(_AS_BB_FORDER, 'order', 10, 5, $edit ? $forum->order() : 0), false, 'bigger:-1');
+    $form->addElement(new RMFormText(__('Order in the list','bxpress'), 'order', 10, 5, $edit ? $forum->order() : 0), false, 'bigger:-1');
     // Adjuntos
-    $form->addElement(new RMFormYesNo(_AS_BB_FATTACH, 'attachments', $edit ? $forum->attachments() : 1));
-    $ele = new RMFormText(_AS_BB_FATTACHSIZE, 'attach_maxkb', 10, 20, $edit ? $forum->maxSize() : 50);
-    $ele->setDescription(_AS_BB_FATTACHSIZE_DESC);
+    $form->addElement(new RMFormYesNo(__('Allow attachments','bxpress'), 'attachments', $edit ? $forum->attachments() : 1));
+    $ele = new RMFormText(__('Maximum attachments file size','bxpress'), 'attach_maxkb', 10, 20, $edit ? $forum->maxSize() : 50);
+    $ele->setDescription(__('Specify this value in Kilobytes','bxpress'));
     $form->addElement($ele, false, 'bigger:0');
-    $ele = new RMFormText(_AS_BB_FATTACHEXT, 'attach_ext', 50, 0, $edit ? implode("|", $forum->extensions()) : 'zip|tar|jpg|gif|png|gz');
-    $ele->setDescription(_AS_BB_FATTACHEXT_DESC);
+    $ele = new RMFormText(__('Allowed file types','bxpress'), 'attach_ext', 50, 0, $edit ? implode("|", $forum->extensions()) : 'zip|tar|jpg|gif|png|gz');
+    $ele->setDescription(__('Specified the extensions of allowed file types separating each one with "|" and without the dot.','bxpress'));
     $form->addElement($ele);
     // Grupos con permiso
     if ($edit){
         $grupos = $forum->permissions();
     }
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSVIEW, 'perm_view', 1, 1, 5, $edit ? $grupos['view'] : array(0)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSTOPIC, 'perm_topic', 1, 1, 5, $edit ? $grupos['topic'] : array(1,2)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSREPLY, 'perm_reply', 1, 1, 5, $edit ? $grupos['reply'] : array(1,2)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSEDIT, 'perm_edit', 1, 1, 5, $edit ? $grupos['edit'] : array(1,2)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSDELETE, 'perm_delete', 1, 1, 5, $edit ? $grupos['delete'] : array(1)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSVOTE, 'perm_vote', 1, 1, 5, $edit ? $grupos['vote'] : array(1,2)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSATTACH, 'perm_attach', 1, 1, 5, $edit ? $grupos['attach'] : array(1,2)));
-    $form->addElement(new RMFormGroups(_AS_BB_GROUPSAPPROVE, 'perm_approve', 1, 1, 5, $edit ? $grupos['approve'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can view the forum','bxpress'), 'perm_view', 1, 1, 5, $edit ? $grupos['view'] : array(0)));
+    $form->addElement(new RMFormGroups(__('Can start new topics','bxpress'), 'perm_topic', 1, 1, 5, $edit ? $grupos['topic'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can answer','bxpress'), 'perm_reply', 1, 1, 5, $edit ? $grupos['reply'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can edit their posts','bxpress'), 'perm_edit', 1, 1, 5, $edit ? $grupos['edit'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can delete','bxpress'), 'perm_delete', 1, 1, 5, $edit ? $grupos['delete'] : array(1)));
+    $form->addElement(new RMFormGroups(__('Can vote','bxpress'), 'perm_vote', 1, 1, 5, $edit ? $grupos['vote'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can attach','bxpress'), 'perm_attach', 1, 1, 5, $edit ? $grupos['attach'] : array(1,2)));
+    $form->addElement(new RMFormGroups(__('Can send without approval','bxpress'), 'perm_approve', 1, 1, 5, $edit ? $grupos['approve'] : array(1,2)));
     
     $ele = new RMFormButtonGroup();
-    $ele->addButton('sbt', $edit ? _AS_BB_FEDIT : _AS_BB_FCREATE, 'submit', '', 1);
-    $ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'forums.php\';"');
+    $ele->addButton('sbt', $edit ? __('Save Changes','bxpress') : __('Create Forum','bxpress'), 'submit', '', 1);
+    $ele->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="window.location=\'forums.php\';"');
     $form->addElement($ele);
     $form->addElement(new RMFormHidden('action', $edit ? 'saveedit' : 'save'));
     if ($edit) $form->addElement(new RMFormHidden('id', $forum->id()));
@@ -143,38 +151,43 @@ function bx_show_form($edit = 0){
 * @desc Almacena los datos de un foro
 */
 function bx_save_forum($edit = 0){
-    global $db, $util, $myts;
-    
-    if (!$util->validateToken()){
-    	redirectMsg('forums.php', _AS_BB_ERRTOKEN, 1);
-    	die();
-    }
-    
+    global $xoopsSecurity, $xoopsModuleConfig, $xoopsConfig;
+
+    $q = $edit ? 'action=edit' : 'action=new';
+
     foreach ($_POST as $k => $v){
         if (substr($k, 0, 5)=='perm_'){
             $permissions[substr($k, 5)] = $v;
         } else {
             $$k = $v;
         }
+
+        if($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
+        $q = '&'.$k.'='.$v;
+    }
+
+    if (!$xoopsSecurity->check()){
+    	redirectMsg('forums.php?'.$q, __('Session token expired','bxpress'), 1);
+    	die();
     }
     
     if ($edit){
-        $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+        $id = rmc_server_var($_REQUEST, 'id', 0);
         if ($id<=0){
-            redirectMsg('forums.php', _AS_BB_NOID, 1);
+            redirectMsg('forums.php', __('Specified id is not valid!','bxpress'), 1);
             die();
         }
         
-        $forum = new BBForum($id);
+        $forum = new bXForum($id);
         if ($forum->isNew()){
-            redirectMsg('forums.php', _AS_BB_NOEXISTS, 1);
+            redirectMsg('forums.php', __('Specified forum does not exists!','bxpress'), 1);
             die();
         }
     } else {
-        $forum = new BBForum();
+        $forum = new bXForum();
     }
     
-    $forum->setName($util->filterTags($name));
+    $forum->setName($name);
     $forum->setDescription($desc);
     if (!$edit){
         $forum->setTopics(0);
@@ -191,31 +204,25 @@ function bx_save_forum($edit = 0){
     $forum->setAttachments($attachments);
     $forum->setMaxSize($attach_maxkb);
     $forum->setExtensions(explode('|',$attach_ext));
-    $forum->setFriendName($util->sweetstring($name));
+    $forum->setFriendName(TextCleaner::getInstance()->sweetstring($name));
     $forum->setPermissions($permissions);
-    
-    $forum->setVar('dohtml', isset($dohtml) ? 1 : 0);
-    $forum->setVar('doxcode', isset($doxcode) ? 1 : 0);
-    $forum->setVar('dobr', isset($dobr) ? 1 : 0);
-    $forum->setVar('doimage', isset($doimage) ? 1 : 0);
-    $forum->setVar('dosmiley', isset($dosmiley) ? 1 : 0);
     
     if ($forum->save()){
         if ($parent>0){
-            $pf = new BBForum($parent);
+            $pf = new bXForum($parent);
             if (!$pf->isNew()){
                 $pf->setSubforums($pf->subforums() + 1);
                 $pf->save();
             }
         }
-	if (!$edit){
-		//Redireccionamos a ventana de selección de moderadores
-        	redirectMsg('forums.php?op=moderator&id='.$forum->id(), _AS_BB_DBOK, 0);
-	}else{
-		redirectMsg('forums.php', _AS_BB_DBOK, 0);
-	}
+        if (!$edit){
+            //Redireccionamos a ventana de selección de moderadores
+                redirectMsg('forums.php?action=moderators&id='.$forum->id(), __('Forum saved successfully! Redirecting to moderators assignment...','bxpress'), 0);
+        }else{
+            redirectMsg('forums.php', __('Changes saved successfully!','bxpress'), 0);
+        }
     } else {
-        redirectMsg('forums.php', _AS_BB_ERRACTION . $forum->errors() , 1);
+        redirectMsg('forums.php?'.$q, __('Forum could not be saved!','bxpress') . $forum->errors() , 1);
     }    
     
 }
@@ -244,7 +251,7 @@ function bx_save_changes(){
 	}
 	
 	foreach ($orders as $k => $v){
-		$sql = "UPDATE ".$db->prefix("exmbb_forums")." SET `order`='".$v."' WHERE id_forum='$k'";
+		$sql = "UPDATE ".$db->prefix("bxpress_forums")." SET `order`='".$v."' WHERE id_forum='$k'";
 		$db->queryF($sql);
 	}
 	
@@ -270,7 +277,7 @@ function bx_activate_forums($status=1){
 		die();
 	}
 	
-	$sql = "UPDATE ".$db->prefix("exmbb_forums")." SET active='$status' WHERE ";
+	$sql = "UPDATE ".$db->prefix("bxpress_forums")." SET active='$status' WHERE ";
 	$sql1 = '';
 	foreach ($forums as $k => $v){
 		$sql1.= $sql1 == '' ? "id_forum='$v' " : "OR id_forum='$v' ";
@@ -344,46 +351,44 @@ function bx_delete_forums(){
 function bx_moderators(){
 	global $xoopsModule;
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+	$id= rmc_server_var($_REQUEST, 'id', 0);
 	
 	if ($id<=0){
-		redirectMsg('forums.php', _AS_BB_NOID, 1);
+		redirectMsg('forums.php', __('No forum ID has been provided!','bxpress'), 1);
 		break;
 	}
 	
-	$forum = new BBForum($id);
+	$forum = new bXForum($id);
 	if ($forum->isNew()){
-		redirectMsg('forums.php', _AS_BB_NOEXISTS, 1);
+		redirectMsg('forums.php', __('Specified forum does not exists!','bxpress'), 1);
 		break;
 	}
 
 
-	optionsBar();
+	bXFunctions::menu_bar();
 	xoops_cp_header();
 
 
 	//Lista de usuarios
-	$form = new RMForm(_AS_BB_MODERATORS, 'formmdt','forums.php');
+	$form = new RMForm(sprintf(__('Forum "%s" Moderators','bxpress'), $forum->name()), 'formmdt','forums.php');
 
-	$form->addElement(new RMLabel(_AS_BB_LIST,''));
-
-
-	$form->addElement(new RMFormUserEXM(_AS_BB_USERS,'users',1, $forum->moderators(),30),true,'checked');	
+	$form->addElement(new RMFormUser(__('Moderators','bxpress'),'users',1, $forum->moderators(),30),true,'checked');
+    $form->element('users')->setDescription(__('Choose from the list the moderators users','bxpress'));
 
 	
-	$buttons= new RMButtonGroup();
-	$buttons->addButton('sbt', _SUBMIT, 'submit');
-	$buttons->addButton('cancel', _CANCEL, 'button', 'onclick="history.go(-1);"');
+	$buttons= new RMFormButtonGroup();
+	$buttons->addButton('sbt', __('Save Moderators','bxpress'), 'submit');
+	$buttons->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="window.location.href=\'forums.php\';"');
 	
 	$form->addElement($buttons);
 
-	$form->addElement(new RMHidden('op','savemoderat'));
-	$form->addElement(new RMHidden('id',$id));
+	$form->addElement(new RMFormHidden('action','savemoderat'));
+	$form->addElement(new RMFormHidden('id',$id));
 
 	$form->display();
 
 
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_BB_MODERATORS);
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('forum Moderators','bxpress'));
 	xoops_cp_footer();
 
 
@@ -393,10 +398,10 @@ function bx_moderators(){
 * @desc Almacena los usuarios moderadores
 **/
 function bx_save_moderators(){
-	global $db, $util;
+    global $xoopsSecurity;
 	
-	if (!$util->validateToken()){
-    	redirectMsg('forums.php', _AS_BB_ERRTOKEN, 1);
+	if (!$xoopsSecurity->check()){
+    	redirectMsg('forums.php', __('Session token expired!','bxpress'), 1);
     	die();
     }
 	
@@ -406,23 +411,23 @@ function bx_save_moderators(){
 
 	//Verificamos si el foro es válido	
 	if ($id<=0){
-		redirectMsg('./forums.php',_AS_BB_NOID, 1);
+		redirectMsg('forums.php', __('A forum ID has not been provided!','bxpress'), 1);
 		die();
 	}
 
 	//Comprobamos que el foro exista
-	$forum = new BBForum($id);
+	$forum = new bXForum($id);
 	if ($forum->isNew()){
-		redirectMsg('forums.php', _AS_BB_NOEXISTS, 1);
+		redirectMsg('forums.php', __('Sepecified forum does not exists!','bxpress'), 1);
 		die();
 	}
 
 	$forum->setModerators($users);
 	if ($forum->save()){
-		redirectMsg('./forums.php',_AS_BB_DBOK,0);
+		redirectMsg('forums.php',__('Moderator saved successfully!','bxpress'),0);
 	}
 	else{
-		redirectMsg('./forums.php',_AS_BB_NOTSAVE,1);
+		redirectMsg('forums.php',__('Moderators could not be saved!','bxpress').'<br />'.$forum->errors(),1);
 	}
 	
 
@@ -439,10 +444,10 @@ switch($action){
         bx_show_form(1);
         break;
     case 'save':
-        saveForum();
+        bx_save_forum();
         break;
     case 'saveedit':
-        saveForum(1);
+        bx_save_forum(1);
         break;
     case 'savechanges':
     	saveChanges();
@@ -456,12 +461,12 @@ switch($action){
     case 'delete':
     	deleteForum();
     	break;
-    case 'moderator':
-        moderators();
+    case 'moderators':
+        bx_moderators();
         break;
     case 'savemoderat':
-	saveModerators();
-    break;
+        bx_save_moderators();
+        break;
     default:
         bx_show_forums();
         break;
