@@ -44,21 +44,23 @@
     <tr class="even"><td colspan="9" align="center"><?php _e('There are not forums created yet!','bxpress'); ?></td></tr>
     <?php endif; ?>
     <?php foreach($forums as $forum): ?>
-        <tr class="<{cycle values="even,odd"}>" align="center">
-            <td><input type="checkbox" name="forums[<{$forum.id}>]" value="<{$forum.id}>" /></td>
-            <td><strong><{$forum.id}></strong></td>
-            <td align="left"><a href="../forum.php?id=<{$forum.id}>"><{$forum.title}></a></td>
-            <td><{$forum.topics}></td>
-            <td><{$forum.posts}></td>
-            <td><{$forum.catego}></td>
-            <td><img src="../images/<{if $forum.active}>ok<{else}>no<{/if}>.png" border="0" alt="" /></td>
-            <td><img src="../images/<{if $forum.attach}>ok<{else}>no<{/if}>.png" border="0" alt="" /></td>
-            <td><input type="text" name="orders[<{$forum.id}>]" value="<{$forum.order}>" size="5" style="text-align: center;" /></td>
-            <td>
-                <a href="?op=edit&amp;id=<{$forum.id}>"><{$lang_edit}></a> &bull;
-                <a href="?op=delete&amp;id=<{$forum.id}>"><{$lang_delete}></a> &bull;
-		<a href="?op=moderator&amp;id=<{$forum.id}>"><{$lang_moderator}></a>
+        <tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top">
+            <td><input type="checkbox" name="ids[]" id="item-<?php echo $forum['id']; ?>" value="<?php echo $forum['id']; ?>" /></td>
+            <td><strong><?php echo $forum['id']; ?></strong></td>
+            <td align="left">
+                <a href="../forum.php?id=<?php echo $forum['id']; ?>"><?php echo $forum['title']; ?></a>
+                <span class="rmc_options">
+                    <a href="?action=edit&amp;id=<?php echo $forum['id']; ?>"><?php _e('Edit','bxpress'); ?></a> &bull;
+                    <a href="?action=delete&amp;id=<?php echo $forum['id']; ?>"><?php _e('Delete','bxpress'); ?></a> &bull;
+                    <a href="?action=moderators&amp;id=<?php echo $forum['id']; ?>"><?php _e('Moderators','bxpress'); ?></a>
+                </span>
             </td>
+            <td><?php echo $forum['topics']; ?></td>
+            <td><?php echo $forum['posts']; ?></td>
+            <td><?php echo $forum['catego']; ?></td>
+            <td><img src="../images/<?php echo $forum['active'] ? 'ok' : 'no'; ?>.png" border="0" alt="" /></td>
+            <td><img src="../images/<?php echo  $forum['attach'] ? 'ok' : 'no'; ?>.png" border="0" alt="" /></td>
+            <td><input type="text" name="orders[<?php echo $forum['id']; ?>]" value="<?php echo $forum['order']; ?>" size="5" style="text-align: center;" /></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

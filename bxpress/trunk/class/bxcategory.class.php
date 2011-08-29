@@ -185,7 +185,7 @@ class bXCategoryHandler
         $result = $db->query($sql);
         $categos = array();
         while ($row = $db->fetchArray($result)){
-            $catego = new BBCategory();
+            $catego = new bXCategory();
             $catego->assignVars($row);
             $categos[] = $catego;
         }

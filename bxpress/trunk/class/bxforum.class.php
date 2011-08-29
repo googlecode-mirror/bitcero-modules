@@ -446,7 +446,7 @@ class bXForumHandler
     * @param int $parent Id del foro raíz
     * @param int $category Identificador de la categoría. 0 indica todas
     * @param int $activo -1 devuelve todos los foros, 0 solo los inactivos y 1 solo activos
-    * @param bool $object Indica si se devueven los objetos BBForum
+    * @param bool $object Indica si se devueven los objetos bXForum
     */
     public function getForums($category=0, $active=-1, $object = false){
         
@@ -454,11 +454,12 @@ class bXForumHandler
         
         $sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE ".($active>-1 ? " active='$active' " : '').
                 ($category>0 ? " AND cat='$category' " : '')." ORDER BY `cat`,`order`";
+        
         $result = $db->queryF($sql);
         $retorno = array();
         while ($row = $db->fetchArray($result)){
             if ($object){
-                $forum = new BBForum();
+                $forum = new bXForum();
                 $forum->assignVars($row); 
                 $retorno[] = $forum;  
             } else {
@@ -475,7 +476,7 @@ class bXForumHandler
     * @param int $category Id de la categoria. 0 Indica todas
     * @param int $saltos Número de saltos que se asignarán al nivel actual
     * @param int $activo -1 devuelve todos los foros, 0 solo los inactivos y 1 solo activos
-    * @param bool $object Indica si se devueven los objetos BBForum
+    * @param bool $object Indica si se devueven los objetos bXForum
     */
     private function getForumsTree($retorno, $parent = 0, $category=0, $saltos = 0, $active = -1, $object = false){
         $sql = "SELECT * FROM $this->table WHERE `parent`='$parent'".($active>-1 ? " AND active='$active' " : '').
@@ -483,7 +484,7 @@ class bXForumHandler
         $result = $this->db->queryF($sql);
         while ($row = $this->db->fetchArray($result)){
             if ($object){
-                $forum = new BBForum();
+                $forum = new bXForum();
                 $forum->assignVars($row); 
                 $retorno[] =& $forum;  
             } else {

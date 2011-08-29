@@ -1,53 +1,36 @@
 <?php
-// $Id: index.php 76 2009-02-15 10:52:06Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
 
-define('BB_LOCATION','index');
 include '../../mainfile.php';
 
 if ($xoopsModuleConfig['showcats']){
     /**
     * Cargamos las categorías y los foros ordenados por categorías   
     */
-    $xoopsOption['template_main'] = 'exmbb_index_categos.html';
+    $xoopsOption['template_main'] = 'bxpress_index_categos.html';
     $xoopsOption['module_subpage'] = "index";
     include 'header.php';
     
-    $categos = BBCategoryHandler::getObjects(1);
+    $categos = bXCategoryHandler::getObjects(1);
     
     foreach ($categos as $catego){
         if (!$catego->groupAllowed($xoopsUser ? $xoopsUser->getGroups() : array(0,XOOPS_GROUP_ANONYMOUS))) continue;
         
-        $forums = BBForumHandler::getForums($catego->id(), 1, true);
+        $forums = bXForumHandler::getForums($catego->id(), 1, true);
         $ret = array(); 
         foreach ($forums as $forum){
-        	$last = new BBPost($forum->lastPostId());
+        	$last = new bXPost($forum->lastPostId());
 		    $lastpost = array();
 		    if (!$last->isNew()){
-    			$lastpost['date'] = BBFunctions::formatDate($last->date());
-    			$lastpost['by'] = sprintf(_MS_EXMBB_BY, $last->uname());
+    			$lastpost['date'] = bXFunctions::formatDate($last->date());
+    			$lastpost['by'] = sprintf(__('by %s','bxpress'), $last->uname());
     			$lastpost['id'] = $last->id();
     			$lastpost['topic'] = $last->topic();
     			if ($xoopsUser){
@@ -69,18 +52,18 @@ if ($xoopsModuleConfig['showcats']){
     /**
     * Cargamos solo los foros
     */
-    $xoopsOption['template_main'] = 'exmbb_index_forums.html';
+    $xoopsOption['template_main'] = 'bxpress_index_forums.html';
     $xoopsOption['module_subpage'] = "index";
     include 'header.php';
     
-    $fHand = new BBForumHandler();
+    $fHand = new bXForumHandler();
     $forums = $fHand->getForums(0,1,true);
     foreach ($forums as $forum){
-    	$last = new BBPost($forum->lastPostId());
+    	$last = new bXPost($forum->lastPostId());
 		    $lastpost = array();
 		    if (!$last->isNew()){
-    			$lastpost['date'] = BBFunctions::formatDate($last->date());
-    			$lastpost['by'] = sprintf(_MS_EXMBB_BY, $last->uname());
+    			$lastpost['date'] = bXFunctions::formatDate($last->date());
+    			$lastpost['by'] = sprintf(__('by %s','bxpress'), $last->uname());
     			$lastpost['id'] = $last->id();
     			$lastpost['topic'] = $last->topic();
     			if ($xoopsUser){
@@ -96,35 +79,35 @@ if ($xoopsModuleConfig['showcats']){
     
 }
 
-if ($user =& BBFunctions::getLastUser()){
+$user = bXFunctions::getLastUser();
+
+if ($user){
     $tpl->assign('user', array('id'=>$user->uid(),'uname'=>$user->uname()));
 }
 
 unset($user);
 
 // Usuarios Conectados
-$tpl->assign('register_num', BBFunctions::getOnlineCount(1));
-$tpl->assign('anonymous_num', BBFunctions::getOnlineCount(0));
-$tpl->assign('total_users', BBFunctions::totalUsers());
-$tpl->assign('total_topics', BBFunctions::totalTopics());
-$tpl->assign('total_posts', BBFunctions::totalPosts());
+$tpl->assign('register_num', bXFunctions::getOnlineCount(1));
+$tpl->assign('anonymous_num', bXFunctions::getOnlineCount(0));
+$tpl->assign('total_users', bXFunctions::totalUsers());
+$tpl->assign('total_topics', bXFunctions::totalTopics());
+$tpl->assign('total_posts', bXFunctions::totalPosts());
 
-$tpl->assign('lang_forum', _MS_EXMBB_FORUM);
-$tpl->assign('lang_topics', _MS_EXMBB_TOPICS);
-$tpl->assign('lang_posts', _MS_EXMBB_POSTS);
-$tpl->assign('lang_lastpost', _MS_EXMBB_LASTPOST);
-$tpl->assign('lang_lastuser', _MS_EXMBB_LASTUSER);
-$tpl->assign('lang_regnum', _MS_EXMBB_REGNUM);
-$tpl->assign('lang_annum', _MS_EXMBB_ANNUM);
-$tpl->assign('lang_totalusers', _MS_EXMBB_TOTALUSERS);
-$tpl->assign('lang_totaltopics', _MS_EXMBB_TOTALTOPICS);
-$tpl->assign('lang_totalposts', _MS_EXMBB_TOTALPOSTS);
+$tpl->assign('lang_forum', _MS_bxpress_FORUM);
+$tpl->assign('lang_topics', _MS_bxpress_TOPICS);
+$tpl->assign('lang_posts', _MS_bxpress_POSTS);
+$tpl->assign('lang_lastpost', _MS_bxpress_LASTPOST);
+$tpl->assign('lang_lastuser', _MS_bxpress_LASTUSER);
+$tpl->assign('lang_regnum', _MS_bxpress_REGNUM);
+$tpl->assign('lang_annum', _MS_bxpress_ANNUM);
+$tpl->assign('lang_totalusers', _MS_bxpress_TOTALUSERS);
+$tpl->assign('lang_totaltopics', _MS_bxpress_TOTALTOPICS);
+$tpl->assign('lang_totalposts', _MS_bxpress_TOTALPOSTS);
 
 $tpl->assign('xoops_pagetitle', $xoopsModuleConfig['forum_title']);
 
-BBFunctions::makeHeader();
-BBFunctions::loadAnnouncements(0);
+bXFunctions::makeHeader();
+bXFunctions::loadAnnouncements(0);
 
 include 'footer.php';
-
-?>

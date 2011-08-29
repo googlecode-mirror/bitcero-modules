@@ -33,7 +33,7 @@ $adminmenu[] = array(
     'options' => array(
         array('title'=>__('All forums','bxpress'), 'link'=>'forums.php','selected'=>'forums'),
         array('title'=>__('New forum','bxpress'), 'link'=>'forums.php?action=new','selected'=>'newforum'),
-        array('title'=>__('Moderators','bxpress'), 'link'=>'forums.php?action=moderator','selected'=>'moderators')
+        array('title'=>__('Moderators','bxpress'), 'link'=>'forums.php?action=moderators','selected'=>'moderators')
     )
 );
 
