@@ -60,6 +60,10 @@ function bx_show_forums(){
 
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
     RMTemplate::get()->add_local_script('admin.js','bxpress');
+    RMTemplate::get()->add_head('<script type="text/javascript">
+        var bx_select_message = "'.__('You must select one forum at least in order to run this action!','bxpress').'";
+        var bx_message = "'.__('Do you really wish to delete selected forums?\n\nAll posts sent in this forum will be deleted also!','bxpress').'";
+    </script>');
     include RMTemplate::get()->get_template('admin/forums_forums.php', 'module', 'bxpress');
     
     xoops_cp_footer();
@@ -292,55 +296,36 @@ function bx_activate_forums($status=1){
 * @desc Eliminar un foro
 */
 function bx_delete_forums(){
-	global $tpl, $xoopsModule, $xoopsConfig, $util;
+	global $tpl, $xoopsModule, $xoopsConfig, $xoopsSecurity;
 	
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	
-	if ($id<=0){
-		redirectMsg('forums.php', _AS_BB_NOID, 1);
-		die();
+	$ids = rmc_server_var($_REQUEST, 'ids', 0);
+
+    if (!$xoopsSecurity->check()){
+        redirectMsg('forums.php', __('Session token expired!','bxpress'), 1);
+    	die();
 	}
-	
-	$forum = new BBForum($id);
-	if ($forum->isNew()){
-		redirectMsg('forums.php', _AS_BB_NOEXISTS, 1);
-		die();
-	}
-	
-	if ($ok){
-		
-		if (!$util->validateToken()){
-    		redirectMsg('forums.php', _AS_BB_ERRTOKEN, 1);
-    		die();
-	    }
-		
-		if ($forum->delete()){
-			redirectMsg('forums.php', _AS_BB_DBOK, 0);
-		} else {
-			redirectMsg('forums.php', _AS_BB_ERRACTION, 1);
-		}
-		
-	} else {
-		
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_BB_DELETELOC);
-		xoops_cp_header();
-		
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$hiddens['op'] = 'delete';
-		
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'forums.php\';"';
-		
-		$util->msgBox($hiddens, 'forums.php', _AS_BB_DELETECONF, XOOPS_ALERT_ICON, $buttons, true, '400px');
-		
-		xoops_cp_footer();
-		
-	}
+
+    $errors = '';
+    foreach($ids as $id){
+
+        $forum = new bXForum($id);
+        if ($forum->isNew()){
+            $errors .= sprintf(__('Forum with id "%u" does not exists!','bxpress'), $id);
+            die();
+        }
+
+
+        if (!$forum->delete()){
+            $errors = sprintf(__('Forum "%s" could not be deleted!','bxpress'), $forum->name()).'<br />'.$forum->errors();
+        }
+
+    }
+
+    if($errors!=''){
+        redirectMsg('forums.php', __('Errors ocurred while trying to delete forums:','bxpress').'<br />'.$errors, 1);
+    } else {
+        redirectMsg('forums.php', __('Forums deleted without errors','bxpress'), 0);
+    }
 	
 }
 
@@ -459,7 +444,7 @@ switch($action){
     	activateForum(0);
     	break;
     case 'delete':
-    	deleteForum();
+    	bx_delete_forums();
     	break;
     case 'moderators':
         bx_moderators();

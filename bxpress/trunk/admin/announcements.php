@@ -1,77 +1,47 @@
 <?php
-// $Id: announcements.php 47 2007-12-15 17:47:30Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
-// ------------------------------------------
-// @copyright: 2007 - 2008 Red México
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
+// --------------------------------------------------------------
 
-define('BB_LOCATION','announcements');
+define('RMCLOCATION','announcements');
 include 'header.php';
 
-function showOptions(){
-	global $tpl;
-	
-	$tpl->append('xoopsOptions', array('link' => './announcements.php', 'title' => _AS_BB_ANOUNLOC, 'icon' => '../images/announcement16.png'));
-	$tpl->append('xoopsOptions', array('link' => './announcements.php?op=new', 'title' => _AS_BB_ANOUNNEW, 'icon' => '../images/add.png'));
-}
-
-$db->queryF("DELETE FROM ".$db->prefix("exmbb_announcements")." WHERE expire<='".time()."'");
+$db = Database::getInstance();
+$db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");
 /**
 * @desc Muestra la lista de los anuncios existentes
 */
 function showAnnounces(){
-	global $tpl, $adminTemplate, $db, $xoopsModule, $util;
+	global $db, $xoopsModule;
 	
-	$result = $db->query("SELECT * FROM ".$db->prefix("exmbb_announcements")." ORDER BY date");
-	
+	$result = $db->query("SELECT * FROM ".$db->prefix("bxpress_announcements")." ORDER BY date");
+	$announcements = array();
+
 	while ($row = $db->fetchArray($result)){
-		$an = new BBAnnouncement();
+		$an = new bXAnnouncement();
 		$an->assignVars($row);
-		$tpl->append('announcements',array('id'=>$an->id(),'text'=>substr($util->filterTags($an->text()), 0, 100),
-				'date'=>formatTimestamp($an->date()),'expire'=>formatTimeStamp($an->expire()),
-				'where'=>constant('_AS_EXMBB_FWHERE'.$an->where()),
-				'wherelink'=>$an->where()==1 ? '../forum.php?id='.$an->forum() : '../',
-				'by'=>$an->byName()));
+		$announcements = array(
+            'id'=>$an->id(),
+            'text'=>substr($util->filterTags($an->text()), 0, 100),
+			'date'=>formatTimestamp($an->date()),
+            'expire'=>formatTimeStamp($an->expire()),
+			'where'=>constant('_AS_BXPRESS_FWHERE'.$an->where()),
+			'wherelink'=>$an->where()==1 ? '../forum.php?id='.$an->forum() : '../',
+			'by'=>$an->byName()
+        );
 	}
 	
-	$tpl->assign('lang_existing', _AS_BB_EXISTING);
-	$tpl->assign('lang_id', _AS_BB_ID);
-	$tpl->assign('lang_announcement', _AS_BB_ANNOUNCEMENT);
-	$tpl->assign('lang_expire', _AS_BB_EXPIRE);
-	$tpl->assign('lang_where', _AS_BB_WHERE);
-	$tpl->assign('lang_by', _AS_BB_BY);
-	$tpl->assign('lang_options', _OPTIONS);
-	$tpl->assign('lang_deletebulk', _AS_BB_DELETE);
-	$tpl->assign('lang_delete', _DELETE);
-	$tpl->assign('lang_edit', _EDIT);
-	$tpl->assign('lang_confdelbulk', _AS_EXMBB_CONFDELB);
-	$tpl->assign('token', $util->getTokenHTML());
-	
-	$adminTemplate = "admin/forums_announcements.html";
-	
-	showOptions();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_BB_ANOUNLOC);
+    bXFunctions::menu_bar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Announcements Management','bxpress'));
 	xoops_cp_header();
-	
+
+    include RMTemplate::get()->get_template("admin/forums_announcements.php", 'module', 'bxpress');
+
 	xoops_cp_footer();
 	
 }
@@ -85,13 +55,13 @@ function showForm($edit = 0){
 	if ($edit){
 		$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 		if ($id<=0){
-			redirectMsg('announcements.php', _AS_EXMBB_ERRID, 1);
+			redirectMsg('announcements.php', _AS_BXPRESS_ERRID, 1);
 			die();
 		}
 		
 		$an = new BBAnnouncement($id);
 		if ($an->isNew()){
-			redirectMsg('announcements.php', _AS_EXMBB_ERREXISTS, 1);
+			redirectMsg('announcements.php', _AS_BXPRESS_ERREXISTS, 1);
 			die();
 		}
 	}
@@ -106,28 +76,28 @@ function showForm($edit = 0){
 	$form->addElement(new RMEditor(_AS_BB_FANNOUNCEMENT, 'text', '100%','300px', $edit ? $an->text('e') : '', $mc['editor']), true);
 	$ele = new RMCheck('');
 	$ele->asTable(5);
-	$ele->addOption(_AS_EXMBB_BBCODE, 'doxcode', 1, $edit ? $an->bbcode() : 1);
-	$ele->addOption(_AS_EXMBB_SMILES, 'dosmiley', 1, $edit ? $an->smiley() : 1);
-	$ele->addOption(_AS_EXMBB_HTML, 'dohtml', 1, $edit ? $an->html() : 0);
-	$ele->addOption(_AS_EXMBB_BR, 'dobr', 1, $edit ? $an->wrap() : 1);
-	$ele->addOption(_AS_EXMBB_IMG, 'doimg', 1, $edit ? $an->doImage() : 1);
+	$ele->addOption(_AS_BXPRESS_BBCODE, 'doxcode', 1, $edit ? $an->bbcode() : 1);
+	$ele->addOption(_AS_BXPRESS_SMILES, 'dosmiley', 1, $edit ? $an->smiley() : 1);
+	$ele->addOption(_AS_BXPRESS_HTML, 'dohtml', 1, $edit ? $an->html() : 0);
+	$ele->addOption(_AS_BXPRESS_BR, 'dobr', 1, $edit ? $an->wrap() : 1);
+	$ele->addOption(_AS_BXPRESS_IMG, 'doimg', 1, $edit ? $an->doImage() : 1);
 	$form->addElement($ele);
 	
 	// Caducidad
-	$ele = new RMDate(_AS_EXMBB_FEXPIRE, 'expire', $edit ? $an->expire() : time());
+	$ele = new RMDate(_AS_BXPRESS_FEXPIRE, 'expire', $edit ? $an->expire() : time());
 	$form->addElement($ele);
 	// Mostran en
-	$ele = new RMRadio(_AS_EXMBB_FWHERE, 'where', 1, 0);
-	$ele->addOption(_AS_EXMBB_FWHERE0, 0, $edit ? $an->where()==0 : 1);
-	$ele->addOption(_AS_EXMBB_FWHERE1, 1, $edit ? $an->where()==1 : 0);
-	$ele->addOption(_AS_EXMBB_FWHERE2, 2, $edit ? $an->where()==2 : 0);
+	$ele = new RMRadio(_AS_BXPRESS_FWHERE, 'where', 1, 0);
+	$ele->addOption(_AS_BXPRESS_FWHERE0, 0, $edit ? $an->where()==0 : 1);
+	$ele->addOption(_AS_BXPRESS_FWHERE1, 1, $edit ? $an->where()==1 : 0);
+	$ele->addOption(_AS_BXPRESS_FWHERE2, 2, $edit ? $an->where()==2 : 0);
 	$form->addElement($ele);
 	
 	// Foros
-	$ele = new RMSelect(_AS_EXMBB_FFORUM, 'forum',0,$edit ? array($an->forum()) : array());
-	$ele->setDescription(_AS_EXMBB_FFORUM_DESC);
-	$tbl1 = $db->prefix("exmbb_categories");
-	$tbl2 = $db->prefix("exmbb_forums");
+	$ele = new RMSelect(_AS_BXPRESS_FFORUM, 'forum',0,$edit ? array($an->forum()) : array());
+	$ele->setDescription(_AS_BXPRESS_FFORUM_DESC);
+	$tbl1 = $db->prefix("bxpress_categories");
+	$tbl2 = $db->prefix("bxpress_forums");
 	$sql = "SELECT b.*, a.title FROM $tbl1 a, $tbl2 b WHERE b.cat=a.id_cat AND b.active='1' ORDER BY a.order, b.order";
 	$result = $db->query($sql);
 	$categories = array();
@@ -151,7 +121,7 @@ function showForm($edit = 0){
 	$form->addElement($ele);
 	
 	$ele = new RMButtonGroup();
-	$ele->addButton('sbt', $edit ? _AS_EXMBB_FEDIT : _AS_EXMBB_FCREATE, 'submit');
+	$ele->addButton('sbt', $edit ? _AS_BXPRESS_FEDIT : _AS_BXPRESS_FCREATE, 'submit');
 	$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location=\'announcements.php\';"');
 	$form->addElement($ele);
 	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
@@ -180,13 +150,13 @@ function saveAnnouncement($edit = 0){
 	if ($edit){
 		$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 		if ($id<=0){
-			redirectMsg('announcements.php', _AS_EXMBB_ERRID, 1);
+			redirectMsg('announcements.php', _AS_BXPRESS_ERRID, 1);
 			die();
 		}
 		
 		$an = new BBAnnouncement($id);
 		if ($an->isNew()){
-			redirectMsg('announcements.php', _AS_EXMBB_ERREXISTS, 1);
+			redirectMsg('announcements.php', _AS_BXPRESS_ERREXISTS, 1);
 			die();
 		}
 	} else {
@@ -195,7 +165,7 @@ function saveAnnouncement($edit = 0){
 	
 	$expire = rmsoft_read_date('expire');
 	if ($expire<=time()){
-		redirectMsg('announcements.php?op='.($edit ? 'edit&id='.$id : 'new'), _AS_EXMBB_ERRCADUC, 1);
+		redirectMsg('announcements.php?op='.($edit ? 'edit&id='.$id : 'new'), _AS_BXPRESS_ERRCADUC, 1);
 		die();
 	}
 	
@@ -234,23 +204,23 @@ function deleteAnnouncements(){
 	$an = isset($_REQUEST['announcements']) ? $_REQUEST['announcements'] : null;
 	
 	if (!isset($an)){
-		redirectMsg('announcements.php', _AS_EXMBB_ERRSEL, 1);
+		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
 		die();
 	}
 	
 	if (!is_array($an) && $an<=0){
-		redirectMsg('announcements.php', _AS_EXMBB_ERRSEL, 1);
+		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
 		die();
 	}
 	
 	if (!is_array($an)) $an = array($an);
 	
 	if (count($an)<=0){
-		redirectMsg('announcements.php', _AS_EXMBB_ERRSEL, 1);
+		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
 		die();
 	}
 	
-	$sql = "DELETE FROM ".$db->prefix("exmbb_announcements")." WHERE ";
+	$sql = "DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE ";
 	$sql1 = '';
 	foreach ($an as $k){
 		$sql1 .= $sql1 == '' ? "id_an='$k'" : " OR id_an='$k'";

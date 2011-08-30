@@ -1,39 +1,22 @@
 <?php
-// $Id: bbtopic.class.php 61 2008-03-15 19:46:48Z ginis $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Clase para el manejo de temas en EXM BB
 */
-class BBTopic extends EXMObject
+class bXTopic extends RMObject
 {
     function __construct($id = null){
         
         $this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_topics");
+        $this->_dbtable = $this->db->prefix("bxpress_topics");
         $this->setNew();
         $this->initVarsFromTable();
         
@@ -177,7 +160,7 @@ class BBTopic extends EXMObject
     }
     
     public function getPosts($object = true, $id_as_key = true){
-    	$result = $this->db->query("SELECT * FROM ".$this->db->prefix("exmbb_posts")." WHERE id_topic='".$this->id()."'");
+    	$result = $this->db->query("SELECT * FROM ".$this->db->prefix("bxpress_posts")." WHERE id_topic='".$this->id()."'");
 		$ret = array();
 		while ($row = $this->db->fetchArray($result)){
 			if ($object){
@@ -214,7 +197,7 @@ class BBTopic extends EXMObject
     		$post->delete();
     	}
     	
-    	$forum = new BBForum($this->forum());
+    	$forum = new bXForum($this->forum());
     	$forum->setTopics($forum->topics()-1 > 0 ? $forum->topics()-1 : 0);
 	$forum->save();
     	
@@ -223,4 +206,3 @@ class BBTopic extends EXMObject
     }
     
 }
-?>

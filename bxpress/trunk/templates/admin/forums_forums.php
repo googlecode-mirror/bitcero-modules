@@ -51,7 +51,7 @@
                 <a href="../forum.php?id=<?php echo $forum['id']; ?>"><?php echo $forum['title']; ?></a>
                 <span class="rmc_options">
                     <a href="?action=edit&amp;id=<?php echo $forum['id']; ?>"><?php _e('Edit','bxpress'); ?></a> &bull;
-                    <a href="?action=delete&amp;id=<?php echo $forum['id']; ?>"><?php _e('Delete','bxpress'); ?></a> &bull;
+                    <a href="#" onclick="select_option(<?php echo $forum['id']; ?>,'delete','frm-forums');"><?php _e('Delete','bxpress'); ?></a> &bull;
                     <a href="?action=moderators&amp;id=<?php echo $forum['id']; ?>"><?php _e('Moderators','bxpress'); ?></a>
                 </span>
             </td>
