@@ -418,7 +418,7 @@ class bXForum extends RMObject
     	$sql = "SELECT * FROM ".$this->db->prefix("bxpress_topics")." WHERE id_forum='".$this->id()."'";
     	$result = $this->db->query($sql);
     	while ($row = $this->db->fetchArray($result)){
-    		$topic = new BBTopic();
+    		$topic = new bXTopic();
     		$topic->assignVars($row);
     		$topic->delete();
     	}
