@@ -7,11 +7,6 @@ CREATE TABLE `bxpress_announcements` (
   `expire` int(10) NOT NULL,
   `where` tinyint(1) NOT NULL,
   `forum` int(11) NOT NULL default '0',
-  `dohtml` tinyint(1) NOT NULL default '0',
-  `doxcode` tinyint(1) NOT NULL default '1',
-  `doimage` tinyint(1) NOT NULL default '1',
-  `dobr` tinyint(1) NOT NULL default '1',
-  `dosmiley` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id_an`)
 ) ENGINE=MyISAM;
 
