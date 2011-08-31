@@ -38,10 +38,16 @@ $adminmenu[] = array(
 );
 
 
-$adminmenu[3]['title'] = __('Announcements','bxpress');
-$adminmenu[3]['link'] = "admin/announcements.php";
-$adminmenu[3]['icon'] = '../images/bell.png';
-$adminmenu[3]['location'] = "messages";
+$adminmenu[] = array(
+    'title' => __('Announcements','bxpress'),
+    'link' => "admin/announcements.php",
+    'icon' => '../images/bell.png',
+    'location' => "messages",
+    'options' => array(
+        array('title'=>__('List all','bxpress'), 'link'=>'announcements.php','selected'=>'messages'),
+        array('title'=>__('New message','bxpress'), 'link'=>'announcements.php?action=new','selected'=>'newannoun')
+    )
+);
 
 $adminmenu[4]['title'] = __('Reports','bxpress');
 $adminmenu[4]['link'] = "admin/reports.php";

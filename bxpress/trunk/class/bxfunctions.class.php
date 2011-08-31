@@ -238,7 +238,7 @@ class bXFunctions
 		$result = $db->query($sql);
 	
 		while ($row = $db->fetchArray($result)){
-			$an = new BBAnnouncement();
+			$an = new bXAnnouncement();
 			$an->assignVars($row);
 			$tpl->append('announcements', array('text'=>$an->text('s')));
 		}

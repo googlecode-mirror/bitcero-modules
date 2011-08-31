@@ -16,7 +16,7 @@ class bXAnnouncement extends RMObject
 	public function __construct($id = null){
 		
 		$this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_announcements");
+        $this->_dbtable = $this->db->prefix("bxpress_announcements");
         $this->setNew();
         $this->initVarsFromTable();
         
@@ -137,4 +137,3 @@ class bXAnnouncement extends RMObject
 	}
 	
 }
-?>
