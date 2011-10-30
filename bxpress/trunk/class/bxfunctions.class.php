@@ -126,11 +126,11 @@ class bXFunctions
     public function makeHeader(){
     	global $tpl, $xoopsModuleConfig, $xoopsUser;
     	
-    	$tpl->assign('lang_index', _MS_EXMBB_INDEX);
+    	$tpl->assign('lang_index', __('Forum Index','bxpress'));
     	$tpl->assign('forums_title', $xoopsModuleConfig['forum_title']);
     	if ($xoopsUser || $xoopsModuleConfig['search']){
-    		$tpl->assign('lang_search',_MS_EXMBB_SEARCH);
-    		$tpl->assign('lang_searchq', _MS_EXMBB_SEARCHQ);
+    		$tpl->assign('lang_search',__('Search','bxpress'));
+    		$tpl->assign('lang_searchq', __('Search:','bxpress'));
     		$tpl->assign('can_search',1);
     	}
     	
@@ -200,7 +200,7 @@ class bXFunctions
 		$sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE active='1' ORDER BY cat,`order`";
 		$result = $db->query($sql);
 		while ($row = $db->fetchArray($result)){
-			$forum = new BBForum();
+			$forum = new bXForum();
 			$forum->assignVars($row);
 			$tpl->append($varname, array('id'=>$forum->id(),'title'=>$forum->name()));
 		}

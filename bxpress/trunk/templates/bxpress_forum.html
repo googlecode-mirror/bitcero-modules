@@ -1,7 +1,7 @@
-<{include file="db:exmbb_header.html"}>
-<{include file="db:exmbb_announcements.html"}>
+<{include file="db:bxpress_header.html"}>
+<{include file="db:bxpress_announcements.html"}>
 
-<div id="exmbbOptions">
+<div id="bxpressOptions">
 	<{if $can_topic}>
 	<div class="topics">
 		<a href="post.php?fid=<{$forum.id}>" class="newtopic"><{$lang_newtopic}></a>
@@ -66,13 +66,13 @@
 	</tr>
 </table>
 
-<div class="exmbbIcons">
+<div class="bxpressIcons">
 <img src="images/normal.png" align="absmiddle" alt="" /> <{$lang_nonew}>
 	<img src="images/normalwithnew.png" align="absmiddle" alt="" /> <{$lang_withnew}>
 	<img src="images/hot.png" align="absmiddle" alt="" /> <{$lang_hotnonew}>
 	<img src="images/hotwithnew.png" align="absmiddle" alt="" /> <{$lang_hotnew}>
 </div>
-<div id="exmbbOptions">
+<div id="bxpressOptions">
 	<{if $can_topic}>
 	<div class="topics">
 		<a href="post.php?fid=<{$forum.id}>" id="newtopic"><{$lang_newtopic}></a>
