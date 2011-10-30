@@ -1,27 +1,27 @@
 /* CSS Document */
 
-div#exmbbOptions{
+div#bxpressOptions{
 	padding: 4px;
 	margin-top: 10px;
 	min-height: 20px;
 }
-div#exmbbOptions div.topics{
+div#bxpressOptions div.topics{
 	float: right;
 	text-align: right;
 }
-div#exmbbOptions div.topics a{
+div#bxpressOptions div.topics a{
 	padding: 3px 3px 3px 20px;
 }
-div#exmbbOptions a.newtopic{
+div#bxpressOptions a.newtopic{
 	background: url(../images/newtopic.png) no-repeat left;
 }
-div#exmbbOptions a.reply{
+div#bxpressOptions a.reply{
     background: url(../images/reply.png) no-repeat left;
 }
 td.lighter{
 	color: #666;
 }
-div.exmbbIcons{
+div.bxpressIcons{
 	font-size: 11px;
 	color: #666;
 	padding: 4px;

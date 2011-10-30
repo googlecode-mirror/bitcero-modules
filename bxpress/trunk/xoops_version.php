@@ -86,7 +86,15 @@ $modversion['config'][] = array(
     'description' => '_MI_BX_URLMODED',
     'formtype' => 'yesno',
     'valuetype' => 'int',
-    'default' => 1,
+    'default' => 0,
+);
+$modversion['config'][] = array( 
+    'name' => 'htbase',
+    'title' => '_MI_BX_BASEPATH',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '/modules/bxpress',
 );
 
 $modversion['config'][] = array(
@@ -109,8 +117,8 @@ $modversion['config'][] = array(
 
 $modversion['config'][] = array(
     'name' => 'showcats',
-    'title' => '_MI_BB_SHOWCATS',
-    'description' => '_MI_BB_SHOWCATS_DESC',
+    'title' => '_MI_BX_SHOWCATS',
+    'description' => '_MI_BX_SHOWCATS_DESC',
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 0
@@ -119,7 +127,7 @@ $modversion['config'][] = array(
 // Búsqueda
 $modversion['config'][] = array(
     'name' => 'search',
-    'title' => '_MI_BB_SEARCHANON',
+    'title' => '_MI_BX_SEARCHANON',
     'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
@@ -129,19 +137,19 @@ $modversion['config'][] = array(
 // Editor
 $modversion['config'][] = array(
     'name' => 'editor',
-    'title' => '_MI_BB_EDITOR',
+    'title' => '_MI_BX_EDITOR',
     'description' => '',
     'formtype' => 'select',
     'valuetype' => 'text',
     'default' => 'dhtml',
-    'options' => array('_MI_BB_EDITOR1'=>'dhtml','_MI_BB_EDITOR2'=>'tiny',
-                                                '_MI_BB_EDITOR3'=>'fck','_MI_BB_EDITOR4'=>'textarea')
+    'options' => array('_MI_BX_EDITOR1'=>'dhtml','_MI_BX_EDITOR2'=>'tiny',
+                                                '_MI_BX_EDITOR3'=>'fck','_MI_BX_EDITOR4'=>'textarea')
 );
 
 // HTML
 $modversion['config'][] = array(
     'name' => 'html',
-    'title' => '_MI_BB_HTML',
+    'title' => '_MI_BX_HTML',
     'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
@@ -151,7 +159,7 @@ $modversion['config'][] = array(
 // Prefijo para usuarios Anónimos
 $modversion['config'][] = array(
     'name' => 'anonymous_prefix',
-    'title' => '_MI_BB_APREFIX',
+    'title' => '_MI_BX_APREFIX',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'text',
@@ -161,8 +169,8 @@ $modversion['config'][] = array(
 // Mensajes Nuevos
 $modversion['config'][] = array(
     'name' => 'time_new',
-    'title' => '_MI_BB_TIMENEW',
-    'description' => '_MI_BB_TIMENEW_DESC',
+    'title' => '_MI_BX_TIMENEW',
+    'description' => '_MI_BX_TIMENEW_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 600
@@ -171,8 +179,8 @@ $modversion['config'][] = array(
 // Numero de mensajes en el formulario de envio
 $modversion['config'][] = array(
     'name' => 'numpost',
-    'title' => '_MI_BB_NUMPOST',
-    'description' => '_MI_BB_NUMPOST_DESC',
+    'title' => '_MI_BX_NUMPOST',
+    'description' => '_MI_BX_NUMPOST_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 10
@@ -181,8 +189,8 @@ $modversion['config'][] = array(
 // Numero de mensajes en cada página
 $modversion['config'][] = array(
     'name' => 'perpage',
-    'title' => '_MI_BB_PERPAGE',
-    'description' => '_MI_BB_PERPAGE_DESC',
+    'title' => '_MI_BX_PERPAGE',
+    'description' => '_MI_BX_PERPAGE_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 15
@@ -191,7 +199,7 @@ $modversion['config'][] = array(
 // Numero de temas en cada página
 $modversion['config'][] = array(
     'name' => 'topicperpage',
-    'title' => '_MI_BB_TPERPAGE',
+    'title' => '_MI_BX_TPERPAGE',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
@@ -201,7 +209,7 @@ $modversion['config'][] = array(
 // formato de Fechas
 $modversion['config'][] = array(
     'name' => 'dates',
-    'title' => '_MI_BB_DATES',
+    'title' => '_MI_BX_DATES',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'text',
@@ -211,7 +219,7 @@ $modversion['config'][] = array(
 // Límite de archivos adjuntos por mensaje
 $modversion['config'][] = array(
     'name' => 'attachlimit',
-    'title' => '_MI_BB_ATTACHLIMIT',
+    'title' => '_MI_BX_ATTACHLIMIT',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
@@ -221,8 +229,8 @@ $modversion['config'][] = array(
 // Directorio para adjuntos
 $modversion['config'][] = array(
     'name' => 'attachdir',
-    'title' => '_MI_BB_ATTACHDIR',
-    'description' => '_MI_BB_ATTACHDIR_DESC',
+    'title' => '_MI_BX_ATTACHDIR',
+    'description' => '_MI_BX_ATTACHDIR_DESC',
     'formtype' => 'textbox',
     'valuetype' => 'text',
     'default' => XOOPS_UPLOAD_PATH.'/bxpress'
@@ -231,8 +239,8 @@ $modversion['config'][] = array(
 // Mensajes Fijos
 $modversion['config'][] = array(
     'name' => 'sticky',
-    'title' => '_MI_BB_STICKY',
-    'description' => '_MI_BB_STICKY_DESC',
+    'title' => '_MI_BX_STICKY',
+    'description' => '_MI_BX_STICKY_DESC',
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 1
@@ -241,7 +249,7 @@ $modversion['config'][] = array(
 // Rangos para mensajes fijos
 $modversion['config'][] = array(
     'name' => 'sticky_posts',
-    'title' => '_MI_BB_STICKYPOSTS',
+    'title' => '_MI_BX_STICKYPOSTS',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
@@ -251,7 +259,7 @@ $modversion['config'][] = array(
 // Anuncios en el módulo
 $modversion['config'][] = array(
     'name' => 'announcements',
-    'title' => '_MI_BB_ANNOUNCEMENTS',
+    'title' => '_MI_BX_ANNOUNCEMENTS',
     'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
@@ -261,7 +269,7 @@ $modversion['config'][] = array(
 // Numero de Anuncios en el módulo
 $modversion['config'][] = array(
     'name' => 'announcements_max',
-    'title' => '_MI_BB_ANNOUNCEMENTSMAX',
+    'title' => '_MI_BX_ANNOUNCEMENTSMAX',
     'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
@@ -271,19 +279,19 @@ $modversion['config'][] = array(
 // Modo para los anuncios
 $modversion['config'][] = array(
     'name' => 'announcements_mode',
-    'title' => '_MI_BB_ANNOUNCEMENTSMODE',
+    'title' => '_MI_BX_ANNOUNCEMENTSMODE',
     'description' => '',
     'formtype' => 'select',
     'valuetype' => 'int',
     'default' => 0,
-    'options' => array('_MI_BB_ANNOUNCEMENTSMODE1'=>0,'_MI_BB_ANNOUNCEMENTSMODE2'=>1)
+    'options' => array('_MI_BX_ANNOUNCEMENTSMODE1'=>0,'_MI_BX_ANNOUNCEMENTSMODE2'=>1)
 );
 
 //Tiempo de temas recientes
 $modversion['config'][] = array(
     'name' => 'time_topics',
-    'title' => '_MI_BB_TIMETOPICS',
-    'description' => '_MI_BB_DESCTIMETOPICS',
+    'title' => '_MI_BX_TIMETOPICS',
+    'description' => '_MI_BX_DESCTIMETOPICS',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 24
@@ -292,7 +300,7 @@ $modversion['config'][] = array(
 //Tiempo de temas recientes
 $modversion['config'][] = array(
     'name' => 'rssdesc',
-    'title' => '_MI_BB_RSSDESC',
+    'title' => '_MI_BX_RSSDESC',
     'description' => '',
     'formtype' => 'textarea',
     'valuetype' => 'text',
@@ -302,8 +310,8 @@ $modversion['config'][] = array(
 //Ordenar por mensajes recientes
 $modversion['config'][] = array(
     'name' => 'order_post',
-    'title' => '_MI_BB_ORDERPOST',
-    'description' => '_MI_BB_DESCORDERPOST',
+    'title' => '_MI_BX_ORDERPOST',
+    'description' => '_MI_BX_DESCORDERPOST',
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => '0'
@@ -315,60 +323,60 @@ $modversion['notification']['lookup_file'] = 'include/notification.php';
 $modversion['notification']['lookup_func'] = 'bbNotifications';
 
 $modversion['notification']['category'][1]['name'] = 'forum';
-$modversion['notification']['category'][1]['title'] = '_MI_BB_NOT_FORUMCAT';
-$modversion['notification']['category'][1]['description'] = '_MI_BB_NOT_FORUMCAT_DESC';
+$modversion['notification']['category'][1]['title'] = '_MI_BX_NOT_FORUMCAT';
+$modversion['notification']['category'][1]['description'] = '_MI_BX_NOT_FORUMCAT_DESC';
 $modversion['notification']['category'][1]['subscribe_from'] = 'forum.php';
 $modversion['notification']['category'][1]['item_name'] = 'id';
 $modversion['notification']['category'][1]['allow_bookmark'] = 1;
 
 $modversion['notification']['category'][2]['name'] = 'topic';
-$modversion['notification']['category'][2]['title'] = '_MI_BB_NOT_TOPICCAT';
-$modversion['notification']['category'][2]['description'] = '_MI_BB_NOT_TOPICCAT_DESC';
+$modversion['notification']['category'][2]['title'] = '_MI_BX_NOT_TOPICCAT';
+$modversion['notification']['category'][2]['description'] = '_MI_BX_NOT_TOPICCAT_DESC';
 $modversion['notification']['category'][2]['subscribe_from'] = 'topic.php';
 $modversion['notification']['category'][2]['item_name'] = 'id';
 $modversion['notification']['category'][2]['allow_bookmark'] = 1;
 
 $modversion['notification']['category'][3]['name'] = 'any_forum';
-$modversion['notification']['category'][3]['title'] = '_MI_BB_NOT_ANY_FORUM';
-$modversion['notification']['category'][3]['description'] = '_MI_BB_NOT_ANY_FORUM_DESC';
+$modversion['notification']['category'][3]['title'] = '_MI_BX_NOT_ANY_FORUM';
+$modversion['notification']['category'][3]['description'] = '_MI_BX_NOT_ANY_FORUM_DESC';
 $modversion['notification']['category'][3]['subscribe_from'] = 'index.php';
 $modversion['notification']['category'][3]['item_name'] = '';
 $modversion['notification']['category'][3]['allow_bookmark'] = 1;
 
 $modversion['notification']['event'][1]['name'] = 'newtopic';
 $modversion['notification']['event'][1]['category'] = 'forum';
-$modversion['notification']['event'][1]['title'] = '_MI_BB_NOTNEWTOPIC';
-$modversion['notification']['event'][1]['caption'] = '_MI_BB_NOTNEWTOPICCAPTION';
-$modversion['notification']['event'][1]['description'] = '_MI_BB_NOTNEWTOPICCAPTION_DESC';
+$modversion['notification']['event'][1]['title'] = '_MI_BX_NOTNEWTOPIC';
+$modversion['notification']['event'][1]['caption'] = '_MI_BX_NOTNEWTOPICCAPTION';
+$modversion['notification']['event'][1]['description'] = '_MI_BX_NOTNEWTOPICCAPTION_DESC';
 $modversion['notification']['event'][1]['mail_template'] = 'new_topic';
-$modversion['notification']['event'][1]['mail_subject'] = '_MI_BB_NOTNEWTOPIC_SUBJECT';
+$modversion['notification']['event'][1]['mail_subject'] = '_MI_BX_NOTNEWTOPIC_SUBJECT';
 
 $modversion['notification']['event'][2]['name'] = 'newpost';
 $modversion['notification']['event'][2]['category'] = 'topic';
-$modversion['notification']['event'][2]['title'] = '_MI_BB_NOTNEPOST';
-$modversion['notification']['event'][2]['caption'] = '_MI_BB_NOTNEPOST_CAPTION';
-$modversion['notification']['event'][2]['description'] = '_MI_BB_NOTNEPOST_DESC';
+$modversion['notification']['event'][2]['title'] = '_MI_BX_NOTNEPOST';
+$modversion['notification']['event'][2]['caption'] = '_MI_BX_NOTNEPOST_CAPTION';
+$modversion['notification']['event'][2]['description'] = '_MI_BX_NOTNEPOST_DESC';
 $modversion['notification']['event'][2]['mail_template'] = 'new_post';
-$modversion['notification']['event'][2]['mail_subject'] = '_MI_BB_NOTNEPOST_SUBJECT';
+$modversion['notification']['event'][2]['mail_subject'] = '_MI_BX_NOTNEPOST_SUBJECT';
 
 $modversion['notification']['event'][3]['name'] = 'postanyforum';
 $modversion['notification']['event'][3]['category'] = 'any_forum';
-$modversion['notification']['event'][3]['title'] = '_MI_BB_NOTNEPOSTANYFORUM';
-$modversion['notification']['event'][3]['caption'] = '_MI_BB_NOTNEPOSTANYFORUM_CAPTION';
-$modversion['notification']['event'][3]['description'] = '_MI_BB_NOTNEPOSTANYFORUM_DESC';
+$modversion['notification']['event'][3]['title'] = '_MI_BX_NOTNEPOSTANYFORUM';
+$modversion['notification']['event'][3]['caption'] = '_MI_BX_NOTNEPOSTANYFORUM_CAPTION';
+$modversion['notification']['event'][3]['description'] = '_MI_BX_NOTNEPOSTANYFORUM_DESC';
 $modversion['notification']['event'][3]['mail_template'] = 'new_postanyforum';
-$modversion['notification']['event'][3]['mail_subject'] = '_MI_BB_NOTNEPOSTANYFORUM_SUBJECT';
+$modversion['notification']['event'][3]['mail_subject'] = '_MI_BX_NOTNEPOSTANYFORUM_SUBJECT';
 
 $modversion['notification']['event'][4]['name'] = 'postforum';
 $modversion['notification']['event'][4]['category'] = 'forum';
-$modversion['notification']['event'][4]['title'] = '_MI_BB_NOTNEPOSTFORUM';
-$modversion['notification']['event'][4]['caption'] = '_MI_BB_NOTNEPOSTFORUM_CAPTION';
-$modversion['notification']['event'][4]['description'] = '_MI_BB_NOTNEPOSTFORUM_DESC';
+$modversion['notification']['event'][4]['title'] = '_MI_BX_NOTNEPOSTFORUM';
+$modversion['notification']['event'][4]['caption'] = '_MI_BX_NOTNEPOSTFORUM_CAPTION';
+$modversion['notification']['event'][4]['description'] = '_MI_BX_NOTNEPOSTFORUM_DESC';
 $modversion['notification']['event'][4]['mail_template'] = 'new_postforum';
-$modversion['notification']['event'][4]['mail_subject'] = '_MI_BB_NOTNEPOSTFORUM_SUBJECT';
+$modversion['notification']['event'][4]['mail_subject'] = '_MI_BX_NOTNEPOSTFORUM_SUBJECT';
 
 // Sindicación RSS
-$modversion['rss']['name'] = '_MI_BB_RSSNAME'; 			// NOmbre del elemento
+$modversion['rss']['name'] = '_MI_BX_RSSNAME'; 			// NOmbre del elemento
 $modversion['rss']['file'] = 'include/rss.php';			// Archivo donde se localizan las funciones
 $modversion['rss']['desc'] = 'bxpress_rssdesc';			// Devuelve la descripción del elemento
 $modversion['rss']['feed'] = 'bxpress_rssfeed';			// Devuelve el menu de opciones del elemento
@@ -376,7 +384,7 @@ $modversion['rss']['show'] = 'bxpress_rssshow';			// Devuelve el archivo xml
 
 // Bloque Recientes
 $modversion['blocks'][0]['file'] = "bxpress_recents.php";
-$modversion['blocks'][0]['name'] = '_MI_BB_BKRECENT';
+$modversion['blocks'][0]['name'] = '_MI_BX_BKRECENT';
 $modversion['blocks'][0]['description'] = "";
 $modversion['blocks'][0]['show_func'] = "bxpress_recents_show";
 $modversion['blocks'][0]['edit_func'] = "bxpress_recents_edit";
@@ -384,11 +392,11 @@ $modversion['blocks'][0]['template'] = 'bk_bxpress_recents.html';
 $modversion['blocks'][0]['options'] = array(10,1,1,1,0);
 
 //Páginas del Módulo
-$modversion['subpages']['index'] = _MI_BB_INDEX;
-$modversion['subpages']['forums'] = _MI_BB_FORUM;
-$modversion['subpages']['topics'] = _MI_BB_TOPIC;
-$modversion['subpages']['post'] = _MI_BB_POST;
-$modversion['subpages']['edit'] = _MI_BB_EDIT;
-$modversion['subpages']['moderate'] = _MI_BB_MODERATE;
-$modversion['subpages']['report'] = _MI_BB_REPORT;
-$modversion['subpages']['search'] = _MI_BB_SEARCH;
+$modversion['subpages']['index'] = _MI_BX_INDEX;
+$modversion['subpages']['forums'] = _MI_BX_FORUM;
+$modversion['subpages']['topics'] = _MI_BX_TOPIC;
+$modversion['subpages']['post'] = _MI_BX_POST;
+$modversion['subpages']['edit'] = _MI_BX_EDIT;
+$modversion['subpages']['moderate'] = _MI_BX_MODERATE;
+$modversion['subpages']['report'] = _MI_BX_REPORT;
+$modversion['subpages']['search'] = _MI_BX_SEARCH;

@@ -1,28 +1,12 @@
 <?php
-// $Id: post.php 64 2008-04-04 17:44:35Z ginis $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 define('BB_LOCATION','posts');
 include '../../mainfile.php';
@@ -32,32 +16,32 @@ $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 $fid = isset($_REQUEST['fid']) ? intval($_REQUEST['fid']) : 0;
 $tid = isset($_REQUEST['tid']) ? intval($_REQUEST['tid']) : 0;
 if ($fid<=0 && $tid<=0){
-	redirect_header('./', 2, _MS_EXMB_ERRFORUMNEW);
+	redirect_header('./', 2, __('You must specify a forum in order to create a new topic!','bxpress'));
 	die();
 }
 
 if ($fid>0){
-	$forum = new BBForum($fid);
+	$forum = new bXForum($fid);
 	$retlink = './forum.php?id='.$forum->id();
 	$create = true;
 } else {
-	$topic = new BBTopic($tid);
+	$topic = new bXTopic($tid);
 	if ($topic->isNew()){
-		redirect_header('./', 2, _MS_EXMBB_TOPICNOEXISTS);
+		redirect_header('./', 2, __('Specified topic does not exists!','bxpress'));
 		die();
 	}
-	$forum = new BBForum($topic->forum());
+	$forum = new bXForum($topic->forum());
 	$retlink = './topic.php?id='.$topic->id();
 	$create = false;
 }
 
 if ($forum->isNew()){
-	redirect_header('./', 2, _MS_EXMBB_FORUMNOEXISTS);
+	redirect_header('./', 2, __('Specified forum does not exists!','bxpress'));
 	die();
 }
 
 if (!$forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, $fid>0 ? 'topic' : 'reply')){
-	redirect_header($retlink, 2, _MS_EXMBB_NOPERM);
+	redirect_header($retlink, 2, __('You do not have permission to do this!','bxpress'));
 	die();
 }
 
@@ -68,17 +52,15 @@ switch($op){
 			$$k = $v;
 		}
 		
-		$util =& RMUtils::getInstance();
-		
-		if (!$util->validateToken()){
-			redirect_header('./'.($create ? 'forum.php?id='.$forum->id() : 'topic.php?id='.$topic->id()), 2, _MS_EXMBB_SESSINVALID);
+		if (!$xoopsSecurity->check()){
+			redirect_header('./'.($create ? 'forum.php?id='.$forum->id() : 'topic.php?id='.$topic->id()), 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
 		$myts =& MyTextSanitizer::getInstance();
 		
 		if ($create){
-			$topic = new BBTopic();
+			$topic = new bXTopic();
 			$topic->setApproved($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'approve'));
 			$topic->setDate(time());
 			$topic->setForum($forum->id());
@@ -97,20 +79,20 @@ switch($op){
 			$topic->setTitle($myts->addSlashes($subject));
 			$topic->setViews(0);
 			$topic->setVotes(0);
-			$topic->setFriendName($util->sweetstring($subject));
+			$topic->setFriendName(TextCleaner::getInstance()->sweetstring($subject));
 			if ($xoopsUser && isset($sticky) && $xoopsModuleConfig['sticky']){
 				if ($xoopsUser->isAdmin() || $forum->isModerator($xoopsUser->uid()) || $xoopsUser->posts()>$xoopsModuleConfig['sticky_posts']){
 					$topic->setSticky($sticky);
 				}
 			}
 			if (!$topic->save()){
-				redirect_header('./forum.php?id='.$forum->id(), 2, _MS_EXMBB_ERRPOST);
+				redirect_header('./forum.php?id='.$forum->id(), 2, __('Message could not be posted! Please try again','bxpress'));
 				die();
 			}
 		}
 		
 		
-		$post = new BBPost();
+		$post = new bXPost();
 		$post->setPid(0);
 		
 		$post->setTopic($topic->id());
@@ -130,23 +112,21 @@ switch($op){
 		$post->setText($msg);
 		if (!$post->save() && $create){
 			$topic->delete();
-			redirect_header($retlink, 2, _MS_EXMBB_ERRPOST);
+			redirect_header($retlink, 2, __('Message could not be posted! Please try again','bxpress'));
 			die();
 		}
 		if (!$topic->approved()){
-			BBFunctions::notifyAdmin($forum->moderators(),$forum, $topic, $post);
+			bXFunctions::notifyAdmin($forum->moderators(),$forum, $topic, $post);
 		}
 		// Adjuntamos archivos si existen
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){
 			
-			$up = new RMUploader(true);
 			$folder = $xoopsModuleConfig['attachdir'];
 			$exts = array();
-			foreach ($forum->extensions() as $k){
-				$exts[] = $up->getMIME($k);
-			}
 			
-			$up->prepareUpload($folder, $exts, $xoopsModuleConfig['maxfilesize']*1024);
+            include_once RMCPATH.'/class/uploader.php';
+            $up = new RMFileUploader($folder, $xoopsModuleConfig['maxfilesize']*1024, $forum->extensions());
+
 			$errors = '';
 			$filename = '';
 			
@@ -158,7 +138,7 @@ switch($op){
 					$filename = $up->getSavedFileName();
 					$fullpath = $up->getSavedDestination();
 				
-					$attach = new BBAttachment();
+					$attach = new bXAttachment();
 					$attach->setPost($post->id());
 					$attach->setFile($filename);
 					$attach->setMime($up->getMediaType());
@@ -183,55 +163,56 @@ switch($op){
 		
 		// Incrementamos el nivel de posts del usuario
 		if ($xoopsUser){
-			$xoopsUser->setVar('posts', $xoopsUser->posts()+1);
-			$xoopsUser->save();
+            $member_handler =& xoops_gethandler('member');
+            $member_handler->updateUserByField($xoopsUser, 'posts', $xoopsUser->getVar('posts') + 1);
 		}
 		
 		// Notificaciones
-		$not = new XoopsNotificationHandler($db);
+        include_once XOOPS_ROOT_PATH.'/kernel/notification.php';
+		$not = new XoopsNotificationHandler($xoopsDB);
 		if ($create){
 			//Notificacion de nuevo tema en foro
-			$not->exmTriggerEvent('forum',$forum->id(), 'newtopic',array('topic'=>$topic->id()));
+			$not->triggerEvent('forum',$forum->id(), 'newtopic',array('topic'=>$topic->id()));
 			//Notificación de nuevo mensaje en cualquier foro
-			$not->exmTriggerEvent('any_forum','', 'postanyforum',array('forum'=>$forum->id(),'post'=>$post->id()));
+			$not->triggerEvent('any_forum','', 'postanyforum',array('forum'=>$forum->id(),'post'=>$post->id()));
 		}else{
 			//Notificación de nuevo mensaje en tema
-			$not->exmTriggerEvent('topic',$topic->id(), 'newpost',array('post'=>$post->id()));
+			$not->triggerEvent('topic',$topic->id(), 'newpost',array('post'=>$post->id()));
 			//Notificación de nuevo mensaje en foro especificado
-			$not->exmTriggerEvent('forum',$forum->id(), 'postforum',array('post'=>$post->id()));
+			$not->triggerEvent('forum',$forum->id(), 'postforum',array('post'=>$post->id()));
 			//Notificación de nuevo mensaje en cualquier foro
-			$not->exmTriggerEvent('any_forum','', 'postanyforum',array('forum'=>$forum->id(),'post'=>$post->id()));
+			$not->triggerEvent('any_forum','', 'postanyforum',array('forum'=>$forum->id(),'post'=>$post->id()));
 			
 		}
 		
-		redirect_header('topic.php?pid='.$post->id().'#p'.$post->id(), 1, $errors == '' ? _MS_EXMBB_POSTOK : _MS_EXMBB_POSTOKERR .'<br />'.$errors);
+		redirect_header('topic.php?pid='.$post->id().'#p'.$post->id(), 1, $errors == '' ? __('Your posts has been sent!','bxpress') : __('Message posted, however some errors ocurred while sending!','bxpress') .'<br />'.$errors);
 			
 		break;
 		
 	default:
 		
-		$xoopsOption['template_main'] = "exmbb_postform.html";
+		$xoopsOption['template_main'] = "bxpress_postform.html";
 		$xoopsOption['module_subpage'] = "post";
 
 		include 'header.php';
 
-		BBFunctions::makeHeader();
+		bXFunctions::makeHeader();
 				
-		$form = new RMForm($tid>0 ? _MS_EXMBB_FREPLYTITLE : _MS_EXMBB_FTOPICTITLE, 'frmTopic', 'post.php');
-		$form->addElement(new RMSubTitle(_MS_EXMBB_FMSGTIP, 1, 'even'));
+		$form = new RMForm($tid>0 ? __('Reply','bxpress') : __('Create New Topic','bxpress'), 'frmTopic', 'post.php');
+		$form->addElement(new RMFormSubTitle(__('Write your post and send it','bxpress'), 1, 'even'));
 		if (!$xoopsUser){
-			$form->addElement(new RMText(_MS_EXMBB_NAME, 'name', 50, 255), true);
-			$form->addElement(new RMText(_MS_EXMBB_EMAIL, 'email', 50, 255), true, 'email');
+			$form->addElement(new RMFormText(__('Your name:','bxpress'), 'name', 50, 255), true);
+			$form->addElement(new RMFormText(__('Your email:','bxpress'), 'email', 50, 255), true, 'email');
 		}
-		if ($create) $form->addElement(new RMText(_MS_EXMBB_SUBJECT, 'subject', 50, 255, $tid>0 ? $topic->title() : ''), true);
+		if ($create) $form->addElement(new RMFormText(__('Topic subject:','bxpress'), 'subject', 50, 255, $tid>0 ? $topic->title() : ''), true);
 		
 		// Sticky
 		if ($xoopsUser && $xoopsModuleConfig['sticky'] && $create){
 			
 			$sticky = $xoopsUser->isAdmin() || $forum->isModerator($xoopsUser->uid()) || $xoopsUser->posts()>$xoopsModuleConfig['sticky_posts'];
 			if ($sticky){
-				if ($create || BBfunctions::getFirstId($topic->id())==$topic->id())
-					$form->addElement(new RMYesNo(_MS_EXMBB_STICKYTOPIC, 'sticky', !$create ? $topic->sticky() : 0));
+				if ($create || bXFunctions::getFirstId($topic->id())==$topic->id())
+					$form->addElement(new RMFormYesNo(__('Sticky topic','bxpress'), 'sticky', !$create ? $topic->sticky() : 0));
 			}
 			
 		}
@@ -239,35 +220,26 @@ switch($op){
 		// Si se especifico una acotación entonces la cargamos
 		$idq = isset($_GET['quote']) ? intval($_GET['quote']) : 0;
 		if ($idq>0){
-			$post = new BBPost($idq);
+			$post = new bXPost($idq);
 			if ($post->isNew()) break;
 			$quote = "[quote=".$post->uname()."]".$post->getVar('post_text','n')."[/quote]\n\n";
 		}
 		
-		$form->addElement(new RMEditor(_MS_EXMBB_MSG, 'msg', '90%', '300px', isset($quote) ? $quote : '', $xoopsModuleConfig['editor']), true);
-		
-		$ele = new RMCheck('');
-		$ele->asTable(5);
-		$ele->addOption(_MS_EXMBB_BBCODE, 'doxcode', 1, 1);
-		$ele->addOption(_MS_EXMBB_SMILES, 'dosmiley', 1, 1);
-		if ($xoopsModuleConfig['html'] || $xoopsUser->isAdmin()) $ele->addOption(_MS_EXMBB_HTML, 'dohtml', 1, 0);
-		$ele->addOption(_MS_EXMBB_BR, 'dobr', 1, 1);
-		$ele->addOption(_MS_EXMBB_IMG, 'doimg', 1, 1);
-		$form->addElement($ele);
+		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '300px', isset($quote) ? $quote : '', 'html'), true);
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){
-			$ele = new RMFile(_MS_EXMBB_ATTACH, 'attach', 45, $xoopsModuleConfig['maxfilesize'] * 1024);
-			$ele->setDescription(sprintf(_MS_EXMBB_EXTS, implode(',', $forum->extensions())));
+			$ele = new RMFormFile(__('Attach file','bxpress'), 'attach', 45, $xoopsModuleConfig['maxfilesize'] * 1024);
+			$ele->setDescription(sprintf(__('Allowed file types: %s','bxpress'), implode(',', $forum->extensions())));
 			$form->addElement($ele);
 			$form->setExtra('enctype="multipart/form-data"');
 		}
 		
-		$form->addElement(new RMHidden('op','post'));
-		$form->addElement(new RMHidden($fid>0 ? 'fid' : 'tid', $fid>0 ? $fid : $tid));
-		$ele = new RMButtonGroup();
-		$ele->addButton('sbt', _SUBMIT, 'submit');
-		$ele->addButton('cancel', _CANCEL, 'button', 'onclick="history.go(-1)";');
+		$form->addElement(new RMFormHidden('op','post'));
+		$form->addElement(new RMFormHidden($fid>0 ? 'fid' : 'tid', $fid>0 ? $fid : $tid));
+		$ele = new RMFormButtonGroup();
+		$ele->addButton('sbt', __('Send','bxpress'), 'submit');
+		$ele->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="history.go(-1)";');
 		$form->addElement($ele);
 
 		$tpl->assign('topic_form', $form->render());
@@ -279,19 +251,16 @@ switch($op){
 			$sql = "SELECT * FROM ".$db->prefix("exmbb_posts")." WHERE id_topic='".$topic->id()."' ORDER BY post_time DESC LIMIT 0, $mc[numpost]";
 			$result = $db->query($sql);
 			while ($row = $db->fetchArray($result)){
-				$post = new BBPost();
+				$post = new bXPost();
 				$post->assignVars($row);
 				$tpl->append('posts', array('id'=>$post->id(), 'text'=>$post->text(),
 						'time'=>date($xoopsConfig['datestring'], $post->date()),'uname'=>$post->uname()));
 			}
 		}
 		
-		$tpl->assign('lang_topicreview', _MS_EXMBB_TOPICREV);
+		$tpl->assign('lang_topicreview', __('Topic review (newest first)','bxpress'));
 
 		include 'footer.php';
 		
 		break;
 }
-
-
-?>

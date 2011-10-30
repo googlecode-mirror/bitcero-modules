@@ -94,18 +94,20 @@ $tpl->assign('total_users', bXFunctions::totalUsers());
 $tpl->assign('total_topics', bXFunctions::totalTopics());
 $tpl->assign('total_posts', bXFunctions::totalPosts());
 
-$tpl->assign('lang_forum', _MS_bxpress_FORUM);
-$tpl->assign('lang_topics', _MS_bxpress_TOPICS);
-$tpl->assign('lang_posts', _MS_bxpress_POSTS);
-$tpl->assign('lang_lastpost', _MS_bxpress_LASTPOST);
-$tpl->assign('lang_lastuser', _MS_bxpress_LASTUSER);
-$tpl->assign('lang_regnum', _MS_bxpress_REGNUM);
-$tpl->assign('lang_annum', _MS_bxpress_ANNUM);
-$tpl->assign('lang_totalusers', _MS_bxpress_TOTALUSERS);
-$tpl->assign('lang_totaltopics', _MS_bxpress_TOTALTOPICS);
-$tpl->assign('lang_totalposts', _MS_bxpress_TOTALPOSTS);
+$tpl->assign('lang_forum', __('Forum','bxpress'));
+$tpl->assign('lang_topics', __('Topics','bxpress'));
+$tpl->assign('lang_posts', __('Posts','bxpress'));
+$tpl->assign('lang_lastpost', __('Last Post','bxpress'));
+$tpl->assign('lang_lastuser', __('Last registered user:','bxpress'));
+$tpl->assign('lang_regnum', __('Registered users conected:','bxpress'));
+$tpl->assign('lang_annum', __('Anonymous users conected:','bxpress'));
+$tpl->assign('lang_totalusers', __('Registered users:','bxpress'));
+$tpl->assign('lang_totaltopics', __('Total topics:','bxpress'));
+$tpl->assign('lang_totalposts', __('Total posts:','bxpress'));
 
 $tpl->assign('xoops_pagetitle', $xoopsModuleConfig['forum_title']);
+
+RMTemplate::get()->add_xoops_style('style.css', 'bxpress');
 
 bXFunctions::makeHeader();
 bXFunctions::loadAnnouncements(0);

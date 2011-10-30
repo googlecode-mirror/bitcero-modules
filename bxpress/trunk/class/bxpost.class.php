@@ -207,7 +207,7 @@ class bXPost extends RMObject
 		$ret = array();
 		while ($row = $this->db->fetchArray($result)){
 			if ($object){
-				$attach = new BBAttachment();
+				$attach = new bXAttachment();
 				$attach->assignVars($row);
 				if ($id_as_keys){
 					$ret[$row['attach_id']] = $attach;

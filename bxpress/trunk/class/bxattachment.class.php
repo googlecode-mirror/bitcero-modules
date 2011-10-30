@@ -1,39 +1,23 @@
 <?php
-// $Id: bbattachment.class.php 45 2007-12-15 03:17:26Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Clase para el manejo de archivos adjuntos de mensajes
 */
-class BBAttachment extends EXMObject
+class bXAttachment extends RMObject
 {
 	private $dir = '';
 	
 	public function __construct($id = null, $dir = ''){
 		$this->db =& Database::getInstance();
-        $this->_dbtable = $this->db->prefix("exmbb_attachments");
+        $this->_dbtable = $this->db->prefix("bxpress_attachments");
         $this->setNew();
         $this->initVarsFromTable();
         
@@ -99,10 +83,10 @@ class BBAttachment extends EXMObject
 	* @desc Obtiene la URL del icono correcto para el nombre de archivo
 	*/
 	public function getIcon(){
-		if (file_exists(XOOPS_ROOT_PATH.'/modules/exmbb/images/ftypes/'.$this->extension().'.png')){
-			return XOOPS_URL.'/modules/exmbb/images/ftypes/'.$this->extension().'.png';
+		if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/images/ftypes/'.$this->extension().'.png')){
+			return XOOPS_URL.'/modules/bxpress/images/ftypes/'.$this->extension().'.png';
 		} else {
-			return XOOPS_URL.'/modules/exmbb/images/ftypes/default.png';
+			return XOOPS_URL.'/modules/bxpress/images/ftypes/default.png';
 		}
 	}
 	
@@ -140,4 +124,3 @@ class BBAttachment extends EXMObject
 	}
 	
 }
-?>

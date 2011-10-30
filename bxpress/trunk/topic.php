@@ -1,37 +1,21 @@
 <?php
-// $Id: topic.php 76 2009-02-15 10:52:06Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 define('BB_LOCATION','topics');
 include '../../mainfile.php';
 
 $myts =& MyTextSanitizer::getInstance();
 
-$id = isset($_GET['id']) ? $myts->addSlashes($_GET['id']) : '';
-$pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
-$op = isset($_GET['op']) ? $_GET['op'] : '';
+$id = rmc_server_var($_GET, 'id', '');
+$pid = rmc_server_var($_GET, 'pid', 0);
+$op = rmc_server_var($_GET, 'op', '');
 
 if ($id=='' && $pid<=0){
 	redirect_header('./', 2, _MS_EXMBB_ERRID);
@@ -40,10 +24,10 @@ if ($id=='' && $pid<=0){
 
 
 if ($pid){
-	$id = BBFunctions::pageFromPID($pid);
+	$id = bXFunctions::pageFromPID($pid);
 } elseif ($op=='new' && $xoopsUser){
 	
-	$result = $db->query('SELECT MIN(id_post) FROM '.$db->prefix('exmbb_posts')." WHERE id_topic='$id' AND post_time>".$xoopsUser->last_login());
+	$result = $db->query('SELECT MIN(id_post) FROM '.$db->prefix('bxpress_posts')." WHERE id_topic='$id' AND post_time>".$xoopsUser->last_login());
 	list($newid) = $db->fetchRow($result);
 
 	if ($newid)
@@ -55,7 +39,7 @@ if ($pid){
 	
 } elseif ($op=='last'){
 	
-	$result = $db->query('SELECT MAX(id_post) FROM '.$db->prefix('exmbb_posts')." WHERE id_topic='$id'");
+	$result = $db->query('SELECT MAX(id_post) FROM '.$db->prefix('bxpress_posts')." WHERE id_topic='$id'");
 	list($lastid) = $db->fetchRow($result);
 
 	if ($lastid)
@@ -71,20 +55,20 @@ if ($id==''){
 	die();
 }
 
-$topic = new BBTopic($id);
+$topic = new bXTopic($id);
 if ($topic->isNew()){
 	redirect_header('./', 2, _MS_EXMBB_ERREXISTS);
 	die();
 }
 
 //Determinamos de el mensaje esta aprobado y si el usuario es administrador o moderador
-$forum= new BBForum($topic->forum());
+$forum= new bXForum($topic->forum());
 if (!$topic->approved() && (!$xoopsUser->isAdmin() || !$forum->isModerator($xoopsUser->uid()))){
 	redirect_header('./', 2, _MS_EXMBB_TOPICNOAPPROVED);
 	die();
 }
 
-$forum = new BBForum($topic->forum());
+$forum = new bXForum($topic->forum());
 if (!$forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'view')){
 	redirect_header('./', 2, _MS_EXMBB_NOALLOWED);
 	die();
@@ -103,11 +87,11 @@ if (!isset($_SESSION['topics_viewed'])){
 	}
 }
 
-$xoopsOption['template_main'] = "exmbb_topic.html";
+$xoopsOption['template_main'] = "bxpress_topic.html";
 $xoopsOption['module_subpage'] = "topics";
 include 'header.php';
 
-BBFunctions::makeHeader();
+bXFunctions::makeHeader();
 $tpl->assign('forum', array('id'=>$forum->id(),'title'=>$forum->name(),'moderator'=>$xoopsUser ? ($forum->isModerator($xoopsUser->uid())) || $xoopsUser->isAdmin(): false));
 $tpl->assign('topic', array('id'=>$topic->id(), 'title'=>$topic->title(),'closed'=>$topic->status(),'sticky'=>$topic->sticky(),'approved'=>$topic->approved()));
 if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'reply')){
@@ -127,10 +111,10 @@ if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMO
 }
 
 // Obtenemos los rangos para usar posteriormente
-$ranks = getRanks();
+//$ranks = getRanks();
 
 // Obtenemos los mensajes
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("exmbb_posts")." a, ".$db->prefix("exmbb_posts_text")." b WHERE 
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_posts")." a, ".$db->prefix("bxpress_posts_text")." b WHERE 
 		a.id_topic='".$topic->id()."' AND b.post_id=a.id_post";
 list($num) = $db->fetchRow($db->query($sql));
 $page = isset($_GET['pag']) ? $_GET['pag'] : '';
@@ -161,13 +145,13 @@ $report = $forum->isAllowed($groups, 'reply');
 $moderator = $xoopsUser ? $forum->isModerator($xoopsUser->uid()) : false;
 $admin = $xoopsUser ? $xoopsUser->isAdmin() : false;
 
-$tbl1 = $db->prefix("exmbb_posts");
-$tbl2 = $db->prefix("exmbb_posts_text");
+$tbl1 = $db->prefix("bxpress_posts");
+$tbl2 = $db->prefix("bxpress_posts_text");
 
 $result = $db->query("SELECT $tbl1.*,$tbl2.* FROM $tbl1,$tbl2 WHERE $tbl1.id_topic='".$topic->id()."' AND $tbl2.post_id=$tbl1.id_post ORDER BY $tbl1.post_time ASC LIMIT $start,$limit");
 $users = array();
 while ($row = $db->fetchArray($result)){
-	$post = new BBPost();
+	$post = new bXPost();
 	$post->assignVars($row);
 	// Permisos de edición y eliminación
 	$canedit = $moderator || $admin ? true : $edit && $post->isOwner();
@@ -207,11 +191,11 @@ while ($row = $db->fetchArray($result)){
 	$attachs = array();
 	foreach ($post->attachments() as $k){
 		$attachs[] = array('title'=>$k->name(),'downs'=>$k->downloads(),'id'=>$k->id(),'ext'=>$k->extension(),
-					'size'=>formatBytesSize($k->size()),'icon'=>$k->getIcon());
+					'size'=>  RMUtilities::formatBytesSize($k->size()),'icon'=>$k->getIcon());
 	}
 	
 	$tpl->append('posts', array('id'=>$post->id(),'text'=>$post->text(),'edit'=>$post->editText(),'approved'=>$post->approved(),
-			'date'=>BBFunctions::formatDate($post->date()),'canedit'=>$canedit, 'candelete'=>$candelete,'canshow'=>$canshow,
+			'date'=>bXFunctions::formatDate($post->date()),'canedit'=>$canedit, 'candelete'=>$candelete,'canshow'=>$canshow,
 			'canreport'=>$report,'poster'=>$userData,'attachs'=>$attachs, 'attachscount'=>count($attachs)));
 }
 
@@ -225,14 +209,14 @@ $tpl->assign('lang_online', _MS_EXMBB_UONLINE);
 $tpl->assign('lang_offline', _MS_EXMBB_UOFFLINE);
 $tpl->assign('lang_attachments', _MS_EXMBB_ATTACHMENTS);
 $tpl->assign('xoops_pagetitle', $topic->title() ." &raquo; ".$xoopsModuleConfig['forum_title']);
-$tpl->assign('token',$util->getToken());
+$tpl->assign('token',$xoopsSecurity->createToken());
 $tpl->assign('lang_edittext',_MS_EXMBB_EDIT);
 $tpl->assign('lang_goto', _MS_EXMBB_JUMPO);
 $tpl->assign('lang_go', _MS_EXMBB_GO);
-$tpl->assign('url',XOOPS_URL."/modules/exmbb/report.php");
+$tpl->assign('url',XOOPS_URL."/modules/bxpress/report.php");
 $tpl->assign('lang_topicclosed', _MS_EXMBB_TOPICCLOSED);
 
-BBFunctions::forumList();
+bXFunctions::forumList();
 
 if ($xoopsUser){
 	if ($forum->isModerator($xoopsUser->uid()) || $xoopsUser->isAdmin()){

@@ -319,10 +319,22 @@ class bXForum extends RMObject
     * @desc Crea el enlace hacia al foro apartir del metodo de urls
     * @param int $mode 0 por Defecto, 1 Basado en Nombres
     */
-    public function makeLink($mode = 0){
-        $link = XOOPS_URL.'/modules/bxpress/';
-        $link .= "forum.php?id=".$this->id();
+    public function makeLink(){
+        
+        $mc = RMUtilities::module_config('bxpress');
+        
+        if($mc['urlmode']){
+            $link = XOOPS_URL.$mc['htbase'].'/forum.php?id='.$this->id();
+        } else {
+            $link = XOOPS_URL.'/modules/bxpress/';
+            $link .= "forum.php?id=".$this->id();
+        }
+        
         return $link;
+    }
+    
+    public function permalink(){
+        return $this->makeLink();
     }
     /**
     * @desc Permite saber si un usuario cuenta con permisos

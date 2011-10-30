@@ -1,46 +1,29 @@
 <?php
-// $Id: forum.php 76 2009-02-15 10:52:06Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
-define('BB_LOCATION','forum');
+define('RMCLOCATION','forum');
 include '../../mainfile.php';
-$xoopsOption['template_main'] = "exmbb_forum.html";
+$xoopsOption['template_main'] = "bxpress_forum.html";
 $xoopsOption['module_subpage'] = "forums";
 include 'header.php';
 $myts =& MyTextSanitizer::getInstance();
 
 $id = isset($_GET['id']) ? $myts->addSlashes($_GET['id']) : '';
 if ($id==''){
-    redirect_header(BB_URL, 2, _MS_EXMBB_NOID);
+    redirect_header(BB_URL, 2, __('No forum ID has been specified','bxpress'));
     die();
 }
 
-$forum = new BBForum($id);
+$forum = new bXForum($id);
 if ($forum->isNew()){
-    redirect_header(BB_URL, 2, _MS_EXMBB_NOEXISTS);
+    redirect_header(BB_URL, 2, __('Specified forum does not exists!','bxpress'));
     die();
 }
 
@@ -48,16 +31,16 @@ if ($forum->isNew()){
 * Comprobamos que el usuario actual tenga permisos
 * de acceso al foro
 */
-if (!$forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : array(0, XOOPS_GROUP_ANONYMOUS), EXMBB_PERM_VIEW) && !$xoopsUser->isAdmin()){
-    redirect_header(BB_URL, 2, _MS_EXMBB_NOALLOWED);
+if (!$forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : array(0, XOOPS_GROUP_ANONYMOUS), BXPRESS_PERM_VIEW) && !$xoopsUser->isAdmin()){
+    redirect_header(BB_URL, 2, __('You are not allowed to view this forum!','bxpress'));
     die();
 }
 
 /**
 * Cargamos los temas
 */
-$tbl1 = $db->prefix("exmbb_topics");
-$tbl2 = $db->prefix("exmbb_forumtopics");
+$tbl1 = $db->prefix("bxpress_topics");
+$tbl2 = $db->prefix("bxpress_forumtopics");
 
 $sql = "SELECT COUNT(*) FROM $tbl1 WHERE id_forum='".$forum->id()."' AND approved='1'";
 list($num)=$db->fetchRow($db->queryF($sql));
@@ -78,8 +61,9 @@ if ($pactual>$tpages){
 }
     
 if ($tpages > 0) {
-    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'id='.$forum->id(), 0);
-    $tpl->assign('itemsNavPage', $nav->renderNav(4, 1));
+    $nav = new RMPageNav($num, $limit, $pactual);
+    $nav->target_url($forum->permalink().'&amp;pag={PAGE_NUM}');
+    $tpl->assign('itemsNavPage', $nav->render(false));
 }
 
 $sql = str_replace("COUNT(*)", '*', $sql);
@@ -89,13 +73,13 @@ $sql .=" DESC LIMIT $start,$limit";
 $result = $db->query($sql);
 
 while ($row = $db->fetchArray($result)){
-    $topic = new BBTopic();
+    $topic = new bXTopic();
     $topic->assignVars($row);
-    $last = new BBPost($topic->lastPost());
+    $last = new bXPost($topic->lastPost());
     $lastpost = array();
     if (!$last->isNew()){
-    	$lastpost['date'] = BBFunctions::formatDate($last->date());
-    	$lastpost['by'] = sprintf(_MS_EXMBB_BY, $last->uname());
+    	$lastpost['date'] = bXFunctions::formatDate($last->date());
+    	$lastpost['by'] = sprintf(__('By: %s','bxpress'), $last->uname());
     	$lastpost['id'] = $last->id();
     	if ($xoopsUser){
     		$lastpost['new'] = $last->date()>$xoopsUser->last_login() && (time()-$last->date()) < $xoopsModuleConfig['time_new'];
@@ -105,48 +89,57 @@ while ($row = $db->fetchArray($result)){
 	}
 	$tpages = ceil($topic->replies()/$xoopsModuleConfig['perpage']);
 	if ($tpages>1){
-		$pages = BBFunctions::paginateIndex($tpages);
+		$pages = bXFunctions::paginateIndex($tpages);
 	} else {
 		$pages = null;
 	}
-    $tpl->append('topics', array('id'=>$topic->id(), 'title'=>$topic->title(),'replies'=>$topic->replies(),
-    			'views'=>$topic->views(),'by'=>sprintf(_MS_EXMBB_BY, $topic->posterName()),
-    			'last'=>$lastpost,'popular'=>($topic->replies()>=$forum->hotThreshold()),
-    			'sticky'=>$topic->sticky(),'pages'=>$pages, 'tpages'=>$tpages,'closed'=>$topic->status()));
+    $tpl->append('topics', array(
+        'id'=>$topic->id(), 
+        'title'=>$topic->title(),
+        'replies'=>$topic->replies(),
+        'views'=>$topic->views(),
+        'by'=>sprintf(__('By: %s','bxpress'), $topic->posterName()),
+        'last'=>$lastpost,
+        'popular'=>($topic->replies()>=$forum->hotThreshold()),
+        'sticky'=>$topic->sticky(),
+        'pages'=>$pages, 
+        'tpages'=>$tpages,
+        'closed'=>$topic->status()
+    ));
 }
 
 // Datos del Foro
 $tpl->assign('forum', array('id'=>$forum->id(), 'title'=>$forum->name(),'moderator'=>$xoopsUser ? $forum->isModerator($xoopsUser->uid()) || $xoopsUser->isAdmin() : false));
 
-$tpl->assign('lang_pages', _MS_EXMBB_PAGES);
-$tpl->assign('lang_topic', _MS_EXMBB_TOPIC);
-$tpl->assign('lang_replies', _MS_EXMBB_REPLIES);
-$tpl->assign('lang_views', _MS_EXMBB_VIEWS);
-$tpl->assign('lang_lastpost', _MS_EXMBB_LASTPOST);
-$tpl->assign('lang_nonew', _MS_EXMBB_NONEW);
-$tpl->assign('lang_withnew', _MS_EXMBB_WITHNEW);
-$tpl->assign('lang_hotnonew', _MS_EXMBB_HOTNONEW);
-$tpl->assign('lang_hotnew', _MS_EXMBB_HOTNEW);
-$tpl->assign('lang_sticky', _MS_EXMBB_STICKY);
-$tpl->assign('lang_closed', _MS_EXMBB_CLOSED);
+$tpl->assign('lang_pages', __('Pages:','bxpress'));
+$tpl->assign('lang_topic', __('Topics','bxpress'));
+$tpl->assign('lang_replies', __('Replies','bxpress'));
+$tpl->assign('lang_views', __('Views','bxpress'));
+$tpl->assign('lang_lastpost', __('Last Post','bxpress'));
+$tpl->assign('lang_nonew', __('No new posts','bxpress'));
+$tpl->assign('lang_withnew', __('New posts','bxpress'));
+$tpl->assign('lang_hotnonew', __('No hot topics','bxpress'));
+$tpl->assign('lang_hotnew', __('New hot topics','bxpress'));
+$tpl->assign('lang_sticky', __('Sticky','bxpress'));
+$tpl->assign('lang_closed', __('Closed Topic','bxpress'));
 if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'topic')){
-	$tpl->assign('lang_newtopic', _MS_EXMBB_NEWTOPIC);
+	$tpl->assign('lang_newtopic', __('New Topic'));
 	$tpl->assign('can_topic', 1);
 }
-$tpl->assign('lang_newposts', _MS_EXMBB_NEWPOSTS);
+$tpl->assign('lang_newposts', __('New Posts','bxpress'));
 
-BBFunctions::makeHeader();
+bXFunctions::makeHeader();
 $tpl->assign('xoops_pagetitle', $forum->name().' &raquo; '.$xoopsModuleConfig['forum_title']);
 if ($xoopsUser){
 	if ($forum->isModerator($xoopsUser->uid()) || $xoopsUser->isAdmin()){
-		$tpl->assign('lang_moderate', _MS_EXMBB_MODERATE);
+		$tpl->assign('lang_moderate', __('Moderate Forum','bxpress'));
 	}
 }
-$tpl->assign('lang_goto', _MS_EXMBB_JUMPO);
-$tpl->assign('lang_go', _MS_EXMBB_GO);
+$tpl->assign('lang_goto', __('Go to:','bxpress'));
+$tpl->assign('lang_go', __('Go!','bxpress'));
 
-BBFunctions::forumList();
-BBFunctions::loadAnnouncements(1, $forum->id());
+bXFunctions::forumList();
+bXFunctions::loadAnnouncements(1, $forum->id());
 
 include 'footer.php';
 ?>
