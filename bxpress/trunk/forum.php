@@ -82,7 +82,7 @@ while ($row = $db->fetchArray($result)){
     	$lastpost['by'] = sprintf(__('By: %s','bxpress'), $last->uname());
     	$lastpost['id'] = $last->id();
     	if ($xoopsUser){
-    		$lastpost['new'] = $last->date()>$xoopsUser->last_login() && (time()-$last->date()) < $xoopsModuleConfig['time_new'];
+    		$lastpost['new'] = $last->date()>$xoopsUser->getVar('last_login') && (time()-$last->date()) < $xoopsModuleConfig['time_new'];
     	} else {
     		$lastpost['new'] = (time()-$last->date())<=$xoopsModuleConfig['time_new'];
 		}

@@ -34,7 +34,7 @@ if ($xoopsModuleConfig['showcats']){
     			$lastpost['id'] = $last->id();
     			$lastpost['topic'] = $last->topic();
     			if ($xoopsUser){
-    				$lastpost['new'] = $last->date()>$xoopsUser->last_login() && (time()-$last->date()) < $xoopsModuleConfig['time_new'];
+    				$lastpost['new'] = $last->date()>$xoopsUser->getVar('last_login') && (time()-$last->date()) < $xoopsModuleConfig['time_new'];
     			} else {
     				$lastpost['new'] = (time()-$last->date())<=$xoopsModuleConfig['time_new'];
 				}

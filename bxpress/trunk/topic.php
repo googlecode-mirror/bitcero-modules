@@ -18,7 +18,7 @@ $pid = rmc_server_var($_GET, 'pid', 0);
 $op = rmc_server_var($_GET, 'op', '');
 
 if ($id=='' && $pid<=0){
-	redirect_header('./', 2, _MS_EXMBB_ERRID);
+	redirect_header('./', 2, __('Specified topic does not exists!','bxpress'));
 	die();
 }
 
@@ -27,7 +27,7 @@ if ($pid){
 	$id = bXFunctions::pageFromPID($pid);
 } elseif ($op=='new' && $xoopsUser){
 	
-	$result = $db->query('SELECT MIN(id_post) FROM '.$db->prefix('bxpress_posts')." WHERE id_topic='$id' AND post_time>".$xoopsUser->last_login());
+	$result = $db->query('SELECT MIN(id_post) FROM '.$db->prefix('bxpress_posts')." WHERE id_topic='$id' AND post_time>".$xoopsUser->getVar('last_login'));
 	list($newid) = $db->fetchRow($result);
 
 	if ($newid)
@@ -51,26 +51,26 @@ if ($pid){
 }
 
 if ($id==''){
-	redirect_header('./', 2, _MS_EXMBB_ERRID);
+	redirect_header('./', 2, __('Specified topic is not valid!','bxpress'));
 	die();
 }
 
 $topic = new bXTopic($id);
 if ($topic->isNew()){
-	redirect_header('./', 2, _MS_EXMBB_ERREXISTS);
+	redirect_header('./', 2, __('Specified topic does not exists!','bxpress'));
 	die();
 }
 
 //Determinamos de el mensaje esta aprobado y si el usuario es administrador o moderador
 $forum= new bXForum($topic->forum());
 if (!$topic->approved() && (!$xoopsUser->isAdmin() || !$forum->isModerator($xoopsUser->uid()))){
-	redirect_header('./', 2, _MS_EXMBB_TOPICNOAPPROVED);
+	redirect_header('./', 2, __('This topic has not been approved yet!','bxpress'));
 	die();
 }
 
 $forum = new bXForum($topic->forum());
 if (!$forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'view')){
-	redirect_header('./', 2, _MS_EXMBB_NOALLOWED);
+	redirect_header('./', 2, __('Sorry, you don\'t have permission to view this forum!','bxpress'));
 	die();
 }
 
@@ -101,13 +101,13 @@ if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMO
 		$canreply = true;
 	}
     if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'topic')){
-        $tpl->assign('lang_newtopic', _MS_EXMBB_NEWTOPIC);
+        $tpl->assign('lang_newtopic', __('New Topic','bxpress'));
         $tpl->assign('can_topic', 1);
     }
 	$tpl->assign('can_reply', $canreply);
-	$tpl->assign('lang_reply', _MS_EXMBB_REPLY);
-	$tpl->assign('lang_approved',_MS_EXMBB_APPROVED);
-	$tpl->assign('lang_noapproved',_MS_EXMBB_NOAPPROVED);
+	$tpl->assign('lang_reply', __('Reply','bxpress'));
+	$tpl->assign('lang_approved',__('Approved','bxpress'));
+	$tpl->assign('lang_noapproved',__('Not approved','bxpress'));
 }
 
 // Obtenemos los rangos para usar posteriormente
@@ -132,8 +132,9 @@ if ($pactual>$tpages){
 }
 
 if ($tpages > 1) {
-	$nav = new XoopsPageNav($num, $limit, $start, 'pag', 'id='.$topic->id(), 1);
-    $tpl->assign('postsNavPage', $nav->renderNav(4));
+    $nav = new RMPageNav($num, $limit, $pactual);
+    $nav->target_url('forum.php?id='.$topic->id().'&amp;page={PAGE_NUM}');
+    $tpl->assign('postsNavPage', $nav->render(false));
 }
 
 $groups = $xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
@@ -170,10 +171,10 @@ while ($row = $db->fetchArray($result)){
 		$userData['uname'] = $bbUser->uname();
 		$userData['rank'] = $ranks[$bbUser->getVar('rank')]['rank_title'];
 		$userData['rank_image'] = $ranks[$bbUser->getVar('rank')]['rank_image'];
-		$userData['registered'] = sprintf(_MS_EXMBB_REGISTERED, date($mc['dates'], $bbUser->getVar('user_regdate')));
+		$userData['registered'] = sprintf(__('Registered: %s','bxpress'), date($mc['dates'], $bbUser->getVar('user_regdate')));
 		$userData['avatar'] = $bbUser->getVar('user_avatar');
-		$userData['posts'] = sprintf(_MS_EXMBB_UPOSTS, $bbUser->getVar('posts'));
-		if ($xoopsUser && ($moderator || $admin)) $userData['ip'] = sprintf(_MS_EXMBB_UIP, $post->ip());
+		$userData['posts'] = sprintf(__('Posts: %u','bxpress'), $bbUser->getVar('posts'));
+		if ($xoopsUser && ($moderator || $admin)) $userData['ip'] = sprintf(__('IP: %s','bxpress'), $post->ip());
 		$userData['online'] = $bbUser->isOnline();
 	} else {
 		$userData = array();
@@ -183,7 +184,7 @@ while ($row = $db->fetchArray($result)){
 		$userData['rank_image'] = '';
 		$userData['registered'] = '';
 		$userData['avatar'] = '';
-		$userData['posts'] = sprintf(_MS_EXMBB_UPOSTS, 0);
+		$userData['posts'] = sprintf(__('Posts: %u','bxpress'), 0);
 		$userData['online'] = false;
 	}
 	
@@ -201,40 +202,39 @@ while ($row = $db->fetchArray($result)){
 
 unset($userData, $bbUser, $users);
 
-$tpl->assign('lang_edit', _EDIT);
-$tpl->assign('lang_delete', _DELETE);
-$tpl->assign('lang_report', _MS_EXMBB_REPORT);
-$tpl->assign('lang_quote', _MS_EXMBB_QUOTE);
-$tpl->assign('lang_online', _MS_EXMBB_UONLINE);
-$tpl->assign('lang_offline', _MS_EXMBB_UOFFLINE);
-$tpl->assign('lang_attachments', _MS_EXMBB_ATTACHMENTS);
+$tpl->assign('lang_edit', __('Edit','bxpress'));
+$tpl->assign('lang_delete', __('Delete','bxpress'));
+$tpl->assign('lang_report', __('Report','bxpress'));
+$tpl->assign('lang_quote', __('Quote','bxpress'));
+$tpl->assign('lang_online', __('Online!','bxpress'));
+$tpl->assign('lang_offline', __('Disconnected','bxpress'));
+$tpl->assign('lang_attachments', __('Attachments','bxpress'));
 $tpl->assign('xoops_pagetitle', $topic->title() ." &raquo; ".$xoopsModuleConfig['forum_title']);
 $tpl->assign('token',$xoopsSecurity->createToken());
-$tpl->assign('lang_edittext',_MS_EXMBB_EDIT);
-$tpl->assign('lang_goto', _MS_EXMBB_JUMPO);
-$tpl->assign('lang_go', _MS_EXMBB_GO);
-$tpl->assign('url',XOOPS_URL."/modules/bxpress/report.php");
-$tpl->assign('lang_topicclosed', _MS_EXMBB_TOPICCLOSED);
+$tpl->assign('lang_edittext',__('Edit Text','bxpress'));
+$tpl->assign('lang_goto', __('Change Forum:','bxpress'));
+$tpl->assign('lang_go', __('Go!','bxpress'));
+//$tpl->assign('url',XOOPS_URL."/modules/bxpress/report.php");
+$tpl->assign('lang_topicclosed', __('Locked Topic','bxpress'));
 
 bXFunctions::forumList();
 
 if ($xoopsUser){
 	if ($forum->isModerator($xoopsUser->uid()) || $xoopsUser->isAdmin()){
-		$tpl->assign('lang_move', _MS_EXMBB_MOVE);
+		$tpl->assign('lang_move', __('Move Topic','bxpress'));
 		if ($topic->status()){
-			$tpl->assign('lang_open', _MS_EXMBB_OPEN);
+			$tpl->assign('lang_open', __('Unlock Topic','bxpress'));
 		} else {
-			$tpl->assign('lang_close', _MS_EXMBB_CLOSE);
+			$tpl->assign('lang_close', __('Lock Topic','bxpress'));
 		}
 		if ($topic->sticky()){
-			$tpl->assign('lang_unsticky', _MS_EXMBB_UNSTICKY);
+			$tpl->assign('lang_unsticky', __('Unsticky Topic','bxpress'));
 		} else {
-			$tpl->assign('lang_sticky', _MS_EXMBB_STICKY);
+			$tpl->assign('lang_sticky', __('Sticky Topic','bxpress'));
 		}
-		$tpl->assign('lang_app',_MS_EXMBB_APP);
-		$tpl->assign('lang_noapp',_MS_EXMBB_NOAPP);
+		$tpl->assign('lang_app',__('Approve','bxpress'));
+		$tpl->assign('lang_noapp',__('Unnaprove','bxpress'));
 	}
 }
 
 include 'footer.php';
-?>
