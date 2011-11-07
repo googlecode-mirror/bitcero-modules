@@ -3,6 +3,22 @@ var ids = new Array();
 var url = '';
 var current = 0;
 
+$(document).ready(function(){
+    $("div.container").hide();
+    $("#upload-container").show();
+    $("#img-toolbar a").click(function(){
+        
+        $("div.container").hide();
+        $("#img-toolbar a").removeClass("select");
+        $(this).addClass("select");
+        
+        id = $(this).attr("id").replace("a-",'');
+        $("#"+id+"-container").show();
+        
+    });
+    
+});
+
 function send_resize(id,params){
     $.get(url, {data: params, img: id, action: 'resize'}, function(data){
         
@@ -53,11 +69,6 @@ function resize_image(params){
 
 function show_upload(){
     
-    $("#library-container").hide('slow', function(){
-        $("#library-content").html('');
-    });
-    $("#fromurl-container").hide();
-    $("#upload-container").show(100);
     $("#resizer-bar").hide('slow');
     $('.categories_selector').show('slow');
     $('#upload-errors').show('slow');
@@ -67,18 +78,6 @@ function show_upload(){
     $("#gen-thumbnails").hide('slow', function(){
         $("#gen-thumbnails").html('');
     });
-    $("#img-toolbar a").removeClass('select');
-    $("#a-upload").addClass('select');
-    
-}
-
-function show_fromurl(){
-
-    $("#library-container").hide();
-    $("#upload-container").hide();
-    $("#fromurl-container").show();
-    $("#img-toolbar a").removeClass('select');
-    $("#a-url").addClass('select');
     
 }
 
@@ -103,13 +102,8 @@ function show_library(pag){
         name: $("#name").val()
     }
     
-    $("#upload-container").hide();
-    $("#fromurl-container").hide();
     $("#library-content").html('');
     $("#library-content").addClass('loading');
-    $("#library-container").show();
-    $("#img-toolbar a").removeClass('select');
-    $("#a-library").addClass('select');
     
     $.post('tiny-images.php', params, function(data, status){
         $("#library-content").html(data);

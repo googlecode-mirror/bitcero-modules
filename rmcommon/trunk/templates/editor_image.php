@@ -6,12 +6,12 @@
 </head>
 <body style="background: #FFF;">
 <div id="img-toolbar">
-	<a href="javascript:;" class="select" id="a-upload" onclick="show_upload();"><?php _e('Upload Files','rmcommon'); ?></a>
-	<a href="javascript:;" id="a-url" onclick="show_fromurl();"><?php _e('From URL','rmcommon'); ?></a>
-	<a href="javascript:;" id="a-library" onclick="show_library();"><?php _e('From Library','rmcommon'); ?></a>
-    <?php echo RMEvents::get()->run_event('rmcommon.imgmgr_editor_options', ''); ?>
+	<a href="#" class="select" id="a-upload" onclick="show_upload(); return false;"><?php _e('Upload Files','rmcommon'); ?></a>
+	<a href="#" id="a-fromurl" onclick="show_fromurl(); return false;"><?php _e('From URL','rmcommon'); ?></a>
+	<a href="#" id="a-library" onclick="show_library(); return false;"><?php _e('From Library','rmcommon'); ?></a>
+        <?php echo RMEvents::get()->run_event('rmcommon.imgmgr.editor.options', ''); ?>
 </div>
-<div id="upload-container">
+<div id="upload-container" class="container">
     <div class="categories_selector">
         <form name="selcat" id="select-category" method="post" action="tiny-images.php">
         <?php _e('Select the category where you wish to upload images','rmcommon'); ?>
@@ -43,7 +43,7 @@
     <?php endif; ?>
 </div>
 
-<div id="fromurl-container">
+<div id="fromurl-container" class="container">
     <table width="100%" cellpadding="3" cellspacing="0">
         <tr>
             <td><?php _e('Image URL','rmcommon'); ?></td>
@@ -84,7 +84,7 @@
 </div>
 
 
-<div id="library-container">
+<div id="library-container" class="container">
     <div class="categories_selector">
         <?php _e('Select the category where you wish to upload images','rmcommon'); ?>
         <select name="category" id="category-field" onchange="show_library();">
@@ -102,5 +102,9 @@
 </div>
 <input type="hidden" name="type" id="type" value="<?php echo $type; ?>" />
 <input type="hidden" name="name" id="name" value="<?php echo $en; ?>" />
+
+<!-- Options from other elements -->
+<?php RMEvents::get()->run_event('rmcommon.imgmgr.editor.containers',''); ?>
+
 </body>
 </html>
