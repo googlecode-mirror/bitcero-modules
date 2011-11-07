@@ -61,7 +61,7 @@
 		<td><input type="checkbox" name="ids[]" value="<?php echo $img['id']; ?>" id="item-<?php echo $img['id']; ?>" /></td>
 		<td><strong><?php echo $img['id']; ?></strong></td>
 		<td width="50" class="listimg"><a href="<?php echo $img['link']; ?>"><img src="<?php echo $img['image']; ?>" alt="" style="width: 50px;" id="img-<?php echo $img['id']; ?>" /></a></td>
-		<td align="left"><a href="<{$img.link}>"><strong><?php echo $img['title']; ?></strong></a>
+		<td align="left"><a href="<?php echo $img['link']; ?>"><strong><?php echo $img['title']; ?></strong></a>
 			<?php if($img['desc']!=''): ?><span class="imgDesc"><br /><?php echo $img['desc']; ?></span><?php endif; ?>
 			<span class="rmc_options">
 				<a href="./images.php?op=edit&amp;id=<?php echo $img['id']; ?>&amp;pag=<?php echo $page; ?>&amp;limit=<?php echo $limit; ?>&amp;search=<?php echo $search; ?>&amp;owner=<?php echo $owner; ?>&amp;sort=<?php echo $sort; ?>&amp;mode=<?php echo $mode; ?>"><?php _e('Edit','galleries'); ?></a> | 

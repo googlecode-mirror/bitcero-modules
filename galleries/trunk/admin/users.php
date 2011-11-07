@@ -70,11 +70,11 @@ function showUsers(){
 	}
     
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Users management','admin_galleries'));
-	RMTemplate::get()->assign('xoops_pagetitle', __('Users management','admin_galleries'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Users management','galleries'));
+	RMTemplate::get()->assign('xoops_pagetitle', __('Users management','galleries'));
 	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets&form=frm-users');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
-	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected users?','admin_galleries')."';\n</script>");
+	RMTemplate::get()->add_head("<script type='text/javascript'>\nvar delete_warning='".__('Do you really wish to delete selected users?','galleries')."';\n</script>");
 	xoops_cp_header();
 	
 	include RMTemplate::get()->get_template("admin/gs_users.php",'module','galleries');
@@ -102,14 +102,14 @@ function formUsers($edit = 0){
 	if($edit){
 		//Verificamos que el usuario sea válido
 		if($id<=0){
-			redirectMsg('./users.php?'.$ruta,__('User id is not valid!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('User id is not valid!','galleries'),1);
 			die();
 		}
 
 		//Verificamos que el usuario exista
 		$user = new GSUser($id);
 		if($user->isNew()){
-			redirectMsg('./users.php?'.$ruta,__('Specified user does not exists!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('Specified user does not exists!','galleries'),1);
 			die();
 		}
 
@@ -117,18 +117,18 @@ function formUsers($edit = 0){
 
 
 	GSFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./users.php'>".__('Users management','admin_galleries')."</a> &raquo; ".($edit ? __('Edit User','admin_galleries') : __('New User','admin_galleries')));
-	RMTemplate::get()->assign('xoops_pagetitle', $edit ? __('Edit User','admin_galleries') : __('New User','admin_galleries'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./users.php'>".__('Users management','galleries')."</a> &raquo; ".($edit ? __('Edit User','galleries') : __('New User','galleries')));
+	RMTemplate::get()->assign('xoops_pagetitle', $edit ? __('Edit User','galleries') : __('New User','galleries'));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? __('Edit User','admin_galleries') : __('New User','admin_galleries'), 'frmuser','users.php');
+	$form = new RMForm($edit ? __('Edit User','galleries') : __('New User','galleries'), 'frmuser','users.php');
 	
-	$form->addElement(new RMFormUser(__('Xoops User','admin_galleries'),'uid',0,$edit ? array($user->uid()) : '',30));
-	$ele = new RMFormText(__('Max Quota','admin_galleries'),'quota',10,10,$edit ? $user->quota()/1024/1024 : $mc['quota']);
-	$ele->setDescription(__('This value determines the total disc quota to be used for user and must be specified in megabytes.','admin_galleries'));
+	$form->addElement(new RMFormUser(__('Xoops User','galleries'),'uid',0,$edit ? array($user->uid()) : '',30));
+	$ele = new RMFormText(__('Max Quota','galleries'),'quota',10,10,$edit ? $user->quota()/1024/1024 : $mc['quota']);
+	$ele->setDescription(__('This value determines the total disc quota to be used for user and must be specified in megabytes.','galleries'));
 	$form->addElement($ele,true);
 
-	$form->addElement(new RMFormYesno(__('Blocked','admin_galleries'),'block',$edit ? $user->blocked() : 0));
+	$form->addElement(new RMFormYesno(__('Blocked','galleries'),'block',$edit ? $user->blocked() : 0));
 
 	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
 	$form->addElement(new RMFormHidden('id',$id));	
@@ -136,8 +136,8 @@ function formUsers($edit = 0){
 	$form->addElement(new RMFormHidden('search',$search));
 
 	$buttons = new RMFormButtonGroup();
-	$buttons->addButton('sbt',$edit ? __('Save Changes','admin_galleries') : __('Create User','admin_galleries'),'submit');
-	$buttons->addButton('cancel',__('Cancel','admin_galleries'),'button','onclick="window.location=\'users.php?'.$ruta.'\'"');
+	$buttons->addButton('sbt',$edit ? __('Save Changes','galleries') : __('Create User','galleries'),'submit');
+	$buttons->addButton('cancel',__('Cancel','galleries'),'button','onclick="window.location=\'users.php?'.$ruta.'\'"');
 
 	$form->addElement($buttons);
 
@@ -161,7 +161,7 @@ function saveUsers($edit = 0){
 	$ruta = "&pag=$page&search=$search";
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('users.php?'.($edit ? "op=edit&id=$id&" : '').$ruta, __('Session token expired!','admin_galleries'), 1);
+		redirectMsg('users.php?'.($edit ? "op=edit&id=$id&" : '').$ruta, __('Session token expired!','galleries'), 1);
 		die();
 	}
 	
@@ -169,14 +169,14 @@ function saveUsers($edit = 0){
 	if ($edit){
 		//Verificamos que el usuario sea válido
 		if($id<=0){
-			redirectMsg('./users.php?'.$ruta,__('User id is not valid!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('User id is not valid!','galleries'),1);
 			die();
 		}
 
 		//Verificamos que el usuario exista
 		$user = new GSUser($id);
 		if($user->isNew()){
-			redirectMsg('./users.php?'.$ruta,__('Specified user does not exists!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('Specified user does not exists!','galleries'),1);
 			die();
 		}
 
@@ -184,7 +184,7 @@ function saveUsers($edit = 0){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_users')." WHERE uid=$uid AND id_user<>$id";
 		list($num) = $db->fetchRow($db->query($sql));
 		if($num>0){
-			redirectMsg('./users.php?'.$ruta,__('This is user has been registered already!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('This is user has been registered already!','galleries'),1);
 			die();
 		}
 
@@ -194,7 +194,7 @@ function saveUsers($edit = 0){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_users')." WHERE uid=$uid";
 		list($num) = $db->fetchRow($db->query($sql));
 		if($num>0){
-			redirectMsg('./users.php?'.$ruta,__('This is user has been registered already!','admin_galleries'),1);
+			redirectMsg('./users.php?'.$ruta,__('This is user has been registered already!','galleries'),1);
 			die();
 		}
 		
@@ -209,7 +209,7 @@ function saveUsers($edit = 0){
 	$user->setBlocked($block);
 
 	if (!$user->save()){
-		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to save this user.','admin_galleries').'<br />'.$user->errors(), 1);
+		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to save this user.','galleries').'<br />'.$user->errors(), 1);
 		die();
 	}else{
 		if($edit){
@@ -222,7 +222,7 @@ function saveUsers($edit = 0){
 			mkdir($mc['storedir']."/".$user->uname()."/formats", 511);
 		}
 		
-		redirectMsg('./users.php?'.$ruta,__('User saved successfully!','admin_galleries'),0);
+		redirectMsg('./users.php?'.$ruta,__('User saved successfully!','galleries'),0);
 		die();
 	}
 
@@ -249,7 +249,7 @@ function deleteUsers(){
 	}	
 
 	if (!$xoopsSecurity->check()){
-		redirectMsg('./users.php?'.$ruta,__('Session token expired!','admin_galleries'),1);
+		redirectMsg('./users.php?'.$ruta,__('Session token expired!','galleries'),1);
 		die();
 	}
 
@@ -258,28 +258,28 @@ function deleteUsers(){
 		
 		//Verificamos si el usuario es válido
 		if($k<=0){
-			$errors .= sprintf(__('ID "%s" is not valid','admin_galleries'), $k);
+			$errors .= sprintf(__('ID "%s" is not valid','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si el usuario existe
 		$user = new GSUser($k);
 		if ($user->isNew()){
-			$errors .= sprintf(__('User with id "%s" does not exists!','admin_galleries'), $k);
+			$errors .= sprintf(__('User with id "%s" does not exists!','galleries'), $k);
 			continue;
 		}	
 
 		if(!$user->delete()){
-			$errors .= sprintf(__('User with id "%s" could not be deleted!','admin_galleries'), $k);
+			$errors .= sprintf(__('User with id "%s" could not be deleted!','galleries'), $k);
 		}
 		
 	}
 
 	if($erros!=''){
-		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to delete users.','admin_galleries').'<br />'.$errors,1);
+		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to delete users.','galleries').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./users.php?'.$ruta,__('Users deleted successfully!','admin_galleries'),0);
+		redirectMsg('./users.php?'.$ruta,__('Users deleted successfully!','galleries'),0);
 		die();
 	}
 		
@@ -301,7 +301,7 @@ function blockUsers(){
 	
 	//Verificamos si nos proporcionaron al menos un usuario para bloquear/desbloquear
 	if (!is_array($ids)){
-		redirectMsg('./users.php?'.$ruta,__('Select at least one user to update','admin_galleries'),1);
+		redirectMsg('./users.php?'.$ruta,__('Select at least one user to update','galleries'),1);
 		die();
 	}
 	
@@ -310,14 +310,14 @@ function blockUsers(){
 		
 		//Verificamos si el usuario es válido
 		if($k<=0){
-			$errors .= sprintf(__('ID "%s" is not valid','admin_galleries'), $k);
+			$errors .= sprintf(__('ID "%s" is not valid','galleries'), $k);
 			continue;			
 		}
 
 		//Verificamos si el usuario existe
 		$user = new GSUser($k);
 		if ($user->isNew()){
-			$errors .= sprintf(__('User with id "%s" does not exists!','admin_galleries'), $k);
+			$errors .= sprintf(__('User with id "%s" does not exists!','galleries'), $k);
 			continue;
 		}	
 		
@@ -329,10 +329,10 @@ function blockUsers(){
 	}
 
 	if($erros!=''){
-		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to update users','admin_galleries').'<br />'.$errors,1);
+		redirectMsg('./users.php?'.$ruta,__('Errors ocurred while trying to update users','galleries').'<br />'.$errors,1);
 		die();
 	}else{
-		redirectMsg('./users.php?'.$ruta,__('Users updated successfully!','admin_galleries'),0);
+		redirectMsg('./users.php?'.$ruta,__('Users updated successfully!','galleries'),0);
 		die();
 	}
 
