@@ -73,7 +73,7 @@ class RMFormDate extends RMFormElement
             \n");
             
             $date = '';
-            if($this->_date>0) $date = date('m/d/y H:i:s', $this->_date);
+            if($this->_date>0) $date = date('m/d/Y H:i:s', $this->_date);
             
         } elseif($this->time==0) {
             RMTemplate::get()->add_head("\n<script type='text/javascript'>
@@ -83,7 +83,7 @@ class RMFormDate extends RMFormElement
             \n});\n</script>
             \n");
             
-            if($this->_date>0) $date = date('m/d/y', $this->_date);
+            if($this->_date>0) $date = date('m/d/Y', $this->_date);
             
         } elseif($this->time==2){
             RMTemplate::get()->add_head("\n<script type='text/javascript'>
