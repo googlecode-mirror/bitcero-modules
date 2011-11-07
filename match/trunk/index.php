@@ -22,6 +22,8 @@ if($id_champ<=0){
     $champ = new MCHChampionship($id_champ);
 }
 
+if(!is_object($champ)) $champ = MCHFunctions::last_championship();
+
 // Time Formatter
 $tf = new RMTimeFormatter(0, __('%M% %d%, %Y%','match'));
 

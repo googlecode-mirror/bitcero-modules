@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Matches\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 22:49-0600\n"
-"PO-Revision-Date: 2011-06-25 00:03-0600\n"
+"POT-Creation-Date: 2011-10-01 13:46-0600\n"
+"PO-Revision-Date: 2011-10-01 17:11-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,56 +16,56 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\x25\\modules\\match\n"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:26
+#: E:\webserver\htdocs\x25\modules\match/index.php:28
 #: E:\webserver\htdocs\x25\modules\match/rol.php:26
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:62
 msgid "%M% %d%, %Y%"
 msgstr "%d% de %M%, %Y%"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:66
+#: E:\webserver\htdocs\x25\modules\match/index.php:68
 #: E:\webserver\htdocs\x25\modules\match/xoops_version.php:70
 #: E:\webserver\htdocs\x25\modules\match/admin/menu.php:93
 msgid "Ranking"
 msgstr "Posiciones"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:67
+#: E:\webserver\htdocs\x25\modules\match/index.php:69
 msgid "Results"
 msgstr "Resultados"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:68
+#: E:\webserver\htdocs\x25\modules\match/index.php:70
 msgid "Won matches:"
 msgstr "Partidos ganados:"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:69
+#: E:\webserver\htdocs\x25\modules\match/index.php:71
 msgid "Next Matches"
 msgstr "Partidos Siguientes"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:70
+#: E:\webserver\htdocs\x25\modules\match/index.php:72
 msgid "Local Team"
 msgstr "Equipo Local"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:71
+#: E:\webserver\htdocs\x25\modules\match/index.php:73
 msgid "Visitor Team"
 msgstr "Equipo Visitante"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:72
+#: E:\webserver\htdocs\x25\modules\match/index.php:74
 msgid "Score"
 msgstr "Score"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:73
+#: E:\webserver\htdocs\x25\modules\match/index.php:75
 msgid "Data"
 msgstr "Información"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:74
+#: E:\webserver\htdocs\x25\modules\match/index.php:76
 msgid "(Current)"
 msgstr "(Actual)"
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:75
+#: E:\webserver\htdocs\x25\modules\match/index.php:77
 #: E:\webserver\htdocs\x25\modules\match/rol.php:77
 msgid "Select championship..."
 msgstr "Seleccionar campeonato..."
 
-#: E:\webserver\htdocs\x25\modules\match/index.php:76
+#: E:\webserver\htdocs\x25\modules\match/index.php:78
 #: E:\webserver\htdocs\x25\modules\match/rol.php:78
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:80
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:145
@@ -75,6 +75,7 @@ msgstr "Seleccionar categoría..."
 #: E:\webserver\htdocs\x25\modules\match/rol.php:79
 #: E:\webserver\htdocs\x25\modules\match/xoops_version.php:81
 #: E:\webserver\htdocs\x25\modules\match/admin/menu.php:86
+#: E:\webserver\htdocs\x25\modules\match/admin/role.php:160
 msgid "Role Play"
 msgstr "Rol de Juego"
 
@@ -217,7 +218,7 @@ msgstr "¡Agregar Ahora!"
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:225
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:189
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:240
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:373
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:375
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:191
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:322
 msgid "Session token expired!"
@@ -244,7 +245,7 @@ msgstr "¡Ya existe una categoría con el mismo nombre corto!"
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:330
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:149
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:238
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:351
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:353
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:296
 msgid "Errors ocurred while trying to update database!"
 msgstr "¡Ocurrieron errores al intentar actualizar la base de datos!"
@@ -254,7 +255,7 @@ msgstr "¡Ocurrieron errores al intentar actualizar la base de datos!"
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:270
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:385
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:258
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:406
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:408
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:360
 msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada satisfactoriamente!"
@@ -301,7 +302,6 @@ msgstr "¡Debes seleccionar al menos un campeonato antes de ejecutar esta acció
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:225
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:92
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:194
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:245
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:196
 msgid "Please fill all required data!"
 msgstr "¡Por favor completa la información requerida!"
@@ -391,20 +391,17 @@ msgstr "¡El campeonato no pudo ser actualizado!"
 #: E:\webserver\htdocs\x25\modules\match/admin/menu.php:75
 #: E:\webserver\htdocs\x25\modules\match/admin/ranking.php:27
 #: E:\webserver\htdocs\x25\modules\match/admin/ranking.php:28
-#: E:\webserver\htdocs\x25\modules\match/admin/role.php:160
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:161
 msgid "Coaches"
 msgstr "Entrenadores"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:116
 #: E:\webserver\htdocs\x25\modules\match/admin/ranking.php:32
-#: E:\webserver\htdocs\x25\modules\match/admin/role.php:165
 msgid "Do you really want to delete selected coaches?"
 msgstr "¿Realmente deseas eliminar los entrenadores seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:117
 #: E:\webserver\htdocs\x25\modules\match/admin/ranking.php:33
-#: E:\webserver\htdocs\x25\modules\match/admin/role.php:166
 msgid "You must select some coach before to execute this action!"
 msgstr "¡Debes seleccionar al menos un entrenador antes de ejecutar esta acción!"
 
@@ -649,6 +646,14 @@ msgstr "Agregar Jugador"
 msgid "%M% %d%, %Y% - %h%:%i%"
 msgstr "%d% de %M%, %Y% - %h%:%i%"
 
+#: E:\webserver\htdocs\x25\modules\match/admin/role.php:165
+msgid "Do you really want to delete selected items?"
+msgstr "¿Realmente deseas eliminar los elementos seleccionados?"
+
+#: E:\webserver\htdocs\x25\modules\match/admin/role.php:166
+msgid "You must select some role item before to execute this action!"
+msgstr "¡Debes seleccionar al menos un elemento del rol antes de ejecutar esta acción!"
+
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:200
 msgid "Role item ID not valid!"
 msgstr "¡ID de elemento del rol no válido!"
@@ -732,42 +737,42 @@ msgstr "Jardinero central"
 msgid "Right field"
 msgstr "Jardinero derecho"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:251
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:253
 msgid "Player ID not valid!"
 msgstr "¡Identificado de jugador no válido!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:258
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:260
 msgid "Specified player does not exists!"
 msgstr "¡El jugador especificado no existe!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:276
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:278
 msgid "A player with same name already exists!"
 msgstr "¡Ya existe un jugador con el mismo nombre!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:354
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:356
 msgid "Player saved successfully!"
 msgstr "¡Jugador almacenado correctamente!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:368
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:370
 msgid "No players selected!"
 msgstr "¡No hay jugadores seleccionados!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:383
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:385
 #, php-format
 msgid "Player id \"%s\" is not valid!"
 msgstr "¡El id de jugador \"%s\" no es válido!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:390
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:392
 #, php-format
 msgid "Player \"%s\" does not exists!"
 msgstr "¡El jugador \"%s\" no existe!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:397
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:399
 #, php-format
 msgid "Player \"%s\" could not be deleted!"
 msgstr "¡El jugador \"%s\" no pudo ser eliminado!"
 
-#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:403
+#: E:\webserver\htdocs\x25\modules\match/admin/roster.php:405
 msgid "Errors ocurred while trying to delete players"
 msgstr "Ocurrieron errores al intentar eliminar jugadores"
 
@@ -864,33 +869,33 @@ msgstr "¡El equipo \"%s\" no pudo ser eliminado!"
 msgid "Errors ocurred while trying to delete teams"
 msgstr "Ocurrieron errores al intentar eliminar equipos"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:28
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:30
 msgid "Wons:"
 msgstr "Victorias:"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:42
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:45
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:44
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:47
 msgid "Championship:"
 msgstr "Campeonato:"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:44
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:55
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:47
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:58
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:46
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:57
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:49
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:60
 msgid "From user selected"
 msgstr "Seleccionado por el usuario"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:53
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:56
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:55
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:58
 msgid "Category"
 msgstr "Categoría"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:65
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:68
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:67
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:70
 msgid "Number of items:"
 msgstr "Número de elementos:"
 
-#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:30
+#: E:\webserver\htdocs\x25\modules\match/blocks/mch_roleplay.php:32
 msgid "View full roleplay &raquo;"
 msgstr "Ver rol de juegos completo &raquo;"
 
@@ -898,13 +903,13 @@ msgstr "Ver rol de juegos completo &raquo;"
 msgid "Assitant"
 msgstr "Asistente"
 
-#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:399
-#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:456
+#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:416
+#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:474
 msgid "%M% %d%"
 msgstr "%d% de %M%"
 
-#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:400
-#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:457
+#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:417
+#: E:\webserver\htdocs\x25\modules\match/class/mchfunctions.php:475
 msgid "%h%:%i%"
 msgstr "%h%:%i%"
 
@@ -943,59 +948,59 @@ msgstr "¡No se especificó un elemento del rol!"
 msgid "Specified role item does not exists"
 msgstr "El elemento especificado no existe"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:11
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:13
 msgid "Use friendly URLs"
 msgstr "Usar URLs amigables"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:12
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:14
 msgid "By enabling this option the module will manage the urls trough mod_rewrite (Apache Only)."
 msgstr "Al activar esta opción el módulo manjará las urls a través de mod_rewrite (Solo Apache)."
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:13
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:15
 msgid "Base dir to friendly url management"
 msgstr "Directorio base para las urls amigables"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:14
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:16
 msgid "Image width for teams logos"
 msgstr "Ancho de imágenes para las insignias de equipos"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:15
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:17
 msgid "Images max file size"
 msgstr "Tamaño máximo de archivo para las imágenes"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:16
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:18
 msgid "Specify this value in KB"
 msgstr "Especifica este valor en KB"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:17
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:19
 msgid "Players and coaches picture size"
 msgstr "Tamaño de fotografía de jugadores y entrenadores"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:18
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:20
 msgid "All pictures will be resized to this width. Note that this is the value for big pictures."
 msgstr "Todas las fotografías serán redimensionadas a este ancho. Ten en cuenta que este valor aplica para las imágenes grandes."
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:19
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:21
 msgid "Players and coaches thumbnail picture size"
 msgstr "Tamaño de la miniatura de foto de jugadores y entrenadores"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:20
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:22
 msgid "This is the width value for small pictures of players and coaches"
 msgstr "Este es el valor de ancho para las fotografías pequeñas de jugadores y entrenadores"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:21
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:23
 msgid "Year range for ages"
 msgstr "Rango de años para edades"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:22
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:24
 msgid "Number of games in the next matches block"
 msgstr "Número de juegos en el bloque de próximos juegos"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:23
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:25
 msgid "Number of teams in ranking block"
 msgstr "Número de equipos en el bloque de posiciones"
 
-#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:24
+#: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:26
 msgid "Section title"
 msgstr "Título de la sección"
 

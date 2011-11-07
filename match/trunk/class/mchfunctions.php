@@ -259,6 +259,23 @@ class MCHFunctions
         
     }
     
+    public function last_championship(){
+        
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM ".$db->prefix("mch_champs")." ORDER BY id_champ DESC LIMIT 0,1";
+        $result = $db->query($sql);
+        
+        if($db->getRowsNum($result)<=0) return 0;
+        
+        $row = $db->fetchArray($result);
+        
+        $champ = new MCHChampionship();
+        $champ->assignVars($row);
+        
+        return $champ;
+        
+    }
+    
     
     public function get_ranking($champ, $category){
         
@@ -422,6 +439,7 @@ class MCHFunctions
             $champ = new MCHChampionship($c);            
         }
 
+        if(!is_object($champ)) $champ = self::last_championship();
         
         $db = Database::getInstance();
         

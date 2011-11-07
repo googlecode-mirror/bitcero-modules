@@ -169,7 +169,7 @@
             <td align="center"><?php echo $item['past']?__('Played','match'):'<span class="pending">'.__('Pending','match').'</span>'; ?></td>
             <td align="center">
                 <span class="rmc_options">
-                    <a href="role.php?op=delete&amp;id=<?php echo $item['id']; ?>&amp;champ=<?php echo $champ; ?>&amp;category=<?php echo $category; ?>"><?php _e('Delete','match'); ?></a>
+                    <a href="#" onclick="select_option(<?php echo $item['id']; ?>,'delete','frm-items');"><?php _e('Delete','match'); ?></a>
                     <?php if($item['past']): ?>| <a href="#" class="set_score" id="score-<?php echo $item['id']; ?>"><?php _e('Score','match'); ?></a><?php endif; ?>
                 </span>
             </td>
