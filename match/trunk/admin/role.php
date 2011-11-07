@@ -162,8 +162,8 @@ function m_show_roleplay(){
     RMTemplate::get()->add_style('admin.css', 'match');
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_local_script('admin_match.js','match');
-    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar mch_message='".__('Do you really want to delete selected coaches?','match')."';\n
-        var mch_select_message = '".__('You must select some coach before to execute this action!','match')."';</script>");
+    RMTemplate::get()->add_head("<script type='text/javascript'>\nvar mch_message='".__('Do you really want to delete selected items?','match')."';\n
+        var mch_select_message = '".__('You must select some role item before to execute this action!','match')."';</script>");
     xoops_cp_header();
     
     $match_extra_options = RMEvents::get()->run_event('match.more.options');
@@ -245,6 +245,8 @@ function m_save_roleitem($edit=0){
 }
 
 
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
@@ -255,11 +257,8 @@ switch($action){
     case 'saveedit':
         m_save_roleitem(1);
         break;
-    case 'edit':
-        m_coaches_form(1);
-        break;
     case 'delete':
-        m_delete_coaches();
+        m_delete_roles();
         break;
     default:
         m_show_roleplay();

@@ -17,6 +17,8 @@ function mch_ranking_bkshow($options){
     $ch = rmc_server_var($_GET, 'champ', $options[0]);
     $champ = $ch<=0?MCHFunctions::current_championship():new MCHChampionship($ch);
     
+    if(!is_object($champ)) $champ = MCHFunctions::last_championship();
+    
     $ch = rmc_server_var($_GET, 'cat', $options[1]);
     $category = $ch<=0 ? MCHFunctions::first_category() : new MCHCategory($ch);
     

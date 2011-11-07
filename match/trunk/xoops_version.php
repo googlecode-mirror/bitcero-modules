@@ -160,26 +160,6 @@ $modversion['config'][] = array(
     'default' => '1990:2020'
 );
 
-// Role play block
-$modversion['config'][] = array(
-    'name' => 'rolenum',
-    'title' => '_MI_MCH_ROLENUM',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => '10'
-);
-
-// Rankign block
-$modversion['config'][] = array(
-    'name' => 'ranknum',
-    'title' => '_MI_MCH_RANKNUM',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => '6'
-);
-
 // Subpáginas
 /*$modversion['subpages'] = array('index'=>,
 							    'post'=>_MI_MW_SPPOST,
