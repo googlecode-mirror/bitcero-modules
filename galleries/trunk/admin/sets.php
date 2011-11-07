@@ -97,7 +97,7 @@ function showAlbums(){
     var delete_warning='".__('Do you really wish to delete selected albums?','galleries')."';\n
     var delete_formats='".__('Do you really wish to delete all images formats for this album?\nOnly deletes formats for albums, search and others, except normal thumbnails.','galleries')."';\n
     </script>");
-	RMTemplate::get()->add_script('../include/js/gsscripts.php?file=sets');
+	RMTemplate::get()->add_script('../js/gsscripts.php?file=sets');
 	
 	$cHead = '<link href="'.XOOPS_URL.'/modules/galleries/styles/admin.css" media="all" rel="stylesheet" type="text/css" />';
 	xoops_cp_header($cHead);

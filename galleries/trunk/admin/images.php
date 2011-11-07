@@ -101,7 +101,7 @@ function showImages(){
 			$users[$img->owner()] = new GSUser($img->owner(), 1);
 		}
 
-		$link = $users[$img->owner()]->userURL()."img/".$img->id();
+		$link = $img->permalink();
 
 		$xu = $users[$img->owner()];
 		$images[] = array(
@@ -539,7 +539,8 @@ function saveImages($edit = 0){
 
 
 	} else {
-		echo $up->getErrors();
+		redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Errors ocurred while trying to upload files:','galleries').'<br />'.$up->getErrors(), 1);
+        die();
 		
 	}
 	//Fin de Imagen
