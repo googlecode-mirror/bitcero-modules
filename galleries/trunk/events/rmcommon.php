@@ -54,4 +54,23 @@ class GalleriesRmcommonPreload
         
     }
     
+    public function eventRmcommonImgmgrEditorOptions(){
+        // load language
+        load_mod_locale("galleries");
+        // Insert required script and styles
+        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries";</script>');
+        RMTemplate::get()->add_local_script('editor.js', 'galleries');
+        RMTemplate::get()->add_xoops_style('editor.css', 'galleries');
+        
+        
+        return '<a href="#" id="a-mg">'.__('Galleries','galleries').'</a>';
+    }
+    
+    public function eventRmcommonImgmgrEditorContainers(){
+        global $xoopsSecurity;
+        
+        include RMTemplate::get()->get_template('other/gs_for_editor.php','module','galleries');
+        
+    }
+    
 }
