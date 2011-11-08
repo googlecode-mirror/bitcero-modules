@@ -1,0 +1,65 @@
+#mg-container{
+}
+#gs-tabs{
+    overflow: hidden;
+    padding: 5px;
+    background: #ebebeb;
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #FFF;
+}
+#gs-tabs ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+#gs-tabs ul li{
+    float: left;
+    margin: 0 1px 0 0;
+}
+#gs-tabs ul li a{
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #666;
+    text-decoration: none;
+}
+#gs-tabs ul li a:hover{
+    background: #ebebeb;
+    color: #000;
+}
+#gs-tab-content{
+    padding: 5px;
+    font-size: 0.9em;
+}
+#gs-tabs ul li.selected a{
+    background: #CCC;
+    font-weight: bold;
+    color: #000;
+    border: 0;
+}
+.gs_loading{
+    text-align: center;
+}
+.gs_loading img{
+    margin-top: 40%;
+}
+.gs_error{
+    background: #ffffcc;
+    color: #CC0000;
+    padding: 5px;
+    border: 1px solid #E9CB38;
+    font-size: 0.9em;
+}
+.gs_options{
+    padding: 5px;
+    margin: -5px -5px 0 -5px;
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #FFF;
+    background: #f2f2f2;
+    text-align: right;
+}
+.gs_item{
+    padding: 5px 4px;
+    border-bottom: 1px solid #ebebeb;
+}
