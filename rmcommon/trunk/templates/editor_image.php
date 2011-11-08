@@ -7,7 +7,7 @@
 <body style="background: #FFF;">
 <div id="img-toolbar">
 	<a href="#" class="select" id="a-upload" onclick="show_upload(); return false;"><?php _e('Upload Files','rmcommon'); ?></a>
-	<a href="#" id="a-fromurl" onclick="show_fromurl(); return false;"><?php _e('From URL','rmcommon'); ?></a>
+	<a href="#" id="a-fromurl" onclick="return false;"><?php _e('From URL','rmcommon'); ?></a>
 	<a href="#" id="a-library" onclick="show_library(); return false;"><?php _e('From Library','rmcommon'); ?></a>
         <?php echo RMEvents::get()->run_event('rmcommon.imgmgr.editor.options', ''); ?>
 </div>
