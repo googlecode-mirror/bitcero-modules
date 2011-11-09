@@ -18,6 +18,7 @@ class RMPageNav
     private $showing = '';
     private $displayed = false;
     private $rendered = '';
+    private $template = '';
     
     /**
     * @desc Constructor
@@ -77,6 +78,14 @@ class RMPageNav
     }
     
     /**
+     * Set the template to use with render
+     * @param string Path to template file
+     */
+    public function set_template($path){
+        $this->template = $path;
+    }
+    
+    /**
     * This method render the navigation bar with pages and all information.
     * Also creates the message "Shogin ..." that can be get after.
     * 
@@ -126,7 +135,11 @@ class RMPageNav
 		$end = $start+($steps-1);
 		$end = $end > $total_pages ? $total_pages : $end;
 		
-		include RMTemplate::get_template('navigation_pages.php', 'module', 'rmcommon');
+                if($this->template!='' && is_file($this->template)){
+                    include $this->template;
+                } else {
+                    include RMTemplate::get_template('navigation_pages.php', 'module', 'rmcommon');
+                }
 		
 		$this->displayed = true;
 		
