@@ -302,7 +302,7 @@ class DocsRmcommonPreload{
         global $xoopsModule;
         
         if(!$xoopsModule || $xoopsModule->dirname()!='docs') return $plugins;
-        if(!defined('RMCLOCATION') || RMCLOCATION!='homepage') return $plugins;
+        //if(!defined('RMCLOCATION') || RMCLOCATION!='homepage') return $plugins;
         
         RMTemplate::get()->add_script('../include/js/editor_options.js');
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.fieldselection.js');
