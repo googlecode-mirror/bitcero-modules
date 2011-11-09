@@ -20,11 +20,11 @@ function showAlbums(){
 	define('RMSUBLOCATION','sets');
 	$db = Database::getInstance();
 
-	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
+	$page = rmc_server_var($_REQUEST, 'page', 1);
 	$limit = 15;
-	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_set';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 1;
-	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+	$sort = rmc_server_var($_REQUEST, 'sort', 'id_set');
+	$mode = rmc_server_var($_REQUEST, 'mode', 1);
+	$search = rmc_server_var($_REQUEST, 'search', '');
 	
 	$query = "search=$search&page=$page&sort=$sort&mode=$mode";
 	
@@ -120,7 +120,7 @@ function formAlbums($edit = 0){
 	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_set';
-	$mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
+	$mode = rmc_server_var($_REQUEST, 'mode', 1);
 	$search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
 
 	$ruta = "pag=$page&sort=$sort&mode=$mode&search=$search";

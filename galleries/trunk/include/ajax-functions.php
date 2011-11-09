@@ -37,9 +37,12 @@ if($action=='load_galleries'){
     if($xoopsUser) $sql .= " OR (public<>1 AND owner=".$xoopsUser->uid().")";
     
     list($num) = $db->fetchRow($db->query($sql));
-    $limit = 15;
+    $limit = 14;
     $ptotal = ceil($num/$limit);
     $start = $page==1 ? 0 : $page*$limit-$limit;
+    
+    $nav = new RMPageNav($num, $limit, $page);
+    $nav->set_template(RMTemplate::get()->get_template("other/gs_navpage.php", 'module', 'galleries'));
     
     $sql = str_replace("COUNT(*)","*",$sql);
     $sql .= " ORDER BY id_set DESC LIMIT $start,$limit";
@@ -50,6 +53,7 @@ if($action=='load_galleries'){
     while($row = $db->fetchArray($result)){
         
         $galleries[] = array(
+            'id' => $row['id_set'],
             'title' => $row['title'],
             'date' => formatTimestamp($row['date'], "c")
         );
@@ -57,6 +61,11 @@ if($action=='load_galleries'){
     }
     
     include RMTemplate::get()->get_template('other/gs_ajax_galleries.php', 'module', 'galleries');
+    die();
+    
+}elseif($action=='load_structure'){
+    
+    include RMTemplate::get()->get_template('other/gs_for_editor.php','module','galleries');
     die();
     
 }

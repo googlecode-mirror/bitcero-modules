@@ -35,8 +35,6 @@ $(document).ready(function(){
 var gsController = {
     
     load_galleries: function(p){
-        $("#tab-gals").addClass("gs_loading");
-        $("#tab-gals").html('<img src="'+gs_url+'/images/loader.gif" alt="" />');
         
         params = {
             XOOPS_TOKEN_REQUEST: $("#XOOPS_TOKEN_REQUEST").val(),
@@ -44,16 +42,66 @@ var gsController = {
             page: p
         };
         
+        $("#tab-gals").addClass("gs_loading");
+        $("#tab-gals").html('<img src="'+gs_url+'/images/loader.gif" alt="" />');
+        
         $.post(gs_url+'/include/ajax-functions.php', params, function(data){
            
            $("#tab-gals").removeClass("gs_loading");
            $("#tab-gals").html(data);
+           gsController.register_clicks();
            
         },'html');
         
     },
     
-    load_pictures: function(p){
+    register_clicks: function(){
+        $("div.gs_item").click(function(){
+            if( $(this).children(".gtitle").children(".goptions").html()!='') return;
+            $("div.gs_item").removeClass("clicked");
+            $("div.gs_item .goptions").html("");
+            $(this).addClass('clicked');
+            $(this).children(".gtitle").children(".goptions").html('<input type="hidden" name="idgal" id="idgal" value="'+$(this).children(".gid").html()+'" />'+$("#ggoptions").html());
+            $(this).children(".gtitle").children(".goptions").css('display','block');
+            
+            $(".g-insert").click(function(){
+                gsController.insert_gallery($(this).parent());
+            });
+        });
+        
+        $(".rmc_pages_navigation_container a").click(function(){
+            
+            var id = 0;
+            
+            if ($(this).attr("id")==undefined){
+                id = $(this).attr("class").replace("page-",'');
+            } else {
+                id = $(this).attr("id").replace("page-",'');
+            }
+            
+            gsController.load_galleries(id);
+            
+        });
+        
+    },
+    
+    insert_gallery: function(e){
+        
+        var gal = e.children("#idgal").val();
+        var num = e.children(".g-xpage").val();
+        var full = e.children(".g-spage").is(":checked");
+        var url = e.children(".g-surl").is(":checked");
+        
+        var insert = "[gallery id="+gal+" num="+num+" full="+full+" url="+url+"]";
+        
+        if(gedt=='tiny'){
+            ed = tinyMCEPopup.editor;
+            ed.execCommand("mceInsertContent", true, insert);
+            tinyMCEPopup.close();
+        }else if(gedt=='xoops'){
+            exmPopup.insertText(insert);
+            exmPopup.closePopup();
+        }
         
     }
     

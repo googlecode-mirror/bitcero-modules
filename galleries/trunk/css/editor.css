@@ -59,7 +59,51 @@
     background: #f2f2f2;
     text-align: right;
 }
-.gs_item{
-    padding: 5px 4px;
-    border-bottom: 1px solid #ebebeb;
+#ggoptions{display: none;}
+.gs_ajax_gals{
+    display: table;
+    width: 100%;
+    font-size: 0.9em;
+    
+}
+div.gs_ajax_gals .gs_item,
+div.gs_ajax_gals .gs_heads{
+    cursor: pointer;
+    display: table-row;
+}
+.gs_item div,
+.gs_heads div{padding: 5px; display: table-cell;border-bottom: 1px solid #ebebeb;border-top: 1px solid #FFF;}
+.gs_item div.gid{width: 30px; text-align: right;}
+div.gs_ajax_gals .gs_heads div{
+    font-weight: bold;
+    border-bottom: 2px solid #CCC;
+}
+.gs_item .gdate{font-size: 0.9em; color: #666;font-style: italic;}
+div.gs_ajax_gals .clicked{
+    background: #deedf7;
+}
+div.gs_ajax_gals .clicked div{border-bottom: 1px solid #BDF; font-weight: bold;}
+.gs_item .goptions{display: none; padding: 4px 0 0 0; font-size: 0.9em; font-weight: normal;}
+
+/* For plain editors */
+.gs_blocker{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.6;
+}
+.gs_window{
+    position: fixed;
+    width: 590px;
+    height: 590px;
+    top: 50%;
+    left: 50%;
+    margin: -300px 0 0 -300px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000;
+    padding: 5px;
 }
