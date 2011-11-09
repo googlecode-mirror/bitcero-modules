@@ -163,13 +163,10 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_style('editor_html.css','rmcommon');
 		$rtn = "\n<div class='ed-container html_editor_container' style='width: $this->_width;' id='".$this->getName()."-ed-container'>";
         $plugins = array();
+        // Get external plugins
         $plugins = RMEvents::get()->run_event('rmcommon.html.editor.plugins', $plugins, $this->getName());
-        if (!empty($plugins)){
-            $rtn .= '<div class="ed-plugins" style="padding: 4px 6px;">';
-            $rtn .= implode(" ", $plugins);
-            $rtn .= "</div>";
-        }
-		$rtn .= "<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
+        
+		$rtn .= "<div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script>".(!empty($plugins) ? "<div class='ed_plugins'>".implode(" ", $plugins)."</div>" : '')."</div>
 		<div class='txtarea_container'><textarea id='".$this->getName()."' name='".$this->getName()."' style='width: ".$this->_width."; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>
 		</div>";
 		return $rtn;
