@@ -55,10 +55,11 @@ class GalleriesRmcommonPreload
     }
     
     public function eventRmcommonImgmgrEditorOptions(){
+        global $rmc_config;
         // load language
         load_mod_locale("galleries");
         // Insert required script and styles
-        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries";</script>');
+        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries"; var gedt = "'.$rmc_config['editor_type'].'";</script>');
         RMTemplate::get()->add_local_script('editor.js', 'galleries');
         RMTemplate::get()->add_xoops_style('editor.css', 'galleries');
         
@@ -70,6 +71,16 @@ class GalleriesRmcommonPreload
         global $xoopsSecurity;
         
         include RMTemplate::get()->get_template('other/gs_for_editor.php','module','galleries');
+        
+    }
+    
+    public function eventRmcommonHtmlEditorPlugins($plugins, $name){
+        RMTemplate::get()->add_local_script('editor_plain.js','galleries');
+        RMTemplate::get()->add_xoops_style('editor.css','galleries');
+        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries"; var gedt = "'.$rmc_config['editor_type'].'";</script>');
+        
+        $plugins[] = '<input type="button" value="'.__('Galleries','galleries').'" onclick="insert_galleries();" />';
+        return $plugins;
         
     }
     
