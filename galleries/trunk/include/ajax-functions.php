@@ -68,4 +68,38 @@ if($action=='load_galleries'){
     include RMTemplate::get()->get_template('other/gs_for_editor.php','module','galleries');
     die();
     
+}elseif($action=='load_included'){
+    
+    if(!$xoopsSecurity->checkReferer()) die();
+    
+    $set = rmc_server_var($_POST,'set',0);
+    $page = rmc_server_var($_POST,'page',1);
+    $limit = rmc_server_var($_POST,'limit',0);
+    $full = true;
+    
+    if($set<=0 || $limit<=0) die();
+    
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
+    $data = GSFunctions::load_images($set,$limit,$page);
+        
+    if(empty($data)) die();
+        
+    $images = $data['images'];
+   
+    // Pagination
+    $page = $data['current'];
+    $limit = $data['limit'];
+    $num = $data['total'];
+    $set = $data['set'];
+        
+    $nav = new RMPageNav($num, $limit, $page);
+    $nav->set_template(RMTemplate::get()->get_template("other/gs_nav_included.php","module","galleries"));
+    $nav->target_url($set['id'].','.$limit);
+    
+  
+    include RMTemplate::get()->get_template('other/gs_gals_inclusion.php', 'module', 'galleries');
+
+    
+    die();
+    
 }

@@ -366,4 +366,66 @@ class GSFunctions
         
     }
     
+    /**
+     * Load images according to given parameters.
+     * Util for images inclusion
+     * @param int Set ID
+     * @param int Number of results per page
+     * @param 
+     * @return array
+     */
+    public function load_images($set, $limit, $page){
+        global $xoopsUser;
+        
+        if($set<=0) return;
+        
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsuser.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
+        
+        $set = new GSSet($set);
+        if($set->isNew()) return;
+        
+        $user = new GSUser($set->owner());
+        
+        if (!$set->ispublic()){
+            if(!$xoopsUser || $xoopsUser->uid()!=$set->owner()) return;
+	}else{
+            if (!$xoopsUser && $set->isPublic()==1 && !$user->isFriend($xoopsUser->uid())) return;
+	}
+        
+        //Verificamos la privacidad de las imágenes
+	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
+            $public = '';
+	}else{
+            if ($xoopsUser && $user->isFriend($xoopsUser->uid())){
+                $public = " AND public<>0";
+            }else{
+                $public = "AND public='2'";
+            }
+	}
+	
+        $db = Database::getInstance();
+	$tbl1 = $db->prefix("gs_images");
+	$tbl2 = $db->prefix("gs_setsimages");
+	$sql = "SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image $public AND owner='".$user->uid()."'";
+        
+        list($num) = $db->fetchRow($db->query($sql));
+        $start = $page*$limit-$limit;
+        $sql = str_replace("COUNT(*)",'*',$sql);
+	$sql .= " ORDER BY a.id_image ASC, a.modified DESC LIMIT $start, $limit";
+        
+        $result = $db->query($sql);
+        if($db->getRowsNum($result)<=0) return;
+        $ret['images'] = self::process_image_data($result);
+        $ret['total'] = $num;
+        $ret['start'] = $start;
+        $ret['limit'] = $limit;
+        $ret['current'] = $page;
+        $ret['set'] = array('id'=>$set->id(),'title'=>$set->title(),'link'=>$set->url());
+        
+        return $ret;
+        
+    }
+    
 }
