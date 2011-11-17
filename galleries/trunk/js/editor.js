@@ -13,6 +13,8 @@ $(document).ready(function(){
     $(".tab").height($("#gs-tab-content").height()-10);
     $("#tab-gals").show();
     
+    gsController.load_galleries(1);
+    
     $("#gs-tabs li a").click(function(){
         
         $("#gs-tab-content .tab").hide();
