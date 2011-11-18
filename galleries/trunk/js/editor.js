@@ -138,7 +138,10 @@ var gsController = {
         $("#gs-search-gb").click(function(){
         
             if($("#gs-search-gk").val()=='') return;
-            gsController.load_galleries(1,$("#gs-search-gk").val());
+            if(itype=='galleries')
+                gsController.load_galleries(1,$("#gs-search-gk").val());
+            else
+                gsController.load_images(1,$("#gs-search-gk").val());
 
         });
         
@@ -178,13 +181,18 @@ var gsController = {
         var user = $(e).children("span.user").html();
         var search = $(e).children("span.search").html();
         var title = $(e).children('img').attr("title");
+        var text = $(e).children("span.desc").html();
         
         var html = '<img src="'+image+'" alt="" />';
         html += '<span><input type="radio" name="what" value="'+image+'" /><br />'+lang_image+'</span>';
         if(thumbnail!='') html += '<span><input type="radio" name="what" value="'+thumbnail+'" /><br />'+lang_thumb+'</span>';
         if(user!='') html += '<span><input type="radio" name="what" value="'+user+'" /><br />'+lang_user+'</span>';
         if(search!='') html += '<span><input type="radio" name="what" value="'+search+'" /><br />'+lang_search+'</span>';
-        html += '<div><label><input type="checkbox" name="desc" value="1" /> '+lang_desc+'</label>';
+        html += '<span><select name="align" id="alignment"><option value="" selected="selected">'+lang_align+'</option>';
+        html += '<option value="left">'+lang_left+'</option>';
+        html += '<option value="right">'+lang_right+'</option>';
+        html += '<option value="center">'+lang_center+'</option></select></span>';
+        html += '<div><label><input type="checkbox" name="desc" value="1" '+(gedt=='xoops'?' disabled="disabled"': '')+' /> '+lang_desc+'</label>';
         html += '<input type="button" id="gs-ins-now" value="'+lang_insert+'" /></div>';
         $("#insert-wdw").html(html);
         
@@ -202,14 +210,28 @@ var gsController = {
             var ins = '';
             var w = $("#insert-wdw span input:checked");
             if(w==undefined || w.length<=0) return;            
-            var desc = $("#insert-wdw div input:checked");
+            var desc = $("#insert-wdw div input:checked").length;
+            var align = $("#alignment").val();
             
             if(gedt=='tiny'){
-                ins = '<img src="'+w.val()+'" alt="'+title+'" title="'+title+'" />';
+                if(desc==1 && text!=''){
+                    ins = '<div';
+                    if(align!='') ins += ' class="'+align+'"';
+                    ins += '>';
+                }
+                
+                ins += '<img src="'+w.val()+'" alt="'+title+'" title="'+title+'"';
+                if(align!='' && (desc<=0 || text=='')) ins += ' class="'+align+'" />';
+                ins += ' />';
+                
+                if(desc==1 && text!='') ins += '<br />'+text+'</div>';
                 ed = tinyMCEPopup.editor;
                 ed.execCommand("mceInsertContent", true, ins);
                 tinyMCEPopup.close();
             }else if(gedt=='xoops'){
+                
+                var insert = '[img'+(align!=''?' align='+align:'')+']'+w.val()+'[/img]';
+                
                 exmPopup.insertText(insert);
                 exmPopup.closePopup();
             }

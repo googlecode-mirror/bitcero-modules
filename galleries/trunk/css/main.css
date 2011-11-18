@@ -124,8 +124,9 @@ div.gsImage h1{
 }
 #gs-the-image{
     border: 1px solid #666;
-	margin: 5px auto;
+    margin: 5px auto;
     background-repeat: no-repeat;
+    background-position: center;
     position: relative;
 }
 #gs-the-image div{

@@ -462,91 +462,93 @@ function saveImages($edit = 0){
 
 
 	//Imagen
-	include_once RMCPATH.'/class/uploader.php';
-	$folder = $mc['storedir']."/".$user->uname();
-	$folderths = $mc['storedir']."/".$user->uname()."/ths";
+        include_once RMCPATH.'/class/uploader.php';
+        $folder = $mc['storedir']."/".$user->uname();
+        $folderths = $mc['storedir']."/".$user->uname()."/ths";
 
-	$up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
-    
-	if ($edit){
-		$filename=$img->image();
-	}
-	else{
-		$filename = '';
-	}
+        $up = new RMFileUploader($folder, $mc['size_image']*1024, array('jpg','png','gif'));
 
-	if ($up->fetchMedia('image')){
+        if ($edit){
+            $filename=$img->image();
+        }else{
+            $filename = '';
+        }
 
-	
-		if (!$up->upload()){
+        if ($up->fetchMedia('image')){
 
-			redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,$up->getErrors(), 1);
-			die();
-		}
-					
-		if ($edit && $img->image()!=''){
-			@unlink($mc['storedir']."/".$user->uname()."/".$img->image());
-			@unlink($mc['storedir']."/".$user->uname()."/ths/".$img->image());
-			@unlink($mc['storedir']."/originals/".$img->image());
-			
-		}
+            if (!$up->upload()){
 
-		$filename = $up->getSavedFileName();
-		$fullpath = $up->getSavedDestination();
-		
-		$thSize = $mc['image_ths'];
-		$imgSize = $mc['image'];
-			
-		if ($thSize[0]<=0) $thSize[0] = 100;
-		if (!isset($thSize[1]) || $thSize[1]<=0) $thSize[1] = $thSize[0];
-		
-		if ($imgSize[0]<=0) $imgSize[0] = 500;
-		if (!isset($imgSize[1]) || $imgSize[1]<=0) $imgSize[1] = $imgSize[0];
-			
-		// Almacenamos la imágen original
-		if ($mc['saveoriginal']){
-			copy($fullpath, $mc['storedir'].'/originals/'.$filename);
-		}
-		
-		// Redimensionamos la imagen
-		$redim = new RMImageResizer($fullpath, $fullpath);
-		switch ($mc['redim_image']){
-			case 0:
-				//Recortar miniatura
-				$redim->resizeWidth($imgSize[0]);
-				$redim->setTargetFile($folderths."/$filename");				
-				$redim->resizeAndCrop($thSize[0],$thSize[1]);
-			break;	
-			case 1: 
-				//Recortar imagen grande
-				$redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($thSize[0]);			
-			break;
-			case 2:
-				//Recortar ambas
-				$redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeAndCrop($thSize[0],$thSize[1]);
-			break;
-			case 3:
-				//Redimensionar
-				$redim->resizeWidth($imgSize[0]);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($thSize[0]);
-			break;			
-		}
+                redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta,$up->getErrors(), 1);
+                die();
+                
+            }
+
+            if ($edit && $img->image()!=''){
+                @unlink($mc['storedir']."/".$user->uname()."/".$img->image());
+                @unlink($mc['storedir']."/".$user->uname()."/ths/".$img->image());
+                @unlink($mc['storedir']."/originals/".$img->image());
+            }
+
+            $filename = $up->getSavedFileName();
+            $fullpath = $up->getSavedDestination();
+
+            $thSize = $mc['image_ths'];
+            $imgSize = $mc['image'];
+
+            if ($thSize[0]<=0) $thSize[0] = 100;
+            if (!isset($thSize[1]) || $thSize[1]<=0) $thSize[1] = $thSize[0];
+
+            if ($imgSize[0]<=0) $imgSize[0] = 500;
+            if (!isset($imgSize[1]) || $imgSize[1]<=0) $imgSize[1] = $imgSize[0];
+
+            // Almacenamos la imágen original
+            if ($mc['saveoriginal'])
+                copy($fullpath, $mc['storedir'].'/originals/'.$filename);
+
+            // Redimensionamos la imagen
+            $redim = new RMImageResizer($fullpath, $fullpath);
+            switch ($mc['redim_image']){
+                case 0:
+                    //Recortar miniatura
+                    $redim->resizeWidth($imgSize[0]);
+                    $redim->setTargetFile($folderths."/$filename");				
+                    $redim->resizeAndCrop($thSize[0],$thSize[1]);
+                    break;	
+                case 1: 
+                    //Recortar imagen grande
+                    $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+                    $redim->setTargetFile($folderths."/$filename");
+                    $redim->resizeWidth($thSize[0]);			
+                    break;
+                case 2:
+                    //Recortar ambas
+                    $redim->resizeWidthOrHeight($imgSize[0],$imgSize[1]);
+                    $redim->setTargetFile($folderths."/$filename");
+                    $redim->resizeAndCrop($thSize[0],$thSize[1]);
+                    break;
+                case 3:
+                    //Redimensionar
+                    $redim->resizeWidth($imgSize[0]);
+                    $redim->setTargetFile($folderths."/$filename");
+                    $redim->resizeWidth($thSize[0]);
+                    break;			
+            }
 
 
-	} else {
-		redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Errors ocurred while trying to upload files:','galleries').'<br />'.$up->getErrors(), 1);
-        die();
-		
-	}
-	//Fin de Imagen
-	
-	$img->setImage($filename);
-    $db = Database::getInstance();
+        } else {
+                
+            if(!$edit){
+                redirectMsg('./images.php?op='.($edit ? 'edit&id='.$id : 'new').'&'.$ruta, __('Errors ocurred while trying to upload files:','galleries').'<br />'.$up->getErrors(), 1);
+                die();
+            }
+
+        }
+            
+        $img->setImage($filename);
+            
+        //Fin de Imagen
+
+        $db = Database::getInstance();
 	
 	$new = $img->isNew();
 	if(!$img->save()){

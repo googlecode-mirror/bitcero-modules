@@ -2,7 +2,7 @@
 
 <div class="gsImage">
 	<h1 class="title"><{$image.title}></h1><a name="picture" id="picture"></a>
-    <div id="gs-the-image" style="background-image: url(<{$image.file}>);" title="<{$image.title}>">
+        <div id="gs-the-image" style="background-image: url(<{$image.file}>); width: <{$image.width}>px; height: <{$image.height}>px;" title="<{$image.title}>">
         <div>
             <{if !$is_first}>
             <div class="prev"><a href="<{$prev.link}>#picture" title="<{$prev.title}>"><span><{$prev.title}></span></a></div>

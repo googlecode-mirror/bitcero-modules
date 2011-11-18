@@ -1,7 +1,7 @@
 <div class="gs_options">
     <?php if($search!=''): ?>
     <?php echo sprintf(__('Search results for: %s','galleries'), '<strong>'.$search.'</strong>'); ?> &nbsp; | &nbsp;
-    <strong><a href="#" onclick="gsController.load_galleries(1,''); return false;"><?php _e('Show all','galleries'); ?></a></strong> &nbsp; | &nbsp;
+    <strong><a href="#" onclick="gsController.load_images(1,''); return false;"><?php _e('Show all','galleries'); ?></a></strong> &nbsp; | &nbsp;
     <input type="hidden" name="search" id="search-inp" value="<?php echo $search; ?>" />
     <?php endif; ?>
     <?php _e('Search:','galleries'); ?>
