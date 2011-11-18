@@ -29,12 +29,16 @@ if($action=='load_galleries'){
     
     // Load galleries list for inclusion
     $page = rmc_server_var($_POST,'page',1);
+    $search = rmc_server_var($_POST,'search','');
+    
     if(!$xoopsSecurity->check()){
         gs_send_error(__('You are not authorized to do this action.','galleries'));
     }
     
-    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_sets")." WHERE public=1";
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_sets")." WHERE ";
+    if($search!='') $sql .= "title LIKE '%$search%' AND (public=1"; else $sql .= 'public=1';
     if($xoopsUser) $sql .= " OR (public<>1 AND owner=".$xoopsUser->uid().")";
+    $sql .= $search!='' ? ')' : '';
     
     list($num) = $db->fetchRow($db->query($sql));
     $limit = 14;
@@ -61,6 +65,42 @@ if($action=='load_galleries'){
     }
     
     include RMTemplate::get()->get_template('other/gs_ajax_galleries.php', 'module', 'galleries');
+    die();
+
+}elseif($action=='load_images'){
+    
+    // Load galleries list for inclusion
+    $page = rmc_server_var($_POST,'page',1);
+    $search = rmc_server_var($_POST,'search','');
+    
+    if(!$xoopsSecurity->check()){
+        gs_send_error(__('You are not authorized to do this action.','galleries'));
+    }
+    
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_images")." WHERE ";
+    if($search!='') $sql .= "title LIKE '%$search%' AND public=2"; else $sql .= 'public=2';
+    
+    list($num) = $db->fetchRow($db->query($sql));
+    $limit = 15;
+    $ptotal = ceil($num/$limit);
+    $start = $page==1 ? 0 : $page*$limit-$limit;
+    
+    $nav = new RMPageNav($num, $limit, $page);
+    $nav->set_template(RMTemplate::get()->get_template("other/gs_navpage.php", 'module', 'galleries'));
+    
+    $sql = str_replace("COUNT(*)","*",$sql);
+    $sql .= " ORDER BY created DESC LIMIT $start,$limit";
+    
+    $result = $db->query($sql);
+    
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsfunctions.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsuser.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gstag.class.php';
+    $images = GSFunctions::process_image_data($result);
+    
+    include RMTemplate::get()->get_template('other/gs_ajax_images.php', 'module', 'galleries');
     die();
     
 }elseif($action=='load_structure'){

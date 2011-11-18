@@ -8,19 +8,15 @@
     <input name="srh" id="gs-search-gk" type="textbox" size="10" value="<?php echo $search; ?>" />
     <input type="button" id="gs-search-gb" value="<?php _e('Go!','galleries'); ?>" />
 </div>
-<div class="gs_ajax_gals">
-    <div class="gs_heads">
-        <div><?php _e('ID','galleries'); ?></div>
-        <div><?php _e('Gallery','galleries'); ?></div>
-    </div>
-    <?php foreach($galleries as $gal): ?>
-    <div class="gs_item">
-        <div class="gid"><?php echo $gal['id']; ?></div>
-        <div class="gtitle">
-            <?php echo $gal['title']; ?>
-            <span class="gdate">(<?php _e('Created:','galleries'); ?> <?php echo $gal['date']; ?>)</span>
-            <span class="goptions"></span>
-        </div>
+<div class="gs_ajax_images">
+    <?php foreach($images as $img): ?>
+    <div class="gs_img_item">
+        <img src="<?php echo $img['thumbnail']; ?>" title="<?php echo $img['title']; ?>" class="img-<?php echo $img['id']; ?>" />
+        <span class="image"><?php echo $img['image']; ?></span>
+        <span class="thumbnail"><?php echo $img['thumbnail']; ?></span>
+        <span class="user"><?php echo $img['thumbuser']; ?></span>
+        <span class="search"><?php echo $img['thumbsrh']; ?></span>
+        <span class="desc"><?php echo $img['desc']; ?></span>
     </div>
     <?php endforeach; ?>
 </div>

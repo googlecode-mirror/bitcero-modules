@@ -59,7 +59,13 @@ class GalleriesRmcommonPreload
         // load language
         load_mod_locale("galleries");
         // Insert required script and styles
-        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries"; var gedt = "'.$rmc_config['editor_type'].'";</script>');
+        RMTemplate::get()->add_head('<script type="text/javascript">var gs_url="'.XOOPS_URL.'/modules/galleries"; var gedt = "'.$rmc_config['editor_type'].'";
+            var lang_image = "'.__('Image','galleries').'";
+            var lang_thumb = "'.__('Thumbnail','galleries').'";
+            var lang_user = "'.__('User Format','galleries').'";
+            var lang_search = "'.__('Search Format','galleries').'";
+            var lang_desc = "'.__('Add description','galleries').'";
+            var lang_insert = "'.__('Insert Now!','galleries').'";</script>');
         RMTemplate::get()->add_local_script('editor.js', 'galleries');
         RMTemplate::get()->add_xoops_style('editor.css', 'galleries');
         

@@ -382,6 +382,7 @@ class GSFunctions
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsuser.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
+        include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gstag.class.php';
         
         $set = new GSSet($set);
         if($set->isNew()) return;
