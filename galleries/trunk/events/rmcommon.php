@@ -65,6 +65,10 @@ class GalleriesRmcommonPreload
             var lang_user = "'.__('User Format','galleries').'";
             var lang_search = "'.__('Search Format','galleries').'";
             var lang_desc = "'.__('Add description','galleries').'";
+            var lang_align = "'.__('Alignment...','galleries').'";
+            var lang_left = "'.__('Left','galleries').'";
+            var lang_right = "'.__('Right','galleries').'";
+            var lang_center = "'.__('Center','galleries').'";
             var lang_insert = "'.__('Insert Now!','galleries').'";</script>');
         RMTemplate::get()->add_local_script('editor.js', 'galleries');
         RMTemplate::get()->add_xoops_style('editor.css', 'galleries');
@@ -80,7 +84,7 @@ class GalleriesRmcommonPreload
         
     }
     
-    public function eventRmcommonCodeDecode($text){
+    public function eventRmcommonTextTodisplay($text, $source){
         
         if(defined("XOOPS_CPFUNC_LOADED")) return $text;
 
@@ -88,7 +92,7 @@ class GalleriesRmcommonPreload
         $replace = "$1";
         $amatches = array();
         $count = preg_match_all($search, $text, $amatches);
-        if($count<=0) return;
+        if($count<=0) return $text;
                 
         for($ic=0;$ic<$count;$ic++){
             

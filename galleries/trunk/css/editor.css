@@ -90,8 +90,8 @@ div.gs_ajax_gals .clicked div{border-bottom: 1px solid #BDF; font-weight: bold;}
 .gs_ajax_images .gs_img_item img{border: 1px solid #666;padding: 1px; max-width: 100px; max-height: 100px;}
 .gs_ajax_images .gs_img_item span{display: none;}
 .blocker{position: absolute;background: #000;top:0;left:0;right:0;bottom:0;opacity: 0.7;}
-#insert-wdw{text-transform: uppercase;font-size: 0.9em; position: absolute;background: #FFF;top: 50%;left:50%;margin-top:-150px;margin-left:-200px;width:400px;height:300px;box-shadow:#000 0 0 15px;padding: 10px;text-align: center;}
-#insert-wdw img{max-width: 398px;max-height: 200px;border: 1px solid #666;margin:0 auto;display: block;}
+#insert-wdw{border-radius: 5px;color: #FFF;text-transform: uppercase;font-size: 0.9em; position: absolute;background: #1d1f24;border: 1px solid #000;top: 50%;left:50%;margin-top:-170px;margin-left:-200px;width:400px;height:320px;box-shadow:#000 0 0 15px;padding: 10px;text-align: center;}
+#insert-wdw img{max-width: 396px;max-height: 200px;border: 1px solid #666;margin:0 auto;display: block;padding: 1px;}
 #insert-wdw span{
     display: inline-block;
     padding: 5px;

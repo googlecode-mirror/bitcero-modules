@@ -33,11 +33,11 @@ function showUserPics(){
 	// Información del Usuario
 	$tpl->assign('lang_picsof', sprintf(__('Pictures of %s'), $user->uname()));
 	$tpl->assign('user', array(
-        'id'=>$user->uid(),
-        'uname'=>$user->uname(),
-        'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $user->userVar('email'), 0, $user->userVar('user_avatar')),
-        'link'=>$user->userURL())
-    );
+            'id'=>$user->uid(),
+            'uname'=>$user->uname(),
+            'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $user->userVar('email'), 0, $user->userVar('user_avatar')),
+            'link'=>$user->userURL())
+        );
 	
 	// Lenguaje
 	$tpl->assign('lang_bmark', __('Favorites','galleries'));
@@ -103,7 +103,7 @@ function showUserPics(){
 	$tpl->assign('lang_showing', sprintf(__('Showing pictures %u to %u from %u','galleries'), $start + 1, $showmax, $num));
 	$tpl->assign('limit',$limit);
 	$tpl->assign('pag',$pactual);
-    $tpl->assign('show_desc', $showdesc);
+        $tpl->assign('show_desc', $showdesc);
 	//Fin de barra de navegación
 	
 	$sql = str_replace("COUNT(*)",'*',$sql);
@@ -181,7 +181,7 @@ function showImageDetails(){
 	$tpl->assign('lang_alsobelong', __('Also belongs to:','galleries'));
 	$tpl->assign('lang_postcards', __('Send postcard','galleries'));
 	$tpl->assign('lang_bookmark', __('+ Bookmark','galleries'));
-    $tpl->assign('lang_photos', __('Pictures','galleries'));
+        $tpl->assign('lang_photos', __('Pictures','galleries'));
 	$tpl->assign('lang_toset', __('+ to Album','galleries'));
 	$tpl->assign('lang_lastpic', __('This is the last picture','galleries'));
 	$tpl->assign('lang_firstpic', __('This is the first picture','galleries'));
@@ -200,8 +200,18 @@ function showImageDetails(){
 	
 	$tpl->assign('postcards', $mc['postcards']);
 	
-	$tpl->assign('image',array('title'=>$image->title(),'id'=>$image->id(),'file'=>$user->filesURL().'/'.$image->image(),
-		'desc'=>$image->desc()));
+        $data = getimagesize($user->filesURL().'/'.$image->image());
+        
+	$tpl->assign('image',array(
+            'title'=>$image->title(),
+            'id'=>$image->id(),
+            'file'=>$user->filesURL().'/'.$image->image(),
+            'desc'=>$image->desc(),
+            'width'=>$data[0]+2,
+            'height'=>$data[1]+2
+        ));
+        
+        unset($data);
 	
 	//Verificamos si el usuario es dueño o amigo
 	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){
@@ -400,16 +410,6 @@ function showImageDetails(){
 	foreach ($tags as $tag){
 		$tpl->append('tags', array('id'=>$tag->id(),'tag'=>$tag->tag(),'link'=>$link.$tag->getVar('nameid')));
 	}
-    
-    //Script for image details
-    $script = '<script type="text/javascript">
-        var details = {
-        img: "'.$user->filesURL().'/'.$image->image().'",
-        title: "'.$image->title().'"
-    };</script>';
-    
-    RMTemplate::get()->add_head($script);
-    RMTemplate::get()->add_local_script('picdetails.js','galleries');
 	
 	// Comentarios
 	$tpl->assign('users_link', GSFunctions::get_url().($mc['urlmode'] ? 'usr/' : '?usr='));
