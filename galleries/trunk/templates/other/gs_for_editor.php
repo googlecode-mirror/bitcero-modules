@@ -13,7 +13,7 @@
         </div>
         
         <div id="tab-imgs" class="tab">
-            Imagenes
+            <?php echo $xoopsSecurity->getTokenHTML(); ?>
         </div>
         
     </div>

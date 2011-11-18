@@ -58,6 +58,7 @@
     border-top: 1px solid #FFF;
     background: #f2f2f2;
     text-align: right;
+    font-size: 0.9em;
 }
 #ggoptions{display: none;}
 .gs_ajax_gals{
@@ -84,3 +85,31 @@ div.gs_ajax_gals .clicked{
 }
 div.gs_ajax_gals .clicked div{border-bottom: 1px solid #BDF; font-weight: bold;}
 .gs_item .goptions{display: none; padding: 4px 0 0 0; font-size: 0.9em; font-weight: normal;}
+.gs_ajax_images{padding: 10px;overflow: hidden;text-align: center;}
+.gs_ajax_images .gs_img_item{display: inline;margin: 2px;height: 100px;cursor: pointer;}
+.gs_ajax_images .gs_img_item img{border: 1px solid #666;padding: 1px; max-width: 100px; max-height: 100px;}
+.gs_ajax_images .gs_img_item span{display: none;}
+.blocker{position: absolute;background: #000;top:0;left:0;right:0;bottom:0;opacity: 0.7;}
+#insert-wdw{text-transform: uppercase;font-size: 0.9em; position: absolute;background: #FFF;top: 50%;left:50%;margin-top:-150px;margin-left:-200px;width:400px;height:300px;box-shadow:#000 0 0 15px;padding: 10px;text-align: center;}
+#insert-wdw img{max-width: 398px;max-height: 200px;border: 1px solid #666;margin:0 auto;display: block;}
+#insert-wdw span{
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    line-height: 150%;
+    font-size: 0.8em;
+}
+#insert-wdw div{
+    margin-top: 10px;
+    overflow: hidden;
+}
+#insert-wdw label{
+    float: left;
+    font-size: 0.8em;
+}
+#insert-wdw input[type='button']{
+    float: right;
+    background: #ebebeb;
+    font-weight: bold;
+    text-transform: uppercase;
+}

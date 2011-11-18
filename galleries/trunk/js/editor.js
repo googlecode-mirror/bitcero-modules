@@ -7,13 +7,16 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+var itype = '';
+var token = '';
+
 $(document).ready(function(){
     $("#gs-tab-content").height($(document).height()-100);
     $(".tab").hide();
     $(".tab").height($("#gs-tab-content").height()-10);
     $("#tab-gals").show();
-    
-    gsController.load_galleries(1);
+    token = $("#XOOPS_TOKEN_REQUEST").val();
+    gsController.load_galleries(1,'');
     
     $("#gs-tabs li a").click(function(){
         
@@ -28,7 +31,17 @@ $(document).ready(function(){
     
     $("a.insert-gals").click(function(){
         
-        gsController.load_galleries(1);
+        $("#tab-imgs").html('');
+        itype = 'galleries';
+        gsController.load_galleries(1,'');
+        
+    });
+    
+    $("a.insert-imgs").click(function(){
+        
+        $("#tab-gals").html('');
+        itype = 'images';
+        gsController.load_images(1,'');
         
     });
     
@@ -36,12 +49,13 @@ $(document).ready(function(){
 
 var gsController = {
     
-    load_galleries: function(p){
+    load_galleries: function(p,s){
         
         params = {
-            XOOPS_TOKEN_REQUEST: $("#XOOPS_TOKEN_REQUEST").val(),
+            XOOPS_TOKEN_REQUEST: token,
             action: 'load_galleries',
-            page: p
+            page: p,
+            search: s
         };
         
         $("#tab-gals").addClass("gs_loading");
@@ -57,7 +71,32 @@ var gsController = {
         
     },
     
+    load_images: function(p,s){
+        
+        params = {
+            XOOPS_TOKEN_REQUEST: token,
+            action: 'load_images',
+            page: p,
+            search: s
+        };
+        
+        $("#tab-imgs").addClass("gs_loading");
+        $("#tab-imgs").html('<img src="'+gs_url+'/images/loader.gif" alt="" />');
+        
+        $.post(gs_url+'/include/ajax-functions.php', params, function(data){
+           
+           $("#tab-imgs").removeClass("gs_loading");
+           $("#tab-imgs").html(data);
+           gsController.register_clicks();
+           
+        },'html');
+        
+    },
+    
     register_clicks: function(){
+        
+        token = $("#XOOPS_TOKEN_REQUEST").val();
+        
         $("div.gs_item").click(function(){
             if( $(this).children(".gtitle").children(".goptions").html()!='') return;
             $("div.gs_item").removeClass("clicked");
@@ -81,8 +120,30 @@ var gsController = {
                 id = $(this).attr("id").replace("page-",'');
             }
             
-            gsController.load_galleries(id);
+            if($("#search-inp").val()!=''){
+               if(itype=='galleries')
+                   gsController.load_galleries(id,$("#search-inp").val());
+               else
+                   gsController.load_images(id,$("#search-inp").val());
+            }else{
+               if(itype=='galleries')
+                   gsController.load_galleries(id,'');
+               else
+                   gsController.load_images(id,'');
+            }
+           
             
+        });
+        
+        $("#gs-search-gb").click(function(){
+        
+            if($("#gs-search-gk").val()=='') return;
+            gsController.load_galleries(1,$("#gs-search-gk").val());
+
+        });
+        
+        $(".gs_img_item").click(function(){
+            gsController.show_image_props($(this));
         });
         
     },
@@ -104,6 +165,56 @@ var gsController = {
             exmPopup.insertText(insert);
             exmPopup.closePopup();
         }
+        
+    },
+    
+    show_image_props: function(e){
+        
+        $("body").append('<div class="blocker"></div>');
+        $("body").append('<div id="insert-wdw"></div>');
+        
+        var image = $(e).children("span.image").html();
+        var thumbnail = $(e).children("span.thumbnail").html();
+        var user = $(e).children("span.user").html();
+        var search = $(e).children("span.search").html();
+        var title = $(e).children('img').attr("title");
+        
+        var html = '<img src="'+image+'" alt="" />';
+        html += '<span><input type="radio" name="what" value="'+image+'" /><br />'+lang_image+'</span>';
+        if(thumbnail!='') html += '<span><input type="radio" name="what" value="'+thumbnail+'" /><br />'+lang_thumb+'</span>';
+        if(user!='') html += '<span><input type="radio" name="what" value="'+user+'" /><br />'+lang_user+'</span>';
+        if(search!='') html += '<span><input type="radio" name="what" value="'+search+'" /><br />'+lang_search+'</span>';
+        html += '<div><label><input type="checkbox" name="desc" value="1" /> '+lang_desc+'</label>';
+        html += '<input type="button" id="gs-ins-now" value="'+lang_insert+'" /></div>';
+        $("#insert-wdw").html(html);
+        
+        $(".blocker").click(function(){
+            
+            $(this).hide();
+            $("#insert-wdw").hide();
+            $(this).remove();
+            $("#insert-wdw").remove();
+            
+        });
+        
+        $("#gs-ins-now").click(function(){
+            
+            var ins = '';
+            var w = $("#insert-wdw span input:checked");
+            if(w==undefined || w.length<=0) return;            
+            var desc = $("#insert-wdw div input:checked");
+            
+            if(gedt=='tiny'){
+                ins = '<img src="'+w.val()+'" alt="'+title+'" title="'+title+'" />';
+                ed = tinyMCEPopup.editor;
+                ed.execCommand("mceInsertContent", true, ins);
+                tinyMCEPopup.close();
+            }else if(gedt=='xoops'){
+                exmPopup.insertText(insert);
+                exmPopup.closePopup();
+            }
+            
+        });
         
     }
     

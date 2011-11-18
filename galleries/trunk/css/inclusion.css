@@ -15,12 +15,8 @@
     padding: 4px;
     background: #FFF;
 }
-.gs_gal_container .gs_gsl_item img:hover{
-    background: #000;
-}
-.gs_gal_container .rmc_pages_navigation_container{
-    float: left;
-}
+.gs_gal_container .gs_gsl_item img:hover{background: #000;}
+.gs_gal_container .rmc_pages_navigation_container{float: left;}
 .gs_gal_container .gs_view_gal{float: left; display: block;padding: 4px 6px 0 6px;}
-.waiting{background: #FFF; top: 0; left: 0; bottom: 0; right: 0;position: absolute; opacity: 0.8;}
+.waiting{background: #FFF; top: 0; left: 0; bottom: 0; right: 0;position: absolute; opacity: 0.8;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";filter: alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;}
 .loader_img{position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -16px;}
