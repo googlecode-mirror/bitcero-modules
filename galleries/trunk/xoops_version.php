@@ -12,7 +12,7 @@ load_mod_locale('galleries');
 
 $modversion['name'] = "MyGalleries 3.0";
 $modversion['version'] = 3.0;
-$modversion['rmversion'] = array('number'=>3,'revision'=>024,'status'=>-2,'name'=>'MyGalleries');
+$modversion['rmversion'] = array('number'=>3,'revision'=>036,'status'=>-2,'name'=>'MyGalleries');
 $modversion['description'] = __('Module to publish and manage photo galleries in XOOPS using Common Utilities', 'galleries');
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
