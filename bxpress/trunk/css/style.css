@@ -18,22 +18,47 @@ div#bxpressOptions a.newtopic{
 div#bxpressOptions a.reply{
     background: url(../images/reply.png) no-repeat left;
 }
-td.lighter{
-	color: #666;
+
+.bx_posts_container{
+    padding: 0px;
+    border: 0;
 }
-div.bxpressIcons{
-	font-size: 11px;
-	color: #666;
-	padding: 4px;
-	margin-top: 10px;
+.bx_post{
+    padding: 1px;
+}
+.bx_post .bx_post_head{
+    padding: 3px;
+    font-size: 0.9em;
+    font-weight: normal;
+    text-align: right;
+}
+.bx_post_content{
+    overflow: hidden;
+    display: table;
+    width: 100%;
+    border-spacing: 1px;
+}
+.bx_row{
+    display: table-row;
+}
+.bx_post_content .bx_post_user{
+    display: table-cell;
+    font-size: 0.9em;
+    width: 150px;
+}
+.bx_post_content .bx_post_text{
+    display: table-cell;
+    padding: 0 10px;
 }
 dt, dd{
 	margin: 0;
 }
-.bbOptions{
-	padding:px;
+.bx_options{
+	padding: 4px;
 	text-align: right;
-	font-size:  px;
+	font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 10px;
 }
 .bbUserData{
 	width: 150px;
@@ -47,6 +72,18 @@ dl dd.bbOffline{
 	font-weight: bold;
 	color: #999;
 }
+
+div.bxpressIcons{
+	font-size: 11px;
+	color: #666;
+	padding: 4px;
+	margin-top: 10px;
+}
+.bxpressOptions{
+    font-size: 0.8em;
+    padding: 4px 0;
+}
+
 fieldset{
 	margin-top: 20px;
 }
@@ -94,4 +131,11 @@ div.bbPowered{
 .bbAnnBody{
 	padding: 10px;
 	background-color: #fff;
+}
+.bx_header_options{
+    overflow: hidden;
+    font-weight: normal;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+    padding: 0 0 5px 0;
 }

@@ -164,7 +164,7 @@ class bXTopic extends RMObject
 		$ret = array();
 		while ($row = $this->db->fetchArray($result)){
 			if ($object){
-				$attach = new BBPost();
+				$attach = new bXPost();
 				$attach->assignVars($row);
 				if ($id_as_key){
 					$ret[$row['id_post']] = $attach;

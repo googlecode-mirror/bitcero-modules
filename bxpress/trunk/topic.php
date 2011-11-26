@@ -111,7 +111,7 @@ if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMO
 }
 
 // Obtenemos los rangos para usar posteriormente
-//$ranks = getRanks();
+$ranks = bXFunctions::getRanks();
 
 // Obtenemos los mensajes
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_posts")." a, ".$db->prefix("bxpress_posts_text")." b WHERE 
@@ -133,7 +133,7 @@ if ($pactual>$tpages){
 
 if ($tpages > 1) {
     $nav = new RMPageNav($num, $limit, $pactual);
-    $nav->target_url('forum.php?id='.$topic->id().'&amp;page={PAGE_NUM}');
+    $nav->target_url('topic.php?id='.$topic->id().'&amp;pag={PAGE_NUM}');
     $tpl->assign('postsNavPage', $nav->render(false));
 }
 
@@ -169,10 +169,10 @@ while ($row = $db->fetchArray($result)){
 		$userData = array();
 		$userData['id'] = $bbUser->uid();
 		$userData['uname'] = $bbUser->uname();
-		$userData['rank'] = $ranks[$bbUser->getVar('rank')]['rank_title'];
-		$userData['rank_image'] = $ranks[$bbUser->getVar('rank')]['rank_image'];
+		$userData['rank'] = $ranks[$bbUser->getVar('rank')]['title'];
+		$userData['rank_image'] = $ranks[$bbUser->getVar('rank')]['image'];
 		$userData['registered'] = sprintf(__('Registered: %s','bxpress'), date($mc['dates'], $bbUser->getVar('user_regdate')));
-		$userData['avatar'] = $bbUser->getVar('user_avatar');
+    	$userData['avatar'] = RMEvents::get()->run_event("rmcommon.get.avatar", $bbUser->getVar('email'), 0);
 		$userData['posts'] = sprintf(__('Posts: %u','bxpress'), $bbUser->getVar('posts'));
 		if ($xoopsUser && ($moderator || $admin)) $userData['ip'] = sprintf(__('IP: %s','bxpress'), $post->ip());
 		$userData['online'] = $bbUser->isOnline();
@@ -183,7 +183,7 @@ while ($row = $db->fetchArray($result)){
 		$userData['rank'] = $xoopsConfig['anonymous'];
 		$userData['rank_image'] = '';
 		$userData['registered'] = '';
-		$userData['avatar'] = '';
+		$userData['avatar'] = RMEvents::get()->run_event("rmcommon.get.avatar", '', 0);;
 		$userData['posts'] = sprintf(__('Posts: %u','bxpress'), 0);
 		$userData['online'] = false;
 	}
@@ -195,9 +195,20 @@ while ($row = $db->fetchArray($result)){
 					'size'=>  RMUtilities::formatBytesSize($k->size()),'icon'=>$k->getIcon());
 	}
 	
-	$tpl->append('posts', array('id'=>$post->id(),'text'=>$post->text(),'edit'=>$post->editText(),'approved'=>$post->approved(),
-			'date'=>bXFunctions::formatDate($post->date()),'canedit'=>$canedit, 'candelete'=>$candelete,'canshow'=>$canshow,
-			'canreport'=>$report,'poster'=>$userData,'attachs'=>$attachs, 'attachscount'=>count($attachs)));
+	$tpl->append('posts', array(
+        'id'=>$post->id(),
+        'text'=>$post->text(),
+        'edit'=>$post->editText(),
+        'approved'=>$post->approved(),
+        'date'=>bXFunctions::formatDate($post->date()),
+        'canedit'=>$canedit,
+        'candelete'=>$candelete,
+        'canshow'=>$canshow,
+        'canreport'=>$report,
+        'poster'=>$userData,
+        'attachs'=>$attachs,
+        'attachscount'=>count($attachs)
+    ));
 }
 
 unset($userData, $bbUser, $users);
@@ -236,5 +247,7 @@ if ($xoopsUser){
 		$tpl->assign('lang_noapp',__('Unnaprove','bxpress'));
 	}
 }
+
+RMTemplate::get()->add_xoops_style('style.css', 'bxpress');
 
 include 'footer.php';
