@@ -160,7 +160,7 @@ class bXPost extends RMObject
 	        
 	        $this->havetext = true;
 	        $row = $this->db->fetchArray($result);
-	        $this->setVar('post_text', $row['post_text']);
+	        $this->setVar('post_text', TextCleaner::getInstance()->to_display($row['post_text']));
 	        $this->setVar('post_edit', $row['post_edit']);
 		}
 		return $this->getVar('post_text');

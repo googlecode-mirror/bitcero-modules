@@ -1,6 +1,6 @@
-<{include file="db:exmbb_header.html"}>
+<{include file="db:bxpress_header.html"}>
 
-<div id="exmbbOptions">
+<div id="bxpressOptions">
 	<a href="./"><{$forums_title}></a> &raquo;
 	<a href="forum.php?id=<{$forum.id}>"><{$forum.title}></a> &raquo;
 	<{$lang_moderating}>
@@ -10,7 +10,7 @@
 	<tr>
 		<td colspan="6" align="right"><{$lang_pages}></td>
 		<td align="left">
-		<{if $itemsNavPage==''}><strong>1</strong><{else}><{$itemsNavPage}><{/if}>
+		<{$itemsNavPage}>
 		</td>
 	</tr>
 	<tr>
@@ -60,24 +60,24 @@
 		</tr>
 	<{/foreach}>
 	<tr class="foot">
-		<td align="right"><img src="<{$xoops_url}>/images/root.gif" alt="" /></td>
+		<td align="right">&nbsp;</td>
 		<td colspan="6">
 			<strong>
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='move'; document.forms['frmTopics'].submit();"><{$lang_move}></a> | 
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='delete'; document.forms['frmTopics'].submit();"><{$lang_delete}></a> | 
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='open'; document.forms['frmTopics'].submit();"><{$lang_open}></a> | 
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='close'; document.forms['frmTopics'].submit();"><{$lang_close}></a> | 
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='sticky'; document.forms['frmTopics'].submit();"><{$lang_dosticky}></a> | 
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='unsticky'; document.forms['frmTopics'].submit();"><{$lang_dounsticky}></a> |
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='approved'; document.forms['frmTopics'].submit();"><{$lang_app}></a> |
-				<a href="javascript:;" onclick="document.forms['frmTopics'].op.value='noapproved'; document.forms['frmTopics'].submit();"><{$lang_noapp}></a>
+				<a href="#" onclick="document.forms['frmTopics'].op.value='move'; document.forms['frmTopics'].submit();"><{$lang_move}></a> | 
+				<a href="#" onclick="document.forms['frmTopics'].op.value='delete'; if(confirm('<{$lang_confirm}>')) document.forms['frmTopics'].submit();"><{$lang_delete}></a> | 
+				<a href="#" onclick="document.forms['frmTopics'].op.value='open'; document.forms['frmTopics'].submit();"><{$lang_open}></a> | 
+				<a href="#" onclick="document.forms['frmTopics'].op.value='close'; document.forms['frmTopics'].submit();"><{$lang_close}></a> | 
+				<a href="#" onclick="document.forms['frmTopics'].op.value='sticky'; document.forms['frmTopics'].submit();"><{$lang_dosticky}></a> | 
+				<a href="#" onclick="document.forms['frmTopics'].op.value='unsticky'; document.forms['frmTopics'].submit();"><{$lang_dounsticky}></a> |
+				<a href="#" onclick="document.forms['frmTopics'].op.value='approved'; document.forms['frmTopics'].submit();"><{$lang_app}></a> |
+				<a href="#" onclick="document.forms['frmTopics'].op.value='noapproved'; document.forms['frmTopics'].submit();"><{$lang_noapp}></a>
 			</strong>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="6" align="right"><{$lang_pages}></td>
 		<td align="left">
-		<{if $itemsNavPage==''}><strong>1</strong><{else}><{$itemsNavPage}><{/if}>
+		<{$itemsNavPage}>
 		</td>
 	</tr>
 </table>

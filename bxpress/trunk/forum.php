@@ -142,4 +142,3 @@ bXFunctions::forumList();
 bXFunctions::loadAnnouncements(1, $forum->id());
 
 include 'footer.php';
-?>

@@ -311,6 +311,20 @@ class bXFunctions
 			
 		echo $xoopsMailer->getErrors();
 		
-	
 	}
+    
+    public function getRanks(){
+        
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
+        $myts =& MyTextSanitizer::getInstance();
+        $sql = sprintf('SELECT rank_id, rank_title, rank_image FROM ' . $db->prefix('ranks') . ' WHERE rank_special = %u', 1);
+        $ret = array();
+        $result = $db->query($sql);
+        while ($myrow = $db->fetchArray($result)) {
+            $ret[$myrow['rank_id']] = array('title'=>$myrow['rank_title'],'image'=>$myrow['rank_image']);
+        }
+        return $ret;
+        
+    }
+    
 }
