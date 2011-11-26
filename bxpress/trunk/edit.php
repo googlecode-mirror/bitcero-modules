@@ -1,62 +1,45 @@
 <?php
-// $Id: edit.php 64 2008-04-04 17:44:35Z ginis $
+// $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 define('BB_LOCATION','posts');
 include '../../mainfile.php';
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
+$op = rmc_server_Var($_REQUEST, 'op', '');
+$id = rmc_server_Var($_REQUEST, 'id', 0);
 
-$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 if ($id<=0){
-	redirect_header('./', 2, _MS_EXMBB_NOMSGID);
+	redirect_header('./', 2, __('No post has been specified!','bxpress'));
 	die();
 }
 
-$post = new BBPost($id);
+$post = new bXPost($id);
 if ($post->isNew()){
-	redirect_header('./', 2, _MS_EXMBB_POSTNOEXISTS);
+	redirect_header('./', 2, __('Specified post does not exists!','bxpress'));
 	die();
 }
 
-$topic = new BBTopic($post->topic());
-$forum = new BBForum($topic->forum());
+$topic = new bXTopic($post->topic());
+$forum = new bXForum($topic->forum());
 
 // Verificamos si el usuario tiene permisos de edición en el foro
 if (!$xoopsUser || !$forum->isAllowed($xoopsUser->getGroups(), 'edit')){
-	redirect_header('topic.php?pid='.$id.'#p'.$id, 2, _MS_EXMBB_NOPERM);
+	redirect_header('topic.php?pid='.$id.'#p'.$id, 2, __('You don\'t have permission to edit this post!','bxpress'));
 	die();
 }
 
 // Verificamos si el usuario tiene permiso de edición para el post
 if ($xoopsUser->uid()!=$post->user() && (!$xoopsUser->isAdmin() && !$forum->isModerator($xoopsUser->uid()))){
-	redirect_header('topic.php?pid='.$id.'#p'.$id, 2, _MS_EXMBB_NOPERM);
+	redirect_header('topic.php?pid='.$id.'#p'.$id, 2, __('You don\'t have permission to edit this post!','bxpress'));
 	die();
 }
 
-$util =& RMUtils::getInstance();
 
 switch($op){
 	case 'post':
@@ -65,14 +48,14 @@ switch($op){
 			$$k = $v;
 		}
 		
-		if (!$util->validateToken()){
-			redirect_header('edit.php?id='.$id, 2, _MS_EXMBB_SESSINVALID);
+		if (!$xoopsSecurity->check()){
+			redirect_header('edit.php?id='.$id, 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
 		$myts =& MyTextSanitizer::getInstance();
 		
-		if (BBFunctions::getFirstId($topic->id())==$id){
+		if (bXFunctions::getFirstId($topic->id())==$id){
 			$topic->setDate(time());
 			$topic->setTitle($myts->addSlashes($subject));
 			if ($xoopsUser && isset($sticky) && $xoopsModuleConfig['sticky']){
@@ -84,26 +67,21 @@ switch($op){
 		
 		$post->setPid(0);
 		$post->setIP($_SERVER['REMOTE_ADDR']);
-		$post->setHTML(isset($dohtml) ? 1 : 0);
-		$post->setBBCode(isset($doxcode) ? 1 : 0);
-		$post->setSmiley(isset($dosmiley) ? 1 : 0);
-		$post->setBR(isset($dobr) ? 1 : 0);
-		$post->setImage(isset($doimg) ? 1 : 0);
 		$post->setIcon('');
 		$post->setSignature(isset($sig) ? 1 : 0);
 		if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'approve') || $xoopsUser->isAdmin() || $forum->isModerator()){
 			$post->setText($msg);
 		} else {
 			$post->setEditText($msg);
-			BBFunctions::notifyAdmin($forum->moderators(),$forum, $topic, $post,1);
+			bXFunctions::notifyAdmin($forum->moderators(),$forum, $topic, $post,1);
 		}
 		
 		if (!$post->save() || !$topic->save()){
-			redirect_header('edit.php?id='.$id, 2, _MS_EXMBB_ERRPOSTEDIT);
+			redirect_header('edit.php?id='.$id, 2, __('Changes could not be stored. Please try again!','bxpress'));
 			die();
 		}
 		
-		redirect_header('topic.php?pid='.$post->id().'#p'.$post->id(), 1, _MS_EXMBB_POSTOKEDIT);
+		redirect_header('topic.php?pid='.$post->id().'#p'.$post->id(), 1, __('Changes stored successfully!','bxpress'));
 			
 		break;
 	
@@ -113,24 +91,24 @@ switch($op){
 		* Eliminamos archivos siempre y cuando el usuario se al propietario
 		* del mensaje, sea administrador o moderador
 		*/
-		if (!$util->validateToken()){
-			redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_SESSINVALID);
+		if (!$xoopsSecurity->check()){
+			redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
-		$files = isset($_POST['files']) ? $_POST['files'] : array();
+		$files = rmc_server_var($_POST, 'files', array()); 
 		
 		if (empty($files)){
-			redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_ERRSELECTFILES);
+			redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('You have not selected any file to delete!','bxpress'));
 			die();
 		}
 		$errors = '';
 		foreach ($files as $k){
-			$file = new BBAttachment($k);
+			$file = new bXAttachment($k);
 			if (!$file->delete()) $errors .= $file->errors()."<br />";
 		}
 		
-		redirect_header('edit.php?id='.$post->id().'#attachments', 1, $errors != '' ? _MS_EXMBB_ERRHAPPEN."<br />".$errors : _MS_EXMBB_DELETEOK);
+		redirect_header('edit.php?id='.$post->id().'#attachments', 1, $errors != '' ? __('Errors ocurred during this operation!','bxpress')."<br />".$errors : __('Files deleted successfully!','bxpress'));
 		
 		break;
 	
