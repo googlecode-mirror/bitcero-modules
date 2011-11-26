@@ -599,9 +599,10 @@ class TextCleaner
 	 *
 	 * @param   string  $text
 	 * @param   bool    $dbr Disbale replace of breaklines when html is enabled
+     * @param bool Clean disabled tags?
 	 * @return  string
 	 **/
-	function to_display($text, $dbr = true){
+	function to_display($text, $dbr = true, $clean_tags = true){
 		
         $rmc_config = empty($params) ? RMFunctions::get()->configs() : $params;
 		
@@ -624,6 +625,7 @@ class TextCleaner
 		if ($rmc_config['dobr']) 
 			$text = $this->nl2Br($text);
 		
+        if($clean_tags) $text = $this->clean_disabled_tags($text);
 		$text = $this->make_clickable($text);
 		$text = $this->codeConv($text, $rmc_config['doxcode']);	// Ryuji_edit(2003-11-18)
 		$text = $this->double_br($text);
