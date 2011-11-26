@@ -137,10 +137,10 @@ div.gsImage h1{
     float: left;
     width: 48%;
     border: 0;
+    
 }
 #gs-the-image .prev a{
     background: url(../images/prev.png) no-repeat left;
-    display: none;
 }
 #gs-the-image .prev:hover a{
     display: block;
@@ -152,8 +152,8 @@ div.gsImage h1{
     border: 0;
 }
 #gs-the-image .next a{
-    display: none;
     background: url(../images/next.png) no-repeat right;
+    display: none;
 }
 #gs-the-image .next:hover a{
     display: block;
