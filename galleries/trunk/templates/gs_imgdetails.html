@@ -5,10 +5,10 @@
         <div id="gs-the-image" style="background-image: url(<{$image.file}>); width: <{$image.width}>px; height: <{$image.height}>px;" title="<{$image.title}>">
         <div>
             <{if !$is_first}>
-            <div class="prev"><a href="<{$prev.link}>#picture" title="<{$prev.title}>"><span><{$prev.title}></span></a></div>
+            <div class="prev" style="height: <{$image.height}>px;"><a href="<{$prev.link}>#picture" title="<{$prev.title}>" style="height: <{$image.height}>px;"><span><{$prev.title}></span></a></div>
             <{/if}>
             <{if !$is_last}>
-            <div class="next"><a href="<{$next.link}>#picture" title="<{$next.title}>"><span><{$next.title}></span></a></div>
+            <div class="next" style="height: <{$image.height}>px"><a href="<{$next.link}>#picture" title="<{$next.title}>" style="height: <{$image.height}>px"><span><{$next.title}></span></a></div>
             <{/if}>
         </div>
     </div>
