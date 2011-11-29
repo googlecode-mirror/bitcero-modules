@@ -176,6 +176,13 @@ function module_install_now(){
 	} else {
 		include_once str_replace($xoopsConfig['language'], 'english', $file);
 	}
+        
+        $file = XOOPS_ROOT_PATH.'/modules/system/language/'.$xoopsConfig['language'].'/admin/admin.php';
+	if (file_exists($file)){
+		include_once $file;
+	} else {
+		include_once str_replace($xoopsConfig['language'], 'english', $file);
+	}
 	
 	
 	include_once XOOPS_ROOT_PATH.'/modules/system/admin/modulesadmin/modulesadmin.php';
