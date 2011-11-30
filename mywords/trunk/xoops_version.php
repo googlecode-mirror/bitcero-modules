@@ -8,7 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-load_mod_locale('mywords');
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
+if(function_exists("load_mod_locale")) load_mod_locale('bxpress');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
