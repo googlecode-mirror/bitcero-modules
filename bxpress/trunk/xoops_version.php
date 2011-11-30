@@ -8,6 +8,14 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
+if(function_exists("load_mod_locale")) load_mod_locale('bxpress');
+
 $modversion['name'] = __('bXpress','bxpress');
 $modversion['description'] = __('A simple forums module for XOOPS and common utilities.','bxpress');
 $modversion['rmversion'] = array('number'=>2,'revision'=>0,'status'=>-2,'name'=>__('bXpress','bxpress'));
