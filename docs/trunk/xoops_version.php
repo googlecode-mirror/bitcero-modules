@@ -8,7 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-load_mod_locale('docs');
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
+if(function_exists("load_mod_locale")) load_mod_locale('docs');
 
 $modversion['name'] = __('RapidDocs','docs');
 $modversion['description'] = __('Create documentation in Xoops, quicky and an advanced way.','docs');
