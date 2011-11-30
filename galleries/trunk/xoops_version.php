@@ -8,7 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-load_mod_locale('galleries');
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
+if(function_exists("load_mod_locale")) load_mod_locale('galleries');
 
 $modversion['name'] = "MyGalleries 3.0";
 $modversion['version'] = 3.0;
