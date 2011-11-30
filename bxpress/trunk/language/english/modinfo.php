@@ -18,8 +18,8 @@ define('_MI_BX_BASEPATH', __('Base path for URL rewriting','bxpress'));
 define('_MI_RMF_CNFSTOREFILES','Directory for the file storage');
 define('_MI_RMF_CNFSTOREFILES_DESC','In this folder will be stored the posts attachments and the categories images');
 
-define('_MI_RMF_CNFMAXFILESIZE','Maximum allowed size for the sent files (en KB)');
-define('_MI_RMF_CNFMAXFILESIZE_DESC','The files sent in the forums will be limited to this size, bigger file size will be ignored.');
+define('_MI_BX_CNFMAXFILESIZE','Maximum allowed size for the sent files (en KB)');
+define('_MI_BX_CNFMAXFILESIZE_DESC','The files sent in the forums will be limited to this size, bigger file size will be ignored.');
 
 define('_MI_BX_SHOWCATS','Show Categories in the Home Page');
 define('_MI_BX_SHOWCATS_DESC','If this option is enable the forums will be ordered by categories in the Home Page.');
