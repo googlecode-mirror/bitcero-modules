@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Utilities 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-09 21:59-0600\n"
-"PO-Revision-Date: 2011-08-15 02:50-0600\n"
+"POT-Creation-Date: 2011-11-29 11:51-0600\n"
+"PO-Revision-Date: 2011-11-29 11:52-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,1811 +14,2342 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: MEXICO\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\xoops24\\modules\\rmcommon\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\cu\\modules\\rmcommon\n"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:104
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:223
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:116
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:24
+msgid "Blocks"
+msgstr "Bloques"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:144
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:180
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:210
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:28
+msgid "You are not allowed to do this action!"
+msgstr "¡No estas autorizado para realizar esta acción!"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:151
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:187
+#, fuzzy
+msgid "An error was found while trying to do this action"
+msgstr "¡Ocurrieron errores mientras se actualizaban los comentarios!"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:166
+#, fuzzy
+msgid "Positions saved successfully!"
+msgstr "¡Plugin instalado exitosamente!"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:168
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:197
+#, fuzzy
+msgid "There was an error while trying this action: "
+msgstr "Hubo errores mientras se guardaba esta categoría."
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:195
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:232
+#, fuzzy
+msgid "Database updated successfully"
+msgstr "¡Base de datos actualizada exitosamente!"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:217
+#, fuzzy
+msgid "You must select at least one widget!"
+msgstr "¡Debes especificar el id de la categoría para editar!"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks.php:230
+msgid "There was some errors:"
+msgstr "Ocurrieron algunos errores:"
+
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:105
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:226
 msgid "Unknow"
 msgstr "Desconocido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:112
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:114
 #, php-format
 msgid "Posted on %s"
 msgstr "Publicado en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:128
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:131
 msgid "Do you really wish to delete this comment?"
 msgstr "¿Realmente deseas eliminar este comentario?"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:143
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:168
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:146
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:168
 msgid "Invalid operation"
 msgstr "Operación no válida"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:155
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:194
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:305
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:158
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:197
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:308
 msgid "Sorry, session token expired!"
 msgstr "Lo siento, ¡el identificador de sesión ha expirado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:160
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:199
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:163
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:202
 msgid "Unrecognized data!"
 msgstr "¡Datos no identificables!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:171
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:174
 msgid "Comments updated successfully!"
 msgstr "¡Comentarios actualizados exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:176
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:179
 msgid "Errors occurrs while trying to update comments!"
 msgstr "¡Ocurrieron errores mientras se actualizaban los comentarios!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:229
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:232
 msgid "Comments deleted successfully!"
 msgstr "¡Comentarios eliminados exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:243
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:246
 msgid "Sorry, comment id is not valid"
 msgstr "!Lo siento,el id del cometario no es válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:249
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:252
 msgid "Sorry, comment does not found"
 msgstr "¡Lo sentimos, comentario no encontrado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:261
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:207
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:264
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:207
 msgid "Edit Comment"
 msgstr "Editar Comentario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:262
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:208
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:265
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:208
 msgid "In reply to"
 msgstr "En respuesta a"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:263
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:209
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:266
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:209
 msgid "Posted date"
 msgstr "Fecha de envio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:264
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:210
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:267
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:210
 msgid "Module"
 msgstr "Módulo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:265
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:268
 msgid "IP"
 msgstr "IP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:268
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:214
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:271
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:214
 msgid "Poster"
 msgstr "Envió"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:271
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:219
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:274
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:219
 msgid "Status"
 msgstr "Estado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:272
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:220
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:275
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:220
 msgid "Approved"
 msgstr "Aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:273
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:221
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:276
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:221
 msgid "Unapproved"
 msgstr "No aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:276
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:225
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:279
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:225
 msgid "Content"
 msgstr "Contenido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:283
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:228
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:286
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:228
 msgid "Update Comment"
 msgstr "Comentario Actualizado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:284
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:469
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:229
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:287
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:469
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:229
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:310
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:313
 msgid "Comment ID not specified!"
 msgstr "El ID del comentario no especificado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:316
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:186
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:273
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:319
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:186
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:273
 msgid "Specified comment does not exist!"
 msgstr "¡Lo sentimos, comentario no encontrado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:351
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:315
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:354
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:315
 msgid "Comment updated successfully!"
 msgstr "¡Comentario actualizado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/comments.php:353
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:317
+#: C:\wamp\www\cu\modules\rmcommon/comments.php:356
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:317
 msgid "Errros ocurrs while trying to update comment!"
 msgstr "¡Ocurrieron errores mientras se actualizaba el comentario!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:31
+#: C:\wamp\www\cu\modules\rmcommon/images.php:31
 msgid "There are not categories yet! Please create one in order to add images."
 msgstr "¡Todavia no hay categorias! Por favor crea una para agregar imágenes!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:128
+#: C:\wamp\www\cu\modules\rmcommon/images.php:128
 #, php-format
 msgid "Category %s is closed. Please, select another category."
 msgstr "La categoria %s esta cerrada. Por favor, selecciona otra categoría."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:143
+#: C:\wamp\www\cu\modules\rmcommon/images.php:143
 msgid "All Images (*.jpg, *.png, *.gif)"
 msgstr "Todas las imágenes (*.jpg, *.gif)"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:145
+#: C:\wamp\www\cu\modules\rmcommon/images.php:145
 msgid "Browse Images..."
 msgstr "Explorar Imágenes..."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:154
+#: C:\wamp\www\cu\modules\rmcommon/images.php:154
 msgid "Uploaded successfully!"
 msgstr "¡Cargadas exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:259
+#: C:\wamp\www\cu\modules\rmcommon/images.php:259
 msgid "You must specify a category id to edit!"
 msgstr "¡Debes especificar el id de la categoría para editar!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:266
+#: C:\wamp\www\cu\modules\rmcommon/images.php:266
 msgid "The specified category does not exist!"
 msgstr "La categoría especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:314
+#: C:\wamp\www\cu\modules\rmcommon/images.php:314
 msgid "Specify a valid category id"
 msgstr "Específica un id de categoría válido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:320
+#: C:\wamp\www\cu\modules\rmcommon/images.php:320
 msgid "Specified category does not exists!"
 msgstr "¡La categoría especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:329
+#: C:\wamp\www\cu\modules\rmcommon/images.php:329
 msgid "Please specify a category name"
 msgstr "Por favor específica un nombre para la caegoria"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:345
+#: C:\wamp\www\cu\modules\rmcommon/images.php:345
 msgid "You must create one size for this category at least!"
 msgstr "¡Debes crearpor lo menos un tamaño de imágen para esta categoria!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:352
+#: C:\wamp\www\cu\modules\rmcommon/images.php:352
 msgid "There is already a category with the same name!"
 msgstr "¡Ya hay una categoría con el mismom nombre!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:364
+#: C:\wamp\www\cu\modules\rmcommon/images.php:364
 msgid "Category updated successfully!"
 msgstr "¡Categoría cargada exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:366
+#: C:\wamp\www\cu\modules\rmcommon/images.php:366
 msgid "There were some erros while trying to save this category."
 msgstr "Hubo errores mientras se guardaba esta categoría."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:382
+#: C:\wamp\www\cu\modules\rmcommon/images.php:382
 msgid "Specify one category at least to change status!"
 msgstr "¡Especifica por lo menos una categoría para cambiar el estado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:394
+#: C:\wamp\www\cu\modules\rmcommon/images.php:394
 msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:397
+#: C:\wamp\www\cu\modules\rmcommon/images.php:397
 msgid "There were some erros while updating database:"
 msgstr "Hubo errores mientras se actualizaba la base de datos:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:422
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:433
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:437
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:441
+#: C:\wamp\www\cu\modules\rmcommon/images.php:422
+#: C:\wamp\www\cu\modules\rmcommon/images.php:433
+#: C:\wamp\www\cu\modules\rmcommon/images.php:437
+#: C:\wamp\www\cu\modules\rmcommon/images.php:441
 msgid "Unauthorized!"
 msgstr "¡No autorizado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:426
+#: C:\wamp\www\cu\modules\rmcommon/images.php:426
 msgid "Invalid image!"
 msgstr "¡Imágen no valida!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:446
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:514
+#: C:\wamp\www\cu\modules\rmcommon/images.php:446
+#: C:\wamp\www\cu\modules\rmcommon/images.php:514
 msgid "Image not found!"
 msgstr "¡Imágen no encontrada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:452
+#: C:\wamp\www\cu\modules\rmcommon/images.php:452
 msgid "Unauthorized"
 msgstr "¡No autorizado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:490
+#: C:\wamp\www\cu\modules\rmcommon/images.php:490
 #, php-format
 msgid "%s done!"
 msgstr "¡%s hecho!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:508
+#: C:\wamp\www\cu\modules\rmcommon/images.php:508
 msgid "Invalid image ID"
 msgstr "ID de imágen no válido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:579
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:728
+#: C:\wamp\www\cu\modules\rmcommon/images.php:579
+#: C:\wamp\www\cu\modules\rmcommon/images.php:728
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:32
 msgid "Operation not allowed!"
 msgstr "¡Operación no permitida!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:584
+#: C:\wamp\www\cu\modules\rmcommon/images.php:584
 msgid "Image ID not provided!"
 msgstr "¡El Id de la imágen no se proporcionó!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:589
+#: C:\wamp\www\cu\modules\rmcommon/images.php:589
 msgid "You must  provide a title for this image"
 msgstr "Debes proporcionar un título para esta imágen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:595
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:686
+#: C:\wamp\www\cu\modules\rmcommon/images.php:595
+#: C:\wamp\www\cu\modules\rmcommon/images.php:686
 msgid "Image not exists!"
 msgstr "¡No existe la Imágen!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:601
+#: C:\wamp\www\cu\modules\rmcommon/images.php:601
 msgid "Category not exist!"
 msgstr "¡No existe la categoría!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:614
+#: C:\wamp\www\cu\modules\rmcommon/images.php:614
 msgid "the image could not be updated!"
 msgstr "¡No se pudo actualizar la imágen!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:620
+#: C:\wamp\www\cu\modules\rmcommon/images.php:620
 msgid "Image updated succesfully!"
 msgstr "¡Imágen actualizada exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:662
+#: C:\wamp\www\cu\modules\rmcommon/images.php:662
 msgid "Image updated successfully!"
 msgstr "¡Imágen actualizada exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:676
+#: C:\wamp\www\cu\modules\rmcommon/images.php:676
 msgid "Please, speciy an image at least!"
 msgstr "¡Por favo,r específica por lo menos una imágen!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:712
+#: C:\wamp\www\cu\modules\rmcommon/images.php:712
 msgid "Errors ocurred during images deletion!"
 msgstr "¡Ocurrieon errores mientras se eliminaba la imágen!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:714
+#: C:\wamp\www\cu\modules\rmcommon/images.php:714
 msgid "Images deleted successfully!"
 msgstr "¡Imágenes eliminadas exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:733
+#: C:\wamp\www\cu\modules\rmcommon/images.php:733
 msgid "Category ID not provided"
 msgstr "¡ID de la categoría no proporcionado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:739
+#: C:\wamp\www\cu\modules\rmcommon/images.php:739
 msgid "Category not found"
 msgstr "Categoría no encontrada"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:772
+#: C:\wamp\www\cu\modules\rmcommon/images.php:772
 msgid "Category deleted successfully!"
 msgstr "¡Categoría eliminada exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/images.php:774
+#: C:\wamp\www\cu\modules\rmcommon/images.php:774
 msgid "Errors ocurred while deleting the category"
 msgstr "Ocurrieron errores mientras se eliminaba la categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/index.php:99
+#: C:\wamp\www\cu\modules\rmcommon/index.php:99
 msgid "Theme changed successfully!"
 msgstr "Tema cambiado exitosamente"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/index.php:102
+#: C:\wamp\www\cu\modules\rmcommon/index.php:102
 msgid "Theme could not be changed!"
 msgstr "¡No se pudo cambiar el tema!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/index.php:107
+#: C:\wamp\www\cu\modules\rmcommon/index.php:107
 msgid "Specified theme does not exist!"
 msgstr "¡El tema especificado no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/loader.php:148
+#: C:\wamp\www\cu\modules\rmcommon/loader.php:159
 msgid "Sorry, Red Mexico Common Utilities has not been installed yet!"
 msgstr "Lo sentimos, Common utilities de Red Mexico no ha sido instalado todavía!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:14
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:14
 msgid "Dashboard"
 msgstr "Panel de Control"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:19
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:19
 msgid "Modules"
 msgstr "Modulos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:24
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:37
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:29
+#, fuzzy
+msgid "Blocks list"
+msgstr "Bloques a insertar"
+
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:34
+#, fuzzy
+msgid "Edit Positions"
+msgstr "Opciones de Akismet"
+
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:40
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:53
 msgid "Images"
 msgstr "Imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:29
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:45
 msgid "Categories"
 msgstr "Categorías"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:33
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:49
 msgid "New category"
 msgstr "Nueva categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:41
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:57
 msgid "Add images"
 msgstr "Agregar imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:47
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:63
+#: C:\wamp\www\cu\modules\rmcommon/xoops_version.php:292
 msgid "Comments"
 msgstr "Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:52
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:68
 msgid "Plugins"
 msgstr "Plugins"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/menu.php:57
+#: C:\wamp\www\cu\modules\rmcommon/menu.php:73
 msgid "Themes"
 msgstr "Temas"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:108
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:108
 msgid "Modules Management"
 msgstr "Manejador de Módulos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:126
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:126
 msgid "Specified module is not valid!"
 msgstr "¡El módulo especificado no es válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:133
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:169
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:133
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:169
 #, php-format
 msgid "%s is already installed!"
 msgstr "¡%s ya esta instalada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:139
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:139
 msgid "Sepecified module is not a valid Xoops Module!"
 msgstr "¡El módulo especificado no es un Módulo Xoops válido!    "
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:162
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:209
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:642
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:688
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:162
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:216
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:651
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:697
 msgid "Sorry, this operation could not be completed!"
 msgstr "¡Lo sentimos, esta operación no pudo ser completada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:194
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:201
 #, php-format
 msgid "Installation log for %s"
 msgstr "Registro de instalación para %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:216
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:650
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:695
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:223
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:659
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:704
 #, php-format
 msgid "Module %s is not installed yet!"
 msgstr "¡El módulo %s aún no esta instalado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:241
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:248
 #, php-format
 msgid "Uninstall log for %s"
 msgstr "Registro de desinstalación para %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:673
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:276
+#, fuzzy, php-format
+msgid "Could not update %s"
+msgstr "¡No se pudo actualizar la imágen!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:280
+#, fuzzy, php-format
+msgid "Updating module %s"
+msgstr "Registro actualizado para %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:295
+msgid "Updating templates..."
+msgstr "Actualizando plantillas..."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:315
+#, fuzzy, php-format
+msgid "Template %s could not be inserted!"
+msgstr "¡El módulo %s no pudo ser deshabilitado!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:318
+#, fuzzy, php-format
+msgid "Template %s inserted to the database."
+msgstr "¡El archivo no pudo ser insertado en la base de datos!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:321
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:390
+#, php-format
+msgid "ERROR: Could not recompile template %s"
+msgstr "ERROR: No se pudo recompilar la plnatilla %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:323
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:392
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:451
+#, php-format
+msgid "Template %s recompiled"
+msgstr "Plantilla %s recompilada"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:329
+#, php-format
+msgid "ERROR: Could not delete old template %s. Aborting update of this file."
+msgstr "ERROR: No se pudo eliminar la plantilla %s. Abortando la actualización de este archivo."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:334
+msgid "Rebuilding blocks..."
+msgstr "Reconstruyendo bloques..."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:365
+#, php-format
+msgid "ERROR: Could not update %s"
+msgstr "ERROR: No se pudo actualizar %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:367
+#, php-format
+msgid "Block %s updated."
+msgstr "Bloque %s actualizado"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:367
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:425
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:427
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:456
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:468
+#, php-format
+msgid "Block ID: %s"
+msgstr "ID de bloque: %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:385
+#, php-format
+msgid "ERROR: Could not update %s template."
+msgstr "ERROR: No se pudo actualizar la plantilla %s."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:387
+#, php-format
+msgid "Template %s updated."
+msgstr "Plantilla %s actualizada."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:407
+#, php-format
+msgid "ERROR: Could not create %s"
+msgstr "ERROR: No se pudo crear %s."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:425
+msgid "ERROR: Could not add block access right"
+msgstr "ERROR: No se agregaron los permisos de acceso al bloque"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:425
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:427
+#, fuzzy, php-format
+msgid "Group ID: %s"
+msgstr "Grupos"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:427
+msgid "Added block access right"
+msgstr "Agregados los permisos de acceso al bloque"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:443
+#, fuzzy, php-format
+msgid "ERROR: Could not insert template %s to the database."
+msgstr "¡El archivo no pudo ser insertado en la base de datos!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:446
+#, php-format
+msgid "Template %s added to the database"
+msgstr "Plantilla %s agregada a la base de datos"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:449
+#, php-format
+msgid "ERROR: Template %s recompile failed"
+msgstr "ERROR: Fallo la recompilación de la plantilla %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:456
+#, php-format
+msgid "Block %s created"
+msgstr "Bloque %s creado"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:468
+#, php-format
+msgid "ERROR: Could not delete block %s"
+msgstr "ERROR: No se pudo eliminar el bloque %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:477
+msgid "ERROR: Could not remove deprecated block template."
+msgstr "ERROR: No se pudo eliminar la plantilla obsoleta del bloque."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:479
+#, php-format
+msgid "Block template %s deprecated"
+msgstr "Plantilla %s del bloque obsoleta"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:498
+msgid "Deleting module config options..."
+msgstr "Eliminando opciones de configuración del módulo..."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:501
+msgid "ERROR: Could not delete config data from the database"
+msgstr "ERROR: No se pudo eliminar los datos de configuración de la base de datos"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:501
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:508
+#, php-format
+msgid "Config ID: %s"
+msgstr "ID de opción: %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:508
+msgid "Config data deleted from the database."
+msgstr "Datos de configuración eliminados de la base de datos."
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:598
+msgid "Config option added"
+msgstr "Opción de configuración agregada"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:598
+msgid "Name:"
+msgstr "Nombre:"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:598
+msgid "Value:"
+msgstr "Valor:"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:605
+#, php-format
+msgid "Config %s added to the database"
+msgstr "Opción %s agregada a la base de datos"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:607
+#, fuzzy, php-format
+msgid "ERROR: Could not insert config %s to the database."
+msgstr "¡El archivo no pudo ser insertado en la base de datos!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:622
+#, php-format
+msgid "Failed to execute %s"
+msgstr "Falló al ejecutar %s"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:624
+#, fuzzy, php-format
+msgid "%s executed successfully."
+msgstr "¡Imágenes eliminadas exitosamente!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:632
+#, fuzzy, php-format
+msgid "Module %s updated successfully!"
+msgstr "¡Comentarios actualizados exitosamente!"
+
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:682
 #, php-format
 msgid "Update log for %s"
 msgstr "Registro actualizado para %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:704
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:713
 #, php-format
 msgid "Module %s could not be disabled!"
 msgstr "¡El módulo %s no pudo ser deshabilitado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:710
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:719
 #, php-format
 msgid "Module %s successfully disabled!"
 msgstr "¡El Módulo %s fue deshabilitado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:721
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:730
 msgid "Sorry, you don't have access to this page"
 msgstr "Lo sentimos, no tienes acceso a esta página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:722
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:731
 msgid "Click here to refresh"
 msgstr "Haz click aqui para actualizar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:781
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:790
 msgid "Install"
 msgstr "Instalar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:782
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:791
 msgid "More info"
 msgstr "Más información"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:785
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:794
 msgid "Version:"
 msgstr "Versión:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:791
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:800
 msgid "Author:"
 msgstr "Autor:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:815
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:824
 msgid "You can not rename modules. Session token not valid!"
 msgstr "No puedes renombrar modulos. Identificador de sesión no válido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:829
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:838
 msgid "Data provided is not valid"
 msgstr "Los datos proporcionados no son validos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:842
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:851
 msgid "Module name could not be changed!"
 msgstr "¡El nombre del módulo no se puede cambiar!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/modules.php:852
+#: C:\wamp\www\cu\modules\rmcommon/modules.php:861
 msgid "Module name changed successfully!"
 msgstr "¡Nombre del módulo cambiado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:92
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:128
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:160
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:191
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:224
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:488
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:92
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:128
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:160
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:191
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:224
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:488
 msgid "You must specify a existing plugin"
 msgstr "Debes especificar un plugin existente"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:99
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:99
 msgid "Specified plugin is installed already!"
 msgstr "¡El plugin especificado ya esta instalado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:104
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:104
 #, php-format
 msgid "%s is not a valid plugin!"
 msgstr "¡%s no es plugin válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:109
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:109
 msgid "Plugin could not be installed, please try again."
 msgstr "El plugin no pudo instalarse, por favor intentalo otra vez."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:114
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:114
 msgid "The plugin has been inserted on database, but erros ocurred on this process."
 msgstr "El plugin ha sido insertado en la base de datos, pero ocurrieron errores en el proceso."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:120
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:120
 msgid "Plugin installed succesfully!"
 msgstr "¡Plugin instalado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:135
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:167
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:198
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:231
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:495
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:135
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:167
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:198
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:231
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:495
 msgid "Specified plugin is not installed yet!"
 msgstr "¡El pluginespecificado aún no esta instalado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:141
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:141
 msgid "Plugin could not be uninstalled, please try again."
 msgstr "El plugin no pudo ser instalado, por favor intentalo otra vez."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:146
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:146
 msgid "The plugin has been deleted from database, but erros ocurred on this process."
 msgstr "El plugin ha sido eliminado de la base de datos, pero ocurrieron errores en el proceso."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:152
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:152
 msgid "Plugin uninstalled succesfully!"
 msgstr "¡Plugin desinstalado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:172
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:205
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:172
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:205
 msgid "Plugin could not be updated, please try again."
 msgstr "El plugin no pudo ser actualizado, por favor intentalo otra vez."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:177
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:210
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:177
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:210
 msgid "The database has been updated, but erros ocurred on this process."
 msgstr "La base de datos ha sido actualizada, pero ocurrieron errores en el proceso."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:183
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:183
 msgid "Plugin updated succesfully!"
 msgstr "¡Plugin actualizado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:216
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:216
 msgid "Plugin status changed succesfully!"
 msgstr "¡Estado del plugin cambiado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:236
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:500
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:236
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:500
 msgid "Specified plugin is not active!"
 msgstr "¡El plugin especificado no esta activo!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:243
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:243
 #, php-format
 msgid "%s configuration"
 msgstr "Configuración de %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:359
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:365
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:371
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:377
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:359
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:365
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:371
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:377
 msgid "None"
 msgstr "Ninguno"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:451
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:451
 msgid "Visual Editor"
 msgstr "Editor Visual"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:452
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:452
 msgid "EXMCode Editor"
 msgstr "Editor de código EXM"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:453
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:453
 msgid "Simple Editor"
 msgstr "Editor Sencillo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:454
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:454
 msgid "HTML Editor"
 msgstr "Editor HTML"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:468
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:468
 msgid "Save Settings"
 msgstr "Guardar Configuraciones"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:505
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:505
 msgid "Session token expired!"
 msgstr "¡El identificador de sesión expiró!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/plugins.php:521
+#: C:\wamp\www\cu\modules\rmcommon/plugins.php:521
 msgid "Settings updated!"
 msgstr "¡Configuraciones actualizadas!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:21
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:21
 msgid "Sorry, comments has been disabled by administrator"
 msgstr "Lo sentimos, los comentarios han sido deshabilitados por el administrador"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:28
-msgid "You are not allowed to do this action!"
-msgstr "¡No estas autorizado para realizar esta acción!"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:57
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:57
 msgid "You must provide your name and email in order to can post comments"
 msgstr "Debes proporcionar tu nombre y correo para enviar comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:62
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:62
 msgid "Sorry, you are not allowed to post comments!"
 msgstr "¡Lo sentimos,no estas autorizado para enviar comentarios!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:69
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:69
 msgid "There are not params to save!"
 msgstr "¡No hay parámetros por salvar!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:76
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:76
 msgid "Object type missing!"
 msgstr "¡Faltó el tipo de objeto!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:83
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:83
 msgid "Object name missing!"
 msgstr "¡Falto el nombre del objeto!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:90
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:90
 msgid "You must write a message!"
 msgstr "¡Debes escribir un mensage!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:143
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:143
 msgid "Comment could not be posted!"
 msgstr "¡El comentario no pudo ser enviado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:163
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:163
 msgid "Comment posted successfully!"
 msgstr "¡Comentario enviado exitosamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:174
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:193
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:257
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:262
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:174
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:193
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:257
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:262
 msgid "You are not allowed to edit this comment!"
 msgstr "¡No estas autorizado para editar este comentario!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:180
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:267
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:180
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:267
 msgid "Please specify a comment"
 msgstr "Por favor especifica un comentario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:251
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:251
 msgid "Invalid Operation"
 msgstr "Operacion invalida"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/post_comment.php:284
+#: C:\wamp\www\cu\modules\rmcommon/post_comment.php:284
 msgid "You must provide a text for comment!"
 msgstr "¡Debes proporcionar un texto para comentar!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/rss.php:18
+#: C:\wamp\www\cu\modules\rmcommon/rss.php:18
 msgid "RSS Center"
 msgstr "Centro de RSS"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/rss.php:38
+#: C:\wamp\www\cu\modules\rmcommon/rss.php:38
 msgid "Choose an option to see its feed"
 msgstr "Escoge una opción para ver su menú"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/rss.php:43
+#: C:\wamp\www\cu\modules\rmcommon/rss.php:43
 msgid "This module does not support rss feeds"
 msgstr "Este módulo no soporta menús rss"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/ajax/users.php:20
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/ajax/users.php:40
+#: C:\wamp\www\cu\modules\rmcommon/xoops_version.php:293
+msgid "Show comments from internal comments system"
+msgstr "Mostrar comentarios del sistema interno de comentarios"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:49
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:140
+#: C:\wamp\www\cu\modules\rmcommon/ajax/users.php:20
+#: C:\wamp\www\cu\modules\rmcommon/ajax/users.php:40
 msgid "Sorry, you are not allowed to view this page"
 msgstr "Lo sentimos, no estas autorizado para ver esta página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/ajax/users.php:94
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:56
+#, fuzzy
+msgid "The block specified seems to be invalid. Please try again."
+msgstr "El plugin no pudo instalarse, por favor intentalo otra vez."
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:64
+#, fuzzy
+msgid "The specified module does not exists!"
+msgstr "La categoría especificada no existe!"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:79
+msgid "The specified block does not exists, please verify your selection."
+msgstr "El bloque especificado no existe, por favor verifica tu selección."
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:111
+#, fuzzy, php-format
+msgid "Block could not be created due to: %s. Please try again!"
+msgstr "El plugin no pudo ser actualizado, por favor intentalo otra vez."
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:126
+msgid "Block added successfully! Please configure it."
+msgstr "¡Bloque agregado satisfactoriamente! Por favor confgiurelo."
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:148
+msgid "The block that you specified seems to be invalid. Please try again"
+msgstr "El bloque que has especificado no parece válido. Por favor intentalo de nuevo."
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:153
+msgid "The block that you specified does not exists!. Please try again"
+msgstr "¡El bloque que especificaste no existe! Por favor inténtalo de nuevo"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:187
+#, fuzzy
+msgid "Session token expired. Please try again."
+msgstr "¡El identificador de sesión expiró!"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:192
+#, fuzzy
+msgid "You must provide a block ID!"
+msgstr "¡Debes proporcionar un texto para comentar!"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:198
+#, fuzzy
+msgid "Specified block does not exists!"
+msgstr "¡La categoría especificada no existe!"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:216
+#, fuzzy
+msgid "Block updated successfully!"
+msgstr "¡Comentario actualizado exitosamente!"
+
+#: C:\wamp\www\cu\modules\rmcommon/ajax/users.php:94
 msgid "All"
 msgstr "Todos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/api/editors/tinymce/plugins/exmsystem/editor_plugin.php:71
+#: C:\wamp\www\cu\modules\rmcommon/api/editors/tinymce/plugins/exmsystem/editor_plugin.php:71
 msgid "Insert Image"
 msgstr "Insertar Imágen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/flashuploader.php:32
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:126
+#, fuzzy
+msgid "Number of Comments:"
+msgstr "Enviar Comentario"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:128
+#, fuzzy
+msgid "Show module name:"
+msgstr "Mostar la sección de módulos"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:129
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:132
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:135
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:138
+msgid "Yes"
+msgstr "Si"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:130
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:133
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:136
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:139
+msgid "No"
+msgstr "No"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:131
+#, fuzzy
+msgid "Show item name:"
+msgstr "Nombre del tamaño"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:134
+#, fuzzy
+msgid "Show user name:"
+msgstr "Usuario SMTP"
+
+#: C:\wamp\www\cu\modules\rmcommon/blocks/comments.php:137
+#, fuzzy
+msgid "Show date:"
+msgstr "Mostrar:"
+
+#: C:\wamp\www\cu\modules\rmcommon/class/block.php:354
+#, fuzzy
+msgid "The configuration file for this widget does not exists!"
+msgstr "¡El tema especificado no existe!"
+
+#: C:\wamp\www\cu\modules\rmcommon/class/block.php:361
+msgid "There was a problem trying to show the configuration options for this widget!"
+msgstr "¡Hubo un problema al intentar mostrar las opciones de configuración del bloque!"
+
+#: C:\wamp\www\cu\modules\rmcommon/class/flashuploader.php:32
 msgid "All Files"
 msgstr "Todos los archivos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/flashuploader.php:35
+#: C:\wamp\www\cu\modules\rmcommon/class/flashuploader.php:35
 msgid "Select Files"
 msgstr "Seleccionar archivos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/form.class.php:441
-msgid "Required fields marked with \"*\""
-msgstr "Campos requeridos marcados con \"*\""
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:256
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:257
 msgid "Edit"
 msgstr "Editar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:297
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:298
 msgid "Name"
 msgstr "Nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:299
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:300
 msgid "Email address"
 msgstr "Dirección de correo electrónico"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:301
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:302
 msgid "Web site"
 msgstr "Sitio Web"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:302
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:303
 msgid "Your comment"
 msgstr "Tu comentario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:303
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:304
 msgid "Submit Comment"
 msgstr "Enviar Comentario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:304
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:305
 msgid "Submit a comment"
 msgstr "Enviar un comentario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:324
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:325
 msgid "Please specify your name"
 msgstr "Por favor especifica tu nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:325
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:326
 msgid "Please specify a valid email"
 msgstr "Por favor especifica un correo válido"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:326
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:327
 msgid "Please write a message"
 msgstr "Por favor escribe un mensage"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/functions.php:327
+#: C:\wamp\www\cu\modules\rmcommon/class/functions.php:328
 msgid "Please enter a valid URL"
 msgstr "Por favor introduce una URL válida"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/pagenav.php:109
+#: C:\wamp\www\cu\modules\rmcommon/class/pagenav.php:118
 #, php-format
 msgid "Showing <strong>%u</strong> to <strong>%u</strong> of <strong>%u</strong>."
 msgstr "Mostrar <strong>%u</strong> to <strong>%u</strong> of <strong>%u</strong>."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:47
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:47
 msgid "You must provide a valid time and format value to use RMTimeFormatter::format() method"
 msgstr "Debes proporcionar una fecha y un formato válidos para usar el método RMTimeFormatter::format()"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:93
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:93
 msgid "Sunday"
 msgstr "Domingo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:94
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:94
 msgid "Monday"
 msgstr "Lunes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:95
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:95
 msgid "Tuesday"
 msgstr "Martes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:96
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:96
 msgid "Wednesday"
 msgstr "Miércoles"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:97
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:97
 msgid "Thursday"
 msgstr "Jueves"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:98
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:98
 msgid "Friday"
 msgstr "Viernes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:99
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:99
 msgid "Saturday"
 msgstr "Sábado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:111
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:111
 msgid "January"
 msgstr "Enero"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:112
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:112
 msgid "February"
 msgstr "Febrero"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:113
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:113
 msgid "March"
 msgstr "Marzo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:114
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:114
 msgid "April"
 msgstr "Abril"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:115
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:115
 msgid "May"
 msgstr "Mayo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:116
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:116
 msgid "June"
 msgstr "Junio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:117
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:117
 msgid "July"
 msgstr "Julio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:118
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:118
 msgid "August"
 msgstr "Agosto"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:119
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:119
 msgid "September"
 msgstr "Septiembre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:120
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:120
 msgid "October"
 msgstr "Octubre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:121
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:121
 msgid "November"
 msgstr "Noviembre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/timeformatter.php:122
+#: C:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:122
 msgid "December"
 msgstr "Diciembre"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/utilities.php:271
+#: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:271
 #, php-format
 msgid "%s bytes"
 msgstr "%s bytes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/utilities.php:273
+#: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:273
 #, php-format
 msgid "%s Kb"
 msgstr "%s Kb"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/utilities.php:275
+#: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:275
 #, php-format
 msgid "%s MB"
 msgstr "%s MB"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/utilities.php:277
+#: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:277
 #, php-format
 msgid "%s GB"
 msgstr "%s GB"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/apps.class.php:152
-msgid "Show module sections"
-msgstr "Mostar la sección de módulos"
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/date.class.php:92
+msgid "Choose Time"
+msgstr "Seleccione la Fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/checks.class.php:212
-msgid "Yes"
-msgstr "Si"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/checks.class.php:217
-msgid "No"
-msgstr "No"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/formuser.class.php:81
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:81
 msgid "All Users"
 msgstr "Todos los usuarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/formuser.class.php:111
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/formuser.class.php:112
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:111
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:112
 msgid "Search Users"
 msgstr "Buscar Usuarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/textoptions.class.php:114
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/modules.class.php:144
+#, fuzzy
+msgid "Inner pages"
+msgstr "Insertar Imágen"
+
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:114
 msgid "Allow HTML"
 msgstr "Permitir HTML"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/textoptions.class.php:116
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:116
 msgid "Allow Xoops Code"
 msgstr "Permitir Código Xoops"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/textoptions.class.php:118
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:118
 msgid "Allow Smilies"
 msgstr "Permitir Smilies"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/textoptions.class.php:120
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:120
 msgid "Allow break lines"
 msgstr "Permitir "
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/class/fields/textoptions.class.php:122
+#: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:122
 msgid "Do images"
 msgstr "Crear Imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/right_widgets.php:14
+#: C:\wamp\www\cu\modules\rmcommon/include/right_widgets.php:14
 msgid "Available Modules"
 msgstr "Modulos Disponibles"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/tiny-images.php:110
+#: C:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:110
 msgid "Sorry, unauthorized operation!"
 msgstr "¡Lo sentimos, operación no autorizada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/tiny-images.php:122
+#: C:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:122
 msgid "You must select a category before"
 msgstr "Antes debes seleccionar una categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/tiny-images.php:195
+#: C:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:200
 msgid "File URL"
 msgstr "Archivo URL"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:34
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:40
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:34
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:38
 msgid "You are not allowed to do this action"
 msgstr "No estas autorizado para hacer esta acción"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:44
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:42
 msgid "Sorry, category has not been specified!"
 msgstr "¡Lo sentimos, la categoría no ha sido especificada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:49
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:47
 msgid "Sorry, the specified category has not been found!"
 msgstr "¡Lo sentimos, la categoría especificada no se encontró!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:53
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:51
 msgid "Sorry, the specified category is closed!"
 msgstr "¡Lo sentimos, la categoría especificada esta cerrada!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:57
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:55
 msgid "Sorry, you can not upload images!"
 msgstr "¡Lo sentimos, no puedes cargar imágenes!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/include/upload.php:100
+#: C:\wamp\www\cu\modules\rmcommon/include/upload.php:98
 msgid "File could not be inserted to database!"
 msgstr "¡El archivo no pudo ser insertado en la base de datos!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:15
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:15
 msgid "Language to use"
 msgstr "Idioma a utilizar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:16
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:16
 msgid "Arrange images by date"
 msgstr "Ordenar imágenes por fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:17
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:17
 msgid "Select the default editor"
 msgstr "Seleccionar el editor por defecto"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:20
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:20
 msgid "XoopsCode Editor"
 msgstr "Editor de código XOOPS"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:22
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:22
 msgid "Number limit for image categories list."
 msgstr "Número límite de categorías de imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:23
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:23
 msgid "Image manager number of images per page"
 msgstr "Número de imágenes por página en el administrador de imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:24
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:24
 msgid "Secret Key"
 msgstr "Clave secreta"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:25
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:25
 msgid "Provide a secret key used to encript information."
 msgstr "Proporciona una clave secreta usada para encriptar la infromación."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:26
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:26
 msgid "Admin theme"
 msgstr "Tema del panel de control"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:28
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:28
 msgid "Allow HTMl in text"
 msgstr "Permitir HTML en el texto"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:29
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:29
 msgid "Allow smiles in text"
 msgstr "Permitir emoticones en texto"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:30
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:30
 msgid "Allow XoopsCode"
 msgstr "Permitir código Xoops"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:31
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:31
 msgid "Allow images in text"
 msgstr "Permitir imágenes en textos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:32
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:32
 msgid "Auto add line breaks in text"
 msgstr "Agrear automáticamente saltos de línea en textos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:34
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:34
 msgid "Modules number on dashboard"
 msgstr "Número de módulos en el panel de control"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:37
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:37
 msgid "Enable comments"
 msgstr "Habilitar comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:38
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:38
 msgid "Allow anonymous users to post comments"
 msgstr "Permitir a los usuarios anónimos enviar comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:39
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:39
 msgid "Automatically approve comments by registered users"
 msgstr "Aprobar  automáticamente comentarios de usuarios registrados"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:40
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:40
 msgid "Automatically approve comments by anonymous users"
 msgstr "Aprobar  automáticamente comentarios de usuarios anónimos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:41
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:41
 msgid "Allow users to edit their comments"
 msgstr "Permitir a los usuarios editar sus comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:42
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:42
 msgid "Time limit to edit a comment (in hours)."
 msgstr "Tiempo limite para poder editar un comentario (en horas)."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:45
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:45
 msgid "Image for rss feeds"
 msgstr "imágen para menús rss"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:48
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:48
 msgid "Mailer method"
 msgstr "Método para envío de correo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:49
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:49
 msgid "Common Utilities will use this method to send emails."
 msgstr "Common Utilities utilizará este método para enviar emails."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:50
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:50
 msgid "PHP Mail()"
 msgstr "PHP Mail()"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:51
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:51
 msgid "SMTP"
 msgstr "SMTP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:52
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:52
 msgid "Sendmail"
 msgstr "Sendmail"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:53
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:53
 msgid "SMTP server to use"
 msgstr "Servidor SMTP a usar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:54
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:54
 msgid "Specify the server through with the emails will be sent."
 msgstr "Especifique el servidor a través del cual se enviaran los emails."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:55
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:55
 msgid "SMTP encryption"
 msgstr "Encriptación SMTP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:56
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:56
 msgid "For SSL or TLS encryption to work your PHP installation must have appropriate OpenSSL transports wrappers."
 msgstr "Para que SSL o TLS funcionen la instalación PHP debe tener los transportes apropiados."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:58
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:58
 msgid "SSL"
 msgstr "SSL"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:59
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:59
 msgid "TLS"
 msgstr "TLS"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:60
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:60
 msgid "SMTP server port"
 msgstr "Puerto del servidor SMTP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:61
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:61
 msgid "Note that you must to write the apropiate port based on your encryption type selection."
 msgstr "Note que debe especificar el puerto apropiado basado en el tipo de encriptación seleccionado."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:62
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:62
 msgid "SMTP username"
 msgstr "Usuario SMTP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:63
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:63
 msgid "SMTP password"
 msgstr "Contraseña SMTP"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:64
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:64
 msgid "Sendmail path"
 msgstr "Ruta de Sendmail"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:65
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:65
 msgid "Input the command for sendmail, including the correct command line flags. The default to use is \"/usr/sbin/sendmail -bs\" if this is not specified."
 msgstr "Ingrese el comando para Sendmail, incluyendo las banderas correctas de la linea de comandos. Si no se especifica se usará por defecto \"/usr/sbin/sendmail -bs\"."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:72
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:68
+#, fuzzy
+msgid "Enable RSS Center"
+msgstr "Centro de RSS"
+
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:69
+msgid "Enable internal blocks manager"
+msgstr "Activar administrador interno de bloques"
+
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:76
 msgid "New Category"
 msgstr "Nueva Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:73
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:77
 msgid "New Image"
 msgstr "Nueva Imagen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/language/english/modinfo.php:74
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:16
+#: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:78
 msgid "Create Images"
 msgstr "Crear Imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:1
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:1
 msgid "Create New Category"
 msgstr "Crear Nueva Categoria"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:7
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:7
 msgid "Category Name:"
 msgstr "Nombre de la Categoría:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:13
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:13
 msgid "Category Status:"
 msgstr "Estado de la Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:16
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:16
 msgid "Inactive"
 msgstr "Inactivo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:17
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:17
 msgid "Active"
 msgstr "Activo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:22
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:22
 msgid "Groups that can upload images:"
 msgstr "Grupos que pueden cargar imágenes:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:30
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:30
 msgid "Groups that can use this category:"
 msgstr "Grupos que pueden usar esta categoría:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:38
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:38
 msgid "Maximum file size:"
 msgstr "Tamaño máximo de archivo:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:43
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:43
 msgid "Bytes"
 msgstr "Bytes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:44
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:44
 msgid "Kilobytes"
 msgstr "Kilobytes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:45
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:45
 msgid "Megabytes"
 msgstr "Megabytes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:50
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:50
 msgid "Images Configurations"
 msgstr "Configuraciones de Imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:55
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:55
 msgid "This configurations stablish the sizes in wich images will be created."
 msgstr "Estas configuraciones establecen los tamaños en los que las imágenes deben ser creadas."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:56
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:56
 msgid "You can specify all sizes that you wish according to your needs."
 msgstr "Debes especificar todos los tamaños que desees de acuerdoa tus necesidades."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:63
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:91
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:63
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:91
 msgid "Size name"
 msgstr "Nombre del tamaño"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:65
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:93
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:8
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:35
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:7
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:44
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:78
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:65
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:93
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:8
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:35
 msgid "Delete"
 msgstr "Eliminar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:72
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:100
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:72
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:100
 msgid "Width:"
 msgstr "Ancho:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:74
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:102
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:74
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:102
 msgid "Height:"
 msgstr "Altura:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:80
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:108
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:80
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:108
 msgid "Scale"
 msgstr "Escalar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:81
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:109
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:81
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:109
 msgid "Crop"
 msgstr "Recortar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:82
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:110
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:49
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:82
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:110
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:49
 msgid "No Resize"
 msgstr "NO Redimensionar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:115
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:115
 msgid "New Size"
 msgstr "Nuevo Tamaño"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/categories_form.php:121
+#: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:121
 msgid "Update Category"
 msgstr "Actualizar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:9
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:9
 msgid "Upload Files"
 msgstr "Cargar Archivos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:10
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:10
 msgid "From URL"
 msgstr "Desde URL"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:11
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:11
 msgid "From Library"
 msgstr "Desde Biblioteca"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:17
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:89
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:17
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:89
 msgid "Select the category where you wish to upload images"
 msgstr "Selecciona la categoría donde deseas cargar las imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:19
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:91
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:7
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:19
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:91
 msgid "Select..."
 msgstr "Seleccionar..."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:35
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:32
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:35
 msgid "Resizing images"
 msgstr "Redimensionar Imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:40
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:36
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:40
 msgid "Please, do not close the window until resizing process has finished!"
 msgstr "¡Por favor, no cierres la ventana hasta que el proceso de redimensionar haya terminado!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:49
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:49
 msgid "Image URL"
 msgstr "URL de imágen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:53
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:24
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:34
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:53
 msgid "Title:"
 msgstr "Título:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:57
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:38
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:57
 msgid "Alternative text:"
 msgstr "Texto alternativo:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:61
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:56
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:61
 msgid "Alignment:"
 msgstr "Alineación"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:65
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:59
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:65
 msgid "Left"
 msgstr "Izquierda"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:66
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:60
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:66
 msgid "Center"
 msgstr "Centro"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:67
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:61
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:67
 msgid "Right"
 msgstr "Derecha"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/editor_image.php:71
+#: C:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:71
 msgid "Link:"
 msgstr "Enlace:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/forms.php:34
+#: C:\wamp\www\cu\modules\rmcommon/templates/forms.php:34
 msgid "This is a required field. Please fill it!"
 msgstr "¡Este es un campo requerido. Por favor llenalo!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:11
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:11
 msgid "Selected:"
 msgstr "Seleccionado:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:21
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:21
 msgid "Insert Users"
 msgstr "Insertar Usuarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:28
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:28
 msgid "Search:"
 msgstr "Buscar:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:29
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:29
 msgid "Show:"
 msgstr "Mostrar:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:30
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:30
 msgid "Sort by:"
 msgstr "Ordenar por"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:32
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:32
 msgid "ID"
 msgstr "ID"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:33
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:33
 msgid "Registered"
 msgstr "Registrado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:34
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:34
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:36
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:36
 msgid "Go!"
 msgstr "¡Ir!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/form_users.php:44
+#: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:44
 msgid "Existing Users"
 msgstr "Usuarios Existentes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:7
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:7
 msgid "Bulk Actions..."
 msgstr "Acciones en bloque"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:9
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:9
 msgid "Close Category"
 msgstr "Cerrar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:10
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:10
 msgid "Open Category"
 msgstr "Abrir categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:12
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:10
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:12
 msgid "Apply"
 msgstr "Aplicar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:19
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:19
 msgid "Sizes"
 msgstr "Tamaños"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:20
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:20
 msgid "Groups"
 msgstr "Grupos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:25
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:25
 msgid "There are not categories yet! You must create at least one category in order to create images."
 msgstr "¡Aún no hay categorias! Debes crear por lo menos una categoría para crear imágenes."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:35
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:44
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:35
 msgid "Do you really want to delete &quot;"
 msgstr "¿Realmente quieres eliminar &quot;?"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:36
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:41
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:36
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:41
 msgid "open"
 msgstr "Abrir"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:54
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:54
 msgid "Upload:"
 msgstr "Cargar:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_categories.php:55
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:55
 msgid "Access:"
 msgstr "Acceso"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:2
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:2
 msgid "Edit Image"
 msgstr "Editar Imágen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:20
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:20
 msgid "Original Size"
 msgstr "Tamaño Original"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:28
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:28
 msgid "Category:"
 msgstr "Categoría:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:38
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:42
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:38
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:42
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:101
 msgid "Description:"
 msgstr "Descripción:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_edit.php:43
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:43
 msgid "Update Image!"
 msgstr "¡Actualizar Imágen!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:1
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:1
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:50
 msgid "Images Manager"
 msgstr "Administrador de imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:8
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:8
 msgid "Update thumbnails"
 msgstr "Actualizar miniaturas"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:21
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:21
 msgid "File"
 msgstr "Archivo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:22
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:22
 msgid "Details"
 msgstr "Detalles"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:23
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:23
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:43
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:53
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:13
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:22
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:83
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:91
 msgid "Author"
 msgstr "Autor"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:24
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:24
 msgid "Date"
 msgstr "Fecha"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_images.php:29
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:29
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:6
 msgid "There are not images yet!"
 msgstr "¡Aún no hay imágenes!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:20
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:20
 msgid "Show"
 msgstr "Mostrar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:29
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:29
 msgid "Hide"
 msgstr "Ocultar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:46
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:46
 msgid "Link URL:"
 msgstr "URL del enlace:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:65
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:65
 msgid "Image size:"
 msgstr "Tamaño de la imágen:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:71
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:71
 msgid "Original"
 msgstr "original"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_list_editor.php:77
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:77
 msgid "Insert image"
 msgstr "Insertar imágen"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:2
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:2
 msgid "Upload Images"
 msgstr "Cargar imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:5
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:5
 msgid "Select Category:"
 msgstr "Seleccionar imágenes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:12
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:12
 msgid "Change Category"
 msgstr "Cambiar Categoría"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:19
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:19
 msgid "Upload"
 msgstr "Cargar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:20
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:20
 msgid "Clear All"
 msgstr "Limpiar Todo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:38
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:38
 msgid "Done! Click to continue..."
 msgstr "¡Hecho! Click para continuar..."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/images_uploadimages.php:39
+#: C:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:39
 msgid "Done! Show images..."
 msgstr "¡Hecho! Mostrar imágenes..."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:4
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:4
 msgid "Pages:"
 msgstr "Páginas:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:6
 msgid "First Page"
 msgstr "Primera Página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:10
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:10
 msgid "Previous Page"
 msgstr "Página anterior"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:21
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:21
 #, php-format
 msgid "Page %u"
 msgstr "Página %u"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:30
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:30
 msgid "Next Page"
 msgstr "Siguiente Página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/navigation_pages.php:34
+#: C:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:34
 msgid "Last Page"
 msgstr "Última Página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:5
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:1
+#, fuzzy
+msgid "Blocks Administration"
+msgstr "Bloques a insertar"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:7
+#, fuzzy
+msgid "All modules"
+msgstr "Modulos Disponibles"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:14
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:77
+#, fuzzy
+msgid "Position"
+msgstr "Descripción"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:16
+msgid "All positions"
+msgstr "Todas las posiciones"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:23
+msgid "Add New Block"
+msgstr "Agregar un nuevo bloque"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:42
+msgid "Add New Position"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:55
+msgid "Input a name to identify this position (<em>eg. Left blocks</em>)"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:56
+#, fuzzy
+msgid "Tag Name"
+msgstr "Nombre"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:58
+msgid "Specify a name for the smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt)."
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:59
+msgid "Add Position"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:61
+#, fuzzy
+msgid "Existing positions"
+msgstr "Usuarios Existentes"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:64
+#, fuzzy
+msgid "edit"
+msgstr "Editar"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:76
+msgid "Block"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:78
+msgid "Order"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:84
+msgid "There are not blocks configured with this options."
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:94
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:49
+msgid "Settings"
+msgstr "Opciones"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:96
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:88
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:43
+msgid "Disable"
+msgstr "Deshabilitar"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:109
+msgid "Loading"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:109
+msgid "Loading data..."
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:3
+#, fuzzy, php-format
+msgid "%s settings"
+msgstr "Opciones"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:6
+msgid "General Settings"
+msgstr "General"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:7
+#, fuzzy
+msgid "Custom Options"
+msgstr "Opciones de Akismet"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:8
+#, fuzzy
+msgid "Permissions"
+msgstr "Versión"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:11
+msgid "Block Title"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:14
+msgid "Block position"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:22
+msgid "Block weight"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:26
+#, fuzzy
+msgid "Visible"
+msgstr "Deshabilitar"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:31
+msgid "Cache lifetime"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:33
+msgid "No Cache"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:34
+msgid "30 seconds"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:35
+msgid "1 minute"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:36
+msgid "5 minutes"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:37
+msgid "30 minutes"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:38
+msgid "1 hour"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:39
+msgid "5 hours"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:40
+msgid "1 day"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:41
+msgid "3 days"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:42
+msgid "1 week"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:43
+msgid "1 month"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:46
+#, fuzzy
+msgid "Visible in"
+msgstr "Visitar Sitio"
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:57
+msgid "Read Permissions"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:63
+msgid "Guardar"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
 msgid "You need something to search!"
 msgstr "¡Necesitas algo para buscar!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:9
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:9
 msgid "Comments Manager"
 msgstr "Administrador de Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:15
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:118
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:15
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:118
 msgid "Set unapproved"
 msgstr "No aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:16
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:119
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:16
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:119
 msgid "Set approved"
 msgstr "Aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:17
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:17
 msgid "Mark as SPAM"
 msgstr "Marcar como SPAM"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:18
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:120
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:18
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:120
 msgid "Delete comments"
 msgstr "Eliminar comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:21
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:21
 msgid "View all"
 msgstr "Ver todos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:34
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:36
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:99
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:34
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:36
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:99
 msgid "SPAM"
 msgstr "SPAM"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:44
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:54
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:44
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:54
 msgid "Comment"
 msgstr "Comentar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:63
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:63
 msgid "There are not comments yet!"
 msgstr "Aún no hay comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:79
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:79
 msgid "Unnaprove"
 msgstr "No aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:81
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:81
 msgid "Approve"
 msgstr "Aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_comments.php:84
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:84
 msgid "Spam"
 msgstr "Spam"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:6
 msgid "Installed Modules"
 msgstr "Modulos Instalados"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:12
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:30
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:12
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:30
 msgid "If you wish to manage or install new modules please go to Modules Management."
 msgstr "Si deseas administrar o instalar modulos, por favor ve  Administración de Módulos."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:13
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:31
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:13
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:31
 msgid "Modules management"
 msgstr "Administración de Módulos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:42
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:42
 msgid "System Tools"
 msgstr "Herramientas del Sistema"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:47
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:47
 msgid "Configure Common Utilities"
 msgstr "Configurar Common Utilities"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:55
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:55
 msgid "Comments Management"
 msgstr "Administrador de Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:58
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:58
 msgid "Plugins Management"
 msgstr "Administrador de Plugins"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:63
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:63
 msgid "XOOPS Modules"
 msgstr "Módulos Xoops"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:66
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:66
 msgid "Users Management"
 msgstr "Módulos Xoops"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_dashboard.php:88
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:88
 msgid "Recent News"
 msgstr "Noticias Recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mods_installed.php:6
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:30
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:30
 #, php-format
 msgid "Version: %s"
 msgstr "Versión: %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mods_installed.php:7
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:86
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:47
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:7
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:86
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:47
 msgid "Update"
 msgstr "Actualizar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mods_installed.php:9
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:9
 msgid "View"
 msgstr "Ver"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:4
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:4
 msgid "Do you really wish to uninstall selected module?"
 msgstr "¿Realmente deseas desinstalar el módulo seleccionado?"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:5
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:5
 msgid "Do you really wish to update selected module?"
 msgstr "¿Realmente deseas actualizar el módulo seleccionado?"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:6
 msgid "Do you really wish to disable selected module?"
 msgstr "¿Realmente deseas deshabilitar el módulo seleccionado?"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:7
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:7
 msgid "New name must be different from current name!"
 msgstr "¡El nombre nuevo debe ser diferente del nombre actual!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:31
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:31
 #, php-format
 msgid "Updated: %s"
 msgstr "Actualizado: %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:72
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:72
 msgid "Web:"
 msgstr "Web:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:76
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:109
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:76
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:109
 msgid "License:"
 msgstr "Licencia:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:80
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:77
-msgid "Name:"
-msgstr "Nombre:"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:87
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:41
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:87
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:41
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:88
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:43
-msgid "Disable"
-msgstr "Deshabilitar"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:89
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:45
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:89
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:45
 msgid "Enable"
 msgstr "Habilitar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:96
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:96
 msgid "Change name:"
 msgstr "Cambiar Nombre:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_modules.php:98
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:98
 msgid "Rename"
 msgstr "Renombrar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_log.php:3
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_log.php:14
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:3
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:14
 msgid "Go to Modules Management"
 msgstr "Ir al Administrador de Módulos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_log.php:6
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_log.php:17
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:17
 #, php-format
 msgid "%s Control Panel"
 msgstr "%s Panel de Control"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:1
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:1
 #, php-format
 msgid "Install %s"
 msgstr "Instalar %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:3
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:3
 msgid "This module will make next changes in Xoops system. Please review in a detailed way all them in order to decide if you really wish to install this module"
 msgstr "Este módulo realizará los siguientes cambios en el sistema, por favor revisalos de forma detallada para decidir si realmente deseas instalarlo."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:10
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:10
 msgid "Module Templates"
 msgstr "Plantillas del Módulo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:23
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:23
 msgid "Database Tables"
 msgstr "Tablas para la base de datos"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:36
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:36
 msgid "Option settings to insert"
 msgstr "Opciones de configuración a insertar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:50
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:50
 msgid "Bloks to insert"
 msgstr "Bloques a insertar"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:67
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:67
 #, php-format
 msgid "%s Details"
 msgstr "Detalles de %s"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:96
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:96
 msgid "Author Web:"
 msgstr "Autor Web:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:105
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:105
 msgid "Credits:"
 msgstr "Creditos:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:113
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:113
 msgid "Help:"
 msgstr "Ayuda:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:115
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:115
 msgid "Click here"
 msgstr "Click aquí"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_mod_preinstall.php:119
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:119
 msgid "Install Now"
 msgstr "Instalar Ahora"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:1
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:1
 msgid "Plugins Manager"
 msgstr "Administrador de Plugins"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:3
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:3
 msgid "Plugins allows to Common Utilities to improve its features and capabilities. Following is a list with existing plugins, installed and available to install."
 msgstr "Los plugins permiten a Common Utilities mejorar sus caracteristicas y capacidades. La siguiente es una lista de los plugins existentes, instalados y disponibles para instalar."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:6
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:6
 msgid "Installed Plugins"
 msgstr "Plugins Instalados"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:11
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:20
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:81
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:89
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:11
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:20
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:81
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:89
 msgid "Description"
 msgstr "Descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:12
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:21
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:82
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:90
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:12
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:21
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:82
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:90
 msgid "Version"
 msgstr "Versión"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:29
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:29
 msgid "There are not plugins installed yet!"
 msgstr "Aún no hay plugins instalados"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:49
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:95
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:183
-msgid "Settings"
-msgstr "Opciones"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:76
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:76
 msgid "Available Plugins"
 msgstr "Plugins Disponibles"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:88
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:88
 msgid "Name and Description"
 msgstr "Nombre y Descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:97
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:97
 msgid "There are not available plugins yet!"
 msgstr "¡Aún no hay plugins disponibles!"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_plugins.php:106
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:106
 msgid "Visit Web site"
 msgstr "Visitar Sitio Web"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_rss_center.php:3
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_rss_center.php:3
 #, php-format
 msgid "All %s RSS feeds are listed below. Click an option for feed."
 msgstr "Todos %s los menús Rss se enlistan a continuación. Da click a una opción para ver su menú."
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/templates/rmc_rss_center.php:9
+#: C:\wamp\www\cu\modules\rmcommon/templates/rmc_rss_center.php:9
 msgid "URL:"
 msgstr "URL:"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:41
+#: C:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_bknew.php:4
+#, fuzzy
+msgid "Select block..."
+msgstr "Seleccionar..."
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_bknew.php:12
+msgid "Add Block"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:3
+msgid "Position Name"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:6
+msgid "Position tag"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:41
 msgid "Visit Site"
 msgstr "Visitar Sitio"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:42
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:42
 msgid "Welcome,"
 msgstr "Bienvenido,"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:43
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:43
 msgid "Logout"
 msgstr "Salir"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:44
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/theme.php:52
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:44
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:52
 msgid "Help"
 msgstr "Ayuda"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
 msgid "Management"
 msgstr "Administración"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:101
-msgid "General Settings"
-msgstr "General"
-
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:105
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:105
 msgid "Users Settings"
 msgstr "Usuarios"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:109
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:109
 msgid "Metas and Footer"
 msgstr "Encabezado y pie de página"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:113
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:113
 msgid "Words Censor"
 msgstr "Censor de Palabras"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
 msgid "Searchs Settings"
 msgstr "Búsquedas"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
 msgid "Mail Settings"
 msgstr "Correo"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
 msgid "Authentication"
 msgstr "Autentificación"
 
-#: E:\webserver\htdocs\xoops24\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
+#: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
 msgid "Modules Settings"
 msgstr "Módulos"
+
+#, fuzzy
+#~ msgid "Select the appearance taht you wish for Lightbox plugin"
+#~ msgstr "Selecciona la categoría donde deseas cargar las imágenes"
+
+#~ msgid "Scale images"
+#~ msgstr "Redimensionar imágenes"
+
+#, fuzzy
+#~ msgid "Loop images:"
+#~ msgstr "Crear Imágenes"
+
+#~ msgid "Addtitional settings"
+#~ msgstr "Configuraciones adicionales"
+
+#, fuzzy
+#~ msgid "here"
+#~ msgstr "Temas"
+
+#~ msgid "Required fields marked with \"*\""
+#~ msgstr "Campos requeridos marcados con \"*\""
 
 #~ msgid "View Site"
 #~ msgstr "Ver Sitio"
 
 #~ msgid "Akismet Plugin"
 #~ msgstr "Plugin Akismet"
-
-#~ msgid "Akismet options"
-#~ msgstr "Opciones de Akismet"
 
 #, fuzzy
 #~ msgid "Avatars Plugin"
@@ -1827,10 +2358,6 @@ msgstr "Módulos"
 #, fuzzy
 #~ msgid "Expired pages deleted successfully"
 #~ msgstr "¡Imágenes eliminadas exitosamente!"
-
-#, fuzzy
-#~ msgid "You must specify a file to delete!"
-#~ msgstr "¡Debes especificar el id de la categoría para editar!"
 
 #, fuzzy
 #~ msgid "Selected file does not exists!"
@@ -1881,20 +2408,6 @@ msgstr "Módulos"
 #, fuzzy
 #~ msgid "Enable booster"
 #~ msgstr "Habilitar"
-
-#, fuzzy
-#~ msgid "Select the appearance taht you wish for Lightbox plugin"
-#~ msgstr "Selecciona la categoría donde deseas cargar las imágenes"
-
-#~ msgid "Scale images"
-#~ msgstr "Redimensionar imágenes"
-
-#~ msgid "Addtitional settings"
-#~ msgstr "Configuraciones adicionales"
-
-#, fuzzy
-#~ msgid "here"
-#~ msgstr "Temas"
 
 #, fuzzy
 #~ msgid "Description length"

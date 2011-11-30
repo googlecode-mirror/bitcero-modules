@@ -422,9 +422,9 @@ function xoops_module_update($dirname){
                                 $bperm->setVar('gperm_name', 'block_read');
                                 $bperm->setVar('gperm_modid', 1);
                                 if (!$gperm_handler->insert($bperm)) {
-                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.__('ERROR: Could not add block access right','rmcommon') .' '.sprintf(__("Block__('Blockk ID: %s",'rmcommon'), "<strong>".$newbid."</strong>"). ' '.sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>").'</span>';
+                                    $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.__('ERROR: Could not add block access right','rmcommon') .' '.sprintf(__("Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>"). ' '.sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>").'</span>';
                                 } else {
-                                    $msgs[] = '&nbsp;&nbsp;'.__('Added block access right','rmcommon'). ' ' . sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>") . ' ' . sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>");
+                                    $msgs[] = '&nbsp;&nbsp;'.__('Added block access right','rmcommon'). ' ' . sprintf(__("Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>") . ' ' . sprintf(__('Group ID: %s','rmcommon'), "<strong>".$mygroup."</strong>");
                                 }
                             }
 
@@ -453,7 +453,7 @@ function xoops_module_update($dirname){
                                     }
                                 }
                             }
-                            $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Block %s created','rmcommon'), "<strong>".$block['name']."</strong>").sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>");
+                            $msgs[] = '&nbsp;&nbsp;'.sprintf(__('Block %s created','rmcommon'), "<strong>".$block['name']."</strong>").sprintf(__("Block ID: %s",'rmcommon'), "<strong>".$newbid."</strong>");
                             $sql = 'INSERT INTO '.$xoopsDB->prefix('block_module_link').' (block_id, module_id) VALUES ('.$newbid.', -1)';
                             $xoopsDB->query($sql);
                         }
@@ -465,7 +465,7 @@ function xoops_module_update($dirname){
                 if (!in_array($block->getVar('show_func'), $showfuncs) || !in_array($block->getVar('func_file'), $funcfiles)) {
                     $sql = sprintf("DELETE FROM %s WHERE bid = %u", $xoopsDB->prefix('newblocks'), $block->getVar('bid'));
                     if(!$xoopsDB->query($sql)) {
-                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not delete block %s','rmcommon'), "<strong>".$block->getVar('name')."</strong>").sprintf(__("Bloc__('Block ID: %s",'rmcommon'), "<strong>".$block->getVar('bid')."</strong>").'</span>';
+                        $msgs[] = '&nbsp;&nbsp;<span style="color:#ff0000;">'.sprintf(__('ERROR: Could not delete block %s','rmcommon'), "<strong>".$block->getVar('name')."</strong>").sprintf(__("Block ID: %s",'rmcommon'), "<strong>".$block->getVar('bid')."</strong>").'</span>';
                     } else {
                         $msgs[] = '&nbsp;&nbsp;Block <strong>'.$block->getVar('name').' deleted. Block ID: <strong>'.$block->getVar('bid').'</strong>';
                         if ($block->getVar('template') != '') {

@@ -32,7 +32,8 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>138,'status'=>-2,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>138,'status'=>0,'name'=>'Common Utilities');
+$modversion['onUninstall'] = 'include/uninstall.php';
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
@@ -48,6 +49,8 @@ $modversion['tables'][2] = 'rmc_comusers';
 $modversion['tables'][3] = 'rmc_images';
 $modversion['tables'][4] = 'rmc_plugins';
 $modversion['tables'][5] = 'rmc_settings';
+$modversion['tables'][6] = 'rmc_blocks';
+$modversion['tables'][7] = 'rmc_blocks_positions';
 
 // Templates
 $modversion['templates'][1]['file'] = 'rmc_comments_display.html';
