@@ -142,18 +142,6 @@ $modversion['config'][] = array(
     'default' => 0
 );
 
-// Editor
-$modversion['config'][] = array(
-    'name' => 'editor',
-    'title' => '_MI_BX_EDITOR',
-    'description' => '',
-    'formtype' => 'select',
-    'valuetype' => 'text',
-    'default' => 'dhtml',
-    'options' => array('_MI_BX_EDITOR1'=>'dhtml','_MI_BX_EDITOR2'=>'tiny',
-                                                '_MI_BX_EDITOR3'=>'fck','_MI_BX_EDITOR4'=>'textarea')
-);
-
 // HTML
 $modversion['config'][] = array(
     'name' => 'html',

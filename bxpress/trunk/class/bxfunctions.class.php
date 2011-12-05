@@ -124,8 +124,9 @@ class bXFunctions
     * @desc Creamos el encabezado del módulo
     */
     public function makeHeader(){
-    	global $tpl, $xoopsModuleConfig, $xoopsUser;
+    	global $xoopsTpl, $xoopsModuleConfig, $xoopsUser;
     	
+        $tpl = $xoopsTpl;
     	$tpl->assign('lang_index', __('Forum Index','bxpress'));
     	$tpl->assign('forums_title', $xoopsModuleConfig['forum_title']);
     	if ($xoopsUser || $xoopsModuleConfig['search']){
