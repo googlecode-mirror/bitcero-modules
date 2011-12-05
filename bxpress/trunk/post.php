@@ -225,7 +225,7 @@ switch($op){
 			$quote = "[quote=".$post->uname()."]".$post->getVar('post_text','n')."[/quote]\n\n";
 		}
 		
-		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '300px', isset($quote) ? $quote : '', 'html'), true);
+		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '400px', isset($quote) ? $quote : ''), true);
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){

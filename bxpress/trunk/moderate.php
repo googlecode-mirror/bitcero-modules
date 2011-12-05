@@ -10,18 +10,18 @@
 
 include '../../mainfile.php';
 
-$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+$id = rmc_server_var($_REQUEST, 'id', 0);
 if ($id<=0){
 	redirect_header('./', 2, __('Please, specify the forum you want to moderate!','bxpress'));
 	die();
 }
-	
+
 $forum = new bXForum($id);
 if ($forum->isNew()){
 	redirect_header('./', 2, __('Specified forum doesn\'t exists!','bxpress'));
 	die();
 }
-	
+
 // Comprobamos los permisos de moderador
 if (!$xoopsUser || (!$forum->isModerator($xoopsUser->uid()) && !$xoopsUser->isAdmin())){
 	redirect_header('forum.php?id='.$id, 2, __('Sorry, you don\'t have permission to do this action!','bxpress'));
@@ -44,7 +44,7 @@ function showItemsAndOptions(){
 	*/
 	$tbl1 = $db->prefix("bxpress_topics");
 	$tbl2 = $db->prefix("bxpress_forumtopics");
-
+        
 	$sql = "SELECT COUNT(*) FROM $tbl1 WHERE id_forum='".$forum->id()."' ";
 	list($num)=$db->fetchRow($db->queryF($sql));
 	    
@@ -64,15 +64,15 @@ function showItemsAndOptions(){
 	}
 	    
 	if ($tpages > 0) {
-	    $nav = new RMPageNav($num, $limit, $$pactual);
-        $nav->target_url('moderate.php?id='.$forum->id().'&amp;pag={PAGE_NUM}');
+	    $nav = new RMPageNav($num, $limit, $pactual);
+            $nav->target_url('moderate.php?id='.$forum->id().'&amp;pag={PAGE_NUM}');
 	    $tpl->assign('itemsNavPage', $nav->render(false));
 	}
 
 	$sql = str_replace("COUNT(*)", '*', $sql);
 	$sql .= " ORDER BY sticky DESC, date DESC LIMIT $start,$limit";
 	$result = $db->query($sql);
-
+        
 	while ($row = $db->fetchArray($result)){
 	    $topic = new bXTopic();
 	    $topic->assignVars($row);
@@ -134,13 +134,14 @@ function showItemsAndOptions(){
 */
 function moveTopics(){
 	
-	global $db, $xoopsModuleConfig, $util, $forum, $xoopsUser, $xoopsOption;
+    global $db, $xoopsModuleConfig, $xoopsSecurity, $forum, $xoopsUser, $xoopsOption, $xoopsConfig;
 	
-	$topics = isset($_REQUEST['topics']) ? $_REQUEST['topics'] : null;
+    $topics = isset($_REQUEST['topics']) ? $_REQUEST['topics'] : null;
 	$ok = isset($_POST['ok']) ? $_POST['ok'] : 0;
+        $moveforum = rmc_server_var($_POST, 'moveforum', 0);
 	
 	if (empty($topics) || (is_array($topics) && empty($topics))){
-		redirect_header('moderate.php?id='.$forum->id(), 2, __('Select at least a topic to moderate!','bxpress'));
+		redirect_header('moderate.php?id='.$moveforum, 2, __('Select at least a topic to moderate!','bxpress'));
 		die();
 	}
 
@@ -148,14 +149,11 @@ function moveTopics(){
 	
 	if ($ok){
 		
-		$util =& RMUtils::getInstance();
-		
-		if (!$util->validateToken()){
-			redirect_header('moderate.php?id='.$forum->id(), 2, __('Session token expired!','bxpress'));
+		if (!$xoopsSecurity->check()){
+			redirect_header('moderate.php?id='.$moveforum, 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
-		$moveforum = isset($_POST['moveforum']) ? intval($_POST['moveforum']) : 0;
 		if ($moveforum<=0){
 			redirect_header('moderate.php?id='.$forum->id(), 2, __('Please select the target forum','bxpress'));
 			die();
@@ -168,7 +166,6 @@ function moveTopics(){
 		}
 	
 		$lastpost = false;
-		
 		foreach ($topics as $k){
 			$topic = new bXTopic($k);
 			if ($topic->forum()!=$forum->id()) continue;
@@ -219,7 +216,8 @@ function moveTopics(){
 		
 	} else {
 		
-		global $tpl;
+		global $xoopsTpl;
+                $tpl = $xoopsTpl;
 		$xoopsOption['template_main'] = "bxpress_moderateforms.html";
 		$xoopsOption['module_subpage'] = "moderate";
 		include 'header.php';
@@ -236,7 +234,7 @@ function moveTopics(){
 		}
 		$form->addElement(new RMFormSubTitle('&nbsp',1,''));
 		$form->addElement(new RMFormSubTitle(__('Select the forum where you wish to move selected topics','bxpress'),1,'even'));
-		$ele = new RMSelect(__('Forum','bxpress'), 'moveforum');
+		$ele = new RMFormSelect(__('Forum','bxpress'), 'moveforum');
 		$ele->addOption(0,'',1);
 		
 		$tbl1 = $db->prefix("bxpress_categories");
@@ -263,7 +261,7 @@ function moveTopics(){
 			
 		}
 		$form->addElement($ele, true, "noselect:0");
-		$ele = new RMButtonGroup();
+		$ele = new RMFormButtonGroup();
 		$ele->addButton('sbt',__('Move Topics Now!','bxpress'),'submit');
 		$ele->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="history.go(-1);"');
 		$form->addElement($ele);
@@ -279,12 +277,8 @@ function moveTopics(){
 * @desc Cerrar o abrir un tema
 */
 function closeTopic($close){
-	global $forum, $xoopsSecurity;
-			
-	if (!$xoopsSecurity->check()){
-		redirect_header('moderate.php?id='.$forum->id(), 2, __('Session token expired!','bxpress'));
-		die();
-	}	
+	global $xoopsSecurity, $forum, $xoopsUser;
+
 
 	$topics = isset($_REQUEST['topics']) ? $_REQUEST['topics'] : null;
 		

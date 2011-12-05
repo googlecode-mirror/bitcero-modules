@@ -120,8 +120,8 @@ switch($op){
 		* adjuntos por mensaje
 		*/
 		
-		if (!$util->validateToken()){
-			redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_SESSINVALID);
+		if (!$xoopsSecurity->check()){
+			redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
@@ -129,18 +129,14 @@ switch($op){
 			
 			// Comprobamos si no ha alcanzado su número limite de envios
 			if ($post->totalAttachments()>= $xoopsModuleConfig['attachlimit']){
-				redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_ERRATLIMIT);
+				redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('You have reached the maximum attachments number for this post','bxpress'));
 				die();
 			}
 			
-			$up = new RMUploader(true);
+                        include_once RMCPATH.'/class/uploader.php';
 			$folder = $xoopsModuleConfig['attachdir'];
-			$exts = array();
-			foreach ($forum->extensions() as $k){
-				$exts[] = $up->getMIME($k);
-			}
+                        $up = new RMFileUploader($folder, $xoopsModuleConfig['maxfilesize']*1024, $forum->extensions());
 			
-			$up->prepareUpload($folder, $exts, $xoopsModuleConfig['maxfilesize']*1024);
 			$errors = '';
 			$filename = '';
 			
@@ -152,7 +148,7 @@ switch($op){
 					$filename = $up->getSavedFileName();
 					$fullpath = $up->getSavedDestination();
 				
-					$attach = new BBAttachment();
+					$attach = new bXAttachment();
 					$attach->setPost($post->id());
 					$attach->setFile($filename);
 					$attach->setMime($up->getMediaType());
@@ -160,7 +156,7 @@ switch($op){
 					$attach->downloads(0);
 					$attach->setName($up->getMediaName());
 					if (!$attach->save()){
-						redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_ERRSAVEATTACH."<br />".$up->getErrors());
+						redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('The file was not saved.','bxpress')."<br />".$up->getErrors());
 						die();
 					}
 				}
@@ -168,31 +164,31 @@ switch($op){
 			}
 			
 		} else {
-			redirect_header('edit.php?id='.$post->id().'#attachments', 2, _MS_EXMBB_NOPERM);
+			redirect_header('edit.php?id='.$post->id().'#attachments', 2, __('Sorry, you do not have permission to do this action','bxpress'));
 		}
 		
-		redirect_header('edit.php?id='.$post->id().'#attachments', 1, _MS_EXMBB_ATTACHOK);
+		redirect_header('edit.php?id='.$post->id().'#attachments', 1, __('File attached successfully!','bxpress').$errors);
 		
 		break;
 	
 	default:
 		
-		$xoopsOption['template_main'] = "exmbb_postform.html";
+		$xoopsOption['template_main'] = "bxpress_postform.html";
 		$xoopsOption['module_subpage'] = "edit";
 		include 'header.php';
 
-		BBFunctions::makeHeader();
+		bXFunctions::makeHeader();
 				
-		$form = new RMForm(_MS_EXMBB_FEDITTITLE, 'frmTopic', 'edit.php');
-		$first_id = BBFunctions::getFirstId($topic->id());
+		$form = new RMForm(__('Edit Topic','bxpress'), 'frmTopic', 'edit.php');
+		$first_id = bXFunctions::getFirstId($topic->id());
 		if ($id==$first_id){
-			$form->addElement(new RMText(_MS_EXMBB_SUBJECT, 'subject', 50, 255, $topic->title()), true);
+			$form->addElement(new RMFormText(__('Topic Subject:','bxpress'), 'subject', 50, 255, $topic->title()), true);
 			// Sticky
 			if ($xoopsUser && $xoopsModuleConfig['sticky']){
 				
 				$sticky = $xoopsUser->isAdmin() || $forum->isModerator($xoopsUser->uid()) || ($xoopsUser->posts()>$xoopsModuleConfig['sticky_posts'] && $topic->poster()==$xoopsUser->uid());
 				if ($sticky){
-					$form->addElement(new RMYesNo(_MS_EXMBB_STICKYTOPIC, 'sticky', $topic->sticky()));
+					$form->addElement(new RMFormYesNo(__('Sticky Topic','bxpress'), 'sticky', $topic->sticky()));
 				}
 				
 			}
@@ -201,57 +197,49 @@ switch($op){
 		// Si se especifico una acotación entonces la cargamos
 		$idq = isset($_GET['quote']) ? intval($_GET['quote']) : 0;
 		if ($idq>0){
-			$post = new BBPost($idq);
+			$post = new bXPost($idq);
 			if ($post->isNew()) break;
 			$quote = "[quote=".$post->uname()."]".$post->getVar('post_text','e')."[/quote]\n\n";
 		}
 		
-		$form->addElement(new RMEditor(_MS_EXMBB_MSG, 'msg', '90%', '300px', isset($quote) ? $quote : $post->getVar('post_text','e'), $xoopsModuleConfig['editor']), true);
+		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '300px', $rmc_config['editor_type']=='tiny' ? $post->getVar('post_text') : $post->getVar('post_text','e')), true);
 		
-		$ele = new RMCheck('');
-		$ele->asTable(5);
-		$ele->addOption(_MS_EXMBB_BBCODE, 'doxcode', 1, $post->bbcode());
-		$ele->addOption(_MS_EXMBB_SMILES, 'dosmiley', 1, $post->smiley());
-		if ($xoopsModuleConfig['html'] || $xoopsUser->isAdmin()) $ele->addOption(_MS_EXMBB_HTML, 'dohtml', 1, $post->html());
-		$ele->addOption(_MS_EXMBB_BR, 'dobr', 1, $post->br());
-		$ele->addOption(_MS_EXMBB_IMG, 'doimg', 1, $post->image());
-		$form->addElement($ele);
-		$form->addElement(new RMHidden('op','post'));
-		$form->addElement(new RMHidden('id', $id));
-		$ele = new RMButtonGroup();
-		$ele->addButton('sbt', _MS_EXMBB_SAVECHANGES, 'submit');
+		$form->addElement(new RMFormHidden('op','post'));
+		$form->addElement(new RMFormHidden('id', $id));
+		$ele = new RMFormButtonGroup();
+		$ele->addButton('sbt', __('Save Changes','bxpress'), 'submit');
 		$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location = \'topic.php?pid='.$post->id().'#p'.$post->id().'\'";');
 		$form->addElement($ele);
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){
-			$forma = new RMForm('<a name="attachments"></a>'._MS_EXMBB_EXATTACH, 'frmAttach', 'edit.php');
-			$forma->addElement(new RMSubTitle(sprintf(_MS_EXMBB_EXATTACHTIP, $xoopsModuleConfig['attachlimit']), 1, 'even'));
+			$forma = new RMForm('<a name="attachments"></a>'.__('Archivos Adjuntos','bxpress'), 'frmAttach', 'edit.php');
+			$forma->addElement(new RMFormSubTitle(sprintf(__('You can upload new files to this post. You have a limit of <strong>%s</strong> attachment per post.','bxpress'), $xoopsModuleConfig['attachlimit']), 1, 'even'));
 			if ($post->totalAttachments()<$xoopsModuleConfig['attachlimit']){
-				$ele = new RMFile(_MS_EXMBB_ATTACH, 'attach', 45, $xoopsModuleConfig['maxfilesize'] * 1024);
-				$ele->setDescription(sprintf(_MS_EXMBB_EXTS, implode(',', $forum->extensions())));
+				$ele = new RMFormFile(__('Attach File:','bxpress'), 'attach', 45, $xoopsModuleConfig['maxfilesize'] * 1024);
+				$ele->setDescription(sprintf(__('Allowed File Types: %s','bxpress'), implode(',', $forum->extensions())));
 				$forma->addElement($ele, true);
 				$forma->setExtra('enctype="multipart/form-data"');
 			}
 			// Lista de Archivos Adjuntos
-			$list = new RMCheck(_MS_EXMBB_CURATTACH);
+			$list = new RMFormCheck(__('Cuerrent Attachments','bxpress'));
 			$list->asTable(1);
 			foreach ($post->attachments() as $file){
-				$list->addOption("<img src='".$file->getIcon()."' align='absmiddle' /> ".$file->name()." (".formatBytesSize($file->size()).")", 'files[]', $file->id());
+				$list->addOption("<img src='".$file->getIcon()."' align='absmiddle' /> ".$file->name()." (".RMUtilities::formatBytesSize($file->size()).")", 'files[]', $file->id());
 			}
 			$forma->addElement($list);
-			$ele = new RMButtonGroup();
-			if ($post->totalAttachments()<$xoopsModuleConfig['attachlimit']) $ele->addButton('upload', _MS_EXMBB_UPLOAD, 'submit');
-			$ele->addButton('delete', _MS_EXMBB_DELFILE, 'button', 'onclick="document.forms[\'frmAttach\'].op.value=\'delete\'; submit();"');
-			$ele->addButton('cancel', _CANCEL, 'button', 'onclick="window.location = \'topic.php?pid='.$post->id().'#p'.$post->id().'\'";');
+			$ele = new RMFormButtonGroup();
+			if ($post->totalAttachments()<$xoopsModuleConfig['attachlimit']) $ele->addButton('upload', __('Upload File','bxpress'), 'submit');
+			$ele->addButton('delete', __('Delete File(s)','bxpress'), 'button', 'onclick="document.forms[\'frmAttach\'].op.value=\'delete\'; submit();"');
+			$ele->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="window.location = \'topic.php?pid='.$post->id().'#p'.$post->id().'\'";');
 			$forma->addElement($ele);
-			$forma->addElement(new RMHidden('op', 'upload'));
-			$forma->addElement(new RMHidden('id', $id));
+			$forma->addElement(new RMFormHidden('op', 'upload'));
+			$forma->addElement(new RMFormHidden('id', $id));
 		}
 
 		$tpl->assign('topic_form', $form->render()."<br />".$forma->render());
 		
-		$tpl->assign('lang_topicreview', _MS_EXMBB_TOPICREV);
+		$tpl->assign('lang_topicreview', __('Topic Review (Newest First)','bxpress'));
 
 		include 'footer.php';
 		
