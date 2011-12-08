@@ -1,5 +1,5 @@
 <?php
-// $Id: index.php 684 2011-07-27 08:40:00Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyGalleries
 // Module for advanced image galleries management
