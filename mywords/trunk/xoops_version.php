@@ -8,6 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+$amod = xoops_getActiveModules();
+if(!in_array("rmcommon",$amod)){
+    xoops_error("<strong>WARNING:</strong> MyGalleries requires Common Utilities installed previously!<br />Please install Common Utilities before to use MyGalleries");
+    trigger_error('Common Utilities is not installed! This might cause problems with functioning of MyWords and entire system. To solve, install Common Utilities or uninstall MyWords and then delete module folder.', E_USER_WARNING);
+    echo "<br />";
+}
+
 if (!function_exists("__")){
     function __($text, $d){
         return $text;
@@ -34,7 +41,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>098,'status'=>0,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>99,'status'=>0,'name'=>'MyWords');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
