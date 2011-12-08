@@ -1,5 +1,5 @@
 <?php
-// $Id: editor.class.php 99 2010-01-06 16:59:21Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

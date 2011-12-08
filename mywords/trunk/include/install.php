@@ -1,9 +1,9 @@
 <?php
-// $Id: xoops_version.php 53 2009-09-18 06:02:06Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
-// Blogging System
-// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Module for advanced image galleries management
+// Author: Eduardo Cortés
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------

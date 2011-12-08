@@ -1,5 +1,5 @@
 <?php
-// $Id: mwpost.class.php 42 2009-09-15 20:39:58Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

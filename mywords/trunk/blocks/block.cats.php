@@ -1,5 +1,5 @@
 <?php
-// $Id: block.cats.php 13 2009-08-31 00:45:24Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

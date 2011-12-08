@@ -1,5 +1,5 @@
 <?php
-// $Id: ax-categories.php 50 2009-09-17 20:36:31Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

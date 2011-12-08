@@ -1,5 +1,5 @@
 <?php
-// $Id: xoops_version.php 53 2009-09-18 06:02:06Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Blogging System
@@ -25,7 +25,7 @@ if (!function_exists("__")){
     }
 }
 
-if(function_exists("load_mod_locale")) load_mod_locale('bxpress');
+if(function_exists("load_mod_locale")) load_mod_locale('mywords');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;

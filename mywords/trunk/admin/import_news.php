@@ -1,5 +1,5 @@
 <?php
-// $Id: import_news.php 13 2009-08-31 00:45:24Z i.bitcero $
+// $Id$
 // --------------------------------------------------------
 // MyWords
 // Manejo de Artículos
