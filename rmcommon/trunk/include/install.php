@@ -19,11 +19,28 @@ function xoops_module_pre_uninstall_rmcommon($mod){
     
 }
 
+function xoops_module_uninstall_rmcommon($mod){
+    
+    xoops_setActiveModules();
+    return true;
+    
+}
+
 function xoops_module_install_rmcommon($mod){
     // Restore previous configurations
     $db = Database::getInstance();
     
     $db->queryF("UPDATE ".$db->prefix("config")." SET conf_value='redmexico' WHERE conf_name='cpanel'");
+    
+    // Temporary solution
+    $contents = file_get_contents(XOOPS_VAR_PATH.'/configs/xoopsconfig.php');
+    $write = "if(file_exists(XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php')) include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';";
+    if(strpos($contents,$write)!==FALSE) return true;
+    
+    $pos = strpos($contents, '<?php');
+    
+    file_put_contents(XOOPS_VAR_PATH.'/configs/xoopsconfig.php', substr($contents, $pos, 5)."\n".$write."\n".substr($contents, $pos+5));
+    xoops_setActiveModules();
     
     return true;
 }
