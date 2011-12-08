@@ -8,6 +8,17 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+$amod = xoops_getActiveModules();
+if(!in_array("rmcommon",$amod)){
+    $error = "<strong>WARNING:</strong> RapidDocs requires %s installed previously!<br />Please install %s before to use RapidDocs";
+    $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
+    xoops_error($error);
+    $error = '%s is not installed! This might cause problems with functioning of RapidDocs and entire system. To solve, install %s or uninstall RapidDocs and then delete module folder.';
+    $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
+    trigger_error($error, E_USER_WARNING);
+    echo "<br />";
+}
+
 if (!function_exists("__")){
     function __($text, $d){
         return $text;
@@ -35,6 +46,7 @@ $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "docs";
 $modversion['icon48'] = "images/logo.png";
+$modversion['onInstall'] = 'include/install.php';
 
 // Administración
 $modversion['hasAdmin'] = 1;
