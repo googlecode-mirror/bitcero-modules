@@ -13,7 +13,7 @@ if(!in_array("rmcommon",$amod)){
     $error = "<strong>WARNING:</strong> MyWords requires %s installed previously!<br />Please install %s before to use MyWords";
     $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
     xoops_error($error);
-    $error = 'Common Utilities is not installed! This might cause problems with functioning of MyWords and entire system. To solve, install %s or uninstall MyWords and then delete module folder.';
+    $error = '%s is not installed! This might cause problems with functioning of MyWords and entire system. To solve, install %s or uninstall MyWords and then delete module folder.';
     $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
     trigger_error($error, E_USER_WARNING);
     echo "<br />";
@@ -46,6 +46,7 @@ $modversion['icon48'] = "images/logo.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>2,'revision'=>99,'status'=>0,'name'=>'MyWords');
+$modversion['onInstall'] = 'include/install.php';
 
 // Admin things
 $modversion['hasAdmin'] = 1;

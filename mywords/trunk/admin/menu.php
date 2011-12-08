@@ -9,7 +9,6 @@
 // --------------------------------------------------------------
 
 load_mod_locale('mywords','');
-include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
 $adminmenu[] = array(
     'title'=>__('Dashboard','mywords'),
