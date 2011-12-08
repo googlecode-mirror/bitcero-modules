@@ -11,7 +11,7 @@
 xoops_load('gui', 'system');
 
 global $xoopsConfig;
-require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
+include_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
 
 /**
 * XOOPS CPanel "redmexico" GUI class
