@@ -8,6 +8,17 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+$amod = xoops_getActiveModules();
+if(!in_array("rmcommon",$amod)){
+    $error = "<strong>WARNING:</strong> MyGalleries requires %s installed previously!<br />Please install %s before to use MyGalleries";
+    $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
+    xoops_error($error);
+    $error = '%s is not installed! This might cause problems with functioning of MyGalleries and entire system. To solve, install %s or uninstall MyGalleries and then delete module folder.';
+    $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
+    trigger_error($error, E_USER_WARNING);
+    echo "<br />";
+}
+
 if (!function_exists("__")){
     function __($text, $d){
         return $text;
@@ -33,7 +44,8 @@ $modversion['license'] = "GPL see LICENSE";
 $modversion['rmnative'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "galleries";
-$modversion['onUninstall']="include/uninstall.php";
+$modversion['onUninstall']="include/install.php";
+$modversion['onInstall']="include/install.php";
 
 // Admin things
 $modversion['hasAdmin'] = 1;
