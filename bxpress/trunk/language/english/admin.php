@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.php 55 2008-01-28 23:50:07Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM

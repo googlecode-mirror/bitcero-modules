@@ -1,5 +1,5 @@
 <?php
-// $Id: notification_update.php 45 2007-12-15 03:17:26Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM
