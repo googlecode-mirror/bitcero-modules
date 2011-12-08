@@ -1,5 +1,5 @@
 <?php
-// $Id: rss.php 71 2009-02-11 12:01:22Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM

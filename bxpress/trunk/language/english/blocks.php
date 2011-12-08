@@ -1,5 +1,5 @@
 <?php
-// $Id: blocks.php 57 2008-02-12 19:06:17Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM

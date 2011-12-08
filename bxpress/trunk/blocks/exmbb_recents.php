@@ -1,5 +1,5 @@
 <?php
-// $Id: exmbb_recents.php 75 2009-02-14 21:55:55Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM

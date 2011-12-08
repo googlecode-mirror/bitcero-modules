@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php 70 2009-02-09 01:25:31Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM

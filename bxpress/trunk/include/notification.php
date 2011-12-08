@@ -1,5 +1,5 @@
 <?php
-// $Id: notification.php 52 2007-12-29 19:58:44Z ginis $
+// $Id$
 // --------------------------------------------------------------
 // Foros EXMBB
 // Módulo para el manejo de Foros en EXM
