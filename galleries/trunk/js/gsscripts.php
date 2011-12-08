@@ -1,5 +1,5 @@
 <?php
-// $Id: gsscripts.php 651 2011-06-27 05:24:56Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyGalleries
 // Module for advanced image galleries management
