@@ -11,6 +11,12 @@
 
 if(function_exists("load_mod_locale")) load_mod_locale("mywords");
 
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
 define('_MI_MW_DESC', __('Module for the publishing and management of news and blogs', 'mywords'));
 
 define('_MI_MW_AMENU1', __('Module Status', 'mywords'));
