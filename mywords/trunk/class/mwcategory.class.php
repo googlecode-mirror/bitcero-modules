@@ -1,5 +1,5 @@
 <?php
-// $Id: mwcategory.class.php 48 2009-09-17 14:53:50Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Blogging System

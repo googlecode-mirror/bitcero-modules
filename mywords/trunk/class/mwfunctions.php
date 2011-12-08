@@ -1,5 +1,5 @@
 <?php
-// $Id: mwfunctions.php 53 2009-09-18 06:02:06Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

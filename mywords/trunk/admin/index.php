@@ -1,5 +1,5 @@
 <?php
-// $Id: index.php 29 2009-09-13 23:41:38Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Complete Blogging System

@@ -1,5 +1,5 @@
 <?php
-// $Id: categories.php 26 2009-09-13 20:26:35Z i.bitcero $
+// $Id$
 // --------------------------------------------------------------
 // MyWords
 // Blogging System
