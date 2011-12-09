@@ -19,4 +19,6 @@ function xoops_module_pre_install_mywords(&$mod){
         return false;
     }
     
+    return true;
+    
 }
