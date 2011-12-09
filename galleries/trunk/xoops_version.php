@@ -10,7 +10,7 @@
 
 $amod = xoops_getActiveModules();
 if(!in_array("rmcommon",$amod)){
-    $error = "<strong>WARNING:</strong> MyGalleries requires %s installed previously!<br />Please install %s before to use MyGalleries";
+    $error = "<strong>WARNING:</strong> MyGalleries requires %s to be installed!<br />Please install %s before trying to use MyGalleries";
     $error = str_replace("%s", '<a href="http://www.redmexico.com.mx/w/common-utilities/" target="_blank">Common Utilities</a>', $error);
     xoops_error($error);
     $error = '%s is not installed! This might cause problems with functioning of MyGalleries and entire system. To solve, install %s or uninstall MyGalleries and then delete module folder.';
