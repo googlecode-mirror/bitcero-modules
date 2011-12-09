@@ -17,7 +17,7 @@ if (!function_exists("__")){
 $modversion['name'] = 'Common Utilities';
 $modversion['version'] = 2.1;
 $modversion['releasedate'] = "08 Jan 2010";
-$modversion['status'] = "Stable";
+$modversion['status'] = "Beta";
 $modversion['description'] = 'Container a lot of clases and functions used by Red México Modules';
 $modversion['author'] = "BitC3R0";
 $modversion['authormail'] = "i.bitcero@gmail.com";
@@ -32,7 +32,7 @@ $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>138,'status'=>0,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>140,'status'=>-2,'name'=>'Common Utilities');
 $modversion['onUninstall'] = 'include/install.php';
 $modversion['onInstall'] = 'include/install.php';
 
