@@ -29,7 +29,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('mywords');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
-$modversion['version'] = '2.098';
+$modversion['version'] = '2.099';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
