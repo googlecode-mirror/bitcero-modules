@@ -30,4 +30,6 @@ function xoops_module_pre_install_galleries(&$mod){
         return false;
     }
     
+    return true;
+    
 }
