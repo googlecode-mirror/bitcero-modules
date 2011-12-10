@@ -64,40 +64,43 @@ class RMLightbox
 	}
 	
 	public function render(){
-		$script = "<script type='text/javascript'>\n";
-		$script .= "var lburl = '".RMCURL."/plugins/lightbox';\n";
-		$script .= "\$(function(){\n";
+            $script = "<script type='text/javascript'>\n";
+            $script .= "var lburl = '".RMCURL."/plugins/lightbox';\n";
 		
-		$config = RMFunctions::get()->plugin_settings('lightbox', true);
-		$params = "{";
-		$params .= "transition:'$config[transition]'";
-		$params .= ",speed:$config[speed]";
-		$params .= $config['width']!='' ? ",maxWidth:'$config[width]'" : '';
-		$params .= $config['height']!='' ? ",maxHeight:'$config[height]'" : '';
-		$params .= ",scalePhotos:$config[scale]";
-        $params .= ",loop:".($config['loop'] ? 'true':'false');
-        if($config['slideshow']){
-            $params .= ",slideshow:true";
-            $params .= ",slideshowSpeed:".$config['slspeed'];
-            $params .= ",slideshowStart:'".__('Start Slideshow','lightbox')."'";
-            $params .= ",slideshowStop:'".__('Stop Slideshow','lightbox')."'";
-        }
-		$params .= $config['configs']!='' ? ",$config[configs]" : '';
-		$params .= "}";
+            $config = RMFunctions::get()->plugin_settings('lightbox', true);
+            $params = "{";
+            $params .= "transition:'$config[transition]'";
+            $params .= ",speed:$config[speed]";
+            $params .= $config['width']!='' ? ",maxWidth:'$config[width]'" : '';
+            $params .= $config['height']!='' ? ",maxHeight:'$config[height]'" : '';
+            $params .= ",scalePhotos:$config[scale]";
+            $params .= ",loop:".($config['loop'] ? 'true':'false');
+            if($config['slideshow']){
+                $params .= ",slideshow:true";
+                $params .= ",slideshowSpeed:".$config['slspeed'];
+                $params .= ",slideshowStart:'".__('Start Slideshow','lightbox')."'";
+                $params .= ",slideshowStop:'".__('Stop Slideshow','lightbox')."'";
+            }
+            $params .= $config['configs']!='' ? ",$config[configs]" : '';
+            $params .= "}";
 		
-		if (is_array($this->elements)){
-			foreach ($this->elements as $element){
-				$script .= "\$(\"$element\").colorbox($params);\n";
-			}
-		} else {
-			$script .= "\$(\"$this->elements\").colorbox($params);\n";
+            $script .= "var lb_params = ".$params.";\n";
+            if(!defined('RM_LB_PARAMS')) define('RM_LB_PARAMS',1);
+                
+            $script .= "\$(function(){\n";
+            if (is_array($this->elements)){
+                foreach ($this->elements as $element){
+                    $script .= "\$(\"$element\").colorbox(lb_params);\n";
 		}
+            } else {
+		$script .= "\$(\"$this->elements\").colorbox(lb_params);\n";
+            }
 		
-		$script .= "});\n</script>\n";
+            $script .= "});\n</script>\n";
         
-        RMTemplate::get()->add_local_script('jquery.colorbox-min.js', 'rmcommon', 'plugins/lightbox');
+            RMTemplate::get()->add_local_script('jquery.colorbox-min.js', 'rmcommon', 'plugins/lightbox');
         
-		return $script;
+            return $script;
 	}
 	
 	public function __destruct(){
