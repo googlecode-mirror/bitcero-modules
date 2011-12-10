@@ -8,11 +8,13 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-load_mod_locale('works');
+include_once 'include/xv-header.php';
+
+if(function_exists("load_mod_locale")) load_mod_locale('works');
 
 $modversion['name'] = "Professional Works";
-$modversion['version'] = "2.049";
-$modversion['rmversion'] = array('number'=>2,'revision'=>49,'status'=>0,'name'=>'Professional Works');
+$modversion['version'] = "2.0";
+$modversion['rmversion'] = array('number'=>2,'revision'=>51,'status'=>0,'name'=>'Professional Works');
 $modversion['description'] = _MI_PW_MODDESC;
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
@@ -28,9 +30,7 @@ $modversion['rmnative'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "works";
 $modversion['icon48'] = "images/logo.png";
-
-// To update version 2.0.46 to 2.0.49
-$modversion['onUpdate'] = 'include/update.php';
+$modversion['onInstall'] = "include/install.png";
 
 //Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";

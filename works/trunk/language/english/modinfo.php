@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if(function_exists("load_mod_locale")) load_mod_locale("works");
+
 define('_MI_PW_MODDESC',__('Module to manage professional portfolios', 'works'));
 
 // Configuraciones
