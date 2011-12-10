@@ -1,0 +1,22 @@
+.rm_breadcrumb{
+    padding: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    overflow: hidden;
+}
+.rm_breadcrumb ul.rm_breadcrumb_ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.rm_breadcrumb_ul li{
+    list-style: none;
+    float: left;
+    padding: 4px 2px;
+}
+ul.rm_breadcrumb_ul li a.with_icon{
+    padding: 2px 0 2px 20px;
+}
+ul.rm_breadcrumb_ul li:hover{
+    background-color: #ebebeb;
+}

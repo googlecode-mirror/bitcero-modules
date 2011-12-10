@@ -1,0 +1,89 @@
+/* Clearlooks 2 */
+
+/* Reset */
+.exm, .exm div, .exm span, .exm a {vertical-align:baseline; text-align:left; position:absolute; border:0; padding:0; margin:0; background:transparent; font-family:Arial,Verdana; font-size:11px; color:#000; text-decoration:none; font-weight:normal; width:auto; height:auto; overflow:hidden; display:block}
+
+/* General */
+.exm {position:absolute; direction:ltr; -moz-box-shadow: #000 0 0 20px; box-shadow: #000 0 0 20px;}
+.exm .mceWrapper {position:static}
+.mceEventBlocker {position:fixed; left:0; top:0; background:url(img/horizontal.png) no-repeat 0 -75px; width:100%; height:100%}
+.exm .mcePlaceHolder {border:1px solid #000; background:#888; top:0; left:0; opacity:0.5; -ms-filter:'alpha(opacity=50)'; filter:alpha(opacity=50)}
+.exm_modalBlocker {position:fixed; left:0; top:0; width:100%; height:100%; background:#FFF; opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60); display:none}
+
+/* Top */
+.exm .mceTop, .exm .mceTop div {top:0; width:100%; height:23px}
+.exm .mceTop .mceLeft {width:6px; background:url(img/corners.png)}
+.exm .mceTop .mceCenter {right:6px; width:100%; height:23px; background:url(img/horizontal.png) 12px 0; clip:rect(auto auto auto 12px)}
+.exm .mceTop .mceRight {right:0; width:6px; height:23px; background:url(img/corners.png) -12px 0}
+.exm .mceTop span {width:100%; text-align:center; vertical-align:middle; line-height:23px; font-weight:bold}
+.exm .mceFocus .mceTop .mceLeft {background:url(img/corners.png) -6px 0}
+.exm .mceFocus .mceTop .mceCenter {background:url(img/horizontal.png) 0 -23px}
+.exm .mceFocus .mceTop .mceRight {background:url(img/corners.png) -18px 0}
+.exm .mceFocus .mceTop span {color:#FFF}
+
+/* Middle */
+.exm .mceMiddle, .exm .mceMiddle div {top:0}
+.exm .mceMiddle {width:100%; height:100%; clip:rect(23px auto auto auto)}
+.exm .mceMiddle .mceLeft {left:0; width:5px; height:100%; background:url(img/vertical.png) -5px 0}
+.exm .mceMiddle span {top:23px; left:5px; width:100%; height:100%; background:#FFF}
+.exm .mceMiddle .mceRight {right:0; width:5px; height:100%; background:url(img/vertical.png)}
+
+/* Bottom */
+.exm .mceBottom, .exm .mceBottom div {height:6px}
+.exm .mceBottom {left:0; bottom:0; width:100%}
+.exm .mceBottom div {top:0}
+.exm .mceBottom .mceLeft {left:0; width:5px; background:url(img/corners.png) -34px -6px}
+.exm .mceBottom .mceCenter {left:5px; width:100%; background:url(img/horizontal.png) 0 -46px}
+.exm .mceBottom .mceRight {right:0; width:5px; background: url(img/corners.png) -34px 0}
+.exm .mceBottom span {display:none}
+.exm .mceStatusbar .mceBottom, .exm .mceStatusbar .mceBottom div {height:23px}
+.exm .mceStatusbar .mceBottom .mceLeft {background:url(img/corners.png) -29px 0}
+.exm .mceStatusbar .mceBottom .mceCenter {background:url(img/horizontal.png) 0 -52px}
+.exm .mceStatusbar .mceBottom .mceRight {background:url(img/corners.png) -24px 0}
+.exm .mceStatusbar .mceBottom span {display:block; left:7px; font-family:Arial, Verdana; font-size:11px; line-height:23px}
+
+/* Actions */
+.exm a {width:17px; height:16px; top:3px;}
+.exm .mceClose {right:6px; background:url(img/buttons.png) -93px 0}
+.exm .mceMin {display:none; right:44px; background:url(img/buttons.png) -6px 0}
+.exm .mceMed {display:none; right:25px; background:url(img/buttons.png) -35px 0}
+.exm .mceMax {display:none; right:25px; background:url(img/buttons.png) -64px 0}
+.exm .mceMove {display:none;width:100%;cursor:move;background:url(img/corners.png) no-repeat -100px -100px}
+.exm .mceMovable .mceMove {display:block}
+.exm .mceFocus .mceClose {right:6px; background:url(img/buttons.png) -93px -16px}
+.exm .mceFocus .mceMin {right:44px; background:url(img/buttons.png) -6px -16px}
+.exm .mceFocus .mceMed {right:25px; background:url(img/buttons.png) -35px -16px}
+.exm .mceFocus .mceMax {right:25px; background:url(img/buttons.png) -64px -16px}
+.exm .mceFocus .mceClose:hover {right:6px; background:url(img/buttons.png) -93px -32px}
+.exm .mceFocus .mceMin:hover {right:44px; background:url(img/buttons.png) -6px -32px}
+.exm .mceFocus .mceMed:hover {right:25px; background:url(img/buttons.png) -35px -32px}
+.exm .mceFocus .mceMax:hover {right:25px; background:url(img/buttons.png) -64px -32px}
+
+/* Resize */
+.exm .mceResize {top:auto; left:auto; display:none; width:5px; height:5px; background:url(img/horizontal.png) no-repeat 0 -75px}
+.exm .mceResizable .mceResize {display:block}
+.exm .mceResizable .mceMin, .exm .mceMax {display:none}
+.exm .mceMinimizable .mceMin {display:block}
+.exm .mceMaximizable .mceMax {display:block}
+.exm .mceMaximized .mceMed {display:block}
+.exm .mceMaximized .mceMax {display:none}
+.exm a.mceResizeN {top:0; left:0; width:100%; cursor:n-resize}
+.exm a.mceResizeNW {top:0; left:0; cursor:nw-resize}
+.exm a.mceResizeNE {top:0; right:0; cursor:ne-resize}
+.exm a.mceResizeW {top:0; left:0; height:100%; cursor:w-resize;}
+.exm a.mceResizeE {top:0; right:0; height:100%; cursor:e-resize}
+.exm a.mceResizeS {bottom:0; left:0; width:100%; cursor:s-resize}
+.exm a.mceResizeSW {bottom:0; left:0; cursor:sw-resize}
+.exm a.mceResizeSE {bottom:0; right:0; cursor:se-resize}
+
+/* Alert/Confirm */
+.exm .mceButton {font-weight:bold; bottom:10px; width:80px; height:30px; background:url(img/button.gif); line-height:30px; vertical-align:middle; text-align:center; outline:0}
+.exm .mceMiddle .mceIcon {left:15px; top:35px; width:32px; height:32px}
+.exm .mceAlert .mceMiddle span, .exm .mceConfirm .mceMiddle span {background:transparent;left:60px; top:35px; width:320px; height:50px; font-weight:bold; overflow:auto; white-space:normal}
+.exm a:hover {font-weight:bold;}
+.exm .mceAlert .mceMiddle, .exm .mceConfirm .mceMiddle {background:#D6D7D5}
+.exm .mceAlert .mceOk {left:50%; top:auto; margin-left: -40px}
+.exm .mceAlert .mceIcon {background:url(img/alert.gif)}
+.exm .mceConfirm .mceOk {left:50%; top:auto; margin-left: -90px}
+.exm .mceConfirm .mceCancel {left:50%; top:auto}
+.exm .mceConfirm .mceIcon {background:url(img/confirm.gif)} 
