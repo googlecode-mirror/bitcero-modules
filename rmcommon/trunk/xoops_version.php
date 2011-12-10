@@ -288,7 +288,7 @@ $modversion['config'][29]['title'] = '_MI_RMC_BLOCKSENABLE';
 $modversion['config'][29]['description'] = '';
 $modversion['config'][29]['formtype'] = 'yesno';
 $modversion['config'][29]['valuetype'] = 'int';
-$modversion['config'][29]['default'] = 1;
+$modversion['config'][29]['default'] = 0;
 
 $modversion['blocks'][] = array(
     'file' => "comments.php",
