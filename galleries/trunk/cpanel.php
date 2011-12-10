@@ -11,11 +11,14 @@
 define('GS_LOCATION','panel');
 $xoopsOption['module_subpage'] = 'panel';
 
+require '../../mainfile.php';
+
 $toget = 's';
 include("include/parse.php");
 
 //Verificamos que sea un usuario registrado
 if(!$xoopsUser){
+        include 'header.php';
 	redirect_header(GSFunctions::get_url(),2, __('You don\'t have authorization to view this section','galleries'));
 	die();
 }
