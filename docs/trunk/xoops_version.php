@@ -54,6 +54,7 @@ $modversion['tables'][2] = 'rd_references';
 $modversion['tables'][3] = 'rd_figures';
 $modversion['tables'][4] = 'rd_votedata';
 $modversion['tables'][5] = 'rd_edits';
+$modversion['tables'][6] = 'rd_meta';
 
 //Formato de acceso a información
 $modversion['config'][] = array(
