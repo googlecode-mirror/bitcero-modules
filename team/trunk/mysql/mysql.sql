@@ -4,7 +4,7 @@ CREATE TABLE `coach_categos` (
   `nameid` varchar(100) NOT NULL,
   `desc` varchar(255) NOT NULL,
   PRIMARY KEY  (`id_cat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `coach_coachs` (
   `id_coach` int(11) NOT NULL auto_increment,
@@ -16,7 +16,7 @@ CREATE TABLE `coach_coachs` (
   `created` int(10) NOT NULL,
   PRIMARY KEY  (`id_coach`),
   KEY `nameid` (`nameid`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `coach_players` (
   `id_play` int(11) NOT NULL auto_increment,
@@ -34,13 +34,13 @@ CREATE TABLE `coach_players` (
   `dosmiley` tinyint(1) NOT NULL default '0',
   `dobr` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_play`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `coach_teamcoach` (
   `id_coach` int(11) NOT NULL,
   `id_team` int(11) NOT NULL,
   KEY `id_coach` (`id_coach`,`id_team`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `coach_teams` (
   `id_team` int(11) NOT NULL auto_increment,
@@ -56,4 +56,4 @@ CREATE TABLE `coach_teams` (
   `doimage` tinyint(1) NOT NULL default '0',
   `dosmiley` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_team`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
