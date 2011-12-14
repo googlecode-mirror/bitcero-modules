@@ -30,7 +30,7 @@ define('_MI_GS_URLMODE', __('Enable friendly URLs','galleries'));
 define('_MI_GS_URLBASE', __('Base path for URLs', 'galleries'));
 
 define('_MI_GS_NAVIMAGES', __('Show navigation bar as images', 'galleries'));
-define('_MI_GS_NAVIMAGESD', __('When this option is enabled MyGalleries will show navigation bar in Picture Details using next and previous images.', 'galleries'));
+define('_MI_GS_NAVIMAGESD', __('When this option is enabled MyGalleries will show navigation bar in Picture Details using Next and Previous images.', 'galleries'));
 define('_MI_GS_NAVIMAGESNUM', __('Number of images in navigation', 'galleries'));
 define('_MI_GS_NAVIMAGESNUMD', __('Specify the number of images to show in navigation bar. This value is used for previous and next images.', 'galleries'));
 
@@ -60,7 +60,7 @@ define('_MI_GS_DESCSIZE', __('Specify this value in kilobytes','galleries'));
 
 // Almacenar tamñso orginales
 define('_MI_GS_SAVEORIGINAL', __('Store original pictures','galleries'));
-define('_MI_GS_DELORIGINAL', __('Maintain original pictures after delete the picture from database','galleries'));
+define('_MI_GS_DELORIGINAL', __('Maintain original pictures after deleting the picture from database','galleries'));
 
 // Numero de imágenes recientes
 define('_MI_GS_LASTNUM', __('Number of recent pictures in home page','galleries'));
