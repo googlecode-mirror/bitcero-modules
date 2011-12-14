@@ -5,7 +5,7 @@ CREATE TABLE `rmmf_categos` (
   `desc` text NOT NULL,
   `orden` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_cat`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- --------------------------------------------------------
 
@@ -18,7 +18,7 @@ CREATE TABLE `rmmf_images` (
   `archivo` varchar(200) NOT NULL default '',
   `work` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_img`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- --------------------------------------------------------
 
@@ -38,4 +38,4 @@ CREATE TABLE `rmmf_works` (
   `resaltado` tinyint(1) NOT NULL default '0',
   `imagen` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id_w`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
