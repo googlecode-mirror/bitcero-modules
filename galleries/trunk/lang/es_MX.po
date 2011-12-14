@@ -257,7 +257,7 @@ msgid "Edit Postcard"
 msgstr "Editar Postal"
 
 #: C:\wamp\www\cu\modules\galleries/postcard.php:161
-msgid "Please check the security words and write it correctly!"
+msgid "Please check the security word and write it correctly!"
 msgstr "¡Por favor verifica  las palabras de seguridad y escríbelas correctamente!"
 
 #: C:\wamp\www\cu\modules\galleries/postcard.php:182
@@ -329,11 +329,11 @@ msgid "Found %s pictures for \"%s\""
 msgstr "Encontrar %s imágenes por\"%s\""
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:15
-msgid "Sorry, you have not permission to upload pictures."
+msgid "Sorry, you do not have permission to upload pictures."
 msgstr "Lo sentimos, no tienes permiso para cargar imágenes."
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:23
-msgid "Sorry, you have exceed your quota limit!"
+msgid "Sorry, you have exceeded your quota limit!"
 msgstr "¡Lo sentimos, has excedido tu limite de cuota!"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:40
@@ -365,7 +365,7 @@ msgid "Set Privacy"
 msgstr "Establecer privacidad"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:48
-msgid "Private (<em>Only you will seee these pictures</em>)"
+msgid "Private (<em>Only you will see these pictures</em>)"
 msgstr "Privado (<em>) Solo podrás ver estas imágenes </em>)"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:49
@@ -373,7 +373,7 @@ msgid "For Friends (<em>Only you and your friends will see these pictures</em>)"
 msgstr "Para amigos (<em>Solo tu y tus amigos podrán ver estas imágenes </em>)"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:50
-msgid "Public (<em>Pictures will visible for all</em>)"
+msgid "Public (<em>Pictures will visible to all</em>)"
 msgstr "Publico (<em>Visiblaes para todos</em>)"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:51
@@ -399,11 +399,11 @@ msgstr "El tamaño máximi permitido es <strong>%s</strong>."
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:60
 #, php-format
-msgid "You have used <strong>%s</strong> of <strong>%s</strong> available. You left <strong>%s</strong>"
+msgid "You have used <strong>%s</strong> of <strong>%s</strong> available. You still have <strong>%s</strong>"
 msgstr "Has usado <strong>%s</strong> de <strong>%s</strong> disponibles. Te quedan <strong>%s</strong>"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:89
-msgid "Sorry, an error ocurred while trying to register your permissions on database. Try again later!"
+msgid "Sorry, an error occurred while trying to register your permissions on database. Try again later!"
 msgstr "Lo sentimos, ocurrió un error al intentar registrar tus permsisos ¡Intentalo mas tarde!"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:207
@@ -412,7 +412,7 @@ msgid "Picture %s could not be uploaded!"
 msgstr "¡La imágen %s no pudo ser cargada!"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:221
-msgid "Errors ocurred while trying to upload images!"
+msgid "Errors occurred while trying to upload images!"
 msgstr "¡Ocurrieron errores al intentar carga las imágenes!"
 
 #: C:\wamp\www\cu\modules\galleries/submit.php:225
@@ -499,7 +499,7 @@ msgid "Galleries of %s"
 msgstr "Galerías de %s"
 
 #: C:\wamp\www\cu\modules\galleries/user.php:435
-msgid "Specified users does not exists!"
+msgid "Specified users do not exists!"
 msgstr "¡El usuario especificado no existe!"
 
 #: C:\wamp\www\cu\modules\galleries/user.php:448
@@ -622,7 +622,7 @@ msgid "Images"
 msgstr "Imágenes"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:135
-msgid "Do you really wish to delete selected images?"
+msgid "Do you really want to delete selected images?"
 msgstr "¿Realmente deseas eliminar las imágenes seleccionadas?"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:165
@@ -721,11 +721,11 @@ msgid "New user owner could not be saved!"
 msgstr "¡No se han podido almacenar los datos del usuario!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:541
-msgid "Errors ocurred while trying to upload files:"
+msgid "Errors occurred while trying to upload files:"
 msgstr "Ocurrieron errores al intentar cargas los archivos:"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:555
-msgid "Errors ocurred while trying to save image."
+msgid "Errors occurred while trying to save image."
 msgstr "Ocurrieron errores al intentar almacenar la imagen."
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:579
@@ -737,7 +737,7 @@ msgid "User owner could not be created!"
 msgstr "¡El propietario no pudo ser creado!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:693
-msgid "File could not be inserted to database!"
+msgid "File could not be inserted in database!"
 msgstr "¡El archivo no pudo ser insertado en la base de datos!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:724
@@ -762,7 +762,7 @@ msgid "Image \"%s\" could not be deleted!"
 msgstr "¡La imagen \"%s\" no pudo ser eliminada!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:761
-msgid "Errors ocurred while trying to delete images"
+msgid "Errors occurred while trying to delete images"
 msgstr "Ocurrieron errores al tratar de eliminar imágenes"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:764
@@ -779,7 +779,7 @@ msgid "Image could not be updated!"
 msgstr "¡La imagen no pudo ser actualizada!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:817
-msgid "Errors ocurred while trying to update images!"
+msgid "Errors occurred while trying to update images!"
 msgstr "¡Ocurrieron errores al tratar de actualizar imágenes!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/images.php:820
@@ -843,11 +843,11 @@ msgid "E-cards"
 msgstr "Postales electronicas"
 
 #: C:\wamp\www\cu\modules\galleries/admin/postcards.php:72
-msgid "Do you really wish to delete selected e-cards?"
+msgid "Do you really want to delete selected e-cards?"
 msgstr "¿En realidad desea eliminar la postal seleccionada?"
 
 #: C:\wamp\www\cu\modules\galleries/admin/postcards.php:94
-msgid "You must select one e-card at least!"
+msgid "You must select at least one e-card!"
 msgstr "¡Por lo menos debes seleccionar una postal!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/postcards.php:107
@@ -866,7 +866,7 @@ msgid "E-Card \"%s\" could not be deleted!"
 msgstr "¡La postal \"%s\" no pudo ser eliminada!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/postcards.php:124
-msgid "Errors ocurred while trying to delete e-cards"
+msgid "Errors occurred while trying to delete e-cards"
 msgstr "Ocurrieron errores mientras trataba de eliminar postales"
 
 #: C:\wamp\www\cu\modules\galleries/admin/postcards.php:127
@@ -878,13 +878,13 @@ msgid "Albums Management"
 msgstr "Administración de Álbumes"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:97
-msgid "Do you really wish to delete selected albums?"
+msgid "Do you really want to delete selected albums?"
 msgstr "¿Realmente desea eliminar los álbumes seleccionados?"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:98
 msgid ""
-"Do you really wish to delete all images formats for this album?\\n"
-"Only deletes formats for albums, search and others, except normal thumbnails."
+"Do you really want to delete all images formats for this album?\\n"
+"It will only delete formats for albums, search and others, except normal thumbnails."
 msgstr ""
 "¿Realmente desea eliminar todos los formatos de las imágenes para este álbum?\\n"
 " Solo elimina formatos para álbumes, búsquedas y otros, excepto miniaturas."
@@ -950,7 +950,7 @@ msgstr "¡La base de datos  no pudo ser actualizada!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:285
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:354
-msgid "Select one album at least!"
+msgid "Select at least one album!"
 msgstr "¡Seleccione por lo menos un álbum!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:305
@@ -970,7 +970,7 @@ msgid "Album \"%u\" could not be deleted"
 msgstr "El álbum \"%u\" no pudo ser eliminado"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:326
-msgid "Errors ocurred while trying to delete albums"
+msgid "Errors occurred while trying to delete albums"
 msgstr "Ocurrieron errores al tratar de eliminar álbumes"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:368
@@ -980,11 +980,11 @@ msgstr "\"%u\" no es un ID válido"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:380
 #, php-format
-msgid "Error ocurred while trying to update album \"%u\"!"
+msgid "Error occurred while trying to update album \"%u\"!"
 msgstr "¡Ocurrieron errores al tratar de actualizar el álbum \"%u\"!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:385
-msgid "Errors ocurred while trying to update albums"
+msgid "Errors occurred while trying to update albums"
 msgstr "Ocurrieron errores al tratar de actualizar álbumes"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:406
@@ -1000,7 +1000,7 @@ msgid "Sorry, we were unable to find the album owner!"
 msgstr "¡Lo sentimos, no encontramos el propietario del álbum!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:438
-msgid "There are not image formats for this album."
+msgid "There are no image formats for this album."
 msgstr "No hay formatos de imagen para este álbum."
 
 #: C:\wamp\www\cu\modules\galleries/admin/sets.php:455
@@ -1014,7 +1014,7 @@ msgid "Tags Management"
 msgstr "Administración de Etiquetas"
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:92
-msgid "Do you really wish to delete selected tags?"
+msgid "Do you really want to delete selected tags?"
 msgstr "¿Realmente deseas eliminar las etiquetas seleccionadas?"
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:118
@@ -1071,17 +1071,17 @@ msgstr "¡La etiqueta \"%s\" no tiene la longitud correcta!"
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:223
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:266
 #, php-format
-msgid "There are another tag with name \"%s\" already registered!"
+msgid "There is another tag with name \"%s\" already registered!"
 msgstr "¡Hay otras etiquetas con el nombre \"%s\" ya registradas!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:243
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:274
 #, php-format
-msgid "Errors while trying to save tag \"%s\""
+msgid "Errors occurred while trying to save tag \"%s\""
 msgstr "Ocurrieron errores al tratar de guardar la etiqueta\"%s\""
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:283
-msgid "Errors ocurred while trying to save tags."
+msgid "Errors occurred while trying to save tags."
 msgstr "Ocurrieron errores al tratar de guardar las etiquetas."
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:286
@@ -1098,7 +1098,7 @@ msgid "Tag \"%s\" could not be deleted!"
 msgstr "etiqueta \"%s\" no pudo ser eliminada!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:339
-msgid "Errors ocurred while trying to delete tags."
+msgid "Errors occurred while trying to delete tags."
 msgstr "Ocurrieron errores al tratar de eliminar etiquetas."
 
 #: C:\wamp\www\cu\modules\galleries/admin/tags.php:342
@@ -1112,12 +1112,12 @@ msgid "Users management"
 msgstr "Administración de usuarios"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:77
-msgid "Do you really wish to delete selected users?"
+msgid "Do you really want to delete selected users?"
 msgstr "¿Realmente desea eliminar los usuarios seleccionados?"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:105
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:172
-msgid "User id is not valid!"
+msgid "User ID is not valid!"
 msgstr "¡El id del usuario no es válido!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:120
@@ -1133,15 +1133,15 @@ msgid "New User"
 msgstr "Nuevo Usuario"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:126
-msgid "Xoops User"
-msgstr "Usuario Xoops"
+msgid "XOOPS User"
+msgstr "Usuario XOOPS"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:127
 msgid "Max Quota"
 msgstr "Cuota Máxima"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:128
-msgid "This value determines the total disc quota to be used for user and must be specified in megabytes."
+msgid "This value determines the total disk quota per user and must be specified in megabytes."
 msgstr "Este valor determinará la cuota total del disco para ser usada y debe ser especificada en megabytes."
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:131
@@ -1154,11 +1154,11 @@ msgstr "Crear Usuario"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:187
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:197
-msgid "This is user has been registered already!"
+msgid "This user has been registered already!"
 msgstr "¡Este usuario ya ha sido registrado!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:212
-msgid "Errors ocurred while trying to save this user."
+msgid "Errors occurred while trying to save this user."
 msgstr "Ocurrieron errores al tratar de guardar este usuario."
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:225
@@ -1181,7 +1181,7 @@ msgid "User with id \"%s\" could not be deleted!"
 msgstr "¡Usuario con id \"%s\" no pupo ser eliminado!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:279
-msgid "Errors ocurred while trying to delete users."
+msgid "Errors occurred while trying to delete users."
 msgstr "Ocurrieron errorres al tratar de eliminar usuarios."
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:282
@@ -1198,7 +1198,7 @@ msgid "User with id \"%s\" could not be updated!"
 msgstr "Usuario con id \"%s\" no pudo ser actualizado!"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:332
-msgid "Errors ocurred while trying to update users"
+msgid "Errors occurred while trying to update users"
 msgstr "Ocurrieron errores al tratar de actualizar usuarios"
 
 #: C:\wamp\www\cu\modules\galleries/admin/users.php:335
@@ -1264,7 +1264,7 @@ msgstr "Mostrar information"
 
 #: C:\wamp\www\cu\modules\galleries/class/galleriescontroller.php:45
 #: C:\wamp\www\cu\modules\galleries/class/galleriescontroller.php:62
-msgid "Unknow element"
+msgid "Unknown element"
 msgstr "Elemento desconocido"
 
 #: C:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:56
@@ -1285,7 +1285,7 @@ msgstr "Cargar Imágenes"
 
 #: C:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:296
 #, php-format
-msgid "Ver <a href=\"%s\">más fotos</a>."
+msgid "See <a href=\"%s\">more pictures</a>."
 msgstr "Ver <a href=\"%s\">más fotos</a>."
 
 #: C:\wamp\www\cu\modules\galleries/events/rmcommon.php:40
@@ -1388,15 +1388,15 @@ msgid "Options"
 msgstr "Opciones"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:96
-msgid "Do you really wish to deleted selected favorite?"
+msgid "Do you really want to deleted selected favorite?"
 msgstr "¿Realmente deseas eliminar el favorito seleccionado?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:97
-msgid "Do you really wish to deleted selected favorites?"
+msgid "Do you really want to deleted selected favorites?"
 msgstr "¿Realmente desea eliminar los favoritos seleccionados?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:127
-msgid "Image id is not valid!"
+msgid "Image ID is not valid!"
 msgstr "¡El id de la imagen no es válido!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:140
@@ -1420,7 +1420,7 @@ msgid "Picture added to your favorites successfully!"
 msgstr "¡Imagen agregada a tus favoritos exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:196
-msgid "You must select one picture at least!"
+msgid "You must select at least one picture!"
 msgstr "¡Por lo menos debes seleccionar una imagen!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:211
@@ -1430,7 +1430,7 @@ msgstr "¡El Id %u no es válido!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:218
 #, php-format
-msgid "Image with id %u is not valid!"
+msgid "Image with ID %u is not valid!"
 msgstr "¡La imagen con id %u no es válida!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:226
@@ -1439,7 +1439,7 @@ msgid "Favorite picture \"%s\" could not be deleted!"
 msgstr "¡Imagen favorita \"%s\" no pudo ser eliminada!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:231
-msgid "Errors ocurred while trying to delete favorites!"
+msgid "Errors occurred while trying to delete favorites!"
 msgstr "¡Ocurrieron errores al tratar de eliminar favoritos!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:234
@@ -1448,7 +1448,7 @@ msgstr "¡Favoritos eliminados exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:59
 #, php-format
-msgid "Sowing friends %u to %u from %u."
+msgid "Showing friends %u to %u from %u."
 msgstr "Mostrando amigos %u a %u de %u."
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:79
@@ -1460,11 +1460,11 @@ msgid "New Friend"
 msgstr "Nuevo Amigo"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:82
-msgid "Do you really wish to delete specified friend?"
+msgid "Do you really want to delete specified friend?"
 msgstr "¿Realmente desea eliminar el amigo especificado?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:83
-msgid "Do you really wish to delete selected friends?"
+msgid "Do you really want to delete selected friends?"
 msgstr "¿Realmente desea eliminar los amigos seleccionados?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:115
@@ -1488,11 +1488,11 @@ msgid "User %s has been added to your friends list!"
 msgstr "¡El usuario %s ha sido agregado a tu lista de amigos!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:156
-msgid "Specified id for friend is not valid!"
+msgid "Specified ID for friend is not valid!"
 msgstr "¡El id especificado para el amigo no es válido!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:173
-msgid "Specified user is not yoru friend!"
+msgid "Specified user is not your friend!"
 msgstr "¡El amigo especificado no es tu amigo!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_friends.php:181
@@ -1527,11 +1527,11 @@ msgid "Add to Album..."
 msgstr "Agregar al álbum..."
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:92
-msgid "Do you really wish to delete specified picture?"
+msgid "Do you really want to delete specified picture?"
 msgstr "¡Realmente desea eliminar la imagen especificada?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:93
-msgid "Do you really wish to deleted selected pictures?"
+msgid "Do you really want to delete selected pictures?"
 msgstr "¿Realmente desea eliminar las imágenes seleccionadas?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:95
@@ -1543,17 +1543,17 @@ msgid "Change description"
 msgstr "Cambiar descripción"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:97
-msgid "Add Description"
+msgid "Add description"
 msgstr "Agregar Descripción"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:133
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:236
-msgid "Sepecified images is not valid!"
+msgid "Specified images are not valid!"
 msgstr "¡La imagen especificada no es válida"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:140
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:243
-msgid "Sepecified image does not exists!"
+msgid "Specified image does not exists!"
 msgstr "¡La imagen especificada no existe!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:146
@@ -1586,7 +1586,7 @@ msgid "Public for all"
 msgstr "Visible para todos"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:197
-msgid "Separe each tag with commas."
+msgid "Separate each tag with commas."
 msgstr "Separe cada etiqueta con comas."
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:207
@@ -1594,7 +1594,7 @@ msgid "Create Image"
 msgstr "Crear Imagen"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:394
-msgid "Errores ocurred while trying to update database!"
+msgid "Errors occurred while trying to update database!"
 msgstr "Ocurrieron errores"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:444
@@ -1610,7 +1610,7 @@ msgstr "¡La imagen con id %u no es válida!"
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:464
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:637
 #, php-format
-msgid "Picture with id %u does not exists!"
+msgid "Picture with ID %u does not exists!"
 msgstr "¡La imagen con id %u no existe!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:470
@@ -1619,11 +1619,11 @@ msgid "Picture \"%s\" could not be deleted!"
 msgstr "¡La imagen \"%s\" no se eliminó!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:481
-msgid "Errors ocurred while trying to delete pictures"
+msgid "Errors occurred while trying to delete pictures"
 msgstr "Ocurrieron errores al tratar de eliminar imágenes"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:484
-msgid "Pictures deleted succesfully!"
+msgid "Pictures deleted successfully!"
 msgstr "¡Imágenes eliminadas exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:504
@@ -1642,7 +1642,7 @@ msgid "Picture %s could not be saved!"
 msgstr "¡La imagen %s no se guardó!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:538
-msgid "Errors ocurred while trying to save changes."
+msgid "Errors occurred while trying to save changes."
 msgstr "Ocurrieron errores al tratar de guardar los cambios."
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:541
@@ -1650,7 +1650,7 @@ msgid "Changes applied successfully!"
 msgstr "¡Cambios aplicados exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:574
-msgid "You must select one image at least!"
+msgid "You must select at least one image!"
 msgstr "¡Por lo menos debes seleccionar una imagen!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:583
@@ -1666,7 +1666,7 @@ msgid "You don't have authorization!"
 msgstr "¡No tienes autorización!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:668
-msgid "Errors ocurred while trying to update picture!"
+msgid "Errors occurred while trying to update picture!"
 msgstr "¡Ocurrieron errores al tratar de actualizar la imagen!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_images.php:671
@@ -1694,7 +1694,7 @@ msgid "Privacy:"
 msgstr "Privacidad:"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:92
-msgid "Do you really wish to delete specified album?"
+msgid "Do you really want to delete specified album?"
 msgstr "¿Realmente deseas eliminar el álbbum especificado?"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:94
@@ -1718,17 +1718,17 @@ msgid "Album saved successfully!"
 msgstr "¡Álbum guardado exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:183
-msgid "You must selecte one album at least!"
+msgid "You must select at least one album!"
 msgstr "¡Debes seleccionar por lo menos un álbum!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:192
 #, php-format
-msgid "Album id %u is not valid!"
+msgid "Album ID %u is not valid!"
 msgstr "¡El id del álbum %u no es válido!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:199
 #, php-format
-msgid "Album with id %u does not exists!"
+msgid "Album with ID %u does not exists!"
 msgstr "¡El álbum con id %u no existe!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:204
@@ -1737,7 +1737,7 @@ msgid "Album \"%s\" could not be deleted!"
 msgstr "¡El álbum \"%s\" no se elimino!"
 
 #: C:\wamp\www\cu\modules\galleries/include/cp_sets.php:212
-msgid "Abums deleted successfully!"
+msgid "Albums deleted successfully!"
 msgstr "¡Álbumes eliminados exitosamente!"
 
 #: C:\wamp\www\cu\modules\galleries/include/upload.php:44
@@ -1897,7 +1897,7 @@ msgid "User pictures format specifications"
 msgstr "Formato para las imágenes de usuario"
 
 #: C:\wamp\www\cu\modules\galleries/language/english/modinfo.php:81
-msgid "Values must be specified according next format: Crop(must be 1 or 0)|Width|Height|Results(per page)|Columns|Description|Format name"
+msgid "Values must be specified according this format: Crop(must be 1 or 0)|Width|Height|Results(per page)|Columns|Description|Format name"
 msgstr "Los valores deben especificarse de acuerdo al siguiente formato: \"Recortar(valores 1 o 0)|Ancho|Alto|Resultados(por página)|Columnas(obsoleto)|Descripción|Nombre del formato\". El carácter \"|\" separa cada valor."
 
 #: C:\wamp\www\cu\modules\galleries/language/english/modinfo.php:84
@@ -2058,7 +2058,7 @@ msgid "Delete Formats"
 msgstr "Eliminar Formatos"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:67
-msgid "Publico"
+msgid "Public"
 msgstr "Publico"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:5
@@ -2098,7 +2098,7 @@ msgid "First picture:"
 msgstr "Primera imagen:"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:18
-msgid "* Could be more files than pictures if you have activated diferent formats in module settings."
+msgid "* There could be more files than pictures if you have activated different formats in module settings."
 msgstr "* Podria haber mas archivos que imágenes si tienes activados diferentes formatos en el módulo de configuraciones."
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:24
@@ -2193,11 +2193,11 @@ msgid "Filter Options"
 msgstr "Opciones de Filtro"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:23
-msgid "Entre"
-msgstr "Between"
+msgid "Between"
+msgstr "Entre"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:24
-msgid "y"
+msgid "and"
 msgstr "y"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:38
@@ -2206,11 +2206,11 @@ msgid "Creation"
 msgstr "Creación"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:57
-msgid "There are not images created yet!"
+msgid "There are no images created yet!"
 msgstr "¡Aún no hay imágenes creadas!"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:68
-msgid "Re do Thumbnail"
+msgid "Redo Thumbnail"
 msgstr "Rehacer miniaturas"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:1
@@ -2228,7 +2228,7 @@ msgid "View"
 msgstr "Vista"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:37
-msgid "There are not postcards created yet!"
+msgid "There are no postcards created yet!"
 msgstr "¡Aún no hay postales creadas!"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_tags.php:24
@@ -2237,7 +2237,7 @@ msgid "Tag"
 msgstr "Etiqueta"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_tags.php:41
-msgid "There are any tags yet!"
+msgid "There are no tags yet!"
 msgstr "¡Aún no hay etiquetas!"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:1
@@ -2265,7 +2265,7 @@ msgid "Albumes"
 msgstr "Álbumes"
 
 #: C:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:50
-msgid "There are not users registered yet!"
+msgid "There are no users registered yet!"
 msgstr "¡Aún no hay usuarios registrados!"
 
 #: C:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_galleries.php:3
