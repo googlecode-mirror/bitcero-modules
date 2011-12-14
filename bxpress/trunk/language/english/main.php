@@ -103,21 +103,21 @@ switch(BB_LOCATION){
     	define('_MS_EXMBB_ATTACH','Attach File:');
     	define('_MS_EXMBB_EXTS','Allowed File Types: %s');
     	define('_MS_EXMBB_TOPICREV','Topic Review (Newest First)');
-    	define('_MS_EXMBB_EXATTACH','Archivos Adjuntos');
-    	define('_MS_EXMBB_EXATTACHTIP','You can upload new files to this post. You have a limit 
+    	define('_MS_EXMBB_EXATTACH','Attachments');
+    	define('_MS_EXMBB_EXATTACHTIP','You can attach new files to this post. You have a limit
     					of <strong>%s</strong> attachment per post.');
-    	define('_MS_EXMBB_CURATTACH','Cuerrent Attachments');
+    	define('_MS_EXMBB_CURATTACH','Current Attachments');
     	define('_MS_EXMBB_UPLOAD','Upload File');
     	define('_MS_EXMBB_SAVECHANGES','Save Changes');
     	define('_MS_EXMBB_DELFILE','Delete File(s)');
     	define('_MS_EXMBB_STICKYTOPIC','Sticky Topic');
     	
     	// Mensajes
-    	define('_MS_EXMBB_POSTOK','Your post has been succesfully sent!');
-    	define('_MS_EXMBB_POSTOKEDIT','Your post has been succesfully edited!');
+    	define('_MS_EXMBB_POSTOK','Your post has been successfully sent!');
+    	define('_MS_EXMBB_POSTOKEDIT','Your post has been successfully edited!');
     	define('_MS_EXMBB_POSTOKERR','The message was posted but some errors happened while the process:');
     	define('_MS_EXMBB_ATTACHOK','File attached successfully!');
-    	define('_MS_EXMBB_DELETEOK','Files succesfully deleted!');
+    	define('_MS_EXMBB_DELETEOK','Files successfully deleted!');
     	
     	// ERRORES
     	define('_MS_EXMB_ERRFORUMNEW','You must specify a forum to create a topic');
@@ -125,13 +125,13 @@ switch(BB_LOCATION){
     	define('_MS_EXMBB_FORUMNOEXISTS','The specified forum does not exist');
     	define('_MS_EXMBB_NOPERM','Sorry, you do not have permission to do this action');
     	define('_MS_EXMBB_ERRPOST','The message could not be posted, please try again.');
-    	define('_MS_EXMBB_ERRPOSTEDIT','The topic could not be modified, please try it again.');
-    	define('_MS_EXMBB_NOMSGID','Please specify the topic edit');
+    	define('_MS_EXMBB_ERRPOSTEDIT','The topic could not be modified, please try again.');
+    	define('_MS_EXMBB_NOMSGID','Please specify the topic to edit');
     	define('_MS_EXMBB_POSTNOEXISTS','The specified topic does not exist');
-    	define('_MS_EXMBB_ERRATLIMIT','You have reached the maximum attachments number for this post');
+    	define('_MS_EXMBB_ERRATLIMIT','You have reached the maximum number of attachments for this post');
     	define('_MS_EXMBB_ERRSAVEATTACH','The file was not saved.');
     	define('_MS_EXMBB_ERRSELECTFILES','You have not selected any file to delete!');
-    	define('_MS_EXMBB_ERRHAPPEN','Some errors occured while doing this operation:');
+    	define('_MS_EXMBB_ERRHAPPEN','Some errors occurred while doing this operation:');
     	
     	break;
     
@@ -154,8 +154,8 @@ switch(BB_LOCATION){
     	define('_MS_EXMBB_UNSTICKY','Unsticky Topic');
     	define('_MS_EXMBB_TOPICCLOSED','Locked Topic');
 		define('_MS_EXMBB_APPROVED','Approved');
-		define('_MS_EXMBB_NOAPPROVED','Unnapproves');
-    	define('_MS_EXMBB_TOPICNOAPPROVED','Unnaproved Topic');
+		define('_MS_EXMBB_NOAPPROVED','Unapproved');
+    	define('_MS_EXMBB_TOPICNOAPPROVED','Unapproved Topic');
 		define('_MS_EXMBB_EDIT','Edited Text');
 		define('_MS_EXMBB_APP','Approve');
 		define('_MS_EXMBB_NOAPP','Unapprove');
@@ -171,8 +171,8 @@ switch(BB_LOCATION){
     	
     	// Mensajes
     	define('_MS_EXMBB_DELTITLE','Delete Message');
-    	define('_MS_EXMBB_DELCONF','Do you really wish to delete this message?');
-    	define('_MS_EXMBB_DELWARN','<strong>Warning:</strong> This is the first post in the topic. By deleting this all posts will be deleted also.');
+    	define('_MS_EXMBB_DELCONF','Do you really want to delete this message?');
+    	define('_MS_EXMBB_DELWARN','<strong>Warning:</strong> This is the first post in the topic. By deleting this, all other posts will be deleted too.');
     	define('_MS_EXMBB_DELOK','Post deleted successfully!');
     	define('_MS_EXMBB_DELOKTOPIC','Topic deleted successfully!');
     	
@@ -205,20 +205,20 @@ switch(BB_LOCATION){
 		define('_MS_EXMBB_NOAPP','Unapprove');
         define('_MS_EXMBB_DELNOW','Delete Topics!');
         define('_MS_EXMBB_DELTITLE','Delete forum topics');
-        define('_MS_EXMBB_DELCONF','Do you really wish to delete the selected topics?');
+        define('_MS_EXMBB_DELCONF','Do you really want to delete the selected topics?');
         
         // Mover Temas
         define('_MS_EXMBB_MOVETITLE','Move Topics');
-        define('_MS_EXMBB_MOVETARGET','Please, select the forum you want to move the selected topics:');
+        define('_MS_EXMBB_MOVETARGET','Please, select the forum you want to move the selected topics to:');
         define('_MS_EXMBB_MOVEOK','The topics has been relocated.');
         define('_MS_EXMBB_ACTIONOK','Action completed.');
     	
     	// ERRORES
-    	define('_MS_EXMBB_ERRID','Specify the forum you want moderate');
+    	define('_MS_EXMBB_ERRID','Specify the forum you want to moderate');
     	define('_MS_EXMBB_ERREXISTS','The specified forum doesn\'t exists');
     	define('_MS_EXMBB_NOPERM','Sorry, you don\'t have permissions to do this action');
     	define('_MS_EXMBB_SELTOPIC','Select at least a topic to moderate');
-    	define('_MS_EXMBB_NOSELMOVEFOR','Please, select the forum you want to move the selected topics');
+    	define('_MS_EXMBB_NOSELMOVEFOR','Please, select the forum you want to move the selected topics to');
 		define('_MS_EXMBB_NOTID','Invalid Post');
 		define('_MS_EXMBB_NOTEXIST','This post doesn\'t exists');
     	
@@ -231,15 +231,15 @@ switch(BB_LOCATION){
 
 		define('_MS_EXMBB_POSTNOTVALID','Invalid Post');
 		define('_MS_EXMBB_POSTNOTEXIST','This post doesn\'t exists');
-		define('_MS_EXMBB_SAVEREPORT','The report was stored successfully');
-		define('_MS_EXMBB_SAVENOTREPORT','The report wasn\'t stored');
+		define('_MS_EXMBB_SAVEREPORT','The report was saved successfully');
+		define('_MS_EXMBB_SAVENOTREPORT','The report wasn\'t saved');
 		define('_MS_EXMBB_REPORTPOST','Report Post');
  		
 		break;
 		
     case 'search':
     
-		define('_MS_EXMBB_NOTWORD','You must provide at least a word to search');
+		define('_MS_EXMBB_NOTWORD','You must provide at least one word to search');
 		define('_MS_EXMBB_ALLTOPICS','All Topics');
 		define('_MS_EXMBB_RECENTTOPICS','Recent topics');
 		define('_MS_EXMBB_ANUNSWERED','Unanswered Topics');
@@ -263,7 +263,7 @@ switch(BB_LOCATION){
     case 'files':
     
 		define('_MS_EXMBB_NOTID','Invalid File');
-		define('_MS_EXMBB_NOEXISTS','Inexistent File');
+		define('_MS_EXMBB_NOEXISTS','Non-existent File');
 		
 		break;
 

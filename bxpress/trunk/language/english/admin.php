@@ -56,7 +56,7 @@ switch (BB_LOCATION){
 		define('_AS_BB_TOPICSNUM','%s Topics');
 		define('_AS_BB_ANUNSWERED','Unanswered');
 		define('_AS_BB_ANUNSWEREDNUM','%s Posts');
-		define('_AS_BB_RECENT','Recents');
+		define('_AS_BB_RECENT','Recent');
 		define('_AS_BB_RECENTNUM','%s Posts');
 		define('_AS_BB_REDMEX','Red México');
 		define('_AS_BB_SITE','Visit Us');
@@ -84,8 +84,8 @@ switch (BB_LOCATION){
         define('_AS_BB_DISABLE','Disable');
         define('_AS_BB_SAVE','Save Changes');
 
-		define('_AS_BB_DELETECONF','Do you really wish to delete the selected categories?');
-		define('_AS_BB_ALLPERM','WARNING: This action will delete all the forums belonging to this categories. <br />Will delete the data permanently.');
+		define('_AS_BB_DELETECONF','Do you really wan to delete the selected categories?');
+		define('_AS_BB_ALLPERM','WARNING: This action will delete all the forums belonging to this categories. <br />It will delete the data permanently.');
         
         // Formulario
         define('_AS_BB_ACTIVATE','Activate');
@@ -96,14 +96,14 @@ switch (BB_LOCATION){
 		// ERRORES
         define('_AS_BB_ERRID','The specified category is not valid');
         define('_AS_BB_ERRNOEXISTS','The specified category does not exist.');
-        define('_AS_BB_ERREXISTS','Already exist a category with the same name');
-        define('_AS_BB_ERREXISTSF','Already exist a category with the same name for the URL');
+        define('_AS_BB_ERREXISTS','There is already a category with the same name');
+        define('_AS_BB_ERREXISTSF','There is already a category with the same name for this URL');
 		define('_AS_BB_ERRUPLOADIMG','Unable to upload the provided image.');
-		define('_AS_BB_ERRNOTCAT','You must specify at least a category to do this action');
+		define('_AS_BB_ERRNOTCAT','You must specify at least one category to do this action');
 		define('_AS_BB_ERRCATNOVALID','Category %s not valid  <br />');
-		define('_AS_BB_ERRCATNOEXIST','Categoryía %s nonexistent <br />');
+		define('_AS_BB_ERRCATNOEXIST','Categoryía %s does not exist <br />');
 		define('_AS_BB_ERRCATNODEL','Unable to delete the category %s <br />');
-		define('_AS_BB_ERRCATNOSAVE','unable to modify the category %s <br />');
+		define('_AS_BB_ERRCATNOSAVE','Unable to modify the category %s <br />');
         
         break;
     
@@ -121,20 +121,20 @@ switch (BB_LOCATION){
         define('_AS_BB_LCATEGO','Category');
         define('_AS_BB_LACTIVE','Active');
         define('_AS_BB_LATTACH','Attachment');
-        define('_AS_BB_LORDER','Posición');
+        define('_AS_BB_LORDER','Position');
         define('_AS_BB_LDEACTIVATE','Deactivate');
         define('_AS_BB_LACTIVATE','Activate');
         define('_AS_BB_LSAVE','Save Changes');
 
 		//Moderadores
 		define('_AS_BB_MODERATORS','Moderators');
-		define('_AS_BB_LIST','Choose from the list the moderators users');
+		define('_AS_BB_LIST','Choose from the list of users');
 		define('_AS_BB_USERS','Users');
-		define('_AS_BB_NOTSAVE','Moderators Information not storaged');
+		define('_AS_BB_NOTSAVE','Moderators Information not stored');
 		        
         define('_AS_BB_DELETELOC','Delete Forum');
-        define('_AS_BB_DELETECONF','<strong>Do you really wish to delete this forum?</strong><br /><br />
-        					WARNING: All the topics ans messages created in this forumwill be deleted!');
+        define('_AS_BB_DELETECONF','<strong>Do you really want to delete this forum?</strong><br /><br />
+        					WARNING: All the topics and messages in this forum will be deleted!');
         
         // Formulario
         define('_AS_BB_FNEW','Create Forum');
@@ -153,7 +153,7 @@ switch (BB_LOCATION){
         define('_AS_BB_FATTACHSIZE','Maximum attachments file size');
         define('_AS_BB_FATTACHSIZE_DESC','Specify this value in Kilobytes');
         define('_AS_BB_FATTACHEXT','Allowed file types');
-        define('_AS_BB_FATTACHEXT_DESC',"Specified the allowed file types separating each one with '|'");
+        define('_AS_BB_FATTACHEXT_DESC',"Specify the allowed file types separating each one with '|'");
         define('_AS_BB_GROUPSVIEW','Can View the forum');
         define('_AS_BB_GROUPSTOPIC','Can Start New Topics');
         define('_AS_BB_GROUPSREPLY','Can Answer');
@@ -166,7 +166,7 @@ switch (BB_LOCATION){
         // ERRORES
         define('_AS_BB_NOID','The specified forum is not valid');
         define('_AS_BB_NOEXISTS','The specified forum does not exist.');
-        define('_AS_BB_NOSELECTFORUM','It is neccesary to select at least a forum to do this operation.');
+        define('_AS_BB_NOSELECTFORUM','It is necessary to select at least one forum to do this operation.');
         
         break;
     
@@ -198,24 +198,24 @@ switch (BB_LOCATION){
     	define('_AS_EXMBB_FWHERE1','Forum');
     	define('_AS_EXMBB_FWHERE2','All Module');
     	define('_AS_EXMBB_FFORUM','Forum');
-    	define('_AS_EXMBB_FFORUM_DESC','Please select the forum where this announcement will be shown. This option only is valid when "In Forum" has been selected.');
+    	define('_AS_EXMBB_FFORUM_DESC','Please select the forum where this announcement will be shown. This option is only valid when "In Forum" has been selected.');
     	define('_AS_EXMBB_FCREATE','Create Announcement');
     	define('_AS_EXMBB_FEDIT','Edit Announcement');
     	
     	// Mensajes
-    	define('_AS_EXMBB_CONFDELB','Do you really wish to delete the selected announcements?');
+    	define('_AS_EXMBB_CONFDELB','Do you really want to delete the selected announcements?');
     	
     	// ERRORES
     	define('_AS_EXMBB_ERRID','The specified announcement is not valid');
     	define('_AS_EXMBB_ERREXISTS','The specified announcement does not exist');
     	define('_AS_EXMBB_ERRCADUC','The expiration date must be higher than the current date');
-    	define('_AS_EXMBB_ERRSEL','Select at least an announcement to delete.');
+    	define('_AS_EXMBB_ERRSEL','Select at least one announcement to delete.');
     	
     	break;
 
      case 'reports':
 	
-		define('_AS_EXMBB_SESSINVALID','Sorry, your ID sesion is not longer valid');
+		define('_AS_EXMBB_SESSINVALID','Sorry, your ID session is not longer valid');
 		//Barra de Reportes
 		define('_AS_EXMBB_ALLREPORTS','All reports');
 		define('_AS_EXMBB_REVREPORTS','Review Reports');
@@ -224,7 +224,7 @@ switch (BB_LOCATION){
 		define('_AS_EXMBB_LISTREPORTS','Reports List');
 		define('_AS_EXMBB_REPORT','Report');
 		define('_AS_EXMBB_POST','Message');
-		define('_AS_EXMBB_DATE','DateFecha');
+		define('_AS_EXMBB_DATE','Date');
 		define('_AS_EXMBB_USER','User');
 		define('_AS_EXMBB_ZAPPED','Zapped');
 		define('_AS_EXMBB_ZAPPEDNAME','Zapped By');
@@ -234,10 +234,10 @@ switch (BB_LOCATION){
 		define('_AS_EXMBB_OPTIONS','Options');
 		define('_AS_EXMBB_REPREVIEW','Zapped Reports List');
 		define('_AS_EXMBB_REPNOTREVIEW','Reports List Not Zapped');
-		define('_AS_EXMBB_DELREPORT','Do you really wish to delete this report?  \nThis action will delete the data permanently.');		
-		define('_AS_EXMBB_DELREPORTS','Do you really wish to delete the selected reports? \nThis action will delete the data permanently.');	
+		define('_AS_EXMBB_DELREPORT','Do you really want to delete this report?  \nThis action will delete the data permanently.');
+		define('_AS_EXMBB_DELREPORTS','Do you really want to delete the selected reports? \nThis action will delete the data permanently.');
 		//Error 
-		define('_AS_EXMBB_ERRREPORTS','You must select at least a report');
+		define('_AS_EXMBB_ERRREPORTS','You must select at least one report');
 		define('_AS_EXMBB_ERRORREPORT','Report %s is not valid <br />');
 		define('_AS_EXMBB_NOTSAVE','The report was not modified %s <br />'); 
 		define('_AS_EXMBB_NOTEXIST','Report %s does not exist <br />');
