@@ -66,13 +66,13 @@ define('_MA_RMMF_DELETE','Delete');
 define('_MA_RMMF_ADDIMAGES','Add Images');
 define('_MA_RMMF_CURRIMAGES','Existing Images');
 define('_MA_RMMF_CONFIRM','¿Do you really want to delete: %s?');
-define('_MA_RMMF_SELECTCAT','Please select the category to the which you wish to transfer the existing works.');
+define('_MA_RMMF_SELECTCAT','Please select the category to which you want to transfer the existing works.');
 
 define('_MA_RMMF_CATEGOFIRST','You must create at least one category first.');
 define('_MA_RMMF_ERRNAME','Please specify the name for this element.');
 define('_MA_RMMF_ERREXISTS','This element already exists.');
 define('_MA_RMMF_ERRDB','ERROR:<br />%s');
-define('_MA_RMMF_ERRNOCATEGO_TRANS','Please select the category to the which you wish to transfer the existing works.');
+define('_MA_RMMF_ERRNOCATEGO_TRANS','Please select the category to which you want to transfer the existing works.');
 define('_MA_RMMF_ERRCATEGO','Select a category.');
 define('_MA_RMMF_ERRCLIENTE','Specify the customer name');
 define('_MA_RMMF_ERRDESC','Write a description for this element.');

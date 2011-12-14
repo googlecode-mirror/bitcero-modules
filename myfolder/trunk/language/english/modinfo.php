@@ -67,6 +67,6 @@ define('_MI_RMMF_WORKSNUM','Works per page:');
 // Bloques
 define('_MI_RMMF_BKRECENT','Recent Works');
 define('_MI_RMMF_BKCOMMENTS','Customer Comments');
-define('_MI_RMMF_BKFATURED','Fetured Works');
+define('_MI_RMMF_BKFATURED','Featured Works');
 define('_MI_RMMF_BKRANDOM','Random Works');
 ?>
