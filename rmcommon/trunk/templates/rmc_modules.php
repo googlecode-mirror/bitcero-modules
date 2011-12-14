@@ -1,9 +1,9 @@
 <h1 class="rmc_titles"><?php _e('Modules Management','rmcommon'); ?></h1>
 <script type="text/javascript">
 <!--
-    var message = "<?php _e('Do you really wish to uninstall selected module?','rmcommon'); ?>";
-    var message_upd = "<?php _e('Do you really wish to update selected module?','rmcommon'); ?>";
-    var message_dis = "<?php _e('Do you really wish to disable selected module?','rmcommon'); ?>";
+    var message = "<?php _e('Do you really want to uninstall selected module?','rmcommon'); ?>";
+    var message_upd = "<?php _e('Do you really want to update selected module?','rmcommon'); ?>";
+    var message_dis = "<?php _e('Do you really want to disable selected module?','rmcommon'); ?>";
     var message_name = "<?php _e('New name must be different from current name!','rmcommon'); ?>";
 -->
 </script>

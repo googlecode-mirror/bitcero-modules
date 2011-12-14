@@ -128,7 +128,7 @@ function show_comments(){
     RMTemplate::get()->add_style('general.css', 'rmcommon');
     RMTemplate::get()->add_script('include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script('include/js/comments.js');
-    $script = '<script type="text/javascript">delmes = "'.__('Do you really wish to delete this comment?','rmcommon').'";</script>';
+    $script = '<script type="text/javascript">delmes = "'.__('Do you really want to delete this comment?','rmcommon').'";</script>';
     RMTemplate::get()->add_head($script);
     include RMTemplate::get()->get_template('rmc_comments.php','module','rmcommon');
     xoops_cp_footer();
