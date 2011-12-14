@@ -19,7 +19,7 @@ msgstr ""
 
 #: E:\webserver\htdocs\x25\modules\works/catego.php:27
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:130
-msgid "Specified category does not exists!"
+msgid "Specified category does not exist!"
 msgstr "¡La categoría especificada no existe!"
 
 #: E:\webserver\htdocs\x25\modules\works/catego.php:90
@@ -91,11 +91,11 @@ msgid "Our Rate:"
 msgstr "Valoración:"
 
 #: E:\webserver\htdocs\x25\modules\works/work.php:21
-msgid "Work id not provided!"
+msgid "Work ID not provided!"
 msgstr "No fue especificado el identificador del trabajo!"
 
 #: E:\webserver\htdocs\x25\modules\works/work.php:28
-msgid "Specified id does not exists!"
+msgid "Specified ID does not exists!"
 msgstr "¡El id especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\works/work.php:33
@@ -174,7 +174,7 @@ msgid "Do you really want to delete selected categories?"
 msgstr "¿Realmente deseas eliminar las categorías seleccionadas?"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:46
-msgid "You must select some category before to execute this action!"
+msgid "You must select a category before executing this action!"
 msgstr "¡Debes seleccionar al menos una categoría para poder ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:59
@@ -246,15 +246,15 @@ msgid "Wrong category ID!"
 msgstr "¡ID de categoría incorrecto!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:138
-msgid "A category with same name already exists!"
+msgid "A category with the same name already exists!"
 msgstr "¡Ya existe una categoría con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:147
-msgid "There are already a category with same name id!"
+msgid "There is already a category with same name ID!"
 msgstr "¡Ya existe una categoría con el mismo nombre identificados!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:186
-msgid "Errors ocurred while trying to update database!"
+msgid "Errors occurred while trying to update database!"
 msgstr "¡Ocurrieron errores al intentar actualizar la base de datos!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:189
@@ -275,7 +275,7 @@ msgstr "¡No se eleccionaron categorías!"
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:276
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:334
 #, php-format
-msgid "Category id \"%s\" is not valid!"
+msgid "Category ID \"%s\" is not valid!"
 msgstr "¡El id de categoría \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:233
@@ -289,7 +289,7 @@ msgid "Category \"%s\" could not be deleted!"
 msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:249
-msgid "Errors ocurred while trying to delete categories"
+msgid "Errors occurred while trying to delete categories"
 msgstr "Ocurrieron errores al intentar eliminar las categorías"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:283
@@ -306,7 +306,7 @@ msgstr "¡La categoría \"%s\" no pudo ser guardada!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:299
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:356
-msgid "Errors ocurred while trying to save category"
+msgid "Errors occurred while trying to save category"
 msgstr "Ocurrieron errores al intentar almacenar la categoría"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/categos.php:325
@@ -326,7 +326,7 @@ msgid "Do you really want to delete selected customers?"
 msgstr "¿Realmente deseas eliminar los clientes seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/clients.php:65
-msgid "You must select some customer before to execute this action!"
+msgid "You must select a customer before executing this action!"
 msgstr "¡Debes seleccionar al menos un cliente para ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/clients.php:89
@@ -379,7 +379,7 @@ msgid "Customer ID not provided!"
 msgstr "¡No se proporciono el ID del cliente!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/clients.php:189
-msgid "Errores ocurred while trying to update database"
+msgid "Errors occurred while trying to update database"
 msgstr "Ocurrieron errores al intentar acutalizar la base de datos"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/clients.php:213
@@ -402,7 +402,7 @@ msgid "Customer with ID \"%u\" could not be deleted!"
 msgstr "¡El cliente con ID \"%u\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/clients.php:246
-msgid "Errors ocurred while trying to delete customers:"
+msgid "Errors occurred while trying to delete customers:"
 msgstr "Ocurrieron errores al intentar eliminar los clientes:"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:23
@@ -420,7 +420,7 @@ msgid "Do you really want to delete selected images?"
 msgstr "¿Realemtne deseas eliminar las imágenes seleccionadas?"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:78
-msgid "You must select an image before to execute this action!"
+msgid "You must select an image before executing this action!"
 msgstr "¡Debes seleccionar una imágen para poder ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:101
@@ -461,7 +461,7 @@ msgid "Current image file"
 msgstr "Archivo de imagen actual"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:284
-msgid "Errors ocurred while trying to save the image"
+msgid "Errors occurred while trying to save the image"
 msgstr "Ocurrieron errores al intentar almacenar la imagen"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:307
@@ -484,7 +484,7 @@ msgid "Image \"%s\" could not be deleted!"
 msgstr "¡La imagen \"%s\" no pudo ser eliminada!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:337
-msgid "Errors ocurred while trying to delete images"
+msgid "Errors occurred while trying to delete images"
 msgstr "Ocurrieron errores al internar eliminar las imágenes"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/images.php:340
@@ -536,7 +536,7 @@ msgid "Do you really want to delete selected types?"
 msgstr "¿Realmente deseas eliminar los tipos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:38
-msgid "You must select some type before to execute this action!"
+msgid "You must select a type before executing this action!"
 msgstr "¡Debes seleccionar al menos un tipo antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:57
@@ -583,7 +583,7 @@ msgid "Type \"%s\" could not be saved!"
 msgstr "¡El tipo \"%s\" no pudo ser almacenado!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:162
-msgid "Errors ocurred while saving types"
+msgid "Errors occurred while saving types"
 msgstr "Ocurrieron errores al intentar almacenar los tipos"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:165
@@ -591,7 +591,7 @@ msgid "Types added successfully!"
 msgstr "¡Tipos agregados correctaamente!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:182
-msgid "You has not selected any customer type to delete!"
+msgid "You have not selected any customer type to delete!"
 msgstr "¡No has seleccionado ningún tipo de cliente para eliminar!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:195
@@ -610,7 +610,7 @@ msgid "Type %s could not be deleted!"
 msgstr "¡El tipo %s no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:212
-msgid "Errors ocurred while trying to delete selected types"
+msgid "Errors occurred while trying to delete selected types"
 msgstr "Ocurrieron errores al intentar eliminar los tipos seleccionados"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/types.php:215
@@ -624,7 +624,7 @@ msgstr "¿Realmente deseas eliminar los trabajos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:82
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:558
-msgid "You must select some work before to execute this action!"
+msgid "You must select some work before executing this action!"
 msgstr "¡Debes seleccionar al menos un trabajo antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:104
@@ -706,7 +706,7 @@ msgid "A work with same name already exists!"
 msgstr "¡Ya existe un trabajo con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:384
-msgid "You must select a work at least!"
+msgid "You must select at least one work!"
 msgstr "¡Debes seleccionar al menos un trabajo!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:397
@@ -729,7 +729,7 @@ msgid "Work \"%s\" could not be deleted!"
 msgstr "¡El trabajo \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:414
-msgid "Errors ocurred while trying to delete works"
+msgid "Errors occurred while trying to delete works"
 msgstr "Ocurrieron errores al intentar eliminar los trabajos"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:417
@@ -749,7 +749,7 @@ msgstr "¡El trabajo \"%s\" no pudo ser almacenado!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:468
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:523
-msgid "Errors ocurred while trying to update works"
+msgid "Errors occurred while trying to update works"
 msgstr "Ocurrieron errores al intentar actualizar los trabajos"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:471
@@ -768,7 +768,7 @@ msgid "Work Custom Fields"
 msgstr "Campos Personalizados para el Trabajo"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:603
-msgid "Please, fill all data!"
+msgid "Please, fill out all fields!"
 msgstr "¡Por favor rellena toda la información!"
 
 #: E:\webserver\htdocs\x25\modules\works/admin/works.php:622
@@ -826,7 +826,7 @@ msgid "Customer: %s"
 msgstr "Cliente: %s"
 
 #: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:88
-msgid "Reandom works"
+msgid "Random works"
 msgstr "Trabajos aleatorios"
 
 #: E:\webserver\htdocs\x25\modules\works/blocks/pw_works.php:89
@@ -863,7 +863,7 @@ msgid "Not found"
 msgstr "No encontrado"
 
 #: E:\webserver\htdocs\x25\modules\works/class/workscontroller.php:55
-msgid "Unknow"
+msgid "Unknown"
 msgstr "Desconocido"
 
 #: E:\webserver\htdocs\x25\modules\works/include/widgets.php:15
@@ -900,7 +900,7 @@ msgid "Use friendly URLs"
 msgstr "Usar URLs amigables"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:15
-msgid "By enabling this option the module will manage the urls trough mod_rewrite (Apache Only)."
+msgid "By enabling this option the module will manage the URLs trough mod_rewrite (Apache Only)."
 msgstr "Al activar esta opción el módulo procesará las urls haciendo uso de mod_rewrite o equivalente."
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:18
@@ -988,7 +988,7 @@ msgid "The number of featured works that will be shown in the home page"
 msgstr "El número de trabajos destacados que serán mostrados en la página incial"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:55
-msgid "Base dir to friendly url management"
+msgid "Base dir to friendly URL management"
 msgstr "Directorio base para el manejo de urls amigables"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:58
@@ -1028,7 +1028,7 @@ msgid "Recent"
 msgstr "Reciente"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:72
-msgid "Fetured"
+msgid "Featured"
 msgstr "Destacado"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:74
@@ -1048,7 +1048,7 @@ msgid "Show web site information"
 msgstr "Mostrar información del sitio web"
 
 #: E:\webserver\htdocs\x25\modules\works/language/english/modinfo.php:79
-msgid "When this option is enabled you will see the option to provide web site name and url in works form."
+msgid "When this option is enabled you will see the option to provide web site name and URL in works form."
 msgstr "Cuando esta opción esta activa podrás ver la opción para proporcionar el nombre y url del sitio web del cliente en el formulario de creación de trabajos."
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_categories.php:6
@@ -1158,7 +1158,7 @@ msgid "Business"
 msgstr "Empresa"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_clients.php:27
-msgid "There are not customers registered in Professional Works yet!"
+msgid "There are no customers registered in Professional Works yet!"
 msgstr "¡Aún no hay clientes registrados en Professional Works!"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:19
@@ -1167,7 +1167,7 @@ msgid "Image"
 msgstr "Imagen"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:36
-msgid "There are not images for this work yet!"
+msgid "There are no images for this work yet!"
 msgstr "¡Todavía no hay imágenes creadas para ete trabajo!"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_images.php:71
@@ -1227,7 +1227,7 @@ msgid "Value"
 msgstr "Valor"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:36
-msgid "There are not metas for this work"
+msgid "There are no metas for this work"
 msgstr "No hay campos personalizados para este trabajo"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_metas.php:63
@@ -1274,7 +1274,7 @@ msgid "Published"
 msgstr "Publicados"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:46
-msgid "There are not works registered yet!"
+msgid "There are no works registered yet!"
 msgstr "¡Todavía no hay trabajos registrados!"
 
 #: E:\webserver\htdocs\x25\modules\works/templates/admin/pw_works.php:64
