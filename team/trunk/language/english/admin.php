@@ -26,145 +26,145 @@
 // @copyright: 2008 Red México
 
 define('_AS_TC_ID','ID');
-define('_AS_TC_DBOK','Base de Datos actualizada correctamente');
+define('_AS_TC_DBOK','Database updated successfully');
 
 // ERRORES
-define('_AS_TC_DBFAIL','No se pudo realizar correctamente esta operación');
-define('_AS_TC_ERRSESSID','El Identificador de Sesión ya no es válido');
+define('_AS_TC_DBFAIL','Unable to successfully perform this operation');
+define('_AS_TC_ERRSESSID','The Session ID is no longer valid');
 
 switch(TC_LOCATION){
 	
 	case 'categories':
 		
-		define('_AS_TC_CATSLOC','Administración de Categorías');
-		define('_AS_TC_NEW','Crear Categoría');
-		define('_AS_TC_CATSM','Categorías');
-		define('_AS_TC_CATSNEW','Mueva Categoría');
+		define('_AS_TC_CATSLOC','Manage Categories');
+		define('_AS_TC_NEW','Create Category');
+		define('_AS_TC_CATSM','Categories');
+		define('_AS_TC_CATSNEW','Move category');
 		
 		// Tabla
-		define('_AS_TC_EXISTINGCATS','Categorías Existentes');
-		define('_AS_TC_NAME','Nombre');
-		define('_AS_TC_TEAMS','Equipos');
+		define('_AS_TC_EXISTINGCATS','Existing categories');
+		define('_AS_TC_NAME','Name');
+		define('_AS_TC_TEAMS','Equipment');
 		
 		// Formulario
-		define('_AS_TC_NEWTITLE','Crear Categoría');
-		define('_AS_TC_EDITTITLE','Modificar Categoría');
-		define('_AS_TC_DESC','Descripción');
-		define('_AS_TC_SHORTNAME','Nombre Corto');
+		define('_AS_TC_NEWTITLE','Create Category');
+		define('_AS_TC_EDITTITLE','Change Category');
+		define('_AS_TC_DESC','Description');
+		define('_AS_TC_SHORTNAME','Short Name');
 		
-		define('_AS_TC_CONFIRMDEL','¿Realmente deseas eliminar esta categoría?');
+		define('_AS_TC_CONFIRMDEL','Do you really want to delete this category?');
 		
 		// ERRORES
-		define('_AS_TC_ERRID','El ID de categoría especificado no es válido');
-		define('_AS_TC_NOEXISTS','No existe la categoría especificada');
-		define('_AS_TC_ERREXISTS','Ya existe una categoría con el mismo nombre');
+		define('_AS_TC_ERRID','The category ID is invalid');
+		define('_AS_TC_NOEXISTS','The category specified does not exist');
+		define('_AS_TC_ERREXISTS','There is already a category with the same name');
 		
 		break;
 	
 	case 'coachs':
 		
-		define('_AS_TC_COACHSM','Entrenadores');
-		define('_AS_TC_NEW','Nuevo Entrenador');
-		define('_AS_TC_EDIT','Editar Entrenador');
-		define('_AS_TC_COACHSLOC','Manejo de Entrenadores');
-		define('_AS_TC_EXISTING','Entrenadores Existentes');
-		define('_AS_TC_NAME','Nombre');
-		define('_AS_TC_TEAMS','Equipos');
-		define('_AS_TC_IMG','Imágen');
+		define('_AS_TC_COACHSM','Coach');
+		define('_AS_TC_NEW','New Manager');
+		define('_AS_TC_EDIT','Editar Coach');
+		define('_AS_TC_COACHSLOC','Edit Coach');
+		define('_AS_TC_EXISTING','Existing Coaches');
+		define('_AS_TC_NAME','Name');
+		define('_AS_TC_TEAMS','Team');
+		define('_AS_TC_IMG','Image');
 		
 		// Formulario
-		define('_AS_TC_FNAME','Nombre');
-		define('_AS_TC_FROLE','Puesto');
-		define('_AS_TC_FPIC','Fotografía');
-		define('_AS_TC_FBIO','Información');
-		define('_AS_TC_FSHORTNAME','Nombre Corto');
-		define('_AS_TC_FCURRENTPIC','Fotografía Actual');
-		define('_AS_TC_TEAMSTITLE','Equipos Existentes');
-		define('_AS_TC_TEAMSSEL','Seleccione los Equipos para este Entrenador');
+		define('_AS_TC_FNAME','Name');
+		define('_AS_TC_FROLE','Position');
+		define('_AS_TC_FPIC','Photo');
+		define('_AS_TC_FBIO','Information');
+		define('_AS_TC_FSHORTNAME','Short name');
+		define('_AS_TC_FCURRENTPIC','Current Photo');
+		define('_AS_TC_TEAMSTITLE','Current Team');
+		define('_AS_TC_TEAMSSEL','Select Team ');
 		
-		define('_AS_TC_CONFDEL','¿Realmente deseas eliminar este Entrenador?');
+		define('_AS_TC_CONFDEL','Do you really want to delete this coach?');
 		
 		// ERRORES
-		define('_AS_TC_ERRID','El Entrenador seleccionado no es válido');
-		define('_AS_TC_ERRNOEXISTS','No existe el entrenador especificado');
-		define('_AS_TC_ERREXISTS','Ya existe un entrenador con el mismo nombre');
-		define('_AS_TC_NOSEL','Debes especificar almenos un Entrenador para eliminar');
+		define('_AS_TC_ERRID','The selected coach is not valid');
+		define('_AS_TC_ERRNOEXISTS','No coach specified');
+		define('_AS_TC_ERREXISTS','There is already a coach with the same name');
+		define('_AS_TC_NOSEL','You must specify at least one coach to remove');
 		
 		break;
 	
 	case 'teams':
 		
-		define('_AS_TC_TEAMSLOC','Manejo de Equipos');
-		define('_AS_TC_TEAMSM','Equipos');
-		define('_AS_TC_NEW','Crear Equipo');
-		define('_AS_TC_EXISTING','Equipos Existentes');
-		define('_AS_TC_IMAGE','Imágen');
-		define('_AS_TC_NAME','Nombre');
-		define('_AS_TC_CATEGO','Categoría');
-		define('_AS_TC_COACHS','Entrenadores');
-		define('_AS_TC_DATE','Alta');
-		define('_AS_TC_PLAYERS','Integrantes');
+		define('_AS_TC_TEAMSLOC','Team Management');
+		define('_AS_TC_TEAMSM','Teams');
+		define('_AS_TC_NEW','Create Team');
+		define('_AS_TC_EXISTING','Existing Teams');
+		define('_AS_TC_IMAGE','Logo');
+		define('_AS_TC_NAME','Name');
+		define('_AS_TC_CATEGO','Category');
+		define('_AS_TC_COACHS','Coaches');
+		define('_AS_TC_DATE','Level');
+		define('_AS_TC_PLAYERS','Members');
 		
 		// Formulario
-		define('_AS_TC_FNEW','Crear Equipo');
-		define('_AS_TC_FEDIT','Editar Equipo');
-		define('_AS_TC_FCAT','Categoría');
-		define('_AS_TC_FNAME','Nombre');
-		define('_AS_TC_FSHORTNAME','Nombre Corto');
-		define('_AS_TC_FIMAGE','Imágen del Equipo');
-		define('_AS_TC_FCURIMAGE','Imágen Actual');
-		define('_AS_TC_FINFO','Información del Equipo');
-		define('_AS_TC_FCOACHS','Asignar Entrenadores');
-		define('_AS_TC_FCOACHSSEL','Seleccione los entrenadores');
+		define('_AS_TC_FNEW','Create Team');
+		define('_AS_TC_FEDIT','Edit Team');
+		define('_AS_TC_FCAT','Category');
+		define('_AS_TC_FNAME','Name');
+		define('_AS_TC_FSHORTNAME','Short Name');
+		define('_AS_TC_FIMAGE','Team Photo');
+		define('_AS_TC_FCURIMAGE','Current Photo');
+		define('_AS_TC_FINFO','Team Information');
+		define('_AS_TC_FCOACHS','Assign Coaches');
+		define('_AS_TC_FCOACHSSEL','Select Coaches');
 		
-		define('_AS_TC_CONFM','¿Realmente deseas eliminar los equipos seleccionados?');
-		define('_AS_TC_CONFDEL','¿Realmente deseas eliminar este Equipo?');
+		define('_AS_TC_CONFM','Do you really want to delete the selected teams?');
+		define('_AS_TC_CONFDEL','Do you really want to delete this team?');
 		
 		// ERRORES
-		define('_AS_TC_ERRID','El Equipo seleccionado no es válido');
-		define('_AS_TC_ERRNOEXISTS','No existe el Equipo especificado');
-		define('_AS_TC_ERREXISTS','Ya existe un equipo con el mismo nombre');
-		define('_AS_TC_NOSEL','Debes especificar almenos un Equipo para eliminar');
+		define('_AS_TC_ERRID','The team selected is not valid');
+		define('_AS_TC_ERRNOEXISTS','The selected team does not exist');
+		define('_AS_TC_ERREXISTS','There is a team with the same name');
+		define('_AS_TC_NOSEL','You must specify at least one team to delete');
 		
 		break;
 	
 	case 'players':
 		
-		define('_AS_TC_MPLAYS','Jugadores');
-		define('_AS_TC_NEW','Crear Jugador');
-		define('_AS_TC_PLAYLOC','Administración de Jugadores');
-		define('_AS_TC_EXISTING','Jugadores Existentes en %s');
-		define('_AS_TC_EXISTINGSEL','Selecciona un Equipo');
-		define('_AS_TC_TEAM','Equipo:');
-		define('_AS_TC_SELECT','Seleccionar...');
-		define('_AS_TC_COACHS','Entrenadores:');
-		define('_AS_TC_PIC','Foto');
-		define('_AS_TC_NAME','Nombre');
-		define('_AS_TC_NUMBER','Número');
-		define('_AS_TC_AGE','Edad');
-		define('_AS_TC_DATE','Alta');
+		define('_AS_TC_MPLAYS','Players');
+		define('_AS_TC_NEW','Create a player');
+		define('_AS_TC_PLAYLOC','Player Management');
+		define('_AS_TC_EXISTING','Existing players in %s');
+		define('_AS_TC_EXISTINGSEL','Select a Team');
+		define('_AS_TC_TEAM','Team:');
+		define('_AS_TC_SELECT','Select...');
+		define('_AS_TC_COACHS','Coaches:');
+		define('_AS_TC_PIC','Photo');
+		define('_AS_TC_NAME','Name');
+		define('_AS_TC_NUMBER','Number');
+		define('_AS_TC_AGE','Age');
+		define('_AS_TC_DATE','Height');
 		
-		define('_AS_TC_CONFDEL','¿Realmente deseas eliminar el jugador seleccionado?');
-		define('_AS_TC_CONFDELS','¿Realmente deseas eliminar los jugadores seleccionados?');
+		define('_AS_TC_CONFDEL','Do you really want to delete the selected player?');
+		define('_AS_TC_CONFDELS','Do you really want to delete the selected players?');
 		
 		// Formulario
-		define('_AS_TC_FNEWTITLE','Nuevo Jugador');
-		define('_AS_TC_FEDITTITLE','Editar Jugador');
-		define('_AS_TC_FTEAM','Equipo');
-		define('_AS_TC_FNAME','Nombre');
-		define('_AS_TC_FSHORTNAME','Nombre Corto');
-		define('_AS_TC_FBIRTH','Fecha de Nacimiento');
-		define('_AS_TC_FNUMBER','Número del Jugador');
-		define('_AS_TC_FPIC','Fotografía');
-		define('_AS_TC_FCURPIC','Fotografía Actual');
-		define('_AS_TC_FBIO','Información');
+		define('_AS_TC_FNEWTITLE','Add Player');
+		define('_AS_TC_FEDITTITLE','Edit Player');
+		define('_AS_TC_FTEAM','Team');
+		define('_AS_TC_FNAME','Name');
+		define('_AS_TC_FSHORTNAME','Short Name');
+		define('_AS_TC_FBIRTH','Birthday');
+		define('_AS_TC_FNUMBER','Player Number');
+		define('_AS_TC_FPIC','Photo');
+		define('_AS_TC_FCURPIC','Current Photo');
+		define('_AS_TC_FBIO','Information');
 		
 		// ERRORES
-		define('_AS_TC_ERRIDTEAM','Primero seleccione un equipo.');
-		define('_AS_TC_ERRID','El jugador especificado no es válido');
-		define('_AS_TC_ERRNOEXISTS','El jugador especificado no existe');
-		define('_AS_TC_ERRTEAMNOEXISTS','El equipo especificado no existe');
-		define('_AS_TC_ERREXISTS','Ya existe un jugador con el mismo nombre');
+		define('_AS_TC_ERRIDTEAM','First, select a team.');
+		define('_AS_TC_ERRID','The player is invalid');
+		define('_AS_TC_ERRNOEXISTS','The specified player does not exist');
+		define('_AS_TC_ERRTEAMNOEXISTS','The specified team does not exist');
+		define('_AS_TC_ERREXISTS','There is already a player with the same name');
 		
 		break;
 	

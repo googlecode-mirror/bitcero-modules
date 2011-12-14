@@ -25,9 +25,9 @@
 // --------------------------------------------------------
 // @copyright: 2008 Red México
 
-define('_BK_TC_TEAM','Jugadores del Equipo:');
-define('_BK_TC_ALLTEAM','Todos los Equipos');
-define('_BK_TC_NUMBER','Número de Jugadores');
-define('_BK_TC_COLNUMBER','Número de Columnas');
+define('_BK_TC_TEAM', 'Team Players');
+define('_BK_TC_ALLTEAM', 'All Teams');
+define('_BK_TC_NUMBER', 'Number of players');
+define('_BK_TC_COLNUMBER', 'Number of columns');
 
 ?>

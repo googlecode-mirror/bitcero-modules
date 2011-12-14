@@ -28,29 +28,29 @@
 define('_MI_TC_MODDESC','Módulo para el manejo de integrantes de equipos deportivos');
 
 // Menu del Módulo
-define('_MI_TC_CPHOME','Inicio');
-define('_MI_TC_TEAMS','Equipos');
-define('_MI_TC_PLAYERS','Jugadores');
-define('_MI_TC_CATS','Categorías');
-define('_MI_TC_COACHS','Entrenadores');
+define('_MI_TC_CPHOME','Home');
+define('_MI_TC_TEAMS','Teams');
+define('_MI_TC_PLAYERS','Players');
+define('_MI_TC_CATS','Categories');
+define('_MI_TC_COACHS','Coaches');
 
 // Configuraciones
-define('_MI_TC_FILESIZE','Tamaño máximo de Archivos');
-define('_MI_TC_FILESIZE_DESC','Especifique el tamño máximo de archivo permitido al cargar imágenes al servidor. Este valor debe ser especificaco en KiloBytes');
+define('_MI_TC_FILESIZE','Maximum file size');
+define('_MI_TC_FILESIZE_DESC','Specify the maximum file size allowed to upload images to the server. This value must be in Kilobytes (KB)');
 
-define('_MI_TC_RESIZEMETHOD','Método para Redimensionar');
-define('_MI_TC_RESIZEMETHOD_DESC','Específica la forma en que se redimensionan las miniaturas de las fotográfias');
+define('_MI_TC_RESIZEMETHOD','Resize method');
+define('_MI_TC_RESIZEMETHOD_DESC','Specifies how to resize the thumbnails of the photos');
 define('_MI_TC_NORMAL','Normal');
-define('_MI_TC_CROP','Recortar');
-define('_MI_TC_THSIZE','Tamaño de la Miniatura');
-define('_MI_TC_IMGSIZE','Tamaño de la Fotografía');
+define('_MI_TC_CROP','Trim');
+define('_MI_TC_THSIZE','Thumbnail size');
+define('_MI_TC_IMGSIZE','Photo size');
 
-define('_MI_TC_URLMOD','Activar URLs amigables');
-define('_MI_TC_URLMOD_DESC','Permite al módulo manejar urls amigables para buscadores. Este método solo es funcional con Apache.');
+define('_MI_TC_URLMOD','Enable friendly URLs');
+define('_MI_TC_URLMOD_DESC','Allows the module to manage search engine friendly URLs. This method is only functional with Apache.');
 
-define('_MI_TC_EMAIL','Email para la recepción de comentarios');
-define('_MI_TC_COMMENTTEXT','Texto explicativo para comentarios');
+define('_MI_TC_EMAIL','Email for receipt of comments');
+define('_MI_TC_COMMENTTEXT','Explanatory text for comment');
 
-define('_MI_TC_BKPLAYERS','Jugadores');
+define('_MI_TC_BKPLAYERS','Players');
 
 ?>
