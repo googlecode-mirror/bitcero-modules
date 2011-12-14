@@ -8,13 +8,11 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-if(function_exists("load_mod_locale")) load_mod_locale("works");
-
 define('_MI_PW_MODDESC',__('Module to manage professional portfolios', 'works'));
 
 // Configuraciones
 define('_MI_PW_URLMODE', __('Use friendly URLs','works'));
-define('_MI_PW_URLMODE_DESC', __('By enabling this option the module will manage the urls trough mod_rewrite (Apache Only).','works'));
+define('_MI_PW_URLMODE_DESC', __('By enabling this option the module will manage the URLs trough mod_rewrite (Apache Only).','works'));
 
 //Título
 define('_MI_PW_TITLE',__('Header Title','works'));
@@ -71,7 +69,7 @@ define('_MI_PW_COMMENTS',__('Comments','works'));
 //Páginas del módulo
 define('_MI_PW_PINDEX',__('Home Page','works'));
 define('_MI_PW_PRECENTS',__('Recent','works'));
-define('_MI_PW_PFEATUREDS',__('Fetured','works'));
+define('_MI_PW_PFEATUREDS',__('Featured','works'));
 define('_MI_PW_PCATEGOS',__('Category','works'));
 define('_MI_PW_PWORK',__('Work Details','works'));
 
