@@ -57,12 +57,12 @@ msgid "You must select at least one widget!"
 msgstr "¡Debes especificar el id de la categoría para editar!"
 
 #: C:\wamp\www\cu\modules\rmcommon/blocks.php:230
-msgid "There was some errors:"
+msgid "There were some errors:"
 msgstr "Ocurrieron algunos errores:"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:105
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:226
-msgid "Unknow"
+msgid "Unknown"
 msgstr "Desconocido"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:114
@@ -71,7 +71,7 @@ msgid "Posted on %s"
 msgstr "Publicado en %s"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:131
-msgid "Do you really wish to delete this comment?"
+msgid "Do you really want to delete this comment?"
 msgstr "¿Realmente deseas eliminar este comentario?"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:146
@@ -95,7 +95,7 @@ msgid "Comments updated successfully!"
 msgstr "¡Comentarios actualizados exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:179
-msgid "Errors occurrs while trying to update comments!"
+msgid "Errors occurred while trying to update comments!"
 msgstr "¡Ocurrieron errores mientras se actualizaban los comentarios!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:232
@@ -103,11 +103,11 @@ msgid "Comments deleted successfully!"
 msgstr "¡Comentarios eliminados exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:246
-msgid "Sorry, comment id is not valid"
+msgid "Sorry, comment ID is not valid"
 msgstr "!Lo siento,el id del cometario no es válido!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:252
-msgid "Sorry, comment does not found"
+msgid "Sorry, comment not found"
 msgstr "¡Lo sentimos, comentario no encontrado!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:264
@@ -151,7 +151,7 @@ msgstr "Aprobado"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:276
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:221
-msgid "Unapproved"
+msgid "Not approved"
 msgstr "No aprobado"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:279
@@ -187,11 +187,11 @@ msgstr "¡Comentario actualizado exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/comments.php:356
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:317
-msgid "Errros ocurrs while trying to update comment!"
+msgid "Errros ocurred while trying to update comment!"
 msgstr "¡Ocurrieron errores mientras se actualizaba el comentario!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:31
-msgid "There are not categories yet! Please create one in order to add images."
+msgid "There are no categories yet! Please create one in order to add images."
 msgstr "¡Todavia no hay categorias! Por favor crea una para agregar imágenes!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:128
@@ -212,7 +212,7 @@ msgid "Uploaded successfully!"
 msgstr "¡Cargadas exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:259
-msgid "You must specify a category id to edit!"
+msgid "You must specify a category ID to edit!"
 msgstr "¡Debes especificar el id de la categoría para editar!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:266
@@ -220,7 +220,7 @@ msgid "The specified category does not exist!"
 msgstr "La categoría especificada no existe!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:314
-msgid "Specify a valid category id"
+msgid "Specify a valid category ID"
 msgstr "Específica un id de categoría válido"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:320
@@ -232,7 +232,7 @@ msgid "Please specify a category name"
 msgstr "Por favor específica un nombre para la caegoria"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:345
-msgid "You must create one size for this category at least!"
+msgid "You must create at least one size for this category!"
 msgstr "¡Debes crearpor lo menos un tamaño de imágen para esta categoria!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:352
@@ -244,11 +244,11 @@ msgid "Category updated successfully!"
 msgstr "¡Categoría cargada exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:366
-msgid "There were some erros while trying to save this category."
+msgid "There were some errors while trying to save this category."
 msgstr "Hubo errores mientras se guardaba esta categoría."
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:382
-msgid "Specify one category at least to change status!"
+msgid "Specify at least one category to change status!"
 msgstr "¡Especifica por lo menos una categoría para cambiar el estado!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:394
@@ -256,7 +256,7 @@ msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:397
-msgid "There were some erros while updating database:"
+msgid "There were some errors while updating database:"
 msgstr "Hubo errores mientras se actualizaba la base de datos:"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:422
@@ -304,19 +304,19 @@ msgstr "Debes proporcionar un título para esta imágen"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:595
 #: C:\wamp\www\cu\modules\rmcommon/images.php:686
-msgid "Image not exists!"
+msgid "Image does not exists!"
 msgstr "¡No existe la Imágen!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:601
-msgid "Category not exist!"
+msgid "Category does not exist!"
 msgstr "¡No existe la categoría!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:614
-msgid "the image could not be updated!"
+msgid "The image could not be updated!"
 msgstr "¡No se pudo actualizar la imágen!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:620
-msgid "Image updated succesfully!"
+msgid "Image updated successfully!"
 msgstr "¡Imágen actualizada exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:662
@@ -324,11 +324,11 @@ msgid "Image updated successfully!"
 msgstr "¡Imágen actualizada exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:676
-msgid "Please, speciy an image at least!"
+msgid "Please, specify at least one image!"
 msgstr "¡Por favo,r específica por lo menos una imágen!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:712
-msgid "Errors ocurred during images deletion!"
+msgid "Errors occurred during images deletion!"
 msgstr "¡Ocurrieon errores mientras se eliminaba la imágen!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:714
@@ -348,7 +348,7 @@ msgid "Category deleted successfully!"
 msgstr "¡Categoría eliminada exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/images.php:774
-msgid "Errors ocurred while deleting the category"
+msgid "Errors occurred while deleting the category"
 msgstr "Ocurrieron errores mientras se eliminaba la categoría"
 
 #: C:\wamp\www\cu\modules\rmcommon/index.php:99
@@ -430,7 +430,7 @@ msgid "%s is already installed!"
 msgstr "¡%s ya esta instalada!"
 
 #: C:\wamp\www\cu\modules\rmcommon/modules.php:139
-msgid "Sepecified module is not a valid Xoops Module!"
+msgid "Specified module is not a valid XOOPS Module!"
 msgstr "¡El módulo especificado no es un Módulo Xoops válido!    "
 
 #: C:\wamp\www\cu\modules\rmcommon/modules.php:162
@@ -701,7 +701,7 @@ msgstr "¡Nombre del módulo cambiado exitosamente!"
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:191
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:224
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:488
-msgid "You must specify a existing plugin"
+msgid "You must specify an existing plugin"
 msgstr "Debes especificar un plugin existente"
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:99
@@ -718,11 +718,11 @@ msgid "Plugin could not be installed, please try again."
 msgstr "El plugin no pudo instalarse, por favor intentalo otra vez."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:114
-msgid "The plugin has been inserted on database, but erros ocurred on this process."
+msgid "The plugin has been inserted on database, but errors occurred on this process."
 msgstr "El plugin ha sido insertado en la base de datos, pero ocurrieron errores en el proceso."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:120
-msgid "Plugin installed succesfully!"
+msgid "Plugin installed successfully!"
 msgstr "¡Plugin instalado exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:135
@@ -738,11 +738,11 @@ msgid "Plugin could not be uninstalled, please try again."
 msgstr "El plugin no pudo ser instalado, por favor intentalo otra vez."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:146
-msgid "The plugin has been deleted from database, but erros ocurred on this process."
+msgid "The plugin has been deleted from database, but errors occurred on this process."
 msgstr "El plugin ha sido eliminado de la base de datos, pero ocurrieron errores en el proceso."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:152
-msgid "Plugin uninstalled succesfully!"
+msgid "Plugin uninstalled successfully!"
 msgstr "¡Plugin desinstalado exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:172
@@ -752,15 +752,15 @@ msgstr "El plugin no pudo ser actualizado, por favor intentalo otra vez."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:177
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:210
-msgid "The database has been updated, but erros ocurred on this process."
+msgid "The database has been updated, but errors occurred on this process."
 msgstr "La base de datos ha sido actualizada, pero ocurrieron errores en el proceso."
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:183
-msgid "Plugin updated succesfully!"
+msgid "Plugin updated successfully!"
 msgstr "¡Plugin actualizado exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:216
-msgid "Plugin status changed succesfully!"
+msgid "Plugin status changed successfully!"
 msgstr "¡Estado del plugin cambiado exitosamente!"
 
 #: C:\wamp\www\cu\modules\rmcommon/plugins.php:236
@@ -809,11 +809,11 @@ msgid "Settings updated!"
 msgstr "¡Configuraciones actualizadas!"
 
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:21
-msgid "Sorry, comments has been disabled by administrator"
+msgid "Sorry, comments have been disabled by administrator"
 msgstr "Lo sentimos, los comentarios han sido deshabilitados por el administrador"
 
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:57
-msgid "You must provide your name and email in order to can post comments"
+msgid "You must provide your name and email in order to post comments"
 msgstr "Debes proporcionar tu nombre y correo para enviar comentarios"
 
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:62
@@ -821,7 +821,7 @@ msgid "Sorry, you are not allowed to post comments!"
 msgstr "¡Lo sentimos,no estas autorizado para enviar comentarios!"
 
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:69
-msgid "There are not params to save!"
+msgid "There are not parameters to save!"
 msgstr "¡No hay parámetros por salvar!"
 
 #: C:\wamp\www\cu\modules\rmcommon/post_comment.php:76
@@ -873,7 +873,7 @@ msgid "Choose an option to see its feed"
 msgstr "Escoge una opción para ver su menú"
 
 #: C:\wamp\www\cu\modules\rmcommon/rss.php:43
-msgid "This module does not support rss feeds"
+msgid "This module does not support RSS feeds"
 msgstr "Este módulo no soporta menús rss"
 
 #: C:\wamp\www\cu\modules\rmcommon/xoops_version.php:293
@@ -1133,12 +1133,12 @@ msgstr "Diciembre"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:271
 #, php-format
-msgid "%s bytes"
+msgid "%s Bytes"
 msgstr "%s bytes"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:273
 #, php-format
-msgid "%s Kb"
+msgid "%s KB"
 msgstr "%s Kb"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/utilities.php:275
@@ -1166,7 +1166,7 @@ msgstr "Buscar Usuarios"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/fields/modules.class.php:144
 #, fuzzy
-msgid "Inner pages"
+msgid "Insert pages"
 msgstr "Insertar Imágen"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:114
@@ -1174,7 +1174,7 @@ msgid "Allow HTML"
 msgstr "Permitir HTML"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:116
-msgid "Allow Xoops Code"
+msgid "Allow XOOPS Code"
 msgstr "Permitir Código Xoops"
 
 #: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:118
@@ -1186,7 +1186,7 @@ msgid "Allow break lines"
 msgstr "Permitir "
 
 #: C:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:122
-msgid "Do images"
+msgid "Add images"
 msgstr "Crear Imágenes"
 
 #: C:\wamp\www\cu\modules\rmcommon/include/right_widgets.php:14
@@ -1247,11 +1247,11 @@ msgid "XoopsCode Editor"
 msgstr "Editor de código XOOPS"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:22
-msgid "Number limit for image categories list."
+msgid "Limit for image categories list."
 msgstr "Número límite de categorías de imágenes"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:23
-msgid "Image manager number of images per page"
+msgid "Image manager: number of images per page"
 msgstr "Número de imágenes por página en el administrador de imágenes"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:24
@@ -1271,7 +1271,7 @@ msgid "Allow HTMl in text"
 msgstr "Permitir HTML en el texto"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:29
-msgid "Allow smiles in text"
+msgid "Allow smilies in text"
 msgstr "Permitir emoticones en texto"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:30
@@ -1315,7 +1315,7 @@ msgid "Time limit to edit a comment (in hours)."
 msgstr "Tiempo limite para poder editar un comentario (en horas)."
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:45
-msgid "Image for rss feeds"
+msgid "Image for RSS feeds"
 msgstr "imágen para menús rss"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:48
@@ -1343,7 +1343,7 @@ msgid "SMTP server to use"
 msgstr "Servidor SMTP a usar"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:54
-msgid "Specify the server through with the emails will be sent."
+msgid "Specify the server through which the emails will be sent."
 msgstr "Especifique el servidor a través del cual se enviaran los emails."
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:55
@@ -1367,7 +1367,7 @@ msgid "SMTP server port"
 msgstr "Puerto del servidor SMTP"
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:61
-msgid "Note that you must to write the apropiate port based on your encryption type selection."
+msgid "Note that you must to write the appropriate port based on your encryption type selection."
 msgstr "Note que debe especificar el puerto apropiado basado en el tipo de encriptación seleccionado."
 
 #: C:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:62
@@ -1456,7 +1456,7 @@ msgid "Images Configurations"
 msgstr "Configuraciones de Imágenes"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:55
-msgid "This configurations stablish the sizes in wich images will be created."
+msgid "This configurations set the max sizes the created images can use."
 msgstr "Estas configuraciones establecen los tamaños en los que las imágenes deben ser creadas."
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:56
@@ -1604,7 +1604,7 @@ msgid "Registered"
 msgstr "Registrado"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:34
-msgid "Username"
+msgid "User name"
 msgstr "Nombre de usuario"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/form_users.php:36
@@ -1640,7 +1640,7 @@ msgid "Groups"
 msgstr "Grupos"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:25
-msgid "There are not categories yet! You must create at least one category in order to create images."
+msgid "There are no categories yet! You must create at least one category in order to create images."
 msgstr "¡Aún no hay categorias! Debes crear por lo menos una categoría para crear imágenes."
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:35
@@ -1715,7 +1715,7 @@ msgstr "Fecha"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/images_images.php:29
 #: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:6
-msgid "There are not images yet!"
+msgid "There are no images yet!"
 msgstr "¡Aún no hay imágenes!"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:20
@@ -1833,7 +1833,7 @@ msgid "Tag Name"
 msgstr "Nombre"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:58
-msgid "Specify a name for the smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt)."
+msgid "Specify a name for the Smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt)."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:59
@@ -1847,7 +1847,7 @@ msgstr "Usuarios Existentes"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:64
 #, fuzzy
-msgid "edit"
+msgid "Edit"
 msgstr "Editar"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:76
@@ -1859,7 +1859,7 @@ msgid "Order"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:84
-msgid "There are not blocks configured with this options."
+msgid "There are no blocks configured with this options."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:94
@@ -1975,11 +1975,11 @@ msgid "Read Permissions"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:63
-msgid "Guardar"
-msgstr ""
+msgid "Save"
+msgstr "Guardar"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
-msgid "You need something to search!"
+msgid "You need to enter something to search!"
 msgstr "¡Necesitas algo para buscar!"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:9
@@ -1988,12 +1988,12 @@ msgstr "Administrador de Comentarios"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:15
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:118
-msgid "Set unapproved"
+msgid "Not approved"
 msgstr "No aprobado"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:16
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:119
-msgid "Set approved"
+msgid "Approved"
 msgstr "Aprobado"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:17
@@ -2021,11 +2021,11 @@ msgid "Comment"
 msgstr "Comentar"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:63
-msgid "There are not comments yet!"
+msgid "There are no comments yet!"
 msgstr "Aún no hay comentarios"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:79
-msgid "Unnaprove"
+msgid "Not aprove"
 msgstr "No aprobado"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:81
@@ -2095,15 +2095,15 @@ msgid "View"
 msgstr "Ver"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:4
-msgid "Do you really wish to uninstall selected module?"
+msgid "Do you really want to uninstall selected module?"
 msgstr "¿Realmente deseas desinstalar el módulo seleccionado?"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:5
-msgid "Do you really wish to update selected module?"
+msgid "Do you really want to update selected module?"
 msgstr "¿Realmente deseas actualizar el módulo seleccionado?"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:6
-msgid "Do you really wish to disable selected module?"
+msgid "Do you really want to disable selected module?"
 msgstr "¿Realmente deseas deshabilitar el módulo seleccionado?"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:7
@@ -2159,7 +2159,7 @@ msgid "Install %s"
 msgstr "Instalar %s"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:3
-msgid "This module will make next changes in Xoops system. Please review in a detailed way all them in order to decide if you really wish to install this module"
+msgid "This module will make next changes in XOOPS system. Please review in a detailed way all them in order to decide if you really wish to install this module"
 msgstr "Este módulo realizará los siguientes cambios en el sistema, por favor revisalos de forma detallada para decidir si realmente deseas instalarlo."
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:10
@@ -2208,7 +2208,7 @@ msgid "Plugins Manager"
 msgstr "Administrador de Plugins"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:3
-msgid "Plugins allows to Common Utilities to improve its features and capabilities. Following is a list with existing plugins, installed and available to install."
+msgid "Plugins allows Common Utilities to improve its features and capabilities. Following is a list with existing plugins, installed and available to install."
 msgstr "Los plugins permiten a Common Utilities mejorar sus caracteristicas y capacidades. La siguiente es una lista de los plugins existentes, instalados y disponibles para instalar."
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:6
@@ -2230,7 +2230,7 @@ msgid "Version"
 msgstr "Versión"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:29
-msgid "There are not plugins installed yet!"
+msgid "There are no plugins installed yet!"
 msgstr "Aún no hay plugins instalados"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:76
@@ -2242,7 +2242,7 @@ msgid "Name and Description"
 msgstr "Nombre y Descripción"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:97
-msgid "There are not available plugins yet!"
+msgid "There are no available plugins yet!"
 msgstr "¡Aún no hay plugins disponibles!"
 
 #: C:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:106
@@ -2309,7 +2309,7 @@ msgid "Words Censor"
 msgstr "Censor de Palabras"
 
 #: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
-msgid "Searchs Settings"
+msgid "Search Settings"
 msgstr "Búsquedas"
 
 #: C:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
@@ -2325,7 +2325,7 @@ msgid "Modules Settings"
 msgstr "Módulos"
 
 #, fuzzy
-#~ msgid "Select the appearance taht you wish for Lightbox plugin"
+#~ msgid "Select the appearance that you wish for Lightbox plugin"
 #~ msgstr "Selecciona la categoría donde deseas cargar las imágenes"
 
 #~ msgid "Scale images"
@@ -2335,14 +2335,14 @@ msgstr "Módulos"
 #~ msgid "Loop images:"
 #~ msgstr "Crear Imágenes"
 
-#~ msgid "Addtitional settings"
+#~ msgid "Additional settings"
 #~ msgstr "Configuraciones adicionales"
 
 #, fuzzy
 #~ msgid "here"
 #~ msgstr "Temas"
 
-#~ msgid "Required fields marked with \"*\""
+#~ msgid "Required fields are marked with \"*\""
 #~ msgstr "Campos requeridos marcados con \"*\""
 
 #~ msgid "View Site"
@@ -2398,7 +2398,7 @@ msgstr "Módulos"
 #~ msgid "Booster Status"
 #~ msgstr "Estado de la Categoría"
 
-#~ msgid "Do you really wish to delete all cached files?"
+#~ msgid "Do you really want to delete all cached files?"
 #~ msgstr "¿Realmente deseas eliminar los archivos almacenados en caché?"
 
 #, fuzzy
