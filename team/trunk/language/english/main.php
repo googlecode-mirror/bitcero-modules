@@ -25,86 +25,86 @@
 // --------------------------------------------------------
 // @copyright: 2008 Red México
 
-define('_MS_TC_COMMENT','Enviar Comentario');
+define('_MS_TC_COMMENT','Submit Comment');
 
 switch(TC_LOCATION){
 	case 'index':
-		
-		define('_MS_TC_TITLE','Nuestros Equipos');
-		define('_MS_TC_CATTITLE','Categorías');
-		define('_MS_TC_TEAMSTITLE','Equipos');
+
+        define('_MS_TC_TITLE', 'Our Teams');
+        define('_MS_TC_CATTITLE', 'Categories');
+        define('_MS_TC_TEAMSTITLE', 'Teams');
 		
 		break;
 	
 	case 'teams':
-		
-		define('_MS_TC_PLAYERS','Integrantes');
-		define('_MS_TC_INFO','Información del Equipo');
-		define('_MS_TC_COACHS','Entrenadores');
-		define('_MS_TC_PTITLE','Equipo "%s"');
+
+        define('_MS_TC_PLAYERS', 'Members');
+        define('_MS_TC_INFO', 'Team Information');
+        define('_MS_TC_COACHS', 'Coaches');
+        define('_MS_TC_PTITLE', 'Team "%s"');
 		
 		// ERRORES
-		define('_MS_TC_ERRID','Especifica un equipo para ver su información.');
-		define('_MS_TC_ERRNOEXISTIS','No existe el equipo especificado.');
+		define('_MS_TC_ERRID','Select a team to view its information.');
+		define('_MS_TC_ERRNOEXISTIS','There is no selected team.');
 		
 		break;
 	
 	case 'players':
 		
-		define('_MS_TC_PTITLE','%s: Jugador #%s');
-		define('_MS_TC_DATA','Ficha del Jugador');
-		define('_MS_TC_NAME','Nombre:');
-		define('_MS_TC_NUMBER','Número:');
-		define('_MS_TC_TEAM','Equipo:');
-		define('_MS_TC_AGE','Edad:');
-		define('_MS_TC_DATE','Alta:');
-		define('_MS_TC_BIO','Biografía:');
-		define('_MS_TC_LINK','Enlace:');
-		define('_MS_TC_PLAYERS','Otros Jugadores de %s');
+		define('_MS_TC_PTITLE','%s: Player #%s');
+		define('_MS_TC_DATA','Player Info');
+		define('_MS_TC_NAME','Name:');
+		define('_MS_TC_NUMBER','Number:');
+		define('_MS_TC_TEAM','Team:');
+		define('_MS_TC_AGE','Age:');
+		define('_MS_TC_DATE','Height:');
+		define('_MS_TC_BIO','Bio:');
+		define('_MS_TC_LINK','Link:');
+		define('_MS_TC_PLAYERS','Other players from %s');
 		
 		// ERRORES
-		define('_MS_TC_ERRID','Especifica un integrante para ver su información.');
-		define('_MS_TC_ERRNOEXISTIS','No existe el integrante especificado.');
+		define('_MS_TC_ERRID','Select a member to view their information.');
+		define('_MS_TC_ERRNOEXISTIS','Selected member does not exist.');
 		
 		break;
 	
 	case 'coachs':
 		
-		define('_MS_TC_PTITLE','Entrenador "%s"');
-		define('_MS_TC_DATA','Ficha del Entrenador');
-		define('_MS_TC_NAME','Nombre:');
-		define('_MS_TC_TEAM','Equipos:');
-		define('_MS_TC_DATE','Alta:');
-		define('_MS_TC_BIO','Biografía:');
+		define('_MS_TC_PTITLE','Coach "%s"');
+		define('_MS_TC_DATA','Coach Info');
+		define('_MS_TC_NAME','Name:');
+		define('_MS_TC_TEAM','Teams:');
+		define('_MS_TC_DATE','Height:');
+		define('_MS_TC_BIO','Bio:');
 		
 		break;
 	
 	case 'categories':
 		
-		define('_MS_TC_TEAMIN','Equipos Registrados en esta Categoría');
-		define('_MS_TC_PTITLE','Categoría "%s"');
+		define('_MS_TC_TEAMIN','Teams in this category');
+		define('_MS_TC_PTITLE','Category "%s"');
 		
 		// ERRORES
-		define('_MS_TC_ERRID','Especifica una categoría.');
-		define('_MS_TC_ERRNOEXISTIS','No existe la categoría especificada.');
+		define('_MS_TC_ERRID','Select a category.');
+		define('_MS_TC_ERRNOEXISTIS','Selected category does not exist.');
 		
 		break;
 	
 	case 'comments':
 		
-		define('_MS_TC_PTITLE','Envío de Comentarios');
+		define('_MS_TC_PTITLE','Comments Submission');
 		
-		define('_MS_TC_FTITLE','Envíar Comentarios');
-		define('_MS_TC_FNAME','Tu Nombre:');
-		define('_MS_TC_FEMAIL','Tu Email:');
-		define('_MS_TC_FCOMMENT','Comentario:');
-		define('_MS_TC_FCODE','Escriba el Código de Verificación:');
-		define('_MS_TC_COMFROM','Comentarios desde %s');
-		define('_MS_TC_COMTHX','Gracias por tus comentarios.');
+		define('_MS_TC_FTITLE','Submit Comments');
+		define('_MS_TC_FNAME','Your name:');
+		define('_MS_TC_FEMAIL','Your email:');
+		define('_MS_TC_FCOMMENT','Comment:');
+		define('_MS_TC_FCODE','Enter the security code:');
+		define('_MS_TC_COMFROM','Comments on %s');
+		define('_MS_TC_COMTHX','Thanks for your feedback.');
 		
 		// ERRORES
-		define('_MS_TC_ERRID','El ID de sessión ha caducado. Por favor vuelve a intentarlo.');
-		define('_MS_TC_ERRFIELDS','Por favor completa todos los campos.');
+		define('_MS_TC_ERRID','The Session ID has expired. Please try again.');
+		define('_MS_TC_ERRFIELDS','Please complete all fields.');
 		
 		break;
 		
