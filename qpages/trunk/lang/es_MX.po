@@ -99,7 +99,7 @@ msgid "You must provide a category ID to edit!"
 msgstr "¡Debe proporcionar el ID de una categoría para editar!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:69
-msgid "Specified category does not exists!"
+msgid "Specified category does not exist!"
 msgstr "¡La categoría especificada no existe!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:74
@@ -144,7 +144,7 @@ msgid "Please provide a name for this category!"
 msgstr "¡Por favor proporcione un nombre para esta categoría!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:132
-msgid "There is another category with same name!"
+msgid "There is another category with the same name!"
 msgstr "¡Ya existe otra categoría con el mismo nombre!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:148
@@ -156,7 +156,7 @@ msgstr "¡Base de datos actualizada satisfactoriamente!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:150
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:411
-msgid "Errors ocurred while trying to update database"
+msgid "Errors occurred while trying to update database"
 msgstr "Ocurrieron errores al intentar actualizar la base de datos"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:165
@@ -176,7 +176,7 @@ msgstr "¡ID \"%s\" no es válido!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:186
 #, php-format
-msgid "Category with ID \"%s\" does not exists!"
+msgid "Category with ID \"%s\" does not exist!"
 msgstr "¡La categoría con el ID \"%s\" no existe!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:193
@@ -185,7 +185,7 @@ msgid "Category \"%s\" could not be deleted!"
 msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:199
-msgid "Errors ocurred while trying to delete categories"
+msgid "Errors occurred while trying to delete categories"
 msgstr "Ocurrieron errores al intetar eliminar las categorías"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/cats.php:201
@@ -272,7 +272,7 @@ msgid "Friendly title"
 msgstr "Titulo amigable"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:128
-msgid "Specify a title to use in friendly urls. Remember, this title must not contain any blank space or special char, only numbers or letters."
+msgid "Specify a title to use in friendly URLs. Remember, this title must not contain any blank space or special char, only numbers or letters."
 msgstr "Especifique un titulo para usar en las URLs amigables. Recuerde que este tiulo no debe contener espacios o carácteres especiales, solo números y letras."
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:133
@@ -357,7 +357,7 @@ msgid "New Linked Page"
 msgstr "Nueva Página Enlazada"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:219
-msgid "This title will be used in friendly url."
+msgid "This title will be used in friendly URL."
 msgstr "Este titulo será utilizado como url amigable."
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:235
@@ -365,7 +365,7 @@ msgid "Target URL"
 msgstr "URL Destino"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:238
-msgid "Only selected groups can access to this document."
+msgid "Only selected groups can access this document."
 msgstr "Solo los grupos seleccionador pueden ver este documento."
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:282
@@ -374,7 +374,7 @@ msgstr "¡El id de página no ha sido proporcionado!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:288
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:538
-msgid "Specified page does not exists!"
+msgid "Specified page does not exist!"
 msgstr "¡La página especificada no existe!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:301
@@ -394,7 +394,7 @@ msgid "Review Page"
 msgstr "Revisar Página"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:346
-msgid "A page with same friendly name already exists. Please change the freindly title to prevent errors."
+msgid "A page with the same friendly name already exists. Please change the friendly title to prevent errors."
 msgstr "Ya existe una página con el mismo nombre amigable. Por favor cambie el nombre para evitar errores."
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:356
@@ -402,12 +402,12 @@ msgid "Title"
 msgstr "Título"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:431
-msgid "Select at least a category to delete"
+msgid "Select at least one category to delete"
 msgstr "Seleccione al menos una categoría para eliminar"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:439
 #, php-format
-msgid "Page with ID \"%s\" does not exists!"
+msgid "Page with ID \"%s\" does not exist!"
 msgstr "¡La página con el id \"%s\" no existe!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:443
@@ -416,7 +416,7 @@ msgid "Page \"%s\" could not be deleted:"
 msgstr "La página \"%s\" no pudo ser eliminada:"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:449
-msgid "Errors ocurred while trying to delete pages"
+msgid "Errors occurred while trying to delete pages"
 msgstr "Ocurrieron errores al intenat eliminar las páginas"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:451
@@ -432,7 +432,7 @@ msgid "Database update failed!"
 msgstr "¡Falló la actualización de la página!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:488
-msgid "Select at least a cetegory to edit"
+msgid "Select at least one category to edit"
 msgstr "Seleccione al menos una categoría para editar"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/admin/pages.php:528
@@ -504,11 +504,11 @@ msgid "Home Page"
 msgstr "Página Inicial"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_categos.php:5
-msgid "Select at least a category to apply this action!"
+msgid "Select at least one category to apply this action!"
 msgstr "¡Seleccione al menos una categoría para aplicar esta opción!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_categos.php:6
-msgid "Do you really wish to delete this category?"
+msgid "Do you really want to delete this category?"
 msgstr "¿Realmente desea eliminar esta categoría?"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_categos.php:7
@@ -545,7 +545,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_categos.php:44
-msgid "There are not categories created yet!"
+msgid "There are no categories created yet!"
 msgstr "¡Aún no hay categorías creadas!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_categos.php:54
@@ -576,8 +576,8 @@ msgid "About QuickPages"
 msgstr "Acerca de QuickPages"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_index.php:18
-msgid "Create static pages easily and quickly with QuickPages for Xoops."
-msgstr "Crea página estáticas facil y rapidamente con QuickPages para Xoops."
+msgid "Create static pages easily and quickly with QuickPages for XOOPS."
+msgstr "Crea página estáticas facil y rapidamente con QuickPages para XOOPS."
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_index.php:44
 msgid "Recent News"
@@ -589,7 +589,7 @@ msgstr "Páginas Recientes"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_index.php:56
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_pages.php:69
-msgid "There are not pages created yet!"
+msgid "There are no pages created yet!"
 msgstr "¡Aún no hay páginas creadas!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_index.php:62
@@ -598,11 +598,11 @@ msgid "[Draft]"
 msgstr "[Borrador]"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_pages.php:4
-msgid "Select at least a page to apply this action!"
+msgid "Select at least one page to apply this action!"
 msgstr "¡Seleccione al menos una página para aplicar esta opción!"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_pages.php:5
-msgid "Do you really wish to delete selected pages?"
+msgid "Do you really want to delete selected pages?"
 msgstr "¿Realmente desea eliminar las páginas seleccionadas?"
 
 #: E:\Webserver\htdocs\x25\modules\qpages/templates/admin/qp_pages.php:10
@@ -665,10 +665,10 @@ msgstr "Duplicar página"
 msgid "Clone"
 msgstr "Clonar"
 
-#~ msgid "There are not pages registered yet!"
+#~ msgid "There are no pages registered yet!"
 #~ msgstr "¡Aún no hay páginas creadas!"
 
-#~ msgid "Errors ucurred while trying to update database"
+#~ msgid "Errors occurred while trying to update database"
 #~ msgstr "Ocurrieron errores al intentar actualizar la base de datos"
 
 #~ msgid "You must specify a page ID to edit!"
