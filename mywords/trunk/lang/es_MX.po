@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\cu\\modules\\mywords\n"
 
 #: C:\wamp\www\cu\modules\mywords/author.php:26
-msgid "Sorry, We don't know to this editor"
+msgid "Sorry, We don't know this editor"
 msgstr "Lo sentimos, no conocemos a este editor"
 
 #: C:\wamp\www\cu\modules\mywords/author.php:66
@@ -44,7 +44,7 @@ msgid "Posts published under \"%s\""
 msgstr "Entradas publicadas como %s"
 
 #: C:\wamp\www\cu\modules\mywords/date.php:20
-msgid "There are not posts published on this date"
+msgid "There are no posts published on this date"
 msgstr "No existen entradas publicadas en esta fecha"
 
 #: C:\wamp\www\cu\modules\mywords/date.php:48
@@ -170,11 +170,11 @@ msgid "Please, specify a valid post ID"
 msgstr "Por favor especifica un ID válido de una entrada"
 
 #: C:\wamp\www\cu\modules\mywords/submit.php:38
-msgid "Specified post does not exists!"
+msgid "Specified post does not exist!"
 msgstr "¡La entrada especificada no existe!"
 
 #: C:\wamp\www\cu\modules\mywords/tag.php:18
-msgid "Sorry, this tag does not exists!"
+msgid "Sorry, this tag does not exist!"
 msgstr "¡Lo sentimos, este etiqueta no existe!"
 
 #: C:\wamp\www\cu\modules\mywords/tag.php:62
@@ -188,7 +188,7 @@ msgid "Sorry, your trackback seems to be invalid!"
 msgstr "¡Lo sentimos, parece que tu trackback no es válido!"
 
 #: C:\wamp\www\cu\modules\mywords/trackbacks.php:54
-msgid "Sorry, your trackback seems to be SAPM"
+msgid "Sorry, your trackback seems to be a SPAM"
 msgstr "Lo sentimos, parace que esto es SPAM"
 
 #: C:\wamp\www\cu\modules\mywords/trackbacks.php:67
@@ -231,7 +231,7 @@ msgstr "¡No se ha proporcionado un ID de sitio!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:71
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:116
-msgid "Social site not exists!"
+msgid "Social site does not exist!"
 msgstr "¡No existe el sitio especificado!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:82
@@ -263,7 +263,7 @@ msgstr "¡Base de datos actualizada correctamente!"
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:154
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:183
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:212
-msgid "Errors ocurred while trying to update database!"
+msgid "Errors occurred while trying to update database!"
 msgstr "¡Ocurrieron algunos errores al intentar actualizar la base de datos!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/bookmarks.php:168
@@ -293,7 +293,7 @@ msgstr "Debes especificar una categoría válida"
 
 #: C:\wamp\www\cu\modules\mywords/admin/categories.php:121
 #: C:\wamp\www\cu\modules\mywords/admin/categories.php:186
-msgid "Specified category not exists!"
+msgid "Specified category does not exists!"
 msgstr "¡La categoría especificada no existe!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/categories.php:126
@@ -349,7 +349,7 @@ msgid "There was an error!"
 msgstr "¡Ocurrió un error!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/categories.php:236
-msgid "You must select one category at least!"
+msgid "You must select at least one category!"
 msgstr "¡Debes seleccionar al menos una categoría!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/categories.php:241
@@ -384,7 +384,7 @@ msgid "Editor ID not provided!."
 msgstr "¡No se ha proporcionado un ID de Editor!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/editors.php:73
-msgid "Editor does not exists!"
+msgid "Editor does not exist!"
 msgstr "¡El editor no existe!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/editors.php:80
@@ -429,7 +429,7 @@ msgstr "¡Por favor especifica un ID válido para el editor!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/editors.php:214
 #: C:\wamp\www\cu\modules\mywords/admin/editors.php:220
-msgid "Errors ocurred while trying to delete editors!"
+msgid "Errors occurred while trying to delete editors!"
 msgstr "¡Ocurrieron errores al intentar eliminar estos editores!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/index.php:50
@@ -477,7 +477,7 @@ msgstr "¡Selecciona al menos una entrada!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/posts.php:208
 #, php-format
-msgid "Errors ocurred while deleting \"%s\""
+msgid "Errors occurred while deleting \"%s\""
 msgstr "Ocurrieron errores al eliminar \"%s\""
 
 #: C:\wamp\www\cu\modules\mywords/admin/posts.php:242
@@ -497,12 +497,12 @@ msgid "You must provide a name!"
 msgstr "¡Debes porporcionar un nombre!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:94
-msgid "Tag id not provided!"
+msgid "Tag ID not provided!"
 msgstr "¡No se ha porporcionado el ID de la etiqueta!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:100
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:155
-msgid "Tag does not exists!"
+msgid "Tag does not exist!"
 msgstr "¡La etiqueta no existe!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:127
@@ -527,12 +527,12 @@ msgstr "Editando Etiqueta"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:185
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:220
-msgid "Please, specify a valid tag id!"
+msgid "Please, specify a valid tag ID!"
 msgstr "¡Por favor especifica un ID válido!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:193
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:199
-msgid "Errors ocurred while trying to delete tags!"
+msgid "Errors occurred while trying to delete tags!"
 msgstr "¡Ocurrieron algunos errores al intentar eliminar las etiquetas!"
 
 #: C:\wamp\www\cu\modules\mywords/admin/tags.php:233
@@ -610,7 +610,7 @@ msgid "Permalink:"
 msgstr "Enlace permanente:"
 
 #: C:\wamp\www\cu\modules\mywords/admin/ajax/ax-posts.php:201
-msgid "Errors ocurred while trying to save this post."
+msgid "Errors occurred while trying to save this post."
 msgstr "Ocurrieron errores al intentar almacenar esta entrada."
 
 #: C:\wamp\www\cu\modules\mywords/blocks/block.cats.php:42
@@ -1025,11 +1025,11 @@ msgid "Save Changes"
 msgstr "Guardar Cambios"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:38
-msgid "Social Sites allows to publish directly, on these sites, links and content from MyWords posts."
+msgid "Social Sites allows to publish directly on these sites links and content from MyWords posts."
 msgstr "Las redes sociales te permiten publicar directamente, en esos sitios, los enlaces y contenido de las entradas de MyWords."
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:39
-msgid "You can add new sites easily by configuring parameters for each site (eg. Twitter, Facebook, etc.), then your visitors can recommend posts to other users from these social networks."
+msgid "You can add new sites easily by configuring parameters for each site (eg. Twitter, Facebook, etc.), then your visitors can recommend posts to other users of these social networks."
 msgstr "Puedes agregar nuevos sitios fácilmente configurando los parámetros para cada uno de ellos (ej. Twitter, Facebook, etc.), entonces los visitantes podrán recomendar las entradas a otros usuarios de esas redes sociales."
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:44
@@ -1121,7 +1121,7 @@ msgid "URL"
 msgstr "URL"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:98
-msgid "There are not social sites registered yet!"
+msgid "There are no social sites registered yet!"
 msgstr "¡Aún no existen redes sociales registradas!"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:107
@@ -1142,12 +1142,12 @@ msgstr "Editar"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:111
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:116
-msgid "Desactivar"
+msgid "Deactivate"
 msgstr "Desactivar"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_bookmarks.php:113
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:118
-msgid "Activar"
+msgid "Activate"
 msgstr "Activar"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_categories.php:5
@@ -1181,7 +1181,7 @@ msgid "Slug"
 msgstr "Nombre Corto"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_categories.php:71
-msgid "There are not categories registered yet!"
+msgid "There are no categories registered yet!"
 msgstr "¡Todavía no hay categorías registradas!"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:9
@@ -1245,7 +1245,7 @@ msgid "Display name:"
 msgstr "Nombre para mostrar:"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:57
-msgid "Privilieges:"
+msgid "Privileges:"
 msgstr "Privilegios:"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:65
@@ -1268,7 +1268,7 @@ msgid "Permissions"
 msgstr "Permisos"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:105
-msgid "There are not editors registered yet."
+msgid "There are no editors registered yet."
 msgstr "Todavía no hay editores registrados."
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_editors.php:123
@@ -1320,7 +1320,7 @@ msgstr "Borradores"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_posts.php:19
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_theindex.php:61
-msgid "Pending of Review"
+msgid "Pending Review"
 msgstr "Pendientes"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_posts.php:27
@@ -1403,7 +1403,7 @@ msgid "Update posts number"
 msgstr "Actualizar número de entradas"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_tags.php:77
-msgid "There is not any tag yet!"
+msgid "There is no tag yet!"
 msgstr "Todavía no existe ninguna etiqueta"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_tags.php:87
@@ -1419,7 +1419,7 @@ msgid "MyWords documentation"
 msgstr "Documentación de MyWords"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_theindex.php:12
-msgid "Learn more about MyWords. Installation, configuration and all information to improve thsi module."
+msgid "Learn more about MyWords. Installation, configuration and all information to improve this module."
 msgstr "Aprender mas sobre MyWords, instalación, configuración y toda la información para mejorar este módulo."
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_theindex.php:17
@@ -1497,7 +1497,7 @@ msgid "Excerpt"
 msgstr "Extracto"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_trackbacks.php:40
-msgid "There are not trackbacks yet"
+msgid "There are no trackbacks yet"
 msgstr "Todavía no hay trackbacks"
 
 #: C:\wamp\www\cu\modules\mywords/templates/admin/mywords_trackbacks.php:56
