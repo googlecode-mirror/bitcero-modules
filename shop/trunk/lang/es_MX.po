@@ -48,7 +48,7 @@ msgstr "Seleccionar categoría..."
 
 #: E:\webserver\htdocs\x25\modules\shop/contact.php:29
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:205
-msgid "Please fill al required data!"
+msgid "Please fill all required data!"
 msgstr "Por favor llene todos los campos necesarios!"
 
 #: E:\webserver\htdocs\x25\modules\shop/contact.php:35
@@ -187,7 +187,7 @@ msgstr "Debe especificar una categoría válida"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/categories.php:122
 #: E:\webserver\htdocs\x25\modules\shop/admin/categories.php:189
-msgid "Specified category not exists!"
+msgid "Specified category does not exist!"
 msgstr "¡La categoría especificada no existe!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/categories.php:127
@@ -237,7 +237,7 @@ msgid "There is already a category with the same name!"
 msgstr "¡Ya existe una categoría con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/categories.php:222
-msgid "Category created succesfully!"
+msgid "Category created successfully!"
 msgstr "¡Categoría creada satisfactoriamente!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/categories.php:224
@@ -299,7 +299,7 @@ msgid "Select at least one product in order to run this action!"
 msgstr "¡Seleccione al menos un producto para poder ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:72
-msgid "Do you really wish to delete selected products?"
+msgid "Do you really want to delete selected products?"
 msgstr "¿Realmente desea eliminar los productos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:95
@@ -311,7 +311,7 @@ msgstr "¡Debe proporcionar un ID válido de producto!"
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:381
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:444
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:523
-msgid "Specified product does not exists!"
+msgid "Specified product does not exist!"
 msgstr "¡El producto especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:108
@@ -380,7 +380,7 @@ msgid "Product ID has not been provided"
 msgstr "El ID de producto no ha sido proporcionado"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:224
-msgid "Another product with same name already exists!"
+msgid "Another product with the same name already exists!"
 msgstr "¡Ya existe otro producto con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:299
@@ -389,7 +389,7 @@ msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada satisfactoriamente!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:301
-msgid "Errors ocurred while trying to update database"
+msgid "Errors occurred while trying to update database"
 msgstr "Ocurrieron errores al intentar actualizar la base de datos"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:322
@@ -403,7 +403,7 @@ msgstr "¡El ID de producto \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:342
 #, php-format
-msgid "Product with ID \"%s\" does not exists!"
+msgid "Product with ID \"%s\" does not exist!"
 msgstr "¡El producto con ID \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:347
@@ -412,11 +412,11 @@ msgid "Product \"%s\" could not be deleted!"
 msgstr "¡El producto \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:352
-msgid "Errors ocurred while trying to delete products"
+msgid "Errors occurred while trying to delete products"
 msgstr "Ocurrieron errores al intentar eiminar productos"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:355
-msgid "Prodducts deleted successfully!"
+msgid "Products deleted successfully!"
 msgstr "¡Productos eliminados satisfactoriamente!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:374
@@ -434,7 +434,7 @@ msgid "Do you really want to delete selected images?"
 msgstr "¿Realmente desea eliminar las imágenes seleccionadas?"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:413
-msgid "You must select an image before to execute this action!"
+msgid "You must select an image before executing this action!"
 msgstr "¡Debes seleccionar una imagen antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:437
@@ -449,7 +449,7 @@ msgstr "¡Debes specificar ID dela imagen!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:459
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:537
-msgid "Specified image does not exists!"
+msgid "Specified image does not exist!"
 msgstr "¡La imagen especificada no existe!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:467
@@ -475,7 +475,7 @@ msgid "Current image file"
 msgstr "Archivo de Imagen Actual"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:607
-msgid "Errors ocurred while trying to save the image"
+msgid "Errors occurred while trying to save the image"
 msgstr "Ocurrieron algunos errores al intentar guardar la imagen"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:630
@@ -492,7 +492,7 @@ msgstr "¡ID de la imagen \"%s\" no es valido!"
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:650
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:701
 #, php-format
-msgid "Image with ID \"%s\" does not exists!"
+msgid "Image with ID \"%s\" does not exist!"
 msgstr "¡Imagen con ID \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:655
@@ -503,7 +503,7 @@ msgstr "¡Imagen \"%s\" no pudo ser eliminada!"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:660
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:712
-msgid "Errors ocurred while trying to delete images"
+msgid "Errors occurred while trying to delete images"
 msgstr "Ocurrieron algunos errores al tratar de eliminar imágenes"
 
 #: E:\webserver\htdocs\x25\modules\shop/admin/products.php:663
@@ -616,7 +616,7 @@ msgid "Enable friendly URLs"
 msgstr "Habilitar URLs amigables"
 
 #: E:\webserver\htdocs\x25\modules\shop/language/english/modinfo.php:16
-msgid "Define the way in wich MiniShop will be format the products and categories URLs. Firendly URLs needs mod_rewirte or equivalent system."
+msgid "Define the way in which MiniShop will format URLs for products and categories. Friendly URLs needs mod_rewrite or equivalent system."
 msgstr "Define la manera en la que MiniShop formateara las URLs de los productos y categorias. URLs amigables necesita mod_rewrite or equivalent system."
 
 #: E:\webserver\htdocs\x25\modules\shop/language/english/modinfo.php:17
@@ -754,7 +754,7 @@ msgid "Slug"
 msgstr "Acceso"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_categories.php:71
-msgid "There are not categories registered yet!"
+msgid "There are no categories registered yet!"
 msgstr "¡Aún no hay categorias registradas!"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_categories.php:80
@@ -789,7 +789,7 @@ msgid "Latest products:"
 msgstr "Productos Nuevos:"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_dashboard.php:20
-msgid "There are not products yet!"
+msgid "There are no products yet!"
 msgstr "¡Aún no hay productos!"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_dashboard.php:34
@@ -825,7 +825,7 @@ msgid "Image"
 msgstr "Imagen"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_images.php:34
-msgid "There are not images for this product yet!"
+msgid "There are no images for this product yet!"
 msgstr "¡Aún no hay imágenes para este producto!"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_images.php:69
@@ -868,7 +868,7 @@ msgid "Modified"
 msgstr "Modificado"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_products.php:49
-msgid "There are not products created yet!"
+msgid "There are no products created yet!"
 msgstr "¡Aún no hay productos creados!"
 
 #: E:\webserver\htdocs\x25\modules\shop/templates/admin/shop_products.php:61
