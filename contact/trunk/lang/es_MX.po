@@ -55,11 +55,11 @@ msgid "Write next words to verify that you are human"
 msgstr "Escribe las siguientes palabras para verificar que eres humano"
 
 #: E:\webserver\htdocs\x25\modules\contact/index.php:55
-msgid "Please fill all required fileds before to send this message!"
+msgid "Please fill all required fields before sending this message!"
 msgstr "¡Por favor completa todos los campos obligatorios antes de enviar este mensaje!"
 
 #: E:\webserver\htdocs\x25\modules\contact/index.php:61
-msgid "Please check the security words and write it correctly!"
+msgid "Please check the security word and write it correctly!"
 msgstr "¡Por favor comprueba que las palabras de verificación esten escritas correctamente!"
 
 #: E:\webserver\htdocs\x25\modules\contact/index.php:67
@@ -138,7 +138,7 @@ msgid "Dashboard"
 msgstr "Tablero"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:11
-msgid "A simple contact module for Xoops"
+msgid "A simple contact module for XOOPS"
 msgstr "Sencillo módulo de contactos para XOOPS"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:14
@@ -146,7 +146,7 @@ msgid "Recipient Email"
 msgstr "Email del destinatario"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:15
-msgid "Specify the email where messages will be sent"
+msgid "Specify the email address where messages will be sent to"
 msgstr "Especifica la dirección de email a donde será enviado el mensaje"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:16
@@ -174,7 +174,7 @@ msgid "Quote message text when reply"
 msgstr "Citar el texto original en las repsuestas"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:22
-msgid "When this option is enabled, ContactMe! will include the original message as a quote text in reply."
+msgid "When this option is enabled, ContactMe! will include the original message as a quoted text in reply."
 msgstr "Cuando esta opción esta activada, ContactMe! incluirá el texto iriginal del mensaje como una cita en el texto de respuesta."
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:25
@@ -182,7 +182,7 @@ msgid "ContactMe!"
 msgstr "ContactMe!"
 
 #: E:\webserver\htdocs\x25\modules\contact/language/english/modinfo.php:26
-msgid "Shows a block with a contact form that can be put in any block canvas."
+msgid "Shows a block with a contact form that can be put in any block."
 msgstr "Muestra un bloque con un formulario de contacto que puede ser puesto en cualqueir posición."
 
 #: E:\webserver\htdocs\x25\modules\contact/templates/admin/cm_reply.php:1
@@ -210,7 +210,7 @@ msgid "You must select at least one message to delete!"
 msgstr "¡Debes seleccionar al menos un mensaje para eliminar!"
 
 #: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:6
-msgid "Do you really wish to delete selected messages?"
+msgid "Do you really want to delete selected messages?"
 msgstr "¿Realmente deseas eliminar los mensajes seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\contact/templates/admin/ct_dashboard.php:15
