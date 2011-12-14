@@ -11,8 +11,8 @@
 load_mod_locale('match');
 
 define('_MI_MCH_URLMODE', __('Use friendly URLs','match'));
-define('_MI_MCH_URLMODED', __('By enabling this option the module will manage the urls trough mod_rewrite (Apache Only).','match'));
-define('_MI_MCH_BASEDIR',__('Base dir to friendly url management','match'));
+define('_MI_MCH_URLMODED', __('By enabling this option the module will manage the URLs trough mod_rewrite (Apache Only).','match'));
+define('_MI_MCH_BASEDIR',__('Base dir to friendly URL management','match'));
 define('_MI_MCH_LOGOSIZE',__('Image width for teams logos','match'));
 define('_MI_MCH_LOGOFILESIZE',__('Images max file size','match'));
 define('_MI_MCH_LOGOFILESIZED',__('Specify this value in KB','match'));

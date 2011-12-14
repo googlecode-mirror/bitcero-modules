@@ -100,7 +100,7 @@ msgid "Visitor"
 msgstr "Visitante"
 
 #: E:\webserver\htdocs\x25\modules\match/rol.php:85
-msgid "Ver Todos"
+msgid "View All"
 msgstr "Ver Todos"
 
 #: E:\webserver\htdocs\x25\modules\match/rol.php:86
@@ -136,7 +136,7 @@ msgid "Do you really want to delete selected categories?"
 msgstr "¿Realmente deseas eliminar las categorías seleccionadas?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:32
-msgid "You must select some category before to execute this action!"
+msgid "You must select some category before executing this action!"
 msgstr "¡Debes seleccionar alguna categoría antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:47
@@ -229,15 +229,15 @@ msgid "Wrong category ID!"
 msgstr "¡ID de categoría erróneo!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:129
-msgid "Specified category does not exists!"
+msgid "Specified category does not exist!"
 msgstr "¡La categoría especificada no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:137
-msgid "A category with same name already exists!"
+msgid "A category with the same name already exists!"
 msgstr "¡Ya existe una categoría con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:146
-msgid "There are already a category with same name id!"
+msgid "There is already a category with same name ID!"
 msgstr "¡Ya existe una categoría con el mismo nombre corto!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:184
@@ -247,7 +247,7 @@ msgstr "¡Ya existe una categoría con el mismo nombre corto!"
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:238
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:353
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:296
-msgid "Errors ocurred while trying to update database!"
+msgid "Errors occurred while trying to update database!"
 msgstr "¡Ocurrieron errores al intentar actualizar la base de datos!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:187
@@ -266,12 +266,12 @@ msgstr "¡No hay categorías seleccionadas!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:223
 #, php-format
-msgid "Category id \"%s\" is not valid!"
+msgid "Category ID \"%s\" is not valid!"
 msgstr "¡El id de categoría \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:230
 #, php-format
-msgid "Category \"%s\" does not exists!"
+msgid "Category \"%s\" does not exist!"
 msgstr "¡La categoría \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:237
@@ -280,7 +280,7 @@ msgid "Category \"%s\" could not be deleted!"
 msgstr "¡La categoría \"%s\" no pudo ser eliminada!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/categories.php:246
-msgid "Errors ocurred while trying to delete categories"
+msgid "Errors occurred while trying to delete categories"
 msgstr "Ocurrieron errores al intentar eliminar las categorías"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:65
@@ -295,7 +295,7 @@ msgid "Do you really want to delete selected championships?"
 msgstr "¿Realmente deseas eliminar los campeonatos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:71
-msgid "You must select some championships before to execute this action!"
+msgid "You must select some championships before executing this action!"
 msgstr "¡Debes seleccionar al menos un campeonato antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:100
@@ -311,11 +311,11 @@ msgid "Championship ID not valid!"
 msgstr "¡ID de campeonato no válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:113
-msgid "Specified championship does not exists!"
+msgid "Specified championship does not exist!"
 msgstr "¡No existe el campeonato especificado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:131
-msgid "A championship with same name already exists!"
+msgid "A championship with the same name already exists!"
 msgstr "¡Ya existe un campeonato con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:162
@@ -361,7 +361,7 @@ msgstr "¡El id de campeonato \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:254
 #, php-format
-msgid "Championship \"%s\" does not exists!"
+msgid "Championship \"%s\" does not exist!"
 msgstr "¡El campeonato \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:261
@@ -370,7 +370,7 @@ msgid "Championship \"%s\" could not be deleted!"
 msgstr "¡El campeonato \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:267
-msgid "Errors ocurred while trying to delete championships"
+msgid "Errors occurred while trying to delete championships"
 msgstr "Ocurrieron errores al intentar eliminar los campeonatos"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:283
@@ -382,7 +382,7 @@ msgid "Championship updated successfully!"
 msgstr "¡Campeonato actualizado correctamente!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/champ.php:293
-msgid "Championship could not be pdated!"
+msgid "Championship could not be updated!"
 msgstr "¡El campeonato no pudo ser actualizado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:111
@@ -402,7 +402,7 @@ msgstr "¿Realmente deseas eliminar los entrenadores seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:117
 #: E:\webserver\htdocs\x25\modules\match/admin/ranking.php:33
-msgid "You must select some coach before to execute this action!"
+msgid "You must select a coach before executing this action!"
 msgstr "¡Debes seleccionar al menos un entrenador antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:137
@@ -492,11 +492,11 @@ msgid "Coach ID not valid!"
 msgstr "¡ID de entrenador no válida!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:238
-msgid "Specified coach does not exists!"
+msgid "Specified coach does not exist!"
 msgstr "¡El entrenador especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:256
-msgid "A coach with same name already exists!"
+msgid "A coach with the same name already exists!"
 msgstr "¡Ya existe un entrenado con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:333
@@ -509,12 +509,12 @@ msgstr "¡No hay entrenadores seleccionados!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:362
 #, php-format
-msgid "Coach id \"%s\" is not valid!"
+msgid "Coach ID \"%s\" is not valid!"
 msgstr "¡El id de entrenador \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:369
 #, php-format
-msgid "Coach \"%s\" does not exists!"
+msgid "Coach \"%s\" does not exist!"
 msgstr "¡El entrenador \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:376
@@ -523,7 +523,7 @@ msgid "Coach \"%s\" could not be deleted!"
 msgstr "¡El entrenador \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/coaches.php:382
-msgid "Errors ocurred while trying to delete coaches"
+msgid "Errors occurred while trying to delete coaches"
 msgstr "Ocurrieron errores al intentar eliminar entrenadores"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:57
@@ -538,7 +538,7 @@ msgid "Do you really want to delete selected fields?"
 msgstr "¿Realmente deseas eliminar los campos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:63
-msgid "You must select some fields before to execute this action!"
+msgid "You must select some fields before executing this action!"
 msgstr "¡Debes seleccionar al menos un campo antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:98
@@ -546,12 +546,12 @@ msgid "Field ID not valid!"
 msgstr "¡ID de campo no válida!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:105
-msgid "Specified field does not exists!"
+msgid "Specified field does not exist!"
 msgstr "¡El campo especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:123
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:225
-msgid "A field with same name already exists!"
+msgid "A field with the same name already exists!"
 msgstr "¡Ya existe un campo con el mismo nombre!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:152
@@ -584,12 +584,12 @@ msgstr "¡No hay campos seleccionados!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:235
 #, php-format
-msgid "Field id \"%s\" is not valid!"
+msgid "Field ID \"%s\" is not valid!"
 msgstr "¡El id de campo \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:242
 #, php-format
-msgid "Field \"%s\" does not exists!"
+msgid "Field \"%s\" does not exist!"
 msgstr "¡El campo \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:249
@@ -598,7 +598,7 @@ msgid "Field \"%s\" could not be deleted!"
 msgstr "¡El campo \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/fields.php:255
-msgid "Errors ocurred while trying to delete fields"
+msgid "Errors occurred while trying to delete fields"
 msgstr "Ocurrieron errores al intentar eliminar campos"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/menu.php:15
@@ -651,7 +651,7 @@ msgid "Do you really want to delete selected items?"
 msgstr "¿Realmente deseas eliminar los elementos seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:166
-msgid "You must select some role item before to execute this action!"
+msgid "You must select a role item before executing this action!"
 msgstr "¡Debes seleccionar al menos un elemento del rol antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:200
@@ -659,7 +659,7 @@ msgid "Role item ID not valid!"
 msgstr "¡ID de elemento del rol no válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:207
-msgid "Specified role item does not exists!"
+msgid "Specified role item does not exist!"
 msgstr "¡El elemento del rol especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/role.php:241
@@ -676,7 +676,7 @@ msgid "Do you really want to delete selected players?"
 msgstr "¿Realmente deseas eliminar los jugadores seleccionados?"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:129
-msgid "You must select some player before to execute this action!"
+msgid "You must select some player before executing this action!"
 msgstr "¡Debes seleccionar al menos un jugador antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:149
@@ -742,7 +742,7 @@ msgid "Player ID not valid!"
 msgstr "¡Identificado de jugador no válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:260
-msgid "Specified player does not exists!"
+msgid "Specified player does not exist!"
 msgstr "¡El jugador especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:278
@@ -759,12 +759,12 @@ msgstr "¡No hay jugadores seleccionados!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:385
 #, php-format
-msgid "Player id \"%s\" is not valid!"
+msgid "Player ID \"%s\" is not valid!"
 msgstr "¡El id de jugador \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:392
 #, php-format
-msgid "Player \"%s\" does not exists!"
+msgid "Player \"%s\" does not exist!"
 msgstr "¡El jugador \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:399
@@ -773,7 +773,7 @@ msgid "Player \"%s\" could not be deleted!"
 msgstr "¡El jugador \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/roster.php:405
-msgid "Errors ocurred while trying to delete players"
+msgid "Errors occurred while trying to delete players"
 msgstr "Ocurrieron errores al intentar eliminar jugadores"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:94
@@ -781,7 +781,7 @@ msgid ""
 "Do you really want to delete selected teams?\\n"
 "All players and coaches assigned to this team will be deleted also.\\n"
 "\\n"
-"If you no want to lose data, then reassign players and coaches before to delete this team."
+"If you no want to lose data, then reassign players and coaches before trying to delete this team."
 msgstr ""
 "¿Realmente deseas eliminar los equipos seleccionados?\n"
 "Todos lo sjugadores y entrenadores asignados a este equipo serán eliminados también\n"
@@ -789,7 +789,7 @@ msgstr ""
 "Si no deseas perder estos datos entonces reasigna estos elementos a otro equipo antes de continuar."
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:95
-msgid "You must select some team before to execute this action!"
+msgid "You must select a team before executing this action!"
 msgstr "¡Debes seleccionar al menos un equipo antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:111
@@ -835,7 +835,7 @@ msgid "Team ID not valid!"
 msgstr "¡ID de equipo no válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:209
-msgid "Specified team does not exists!"
+msgid "Specified team does not exist!"
 msgstr "¡El equipo especificado no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:227
@@ -852,12 +852,12 @@ msgstr "¡No hay equipos seleccionados!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:332
 #, php-format
-msgid "Team id \"%s\" is not valid!"
+msgid "Team ID \"%s\" is not valid!"
 msgstr "¡El id de equipo \"%s\" no es válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:339
 #, php-format
-msgid "Team \"%s\" does not exists!"
+msgid "Team \"%s\" does not exist!"
 msgstr "¡El equipo \"%s\" no existe!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:348
@@ -866,7 +866,7 @@ msgid "Team \"%s\" could not be deleted!"
 msgstr "¡El equipo \"%s\" no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\x25\modules\match/admin/teams.php:357
-msgid "Errors ocurred while trying to delete teams"
+msgid "Errors occurred while trying to delete teams"
 msgstr "Ocurrieron errores al intentar eliminar equipos"
 
 #: E:\webserver\htdocs\x25\modules\match/blocks/mch_ranking.php:30
@@ -931,11 +931,11 @@ msgid "Session token invalid!"
 msgstr "¡Identificador de sesión no válido!"
 
 #: E:\webserver\htdocs\x25\modules\match/include/utils.php:40
-msgid "No team id has been provided!"
+msgid "No team ID has been provided!"
 msgstr "¡No se porporciono un id de equipo!"
 
 #: E:\webserver\htdocs\x25\modules\match/include/utils.php:45
-msgid "Specified team does not exists"
+msgid "Specified team does not exist"
 msgstr "El equipo especificado no existe"
 
 #: E:\webserver\htdocs\x25\modules\match/include/utils.php:64
@@ -945,7 +945,7 @@ msgstr "¡No se especificó un elemento del rol!"
 
 #: E:\webserver\htdocs\x25\modules\match/include/utils.php:69
 #: E:\webserver\htdocs\x25\modules\match/include/utils.php:106
-msgid "Specified role item does not exists"
+msgid "Specified role item does not exist"
 msgstr "El elemento especificado no existe"
 
 #: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:13
@@ -953,11 +953,11 @@ msgid "Use friendly URLs"
 msgstr "Usar URLs amigables"
 
 #: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:14
-msgid "By enabling this option the module will manage the urls trough mod_rewrite (Apache Only)."
+msgid "By enabling this option the module will manage the URLs trough mod_rewrite (Apache Only)."
 msgstr "Al activar esta opción el módulo manjará las urls a través de mod_rewrite (Solo Apache)."
 
 #: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:15
-msgid "Base dir to friendly url management"
+msgid "Base dir to friendly URL management"
 msgstr "Directorio base para las urls amigables"
 
 #: E:\webserver\htdocs\x25\modules\match/language/english/modinfo.php:16
@@ -1119,7 +1119,7 @@ msgid "End"
 msgstr "Final"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_champs.php:55
-msgid "There are not championships created yet!"
+msgid "There are no championships created yet!"
 msgstr "¡Todavía no hay campeonatos creados!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_champs.php:64
@@ -1164,7 +1164,7 @@ msgid "Go now!"
 msgstr "¡Filtrar Ahora!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_coaches.php:55
-msgid "There are not coaches registered yet!"
+msgid "There are no coaches registered yet!"
 msgstr "¡Todavía no hay entrenadores registrados!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_fields.php:6
@@ -1172,7 +1172,7 @@ msgid "Field Name:"
 msgstr "Nombre del Campo:"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_fields.php:49
-msgid "There are not fields created yet!"
+msgid "There are no fields created yet!"
 msgstr "¡Todavía no hay campos registrados!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_ranking.php:1
@@ -1209,7 +1209,7 @@ msgid "Wons"
 msgstr "Ganados"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_ranking.php:49
-msgid "There are not positions in ranking currently!"
+msgid "There are no positions in ranking currently!"
 msgstr "¡No hay posiciones en la tabla!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_roleplay.php:5
@@ -1264,7 +1264,7 @@ msgid "Options"
 msgstr "Opciones"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_roleplay.php:133
-msgid "There are not matches registered for this championship and category yet!"
+msgid "There are no matches registered for this championship and category yet!"
 msgstr "¡No hay encuentros registrados para este campeonato y categoría!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_roleplay.php:169
@@ -1308,7 +1308,7 @@ msgid "Age"
 msgstr "Edad"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_roster.php:61
-msgid "There are not players registered yet!"
+msgid "There are no players registered yet!"
 msgstr "¡Todavía no hay jugadores registrados!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_roster.php:81
@@ -1337,7 +1337,7 @@ msgid "Rank"
 msgstr "Posición"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/admin/mch_teams.php:54
-msgid "There are not teams registered yet!"
+msgid "There are no teams registered yet!"
 msgstr "¡Todavía no hasy equipos registrados!"
 
 #: E:\webserver\htdocs\x25\modules\match/templates/other/mch_score_editor.php:9
