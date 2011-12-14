@@ -258,7 +258,7 @@ switch (BB_LOCATION){
 		define('_AS_EXMBB_TOPICSUNANSWERED','Unanswered Topics');
 		define('_AS_EXMBB_DELETE','Topics to delete');
 		define('_AS_EXMBB_TOPICSFIXED','Delete Sticky Topics');
-		define('_AS_EXMBB_DELTOPICS','Do you really wish to delete the topics? \nThis action will delte the data permanently.');
+		define('_AS_EXMBB_DELTOPICS','Do you really want to delete the topics? \nThis action will delete the data permanently.');
 		
 		break;
         

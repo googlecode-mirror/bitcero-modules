@@ -118,7 +118,7 @@ function showItemsAndOptions(){
 	$tpl->assign('lang_app',__('Approve','bxpress'));
 	$tpl->assign('lang_noapp',__('Unapprove','bxpress'));
 	$tpl->assign('lang_delete', __('Delete','bxpress'));
-    $tpl->assign('lang_confirm', __('Do you really wish to delete selected topics?','bxpress'));
+    $tpl->assign('lang_confirm', __('Do you really want to delete selected topics?','bxpress'));
 	$tpl->assign('token_input',$xoopsSecurity->getTokenHTML());
 	
 	bXFunctions::makeHeader();

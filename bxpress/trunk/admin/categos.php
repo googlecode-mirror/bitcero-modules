@@ -46,7 +46,7 @@ function showCategories(){
 
     RMTemplate::get()->add_head('<script type="text/javascript">
         var bx_select_message = "'.__('You must select a category at least in order to run this action!','bxpress').'";
-        var bx_message = "'.__('Do you really wish to delete selected categories?\n\nAll forums under this category will be deleted also!','bxpress').'";
+        var bx_message = "'.__('Do you really want to delete selected categories?\n\nAll forums under this category will be deleted also!','bxpress').'";
     </script>');
 
     include RMTemplate::get()->get_template('admin/forums_categos.php', 'module', 'bxpress');

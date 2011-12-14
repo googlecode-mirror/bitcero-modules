@@ -62,7 +62,7 @@ function bx_show_forums(){
     RMTemplate::get()->add_local_script('admin.js','bxpress');
     RMTemplate::get()->add_head('<script type="text/javascript">
         var bx_select_message = "'.__('You must select one forum at least in order to run this action!','bxpress').'";
-        var bx_message = "'.__('Do you really wish to delete selected forums?\n\nAll posts sent in this forum will be deleted also!','bxpress').'";
+        var bx_message = "'.__('Do you really want to delete selected forums?\n\nAll posts sent in this forum will be deleted also!','bxpress').'";
     </script>');
     include RMTemplate::get()->get_template('admin/forums_forums.php', 'module', 'bxpress');
     
