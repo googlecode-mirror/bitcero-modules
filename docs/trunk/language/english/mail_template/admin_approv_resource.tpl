@@ -1,10 +1,10 @@
-Una nueva publicación ha sido creada 
-y esta en espera para ser aprobada.
+A new submission has been created
+and is waiting for approval.
 
-Puedes acceder a los detalles de esta publicación a través de este link:
+You can access the details of this submission through this link::
 
 {LINK_RESOURCE}
 
-Estas recibiendo este mensaje ya que perteneces al grupo
-"Administradores" del sistema y este grupo es notificado de nuevas publicaciones
-no aprobadas en el módulo.
+You are receiving this message because you belong to the group
+"Webmasters" group and this system is notified of new submissions
+waiting for approval in this module.

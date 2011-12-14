@@ -70,7 +70,7 @@ msgid "Specified section is not valid!"
 msgstr "¡La sección especificada no es válida!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:224
-msgid "Already exists another section with same title!"
+msgid "There is already a section with the same name!"
 msgstr "¡Ya existe otra sección con el mismo título!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:307
@@ -105,7 +105,7 @@ msgid "Order could not be saved for section %s"
 msgstr "El orden no pudo ser almacenado para la sección %s"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:367
-msgid "Errors ocurred while trying to update orders"
+msgid "Errors occurred while trying to update orders"
 msgstr "Ocurrieron errores al intentar actualizar el orden"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:369
@@ -180,7 +180,7 @@ msgid "Select a figure to delete!"
 msgstr "¡Selecciona una figura para eliminar!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:294
-msgid "Errores ocurred while trying to delete figures."
+msgid "Errors occurred while trying to delete figures."
 msgstr "Ocurrieron errores al intentar eliminar las figuras."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:296
@@ -189,7 +189,7 @@ msgid "Figures deleted successfully!"
 msgstr "¡Figuras eliminadas correctamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:23
-msgid "The creation of new resources has been disabled by administrator."
+msgid "The creation of new resources has been disabled by Administrator."
 msgstr "La creación de nuevos recursos ha sido desactivada por el administrador."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:30
@@ -235,7 +235,7 @@ msgid "Approved"
 msgstr "Aprobado"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:50
-msgid "Inmediatly"
+msgid "Immediately"
 msgstr "Inmediatamente"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:50
@@ -247,7 +247,7 @@ msgid "Publish Resource"
 msgstr "Publicar Recruso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:96
-msgid "Already exists a resource with same name!"
+msgid "There is already a resourrce with the same name!"
 msgstr "¡Ya existe un recurso con el mismo nombre!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:133
@@ -259,7 +259,7 @@ msgid "New resource created at RapidDocs is waiting for approval"
 msgstr "Un nuevo recurso creado en RapidDocs esta en espera de aprobación"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:146
-msgid "Your resource has been created, however the email to administrator could no be sent."
+msgid "Your resource has been created, however the email to Administrator could no be sent."
 msgstr "Tu recurso ha sido creado, sin embargo el email de confirmación no pudo ser enviado al administrador."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:149
@@ -296,12 +296,12 @@ msgid "Resource ID not provided!"
 msgstr "¡El ID del recurso no ha sido proporcionado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:197
-msgid "Note id not provided!"
+msgid "Note ID not provided!"
 msgstr "¡El ID de la nota no ha sido proporcionado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:210
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:220
-msgid "Another note with same title already exists"
+msgid "There is already a note with the same name"
 msgstr "Ya existe otra nota con el mismo título"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:231
@@ -309,7 +309,7 @@ msgid "Note saved successfully"
 msgstr "Nota almacenada correctamente"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:234
-msgid "Errors ocurred while trying to save note"
+msgid "Errors occurred while trying to save note"
 msgstr "Ocurrieron errores al intentar guardar la nota"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:257
@@ -317,7 +317,7 @@ msgid "Select a note to delete!"
 msgstr "¡Selecciona una nueva nota para eliminar!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:265
-msgid "Errores ocurred while trying to delete notes."
+msgid "Errors occurred while trying to delete notes."
 msgstr "Ocurrieron errores al intentar eliminar las notas."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:267
@@ -357,8 +357,8 @@ msgid "RapidDocs"
 msgstr "RapidDocs"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:14
-msgid "Create documentation in Xoops, quicky and an advanced way."
-msgstr "Crea documentación en Xoops, rápido y fácilmente."
+msgid "Create documentation in XOOPS, quickly and in an advanced way."
+msgstr "Crea documentación en XOOPS, rápido y fácilmente."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:66
 msgid "PHP Default"
@@ -444,7 +444,7 @@ msgid "Title"
 msgstr "Título"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:249
-msgid "Contenido"
+msgid "Content"
 msgstr "Contenido"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:252
@@ -487,7 +487,7 @@ msgid "You have not selected any figure!"
 msgstr "No has selccionado una figura!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:89
-msgid "Do you really wish to delete selected figures?"
+msgid "Do you really want to delete selected figures?"
 msgstr "¿Realmente deseas eliminar las figuras seleccionadas?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:91
@@ -626,7 +626,7 @@ msgid "You have not selected any note!"
 msgstr "¡No has selecciona una nota!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:90
-msgid "Do you really wish to delete selected notes?"
+msgid "Do you really want to delete selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:92
@@ -679,7 +679,7 @@ msgid "Notes could not be deleted!"
 msgstr "¡"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:75
-msgid "Do you really wish to delete selected resources?"
+msgid "Do you really want to delete selected resources?"
 msgstr "¿Realmente deseas eliminar los recursos seleccionados?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:76
@@ -1208,7 +1208,7 @@ msgid "Create new note"
 msgstr "Crear una nueva nota"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:95
-msgid "Do you really wish to delet selected notes?"
+msgid "Do you really want to delet selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:96
@@ -1619,7 +1619,7 @@ msgstr "Actualizado"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:39
 #, php-format
-msgid "Do you really wish to delete %s?"
+msgid "Do you really want to delete %s?"
 msgstr "¿Realmente deseas eliminar %s?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:40
@@ -1659,11 +1659,11 @@ msgid "Select at least one element before to do this action!"
 msgstr "¡Selecciona al menos un elemento antes de ejecutar esta acción!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:3
-msgid "Do you really wish to delete selected items?"
+msgid "Do you really want to delete selected items?"
 msgstr "¿Realmente deseas eliminar los elementos seleccionados?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:7
-msgid "Next are the edited sections waiting for approve and revision. Please, be carefull with content to prevent spam or another inconvenniences."
+msgid "Next are the edited sections waiting for approval and revision. Please, be careful with content to prevent spam or another inconveniences."
 msgstr "Las siguientes son las secciones editadas esperando por revisión y aprobación. Por favor se cuidadoso para prevenir el SPAM u otras inconveniencias."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:25
@@ -1687,7 +1687,7 @@ msgid "Edited by"
 msgstr "Editado por"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:43
-msgid "There are not waiting contents at this time"
+msgid "There are no waiting submissions at this time"
 msgstr "No hay contenidos en espera en este momento"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:55
@@ -1723,5 +1723,5 @@ msgstr "Este mensaje ha sido creado automáticamente por RapidDocs."
 #~ msgid "Sepecified content does not exists!"
 #~ msgstr "¡El contenido especificado no existe!"
 
-#~ msgid "Sessión token expired!"
+#~ msgid "Session token expired!"
 #~ msgstr "¡El identificador de sesión ha expirado!"
