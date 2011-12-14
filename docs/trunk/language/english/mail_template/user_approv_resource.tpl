@@ -1,7 +1,7 @@
-Tu publicación {NAME_RESOURCE} ha sido aprobada.
+Your submission {NAME_RESOURCE} has been approved.
 
-Puedes acceder a ésta a través de este link:
+You can access it via this link:
 
 {LINK_RESOURCE}
 
-Estas recibiendo este mensaje debido a que eres el autor de ésta publicación.
+You are receiving this message because you are the author of this publication.
