@@ -17,12 +17,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\xoops24\\modules\\rmcommon\\plugins\\booster\n"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/booster-plugin.php:22
-msgid "Xoops Booster"
-msgstr "Xoops Booster"
+msgid "XOOPS Booster"
+msgstr "XOOPS Booster"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/booster-plugin.php:23
-msgid "Plugin to speed up your Xoops Web site by reducing load times."
-msgstr "Plugin que incrementa la velocidad de Xoops al reducir los tiempos de renderizado y entraga de páginas."
+msgid "Plugin to speed up your XOOPS Web site by reducing load times."
+msgstr "Plugin que incrementa la velocidad de XOOPS al reducir los tiempos de renderizado y entraga de páginas."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/main.php:20
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/main.php:35
@@ -52,11 +52,11 @@ msgstr "¡Archivo eliminado correctamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/main.php:128
 msgid "booster has been disabled"
-msgstr "Xoops Booster ha sido desactivado"
+msgstr "XOOPS Booster ha sido desactivado"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/main.php:134
 msgid "booster has been enabled"
-msgstr "Xoops Booster ha sido activado"
+msgstr "XOOPS Booster ha sido activado"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/main.php:145
 msgid "Settings saved!"
@@ -92,7 +92,7 @@ msgid "Booster status"
 msgstr "Estado de Booster"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_files.php:30
-msgid "Next are the files cached by booster. You can delete files by clicking delete button."
+msgid "Next are the files cached by booster. You can delete files by clicking the Delete button."
 msgstr "Los siguientes son los archivos almacenados por Booster. Puedes eliminar cualqueir archivo haciendo click en el botón \"Eliminar\""
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_files.php:33
@@ -128,7 +128,7 @@ msgid "Booster Status"
 msgstr "Estado de Booster"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_index.php:16
-msgid "Do you really wish to delete all cached files?"
+msgid "Do you really want to delete all cached files?"
 msgstr "¿Realmente deseas eliminar los archivos almacenados?"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_index.php:29
@@ -157,7 +157,7 @@ msgid "Enable booster"
 msgstr "Activar Booster"
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_index.php:35
-msgid "Cache duration specify the time inteval to rewrite cache files. A small value indicates small interval. The value must be specified in seconds."
+msgid "Cache duration specify the time interval to rewrite cache files. A small value indicates small interval. The value must be specified in seconds."
 msgstr "La duración del caché determina el intervalo de tiempo para reescribir los archivos. Valores pequeños indican menores tiempos. El valor debe ser especificado en segundos."
 
 #: E:\webserver\htdocs\xoops24\modules\rmcommon\plugins\booster/templates/cache_index.php:37
