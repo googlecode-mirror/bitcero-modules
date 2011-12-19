@@ -42,9 +42,9 @@ function showUserPics(){
 	// Lenguaje
 	$tpl->assign('lang_bmark', __('Favorites','galleries'));
 	$tpl->assign('lang_pics', __('Pictures','galleries'));
-	$tpl->assign('sets_link', GSFunctions::get_url() ? "explore/sets/usr/".$user->uname().'/' : "?explore=sets&amp;usr=".$user->uname());
-	$tpl->assign('tags_link', GSFunctions::get_url() ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname());
-	$tpl->assign('bmark_link', GSFunctions::get_url() ? "cp/booksmarks/" : "?cpanel=bookmarks");
+	$tpl->assign('sets_link', GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? "explore/sets/usr/".$user->uname().'/' : "?explore=sets&amp;usr=".$user->uname()));
+	$tpl->assign('tags_link', GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? "explore/tags/usr/".$user->uname().'/' : "?explore=tags&amp;usr=".$user->uname()));
+	$tpl->assign('bmark_link', GSFunctions::get_url().($xoopsModuleConfig['urlmode'] ? "cp/booksmarks/" : "?cpanel=bookmarks"));
 	$tpl->assign('xoops_pagetitle', sprintf(__('Pictures of %s','galleries'), $user->uname()).' &raquo; '.$mc['section_title']);
 
 	//Verificamos si el usuario es dueño o amigo
