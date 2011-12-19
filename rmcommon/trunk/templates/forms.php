@@ -31,7 +31,18 @@
 	</td>
 	<td>
 		<?php echo $field->render(); ?>
-		<label for="<?php echo $field->getName(); ?>" class="error hidden"><?php _e('This is a required field. Please fill it!','rmcommon'); ?></label></td>
+                <?php
+                    switch(get_class($field)){
+                        case 'RMFormButtonGroup':
+                        case 'RMFormButton':
+                        case 'RMFormHidden':
+                            break;
+                        default: ?>
+                        <label for="<?php echo $field->getName(); ?>" class="error hidden"><?php _e('This is a required field. Please fill it!','rmcommon'); ?></label></td>
+            <?php
+                    }
+                ?>
+		
 </tr>
 <?php
 		endif;

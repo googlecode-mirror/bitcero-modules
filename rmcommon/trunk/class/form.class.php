@@ -240,7 +240,7 @@ class RMForm
         $element->setForm($this->_name);
         $ret['field'] = $element;
         $ret['class'] = get_class($element);
-        if (get_class($element)=='EXMEditor'){
+        if (get_class($element)=='RMFormEditor'){
             if ($element->getType()=='tiny') $this->editores[] = $element->getName(); 
         }
         
@@ -474,7 +474,7 @@ class RMForm
      */
     public function display($js=true){
     	$form =& $this;
-		include RMTemplate::get_template('forms.php','rmcommon');
+	include RMTemplate::get_template('forms.php','rmcommon');
         //echo $this->render($js);
     }
     /**

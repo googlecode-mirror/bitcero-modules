@@ -149,7 +149,11 @@ class RMFormSubTitle extends RMFormElement
 	 * @return string
 	 */
 	function render(){
-		$rtn = "<h2 class='form_subtitle ".$this->getClass()."'>".$this->getCaption()."</h2>";
+            if($type>0){
+                $rtn = "<h2 class='form_subtitle ".$this->getClass()."'>".$this->getCaption()."</h2>";
+            } else {
+                $rtn = "<span class='".$this->getClass()."'>".$this->getCaption()."</span>";
+            }
 		return $rtn;
 	}
 }
@@ -252,9 +256,9 @@ class RMFormLabel extends RMFormElement
 	 * @param string $cell Contenido de la celda
 	 */
 	public function __construct($caption, $cell, $id=''){
-		$this->setCaption($caption);
-		$this->setExtra($cell);
-        $this->setName($id);
+            $this->setCaption($caption);
+            $this->setExtra($cell);
+            $this->setName($id);
 	}
 	/**
 	 * Genera el c?digo HTML para mostrar la etiqueta

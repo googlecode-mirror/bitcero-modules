@@ -97,7 +97,7 @@ foreach ($this->tpl_head as $head){
             <?php if($menu['options']): ?>
             <div class="submenu" id="container-<?php echo $wcounter; ?>" style="<?php if($menu['location']==RMCLOCATION): ?>display: block;<?php else: ?>display: none;<?php endif; ?>">
                 <?php foreach($menu['options'] as $submenu): ?>
-                <a href="<?php echo $submenu['link']; ?>"><?php echo $submenu['title']; ?></a>
+                <a href="<?php echo $submenu['link']; ?>"<?php echo $submenu['selected']==RMCSUBLOCATION?' class="selected"' : ''; ?>><?php echo $submenu['title']; ?></a>
                 <?php endforeach; ?>
             </div>
             <?php endif; ?>

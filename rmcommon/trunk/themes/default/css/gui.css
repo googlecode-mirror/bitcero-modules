@@ -319,6 +319,7 @@ div.rmc_widget_content div.submenu a:hover{
 div.rmc_widget_content div.submenu a:last-child{
     border-bottom: 1px solid #CCC;
 }
+div.rmc_widget_content div.submenu a.selected{background: url(../images/selected.png) no-repeat left #D8E8F5; padding-left: 16px;}
 #rmc-left-widgets div.rmc_widget_content:last-child{
     -moz-border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;

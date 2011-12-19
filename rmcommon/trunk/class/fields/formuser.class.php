@@ -33,7 +33,7 @@ class RMFormUser extends RMFormElement
 	* @param int Ancho de la ventana
 	* @param int Alto de la ventana
 	*/
-	public function __construct($caption, $name, $multi = false, $select=array(), $limit=36, $width=600,$height=300, $showall = 0){
+	public function __construct($caption, $name, $multi = false, $select=array(), $limit=36, $width=600,$height=300, $showall = 0, $enable=true){
 		$this->selected = is_array($select) ? $select : array($select);
 		$this->limit = $limit;
 		$this->multi = $multi;
@@ -42,6 +42,7 @@ class RMFormUser extends RMFormElement
 		$this->width = $width<=0 ? 600 : $width;
 		$this->height = $height<=0 ? 500 : $height;
 		$this->showall = $showall;
+                $this->can_change = $enable;
 		!defined('RM_FRAME_USERS_CREATED') ? define('RM_FRAME_USERS_CREATED', 1) : '';
 	}
 	
