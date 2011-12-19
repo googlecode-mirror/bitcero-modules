@@ -1,32 +1,15 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
 
-define('BB_LOCATION', 'reports');
+define('RMCLOCATION', 'reports');
 include 'header.php';
 /**
 * @desc Muestra la barra de menus
@@ -41,56 +24,50 @@ function optionsBar(){
 
 
 function showReports(){
-	global $tpl,$db,$xoopsModule,$xoopsConfig,$adminTemplate,$util;
-
+	global $xoopsModule,$xoopsConfig, $xoopsSecurity;
 	//Indica la lista a mostrar
 	$show=isset($_REQUEST['show']) ? intval($_REQUEST['show']) : '0';
 	//$show = 0 Muestra todos los reportes
 	//$show = 1 Muestra los reportes revisados
 	//$show = 2 Muestra los reportes no revisados
+        define('RMCSUBLOCATION',$show==0?'allreps':($show==1?'reviews':'noreviewd'));
 
+        $db = Database::getInstance();
 	//Lista de Todos los reportes
-	$sql="SELECT * FROM ".$db->prefix('exmbb_report').($show ? ($show==1 ? " WHERE zapped=1" : " WHERE zapped=0 ") : '')." ORDER BY report_time DESC";
+	$sql="SELECT * FROM ".$db->prefix('bxpress_report').($show ? ($show==1 ? " WHERE zapped=1" : " WHERE zapped=0 ") : '')." ORDER BY report_time DESC";
 	$result=$db->queryF($sql);
+        $reports = array();
 	while ($rows=$db->fetchArray($result)){
 
-		$report= new BBReport();
+		$report= new bXReport();
 		$report->assignVars($rows);
 		
 		$user= new XoopsUser($report->user());
 		
-		$tpl->append('reports',array('id'=>$report->id(),'post'=>$report->post(),'user'=>$user->uname(),
-		'date'=>date($xoopsConfig['datestring'],$report->time()),'report'=>substr($report->report(),0,50),'zapped'=>$report->zapped(),
-		'zappedby'=>$report->zappedby(),'zappedname'=>$report->zappedname(),
-		'zappedtime'=>date($xoopsConfig['datestring'],$report->zappedtime())));
+		$reports[] = array(
+                    'id'=>$report->id(),
+                    'post'=>$report->post(),
+                    'user'=>$user->uname(),
+                    'date'=>  formatTimestamp($report->time(), 'l'),
+                    'report'=>substr($report->report(),0,50),
+                    'zapped'=>$report->zapped(),
+                    'zappedby'=>$report->zappedby(),
+                    'zappedname'=>$report->zappedname(),
+                    'zappedtime'=> $report->zappedtime()>0?formatTimestamp($report->zappedtime()):''
+                );
 	}
 
-	
-	$tpl->assign('show',$show);
-	$tpl->assign('lang_reports',_AS_EXMBB_LISTREPORTS);
-	$tpl->assign('lang_id',_AS_BB_ID);
-	$tpl->assign('lang_report',_AS_EXMBB_REPORT);
-	$tpl->assign('lang_post',_AS_EXMBB_POST);
-	$tpl->assign('lang_user',_AS_EXMBB_USER);
-	$tpl->assign('lang_date',_AS_EXMBB_DATE);
-	$tpl->assign('lang_zapped',_AS_EXMBB_ZAPPED);
-	$tpl->assign('lang_zappedname',_AS_EXMBB_ZAPPEDNAME);
-	$tpl->assign('lang_zappedtime',_AS_EXMBB_ZAPPEDTIME);
-	$tpl->assign('lang_options',_AS_EXMBB_OPTIONS);
-	$tpl->assign('lang_delete',_DELETE);
-	$tpl->assign('lang_review',_AS_EXMBB_REVIEW);
-	$tpl->assign('lang_notreview',_AS_EXMBB_NOTREVIEW);
-	$tpl->assign('token',$util->getToken());
-	$tpl->assign('lang_repreview',_AS_EXMBB_REPREVIEW);
-	$tpl->assign('lang_repnotreview',_AS_EXMBB_REPNOTREVIEW);
-	$tpl->assign('lang_delreport',_AS_EXMBB_DELREPORT);
-	$tpl->assign('lang_delreports',_AS_EXMBB_DELREPORTS);
-
-	$adminTemplate = "admin/forums_reports.html";
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_EXMBB_REPORTS);
+        RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
+        RMTemplate::get()->add_local_script('admin.js','bxpress');
+        
+	bXFunctions::menu_bar();
+        
+        RMTemplate::get()->assign('xoops_pagetitle', __('Reports Management','bxpress'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Reports Management','bxpress'));
 	xoops_cp_header();
-    
+        
+        include RMTemplate::get()->get_template('admin/forums_reports.php', 'module','bxpress');
+        
 	xoops_cp_footer();
 
 }
@@ -100,68 +77,46 @@ function showReports(){
 * @param int status 1 indica revisar 0 no revisar
 **/
 function reviewReports($status=1){
-	global $db,$xoopsModule,$xoopsUser;
+	global $xoopsModule,$xoopsUser;
 
-	$util=&RMUtils::getInstance();
-	$reports = isset($_REQUEST['reports']) ? $_REQUEST['reports'] : array();
-	$show=isset($_REQUEST['show']) ? intval($_REQUEST['show']) : '0';
+	$id = rmc_server_var($_GET,'report',0);
+	$show= rmc_server_var($_GET,'show',0);
 	
-	//Verificamos si los reportes son válidos
-	if (!is_array($reports) || empty($reports)){
-		redirectMsg('./reports.php?show='.$show, _AS_EXMBB_ERRREPORTS, 1);
-		die();
+	// Verificamos si el reporte es válido
+	if ($id<=0){
+            redirectMsg('./reports.php?show='.$show, __('Please, specify a report to review','bxpress'), 1);
+            die();
 	}	
-
 	
-	if (!$util->validateToken()){
-		redirectMsg('./reports.php?show='.$show, _AS_EXMBB_SESSINVALID,0);
-		die();
-	}
+	$report=new bXReport($id);
 	
-	$errors='';
-	foreach ($reports as $k){
-		
-		//Verificamos si el reporte es válido
-		if ($k<=0){
-			$errors.=sprintf(_AS_EXMBB_ERRORREPORT,$k);
-			continue;
-					
-		}
-		
-		$report=new BBReport($k);
-		//Comprobamos si el reporte existe
-		if ($report->isNew()){
-			$errors.=sprintf(_AS_EXMBB_NOTEXIST,$k);
-			continue;
-
-		}
+        //Comprobamos si el reporte existe
+	if ($report->isNew()){
+            redirectMsg('reports.php?show='.$show, __('Specified report does not exists!','bxpress'), 1);
+            die();
+        }
+        
+        $post = new bXPost($report->post());
+        if($post->isNew()){
+            redirectMsg('reports.php?show='.$show, __('Specified post does not exists!','bxpress'), 1);
+            die();
+        }
 	
+        $form = new RMForm(__('Review Report','bxpress'), 'frm-review', 'reports.php');
+        $form->addElement(new RMFormSubTitle(__('Please, review this reported message an proceed according to your appreciation.','bxpress'), 0));
+        $form->addElement(new RMFormUser(__('User that report:','bxpress'), 'user', false, array($report->user()),36,600,300,0,false));
+        $form->addElement(new RMFormLabel(__('Reporter user message','bxpress'), $report->report()));
+        $form->addElement(new RMFormLabel(__('Reported post','bxpress'), $post->text(),'postm'));
+        $form->element('postm')->setDescription('<a href="'.$post->permalink().'" target="_blank">'.__('View full topic here','bxpress').'</a>');
 
-		$report->setZappedBy($xoopsUser->uid());
-		$report->setZappedName($xoopsUser->uname());
-		$report->setZappedTime(time());
-		$report->setZapped($status);
-
-		if (!$report->save()){
-			$errors.=sprintf(_AS_EXMBB_NOTSAVE, $k);
-		}
-
-	}
-	if ($errors!=''){
-		redirectMsg('./reports.php?show='.$show,_AS_BB_ERRACTION."<br />". $errors,1);
-	}
-	else{
-		redirectMsg('./reports.php?show='.$show,_AS_BB_DBOK,0);
-	}
-
-	
-
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_EXMBB_REPORTS);
+	bXFunctions::menu_bar();
+        
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Reviewing Report','bxpress'));
 	xoops_cp_header();
+        
+        $form->display();
     
 	xoops_cp_footer();
-
 
 }
 

@@ -226,6 +226,17 @@ class bXPost extends RMObject
 		return $ret;
 		
 	}
+        
+        /**
+         * Gets the permalink for current post
+         * @return string
+         */
+        public function permalink(){
+            
+            $link = bXFunctions::url().'/topic.php?pid='.$this->id().'#p'.$this->id();
+            return $link;
+            
+        }
 	
 	public function save(){
 	

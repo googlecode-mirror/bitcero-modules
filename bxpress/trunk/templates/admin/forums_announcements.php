@@ -1,6 +1,18 @@
+<script type="text/javascript">
+    var bx_message = '<?php _e('Do you really wish to delete selected announcements?','bxpress'); ?>';
+</script>
 <h1 class="rmc_titles"><?php _e('Announcements Management','bxpress'); ?></h1>
 
 <form name="frmAnnoun" id="frm-announ" method="post" action="announcements.php">
+    <div class="bxpress_options">
+        <select name="action" id="bulk-top">
+            <option value=""><?php _e('Bulk actions...','bxpress'); ?></option>
+            <option value="delete"><?php _e('Delete','bxpress'); ?></option>
+        </select>
+        <input type="button" id="the-op-top" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-announ');" />
+        &nbsp; &nbsp;
+        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+    </div>
 <table class="outer" cellspacing="1" width="100%">
     <thead>
 	<tr class="head" align="center">
@@ -35,8 +47,8 @@
 			<td align="left">
                 <?php echo $item['text']; ?>
                 <span class="rmc_options">
-                    <a href="?op=edit&amp;id=<{$anoun.id}>"><{$lang_edit}></a> |
-                    <a href="?op=delete&amp;id=<{$anoun.id}>"><{$lang_delete}></a>
+                    <a href="?action=edit&amp;id=<?php echo $item['id']; ?>"><?php _e('Edit','bxpress'); ?></a> |
+                    <a href="#" onclick="select_option(<?php echo $item['id']; ?>,'delete','frm-announ');"><?php _e('Delete','bxpress'); ?></a>
                 </span>
             </td>
 			<td><?php echo $item['expire']; ?></td>
@@ -46,6 +58,14 @@
 	<?php endforeach; ?>
     </tbody>
 </table>
-<input type="hidden" name="op" value="delete" />
+<div class="bxpress_options">
+        <select name="actionb" id="bulk-bottom">
+            <option value=""><?php _e('Bulk actions...','bxpress'); ?></option>
+            <option value="delete"><?php _e('Delete','bxpress'); ?></option>
+        </select>
+        <input type="button" id="the-op-bottom" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-announ');" />
+        &nbsp; &nbsp;
+        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+    </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

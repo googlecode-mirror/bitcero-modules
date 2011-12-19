@@ -65,7 +65,7 @@ if ($ok){
 } else {
 	
 	include 'header.php';
-	
+	//include '../../header.php';
 	$myts =& MyTextSanitizer::getInstance();
 	$hiddens['ok'] = 1;
 	$hiddens['id'] = $id;
@@ -75,17 +75,27 @@ if ($ok){
 	$buttons['cancel']['type'] = 'button';
 	$buttons['cancel']['extra'] = 'onclick="window.location=\'topic.php?pid='.$id.'#p'.$id.'\';"';
 	
-	$text = _MS_EXMBB_DELCONF;
-	if ($id==BBFunctions::getFirstId($topic->id())){
-		$text .= "<br /><br /><span class='bbwarning'>"._MS_EXMBB_DELWARN."</span>";
+	$text = __('Dou you really wish to delete specified post?','bxpress');
+	if ($id==bXFunctions::getFirstId($topic->id())){
+		$text .= "<br /><br /><span class='bbwarning'>".__('<strong>Warning:</strong> This is the first post in the topic. By deleting this all posts will be deleted also.','bxpress')."</span>";
 	}
 	
 	$text .= "<br /><br /><strong>".$post->uname().":</strong><br />";
 	$text .= substr($post->getVar('post_text','e'), 0, 100).'...';
+        
+        $form = new RMForm(__('Delete post?','bxpress'), 'frmDelete', 'delete.php');
+        $form->addElement(new RMFormHidden('ok', 1));
+        $form->addElement(new RMFormHidden('id', $id));
+        $form->addElement(new RMFormLabel('', $text));
+        $but = new RMFormButtonGroup();
+        $but->addButton('sbt', __('Delete!','bxpress'), 'submit');
+        $but->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="history.go(-1);"');
+        $form->addElement($but);
+        echo $form->render();
 	
-	$util->msgBox($hiddens, 'delete.php', $text, XOOPS_ALERT_ICON, $buttons, true, '80%', _MS_EXMBB_DELTITLE);
-	$tpl->assign('xoops_pagetitle', _MS_EXMBB_DELTITLE . ' &raquo; '. $xoopsModuleConfig['forum_title']);
+	$tpl->assign('xoops_pagetitle', __('Delete Post?','bxpress') . ' &raquo; '. $xoopsModuleConfig['forum_title']);
 	
 	include 'footer.php';
+        //include '../../footer.php';
 	
 }
