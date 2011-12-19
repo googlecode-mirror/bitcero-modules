@@ -20,3 +20,5 @@ $online = new XoopsOnlineHandler($db);
 $online->write($xoopsUser ? $xoopsUser->uid() : 0, $xoopsUser ? $xoopsUser->uname() : '', time(), $xoopsModule->mid(), $_SERVER['REMOTE_ADDR']);
 
 $mc =& $xoopsModuleConfig;
+
+RMTemplate::get()->add_xoops_style('style.css', 'bxpress');

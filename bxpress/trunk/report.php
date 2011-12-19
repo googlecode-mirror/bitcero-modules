@@ -1,32 +1,13 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: BitC3R0
-// @copyright: 2007 - 2008 Red México
 
-
-define('BB_LOCATION','report');
 include '../../mainfile.php';
 	
 $op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
@@ -34,28 +15,28 @@ $op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
 
 if ($op=='report'){
 		
-	$xoopsOption['template_main']='exmbb_report.html';
+	$xoopsOption['template_main']='bxpress_report.html';
 	$xoopsOption['module_subpage'] = "report";	
 
 	include 'header.php';
 	
-	BBFunctions::makeHeader();
+	bXFunctions::makeHeader();
 	//Id de mensaje
 	$pid = isset($_REQUEST['pid']) ? intval($_REQUEST['pid']) : 0;
 	
-	$post=new BBPost($pid);
-	$forum=new BBForum($post->forum());
-	$topic=new BBTopic($post->topic());
+	$post=new bXPost($pid);
+	$forum=new bXForum($post->forum());
+	$topic=new bXTopic($post->topic());
 
 
-	$form=new RMForm(_MS_EXMBB_REPORT,'formrep','report.php');
+	$form=new RMForm(__('Report Post','bxpress'),'formrep','report.php');
 	$form->styles('width: 30%;','odd');
-	$form->addElement(new RMEditor(_MS_EXMBB_ADDREPORT,'report','90%','300px','','textarea'),true);
-	$form->addElement(new RMHidden('op','savereport'));
-	$form->addElement(new RMHidden('pid',$pid));
-	$form->addElement(new RMHidden('id',$topic->id()));
+	$form->addElement(new RMFormEditor(__('Your reasons to report this post','bxpress'),'report','90%','300px','','textarea'),true);
+	$form->addElement(new RMFormHidden('op','savereport'));
+	$form->addElement(new RMFormHidden('pid',$pid));
+	$form->addElement(new RMFormHidden('id',$topic->id()));
 
-	$buttons= new RMButtonGroup();
+	$buttons= new RMFormButtonGroup();
 	$buttons->addButton('sbt', _SUBMIT, 'submit');
 	$buttons->addButton('cancel', _CANCEL, 'button', 'onclick="history.go(-1);"');
 	
@@ -66,7 +47,7 @@ if ($op=='report'){
 	$tpl->assign('topictitle',$topic->title());	
 	$tpl->assign('forumid',$forum->id());
 	$tpl->assign('topicid',$topic->id());
-	$tpl->assign('report',_MS_EXMBB_REPORTPOST);
+	$tpl->assign('report',__('Report Post','bxpress'));
 
 
 	include 'footer.php';
@@ -78,26 +59,24 @@ if ($op=='report'){
 
 		//Verificamos que el mensaje sea válido
 		if ($pid<=0){
-			redirect_header('./topic.php?id='.$id,1,_MS_EXMBB_POSTNOTVALID);
+			redirect_header('./topic.php?id='.$id,1,__('Sepecified post is not valid!','bxpress'));
 			die();
 		}
 		
 		//Comprobamos que el mensaje exista
-		$post=new BBPost($pid);
+		$post=new bXPost($pid);
 		if ($post->isNew()){
-			redirect_header('./topic.php?id='.$id,1,_MS_EXMBB_POSTNOTEXIST);
+			redirect_header('./topic.php?id='.$id,1,__('Specified post does not exists!','bxpress'));
 			die();
 		}
 		
 		
-		$util =& RMUtils::getInstance();
-		
-		if (!$util->validateToken()){
-			redirect_header('./topic.php?pid='.$pid.'#p'.$pid, 2, _MS_EXMBB_SESSINVALID);
+		if (!$xoopsSecurity->check()){
+			redirect_header('./topic.php?pid='.$pid.'#p'.$pid, 2, __('Session token expired!','bxpress'));
 			die();
 		}
 		
-		$rep=new BBReport();
+		$rep=new bXReport();
 		$rep->setPost($pid);
 		$rep->setUser($xoopsUser->uid());
 		$rep->setIp($_SERVER['REMOTE_ADDR']);
@@ -106,12 +85,10 @@ if ($op=='report'){
 
 		
 		if ($rep->save()){
-			redirect_header('./topic.php?id='.$id,1,_MS_EXMBB_SAVEREPORT);
+			redirect_header('./topic.php?id='.$id,1,__('Thanks for reporting! Moderators will be notified.','bxpress'));
 		}
 		else{
-			redirect_header('./topic.php?id='.$id,1,_MS_EXMBB_SAVENOTREPORT);
+			redirect_header('./topic.php?id='.$id,1, __('Report could not be sent! Please try again later.','bxpress'));
 		}
 
 }
-
-?>

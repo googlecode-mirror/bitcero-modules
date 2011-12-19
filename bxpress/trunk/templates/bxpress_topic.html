@@ -3,6 +3,7 @@
 <a href="./"><{$forums_title}></a> &raquo; <a href="forum.php?id=<{$forum.id}>"><{$forum.title}></a> &raquo;
 	<{$topic.title}> <a href="./moderate.php?id=<{$forum.id}>" ><{if !$topic.approved}>[<{$lang_noapproved}>]<{/if}></a>
 </div>
+<{include file="db:bxpress_announcements.html"}>
 <div id="bxpressOptions">
 	<{if $can_reply || $topic.closed}>
 	<div class="topics">

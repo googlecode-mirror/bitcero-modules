@@ -9,13 +9,10 @@
 	<{/if}>
 	<a href="./"><{$forums_title}></a> &raquo; <{$forum.title}>
 </div>
+
+<{$itemsNavPage}>
+
 <table class="outer" cellspacing="1" width="100%">
-	<tr>
-		<td colspan="4" align="right"><{$lang_pages}></td>
-		<td align="left">
-		<{if $itemsNavPage==''}><strong>1</strong><{else}><{$itemsNavPage}><{/if}>
-		</td>
-	</tr>
 	<tr>
 		<th colspan="5">
 			<{$forum.title}>
@@ -58,13 +55,9 @@
 			</td>
 		</tr>
 	<{/foreach}>
-	<tr>
-		<td colspan="4" align="right"><{$lang_pages}></td>
-		<td align="left">
-		<{if $itemsNavPage==''}><strong>1</strong><{else}><{$itemsNavPage}><{/if}>
-		</td>
-	</tr>
 </table>
+
+<{$itemsNavPage}>
 
 <div class="bxpressIcons">
 <img src="images/normal.png" align="absmiddle" alt="" /> <{$lang_nonew}>
@@ -75,7 +68,7 @@
 <div id="bxpressOptions">
 	<{if $can_topic}>
 	<div class="topics">
-		<a href="post.php?fid=<{$forum.id}>" id="newtopic"><{$lang_newtopic}></a>
+		<a href="post.php?fid=<{$forum.id}>" class="newtopic"><{$lang_newtopic}></a>
 	</div>
 	<{/if}>
 </div>
@@ -92,7 +85,7 @@
 			<input type="submit" value="<{$lang_go}>" class="formButton" />
 			</form>
 		</div>
-		<{if $forum.moderator}><a href="moderate.php?id=<{$forum.id}>"><{$lang_moderate}></a><{/if}>
+            <{if $forum.moderator}><span class="moderate_legend"><a href="moderate.php?id=<{$forum.id}>"><{$lang_moderate}></a></span><{/if}>
 	</div>
 </div>
 

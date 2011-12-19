@@ -92,8 +92,21 @@ $xoopsOption['module_subpage'] = "topics";
 include 'header.php';
 
 bXFunctions::makeHeader();
-$tpl->assign('forum', array('id'=>$forum->id(),'title'=>$forum->name(),'moderator'=>$xoopsUser ? ($forum->isModerator($xoopsUser->uid())) || $xoopsUser->isAdmin(): false));
-$tpl->assign('topic', array('id'=>$topic->id(), 'title'=>$topic->title(),'closed'=>$topic->status(),'sticky'=>$topic->sticky(),'approved'=>$topic->approved()));
+
+$tpl->assign('forum', array(
+    'id'=>$forum->id(),
+    'title'=>$forum->name(),
+    'moderator'=>$xoopsUser ? ($forum->isModerator($xoopsUser->uid())) || $xoopsUser->isAdmin(): false
+));
+
+$tpl->assign('topic', array(
+    'id'=>$topic->id(),
+    'title'=>$topic->title(),
+    'closed'=>$topic->status(),
+    'sticky'=>$topic->sticky(),
+    'approved'=>$topic->approved()
+));
+
 if ($forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'reply')){
 	if ($topic->status()){
 		$canreply = $xoopsUser ? $forum->isModerator($xoopsUser->uid()) || $xoopsUser->isAdmin() : 0;
@@ -172,7 +185,7 @@ while ($row = $db->fetchArray($result)){
 		$userData['rank'] = $ranks[$bbUser->getVar('rank')]['title'];
 		$userData['rank_image'] = $ranks[$bbUser->getVar('rank')]['image'];
 		$userData['registered'] = sprintf(__('Registered: %s','bxpress'), date($mc['dates'], $bbUser->getVar('user_regdate')));
-    	$userData['avatar'] = RMEvents::get()->run_event("rmcommon.get.avatar", $bbUser->getVar('email'), 0);
+                $userData['avatar'] = RMEvents::get()->run_event("rmcommon.get.avatar", $bbUser->getVar('email'), 0);
 		$userData['posts'] = sprintf(__('Posts: %u','bxpress'), $bbUser->getVar('posts'));
 		if ($xoopsUser && ($moderator || $admin)) $userData['ip'] = sprintf(__('IP: %s','bxpress'), $post->ip());
 		$userData['online'] = $bbUser->isOnline();
@@ -248,6 +261,6 @@ if ($xoopsUser){
 	}
 }
 
-RMTemplate::get()->add_xoops_style('style.css', 'bxpress');
+bXFunctions::loadAnnouncements(1, $forum->id());
 
 include 'footer.php';

@@ -248,7 +248,7 @@ switch($op){
 		* @desc Cargamos los mensajes realizados en este tema
 		*/
 		if ($mc['numpost']>0 && !$create){
-			$sql = "SELECT * FROM ".$db->prefix("exmbb_posts")." WHERE id_topic='".$topic->id()."' ORDER BY post_time DESC LIMIT 0, $mc[numpost]";
+			$sql = "SELECT * FROM ".$db->prefix("bxpress_posts")." WHERE id_topic='".$topic->id()."' ORDER BY post_time DESC LIMIT 0, $mc[numpost]";
 			$result = $db->query($sql);
 			while ($row = $db->fetchArray($result)){
 				$post = new bXPost();

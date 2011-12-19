@@ -24,6 +24,10 @@ define('BB_URL',XOOPS_URL.'/modules/'.$xoopsModule->dirname());
 define('BB_PATH',XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->dirname());
 define('BB_UPLOADS_PATH',XOOPS_ROOT_PATH.'/uploads/exmbb');
 
+define('BX_FWHERE0',__('Home Page','bxpress'));
+define('BX_FWHERE1',__('Forum','bxpress'));
+define('BX_FWHERE2',__('All Module','bxpress'));
+
 $mc =& $xoopsModuleConfig;
 
 /**

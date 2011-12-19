@@ -49,10 +49,17 @@ $adminmenu[] = array(
     )
 );
 
-$adminmenu[4]['title'] = __('Reports','bxpress');
-$adminmenu[4]['link'] = "admin/reports.php";
-$adminmenu[4]['icon'] = '../images/reports.png';
-$adminmenu[4]['location'] = "reports";
+$adminmenu[] = array(
+    'title' => __('Reports','bxpress'),
+    'link' => "admin/reports.php",
+    'icon' => '../images/reports.png',
+    'location' => "reports",
+    'options' => array(
+        array('title'=>__('All reports','bxpress'),'link'=>'reports.php','selected'=>'allreps'),
+        array('title'=>__('Reviewed','bxpress'),'link'=>'reports.php?show=1','selected'=>'reviews'),
+        array('title'=>__('Not reviewd','bxpress'),'link'=>'reports.php?show=2','selected'=>'noreviewd')
+    )
+);
 
 $adminmenu[5]['title'] = __('Prune','bxpress');
 $adminmenu[5]['link'] = "admin/prune.php";

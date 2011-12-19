@@ -98,9 +98,12 @@ fieldset{
 .bbouter .odd{
 	min-height: 18px;
 	padding: 4px;
+        overflow: hidden;
 }
-.bbouter a{
-	text-decoration: underline;
+.bbouter .moderate_legend{
+	display: block;
+        float: left;
+        margin: 6px 0 0 0;
 }
 .bbcomboforums{
 	float: right;
@@ -118,24 +121,38 @@ div.bbPowered{
 }
 .bbAnnouncement{
 	padding:1px;
-	background-color: #c8c8c8;
-	margin-bottom: 10px;
-}
-.bbAnnHead{
-	background-color: #ebebeb;
-	padding: 4px;
-	font-weight: bold;
-	font-size: 1.1em;
-	border-bottom: 1px solid #c8c8c8;
+	background-color: #fed22f;
+	margin: 10px 0;
 }
 .bbAnnBody{
-	padding: 10px;
+	padding: 12px 10px 12px 45px;
 	background-color: #fff;
+        background: #FFED97 url(../images/announcement.png) no-repeat 5px;
 }
+.bbAnnBody p{margin:0;}
 .bx_header_options{
     overflow: hidden;
     font-weight: normal;
     margin-bottom: 10px;
     border-bottom: 1px solid #CCC;
     padding: 0 0 5px 0;
+}
+
+/* Listings */
+.bxpress_listing{
+    line-height: 150%;
+}
+.bxpress_listing .title{
+    font-weight: bold;
+}
+.bxpress_listing .pages{
+    font-family: monospace;
+}
+.bxpress_listing .text{
+    display: block;
+    font-size: 0.9em;
+}
+.bxpress_listing .by{
+    font-size: 0.9em;
+    font-style: italic;
 }

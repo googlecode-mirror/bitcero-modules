@@ -207,44 +207,47 @@ class bXFunctions
 		}
 	}
 	
+        /**
+         * Load announcements form database
+         * @param int Where to search (0 = home page, 1 = froum, 2 = all module)
+         * @return array
+         */
 	public function loadAnnouncements($w, $forum=0){
 		global $xoopsModuleConfig, $tpl;
 		
-		$db =& Database::getInstance();
+		if (!$xoopsModuleConfig['announcements']) return;
+                
+                $db =& Database::getInstance();
 		
 		// Primero purgamos la tabla
 		$db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");
 		
-		if (!$xoopsModuleConfig['announcements']) return;
 		$mc =& $xoopsModuleConfig;
 		$sql = "SELECT * FROM ".$db->prefix("bxpress_announcements");
 		
 		switch ($w){
 			case 0:
-				$sql .= " WHERE (`where`='0' OR `where`='2') ";
+				$sql .= " WHERE `where`=0 OR `where`=2 ";
 				break;
 			case 1:
-				$sql .= " WHERE (`where`='1' AND forum='$forum') OR `where`='2' ";
+				$sql .= " WHERE `where`=2 OR (`where`='1' AND forum='$forum') ";
 				break;
 		}
-		
+                
 		if ($mc['announcements_mode']){
 			$sql .= " ORDER BY RAND() ";
 		} else {
-			$sql .= " ORDER BY date DESC ";
+			$sql .= " ORDER BY `date` DESC ";
 		}
-		
+                
 		$sql .= "LIMIT 0, $mc[announcements_max]";
-		
 		$result = $db->query($sql);
-	
+                
 		while ($row = $db->fetchArray($result)){
 			$an = new bXAnnouncement();
 			$an->assignVars($row);
 			$tpl->append('announcements', array('text'=>$an->text('s')));
 		}
-		
-		$tpl->assign('lang_announcement', _MS_EXMBB_ANNOUNCEMENT);
 		
 		return true;
 		
@@ -325,6 +328,17 @@ class bXFunctions
             $ret[$myrow['rank_id']] = array('title'=>$myrow['rank_title'],'image'=>$myrow['rank_image']);
         }
         return $ret;
+        
+    }
+    
+    public function url(){
+        
+        $mc = RMUtilities::module_config('bxpress');
+        if($mc['urlmode']){
+            return XOOPS_URL.'/'.$mc['htbase'];
+        } else {
+            return XOOPS_URL.'/modules/bxpress';
+        }
         
     }
     

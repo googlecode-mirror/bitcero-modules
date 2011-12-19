@@ -17,30 +17,32 @@ $db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<=
 * @desc Muestra la lista de los anuncios existentes
 */
 function showAnnounces(){
-	global $db, $xoopsModule, $xoopsSecurity;
+    global $db, $xoopsModule, $xoopsSecurity;
 	
-	$result = $db->query("SELECT * FROM ".$db->prefix("bxpress_announcements")." ORDER BY date");
-	$announcements = array();
+    $result = $db->query("SELECT * FROM ".$db->prefix("bxpress_announcements")." ORDER BY date");
+    $announcements = array();
 
-	while ($row = $db->fetchArray($result)){
-		$an = new bXAnnouncement();
-		$an->assignVars($row);
-		$announcements[] = array(
+    while ($row = $db->fetchArray($result)){
+        $an = new bXAnnouncement();
+	$an->assignVars($row);
+	$announcements[] = array(
             'id'=>$an->id(),
             'text'=>TextCleaner::getInstance()->truncate($an->text(), 100),
-			'date'=>formatTimestamp($an->date()),
+            'date'=>formatTimestamp($an->date()),
             'expire'=>formatTimeStamp($an->expire()),
-			'where'=>constant('_AS_BXPRESS_FWHERE'.$an->where()),
-			'wherelink'=>$an->where()==1 ? '../forum.php?id='.$an->forum() : '../',
-			'by'=>$an->byName()
+            'where'=>constant('BX_FWHERE'.$an->where()),
+            'wherelink'=>$an->where()==1 ? '../forum.php?id='.$an->forum() : '../',
+            'by'=>$an->byName()
         );
-	}
+    }
 	
     bXFunctions::menu_bar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Announcements Management','bxpress'));
-	xoops_cp_header();
+    xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Announcements Management','bxpress'));
+    xoops_cp_header();
 
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
+    RMTemplate::get()->add_style('admin.css', 'bxpress');
+    RMTemplate::get()->add_local_script('admin.js','bxpress');
     include RMTemplate::get()->get_template("admin/forums_announcements.php", 'module', 'bxpress');
 
 	xoops_cp_footer();
@@ -183,29 +185,17 @@ function saveAnnouncement($edit = 0){
 * @desc Elimina anuncios de la base de datos
 */
 function deleteAnnouncements(){
-	global $util, $db;
+	global $xoopsSecurity, $db;
 	
-	if (!$util->validateToken()){
-		redirectMsg('announcements.php', _AS_BB_ERRTOKEN, 1);
+	if (!$xoopsSecurity->check()){
+		redirectMsg('announcements.php', __('Session token expired!','bxpress'), 1);
 		die();
 	}
 	
-	$an = isset($_REQUEST['announcements']) ? $_REQUEST['announcements'] : null;
+	$an = rmc_server_var($_POST, 'ids', array());
 	
-	if (!isset($an)){
-		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
-		die();
-	}
-	
-	if (!is_array($an) && $an<=0){
-		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
-		die();
-	}
-	
-	if (!is_array($an)) $an = array($an);
-	
-	if (count($an)<=0){
-		redirectMsg('announcements.php', _AS_BXPRESS_ERRSEL, 1);
+	if (!is_array($an) || empty($an)){
+		redirectMsg('announcements.php', __('You must select at least one announcement to delete!','bxpress'), 1);
 		die();
 	}
 	
@@ -216,9 +206,9 @@ function deleteAnnouncements(){
 	}
 	
 	if ($db->queryF($sql.$sql1)){
-		redirectMsg('announcements.php', _AS_BB_DBOK, 0);
+		redirectMsg('announcements.php', __('Announcements deleted successfully!','bxpress'), 0);
 	} else {
-		redirectMsg('announcements.php', _AS_BB_ERRACTION . '<br />' . $db->error(), 0);
+		redirectMsg('announcements.php', __('Errors ocurred while trying to delete announcements.','bxpress') . '<br />' . $db->error(), 0);
 	}
 	
 }
