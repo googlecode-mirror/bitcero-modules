@@ -17,7 +17,7 @@ $mc =& $xoopsModuleConfig;
 $tpl = $xoopsTpl;
 $db = Database::getInstance();
 
-load_mod_locale('galleries');
+if(function_exists("load_mod_locale")) load_mod_locale('galleries');
 
 $tpl->assign('gs_url', GS_URL);
 $tpl->assign('ths_width', $xoopsModuleConfig['image_ths'][0]);
