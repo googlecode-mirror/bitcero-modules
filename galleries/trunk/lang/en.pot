@@ -1,0 +1,2344 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MyGalleries\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-20 14:12-0600\n"
+"PO-Revision-Date: 2011-12-20 14:12-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red Mexico <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: c:\\wamp\\www\\cu\\modules\\galleries\n"
+
+#: c:\wamp\www\cu\modules\galleries/cpanel.php:22
+msgid "You don't have authorization to view this section"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/cpanel.php:31
+#: c:\wamp\www\cu\modules\galleries/explore.php:176
+#: c:\wamp\www\cu\modules\galleries/explore.php:323
+#: c:\wamp\www\cu\modules\galleries/user.php:43
+#: c:\wamp\www\cu\modules\galleries/user.php:485
+msgid "Favorites"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/cpanel.php:39
+msgid "Friends"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/cpanel.php:40
+msgid "My Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/cpanel.php:41
+msgid "My Images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:34
+#: c:\wamp\www\cu\modules\galleries/explore.php:267
+#: c:\wamp\www\cu\modules\galleries/explore.php:373
+#: c:\wamp\www\cu\modules\galleries/user.php:130
+msgid "Specified user does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:114
+#, php-format
+msgid "Albums %u to %u from %u"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:127
+msgid "%M% %d%, %Y%"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:161
+#: c:\wamp\www\cu\modules\galleries/home.php:21
+msgid "Created on:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:162
+msgid "Owned by:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:164
+msgid "Images:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:166
+msgid "Existing Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:174
+#, php-format
+msgid "Sets of %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:177
+#: c:\wamp\www\cu\modules\galleries/explore.php:322
+#: c:\wamp\www\cu\modules\galleries/rss.php:37
+#: c:\wamp\www\cu\modules\galleries/user.php:44
+#: c:\wamp\www\cu\modules\galleries/user.php:184
+#: c:\wamp\www\cu\modules\galleries/user.php:486
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:544
+msgid "Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:231
+#, php-format
+msgid "Showing <strong>%u</strong> to <strong>%u</strong> from <strong>%u</strong> photos."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:243
+msgid "Existing photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:320
+msgid "Hits:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:321
+#, php-format
+msgid "Tags of %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:321
+msgid "Existing tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:355
+msgid "Specified tag does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:417
+#, php-format
+msgid "Showing photos %u to %u from %u."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:433
+#, php-format
+msgid "%s: tagged as %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/explore.php:433
+#, php-format
+msgid "Images tagged as \"%s\""
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/header.php:27
+msgid "Quick View"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:19
+msgid "Recent Photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:20
+msgid "Recent Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:22
+msgid "Created by:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:23
+msgid "Photos:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:24
+msgid "Other Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:25
+msgid "View Photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:26
+msgid "More albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:28
+msgid "Browse albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:30
+msgid "Browse photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:32
+msgid "Browse tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/home.php:60
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:18
+msgid "The postcards service is currently disabled!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:29
+#: c:\wamp\www\cu\modules\galleries/postcard.php:97
+msgid "You must be a registered user in order to send postcards!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:35
+#: c:\wamp\www\cu\modules\galleries/postcard.php:103
+#: c:\wamp\www\cu\modules\galleries/user.php:136
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:172
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:392
+msgid "Specified image does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:46
+#: c:\wamp\www\cu\modules\galleries/postcard.php:50
+#: c:\wamp\www\cu\modules\galleries/postcard.php:122
+msgid "Send Postcard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:51
+msgid "Your name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:52
+msgid "Your email"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:53
+msgid "Friend name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:54
+msgid "Friend email"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:55
+msgid "Postcard title"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:56
+msgid "Postcard text"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:59
+msgid "Please enter the captcha below"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:64
+msgid "Preview Postcard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:116
+#, php-format
+msgid "%s Says:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:117
+#, php-format
+msgid "Preview \"%s\" postcard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:118
+msgid "View picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:120
+msgid "View user pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:123
+msgid "Edit Postcard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:161
+msgid "Please check the security words and write it correctly!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:182
+msgid "Unable to send e-card. Please try again!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:203
+#, php-format
+msgid "%s, you have a new e-card!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:207
+msgid "E-card sent successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:227
+msgid "Specified E_Card does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:234
+msgid "Sorry, there are some problems with this e-card!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:247
+#, php-format
+msgid "%s says:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:248
+#, php-format
+msgid "%s, E-Card"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:249
+msgid "View Picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/postcard.php:251
+msgid "View User Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/rss.php:33
+msgid "These are the recent pictures published on our galleries."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/rss.php:51
+#: c:\wamp\www\cu\modules\galleries/rss.php:110
+#, php-format
+msgid "By: <strong>%s</strong>"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/rss.php:68
+msgid "These are the recent albums created on our galleries."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/rss.php:72
+msgid "Pictures Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/search.php:85
+#: c:\wamp\www\cu\modules\galleries/user.php:103
+#, php-format
+msgid "Showing pictures %u to %u from %u"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/search.php:111
+#, php-format
+msgid "Found %s pictures for \"%s\""
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:15
+msgid "Sorry, you have not permission to upload pictures."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:23
+msgid "Sorry, you have exceed your quota limit!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:40
+msgid "Upload your Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:42
+msgid "Step 1:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:43
+msgid "Step 2:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:44
+msgid "Step 3:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:45
+msgid "Step 4:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:46
+msgid "Select Files"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:47
+msgid "Set Privacy"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:48
+msgid "Private (<em>Only you will seee these pictures</em>)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:49
+msgid "For Friends (<em>Only you and your friends will see these pictures</em>)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:50
+msgid "Public (<em>Pictures will visible for all</em>)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:51
+msgid "Upload Files"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:52
+msgid "Click to Upload"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:53
+msgid "Specify tags to use"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:54
+msgid "Separate each tag with a comma (,)."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:55
+#, php-format
+msgid "The maximum file size allowed is <strong>%s</strong>."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:60
+#, php-format
+msgid "You have used <strong>%s</strong> of <strong>%s</strong> available. You left <strong>%s</strong>"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:89
+msgid "Sorry, an error ocurred while trying to register your permissions on database. Try again later!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:207
+#, php-format
+msgid "Picture %s could not be uploaded!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:221
+msgid "Errors ocurred while trying to upload images!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/submit.php:225
+msgid "Pictures stored successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:23
+msgid "Specified user does not exists"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:34
+#: c:\wamp\www\cu\modules\galleries/user.php:48
+#: c:\wamp\www\cu\modules\galleries/user.php:276
+#: c:\wamp\www\cu\modules\galleries/user.php:277
+#, php-format
+msgid "Pictures of %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:145
+msgid "You can not view this image!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:153
+msgid "You are not authorized to view this image!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:166
+#: c:\wamp\www\cu\modules\galleries/user.php:441
+msgid "Specified album does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:181
+msgid "Also belongs to:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:182
+msgid "Send postcard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:183
+msgid "+ Bookmark"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:185
+msgid "+ to Album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:186
+msgid "This is the last picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:187
+msgid "This is the first picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:193
+#, php-format
+msgid ""
+"Dow you really want to delete this picture?\\n"
+"(%s)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:196
+msgid "Edit"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:197
+msgid "Delete"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:358
+#: c:\wamp\www\cu\modules\galleries/user.php:359
+#: c:\wamp\www\cu\modules\galleries/user.php:476
+#: c:\wamp\www\cu\modules\galleries/user.php:490
+#, php-format
+msgid "Pictures in %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:370
+#, php-format
+msgid "Galleries of %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:435
+msgid "Specified users does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:448
+msgid "You can not view this private album!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:453
+#, php-format
+msgid "You must be a friend of %s in order to see this album!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:491
+#, php-format
+msgid "Pictures: %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:492
+#, php-format
+msgid "Hits: %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:561
+#, php-format
+msgid "Showing pictures %u to %u out of %u."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:592
+msgid "%m%/%d%/%Y% %h%:%i%"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/user.php:611
+#, php-format
+msgid "Updated on %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:33
+msgid "Module to publish and manage photo galleries in XOOPS using Common Utilities"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:231
+msgid "Crop thumbnail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:231
+msgid "Crop image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:231
+msgid "Crop both"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:231
+msgid "Only resize"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:545
+msgid "Show pictures based on configured parameters"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:553
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:223
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:18
+msgid "Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:561
+msgid "Index"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:562
+msgid "User pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:563
+msgid "Picture details"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:564
+msgid "User album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:565
+msgid "Control panel"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:566
+msgid "Explore albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:567
+msgid "Explore pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:568
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:231
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:27
+msgid "Tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:569
+msgid "Explore tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:570
+msgid "Upload pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/xoops_version.php:571
+msgid "Search"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:130
+msgid "Images Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:131
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:179
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:45
+msgid "Images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:135
+msgid "Do you really wish to delete selected images?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:165
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:385
+msgid "Image ID not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:179
+msgid "Edit image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:179
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:182
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:248
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:51
+msgid "Add image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:182
+msgid "Editing image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:186
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:191
+msgid "User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:195
+msgid "Title"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:196
+msgid "Image file"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:201
+msgid "Current image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:205
+msgid "Description"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:207
+msgid "Privacy"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:208
+msgid "Private"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:209
+msgid "Visible for friends"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:210
+msgid "Visible for all"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:232
+msgid "Separate each tag with a comma (,)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:248
+msgid "Save changes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:249
+msgid "Cancel"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:305
+msgid "All Images (*.jpg, *.png, *.gif)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:307
+msgid "Browse Images..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:316
+msgid "Uploaded successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:351
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:352
+msgid "Create batch images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:377
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:729
+msgid "Session token expired!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:450
+msgid "New user owner could not be saved!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:541
+msgid "Errors ocurred while trying to upload files:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:555
+msgid "Errors ocurred while trying to save image."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:579
+msgid "Database updated successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:617
+msgid "User owner could not be created!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:693
+msgid "File could not be inserted to database!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:724
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:791
+msgid "No images has been selected!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:738
+#, php-format
+msgid "Image ID \"%s\" not valid"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:745
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:806
+#, php-format
+msgid "Image \"%s\" does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:751
+#, php-format
+msgid "Image \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:761
+msgid "Errors ocurred while trying to delete images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:764
+msgid "Images deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:800
+#, php-format
+msgid "Image ID \"%s\" is not valid"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:812
+msgid "Image could not be updated!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:817
+msgid "Errors ocurred while trying to update images!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/images.php:820
+msgid "Images updated successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/index.php:130
+msgid "Empty album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:13
+msgid "Dashboard"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:23
+msgid "List albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:24
+msgid "Add album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:32
+msgid "List tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:33
+msgid "Add tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:36
+msgid "Users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:41
+msgid "List users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:42
+msgid "New user"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:50
+msgid "List images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:52
+msgid "Add multiple images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/menu.php:55
+msgid "Postcards"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:47
+msgid "%M% %d%, %Y% - %h%:%i%:%s%"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:68
+msgid "E-cards"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:72
+msgid "Do you really wish to delete selected e-cards?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:94
+msgid "You must select one e-card at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:107
+#, php-format
+msgid "The ID \"%s\" is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:114
+#, php-format
+msgid "E-Card with id \"%s\" does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:119
+#, php-format
+msgid "E-Card \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:124
+msgid "Errors ocurred while trying to delete e-cards"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/postcards.php:127
+msgid "E-Cards deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:92
+msgid "Albums Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:97
+msgid "Do you really wish to delete selected albums?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:98
+msgid ""
+"Do you really wish to delete all images formats for this album?\\n"
+"Only deletes formats for albums, search and others, except normal thumbnails."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:132
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:209
+msgid "Please provide a valid ID!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:146
+msgid "Albums management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:146
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:150
+msgid "Edit album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:146
+msgid "New album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:150
+msgid "New Album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:151
+msgid "Album title"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:154
+msgid "Privacy level"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:156
+msgid "Public for friends"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:157
+msgid "Public"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:161
+msgid "Owner"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:172
+msgid "Save Changes!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:172
+msgid "Create Album!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:223
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:233
+msgid "You have another album with same name. Please specify a different name."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:251
+msgid "Database could not be updated!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:285
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:354
+msgid "Select one album at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:305
+#, php-format
+msgid "ID \"%u\" is not valid"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:312
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:374
+#, php-format
+msgid "Album \"%u\" does not exists"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:317
+#, php-format
+msgid "Album \"%u\" could not be deleted"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:326
+msgid "Errors ocurred while trying to delete albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:368
+#, php-format
+msgid "\"%u\" is not a valid ID"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:380
+#, php-format
+msgid "Error ocurred while trying to update album \"%u\"!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:385
+msgid "Errors ocurred while trying to update albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:406
+msgid "Sorry, this is not a valid album!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:412
+msgid "Specified Album does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:432
+msgid "Sorry, we were unable to find the album owner!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:438
+msgid "There are not image formats for this album."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/sets.php:455
+msgid "Image formats deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:83
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:84
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:130
+msgid "Tags Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:92
+msgid "Do you really wish to delete selected tags?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:118
+msgid "Specify some valid IDs"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:131
+msgid "Edit Tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:131
+msgid "Add Tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:134
+msgid "Editing tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:142
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:229
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:322
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:261
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:313
+#, php-format
+msgid "ID \"%s\" is not valid"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:149
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:329
+#, php-format
+msgid "Tag \"%s\" does not exists"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:153
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:161
+msgid "Tag name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:171
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:139
+msgid "Save Changes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:171
+msgid "Create tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:215
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:257
+#, php-format
+msgid "Tag \"%s\" does not have the correct length!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:223
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:266
+#, php-format
+msgid "There are another tag with name \"%s\" already registered!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:243
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:274
+#, php-format
+msgid "Errors while trying to save tag \"%s\""
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:283
+msgid "Errors ocurred while trying to save tags."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:286
+msgid "Tags saved successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:308
+msgid "Select at least one tag to delete"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:334
+#, php-format
+msgid "Tag \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:339
+msgid "Errors ocurred while trying to delete tags."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/tags.php:342
+msgid "Tags deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:73
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:74
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:120
+msgid "Users management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:77
+msgid "Do you really wish to delete selected users?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:105
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:172
+msgid "User id is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:120
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:121
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:124
+msgid "Edit User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:120
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:121
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:124
+msgid "New User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:126
+msgid "Xoops User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:127
+msgid "Max Quota"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:128
+msgid "This value determines the total disc quota to be used for user and must be specified in megabytes."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:131
+msgid "Blocked"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:139
+msgid "Create User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:187
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:197
+msgid "This is user has been registered already!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:212
+msgid "Errors ocurred while trying to save this user."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:225
+msgid "User saved successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:247
+msgid "You must provide a user id to delete"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:268
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:320
+#, php-format
+msgid "User with id \"%s\" does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:273
+#, php-format
+msgid "User with id \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:279
+msgid "Errors ocurred while trying to delete users."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:282
+msgid "Users deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:304
+msgid "Select at least one user to update"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:327
+#, php-format
+msgid "User with id \"%s\" could not be updated!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:332
+msgid "Errors ocurred while trying to update users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/admin/users.php:335
+msgid "Users updated successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:56
+msgid "Number of pictures:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:57
+msgid "Type of pictures:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:57
+msgid "Recent"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:58
+msgid "Random"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:59
+msgid "Top viewed"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:60
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:111
+msgid "Item width:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:61
+msgid "Show title:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:62
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:106
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:109
+msgid "Yes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_photos.php:63
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:107
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:110
+msgid "No"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:102
+msgid "Albums block options"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:103
+msgid "Number of albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:105
+msgid "Show picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/blocks/gs_sets.php:108
+msgid "Show information"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/galleriescontroller.php:45
+#: c:\wamp\www\cu\modules\galleries/class/galleriescontroller.php:62
+msgid "Unknow element"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:56
+msgid "Home"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:59
+msgid "Photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:67
+msgid "My Photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:73
+msgid "Upload Photos"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/class/gsfunctions.class.php:296
+#, php-format
+msgid "Ver <a href=\"%s\">más fotos</a>."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:40
+msgid "All Recent Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:42
+msgid "Show all recent pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:46
+msgid "All Recent Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:48
+msgid "Show all recent albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:63
+msgid "Image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:64
+msgid "Thumbnail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:65
+msgid "User Format"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:66
+msgid "Search Format"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:67
+msgid "Add description"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:68
+msgid "Alignment..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:69
+msgid "Left"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:70
+msgid "Right"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:71
+msgid "Center"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:72
+msgid "Insert Now!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/events/rmcommon.php:77
+msgid "Galleries"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/ajax-functions.php:35
+#: c:\wamp\www\cu\modules\galleries/include/ajax-functions.php:77
+msgid "You are not authorized to do this action."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:86
+msgid "Existing Bookmarks"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:87
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:83
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:85
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:29
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:42
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:34
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:46
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:15
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:26
+msgid "ID"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:89
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:87
+msgid "Created"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:90
+msgid "by user"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:91
+msgid "Picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:93
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:90
+msgid "Options"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:96
+msgid "Do you really wish to deleted selected favorite?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:97
+msgid "Do you really wish to deleted selected favorites?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:127
+msgid "Image id is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:140
+msgid "You don't have authorization to view this picture!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:149
+msgid "You must be a friend of this user in order to view this picture!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:160
+msgid "This picture already is in your favorites"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:169
+msgid "Picture could not be added to your favorites!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:172
+msgid "Picture added to your favorites successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:196
+msgid "You must select one picture at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:211
+#, php-format
+msgid "ID %u is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:218
+#, php-format
+msgid "Image with id %u is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:226
+#, php-format
+msgid "Favorite picture \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:231
+msgid "Errors ocurred while trying to delete favorites!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_bookmarks.php:234
+msgid "Favorites deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:59
+#, php-format
+msgid "Sowing friends %u to %u from %u."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:79
+msgid "User name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:80
+msgid "New Friend"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:82
+msgid "Do you really wish to delete specified friend?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:83
+msgid "Do you really wish to delete selected friends?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:115
+#, php-format
+msgid "User \"%s\" could not be found!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:125
+#, php-format
+msgid "%s is your friend already!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:133
+#, php-format
+msgid "User %s could not be added as a friend!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:136
+#, php-format
+msgid "User %s has been added to your friends list!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:156
+msgid "Specified id for friend is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:173
+msgid "Specified user is not yoru friend!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:181
+msgid "Friend could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_friends.php:184
+msgid "Friend deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:27
+msgid "Specified album is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:70
+#, php-format
+msgid "Showing images %u to %u of %u"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:82
+#, php-format
+msgid "Existing images for user \"%s\" in album \"%s\""
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:82
+#, php-format
+msgid "Existing images for user \"%s\""
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:91
+msgid "Add to Album..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:92
+msgid "Do you really wish to delete specified picture?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:93
+msgid "Do you really wish to deleted selected pictures?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:95
+msgid "Change name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:96
+msgid "Change description"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:97
+msgid "Add Description"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:133
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:236
+msgid "Sepecified images is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:140
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:243
+msgid "Sepecified image does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:146
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:249
+msgid "You are not authorized!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:158
+msgid "Edit Image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:158
+msgid "New Image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:161
+msgid "Image title"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:167
+msgid "Current picture"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:174
+msgid "Access level"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:177
+msgid "Public for all"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:197
+msgid "Separe each tag with commas."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:207
+msgid "Create Image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:394
+msgid "Errores ocurred while trying to update database!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:444
+msgid "You must specify one picture at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:457
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:630
+#, php-format
+msgid "Picture with id %u is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:464
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:637
+#, php-format
+msgid "Picture with id %u does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:470
+#, php-format
+msgid "Picture \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:481
+msgid "Errors ocurred while trying to delete pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:484
+msgid "Pictures deleted succesfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:504
+#, php-format
+msgid "Picture %s is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:511
+#, php-format
+msgid "Picture %s does not exists"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:530
+#, php-format
+msgid "Picture %s could not be saved!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:538
+msgid "Errors ocurred while trying to save changes."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:541
+msgid "Changes applied successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:574
+msgid "You must select one image at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:583
+msgid "Add images to an album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:587
+msgid "Select the albums where you want to assign the selected images."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:642
+msgid "You don't have authorization!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:668
+msgid "Errors ocurred while trying to update picture!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_images.php:671
+msgid "Pictures updated successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:32
+msgid "Album ID is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:86
+msgid "Name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:87
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:33
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:46
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:17
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:28
+msgid "Date"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:88
+msgid "Privacy:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:92
+msgid "Do you really wish to delete specified album?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:94
+msgid "Add Album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:95
+msgid "Edit Album"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:136
+msgid "Provided ID is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:158
+msgid "Album could not be saved. Please try again."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:161
+msgid "Album saved successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:183
+msgid "You must selecte one album at least!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:192
+#, php-format
+msgid "Album id %u is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:199
+#, php-format
+msgid "Album with id %u does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:204
+#, php-format
+msgid "Album \"%s\" could not be deleted!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/cp_sets.php:212
+msgid "Abums deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:44
+msgid "You are not allowed to do this action"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:181
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:192
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:196
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:200
+msgid "Unauthorized!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:185
+msgid "Invalid image!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:205
+msgid "Image not found!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/include/upload.php:265
+#, php-format
+msgid "%s done!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:14
+msgid "Section title"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:17
+msgid "Tag min char length"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:20
+msgid "Tags max char length"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:23
+msgid "All users can upload pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:26
+msgid "Groups allowed to upload pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:29
+msgid "Enable friendly URLs"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:30
+msgid "Base path for URLs"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:32
+msgid "Show navigation bar as images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:33
+msgid "When this option is enabled MyGalleries will show navigation bar in Picture Details using next and previous images."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:34
+msgid "Number of images in navigation"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:35
+msgid "Specify the number of images to show in navigation bar. This value is used for previous and next images."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:38
+msgid "Directory where pictures will be stored"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:41
+msgid "Users default quota"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:42
+msgid "This value must be specified in megabytes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:45
+msgid "Size in pixels for normal pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:46
+msgid "Specify the size of the normal image. Values must be specified in format width|height."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:47
+msgid "Size in pixels for thumbnail picture."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:48
+msgid "Specify the size for thumbnail image. Values must be specified in format width|height."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:51
+msgid "Resizing type"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:53
+msgid "Crop big image"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:58
+msgid "Max file size for pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:59
+msgid "Specify this value in kilobytes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:62
+msgid "Store original pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:63
+msgid "Maintain original pictures after delete the picture from database"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:66
+msgid "Number of recent pictures in home page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:67
+msgid "Number of recent albums in home page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:68
+msgid "Images number for recent albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:69
+msgid "Specify the number of images that will be shown for each recent album in home page."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:72
+msgid "Enable quick view"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:73
+msgid "When quick view is enabled, MyGalleries will show an option on every image that can show the big image using lightbox plugin for Common Utilities."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:76
+msgid "Number of albums in albums list"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:79
+msgid "Modify picture format for user pictures list"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:80
+msgid "User pictures format specifications"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:81
+msgid "Values must be specified according next format: Crop(must be 1 or 0)|Width|Height|Results(per page)|Columns|Description|Format name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:84
+msgid "Number of images in images list"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:87
+msgid "Number of tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:88
+msgid "Min hits to show tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:89
+msgid "Max font size for top tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:90
+msgid "Size in points"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:93
+msgid "Number of images in tagged pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:96
+msgid "Modify picture format for album pictures list"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:97
+msgid "Format specifications for albums images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:98
+msgid "Format specifications for large albums images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:101
+msgid "Enable postcards"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:104
+msgid "Number of images in search listing"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:105
+msgid "Modify the format for pictures in search listing"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:106
+msgid "Format specifications for pictures in search listing"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:109
+msgid "Days to maintain postcards"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:112
+msgid "RSS of Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:113
+msgid "Subscribe to updates on our photos via RSS."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:114
+msgid "Recent Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:115
+msgid "Last pictures added to our galleries."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:117
+msgid "The newest album created by users of our galleries."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:118
+msgid "Recent Users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:119
+msgid "Displays list of recently registered users in the galleries."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:121
+#, php-format
+msgid "Description: %s<br />Created on: %s | User: %s | %u Hits"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:123
+#, php-format
+msgid "By: %s<br />Created on: %s<br />Pictures: %u"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:130
+msgid "Home page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/language/english/modinfo.php:137
+msgid "Popular tags"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:7
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:77
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:7
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:82
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:7
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:60
+msgid "Bulk actions..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:8
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:78
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:9
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:84
+msgid "Set as public"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:9
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:79
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:10
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:85
+msgid "Set as private"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:13
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:83
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:14
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:26
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:89
+msgid "Apply"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:17
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:21
+msgid "Search:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:21
+msgid "Show all"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:32
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:45
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:37
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:49
+msgid "Visibility"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:52
+msgid "There are not albums yet!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:63
+msgid "Delete Formats"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_albums.php:67
+msgid "Publico"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:5
+msgid "Quick Overview"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:8
+msgid "Albums:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:9
+msgid "Pictures:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:10
+msgid "Users:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:11
+msgid "Tags:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:12
+msgid "E-Cards:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:13
+msgid "Space used:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:14
+msgid "Files:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:15
+msgid "First picture:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:18
+msgid "* Could be more files than pictures if you have activated diferent formats in module settings."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:24
+msgid "Last uploaded pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:26
+msgid "Loading pictures..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:29
+msgid "Manage Pictures"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:34
+msgid "Last created albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:36
+msgid "Loading albums..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:39
+msgid "Manage Albums"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:47
+msgid "MyGalleries News"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:49
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:58
+msgid "Loading news..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_dashboard.php:55
+msgid "About MyGalleries"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:1
+msgid "Add batch images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:6
+msgid "User:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:10
+msgid "Assign to albums:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:20
+msgid "Show Controls"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:27
+msgid "Upload"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:28
+msgid "Clear All"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:38
+msgid "Resizing images"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:42
+msgid "Please, do not close the window until resizing process has finished!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:44
+msgid "Done! Upload more..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_formimages.php:45
+msgid "Done! Show images..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:8
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:83
+msgid "Generate Thumbnails"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:11
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:86
+msgid "Set as public for friends"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:15
+msgid "Filter Options"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:23
+msgid "Entre"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:24
+msgid "y"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:38
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:50
+msgid "Creation"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:57
+msgid "There are not images created yet!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_images.php:68
+msgid "Re do Thumbnail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:1
+msgid "Postcards Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:18
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:29
+msgid "Sender"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:19
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:30
+msgid "View"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_postcards.php:37
+msgid "There are not postcards created yet!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_tags.php:24
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_tags.php:33
+msgid "Tag"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_tags.php:41
+msgid "There are any tags yet!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:1
+msgid "Users Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:8
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:76
+msgid "Block user"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:25
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:39
+msgid "Quota"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:26
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:40
+msgid "Used quota"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:29
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:43
+msgid "Albumes"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/admin/gs_users.php:50
+msgid "There are not users registered yet!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_galleries.php:3
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_images.php:3
+#, php-format
+msgid "Search results for: %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_galleries.php:9
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_images.php:9
+msgid "Go!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_galleries.php:14
+msgid "Gallery"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_ajax_galleries.php:21
+msgid "Created:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_for_editor.php:21
+msgid "Pictures x page:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_for_editor.php:22
+msgid "Same page:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_for_editor.php:23
+msgid "Short URL:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_for_editor.php:24
+msgid "Insert Gallery"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_gals_inclusion.php:15
+msgid "View Gallery"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_navpage.php:4
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:4
+msgid "First Page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_navpage.php:13
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:17
+#, php-format
+msgid "Page %u"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_navpage.php:20
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:28
+msgid "Last Page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:4
+msgid "First"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:8
+msgid "Previous Page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:8
+msgid "Previous"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:24
+msgid "Next Page"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:24
+msgid "Next"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\galleries/templates/other/gs_nav_included.php:28
+msgid "Last"
+msgstr ""
+
