@@ -3,9 +3,9 @@
 <?php if(!isset($by)): ?>
 <h1 class="rd_title"><?php echo sprintf(__('Results for "%s"','docs'), $keyword); ?></h1>
 <?php elseif($by=='created'): ?>
-<h1 class="rd_title">Recent Resources</h1>
+<h1 class="rd_title">Recent Documents</h1>
 <?php elseif($by=='reads'): ?>
-<h1 class="rd_title">Top Resources</h1>
+<h1 class="rd_title">Top Documents</h1>
 <?php endif; ?>
 
 <?php foreach($resources as $res): ?>

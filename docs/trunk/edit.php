@@ -54,7 +54,7 @@ function showSection(){
     
     //Breadcrumb
     RDFunctions::breadcrumb();
-    RMBreadCrumb::get()->add_crumb(sprintf(__('Manage resource "%s"', 'docs'), $res->getVar('title')));
+    RMBreadCrumb::get()->add_crumb(sprintf(__('Manage Document "%s"', 'docs'), $res->getVar('title')));
     
     RMTemplate::get()->add_style('docs.css','docs');
     
@@ -182,7 +182,7 @@ function saveSection($edit=0,$ret=0){
 	
 	//Verificamos si es una publicación aprobada
 	if (!$res->getVar('approved')){
-		redirect_header(RDURL, 2, __('This resource has not been approved yet!','docs'));
+		redirect_header(RDURL, 2, __('This Document has not been approved yet!','docs'));
 		die();
 	}
 
@@ -201,7 +201,7 @@ function saveSection($edit=0,$ret=0){
 		die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($edit){
 		//Verifica si la sección es válida

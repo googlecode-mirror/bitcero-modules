@@ -12,7 +12,7 @@ class RDFunctions
 {
 	public function toolbar(){
 		RMTemplate::get()->add_tool(__('Dashboard','docs'), './index.php', '../images/dashboard.png', 'dashboard');
-		RMTemplate::get()->add_tool(__('Resources','docs'), './resources.php', '../images/book.png', 'resources');
+		RMTemplate::get()->add_tool(__('Documents','docs'), './resources.php', '../images/book.png', 'resources');
 		RMTemplate::get()->add_tool(__('Sections','docs'), './sections.php', '../images/section.png', 'sections');
 		RMTemplate::get()->add_tool(__('Notes','docs'), './notes.php', '../images/notes.png', 'notes');
 		RMTemplate::get()->add_tool(__('Figures','docs'), './figures.php', '../images/figures.png', 'figures');
@@ -98,7 +98,7 @@ class RDFunctions
     function sections_tree_index($parent = 0, $jumps = 0, RDResource $res, $var = 'rd_sections_index', $number='', $assign = true, &$array = null, $text = false){
         global $xoopsUser;
 
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         if ($var=='' && $assign) return false;
         
@@ -159,7 +159,7 @@ class RDFunctions
     */
     public function references($res=0, &$count, $search='', $start=0, $limit=15){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references').($res>0 ? " WHERE id_res='$res'" : '');
         
@@ -204,7 +204,7 @@ class RDFunctions
     */
     public function figures($res=0, &$count, $search='', $start=0, $limit=15){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_figures').($res>0 ? " WHERE id_res='$res'" : '');
         
@@ -246,7 +246,7 @@ class RDFunctions
     * @param string MAX or MIN
     */
     public function order($which='MAX', $parent=0, $res=0){
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         if($which!='MAX' && $which!='MIN') $which = 'MAX';
         
@@ -281,7 +281,7 @@ class RDFunctions
     */
     public function resources_index($type='all', $display=1, $cols=3, $limit=15){
 
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("rd_resources");
         if($type=='featured')
             $sql .= " WHERE public=1 AND approved=1 AND featured=1 ORDER BY created DESC";
@@ -357,7 +357,7 @@ class RDFunctions
     public function get_section_tree($id, RDResource $res, $number=1, $text = false){
         global $xoopsUser;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         if (get_class($res)!='RDResource') return;
         
@@ -465,6 +465,21 @@ class RDFunctions
         }
         
         return $link;
+        
+    }
+    
+    /**
+     * For standalone documents
+     */
+    public function standalone(){
+        global $xoopsTpl, $xoopsModuleConfig;
+        
+        RMTemplate::get()->add_head('<link rel="stylesheet" type="text/css" media="all" href="'.$xoopsModuleConfig['standalone_css'].'" />');
+        $rd_contents = ob_get_clean();
+        $xoopsTpl->assign('rd_contents', $rd_contents);
+        unset($rd_contents);
+        $xoopsTpl->display(RDPATH.'/templates/rd_standalone.html');
+        die();
         
     }
     

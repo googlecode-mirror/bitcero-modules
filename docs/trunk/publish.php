@@ -20,29 +20,29 @@ function formPublish(){
     
 	//Verificamos si existen permisos para crear un nuevo recurso
 	if (!$xoopsModuleConfig['createres']){
-		redirect_header(RDFunctions::url(), 1, __('The creation of new resources has been disabled by administrator.','docs'));
+		redirect_header(RDFunctions::url(), 1, __('The creation of new Documents has been disabled by administrator.','docs'));
 		die();
 	}
 
 	//Verificamos si usuario tiene permisos de crear nuevo recurso
 	$res=new RDResource();
 	if (!RDFunctions::new_resource_allowed(($xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS)))){
-		redirect_header(RDFunctions::url(), 1, __('You can not create resources.','docs'));
+		redirect_header(RDFunctions::url(), 1, __('You can not create Documents.','docs'));
 		die();
 	}
 	
-    $xoopsTpl->assign('xoops_pagetitle', __('Create Resource','docs'));
+    $xoopsTpl->assign('xoops_pagetitle', __('Create Document','docs'));
 
-	$form=new RMForm(__('Create Resource','docs'),'frmres', RMFunctions::current_url());
+	$form=new RMForm(__('Create Document','docs'),'frmres', RMFunctions::current_url());
 	$form->setExtra("enctype='multipart/form-data'");
-	$form->addElement(new RMFormText(__('Resource title','docs'),'title',50,150),true);
+	$form->addElement(new RMFormText(__('Document title','docs'),'title',50,150),true);
 	$form->addElement(new RMFormTextArea(__('Description','docs'),'desc',5,50),true);
 	
 	//editores de la publicación	
 	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$xoopsUser ? array($xoopsUser->uid()) : array(),30));
 
 	//Grupos con permiso de acceso
-	$form->addElement(new RMFormGroups(__('Groups that can read resource','docs'),'groups',1,1,1,array(1,2)),true);
+	$form->addElement(new RMFormGroups(__('Groups that can read Document','docs'),'groups',1,1,1,array(1,2)),true);
 	$form->addElement(new RMFormYesno(__('Quick index','docs'),'quick'));
     $form->addElement(new RMFormYesno(__('Show index to restricted users','docs'),'showindex'));
     $form->addElement(new RMFormYesno(__('Show content in a single page','docs'),'single'));
@@ -50,7 +50,7 @@ function formPublish(){
 	$form->addElement(new RMFormLabel(__('Approved','docs'),$xoopsModuleConfig['approved'] ? __('Inmediatly','docs') : __('Wait for approval','docs')));
 
 	$buttons =new RMFormButtonGroup();
-	$buttons->addButton('sbt',__('Publish Resource'),'submit');
+	$buttons->addButton('sbt',__('Publish Document'),'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="history.go(-1);"');
 
 	$form->addElement($buttons);
@@ -88,12 +88,12 @@ function savePublish(){
 		die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Comprueba que el título de publicación no exista
 	$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' ";
 	list($num)=$db->fetchRow($db->queryF($sql));
 	if ($num>0){
-		redirect_header($purl, 1, __('Already exists a resource with same name!','docs'));
+		redirect_header($purl, 1, __('Already exists a Document with same name!','docs'));
 		die();
 	}
 
@@ -130,23 +130,23 @@ function savePublish(){
     $res->setVar('single', $single);
 	
 	if (!$res->save()){
-		redirect_header($prul, 1, __('Resource could not be created!','docs'));
+		redirect_header($prul, 1, __('Document could not be created!','docs'));
 	}else{
 		//Si no se aprobó la publicación enviamos correo al administrador
 		if (!$xoopsModuleConfig['approved']){
 			$mailer = new RMMailer('text/plain');
             $mailer->add_user($xconfig['from'], $xconfig['fromname'], 'to');
-            $mailer->set_subject(__('New resource created at RapidDocs is waiting for approval','rmcommon'));
+            $mailer->set_subject(__('New Document created at RapidDocs is waiting for approval','rmcommon'));
             
             $mailer->assign('to_name', $xconfig['fromname']);
             $mailer->assign('link_to_resource', XOOPS_URL.'/modules/docs/admin/resources.php?action=edit&id='.$res->id());
             $mailer->template(RMTemplate::get()->get_template('mail/resource_for_approval.php', 'module', 'docs'));
             
             if (!$mailer->send()){
-                redirect_header(RDFunctions::url(), 1, __('Your resource has been created, however the email to administrator could no be sent.','docs'));
+                redirect_header(RDFunctions::url(), 1, __('Your Document has been created, however the email to administrator could no be sent.','docs'));
                 die();
             }
-            redirect_header(RDFunctions::url(), 1, __('Your resource has been created and is pending for approval. We will sent an email when you can access to it and add content.','docs'));
+            redirect_header(RDFunctions::url(), 1, __('Your Document has been created and is pending for approval. We will sent an email when you can access to it and add content.','docs'));
             die();
 			
 		}
@@ -157,7 +157,7 @@ function savePublish(){
         else
             $purl = RDFunctions::url().'?page=edit&action=list&id='.$res->id();
         
-		redirect_header($purl,1,__('Resource created successfully!','docs'));
+		redirect_header($purl,1,__('Document created successfully!','docs'));
 		die();
 		
 	}

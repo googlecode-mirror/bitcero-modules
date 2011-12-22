@@ -50,17 +50,17 @@ function rd_show_sections(){
 
 	$id= rmc_server_var($_GET,'id', 0);
     if($id<=0){
-        redirectMsg('resources.php', __('Select a resource to see the sections inside this','docs'), 0);
+        redirectMsg('resources.php', __('Select a Document to see the sections inside this','docs'), 0);
         die();
     }
     
     $res = new RDResource($id);
     if($res->isNew()){
-        redirectMsg('resources.php', __('The specified resource does not exists!','docs'), 1);
+        redirectMsg('resources.php', __('The specified Document does not exists!','docs'), 1);
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	//Lista de Publicaciones
 	$sql="SELECT id_res,title FROM ".$db->prefix('rd_resources');
@@ -97,22 +97,22 @@ function rd_show_sections(){
 * @desc Formulario de creación y edición de sección
 **/
 function rd_show_form($edit=0){
-	global $xoopsModule, $xoopsConfig, $xoopsSecurity, $xoopsUser, $xoopsModuleConfig;
-    
+	global $xoopsModule, $xoopsConfig, $xoopsSecurity, $xoopsUser, $xoopsModuleConfig, $rmc_config;
+     
     define('RMCSUBLOCATION','newresource');
 	$id=rmc_server_var($_GET, 'id', 0);
     $parent=rmc_server_var($_GET, 'parent', 0);
     
     if ($id<=0){
-        redirectMsg('sections.php?id='.$id, __('You must select a resource in order to create a new section','docs'),1);
+        redirectMsg('sections.php?id='.$id, __('You must select a Document in order to create a new section','docs'),1);
         die();
     }
     
-    // Check if provided resource exists
+    // Check if provided Document exists
     global $res;
     $res= new RDResource($id);
     if ($res->isNew()){
-        redirectMsg('sections.php?id='.$id, __('Specified resource does not exists!','docs'),1);
+        redirectMsg('sections.php?id='.$id, __('Specified Document does not exists!','docs'),1);
         die();
     }
 	
@@ -150,7 +150,7 @@ function rd_show_form($edit=0){
         $tiny->add_config('theme_advanced_buttons1', 'rd_toc');
     }
     
-    $editor = new RMFormEditor('','content','100%','300px',$edit ? $sec->getVar('content', 'e') : '','', 0);
+    $editor = new RMFormEditor('','content','100%','300px',$edit ? $rmc_config['editor_type']=='tiny' ? $sec->getVar('content') : $sec->getVar('content', 'e') : '','', 0);
     $usrfield = new RMFormUser('','uid',false,$edit ? array($sec->getVar('uid')) : $xoopsUser->getVar('uid'));
     
     RMTemplate::get()->add_style('admin.css', 'docs');
@@ -185,17 +185,17 @@ function rd_save_sections($edit=0){
 	}
     
     if($id<=0){
-        redirectMsg('resources.php', __('A resource was not specified!','docs'), 1);
+        redirectMsg('resources.php', __('A Document was not specified!','docs'), 1);
         die();
     }
     
     $res = new RDResource($id);
     if($res->isNew()){
-        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+        redirectMsg('resources.php', __('Specified Document does not exists!','docs'), 1);
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($edit){
 
@@ -313,15 +313,15 @@ function rd_delete_sections(){
     $id = rmc_server_var($_GET, 'id', 0);
 	$id_sec = rmc_server_var($_GET, 'sec', 0);
     
-    // Check if a resource id has been provided
+    // Check if a Document id has been provided
     if ($id<=0){
-        redirectMsg('resources.php', __('You have not specify a resource id','docs'), 1);
+        redirectMsg('resources.php', __('You have not specify a Document id','docs'), 1);
         die();
     }
     
     $res = new RDResource($id);
     if($res->isNew()){
-        redirectMsg('The specified resource does not exists!','docs');
+        redirectMsg('The specified Document does not exists!','docs');
         die();
     }
     

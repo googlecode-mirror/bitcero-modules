@@ -1,12 +1,12 @@
 <a name="rd_top"></a>
 <?php include RMTemplate::get()->get_template('rd_header.php', 'module', 'docs'); ?>
-<h1><?php echo $res->getVar('title'); ?></h1>
+<h1 class="title"><?php echo $res->getVar('title'); ?></h1>
 
-<!-- Resource Content -->
+<!-- Document Content -->
 <?php foreach($sections as $sec): ?>
     <?php include RMTemplate::get()->get_template('rd_item.php','module','docs'); ?>
 <?php endforeach; ?>
-<!-- /End resource content -->
+<!-- /End Document content -->
 
 <!-- Navigation links -->
 <div class="rd_nav_links">
@@ -26,6 +26,7 @@
     <span class="rd_toc"><a href="<?php echo $resource['link']; ?>"><?php _e('Table of Contents','docs'); ?></a></span>
     <?php endif; ?>
 </div>
+<?php if(!$standalone): ?>
 <div class="rd_section_data">
     <p class="left">
         <?php if(isset($pdf_book_url)): ?><a href="<?php echo $pdf_book_url; ?>"><?php _e('Create PDF Book','docs'); ?></a><br /><?php endif; ?>
@@ -33,7 +34,7 @@
         <?php if(isset($print_book_url)): ?><a href="<?php echo $print_book_url; ?>"><?php _e('Print Book','docs'); ?></a><br /><?php endif; ?>
         <?php if(isset($print_section_url)): ?><a href="<?php echo $print_section_url; ?>"><?php _e('Print Section','docs'); ?></a><br /><?php endif; ?>
         <?php if(isset($publish_url)): ?>
-        <a href="<?php echo $publish_url; ?>"><?php _e('Create Resource','docs'); ?></a>
+        <a href="<?php echo $publish_url; ?>"><?php _e('Create Document','docs'); ?></a>
         <?php endif; ?>
     </p>
     <p class="right">
@@ -43,6 +44,7 @@
         <?php echo sprintf(__("Read %s times.",'docs'), '<strong>'.$resource['reads'].'</strong>'); ?>
     </p>
 </div>
+<?php endif; ?>
 <!-- /Navigation links -->
 
 <!-- Notes and references -->

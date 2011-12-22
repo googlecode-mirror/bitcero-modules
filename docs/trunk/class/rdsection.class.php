@@ -17,7 +17,7 @@ class RDSection extends RMObject{
 
 	function __construct($id=null, $res=0){
 
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("rd_sections");
 		$this->setNew();
 		$this->initVarsFromTable();
@@ -111,6 +111,7 @@ class RDSection extends RMObject{
     * Get the permalink for this section
     */
     public function permalink($edit = 0){
+        global $standalone;
         $config = RMUtilities::module_config('docs');
         
         $res = new RDResource($this->getVar('id_res'));
@@ -126,6 +127,7 @@ class RDSection extends RMObject{
                 $perma = $sec->permalink().'#'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid'));
             } else {
                 $perma = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).$config['htpath'].'/'.$res->getVar('nameid').'/'.($edit ? '<span>'.$this->getVar('nameid').'</span>' : $this->getVar('nameid')).'/';
+                $perma .= $standalone ? 'standalone/1/' : '';
             }
             
             
@@ -136,6 +138,7 @@ class RDSection extends RMObject{
                 $perma = $sec->permalink().'#'.$this->getVar('nameid');
             } else {
                 $perma = XOOPS_URL.'/modules/docs/index.php?page=content&amp;id='.$this->id();
+                $perma .= $standalone ? '&amp;standalone=1' : '';
             }
             
         }

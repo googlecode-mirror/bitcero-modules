@@ -70,7 +70,7 @@
             <?php _e('Notes was not found.','docs'); ?>
             <?php if($id<=0): ?>
                 <br />
-                <a href="javascript:;" onclick="docsAjax.getSectionsList(1);"><?php _e('Select resource first','docs'); ?></a>
+                <a href="javascript:;" onclick="docsAjax.getSectionsList(1);"><?php _e('Select Document first','docs'); ?></a>
             <?php else: ?>
                 <br />
                 <a href="javascript:;" onclick="docsAjax.displayForm();"><?php _e('Create new note','docs'); ?></a>
@@ -106,7 +106,7 @@
 
 <?php echo $other_content; ?>
 
-<div id="resources-list" title="<?php _e('Select Resource','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
+<div id="resources-list" title="<?php _e('Select Document','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
 <div id="resources-form" title="<?php _e('Create Note','docs'); ?>">
 <form name="frmRefs" id="frm-notes" method="post" action="references.php">
 <label><?php _e('Title:','docs'); ?></label>

@@ -53,6 +53,9 @@ if ($xoopsModuleConfig['permalinks']){
         RDfunctions::error_404();
     }
     
+    if(!$xoopsModuleConfig['standalone'] && isset($standalone))
+         unset($standalone);
+    
     include $file;
     
     die();
@@ -144,7 +147,7 @@ if($params[0]=='explore' || $params[0]=='search'){
 }
 
 // Section
-if (count($params)==2){
+if (count($params)>2){
     $res = new RDResource($params[0]);
     if(!$res->isNew()){
         $res = $res->id();

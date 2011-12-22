@@ -16,7 +16,7 @@
         </select>
         <input type="button" id="the-op-top" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-figures');" />
         &nbsp;&nbsp;
-        <strong><a href="resources.php"><?php _e('Choose another resource','docs'); ?></a></strong> |
+        <strong><a href="resources.php"><?php _e('Choose another Document','docs'); ?></a></strong> |
         <a href="figures.php?res=<?php echo $id_res; ?>"><?php _e('All Figures','docs'); ?></a> |
         <a href="?action=new&amp;res=<?php echo $id_res; ?>"><?php _e('New Figure','docs'); ?></a>
         <?php RMEvents::get()->run_event('docs.get.figures.options'); ?>
@@ -41,7 +41,7 @@
         <tbody>
         <?php if(empty($figures)): ?>
         <tr class="even" align="center">
-            <td colspan="4"><?php _e('There are not figures created for this resource.','docs'); ?></td>
+            <td colspan="4"><?php _e('There are not figures created for this Document.','docs'); ?></td>
         </tr>
         <?php endif; ?>
         <?php foreach($figures as $fig): ?>

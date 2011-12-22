@@ -2,7 +2,7 @@
 <div class="descriptions">
 <?php _e('You can edit and customize the home page for RapidDocs.','docs'); ?>
 
-<?php _e('Add your own content and include resources to integrate the home page with your site.','docs'); ?>
+<?php _e('Add your own content and include Documents to integrate the home page with your site.','docs'); ?>
 <br /><br />
 <form name="frmHome" method="post" action="hpage.php">
     <?php echo $editor->render(); ?>

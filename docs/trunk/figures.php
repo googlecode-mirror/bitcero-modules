@@ -48,7 +48,7 @@ function Figures(){
     $rmc_config = RMFunctions::configs();
 
 	//Navegador de páginas
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_figures')." WHERE id_res=$id";
 	$sql1 = '';
 	if ($search){
@@ -125,10 +125,10 @@ function Figures(){
     
     // Options for table header
     $options[] = array(
-        'title' => __('Select Resource','docs'),
+        'title' => __('Select Document','docs'),
         'href'  => 'javascript:;',
         'attrs' => 'id="option-resource" onclick="docsAjax.getSectionsList(1);"',
-        'tip'   => __('Select another resource to show the figures that belong to this.','docs')
+        'tip'   => __('Select another Document to show the figures that belong to this.','docs')
     );
     $options[] = array(
         'title' => __('Create Figure','docs'),
@@ -162,7 +162,7 @@ function formFigures($edit=0){
     
     $resource = new RDResource($id);
     if($resource->isNew()){
-        redirectMsg('?'.$ruta, __('A resource has not been specified!','docs'), 1);
+        redirectMsg('?'.$ruta, __('A Document has not been specified!','docs'), 1);
         die();
     }
 
@@ -220,14 +220,14 @@ function saveFigures($edit=0){
 
 	//Comprobar publicacion valida
 	if ($id<=0){
-		redirectMsg('./figures.php?'.$ruta, __('No resource has been selected!','docs'),1);
+		redirectMsg('./figures.php?'.$ruta, __('No Document has been selected!','docs'),1);
 		die();
 	}
 	
 	//Comprobar publicación existente existente
 	$res=new RDResource($id);
 	if ($res->isNew()){
-		redirectMsg('./figures.php?'.$ruta, __('Specified resource does not exists!'),1);
+		redirectMsg('./figures.php?'.$ruta, __('Specified Document does not exists!'),1);
 		die();
 
 	}
@@ -287,7 +287,7 @@ function deleteFigures(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "DELETE FROM ".$db->prefix("pa_figures")." WHERE id_fig IN(".implode(',',$figs).")";
     
     if (!$db->queryF($sql)){

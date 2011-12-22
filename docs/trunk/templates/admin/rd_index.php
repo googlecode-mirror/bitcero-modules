@@ -6,7 +6,7 @@
         var api = new jGCharts.Api();         
         var opt = {
             data : [[<?php echo implode(",", $top_data['reads']); ?>]],//mandatory 
-            axis_labels: ['<?php _e('Resources by popularity','docs'); ?>'],
+            axis_labels: ['<?php _e('Documents by popularity','docs'); ?>'],
             size : $("#rd-top-resources").width()+'x300',//default 300x200 (width x height) - maximum size 300,000 pixels};//set options
             bar_width: 15,
             bar_spacing: parseInt(($("#rd-top-resources").width()-<?php echo (count($top_data['reads'])*15); ?>)/<?php echo count($top_data['reads']); ?>),
@@ -64,7 +64,7 @@
         <div class="outer">
             <div class="th"><?php _e('RapidDocs Resume','docs'); ?></div>
             <div id="rd-resume-data">
-                <div class="left"><a href="resources.php"><?php echo sprintf(__('%s Resources','docs'), '<strong>'.$resume_data['resources'].'</strong>'); ?></a></div>
+                <div class="left"><a href="resources.php"><?php echo sprintf(__('%s Documents','docs'), '<strong>'.$resume_data['resources'].'</strong>'); ?></a></div>
                 <div class="right"><?php echo sprintf(__('%s Sections','docs'), '<strong>'.$resume_data['sections'].'</strong>'); ?></div>
                 <span class="clearboth"></span>
                 <div class="left"><?php echo sprintf(__('%s Figures','docs'), '<strong>'.$resume_data['figures'].'</strong>'); ?></div>
@@ -75,7 +75,7 @@
         <br />
         <!-- Drafts -->
         <div class="outer">
-            <div class="th"><?php _e('Resources waiting for approval','docs'); ?></div>
+            <div class="th"><?php _e('Documents waiting for approval','docs'); ?></div>
             <ul class="rd_listres">
             <?php foreach($noapproved as $res): ?>
                 <li class="<?php echo tpl_cycle("even,odd"); ?>">
@@ -89,7 +89,7 @@
         <br />
         <!-- Drafts -->
         <div class="outer">
-            <div class="th"><?php _e('No Published Resources','docs'); ?></div>
+            <div class="th"><?php _e('No Published Documents','docs'); ?></div>
             <ul class="rd_listres">
             <?php foreach($nopublished as $res): ?>
                 <li class="<?php echo tpl_cycle("even,odd"); ?>">
@@ -107,14 +107,14 @@
     </div>
     <div class="rd_bk_right">
         
-        <!-- Top Resources -->
+        <!-- Top Documents -->
         <div class="outer">
-            <div class="th"><?php _e('Top Resources','docs'); ?></div>
+            <div class="th"><?php _e('Top Documents','docs'); ?></div>
             <div class="even">
                 <div id="rd-top-resources"><?php if(empty($top_data)): ?><?php _e('There are not resources to show here.','docs'); ?><?php else: ?>&nbsp;<?php endif; ?></div>
             </div>
         </div>
-        <!-- End Top Resources -->
+        <!-- End Top Documents -->
         <br />
         <div class="outer">
             <div class="th"><img src="../images/loading.gif" class="rd_loading_image" /> <?php _e('RapidDocs News','docs'); ?></div>

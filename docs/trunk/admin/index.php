@@ -11,7 +11,7 @@
 include 'header.php';
 
 // Get top resources
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $sql = "SELECT * FROM ".$db->prefix("rd_resources")." WHERE public=1 ORDER BY `reads` DESC LIMIT 0, 15";
 $result = $db->query($sql);
 

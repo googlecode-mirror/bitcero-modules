@@ -110,13 +110,13 @@
 <input name="page" value="<?php echo $page; ?>" type="hidden" />
 <input name="search" value="<?php echo $search; ?>" type="hidden" />
 </form>
-<div id="resources-list" title="<?php _e('Select Resource','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
+<div id="resources-list" title="<?php _e('Select Document','docs'); ?>"><img src="images/wait.gif" class="image_waiting" alt="<?php _e('Wait a second...','docs'); ?>" /></div>
 <?php else: ?>
 
 <h1><?php $edit ? _e('Edit Figure','docs') : _e('Create Figure','docs'); ?></h1>
 <div id="form-figures">
     <form name="frmfig" id="frm-figs" method="post" accept="figures.php">
-        <span class="resource"><?php _e('Resource:','docs'); ?> <strong><?php echo $resource->getVar('title'); ?></strong></span>
+        <span class="resource"><?php _e('Document:','docs'); ?> <strong><?php echo $resource->getVar('title'); ?></strong></span>
         <label for="title"><?php _e('Title:','docs'); ?></label>
         <input type="text" name="title" id="title" size="50" value="<?php echo $edit ? $fig->getVar('title','e') : ''; ?>" />
         <label for="desc"><?php _e('Description:','docs'); ?></label>

@@ -21,7 +21,7 @@ function rd_block_resources($options){
 	global $xoopsModule;
 	
 	include_once XOOPS_ROOT_PATH.'/modules/docs/class/rdresource.class.php';
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$mc = RMUtilities::module_config('docs');
 	
@@ -71,8 +71,8 @@ function rd_block_resources_edit($options){
 					<td style='width: 180px;'>".__('Block type:','docs')."</td>
 					<td>
 					<select name='options[0]'>
-						<option value='recents'".($options[0]=='recents' ? " selected='selected'" : "").">".__('Recent Resources','docs')."</option>
-						<option value='popular'".($options[0]=='popular' ? " selected='selected'" : "").">".__('Top Resources','docs')."</option>
+						<option value='recents'".($options[0]=='recents' ? " selected='selected'" : "").">".__('Recent Documents','docs')."</option>
+						<option value='popular'".($options[0]=='popular' ? " selected='selected'" : "").">".__('Top Documents','docs')."</option>
 					</select>
 					</td>
 				</tr>
