@@ -30,7 +30,7 @@ $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "docs";
-$modversion['icon48'] = "images/logo.png";
+$modversion['icon48'] = "images/icon48.png";
 $modversion['onInstall'] = 'include/install.php';
 
 // Administración
@@ -150,12 +150,30 @@ $modversion['config'][] = array(
     'default' => 'class="figures" style="float: left; margin: 0 10px 5px 0;"'
 );
 
+$modversion['config'][] = array(
+    'name' => 'standalone',
+    'title' => '_MI_RD_STANDALONE',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
+$modversion['config'][] = array(
+    'name' => 'standalone_css',
+    'title' => '_MI_RD_STANDALONECSS',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => XOOPS_URL.'/modules/docs/css/standalone.css'
+);
+
 
 // Bloques
 $modversion['blocks'][] = array(
     'file' => 'rd_resources.php',
-    'name' => __('Resources','docs'),
-    'description' => __('List of resources','docs'),
+    'name' => __('Documents','docs'),
+    'description' => __('List of Documents','docs'),
     'show_func' => 'rd_block_resources',
     'edit_func' => 'rd_block_resources_edit',
     'template' => 'rd_bk_resources.html',
@@ -164,8 +182,8 @@ $modversion['blocks'][] = array(
 
 $modversion['blocks'][] = array(
     'file' => 'rd_index.php',
-    'name' => __('Resource TOC','docs'),
-    'description' => __('Table of content for a specific resource','docs'),
+    'name' => __('Document TOC','docs'),
+    'description' => __('Table of content for a specific Document','docs'),
     'show_func' => 'rd_block_index',
     'edit_func' => '',
     'template' => 'rd_bk_index.html',

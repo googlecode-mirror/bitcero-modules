@@ -23,7 +23,7 @@
 */
 function assignSectionTree($parent = 0, $jumps = 0, AHResource $res, $var = 'index', $number='', $assign = true, &$array = null){
 	global $tpl;
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	if (get_class($res)!='AHResource') return;
 	

@@ -1,13 +1,13 @@
 <div id="rd_res_search">
     <form action="resources.php" method="get">
-        <strong><?php _e('Search Resources:','docs'); ?></strong>
+        <strong><?php _e('Search Documents:','docs'); ?></strong>
         <input type="text" name="query" value="<?php echo isset($query) ? $query : ''; ?>" />
     </form>
 </div>
 <?php if($query!=''): ?>
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo sprintf(__('Resources: results for "%s"','docs'), $query); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo sprintf(__('Documents: results for "%s"','docs'), $query); ?></h1>
 <?php else: ?>
-<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Available Resources','docs'); ?></h1>
+<h1 class="rmc_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Available Documents','docs'); ?></h1>
 <?php endif; ?>
 
 <form name="frm_resources" id="frm-resources" method="post" action="resources.php">

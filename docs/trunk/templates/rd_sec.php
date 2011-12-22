@@ -4,7 +4,7 @@
 
 <div class="form_container">
 <form name="frmPage" id="frm-page" method="post" action="<?php echo RMFunctions::current_url(); ?>">
-<label><?php _e('Resource','docs'); ?></label>
+<label><?php _e('Document','docs'); ?></label>
 <span><?php echo $res->getVar('title'); ?></span>
 <label for="sec-title"><?php _e('Title','docs'); ?></label>
 <input type="text" name="title" id="sec-title" value="<?php echo $edit ? $section->getVar('title') : ''; ?>" />

@@ -3,11 +3,11 @@
 <?php include RMTEmplate::get()->get_template('rd_resindextoc.php', 'module', 'docs'); ?>
 <!-- /Table of Contents -->
 
-<!-- Resource Content -->
+<!-- Document Content -->
 <?php foreach($toc as $sec): ?>
     <?php include RMTemplate::get()->get_template('rd_item.php','module','docs'); ?>
 <?php endforeach; ?>
-<!-- /End resource content -->
+<!-- /End Document content -->
 
 <div class="rd_nav_links">&nbsp;</div>
 <div class="rd_section_data">
@@ -15,7 +15,7 @@
         <?if(isset($pdf_book_url) && $pdf_book_url!=''): ?><a href="<?php echo $pdf_book_url; ?>"><?php _e('Create PDF Book','docs'); ?></a><br /><?php endif; ?>
         <?if(isset($print_book_url) && $print_book_url!=''): ?><a href="<?php echo $print_book_url; ?>"><?php _e('Print Book','docs'); ?></a><br /><?php endif; ?>
         <?php if(isset($publish_url)): ?>
-        <a href="<?php echo $publish_url; ?>"><?php _e('Create Resource','docs'); ?></a>
+        <a href="<?php echo $publish_url; ?>"><?php _e('Create Document','docs'); ?></a>
         <?php endif; ?>
     </p>
     <p class="right">

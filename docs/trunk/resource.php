@@ -14,7 +14,7 @@ if (isset($special) && ($special=='references' || $special=='figures')){
 	$xoopsOption['module_subpage'] = 'resource';
 }
 
-// Check if Resource exist
+// Check if Document exist
 $res= new RDResource($id);
 if ($res->isNew()){
     // Error 404 - When resrouce does not exists
@@ -28,26 +28,26 @@ include ('header.php');
 
 //Verificamos si la publicacion esta aprobada
 if (!$res->getVar('approved')){
-	redirect_header(RDURL, 1, __('Sorry, this resource does not exists!','docs'));
+	redirect_header(RDURL, 1, __('Sorry, this Document does not exists!','docs'));
 	die();
 }
 
 //Verifica si el usuario cuenta con permisos para ver la publicación
 $allowed = $res->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS);
 if (!$allowed && !$res->getVar('show_index')){
-	redirect_header(RDURL, 2, __('Sorry, you are not authorized to view this resource','docs'));
+	redirect_header(RDURL, 2, __('Sorry, you are not authorized to view this Document','docs'));
 	die();
 }
 
 if (!$allowed && !$res->getVar('quick')){
-	redirect_header(RDURL, 2, __('Sorry, you are not authorized to view this resource','docs'));
+	redirect_header(RDURL, 2, __('Sorry, you are not authorized to view this Document','docs'));
 	die();
 }
 
 RDFunctions::breadcrumb();
 RMBreadCrumb::get()->add_crumb($res->getVar('title'), $res->permalink());
 
-// Check if we must show all content for resource
+// Check if we must show all content for Document
 if($res->getVar('single')){
     
     if(!$allowed)
@@ -107,7 +107,7 @@ if($res->getVar('single')){
     
 	$content=false;
 	//Obtiene índice
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql="SELECT * FROM ".$db->prefix('rd_sections')." WHERE id_res='".$res->id()."' AND parent=0 ORDER BY `order`";
 	$result=$db->queryF($sql);
     
@@ -145,5 +145,8 @@ if($res->getVar('single')){
 RMTemplate::get()->add_style('docs.css', 'docs');
 RMTemplate::get()->add_jquery();
 RMTemplate::get()->add_script(RDURL.'/include/js/docs.js');
+
+if($standalone)
+    RDFunctions::standalone();
 
 include ('footer.php');

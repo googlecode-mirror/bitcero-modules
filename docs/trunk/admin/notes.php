@@ -21,13 +21,13 @@ function rd_show_notes(){
 	$id_res = rmc_server_var($_GET, 'res', 0);
     
     if($id_res<=0){
-        redirectMsg('resources.php', __('Select a resource to view notes from this','docs'), 0);
+        redirectMsg('resources.php', __('Select a Document to view notes from this','docs'), 0);
         die();
     }
     
     $res = new RDResource($id_res);
     if($res->isNew()){
-        redirectMsg('resources.php', __('The specified resource does not exists!','docs'), 0);
+        redirectMsg('resources.php', __('The specified Document does not exists!','docs'), 0);
         die();
     }
     
@@ -36,7 +36,7 @@ function rd_show_notes(){
 	//Separamos frase en palabras
 	$words=explode(" ",$search);
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
 	//Navegador de páginas
 	$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references').($id_res ? " WHERE id_res='$id_res'" : '');
@@ -112,13 +112,13 @@ function rd_edit_note(){
     $id_res = rmc_server_var($_GET, 'res', 0);
     
 	if ($id_res<=0){
-		redirectMsg('./notes.php', __('Resource not specified','docs'),1);
+		redirectMsg('./notes.php', __('Document not specified','docs'),1);
 		die();
 	}
     
     $res = new RDResource($id_res);
     if($res->isNew()){
-        redirectMsg('./notes.php', __('Specified resource does not exists!','docs'),1);
+        redirectMsg('./notes.php', __('Specified Document does not exists!','docs'),1);
         die();
     }
     
@@ -194,7 +194,7 @@ function rd_save_note($edit = 0){
         
     }
 	
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Comprobar si el título de la referencia en esa publicación existe
 	$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE title='$title' AND id_res='$res' AND id_ref<>'$id'";
 	list($num)=$db->fetchRow($db->queryF($sql));
@@ -244,7 +244,7 @@ function rd_delete_notes(){
 
 	$errors='';
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "DELETE FROM ".$db->prefix("rd_references")." WHERE id_ref IN(".implode(",",$ids).")";
     if(!$db->queryF($sql)){
         redirectMsg($ruta, __('Notes could not be deleted!','docs').'<br />'.$db->error(), 1);
@@ -266,7 +266,7 @@ function rd_locate_note(){
     
     $limit = 15;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT id_ref FROM ".$db->prefix("rd_references")." WHERE id_res='$res'";
     $result = $db->query($sql);
     if ($db->getRowsNum($result)<=$limit){

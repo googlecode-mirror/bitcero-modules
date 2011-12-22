@@ -19,7 +19,7 @@ function ahelpSearch($queryarray, $andor, $limit, $offset, $userid){
 
     $mc = RMUtilities::module_config('docs');
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $tbl1 = $db->prefix("rd_resources");
     $tbl2 = $db->prefix("rd_sections");
     

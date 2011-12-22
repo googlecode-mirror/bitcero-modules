@@ -13,7 +13,7 @@ function show_resources($by, $order='DESC'){
     
     if ($by=='') $by = 'created';
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rd_resources")." WHERE public=1 AND approved=1";
     list($num) = $db->fetchRow($db->query($sql));
     
@@ -49,12 +49,12 @@ function show_resources($by, $order='DESC'){
     }
     
     RDFunctions::breadcrumb();
-    RMBreadCrumb::get()->add_crumb(__('Browsing recent resources','docs'));
+    RMBreadCrumb::get()->add_crumb(__('Browsing recent Documents','docs'));
     
     RMTemplate::get()->add_style('docs.css', 'docs');
     
     include 'header.php';
-    $xoopsTpl->assign('xoops_pagetitle', $by=='created' ? __('Recent Resources','docs') : __('Top Resources','docs'));
+    $xoopsTpl->assign('xoops_pagetitle', $by=='created' ? __('Recent Documents','docs') : __('Top Documents','docs'));
     
     include RMEvents::get()->run_event('docs.template.explore', RMTemplate::get()->get_template('rd_search.php','module','docs'));
     
@@ -67,7 +67,7 @@ function search_resources(){
      
     $keyword = rmc_server_var($_GET, 'keyword', '');
      
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rd_resources")." WHERE (title LIKE '%$keyword%' OR description LIKE '%$keyword%') AND public=1 AND approved=1";
 
     list($num) = $db->fetchRow($db->query($sql));
@@ -103,7 +103,7 @@ function search_resources(){
     }
     
     RDFunctions::breadcrumb();
-    RMBreadCrumb::get()->add_crumb(__('Browsing recent resources','docs'));
+    RMBreadCrumb::get()->add_crumb(__('Browsing recent Documents','docs'));
     
     RMTemplate::get()->add_style('docs.css', 'docs');
     

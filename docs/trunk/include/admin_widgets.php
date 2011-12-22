@@ -41,7 +41,7 @@ function rd_widget_options(){
 }
 
 /**
-* Show the references created for a resource
+* Show the references created for a Document
 */
 function rd_widget_references(){
     global $res, $rmc_config;
@@ -59,7 +59,7 @@ function rd_widget_references(){
 <div id="rd-wd-references">
     <ul>
     <?php
-        if(count($references)<=0) _e('There are not exists references for this resource yet!','docs');
+        if(count($references)<=0) _e('There are not exists references for this Document yet!','docs');
         foreach($references as $ref):
     ?>
         <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[note:<?php echo $ref['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $ref['title']; ?></a></li>
@@ -76,12 +76,12 @@ function rd_widget_references(){
 }
 
 /**
-* Shows the figures for a resource
+* Shows the figures for a Document
 */
 function rd_widget_figures(){
     global $res, $rmc_config;
     
-    $ret['title'] = __('Resource Figures','docs');
+    $ret['title'] = __('Document Figures','docs');
     $count = 0;
     $figures = RDFunctions::figures($res->id(),&$count, '',0,6);
 
@@ -94,7 +94,7 @@ function rd_widget_figures(){
 <div id="rd-wd-figures">
     <ul>
     <?php
-        if(count($figures)<=0) _e('There are not exists figures for this resource yet!','docs');
+        if(count($figures)<=0) _e('There are not exists figures for this Document yet!','docs');
         foreach($figures as $fig):
     ?>
         <li><a href="javascript:;" onclick="docsAjax.insertIntoEditor('[figure:<?php echo $fig['id']; ?>]','<?php echo $rmc_config['editor_type']; ?>');"><?php echo $fig['title']; ?></a></li>

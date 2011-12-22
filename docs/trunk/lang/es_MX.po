@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: RapidDocs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-13 22:31-0600\n"
-"PO-Revision-Date: 2010-11-13 22:42-0600\n"
-"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"PO-Revision-Date: 2011-12-14 06:48-0500\n"
+"Last-Translator: Michael Beck <mambax7@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "¡La sección especificada no existe!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:57
 #, php-format
-msgid "Manage resource \"%s\""
+msgid "Manage Document \"%s\""
 msgstr "Administrar recurso \"%s\""
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:63
@@ -58,7 +58,7 @@ msgid "Create new section"
 msgstr "Crear nueva sección"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:185
-msgid "This resource has not been approved yet!"
+msgid "This Document has not been approved yet!"
 msgstr "¡Este recurso aún no ha sido aprovado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/edit.php:200
@@ -121,11 +121,11 @@ msgstr "No estas autorizado para ver esta página"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:128
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:141
-msgid "Select Resource"
+msgid "Select Document"
 msgstr "Selecciona un recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:131
-msgid "Select another resource to show the figures that belong to this."
+msgid "Select another Document to show the figures that belong to this."
 msgstr "Selecciona otro recurso para ver las figuras que le pertenecen."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:134
@@ -139,7 +139,7 @@ msgid "Create a new figure"
 msgstr "Crear una nueva figura"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:165
-msgid "A resource has not been specified!"
+msgid "A Document has not been specified!"
 msgstr "¡No se ha espcificado un recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:172
@@ -151,14 +151,14 @@ msgid "Sepecified figure does not exists"
 msgstr "La figura especificada no existe"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:223
-msgid "No resource has been selected!"
+msgid "No Document has been selected!"
 msgstr "¡No se ha seleccionado un recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:230
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:190
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:29
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:119
-msgid "Specified resource does not exists!"
+msgid "Specified Document does not exists!"
 msgstr "¡El recurso especificado no existe!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/figures.php:238
@@ -189,20 +189,20 @@ msgid "Figures deleted successfully!"
 msgstr "¡Figuras eliminadas correctamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:23
-msgid "The creation of new resources has been disabled by Administrator."
+msgid "The creation of new Documents has been disabled by Administrator."
 msgstr "La creación de nuevos recursos ha sido desactivada por el administrador."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:30
-msgid "You can not create resources."
+msgid "You can not create Documents."
 msgstr "No puedes crear recursos."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:34
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:36
-msgid "Create Resource"
+msgid "Create Document"
 msgstr "Crear Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:38
-msgid "Resource title"
+msgid "Document title"
 msgstr "Título del Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:39
@@ -215,7 +215,7 @@ msgid "Editors"
 msgstr "Editores"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:45
-msgid "Groups that can read resource"
+msgid "Groups that can read Document"
 msgstr "Grupos que pueden leer el recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:46
@@ -243,7 +243,7 @@ msgid "Wait for approval"
 msgstr "Esperando aprobación"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:53
-msgid "Publish Resource"
+msgid "Publish Document"
 msgstr "Publicar Recruso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:96
@@ -251,23 +251,23 @@ msgid "There is already a resourrce with the same name!"
 msgstr "¡Ya existe un recurso con el mismo nombre!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:133
-msgid "Resource could not be created!"
+msgid "Document could not be created!"
 msgstr "¡El recurso no pudo ser creado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:139
-msgid "New resource created at RapidDocs is waiting for approval"
+msgid "New Document created at RapidDocs is waiting for approval"
 msgstr "Un nuevo recurso creado en RapidDocs esta en espera de aprobación"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:146
-msgid "Your resource has been created, however the email to Administrator could no be sent."
+msgid "Your Document has been created, however the email to Administrator could no be sent."
 msgstr "Tu recurso ha sido creado, sin embargo el email de confirmación no pudo ser enviado al administrador."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:149
-msgid "Your resource has been created and is pending for approval. We will sent an email when you can access to it and add content."
+msgid "Your Document has been created and is pending for approval. We will sent an email when you can access to it and add content."
 msgstr "Tu recurso ha sido creado y esta pendiente de ser aprobado. Te enviaremos un email cuando puedas acceder a el y a su contenido."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/publish.php:160
-msgid "Resource created successfully!"
+msgid "Document created successfully!"
 msgstr "¡Recurso creado satisfactoriamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:109
@@ -280,7 +280,7 @@ msgid "Specified note does not exists!"
 msgstr "¡La nota especificada no existe!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:144
-msgid "Select another resource to show the notes that belong to this."
+msgid "Select another Document to show the notes that belong to this."
 msgstr "Selecciona otro recurso para mostrar las notas que le pertenecen."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:147
@@ -292,7 +292,7 @@ msgid "Create a new note."
 msgstr "Crear nueva nota."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:183
-msgid "Resource ID not provided!"
+msgid "Document ID not provided!"
 msgstr "¡El ID del recurso no ha sido proporcionado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/references.php:197
@@ -324,26 +324,26 @@ msgstr "Ocurrieron errores al intentar eliminar las notas."
 msgid "Notes deleted successfully!"
 msgstr "¡Notas eliminadas satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/resource.php:31
-msgid "Sorry, this resource does not exists!"
+#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:31
+msgid "Sorry, this Document does not exists!"
 msgstr "¡Lo sentimos, el recurso no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/resource.php:38
-#: E:\webserver\htdocs\xoops24\modules\docs/resource.php:43
-msgid "Sorry, you are not authorized to view this resource"
+#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:38
+#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:43
+msgid "Sorry, you are not authorized to view this Document"
 msgstr "Lo sentimos, no estas autorizado para ver este recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/search.php:52
 #: E:\webserver\htdocs\xoops24\modules\docs/search.php:106
-msgid "Browsing recent resources"
+msgid "Browsing recent Documents"
 msgstr "Examinando recursos recientes"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/search.php:57
-msgid "Recent Resources"
+msgid "Recent Documents"
 msgstr "Recursos Recientes"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/search.php:57
-msgid "Top Resources"
+msgid "Top Documents"
 msgstr "Recursos Populares"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/search.php:111
@@ -377,19 +377,19 @@ msgid "As table"
 msgstr "Como tabla"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:147
-msgid "Resources"
+msgid "Documents"
 msgstr "Recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:148
-msgid "List of resources"
+msgid "List of Documents"
 msgstr "Lista de recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:157
-msgid "Resource TOC"
+msgid "Document TOC"
 msgstr "TOC del Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:158
-msgid "Table of content for a specific resource"
+msgid "Table of content for a specific Document"
 msgstr "Tabla de contenidos para un recurso específico"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:49
@@ -444,6 +444,7 @@ msgid "Title"
 msgstr "Título"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:249
+#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:141
 msgid "Content"
 msgstr "Contenido"
 
@@ -473,7 +474,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:24
-msgid "First select a resource to view the figures."
+msgid "First select a Document to view the figures."
 msgstr "Primerso selecciona un recurso para ver las figuras."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:85
@@ -499,7 +500,7 @@ msgid "Edit Figure"
 msgstr "Editar Figura"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:114
-msgid "First select a resource to manage the figures."
+msgid "First select a Document to manage the figures."
 msgstr "Primero selecciona un recurso para administrar sus figuras."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:125
@@ -509,10 +510,6 @@ msgstr "¡No has especificado una figura para editar!"
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:137
 msgid "Editing Figure"
 msgstr "Editando Figura"
-
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:141
-msgid "Content"
-msgstr "Contenido"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:143
 msgid "Attributes"
@@ -561,12 +558,9 @@ msgstr "¡La página no pudo ser almacenada!"
 msgid "Dashboard"
 msgstr "Tablero"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:37
-msgid "All resources"
-msgstr "Todos los recursos"
-
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:38
-msgid "New resource"
+#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:118
+msgid "New Document"
 msgstr "Nuevo recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:39
@@ -608,12 +602,12 @@ msgid "Waiting"
 msgstr "Esperando"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:24
-msgid "Select a resource to view notes from this"
+msgid "Select a Document to view notes from this"
 msgstr "Selecciona un recurso para ver sus notas"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:30
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:59
-msgid "The specified resource does not exists!"
+msgid "The specified Document does not exists!"
 msgstr "¡El recurso especificado no existe!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:86
@@ -639,7 +633,7 @@ msgid "Editing Note"
 msgstr "Editando Nota"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:115
-msgid "Resource not specified"
+msgid "Document not specified"
 msgstr "Recurso no especificado"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:126
@@ -679,7 +673,7 @@ msgid "Notes could not be deleted!"
 msgstr "¡"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:75
-msgid "Do you really want to delete selected resources?"
+msgid "Do you really want to delete selected Documents?"
 msgstr "¿Realmente deseas eliminar los recursos seleccionados?"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:76
@@ -687,28 +681,24 @@ msgid "You must select an element before to do this action!"
 msgstr "¡Debes seleccionar un elemento antes de realizar esta acción!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:96
-msgid "Editing Resource"
+msgid "Editing Document"
 msgstr "Aditando Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:105
-msgid "You must provide an ID from some resource to edit!"
+msgid "You must provide an ID from some Document to edit!"
 msgstr "¡Debes especificar el ID de algún recurso para editar!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:118
 #, php-format
-msgid "Edit Resource: %s"
+msgid "Edit Document: %s"
 msgstr "Editar Recurso: %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:118
-msgid "New Resource"
-msgstr "Nuevo Recurso"
-
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:121
-msgid "Resource slug"
+msgid "Document slug"
 msgstr "Nombre corto"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:127
-msgid "Resource owner"
+msgid "Document owner"
 msgstr "Propietario del recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:129
@@ -716,7 +706,7 @@ msgid "Approve content and changes by editors"
 msgstr "Aprobar contenido y cambios hechos por editores"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:130
-msgid "Groups that can see this resource"
+msgid "Groups that can see this Document"
 msgstr "Grupos que pueden ver este recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:131
@@ -732,60 +722,60 @@ msgid "Approve inmediatly"
 msgstr "Aprobar inmediatamente"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:140
-msgid "When you enable this option the resource content will show in a single page."
+msgid "When you enable this option the Document content will show in a single page."
 msgstr "Si activas esta opción el contenido del recurso se mostrará en una sola página."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:143
-msgid "Update Resource"
+msgid "Update Document"
 msgstr "Actualizar Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:188
-msgid "You must provide a valid resource ID"
+msgid "You must provide a valid Document ID"
 msgstr "Debes proporciona uan ID valido"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:203
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:213
-msgid "A resource with same title exists already!"
+msgid "A Document with same title exists already!"
 msgstr "¡Ya existe un recurso con el mismo título!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:260
-msgid "Resource could not be saved!"
+msgid "Document could not be saved!"
 msgstr "¡El recurso no pudo ser almacenado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:279
-msgid "Resource saved successfully!"
+msgid "Document saved successfully!"
 msgstr "¡Recurso almacenado correctamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:294
-msgid "Select at least one resources to delete!"
+msgid "Select at least one Documents to delete!"
 msgstr "¡Selecciona al menos un recurso para eliminar!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:307
 #, php-format
-msgid "\"%s\" is not a valid resource ID"
+msgid "\"%s\" is not a valid Document ID"
 msgstr "\"%s\" no es un recurso válido"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:313
 #, php-format
-msgid "Resource with ID \"%s\" does not exists"
+msgid "Document with ID \"%s\" does not exists"
 msgstr "El recurso con el ID \"%s\" no existe"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:318
 #, php-format
-msgid "Resource \"%s\" could not be deleted!"
+msgid "Document \"%s\" could not be deleted!"
 msgstr "¡El recurso %s no pudo ser eliminado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:324
-msgid "Errors ocurred while deleting resources"
+msgid "Errors ocurred while deleting Documents"
 msgstr "Ocurrieron errores al eliminar recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:326
-msgid "Resources deleted susccessfully!"
+msgid "Documents deleted susccessfully!"
 msgstr "¡Recursos eliminados satisfactoriamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:347
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:398
-msgid "You must select at least a single resource!"
+msgid "You must select at least a single Document!"
 msgstr "¡Debes seleccionar por lo menos un recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:356
@@ -798,25 +788,25 @@ msgstr "¡El ID de recurso %s no existe!"
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:414
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:484
 #, php-format
-msgid "Resource with ID \"%s\" does not exists!"
+msgid "Document with ID \"%s\" does not exists!"
 msgstr "¡El recurso con ID %s no existe!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:369
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:420
 #, php-format
-msgid "Resource \"%s\" could not be updated!"
+msgid "Document \"%s\" could not be updated!"
 msgstr "¡El recurso %s no pudo ser actualizado!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:374
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:425
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:502
-msgid "Errors ocurred while trying to update resources."
+msgid "Errors ocurred while trying to update Documents."
 msgstr "Ocurrieron errores al intentar actualizar los recursos."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:377
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:428
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:504
-msgid "Resources updated successfully!"
+msgid "Documents updated successfully!"
 msgstr "¡Recursos actualizados satisfactoriamente!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:446
@@ -824,12 +814,12 @@ msgid "Database coould not be updated!"
 msgstr "¡La base de datos no pudo ser actualizada!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:468
-msgid "Select at least a resource!"
+msgid "Select at least a Document!"
 msgstr "¡Selecciona al menos un recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:477
 #, php-format
-msgid "Resource ID \"%s\" is not valid!"
+msgid "Document ID \"%s\" is not valid!"
 msgstr "¡El ID de recurso %s no es válido!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:492
@@ -842,7 +832,7 @@ msgid "Notification email could not be sent!"
 msgstr "¡No se pudo enviar el email de notifiación!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:53
-msgid "Select a resource to see the sections inside this"
+msgid "Select a Document to see the sections inside this"
 msgstr "Selecciona un recurso para ver las secciones que contiene"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:84
@@ -851,7 +841,7 @@ msgid "Sections Management"
 msgstr "Administración de Secciones"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:107
-msgid "You must select a resource in order to create a new section"
+msgid "You must select a Document in order to create a new section"
 msgstr "Debes seleccionar un recurso para poder crear una nueva sección"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:126
@@ -873,7 +863,7 @@ msgid "Create Section"
 msgstr "Crear Sección"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:188
-msgid "A resource was not specified!"
+msgid "A Document was not specified!"
 msgstr "¡No se ha especificado un recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:204
@@ -889,7 +879,7 @@ msgid "Sections has been saved but some errors ocurred"
 msgstr "Las secciones fueron guardadas pero ocurrieron algunos errores"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:318
-msgid "You have not specify a resource id"
+msgid "You have not specify a Document id"
 msgstr "No has especificado un ID de recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:330
@@ -919,7 +909,7 @@ msgid "Block type:"
 msgstr "Tipo de bloque:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:80
-msgid "Number of resources:"
+msgid "Number of Documents:"
 msgstr "Número de recursos:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:84
@@ -968,23 +958,24 @@ msgstr "Insertar Tabla de Contenidos"
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:115
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:116
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:140
-msgid "Resources Index"
+msgid "Documents Index"
 msgstr "Índice del Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:121
-msgid "Insert Resources Index"
+msgid "Insert Documents Index"
 msgstr "Insertar Índice del Recurso"
 
+#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:37
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:146
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:250
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:309
-msgid "All Resources"
+msgid "All Documents"
 msgstr "Todos los Recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:153
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:251
 #: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:310
-msgid "Featured Resources"
+msgid "Featured Documents"
 msgstr "Recursos Destacados"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:24
@@ -1008,15 +999,15 @@ msgid "Notes &amp; References"
 msgstr "Notas y Referencias"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:62
-msgid "There are not exists references for this resource yet!"
+msgid "There are not exists references for this Document yet!"
 msgstr "¡Todavía no existen referencias para este recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:84
-msgid "Resource Figures"
+msgid "Document Figures"
 msgstr "Figuras del Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:97
-msgid "There are not exists figures for this resource yet!"
+msgid "There are not exists figures for this Document yet!"
 msgstr "¡Todavía no existen figuras para este recurso!"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:121
@@ -1033,11 +1024,11 @@ msgid "Content:"
 msgstr "Contenido:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:11
-msgid "Display method for Resources index"
+msgid "Display method for Documents index"
 msgstr "Modo de presentación del índice de recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:12
-msgid "Choose the method that you wish to use when display the resources index. This option affects to All, Recent and Featured index of resources."
+msgid "Choose the method that you wish to use when display the Documents index. This option affects to All, Recent and Featured index of Documents."
 msgstr "Selecciona el método que deseas usar cuando se muestre el índice de los recursos. Este opción afecta a Todo, Recursos recientes y destacados."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:13
@@ -1053,7 +1044,7 @@ msgid "URLs mode:"
 msgstr "Modo de URLs:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:16
-msgid "This options indicate the way in wich RapidDocs will generate the urls for resources."
+msgid "This options indicate the way in wich RapidDocs will generate the urls for Documents."
 msgstr "Esta opción indica la forma en que RapidDocs generará las urls para los recursos."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:17
@@ -1073,27 +1064,27 @@ msgid "This option is used only when display method is \"as list\""
 msgstr "Esta opción es utilizada solo cuando la forma de presentación es \"como lista\""
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:21
-msgid "Number of resources on the index"
+msgid "Number of Documents on the index"
 msgstr "Número de recursos en el índice"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:22
-msgid "This is the limit number for resources displayed on index"
+msgid "This is the limit number for Documents displayed on index"
 msgstr "Este es el número límite de recursos mostrados en el índice."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:23
-msgid "Groups with authorization to create new resources"
+msgid "Groups with authorization to create new Documents"
 msgstr "Grupos con autorización para crear nuevos recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:24
-msgid "Select the groups that you wisth to authorize to create new resources."
+msgid "Select the groups that you wisth to authorize to create new Documents."
 msgstr "Selecciona los gurpos a los que deseas autorizar para crear nuevos recursos."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:25
-msgid "Allow the creation of new resources"
+msgid "Allow the creation of new Documents"
 msgstr "Permitir la creación de nuevos recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:26
-msgid "Auto approve resources created for allowed users"
+msgid "Auto approve Documents created for allowed users"
 msgstr "Aprobar automáticamente los recursos creados por usuarios autorizados"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:6
@@ -1144,7 +1135,7 @@ msgid "Wait a second..."
 msgstr "Espera un segundo..."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:118
-msgid "Resource:"
+msgid "Document:"
 msgstr "Recurso:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:121
@@ -1200,7 +1191,7 @@ msgid "Notes was not found."
 msgstr "Notas no ecnontradas."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:73
-msgid "Select resource first"
+msgid "Select Document first"
 msgstr "Primero selecciona un recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:76
@@ -1291,7 +1282,7 @@ msgid "New Page"
 msgstr "Nueva Página"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:7
-msgid "Resource"
+msgid "Document"
 msgstr "Recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:12
@@ -1409,7 +1400,7 @@ msgstr "Aplicar"
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:19
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:20
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:5
-msgid "Choose another resource"
+msgid "Choose another Document"
 msgstr "Seleccionar otro recurso"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:20
@@ -1421,7 +1412,7 @@ msgid "New Figure"
 msgstr "Nueva Figura"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:44
-msgid "There are not figures created for this resource."
+msgid "There are not figures created for this Document."
 msgstr "No hay figuras creadas en este recurso."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:1
@@ -1433,11 +1424,11 @@ msgid "You can edit and customize the home page for RapidDocs."
 msgstr "Puedes editar y personalizar la página inicial de RapidDocs"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:5
-msgid "Add your own content and include resources to integrate the home page with your site."
+msgid "Add your own content and include Documents to integrate the home page with your site."
 msgstr "Agrega tu propio contenido e incluye recursos para integrar la página inicial de tu sitio."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:9
-msgid "Resources by popularity"
+msgid "Documents by popularity"
 msgstr "Recursos por popularidad"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:30
@@ -1450,7 +1441,7 @@ msgstr "Resumen de RapidDocs"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:67
 #, php-format
-msgid "%s Resources"
+msgid "%s Documents"
 msgstr "%s Recursos"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:68
@@ -1469,15 +1460,15 @@ msgid "%s Notes & References"
 msgstr "%s Notas y Referencias"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:78
-msgid "Resources waiting for approval"
+msgid "Documents waiting for approval"
 msgstr "Recursos esperando por aprobación"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:92
-msgid "No Published Resources"
+msgid "No Published Documents"
 msgstr "Recursos no Publicados"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:114
-msgid "There are not resources to show here."
+msgid "There are not Documents to show here."
 msgstr "No hay recursos para mostrar aquí"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:120
@@ -1493,20 +1484,20 @@ msgid "All Notes"
 msgstr "Todas las Notas"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:44
-msgid "There are not notes created for this resource."
+msgid "There are not notes created for this Document."
 msgstr "No hay notas creadas para este recurso."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:3
-msgid "Search Resources:"
+msgid "Search Documents:"
 msgstr "Buscar Recursos:"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:8
 #, php-format
-msgid "Resources: results for \"%s\""
+msgid "Documents: results for \"%s\""
 msgstr "Recursos: resultados para %s"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:10
-msgid "Available Resources"
+msgid "Available Documents"
 msgstr "Recursos Disponibles"
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:18
@@ -1701,7 +1692,7 @@ msgstr "Este es un mensaje automático enviado por el sitio %s."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_approved.php:7
 #, php-format
-msgid "Your resource \"%s\" has been approved and now is visible for other users. To visit this resource, please follow next link."
+msgid "Your Document \"%s\" has been approved and now is visible for other users. To visit this Document, please follow next link."
 msgstr "Tu recurso %s ha sido aprobado y ahora es visible para otros usuarios. Para visitar este recurso visita el siguiente enlace."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_approved.php:14
@@ -1709,7 +1700,7 @@ msgid "Please do not respond to this message. This is an automatic message."
 msgstr "Por favor no responda a este mensaje. Este es un mensaje automático."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_for_approval.php:4
-msgid "A new resource has been created and is waiting for your approval."
+msgid "A new Document has been created and is waiting for your approval."
 msgstr "Un nuevo recurso ha sido creado y esta esperando por tu aprobación."
 
 #: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_for_approval.php:7
@@ -1722,6 +1713,3 @@ msgstr "Este mensaje ha sido creado automáticamente por RapidDocs."
 
 #~ msgid "Sepecified content does not exists!"
 #~ msgstr "¡El contenido especificado no existe!"
-
-#~ msgid "Session token expired!"
-#~ msgstr "¡El identificador de sesión ha expirado!"

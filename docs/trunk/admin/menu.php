@@ -29,13 +29,13 @@ $adminmenu[1]['icon'] = "../images/homepage.png";
 $adminmenu[1]['location'] = "homepage";
 
 //Publicaciones
-$adminmenu[2]['title'] = __('Resources','docs');
+$adminmenu[2]['title'] = __('Documents','docs');
 $adminmenu[2]['link'] = "./admin/resources.php";
 $adminmenu[2]['icon'] = "../images/book.png";
 $adminmenu[2]['location'] = "resources";
 $adminmenu[2]['options'] = array(
-	array('title'=>__('All resources','docs'), 'link'=>'resources.php', 'selected'=>'resources'),
-	array('title'=>__('New resource','docs'), 'link'=>'resources.php?action=new', 'selected'=>'newresource'),
+	array('title'=>__('All Documents','docs'), 'link'=>'resources.php', 'selected'=>'resources'),
+	array('title'=>__('New Document','docs'), 'link'=>'resources.php?action=new', 'selected'=>'newresource'),
 	array('title'=>__('Drafts','docs'), 'link'=>'resources.php?action=drafts', 'selected'=>'drafts')
 );
 

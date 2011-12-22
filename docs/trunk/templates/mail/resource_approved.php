@@ -4,7 +4,7 @@
 <?php echo sprintf(__('This is an automatic email message sent from %s site.','docs'), $site_name); ?>
 
 
-<?php echo sprintf(__('Your resource "%s" has been approved and now is visible for other users. To visit this resource, please follow next link.','docs'), $resource_name); ?>
+<?php echo sprintf(__('Your Document "%s" has been approved and now is visible for other users. To visit this Document, please follow next link.','docs'), $resource_name); ?>
 
 
 <?php echo $link_to_resource; ?>

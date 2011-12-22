@@ -17,7 +17,7 @@
         </select>
         <input type="button" id="the-op-top" value="<?php _e('Apply','docs'); ?>" onclick="before_submit('frm-notes');" />
         &nbsp;&nbsp;
-        <strong><a href="resources.php"><?php _e('Choose another resource','docs'); ?></a></strong> |
+        <strong><a href="resources.php"><?php _e('Choose another Document','docs'); ?></a></strong> |
         <a href="notes.php?res=<?php echo $id_res; ?>"><?php _e('All Notes','docs'); ?></a>
         <?php RMEvents::get()->run_event('docs.get.notes.options'); ?>
     </div>
@@ -41,7 +41,7 @@
         <tbody>
         <?php if(empty($notes)): ?>
         <tr class="even" align="center">
-            <td colspan="4"><?php _e('There are not notes created for this resource.','docs'); ?></td>
+            <td colspan="4"><?php _e('There are not notes created for this Document.','docs'); ?></td>
         </tr>
         <?php endif; ?>
 	    <?php foreach($notes as $note): ?>

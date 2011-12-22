@@ -12,7 +12,7 @@ class RDReference extends RMObject{
 
 	function __construct($id=null){
 
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("rd_references");
 		$this->setNew();
 		$this->initVarsFromTable();

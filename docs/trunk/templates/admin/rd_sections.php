@@ -2,7 +2,7 @@
 
 <form name="frmsec" method="POST" action="sections.php" id="frm-sections">
 <div class="rd_loptions">
-    <strong><a href="resources.php"><?php _e('Choose another resource','docs'); ?></a></strong> |
+    <strong><a href="resources.php"><?php _e('Choose another Document','docs'); ?></a></strong> |
     <a href="sections.php?id=<?php echo $id; ?>"><?php _e('List Sections','docs'); ?></a> |
     <a href="sections.php?id=<?php echo $id; ?>&amp;action=new"><?php _e('New Section','docs'); ?></a>
     <?php RMEvents::get()->run_event('docs.get.sections.options'); ?>
@@ -29,6 +29,11 @@
     </tr>
     </tfoot>
     <tbody>
+        <?php if(empty($sections)): ?>
+        <tr align="center" class="even">
+            <td colspan="6"><?php _e('There are not sections created in this document!','docs'); ?></td>
+        </tr>
+        <?php endif; ?>
 	<?php foreach($sections as $section): ?>
 	<tr align="center" valign="top" class="<?php echo tpl_cycle("even,odd"); ?>">
 		<td align="left">

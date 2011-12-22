@@ -19,7 +19,7 @@ function show_resources(){
 	
     $query = rmc_server_var($_REQUEST,'query','');
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Navegador de páginas
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources');
     if($query)
@@ -67,16 +67,16 @@ function show_resources(){
 
 
     RMTemplate::get()->add_style('admin.css', 'docs');
-    RMTemplate::get()->assign('xoops_pagetitle', __('Resources', 'docs'));
+    RMTemplate::get()->assign('xoops_pagetitle', __('Documents', 'docs'));
     RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.checkboxes.js');
     RMTemplate::get()->add_script(XOOPS_URL.'/modules/docs/include/js/admin.js');
     
     RMTemplate::get()->add_head('<script type="text/javascript">
-    var rd_message = "'.__('Do you really wish to delete selected resources?','docs').'";
+    var rd_message = "'.__('Do you really wish to delete selected Documents?','docs').'";
     var rd_select_message = "'.__('You must select an element before to do this action!','docs').'";
     </script>');
     
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Resources','docs'));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Documents','docs'));
 	RDFunctions::toolbar();
 	xoops_cp_header();
 	
@@ -93,7 +93,7 @@ function rd_show_form($edit=0){
 	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig;
 
     RDFunctions::toolbar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Editing Resource','docs') : __('Create Resource','docs')));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Editing Document','docs') : __('Create Document','docs')));
 	xoops_cp_header();
 
 	$id= rmc_server_var($_GET,'id', 0);
@@ -102,32 +102,32 @@ function rd_show_form($edit=0){
 	if ($edit){
 		//Comprueba si la publicación es válida
 		if ($id<=0){
-			redirectMsg('./resources.php?page='.$page, __('You must provide an ID from some resource to edit!', 'docs'),1);
+			redirectMsg('./resources.php?page='.$page, __('You must provide an ID from some Document to edit!', 'docs'),1);
 			die();		
 		}
 		
 		//Comprueba si la publicación existe
 		$res= new RDResource($id);
 		if ($res->isNew()){
-			redirectMsg('./resources.php?page='.$page, __('Specified resource does not exists!','docs'),1);
+			redirectMsg('./resources.php?page='.$page, __('Specified Document does not exists!','docs'),1);
 			die();
 		}	
 
 	}
 
-	$form = new RMForm($edit ? sprintf(__('Edit Resource: %s','docs'), $res->getVar('title')) : __('New Resource','docs'),'frmres','resources.php');
+	$form = new RMForm($edit ? sprintf(__('Edit Document: %s','docs'), $res->getVar('title')) : __('New Document','docs'),'frmres','resources.php');
 	
-	$form->addElement(new RMFormText(__('Resource title', 'docs'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
-	if ($edit) $form->addElement(new RMFormText(__('Resource slug', 'docs'),'nameid',50,150,$res->getVar('nameid')));
+	$form->addElement(new RMFormText(__('Document title', 'docs'),'title',50,150,$edit ? $res->getVar('title') : ''),true);
+	if ($edit) $form->addElement(new RMFormText(__('Document slug', 'docs'),'nameid',50,150,$res->getVar('nameid')));
 	$form->addElement(new RMFormTextArea(__('Description', 'docs'),'desc',5,50,$edit ? $res->getVar('description','e') : ''),true);
 	$form->addElement(new RMFormUser(__('Editors','docs'),'editors',1,$edit ? $res->getVar('editors') : '',30));
 
 	//Propietario de la publicacion
 	if ($edit){
-		$form->addElement(new RMFormUser(__('Resource owner', 'docs'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
+		$form->addElement(new RMFormUser(__('Document owner', 'docs'),'owner',0,$edit ? array($res->getVar('owner')) : '',30));
 	}
 	$form->addElement(new RMFormYesno(__('Approve content and changes by editors', 'docs'),'approvededit',$edit ? $res->getVar('editor_approve') : 0));
-	$form->addElement(new RMFormGroups(__('Groups that can see this resource', 'docs'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
+	$form->addElement(new RMFormGroups(__('Groups that can see this Document', 'docs'),'groups',1,1,5,$edit ? $res->getVar('groups') : array(1,2)),true);
 	$form->addElement(new RMFormYesno(__('Set as public','docs', 'docs'),'public',$edit ? $res->getVar('public') : 0));
 	$form->addElement(new RMFormYesNo(__('Quick index', 'docs'),'quick',$edit ? $res->getVar('quick') : 0));
 
@@ -137,10 +137,10 @@ function rd_show_form($edit=0){
 	$form->addElement(new RMFormYesno(__('Featured','docs'),'featured',$edit ? $res->getVar('featured') : 0));
 	$form->addElement(new RMFormYesno(__('Approve inmediatly','docs'),'approvedres',$edit ? $res->getVar('approved') : 1));
     $form->addElement(new RMFormYesno(__('Show content in a single page','docs'),'single',$edit ? $res->getVar('single') : 0));
-    $form->element('single')->setDescription(__('When you enable this option the resource content will show in a single page.','docs'));
+    $form->element('single')->setDescription(__('When you enable this option the Document content will show in a single page.','docs'));
 
 	$buttons =new RMFormButtonGroup();
-	$buttons->addButton('sbt',$edit ? __('Update Resource','docs') : __('Create Resource','docs'),'submit');
+	$buttons->addButton('sbt',$edit ? __('Update Document','docs') : __('Create Document','docs'),'submit');
 	$buttons->addButton('cancel',__('Cancel','docs'),'button', 'onclick="window.location=\'resources.php\';"');
 
 	$form->addElement($buttons);
@@ -180,19 +180,19 @@ function rd_save_resource($edit=0){
         die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
 	if ($edit){
 		//Comprueba si la publicación es válida
 		if ($id<=0){
-			redirectMsg('resources.php', __('You must provide a valid resource ID','docs'), 1);
+			redirectMsg('resources.php', __('You must provide a valid Document ID','docs'), 1);
 			die();		
 		}
 		
 		//Comprueba si la publicación existe
 		$res= new RDResource($id);
 		if ($res->isNew()){
-			redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+			redirectMsg('resources.php', __('Specified Document does not exists!','docs'), 1);
 			die();
 		}	
 
@@ -200,7 +200,7 @@ function rd_save_resource($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' AND id_res<>'".$id."'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);	
+			redirectMsg('resources.php?'.$q,__('A Document with same title exists already!','docs'),1);	
 			die();
 		}
 
@@ -210,7 +210,7 @@ function rd_save_resource($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('rd_resources')." WHERE title='$title' ";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
-			redirectMsg('resources.php?'.$q,__('A resource with same title exists already!','docs'),1);    
+			redirectMsg('resources.php?'.$q,__('A Document with same title exists already!','docs'),1);    
             die();
 		}
 		$res = new RDResource();
@@ -257,7 +257,7 @@ function rd_save_resource($edit=0){
 	}
 
 	if (!$res->save()){
-        redirectMsg('resources.php?'.$q, __('Resource could not be saved!','docs').'<br />'.$res->errors(), 1);
+        redirectMsg('resources.php?'.$q, __('Document could not be saved!','docs').'<br />'.$res->errors(), 1);
         die();
 	}else{
 		if (!$res->isNew()){
@@ -276,7 +276,7 @@ function rd_save_resource($edit=0){
 
 		}
 
-		redirectMsg('./resources.php?limit='.$limit.'&page='.$page,__('Resource saved successfully!','docs'),0);
+		redirectMsg('./resources.php?limit='.$limit.'&page='.$page,__('Document saved successfully!','docs'),0);
 	}
 
 }
@@ -304,18 +304,18 @@ function rd_delete_resource(){
     foreach($ids as $id){
         
         if ($id<=0){
-            $errors .= sprintf(__('"%s" is not a valid resource ID','docs'), $id);
+            $errors .= sprintf(__('"%s" is not a valid Document ID','docs'), $id);
             continue;
         }
         
         $res = new RDResource($id);
         if ($res->isNew()){
-            $errors .= sprintf(__('Resource with ID "%s" does not exists','docs'), $id);
+            $errors .= sprintf(__('Document with ID "%s" does not exists','docs'), $id);
             continue;
         }
         
         if (!$res->delete()){
-            $errors .= sprintf(__('Resource "%s" could not be deleted!','docs'), $res->getVar('title')).'<br />'.$res->errors();
+            $errors .= sprintf(__('Document "%s" could not be deleted!','docs'), $res->getVar('title')).'<br />'.$res->errors();
         }
         
     }
@@ -323,7 +323,7 @@ function rd_delete_resource(){
     if ($errors!=''){
         redirectMsg("resources.php?page=$page", __('Errors ocurred while deleting resources','docs').'<br />'.$errors, 1);
     } else {
-        redirectMsg("resources.php?page=$page", __('Resources deleted susccessfully!','docs'), 0);
+        redirectMsg("resources.php?page=$page", __('Documents deleted susccessfully!','docs'), 0);
     }
 
 }
@@ -344,7 +344,7 @@ function public_resources($pub=0){
 
 	//Verifica que se haya proporcionado una publicación
 	if (!is_array($resources) || empty($resources)){
-		redirectMsg('./resources.php?page='.$page, __('You must select at least a single resource!','docs'),1);
+		redirectMsg('./resources.php?page='.$page, __('You must select at least a single Document!','docs'),1);
 		die();		
 	}
 	
@@ -353,20 +353,20 @@ function public_resources($pub=0){
 		
 		//Comprueba si la publicación es válida
 		if ($k<=0){
-			$errors.=sprintf(__('Provided resourse ID "%s" is not valid!','docs'), $k);
+			$errors.=sprintf(__('Provided Document ID "%s" is not valid!','docs'), $k);
 			continue;
 		}
 		
 		//Comprueba si la publicación existe
 		$res= new RDResource($k);
 		if ($res->isNew()){
-			$errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
+			$errors.=sprintf(__('Document with ID "%s" does not exists!','docs'), $k);
 			continue;
 		}
 		
 		$res->setVar('public', $pub);
 		if (!$res->save()){
-			$errors.=sprintf(__('Resource "%s" could not be updated!','docs'), $res->getVar('title'));
+			$errors.=sprintf(__('Document "%s" could not be updated!','docs'), $res->getVar('title'));
 		}		
 	}
 	
@@ -374,7 +374,7 @@ function public_resources($pub=0){
 		redirectMsg('./resources.php?page='.$page, __('Errors ocurred while trying to update resources.','docs').'<br />'.$errors,1);
 		die();		
 	}else{
-		redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
+		redirectMsg('./resources.php?page='.$page, __('Documents updated successfully!','docs'),0);
 	}
 
 }
@@ -395,7 +395,7 @@ function quick_resources($quick=0){
 
     //Verifica que se haya proporcionado una publicación
     if (!is_array($resources) || empty($resources)){
-        redirectMsg('./resources.php?page='.$page, __('You must select at least a single resource!','docs'),1);
+        redirectMsg('./resources.php?page='.$page, __('You must select at least a single Document!','docs'),1);
         die();        
     }
 	
@@ -404,20 +404,20 @@ function quick_resources($quick=0){
 		
 		//Comprueba si la publicación es válida
         if ($k<=0){
-            $errors.=sprintf(__('Provided resourse ID "%s" is not valid!','docs'), $k);
+            $errors.=sprintf(__('Provided Document ID "%s" is not valid!','docs'), $k);
             continue;
         }
         
         //Comprueba si la publicación existe
         $res= new RDResource($k);
         if ($res->isNew()){
-            $errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
+            $errors.=sprintf(__('Document with ID "%s" does not exists!','docs'), $k);
             continue;
         }
 		
 		$res->setVar('quick', $quick);
 		if (!$res->save()){
-			$errors.=sprintf(__('Resource "%s" could not be updated!','docs'), $res->getVar('title'));
+			$errors.=sprintf(__('Document "%s" could not be updated!','docs'), $res->getVar('title'));
 		}		
 	}
 	
@@ -425,7 +425,7 @@ function quick_resources($quick=0){
         redirectMsg('./resources.php?page='.$page, __('Errors ocurred while trying to update resources.','docs').'<br />'.$errors,1);
         die();        
     }else{
-        redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
+        redirectMsg('./resources.php?page='.$page, __('Documents updated successfully!','docs'),0);
     }
 
 }
@@ -465,7 +465,7 @@ function approved_resources($app=0){
 	
 	//Verifica que se haya proporcionado una publicación
 	if (!is_array($resources) || empty($resources)){
-		redirectMsg('./resources.php?page='.$page, __('Select at least a resource!','docs'),1);
+		redirectMsg('./resources.php?page='.$page, __('Select at least a Document!','docs'),1);
 		die();		
 	}
 	
@@ -474,14 +474,14 @@ function approved_resources($app=0){
 		
 		//Comprueba si la publicación es válida
 		if ($k<=0){
-			$errors.=sprintf(__('Resource ID "%s" is not valid!','docs'), $k);
+			$errors.=sprintf(__('Document ID "%s" is not valid!','docs'), $k);
 			continue;
 		}
 		
 		//Comprueba si la publicación existe
 		$res= new RDResource($k);
 		if ($res->isNew()){
-			$errors.=sprintf(__('Resource with ID "%s" does not exists!','docs'), $k);
+			$errors.=sprintf(__('Document with ID "%s" does not exists!','docs'), $k);
 			continue;
 		}
         
@@ -501,7 +501,7 @@ function approved_resources($app=0){
 	if ($errors!=''){
 		redirectMsg('./resources.php?page='.$page,__('Errors ocurred while trying to update resources.').'<br />'.$errors,1);
 	}else{
-		redirectMsg('./resources.php?page='.$page, __('Resources updated successfully!','docs'),0);
+		redirectMsg('./resources.php?page='.$page, __('Documents updated successfully!','docs'),0);
 	}
 
 }

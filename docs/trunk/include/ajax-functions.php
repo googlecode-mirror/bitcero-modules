@@ -26,7 +26,7 @@ $xoopsLogger->activated = false;
 function resources_list(){
     global $xoopsUser, $xoopsModule;
 
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     //Navegador de páginas
     $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_resources');
     list($num)=$db->fetchRow($db->queryF($sql));
@@ -109,7 +109,7 @@ function notes_list(){
     
     $rmc_config = RMFunctions::configs();
 
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Navegador de páginas
     $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_references')." WHERE id_res='$id'";
@@ -164,7 +164,7 @@ function figures_list(){
     
     $rmc_config = RMFunctions::configs();
 
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Navegador de páginas
     $sql = "SELECT COUNT(*) FROM ".$db->prefix('rd_figures')." WHERE id_res='$id'";

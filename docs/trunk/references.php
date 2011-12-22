@@ -48,7 +48,7 @@ function references($edit=0){
 	$id_editor = rmc_server_var($_REQUEST, 'editor', 0);
     $rmc_config = RMFunctions::configs();
 
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $id = intval($id);
 	//Navegador de páginas
@@ -138,10 +138,10 @@ function references($edit=0){
     
     // Options for table header
     $options[] = array(
-        'title' => __('Select Resource','docs'),
+        'title' => __('Select Document','docs'),
         'href'  => 'javascript:;',
         'attrs' => 'id="option-resource" onclick="docsAjax.getSectionsList(1);"',
-        'tip'   => __('Select another resource to show the notes that belong to this.','docs')
+        'tip'   => __('Select another Document to show the notes that belong to this.','docs')
     );
     $options[] = array(
         'title' => __('Create Note','docs'),
@@ -166,7 +166,7 @@ function references($edit=0){
 function saveReferences($edit=0){
 	global $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
@@ -180,14 +180,14 @@ function saveReferences($edit=0){
 
 	//Comprobar publicacion valida
 	if ($id<=0){
-		redirectMsg('./references.php'.$ruta, __('Resource ID not provided!','docs'),1);
+		redirectMsg('./references.php'.$ruta, __('Document ID not provided!','docs'),1);
 		die();
 	}
 	
 	//Comprobar publicación existente existente
 	$res=new RDResource($id);
 	if ($res->isNew()){
-		redirectMsg('./references.php'.$ruta, __('Specified resource does not exists!','docs'),1);
+		redirectMsg('./references.php'.$ruta, __('Specified Document does not exists!','docs'),1);
 		die();
 
 	}
@@ -258,7 +258,7 @@ function deleteReferences(){
 		die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "DELETE FROM ".$db->prefix("pa_references")." WHERE id_ref IN(".implode(',',$references).")";
     
 	if (!$db->queryF($sql)){

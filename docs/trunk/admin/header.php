@@ -11,4 +11,4 @@
 include '../../../include/cp_header.php';
 
 $mc =& $xoopsModuleConfig;
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();

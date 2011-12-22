@@ -112,13 +112,13 @@ class DocsRmcommonPreload{
            
             ed.addCommand('mceRapidDocsIndexSections', function() {
                 //ed.execCommand("mceInsertContent", true, '[RDRESOURCES]');
-                c = ed.controlManager.createListBox('resources_index', {title : '<?php _e('Resources Index','docs'); ?>', cmd : 'FormatBlock'});
-                c.add('<?php _e('Resources Index','docs'); ?>','[RESOURCESINDEX]');
+                c = ed.controlManager.createListBox('resources_index', {title : '<?php _e('Documents Index','docs'); ?>', cmd : 'FormatBlock'});
+                c.add('<?php _e('Documents Index','docs'); ?>','[RESOURCESINDEX]');
                 c.showMenu();
             });
 
             ed.addButton('rd_resources', {
-                title : '<?php _e('Insert Resources Index','docs'); ?>',
+                title : '<?php _e('Insert Documents Index','docs'); ?>',
                 image : '<?php echo XOOPS_URL; ?>/modules/docs/images/index.png',
                 cmd : 'mceRapidDocsIndexSections'
             });
@@ -137,20 +137,20 @@ class DocsRmcommonPreload{
             switch(n){
                 case 'res_index':
                     var c = cm.createSplitButton('resindex', {
-                        title: '<?php _e('Resources Index','docs'); ?>',
+                        title: '<?php _e('Documents Index','docs'); ?>',
                         image: '<?php echo XOOPS_URL; ?>/modules/docs/images/index.png'
                     });
                     
                     c.onRenderMenu.add(function(c, m) {
                         m.add({
-                            title : '<?php _e('All Resources','docs'); ?>', 
+                            title : '<?php _e('All Documents','docs'); ?>', 
                             onclick : function(){
                                 tinyMCE.activeEditor.execCommand("mceInsertContent", true, '[RD_RESINDEX]');
                             }
                         });
                         
                         m.add({
-                            title : '<?php _e('Featured Resources','docs'); ?>', 
+                            title : '<?php _e('Featured Documents','docs'); ?>', 
                             onclick : function(){
                                 tinyMCE.activeEditor.execCommand("mceInsertContent", true, '[RD_FEATINDEX]');
                             }
@@ -247,8 +247,8 @@ class DocsRmcommonPreload{
 
             x.add_plugin('docsresindex', {
                 init: function(x){
-                    var options = '<li><a href="javascript:;" onclick="'+x.name+'.insertText(\'[RD_RESINDEX]\');"><?php _e('All Resources','docs'); ?></a></li>';
-                    options += '<li><a href="javascript:;" onclick="'+x.name+'.insertText(\'[RD_FEATINDEX]\');"><?php _e('Featured Resources','docs'); ?></a></li>';
+                    var options = '<li><a href="javascript:;" onclick="'+x.name+'.insertText(\'[RD_RESINDEX]\');"><?php _e('All Documents','docs'); ?></a></li>';
+                    options += '<li><a href="javascript:;" onclick="'+x.name+'.insertText(\'[RD_FEATINDEX]\');"><?php _e('Featured Documents','docs'); ?></a></li>';
                     
                     x.dropdown.add_dropdown(x,{
                         name : 'rdresindex',
@@ -263,8 +263,8 @@ class DocsRmcommonPreload{
 
             x.add_button('rdresindex',{
                name : 'rdresindex',
-               title : 'Add Resources Index',
-               alt : 'Add Resources Index',
+               title : 'Add Documents Index',
+               alt : 'Add Documents Index',
                cmd : 'show',
                plugin : 'docsresindex',
                row: 'top',
@@ -306,8 +306,8 @@ class DocsRmcommonPreload{
         
         RMTemplate::get()->add_script('../include/js/editor_options.js');
         RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.fieldselection.js');
-        $plugins[] = '<a href="javascript:;" onclick="rd_ep_insert(\'[RD_RESINDEX]\',\''.$name.'\');" title="'.__('All Resources','docs').'"><img src="../images/index16.png" alt="'.__('All Resources','docs').'" /></a>';
-        $plugins[] = '<a href="javascript:;" onclick="rd_ep_insert(\'[RD_FEATINDEX]\',\''.$name.'\');" title="'.__('Featured Resources','docs').'"><img src="../images/resfeatured.png" alt="'.__('Featured Resources','docs').'" /></a>';
+        $plugins[] = '<a href="javascript:;" onclick="rd_ep_insert(\'[RD_RESINDEX]\',\''.$name.'\');" title="'.__('All Documents','docs').'"><img src="../images/index16.png" alt="'.__('All Documents','docs').'" /></a>';
+        $plugins[] = '<a href="javascript:;" onclick="rd_ep_insert(\'[RD_FEATINDEX]\',\''.$name.'\');" title="'.__('Featured Documents','docs').'"><img src="../images/resfeatured.png" alt="'.__('Featured Documents','docs').'" /></a>';
         return $plugins;
     }
     /**

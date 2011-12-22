@@ -11,13 +11,13 @@
 class RDResource extends RMObject{
 	
 	/**
-	* Stores the references existing for this resource
+	* Stores the references existing for this Document
 	* 
 	* @var array
 	*/
 	private $references = array();
 	/**
-	* Stores the figures existing for this resource
+	* Stores the figures existing for this Document
 	* 
 	* @var array
 	*/
@@ -25,7 +25,7 @@ class RDResource extends RMObject{
 	
 	function __construct($id=null){
 
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("rd_resources");
 		$this->setNew();
 		$this->initVarsFromTable();
@@ -53,7 +53,7 @@ class RDResource extends RMObject{
 	}
 	
 	/**
-	* Get the references for this resource
+	* Get the references for this Document
 	* @return array
 	*/
 	public function get_references(){
@@ -73,7 +73,7 @@ class RDResource extends RMObject{
 	}
 	
 	/**
-	* Get the figures for this resource
+	* Get the figures for this Document
 	* @return array
 	*/
 	public function get_figures(){
@@ -143,22 +143,26 @@ class RDResource extends RMObject{
 	}
 
     /**
-    * Permalink for a resource
+    * Permalink for a Document
     * 
-    * Generates a permalink for resource according to configures parameters
+    * Generates a permalink for Document according to configures parameters
     * in RapidDocs.
     * 
-    * @return string URL for this resource
+    * @return string URL for this Document
     */
     public function permalink(){
+        global $standalone;
+        
         $config = RMUtilities::module_config('docs');
         if ($config['permalinks']){
     
             $perma = ($config['subdomain']!='' ? $config['subdomain'] : XOOPS_URL).$config['htpath'].'/'.$this->getVar('nameid').'/';
+            $perma .= $standalone ? 'standalone/1/' : '';
             
         } else {
             
             $perma = XOOPS_URL.'/modules/docs/?page=resource&amp;id='.$this->id();
+            $perma .= $standalone ? '&amp;standalone=1' : '';
             
         }
         
@@ -204,7 +208,7 @@ class RDResource extends RMObject{
     }
     
     /**
-    * Save Resource
+    * Save Document
     */
 	public function save(){
 		if ($this->isNew()){
@@ -217,9 +221,9 @@ class RDResource extends RMObject{
 	}
     
     /**
-    * Delete resource
+    * Delete Document
     * 
-    * Delete resource and all its sections, notes and figures
+    * Delete Document and all its sections, notes and figures
     * 
     * @return bool
     */

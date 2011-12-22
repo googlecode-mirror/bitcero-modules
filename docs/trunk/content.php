@@ -19,7 +19,7 @@ define('RD_LOCATION', 'content');
 * @desc Muestra el contenido completo de una sección
 */
 function showSection(RDResource &$res, RDSection &$section){
-	global $xoopsUser, $xoopsModuleConfig, $xoopsOption, $xoopsTpl, $xoopsConfig;
+	global $xoopsUser, $xoopsModuleConfig, $xoopsOption, $xoopsTpl, $xoopsConfig, $standalone;
 	
 	include 'header.php';
     
@@ -36,7 +36,7 @@ function showSection(RDResource &$res, RDSection &$section){
     $res->add_read($res);
 	
 	// Navegación de Secciones
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT * FROM ".$db->prefix("rd_sections")." WHERE id_res='".$res->id()."' AND parent = '0' ORDER BY `order`";
 	$result = $db->query($sql);
     $i = 1;
@@ -126,6 +126,9 @@ function showSection(RDResource &$res, RDSection &$section){
     RMBreadCrumb::get()->add_crumb($section->getVar('title'), $section->permalink());
     
     include RMEvents::get()->run_event('docs.section.template', RMTemplate::get()->get_template('rd_section.php', 'module', 'docs'));
+    
+    if($standalone)
+        RDFunctions::standalone();
     
     include 'footer.php';
 	

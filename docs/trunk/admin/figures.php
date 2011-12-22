@@ -21,12 +21,12 @@ function rd_show_figures(){
 	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
     
     if($id_res<=0){
-        redirectMsg('resources.php', __('First select a resource to view the figures.','docs'), 1);
+        redirectMsg('resources.php', __('First select a Document to view the figures.','docs'), 1);
     }
     
     $res = new RDResource($id_res);
     if($res->isNew()){
-        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+        redirectMsg('resources.php', __('Specified Document does not exists!','docs'), 1);
     }
     
 	$search = rmc_server_var($_GET, 'search', '');
@@ -34,7 +34,7 @@ function rd_show_figures(){
     //Separamos frase en palabras
     $words=explode(" ",$search);
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Navegador de páginas
     $sql="SELECT COUNT(*) FROM ".$db->prefix('rd_figures').($id_res ? " WHERE id_res='$id_res'" : '');
@@ -111,12 +111,12 @@ function rd_figures_form($edit=0){
 	$id_res = rmc_server_var($_GET, 'res', 0);
     
     if($id_res<=0){
-        redirectMsg('resources.php', __('First select a resource to manage the figures.','docs'), 1);
+        redirectMsg('resources.php', __('First select a Document to manage the figures.','docs'), 1);
     }
     
     $res = new RDResource($id_res);
     if($res->isNew()){
-        redirectMsg('resources.php', __('Specified resource does not exists!','docs'), 1);
+        redirectMsg('resources.php', __('Specified Document does not exists!','docs'), 1);
     }
     
     if($edit){
@@ -238,7 +238,7 @@ function rd_delete_figures(){
 
     $errors='';
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "DELETE FROM ".$db->prefix("rd_figures")." WHERE id_fig IN(".implode(",",$ids).")";
     if(!$db->queryF($sql)){
         redirectMsg($ruta, __('Figures could not be deleted!','docs').'<br />'.$db->error(), 1);
@@ -260,7 +260,7 @@ function rd_locate_figure(){
     
     $limit = 15;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT id_fig FROM ".$db->prefix("rd_figures")." WHERE id_res='$res'";
     $result = $db->query($sql);
     if ($db->getRowsNum($result)<=$limit){
