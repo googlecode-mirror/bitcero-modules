@@ -48,8 +48,8 @@ class RMFormTimeZoneField extends RMFormElement
 	}
 	
 	public function render(){
-		require_once ABSPATH."/class/exmlists.php";
-		$zonas = EXMLists::getTimeZoneList();
+		include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
+		$zonas = XoopsLists::getTimeZoneList();
 		
 		if ($this->type){
 			$rtn = "<table cellpadding='2' cellspacing='1' border='0'>";

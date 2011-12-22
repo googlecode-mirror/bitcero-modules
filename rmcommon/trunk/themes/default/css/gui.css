@@ -551,3 +551,50 @@ div.other_widgets{
     border-left: 0;
     border-radius: 5px;
 }
+
+#rm-help-wd{
+    position: absolute;
+    width: 40%;
+    height: 60%;
+    top: 132px;
+    right: 10px;
+    background: #FFF;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #2E4861;
+    box-shadow: 0 0 #000 10px;
+    -moz-box-shadow: 0 0 10px #000;
+}
+#rm-help-wd iframe{
+    border: 0;
+    margin: 0;
+    box-shadow: 0 0 2px #333;
+        -moz-box-shadow: 0 0 2px #333;
+}
+#rm-help-wd .rm_hwd_title{
+    background: #426C92 url(../images/bgw.png) repeat-x top;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 2px #000;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 1px solid #2E4861;
+}
+#rm-help-wd .rm_hwd_title span{
+    border: 1px solid #658CAF;
+    display: block;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+}
+#rm-help-wd .rm_hwd_cont{
+    background: #ebebeb;
+    padding: 0 5px 5px 5px;
+}
+#rm-help-wd .rm_hwd_title span span.close{
+    display: block;
+    background: url(../images/popbuts.png) no-repeat -34px top;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    float: left;
+    border: 0;
+}
