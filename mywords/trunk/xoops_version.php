@@ -42,7 +42,7 @@ $modversion['license'] = "GPL v2";
 $modversion['official'] = 1;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "mywords";
-$modversion['icon48'] = "images/logo.png";
+$modversion['icon48'] = "images/icon48.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>2,'revision'=>99,'status'=>0,'name'=>'MyWords');
