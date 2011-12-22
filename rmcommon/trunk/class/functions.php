@@ -75,14 +75,15 @@ class RMFunctions
 	*/
 	public function create_toolbar(){
 		
-		RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
-		RMTemplate::get()->add_tool(__('Modules','rmcommon'), 'modules.php', 'images/modules.png', 'modules');
-        RMTemplate::get()->add_tool(__('Blocks','rmcommon'), 'blocks.php', 'images/blocks.png', 'blocks');
-		RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
-		RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
-        RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');
+            RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
+            RMTemplate::get()->add_tool(__('Modules','rmcommon'), 'modules.php', 'images/modules.png', 'modules');
+            RMTemplate::get()->add_tool(__('Blocks','rmcommon'), 'blocks.php', 'images/blocks.png', 'blocks');
+            RMTemplate::get()->add_tool(__('Users','rmcommon'), 'users.php', 'images/users.png', 'users');
+            RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
+            RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
+            RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');
         
-        RMEvents::get()->run_event('rmcommon.create.toolbar');
+            RMEvents::get()->run_event('rmcommon.create.toolbar');
 		
 	}
     
