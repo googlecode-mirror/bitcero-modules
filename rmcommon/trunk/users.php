@@ -20,19 +20,6 @@ define('RMCLOCATION', 'users');
 include '../../include/cp_header.php';
 
 /**
-* Add some menu options
-*/
-function menu_options(){
-	global $exmTpl;
-	
-    RMTemplate::get()->add_menu_option(__('New user','rmcommon'), 'users.php?action=new');
-    RMTemplate::get()->add_menu_option(__('All users','rmcommon'), 'users.php?show=all');
-    RMTemplate::get()->add_menu_option(__('Only actives','rmcommon'), 'users.php?show=actives');
-    RMTemplate::get()->add_menu_option(__('Only inactives','rmcommon'), 'users.php?show=inactives');
-    RMTemplate::get()->add_menu_option(__('Additional data','rmcommon'), 'users.php?action=meta');
-}
-
-/**
  * Get the formated SQL to query the database
  */
 function formatSQL(){
@@ -177,7 +164,7 @@ function formatSQL(){
 * Shows all registered users in a list with filter and manage options
 */
 function show_users(){
-    global $exmApp, $exmTpl;
+    global $xoopsSecurity;
     
     RMTemplate::get()->add_style('users.css','rmcommon');
     RMTemplate::get()->add_style('js-widgets.css');
@@ -185,6 +172,9 @@ function show_users(){
     //Scripts
     RMTemplate::get()->add_local_script('users.js','rmcommon','include');
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
+    
+    RMTemplate::get()->add_head('<script type="text/javascript">var rmcu_select_message = "'.__('You have not selected any user!','rmcommon').'";
+        var rmcu_message = "'.__('Dou you really wish to delete selected users?','rmcommon').'";</script>');
     
     $form = new RMForm('', '', '');
     // Date Field
@@ -197,7 +187,7 @@ function show_users(){
     
     xoops_cp_location(__('Users Management','rmcommon'));
     
-    menu_options();
+   RMFunctions::create_toolbar();
         
     // Show the theme
     xoops_cp_header();
@@ -371,7 +361,7 @@ function save_data($edit = false){
     $user->setVar('display_name', $display_name);
     $user->setVar('email', $email);
     if (!$edit) $user->assignVar('user_regdate', time());
-    if ($password!='') $user->assignVar('pass', sha1($password));
+    if ($password!='') $user->assignVar('pass', md5($password));
     $user->setVar('level', 1);
     $user->setVar('timezone_offset', $timezone);
     $user->setVar('url', $url);
@@ -394,7 +384,7 @@ function save_data($edit = false){
 * This function shows a form to send email to single or multiple users
 */
 function show_mailer(){
-	global $exmTpl, $db, $cp, $exmConfig;
+	global $xoopsConfig, $rmc_config;
 	
 	$uid = rmc_server_var($_GET, 'uid', array());
 	$query = rmc_server_var($_GET, 'query', '');
@@ -408,20 +398,21 @@ function show_mailer(){
 	$uid = !is_array($uid) ? array($uid) : $uid;
 	
 	xoops_cp_location(__('Sending email to users','rmcommon'));
+        xoops_cp_header();
 	
-	$form = new EXMForm(__('Send Email to Users','rmcommon'), 'frm_mailer', 'users.php');
+	$form = new RMForm(__('Send Email to Users','rmcommon'), 'frm_mailer', 'users.php');
 	
-	$form->addElement(new EXMFormUser(__('Users','global'), 'mailer_users', 1, $uid, 30, 600, 400));
+	$form->addElement(new RMFormUser(__('Users','global'), 'mailer_users', 1, $uid, 30, 600, 400));
 	$form->element('mailer_users')->setDescription(__('Please note that the maximun users number that you can select depends of the limit of emails that you can send accourding to your email server policies (or hosting account policies).','rmcommon'));
 	
 	$form->addElement(new RMFormText(__('Message subject','rmcommon'), 'subject', 50, 255), true);
 	$form->element('subject')->setDescription(__('Subject must be descriptive.','rmcommon'));
-	$form->addElement(new EXMRadio(__('Message type','rmcommon'), 'type', ' ', 1, 2));
-	$form->element('type')->addOption(__('HTML','global'), 'html', 1, $exmConfig->get_option('editor_type')=='tiny' ? 'onclick="switchEditors.go(\'message\', \'tinymce\');"' : '');
-	$form->element('type')->addOption(__('Plain Text','global'), 'text', 0, $exmConfig->get_option('editor_type')=='tiny' ? 'onclick="switchEditors.go(\'message\', \'html\');"': '');
-	$form->addElement(new EXMEditor(__('Message content','rmcommon'), 'message', '99%', '300px', ''), true);
+	$form->addElement(new RMFormRadio(__('Message type','rmcommon'), 'type', ' ', 1, 2));
+	$form->element('type')->addOption(__('HTML','global'), 'html', 1, $rmc_config['editor_type']=='tiny' ? 'onclick="switchEditors.go(\'message\', \'tinymce\');"' : '');
+	$form->element('type')->addOption(__('Plain Text','global'), 'text', 0, $rmc_config['editor_type']=='tiny' ? 'onclick="switchEditors.go(\'message\', \'html\');"': '');
+	$form->addElement(new RMFormEditor(__('Message content','rmcommon'), 'message', '99%', '300px', ''), true);
 	
-	$ele = new EXMButtonGroup();
+	$ele = new RMFormButtonGroup();
 	$ele->addButton('sbt', __('Send E-Mail','rmcommon'), 'submit');
 	$ele->addButton('cancel', __('Cancel','rmcommon'), 'button', 'onclick="history.go(-1);"');
 	$form->addElement($ele);
@@ -431,19 +422,20 @@ function show_mailer(){
 	
 	$form->display();
 	
-	$cp->show();
+	xoops_cp_footer();
 }
 
 /**
 * Send mail to selected users using Swift
 */
 function send_mail(){
-	global $exmConfig;
-	extract($_POST);
-
-	// Creating a message
-	$mailer = new EXMMailer($type=='html' ? 'text/html' : 'text/plain');
-    $mailer->add_exm_users($mailer_users);
+    global $rmc_config, $xoopsConfig;
+	
+    extract($_POST);
+    // Creating a message
+    $mailer = new RMMailer($type=='html' ? 'text/html' : 'text/plain');
+    
+    $mailer->add_xoops_users($mailer_users);
     $mailer->set_subject($subject);
     
     $message = $type=='html' ? TextCleaner::getInstance()->to_display($message) : $message;
@@ -451,12 +443,12 @@ function send_mail(){
     $mailer->set_body($message);
     
     if (!$mailer->batchSend()){
+        xoops_cp_header();
     	echo "<h3>".__('There was errors while sending this emails','rmcommon')."</h3>";
     	foreach ($mailer->errors() as $error){
-			echo "<div class='even'>".$error."</div>";
+            echo "<div class='even'>".$error."</div>";
     	}
-    	ExmGUI::show();
-		exit();
+        xoops_cp_footer();
     }
     
     redirectMsg('users.php?'.base64_decode($query), __('Message sent successfully!','rmcommon'), 0);
@@ -467,13 +459,14 @@ function send_mail(){
 * Deactivate selected users
 */
 function activate_users($activate){
+    global $xoopsSecurity;
     
     foreach($_GET as $k => $v){
-        if ($k=='EXM_TOKEN_REQUEST' || $k=='action') continue;
+        if ($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
         $q .= $q=='' ? "$k=".urlencode($v) : "&$k=".urlencode($v);
     }
     
-    $uid = rmc_server_var($_GET, 'uid', array());
+    $uid = rmc_server_var($_POST, 'ids', array());
     
     if (empty($uid))
         redirectMsg('users.php?'.$q, __('No users has been selected','rmcommon'), 1);
@@ -483,7 +476,7 @@ function activate_users($activate){
         $in .= $in=='' ? $id : ','.$id;
     }
     
-    $db = EXMDatabase::get();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("users")." SET level='$activate' WHERE uid IN($in)";
     
     if ($db->queryF($sql)){
@@ -491,6 +484,45 @@ function activate_users($activate){
     } else {
         redirectMsg('users.php?'.$q, __('Users could not be '.($activate ? 'activated' : 'deactivated').'!','rmcommon'), 1);
     }
+    
+}
+
+function delete_users(){
+    global $xoopsSecurity;
+    
+    if(!$xoopsSecurity->check()){
+        redirectMsg("users.php", implode('<br />', $GLOBALS['xoopsSecurity']->getErrors()), 1);
+        die();
+    }
+    
+    foreach($_GET as $k => $v){
+        if ($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
+        $q .= $q=='' ? "$k=".urlencode($v) : "&$k=".urlencode($v);
+    }
+    
+    $uid = rmc_server_var($_POST, 'ids', array());
+    $member_handler =& xoops_gethandler('member', 'system');
+    
+    foreach($uid as $id){
+        
+        $user =& $member_handler->getUser($id);
+        $groups = $user->getGroups();
+        
+        if (in_array(XOOPS_GROUP_ADMIN, $groups)) {
+            xoops_error( sprintf( __('Admin user cannot be deleted: %s','rmcommon'), $user->getVar("uname").'<br />') );
+        } elseif (!$member_handler->deleteUser($user)) {
+            xoops_error( sprintf( __('User cannot be deleted: %s','rmcommon'), $user->getVar("uname").'<br />') );
+        } else {
+            $online_handler =& xoops_gethandler('online');
+            $online_handler->destroy($uid);
+            // RMV-NOTIFY
+            xoops_notification_deletebyuser($uid);
+        }
+        
+    }
+    
+    redirectMsg("users.php?".$q,__('Users deleted successfully!','rmcommon'),0);
+            
     
 }
 
@@ -522,6 +554,9 @@ switch($action){
         break;
     case 'activate':
         activate_users(1);
+        break;
+    case 'delete':
+        delete_users();
         break;
     default:
         show_users();

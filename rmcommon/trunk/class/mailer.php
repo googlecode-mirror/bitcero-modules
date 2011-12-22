@@ -57,7 +57,7 @@ class RMMailer
         $config = RMFunctions::configs();
         $config_handler =& xoops_gethandler('config');
         $xconfig = $config_handler->getConfigsByCat(XOOPS_CONF_MAILER);
-		
+	
 		// Instantiate the Swit Transport according to our preferences
 		// We can change this preferences later
 		switch($config['transport']){
@@ -73,7 +73,7 @@ class RMMailer
 				$this->swTransport = Swift_SendmailTransport::newInstance($config['sendmail_path']);
 				break;
 		}
-		
+	
 		// Create the message object
 		// Also this object could be change later with message() method
 		$this->swMessage = Swift_Message::newInstance();
@@ -337,18 +337,20 @@ class RMMailer
         
         if (is_array($users)){
             
-            foreach($users as $user){
-                if (strtolower(get_class($user))=='xoopsuser'){
-                    $this->xusers[] = $users;
-                    $this->add_user($user->getVar('email'), $user->getVar('name')!='' ? $user->getVar('name') : $user->getVar('uname'), 'to');
+            foreach($users as $uid){
+                $user = new RMUser($uid);
+                if (strtolower(get_class($user))=='rmuser'){
+                    $this->xusers[] = $user;
+                    $this->add_user($user->getVar('email'), $user->getVar('name')!='' ? $user->getVar('name') : $user->getVar('uname'), $field);
                 }
             }
             
         } else {
+            $user = new RMUser($users);
             
             if (strtolower(get_class($users))=='xoopsuser'){
-                $this->xusers[] = $users;
-                $this->add_user($users->getVar('email'), $users->getVar('name')!='' ? $users->getVar('name') : $users->getVar('uname'), 'to');
+                $this->xusers[] = $user;
+                $this->add_user($users->getVar('email'), $users->getVar('name')!='' ? $users->getVar('name') : $users->getVar('uname'), $field);
             }
             
         }

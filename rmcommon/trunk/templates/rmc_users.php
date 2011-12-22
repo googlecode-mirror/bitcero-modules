@@ -82,7 +82,7 @@
     </div>
 	</form>
 </div>
-<form name="frmUsers" id="form-users" method="get" action="users.php">
+<form name="frmUsers" id="form-users" method="post" action="users.php">
 <!-- Navigation Options -->
 <div class="users_navigation">
 	<?php $nav->display(); ?>
@@ -98,14 +98,14 @@
 		<input type="button" value="<?php _e('Sort','rmcommon'); ?>" onclick="$('#order').val($('#user-order').val()); submit();" />
 	</div>
 	<div class="users_bulk">
-		<select name="action_select" id="action-top">
+		<select name="action" id="bulk-top">
 			<option value=""><?php _e('Bulk Actions...','rmcommon'); ?></option>
 			<option value="activate"><?php _e('Activate','rmcommon'); ?></option>
 			<option value="deactivate"><?php _e('Deactivate','rmcommon'); ?></option>
 			<option value="mailer"><?php _e('Send email','rmcommon'); ?></option>
 			<option value="delete"><?php _e('Delete','rmcommon'); ?></option>
 		</select>
-		<input type="button" value="<?php _e('Apply','rmcommon'); ?>" onclick="$('#action').val($('#action-top').val()); submit();" />
+		<input type="button" value="<?php _e('Apply','rmcommon'); ?>" id="the-op-top" onclick="before_submit('form-users');" />
 	</div>
 </div>
 <!-- Navigation Options -->
@@ -152,14 +152,14 @@
     foreach($users as $user):
     ?>
     <tr class="<?php echo tpl_cycle('even,odd'); ?><?php echo $user['level']<=0 ? ' user_inactive' : '' ?>" valign="top">
-        <td align="center"><input type="checkbox" name="ids[]" id="item-<?php $user['uid']; ?>" value="<?php echo $user['uid']; ?>" /></td>
+        <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $user['uid']; ?>" value="<?php echo $user['uid']; ?>" /></td>
         <td align="center"><?php echo $user['uid']; ?></td>
         <td>
             <strong><?php echo $user['uname']; ?></strong>
             <span class="rmc_options">
                 <a href="users.php?action=edit&amp;uid=<?php echo $user['uid']; ?>&amp;query=<?php echo base64_encode($qstring); ?>"><?php _e('Edit','rmcommon'); ?></a> | 
                 <a href="users.php?action=mailer&amp;uid=<?php echo $user['uid']; ?>&amp;query=<?php echo base64_encode($qstring); ?>"><?php _e('Send Email','rmcommon'); ?></a> | 
-                <a href="javascript:;"><?php _e('Delete','rmcommon'); ?></a>
+                <a href="#" onclick="select_option(<?php echo $user['uid']; ?>,'delete','form-users');"><?php _e('Delete','rmcommon'); ?></a>
             </span>
         </td>
         <td><?php echo $user['name']; ?></td>
@@ -194,17 +194,16 @@
 		<input type="button" value="<?php _e('Sort','rmcommon'); ?>" onclick="$('#order').val($('#user-order-bottom').val()); submit();" />
 	</div>
 	<div class="users_bulk">
-		<select name="action-select" id="action-bottom">
+		<select name="actionb" id="bulk-bottom">
 			<option value=""><?php _e('Bulk Actions...','rmcommon'); ?></option>
 			<option value="activate"><?php _e('Activate','rmcommon'); ?></option>
 			<option value="deactivate"><?php _e('Deactivate','rmcommon'); ?></option>
 			<option value="mailer"><?php _e('Send email','rmcommon'); ?></option>
 			<option value="delete"><?php _e('Delete','rmcommon'); ?></option>
 		</select>
-		<input type="button" value="<?php _e('Apply','rmcommon'); ?>" onclick="$('#action').val($('#action-bottom').val()); submit();" />
+		<input type="button" value="<?php _e('Apply','rmcommon'); ?>" id="the-op-bottom" onclick="before_submit('form-users');" />
 	</div>
 </div>
-<input type="hidden" name="action" id="action" value="" />
-<input type="hidden" name="order" id="order" value="" />
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 <!-- Navigation Options -->
 </form>
