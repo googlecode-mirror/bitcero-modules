@@ -1,6 +1,6 @@
 <?php foreach($installed_mods as $module): ?>
 <div class="module">
-    <a style="background-image: url(<?php echo XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/' . $module->getInfo('image'); ?>);" class="image" href="<?php if($module->getVar('hasadmin')): echo XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/' . $module->getInfo('adminindex'); else: echo 'javascript:;'; endif; ?>"><span>&nbsp;</span></a>
+    <a style="background-image: url(<?php echo XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/' . ($module->getInfo('icon48')!='' ? $module->getInfo('icon48') : $module->getInfo('image')); ?>);" class="image" href="<?php if($module->getVar('hasadmin')): echo XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/' . $module->getInfo('adminindex'); else: echo 'javascript:;'; endif; ?>"><span>&nbsp;</span></a>
     <span class="module_data">
         <strong><a href="<?php if($module->getVar('hasadmin')): echo XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/' . $module->getInfo('adminindex'); else: echo 'javascript:;'; endif; ?>"><?php echo $module->getVar('name','E'); ?></a></strong><br />
         <?php echo sprintf(__('Version: %s','rmcommon'), '<strong>'.round($module->getVar('version') / 100, 2).'</strong>'); ?><br />

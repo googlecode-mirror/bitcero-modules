@@ -11,78 +11,84 @@
 if (!function_exists('__'))
     include_once XOOPS_ROOT_PATH.'/modules/rmcommon/loader.php';
 
-$adminmenu[0]['title'] = __('Dashboard','rmcommon');
-$adminmenu[0]['link'] = "index.php";
-$adminmenu[0]['icon'] = "images/dashboard.png";
-$adminmenu[0]['location'] = "dashboard";
+$adminmenu[] = array(
+    'title' => __('Dashboard','rmcommon'),
+    'link' => "index.php",
+    'icon' => "images/dashboard.png",
+    'location' => "dashboard"
+);
 
-$adminmenu[1]['title'] = __('Modules','rmcommon');
-$adminmenu[1]['link'] = "modules.php";
-$adminmenu[1]['icon'] = "images/modules.png";
-$adminmenu[1]['location'] = "modules";
+$adminmenu[] = array(
+    'title' => __('Modules','rmcommon'),
+    'link' => "modules.php",
+    'icon' => "images/modules.png",
+    'location' => "modules"
+);
 
-$adminmenu[2]['title'] = __('Blocks','rmcommon');
-$adminmenu[2]['link'] = "blocks.php";
-$adminmenu[2]['icon'] = "images/blocks.png";
-$adminmenu[2]['location'] = "blocks";
-$adminmenu[2]['options'] = array(0 => array(
-        'title'     => __('Blocks list','rmcommon'),
-        'link'      => 'blocks.php',
-        'selected'  => 'blocks'
-    ),
-    1 => array(
-        'title'     => __('Edit Positions','rmcommon'),
-        'link'      => '#" id="add-pos-menu',
-        'selected'  => ''
+$adminmenu[] = array(
+    'title' => __('Blocks','rmcommon'),
+    'link' => "blocks.php",
+    'icon' => "images/blocks.png",
+    'location' => "blocks",
+    'options' => array(0 => array(
+            'title'     => __('Blocks list','rmcommon'),
+            'link'      => 'blocks.php',
+            'selected'  => 'blocks'
+        ),
+        1 => array(
+            'title'     => __('Edit Positions','rmcommon'),
+            'link'      => '#" id="add-pos-menu',
+            'selected'  => ''
+        )
     )
 );
 
-$adminmenu[3]['title'] = __('Images','rmcommon');
-$adminmenu[3]['link'] = "images.php";
-$adminmenu[3]['icon'] = "images/images.png";
-$adminmenu[3]['location'] = "imgmanager";
-$adminmenu[3]['options'] = array(0 => array(
-		'title'		=>	__('Categories','rmcommon'),
-		'link'		=> 'images.php?action=showcats',
-		'selected'	=> 'rmc_imgcats' // RMSUBLOCATION constant defines wich submenu options is selected
-	), 1 => array(
-		'title'		=>	__('New category','rmcommon'),
-		'link'		=> 'images.php?action=newcat',
-		'selected'	=> 'rmc_imgnewcat' // RMSUBLOCATION constant defines wich submenu options is selected
-	), 2 => array(
-		'title'		=>	__('Images','rmcommon'),
-		'link'		=> 'images.php',
-		'selected'	=> 'rmc_images' // RMSUBLOCATION constant defines wich submenu options is selected
-	), 4 => array(
-		'title'		=>	__('Add images','rmcommon'),
-		'link'		=> 'images.php?action=new',
-		'selected'	=> 'rmc_newimages' // RMSUBLOCATION constant defines wich submenu options is selected
-	)
+$adminmenu[] = array(
+    'title' => __('Users','rmcommon'),
+    'link' => 'users.php',
+    'icon' => 'images/users.png',
+    'location' => 'users',
+    'options' => array(
+        array('title'=>__('All users','rmcommon'),'link'=>'users.php','selected'=>'allusers'),
+        array('title'=>__('New user','rmcommon'),'link'=>'users.php?action=new','selected'=>'newuser'),
+    )
 );
 
-$adminmenu[4]['title'] = __('Comments','rmcommon');
-$adminmenu[4]['link'] = "comments.php";
-$adminmenu[4]['icon'] = "images/comments.png";
-$adminmenu[4]['location'] = "comments";
+$adminmenu[] = array(
+    'title' => __('Images','rmcommon'),
+    'link' => "images.php",
+    'icon' => "images/images.png",
+    'location' => "imgmanager",
+    'options' => array(0 => array(
+                    'title'		=>	__('Categories','rmcommon'),
+                    'link'		=> 'images.php?action=showcats',
+                    'selected'	=> 'rmc_imgcats' // RMSUBLOCATION constant defines wich submenu options is selected
+            ), 1 => array(
+                    'title'		=>	__('New category','rmcommon'),
+                    'link'		=> 'images.php?action=newcat',
+                    'selected'	=> 'rmc_imgnewcat' // RMSUBLOCATION constant defines wich submenu options is selected
+            ), 2 => array(
+                    'title'		=>	__('Images','rmcommon'),
+                    'link'		=> 'images.php',
+                    'selected'	=> 'rmc_images' // RMSUBLOCATION constant defines wich submenu options is selected
+            ), 4 => array(
+                    'title'		=>	__('Add images','rmcommon'),
+                    'link'		=> 'images.php?action=new',
+                    'selected'	=> 'rmc_newimages' // RMSUBLOCATION constant defines wich submenu options is selected
+            )
+    )
+);
 
-$adminmenu[5]['title'] = __('Plugins','rmcommon');
-$adminmenu[5]['link'] = "plugins.php";
-$adminmenu[5]['icon'] = "images/plugin.png";
-$adminmenu[5]['location'] = "plugins";
+$adminmenu[] = array(
+    'title' => __('Comments','rmcommon'),
+    'link' => "comments.php",
+    'icon' => "images/comments.png",
+    'location' => "comments"
+);
 
-$adminmenu[6]['title'] = __('Themes','rmcommon');
-$adminmenu[6]['link'] = "#";
-$adminmenu[6]['icon'] = "images/themes.png";
-$adminmenu[6]['location'] = "";
-
-include XOOPS_ROOT_PATH.'/class/xoopslists.php';
-$themes = XoopsLists::getDirListAsArray(RMCPATH.'/themes');
-foreach($themes as $dir){
-    if (file_exists(RMCPATH.'/themes/'.$dir.'/admin_gui.php')){
-        $adminmenu[6]['options'][] = array(
-            'title' => ucfirst($dir),
-            'link'  => 'index.php?action=theme&amp;theme='.$dir,
-            'selected' => ''
-        );
-    }
-}
+$adminmenu[] = array(
+    'title' => __('Plugins','rmcommon'),
+    'link' => "plugins.php",
+    'icon' => "images/plugin.png",
+    'location' => "plugins"
+);

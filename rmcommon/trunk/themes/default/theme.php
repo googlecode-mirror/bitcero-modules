@@ -11,6 +11,7 @@
 <?php
 
 !defined('RMCLOCATION') ? define('RMCLOCATION', '') : true;
+!defined('RMCSUBLOCATION') ? define('RMCSUBLOCATION', '') : true;
 
 foreach ($this->tpl_scripts as $script){
 	echo '<script type="'.$script['type'].'" src="'.$script['url'].'"></script>'."\n";
@@ -27,6 +28,7 @@ foreach ($this->tpl_head as $head){
 <?php
 	include_once 'include/xoops_metas.php';
 ?>
+<script type="text/javascript" src="<?php echo $rm_theme_url.'/js/general.js'; ?>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		if (navigator.userAgent.toLowerCase().indexOf('chrome')>0 || navigator.userAgent.toLowerCase().indexOf('safari')>0){
@@ -48,7 +50,7 @@ foreach ($this->tpl_head as $head){
 <?php if($this->get_toolbar()): ?>
 	<div id="rmc-toolbar">
         <?php if($this->help()): ?>
-            <a href="<?php echo $this->help(); ?>" class="help_button" target="_blank">
+            <a href="<?php echo $this->help(); ?>" class="help_button rm_help_button" target="_blank" title="<?php echo sprintf(__('%s Help','defaultTheme'), $xoopsModule->name()); ?>">
                 <span style="background-image: url(<?php echo RMTHEMEURL; ?>/images/help.png);"><?php _e('Help','rmcommon'); ?></span></a>
         <?php endif; ?>
 		<?php foreach($this->get_toolbar() as $menu): ?>

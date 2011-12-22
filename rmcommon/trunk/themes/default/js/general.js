@@ -119,6 +119,30 @@ $(document).ready(function(){
         });
 
     });
+    
+    $("a.rm_help_button").click(function(){
+        if($("#rm-help-wd").length>0){
+            $("#rm-help-wd").slideUp('fast', function(){
+                $("#rm-help-wd").remove();
+            });
+        } else {
+            var html = '<div id="rm-help-wd">';
+            html += '<div class="rm_hwd_title"><span>'+$(this).attr('title')+'<span class="close"></span></span></div>';
+            html += '<div class="rm_hwd_cont"><iframe src="'+$(this).attr("href")+'"></iframe></div></div>';
+            $("body").append(html);
+            $("#rm-help-wd iframe").height($("#rm-help-wd").height()-$("#rm-help-wd .rm_hwd_title").height()-7);
+            $("#rm-help-wd iframe").width($("#rm-help-wd").width()-10);
+            $("#rm-help-wd").slideDown('slow');
+        }
+        
+        $("#rm-help-wd .rm_hwd_title .close").click(function(){
+            $("#rm-help-wd").slideUp('fast', function(){
+                $("#rm-help-wd").remove();
+            });
+        });
+        
+        return false;
+    });
 
     //setTimeout("hideMessages();", 10000);
 });

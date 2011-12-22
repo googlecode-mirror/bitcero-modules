@@ -31,6 +31,7 @@ $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "rmcommon";
 $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
+$modversion['icon48'] = 'images/icon48.png';
 $modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>2,'revision'=>140,'status'=>-2,'name'=>'Common Utilities');
 $modversion['onUninstall'] = 'include/install.php';

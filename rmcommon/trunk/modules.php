@@ -65,7 +65,7 @@ function show_modules_list(){
             'realname'        => $mod->getInfo('name'),
             'version'        => $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
             'description'    => $mod->getInfo('description'),
-            'image'            => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
+            'image'            => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.($mod->getInfo('icon48') ? $mod->getInfo('icon48') : $mod->getInfo('image')),
             'link'            => $main_link,
             'admin_link'    => $admin_link,
             'updated'        => formatTimestamp($mod->getVar('last_update'), 's'),

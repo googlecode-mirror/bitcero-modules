@@ -20,7 +20,7 @@
             <div class="th"><?php _e('Available Modules','rmcommon'); ?></div>
             <?php foreach($available_mods as $module): ?>
             <div class="<?php echo tpl_cycle("even,odd"); ?>">
-                <span class="modimg" style="background: url(../<?php echo $module->getInfo('dirname'); ?>/<?php echo $module->getInfo('image'); ?>) no-repeat center;">&nbsp;</span>
+                <span class="modimg" style="background: url(../<?php echo $module->getInfo('dirname'); ?>/<?php echo $module->getInfo('icon48')!='' ? $module->getInfo('icon48') : $module->getInfo('image'); ?>) no-repeat center;">&nbsp;</span>
                 <strong><?php echo $module->getInfo('name'); ?></strong><br />
                 <span class="moddesc"><?php echo $module->getInfo('description'); ?></span><br />
                 <a href="modules.php?action=install&dir=<?php echo $module->getInfo('dirname'); ?>"><?php _e('Install', 'rmcommon'); ?></a>

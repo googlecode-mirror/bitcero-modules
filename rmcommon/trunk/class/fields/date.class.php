@@ -83,6 +83,7 @@ class RMFormDate extends RMFormElement
             \n});\n</script>
             \n");
             
+            $date = '';
             if($this->_date>0) $date = date('m/d/Y', $this->_date);
             
         } elseif($this->time==2){
@@ -93,6 +94,7 @@ class RMFormDate extends RMFormElement
             \n});\n</script>
             \n");
             
+            $date = '';
             if($this->_date!='') $date = $this->_date;
             
         }

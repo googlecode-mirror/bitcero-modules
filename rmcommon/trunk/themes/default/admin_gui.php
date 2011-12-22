@@ -1,6 +1,6 @@
 <?php
 // Javascript Scripts
-RMTemplate::get()->add_script($rm_theme_url.'/js/general.js');
+//RMTemplate::get()->add_script($rm_theme_url.'/js/general.js');
 RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.cookie.js');
 
 // Widgets (this theme support admin widgets)
