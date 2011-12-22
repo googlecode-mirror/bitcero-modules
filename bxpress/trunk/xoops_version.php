@@ -45,7 +45,7 @@ $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
 $modversion['dirname'] = "bxpress";
-$modversion['icon48'] = "images/logo.png";
+$modversion['icon48'] = "images/icon48.png";
 $modversion['onInstall'] = 'include/install.php';
 
 // Admin things
