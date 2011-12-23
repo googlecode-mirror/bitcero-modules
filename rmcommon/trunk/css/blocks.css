@@ -15,10 +15,13 @@
     background: url(../images/modbk.png) no-repeat left;
     padding: 2px 0 2px 16px;
 }
-
+.tag{
+    display: block;
+    font-family: monospace;
+}
 .bkbk_forms{
     overflow: hidden;
-    width: 300px;
+    width: 320px;
     display: none;
     float: left;
     margin: 0 10px 0 0;
@@ -280,3 +283,10 @@ label.options{
 .subpages_container .sub_item label{
     color: #999;
 }
+.code{
+    font-family: "Courier New", courier, monospace;
+    font-size: 1.1em;
+    padding: 4px;
+    background: #ebebeb;
+}
+.code em{color: #c00;font-weight: bold;}

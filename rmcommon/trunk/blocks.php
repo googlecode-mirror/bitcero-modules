@@ -108,7 +108,12 @@ function show_rm_blocks()
 
     $positions = array();
     foreach ($bpos as $row){
-        $positions[] = array('id' => $row['id_position'], 'name' => $row['name']);
+        $positions[] = array(
+            'id' => $row['id_position'],
+            'name' => $row['name'],
+            'tag' => $row['tag'],
+            'active' => $row['active']
+        );
     }
     
     $positions = RMEvents::get()->run_event('rmcommon.block.positions.list', $positions);

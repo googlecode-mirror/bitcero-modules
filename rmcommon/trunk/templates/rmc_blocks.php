@@ -60,17 +60,18 @@
         <input type="hidden" name="action" value="save_position" />
         <?php echo $xoopsSecurity->getTokenHTML(); ?>
         </form>
-        <span class="other_options"><a href="#" id="exspos"><?php _e('Existing positions','docs'); ?> <span>&#8711;</span></a></span>
-    <div id="existing-positions">
-        <?php foreach($positions as $pos): ?>
-        <span><?php echo $pos['name']; ?> <a href="#" class="edit-<?php echo $pos['id']; ?>"><?php _e('edit','rmcommon'); ?></a></span>
-        <?php endforeach; ?>
-    </div>
+        <h4><?php _e('How to implement blocks','rmcommon'); ?></h4>        
+        <div class="code">
+            <code>&lt;{foreach item="block" from=$xoBlocks.<em>tag</em>}&gt;<br 7>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;{$block.title}&gt;<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;{$block.content}&gt;<br />
+            &lt;{/foreach}&gt;</code>
+        </div>
         </div>
 </div>
 
-<form name="frmblocks" id="frm-blocks" method="post" action="blocks.php">
-<div style="overflow: hidden;">
+<div style="overflow: hidden;" id="blocks-list">
+    <form name="frmblocks" id="frm-blocks" method="post" action="blocks.php">
 
     <div class="rmc_bulkactions">
         <select name="action" id="bulk-top">
@@ -136,9 +137,50 @@
         </select>
         <input type="button" id="the-op-bottom" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-blocks');" />
     </div>
+    <?php echo $xoopsSecurity->getTokenHTML(); ?>
+    </form>
 </div>
-<?php echo $xoopsSecurity->getTokenHTML(); ?>
-</form>
+
+<!-- Positions -->
+<div id="blocks-positions" style="overflow: hidden;display: none;">
+    <form name="formPos" id="frm-positions" method="post" action="blocks.php">
+        
+        <table class="outer" border="0" id="table-positions">
+            <thead>
+            <tr>
+                <th width="30"><input type="checkbox" id="checkall" onclick="$('#frm-blocks').toggleCheckboxes(':not(#checkall)');" /></th>
+                <th width="30" align="left"><?php _e('ID','rmcommon'); ?></th>
+                <th align="left"><?php _e('Name','rmcommon'); ?></th>
+                <th><?php _e('Smarty Tag','rmcommon'); ?></th>
+                <th><?php _e('Active','rmcommon'); ?></th>
+            </tr>
+            <thead>
+            <tfoot>
+            <tr>
+                <th width="30"><input type="checkbox" id="checkall" onclick="$('#frm-blocks').toggleCheckboxes(':not(#checkall)');" /></th>
+                <th width="50"><?php _e('ID','rmcommon'); ?></th>
+                <th align="left"><?php _e('Name','rmcommon'); ?></th>
+                <th><?php _e('Smarty Tag','rmcommon'); ?></th>
+                <th><?php _e('Active','rmcommon'); ?></th>
+            </tr>
+            <tfoot>
+            <tbody>
+            <?php foreach($positions as $pos): ?>
+                <tr class="<?php echo tpl_cycle('even,odd'); ?>">
+                    <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $pos['id']; ?>" value="<?php echo $pos['id']; ?>" /></td>
+                    <td align="left"><?php echo $pos['id']; ?></td>
+                    <td><?php echo $pos['name']; ?></td>
+                    <td align="center">&lt;{$xoBlocks.<?php echo $pos['tag']; ?>}&gt;</td>
+                    <td align="center"><img src="images/<?php echo $pos['active'] ? 'done.png' : 'closeb.png'; ?>" alt="" /></td>
+                </tr>    
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        
+    </form>
+</div>
+<!--/ Positions -->
+
 <div id="blocker"></div>
 <div id="loading"><img src="images/loadinga.gif" width="16" height="16" alt="<?php _e('Loading','rmcomon'); ?>" /><?php _e('Loading data...','rmcommon'); ?></div>
 <div id="form-window">
