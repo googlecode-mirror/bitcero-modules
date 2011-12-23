@@ -300,3 +300,18 @@ $modversion['blocks'][] = array(
     'template' => 'rmc_bk_comments.html',
     'options' => "5|1|1|1|1"
 );
+
+$amod = xoops_getActiveModules();
+if(in_array("rmcommon",$amod)){
+    $plugins = RMFunctions::installed_plugins();
+    foreach($plugins as $plugin){
+        $p = RMFunctions::load_plugin($plugin);
+        if(!method_exists($p, 'blocks')) continue;
+        foreach($p->blocks() as $block){
+            $block['plugin'] = 1;
+            $modversion['blocks'][] = $block;
+        }
+        
+    }
+    
+}

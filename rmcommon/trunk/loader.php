@@ -36,8 +36,8 @@ function rmc_autoloader($class){
       
     $paths = array(
     	'/api',
-        '/kernel',
         '/class',
+        '/kernel',
         '/fields'
     );
 
@@ -48,12 +48,16 @@ function rmc_autoloader($class){
     foreach ($paths as $path){    	
     	if (file_exists(RMCPATH.$path.'/'.$class.'.php')){
         	include_once RMCPATH.$path.'/'.$class.'.php';
+                break;
         } elseif(file_exists(RMCPATH.$path.'/'.$class.'.class.php')){
         	include_once RMCPATH.$path.'/'.$class.'.class.php';
+                break;
         } elseif (file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.php')){
         	include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.php';
+                break;
         } elseif(file_exists(XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php')){
             include_once XOOPS_ROOT_PATH.$path.'/'.$class.'.class.php';
+            break;
         }
     }
 	

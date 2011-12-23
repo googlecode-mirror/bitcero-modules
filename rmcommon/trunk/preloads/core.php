@@ -15,6 +15,24 @@ class RmcommonCorePreload extends XoopsPreloadItem
         
     }
     
+    public function eventCoreHeaderEnd(){
+        
+        /**
+        * Use internal blocks manager if enabled
+        */
+        $config = RMFunctions::configs();
+        if($config['blocks_enable']){
+            global $xoopsTpl;
+            $bks = RMBlocksFunctions::construct_blocks();
+            $bks = RMEvents::get()->run_event('rmcommon.retrieve.xoops.blocks', $bks);
+            $b =& $xoopsTpl->get_template_vars('xoBlocks');
+            $blocks = array_merge($b, $bks);
+            $xoopsTpl->assign_by_ref('xoBlocks',$blocks);
+            unset($b,$bks);
+        }
+        
+    }
+    
 	public function eventCoreIncludeCommonStart(){
         global $xoopsOption;
         
@@ -66,15 +84,7 @@ class RmcommonCorePreload extends XoopsPreloadItem
         // Blocks
         $blocks =& $params[2];
         
-        /**
-        * Use internal blocks manager if enabled
-        */
-        $config = RMFunctions::configs();
-        if($config['blocks_enable']){
-            
-        }
-        
-	RMEvents::get()->run_event('rmcommon.retrieve.blocks', $blocks, $xpb, $tpl);
+	$blocks = RMEvents::get()->run_event('rmcommon.retrieve.xoops.blocks', $blocks, $xpb, $tpl);
         	
     }
 	
