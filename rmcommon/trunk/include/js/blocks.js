@@ -168,17 +168,6 @@ var blocksAjax = {
 }
 
 $(document).ready(function(){
-
-    $("#exspos").click(function(){
-        $("#existing-positions").slideToggle('slow', function(){
-            if($("#existing-positions").is(":visible")){
-                $("#exspos span").html("&#916;");
-                $(this).effect('highlight',{}, 1000);
-            } else {
-                $("#exspos span").html("&#8711");
-            }
-        });        
-    });
     
     $("#add-pos-menu").click(function(){
         $("#exspos").click();
@@ -192,6 +181,8 @@ $(document).ready(function(){
                 $("#form-pos").effect('highlight', {}, 1000);
             }
         });
+        $("#blocks-positions").slideToggle(500);
+        $("#blocks-list").slideToggle(500);
     });
     
     $("#megamenu1 li a").click(function(){

@@ -61,7 +61,7 @@ class RMBlocksFunctions
      * Get blocks
      */
     public function construct_blocks(){
-        global $xoopsConfig, $xoopsModule, $xoopsUser;
+        global $xoopsConfig, $xoopsModule, $xoopsUser, $xoopsOption;
         
         $sides = array();
         
