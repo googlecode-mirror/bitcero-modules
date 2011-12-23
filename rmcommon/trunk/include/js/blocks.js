@@ -133,7 +133,6 @@ var blocksAjax = {
         });
         
         $.post("ajax/blocks.php", vars, function(data){
-            
             $("#loading").fadeOut("fast");
             
             if(data.error){  

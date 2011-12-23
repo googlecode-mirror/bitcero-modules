@@ -15,7 +15,6 @@
 class RMFormGroups extends RMFormElement
 {
 	private $_multi = 0;
-	private $_size = 5;
 	private $_select = array();
 	/**
 	 * Posibles valores
@@ -139,7 +138,7 @@ class RMFormGroups extends RMFormElement
 	 * @return string
 	 */
 	public function render(){
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$result = $db->query("SELECT * FROM ".$db->prefix("groups")." ORDER BY `name`");
 		$rtn = '';
 		$col = 1;
@@ -215,5 +214,3 @@ class RMFormGroups extends RMFormElement
 	}
 	
 }
-
-?>

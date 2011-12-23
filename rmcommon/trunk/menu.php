@@ -38,7 +38,7 @@ $adminmenu[] = array(
         1 => array(
             'title'     => __('Edit Positions','rmcommon'),
             'link'      => '#" id="add-pos-menu',
-            'selected'  => ''
+            'selected'  => 'positions'
         )
     )
 );

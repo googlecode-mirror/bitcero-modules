@@ -93,15 +93,6 @@ CREATE TABLE `rmc_blocks_positions` (
   UNIQUE KEY `tag` (`tag`)
 ) ENGINE=MyISAM;
 
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (1, 'Left Blocks', 'canvas_left', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (2, 'Right Blocks', 'canvas_right', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (3, 'Top-Left Blocks', 'page_topleft', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (4, 'Top-Center Blocks', 'page_topcenter', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (5, 'Top-Right Blocks', 'page_topright', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (6, 'Bottom-Left Blocks', 'page_bottomleft', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (7, 'Bottom-Right Blocks', 'page_bottomright', 1);
-INSERT INTO `rmc_blocks_positions` (`id_position`, `name`, `tag`, `active`) VALUES (8, 'Bottom-Center Blocks', 'page_bottomcenter', 1);
-
 CREATE TABLE `rmc_bkmod` (
 `bid` INT NOT NULL ,
 `mid` INT NOT NULL ,

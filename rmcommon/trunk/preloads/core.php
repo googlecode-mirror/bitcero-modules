@@ -54,13 +54,11 @@ class RmcommonCorePreload extends XoopsPreloadItem
         RMEvents::get()->run_event('rmcommon.footer.start');
     }
 	
-	public function eventCoreFooterEnd(){
-		ob_end_flush();
-
-	}
+    public function eventCoreFooterEnd(){
+        ob_end_flush();
+    }
 	
-	public function eventCoreClassTheme_blocksRetrieveBlocks($params){
-		
+    public function eventCoreClassTheme_blocksRetrieveBlocks($params){
         // xos_logos_PageBuilder
         $xpb = $params[0];
         // Template
@@ -73,28 +71,27 @@ class RmcommonCorePreload extends XoopsPreloadItem
         */
         $config = RMFunctions::configs();
         if($config['blocks_enable']){
-            $blocks = array();
+            
         }
         
-		RMEvents::get()->run_event('rmcommon.retrieve.blocks', $blocks, $xpb, $tpl);
-        
-		
-	}
+	RMEvents::get()->run_event('rmcommon.retrieve.blocks', $blocks, $xpb, $tpl);
+        	
+    }
 	
-	public function eventCoreIncludeFunctionsRedirectheader($params){
+    public function eventCoreIncludeFunctionsRedirectheader($params){
 		
-		// 0 = URL
-		// 1 = Time
-		// 2 = Message
-		// 3 = Add redirect
-		// 4 = Allow external link
-		RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
+        // 0 = URL
+	// 1 = Time
+	// 2 = Message
+	// 3 = Add redirect
+	// 4 = Allow external link
+	RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
         if(!defined('XOOPS_CPFUNC_LOADED')) return;
         
         redirectMsg($params[0], $params[2]);
         die();
 		
-	}
+    }
 	
 	/**
 	* RSS Management
@@ -106,7 +103,7 @@ class RmcommonCorePreload extends XoopsPreloadItem
 	}
     
     public function eventCoreHeaderAddmeta(){
-        global $xoopsTpl, $xoopsConfig;
+        global $xoopsTpl, $xoopsConfig, $xoTheme, $rmc_config;
         
         if(!$xoopsTpl) return;
         

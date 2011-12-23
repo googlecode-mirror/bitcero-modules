@@ -155,7 +155,7 @@ function configure_block(){
     
     $positions = RMBlocksFunctions::block_positions();
     $form = new RMForm('','','');
-    $canvas = new RMFormModules('', 'bk_mod', 1, 1, array(0), 3, null, false, 1);
+    $canvas = new RMFormModules('', 'bk_mod', 1, 1, $block->sections(), 3, null, false, 1);
     
     // Groups
     $groups = new RMFormGroups('', 'bk_groups', true, 1, 3, $block->readGroups());

@@ -60,8 +60,8 @@ function createSQL()
 
 function show_rm_blocks()
 {
-    global $xoopsModule, $xoopsConfig, $wid_globals, $xoopsSecurity;
-    
+    global $xoopsModule, $xoopsConfig, $wid_globals, $xoopsSecurity, $rmc_config;
+    define('RMCSUBLOCATION','blocks');
     $db = Database::getInstance();
     
     $modules = RMFunctions::get_modules_list(1);
@@ -120,6 +120,10 @@ function show_rm_blocks()
     RMTemplate::get()->add_style('forms.css', 'rmcommon');
     RMTemplate::get()->add_local_script('jquery-ui.min.js', 'rmcommon', 'include');
     
+    if(!$rmc_config['blocks_enable']){
+        showMessage(__('Internal blocks manager is currenlty disabled!','rmcommon'), 0);
+    }
+    
     xoops_cp_header();
     
     // Available Widgets
@@ -137,36 +141,54 @@ function show_rm_blocks()
 /**
 * Save the current positions
 */
-function save_positions(){
-    global $exmSecurity;
+function save_position($edit = 0){
+    global $xoopsSecurity;
     
-    if (!$exmSecurity->check() || !$exmSecurity->checkReferer()){
-        redirectMsg('widgets.php', __('You are not allowed to do this action!','system'), 1);
+    if (!$xoopsSecurity->check()){
+        redirectMsg('blocks.php', __('You are not allowed to do this action!','rmcommon'), 1);
         die();
     }
     
-    $ids = exm_server_var($_POST, 'sort_id', array());
+    $name = rmc_server_var($_POST, 'posname', '');
+    $tag = rmc_server_var($_POST, 'postag', '');
     
-    if(empty($ids) || !is_array($ids)){
-        redirectMsg('widgets.php', __('An error was found while trying to do this action','system'), 1);
+    if($name=='' || $tag==''){
+        redirectMsg(__('Please provide a name and tag for this new position!','rmcommon'));
         die();
     }
     
-    $db = EXMDatabase::get();
-    $i = 0;
-    $error = '';
-    foreach($ids as $o){
-        $db->queryF("UPDATE ".$db->prefix("widgets")." SET weight=$i WHERE wid=$o");
-        $error .= $db->error()!='' ? $db->error()."<br />" : '';
-        $i++;
-    }
-    
-    
-    if ($error==''){
-        redirectMsg('widgets.php', __('Positions saved successfully!','system'), 0);
+    if($edit){
+        
+        $id = rmc_server_var($_POST, 'id', '');
+        if($id<=0)
+            redirectMsg('blocks.php',__('You must specify a valid position ID!','rmcommon'), 1);
+        
+        $pos = new RMBlockPosition($id);
+        if($pos->isNew())
+            redirectMsg('blocks.php', __('Specified position does not exists!','rmcommon'), 1);
+        
     } else {
-        redirectMsg('widgets.php', __('There was an error while trying this action: ','system').$error, 1);
+        $pos = new RMBlockPosition();
     }
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    
+    $pos->setVar('name',$name);
+    $pos->setVar('tag',$tag);
+    $pos->setVar('active',1);
+    
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_blocks_positions")." WHERE name='$name' OR tag='$tag'";
+    if($edit) $sql .= " AND id_position<>$id";
+    
+    list($num) = $db->fetchRow($db->query($sql));
+
+    if($num>0)
+        redirectMsg('blocks.php', __('Already exists another position with same name or same tag!','rmcommon'), 1);
+    
+    if($pos->save())
+        redirectMsg('blocks.php',__('Database updated successfully!','rmcommon'));
+    else
+        redirectMsg('blocks.php', __('Errors ocurred while trying to save data','rmcommon').'<br />'.$pos->errors());
     
 }
 
@@ -177,14 +199,14 @@ function toggle_visibility($s){
     global $exmSecurity;
     
     if (!$exmSecurity->check() || !$exmSecurity->checkReferer()){
-        redirectMsg('widgets.php', __('You are not allowed to do this action!','system'), 1);
+        redirectMsg('widgets.php', __('You are not allowed to do this action!','rmcommon'), 1);
         die();
     }
     
     $ids = exm_server_var($_POST, 'widget', array());
     
     if(empty($ids) || !is_array($ids)){
-        redirectMsg('widgets.php', __('An error was found while trying to do this action','system'), 1);
+        redirectMsg('widgets.php', __('An error was found while trying to do this action','rmcommon'), 1);
         die();
     }
     
@@ -194,7 +216,7 @@ function toggle_visibility($s){
     if ($db->error()==''){
         redirectMsg('widgets.php', __('Database updated successfully','global'), 0);
     } else {
-        redirectMsg('widgets.php', __('There was an error while trying this action: ','system').$db->error(), 1);
+        redirectMsg('widgets.php', __('There was an error while trying this action: ','rmcommon').$db->error(), 1);
     }
     
 }
@@ -207,14 +229,14 @@ function delete_widgets(){
     global $exmSecurity;
     
     if (!$exmSecurity->check() || !$exmSecurity->checkReferer()){
-        redirectMsg('widgets.php', __('You are not allowed to do this action!','system'), 1);
+        redirectMsg('widgets.php', __('You are not allowed to do this action!','rmcommon'), 1);
         die();
     }
     
     $ids = exm_server_var($_POST, 'widget', array());
     
     if(empty($ids) || !is_array($ids)){
-        redirectMsg('widgets.php', __('You must select at least one widget!','system'), 1);
+        redirectMsg('widgets.php', __('You must select at least one widget!','rmcommon'), 1);
         die();
     }
     
@@ -227,7 +249,7 @@ function delete_widgets(){
     }
     
     if ($errors!=''){
-        redirectMsg('widgets.php', __('There was some errors:','system').$error, 1);
+        redirectMsg('widgets.php', __('There was some errors:','rmcommon').$error, 1);
     } else {
         redirectMsg('widgets.php',__('Database updated successfully','global'), 0);
     }
@@ -238,7 +260,7 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 switch($action){
     case 'save_position':
-        save_positions();
+        save_position();
         break;
     case 'hide-widget':
         toggle_visibility(0);

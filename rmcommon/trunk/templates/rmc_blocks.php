@@ -49,14 +49,16 @@
 <div id="form-pos" class="bkbk_forms">
         <div class="formposcontainer">
         <h3>Add Position</h3>
-        <form name="frmaddpos" id="frm-add-pos" />
+        <form name="frmaddpos" id="frm-add-pos" method="post" action="blocks.php" />
         <label><?php _e('Name','rmcommon'); ?></label>
         <input type="text" name="posname" value="" />
         <span class="desc"><?php _e('Input a name to identify this position (<em>eg. Left blocks</em>)','rmcommon'); ?></span>
         <label><?php _e('Tag Name','rmcommon'); ?></label>
         <input type="text" name="postag" value="" />
         <span class="desc"><?php _e('Specify a name for the smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt).','rmcommon'); ?></span>
-        <input type="button" name="bk_add_pos" id="add-position" value="<?php _e('Add Position','rmcommon'); ?>" />
+        <input type="submit" name="bk_add_pos" id="add-position" value="<?php _e('Add Position','rmcommon'); ?>" />
+        <input type="hidden" name="action" value="save_position" />
+        <?php echo $xoopsSecurity->getTokenHTML(); ?>
         </form>
         <span class="other_options"><a href="#" id="exspos"><?php _e('Existing positions','docs'); ?> <span>&#8711;</span></a></span>
     <div id="existing-positions">
