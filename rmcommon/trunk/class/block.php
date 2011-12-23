@@ -381,24 +381,25 @@ class RMBlock extends RMObject
         
         // Guardamos las secciones
         if (count($this->sections)>0){
+            
             if (!$this->isNew()){
                 $this->db->queryF("DELETE FROM ".$this->db->prefix("rmc_bkmod")." WHERE bid='".$this->id()."'");
             }
             
             $sql = "INSERT INTO ".$this->db->prefix("rmc_bkmod")." (`bid`,`mid`,`page`) VALUES ";
             $sql1 = '';
-            foreach ($this->sections as $k){
-                if (isset($k['subpages'])){
+            foreach ($this->sections as $id => $k){
+                if (is_array($k) && isset($k['subpages'])){
                     foreach ($k['subpages'] as $l){
-                        $sql1 .= $sql1=='' ? "('".$this->id()."','$k[id]','$l')" : ", ('".$this->id()."','$k[id]','$l')";
+                        $sql1 .= $sql1=='' ? "('".$this->id()."','$id','$l')" : ", ('".$this->id()."','$id','$l')";
                     }
                 } else {
-                    $sql1 .= $sql1=='' ? "('".$this->id()."','$k[id]','--')" : ", ('".$this->id()."','$k[id]','--')";
+                    $sql1 .= $sql1=='' ? "('".$this->id()."','$id','--')" : ", ('".$this->id()."','$id','--')";
                 }
+                
             }
             if (!$this->db->queryF($sql . $sql1)) $this->addError($this->db->error());
         }
-        
         // Guardamos los permisos
         if (count($this->rgroups)>0 || count($this->wgroups)>0){
             if (!$this->isNew()){

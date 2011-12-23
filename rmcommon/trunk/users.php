@@ -166,6 +166,7 @@ function formatSQL(){
 function show_users(){
     global $xoopsSecurity;
     
+    define('RMCSUBLOCATION','allusers');
     RMTemplate::get()->add_style('users.css','rmcommon');
     RMTemplate::get()->add_style('js-widgets.css');
 
@@ -238,7 +239,7 @@ function show_users(){
 * Show the form to create or edit a user
 */
 function user_form($edit = false){
-	
+    define('RMCSUBLOCATION','newuser');
     $query = rmc_server_var($_GET, 'query', '');
     $query = $query=='' ? '' : base64_decode($query);
     

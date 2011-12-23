@@ -17,9 +17,12 @@ $(document).ready(function(){
     
     $(".field_module_names input[type='checkbox']").change(function(){
         
-        id = $(this).val();
-        
-        $("#subpages-"+id+" input").attr("checked", $(this).attr("checked"));
+        var id = $(this).val();
+        if ($(this).is(":checked")){
+            $("#subpages-"+id+" input").attr("checked",  'checked');
+        } else {
+            $("#subpages-"+id+" input").removeAttr("checked");
+        }
         
     });
     
