@@ -68,7 +68,11 @@ function insertBlock(){
     $blocks = $module->getInfo('blocks');
     $ms = $module->name().'<br />';
     $found = false;
-    foreach($blocks as $idb => $bk){
+    foreach($blocks as $bk){
+        $str = isset($bk['show_func']) ? $bk['show_func'] : '';
+        $str .= isset($bk['edit_func']) ? $bk['edit_func'] : '';
+        $str .= isset($bk['dir']) ? $bk['dir'] : $mod;
+        $idb = md5($str);
         if($idb==$id){
             $found = true;
             break;
@@ -79,7 +83,7 @@ function insertBlock(){
         response(array('message'=>__('The specified block does not exists, please verify your selection.','rmcommon')), 1, 1);
     }
     
-    $block = new RMBlock();
+    $block = new RMInternalBlock();
 
     if ($canvas<=0){
         $db = Database::getInstance();
@@ -92,7 +96,7 @@ function insertBlock(){
     
     $block->setVar('name', $bk['name']);
     $block->setVar('element', $mod);
-    $block->setVar('element_type', 'module');
+    $block->setVar('element_type', $bk['plugin']==1 ? 'plugin' : 'module');
     $block->setVar('canvas', $canvas);
     $block->setVar('visible', 1);
     $block->setVar('type', 'normal');
@@ -105,6 +109,7 @@ function insertBlock(){
     $block->setVar('widget', $id);
     $block->setVar('options', is_array($bk['options']) ? serialize($bk['options']) : serialize(explode("|", $bk['options'])));
     $block->setVar('template', $bk['template']);
+    $block->sections(array(0));
     
     if(!$block->save()){
         
@@ -134,7 +139,7 @@ function insertBlock(){
 * Return the form to configure blocks
 */
 function configure_block(){
-    global $xoopsSecurity;
+    global $xoopsSecurity, $xoopsLogger;
     
     if (!$xoopsSecurity->check()){
         response(array('message'=>__('Sorry, you are not allowed to view this page','rmcommon')), 1, 0);
@@ -148,7 +153,7 @@ function configure_block(){
         response(array('message'=>__('The block that you specified seems to be invalid. Please try again', 'rmcommon')), 1, 1);
     }
     
-    $block = new RMBlock($id);
+    $block = new RMInternalBlock($id);
     if($block->isNew()){
         response(array('message'=>__('The block that you specified does not exists!. Please try again', 'rmcommon')), 1, 1);
     }
@@ -193,7 +198,7 @@ function save_block_config(){
         die();
     }
     
-    $block = new RMBlock($bid);
+    $block = new RMInternalBlock($bid);
     if($block->isNew()){
         response(array('message'=>__('Specified block does not exists!','rmcommon')), 1, 1);
         die();

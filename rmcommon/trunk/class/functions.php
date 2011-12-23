@@ -489,6 +489,19 @@ class RMFunctions
         return $modules;
     }
     
-    
+    public function installed_plugins(){
+        
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $result = $db->query("SELECT dir FROM ".$db->prefix("rmc_plugins").' WHERE status=1');
+        $plugins = array();
+        while($row = $db->fetchArray($result)){
+            $plugins[] = $row['dir'];
+        }
+        
+        $plugins = RMEvents::get()->run_event("rmcommon.installed.plugins", $plugins);
+        
+        return $plugins;
+        
+    }
 	
 }

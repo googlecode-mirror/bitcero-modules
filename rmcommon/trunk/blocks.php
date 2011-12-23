@@ -95,6 +95,7 @@ function show_rm_blocks()
             'canvas' => $bpos[$row['canvas']], 
             'weight' => $row['weight'], 
             'visible'=>$row['visible'],
+            'active'=>$row['isactive'],
             'type'=>$row['type'],
             'options'=>$row['edit_func']!='' ? 1 : 0,
             'description'=>$row['description']
@@ -124,11 +125,26 @@ function show_rm_blocks()
         showMessage(__('Internal blocks manager is currenlty disabled!','rmcommon'), 0);
     }
     
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
+    RMTemplate::get()->add_head('<script type="text/javascript">var bks_message = "'.__('Do you really wish to delete selected blocks?','rmcommon').'";
+        var bks_select_message = "'.__('Select at least one block to delete it!','rmcommon').'";</script>');
+    
     xoops_cp_header();
     
     // Available Widgets
     
     $blocks = RMBlocksFunctions::get_available_list($modules);
+    
+    foreach($blocks as $id => $block){
+        if(empty($block['blocks'])) continue;
+        foreach($block['blocks'] as $bid => $val){
+            $str = isset($val['show_func']) ? $val['show_func'] : '';
+            $str .= isset($val['edit_func']) ? $val['edit_func'] : '';
+            $str .= isset($val['dir']) ? $val['dir'] : $id;
+            $val['id'] = md5($str);
+            $blocks[$id]['blocks'][$bid] = $val;
+        }
+    }
     
     // Position
     $the_position = isset($_GET['pos']) ? intval($_GET['pos']) : '';
@@ -196,27 +212,27 @@ function save_position($edit = 0){
 * Change the current visibility status for a set of selected widgets
 */
 function toggle_visibility($s){
-    global $exmSecurity;
+    global $xoopsSecurity;
     
-    if (!$exmSecurity->check() || !$exmSecurity->checkReferer()){
-        redirectMsg('widgets.php', __('You are not allowed to do this action!','rmcommon'), 1);
+    if (!$xoopsSecurity->check()){
+        redirectMsg('blocks.php', __('You are not allowed to do this action!','rmcommon'), 1);
         die();
     }
     
-    $ids = exm_server_var($_POST, 'widget', array());
+    $ids = rmc_server_var($_POST, 'ids', array());
     
     if(empty($ids) || !is_array($ids)){
-        redirectMsg('widgets.php', __('An error was found while trying to do this action','rmcommon'), 1);
+        redirectMsg('blocks.php', __('Select at least a block!','rmcommon'), 1);
         die();
     }
     
-    $db = EXMDatabase::get();
-    $db->queryF("UPDATE ".$db->prefix("widgets")." SET visible=$s WHERE wid IN (".join(",",$ids).")");
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $db->queryF("UPDATE ".$db->prefix("rmc_blocks")." SET visible=$s WHERE bid IN (".join(",",$ids).")");
     
     if ($db->error()==''){
-        redirectMsg('widgets.php', __('Database updated successfully','global'), 0);
+        redirectMsg('blocks.php', __('Database updated successfully','rmcommon'), 0);
     } else {
-        redirectMsg('widgets.php', __('There was an error while trying this action: ','rmcommon').$db->error(), 1);
+        redirectMsg('blocks.php', __('Errors ocurred while trying to do this action','rmcommon').'<br />'.$db->error(), 1);
     }
     
 }
@@ -224,16 +240,16 @@ function toggle_visibility($s){
 /**
 * Delete a set of selected widgets
 */
-function delete_widgets(){
+function delete_blocks(){
     
-    global $exmSecurity;
+    global $xoopsSecurity;
     
-    if (!$exmSecurity->check() || !$exmSecurity->checkReferer()){
-        redirectMsg('widgets.php', __('You are not allowed to do this action!','rmcommon'), 1);
+    if (!$xoopsSecurity->check()){
+        redirectMsg('blocks.php', __('You are not allowed to do this action!','rmcommon'), 1);
         die();
     }
     
-    $ids = exm_server_var($_POST, 'widget', array());
+    $ids = rmc_server_var($_POST, 'ids', array());
     
     if(empty($ids) || !is_array($ids)){
         redirectMsg('widgets.php', __('You must select at least one widget!','rmcommon'), 1);
@@ -242,16 +258,16 @@ function delete_widgets(){
     
     $error = '';
     foreach ($ids as $id){
-        $widget = new EXMWidget($id);
+        $block = new RMInternalBlock($id);
         // API: Before delete a widget
-        $widget = EXMEventsApi::get()->run_event('exm_event_deleting_widget',$widget);
-        if (!$widget->delete()) $error .= $widget->errors();
+        $block = RMEvents::get()->run_event('rmcommon.deleting.block',$block);
+        if (!$block->delete()) $error .= $block->errors();
     }
     
     if ($errors!=''){
-        redirectMsg('widgets.php', __('There was some errors:','rmcommon').$error, 1);
+        redirectMsg('blocks.php', __('There was some errors:','rmcommon').'<br />'.$error, 1);
     } else {
-        redirectMsg('widgets.php',__('Database updated successfully','global'), 0);
+        redirectMsg('blocks.php',__('Database updated successfully','rmcommon'), 0);
     }
     
 }
@@ -262,14 +278,14 @@ switch($action){
     case 'save_position':
         save_position();
         break;
-    case 'hide-widget':
+    case 'hidden':
         toggle_visibility(0);
         break;
-    case 'show-widget':
+    case 'visible':
         toggle_visibility(1);
         break;
-    case 'delete-widgets':
-        delete_widgets();
+    case 'delete':
+        delete_blocks();
         break;
     case 'upload-widget':
         upload_widget();

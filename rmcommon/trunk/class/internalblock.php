@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: block.php 872 2011-12-23 04:29:38Z i.bitcero $
 // --------------------------------------------------------------
 // Red México Common Utilities
 // A framework for Red México Modules
@@ -14,7 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 /**
  * Clase para el manejo de bloques en Common Utilities
  */
-class RMBlock extends RMObject
+class RMInternalBlock extends RMObject
 {
     /**
      * Grupos con permiso de lectura
@@ -35,7 +35,7 @@ class RMBlock extends RMObject
      */
     function __construct($id = null)
     {
-        $this->db =& Database::getInstance();
+        $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("rmc_blocks");
         $this->setNew();
         $this->initVarsFromTable();
@@ -187,24 +187,24 @@ class RMBlock extends RMObject
     public function getContent($format = 'S')
     {
         
-        $c_type = $this->contentType();
+        $c_type = $this->getVar('content_type');
         
         switch ( $format ) {
             case 'S':
                 if ( $c_type == 'H' ) {
-                    return str_replace('{X_SITEURL}', ABSURL.'/', $this->getVar('content', 'N'));
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $this->getVar('content', 'N'));
                 } elseif ( $c_type == 'P' ) {
                     ob_start();
                     echo eval($this->getVar('content', 'N'));
                     $content = ob_get_contents();
                     ob_end_clean();
-                    return str_replace('{X_SITEURL}', ABSURL.'/', $content);
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
                 } elseif ( $c_type == 'S' ) {
                     $myts =& MyTextSanitizer::getInstance();
-                    return str_replace('{X_SITEURL}', ABSURL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 1));
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 1));
                 } else {
                     $myts =& MyTextSanitizer::getInstance();
-                    return str_replace('{X_SITEURL}', ABSURL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 0));
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 0));
                 }
                 break;
             case 'E':
@@ -220,66 +220,40 @@ class RMBlock extends RMObject
      */
     function buildBlock()
     {
-        
-        global $exmConfig, $exmOption;
+        global $xoopsConfig, $xoopsOption;
         $block = array();
         // M for module block, S for system block C for Custom
-        if ( $this->getVar("block_type") != "C" ) {
+        if ( $this->getVar("type") != "custom" ) {
             // get block display function
             $show_func = $this->getVar('show_func');
             if ( !$show_func ) {
                 return false;
             }
-            // Comprobamos el tipo de bloque
-             if ($this->getVar('type')=='U'){
-                // Bloque cargado
-                $dir = ABSPATH.'/uploads/widgets/'.sprintf("%05s", $this->id()).'/';
-                $file = ABSPATH.'/uploads/widgets/'.sprintf("%05s", $this->id()).'/'.$this->file();
-                if (file_exists($dir . 'lang_'.$exmConfig['language'].'.php')){
-                    include_once $dir . 'lang_'.$exmConfig['language'].'.php';
-                } else {
-                    @include_once $dir . 'lang_spanish.php';
-                }
-                
-                include_once $file;
-                $options = $this->getVar("options");
-                $option = is_array($options) ? $options : explode('|', $options);
-                if (function_exists($show_func)){
-                    $block = $show_func($option);
-                    if (!$block) return false;
-                }
-                
+               
+            // Bloque de Módulo
+            // Comprobamos si se trata de un bloque de plugin de sistema               
+            if ($this->getVar('element_type')=='plugin'){
+                $file = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('element').'/plugins/'.$this->getVar('dirname').'/blocks/'.$this->getVar('file');
+                load_plugin_locale($this->getVar('dirname'), '', $this->getVar('element'));
             } else {
-                
-                // Bloque de Módulo
-                // Comprobamos si se trata de un bloque de plugin de sistema               
-                if ($this->dirname()=='zwe'){
-                    $file = ABSPATH.'/apps/system/'.$this->feature().'/blocks/'.$this->file();
-                    if (file_exists(ABSPATH.'/apps/system/'.$this->feature().'/language/'.$exmConfig['language'] . '/blocks.php')) {
-                        $langFile = ABSPATH.'/apps/system/'.$this->feature().'/language/'.$exmConfig['language'] . '/blocks.php';
-                    } else {
-                        $langFile = ABSPATH.'/apps/system/'.$this->feature().'/language/spanish/blocks.php';
-                    }
+                $file = XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname')."/blocks/".$this->getVar('file');
+                if ( file_exists(XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname')."/language/".$xoopsConfig['language']."/blocks.php") ) {
+                    include_once XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname')."/language/".$xoopsConfig['language']."/blocks.php";
+                } elseif ( file_exists(XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname')."/language/english/blocks.php") ) {
+                    include_once XOOPS_ROOT_PATH."/modules/".$this->getVar('dirname')."/language/english/blocks.php";
                 } else {
-                    $file = ABSPATH."/apps/".$this->getVar('dirname')."/blocks/".$this->getVar('func_file');
-                    if ( file_exists(ABSPATH."/apps/".$this->getVar('dirname')."/language/".$exmConfig['language']."/blocks.php") ) {
-                        $langFile = ABSPATH."/apps/".$this->getVar('dirname')."/language/".$exmConfig['language']."/blocks.php";
-                    } elseif ( file_exists(ABSPATH."/apps/".$this->getVar('dirname')."/language/spanish/blocks.php") ) {
-                        $langFile = ABSPATH."/apps/".$this->getVar('dirname')."/language/spanish/blocks.php";
-                    }
+                    load_mod_locale($this->getVar('dirname'));
                 }
-                
-                include_once $langFile;
-                
-                include_once $file;
-                $options = $this->getVar("options");
-                $option = is_array($options) ? $options : explode('|', $options);
-                if (function_exists($show_func)){
-                    $block = $show_func($option);
-                    if (!$block) return false;
-                }
-                
             }
+                        
+            include_once $file;
+            $options = $this->getVar("options");
+            $option = is_array($options) ? $options : explode('|', $options);
+            if (function_exists($show_func)){
+                $block = $show_func($option);
+                if (!$block) return false;
+            }
+                
             
         } else {
             
@@ -345,20 +319,21 @@ class RMBlock extends RMObject
                 $lang = "load_mod_locale";
                 break;
             case 'plugin':
-                
+                $file = XOOPS_ROOT_PATH.'/modules/'.$this->getVar('element').'/plugins/'.$this->getVar('dirname').'/blocks/'.$this->getVar('file');
+                $lang = 'load_plugin_locale';
                 break;            
         }
         
         // Check if widget file exists
         if (!is_file($file)){
-            return __('The configuration file for this widget does not exists!','rmcommon');
+            return __('The configuration file for this block does not exists!','rmcommon');
         }
         
         include_once $file;
         
         // Check if edit function exists
         if (!function_exists($edit_func)){
-            return __('There was a problem trying to show the configuration options for this widget!','rmcommon');
+            return __('There was a problem trying to show the configuration options for this block!','rmcommon');
         }
         
         // Get language for this widget
@@ -428,30 +403,26 @@ class RMBlock extends RMObject
      */
     function delete(){
         
-        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("rmc_bkmod")." WHERE widget_id='".$this->id()."'")){
+        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("rmc_bkmod")." WHERE bid='".$this->id()."'")){
             $this->addError($this->db->error());
         }
-        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read' OR gperm_name='block_admin'")){
+        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read'")){
             $this->addError($this->db->error());
         }
-        
-        /*if ($this->blockType()=='U'){
-            exm_delete_directory(ABSPATH.'/uploads/widgets/'.sprintf("%05s", $this->id()));
-        }*/
         
         $this->deleteFromTable();
         if ($this->errors()!=''){ return false; } else { return true; }
     }
 }
 
-class RMBlockHandler
+class RMInternalBlockHandler
 {
     function getAllByGroupModule($groupid, $app_id=0, $toponlyblock=false, $visible=null, $orderby='b.weight,b.bid', $isactive=1, $subpage='')
     {
         
         $orderby = $orderby=='' ? 'b.weight,b.bid' : $orderby;
         
-        $db =& EXMDatabase::get();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
         $ret = array();
         $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE (gperm_name = 'block_read' OR gperm_name='block_admin') AND gperm_modid = 1";
         if ( is_array($groupid) ) {
@@ -493,7 +464,7 @@ class RMBlockHandler
             $result = $db->query($sql);
             //echo $sql; die();
             while ( $myrow = $db->fetchArray($result) ) {
-                $block = new RMBlock();
+                $block = new RMInternalBlock();
                 $block->assignVars($myrow);
                 $ret[$myrow['bid']] =& $block;
                 unset($block);
@@ -505,7 +476,7 @@ class RMBlockHandler
     
     function getByModule($moduleid, $asobject=true)
     {
-        $db =& EXMDatabase::get();
+        $db =& XoopsDatabaseFactory::getDatabaseConnection();
         
         if (!is_numeric($moduleid)){
             $col = 'dirname';
@@ -522,7 +493,7 @@ class RMBlockHandler
         $ret = array();
         while( $myrow = $db->fetchArray($result) ) {
             if ( $asobject ) {
-                $ret[] = new EXMBlock($myrow['bid']);
+                $ret[] = new RMInternalBlock($myrow['bid']);
             } else {
                 $ret[] = $myrow['bid'];
             }

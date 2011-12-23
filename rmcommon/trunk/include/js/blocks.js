@@ -221,7 +221,7 @@ $(document).ready(function(){
                 $("#bk-messages").addClass("errorMsg");
                 $("#bk-messages").slideDown('slow');
                 if(data.token==null || data.token==''){
-                    window.location.reload();
+                    window.location.href = 'blocks.php';
                 } else {
                     $("#XOOPS_TOKEN_REQUEST").val(data.token)
                 }
@@ -236,7 +236,7 @@ $(document).ready(function(){
             }
             
             if(data.token==null || data.token==''){
-                window.location.reload();
+                window.location.href = 'blocks.php';
             } else {
                 $("#XOOPS_TOKEN_REQUEST").val(data.token);
             }
@@ -250,10 +250,15 @@ $(document).ready(function(){
             var tr = '<tr valign="top" class="even" id="tr-'+data.id+'" style="dislay: none;">';
             tr += '<td align="center"><input type="checkbox" name="ids[]" id="item-'+data.id+'" /></td>';
             tr += '<td><strong>'+data.name+'</strong>';
-            tr += '<span class="description">'+data.description+'</span>';
-            tr += '<td align="center">'+data.canvas.name+'</td>';
-            tr += '<td align="center">'+data.weight+'</td>';
             tr += '</td><td align="center">'+data.module+'</td>';
+            tr += '<span class="description">'+data.description+'</span>';
+            tr += '<span class="rmc_options">';
+            tr += '<a class="bk_edit" href="#" id="edit-'+data.id+'">Settings</a> |';
+            tr += '<a href="#" onclick="select_option('+data.id+',\'delete\',\'frm-blocks\');">Delete</a> |';
+            tr += '<a href="#" class="bk_disable" id="disable-'+data.id+'">Disable</a></span></td>';
+            tr += '<td align="center">'+data.canvas.name+'</td>';
+            tr += '<td align="center"><img src="images/done.png" alt="" /></td>';
+            tr += '<td align="center">'+data.weight+'</td>';
             $("#table-blocks").append(tr);
             
             $("#tr-"+data.id).slideDown('slow', function(){
@@ -271,5 +276,58 @@ $(document).ready(function(){
         blocksAjax.loadForm(id,'');
         return false;
     });
+    
+    $("#bulk-top").change(function(){
+        $("#bulk-bottom").val($(this).val());
+    });
+
+    $("#bulk-bottom").change(function(){
+        $("#bulk-top").val($(this).val());
+    });
 
 });
+
+function before_submit(id){
+
+	var types = $("#"+id+" input[name='ids[]']");
+	var go = false;
+
+	for(i=0;i<types.length;i++){
+		if ($(types[i]).is(":checked"))
+			go = true;
+	}
+
+	if (!go){
+		alert(bks_select_message);
+		return false;
+	}
+
+	if ($("#bulk-top").val()=='delete'){
+		if (confirm(bks_message))
+			$("#"+id).submit();
+	} else {
+		$("#"+id).submit();
+	}
+
+}
+
+function select_option(id,action,form){
+    
+    form = form==undefined || form==''?'frm-types':form;
+
+	if(action=='edit'){
+		$("#bulk-top").val('edit');
+		$("#bulk-bottom").val('edit');
+		$("#"+form+" input[type=checkbox]").removeAttr("checked");
+		$("#item-"+id).attr("checked","checked");
+		$("#"+form).submit();
+	}else if(action=='delete'){
+		$("#bulk-top").val('delete');
+		$("#bulk-bottom").val('delete');
+		$("#"+form+" input[type=checkbox]").removeAttr("checked");
+		$("#item-"+id).attr("checked","checked");
+		if (confirm(bks_message))
+			$("#"+form).submit();
+	}
+
+}
