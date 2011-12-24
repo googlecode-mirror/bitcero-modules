@@ -10,7 +10,7 @@
             <?php endforeach; ?>
             </select>
             <select name="pos" onchange="submit();">
-                <option value="0"<?php echo $pos==0?' selected="selected"':''; ?>><?php _e('All positions','rmcommon'); ?></option>
+                <option value="0"<?php echo $pid==0?' selected="selected"':''; ?>><?php _e('All positions','rmcommon'); ?></option>
                 <?php foreach($positions as $pos): ?>
                 <option value="<?php echo $pos['id']; ?>"<?php echo $pid==$pos['id']?' selected="selected"':''; ?>><?php echo $pos['name']; ?></option>
                 <?php endforeach; ?>
@@ -176,13 +176,19 @@
             <tfoot>
             <tbody>
             <?php foreach($positions as $pos): ?>
-                <tr class="<?php echo tpl_cycle('even,odd'); ?>">
+                <tr class="<?php echo tpl_cycle('even,odd'); ?>" id="tr-<?php echo $pos['id']; ?>">
                     <td align="center"><input type="checkbox" name="ids[]" id="itemp-<?php echo $pos['id']; ?>" value="<?php echo $pos['id']; ?>" /></td>
                     <td align="left"><?php echo $pos['id']; ?></td>
                     <td>
                         <?php echo $pos['name']; ?>
                         <span class="rmc_options">
-                            <a href="#" onclick="select_option(<?php echo $pos['id']; ?>, 'delete', 'frm-positions')"><?php _e('Delete','rmcommon'); ?></a>
+                            <a href="#" onclick="select_option(<?php echo $pos['id']; ?>, 'delete', 'frm-positions')"><?php _e('Delete','rmcommon'); ?></a> |
+                            <a href="#" class="edit_position"><?php _e('Edit','rmcommon'); ?></a>
+                        </span>
+                        <span class="pos_data">
+                            <span class="name"><?php echo $pos['name']; ?></span>
+                            <span class="tag"><?php echo $pos['tag']; ?></span>
+                            <span class="active"><?php echo $pos['active']; ?></span>
                         </span>
                     </td>
                     <td align="center">&lt;{$xoBlocks.<?php echo $pos['tag']; ?>}&gt;</td>

@@ -297,3 +297,6 @@ label.options{
     padding: 3px 5px 5px 5px;
     border-radius: 5px;
 }
+.pos_data{display: none;}
+.editor{background:#f2f2f2;}
+.editor input[type='button'],.editor input[type='submit']{margin: 2px;}
