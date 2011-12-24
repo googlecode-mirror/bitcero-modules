@@ -1,24 +1,28 @@
 <h1 class="rmc_titles"><?php _e('Blocks Administration','rmcommon'); ?></h1>
-
+<?php $from = rmc_server_var($_REQUEST,'from', '')=='positions'?true:false; ?>
 <div class="rmc_blocks_options">
-    <label>
-        <strong><?php _e('Module','rmcommon'); ?></strong><br />
-        <select name="module">
-            <option value=""><?php _e('All modules','rmcommon'); ?></option>
-        <?php foreach($modules as $mod): ?>
-            <option value="<?php echo $mod['mid']; ?>"><?php echo $mod['name']; ?></option>
-        <?php endforeach; ?>
-        </select>
-    </label>
-    <label>
-        <strong><?php _e('Position','rmcommon'); ?></strong><br />
-        <select name="position">
-            <option value=""><?php _e('All positions','rmcommon'); ?></option>
-            <?php foreach($positions as $pos): ?>
-            <option value="<?php echo $pos['id']; ?>"><?php echo $pos['name']; ?></option>
+    <div id="blocks-modpos"<?php echo $from ? ' style="display: none;"' : ''; ?>>
+        <form name="frmModpos" method="get" action="blocks.php">
+            <select name="mid" onchange="submit();">
+                <option value=""<?php echo $mid==0?' selected="selected"' : ''; ?>><?php _e('All modules','rmcommon'); ?></option>
+            <?php foreach($modules as $mod): ?>
+                <option value="<?php echo $mod['mid']; ?>"<?php echo $mid==$mod['mid']?' selected="selected"' : ''; ?>><?php echo $mod['name']; ?></option>
             <?php endforeach; ?>
-        </select>
-    </label>
+            </select>
+            <select name="pos" onchange="submit();">
+                <option value="0"<?php echo $pos==0?' selected="selected"':''; ?>><?php _e('All positions','rmcommon'); ?></option>
+                <?php foreach($positions as $pos): ?>
+                <option value="<?php echo $pos['id']; ?>"<?php echo $pid==$pos['id']?' selected="selected"':''; ?>><?php echo $pos['name']; ?></option>
+                <?php endforeach; ?>
+            </select>
+            
+            <select name="visible" onchange="submit();">
+                <option value="-1"<?php echo $visible==-1?' selected="selected"':''; ?>><?php _e('All blocks...','rmcommon'); ?></option>
+                <option value="0"<?php echo $visible==0?' selected="selected"':''; ?>><?php _e('Hidden blocks...','rmcommon'); ?></option>
+                <option value="1"<?php echo $visible==1?' selected="selected"':''; ?>><?php _e('Visible blocks...','rmcommon'); ?></option>
+            </select>
+        </form>
+    </div>
     
     <a href="#" id="newban" class="rmc_menus"><?php _e('Add New Block','rmcommon'); ?></a>
     <div id="megamenu1" class="megamenu">
@@ -39,14 +43,13 @@
         <?php endforeach; ?>
         </div>   
     </div>
-    <a href="#" id="newpos" class="rmc_menus"><?php _e('Add New Position','rmcommon'); ?></a>
-    <span id="wait-buttons" class="bk-waiting">Hola</span>
+    <a href="#" id="newpos" class="rmc_menus"><?php _e('Positions','rmcommon'); ?></a>
 </div>
 <div id="bk-messages" style="display: none;">
     <span class="msg-close"></span>
     <span class="msg"></span>
 </div>
-<div id="form-pos" class="bkbk_forms">
+<div id="form-pos" class="bkbk_forms"<?php echo $from ? ' style="display: block;"' : ''; ?>>
         <div class="formposcontainer">
         <h3>Add Position</h3>
         <form name="frmaddpos" id="frm-add-pos" method="post" action="blocks.php" />
@@ -70,7 +73,7 @@
         </div>
 </div>
 
-<div style="overflow: hidden;" id="blocks-list">
+<div style="overflow: hidden;<?php echo $from ? ' display: none;' : ''; ?>" id="blocks-list">
     <form name="frmblocks" id="frm-blocks" method="post" action="blocks.php">
 
     <div class="rmc_bulkactions">
@@ -117,8 +120,7 @@
             <span class="description"><?php echo $block['description']; ?></span>
             <span class="rmc_options">
                 <a class="bk_edit" href="#" id="edit-<?php echo $block['id']; ?>"><?php _e('Settings','rmcommon'); ?></a> |
-                <a href="#" onclick="select_option(<?php echo $block['id']; ?>,'delete','frm-blocks');"><?php _e('Delete','rmcommon'); ?></a> |
-                <a href="#" class="bk_disable" id="disable-<?php echo $block['id']; ?>"><?php _e('Disable','rmcommon'); ?></a>
+                <a href="#" onclick="select_option(<?php echo $block['id']; ?>,'delete','frm-blocks');"><?php _e('Delete','rmcommon'); ?></a>
             </span>
         </td>
         <td align="center"><?php echo $block['module']['name']; ?></td>
@@ -129,7 +131,7 @@
     <?php endforeach; ?>
 </table>
     <div class="rmc_bulkactions">
-        <select name="action" id="bulk-bottom">
+        <select name="actionb" id="bulk-bottom">
             <option value=""><?php _e('Bulk actions...','rmcommon'); ?></option>
             <option value="visible"><?php _e('Visible','rmcommon'); ?></option>
             <option value="hidden"><?php _e('Hidden','rmcommon'); ?></option>
@@ -142,13 +144,21 @@
 </div>
 
 <!-- Positions -->
-<div id="blocks-positions" style="overflow: hidden;display: none;">
+<div id="blocks-positions" style="overflow: hidden;<?php echo $from ? ' display: block;' : 'display: none;'; ?>">
     <form name="formPos" id="frm-positions" method="post" action="blocks.php">
-        
+        <div class="rmc_bulkactions">
+            <select name="action" id="bulk-topp">
+                <option value=""><?php _e('Bulk actions...','rmcommon'); ?></option>
+                <option value="visiblepos"><?php _e('Visible','rmcommon'); ?></option>
+                <option value="hiddenpos"><?php _e('Hidden','rmcommon'); ?></option>
+                <option value="deletepos"><?php _e('Delete','rmcommon'); ?></option>
+            </select>
+            <input type="button" id="the-op-topp" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-positions');" />
+        </div>
         <table class="outer" border="0" id="table-positions">
             <thead>
             <tr>
-                <th width="30"><input type="checkbox" id="checkall" onclick="$('#frm-blocks').toggleCheckboxes(':not(#checkall)');" /></th>
+                <th width="30"><input type="checkbox" id="checkallp" onclick="$('#frm-positions').toggleCheckboxes(':not(#checkallp)');" /></th>
                 <th width="30" align="left"><?php _e('ID','rmcommon'); ?></th>
                 <th align="left"><?php _e('Name','rmcommon'); ?></th>
                 <th><?php _e('Smarty Tag','rmcommon'); ?></th>
@@ -157,8 +167,8 @@
             <thead>
             <tfoot>
             <tr>
-                <th width="30"><input type="checkbox" id="checkall" onclick="$('#frm-blocks').toggleCheckboxes(':not(#checkall)');" /></th>
-                <th width="50"><?php _e('ID','rmcommon'); ?></th>
+                <th width="30"><input type="checkbox" id="checkallpb" onclick="$('#frm-positions').toggleCheckboxes(':not(#checkallpb)');" /></th>
+                <th width="50" align="left"><?php _e('ID','rmcommon'); ?></th>
                 <th align="left"><?php _e('Name','rmcommon'); ?></th>
                 <th><?php _e('Smarty Tag','rmcommon'); ?></th>
                 <th><?php _e('Active','rmcommon'); ?></th>
@@ -167,16 +177,29 @@
             <tbody>
             <?php foreach($positions as $pos): ?>
                 <tr class="<?php echo tpl_cycle('even,odd'); ?>">
-                    <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $pos['id']; ?>" value="<?php echo $pos['id']; ?>" /></td>
+                    <td align="center"><input type="checkbox" name="ids[]" id="itemp-<?php echo $pos['id']; ?>" value="<?php echo $pos['id']; ?>" /></td>
                     <td align="left"><?php echo $pos['id']; ?></td>
-                    <td><?php echo $pos['name']; ?></td>
+                    <td>
+                        <?php echo $pos['name']; ?>
+                        <span class="rmc_options">
+                            <a href="#" onclick="select_option(<?php echo $pos['id']; ?>, 'delete', 'frm-positions')"><?php _e('Delete','rmcommon'); ?></a>
+                        </span>
+                    </td>
                     <td align="center">&lt;{$xoBlocks.<?php echo $pos['tag']; ?>}&gt;</td>
                     <td align="center"><img src="images/<?php echo $pos['active'] ? 'done.png' : 'closeb.png'; ?>" alt="" /></td>
                 </tr>    
             <?php endforeach; ?>
             </tbody>
         </table>
-        
+        <div class="rmc_bulkactions">
+            <select name="actionb" id="bulk-bottomp">
+                <option value=""><?php _e('Bulk actions...','rmcommon'); ?></option>
+                <option value="visiblepos"><?php _e('Visible','rmcommon'); ?></option>
+                <option value="hiddenpos"><?php _e('Hidden','rmcommon'); ?></option>
+                <option value="deletepos"><?php _e('Delete','rmcommon'); ?></option>
+            </select>
+            <input type="button" id="the-op-bottomp" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-positions');" />
+        </div>
     </form>
 </div>
 <!--/ Positions -->

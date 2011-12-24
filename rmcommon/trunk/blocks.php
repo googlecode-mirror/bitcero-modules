@@ -50,6 +50,13 @@ function createSQL()
     if ($pos>0){
         $sql .= $and ? " AND " : ' WHERE ';
         $sql .= " $tblw.canvas='$pos'";
+        $and = true;
+    }
+    
+    if($visible>-1){
+        $sql .= $and ? " AND " : " WHERE ";
+        $sql .= " $tblw.visible=$visible";
+        $and = true;
     }
     
     $sql .= " ORDER BY weight";
@@ -131,8 +138,8 @@ function show_rm_blocks()
     }
     
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
-    RMTemplate::get()->add_head('<script type="text/javascript">var bks_message = "'.__('Do you really wish to delete selected blocks?','rmcommon').'";
-        var bks_select_message = "'.__('Select at least one block to delete it!','rmcommon').'";</script>');
+    RMTemplate::get()->add_head('<script type="text/javascript">var bks_message = "'.__('Do you really wish to delete selected items?','rmcommon').'";
+        var bks_select_message = "'.__('Select at least one item to delete it!','rmcommon').'";</script>');
     
     xoops_cp_header();
     
@@ -153,6 +160,13 @@ function show_rm_blocks()
     
     // Position
     $the_position = isset($_GET['pos']) ? intval($_GET['pos']) : '';
+    
+    // Parameters
+    $mid = rmc_server_var($_GET,'mid',0);
+    $subpage = isset($_GET['subpage']) ? $_GET['subpage'] : '';
+    $group = isset($_GET['group']) ? intval($_GET['group']) : 0;
+    $visible = rmc_server_var($_GET,'visible',-1);
+    $pid = rmc_server_var($_GET,'pos',0);
 
     include RMTemplate::get()->get_template("rmc_blocks.php", 'module', 'rmcommon');
     
@@ -207,7 +221,7 @@ function save_position($edit = 0){
         redirectMsg('blocks.php', __('Already exists another position with same name or same tag!','rmcommon'), 1);
     
     if($pos->save())
-        redirectMsg('blocks.php',__('Database updated successfully!','rmcommon'));
+        redirectMsg('blocks.php?from=positions',__('Database updated successfully!','rmcommon'));
     else
         redirectMsg('blocks.php', __('Errors ocurred while trying to save data','rmcommon').'<br />'.$pos->errors());
     
@@ -277,6 +291,13 @@ function delete_blocks(){
     
 }
 
+function delete_positions(){
+    
+    
+    
+}
+
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 switch($action){
@@ -291,6 +312,9 @@ switch($action){
         break;
     case 'delete':
         delete_blocks();
+        break;
+    case 'deletepos':
+        delete_positions();
         break;
     case 'upload-widget':
         upload_widget();
