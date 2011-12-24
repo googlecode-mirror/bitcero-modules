@@ -183,6 +183,8 @@ $(document).ready(function(){
         });
         $("#blocks-positions").slideToggle(500);
         $("#blocks-list").slideToggle(500);
+        $("#blocks-modpos").fadeToggle(500);
+        return false;
     });
     
     $("#megamenu1 li a").click(function(){
@@ -201,6 +203,11 @@ $(document).ready(function(){
         };
         
         $("#wait-buttons").fadeIn('slow');
+        
+        // Show blocks if not visible
+        if(!$("#blocks-list").is(":visible")){
+            $("#newpos").click();
+        }
         
         $.post('ajax/blocks.php', params, function(data){
             
@@ -275,6 +282,14 @@ $(document).ready(function(){
     $("#bulk-bottom").change(function(){
         $("#bulk-top").val($(this).val());
     });
+    
+    $("#bulk-topp").change(function(){
+        $("#bulk-bottomp").val($(this).val());
+    });
+
+    $("#bulk-bottomp").change(function(){
+        $("#bulk-topp").val($(this).val());
+    });
 
 });
 
@@ -282,6 +297,11 @@ function before_submit(id){
 
 	var types = $("#"+id+" input[name='ids[]']");
 	var go = false;
+        
+        if(id=='frm-positions')
+            bt = '#bulk-topp';
+        else
+            bt = '#bulk-top';
 
 	for(i=0;i<types.length;i++){
 		if ($(types[i]).is(":checked"))
@@ -293,7 +313,7 @@ function before_submit(id){
 		return false;
 	}
 
-	if ($("#bulk-top").val()=='delete'){
+	if ($(bt).val()=='delete'){
 		if (confirm(bks_message))
 			$("#"+id).submit();
 	} else {
@@ -304,19 +324,22 @@ function before_submit(id){
 
 function select_option(id,action,form){
     
-    form = form==undefined || form==''?'frm-types':form;
+    if(form=='frm-positions')
+        p = 'p';
+    else
+        p = '';
 
 	if(action=='edit'){
-		$("#bulk-top").val('edit');
-		$("#bulk-bottom").val('edit');
+		$("#bulk-top"+p).val('edit');
+		$("#bulk-bottom"+p).val('edit');
 		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item-"+id).attr("checked","checked");
 		$("#"+form).submit();
 	}else if(action=='delete'){
-		$("#bulk-top").val('delete');
-		$("#bulk-bottom").val('delete');
+		$("#bulk-top"+p).val('delete');
+		$("#bulk-bottom"+p).val('delete');
 		$("#"+form+" input[type=checkbox]").removeAttr("checked");
-		$("#item-"+id).attr("checked","checked");
+		$("#item"+p+"-"+id).attr("checked","checked");
 		if (confirm(bks_message))
 			$("#"+form).submit();
 	}
