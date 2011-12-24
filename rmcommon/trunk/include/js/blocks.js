@@ -290,6 +290,25 @@ $(document).ready(function(){
     $("#bulk-bottomp").change(function(){
         $("#bulk-topp").val($(this).val());
     });
+    
+    $("a.edit_position").click(function(){
+        
+        var id = $(this).parent().parent().parent();
+        var data = $("#"+$(id).attr("id")+" .pos_data");
+        var html = '<tr id="editor-row" style="display:none;" class="'+$(id).attr("class")+' editor" valign="top"><td>&nbsp;</td>';
+        html += '<td>'+$(id).attr("id").replace("tr-",'');
+        html += '<td><input style="width: 90%" type="text" name="name" id="ed-name" value="'+$(data).children('.name').html()+'" /><br />';
+        html += '<input type="submit" value="'+lang_save+'" class="save_button" />';
+        html += '<input type="button" value="'+lang_cancel+'" class="cancel_button" />';
+        html += '</td>';
+        html += '<td align="center"><input type="text" name="tag" id="ed-tag" value="'+$(data).children('.tag').html()+'" /></td>';
+        html += '<td align="center"><input type="checkbox" name="active" id="ed-active" value="1" '+($(data).children('.active').html()=='1'?+' checked="checked"' : '')+'" /></td>';
+        html += '</tr>';
+        $(id).after(html);
+        $(id).fadeOut(100);
+        $("#editor-row").fadeIn(100);
+
+    });
 
 });
 

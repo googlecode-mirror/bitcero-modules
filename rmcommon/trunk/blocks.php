@@ -139,7 +139,9 @@ function show_rm_blocks()
     
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
     RMTemplate::get()->add_head('<script type="text/javascript">var bks_message = "'.__('Do you really wish to delete selected items?','rmcommon').'";
-        var bks_select_message = "'.__('Select at least one item to delete it!','rmcommon').'";</script>');
+        var bks_select_message = "'.__('Select at least one item to delete it!','rmcommon').'";
+        var lang_save = "'.__('Save','rmcommon').'";
+        var lang_cancel = "'.__('Cancel','rmcommon').'";</script>');
     
     xoops_cp_header();
     
