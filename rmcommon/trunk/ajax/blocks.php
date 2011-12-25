@@ -94,11 +94,12 @@ function insertBlock(){
             list($canvas, $canvas_name) = $db->fetchRow($result);
     }
     
+    $block->setReadGroups(array(0));
     $block->setVar('name', $bk['name']);
     $block->setVar('element', $mod);
     $block->setVar('element_type', $bk['plugin']==1 ? 'plugin' : 'module');
     $block->setVar('canvas', $canvas);
-    $block->setVar('visible', 1);
+    $block->setVar('visible', 0);
     $block->setVar('type', 'normal');
     $block->setVar('isactive', 1);
     $block->setVar('dirname', isset($bk['dir']) ? $bk['dir'] : $mod);
