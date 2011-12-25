@@ -179,6 +179,9 @@ $(document).ready(function(){
         $("#form-pos").toggle('slow', function(){
             if($(this).is(":visible")){
                 $("#form-pos").effect('highlight', {}, 1000);
+                $("#newpos").html(lang_blocks);
+            } else {
+                $("#newpos").html(lang_positions);
             }
         });
         $("#blocks-positions").slideToggle(500);
@@ -295,20 +298,101 @@ $(document).ready(function(){
         
         var id = $(this).parent().parent().parent();
         var data = $("#"+$(id).attr("id")+" .pos_data");
+        
+        if($("#editor-row").length>0){
+            $("#editor-row").hide();
+            $("#editor-row").remove();
+            $("tr").show();
+        }
+        
         var html = '<tr id="editor-row" style="display:none;" class="'+$(id).attr("class")+' editor" valign="top"><td>&nbsp;</td>';
-        html += '<td>'+$(id).attr("id").replace("tr-",'');
+        html += '<td><strong class="the_id">'+$(id).attr("id").replace("ptr-",'')+'</strong></td>';
         html += '<td><input style="width: 90%" type="text" name="name" id="ed-name" value="'+$(data).children('.name').html()+'" /><br />';
         html += '<input type="submit" value="'+lang_save+'" class="save_button" />';
         html += '<input type="button" value="'+lang_cancel+'" class="cancel_button" />';
         html += '</td>';
-        html += '<td align="center"><input type="text" name="tag" id="ed-tag" value="'+$(data).children('.tag').html()+'" /></td>';
-        html += '<td align="center"><input type="checkbox" name="active" id="ed-active" value="1" '+($(data).children('.active').html()=='1'?+' checked="checked"' : '')+'" /></td>';
+        html += '<td align="center"><input type="text" name="tag" id="ed-tag" value="'+$(data).children('.ptag').html()+'" /></td>';
+        html += '<td align="center"><input type="checkbox" name="active" id="ed-active" value="1" '+($(data).children('.active').html()=='1'?' checked="checked"' : '')+'" /></td>';
         html += '</tr>';
         $(id).after(html);
-        $(id).fadeOut(100);
-        $("#editor-row").fadeIn(100);
+        $(id).hide();
+        $("#editor-row").show();
+        
+        $("#editor-row .cancel_button").click(function(){
+            
+            $("#editor-row").hide();
+            $("#editor-row").remove();
+            $("tr").show();
+            
+        });
+        
+        $("#editor-row .save_button").click(function(){
+            
+            var params = {
+                'action': 'savepos',
+                'id': $("#editor-row .the_id").html(),
+                'name': $("#editor-row #ed-name").val(),
+                'tag': $("#editor-row #ed-tag").val(),
+                'active': $("#editor-row #ed-active").is(":checked") ? '1' : 0,
+                'XOOPS_TOKEN_REQUEST': $("#XOOPS_TOKEN_REQUEST").val()
+            };
+            
+            $.post('ajax/blocks.php', params, function(data){
+                
+                if(data.error){  
+                    $("#bk-messages").removeClass("infoMsg");
+                    $("#bk-messages .msg").html(data.message);
+                    $("#bk-messages").addClass("errorMsg");
+                    $("#bk-messages").slideDown('slow');
+                    if(data.token==null || data.token==''){
+                        window.location.href = 'blocks.php?from=positions';
+                    } else {
+                        $("#XOOPS_TOKEN_REQUEST").val(data.token)
+                    }
+                    return false;
+                }
+                
+                if(data.message!=null && data.message!=''){
+                    $("#bk-messages").removeClass("errorMsg");
+                    $("#bk-messages .msg").html(data.message);
+                    $("#bk-messages").addClass("infoMsg");
+                    $("#bk-messages").slideDown('slow');
+                }
 
-    });
+                if(data.token==null || data.token==''){
+                    window.location.href = 'blocks.php?from=positions';
+                } else {
+                    $("#XOOPS_TOKEN_REQUEST").val(data.token);
+                }
+
+                //$("#tr-"+id).after('<tr id="tr-block-form" class="even bk_trform" valign="top" style="display: none;"><td colspan="5">'+data.content+'</td></tr>');
+                
+                id = '#ptr-'+$("#editor-row .the_id").html();
+                $(id+' .name').html($("#editor-row #ed-name").val());
+                $(id+' .ptag').html($("#editor-row #ed-tag").val());
+                if($("#editor-row #ed-active").is(":checked")){
+                    $(id+" img.active").attr('src', 'images/done.png');
+                    $(id+' .pos_data .active').html(1);
+                } else {
+                    $(id+" img.active").attr('src', 'images/closeb.png');
+                    $(id+' .pos_data .active').html(0);
+                }
+                
+                $("#editor-row").hide();
+                $("#editor-row").remove();
+                id = id.replace("#ptr-",'');
+                $('#ptr-'+id).show();
+                $('#ptr-'+id).effect('highlight',{}, 1000);
+                
+                return false;
+            
+            },'json');
+            
+            return false;
+            
+        });
+        
+    })
 
 });
 
@@ -317,10 +401,17 @@ function before_submit(id){
 	var types = $("#"+id+" input[name='ids[]']");
 	var go = false;
         
-        if(id=='frm-positions')
+        if(id=='frm-positions'){
             bt = '#bulk-topp';
-        else
+            var xt = $("#"+id+" input[name='XOOPS_TOKEN_REQUEST']");
+            if(xt.length>0){
+                $(xt).val($("#XOOPS_TOKEN_REQUEST").val());
+            } else {
+                $("#"+id).append('<input type="hidden" name="XOOPS_TOKEN_REQUEST" value="'+$("#XOOPS_TOKEN_REQUEST").val()+'" />');
+            }
+        }else{
             bt = '#bulk-top';
+        }
 
 	for(i=0;i<types.length;i++){
 		if ($(types[i]).is(":checked"))
@@ -355,12 +446,11 @@ function select_option(id,action,form){
 		$("#item-"+id).attr("checked","checked");
 		$("#"+form).submit();
 	}else if(action=='delete'){
-		$("#bulk-top"+p).val('delete');
-		$("#bulk-bottom"+p).val('delete');
+		$("#bulk-top"+p).val('delete'+(p=='p'?'pos':''));
+		$("#bulk-bottom"+p).val('delete'+(p=='p'?'pos':''));
 		$("#"+form+" input[type=checkbox]").removeAttr("checked");
 		$("#item"+p+"-"+id).attr("checked","checked");
-		if (confirm(bks_message))
-			$("#"+form).submit();
+		before_submit(form);
 	}
 
 }

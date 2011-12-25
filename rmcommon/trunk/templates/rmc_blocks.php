@@ -39,11 +39,10 @@
                 <?php endforeach; ?>
                 </ul>
             </div>
-            <?php if($i>=3): $i=0; ?><br style="clear: left;" /><?php endif; ?>
         <?php endforeach; ?>
         </div>   
     </div>
-    <a href="#" id="newpos" class="rmc_menus"><?php _e('Positions','rmcommon'); ?></a>
+    <a href="#" id="newpos" class="rmc_menus"><?php _e('Show Positions','rmcommon'); ?></a>
 </div>
 <div id="bk-messages" style="display: none;">
     <span class="msg-close"></span>
@@ -176,23 +175,23 @@
             <tfoot>
             <tbody>
             <?php foreach($positions as $pos): ?>
-                <tr class="<?php echo tpl_cycle('even,odd'); ?>" id="tr-<?php echo $pos['id']; ?>">
+                <tr class="<?php echo tpl_cycle('even,odd'); ?>" id="ptr-<?php echo $pos['id']; ?>" valign="top">
                     <td align="center"><input type="checkbox" name="ids[]" id="itemp-<?php echo $pos['id']; ?>" value="<?php echo $pos['id']; ?>" /></td>
-                    <td align="left"><?php echo $pos['id']; ?></td>
+                    <td align="left"><strong><?php echo $pos['id']; ?></strong></td>
                     <td>
-                        <?php echo $pos['name']; ?>
+                        <span class="name"><?php echo $pos['name']; ?></span>
                         <span class="rmc_options">
                             <a href="#" onclick="select_option(<?php echo $pos['id']; ?>, 'delete', 'frm-positions')"><?php _e('Delete','rmcommon'); ?></a> |
                             <a href="#" class="edit_position"><?php _e('Edit','rmcommon'); ?></a>
                         </span>
                         <span class="pos_data">
                             <span class="name"><?php echo $pos['name']; ?></span>
-                            <span class="tag"><?php echo $pos['tag']; ?></span>
+                            <span class="ptag"><?php echo $pos['tag']; ?></span>
                             <span class="active"><?php echo $pos['active']; ?></span>
                         </span>
                     </td>
-                    <td align="center">&lt;{$xoBlocks.<?php echo $pos['tag']; ?>}&gt;</td>
-                    <td align="center"><img src="images/<?php echo $pos['active'] ? 'done.png' : 'closeb.png'; ?>" alt="" /></td>
+                    <td align="center">&lt;{$xoBlocks.<span class="ptag"><?php echo $pos['tag']; ?></span>}&gt;</td>
+                    <td align="center"><img class="active" src="images/<?php echo $pos['active'] ? 'done.png' : 'closeb.png'; ?>" alt="" /></td>
                 </tr>    
             <?php endforeach; ?>
             </tbody>

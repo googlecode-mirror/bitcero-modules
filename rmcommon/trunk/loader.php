@@ -76,7 +76,6 @@ function cu_render_output($output){
     
     if (function_exists('xoops_cp_header')) return $output;    
     
-    
     $page = $output;
     if($xoopsTpl){
         if(defined('COMMENTS_INCLUDED') && COMMENTS_INCLUDED){

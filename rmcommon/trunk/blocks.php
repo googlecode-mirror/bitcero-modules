@@ -44,7 +44,7 @@ function createSQL()
     
     if ($group>0){
         $sql .= $and ? " AND " : " WHERE ";
-        $sql .= " ($tblp.gperm_itemid=$tblw.bid AND $tblp.gperm_name='block_read' AND $tblp.gperm_groupid='$group')";
+        $sql .= " ($tblp.gperm_itemid=$tblw.bid AND $tblp.gperm_name='rmblock_read' AND $tblp.gperm_groupid='$group')";
     }
     
     if ($pos>0){
@@ -141,7 +141,9 @@ function show_rm_blocks()
     RMTemplate::get()->add_head('<script type="text/javascript">var bks_message = "'.__('Do you really wish to delete selected items?','rmcommon').'";
         var bks_select_message = "'.__('Select at least one item to delete it!','rmcommon').'";
         var lang_save = "'.__('Save','rmcommon').'";
-        var lang_cancel = "'.__('Cancel','rmcommon').'";</script>');
+        var lang_cancel = "'.__('Cancel','rmcommon').'";
+        var lang_positions = "'.__('Show Positions','rmcommon').'";
+        var lang_blocks = "'.__('Show Blocks','rmcommon').'";</script>');
     
     xoops_cp_header();
     
@@ -273,7 +275,7 @@ function delete_blocks(){
     $ids = rmc_server_var($_POST, 'ids', array());
     
     if(empty($ids) || !is_array($ids)){
-        redirectMsg('widgets.php', __('You must select at least one widget!','rmcommon'), 1);
+        redirectMsg('blocks.php', __('You must select at least one block!','rmcommon'), 1);
         die();
     }
     
@@ -294,9 +296,33 @@ function delete_blocks(){
 }
 
 function delete_positions(){
+    global $xoopsSecurity;
     
+    if (!$xoopsSecurity->check()){
+        redirectMsg('blocks.php?from=positions', __('You are not allowed to do this action!','rmcommon'), 1);
+        die();
+    }
     
+    $ids = rmc_server_var($_POST, 'ids', array());
     
+    if(empty($ids) || !is_array($ids)){
+        redirectMsg('blocks.php?from=positions', __('You must select at least one position!','rmcommon'), 1);
+        die();
+    }
+    
+    $error = '';
+    foreach ($ids as $id){
+        $pos = new RMBlockPosition($id);
+        
+        $pos = RMEvents::get()->run_event('rmcommon.deleting.block.position',$pos);
+        if (!$pos->delete()) $error .= $pos->errors();
+    }
+    
+    if ($errors!=''){
+        redirectMsg('blocks.php?from=positions', __('There was some errors:','rmcommon').'<br />'.$error, 1);
+    } else {
+        redirectMsg('blocks.php?from=positions',__('Database updated successfully','rmcommon'), 0);
+    }
 }
 
 

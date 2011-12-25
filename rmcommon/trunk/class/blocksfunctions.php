@@ -106,7 +106,7 @@ class RMBlocksFunctions
     	
         $db =& XoopsDatabaseFactory::getDatabaseConnection();
         $ret = array();
-        $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE (gperm_name = 'block_read') AND gperm_modid = 1";
+        $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE (gperm_name = 'rmblock_read') AND gperm_modid = 1";
         if ( is_array($groupid) ) {
             $sql .= ' AND gperm_groupid IN ('.implode(',', $groupid).',0)';
         } else {
