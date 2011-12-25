@@ -227,6 +227,60 @@ function save_block_config(){
 }
 
 
+function save_block_position(){
+    global $xoopsSecurity;
+    
+    if(!$xoopsSecurity->check($XOOPS_TOKEN_REQUEST)){
+        response(array('message'=>__('Session token expired. Please try again.','rmcommon')), 1, 0);
+        die();
+    }
+    
+    $id = rmc_server_var($_POST, 'id', 0);
+    $name = rmc_server_var($_POST, 'name', '');
+    $tag = rmc_server_var($_POST, 'tag', '');
+    $active = rmc_server_var($_POST, 'active', 1);
+    
+    if($id<=0){
+        response(array('message'=>__('Specified position is not valid!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    if($name==''||$tag==''){
+        response(array('message'=>__('You must fill name and tag input fields!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    $pos = new RMBlockPosition($id);
+    if($pos->isNew()){
+        response(array('message'=>__('Specified block position does not exists!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_blocks_positions")." WHERE (name='$name' OR tag='$tag') AND id_position<>$id";
+    
+    list($num) = $db->fetchRow($db->query($sql));
+    
+    if($num>0){
+        response(array('message'=>__('Already exists another block position with same name or tag!','rmcommon')), 1, 1);
+        die();
+    }
+    
+    $pos->setVar('name', $name);
+    $pos->setVar('tag', $tag);
+    $pos->setVar('active', $active);
+    
+    if($pos->save()){
+        response(array('message'=>__('Changes saved successfully!','rmcommon')), 0, 1);
+        die();
+    } else {
+        response(array('message'=>__('Changes could not be saved!','rmcommon')), 1, 1);
+        die();
+    }
+    
+}
+
+
 $action = rmc_server_var($_REQUEST, 'action', '');
 
 switch($action){
@@ -238,5 +292,8 @@ switch($action){
         break;
     case 'saveconfig':
         save_block_config();
+        break;
+    case 'savepos':
+        save_block_position();
         break;
 }

@@ -63,7 +63,7 @@ class RMInternalBlock extends RMObject
     public function readGroups(){
         
         if (empty($this->rgroups)){
-            $sql = "SELECT gperm_groupid FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read'";
+            $sql = "SELECT gperm_groupid FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='rmblock_read'";
             $result = $this->db->query($sql);
             $ret = array();
             while ($row = $this->db->fetchArray($result)){
@@ -174,7 +174,7 @@ class RMInternalBlock extends RMObject
         if ($gid<=0 && empty($xoopsUser)) $gid = XOOPS_GROUP_ANONYMOUS;
         
         $pHand =& xoops_gethandler('groupperm');
-        return $pHand->checkRight($level ? 'block_admin' : 'block_read', $this->id(), $gid>0 ? $gid : $xoopsUser->getGroups());
+        return $pHand->checkRight($level ? 'block_admin' : 'rmblock_read', $this->id(), $gid>0 ? $gid : $xoopsUser->getGroups());
     }
     
     /**
@@ -378,17 +378,13 @@ class RMInternalBlock extends RMObject
         // Guardamos los permisos
         if (count($this->rgroups)>0 || count($this->wgroups)>0){
             if (!$this->isNew()){
-                $this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND (gperm_name='block_read' OR gperm_name='block_admin')");
+                $this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='rmblock_read'");
             }
             
             $sql = "INSERT INTO ".$this->db->prefix("group_permission")." (`gperm_groupid`,`gperm_itemid`,`gperm_modid`,`gperm_name`) VALUES ";
             $sql1 = '';
             foreach ($this->rgroups as $k){
-                $sql1 .= $sql1=='' ? "('$k','".$this->id()."','1','block_read')" : ", ('$k','".$this->id()."','1','block_read')";
-            }
-
-            foreach ($this->wgroups as $k){
-                $sql1 .= $sql1=='' ? "('$k','".$this->id()."','1','block_admin')" : ", ('$k','".$this->id()."','1','block_admin')";
+                $sql1 .= $sql1=='' ? "('$k','".$this->id()."','1','rmblock_read')" : ", ('$k','".$this->id()."','1','rmblock_read')";
             }
             
             if (!$this->db->queryF($sql . $sql1)) $this->addError($this->db->error());
@@ -406,7 +402,7 @@ class RMInternalBlock extends RMObject
         if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("rmc_bkmod")." WHERE bid='".$this->id()."'")){
             $this->addError($this->db->error());
         }
-        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='block_read'")){
+        if (!$this->db->queryF("DELETE FROM ".$this->db->prefix("group_permission")." WHERE gperm_itemid='".$this->id()."' AND gperm_name='rmblock_read'")){
             $this->addError($this->db->error());
         }
         
@@ -424,7 +420,7 @@ class RMInternalBlockHandler
         
         $db =& XoopsDatabaseFactory::getDatabaseConnection();
         $ret = array();
-        $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE (gperm_name = 'block_read' OR gperm_name='block_admin') AND gperm_modid = 1";
+        $sql = "SELECT DISTINCT gperm_itemid FROM ".$db->prefix('group_permission')." WHERE gperm_name = 'rmblock_read' AND gperm_modid = 1";
         if ( is_array($groupid) ) {
             $sql .= ' AND gperm_groupid IN ('.implode(',', $groupid).',0)';
         } else {

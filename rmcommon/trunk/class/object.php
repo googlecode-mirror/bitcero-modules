@@ -83,7 +83,10 @@ class RMObject
 	 */
 	private $objectColumns = array();
 	private $primaryCols = array();
-	
+    
+    public function id(){
+        return $this->getVar($this->primary);
+    }
     /**#@+
     * used for new/clone objects
     * 

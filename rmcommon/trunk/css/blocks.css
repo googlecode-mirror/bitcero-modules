@@ -75,10 +75,7 @@ z-index: 100;
 }
 
 .megamenu .column{
-float: left;
-width: 180px; /*width of each menu column*/
-margin-right: 5px;
-margin-bottom: 5px;
+overflow: hidden;
 }
 
 .megamenu .column ul{
@@ -88,15 +85,30 @@ list-style-type: none;
 }
 
 .megamenu .column ul li{
-padding-bottom: 5px;
-padding-left: 5px;
+margin: 2px;
+float: left;
+}
+.megamenu .column ul li a{
+    display: block;
+    padding: 5px 7px;
+    background: #ebebeb;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+    color: #666;
+    text-shadow: 1px 1px 1px #FFF;
+}
+.megamenu .column ul li a:hover{
+    text-decoration: none;
+    color: #333;
 }
 
 .megamenu .column h3{
     font: bold 13px Arial;
-    margin: 0 0 5px 0;
+    margin: 10px 0 5px 0;
     border-bottom: 1px solid #666;
     padding: 0 0 2px 0;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
 .rmc_menus{
     float: right;
