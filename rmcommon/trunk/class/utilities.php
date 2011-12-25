@@ -127,7 +127,7 @@ class RMUtilities
 		$rtn .= $version['number'];
 
 		if ($version['revision'] > 0){
-			$rtn .= '.' . $version['revision'] / 100;
+			$rtn .= '.' . ($version['revision'] / 100);
 		} else {
 			$rtn .= '.0';
 		}
