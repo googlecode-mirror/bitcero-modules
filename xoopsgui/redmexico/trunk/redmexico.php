@@ -40,7 +40,7 @@ class XoopsGuiRedmexico extends  XoopsSystemGui
 	
 	public function footer(){
 		global $xoopsConfig, $xoopsOption, $xoopsTpl, $xoTheme;
-
+        
         $xoopsLogger =& XoopsLogger::getInstance();
         $xoopsLogger->stopTime('Module display');
 
@@ -51,11 +51,29 @@ class XoopsGuiRedmexico extends  XoopsSystemGui
             header("Cache-Control: post-check=0, pre-check=0", false);
             header('Pragma: no-cache');
         }
-
+        
         //@internal: using global $xoTheme dereferences the variable in old versions, this does not
         //if (!isset($xoTheme)) $xoTheme =& $GLOBALS['xoTheme'];
+        
+        if (!isset($xoTheme)) $xoTheme =& $GLOBALS['xoTheme'];
 
-        //$xoTheme->render();
+        if (isset($xoopsOption['template_main']) && $xoopsOption['template_main'] != $xoTheme->contentTemplate) {
+            trigger_error("xoopsOption[template_main] should be defined before call xoops_cp_header function", E_USER_WARNING);
+            if (false === strpos($xoopsOption['template_main'], ':')) {
+                $xoTheme->contentTemplate = 'db:' . $xoopsOption['template_main'];
+            } else {
+                $xoTheme->contentTemplate = $xoopsOption['template_main'];
+            }
+        }
+        
+        $metas = $xoTheme->metas['script'];
+        $xoTheme->metas['script'] = array();
+        foreach($metas as $id => $meta){
+            if(strpos($id, 'jquery/jquery.js')===FALSE && strpos($id, 'jquery/plugins/jquery.ui.js')===FALSE)
+                $xoTheme->metas['script'][$id] = $meta;
+        }
+        
+        $xoTheme->render();
         $xoopsLogger->stopTime();
         
         // RMCommon Templates
