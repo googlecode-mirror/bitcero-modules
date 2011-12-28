@@ -1,51 +1,33 @@
 <?php
-// $Id$
+// $Id: reports.php 861 2011-12-19 02:38:22Z i.bitcero $
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress Forums
+// An simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @author: gina
-// @copyright: 2007 - 2008 Red México
 
 
-
-define('BB_LOCATION', 'purge');
+define('RMCLOCATION', 'prune');
 include 'header.php';
-
-
 
 /**
 * @desc Permitirá al administrador elegir los temas que serán 
 * eliminados despues de un cierto período
 **/
-function formPurge(){
+function prune(){
 
-	global $db,$xoopsModule;
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_EXMBB_PURGE);
+	global $xoopsModule;
+        
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Prune Posts','bxpress'));
 	xoops_cp_header();
-
-	$form=new RMForm(_AS_EXMBB_PURGE,'frmpurge','purge.php');
+        
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+	$form=new RMForm(__('Prune Posts','bxpress'),'frmprune','prune.php');
 	
 	//Lista de foros
-	$ele=new RMSelect(_AS_EXMBB_FORUMS,'forums');
+	$ele=new RMFormSelect(__('Prune from forum','bxpress'),'forums');
 	$ele->addOption('',_SELECT);
 	$ele->addOption(0,_AS_EXMBB_ALLFORUMS);
 	$sql="SELECT id_forum,name FROM ".$db->prefix('exmbb_forums');	
@@ -56,12 +38,12 @@ function formPurge(){
 	$form->addElement($ele,true);
 
 	//Dias de antigüedad de temas
-	$days=new RMText(_AS_EXMBB_DAYSOLD,'days',3,3);
+	$days=new RMFormText(_AS_EXMBB_DAYSOLD,'days',3,3);
 	$days->setDescription(_AS_EXMBB_DESCDAYSOLD);
 	$form->addElement($days,true);
 
 	//Lista de opciones para purgar temas
-	$opc=new RMSelect(_AS_EXMBB_DELETE,'option');
+	$opc=new RMFormSelect(_AS_EXMBB_DELETE,'option');
 	$opc->addOption('',_SELECT);
 	$opc->addOption(1,_AS_EXMBB_ALLTOPICS);
 	$opc->addOption(2,_AS_EXMBB_TOPICSUNANSWERED);
@@ -69,16 +51,16 @@ function formPurge(){
 	$form->addElement($opc,true);
 
 	//Temas fijos
-	$form->addElement(new RMYesno(_AS_EXMBB_TOPICSFIXED,'fixed'));
+	$form->addElement(new RMFormYesno(_AS_EXMBB_TOPICSFIXED,'fixed'));
 	
 	
-	$buttons= new RMButtonGroup();
+	$buttons= new RMFormButtonGroup();
 	$buttons->addButton('sbt', _SUBMIT, 'submit', 'onclick="return confirm(\''._AS_EXMBB_DELTOPICS.'\');"');
 	$buttons->addButton('cancel', _CANCEL, 'button', 'onclick="history.go(-1);"');
 	
 	$form->addElement($buttons);
 	
-	$form->addElement(new RMHidden('op','deltopics'));
+	$form->addElement(new RMFormHidden('action','deltopics'));
 
 	$form->display();
 	
@@ -135,7 +117,6 @@ switch ($op){
 		deleteTopics();
 	break;
 	default:
-		formPurge();
+            prune();
 	
 }
-?>

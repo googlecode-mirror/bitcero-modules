@@ -92,15 +92,6 @@ class bXReport extends RMObject
 		return $this->setVar('zappedby',$zappedby);
 	}
 
-	//Nombre de usuario que revisa el reporte
-	public function zappedName(){
-		return $this->getVar('zappedname');
-	}	
-
-	public function setZappedName($zappedname){
-		return $this->setVar('zappedname',$zappedname);
-	}
-
 	//Fecha de revisión del reporte
 	public function zappedTime(){
 		return $this->getVar('zappedtime');
@@ -131,5 +122,3 @@ class bXReport extends RMObject
 		return $this->deleteFromTable();
 	}
 }
-
-?>

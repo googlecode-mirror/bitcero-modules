@@ -37,3 +37,23 @@
     padding: 0;
     margin: 2px 0;
 }
+.reporter{
+    font-size: 0.9em;
+    color: #666;
+}
+.report_message{
+    background: #FEFFE6;
+    padding: 6px;
+    display: block;
+    border: 1px solid #E6D190;
+    margin: 0 5px;
+}
+.report_message .brdcrm{
+    display: block;
+    padding: 4px 0;
+    border-bottom: 1px dashed #CCC;
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+}
+.read{background: #F4F9FD;border: 1px solid #DBE0E4;}
+.zapped{font-size: 0.9em; color: #666;}
