@@ -331,64 +331,57 @@ $modversion['notification']['lookup_file'] = 'include/notification.php';
 $modversion['notification']['lookup_func'] = 'bbNotifications';
 
 $modversion['notification']['category'][1]['name'] = 'forum';
-$modversion['notification']['category'][1]['title'] = '_MI_BX_NOT_FORUMCAT';
-$modversion['notification']['category'][1]['description'] = '_MI_BX_NOT_FORUMCAT_DESC';
+$modversion['notification']['category'][1]['title'] = __('Forums','bxpress');
+$modversion['notification']['category'][1]['description'] = __('Notifications related with forums','bxpress');
 $modversion['notification']['category'][1]['subscribe_from'] = 'forum.php';
 $modversion['notification']['category'][1]['item_name'] = 'id';
 $modversion['notification']['category'][1]['allow_bookmark'] = 1;
 
 $modversion['notification']['category'][2]['name'] = 'topic';
-$modversion['notification']['category'][2]['title'] = '_MI_BX_NOT_TOPICCAT';
-$modversion['notification']['category'][2]['description'] = '_MI_BX_NOT_TOPICCAT_DESC';
+$modversion['notification']['category'][2]['title'] = __('Topics','bxpress');
+$modversion['notification']['category'][2]['description'] = __('Notifications related to topics','bxpress');
 $modversion['notification']['category'][2]['subscribe_from'] = 'topic.php';
 $modversion['notification']['category'][2]['item_name'] = 'id';
 $modversion['notification']['category'][2]['allow_bookmark'] = 1;
 
 $modversion['notification']['category'][3]['name'] = 'any_forum';
-$modversion['notification']['category'][3]['title'] = '_MI_BX_NOT_ANY_FORUM';
-$modversion['notification']['category'][3]['description'] = '_MI_BX_NOT_ANY_FORUM_DESC';
+$modversion['notification']['category'][3]['title'] = __('All forums','bxpress');
+$modversion['notification']['category'][3]['description'] = __('Notifications related to all forums','bxpress');
 $modversion['notification']['category'][3]['subscribe_from'] = 'index.php';
 $modversion['notification']['category'][3]['item_name'] = '';
 $modversion['notification']['category'][3]['allow_bookmark'] = 1;
 
 $modversion['notification']['event'][1]['name'] = 'newtopic';
 $modversion['notification']['event'][1]['category'] = 'forum';
-$modversion['notification']['event'][1]['title'] = '_MI_BX_NOTNEWTOPIC';
-$modversion['notification']['event'][1]['caption'] = '_MI_BX_NOTNEWTOPICCAPTION';
-$modversion['notification']['event'][1]['description'] = '_MI_BX_NOTNEWTOPICCAPTION_DESC';
+$modversion['notification']['event'][1]['title'] = __('New Added Topic','bxpress');
+$modversion['notification']['event'][1]['caption'] = __('Notify when a new topic is created in this forum','bxpress');
+$modversion['notification']['event'][1]['description'] = __('Envía una notificación cuando un nuevo tema se crea en un foro determinado','bxpress');
 $modversion['notification']['event'][1]['mail_template'] = 'new_topic';
-$modversion['notification']['event'][1]['mail_subject'] = '_MI_BX_NOTNEWTOPIC_SUBJECT';
+$modversion['notification']['event'][1]['mail_subject'] = __('New Topic Added','bxpress');
 
 $modversion['notification']['event'][2]['name'] = 'newpost';
 $modversion['notification']['event'][2]['category'] = 'topic';
-$modversion['notification']['event'][2]['title'] = '_MI_BX_NOTNEPOST';
-$modversion['notification']['event'][2]['caption'] = '_MI_BX_NOTNEPOST_CAPTION';
-$modversion['notification']['event'][2]['description'] = '_MI_BX_NOTNEPOST_DESC';
+$modversion['notification']['event'][2]['title'] = __('New Post sent','bxpress');
+$modversion['notification']['event'][2]['caption'] = __('Notify when a new post is send in this topic','bxpress');
+$modversion['notification']['event'][2]['description'] = __('Send a notification when a new topic is sent on a topic','bxpress');
 $modversion['notification']['event'][2]['mail_template'] = 'new_post';
-$modversion['notification']['event'][2]['mail_subject'] = '_MI_BX_NOTNEPOST_SUBJECT';
+$modversion['notification']['event'][2]['mail_subject'] = __('A new post has been sent','bxpress');
 
 $modversion['notification']['event'][3]['name'] = 'postanyforum';
 $modversion['notification']['event'][3]['category'] = 'any_forum';
-$modversion['notification']['event'][3]['title'] = '_MI_BX_NOTNEPOSTANYFORUM';
-$modversion['notification']['event'][3]['caption'] = '_MI_BX_NOTNEPOSTANYFORUM_CAPTION';
-$modversion['notification']['event'][3]['description'] = '_MI_BX_NOTNEPOSTANYFORUM_DESC';
+$modversion['notification']['event'][3]['title'] = __('New post in any forum','bxpress');
+$modversion['notification']['event'][3]['caption'] = __('Notify when a new topic is sent in any forum','bxpress');
+$modversion['notification']['event'][3]['description'] = __('Send a notification when a new topic is sent in any forum','bxpress');
 $modversion['notification']['event'][3]['mail_template'] = 'new_postanyforum';
-$modversion['notification']['event'][3]['mail_subject'] = '_MI_BX_NOTNEPOSTANYFORUM_SUBJECT';
+$modversion['notification']['event'][3]['mail_subject'] = __('New topic sent','bxpress');
 
 $modversion['notification']['event'][4]['name'] = 'postforum';
 $modversion['notification']['event'][4]['category'] = 'forum';
-$modversion['notification']['event'][4]['title'] = '_MI_BX_NOTNEPOSTFORUM';
-$modversion['notification']['event'][4]['caption'] = '_MI_BX_NOTNEPOSTFORUM_CAPTION';
-$modversion['notification']['event'][4]['description'] = '_MI_BX_NOTNEPOSTFORUM_DESC';
+$modversion['notification']['event'][4]['title'] = __('New topic in forum','bxpress');
+$modversion['notification']['event'][4]['caption'] = __('Notify when a new topic is sent in this forum','bxpress');
+$modversion['notification']['event'][4]['description'] = __('Sent a notification when a new topic is sent to this forum','bxpress');
 $modversion['notification']['event'][4]['mail_template'] = 'new_postforum';
-$modversion['notification']['event'][4]['mail_subject'] = '_MI_BX_NOTNEPOSTFORUM_SUBJECT';
-
-// Sindicación RSS
-$modversion['rss']['name'] = '_MI_BX_RSSNAME'; 			// NOmbre del elemento
-$modversion['rss']['file'] = 'include/rss.php';			// Archivo donde se localizan las funciones
-$modversion['rss']['desc'] = 'bxpress_rssdesc';			// Devuelve la descripción del elemento
-$modversion['rss']['feed'] = 'bxpress_rssfeed';			// Devuelve el menu de opciones del elemento
-$modversion['rss']['show'] = 'bxpress_rssshow';			// Devuelve el archivo xml
+$modversion['notification']['event'][4]['mail_subject'] = __('New topic sent','bxpress');
 
 // Bloque Recientes
 $modversion['blocks'][0]['file'] = "bxpress_recents.php";
@@ -400,11 +393,11 @@ $modversion['blocks'][0]['template'] = 'bk_bxpress_recents.html';
 $modversion['blocks'][0]['options'] = array(10,1,1,1,0);
 
 //Páginas del Módulo
-$modversion['subpages']['index'] = _MI_BX_INDEX;
-$modversion['subpages']['forums'] = _MI_BX_FORUM;
-$modversion['subpages']['topics'] = _MI_BX_TOPIC;
-$modversion['subpages']['post'] = _MI_BX_POST;
-$modversion['subpages']['edit'] = _MI_BX_EDIT;
-$modversion['subpages']['moderate'] = _MI_BX_MODERATE;
-$modversion['subpages']['report'] = _MI_BX_REPORT;
-$modversion['subpages']['search'] = _MI_BX_SEARCH;
+$modversion['subpages']['index'] = __('Index','bxpress');
+$modversion['subpages']['forums'] = __('Forums','bxpress');
+$modversion['subpages']['topics'] = __('Topics','bxpress');
+$modversion['subpages']['post'] = __('Post','bxpress');
+$modversion['subpages']['edit'] = __('Edit Post','bxpress');
+$modversion['subpages']['moderate'] = __('Moderate','bxpress');
+$modversion['subpages']['report'] = __('Report post','bxpress');
+$modversion['subpages']['search'] = __('Search','bxpress');
