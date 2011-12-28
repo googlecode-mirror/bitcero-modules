@@ -224,8 +224,17 @@ switch($op){
 			if ($post->isNew()) break;
 			$quote = "[quote=".$post->uname()."]".$post->getVar('post_text','n')."[/quote]\n\n";
 		}
+                
+                $type = $rmc_config['editor_type'];
+                
+                // Verificamos el tipo de editor
+                if(!$xoopsModuleConfig['html']){
+                    if($type=='tiny' || $type=='html'){
+                        $type = 'simple';
+                    }
+                }
 		
-		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '400px', isset($quote) ? $quote : ''), true);
+		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '400px', isset($quote) ? $quote : '', $type), true);
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){
