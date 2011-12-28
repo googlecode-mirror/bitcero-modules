@@ -30,6 +30,7 @@ while ($row=$db->fetchArray($result)){
 	'posts'=>$posts));
 }
 
+RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/introduccion/standalone/1/');
 xoops_cp_header();
 
 xoops_cp_footer();

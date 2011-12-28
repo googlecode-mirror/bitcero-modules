@@ -56,8 +56,8 @@ $adminmenu[] = array(
     'location' => "reports",
     'options' => array(
         array('title'=>__('All reports','bxpress'),'link'=>'reports.php','selected'=>'allreps'),
-        array('title'=>__('Reviewed','bxpress'),'link'=>'reports.php?show=1','selected'=>'reviews'),
-        array('title'=>__('Not reviewd','bxpress'),'link'=>'reports.php?show=2','selected'=>'noreviewd')
+        array('title'=>__('Read','bxpress'),'link'=>'reports.php?show=1','selected'=>'reviews'),
+        array('title'=>__('Not Read','bxpress'),'link'=>'reports.php?show=2','selected'=>'noreviewd')
     )
 );
 

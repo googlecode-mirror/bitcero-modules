@@ -99,7 +99,6 @@ CREATE TABLE `bxpress_report` (
   `report_time` int(10) NOT NULL default '0',
   `report_text` varchar(255) default NULL,
   `zappedby` int(11) NOT NULL default '0',
-  `zappedname` varchar(50) NOT NULL,
   `zappedtime` int(10) NOT NULL DEFAULT '0',
   `zapped` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`report_id`),

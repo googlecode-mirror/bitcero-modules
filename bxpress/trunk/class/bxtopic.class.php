@@ -159,6 +159,19 @@ class bXTopic extends RMObject
         return $this->setVar('friendname', $value);
     }
     
+    public function permalink(){
+        $mc = RMUtilities::module_config('bxpress');
+        
+        if($mc['urlmode']){
+            $link = XOOPS_URL.$mc['htbase'].'/topic.php?id='.$this->id();
+        } else {
+            $link = XOOPS_URL.'/modules/bxpress/';
+            $link .= "topic.php?id=".$this->id();
+        }
+        
+        return $link;
+    }
+    
     public function getPosts($object = true, $id_as_key = true){
     	$result = $this->db->query("SELECT * FROM ".$this->db->prefix("bxpress_posts")." WHERE id_topic='".$this->id()."'");
 		$ret = array();
