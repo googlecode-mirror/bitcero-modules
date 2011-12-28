@@ -108,6 +108,7 @@ function show_modules_list(){
 	RMTemplate::get()->assign('xoops_pagetitle', __('Modules Management','rmcommon'));
 	RMTemplate::get()->add_style('modules.css', 'rmcommon');
 	RMTemplate::get()->add_script(RMCURL.'/include/js/modules.js');
+        RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/common-utilities/uso-de-common-utilities/standalone/1/#administrador-de-modulos');
 	xoops_cp_header();
 	include RMTemplate::get()->get_template('rmc_modules.php', 'module', 'rmcommon');
 	xoops_cp_footer();
