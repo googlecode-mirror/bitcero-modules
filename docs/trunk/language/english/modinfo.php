@@ -8,6 +8,8 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if(function_exists("load_mod_locale")) load_mod_locale('docs');
+
 define('_MI_RD_DISPLAYMETH', __('Display method for Resources index','docs'));
 define('_MI_RD_DISPLAYMETHD',__('Choose the method that you wish to use when display the resources index. This option affects to All, Recent and Featured index of resources.','docs'));
 define('_MI_RD_SUBDOMAIN',__('Subdomain on which RapidDocs will be used','docs'));
