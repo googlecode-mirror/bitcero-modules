@@ -33,7 +33,7 @@ div.ed-container div.ed_buttons div.row_top{
     -khtml-border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0;
 }
 div.ed-container div.ed_buttons div.row_bottom{
 	overflow: hidden;
@@ -98,6 +98,7 @@ div.ed-container div.ed_buttons span.separator{
     width: 6px;
     height: 30px;
     margin-left: 2px;
+    clear: none;
 }
 div.ed-container textarea{
     font-family: Georgia, times, serif;

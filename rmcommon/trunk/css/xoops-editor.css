@@ -2,6 +2,7 @@
     padding: 6px;
     background: #e3e3e3 url(../images/ed-bg.png) repeat-x top;
     border: 1px solid #CCC;
+    border-bottom: 0;
     margin: 0;
     overflow: hidden;
     -moz-border-radius: 5px 5px 0 0;
@@ -28,7 +29,6 @@
 }
 .xc-editor{
     margin: 0;
-    border-top: 0;
     border-color: #CCC;
     -moz-border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
@@ -36,4 +36,5 @@
     -khtml-border-top-right-radius: 0;
     -webkit-border-top-left-radius: 0;
     -webkit-border-top-right-radius: 0;
+    padding: 4px;
 }
