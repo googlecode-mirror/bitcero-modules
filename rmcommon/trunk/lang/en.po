@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Utilities 2.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-19 13:03-0600\n"
-"PO-Revision-Date: 2011-12-19 13:04-0600\n"
+"POT-Creation-Date: 2011-12-28 16:15-0600\n"
+"PO-Revision-Date: 2011-12-28 16:15-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red Mexico <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,43 +16,103 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: c:\\wamp\\www\\cu\\modules\\rmcommon\n"
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:116
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:24
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:129
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:29
 msgid "Blocks"
 msgstr ""
 
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:137
+msgid "Internal blocks manager is currenlty disabled!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:141
+msgid "Do you really wish to delete selected items?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:142
+msgid "Select at least one item to delete it!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:143
+msgid "Save"
+msgstr ""
+
 #: c:\wamp\www\cu\modules\rmcommon/blocks.php:144
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:180
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:210
+#: c:\wamp\www\cu\modules\rmcommon/comments.php:287
+#: c:\wamp\www\cu\modules\rmcommon/plugins.php:469
+#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:229
+#: c:\wamp\www\cu\modules\rmcommon/users.php:303
+#: c:\wamp\www\cu\modules\rmcommon/users.php:418
+msgid "Cancel"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:145
+msgid "Show Positions"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:146
+msgid "Show Blocks"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:187
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:241
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:271
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:302
 #: c:\wamp\www\cu\modules\rmcommon/post_comment.php:28
 msgid "You are not allowed to do this action!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:151
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:187
-msgid "An error was found while trying to do this action"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:166
-msgid "Positions saved successfully!"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:168
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:197
-msgid "There was an error while trying this action: "
-msgstr ""
-
 #: c:\wamp\www\cu\modules\rmcommon/blocks.php:195
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:232
-msgid "Database updated successfully"
+msgid "Please provide a name and tag for this new position!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:217
-msgid "You must select at least one widget!"
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:203
+msgid "You must specify a valid position ID!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:207
+msgid "Specified position does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:225
+msgid "Already exists another position with same name or same tag!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:228
+#: c:\wamp\www\cu\modules\rmcommon/images.php:394
+#: c:\wamp\www\cu\modules\rmcommon/users.php:377
+msgid "Database updated successfully!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/blocks.php:230
+msgid "Errors ocurred while trying to save data"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:248
+msgid "Select at least a block!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:256
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:293
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:324
+msgid "Database updated successfully"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:258
+msgid "Errors ocurred while trying to do this action"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:278
+msgid "You must select at least one block!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:291
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:322
 msgid "There was some errors:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/blocks.php:309
+msgid "You must select at least one position!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/comments.php:105
@@ -66,7 +126,7 @@ msgid "Posted on %s"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/comments.php:131
-msgid "Do you really wish to delete this comment?"
+msgid "Do you really want to delete this comment?"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/comments.php:146
@@ -159,12 +219,6 @@ msgstr ""
 msgid "Update Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:287
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:469
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:229
-msgid "Cancel"
-msgstr ""
-
 #: c:\wamp\www\cu\modules\rmcommon/comments.php:313
 msgid "Comment ID not specified!"
 msgstr ""
@@ -244,10 +298,6 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/images.php:382
 msgid "Specify one category at least to change status!"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/images.php:394
-msgid "Database updated successfully!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/images.php:397
@@ -358,333 +408,334 @@ msgstr ""
 msgid "Specified theme does not exist!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/loader.php:159
+#: c:\wamp\www\cu\modules\rmcommon/loader.php:162
 msgid "Sorry, Red Mexico Common Utilities has not been installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:14
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:15
 msgid "Dashboard"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:19
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:22
 msgid "Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:29
-msgid "Blocks list"
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:36
+#: c:\wamp\www\cu\modules\rmcommon/users.php:406
+msgid "Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:34
-msgid "Edit Positions"
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:41
+msgid "All users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:40
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:53
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:42
+msgid "New user"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:47
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:60
 msgid "Images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:45
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:52
 msgid "Categories"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:49
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:56
 msgid "New category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:57
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:64
 msgid "Add images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:63
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:295
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:72
+#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:296
 msgid "Comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:68
+#: c:\wamp\www\cu\modules\rmcommon/menu.php:79
 msgid "Plugins"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:73
-msgid "Themes"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/modules.php:108
 msgid "Modules Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:126
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:127
 msgid "Specified module is not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:133
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:169
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:134
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:170
 #, php-format
 msgid "%s is already installed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:139
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:140
 msgid "Sepecified module is not a valid Xoops Module!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:162
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:216
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:651
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:697
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:163
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:217
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:652
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:698
 msgid "Sorry, this operation could not be completed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:201
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:202
 #, php-format
 msgid "Installation log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:223
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:659
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:704
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:224
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:660
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:705
 #, php-format
 msgid "Module %s is not installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:248
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:249
 #, php-format
 msgid "Uninstall log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:276
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:277
 #, php-format
 msgid "Could not update %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:280
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:281
 #, php-format
 msgid "Updating module %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:295
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:296
 msgid "Updating templates..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:315
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:316
 #, php-format
 msgid "Template %s could not be inserted!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:318
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:319
 #, php-format
 msgid "Template %s inserted to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:321
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:390
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:322
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:391
 #, php-format
 msgid "ERROR: Could not recompile template %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:323
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:392
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:451
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:324
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:393
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:452
 #, php-format
 msgid "Template %s recompiled"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:329
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:330
 #, php-format
 msgid "ERROR: Could not delete old template %s. Aborting update of this file."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:334
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:335
 msgid "Rebuilding blocks..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:365
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:366
 #, php-format
 msgid "ERROR: Could not update %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:367
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:368
 #, php-format
 msgid "Block %s updated."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:367
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:425
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:427
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:456
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:468
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:368
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:457
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:469
 #, php-format
 msgid "Block ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:385
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:386
 #, php-format
 msgid "ERROR: Could not update %s template."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:387
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:388
 #, php-format
 msgid "Template %s updated."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:407
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:408
 #, php-format
 msgid "ERROR: Could not create %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:425
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
 msgid "ERROR: Could not add block access right"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:425
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:427
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
 #, php-format
 msgid "Group ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:427
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
 msgid "Added block access right"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:443
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:444
 #, php-format
 msgid "ERROR: Could not insert template %s to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:446
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:447
 #, php-format
 msgid "Template %s added to the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:449
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:450
 #, php-format
 msgid "ERROR: Template %s recompile failed"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:456
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:457
 #, php-format
 msgid "Block %s created"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:468
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:469
 #, php-format
 msgid "ERROR: Could not delete block %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:477
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:478
 msgid "ERROR: Could not remove deprecated block template."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:479
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:480
 #, php-format
 msgid "Block template %s deprecated"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:498
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:499
 msgid "Deleting module config options..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:501
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:502
 msgid "ERROR: Could not delete config data from the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:501
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:508
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:502
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:509
 #, php-format
 msgid "Config ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:508
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:509
 msgid "Config data deleted from the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:598
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
 msgid "Config option added"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:598
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
 msgid "Name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:598
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
 msgid "Value:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:605
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:606
 #, php-format
 msgid "Config %s added to the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:607
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:608
 #, php-format
 msgid "ERROR: Could not insert config %s to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:622
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:623
 #, php-format
 msgid "Failed to execute %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:624
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:625
 #, php-format
 msgid "%s executed successfully."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:632
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:633
 #, php-format
 msgid "Module %s updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:682
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:683
 #, php-format
 msgid "Update log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:713
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:714
 #, php-format
 msgid "Module %s could not be disabled!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:719
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:720
 #, php-format
 msgid "Module %s successfully disabled!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:730
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:731
 msgid "Sorry, you don't have access to this page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:731
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:732
 msgid "Click here to refresh"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:790
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:791
 msgid "Install"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:791
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:792
 msgid "More info"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:794
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:795
 msgid "Version:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:800
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:801
 msgid "Author:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:824
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:825
 msgid "You can not rename modules. Session token not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:838
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:839
 msgid "Data provided is not valid"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:851
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:852
 msgid "Module name could not be changed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:861
+#: c:\wamp\www\cu\modules\rmcommon/modules.php:862
 msgid "Module name changed successfully!"
 msgstr ""
 
@@ -869,12 +920,186 @@ msgstr ""
 msgid "This module does not support rss feeds"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:296
+#: c:\wamp\www\cu\modules\rmcommon/users.php:177
+msgid "You have not selected any user!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:178
+msgid "Dou you really wish to delete selected users?"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:189
+#: c:\wamp\www\cu\modules\rmcommon/users.php:261
+msgid "Users Management"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:251
+#: c:\wamp\www\cu\modules\rmcommon/users.php:334
+msgid "The specified user is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:256
+#: c:\wamp\www\cu\modules\rmcommon/users.php:340
+msgid "The specified user does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:261
+#: c:\wamp\www\cu\modules\rmcommon/users.php:264
+msgid "Editing User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:267
+msgid "Username"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:268
+msgid "This field also will be the user login name."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:271
+msgid "Full name"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:272
+msgid "This field must contain firstname and lastname."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:275
+msgid "Email address"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:278
+msgid "New password"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:279
+msgid "The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! \" ? $ % ^ &"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:280
+msgid "Repeat Password"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:281
+msgid "Type password again."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:284
+msgid "URL (Blog or personal website)"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:287
+msgid "Time zone"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:290
+msgid "Assign to groups"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:302
+msgid "Edit User"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:328
+msgid "Sorry, you don't have permission to add users."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:349
+msgid "Please fill all required fields and try again!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:355
+msgid "Passwords doesn't match. Please chek them."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:379
+msgid "The users could not be saved. Please try again!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:396
+msgid "You must select one user at least. Please click on \"Add Users\" and select as many users as you wish."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:401
+msgid "Sending email to users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:404
+msgid "Send Email to Users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:407
+msgid "Please note that the maximun users number that you can select depends of the limit of emails that you can send accourding to your email server policies (or hosting account policies)."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:409
+msgid "Message subject"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:410
+msgid "Subject must be descriptive."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:411
+msgid "Message type"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:412
+msgid "HTML"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:413
+msgid "Plain Text"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:414
+msgid "Message content"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:417
+msgid "Send E-Mail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:448
+msgid "There was errors while sending this emails"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:455
+msgid "Message sent successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:473
+msgid "No users has been selected"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:484
+msgid "Users "
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:486
+msgid "Users could not be "
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:513
+#, php-format
+msgid "Admin user cannot be deleted: %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:515
+#, php-format
+msgid "User cannot be deleted: %s"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/users.php:525
+msgid "Users deleted successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:297
 msgid "Show comments from internal comments system"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:49
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:140
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:146
 #: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:20
 #: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:40
 msgid "Sorry, you are not allowed to view this page"
@@ -888,41 +1113,66 @@ msgstr ""
 msgid "The specified module does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:79
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:83
 msgid "The specified block does not exists, please verify your selection."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:111
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:117
 #, php-format
 msgid "Block could not be created due to: %s. Please try again!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:126
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:132
 msgid "Block added successfully! Please configure it."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:148
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:154
 msgid "The block that you specified seems to be invalid. Please try again"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:153
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:159
 msgid "The block that you specified does not exists!. Please try again"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:187
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:193
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:235
 msgid "Session token expired. Please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:192
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:198
 msgid "You must provide a block ID!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:198
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:204
 msgid "Specified block does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:216
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:222
 msgid "Block updated successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:245
+msgid "Specified position is not valid!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:250
+msgid "You must fill name and tag input fields!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:256
+msgid "Specified block position does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:266
+msgid "Already exists another block position with same name or tag!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:275
+msgid "Changes saved successfully!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:278
+msgid "Changes could not be saved!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:94
@@ -967,14 +1217,6 @@ msgstr ""
 msgid "Show date:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/block.php:354
-msgid "The configuration file for this widget does not exists!"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/class/block.php:361
-msgid "There was a problem trying to show the configuration options for this widget!"
-msgstr ""
-
 #: c:\wamp\www\cu\modules\rmcommon/class/flashuploader.php:32
 msgid "All Files"
 msgstr ""
@@ -983,48 +1225,52 @@ msgstr ""
 msgid "Select Files"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:257
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:258
 msgid "Edit"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:298
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:299
 msgid "Name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:300
-msgid "Email address"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:302
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:303
 msgid "Web site"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:303
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:304
 msgid "Your comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:304
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:305
 msgid "Submit Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:305
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:306
 msgid "Submit a comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:325
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:326
 msgid "Please specify your name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:326
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:327
 msgid "Please specify a valid email"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:327
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:328
 msgid "Please write a message"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:328
+#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:329
 msgid "Please enter a valid URL"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/class/internalblock.php:329
+msgid "The configuration file for this block does not exists!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/class/internalblock.php:336
+msgid "There was a problem trying to show the configuration options for this block!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/class/pagenav.php:118
@@ -1132,7 +1378,7 @@ msgstr ""
 msgid "%s GB"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/date.class.php:92
+#: c:\wamp\www\cu\modules\rmcommon/class/fields/date.class.php:93
 msgid "Choose Time"
 msgstr ""
 
@@ -1145,7 +1391,7 @@ msgstr ""
 msgid "Search Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/modules.class.php:144
+#: c:\wamp\www\cu\modules\rmcommon/class/fields/modules.class.php:145
 msgid "Inner pages"
 msgstr ""
 
@@ -1227,11 +1473,11 @@ msgid "XoopsCode Editor"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:22
-msgid "Number limit for image categories list."
+msgid "Limit for image categories list."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:23
-msgid "Image manager number of images per page"
+msgid "Image manager: number of images per page"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:24
@@ -1239,7 +1485,7 @@ msgid "Secret Key"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:25
-msgid "Provide a secret key used to encript information."
+msgid "Provide a secret key used to encrypt information."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:26
@@ -1251,7 +1497,7 @@ msgid "Allow HTMl in text"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:29
-msgid "Allow smiles in text"
+msgid "Allow smilies in text"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:30
@@ -1295,7 +1541,7 @@ msgid "Time limit to edit a comment (in hours)."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:45
-msgid "Image for rss feeds"
+msgid "Image for RSS feeds"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:48
@@ -1331,7 +1577,7 @@ msgid "SMTP encryption"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:56
-msgid "For SSL or TLS encryption to work your PHP installation must have appropriate OpenSSL transports wrappers."
+msgid "For SSL or TLS encryption to work, your PHP installation must have appropriate OpenSSL transports wrappers."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:58
@@ -1347,7 +1593,7 @@ msgid "SMTP server port"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:61
-msgid "Note that you must to write the apropiate port based on your encryption type selection."
+msgid "Note that you must to write the appropriate port based on your encryption type selection."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:62
@@ -1504,14 +1750,17 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:19
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:91
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:7
 msgid "Select..."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:35
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:32
 msgid "Resizing images"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:40
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:36
 msgid "Please, do not close the window until resizing process has finished!"
 msgstr ""
 
@@ -1520,26 +1769,33 @@ msgid "Image URL"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:53
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:24
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:34
 msgid "Title:"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:57
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:38
 msgid "Alternative text:"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:61
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:56
 msgid "Alignment:"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:65
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:59
 msgid "Left"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:66
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:60
 msgid "Center"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:67
+#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:61
 msgid "Right"
 msgstr ""
 
@@ -1560,6 +1816,7 @@ msgid "Insert Users"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:28
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:3
 msgid "Search:"
 msgstr ""
 
@@ -1572,15 +1829,13 @@ msgid "Sort by:"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:32
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:161
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:170
 msgid "ID"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:33
 msgid "Registered"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:34
-msgid "Username"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:36
@@ -1608,6 +1863,10 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:12
 #: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:10
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:85
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:139
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:155
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:206
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:20
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:122
@@ -1658,7 +1917,6 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:38
 #: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:42
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:101
 msgid "Description:"
 msgstr ""
 
@@ -1783,73 +2041,101 @@ msgstr ""
 msgid "All modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:14
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:77
-msgid "Position"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:16
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:13
 msgid "All positions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:23
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:20
+msgid "All blocks..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:21
+msgid "Hidden blocks..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:22
+msgid "Visible blocks..."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:27
 msgid "Add New Block"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:42
-msgid "Add New Position"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:55
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:57
 msgid "Input a name to identify this position (<em>eg. Left blocks</em>)"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:56
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:58
 msgid "Tag Name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:58
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:60
 msgid "Specify a name for the smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt)."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:59
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:61
 msgid "Add Position"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:61
-msgid "Existing positions"
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:65
+msgid "How to implement blocks"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:64
-msgid "edit"
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:80
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:134
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:150
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:201
+msgid "Bulk actions..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:76
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:81
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:135
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:151
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:202
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:26
+msgid "Visible"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:82
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:136
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:152
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:203
+msgid "Hidden"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:92
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:102
 msgid "Block"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:78
-msgid "Order"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:84
-msgid "There are not blocks configured with this options."
-msgstr ""
-
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:94
-msgid "Settings"
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:104
+msgid "Position"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:96
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:88
-msgid "Disable"
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:106
+msgid "Order"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:109
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:111
+msgid "There are not blocks configured with this options."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:121
+msgid "Settings"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:163
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:172
+msgid "Smarty Tag"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:213
 msgid "Loading"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:109
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:213
 msgid "Loading data..."
 msgstr ""
 
@@ -1880,10 +2166,6 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:22
 msgid "Block weight"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:26
-msgid "Visible"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:31
@@ -2038,22 +2320,16 @@ msgstr ""
 msgid "XOOPS Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:66
-msgid "Users Management"
-msgstr ""
-
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:88
 msgid "Recent News"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:6
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:30
 #, php-format
 msgid "Version: %s"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:7
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:86
 msgid "Update"
 msgstr ""
 
@@ -2062,15 +2338,15 @@ msgid "View"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:4
-msgid "Do you really wish to uninstall selected module?"
+msgid "Do you really want to uninstall selected module?"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:5
-msgid "Do you really wish to update selected module?"
+msgid "Do you really want to update selected module?"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:6
-msgid "Do you really wish to disable selected module?"
+msgid "Do you really want to disable selected module?"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:7
@@ -2092,10 +2368,17 @@ msgid "License:"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:87
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:41
 msgid "Uninstall"
 msgstr ""
 
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:88
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:43
+msgid "Disable"
+msgstr ""
+
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:89
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:45
 msgid "Enable"
 msgstr ""
 
@@ -2223,6 +2506,125 @@ msgstr ""
 msgid "URL:"
 msgstr ""
 
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:13
+msgid "Go Now!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:16
+msgid "Advanced Search"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:22
+msgid "Email:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:23
+msgid "Web site:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:24
+msgid "Country/Location:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:32
+msgid "Registered between:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:33
+msgid "Last login between:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:34
+msgid "Posts between:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:37
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:38
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:41
+msgid "and"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:46
+msgid "Mail:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:47
+msgid "Status:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:48
+msgid "Search method:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:54
+msgid "Users that accept mail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:55
+msgid "Users that do'nt accept mail"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:61
+msgid "Active users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:62
+msgid "Inactive users"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:72
+msgid "Search Now!"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:78
+msgid "All this options are optional and will be additional to basic search keyword."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:91
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:187
+msgid "Order by:"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:96
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:120
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:131
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:192
+msgid "Email"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:98
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:194
+msgid "Sort"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:103
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:199
+msgid "Activate"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:104
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:200
+msgid "Deactivate"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:105
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:201
+msgid "Send email"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:140
+msgid "There are not any user registered with for this filter."
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:161
+msgid "Send Email"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:166
+#, php-format
+msgid "Send email to %s"
+msgstr ""
+
 #: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_bknew.php:4
 msgid "Select block..."
 msgstr ""
@@ -2239,21 +2641,34 @@ msgstr ""
 msgid "Position tag"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:41
-msgid "Visit Site"
+#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:12
+msgid "Existing positions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:42
-msgid "Welcome,"
+#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:15
+msgid "edit"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:43
-msgid "Logout"
+msgid "Visit Site"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:44
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:52
+msgid "Welcome,"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:45
+msgid "Logout"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:46
+#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:54
 msgid "Help"
+msgstr ""
+
+#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:53
+#, php-format
+msgid "%s Help"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
