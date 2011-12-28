@@ -9,6 +9,7 @@
 // --------------------------------------------------------------
 
 $xoopsOption['template_main'] = 'mywords_post.html';
+$xoopsOption['module_subpage'] = 'post';
 include 'header.php';
 
 if ($post<=0){
