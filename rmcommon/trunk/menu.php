@@ -29,18 +29,7 @@ $adminmenu[] = array(
     'title' => __('Blocks','rmcommon'),
     'link' => "blocks.php",
     'icon' => "images/blocks.png",
-    'location' => "blocks",
-    'options' => array(0 => array(
-            'title'     => __('Blocks list','rmcommon'),
-            'link'      => 'blocks.php',
-            'selected'  => 'blocks'
-        ),
-        1 => array(
-            'title'     => __('Edit Positions','rmcommon'),
-            'link'      => '#" id="add-pos-menu',
-            'selected'  => 'positions'
-        )
-    )
+    'location' => "blocks"
 );
 
 $adminmenu[] = array(

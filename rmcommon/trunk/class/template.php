@@ -206,11 +206,20 @@ class RMTemplate
     * @param string Link to help resource
     */
     public function set_help($link){
+        //trigger_error(__('RMTemplate::set_help is deprecated. Use add_help instead.','rmcommon'), E_USER_WARNING);
+        //$this->add_help($caption, $link);
         $this->help_link = $link;
     }
     
     public function help(){
         return $this->help_link;
+    }
+    
+    public function add_help($caption, $link){
+        $this->help_link[] = array(
+            'caption' => $caption,
+            'link' => $link
+        );
     }
     
     /**
