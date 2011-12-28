@@ -62,8 +62,20 @@ if ($xoopsModuleConfig['permalinks']){
     
 }
 
+foreach($params as $i => $p){
+    if($p=='standalone'){
+        $standalone = $params[$i+1];
+        $temp = array_slice($params, 0, $i);
+        if($i==count($params)-1){
+            $temp = array_merge($temp, array_slice($params, $i+1));
+        }
+        $params = $temp;
+        break;
+    }
+}
+
 // Mainpage
-if(!isset($params[0]) || $params[0]==''){
+if(!isset($params[0]) || $params[0]=='' || $params[0]=='standalone'){
     include 'mainpage.php';
     die();
 }
@@ -147,7 +159,7 @@ if($params[0]=='explore' || $params[0]=='search'){
 }
 
 // Section
-if (count($params)>2){
+if (count($params)>=2){
     $res = new RDResource($params[0]);
     if(!$res->isNew()){
         $res = $res->id();
