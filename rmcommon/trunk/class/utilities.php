@@ -65,7 +65,7 @@ class RMUtilities
 	 * @param int $type 0 = String, 1 = Array
 	 */
 	public function getVersion($includename = true, $module='', $type=0){
-		global $xoopsModule, $exmConfig;
+		global $xoopsModule, $xoopsConfig;
 		
         //global $version;
         if ($module!=''){
