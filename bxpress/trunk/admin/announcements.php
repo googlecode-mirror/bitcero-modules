@@ -35,6 +35,8 @@ function showAnnounces(){
             'by'=>$an->byName()
         );
     }
+    
+    $announcements = RMEvents::get()->run_event('bxpress.announcements.list', $announcements);
 	
     bXFunctions::menu_bar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Announcements Management','bxpress'));
@@ -121,6 +123,8 @@ function showForm($edit = 0){
 	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
 	if ($edit) $form->addElement(new RMFormHidden('id',$id));
 	
+        $form = RMEvents::get()->run_event('bxpress.form.announcement',$form);
+        
 	$form->display();
 	xoops_cp_footer();
 
@@ -172,10 +176,14 @@ function saveAnnouncement($edit = 0){
 	$an->setForum($forum);
 	$an->setText($text);
 	$an->setWhere($where);
+        
+        $an = RMEvents::get()->run_event("bxpress.before.save.announcement",$an);
 	
 	if ($an->save()){
+                $an = RMEvents::get()->run_event("bxpress.announcement.saved",$an);
 		redirectMsg('announcements.php', __('Announcement saved successfully!','bxpress'), 0);
 	} else {
+                $an = RMEvents::get()->run_event("bxpress.announcement.save.error",$an);
 		redirectMsg('announcements.php?'.$q, __('Announcement could not be saved!','bxpress') . '<br />' . $an->errors(), 1);
 	}
 		
@@ -199,13 +207,11 @@ function deleteAnnouncements(){
 		die();
 	}
 	
-	$sql = "DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE ";
-	$sql1 = '';
-	foreach ($an as $k){
-		$sql1 .= $sql1 == '' ? "id_an='$k'" : " OR id_an='$k'";
-	}
+	$sql = "DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE id_an IN (".implode(',',$an).")";
 	
-	if ($db->queryF($sql.$sql1)){
+        RMEvents::get()->run_event("bxpress.delete.announcement", $an, $sql);
+        
+	if ($db->queryF($sql)){
 		redirectMsg('announcements.php', __('Announcements deleted successfully!','bxpress'), 0);
 	} else {
 		redirectMsg('announcements.php', __('Errors ocurred while trying to delete announcements.','bxpress') . '<br />' . $db->error(), 0);

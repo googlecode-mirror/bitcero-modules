@@ -11,9 +11,39 @@
 define('RMCLOCATION','dashboard');
 include 'header.php';
 
-$adminTemplate = "admin/forums_index.html";
-
 $db = $xoopsDB;
+
+// Categorías
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_categories");
+list($catnum) = $db->fetchRow($db->query($sql));
+
+// Forums
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_forums");
+list($forumnum) = $db->fetchRow($db->query($sql));
+
+// Topics
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_topics");
+list($topicnum) = $db->fetchRow($db->query($sql));
+
+// Posts
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_posts");
+list($postnum) = $db->fetchRow($db->query($sql));
+
+// Announcements
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_announcements");
+list($annum) = $db->fetchRow($db->query($sql));
+
+//Attachments
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_attachments");
+list($attnum) = $db->fetchRow($db->query($sql));
+
+// Reports
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("bxpress_report");
+list($repnum) = $db->fetchRow($db->query($sql));
+
+// Days running
+$daysnum = time() - $xoopsModule->getVar('last_update');
+$daysnum = ceil($daysnum/86400);
 
 //Lista de Mensajes recientes
 $tbl1= $db->prefix('exmbb_posts');
@@ -30,8 +60,16 @@ while ($row=$db->fetchArray($result)){
 	'posts'=>$posts));
 }
 
+RMTemplate::get()->add_xoops_style('dashboard.css', 'bxpress');
+RMTemplate::get()->add_local_script('dashboard.js', 'bxpress');
 RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/introduccion/standalone/1/');
+bXFunctions::menu_bar();
+
+$rblocks = RMEvents::get()->run_event("bxpress.dashboard.right.blocks", $rblocks);
+
 xoops_cp_header();
+
+include RMTemplate::get()->get_template("admin/forums_index.php", 'module', 'bxpress');
 
 xoops_cp_footer();
 
