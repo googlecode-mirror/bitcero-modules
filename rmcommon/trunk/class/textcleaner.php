@@ -602,7 +602,7 @@ class TextCleaner
      * @param bool Clean disabled tags?
 	 * @return  string
 	 **/
-	function to_display($text, $dbr = true, $clean_tags = true){
+	function to_display($text, $dbr = true, $clean_tags = true, $paragraph = true){
 		
         $rmc_config = empty($params) ? RMFunctions::get()->configs() : $params;
 		
@@ -628,7 +628,7 @@ class TextCleaner
         if($clean_tags) $text = $this->clean_disabled_tags($text);
 		$text = $this->make_clickable($text);
 		$text = $this->codeConv($text, $rmc_config['doxcode']);	// Ryuji_edit(2003-11-18)
-		$text = $this->double_br($text);
+		if($paragraph) $text = $this->double_br($text);
 
 		// Before to send the formatted string we send it to interceptor methods
 		return RMEvents::get()->run_event('rmcommon.text.todisplay', $text, $original_text);
