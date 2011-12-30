@@ -112,9 +112,9 @@ class bXFunctions
     	$today += date('s', time());
     	
     	if ($real<=$today){
-    		return sprintf(_MS_EXMBB_TODAY, date('H:i:s', $time));
+    		return sprintf(__('Today %s','bxpress'), date('H:i:s', $time));
     	}elseif ($real<=($today-86400)){
-    		return sprintf(_MS_EXMBB_YESTERDAY, date('H:i:s', $time));
+    		return sprintf(__('Yesterday %s','bxpress'), date('H:i:s', $time));
 	}else{
 		return formatTimeStamp($time);
 	}
