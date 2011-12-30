@@ -152,7 +152,7 @@ class bXPost extends RMObject
 	}
 	
 	public function text(){
-		if (!$this->havetext && $this->getVar('post_text','n')==''){
+            if (!$this->havetext && $this->getVar('post_text','n')==''){
 			// Cargamos el texto
 	        $sql = "SELECT * FROM ".$this->db->prefix("bxpress_posts_text")." WHERE post_id='".$this->id()."'";
 	        $result = $this->db->queryF($sql);
@@ -160,10 +160,19 @@ class bXPost extends RMObject
 	        
 	        $this->havetext = true;
 	        $row = $this->db->fetchArray($result);
-	        $this->setVar('post_text', TextCleaner::getInstance()->to_display($row['post_text']));
-	        $this->setVar('post_edit', $row['post_edit']);
-		}
-		return $this->getVar('post_text');
+                $this->setVar('post_text', $row['post_text']);
+                $this->setVar('post_edit', $row['post_edit']);
+                
+            }
+            
+            // Clean HTML
+            $mc = RMUtilities::module_config('bxpress');            
+            if(!$mc['html'])
+                $this->setVar('post_text', TextCleaner::getInstance()->specialchars ($this->getVar('post_text','n')));
+                
+	    $this->setVar('post_text', TextCleaner::getInstance()->to_display($this->getVar('post_text')));
+            
+            return $this->getVar('post_text');
 	}
 	public function setText($value){
 		$this->havetext = true;

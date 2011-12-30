@@ -22,6 +22,7 @@ if ($id=='' && $pid<=0){
 	die();
 }
 
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 if ($pid){
 	$id = bXFunctions::pageFromPID($pid);

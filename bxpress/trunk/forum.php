@@ -78,7 +78,7 @@ while ($row = $db->fetchArray($result)){
     $last = new bXPost($topic->lastPost());
     $lastpost = array();
     if (!$last->isNew()){
-    	$lastpost['date'] = bXFunctions::formatDate($last->date());
+    	$lastpost['date'] = formatTimeStamp($last->date(),'c');
     	$lastpost['by'] = sprintf(__('By: %s','bxpress'), $last->uname());
     	$lastpost['id'] = $last->id();
     	if ($xoopsUser){
