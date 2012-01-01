@@ -73,9 +73,9 @@ function rd_show_sections(){
         unset($r);
 	}
 
-	//Secciones
-	$sections = array();
-    RDFunctions::sections_tree_index(0,0,$res,'','',false,$sections);
+    //Secciones
+    $sections = array();
+    RDFunctions::sections_tree_index(0,0,$res,'','',false,$sections,false,true);
     
     // Event
     $sections = RMEvents::get()->run_event('docs.loading.sections', $sections);
@@ -84,6 +84,9 @@ function rd_show_sections(){
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Sections Management','docs'));
     RMTemplate::get()->assign('xoops_pagetitle', __('Sections Management','docs'));
     RMTemplate::get()->add_style('admin.css', 'docs');
+    RMTemplate::get()->add_style('sections.css', 'docs');
+    RMTemplate::get()->add_local_script('sections.js','docs','include');
+    RMTemplate::get()->add_local_script('jquery.ui.nestedSortable.js','docs','include');
 	xoops_cp_header();
     
     include RMEvents::get()->run_event('docs.get.sections.template', RMTemplate::get()->get_template('admin/rd_sections.php', 'module', 'docs'));

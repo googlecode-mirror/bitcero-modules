@@ -95,7 +95,7 @@ class RDFunctions
     * @param bool Indicates if function must be return also the content for section
     * @return true;
     */
-    function sections_tree_index($parent = 0, $jumps = 0, RDResource $res, $var = 'rd_sections_index', $number='', $assign = true, &$array = null, $text = false){
+    function sections_tree_index($parent = 0, $jumps = 0, RDResource $res, $var = 'rd_sections_index', $number='', $assign = true, &$array = null, $text = false, $nested = false){
         global $xoopsUser;
 
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -127,19 +127,34 @@ class RDFunctions
                     'number'=>$jumps==0 ? $num : ($number !='' ? $number.'.' : '').$i,
                     'comments'=>$sec->getVar('comments'),
                     'edit'=> !$xoopsUser ? 0 : ($xoopsUser->isAdmin() ? true : $res->isEditor($xoopsUser->uid())),
-                    'resource' => $sec->getVar('id_res')
+                    'resource' => $sec->getVar('id_res'),
+                    'metas' => $sec->metas(),
+                    'parent' => $sec->getVar('parent')
                 );
             
             if($text){
                 $section['content'] = $sec->getVar('content');
             }
                 
-            if ($assign){
-                RMTemplate::get()->assign($var, $section);
-            } else {
+            $sec->clear_metas();
+            if($nested){
+                $secs = array();
+                self::sections_tree_index($sec->id(), $jumps+1, $res, $var, ($number !='' ? $number.'.' : '').$i, $assign, $secs, $text, true);
+                
+                $section['sections'] = $secs;
+                
                 $array[] = $section;
+                
+            } else {
+                
+                if ($assign){
+                    RMTemplate::get()->assign($var, $section);
+                } else {
+                    $array[] = $section;
+                }
+                
+                self::sections_tree_index($sec->id(), $jumps+1, $res, $var, ($number !='' ? $number.'.' : '').$i, $assign, $array, $text);
             }
-            self::sections_tree_index($sec->id(), $jumps+1, $res, $var, ($number !='' ? $number.'.' : '').$i, $assign, $array, $text);
             $i++;
             if ($jumps==0) $num++;
         }
@@ -474,7 +489,8 @@ class RDFunctions
     public function standalone(){
         global $xoopsTpl, $xoopsModuleConfig;
         
-        RMTemplate::get()->add_head('<link rel="stylesheet" type="text/css" media="all" href="'.$xoopsModuleConfig['standalone_css'].'" />');
+        RMTemplate::get()->add_xoops_style('standalone.css','docs');
+        //RMTemplate::get()->add_head('<link rel="stylesheet" type="text/css" media="all" href="'.$xoopsModuleConfig['standalone_css'].'" />');
         $rd_contents = ob_get_clean();
         $xoopsTpl->assign('rd_contents', $rd_contents);
         unset($rd_contents);
