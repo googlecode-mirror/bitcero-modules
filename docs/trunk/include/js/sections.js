@@ -1,6 +1,6 @@
 $(document).ready(function(){
        
-    $("ol#root-0").nestedSortable({
+    $("ol.sec_connected").nestedSortable({
 			disableNesting: 'no-nest',
 			forcePlaceholderSize: true,
 			handle: 'div',
@@ -30,9 +30,25 @@ $(document).ready(function(){
     });
     
     $(".save-sortable").click(function(){
+
+        $("#rd-wait").fadeIn('fast');
+        s = $('ol.sec_connected').nestedSortable('serialize');
         
-        s = $('ol#root-0').nestedSortable('serialize');
-        alert(s);
+        params = {
+            items: s,
+            action: 'savesort',
+            'XOOPS_TOKEN_REQUEST':$('#XOOPS_TOKEN_REQUEST').val()
+        };
+        
+        $.post("sections.php", params, function(data){
+            
+            if(data.error==1){
+                alert(data.message);
+            }
+            
+            window.location.href = data.url;
+            
+        }, 'json');
         
     });
     

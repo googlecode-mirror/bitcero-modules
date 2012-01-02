@@ -351,87 +351,55 @@ function rd_delete_sections(){
 
 
 /**
+ * Respuesta en json
+ */
+function json_response($m,$e=0,$res=0){
+    
+    global $xoopsLogger;
+    $xoopsLogger->renderingEnabled = false;
+    error_reporting(0);
+    $xoopsLogger->activated = false;
+    
+    $url = 'sections.php'.($res>0?'?id='.$res:'');
+    
+    $resp = array(
+        'message' => $url,
+        'error' => $e,
+        'url' => $url
+    );
+    
+    echo json_encode($resp);
+    die();
+    
+}
+/**
 * @desc Modifica el orden de las secciones
 **/
 function changeOrderSections(){
-	global $util;
-	$orders=isset($_REQUEST['orders']) ? $_REQUEST['orders'] : array();
-	$id=isset($_REQUEST['id']) ? $_REQUEST['id'] : array();	
-	
+    global $xoopsSecurity;
 
-	if (!$util->validateToken()){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_SESSINVALID, 1);
-		die();
-	}	
-
-	if (!is_array($orders) || empty($orders)){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_NOTSECTION,1);
-		die();
-	}
-	
-	$errors='';
-	foreach ($orders as $k=>$v){
-	
-		//Verifica si la sección es válida
-		if ($k<=0){
-			$errors.=sprintf(_AS_AH_NOTVALID, $k);
-			continue;
-		}	
-		
-		//Comprueba si la sección es existente
-		$sec=new AHSection($k);
-		if ($sec->isNew()){
-			$errors.=sprintf(_AS_AH_NOTEXISTSECT,$k);
-			continue;
-		}	
-		
-
-		$sec->setOrder($v);		
-		if (!$sec->save()){
-			$errors.=sprintf(_AS_AH_NOTSAVEORDER, $k);		
-		}
-	}
-
-	if ($errors!=''){
-		redirectMsg('./sections.php?id='.$id,_AS_AH_ERRORS.$errors,1);
-		die();
-
-	}else{
-		redirectMsg('./sections.php?id='.$id,_AS_AH_DBOK,0);
-	}
-
-
-
-}
-
-/**
-* @desc Permite recomendar una seccion
-**/
-function recommendSections($sw){
-	
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$id_sec = isset($_REQUEST['sec']) ? intval($_REQUEST['sec']) : 0;
-
-	$sec = new AHSection($id_sec);
-	$sec->setFeatured($sw);
-	if ($sec->save()){
-		redirectMsg("sections.php?id=$id", _AS_AH_DBOK, 0);
-	} else {
-		redirectMsg("sections.php?id=$id", _AS_AH_DBERROR.'<br />'.$sec->errors(), 1);
-	}
-	
-}
-
-/**
-* @desc Permite No recomendar una publicación
-**/
-function delRecommendSections(){
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$id_sec = isset($_REQUEST['sec']) ? intval($_REQUEST['sec']) : 0;
-
-	delRecommend('section',$id_sec);
-	header ("location:./sections.php?id=$id");
-	
+    if(!$xoopsSecurity->check())
+        json_response(__('Session token expired!','docs'), 1);
+    
+     parse_str(rmc_server_var($_POST, 'items', ''));
+    
+    if(empty($list))
+        json_response(__('Data not valid!','docs'), 1);
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $res = '';
+    
+    foreach($list as $id => $parent){
+        $parent = $parent=='root' ? 0 : $parent;
+        
+        if($parent==0 && !is_object($res))
+            $res = new RDSection ($id);
+        
+        $sql = "UPDATE ".$db->prefix("rd_sections")." SET parent=$parent WHERE id_sec=$id";
+        $db->queryF($sql);
+    }
+    
+    json_response(__('Sections positions saved!','docs'),0, $res->getVar('id_res'));
 
 }
 
@@ -454,9 +422,9 @@ switch ($action){
 	case 'delete':
 		rd_delete_sections();
 	    break;
-	case 'changeorder':
-		changeOrderSections();
-	break;
+        case 'savesort':
+            changeOrderSections();
+            break;
 	case 'recommend':
 		recommendSections(1);
 	break;
