@@ -33,7 +33,6 @@ $(document).ready(function(){
 
         $("#rd-wait").fadeIn('fast');
         s = $('ol.sec_connected').nestedSortable('serialize');
-        
         params = {
             items: s,
             action: 'savesort',

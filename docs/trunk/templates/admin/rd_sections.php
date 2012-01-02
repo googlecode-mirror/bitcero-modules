@@ -13,7 +13,6 @@ function rd_print_sections($sections,$id, $table=true){
                 <a href="<?php echo $section['link']; ?>">View</a>
             </span>
         </td>
-		<td><input type="text" name="orders[<?php echo $section['id']; ?>]" id="order-<?php echo $section['id']; ?>" size="1" value="<?php echo $section['order']; ?>" /></td>
         <td><?php echo $section['author_name']; ?></td>
         <td><?php echo $section['created']; ?></td>
         <td><?php echo $section['modified']; ?></td>
@@ -52,7 +51,6 @@ function rd_print_sections($sections,$id, $table=true){
     <thead>
 	<tr class="head" align="center">
 		<th align="left"><?php _e('Title','docs'); ?></th>
-        <th><?php _e('Order','docs'); ?></th>
         <th><?php _e('Author','docs'); ?></th>
         <th><?php _e('Created','docs'); ?></th>
         <th><?php _e('Updated','docs'); ?></th>
@@ -62,7 +60,6 @@ function rd_print_sections($sections,$id, $table=true){
     <tfoot>
     <tr class="head" align="center">
         <th align="left"><?php _e('Title','docs'); ?></th>
-        <th><?php _e('Order','docs'); ?></th>
         <th><?php _e('Author','docs'); ?></th>
         <th><?php _e('Created','docs'); ?></th>
         <th><?php _e('Updated','docs'); ?></th>
@@ -87,7 +84,6 @@ function rd_print_sections($sections,$id, $table=true){
                 <a href="<?php echo $section['link']; ?>">View</a>
             </span>
         </td>
-		<td><input type="text" name="orders[<?php echo $section['id']; ?>]" id="order-<?php echo $section['id']; ?>" size="1" value="<?php echo $section['order']; ?>" /></td>
         <td><?php echo $section['author_name']; ?></td>
         <td><?php echo $section['created']; ?></td>
         <td><?php echo $section['modified']; ?></td>

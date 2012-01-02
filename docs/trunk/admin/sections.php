@@ -363,10 +363,12 @@ function json_response($m,$e=0,$res=0){
     $url = 'sections.php'.($res>0?'?id='.$res:'');
     
     $resp = array(
-        'message' => $url,
+        'message' => $m,
         'error' => $e,
         'url' => $url
     );
+    
+    showMessage($m, $e);
     
     echo json_encode($resp);
     die();
@@ -389,14 +391,16 @@ function changeOrderSections(){
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     $res = '';
     
+    $pos = 0;
     foreach($list as $id => $parent){
         $parent = $parent=='root' ? 0 : $parent;
         
         if($parent==0 && !is_object($res))
             $res = new RDSection ($id);
         
-        $sql = "UPDATE ".$db->prefix("rd_sections")." SET parent=$parent WHERE id_sec=$id";
+        $sql = "UPDATE ".$db->prefix("rd_sections")." SET parent=$parent, `order`=$pos WHERE id_sec=$id";
         $db->queryF($sql);
+        $pos++;
     }
     
     json_response(__('Sections positions saved!','docs'),0, $res->getVar('id_res'));
