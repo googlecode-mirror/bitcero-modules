@@ -13,6 +13,7 @@ include 'header.php';
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 $db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");
+
 /**
 * @desc Muestra la lista de los anuncios existentes
 */
@@ -38,6 +39,7 @@ function showAnnounces(){
     
     $announcements = RMEvents::get()->run_event('bxpress.announcements.list', $announcements);
 	
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/anuncios/standalone/1/');
     bXFunctions::menu_bar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Announcements Management','bxpress'));
     xoops_cp_header();
@@ -71,6 +73,7 @@ function showForm($edit = 0){
 		}
 	}
 	
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/anuncios/standalone/1/#crear-un-anuncio');
 	bXFunctions::menu_bar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Announcement','bxpress') : __('New Announcement','bxpress')));
 	xoops_cp_header();
