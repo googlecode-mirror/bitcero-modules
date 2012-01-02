@@ -37,7 +37,7 @@ function drawVisualization(w,h) {
                 <div class="bx-table overvitem">
                     <div class="bx_row">
                         <div class="bx_cell">
-                            <a href="categories.php"><?php echo sprintf(__('%s Categories','bxpress'), '<strong>'.$catnum.'</strong>'); ?></a>
+                            <a href="categos.php"><?php echo sprintf(__('%s Categories','bxpress'), '<strong>'.$catnum.'</strong>'); ?></a>
                         </div>
                         <div class="bx_cell">
                             <a href="forums.php"><?php echo sprintf(__('%s Forums Available','bxpress'), '<strong>'.$forumnum.'</strong>'); ?></a>

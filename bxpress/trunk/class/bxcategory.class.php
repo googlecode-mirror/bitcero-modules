@@ -16,7 +16,7 @@ class bXCategory extends RMObject
 	private $_grupos = array();
 
 	function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("bxpress_categories");
         $this->setNew();
         $this->initVarsFromTable();
@@ -155,7 +155,7 @@ class bXCategoryHandler
     private $table = '';
     
     function __construct(){
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->table = $this->db->prefix("bxpress_categories");
     }
     
@@ -176,7 +176,7 @@ class bXCategoryHandler
     * @param int $active Categorías activas o inactivas (1 o 0, 2 Todas);
     */
     public function getObjects($active = 1){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("bxpress_categories");
         if ($active==1 || $active==0){
             $sql .= " WHERE status='$active'";

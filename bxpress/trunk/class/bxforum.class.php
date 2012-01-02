@@ -30,7 +30,7 @@ class bXForum extends RMObject
     * @param string $id Identificador alfanumerico
     */
     public function __construct($id=null){
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("bxpress_forums");
         $this->setNew();
         $this->initVarsFromTable();
@@ -450,7 +450,7 @@ class bXForumHandler
     private $table = '';
     
     function __construct(){
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->table = $this->db->prefix("bxpress_forums");
     }
     /**
@@ -462,7 +462,7 @@ class bXForumHandler
     */
     public function getForums($category=0, $active=-1, $object = false){
         
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE ".($active>-1 ? " active='$active' " : '').
                 ($category>0 ? " AND cat='$category' " : '')." ORDER BY `cat`,`order`";

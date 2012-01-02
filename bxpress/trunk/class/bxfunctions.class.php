@@ -16,7 +16,7 @@ class bXFunctions
     private $db;
     
     public function __construct(){
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
     }
 
     public function menu_bar(){
@@ -40,7 +40,7 @@ class bXFunctions
     * @return objeto {@link XoopsUser}
     */
     function getLastUser(){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $result = $db->query("SELECT * FROM ".$db->prefix("users")." WHERE level>'0' ORDER BY uid DESC LIMIT 0,1");
         if ($db->getRowsNum($result)>0){
             $row = $db->fetchArray($result);
@@ -61,7 +61,7 @@ class bXFunctions
     public function getOnlineCount($type = 1){
         global $xoopsModule;
         
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("online")." WHERE online_module='".$xoopsModule->mid()."'";
         
         if ($type==0){
@@ -79,7 +79,7 @@ class bXFunctions
     * @return int
     */
     public function totalUsers(){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("users")." WHERE level>'0'"));
         return $num;
     }
@@ -87,7 +87,7 @@ class bXFunctions
     * @desc Total de Temas en los Foros
     */
     public function totalTopics(){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_topics")));
         return $num;
     }
@@ -95,7 +95,7 @@ class bXFunctions
     * @desc Total de Mensajes en los Foros
     */
     public function totalPosts(){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("bxpress_posts")));
         return $num;
     }
@@ -160,7 +160,7 @@ class bXFunctions
 	public function pageFromPID($pid){
 		global $xoopsModuleConfig;
 		
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		$result = $db->query('SELECT id_topic FROM '.$db->prefix('bxpress_posts')." WHERE id_post='$pid'");
 		if (!$db->getRowsNum($result)) return;
@@ -188,7 +188,7 @@ class bXFunctions
 	*/
 	public function getFirstId($topic_id){
 		
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "SELECT MIN(id_post) FROM ".$db->prefix("bxpress_posts")." WHERE id_topic='".$topic_id."'";
 		list($first_id) = $db->fetchRow($db->query($sql));
 		return $first_id;
@@ -197,7 +197,7 @@ class bXFunctions
 	
 	public function forumList($varname = 'forums'){
 		global $db, $tpl;
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "SELECT * FROM ".$db->prefix("bxpress_forums")." WHERE active='1' ORDER BY cat,`order`";
 		$result = $db->query($sql);
 		while ($row = $db->fetchArray($result)){
@@ -217,7 +217,7 @@ class bXFunctions
 		
 		if (!$xoopsModuleConfig['announcements']) return;
                 
-                $db =& Database::getInstance();
+                $db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		// Primero purgamos la tabla
 		$db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");

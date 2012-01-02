@@ -27,7 +27,7 @@
 function exmbb_recents_show($options){
 	
 	$util =& RMUtils::getInstance();
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$xoopsModuleConfig = $util->moduleConfig('exmbb');
 	
 	$tbl1= $db->prefix('exmbb_posts');

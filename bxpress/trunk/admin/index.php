@@ -113,7 +113,7 @@ unset($post,$pt,$topic,$result,$row,$sql,$tbl1,$tbl2,$tbl3);
 
 RMTemplate::get()->add_xoops_style('dashboard.css', 'bxpress');
 RMTemplate::get()->add_local_script('dashboard.js', 'bxpress');
-RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/introduccion/standalone/1/');
+RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/dashboard/standalone/1/');
 bXFunctions::menu_bar();
 
 // Activity

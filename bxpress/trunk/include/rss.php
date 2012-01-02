@@ -77,7 +77,7 @@ function &exmbb_rssfeed($limit, &$more){
 function &exmbb_rssshow($limit){
 	global $util, $mc;
 	
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	include_once XOOPS_ROOT_PATH.'/modules/exmbb/class/bbforum.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/exmbb/class/bbpost.class.php';
 	

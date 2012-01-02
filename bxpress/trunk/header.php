@@ -13,7 +13,7 @@ include '../../header.php';
 define('BX_URL', XOOPS_URL.'/modules/bxpress');
 
 // Actualizamos los usuarios online
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $tpl = $xoopsTpl;
 include_once XOOPS_ROOT_PATH.'/kernel/online.php';
 $online = new XoopsOnlineHandler($db);

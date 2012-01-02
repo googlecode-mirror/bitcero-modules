@@ -17,7 +17,7 @@ include 'header.php';
 function showCategories(){
     global $xoopsModuleConfig, $xoopsConfig, $xoopsModule, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $result = $db->query("SELECT * FROM ".$db->prefix("bxpress_categories")." ORDER BY `order`, title");
     $categos = array();
@@ -43,6 +43,7 @@ function showCategories(){
 
     RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
     RMTemplate::get()->add_local_script('admin.js','bxpress');
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/categorias/standalone/1/');
 
     RMTemplate::get()->add_head('<script type="text/javascript">
         var bx_select_message = "'.__('You must select a category at least in order to run this action!','bxpress').'";
@@ -108,7 +109,7 @@ function showForm($edit = 0){
 function saveCatego($edit = 0){
     global $xoopsConfig, $xoopsModuleConfig, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $friendname = '';
     $showdesc = 0;

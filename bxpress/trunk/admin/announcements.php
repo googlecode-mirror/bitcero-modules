@@ -11,7 +11,7 @@
 define('RMCLOCATION','messages');
 include 'header.php';
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $db->queryF("DELETE FROM ".$db->prefix("bxpress_announcements")." WHERE expire<='".time()."'");
 /**
 * @desc Muestra la lista de los anuncios existentes
