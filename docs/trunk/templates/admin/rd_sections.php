@@ -1,7 +1,5 @@
 <?php
-
 function rd_print_sections($sections,$id, $table=true){
-    
     if($table): ?>
 <?php foreach($sections as $section): ?>
 	<tr align="center" valign="top" class="<?php echo tpl_cycle("even,odd"); ?>" id="sec-<?php echo $section['parent']; ?>-<?php echo $section['id']; ?>">
@@ -26,9 +24,9 @@ function rd_print_sections($sections,$id, $table=true){
         endforeach; ?>
 <?php else : ?>
     <?php if(!empty($sections)): ?>
-    <ol id="root-<?php echo $section['parent']; ?>" class="sec_connected">
+    <ol>
         <?php foreach($sections as $section): ?>
-        <li class="pos-<?php echo $section['id']; ?>"><div><?php echo $section['title']; ?></div>
+        <li id="list_<?php echo $section['id']; ?>"><div><?php echo $section['title']; ?></div>
         <?php rd_print_sections($section['sections'], $id, false); ?>
         </li>
         <?php endforeach; ?>
@@ -104,9 +102,9 @@ function rd_print_sections($sections,$id, $table=true){
 <div id="sections-sortable">
     <a href="#" class="save-sortable"><?php _e('Save Positions','docs'); ?></a>
     <a href="#" class="cancel-sortable"><?php _e('Cancel','docs'); ?></a>
-    <ol id="root-0" class="sec_connected">
+    <ol class="sec_connected">
         <?php foreach($sections as $section): ?>
-        <li class="pos-<?php echo $section['id']; ?>"><div><?php echo $section['title']; ?></div>
+        <li id="list_<?php echo $section['id']; ?>"><div><?php echo $section['title']; ?></div>
         <?php rd_print_sections($section['sections'], $id, false); ?>
         </li>
         <?php endforeach; ?>
@@ -118,3 +116,4 @@ function rd_print_sections($sections,$id, $table=true){
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input type="hidden" name="id" value="<?php echo $id; ?>" />
 </form>
+<div id="rd-wait"><img src="../images/wait.gif" alt="" /><br /><?php _e('Saving','docs'); ?><br /><?php _e('...','docs'); ?></div>

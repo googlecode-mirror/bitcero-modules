@@ -13,9 +13,9 @@
 #sections-sortable ol li div{
     padding: 4px 10px;
     margin: 8px 0;
-    border: 1px solid #CCC;
     background: #FFF;
     font-size: 1.2em;
+    cursor: move;
 }
 .clone{
     background: #fcefa1;
@@ -28,11 +28,8 @@
 #sections-sortable ol ol{text-transform: none;font-weight: normal;font-size: 0.9em;}
 #sections-sortable ol ol ol{font-style: italic;}
 #sections-sortable ol ol ol ol{font-style: normal;text-transform: uppercase;}
-#sections-sortable ol div{background: #FFF;}
-#sections-sortable ol ol div{background: #ebebeb;}
-#sections-sortable ol ol ol div{background: #d7f7ff; border-color: #88d3e4;}
-#sections-sortable ol ol ol ol div{background: #fcefa1; border-color: #fbec88;}
-#sections-sortable ol ol ol ol ol div{background: #e0ffd7; border-color: #a7e396;}
+#sections-sortable ol div:hover{background: #ebebeb;}
+
 .save-sortable{
     display: inline-block;
     padding: 4px 8px;
@@ -43,4 +40,5 @@
     color: #000;
     font-weight: bold;
 }
-
+#rd-wait{display: none;position: absolute;top: 50%; left: 50%; margin-top: -40px;margin-left: -75px;width: 150px;height: 80px;text-align: center;text-transform: uppercase;line-height: 150%;font-weight: bold;}
+#rd-wait img{margin: 0 0 10px 0;}
