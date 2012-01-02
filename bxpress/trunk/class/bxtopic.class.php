@@ -15,7 +15,7 @@ class bXTopic extends RMObject
 {
     function __construct($id = null){
         
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("bxpress_topics");
         $this->setNew();
         $this->initVarsFromTable();

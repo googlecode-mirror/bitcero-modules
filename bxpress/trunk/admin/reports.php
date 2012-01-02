@@ -32,7 +32,7 @@ function showReports(){
 	//$show = 2 Muestra los reportes no revisados
         define('RMCSUBLOCATION',$show==0?'allreps':($show==1?'reviews':'noreviewd'));
 
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Lista de Todos los reportes
 	$sql="SELECT * FROM ".$db->prefix('bxpress_report').($show ? ($show==1 ? " WHERE zapped=1" : " WHERE zapped=0 ") : '')." ORDER BY report_time DESC";
 	$result=$db->queryF($sql);

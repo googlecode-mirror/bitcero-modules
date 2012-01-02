@@ -16,7 +16,7 @@ class bXAttachment extends RMObject
 	private $dir = '';
 	
 	public function __construct($id = null, $dir = ''){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("bxpress_attachments");
         $this->setNew();
         $this->initVarsFromTable();

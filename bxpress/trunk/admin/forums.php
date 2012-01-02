@@ -19,7 +19,7 @@ function bx_show_forums(){
     
     $catid = rmc_server_var($_REQUEST, 'catid', 0);
 
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $sql = "SELECT * FROM ".$db->prefix("bxpress_forums");
     if ($catid>0){
