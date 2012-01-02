@@ -14,7 +14,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('docs');
 
 $modversion['name'] = __('RapidDocs','docs');
 $modversion['description'] = __('Create documentation in Xoops, quicky and an advanced way.','docs');
-$modversion['rmversion'] = array('number'=>1,'revision'=>40,'status'=>0,'name'=>__('RapidDocs','docs'));
+$modversion['rmversion'] = array('number'=>1,'revision'=>42,'status'=>0,'name'=>__('RapidDocs','docs'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.0';
 $modversion['icon32'] = 'images/icon32.png';
@@ -25,7 +25,7 @@ $modversion['authormail'] = "i.bitcero@gmail.com";
 $modversion['authorweb'] = "Red México";
 $modversion['authorurl'] = "http://www.redmexico.com.mx";
 $modversion['credits'] = "Red México";
-$modversion['help'] = "http://exmsystem.net/docs/manual-de-ability-help";
+$modversion['help'] = "http://www.redmexico.com.mx/docs/rapiddocs/";
 $modversion['license'] = "GPL see LICENSE";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
