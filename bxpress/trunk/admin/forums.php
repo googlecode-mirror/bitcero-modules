@@ -57,7 +57,8 @@ function bx_show_forums(){
     bXFunctions::menu_bar();
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Forums Management','bxpress'));
     xoops_cp_header();
-
+    
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/foros/standalone/1/');
     RMTemplate::get()->add_local_script('jquery.checkboxes.js','rmcommon','include');
     RMTemplate::get()->add_local_script('admin.js','bxpress');
     RMTemplate::get()->add_head('<script type="text/javascript">
@@ -92,6 +93,7 @@ function bx_show_form($edit = 0){
     }
     
     bXFunctions::menu_bar();
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/foros/standalone/1/#crear-foro');
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Forum','bxpress') : __('New Forum','bxpress')));
     xoops_cp_header();
     
@@ -113,8 +115,6 @@ function bx_show_form($edit = 0){
     $form->addElement(new RMFormYesNo(__('Activate forum','bxpress'), 'active', $edit ? $forum->active() : 1));
     // Firmas
     $form->addElement(new RMFormYesNo(__('Allow signatures in the posts','bxpress'), 'sig', $edit ? $forum->signature() : 1));
-    // Prefijos
-    $form->addElement(new RMFormYesNo(__('Allow Prefixes in the posts','bxpress'), 'prefix', $edit ? $forum->prefix() : 1));
     // Temas Populares
     $form->addElement(new RMFormText(__('Answers to match a topic as popular','bxpress'), 'hot_threshold', 10, 5, $edit ? $forum->hotThreshold() : 10), true, 'bigger:1');
     // Orden en la lista
@@ -158,7 +158,8 @@ function bx_save_forum($edit = 0){
     global $xoopsSecurity, $xoopsModuleConfig, $xoopsConfig;
 
     $q = $edit ? 'action=edit' : 'action=new';
-
+    
+    $prefix = 1;
     foreach ($_POST as $k => $v){
         if (substr($k, 0, 5)=='perm_'){
             $permissions[substr($k, 5)] = $v;
@@ -349,7 +350,7 @@ function bx_moderators(){
 		break;
 	}
 
-
+    RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/foros/standalone/1/#moderadores');
 	bXFunctions::menu_bar();
 	xoops_cp_header();
 
