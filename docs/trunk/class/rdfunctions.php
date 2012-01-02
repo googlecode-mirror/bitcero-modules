@@ -399,7 +399,8 @@ class RDFunctions
             'number'=>$number,
             'comments'=>$sec->getVar('comments'),
             'edit'=>!$xoopsUser ? 0 : ($xoopsUser->isAdmin() ? true : $res->isEditor($xoopsUser->uid())),
-            'resource' => $sec->getVar('id_res')
+            'resource' => $sec->getVar('id_res'),
+            'metas' => $sec->metas()
         );
             
         if($text){
@@ -494,7 +495,7 @@ class RDFunctions
         $rd_contents = ob_get_clean();
         $xoopsTpl->assign('rd_contents', $rd_contents);
         unset($rd_contents);
-        $xoopsTpl->display(RDPATH.'/templates/rd_standalone.html');
+        $xoopsTpl->display(RMTemplate::get()->get_template('rd_standalone.html', 'module', 'docs'));
         die();
         
     }
