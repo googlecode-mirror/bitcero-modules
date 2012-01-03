@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Utilities 2.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-03 00:56-0600\n"
-"PO-Revision-Date: 2012-01-03 00:56-0600\n"
+"POT-Creation-Date: 2012-01-03 02:11-0600\n"
+"PO-Revision-Date: 2012-01-03 02:11-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red Mexico <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -451,7 +451,7 @@ msgid "Add images"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/menu.php:72
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:296
+#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:297
 msgid "Comments"
 msgstr ""
 
@@ -1095,7 +1095,7 @@ msgstr ""
 msgid "Users deleted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:297
+#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:298
 msgid "Show comments from internal comments system"
 msgstr ""
 
@@ -2133,7 +2133,7 @@ msgid "Order"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:117
-msgid "There are not blocks configured with this options."
+msgid "There are not blocks configured with these options."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:127
@@ -2246,10 +2246,6 @@ msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:57
 msgid "Read Permissions"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:63
-msgid "Guardar"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
@@ -2601,7 +2597,7 @@ msgid "Search Now!"
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:78
-msgid "All this options are optional and will be additional to basic search keyword."
+msgid "All these options are optional and will be additional to basic search keyword."
 msgstr ""
 
 #: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:91

@@ -86,4 +86,6 @@ function xoops_module_update_rmcommon($mod, $prev){
         ) ENGINE=MyISAM;";
     
     $db->queryF($sql);
+    
+    return true;
 }
