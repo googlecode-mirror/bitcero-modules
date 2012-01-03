@@ -16,7 +16,7 @@ class RMBlocksFunctions
     * @return array
     */
     public function get_available_list($mods = null){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         if($mods==null || empty($mods))
             $mods = RMFunctions::get_modules_list();
@@ -48,7 +48,7 @@ class RMBlocksFunctions
     * Get blocks positions
     */
     public function block_positions(){
-        $db =& Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $result = $db->query("SELECT * FROM " . $db->prefix("rmc_blocks_positions"));
         $pos = array();
         while($row = $db->fetchArray($result)){

@@ -14,7 +14,7 @@ class RMUser extends RMObject
     
     public function __construct($id=''){
         
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("users");
         $this->setNew();
         $this->initVarsFromTable();

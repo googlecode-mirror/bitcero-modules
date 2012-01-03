@@ -20,7 +20,7 @@ function show_modules_list(){
     
     include_once XOOPS_ROOT_PATH.'/kernel/module.php';
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $sql = "SELECT * FROM ".$db->prefix("modules")." ORDER BY `name`";
     $result = $db->query($sql);
@@ -708,7 +708,7 @@ function module_disable_now($enable=0){
     
     RMEvents::get()->run_event('rmcommon.disabling.module', $module);
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("modules")." SET isactive='$enable' WHERE dirname='$mod'";
     if (!$db->queryF($sql)){
         redirectMsg('modules.php', sprintf(__('Module %s could not be disabled!', 'rmcommon'), $mod), 1);
@@ -733,7 +733,7 @@ function load_modules_page(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("modules")." ORDER BY `name`";
     $result = $db->query($sql);
     $installed_dirs = array();
@@ -844,7 +844,7 @@ function module_rename(){
 		die();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "UPDATE ".$db->prefix("modules")." SET `name`='$name' WHERE mid='$id'";
 	if (!$db->queryF($sql)){
 		$ret = array(

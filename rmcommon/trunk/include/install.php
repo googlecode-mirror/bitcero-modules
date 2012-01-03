@@ -11,7 +11,7 @@
 function xoops_module_pre_uninstall_rmcommon($mod){
     
     // Restore previous configurations
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $db->queryF("UPDATE ".$db->prefix("config")." SET conf_value='default' WHERE conf_name='cpanel'");
     
@@ -28,7 +28,7 @@ function xoops_module_uninstall_rmcommon($mod){
 
 function xoops_module_install_rmcommon($mod){
     // Restore previous configurations
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $db->queryF("UPDATE ".$db->prefix("config")." SET conf_value='redmexico' WHERE conf_name='cpanel'");
     

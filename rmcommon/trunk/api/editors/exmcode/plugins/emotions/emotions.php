@@ -18,7 +18,7 @@ XoopsLogger::getInstance()->renderingEnabled = false;
 
 load_mod_locale('rmcommon','emots-');
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $result = $db->query("SELECT * FROM ".$db->prefix("smiles")." ORDER BY id");
 while ($row = $db->fetchArray($result)){
 	$emotions[] = array(

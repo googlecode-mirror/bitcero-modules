@@ -10,7 +10,7 @@
 
 function rmc_bkcomments_show($options){
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $sql = "SELECT * FROM ".$db->prefix("rmc_comments")." ORDER BY id_com DESC";
     $limit = $options[0]>0 ? $options[0] : 10;

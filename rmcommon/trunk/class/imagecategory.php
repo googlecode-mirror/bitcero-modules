@@ -14,7 +14,7 @@
 class RMImageCategory extends RMObject
 {
     public function __construct($id=null){
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("rmc_img_cats");
         $this->setNew();
         $this->initVarsFromTable();

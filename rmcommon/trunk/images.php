@@ -23,7 +23,7 @@ define('RMCLOCATION','imgmanager');
 function show_images(){
 	global $xoopsModule, $xoopsModuleConfig;
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	// Check if some category exists
 	$catnum = RMFunctions::get_num_records("rmc_img_cats");
@@ -194,7 +194,7 @@ function images_form($edit = 0){
 function show_categories(){
     global $xoopsModule, $xoopsModuleConfig, $xoopsConfig, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_img_cats");
     /**
 	 * Paginacion de Resultados
@@ -387,7 +387,7 @@ function category_status($action='open'){
 		
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "UPDATE ".$db->prefix("rmc_img_cats")." SET status='".$action."' WHERE id_cat IN(".implode(',',$cats).")";
 
 	if ($db->queryF($sql)){
@@ -748,7 +748,7 @@ function delete_category(){
 		
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT * FROM ".$db->prefix("rmc_images")." WHERE cat='".$cat->id()."'";
 	$result = $db->query($sql);
 	

@@ -24,7 +24,7 @@ if (!$xoopsSecurity->check()){
 $token = $xoopsSecurity->createToken();
 
 $tpl = new RMTemplate();
-$db =& Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 $type = 0;
 $s = '';
