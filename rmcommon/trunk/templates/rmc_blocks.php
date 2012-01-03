@@ -114,7 +114,7 @@
         <tbody>
         <?php if(empty($used_blocks)): ?>
         <tr class="even" align="center" id="tr-empty">
-            <td colspan="5"><?php _e('There are not blocks configured with this options.','rmcommon'); ?></td>
+            <td colspan="5"><?php _e('There are not blocks configured with these options.','rmcommon'); ?></td>
         </tr>
         <?php endif; ?>
         <?php foreach($used_blocks as $block): ?>

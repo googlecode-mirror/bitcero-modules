@@ -75,7 +75,7 @@
             </tr>
             <tr class="even no_border_bottom">
                 <td colspan="3">
-                    <?php _e('All this options are optional and will be additional to basic search keyword.','rmcommon'); ?>
+                    <?php _e('All these options are optional and will be additional to basic search keyword.','rmcommon'); ?>
                 </td>
             </tr>
         </table>

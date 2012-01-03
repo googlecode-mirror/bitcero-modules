@@ -60,7 +60,7 @@
         
         <div class="bk_buttons">
             <input type="button" value="<?php _e('Cancel','rmcommon'); ?>" onclick="blocksAjax.close();" />
-            <input type="submit" value="<?php _e('Guardar','rmcommon'); ?>" onclick="blocksAjax.sendConfig(); return false;" />
+            <input type="submit" value="<?php _e('Save','rmcommon'); ?>" onclick="blocksAjax.sendConfig(); return false;" />
         </div>
         <?php echo $xoopsSecurity->getTokenHTML(); ?>
     </div>
