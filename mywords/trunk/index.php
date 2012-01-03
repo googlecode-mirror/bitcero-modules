@@ -53,7 +53,7 @@ $vars = explode('/', $request);
 
 // Si los primeros tres valores son numéricos entonces se trata de un artículo
 // Solicitado por fecha y por título
-$db =& Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 if (is_numeric($vars[0]) && is_numeric($vars[1]) && is_numeric($vars[2])){
 	
     $time = mktime(0,0,0,$vars[1],$vars[0],$vars[2]);

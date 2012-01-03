@@ -68,7 +68,7 @@ function &mywords_rssfeed($limit, &$more){
 function &mywords_rssshow($limit){
 	global $util, $mc;
 	
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwcategory.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
 	

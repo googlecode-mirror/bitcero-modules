@@ -18,7 +18,7 @@ function show_bookmarks(){
     global $xoopsModule, $xoopsConfig, $xoopsSecurity;
     
     // Cargamos los sitios
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("mw_bookmarks")." ORDER BY title";
     $result = $db->query($sql);
     
@@ -174,7 +174,7 @@ function activate_bookmark($act){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("mw_bookmarks")." SET active=".($act?1:0)." WHERE id_book IN(".implode(',',$books).")";
     
     if ($db->queryF($sql)){
@@ -203,7 +203,7 @@ function delete_bookmark(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "DELETE FROM ".$db->prefix("mw_bookmarks")." WHERE id_book IN (".implode(',',$books).")";
 	
 	if ($db->queryF($sql)){

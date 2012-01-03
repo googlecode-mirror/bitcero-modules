@@ -242,7 +242,7 @@ function deleteCatego(){
 		die();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT * FROM ".$db->prefix("mw_categories")." WHERE id_cat IN (".implode(",", $cats).")";
 	$result = $db->query($sql);
 	

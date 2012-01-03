@@ -62,11 +62,3 @@ RMTemplate::get()->add_style('admin.css', 'mywords');
 include RMtemplate::get()->get_template('admin/mywords_theindex.php', 'module', 'mywords');
 //$tpl->footer();
 xoops_cp_footer();
-
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-
-switch($op){
-	default:
-		showState();
-		break;
-}

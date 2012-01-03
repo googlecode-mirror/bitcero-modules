@@ -14,7 +14,7 @@ include XOOPS_ROOT_PATH."/header.php";
 load_mod_locale('mywords','');
 
 $mc =& $xoopsModuleConfig;
-$db =& Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $myts =& MyTextSanitizer::getInstance();
 
 define('MW_PATH',XOOPS_ROOT_PATH.'/modules/mywords');

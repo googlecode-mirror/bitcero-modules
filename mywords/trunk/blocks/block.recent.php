@@ -15,7 +15,7 @@ function mywordsBlockRecent($options){
 	global $xoopsModuleConfig, $xoopsModule, $xoopsUser;
     
 	$mc = $xoopsModule && $xoopsModule->getVar('dirname')=='mywords' ? $xoopsModuleConfig : RMUtilities::module_config('mywords');
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
     $by = '';
     
     switch($options[1]){

@@ -196,7 +196,7 @@ function deletePost(){
 		die();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT * FROM ".$db->prefix("mw_posts")." WHERE id_post IN (".implode(",",$posts).")";
 	$result = $db->query($sql);
 	
@@ -236,7 +236,7 @@ function set_posts_status($status){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("mw_posts")." SET status='$status' WHERE id_post IN (".implode(",", $posts).")";
     if (!$db->queryF($sql)){
         redirectMsg('posts.php?'.$q, __('Posts could not be updated!', 'mw_categories'), 1);

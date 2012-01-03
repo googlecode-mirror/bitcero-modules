@@ -52,7 +52,7 @@ class MWPost extends RMObject
 	 * @param string $titulo Titulo amigable del post
 	 */
 	function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
 		$this->myts =& MyTextSanitizer::getInstance();
 		$this->_dbtable = $this->db->prefix("mw_posts");
 		$this->setNew();
@@ -426,7 +426,7 @@ class MWPost extends RMObject
         
         if (!empty($this->trackbacks)) return $this->trackbacks;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mw_trackbacks")." WHERE post='".$this->id()."'";
         
         $result = $db->query($sql);

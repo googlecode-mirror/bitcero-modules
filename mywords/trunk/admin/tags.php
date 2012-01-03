@@ -22,7 +22,7 @@ function show_tags(){
     RMTemplate::get()->assign('xoops_pagetitle', __('Tags Management','mywords'));
     
     // More used tags
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("mw_tags")." ORDER BY posts DESC LIMIT 0,30";
     $result = $db->query($sql);
     $mtags = array();
@@ -115,7 +115,7 @@ function save_tag($edit = false){
 	}
 	
 	// Check if tag exists
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	if ($edit){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_tags")." WHERE (tag='$name' OR shortname='$short') AND id_tag<>$id";
 	} else {
@@ -187,7 +187,7 @@ function delete_tag(){
 	}
 	
 	// Delete all relations
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "DELETE FROM ".$db->prefix("mw_tagspost")." WHERE tag IN(".implode(",",$tags).")";
 	if (!$db->queryF($sql)){
 		redirectMsg('tags.php?page='.$page, __('Errors ocurred while trying to delete tags!','mywords').'<br />'.$db->error(), 1);
