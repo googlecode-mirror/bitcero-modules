@@ -36,6 +36,7 @@ $modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>2,'revision'=>143,'status'=>-2,'name'=>'Common Utilities');
 $modversion['onUninstall'] = 'include/install.php';
 $modversion['onInstall'] = 'include/install.php';
+$modversion['onUpdate'] = 'include/install.php';
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
