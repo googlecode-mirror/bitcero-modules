@@ -14,7 +14,7 @@ class PWImage extends RMObject
 
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("pw_images");
 		$this->setNew();
 		$this->initVarsFromTable();

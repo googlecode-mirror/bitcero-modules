@@ -17,7 +17,7 @@ include 'header.php';
 function showClients(){
 	global $xoopsModule, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('pw_clients');
 	

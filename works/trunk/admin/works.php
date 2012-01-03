@@ -17,7 +17,7 @@ include 'header.php';
 function showWorks(){
 	global $xoopsModule, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $page = rmc_server_var($_REQUEST,'page', 1);
     $limit = rmc_server_var($_REQUEST,'limit', 15);
@@ -148,7 +148,7 @@ function formWorks($edit = 0){
 	$ele = new RMFormSelect(__('Category','works'),'catego');
 	$ele->addOption(0,__('Select...','works'));
 	//Categorias existentes
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$result = $db->query("SELECT * FROM ".$db->prefix("pw_categos")." ORDER BY `order`");
 	while ($rows = $db->fetchArray($result)){
 		$ele->addOption($rows['id_cat'],$rows['name'],$edit ? ($work->category()==$rows['id_cat'] ? 1 : 0) : '');
@@ -250,7 +250,7 @@ function saveWorks($edit = 0){
 		$work = new PWWork();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	// Check if work exists already
 	if ($edit){
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix("pw_works")." WHERE title='$title' and id_work<>'$id'";
@@ -560,7 +560,7 @@ function works_meta_data(){
     
     // Load metas
     $metas = array();
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("pw_meta")." WHERE work='$id'";
     $result = $db->query($sql);
     while($row = $db->fetchArray($result)){
@@ -606,7 +606,7 @@ function works_save_meta(){
     
     $name = TextCleaner::sweetstring($name);
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("pw_meta")." WHERE name='$name' AND work='$id'";
     list($num) = $db->fetchRow($db->query($sql));
     
@@ -653,7 +653,7 @@ function works_delete_meta(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "DELETE FROM ".$db->prefix("pw_meta")." WHERE id_meta IN(".implode(",",$ids).")";
     
     if ($db->queryF($sql)){

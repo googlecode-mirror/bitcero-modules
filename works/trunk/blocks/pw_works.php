@@ -17,7 +17,7 @@ function pw_works_show($options){
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
 
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	if (isset($xoopsModule) && ($xoopsModule->dirname()=='works')){
 		$mc =& $xoopsModuleConfig;
@@ -94,7 +94,7 @@ function pw_works_edit($options){
 	//Obtenemos las categorías
 	$ele = new RMFormSelect(__('Category','works'),'options[1]');
 	$ele->addOption(0,__('All categories','works'));
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$result = $db->query("SELECT * FROM ".$db->prefix('pw_categos')." WHERE active=1");
 	while ($row = $db->fetchArray($result)){
 		$cat = new PWCategory();

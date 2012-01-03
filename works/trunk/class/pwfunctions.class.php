@@ -103,7 +103,7 @@ class PWFunctions
         include_once XOOPS_ROOT_PATH.'/modules/works/class/pwcategory.class.php';
         include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
         
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "SELECT * FROM ".$db->prefix('pw_works')." WHERE public=$public";
 		$sql .= $category>0 ? " AND catego='$category'" : '';
         $sql .= $order!='' ? " ORDER BY $order" : '';
@@ -177,7 +177,7 @@ class PWFunctions
         
         if ($work<=0) return;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("pw_meta")." WHERE work='$work'";
         $result = $db->query($sql);
         $metas = array();
