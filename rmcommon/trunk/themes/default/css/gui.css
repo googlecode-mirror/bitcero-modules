@@ -555,6 +555,7 @@ div.other_widgets{
 #rm-help-wd{
     position: absolute;
     width: 40%;
+    min-width: 500px;
     height: 60%;
     top: 132px;
     right: 10px;

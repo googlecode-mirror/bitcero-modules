@@ -392,7 +392,89 @@ $(document).ready(function(){
             
         });
         
-    })
+    });
+    
+    $("a.sort_blocks").click(function(){
+        
+        $("#bks-and-pos").fadeOut('fast', function(){
+            $("#bk-sorts").fadeIn('fast');
+        });
+        
+    });
+    
+    if($("#bk-sorts").length>0){
+        
+        $("ol.bk-sort").nestedSortable({
+            disableNesting: 'no-nest',
+            forcePlaceholderSize: true,
+            handle: 'div',
+            helper:    'clone',
+            items: 'li',
+            maxLevels: 1,
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            axis: 'y'
+        });
+        
+        $("a.cancel-order").click(function(){
+            
+            $("#bk-sorts").fadeOut('fast', function(){
+                $("#bks-and-pos").fadeIn('fast');
+            });
+            
+        })
+        
+        $("a.save-order").click(function(){
+            
+            s = $("ol.bk-sort").nestedSortable('serialize');
+            $(".bk_waiting").fadeIn('fast');
+            
+            params = {
+                XOOPS_TOKEN_REQUEST: $("#XOOPS_TOKEN_REQUEST").val(),
+                action: 'save_orders',
+                items: s
+            };
+            
+            
+            $.post("ajax/blocks.php", params, function(data){
+                
+                if(data.error){  
+                    $("#bk-messages").removeClass("infoMsg");
+                    $("#bk-messages .msg").html(data.message);
+                    $("#bk-messages").addClass("errorMsg");
+                    $("#bk-messages").slideDown('slow');
+                    if(data.token==null || data.token==''){
+                        window.location.href = 'blocks.php';
+                    } else {
+                        $("#XOOPS_TOKEN_REQUEST").val(data.token)
+                    }
+                    return false;
+                }
+                
+                if(data.message!=null && data.message!=''){
+                    $("#bk-messages").removeClass("errorMsg");
+                    $("#bk-messages .msg").html(data.message);
+                    $("#bk-messages").addClass("infoMsg");
+                    $("#bk-messages").slideDown('slow');
+                }
+
+                if(data.token==null || data.token==''){
+                    window.location.href = 'blocks.php';
+                } else {
+                    $("#XOOPS_TOKEN_REQUEST").val(data.token);
+                }
+                
+                window.location.href = 'blocks.php?mid='+$("select[name='mid']").val()+"&pos="+$("select[name='pos']").val()+'&visible='+$("select[name='visible']").val();
+                
+            }, 'json');
+            
+        });
+        
+    }
 
 });
 

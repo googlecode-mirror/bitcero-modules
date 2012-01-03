@@ -58,9 +58,8 @@ class RMTemplate
      * Maybe later i will add some functionality... i must to think ;)
      */
     function __construct(){
-		if (!function_exists("xoops_cp_header")) return;
-        $this->add_script(RMCURL.'/include/js/jquery.min.js');
-        $this->add_script(RMCURL.'/include/js/jquery-ui.min.js');
+	//if (!function_exists("xoops_cp_header")) return;
+        $this->add_jquery(true);
     }
 
     /**

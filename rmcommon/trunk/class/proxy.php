@@ -9,6 +9,7 @@
 // --------------------------------------------------------------
 
 include_once '../../../mainfile.php';
+
 global $xoopsLogger, $xoopsConfig;
 $xoopsLogger->renderingEnabled = false;
 error_reporting(0);
@@ -33,7 +34,8 @@ class RMProxy
 		$hdrs = array(
 			'http'=>array(
 				'method'=>"POST",
-				'header'=>"accept-language: "._LANGCODE."\r\n"
+				'header'=>"Accept-language: "._LANGCODE."\r\n" .
+                                    "Referer: ".XOOPS_URL."\r\n"
 			)
 		);
 		

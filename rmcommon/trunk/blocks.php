@@ -112,7 +112,7 @@ function show_rm_blocks()
     // ** API **
     // Event for manege the used widgets list
     $used_blocks = RMEvents::get()->run_event('rmcommon.used.blocks.list', $used_blocks);
-
+    
     $positions = array();
     foreach ($bpos as $row){
         $positions[] = array(
@@ -124,6 +124,10 @@ function show_rm_blocks()
     }
     
     $positions = RMEvents::get()->run_event('rmcommon.block.positions.list', $positions);
+    
+    if(rmc_server_var($_REQUEST, 'pos', '')!=''){
+        RMTemplate::get()->add_local_script('jquery.sort.js', 'rmcommon', 'include');
+    }
 
     xoops_cp_location('<a href="./">' . $xoopsModule->getVar('name') .
         '</a> &raquo; ' . __('Blocks','rmcommon'));

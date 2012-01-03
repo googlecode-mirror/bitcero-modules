@@ -1,9 +1,9 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Red MÈxico Common Utilities
-// A framework for Red MÈxico Modules
-// Author: Eduardo CortÈs <i.bitcero@gmail.com>
+// Red M√©xico Common Utilities
+// A framework for Red M√©xico Modules
+// Author: Eduardo Cort√©s <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------

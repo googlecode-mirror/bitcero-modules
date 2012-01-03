@@ -128,7 +128,7 @@ $(document).ready(function(){
         } else {
             var html = '<div id="rm-help-wd">';
             html += '<div class="rm_hwd_title"><span>'+$(this).attr('title')+'<span class="close"></span></span></div>';
-            html += '<div class="rm_hwd_cont"><iframe src="'+$(this).attr("href")+'"></iframe></div></div>';
+            html += '<div class="rm_hwd_cont"><iframe src="'+$(this).attr("href")+'" name="rmdocs"></iframe></div></div>';
             $("body").append(html);
             $("#rm-help-wd iframe").height($("#rm-help-wd").height()-$("#rm-help-wd .rm_hwd_title").height()-7);
             $("#rm-help-wd iframe").width($("#rm-help-wd").width()-10);
@@ -139,6 +139,11 @@ $(document).ready(function(){
             $("#rm-help-wd").slideUp('fast', function(){
                 $("#rm-help-wd").remove();
             });
+        });
+        
+        $(window).resize(function(){
+            $("#rm-help-wd iframe").height($("#rm-help-wd").height()-$("#rm-help-wd .rm_hwd_title").height()-7);
+            $("#rm-help-wd iframe").width($("#rm-help-wd").width()-10);
         });
         
         return false;
