@@ -23,7 +23,7 @@ function gs_send_error($msg){
 
 $action = rmc_server_var($_POST, 'action', '');
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 if($action=='load_galleries'){
     

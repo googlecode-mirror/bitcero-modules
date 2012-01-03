@@ -14,7 +14,7 @@ class GSSet extends RMObject
 	private $_pics;
 	
 	public function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("gs_sets");
         $this->setNew();
         $this->initVarsFromTable();

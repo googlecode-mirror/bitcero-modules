@@ -18,7 +18,7 @@ function showTags(){
 	
 	global $xoopsModule, $xoopsSecurity, $xoopsModuleConfig;
 	
-	$db = Database::getInstance();	
+	$db = XoopsDatabaseFactory::getDatabaseConnection();	
 	$mc =&$xoopsModuleConfig;
 
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
@@ -189,7 +189,7 @@ function saveTags($edit = 0){
 	global $xoopsModuleConfig, $xoopsSecurity;
 
 	$mc =&$xoopsModuleConfig;
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;

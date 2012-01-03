@@ -24,7 +24,7 @@ function showPostCards(){
   	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
 	$limit = $limit<=0 ? 15 : $limit;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_postcards');
 	

@@ -15,7 +15,7 @@ function gs_photos_show($options){
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
 	
 	$options[0]<=0 ? 4 : $options[0];
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$sql = "SELECT * FROM ".$db->prefix("gs_images");
 	$order = $options[1]=='0' ? "created DESC" : ($options[1]=='1' ? 'RAND()' : 'views DESC');

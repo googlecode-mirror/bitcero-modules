@@ -22,7 +22,7 @@ function showUsers(){
 	$limit = 15;
 	$search = rmc_server_var($_REQUEST, 'search', '');
 
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Barra de Navegación
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_users');
 	$sql1 = '';
@@ -165,7 +165,7 @@ function saveUsers($edit = 0){
 		die();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	if ($edit){
 		//Verificamos que el usuario sea válido
 		if($id<=0){

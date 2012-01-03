@@ -11,7 +11,7 @@
 function gs_sets_show($options){
     global $xoopsUser, $xoopsModuleConfig;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $wo = '';
     $tsets = $db->prefix("gs_sets");
     $tfriends = $db->prefix("gs_friends");

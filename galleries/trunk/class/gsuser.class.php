@@ -18,7 +18,7 @@ class GSUser extends RMObject
 	
 	
 	public function __construct($id=null, $col=0){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("gs_users");
         $this->setNew();
         $this->initVarsFromTable();

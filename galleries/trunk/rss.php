@@ -19,7 +19,7 @@ include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
 include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
 
 $rss_channel = array();
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 switch($show){
 	case 'pictures':

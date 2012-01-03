@@ -15,7 +15,7 @@ include '../../header.php';
 
 $mc =& $xoopsModuleConfig;
 $tpl = $xoopsTpl;
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 if(function_exists("load_mod_locale")) load_mod_locale('galleries');
 

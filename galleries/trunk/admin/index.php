@@ -31,7 +31,7 @@ function count_files($path){
 function show_dashboard(){
     global $xoopsModuleConfig;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Sets count
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("gs_sets");
     list($set_count) = $db->fetchRow($db->query($sql));
@@ -83,7 +83,7 @@ function send_pictures(){
     error_reporting(0);
     $xoopsLogger->activated = false;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $limit = rmc_server_var($_GET, 'limit', 5);
     // recent pictures
     $sql = "SELECT * FROM ".$db->prefix("gs_images")." ORDER BY `created` DESC LIMIT 0,$limit";
@@ -109,7 +109,7 @@ function send_sets(){
     $xoopsLogger->activated = false;
     
     $mc =& $xoopsModuleConfig;
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $limit = rmc_server_var($_GET, 'limit', 5);
 
     // recent pictures
