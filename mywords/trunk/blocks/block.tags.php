@@ -13,7 +13,7 @@ include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwfunctions.php';
 
 function myWordsBlockTags($options){
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("mw_tags")." ORDER BY RAND() LIMIT 0,$options[0]";
     $result = $db->query($sql);
     $block = array();

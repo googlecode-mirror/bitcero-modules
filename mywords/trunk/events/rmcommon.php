@@ -133,7 +133,7 @@ class MywordsRmcommonPreload
         
         unset($tags);
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mw_editors")." ORDER BY name";
         $result = $db->query($sql);
         $editors = array();

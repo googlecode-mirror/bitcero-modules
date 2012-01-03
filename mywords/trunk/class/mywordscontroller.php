@@ -18,7 +18,7 @@ class MywordsController implements iCommentsController
 {
     public function increment_comments_number($comment){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $params = urldecode($comment->getVar('params'));
         parse_str($params);
         
@@ -31,7 +31,7 @@ class MywordsController implements iCommentsController
     
     public function reduce_comments_number($comment){
 		
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
         $params = urldecode($comment->getVar('params'));
         parse_str($params);
         

@@ -27,7 +27,7 @@ function show_editors(){
 		$$k = $v;
 	}
 	
-	$db = Database::getInstance();	
+	$db = XoopsDatabaseFactory::getDatabaseConnection();	
     list($num) = $db->fetchRow($db->query("SELECT COUNT(*) FROM ".$db->prefix("mw_editors")));
     $page = rmc_server_var($_GET, 'page', 1);
     $limit = isset($limit) && $limit>0 ? $limit : 15;
@@ -136,7 +136,7 @@ function save_editor($edit = false){
     }
     
     // Check if XoopsUser is already register
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("mw_editors")." WHERE uid=$uid";
     if ($edit) $sql .= " AND id_editor<>".$editor->id();
     list($num) = $db->fetchRow($db->query($sql));
@@ -180,7 +180,7 @@ function activate_editors($a){
     }
     
     // Delete all relations
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("mw_editors")." SET active='".($a?'1':'0')."' WHERE id_editor IN(".implode(',',$editors).")";
     if (!$db->queryF($sql)){
         redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to update database!','mywords')."\n".$db->error(), 1);
@@ -208,7 +208,7 @@ function delete_editors(){
     }
     
     // Delete all relations
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("mw_posts")." SET author='0' WHERE author IN(".implode(',',$editors).")";
     if (!$db->queryF($sql)){
         redirectMsg('editors.php?page='.$page, __('Errors ocurred while trying to delete editors!','mywords').'<br />'.$db->error(), 1);

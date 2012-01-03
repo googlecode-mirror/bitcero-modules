@@ -17,7 +17,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 function mywords_search($qa, $andor, $limit, $offset, $userid){
 	global $xoopsUser;
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	include_once XOOPS_ROOT_PATH.'/modules/mywords/class/mwpost.class.php';
 	$util =& RMUtilities::get();
