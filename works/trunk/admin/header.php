@@ -18,7 +18,7 @@ $mc =& $xoopsModuleConfig;
 $myts =& MyTextSanitizer::getInstance();
 
 $tpl = RMTemplate::get();
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 # Asignamos las variables básicas a SMARTY
 $tpl->assign('pw_url',PW_URL);

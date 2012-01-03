@@ -16,7 +16,7 @@ function pw_comments_show($options){
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwwork.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/works/class/pwclient.class.php';
 
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	if (isset($xoopsModule) && ($xoopsModule->dirname()=='works')){
 		$mc =& $xoopsModuleConfig;
 	}else{

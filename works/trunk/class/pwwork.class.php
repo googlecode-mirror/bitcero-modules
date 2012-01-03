@@ -18,7 +18,7 @@ class PWWork extends RMObject
      
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("pw_works");
 		$this->setNew();
 		$this->initVarsFromTable();

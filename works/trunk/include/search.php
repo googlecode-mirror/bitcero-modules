@@ -17,7 +17,7 @@ function pwSearch($queryarray, $andor, $limit, $offset, $userid){
     include_once (XOOPS_ROOT_PATH."/modules/works/class/pwwork.class.php");
 
     $mc = RMUtilities::module_config('works');
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $sql = "SELECT a.* FROM ".$db->prefix('pw_works')." a INNER JOIN ".$db->prefix('pw_clients')." b ON (a.public=1 AND a.client=b.id_client AND (";
     $sql1 = '';

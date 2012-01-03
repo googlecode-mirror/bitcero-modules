@@ -17,6 +17,6 @@ define('PW_URL',XOOPS_URL.($xoopsModuleConfig['urlmode'] ? rtrim($xoopsModuleCon
 define('PW_ROOT',XOOPS_ROOT_PATH.'/modules/works');
 
 $tpl = $xoopsTpl;
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 RMTemplate::get()->add_xoops_style('main.css','works');
