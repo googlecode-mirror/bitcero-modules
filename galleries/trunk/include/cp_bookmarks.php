@@ -151,7 +151,7 @@ function addBookMarks(){
 		}
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	//Verificamos si la imagen se encuentra ya registrada en favoritos
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_favourites')." WHERE uid='".$xoopsUser->uid()."' AND id_image='".$img->id()."'";
@@ -201,7 +201,7 @@ function deleteBookMarks(){
 		$ids = array($ids);
 	}
 	
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$errors = '';
 	foreach ($ids as $k){

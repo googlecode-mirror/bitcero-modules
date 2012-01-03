@@ -112,7 +112,7 @@ class GSFunctions
 	*/
 	public function getAllowedUsers(){
 		
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$result = $db->query("SELECT uid FROM ".$db->prefix("gs_users")." WHERE blocked='0'");
 		$rtn = array();
 		while (list($uid) = $db->fetchRow($result)){
@@ -140,7 +140,7 @@ class GSFunctions
 	*/
 	public function pageFromPic(GSImage &$pic, GSUser &$user, $set=0){
 		global $xoopsModuleConfig;
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$mc =& $xoopsModuleConfig;
 		
 		if ($pic->isNew()) return;
@@ -175,7 +175,7 @@ class GSFunctions
 	
 		$mc =& $xoopsModuleConfig;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 		$time = time() - $mc['time_postcard']*86400;
 		
@@ -258,7 +258,7 @@ class GSFunctions
         $ret = array();
         $tf = new RMTimeFormatter(0, "%M%/%d%/%Y%");
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $i = 0;
         while ($row = $db->fetchArray($result)){
             $img = new GSImage();
@@ -353,7 +353,7 @@ class GSFunctions
     */
     public function get_xoops_user($uname){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql = "SELECT uid FROM ".$db->prefix("users")." WHERE uname='".$uname."'";
         $result = $db->query($sql);
@@ -406,7 +406,7 @@ class GSFunctions
             }
 	}
 	
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$tbl1 = $db->prefix("gs_images");
 	$tbl2 = $db->prefix("gs_setsimages");
 	$sql = "SELECT COUNT(*) FROM $tbl1 a, $tbl2 b WHERE b.id_set='".$set->id()."' AND a.id_image=b.id_image $public AND owner='".$user->uid()."'";

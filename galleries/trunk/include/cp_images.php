@@ -398,7 +398,7 @@ function saveImages($edit = 0){
 		$img->setTags($tgs);
 
 		$sets = '';
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 		$tbl1 = $db->prefix("gs_sets");
 		$tbl2 = $db->prefix("gs_setsimages");
 		foreach ($albums as $k => $v){
@@ -643,7 +643,7 @@ function saveSets(){
 			continue;
 		}
 
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sets = '';
 		$tbl1 = $db->prefix("gs_sets");
 		$tbl2 = $db->prefix("gs_setsimages");

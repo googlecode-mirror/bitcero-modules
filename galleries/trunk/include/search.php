@@ -19,7 +19,7 @@ function gsSearch($queryarray, $andor, $limit, $offset, $userid){
     include_once (XOOPS_ROOT_PATH."/modules/galleries/class/gsuser.class.php");
 
     $mc = RMUtilities::get()->module_config('galleries');
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $sql = "SELECT DISTINCT c.* FROM ".$db->prefix('gs_tags')." a INNER JOIN ".$db->prefix('gs_tagsimages')." b INNER JOIN ";
     $sql.= $db->prefix('gs_images')." c ON (";

@@ -116,7 +116,7 @@ function addFriends(){
 		die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	//Verificamos que el usuario no se encuentre registrado
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE gsuser='".$xoopsUser->uid()."' AND uid='".$exu->uid()."'";
@@ -164,7 +164,7 @@ function deleteFriends(){
         die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	//Verificamos si se trata de un amigo
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix('gs_friends')." WHERE uid='".$id."' AND gsuser='".$xoopsUser->uid()."'";

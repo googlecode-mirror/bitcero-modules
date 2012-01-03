@@ -59,7 +59,7 @@ class RMFormUserGS extends RMFormElement
 		$rtn = "<script type='text/javascript' src='".XOOPS_URL."/modules/galleries/include/fieldusers.js'></script>";
 		$rtn .= "<div id='rmformUsers_".$this->getName()."'".($this->getExtra()!='' ? " ".$this->getExtra() : '').">
 				<ul id='rmformUsersList_".$this->getName()."' style='list-style: none; margin: 0; padding: 0; overflow: hidden;'>";
-		$db =& Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		if ($this->showall && in_array(0, $this->selected)){
 			$rtn .= "<li>\n

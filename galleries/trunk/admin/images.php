@@ -24,7 +24,7 @@ function showImages(){
 
 	global $xoopsModule, $tpl, $xoopsConfig, $xoopsSecurity, $xoopsUser;
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
     $page = $page<=0 ? 1 : $page;
@@ -212,7 +212,7 @@ function formImages($edit = 0){
 	$form->addElement($ele,true);
 
 
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	//Albumes
 	if ($edit){
 		$albums = $img->sets(false);
@@ -272,7 +272,7 @@ function formBulkImages(){
 
 	$ruta = "page=$page&owner=$owner&sort=$sort&mode=$mode";
 
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	//Lista de albumes
 	$sql = "SELECT * FROM ".$db->prefix('gs_sets')." WHERE owner='".($uid ? $uid : $xoopsUser->uid())."' ORDER BY id_set DESC";
@@ -548,7 +548,7 @@ function saveImages($edit = 0){
             
         //Fin de Imagen
 
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$new = $img->isNew();
 	if(!$img->save()){

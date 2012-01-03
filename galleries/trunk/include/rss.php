@@ -17,7 +17,7 @@ function gs_rssdesc(){
 
 function &gs_rssfeed($limit, &$more){
 	
-	$db =& Database::GetInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$ret = array();
 	$rtn = array();
@@ -37,7 +37,7 @@ function &gs_rssfeed($limit, &$more){
 function &gs_rssshow($limit){
 	global $util, $mc;
 	
-	$db =& Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsimage.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsset.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/galleries/class/gsuser.class.php';

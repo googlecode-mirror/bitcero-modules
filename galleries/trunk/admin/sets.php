@@ -18,7 +18,7 @@ function showAlbums(){
 	global $tpl, $xoopsModule, $mc, $xoopsSecurity;
 	
 	define('RMSUBLOCATION','sets');
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$page = rmc_server_var($_REQUEST, 'page', 1);
 	$limit = 15;
@@ -186,7 +186,7 @@ function saveAlbums($edit = 0){
 
 	global $xoopsSecurity, $xoopsUser;
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	foreach ($_POST as $k => $v){
 		$$k = $v;
@@ -413,7 +413,7 @@ function delete_formats(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $t1 = $db->prefix("gs_images");
     $t2 = $db->prefix("gs_setsimages");
     

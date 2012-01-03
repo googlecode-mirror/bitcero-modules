@@ -34,7 +34,7 @@ class GSImage extends RMObject
 	* @desc Constructor de la clase
 	*/
 	function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("gs_images");
         $this->setNew();
         $this->initVarsFromTable();
