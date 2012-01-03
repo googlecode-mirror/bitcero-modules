@@ -281,6 +281,37 @@ function save_block_position(){
     
 }
 
+/**
+* Save blocks orders
+*/
+function save_block_order(){
+    global $xoopsSecurity;
+    
+    if(!$xoopsSecurity->check())
+        response(array('message'=>__('Session token expired!','rmcommon')), 1, 0);
+        
+    parse_str(rmc_server_var($_POST, 'items', ''));
+    
+    if(!isset($item))
+        response(array('message'=>__('No items has been specified!','rmcommon')), 1, 1);
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    
+    $i = 0;
+    foreach($item as $id => $v){
+        $sql = "UPDATE ".$db->prefix("rmc_blocks")." SET weight=$i WHERE bid=$id";
+        $db->queryF($sql);
+        $i++;
+    }
+    
+    showMessage(__('Blocks order saved successfully!','rmcommon'), 0);
+    
+    response(array(
+        'message' => __('Changes saved successfully!','rmcommon')
+    ), 0, 1);
+    
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -296,5 +327,8 @@ switch($action){
         break;
     case 'savepos':
         save_block_position();
+        break;
+    case 'save_orders':
+        save_block_order();
         break;
 }

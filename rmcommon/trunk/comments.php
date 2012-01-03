@@ -98,7 +98,8 @@ function show_comments(){
 			$class = ucfirst($row['id_obj']).'Controller';
 			$controller = new $class();
 			$item = $controller->get_item($row['params'], $com);
-			$item_url = $controller->get_item_url($row['params'], $com);
+            if(method_exists($controller, 'get_item_url'))
+			    $item_url = $controller->get_item_url($row['params'], $com);
 			
         } else {
 			

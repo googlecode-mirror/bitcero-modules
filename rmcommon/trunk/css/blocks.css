@@ -312,3 +312,17 @@ label.options{
 .pos_data{display: none;}
 .editor{background:#f2f2f2;}
 .editor input[type='button'],.editor input[type='submit']{margin: 2px;}
+#bk-sorts{display: none;}
+.bk-sort{
+    font-size: 1.2em;
+    list-style: none;
+}
+.bk-sort li{
+    margin: 4px 0;
+    width: 400px;
+    cursor: move;
+}
+.bk-sort li div{padding: 8px 12px;border: 1px solid #CCC;}
+.placeholder{background: #ebebeb;}
+.save-order{display: inline-block;padding: 4px 6px; font-weight: bold;background: #ebebeb; border: 1px solid #CCC; border-radius: 4px;margin: 5px 2px;}
+.bk_waiting{overflow: hidden;display: none; padding: 0 10px;font-style: italic;}
