@@ -255,3 +255,30 @@ h4{
 .options .mw_status_show{
 	padding-left: 15px;
 }
+
+div#mw-blocker{
+    background: #000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+    opacity: 0.8;
+        -moz-opacity: 0.8;
+        -webkit-opacity: 0.8;
+}
+div#mw-blocker-message{
+    position: absolute;
+    background: transparent;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 50px;
+    margin-top: -25px;
+    margin-left: -150px;
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    display:none;
+}

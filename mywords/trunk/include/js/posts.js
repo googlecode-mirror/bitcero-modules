@@ -333,7 +333,10 @@ $(document).ready( function($) {
         params += "&"+$("form#mw-post-publish-form").serialize();
         params += "&"+$("form#mw-post-categos-form").serialize();
         params += "&"+$("form#mw-post-tags-form").serialize();
-
+        
+        var blocker = '<div id="mw-blocker"></div><div id="mw-blocker-message"><img src="../images/wait.gif" alt="" /><br /><?php _e("Saving post...","mywords"); ?></div>';
+        $("body").append(blocker);
+        $("#mw-blocker, #mw-blocker-message").fadeIn('fast');
         // Send Post data
         $.post('<?php echo XOOPS_URL; ?>/modules/mywords/admin/ajax/ax-posts.php', params, function(data){
             
@@ -343,9 +346,10 @@ $(document).ready( function($) {
                 $('div#mw-messages-post').slideDown();
                 if(data['token'])
                     $('#XOOPS_TOKEN_REQUEST').val(data['token']);
-                return;
+                return false;
             }
             
+            $("#mw-blocker-message").html('<img src="../images/wait.gif" alt="" /><br /><?php _e("Loading post...","rmcommon"); ?>');
             window.location.href = '<?php if(!$front): echo "posts.php?op=edit"; else: echo "submit.php?action=edit"; endif; ?>&id='+data['post'];
             
         },'json');
