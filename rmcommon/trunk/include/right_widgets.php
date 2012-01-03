@@ -61,7 +61,7 @@ function rmc_available_mods(){
 * Show the widget with blocks positions
 */
 function rmc_blocks_new(){
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $blocks = RMBlocksFunctions::get_available_list($modules);
     

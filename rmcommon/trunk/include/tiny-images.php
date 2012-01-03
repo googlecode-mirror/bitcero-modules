@@ -104,7 +104,7 @@ if ($action==''){
 
 } elseif($action=='load-images'){
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     if (!$xoopsSecurity->check()){
         _e('Sorry, unauthorized operation!','rmcommon');

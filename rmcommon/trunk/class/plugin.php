@@ -23,7 +23,7 @@ class RMPlugin extends RMObject
     
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("rmc_plugins");
         $this->setNew();
         $this->initVarsFromTable();
@@ -128,7 +128,7 @@ class RMPlugin extends RMObject
         
         if (empty($pre_options)) return;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $c_options = RMFunctions::get()->plugin_settings($dir);
         
         if (empty($c_options)){
@@ -183,7 +183,7 @@ class RMPlugin extends RMObject
     public function delete(){
         
         $dir = $this->plugin()->get_info('dir');
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "DELETE FROM ".$db->prefix("rmc_settings")." WHERE element='$dir' AND type='plugin'";
         if(!$db->queryF($sql)){
             $this->addError($db->error());

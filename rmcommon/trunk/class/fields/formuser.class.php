@@ -74,7 +74,7 @@ class RMFormUser extends RMFormElement
 		
 		$rtn = "<div id='".$this->getName()."-users-container'".($this->getExtra()!='' ? " ".$this->getExtra() : '')." class='form_users_container'>
 				<ul id='".$this->getName()."-users-list'>";
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		if ($this->showall && in_array(0, $this->selected)){
 			$rtn .= "<li id='".$this->getName()."-exmuser-0'>\n

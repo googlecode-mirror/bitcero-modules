@@ -21,7 +21,7 @@ class RMEvents
     private $_preloads = array();
     
     public function __construct(){
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $result = $db->query("SELECT dirname FROM ".$db->prefix("modules")." WHERE isactive='1'");
         

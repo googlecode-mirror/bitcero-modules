@@ -15,7 +15,7 @@ define('RMCLOCATION','comments');
 function show_comments(){
     global $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $keyw = rmc_server_var($_REQUEST, 'w', '');
     $filter = rmc_server_var($_REQUEST, 'filter', '');
@@ -165,7 +165,7 @@ function set_comments_status($status){
 		die();
 	}
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "UPDATE ".$db->prefix("rmc_comments")." SET status='$status' WHERE id_com IN (".implode(",",$coms).")";
 	
 	if($db->queryF($sql)){

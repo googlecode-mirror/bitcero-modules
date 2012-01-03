@@ -26,7 +26,7 @@ function createSQL()
         'visible'=>$visible
     );
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     // Obtenemos los widgets
     $tblw = $db->prefix("rmc_blocks");
@@ -69,7 +69,7 @@ function show_rm_blocks()
 {
     global $xoopsModule, $xoopsConfig, $wid_globals, $xoopsSecurity, $rmc_config;
     define('RMCSUBLOCATION','blocks');
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $modules = RMFunctions::get_modules_list(1);
     

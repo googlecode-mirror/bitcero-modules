@@ -29,7 +29,7 @@ class RMFunctions
 		static $rmc_configs;
 		
 		if (!isset($rmc_configs)){
-			$db = Database::getInstance();
+			$db = XoopsDatabaseFactory::getDatabaseConnection();
 			$sql = "SELECT mid FROM ".$db->prefix("modules")." WHERE dirname='rmcommon'";
 			list($id) = $db->fetchRow($db->query($sql));
 			
@@ -59,7 +59,7 @@ class RMFunctions
 	*/
 	public function get_num_records($table, $filters=''){
 		
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix($table);
 		$sql .= $filters!='' ? " WHERE $filters" : '';
@@ -125,7 +125,7 @@ class RMFunctions
 		if(in_array(0, $groups)) $ret[] = __('All','rmcommon');
 		
 		
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "SELECT name FROM ".$db->prefix("groups")." WHERE groupid IN(".implode(',',$groups).")";
 		$result = $db->query($sql);
 		while($row = $db->fetchArray($result)){
@@ -142,7 +142,7 @@ class RMFunctions
 	* @return array
 	*/
 	public function load_images_categories($filters='ORDER BY id_cat DESC', $object = false){
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." $filters";
 		$result = $db->query($sql);
 		$categories = array();
@@ -175,7 +175,7 @@ class RMFunctions
         global $xoopsUser;
         
         define('COMMENTS_INCLUDED', 1);
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $rmc_config = RMFunctions::configs();
         
@@ -344,7 +344,7 @@ class RMFunctions
 		
 		if ($module=='' || $params == '') return;
 		
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		$sql = "DELETE FROM ".$db->prefix("rmc_comments")." WHERE id_obj='$module' AND params='$params'";
         
         // Event
@@ -373,7 +373,7 @@ class RMFunctions
         
         if (!isset($this->plugin_settings[$dir])){
         
-            $db = Database::getInstance();
+            $db = XoopsDatabaseFactory::getDatabaseConnection();
             $sql = "SELECT * FROM ".$db->prefix("rmc_settings")." WHERE element='$dir'";
             $result = $db->query($sql);
             if($db->getRowsNum($result)<=0) return;
@@ -473,7 +473,7 @@ class RMFunctions
     */
     public function get_modules_list($active=-1){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql = "SELECT mid, name, dirname FROM " . $db->prefix("modules");
         if($active>-1 && $active<2)

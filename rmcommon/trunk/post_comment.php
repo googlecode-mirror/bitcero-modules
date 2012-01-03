@@ -94,7 +94,7 @@ if ($action=='save'){
 	RMEvents::get()->run_event('rmcommon.comment.postdata', $uri);
 
 	// Save comment user
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	if($xoopsUser){
 	    
 	    $sql = "SELECT id_user FROM ".$db->prefix("rmc_comusers")." WHERE xuid=".$xoopsUser->uid();

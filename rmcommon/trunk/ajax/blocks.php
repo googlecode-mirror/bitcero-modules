@@ -86,7 +86,7 @@ function insertBlock(){
     $block = new RMInternalBlock();
 
     if ($canvas<=0){
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         // Get a default side
         $sql = "SELECT id_position, name FROM ".$db->prefix("rmc_blocks_positions")." ORDER BY id_position LIMIT 0, 1";
         $result = $db->query($sql);

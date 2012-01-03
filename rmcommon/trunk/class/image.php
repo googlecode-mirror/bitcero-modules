@@ -15,7 +15,7 @@
 class RMImage extends RMObject
 {
 	public function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("rmc_images");
         $this->setNew();
         $this->initVarsFromTable();

@@ -16,7 +16,7 @@ function get_modules_ajax(){
     XoopsLogger::getInstance()->activated = false;
     XoopsLogger::getInstance()->renderingEnabled = false;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("modules");
     $page = rmc_server_var($_POST, 'page', 1);
     $limit = RMFunctions::configs('mods_number');
@@ -48,7 +48,7 @@ function show_dashboard(){
     
     RMFunctions::create_toolbar();
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = 'SELECT * FROM ' . $db->prefix('modules');
     $result = $db->query($sql);
     $installed_mods = array();
@@ -93,7 +93,7 @@ function rm_change_theme(){
     $theme = rmc_server_var($_GET,'theme','');
     
     if (is_file(RMCPATH.'/themes/'.$theme.'/admin_gui.php')){
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "UPDATE ".$db->prefix("config")." SET conf_value='$theme' WHERE conf_name='theme' AND conf_modid='".$xoopsModule->mid()."'";
         if ($db->queryF($sql)){
             redirectMsg('index.php', __('Theme changed successfully!','rmcommon'), 0);

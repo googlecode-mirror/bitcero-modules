@@ -507,7 +507,7 @@ function save_settings_rm_plugin(){
     }
     
     $options = $plugin->options();
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $confs = array();
     foreach ($options as $k => $option){
         if (!isset($_POST['conf_'.$k])) continue;
