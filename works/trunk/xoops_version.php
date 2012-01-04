@@ -14,7 +14,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('works');
 
 $modversion['name'] = "Professional Works";
 $modversion['version'] = "2.0";
-$modversion['rmversion'] = array('number'=>2,'revision'=>51,'status'=>0,'name'=>'Professional Works');
+$modversion['rmversion'] = array('number'=>2,'revision'=>52,'status'=>0,'name'=>'Professional Works');
 $modversion['description'] = _MI_PW_MODDESC;
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
