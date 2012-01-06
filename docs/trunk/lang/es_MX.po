@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RapidDocs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-06 02:43-0600\n"
-"PO-Revision-Date: 2012-01-06 02:44-0600\n"
+"PO-Revision-Date: 2012-01-06 02:47-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +235,6 @@ msgid "Approved"
 msgstr "Aprobado"
 
 #: C:\wamp\www\cu\modules\docs/publish.php:50
-#, fuzzy
 msgid "Inmediatly"
 msgstr "Inmediatamente"
 
@@ -297,7 +296,6 @@ msgid "Document ID not provided!"
 msgstr "¡El ID del recurso no ha sido proporcionado!"
 
 #: C:\wamp\www\cu\modules\docs/references.php:197
-#, fuzzy
 msgid "Note id not provided!"
 msgstr "¡El ID de la nota no ha sido proporcionado!"
 
@@ -311,7 +309,6 @@ msgid "Note saved successfully"
 msgstr "Nota almacenada correctamente"
 
 #: C:\wamp\www\cu\modules\docs/references.php:234
-#, fuzzy
 msgid "Errors ocurred while trying to save note"
 msgstr "Ocurrieron errores al intentar guardar la nota"
 
@@ -320,7 +317,6 @@ msgid "Select a note to delete!"
 msgstr "¡Selecciona una nueva nota para eliminar!"
 
 #: C:\wamp\www\cu\modules\docs/references.php:265
-#, fuzzy
 msgid "Errores ocurred while trying to delete notes."
 msgstr "Ocurrieron errores al intentar eliminar las notas."
 
@@ -361,7 +357,6 @@ msgid "RapidDocs"
 msgstr "RapidDocs"
 
 #: C:\wamp\www\cu\modules\docs/xoops_version.php:16
-#, fuzzy
 msgid "Create documentation in Xoops, quicky and an advanced way."
 msgstr "Crea documentación en XOOPS, rápido y fácilmente."
 
@@ -449,7 +444,6 @@ msgid "Title"
 msgstr "Título"
 
 #: C:\wamp\www\cu\modules\docs/admin/edits.php:249
-#, fuzzy
 msgid "Contenido"
 msgstr "Contenido"
 
@@ -493,7 +487,6 @@ msgid "You have not selected any figure!"
 msgstr "No has selccionado una figura!"
 
 #: C:\wamp\www\cu\modules\docs/admin/figures.php:89
-#, fuzzy
 msgid "Do you really wish to delete selected figures?"
 msgstr "¿Realmente deseas eliminar las figuras seleccionadas?"
 
@@ -634,7 +627,6 @@ msgid "You have not selected any note!"
 msgstr "¡No has selecciona una nota!"
 
 #: C:\wamp\www\cu\modules\docs/admin/notes.php:90
-#, fuzzy
 msgid "Do you really wish to delete selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
@@ -1045,17 +1037,14 @@ msgid "Display method for documents index"
 msgstr "Modo de presentación del índice de documentos"
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:14
-#, fuzzy
 msgid "Choose the method that you wish to use when display the documents index. This option affects to All, Recent and Featured index of documents."
 msgstr "Selecciona el método que deseas usar cuando se muestre el índice de los documentos. Este opción afecta a Todo, Recursos recientes y destacados."
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:15
-#, fuzzy
 msgid "Subdomain on which RapidDocs will be used"
 msgstr "Subdominio en el que RapidDocs será utilzado"
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:16
-#, fuzzy
 msgid "You can specify a subdomain if your htaccess file has been configured for it (e.g. http://docs.xoops.org)."
 msgstr "Puedes especificar un dominio si tu archivo htaccess ha sido configurado para esto (ej. http://docs.xoops.org)."
 
@@ -1080,7 +1069,6 @@ msgid "Number of columns for index"
 msgstr "Número de columnas para el índice"
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:22
-#, fuzzy
 msgid "This option is used only when selected display method is \"as list\""
 msgstr "Esta opción es utilizada solo cuando la forma de presentación es \"como lista\""
 
@@ -1220,7 +1208,6 @@ msgid "Create new note"
 msgstr "Crear una nueva nota"
 
 #: C:\wamp\www\cu\modules\docs/templates/rd_references.php:95
-#, fuzzy
 msgid "Do you really wish to delet selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
@@ -1484,7 +1471,6 @@ msgid "No Published Documents"
 msgstr "Recursos no Publicados"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:114
-#, fuzzy
 msgid "There are not documents to show here."
 msgstr "No hay documentos para mostrar aquí"
 
@@ -1606,7 +1592,7 @@ msgstr "Descartar"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:11
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:82
-#, fuzzy, php-format
+#, php-format
 msgid "Do you really wish to delete %s?"
 msgstr "¿Realmente deseas eliminar %s?"
 
@@ -1625,7 +1611,6 @@ msgid "List Sections"
 msgstr "Enlistar Secciones"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:46
-#, fuzzy
 msgid "Sort Sections"
 msgstr "Imprimir Sección"
 
@@ -1640,7 +1625,6 @@ msgid "Updated"
 msgstr "Actualizado"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:72
-#, fuzzy
 msgid "There are not sections created in this document!"
 msgstr "No hay notas creadas para este recurso."
 
@@ -1690,12 +1674,10 @@ msgid "Select at least one element before to do this action!"
 msgstr "¡Selecciona al menos un elemento antes de ejecutar esta acción!"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:3
-#, fuzzy
 msgid "Do you really wish to delete selected items?"
 msgstr "¿Realmente deseas eliminar los elementos seleccionados?"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:7
-#, fuzzy
 msgid "Next are the edited sections waiting for approve and revision. Please, be carefull with content to prevent spam or another inconvenniences."
 msgstr "Las siguientes son las secciones editadas esperando por revisión y aprobación. Por favor se cuidadoso para prevenir el SPAM u otras inconveniencias."
 
@@ -1720,7 +1702,6 @@ msgid "Edited by"
 msgstr "Editado por"
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:43
-#, fuzzy
 msgid "There are not waiting contents at this time"
 msgstr "No hay contenidos en espera en este momento"
 
