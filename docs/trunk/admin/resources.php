@@ -291,7 +291,7 @@ function rd_delete_resource(){
     $page = rmc_server_var($_POST, 'page', 1);
 
 	if (!is_array($ids)){
-        redirectMsg("resources.php?page=".$page, __("Select at least one resources to delete!",'docs'), 1);
+        redirectMsg("resources.php?page=".$page, __("Select at least one document to delete!",'docs'), 1);
         die();
     }
 		
@@ -321,7 +321,7 @@ function rd_delete_resource(){
     }
     
     if ($errors!=''){
-        redirectMsg("resources.php?page=$page", __('Errors ocurred while deleting resources','docs').'<br />'.$errors, 1);
+        redirectMsg("resources.php?page=$page", __('Errors ocurred while deleting documents','docs').'<br />'.$errors, 1);
     } else {
         redirectMsg("resources.php?page=$page", __('Documents deleted susccessfully!','docs'), 0);
     }

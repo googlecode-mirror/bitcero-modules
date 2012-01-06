@@ -77,7 +77,7 @@ function rd_block_resources_edit($options){
 					</td>
 				</tr>
 				<tr class='even'>
-					<td>".__('Number of resources:','docs')."</td>
+					<td>".__('Number of documents:','docs')."</td>
 					<td><input type='text' name='options[1]' value='$options[1]' size='5' /></td>
 				</tr>
 				<tr class='even'>

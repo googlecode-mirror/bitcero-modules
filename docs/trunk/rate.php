@@ -22,7 +22,7 @@ if ($id<=0){
 	die();
 }
 
-$res = new AHResource($id);
+$res = new RDResource($id);
 if ($res->isNew()){
 	redirect_header(XOOPS_URL.'/modules/ahelp/', 2, _MS_AH_NOID);
 	die();

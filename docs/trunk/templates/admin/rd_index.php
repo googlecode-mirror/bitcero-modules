@@ -111,7 +111,7 @@
         <div class="outer">
             <div class="th"><?php _e('Top Documents','docs'); ?></div>
             <div class="even">
-                <div id="rd-top-resources"><?php if(empty($top_data)): ?><?php _e('There are not resources to show here.','docs'); ?><?php else: ?>&nbsp;<?php endif; ?></div>
+                <div id="rd-top-resources"><?php if(empty($top_data)): ?><?php _e('There are not documents to show here.','docs'); ?><?php else: ?>&nbsp;<?php endif; ?></div>
             </div>
         </div>
         <!-- End Top Documents -->
