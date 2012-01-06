@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RapidDocs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-13 22:31-0600\n"
-"PO-Revision-Date: 2011-12-14 06:48-0500\n"
-"Last-Translator: Michael Beck <mambax7@gmail.com>\n"
+"POT-Creation-Date: 2012-01-06 02:43-0600\n"
+"PO-Revision-Date: 2012-01-06 02:44-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red México <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,1702 +14,1757 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: MEXICO\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: E:\\webserver\\htdocs\\xoops24\\modules\\docs\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\cu\\modules\\docs\n"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/content.php:218
+#: C:\wamp\www\cu\modules\docs/content.php:221
 msgid "This content is not available!"
 msgstr "¡Este contenido no esta disponible!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/content.php:223
+#: C:\wamp\www\cu\modules\docs/content.php:226
 msgid "You are not allowed to read this content!"
 msgstr "¡No estas autorizado para leer este contenido!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:14
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:48
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:105
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:171
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:178
+#: C:\wamp\www\cu\modules\docs/edit.php:14
+#: C:\wamp\www\cu\modules\docs/edit.php:48
+#: C:\wamp\www\cu\modules\docs/edit.php:105
+#: C:\wamp\www\cu\modules\docs/edit.php:171
+#: C:\wamp\www\cu\modules\docs/edit.php:178
 msgid "Operation not allowed!"
 msgstr "¡La operación no esta permitida!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:40
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:97
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:216
+#: C:\wamp\www\cu\modules\docs/edit.php:40
+#: C:\wamp\www\cu\modules\docs/edit.php:97
+#: C:\wamp\www\cu\modules\docs/edit.php:216
 msgid "Specified section does not exists!"
 msgstr "¡La sección especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:57
+#: C:\wamp\www\cu\modules\docs/edit.php:57
 #, php-format
 msgid "Manage Document \"%s\""
 msgstr "Administrar recurso \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:63
+#: C:\wamp\www\cu\modules\docs/edit.php:63
 #, php-format
 msgid "Pages in %s"
 msgstr "Páginas en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:146
+#: C:\wamp\www\cu\modules\docs/edit.php:146
 #, php-format
 msgid "Editing \"%s\""
 msgstr "Editando \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:148
+#: C:\wamp\www\cu\modules\docs/edit.php:148
 msgid "Create new section"
 msgstr "Crear nueva sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:185
+#: C:\wamp\www\cu\modules\docs/edit.php:185
 msgid "This Document has not been approved yet!"
 msgstr "¡Este recurso aún no ha sido aprovado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:200
+#: C:\wamp\www\cu\modules\docs/edit.php:200
 msgid "You can not edit this content!"
 msgstr "¡No puedes editar este contenido!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:209
+#: C:\wamp\www\cu\modules\docs/edit.php:209
 msgid "Specified section is not valid!"
 msgstr "¡La sección especificada no es válida!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:224
-msgid "There is already a section with the same name!"
+#: C:\wamp\www\cu\modules\docs/edit.php:224
+msgid "Already exists another section with same title!"
 msgstr "¡Ya existe otra sección con el mismo título!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:307
+#: C:\wamp\www\cu\modules\docs/edit.php:307
 msgid "Section could not be saved!"
 msgstr "¡La sección no pudo ser guardada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:315
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:317
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:319
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:263
+#: C:\wamp\www\cu\modules\docs/edit.php:315
+#: C:\wamp\www\cu\modules\docs/edit.php:317
+#: C:\wamp\www\cu\modules\docs/edit.php:319
+#: C:\wamp\www\cu\modules\docs/figures.php:263
 msgid "Database updated successfully!"
 msgstr "¡Base de datos actualizada satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:340
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:217
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:281
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:87
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:177
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:252
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:175
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:235
+#: C:\wamp\www\cu\modules\docs/edit.php:340
+#: C:\wamp\www\cu\modules\docs/figures.php:217
+#: C:\wamp\www\cu\modules\docs/figures.php:281
+#: C:\wamp\www\cu\modules\docs/publish.php:87
+#: C:\wamp\www\cu\modules\docs/references.php:177
+#: C:\wamp\www\cu\modules\docs/references.php:252
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:175
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:235
 msgid "Session token expired!"
 msgstr "¡El identificador de sesion ha expirado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:345
+#: C:\wamp\www\cu\modules\docs/edit.php:345
 msgid "Sorry, the data provided contains some errors!"
 msgstr "¡Lo sentimos, los datos proporcionados contienen algunos errores!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:361
+#: C:\wamp\www\cu\modules\docs/edit.php:361
 #, php-format
 msgid "Order could not be saved for section %s"
 msgstr "El orden no pudo ser almacenado para la sección %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:367
-msgid "Errors occurred while trying to update orders"
-msgstr "Ocurrieron errores al intentar actualizar el orden"
+#: C:\wamp\www\cu\modules\docs/edit.php:367
+msgid "Errors ocurred while trying to update orders"
+msgstr "¡Ocurrieron errores al intentar actualizar el orden!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/edit.php:369
+#: C:\wamp\www\cu\modules\docs/edit.php:369
 msgid "Sections updated successfully!"
 msgstr "¡Secciones actualizadas correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:34
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:34
+#: C:\wamp\www\cu\modules\docs/figures.php:28
+#: C:\wamp\www\cu\modules\docs/figures.php:34
+#: C:\wamp\www\cu\modules\docs/references.php:28
+#: C:\wamp\www\cu\modules\docs/references.php:34
 msgid "You are not allowed to view this page"
 msgstr "No estas autorizado para ver esta página"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:128
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:141
+#: C:\wamp\www\cu\modules\docs/figures.php:128
+#: C:\wamp\www\cu\modules\docs/references.php:141
 msgid "Select Document"
 msgstr "Selecciona un recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:131
+#: C:\wamp\www\cu\modules\docs/figures.php:131
 msgid "Select another Document to show the figures that belong to this."
 msgstr "Selecciona otro recurso para ver las figuras que le pertenecen."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:134
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:107
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:137
+#: C:\wamp\www\cu\modules\docs/figures.php:134
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:107
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:137
 msgid "Create Figure"
 msgstr "Crear Figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:137
+#: C:\wamp\www\cu\modules\docs/figures.php:137
 msgid "Create a new figure"
 msgstr "Crear una nueva figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:165
+#: C:\wamp\www\cu\modules\docs/figures.php:165
 msgid "A Document has not been specified!"
 msgstr "¡No se ha espcificado un recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:172
+#: C:\wamp\www\cu\modules\docs/figures.php:172
 msgid "No figure has been specified"
 msgstr "No se ha especificado una figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:179
+#: C:\wamp\www\cu\modules\docs/figures.php:179
 msgid "Sepecified figure does not exists"
 msgstr "La figura especificada no existe"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:223
+#: C:\wamp\www\cu\modules\docs/figures.php:223
 msgid "No Document has been selected!"
 msgstr "¡No se ha seleccionado un recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:230
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:190
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:29
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:119
+#: C:\wamp\www\cu\modules\docs/figures.php:230
+#: C:\wamp\www\cu\modules\docs/references.php:190
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:29
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:119
 msgid "Specified Document does not exists!"
 msgstr "¡El recurso especificado no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:238
+#: C:\wamp\www\cu\modules\docs/figures.php:238
 msgid "No figure has been selected!"
 msgstr "¡No se ha seleccionado una figura!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:245
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:131
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:189
+#: C:\wamp\www\cu\modules\docs/figures.php:245
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:131
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:189
 msgid "Specified figure does not exists!"
 msgstr "¡La figura especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:261
+#: C:\wamp\www\cu\modules\docs/figures.php:261
 msgid "Database could not be updated!"
 msgstr "¡La base de datos no pudo ser actualizada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:286
+#: C:\wamp\www\cu\modules\docs/figures.php:286
 msgid "Select a figure to delete!"
 msgstr "¡Selecciona una figura para eliminar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:294
-msgid "Errors occurred while trying to delete figures."
+#: C:\wamp\www\cu\modules\docs/figures.php:294
+msgid "Errores ocurred while trying to delete figures."
 msgstr "Ocurrieron errores al intentar eliminar las figuras."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/figures.php:296
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:246
+#: C:\wamp\www\cu\modules\docs/figures.php:296
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:246
 msgid "Figures deleted successfully!"
 msgstr "¡Figuras eliminadas correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:23
-msgid "The creation of new Documents has been disabled by Administrator."
-msgstr "La creación de nuevos recursos ha sido desactivada por el administrador."
+#: C:\wamp\www\cu\modules\docs/publish.php:23
+msgid "The creation of new Documents has been disabled by administrator."
+msgstr "La creación de nuevos documentos ha sido desactivada por el administrador."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:30
+#: C:\wamp\www\cu\modules\docs/publish.php:30
 msgid "You can not create Documents."
 msgstr "No puedes crear recursos."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:34
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:36
+#: C:\wamp\www\cu\modules\docs/publish.php:34
+#: C:\wamp\www\cu\modules\docs/publish.php:36
 msgid "Create Document"
 msgstr "Crear Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:38
+#: C:\wamp\www\cu\modules\docs/publish.php:38
 msgid "Document title"
 msgstr "Título del Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:39
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:140
+#: C:\wamp\www\cu\modules\docs/publish.php:39
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:140
 msgid "Description"
 msgstr "Descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:42
+#: C:\wamp\www\cu\modules\docs/publish.php:42
 msgid "Editors"
 msgstr "Editores"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:45
+#: C:\wamp\www\cu\modules\docs/publish.php:45
 msgid "Groups that can read Document"
 msgstr "Grupos que pueden leer el recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:46
+#: C:\wamp\www\cu\modules\docs/publish.php:46
 msgid "Quick index"
 msgstr "Índice rápido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:47
+#: C:\wamp\www\cu\modules\docs/publish.php:47
 msgid "Show index to restricted users"
 msgstr "Mostrar índice a los usuarios restringidos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:48
+#: C:\wamp\www\cu\modules\docs/publish.php:48
 msgid "Show content in a single page"
 msgstr "Mostrar contenido en una sola página"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:50
+#: C:\wamp\www\cu\modules\docs/publish.php:50
 msgid "Approved"
 msgstr "Aprobado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:50
-msgid "Immediately"
+#: C:\wamp\www\cu\modules\docs/publish.php:50
+#, fuzzy
+msgid "Inmediatly"
 msgstr "Inmediatamente"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:50
+#: C:\wamp\www\cu\modules\docs/publish.php:50
 msgid "Wait for approval"
 msgstr "Esperando aprobación"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:53
+#: C:\wamp\www\cu\modules\docs/publish.php:53
 msgid "Publish Document"
 msgstr "Publicar Recruso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:96
-msgid "There is already a resourrce with the same name!"
-msgstr "¡Ya existe un recurso con el mismo nombre!"
+#: C:\wamp\www\cu\modules\docs/publish.php:96
+msgid "Already exists a Document with same name!"
+msgstr "¡Ya existe un Documento con el mismo nombre!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:133
+#: C:\wamp\www\cu\modules\docs/publish.php:133
 msgid "Document could not be created!"
 msgstr "¡El recurso no pudo ser creado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:139
+#: C:\wamp\www\cu\modules\docs/publish.php:139
 msgid "New Document created at RapidDocs is waiting for approval"
 msgstr "Un nuevo recurso creado en RapidDocs esta en espera de aprobación"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:146
-msgid "Your Document has been created, however the email to Administrator could no be sent."
-msgstr "Tu recurso ha sido creado, sin embargo el email de confirmación no pudo ser enviado al administrador."
+#: C:\wamp\www\cu\modules\docs/publish.php:146
+msgid "Your Document has been created, however the email to administrator could no be sent."
+msgstr "Tu documento ha sido creado, sin embargo el email de confirmación no pudo ser enviado al administrador."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:149
+#: C:\wamp\www\cu\modules\docs/publish.php:149
 msgid "Your Document has been created and is pending for approval. We will sent an email when you can access to it and add content."
 msgstr "Tu recurso ha sido creado y esta pendiente de ser aprobado. Te enviaremos un email cuando puedas acceder a el y a su contenido."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/publish.php:160
+#: C:\wamp\www\cu\modules\docs/publish.php:160
 msgid "Document created successfully!"
 msgstr "¡Recurso creado satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:109
+#: C:\wamp\www\cu\modules\docs/references.php:109
 msgid "A note has not been specified!"
 msgstr "¡No ha sido especificada una nota!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:114
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:202
+#: C:\wamp\www\cu\modules\docs/references.php:114
+#: C:\wamp\www\cu\modules\docs/references.php:202
 msgid "Specified note does not exists!"
 msgstr "¡La nota especificada no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:144
+#: C:\wamp\www\cu\modules\docs/references.php:144
 msgid "Select another Document to show the notes that belong to this."
 msgstr "Selecciona otro recurso para mostrar las notas que le pertenecen."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:147
+#: C:\wamp\www\cu\modules\docs/references.php:147
 msgid "Create Note"
 msgstr "Crear Nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:150
+#: C:\wamp\www\cu\modules\docs/references.php:150
 msgid "Create a new note."
 msgstr "Crear nueva nota."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:183
+#: C:\wamp\www\cu\modules\docs/references.php:183
 msgid "Document ID not provided!"
 msgstr "¡El ID del recurso no ha sido proporcionado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:197
-msgid "Note ID not provided!"
+#: C:\wamp\www\cu\modules\docs/references.php:197
+#, fuzzy
+msgid "Note id not provided!"
 msgstr "¡El ID de la nota no ha sido proporcionado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:210
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:220
-msgid "There is already a note with the same name"
-msgstr "Ya existe otra nota con el mismo título"
+#: C:\wamp\www\cu\modules\docs/references.php:210
+#: C:\wamp\www\cu\modules\docs/references.php:220
+msgid "Another note with same title already exists"
+msgstr "¡Ya existe otra nota con el mismo título!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:231
+#: C:\wamp\www\cu\modules\docs/references.php:231
 msgid "Note saved successfully"
 msgstr "Nota almacenada correctamente"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:234
-msgid "Errors occurred while trying to save note"
+#: C:\wamp\www\cu\modules\docs/references.php:234
+#, fuzzy
+msgid "Errors ocurred while trying to save note"
 msgstr "Ocurrieron errores al intentar guardar la nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:257
+#: C:\wamp\www\cu\modules\docs/references.php:257
 msgid "Select a note to delete!"
 msgstr "¡Selecciona una nueva nota para eliminar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:265
-msgid "Errors occurred while trying to delete notes."
+#: C:\wamp\www\cu\modules\docs/references.php:265
+#, fuzzy
+msgid "Errores ocurred while trying to delete notes."
 msgstr "Ocurrieron errores al intentar eliminar las notas."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/references.php:267
+#: C:\wamp\www\cu\modules\docs/references.php:267
 msgid "Notes deleted successfully!"
 msgstr "¡Notas eliminadas satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:31
+#: C:\wamp\www\cu\modules\docs/resource.php:31
 msgid "Sorry, this Document does not exists!"
 msgstr "¡Lo sentimos, el recurso no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:38
-#: E:\webserver\htdocs\xoops24\modules\docs/Document.php:43
+#: C:\wamp\www\cu\modules\docs/resource.php:38
+#: C:\wamp\www\cu\modules\docs/resource.php:43
 msgid "Sorry, you are not authorized to view this Document"
 msgstr "Lo sentimos, no estas autorizado para ver este recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/search.php:52
-#: E:\webserver\htdocs\xoops24\modules\docs/search.php:106
+#: C:\wamp\www\cu\modules\docs/search.php:52
+#: C:\wamp\www\cu\modules\docs/search.php:106
 msgid "Browsing recent Documents"
 msgstr "Examinando recursos recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/search.php:57
+#: C:\wamp\www\cu\modules\docs/search.php:57
 msgid "Recent Documents"
 msgstr "Recursos Recientes"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/search.php:57
+#: C:\wamp\www\cu\modules\docs/search.php:57
 msgid "Top Documents"
 msgstr "Recursos Populares"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/search.php:111
+#: C:\wamp\www\cu\modules\docs/search.php:111
 #, php-format
 msgid "Search results for \"%s\""
 msgstr "Resultados de búsqueda para \"%s\""
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:13
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:15
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:15
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:17
 msgid "RapidDocs"
 msgstr "RapidDocs"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:14
-msgid "Create documentation in XOOPS, quickly and in an advanced way."
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:16
+#, fuzzy
+msgid "Create documentation in Xoops, quicky and an advanced way."
 msgstr "Crea documentación en XOOPS, rápido y fácilmente."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:66
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:67
 msgid "PHP Default"
 msgstr "Por defecto de PHP"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:66
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:67
 msgid "Name based"
 msgstr "Basado en nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:95
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:96
 msgid "As list"
 msgstr "Como lista"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:95
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:96
 msgid "As table"
 msgstr "Como tabla"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:147
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:175
 msgid "Documents"
 msgstr "Recursos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:148
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:176
 msgid "List of Documents"
 msgstr "Lista de recursos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:157
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:185
 msgid "Document TOC"
 msgstr "TOC del Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/xoops_version.php:158
+#: C:\wamp\www\cu\modules\docs/xoops_version.php:186
 msgid "Table of content for a specific Document"
 msgstr "Tabla de contenidos para un recurso específico"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:49
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:49
 msgid "%M% %d%, %Y%"
 msgstr "%d% de %M% de %Y%"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:54
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:108
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:275
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:54
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:108
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:275
 msgid "Waiting Content"
 msgstr "Contenido en Espera"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:76
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:76
 msgid "You have not specified any section!"
 msgstr "¡No has especificado una sección!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:82
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:234
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:82
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:234
 msgid "Specified content does not exists!"
 msgstr "¡El contenido especificado no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:88
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:88
 msgid "The section indicated by current element does not exists!"
 msgstr "¡La sección indicada por el elemento actual no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:108
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:275
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:108
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:275
 #, php-format
 msgid "Editing %s"
 msgstr "Editando %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:228
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:228
 msgid "You have not specified any waiting section!"
 msgstr "¡No has especificado una sección en espera!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:240
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:240
 msgid "This waiting content does not have any section assigned!"
 msgstr "¡Este contenido en espera no cuenta con una sección asignada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:246
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:278
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:246
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:278
 msgid "Editing Waiting Content"
 msgstr "Editando Contenido en Espera"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:247
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:247
 msgid "Belong to"
 msgstr "Pertenece a"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:248
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:139
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:248
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:139
 msgid "Title"
 msgstr "Título"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:249
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:141
-msgid "Content"
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:249
+#, fuzzy
+msgid "Contenido"
 msgstr "Contenido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:252
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:252
 msgid "Parent Section"
 msgstr "Sección Padre"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:253
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:253
 msgid "Select section..."
 msgstr "Selecciona un sección..."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:262
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:262
 msgid "Display order"
 msgstr "Orden de presentación"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:264
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:264
 msgid "Owner"
 msgstr "Propietario"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:267
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:267
 msgid "Save Now"
 msgstr "Guardar Ahora"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/edits.php:268
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:148
+#: C:\wamp\www\cu\modules\docs/admin/edits.php:268
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:148
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:24
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:24
 msgid "First select a Document to view the figures."
 msgstr "Primerso selecciona un recurso para ver las figuras."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:85
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:85
 #, php-format
 msgid "Figures in %s"
 msgstr "Figuras en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:88
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:229
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:88
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:229
 msgid "You have not selected any figure!"
 msgstr "No has selccionado una figura!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:89
-msgid "Do you really want to delete selected figures?"
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:89
+#, fuzzy
+msgid "Do you really wish to delete selected figures?"
 msgstr "¿Realmente deseas eliminar las figuras seleccionadas?"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:91
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:91
 msgid "Figures"
 msgstr "Figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:107
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:107
 msgid "Edit Figure"
 msgstr "Editar Figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:114
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:114
 msgid "First select a Document to manage the figures."
 msgstr "Primero selecciona un recurso para administrar sus figuras."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:125
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:125
 msgid "You have not specified a figure to edit!"
 msgstr "¡No has especificado una figura para editar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:137
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:137
 msgid "Editing Figure"
 msgstr "Editando Figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:143
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:141
+msgid "Content"
+msgstr "Contenido"
+
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:143
 msgid "Attributes"
 msgstr "Atributos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:147
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:147
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:147
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:147
 msgid "Save Figure"
 msgstr "Guardar Figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:182
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:182
 msgid "Figure id not specified!"
 msgstr "¡No se especifió el id de la figura!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:205
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:205
 msgid "Figure saved successfully!"
 msgstr "¡Figura almacenada correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:208
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:208
 msgid "Figure could not be saved!"
 msgstr "¡No se puedo almacenar la figura!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/figures.php:244
+#: C:\wamp\www\cu\modules\docs/admin/figures.php:244
 msgid "Figures could not be deleted!"
 msgstr "¡Las figuras no pudieron ser eliminadas!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/hpage.php:16
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:26
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:432
+#: C:\wamp\www\cu\modules\docs/admin/hpage.php:16
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:26
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:449
 msgid "Home Page"
 msgstr "Página Inicial"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/hpage.php:39
+#: C:\wamp\www\cu\modules\docs/admin/hpage.php:39
 msgid "Page saved successfully!"
 msgstr "¡Página almacenada correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/hpage.php:41
+#: C:\wamp\www\cu\modules\docs/admin/hpage.php:41
 msgid "Page could not be saved!"
 msgstr "¡La página no pudo ser almacenada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:20
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:14
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:20
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:14
 msgid "Dashboard"
 msgstr "Tablero"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:38
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:118
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:37
+msgid "All Documents"
+msgstr "Todos los Recursos"
+
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:38
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:118
 msgid "New Document"
 msgstr "Nuevo recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:39
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:39
 msgid "Drafts"
 msgstr "Borradores"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:43
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:16
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:43
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:16
 msgid "Sections"
 msgstr "Secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:48
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:48
 msgid "All sections"
 msgstr "Todas las secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:49
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:49
 msgid "New section"
 msgstr "Nueva sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:53
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:17
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:53
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:17
 msgid "Notes"
 msgstr "Notas"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:58
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:58
 msgid "All notes"
 msgstr "Todas las notas"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:67
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:67
 msgid "All figures"
 msgstr "Todas las figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:68
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:68
 msgid "New figure"
 msgstr "Nueva figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:72
+#: C:\wamp\www\cu\modules\docs/admin/menu.php:72
 msgid "Waiting"
 msgstr "Esperando"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:24
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:24
 msgid "Select a Document to view notes from this"
 msgstr "Selecciona un recurso para ver sus notas"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:30
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:59
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:30
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:59
 msgid "The specified Document does not exists!"
 msgstr "¡El recurso especificado no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:86
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:86
 #, php-format
 msgid "Notes in %s"
 msgstr "Notas en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:89
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:89
 msgid "You have not selected any note!"
 msgstr "¡No has selecciona una nota!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:90
-msgid "Do you really want to delete selected notes?"
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:90
+#, fuzzy
+msgid "Do you really wish to delete selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:92
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:92
 msgid "References"
 msgstr "Referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:107
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:108
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:107
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:108
 msgid "Editing Note"
 msgstr "Editando Nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:115
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:115
 msgid "Document not specified"
 msgstr "Recurso no especificado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:126
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:126
 msgid "Note not specified"
 msgstr "Nota no especificada"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:138
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:138
 msgid "Edit Note"
 msgstr "Editar Nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:181
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:181
 msgid "Note id not specified!"
 msgstr "¡ID de la nota no especificado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:202
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:202
 msgid "Already exists a note with same title"
 msgstr "Ya existe una nota con el mismo título"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:211
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:211
 msgid "Note saved successfully!"
 msgstr "¡Nota almacenada correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:214
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:214
 msgid "Note could not be saved!"
 msgstr "¡La nota no pudo ser guardada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:235
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:235
 msgid "No note selected!"
 msgstr "¡No se selecciono una nota!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:241
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:241
 msgid "Session token expired"
 msgstr "Expiró el identificador de sesión"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/notes.php:250
+#: C:\wamp\www\cu\modules\docs/admin/notes.php:250
 msgid "Notes could not be deleted!"
 msgstr "¡"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:75
-msgid "Do you really want to delete selected Documents?"
-msgstr "¿Realmente deseas eliminar los recursos seleccionados?"
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:75
+msgid "Do you really wish to delete selected Documents?"
+msgstr "¿Realmente deseas eliminar los documentos seleccionados?"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:76
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:76
 msgid "You must select an element before to do this action!"
 msgstr "¡Debes seleccionar un elemento antes de realizar esta acción!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:96
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:96
 msgid "Editing Document"
 msgstr "Aditando Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:105
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:105
 msgid "You must provide an ID from some Document to edit!"
 msgstr "¡Debes especificar el ID de algún recurso para editar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:118
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:118
 #, php-format
 msgid "Edit Document: %s"
 msgstr "Editar Recurso: %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:121
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:121
 msgid "Document slug"
 msgstr "Nombre corto"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:127
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:127
 msgid "Document owner"
 msgstr "Propietario del recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:129
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:129
 msgid "Approve content and changes by editors"
 msgstr "Aprobar contenido y cambios hechos por editores"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:130
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:130
 msgid "Groups that can see this Document"
 msgstr "Grupos que pueden ver este recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:131
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:131
 msgid "Set as public"
 msgstr "Establecer como público"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:137
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:137
 msgid "Featured"
 msgstr "Destacado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:138
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:138
 msgid "Approve inmediatly"
 msgstr "Aprobar inmediatamente"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:140
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:140
 msgid "When you enable this option the Document content will show in a single page."
 msgstr "Si activas esta opción el contenido del recurso se mostrará en una sola página."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:143
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:143
 msgid "Update Document"
 msgstr "Actualizar Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:188
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:188
 msgid "You must provide a valid Document ID"
 msgstr "Debes proporciona uan ID valido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:203
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:213
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:203
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:213
 msgid "A Document with same title exists already!"
 msgstr "¡Ya existe un recurso con el mismo título!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:260
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:260
 msgid "Document could not be saved!"
 msgstr "¡El recurso no pudo ser almacenado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:279
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:279
 msgid "Document saved successfully!"
 msgstr "¡Recurso almacenado correctamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:294
-msgid "Select at least one Documents to delete!"
-msgstr "¡Selecciona al menos un recurso para eliminar!"
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:294
+msgid "Select at least one document to delete!"
+msgstr "¡Selecciona al menos un documento para eliminar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:307
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:307
 #, php-format
 msgid "\"%s\" is not a valid Document ID"
 msgstr "\"%s\" no es un recurso válido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:313
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:313
 #, php-format
 msgid "Document with ID \"%s\" does not exists"
 msgstr "El recurso con el ID \"%s\" no existe"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:318
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:318
 #, php-format
 msgid "Document \"%s\" could not be deleted!"
 msgstr "¡El recurso %s no pudo ser eliminado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:324
-msgid "Errors ocurred while deleting Documents"
-msgstr "Ocurrieron errores al eliminar recursos"
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:324
+msgid "Errors ocurred while deleting documents"
+msgstr "Ocurrieron errores al eliminar documentos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:326
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:326
 msgid "Documents deleted susccessfully!"
 msgstr "¡Recursos eliminados satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:347
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:398
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:347
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:398
 msgid "You must select at least a single Document!"
 msgstr "¡Debes seleccionar por lo menos un recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:356
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:407
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:356
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:407
 #, php-format
-msgid "Provided resourse ID \"%s\" is not valid!"
-msgstr "¡El ID de recurso %s no existe!"
+msgid "Provided Document ID \"%s\" is not valid!"
+msgstr "¡El ID de documento \"%s\" no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:363
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:414
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:484
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:363
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:414
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:484
 #, php-format
 msgid "Document with ID \"%s\" does not exists!"
 msgstr "¡El recurso con ID %s no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:369
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:420
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:369
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:420
 #, php-format
 msgid "Document \"%s\" could not be updated!"
 msgstr "¡El recurso %s no pudo ser actualizado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:374
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:425
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:502
-msgid "Errors ocurred while trying to update Documents."
-msgstr "Ocurrieron errores al intentar actualizar los recursos."
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:374
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:425
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:502
+msgid "Errors ocurred while trying to update resources."
+msgstr "Ocurrieron errores al intentar actualizar los documentos."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:377
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:428
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:504
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:377
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:428
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:504
 msgid "Documents updated successfully!"
 msgstr "¡Recursos actualizados satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:446
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:446
 msgid "Database coould not be updated!"
 msgstr "¡La base de datos no pudo ser actualizada!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:468
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:468
 msgid "Select at least a Document!"
 msgstr "¡Selecciona al menos un recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:477
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:477
 #, php-format
 msgid "Document ID \"%s\" is not valid!"
 msgstr "¡El ID de recurso %s no es válido!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:492
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:492
 #, php-format
 msgid "Resoource \"%s\" could not be saved!"
 msgstr "¡El recurso %s no pudo ser guardado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/resources.php:495
+#: C:\wamp\www\cu\modules\docs/admin/resources.php:495
 msgid "Notification email could not be sent!"
 msgstr "¡No se pudo enviar el email de notifiación!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:53
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:53
 msgid "Select a Document to see the sections inside this"
 msgstr "Selecciona un recurso para ver las secciones que contiene"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:84
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:85
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:84
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:85
 msgid "Sections Management"
 msgstr "Administración de Secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:107
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:110
 msgid "You must select a Document in order to create a new section"
 msgstr "Debes seleccionar un recurso para poder crear una nueva sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:126
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:129
 msgid "Specify a section to edit"
 msgstr "Especifica una sección para editar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:133
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:136
 msgid "Specified section does not exists"
 msgstr "La sección especificada no existe"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:161
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:162
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:164
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:165
 msgid "Edit Section"
 msgstr "Editar Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:161
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:162
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:164
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:165
 msgid "Create Section"
 msgstr "Crear Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:188
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:191
 msgid "A Document was not specified!"
 msgstr "¡No se ha especificado un recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:204
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:207
 msgid "No section has been specified"
 msgstr "¡No se ha especificado una sección!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:211
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:214
 msgid "Section does not exists!"
 msgstr "¡La sección no existe!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:289
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:292
 msgid "Sections has been saved but some errors ocurred"
 msgstr "Las secciones fueron guardadas pero ocurrieron algunos errores"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:318
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:321
 msgid "You have not specify a Document id"
 msgstr "No has especificado un ID de recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:330
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:333
 msgid "You have not specified a section ID to delete!"
 msgstr "¡No has especificado el ID de una sección para eliminar!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:341
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:344
 msgid "Errors ocurred while trying to delete sections!"
 msgstr "¡Ocurrieron errores al internar eliminar las secciones!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/sections.php:344
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:347
 msgid "Sections deleted successfully!"
 msgstr "¡Secciones eliminadas satisfactoriamente!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:54
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:389
+msgid "Data not valid!"
+msgstr "¡Datos no válidos!"
+
+#: C:\wamp\www\cu\modules\docs/admin/sections.php:406
+msgid "Sections positions saved!"
+msgstr "¡Se guardo el orden de las secciones!"
+
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:54
 #, php-format
 msgid "Created by %s"
 msgstr "Creado por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:55
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:55
 #, php-format
 msgid "Viewed %s times"
 msgstr "Visto %s veces"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:71
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:71
 msgid "Block type:"
 msgstr "Tipo de bloque:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:80
-msgid "Number of Documents:"
-msgstr "Número de recursos:"
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:80
+msgid "Number of documents:"
+msgstr "Número de documentos:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:84
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:84
 msgid "Show description"
 msgstr "Mostrar descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:91
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:91
 msgid "Description length:"
 msgstr "Longitud de la descripción"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/blocks/rd_resources.php:91
+#: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:91
 msgid "If you wish to show all description, then specify the length as \"0\"."
 msgstr "I deseas mostrar toda la descripción entonces especifica la longitud como \"0\"."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/class/docscontroller.php:61
-#: E:\webserver\htdocs\xoops24\modules\docs/class/docscontroller.php:75
-#: E:\webserver\htdocs\xoops24\modules\docs/class/docscontroller.php:91
+#: C:\wamp\www\cu\modules\docs/class/docscontroller.php:61
+#: C:\wamp\www\cu\modules\docs/class/docscontroller.php:75
+#: C:\wamp\www\cu\modules\docs/class/docscontroller.php:91
+#: C:\wamp\www\cu\modules\docs/class/docscontroller.php:109
 msgid "Unknow element"
 msgstr "Elemento desconocido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:39
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:39
 #, php-format
 msgid "Publication <%s> approved!"
 msgstr "¡Recurso <%s> aprobado!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/class/rdfunctions.php:325
+#: C:\wamp\www\cu\modules\docs/class/rdfunctions.php:341
 msgid "ERROR 404. Document not Found"
 msgstr "ERROR 404. Documento no encontrado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:64
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:64
 msgid "Notes & References"
 msgstr "Notas y Referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:90
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:90
 msgid "Insert notes & references"
 msgstr "Insertar notas y referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:97
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:97
 msgid "Insert figures"
 msgstr "Insertar figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:103
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:103
 msgid "Insert Table Of Contents"
 msgstr "Insertar Tabla de Contenidos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:115
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:116
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:140
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:115
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:116
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:140
 msgid "Documents Index"
 msgstr "Índice del Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:121
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:121
 msgid "Insert Documents Index"
 msgstr "Insertar Índice del Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/admin/menu.php:37
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:146
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:250
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:309
-msgid "All Documents"
-msgstr "Todos los Recursos"
-
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:153
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:251
-#: E:\webserver\htdocs\xoops24\modules\docs/events/rmcommon.php:310
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:153
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:251
+#: C:\wamp\www\cu\modules\docs/events/rmcommon.php:310
 msgid "Featured Documents"
 msgstr "Recursos Destacados"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:24
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:24
 msgid "Section Options"
 msgstr "Opciones de Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:32
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:32
 msgid "Save and return"
 msgstr "Guardar y regresar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:34
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:34
 msgid "Save Section"
 msgstr "Guardar Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:35
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:35
 msgid "Discard Section"
 msgstr "Descartar Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:49
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:49
 msgid "Notes &amp; References"
 msgstr "Notas y Referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:62
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:62
 msgid "There are not exists references for this Document yet!"
 msgstr "¡Todavía no existen referencias para este recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:84
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:84
 msgid "Document Figures"
 msgstr "Figuras del Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:97
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:97
 msgid "There are not exists figures for this Document yet!"
 msgstr "¡Todavía no existen figuras para este recurso!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:121
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:121
 msgid "New Note"
 msgstr "Nueva Nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:126
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:119
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:126
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:120
 msgid "Title:"
 msgstr "Título:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/include/admin_widgets.php:128
+#: C:\wamp\www\cu\modules\docs/include/admin_widgets.php:128
 msgid "Content:"
 msgstr "Contenido:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:11
-msgid "Display method for Documents index"
-msgstr "Modo de presentación del índice de recursos"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:13
+msgid "Display method for documents index"
+msgstr "Modo de presentación del índice de documentos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:12
-msgid "Choose the method that you wish to use when display the Documents index. This option affects to All, Recent and Featured index of Documents."
-msgstr "Selecciona el método que deseas usar cuando se muestre el índice de los recursos. Este opción afecta a Todo, Recursos recientes y destacados."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:14
+#, fuzzy
+msgid "Choose the method that you wish to use when display the documents index. This option affects to All, Recent and Featured index of documents."
+msgstr "Selecciona el método que deseas usar cuando se muestre el índice de los documentos. Este opción afecta a Todo, Recursos recientes y destacados."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:13
-msgid "Subdomain on wich RapidDocs will be used"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:15
+#, fuzzy
+msgid "Subdomain on which RapidDocs will be used"
 msgstr "Subdominio en el que RapidDocs será utilzado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:14
-msgid "You can specify a subdomain if your htaccess file has been configurated for it (e.g. http://docs.xoops.org)."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:16
+#, fuzzy
+msgid "You can specify a subdomain if your htaccess file has been configured for it (e.g. http://docs.xoops.org)."
 msgstr "Puedes especificar un dominio si tu archivo htaccess ha sido configurado para esto (ej. http://docs.xoops.org)."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:15
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:17
 msgid "URLs mode:"
 msgstr "Modo de URLs:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:16
-msgid "This options indicate the way in wich RapidDocs will generate the urls for Documents."
-msgstr "Esta opción indica la forma en que RapidDocs generará las urls para los recursos."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:18
+msgid "This options indicate the way in which RapidDocs will generate the URLs for documents."
+msgstr "Esta opción indica la forma en que RapidDocs generará las urls para los documentos."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:17
-msgid "Base path for urls"
-msgstr "Ruta base para urls"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:19
+msgid "Base path for URLs"
+msgstr "Ruta base para URLs"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:18
-msgid "Indicate the base path used to generate urls (eg. /docs)."
-msgstr "Inidica la ruta base usada para generar urls (ej. /docs)."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:20
+msgid "Indicate the base path used to generate URLs (eg. /docs)."
+msgstr "Inidica la ruta base usada para generar URLs (ej. /docs)."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:19
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:21
 msgid "Number of columns for index"
 msgstr "Número de columnas para el índice"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:20
-msgid "This option is used only when display method is \"as list\""
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:22
+#, fuzzy
+msgid "This option is used only when selected display method is \"as list\""
 msgstr "Esta opción es utilizada solo cuando la forma de presentación es \"como lista\""
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:21
-msgid "Number of Documents on the index"
-msgstr "Número de recursos en el índice"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:23
+msgid "Number of documents in the index"
+msgstr "Número de documentos en el índice"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:22
-msgid "This is the limit number for Documents displayed on index"
-msgstr "Este es el número límite de recursos mostrados en el índice."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:24
+msgid "This is the limit for documents displayed in index"
+msgstr "Este es el número límite de documentos mostrados en el índice."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:23
-msgid "Groups with authorization to create new Documents"
-msgstr "Grupos con autorización para crear nuevos recursos"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:25
+msgid "Groups with authorization to create new documents"
+msgstr "Grupos con autorización para crear nuevos documentos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:24
-msgid "Select the groups that you wisth to authorize to create new Documents."
-msgstr "Selecciona los gurpos a los que deseas autorizar para crear nuevos recursos."
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:26
+msgid "Select the groups that you wish to authorize to create new documents."
+msgstr "Selecciona los gurpos a los que deseas autorizar para crear nuevos documentos."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:25
-msgid "Allow the creation of new Documents"
-msgstr "Permitir la creación de nuevos recursos"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:27
+msgid "Allow the creation of new documents"
+msgstr "Permitir la creación de nuevos documents"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/language/english/modinfo.php:26
-msgid "Auto approve Documents created for allowed users"
-msgstr "Aprobar automáticamente los recursos creados por usuarios autorizados"
+#: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:28
+msgid "Auto approve documents created for authorized users"
+msgstr "Aprobar automáticamente los documents creados por usuarios autorizados"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:6
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_notes_and_refs.php:2
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:6
+#: C:\wamp\www\cu\modules\docs/templates/rd_notes_and_refs.php:2
 msgid "Notes and References"
 msgstr "Notas y Referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:51
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:52
 msgid "Search:"
 msgstr "Buscar:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:53
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:54
 msgid "Go"
 msgstr "Ir"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:63
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:86
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:64
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:87
 msgid "Options"
 msgstr "Opciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:80
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:81
 msgid "Existing Figures"
 msgstr "Figuras Existentes"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:84
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:85
 msgid "Id"
 msgstr "ID"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:94
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:95
 msgid "Insert"
 msgstr "Insertar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:95
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_item.php:4
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:96
+#: C:\wamp\www\cu\modules\docs/templates/rd_item.php:4
 msgid "Edit"
 msgstr "Editar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:101
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:102
 msgid "Delete"
 msgstr "Eliminar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:102
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:103
 msgid "Close Window"
 msgstr "Cerrar Ventana"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:112
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:113
 msgid "Wait a second..."
 msgstr "Espera un segundo..."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:118
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:119
 msgid "Document:"
 msgstr "Recurso:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:121
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:122
 msgid "Description:"
 msgstr "Descripción:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:123
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:124
 msgid "Description is a required attribute!"
 msgstr "¡La Descripción es un atributo requerido!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:125
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:126
 msgid "You must input the content for this figure!"
 msgstr "¡Debes especificar el contenido para esta figura!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:126
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:127
 msgid "Atributes:"
 msgstr "Aributos:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_figures.php:128
+#: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:129
 msgid "Here you can specify another atributes to include with the figure. You can specify a css class name, or an id for figure."
 msgstr "Aquí puedes epecificar otros atributos para incluir en la figura. Es posible especificar un clase css o un ID para la figura, etc."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_header.php:8
+#: C:\wamp\www\cu\modules\docs/templates/rd_header.php:9
 msgid "Search"
 msgstr "Buscar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_item.php:3
+#: C:\wamp\www\cu\modules\docs/templates/rd_item.php:3
 msgid "Top"
 msgstr "Arriba"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_quickindex.php:2
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:95
+#: C:\wamp\www\cu\modules\docs/templates/rd_quickindex.php:2
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:95
 msgid "Quick Index"
 msgstr "Índice Rápido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:59
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:59
 msgid "Existing notes and references"
 msgstr "Notas y referencias existentes"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:63
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_viewsec.php:11
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:36
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:36
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:34
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:47
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:63
+#: C:\wamp\www\cu\modules\docs/templates/rd_viewsec.php:11
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:28
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:36
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:28
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:36
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:34
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:47
 msgid "ID"
 msgstr "ID"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:70
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:70
 msgid "Notes was not found."
 msgstr "Notas no ecnontradas."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:73
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:73
 msgid "Select Document first"
 msgstr "Primero selecciona un recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:76
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:76
 msgid "Create new note"
 msgstr "Crear una nueva nota"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:95
-msgid "Do you really want to delet selected notes?"
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:95
+#, fuzzy
+msgid "Do you really wish to delet selected notes?"
 msgstr "¿Realmente deseas eliminar las notas seleccionadas?"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_references.php:96
+#: C:\wamp\www\cu\modules\docs/templates/rd_references.php:96
 msgid "Close"
 msgstr "Cerrar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:15
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:31
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:15
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:32
 msgid "Create PDF Book"
 msgstr "Crear libro PDF"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:16
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:33
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:16
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:34
 msgid "Print Book"
 msgstr "Imprimir Libro"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:22
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:40
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:22
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:41
 #, php-format
 msgid "Published at %s."
 msgstr "Publicado en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:23
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:41
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:23
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:42
 #, php-format
 msgid "Modified by last time at %s."
 msgstr "Modificado por última vez en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:24
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:42
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:24
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:43
 #, php-format
 msgid "Edited by %s."
 msgstr "Editado por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:25
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:43
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:25
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:44
 #, php-format
 msgid "Read %s times."
 msgstr "Leído %s veces."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resall.php:34
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:53
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:18
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:28
+#: C:\wamp\www\cu\modules\docs/templates/rd_resall.php:34
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:55
 msgid "Comments"
 msgstr "Comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_resindextoc.php:5
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:16
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:22
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:26
+#: C:\wamp\www\cu\modules\docs/templates/rd_resindextoc.php:5
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:16
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:22
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:26
 msgid "Table of Contents"
 msgstr "Tabla de Contenidos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_search.php:4
+#: C:\wamp\www\cu\modules\docs/templates/rd_search.php:4
 #, php-format
 msgid "Results for \"%s\""
 msgstr "Resultados para %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_search.php:16
+#: C:\wamp\www\cu\modules\docs/templates/rd_search.php:16
 #, php-format
 msgid "%s by %s."
 msgstr "%s por %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_search.php:16
+#: C:\wamp\www\cu\modules\docs/templates/rd_search.php:16
 msgid "Created on %M% %d%, %Y%."
 msgstr "Creado en %d% de %M%, %Y%."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_search.php:17
+#: C:\wamp\www\cu\modules\docs/templates/rd_search.php:17
 #, php-format
 msgid "Viewed %s times."
 msgstr "Visto %s veces."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:3
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:3
 msgid "Edit Page"
 msgstr "Editar Página"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:3
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:3
 msgid "New Page"
 msgstr "Nueva Página"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:7
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:7
 msgid "Document"
 msgstr "Recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:12
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:12
 msgid "Parent"
 msgstr "Padre"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:14
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:14
 msgid "Select parent..."
 msgstr "Selecciona un padre..."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:23
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:23
 msgid "Custom Fields"
 msgstr "Campos Personalizados"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:27
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:44
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:27
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:44
 msgid "Name"
 msgstr "Nombre"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:45
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:28
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:45
 msgid "Value"
 msgstr "Valor"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:41
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:41
 msgid "Add new field:"
 msgstr "Agregar nuevo campo:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:52
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:52
 msgid "- Select -"
 msgstr "- Seleccionar -"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:58
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:58
 msgid "Enter New"
 msgstr "Ingresar Nuevo"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:65
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:65
 msgid "Please provide a value for this meta field"
 msgstr "Por favor proporcione un valor para este campo personalizado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:71
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:71
 msgid "Add custom field"
 msgstr "Agregar campo personalizado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:75
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:75
 msgid "Custom fields can be used to add extra metadata to a post that you can use in your theme."
 msgstr "Los campos personalizados pueden ser utilizados para agregar datos extra a una sección que posteriormente puedes usar en tus scripts o temas."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:82
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:82
 msgid "Save and return to content"
 msgstr "Guardar y regresar al contenido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:83
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:83
 msgid "Save and return to form"
 msgstr "Guardar y regresar al formulario"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:84
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:84
 msgid "Save and return to list"
 msgstr "Guardar y regresar a la lista"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_sec.php:86
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:11
+#: C:\wamp\www\cu\modules\docs/templates/rd_sec.php:86
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_homepage.php:11
 msgid "Save Page"
 msgstr "Guardar Página"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:32
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:33
 msgid "Generate PDF"
 msgstr "Generar PDF"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_section.php:34
+#: C:\wamp\www\cu\modules\docs/templates/rd_section.php:35
 msgid "Print Section"
 msgstr "Imprimir Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_viewsec.php:5
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:7
+#: C:\wamp\www\cu\modules\docs/templates/rd_viewsec.php:5
 msgid "New Section"
 msgstr "Nueva Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_viewsec.php:8
+#: C:\wamp\www\cu\modules\docs/templates/rd_viewsec.php:8
 msgid "Existing Sections"
 msgstr "Secciones Existentes"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_viewsec.php:13
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:14
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:24
+#: C:\wamp\www\cu\modules\docs/templates/rd_viewsec.php:13
 msgid "Order"
 msgstr "Orden"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/rd_viewsec.php:28
+#: C:\wamp\www\cu\modules\docs/templates/rd_viewsec.php:28
 msgid "Save Orders"
 msgstr "Guardar Posiciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:3
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:3
 msgid "Search Figures:"
 msgstr "Buscar Figuras:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:14
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:66
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:15
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:66
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:17
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:104
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:14
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:66
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:15
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:66
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:17
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:104
 msgid "Bulk actions..."
 msgstr "Acciones en bloque..."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:17
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:69
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:18
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:69
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:26
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:113
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:17
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:69
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:18
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:69
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:26
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:113
 msgid "Apply"
 msgstr "Aplicar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:19
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:20
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:5
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:19
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:20
 msgid "Choose another Document"
 msgstr "Seleccionar otro recurso"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:20
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:20
 msgid "All Figures"
 msgstr "Todas las Figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:21
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:21
 msgid "New Figure"
 msgstr "Nueva Figura"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_figures.php:44
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_figures.php:44
 msgid "There are not figures created for this Document."
 msgstr "No hay figuras creadas en este recurso."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:1
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_homepage.php:1
 msgid "Home Page Editor"
 msgstr "Editor para la Página Inicial"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:3
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_homepage.php:3
 msgid "You can edit and customize the home page for RapidDocs."
 msgstr "Puedes editar y personalizar la página inicial de RapidDocs"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_homepage.php:5
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_homepage.php:5
 msgid "Add your own content and include Documents to integrate the home page with your site."
 msgstr "Agrega tu propio contenido e incluye recursos para integrar la página inicial de tu sitio."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:9
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:9
 msgid "Documents by popularity"
 msgstr "Recursos por popularidad"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:30
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:30
 msgid "Sections by comments"
 msgstr "Secciones por comentarios"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:65
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:65
 msgid "RapidDocs Resume"
 msgstr "Resumen de RapidDocs"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:67
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:67
 #, php-format
 msgid "%s Documents"
 msgstr "%s Recursos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:68
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:68
 #, php-format
 msgid "%s Sections"
 msgstr "%s Secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:70
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:70
 #, php-format
 msgid "%s Figures"
 msgstr "%s Figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:71
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:71
 #, php-format
 msgid "%s Notes & References"
 msgstr "%s Notas y Referencias"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:78
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:78
 msgid "Documents waiting for approval"
 msgstr "Recursos esperando por aprobación"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:92
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:92
 msgid "No Published Documents"
 msgstr "Recursos no Publicados"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:114
-msgid "There are not Documents to show here."
-msgstr "No hay recursos para mostrar aquí"
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:114
+#, fuzzy
+msgid "There are not documents to show here."
+msgstr "No hay documentos para mostrar aquí"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_index.php:120
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:120
 msgid "RapidDocs News"
 msgstr "Noticias de RapidDocs"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:3
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:3
 msgid "Search Notes:"
 msgstr "Buscar Notas:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:21
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:21
 msgid "All Notes"
 msgstr "Todas las Notas"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_notes.php:44
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_notes.php:44
 msgid "There are not notes created for this Document."
 msgstr "No hay notas creadas para este recurso."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:3
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:3
 msgid "Search Documents:"
 msgstr "Buscar Recursos:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:8
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:8
 #, php-format
 msgid "Documents: results for \"%s\""
 msgstr "Recursos: resultados para %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:10
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:10
 msgid "Available Documents"
 msgstr "Recursos Disponibles"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:18
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:105
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:26
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:18
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:105
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:26
 msgid "Approve"
 msgstr "Aprobar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:19
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:106
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:19
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:106
 msgid "Draft"
 msgstr "Borrador"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:21
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:108
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:21
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:108
 msgid "Set as private"
 msgstr "Establecer como privado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:22
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:109
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:22
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:109
 msgid "Enable quick index"
 msgstr "Habilitar índice rápido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:23
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:110
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:23
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:110
 msgid "Disable quick index"
 msgstr "Desabilitar índice rápido"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:28
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:28
 msgid "Show All"
 msgstr "Mostrar Todo"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:37
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:50
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:16
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:26
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:37
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:50
 msgid "Created"
 msgstr "Creado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:68
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:68
 msgid "Not featured"
 msgstr "Sin destacar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:74
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:74
 msgid "View Sections"
 msgstr "Ver Secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:80
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:82
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:80
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:82
 msgid "View Notes"
 msgstr "Ver Notas"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:86
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:88
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:86
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:88
 msgid "View Figures"
 msgstr "Ver Figuras"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_resources.php:94
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_resources.php:94
 msgid "Published"
 msgstr "Publicado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:1
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:1
 msgid "Reviewing Modifications"
 msgstr "Revisando Modificaciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:5
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:5
 msgid "Original Data"
 msgstr "Datos Originales"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:7
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:20
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:7
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:20
 msgid "Section Title:"
 msgstr "Título de la Sección:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:9
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:22
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:9
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:22
 msgid "Section Content:"
 msgstr "Contenido de la Sección:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:13
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:13
 msgid "View Section"
 msgstr "Ver Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:18
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:18
 msgid "New Data"
 msgstr "Datos Nuevos"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_reviewedit.php:28
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_reviewedit.php:28
 msgid "Discard"
 msgstr "Descartar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:1
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:11
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:82
+#, fuzzy, php-format
+msgid "Do you really wish to delete %s?"
+msgstr "¿Realmente deseas eliminar %s?"
+
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:12
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:83
+msgid "Add Section"
+msgstr "Agregar Sección"
+
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:39
 #, php-format
 msgid "Sections in %s"
 msgstr "Secciones en %s"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:6
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:44
 msgid "List Sections"
 msgstr "Enlistar Secciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:15
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:25
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:46
+#, fuzzy
+msgid "Sort Sections"
+msgstr "Imprimir Sección"
+
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:54
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:63
 msgid "Author"
 msgstr "Autor"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:17
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:27
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:56
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:65
 msgid "Updated"
 msgstr "Actualizado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:39
-#, php-format
-msgid "Do you really want to delete %s?"
-msgstr "¿Realmente deseas eliminar %s?"
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:72
+#, fuzzy
+msgid "There are not sections created in this document!"
+msgstr "No hay notas creadas para este recurso."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections.php:40
-msgid "Add Section"
-msgstr "Agregar Sección"
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:99
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:108
+msgid "Save Positions"
+msgstr "Guardar Posiciones"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:5
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:115
+msgid "Saving"
+msgstr "Guardando"
+
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections.php:115
+msgid "..."
+msgstr "..."
+
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:5
 msgid "You must provide a title for this section!"
 msgstr "¡Debes proporcionar un título para esta sección!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:19
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:19
 msgid "Remember to save this section in order to activate all options."
 msgstr "Recuerda guardar esta opción para activar todas las opciones."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:27
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:27
 msgid "Section Author:"
 msgstr "Autor de la Sección:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:35
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:35
 msgid "Sections Options"
 msgstr "Opciones de la Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:38
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:38
 msgid "Parent section:"
 msgstr "Sección padre:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:40
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:40
 msgid "Select..."
 msgstr "Seleccionar..."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_sections_form.php:47
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_sections_form.php:47
 msgid "Display order:"
 msgstr "Posición:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:2
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:2
 msgid "Select at least one element before to do this action!"
 msgstr "¡Selecciona al menos un elemento antes de ejecutar esta acción!"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:3
-msgid "Do you really want to delete selected items?"
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:3
+#, fuzzy
+msgid "Do you really wish to delete selected items?"
 msgstr "¿Realmente deseas eliminar los elementos seleccionados?"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:7
-msgid "Next are the edited sections waiting for approval and revision. Please, be careful with content to prevent spam or another inconveniences."
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:7
+#, fuzzy
+msgid "Next are the edited sections waiting for approve and revision. Please, be carefull with content to prevent spam or another inconvenniences."
 msgstr "Las siguientes son las secciones editadas esperando por revisión y aprobación. Por favor se cuidadoso para prevenir el SPAM u otras inconveniencias."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:25
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:34
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:25
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:34
 msgid "Section"
 msgstr "Sección"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:26
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:35
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:26
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:35
 msgid "New Title"
 msgstr "Nuevo Título"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:27
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:36
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:27
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:36
 msgid "Modified"
 msgstr "Modificado"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:28
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:37
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:28
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:37
 msgid "Edited by"
 msgstr "Editado por"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:43
-msgid "There are no waiting submissions at this time"
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:43
+#, fuzzy
+msgid "There are not waiting contents at this time"
 msgstr "No hay contenidos en espera en este momento"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/admin/rd_waiting.php:55
+#: C:\wamp\www\cu\modules\docs/templates/admin/rd_waiting.php:55
 msgid "Review"
 msgstr "Revisar"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_approved.php:4
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_approved.php:4
 #, php-format
 msgid "This is an automatic email message sent from %s site."
 msgstr "Este es un mensaje automático enviado por el sitio %s."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_approved.php:7
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_approved.php:7
 #, php-format
 msgid "Your Document \"%s\" has been approved and now is visible for other users. To visit this Document, please follow next link."
 msgstr "Tu recurso %s ha sido aprobado y ahora es visible para otros usuarios. Para visitar este recurso visita el siguiente enlace."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_approved.php:14
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_approved.php:14
 msgid "Please do not respond to this message. This is an automatic message."
 msgstr "Por favor no responda a este mensaje. Este es un mensaje automático."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_for_approval.php:4
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_for_approval.php:4
 msgid "A new Document has been created and is waiting for your approval."
 msgstr "Un nuevo recurso ha sido creado y esta esperando por tu aprobación."
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_for_approval.php:7
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_for_approval.php:7
 msgid "To view more details please visit the next link:"
 msgstr "Para ver mas detalles visita el siguiente enlace:"
 
-#: E:\webserver\htdocs\xoops24\modules\docs/templates/mail/resource_for_approval.php:13
+#: C:\wamp\www\cu\modules\docs/templates/mail/resource_for_approval.php:13
 msgid "This message has been automatically created by RapidDocs."
 msgstr "Este mensaje ha sido creado automáticamente por RapidDocs."
+
+#~ msgid "There is already a section with the same name!"
+#~ msgstr "¡Ya existe otra sección con el mismo título!"
+
+#~ msgid "There is already a resourrce with the same name!"
+#~ msgstr "¡Ya existe un recurso con el mismo nombre!"
+
+#~ msgid "There is already a note with the same name"
+#~ msgstr "Ya existe otra nota con el mismo título"
+
+#~ msgid "Errors ocurred while trying to update Documents."
+#~ msgstr "Ocurrieron errores al intentar actualizar los recursos."
 
 #~ msgid "Sepecified content does not exists!"
 #~ msgstr "¡El contenido especificado no existe!"
