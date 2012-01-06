@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RapidDocs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-06 02:28-0600\n"
-"PO-Revision-Date: 2012-01-06 02:28-0600\n"
+"POT-Creation-Date: 2012-01-06 02:48-0600\n"
+"PO-Revision-Date: 2012-01-06 02:48-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red Mexico <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -754,7 +754,7 @@ msgid "Document saved successfully!"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/admin/resources.php:294
-msgid "Select at least one resources to delete!"
+msgid "Select at least one document to delete!"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/admin/resources.php:307
@@ -773,7 +773,7 @@ msgid "Document \"%s\" could not be deleted!"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/admin/resources.php:324
-msgid "Errors ocurred while deleting resources"
+msgid "Errors ocurred while deleting documents"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/admin/resources.php:326
@@ -924,7 +924,7 @@ msgid "Block type:"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:80
-msgid "Number of resources:"
+msgid "Number of documents:"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/blocks/rd_resources.php:84
@@ -1033,11 +1033,11 @@ msgid "Content:"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:13
-msgid "Display method for Resources index"
+msgid "Display method for documents index"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:14
-msgid "Choose the method that you wish to use when display the resources index. This option affects to All, Recent and Featured index of resources."
+msgid "Choose the method that you wish to use when display the documents index. This option affects to All, Recent and Featured index of documents."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:15
@@ -1053,7 +1053,7 @@ msgid "URLs mode:"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:18
-msgid "This options indicate the way in which RapidDocs will generate the URLs for resources."
+msgid "This options indicate the way in which RapidDocs will generate the URLs for documents."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:19
@@ -1073,27 +1073,27 @@ msgid "This option is used only when selected display method is \"as list\""
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:23
-msgid "Number of resources in the index"
+msgid "Number of documents in the index"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:24
-msgid "This is the limit for resources displayed in index"
+msgid "This is the limit for documents displayed in index"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:25
-msgid "Groups with authorization to create new resources"
+msgid "Groups with authorization to create new documents"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:26
-msgid "Select the groups that you wish to authorize to create new resources."
+msgid "Select the groups that you wish to authorize to create new documents."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:27
-msgid "Allow the creation of new resources"
+msgid "Allow the creation of new documents"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/language/english/modinfo.php:28
-msgid "Auto approve resources created for authorized users"
+msgid "Auto approve documents created for authorized users"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/templates/rd_figures.php:6
@@ -1471,7 +1471,7 @@ msgid "No Published Documents"
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:114
-msgid "There are not resources to show here."
+msgid "There are not documents to show here."
 msgstr ""
 
 #: C:\wamp\www\cu\modules\docs/templates/admin/rd_index.php:120
