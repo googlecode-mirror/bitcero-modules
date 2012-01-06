@@ -29,7 +29,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('mywords');
 
 $modversion['name'] = "MyWords";
 $modversion['description'] = _MI_MW_DESC;
-$modversion['version'] = '2';
+$modversion['version'] = '2.1';
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['author'] = "BitC3R0";
@@ -45,7 +45,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/icon48.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>99,'status'=>0,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>100,'status'=>0,'name'=>'MyWords');
 $modversion['onInstall'] = 'include/install.php';
 
 // Admin things
