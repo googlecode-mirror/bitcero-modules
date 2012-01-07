@@ -1,0 +1,30 @@
+<{if $features_count>0}>
+	<div class="dtShadow dtMargin10">
+		<h2><{$lang_features}></h2>
+		<div id="dtItemDesc">
+	<ul class="dtFeaturesList" style="-moz-column-count: 2;">
+		<{foreach item=feat from=$features}>
+		<li><{if !$feat.current}><a href="<{$feat.link}>#<{$feat.nameid}>"><{$feat.title}></a><{else}><{$feat.title}><{/if}>
+			<{if $feat.new}>
+			<img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" alt="<{$lang_new}>" align="top" />
+			<{elseif $feat.updated}>
+			<img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" alt="<{$lang_updateda}>" align="top" />
+			<{/if}>
+		</li>
+		<{/foreach}>
+	</ul>
+	</div>
+		<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+		<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+	</div>
+<{/if}>
+<{if $ok_feature}>
+	<div class="dtShadow dtMargin10">
+		<h2><a name="<{$feature.nameid}>"></a><{$feature.title}></h2>
+		<div id="dtItemDesc">
+			<{$feature.content}>
+		</div>
+		<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+		<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+	</div>
+<{/if}>

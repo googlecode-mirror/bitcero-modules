@@ -1,0 +1,13 @@
+<!-- Imágenes del Elemento -->
+<div class="dtShadow dtMargin10">
+<div id="dtItemDesc" class="dtMoreImages">
+	<{foreach item=img from=$screens}>
+		<a class="dtScreen" href="<{$xoops_url}>/uploads/dtransport/<{$img.image}>" rel="lightbox[roadtrip]" title="<{$img.title}>">
+		<img src="<{$xoops_url}>/uploads/dtransport/ths/<{$img.image}>" alt="<{$img.title}>" />
+		</a>
+	<{/foreach}>
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+		<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+	</div>
+<!-- // Imágenes -->

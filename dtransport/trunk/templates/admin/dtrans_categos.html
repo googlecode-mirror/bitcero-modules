@@ -1,0 +1,34 @@
+<form name="frmcat" method="POST" action="categories.php">
+<table width="100%" class="outer" cellspacing="1">
+
+	<tr>
+		<th colspan="5"><{$lang_exist}></th>	
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmcat','checkAll')"/></td>
+		<td><{$lang_id}></td>
+		<td><{$lang_name}></td>
+		<td><{$lang_active}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=cat from=$categories}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="id[]" value="<{$cat.id}>" /></td>
+		<td width="20"><strong><{$cat.id}></strong></td>
+		<td align="left" style="padding-left:<{$cat.indent*5}>px;"><{if $cat.indent>0}><img src="<{$xoops_url}>/images/root.gif" align="absmiddle" alt="" /><{/if}> <a href="./items.php?cat=<{$cat.id}>"><{$cat.name}></a></td>
+		<td><{if $cat.active}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png" border="0" /><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png" border="0" /><{/if}></td>
+		<td><a href="./categories.php?op=edit&amp;id=<{$cat.id}>"><{$lang_edit}></a> &bull; <a href="./categories.php?op=delete&amp;id=<{$cat.id}>"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border=0" /></td>
+		<td colspan="4">
+			<input type="submit" class="formButtonBlue" value="<{$lang_activ}>" onclick="document.forms['frmcat'].elements['op'].value='active';" />
+			<input type="submit" class="formButtonRed" value="<{$lang_desactiv}>" onclick="document.forms['frmcat'].elements['op'].value='desactive';" />
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmcat'].elements['op'].value='delete';" />
+
+
+		</td>
+</table>
+<input type="hidden" name="op" />
+</form>

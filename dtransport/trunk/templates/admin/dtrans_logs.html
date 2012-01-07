@@ -1,0 +1,38 @@
+<div class="even">
+<a href="javascript:;" onclick="centerWindow(openWithSelfMain('<{$xoops_url}>/modules/dtransport/include/dtlistsoft.php?parent=<{$parent}>','listsoft',500,300,true),500,300);"><{$lang_listsoft}></a>
+</div><br />
+<{if $item}>
+<form name="frmlog" method="POST" action="logs.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="5"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmlog','checkAll')" /></td>
+		<td><{$lang_id}></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=log from=$logs}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="id[]" value="<{$log.id}>" /></td>
+		<td width="20"><strong><{$log.id}></strong></td>
+		<td align="left"><{$log.title}></td>
+		<td><{$log.date}></td>
+		<td><a href="./logs.php?op=edit&amp;id=<{$log.id}>&amp;item=<{$item}>"><{$lang_edit}></a> &bull; <a href="./logs.php?op=delete&amp;id=<{$log.id}>&amp;item=<{$item}>"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
+		<td colspan="4">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmlog'].elements['op'].value='delete';"/>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+<input type="hidden" name="item" value="<{$item}>" />
+</form>
+<{else}>
+	<strong><{$lang_selectitem}></strong>
+<{/if}>

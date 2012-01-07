@@ -1,0 +1,30 @@
+<form name="frmlic" method="POST" action="licences.php">
+<table width="100%" class="outer" cellspacing="1">
+	<tr>
+		<th colspan="5"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmlic','checkAll')" /></td>
+		<td width="20"><{$lang_id}></td>
+		<td><{$lang_name}></td>
+		<td><{$lang_url}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=lic from=$licences}>
+	<tr class="<{cycle values='even,odd'}>">
+		<td><input type="checkbox" name="id[]" value="<{$lic.id}>" /></td>	
+		<td align="center"><strong><{$lic.id}></strong></td>
+		<td><{$lic.name}></td>
+		<td><{$lic.url}></td>
+		<td align="center"><a href="./licences.php?op=edit&amp;id=<{$lic.id}>"><{$lang_edit}></a> &bull; <a href="./licences.php?op=delete&amp;id=<{$lic.id}>"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>	
+		<td colspan="4">
+			<input type="submit" value="<{$lang_del}>" class="formButton" onclick="document.forms['frmlic'].elements['op'].value='delete';" />
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+</form>

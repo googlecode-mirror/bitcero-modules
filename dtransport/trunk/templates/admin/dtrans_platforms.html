@@ -1,0 +1,32 @@
+<form name="frmplat" method="POST" action="platforms.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="4"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmplat','checkAll')" /></td>
+		<td><{$lang_id}></td>
+		<td><{$lang_name}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=plat from=$platforms}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="id[]" value="<{$plat.id}>" /></td>
+		<td width="20"><strong><{$plat.id}></strong></td>
+		<td align="left"><{$plat.name}></td>
+		<td><a href="./platforms.php?op=edit&amp;id=<{$plat.id}>"><{$lang_edit}></a> &bull; <a href="./platforms.php?op=delete&amp;id=<{$plat.id}>"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>	
+		<td colspan="4">
+			<input type="submit" value="<{$lang_del}>" class="formButton" onclick="document.forms['frmplat'].elements['op'].value='delete';" />
+		</td>
+
+	</tr>
+	
+
+</table>
+<input type="hidden" name="op" />
+</form>
+<{$form}>

@@ -1,0 +1,16 @@
+<{include file="db:dtrans_header.html"}>
+<div id="dtLocationBar">
+	<{$dt_location}>
+</div>
+<!-- Nombre del Elemento -->
+<h1>
+	<{$item.name}> <span><{$item.version}></span>
+	<{if $item.new}>
+		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" alt="<{$lang_new}>" align="top" />
+	<{elseif $item.updated}>
+		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" alt="<{$lang_updateda}>" align="top" />
+	<{/if}>
+</h1>
+<!-- // Nombre -->
+
+<{$lang_thanks}>
