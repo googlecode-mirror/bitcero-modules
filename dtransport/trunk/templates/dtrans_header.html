@@ -1,0 +1,24 @@
+<div class="dtShadow dtMargin10">
+<div id="dtHeader">
+	<h1><{$dtrans_title}></h1>
+	<div class="dtHeadBar">
+		<div class="dtMine">
+			<a href="<{$mine_link}>"><{$lang_mine}></a>
+			<{if $lang_submit!=''}>
+				| <a href="<{$dtrans_url}>/submit.php"><{$lang_submit}></a>
+			<{/if}>
+		</div>
+		<div class="dtSearch">
+			<form name="frmSearch" method="get" action="<{$dtrans_url}>/search.php" style="margin: 0 0 4px 0; padding: 0;">
+			<input type="text" name="keyw" value="<{$keyw}>" class="dtSearchText" />
+			<input type="submit" value="<{$lang_search}>" class="dtSearchButton" />
+			</form>
+			<a href="<{$recents_link}>"><{$lang_recents}></a> |
+			<a href="<{$popular_link}>"><{$lang_popular}></a> |
+			<a href="<{$rated_link}>"><{$lang_bestrate}></a>
+		</div>
+	</div>
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>

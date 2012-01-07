@@ -1,0 +1,39 @@
+<{include file="db:dtrans_header.html"}>
+<div id="dtLocationBar">
+	<{$dt_location}>
+</div>
+<form name="frmlogs" method="POST" action="logs.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="4"><{$lang_exist}></th>
+		<th><a href="javascript:;" onclick="formLog();"><{$lang_createlog}></a></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmlogs','checkAll')" /></td>
+		<td><{$lang_id}></td>
+		<td><{$lang_title}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=log from=$logs}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="id[]" value="<{$log.id}>" /></td>
+		<td width="20"><strong><{$log.id}></strong></td>
+		<td align="left"><{$log.title}></td>
+		<td><{$log.date}></td>
+		<td><a href="./logs.php?op=edit&amp;id=<{$log.id}>&amp;item=<{$item}>" onclick="formLog();"><{$lang_edit}></a> &bull; <a href="./logs.php?op=delete&amp;id=<{$log.id}>&amp;item=<{$item}>" onclick="return confirm('<{$lang_deletelog}>');"><{$lang_del}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
+		<td colspan="4">
+			<input type="submit" class="formButton" value="<{$lang_del}>" onclick="document.forms['frmlogs'].elements['op'].value='delete'; return confirm('<{$lang_deletelogs}>');"/>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="op" />
+<input type="hidden" name="item" value="<{$item}>" />
+</form>
+<div id="dtFormLog" style="<{if $edit}>display: block;<{else}>display:none;<{/if}>">
+	<{$form_logs}>
+</div>

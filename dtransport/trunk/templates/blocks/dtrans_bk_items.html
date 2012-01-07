@@ -1,0 +1,52 @@
+<table class="outer" cellspacing="1">
+	<{if $block.showtitles}>
+	<tr class="head" align="center">
+		<{if $block.showimg}><th>&nbsp;</th><{/if}>
+		<th><{$block.langtitle}></th>
+		<{if $block.showhits}>
+			<th><{$block.langhits}></th>
+		<{/if}>
+		<{if $block.showurate}>
+			<th><{$block.langurate}></th>
+		<{/if}>
+		<{if $block.showsrate}>
+			<th><{$block.langsrate}></th>
+		<{/if}>
+		<{if $block.showuser}>
+			<th><{$block.languser}></th>
+		<{/if}>
+		<{if $block.showdlink}>
+			<th>&nbsp;</th>
+		<{/if}>
+	</tr>
+	<{/if}>
+	<{foreach item=down from=$block.downs}>
+		<tr class="<{cycle values="even,odd"}>">
+			<{if $block.showimg}>
+				<td align="center" wrap="nowrap">
+					<img src="<{$down.img}>" alt="<{$down.title}>" />
+				</td>
+			<{/if}>
+			<td>
+				<a href="<{$down.link}>"><{$down.title}></a>
+				<{if $block.showdesc}><br /><{$down.desc}><{/if}>
+			</td>
+			<{if $block.showhits}>
+				<td align="center"><{$down.hits}></td>
+			<{/if}>
+			<{if $block.showurate}>
+				<td align="center"><strong><{$down.urate}></strong></td>
+			<{/if}>
+			<{if $block.showsrate}>
+				<td align="center"><{$down.srate}></td>
+			<{/if}>
+			<{if $block.showuser}>
+				<td align="center"><{$down.user}></td>
+			<{/if}>
+			<{if $block.showdlink}>
+				<td align="center">
+					<a href="<{$down.dlink}>" style="background: url(<{$xoops_url}>/modules/dtransport/images/downarrow.png) no-repeat left; padding: 2px 2px 2px 20px; display: block; margin-bottom: 2px;"><{$block.downlang}></a></td>
+			<{/if}>
+		</tr>
+	<{/foreach}>
+</table>

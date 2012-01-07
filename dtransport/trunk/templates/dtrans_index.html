@@ -1,0 +1,89 @@
+<{include file="db:dtrans_header.html"}>
+
+<{if $show_daydowns}>
+<div class="dtShadow dtMargin10">
+<h2><{$lang_daydown}></h2>
+<div id="dtDayDowns">
+	<div class="dtListDay">
+		<{foreach item=item from=$daily}>
+			<div class="dtDailyItem">
+				<div class="dtDownload"><{$item.rating}><br />
+				<a href="<{$item.dlink}>"><{$lang_download}></a></div>
+				<{if $item.img!=''}><img src="<{$xoops_url}>/uploads/dtransport/ths/<{$item.img}>" class="dtDailyImg" alt="<{$item.name}>" /><{/if}>
+				<a class="dtDailyName" href="<{$item.link}>"><{$item.name}></a>
+				<span><{$item.desc}></span><br />
+				<a href="<{$item.link}>"><{$lang_readmore}></a>
+			</div>
+		<{/foreach}>
+	</div>
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<{/if}>
+
+<div id="dtMarkedDowns" class="dtMargin10">
+	<{if $show_marked}>
+	<div id="dtMarked">
+	<h2><{$lang_marked}></h2>
+	<ul>
+		<{foreach item=item from=$marked}>
+			<li><a href="<{$item.link}>"><{$item.name}></a><br /><{$item.desc}></li>
+		<{/foreach}>
+	</ul>
+	</div>
+	<{/if}>
+	<!-- //Etiquetas Populares -->
+	<{if $active_tags}>
+	<div class="dtShadow dtTagsPopular">
+		<div class="border">
+		<h2><{$lang_tagspopular}></h2>
+		<{foreach item=tag from=$tags}>
+			<a href="<{$tag.link}>" style="font-size: <{$tag.size}>px;" title="<{$lang_hits}><{$tag.hit}>"><{$tag.tag}></a>
+		<{/foreach}>
+		</div>
+		<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+	</div>
+	<{/if}>
+	<!-- //Etiquetas Populares -->
+</div>
+
+
+<!-- Descargas Recientes -->
+<div class="dtShadow dtMargin10">
+<h2><{$lang_recents}></h2>
+<table class="dtOuter" cellpadding="0" cellspacing="0" border="0">
+	<tr class="head dtHead">
+		<td>&nbsp;</td>
+		<td><{$lang_info}></td>
+		<td align="center"><{$lang_downs}></td>
+		<td align="center"><{$lang_rate}></td>
+		<td>&nbsp;</td>
+	</tr>
+	<{foreach item=item from=$recents}>
+		<{include file="db:dtrans_listitem.html"}>
+	<{/foreach}>
+</table>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<!-- /Descargas Recientes -->
+
+<!-- Categorías -->
+<h2><{$lang_categos}></h2>
+<table class="outer" cellspacing="1" width="100%">
+<tr class="even">
+<{assign var="ci" value=1}>
+<{foreach item=cat from=$categos key=i}>
+	<{if $i>0 && $cat.jumps==0}><{assign var="ci" value=$ci+1}><{/if}>
+	<{if $ci>2}>
+		</tr><tr class="<{cycle values="odd,even"}>">
+		<{assign var="ci" value=1}>
+	<{/if}>
+	<{if $i>0 && $cat.jumps==0}></td><{/if}>
+	<{if $cat.jumps==0}><td width="33%" valign="top"><h3><a href="<{$cat.link}>"><{$cat.name}></a></h3><{elseif $cat.jumps==1}>&bull; <a href="<{$cat.link}>"><{$cat.name}></a><{/if}>
+<{/foreach}>
+</tr>
+</table>
+<!-- /Categorías -->

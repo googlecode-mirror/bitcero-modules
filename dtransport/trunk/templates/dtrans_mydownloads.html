@@ -1,0 +1,48 @@
+<{include file="db:dtrans_header.html"}>
+<div id="dtLocationBar">
+	<{$dt_location}>
+</div>
+
+
+<table width="100%" class="outer" cellspacing="1">
+	<tr>
+		<td colspan="2"><{$lang_showing}></td>
+		<td colspan="3" align="right"><{$itemsNavPage}></td>
+
+	</tr>
+	<tr class="foot even">
+		<td colspan="5" align="right">
+			<{$lang_legend}> <img src="<{$xoops_url}>/modules/dtransport/images/itemedit.png" alt="<{$lang_edit}>" align="absmiddle" /> <{$lang_edit}> 
+			| <img src="<{$xoops_url}>/modules/dtransport/images/screen16.png" alt="<{$lang_screens}>" align="absmiddle" /> <{$lang_screens}> 
+			| <img src="<{$xoops_url}>/modules/dtransport/images/features16.png" alt="<{$lang_features}>" align="absmiddle" /> <{$lang_features}> 
+			| <img src="<{$xoops_url}>/modules/dtransport/images/down16.png" alt="<{$lang_files}>" align="absmiddle" /> <{$lang_files}> 
+			| <img src="<{$xoops_url}>/modules/dtransport/images/logs16.png" alt="<{$lang_logs}>" align="absmiddle" /> <{$lang_logs}> 
+		</td>
+
+	</tr>
+	<tr>
+		
+	</tr>
+	<tr align="center" class="head">
+		<td><{$lang_name}></td>
+		<td><{$lang_date}></td>
+		<td><{$lang_approved}></td>
+		<td><{$lang_downs}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=item from=$items}>
+	<tr align="center" class="<{cycle values='even,odd'}>">		
+		<td align="left"><{if $item.approved}><a href="<{$link}><{if $urlmode}><{$item.nameid}><{else}><{$item.id}><{/if}>"><{$item.name}></a><{else}><{$item.name}><{/if}></td>
+		<td><{$item.modified}></td>
+		<td><{if $item.approved}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png" /><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png" /><{/if}></td>
+		<td><{$item.downs}></td>
+		<td>
+			<a href="<{$xoops_url}>/modules/dtransport/submit.php?op=edit&id=<{$item.id}>" title="<{$lang_edit}>"><img src="<{$xoops_url}>/modules/dtransport/images/itemedit.png" alt="<{$lang_edit}>" /></a>
+			<{if $item.approved}>&nbsp;<a href="<{$xoops_url}>/modules/dtransport/screens.php?item=<{$item.id}>" title="<{$lang_screens}>"><img src="<{$xoops_url}>/modules/dtransport/images/screen16.png" alt="<{$lang_screens}>" /></a>
+			&nbsp;<a href="<{$xoops_url}>/modules/dtransport/features.php?item=<{$item.id}>" title="<{$lang_features}>"><img src="<{$xoops_url}>/modules/dtransport/images/features16.png" alt="<{$lang_features}>" /></a><{/if}>
+			&nbsp;<a href="<{$xoops_url}>/modules/dtransport/files.php?item=<{$item.id}>" title="<{$lang_files}>"><img src="<{$xoops_url}>/modules/dtransport/images/down16.png" alt="<{$lang_files}>" /></a>
+			&nbsp;<a href="<{$xoops_url}>/modules/dtransport/logs.php?item=<{$item.id}>" title="<{$lang_logs}>"><img src="<{$xoops_url}>/modules/dtransport/images/logs16.png" alt="<{$lang_logs}>" /></a>
+		</td>
+	</tr>
+	<{/foreach}>
+</table>

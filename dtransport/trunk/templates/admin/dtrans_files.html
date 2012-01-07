@@ -1,0 +1,62 @@
+<div class="even">
+<a href="javascript:;" onclick="centerWindow(openWithSelfMain('<{$xoops_url}>/modules/dtransport/include/dtlistsoft.php?parent=<{$parent}>','listsoft',500,300,true),500,300);"><{$lang_listsoft}></a>
+</div><br />
+<{if $item}>
+<form name="frmfiles" method="POST" action="files.php">
+<table class="outer" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="8"><{$lang_exist}></th>
+	</tr>
+	<tr class="head" align="center">
+		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmfiles','checkAll')" /></td>
+		<td width="20"><{$lang_id}></td>
+		<td><{$lang_file}></td>	
+		<td><{$lang_downs}></td>
+		<td><{$lang_remote}></td>
+		<td><{$lang_group}></td>
+		<td><{$lang_default}></td>
+		<td><{$lang_options}></td>
+	</tr>
+	<{foreach item=file from=$files}>
+	<{if $file.type==group}>
+		<tr class="head">
+			<td colspan="7"><{$file.file}></td>
+			<td align="center"><a href="./files.php?item=<{$item}>&amp;edit=1&amp;id=<{$file.id}>"><{$lang_edit}></a> &bull; <a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=deletegroup"><{$lang_del}></a></td>
+		</tr>	
+	<{else}>
+	<tr class="<{cycle values='even,odd'}>" align="center">
+		<td><input type="checkbox" name="id[]" value="<{$file.id}>" /></td>
+		<td><strong><{$file.id}></strong></td>
+		<td align="left"><{$file.title}></td>
+		<td><{$file.downs}></td>
+		<td><{if $file.remote}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></td>
+		<td>
+			<select name="groups[<{$file.id}>]">
+				<option value="0"><{$lang_select}></option>
+				<{foreach item=group from=$groups}>
+					<option value="<{$group.id}>" <{if $group.id==$file.group}>selected<{/if}>><{$group.name}></option>
+				<{/foreach}>
+			</select>
+		</td>
+		<td><a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=default"><{if $file.default}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></a></td>
+		<td><a href="./files.php?op=edit&amp;id=<{$file.id}>&amp;item=<{$item}>"><{$lang_edit}></a> &bull; <a href="./files.php?op=delete&amp;id=<{$file.id}>&item=<{$item}>"><{$lang_del}></a></td>
+	</tr>
+	<{/if}>
+	<{/foreach}>
+	<tr class="foot">
+		<td width="20" align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
+		<td colspan="7"><input type="submit" value="<{$lang_save}>" class="formButtonOk" onclick="document.forms['frmfiles'].elements['op'].value='updategroup';" />
+		<input type="submit" value="<{$lang_del}>" class="formButton" onclick="document.forms['frmfiles'].elements['op'].value='delete'" />
+</td>
+	</tr>
+</table>
+<{$token}>
+<input type="hidden" name="op" />
+<input type="hidden" name="item" value="<{$item}>" />
+</form>
+<div id="dtGroup">
+	<{$form_group}>
+</div>
+<{else}>
+	<strong><{$lang_selectitem}></strong>
+<{/if}>

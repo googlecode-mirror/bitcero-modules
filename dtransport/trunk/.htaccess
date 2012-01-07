@@ -1,0 +1,13 @@
+# RewriteEngine On
+# RewriteBase /exmnet/modules/dtransport/
+# RewriteCond %{REQUEST_URI} !/[A-Z]+-
+# RewriteRule ^category/(.*)$ category.php?id=$1 [L]
+# RewriteRule ^tag/(.*)$ tags.php?id=$1 [L]
+# RewriteRule ^screen/(.*)$ screens.php?id=$1 [L]
+# RewriteRule ^down/(.*)$ download.php?id=$1 [L]
+# RewriteRule ^item/(.*)$ item.php?id=$1 [L]
+# RewriteRule ^getfile/([0-9]+)/?$ getfile.php?id=$1 [L]
+# RewriteRule ^mine/(.*)$ mydownloads.php?id=$1 [L]
+# RewriteRule ^popular/?$ search.php?order=popular [L]
+# RewriteRule ^recents/?$ search.php?order=created [L]
+# RewriteRule ^rated/?$ search.php?order=rateuser [L]

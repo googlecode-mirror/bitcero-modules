@@ -1,0 +1,221 @@
+<!-- Detalles del Elemento -->
+<table cellspacing="2" cellpadding="2" width="100%">
+<tr><td valign="top">
+	<ul id="dtListDetails">
+		<li><strong><{$lang_lic}></strong> <{$item.lic}></li>
+		<li><strong><{$lang_register}></strong> <{$item.register}></li>
+		<li><strong><{$lang_updated}></strong> <{$item.update}></li>
+		<li><strong><{$lang_author}></strong> <a href="<{$item.url}>"><{$item.author}></a></li>
+		<li><strong><{$lang_lang}></strong> <{$item.langs}></li>
+		<li><strong><{$lang_size}></strong> <{$item.size}></li>
+		<li><strong><{$lang_downs}></strong> <{$item.downs}></li>
+		<li><strong><{$lang_version}></strong> <{$item.version}></li>
+		<li><strong><{$lang_os}></strong> <{$item.os}></li>
+		<li><strong><{$lang_rateuser}></strong> <span class="dtListRateUsers" style="color: #<{if $item.rating>7}>99CC00<{elseif $item.rating>4}>FFCC00<{else}>FF3300<{/if}>"><{$item.rating}></span>
+		</li>
+		<li><strong><{$lang_vote}></strong>
+		<form name="frmitem" method="POST" action="<{$xoops_url}>/modules/dtransport/rate.php">
+		<select name="rate">
+			<{foreach item=vt from=$votes}>
+				<option value="<{$vt.val}>"><{$vt.val}></option>
+			<{/foreach}>
+		</select>
+		<input type="hidden" name="id" value="<{$id}>" />
+		<input type="hidden" name="ret" value="<{$link}>" />
+		<input type="submit" value="<{$lang_votebutton}>" class="formButton" />
+		</form>
+		</li>
+	</ul><br />
+	<{if $can_download}>
+		<a href="<{$item.dlink}>" class="dtDownLink"><{$lang_download}></a><br /><br />
+	<{/if}>
+</td><td>
+	<img src="<{$item.image}>" alt="<{$item.name}>" />
+</td></tr></table>
+<!-- // Detalles del Elemento -->
+
+<div class="dtShadow dtMargin10">
+<div id="dtItemDesc">
+	<div class="dtItemHead">
+		<table cellspacing="0" cellpadding="2" width="100%">
+			<tr>
+			<{if $dtUser.avatar!=''}>
+				<td valign="middle" align="center" width="85">
+					<img src="<{$xoops_url}>/uploads/avatars/<{$dtUser.avatar}>" alt="<{$user.uname}>" />
+				</td>
+			<{/if}>
+				<td>
+					<h2>“<{$item.shortdesc}>”</h2>
+										
+					<!-- //Etiquetas -->
+					<span><{$lang_tags}>
+					<{foreach item=tag from=$tags}>
+						<em><a href="<{$tag.link}>"><{$tag.name}></a></em>
+					<{/foreach}>
+					</span><br />
+					<{$lang_by}>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<{$item.desc}><br /><br />
+	<{if $can_download}>
+		<a href="<{$item.dlink}>" class="dtDownLink"><{$lang_download}></a><br />
+	<{/if}>
+	
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+
+<!-- Características y Logs -->
+<{if $features_count>0 || $logs_count>0}>
+<div class="dtFeaturesLogs">
+		<table width="100%" cellspacing="2" cellpadding="0">
+		<tr>
+		<{if $features_count>0}>
+			<td class="dtFeatures" width="50%" valign="top">
+			<h2><{$lang_features}></h2>
+			<ul class="dtFeatList">
+				<{foreach item=feature from=$features}>
+					<li><a href="<{$feature.link}>"><{$feature.title}></a>
+						<{if $feature.new}>
+							<img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" alt="<{$lang_new}>" align="top" />
+						<{elseif $feature.updated}>
+							<img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" alt="<{$lang_updateda}>" align="top" />
+						<{/if}></li>
+				<{/foreach}>
+			</ul>
+			</td>
+		<{/if}>
+		<{if $logs_count>0}>
+			<td class="dtLogs" width="50%" valign="top">
+				<h2><{$lang_logs}></h2>
+				<ul class="dtFeatList">
+					<{foreach item=log from=$logs}>
+						<li><a href="<{$log.link}>"><{$log.title}></a> <em>(<{$log.date}>)</em></li>
+					<{/foreach}>
+				</ul>
+			</td>
+		<{/if}>
+		</tr></table>
+</div>
+<{/if}>
+<!-- // Características y Logs -->
+
+<!-- Imágenes del Elemento -->
+<{if $screens_count>0}>
+	<h1 class="dtH1Title"><{$lang_images}></h1>
+	<div class="dtMoreImages">
+		<{foreach item=img from=$screens}>
+			<a class="dtScreen" href="<{$xoops_url}>/uploads/dtransport/<{$img.image}>" rel="lightbox[roadtrip]" title="<{$img.title}>">
+			<img src="<{$xoops_url}>/uploads/dtransport/ths/<{$img.image}>" alt="<{$img.title}>" />
+			</a>
+		<{/foreach}>
+	</div>
+<{/if}>
+<!-- // Imágenes -->
+
+<{if $files_count>0 || $groups_count>0}>
+<!-- Archivos Descargables Adicionales -->
+<div class="dtShadow dtMargin10">
+	<h1><{$lang_files}></h1>
+	<div class="dtBorder">
+	<{if $files_count>0}>
+		<table class="outer filesOuter" cellspacing="1" cellpadding="40" width="100%">
+			<tr class="head filesHead" align="center">
+				<td><{$lang_file}></td>
+				<td><{$lang_date}></td>
+				<td><{$lang_fsize}></td>
+				<td><{$lang_fdowns}></td>
+				<td>&nbsp;</td>
+			</tr>
+			<{foreach item=file from=$files}>
+				<tr class="<{cycle values="even filesEven,odd filesOdd"}>">
+					<td><strong><{$file.file}></strong></td>
+					<td align="center"><{$file.date}></td>
+					<td align="right"><{$file.size}></td>
+					<td align="center"><strong><{$file.downloads}></strong></td>
+					<td align="center"><{if $can_download}><a href="<{$file.link}>" class="downfile"><{$lang_download}></a><{else}>&nbsp;<{/if}></td>
+				</tr>
+			<{/foreach}>
+		</table><br />
+	<{/if}>
+	<{if $groups_count>0}>
+		<{foreach item=group from=$groups}>
+			<{if $group.filescount>0}>
+			<h2 class="dtNoMargin dtGroupsTitle"><{$group.title}></h2>
+			<table class="outer filesOuter" cellspacing="1" cellpadding="40" width="100%">
+				<tr class="head filesHead" align="center">
+					<td><{$lang_file}></td>
+					<td><{$lang_date}></td>
+					<td><{$lang_fsize}></td>
+					<td><{$lang_fdowns}></td>
+					<td>&nbsp;</td>
+				</tr>
+				<{foreach item=file from=$group.files}>
+					<tr class="<{cycle values="even filesEven,odd filesOdd"}>">
+						<td><strong><{$file.file}></strong></td>
+						<td align="center"><{$file.date}></td>
+						<td align="right"><{$file.size}></td>
+						<td align="center"><strong><{$file.downloads}></strong></td>
+						<td align="center"><{if $can_download}><a href="<{$file.link}>" class="downfile"><{$lang_download}></a><{else}><a href="<{$xoops_url}>/user.php?xoops_redirect=<{$file.link}>" class="downfile"><{$lang_download}></a><{/if}></td>
+					</tr>
+				<{/foreach}>
+			</table><br />
+			<{/if}>
+		<{/foreach}>
+	<{else}>
+	
+	<{/if}>
+	</div>
+	<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+	<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<!-- // Archivos Adicionales -->
+<{/if}>
+
+<!-- //Programas relacionados -->
+<{if $related_active && $related_num>0}>
+<div class="dtShadow dtMargin10">
+<h2><{$lang_itemsrel}></h2>
+<div class="dtBorder">
+<table width="100%" class="outer">
+	<{foreach item=relitem from=$relation_items}>	
+	<tr>
+		<td></td>
+		<td  width="50%"><h3 class="dtRelatedTitle"><a href="<{$relitem.link}>"><{$relitem.name}></a></h3>
+		    <{$relitem.desc}>
+		</td>
+		<td align="center" class="dtListRating">
+		    <{$lang_user}><br/>
+		    <span class="dtListRateUsers" style="color: #<{if $relitem.rating>7}>99CC00<{elseif $relitem.rating>4}>FFCC00<{else}>FF3300<{/if}>"><{$relitem.rating}></span>
+		    
+		</td>
+		<td align="center"><{$lang_ratesite}><br />
+		<{$relitem.siterate}></td>
+	
+	</tr>
+	<{/foreach}>
+</table>
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+	<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<{/if}>
+<!-- //Otros Programas -->
+<{if $incatego_active && $incatego_num>0}>
+<div class="dtShadow dtMargin10">
+<h2><{$lang_itemsother}></h2>
+<div class="dtOthersItems">
+	<{foreach item=othitem from=$others_items}>	
+	<a href="<{$othitem.link}>" style="width: <{$width}>;"><img src="<{$xoops_url}>/uploads/dtransport/ths/<{$othitem.img}>" />
+	    <h4><{$othitem.name}></h4>
+	    <{$othitem.created}>
+	</a>
+	<{/foreach}>
+</div>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<{/if}>

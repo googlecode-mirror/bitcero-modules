@@ -1,0 +1,50 @@
+<{include file="db:dtrans_header.html"}>
+<div id="dtLocationBar">
+	<{$dt_location}>
+</div>
+<div class="dtShowing">
+	<{$lang_showing}>
+</div>
+<div class="dtShadow dtMargin10">
+<table class="dtOuter" cellpadding="0" cellspacing="0" border="0">
+	<tr class="head dtHead" valign="top">
+		<td class="dtFirstDt" nowrap="nowrap" valign="middle"><{$lang_orderby}></td>
+		<td><{$lang_info}><br />
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$pag}>&amp;order=name"<{if $order=='name'}> class="dtCurrentOrder"<{/if}>><{$lang_name}></a>
+		| <a href="search.php?keyw=<{$keyw}>&amp;pag=<{$pag}>&amp;order=created"<{if $order=='created'}> class="dtCurrentOrder"<{/if}>><{$lang_corder}></a> |
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$pag}>&amp;order=modified"<{if $order=='modified'}> class="dtCurrentOrder"<{/if}>><{$lang_morder}></a></td>
+		<td align="center"><{$lang_downs}></td>
+		<td align="center" nowrap="nowrap"><{$lang_rate}><br />
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$pag}>&amp;order=rateown"<{if $order=='rateown'}> class="dtCurrentOrder"<{/if}>><{$xoops_sitename}></a> |
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$pag}>&amp;order=rateuser"<{if $order=='rateuser'}> class="dtCurrentOrder"<{/if}>><{$lang_users}></a></td>
+		<td>&nbsp;</td>
+	</tr>
+	<{foreach item=item from=$recents}>
+		<{include file="db:dtrans_listitem.html"}>
+	<{/foreach}>
+</table>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+
+<!-- Barra de Navegación -->
+<div id="dtNavigationPages">
+<{assign var='ip' value=1}>
+<{foreach item=page from=$dtNavPages}>
+	<{if $page.id=='previous'}>
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$page.num}>&amp;order=<{$order}>"><img src="<{$dtrans_url}>/images/prev.png" align="absmiddle" /></a>
+	<{elseif $page.id=='next'}>
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$page.num}>&amp;order=<{$order}>"><img src="<{$dtrans_url}>/images/next.png" align="absmiddle" /></a>
+	<{elseif $page.id=='first'}>
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$page.num}>&amp;order=<{$order}>"><img src="<{$dtrans_url}>/images/first.png" align="absmiddle" /></a>
+	<{elseif $page.id=='last'}>
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$page.num}>&amp;order=<{$order}>"><img src="<{$dtrans_url}>/images/last.png" align="absmiddle" /></a>
+	<{elseif $pag==$page.id}>
+		<span class="dtCurrentPage"><{$page.id}></span>
+	<{else}>
+		<a href="search.php?keyw=<{$keyw}>&amp;pag=<{$page.num}>&amp;order=<{$order}>"><{$page.id}></a>
+	<{/if}>
+	<{if $ip<=$dtTotalPages+1}>|<{/if}>
+	<{assign var="ip" value=$ip+1}>
+<{/foreach}>
+</div>

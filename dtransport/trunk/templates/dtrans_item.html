@@ -1,0 +1,48 @@
+<{include file="db:dtrans_header.html"}>
+<div id="dtLocationBar">
+	<{$dt_location}>
+</div>
+<!-- Nombre del Elemento -->
+<h1>
+	<{$item.name}> <span><{$item.version}></span>
+	<{if $item.new}>
+		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" alt="<{$lang_new}>" align="top" />
+	<{elseif $item.updated}>
+		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" alt="<{$lang_updateda}>" align="top" />
+	<{/if}>
+</h1>
+<!-- // Nombre -->
+
+<!-- Opciones de Navegación del Elemento -->
+<div class="dtShadow dtMargin10">
+<ul id="dtItemOptions">
+	<li class="first<{if $dtrans_option=='details'}> current<{/if}>"><a class="general" href="<{$item.link}>"><{$lang_generald}></a></li>
+	<{if $screens_count>0}><li<{if $dtrans_option=='images'}> class="current"<{/if}>><a class="pantallas" href="<{$item.slink}>"><{$lang_screensnum}></a></li><{/if}>
+	<li<{if $dtrans_option=='comments'}> class="current"<{/if}>><a class="comments" href="<{$item.clink}>"><{$lang_comsnum}></a></li>
+	<{if $features_count>0}><li<{if $dtrans_option=='features'}> class="current"<{/if}>><a class="features" href="<{$item.flink}>"><{$lang_featuresnum}></a></li><{/if}>
+	<{if $logs_count>0}><li<{if $dtrans_option=='logs'}> class="current"<{/if}>><a class="logs" href="<{$item.llink}>"><{$lang_logsnum}></a></li><{/if}>
+</ul>
+<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
+<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+</div>
+<!-- // Opciones de Navegación -->
+
+<{if $dtrans_option=='details'}>
+	<{include file="db:dtrans_itemdetails.html"}>
+<{elseif $dtrans_option=='images'}>
+	<{include file="db:dtrans_itemscreens.html"}>
+<{elseif $dtrans_option=='features'}>
+	<{include file="db:dtrans_features.html"}>
+<{elseif $dtrans_option=='logs'}>
+	<{include file="db:dtrans_logs.html"}>
+<{elseif $dtrans_option=='comments'}>
+	<{include file="db:dtrans_comments.html"}>
+<{/if}>
+
+
+<!-- Enlces Descargar Opinar -->
+<div class="dtDownOpine dtMargin10">
+	<{if $can_download}><a href="<{$item.dlink}>" class="download"><{$lang_download}></a><{/if}>
+	<a href="<{$item.clink}>" class="comment"><{$lang_comment}></a>
+</div>
+<!-- // Enlaces descargar opinar -->
