@@ -12,16 +12,6 @@ define('RMCLOCATION','categories');
 include ('header.php');
 
 /**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl;
-  
-    $tpl->append('xoopsOptions', array('link' => './categories.php', 'title' => _AS_DT_CATEGO, 'icon' => '../images/soft16.png'));
-    $tpl->append('xoopsOptions', array('link' => './categories.php?op=new', 'title' => _AS_DT_NEWCATEGO, 'icon' => '../images/add.png'));
-}
-
-/**
 * @desc Visualiza todas las categorías existentes
 **/
 function showCategos(){
@@ -29,7 +19,7 @@ function showCategos(){
 
 	$categos = array();
 	DTFunctions::getCategos($categos);
-        $categories;
+    $categories;
 	foreach ($categos as $row){
 		$cat = new DTCategory();
 		$cat->assignVars($row);
@@ -44,12 +34,16 @@ function showCategos(){
 
 	}
         
-        unset($categos);
+    unset($categos);
 	
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
+    
 	DTFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Categories','dtransport'));
-	$adminTemplate = 'admin/dtrans_categos.html';
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/dtrans_categos.php', 'module', 'dtransport');
+    
 	xoops_cp_footer();	
 
 }
