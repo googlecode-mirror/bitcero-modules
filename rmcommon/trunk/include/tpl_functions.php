@@ -73,6 +73,8 @@ function rmc_server_var($from, $key, $default=''){
 }
 
 function showMessage($msg, $level=0){
-	$_SESSION['rmMsg'][$i]['text'] = htmlentities($msg);
-	$_SESSION['rmMsg'][$i]['level'] = $level;
+	$_SESSION['rmMsg'][] = array(
+        'text' => htmlentities($msg),
+	    'level' => $level
+    );
 }
