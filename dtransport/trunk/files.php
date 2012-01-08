@@ -38,7 +38,7 @@ function files($editg=0,$edit=0){
 	$xoopsOption['module_subpage'] = 'files';
 
 	include('header.php');
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 
 	
 	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;

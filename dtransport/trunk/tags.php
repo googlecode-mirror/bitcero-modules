@@ -51,7 +51,7 @@ $xoopsOption['module_subpage'] = 'tags';
 
 include 'header.php';
 
-DTFunctionsHandler::makeHeader();
+DTFunctions::makeHeader();
 $tag = new DTTag($id);
 
 //Incrementamos los hits
@@ -76,7 +76,7 @@ if ($pactual>$tpages){
     $start = ($pactual - 1) * $limit;
 }
 
-DTFunctionsHandler::createNavigation($num, $mc['xpage'], $pactual);	
+DTFunctions::createNavigation($num, $mc['xpage'], $pactual);	
 
 $start = $page * $limit;
 
@@ -113,7 +113,7 @@ $result = $db->queryF($sql);
 while ($row = $db->fetchArray($result)){
 	$item = new DTSoftware();
 	$item->assignVars($row);
-	$tpl->append('recents', DTFunctionsHandler::createItemData($item));
+	$tpl->append('recents', DTFunctions::createItemData($item));
 }
 
 $tpl->assign('lang_readmore', _MS_DT_READMORE);

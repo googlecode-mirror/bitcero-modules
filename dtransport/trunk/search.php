@@ -30,7 +30,7 @@ $xoopsOption['template_main'] = 'dtrans_search.html';
 $xoopsOption['module_subpage'] = 'search';
 include 'header.php';
 
-DTFunctionsHandler::makeHeader();
+DTFunctions::makeHeader();
 
 $keyw = isset($_GET['keyw']) ? $_GET['keyw'] : '';
 $page = isset($_GET['pag']) ? intval($_GET['pag']) : 1;
@@ -73,7 +73,7 @@ if ($pactual>$tpages){
     $start = ($pactual - 1) * $limit;
 }
 
-DTFunctionsHandler::createNavigation($num, $mc['xpage'], $pactual);	
+DTFunctions::createNavigation($num, $mc['xpage'], $pactual);	
 
 $start = $page * $limit;
 
@@ -136,7 +136,7 @@ while ($row = $db->fetchArray($result)){
 	$item = new DTSoftware();
 	$item->assignVars($row);
 
-	$tpl->append('recents', DTFunctionsHandler::createItemData($item));
+	$tpl->append('recents', DTFunctions::createItemData($item));
 }
 }
 

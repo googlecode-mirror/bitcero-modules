@@ -57,7 +57,7 @@ function showDetails(){
 	include 'header.php';
 	$tpl->assign('dtrans_option','details');
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 
 	// Categoría del Elemento
 	$category = new DTCategory($item->category());
@@ -213,7 +213,7 @@ function showDetails(){
 			$items_rel=new DTSoftware();
 			$items_rel->assignVars($row);
 	
-			$rtn = DTFunctionsHandler::createItemData($items_rel);	
+			$rtn = DTFunctions::createItemData($items_rel);	
 			$tpl->append('relation_items', $rtn);	
 			$items_relation[$i]=$items_rel->id();
 			++$i;		
@@ -239,7 +239,7 @@ function showDetails(){
 			$items_other=new DTSoftware();
 			$items_other->assignVars($row);
 
-			$rtn = DTFunctionsHandler::createItemData($items_other);
+			$rtn = DTFunctions::createItemData($items_other);
 			$tpl->append('others_items', $rtn);	
 
 		}
@@ -294,7 +294,7 @@ function showDetails(){
 
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <strong>".$item->name()."</strong>";
 	$tpl->assign('dt_location', $location);
 
@@ -323,7 +323,7 @@ function showScreens(){
 	include 'header.php';
 	$tpl->assign('dtrans_option','images');
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	
 	$link = DT_URL.($mc['urlmode'] ? "/item/".$item->nameId().'/' : '/item.php?id='.$item->id());
 	if ($item->screensCount()<=0){
@@ -336,7 +336,7 @@ function showScreens(){
 	
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <a href='$link'>".$item->name()."</a>";
 	$location .= " &raquo; <strong>"._MS_DT_IMAGESLOC."</strong>";
 	$tpl->assign('dt_location', $location);
@@ -405,7 +405,7 @@ function showFeatures($params){
 	include 'header.php';
 	$tpl->assign('dtrans_option','features');
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	$link = DT_URL.($mc['urlmode'] ? "/item/".$item->nameId().'/' : '/item.php?id='.$item->id());
 	if (count($item->features())<=0){
 		redirect_header($link, 2, _MS_DT_NOFEATS);
@@ -417,7 +417,7 @@ function showFeatures($params){
 	
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <a href='$link'>".$item->name()."</a>";
 	$location .= " &raquo; <strong>"._MS_DT_FEATSLOC."</strong>";
 	$tpl->assign('dt_location', $location);
@@ -499,7 +499,7 @@ function showLogs($params){
 	include 'header.php';
 	$tpl->assign('dtrans_option','logs');
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	$link = DT_URL.($mc['urlmode'] ? "/item/".$item->nameId().'/' : '/item.php?id='.$item->id());
 	if (count($item->logs())<=0){
 		redirect_header($link, 2, _MS_DT_NOLOGS);
@@ -511,7 +511,7 @@ function showLogs($params){
 	
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <a href='$link'>".$item->name()."</a>";
 	$location .= " &raquo; <strong>"._MS_DT_LOGSLOC."</strong>";
 	$tpl->assign('dt_location', $location);
@@ -586,7 +586,7 @@ function showComments(){
 	include 'header.php';
 	$tpl->assign('dtrans_option','comments');
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	$link = DT_URL.($mc['urlmode'] ? "/item/".$item->nameId().'/' : '/item.php?id='.$item->id());
 	
 	// Categoría del Elemento
@@ -594,7 +594,7 @@ function showComments(){
 	
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <a href='$link'>".$item->name()."</a>";
 	$location .= " &raquo; <strong>"._MS_DT_LOGSLOC."</strong>";
 	$tpl->assign('dt_location', $location);
@@ -657,7 +657,7 @@ function downloadFiles($params){
 
 	include 'header.php';
 	
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	$link = DT_URL.($mc['urlmode'] ? "/item/".$item->nameId().'/' : '/item.php?id='.$item->id());
 	
 	if (!$item->canDownload($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS)){
@@ -670,7 +670,7 @@ function downloadFiles($params){
 	
 	// Ubicación Actual
 	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
-	$location .= DTFunctionsHandler::getCatLocation($category);
+	$location .= DTFunctions::getCatLocation($category);
 	$location .= " &raquo; <a href='$link'>".$item->name()."</a>";
 	$location .= " &raquo; <strong>"._MS_DT_DWONNOW."</strong>";
 	$tpl->assign('dt_location', $location);
