@@ -1,28 +1,14 @@
 <?php
-// $Id: items.php 49 2009-02-11 12:01:08Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage download files in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','items');
+define('RMCLOCATION','items');
 include ('header.php');
 
 /**
@@ -49,7 +35,7 @@ function optionsBar(){
 * @desc Muestra todos lo elementos registrados
 **/
 function showItems(){
-	global $xoopsModule,$adminTemplate,$db,$tpl,$util, $mc, $myts;
+	global $xoopsModule;
 	
 	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
 	$sort=isset($_REQUEST['sort']) ? $myts->addSlashes($_REQUEST['sort']) : 'id_soft';
@@ -59,6 +45,7 @@ function showItems(){
 	$type=isset($_REQUEST['type']) ? $_REQUEST['type'] : '';
 	
 	//Barra de Navegación
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT COUNT(*) FROM ".($type=='edit' ? $db->prefix('dtrans_software_edited') : $db->prefix('dtrans_software'));
 	$sql.=$catid ? " WHERE id_cat=$catid" : '';
 	$sql.=$type=='wait' ? ($catid ? " AND approved=0" : " WHERE approved=0") : "";
@@ -103,9 +90,6 @@ function showItems(){
 
 	$showmax = $start + $limit;
 	$showmax = $showmax > $num ? $num : $showmax;
-	$tpl->assign('lang_showing', sprintf(_AS_DT_SHOWING, $start + 1, $showmax, $num));
-	$tpl->assign('limit',$limit);
-	$tpl->assign('pag',$pactual);
 	//Fin de barra de navegación
 	
 	$catego=new DTCategory($catid);
@@ -115,6 +99,7 @@ function showItems(){
 	$sql2.=" LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
 	$link = XOOPS_URL.'/modules/dtransport/';
+    $items = array();
 	while ($rows=$db->fetchArray($result)){
 		if ($type=='edit'){
 			$sw = new DTSoftwareEdited();
@@ -126,19 +111,19 @@ function showItems(){
 		$slink = $mc['urlmode'] ? $link.'item/'.$sw->nameId().'/' : $link.'item.php?id='.$sw->id();
 		$cat = new DTCategory($sw->category());
 
-		$tpl->append('items',array('id'=>($type=='edit' ? $sw->software() : $sw->id()),'name'=>$sw->name(),'screens'=>$sw->screensCount(),
+		$items = array('id'=>($type=='edit' ? $sw->software() : $sw->id()),'name'=>$sw->name(),'screens'=>$sw->screensCount(),
 		'image'=>$sw->image(),'secure'=>$sw->secure(),'approved'=>$sw->approved(),'uname'=>$sw->uname(),
 		'date'=>($sw->created()<=$sw->modified() ? formatTimestamp($sw->modified(), 's') : formatTimestamp($sw->created(), 's')),
-		'link'=>$slink,'mark'=>$sw->mark(),'daily'=>$sw->daily(),'category'=>$cat->name()));
+		'link'=>$slink,'mark'=>$sw->mark(),'daily'=>$sw->daily(),'category'=>$cat->name());
 	}
 
 
 	//Lista de categorías
-	$categos = array();
-	DTFunctionsHandler::getCategos($categos, 0, 0, array(), true);
+	$categories = array();
+	DTFunctions::getCategos($categos, 0, 0, array(), true);
 	foreach ($categos as $k){
 		$cat =& $k['object'];
-		$tpl->append('categos',array('id'=>$cat->id(),'name'=>str_repeat('--', $k['jumps']).' '.$cat->name()));	
+		$categories = array('id'=>$cat->id(),'name'=>str_repeat('--', $k['jumps']).' '.$cat->name());	
 	}
 	
 	switch ($type){
@@ -155,46 +140,13 @@ function showItems(){
 			$exist = _AS_DT_EXISTS;
 
 	}
-	
-	$tpl->assign('lang_exists',$catid ? sprintf(_AS_DT_CATEGOEXIST,$catego->name()) : $exist);
-	$tpl->assign('lang_id',_AS_DT_ID);
-	$tpl->assign('lang_name',_AS_DT_NAME);
-	$tpl->assign('lang_cat',_AS_DT_CATEGO);
-	$tpl->assign('lang_shortdesc',_AS_DT_SHORTDESC);
-	$tpl->assign('lang_secure',_AS_DT_PROTECT);
-	$tpl->assign('lang_approved',_AS_DT_APPROVED);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_select',_SELECT);
-	$tpl->assign('lang_app',_AS_DT_APP);
-	$tpl->assign('lang_noapp',_AS_DT_NOAPP);
-	$tpl->assign('lang_screens',_AS_DT_SCREENS);
-	$tpl->assign('lang_features',_AS_DT_FEATURES);
-	$tpl->assign('lang_files',_AS_DT_FILES);
-	$tpl->assign('lang_logs',_AS_DT_LOGS);
-	$tpl->assign('lang_submit',_SUBMIT);
-	$tpl->assign('lang_result',_AS_DT_RESULT);
-	$tpl->assign('token',$util->getTokenHTML());
-	$tpl->assign('lang_legend', _AS_DT_LEGEND);
-	$tpl->assign('lang_date', _AS_DT_DATE);
-	$tpl->assign('lang_by', _AS_DT_BY);
-	$tpl->assign('lang_outs',_AS_DT_OUTS);
-	$tpl->assign('lang_daily',_AS_DT_DAILY);
-	$tpl->assign('lang_downmark',_AS_DT_DOWNMARK);
-	$tpl->assign('lang_downdaily',_AS_DT_DOWNDAILY);
-	$tpl->assign('lang_search',_AS_DT_SEARCH);
-	$tpl->assign('search',$search);
-	$tpl->assign('sort',$sort);
-	$tpl->assign('mode',$mode);
-	$tpl->assign('cat',$catid);
-	$tpl->assign('type',$type);
 
-
-	optionsBar();
+	DTFunctions::toolbar();
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".$loc);
-	$adminTemplate = 'admin/dtrans_items.html';
 	xoops_cp_header();
+    
+    include RMTemplate::get()->get_template('admin/dtrans_items.php','module','dtransport');
+    
 	xoops_cp_footer();	
 	
 
@@ -269,7 +221,7 @@ function formItems($edit=0){
 	$ele=new RMSelect(_AS_DT_CATEGO,'category');
 	$ele->addOption(0,_SELECT, $edit ? 0 : 1);
 	$categos = array();
-	DTFunctionsHandler::getCategos($categos, 0, 0, array(), true);
+	DTFunctions::getCategos($categos, 0, 0, array(), true);
 	foreach ($categos as $k){
 		$cat =& $k['object'];
 		$ele->addOption($cat->id(),str_repeat('--', $k['jumps']).' '.$cat->name(),$edit ? ($cat->id()==$sw->category() ? 1 : 0) : 0);		
@@ -1064,4 +1016,3 @@ switch ($op){
 		showItems();
 
 }
-?>

@@ -7,17 +7,17 @@ CREATE TABLE `dtrans_alerts` (
   `alerted` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id_alert`),
   KEY `id_soft` (`id_soft`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_categos` (
   `id_cat` int(11) NOT NULL auto_increment,
   `name` varchar(150) NOT NULL,
   `nameid` varchar(150) NOT NULL,
-  `desc` varchar(255) NOT NULL,
+  `desc` text NOT NULL,
   `parent` int(11) NOT NULL default '0',
   `active` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_cat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_downs` (
   `id_down` int(11) NOT NULL auto_increment,
@@ -30,7 +30,7 @@ CREATE TABLE `dtrans_downs` (
   PRIMARY KEY  (`id_down`),
   KEY `uid` (`uid`,`id_soft`),
   KEY `ip` (`ip`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_features` (
   `id_feat` int(11) NOT NULL auto_increment,
@@ -46,7 +46,7 @@ CREATE TABLE `dtrans_features` (
   `doimage` tinyint(1) NOT NULL default '0',
   `dobr` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_feat`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_files` (
   `id_file` int(11) NOT NULL auto_increment,
@@ -62,14 +62,14 @@ CREATE TABLE `dtrans_files` (
   `mime` varchar(50) NOT NULL,
   PRIMARY KEY  (`id_file`),
   KEY `id_soft` (`id_soft`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_groups` (
   `id_group` int(11) NOT NULL auto_increment,
   `name` varchar(100) NOT NULL,
   `id_soft` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_group`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_licences` (
   `id_lic` int(11) NOT NULL auto_increment,
@@ -77,13 +77,13 @@ CREATE TABLE `dtrans_licences` (
   `desc` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY  (`id_lic`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_licsoft` (
   `id_lic` int(11) NOT NULL,
   `id_soft` int(11) NOT NULL,
   KEY `id_lic` (`id_lic`,`id_soft`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `dtrans_logs` (
   `id_log` int(11) NOT NULL auto_increment,
@@ -98,7 +98,7 @@ CREATE TABLE `dtrans_logs` (
   `doimage` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_log`),
   KEY `id_soft` (`id_soft`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_platforms` (
   `id_platform` int(11) NOT NULL auto_increment,
@@ -106,13 +106,13 @@ CREATE TABLE `dtrans_platforms` (
   `desc` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY  (`id_platform`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_platsoft` (
   `id_platform` int(11) NOT NULL,
   `id_soft` int(11) NOT NULL,
   KEY `id_platform` (`id_platform`,`id_soft`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `dtrans_screens` (
   `id_screen` int(11) NOT NULL auto_increment,
@@ -123,13 +123,13 @@ CREATE TABLE `dtrans_screens` (
   `modified` int(10) NOT NULL default '0',
   `id_soft` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_screen`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_softtag` (
   `id_soft` int(11) NOT NULL,
   `id_tag` int(11) NOT NULL,
   KEY `id_soft` (`id_soft`,`id_tag`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 CREATE TABLE `dtrans_software` (
   `id_soft` int(11) NOT NULL auto_increment,
@@ -165,9 +165,9 @@ CREATE TABLE `dtrans_software` (
   `dobr` tinyint(1) NOT NULL default '0',
   `doimage` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id_soft`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
-CREATE TABLE `exm_dtrans_software_edited` (
+CREATE TABLE `dtrans_software_edited` (
   `id_soft` int(11) NOT NULL auto_increment,
   `soft` int(11) NOT NULL,
   `name` varchar(150) NOT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `exm_dtrans_software_edited` (
   `doimage` tinyint(1) NOT NULL default '0',
   `fields` text NOT NULL,
   PRIMARY KEY  (`id_soft`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 
 CREATE TABLE `dtrans_tags` (
@@ -211,7 +211,7 @@ CREATE TABLE `dtrans_tags` (
   `tag` varchar(50) NOT NULL,
   `hits` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_tag`)
-) TYPE=MyISAM ;
+) ENGINE=MyISAM ;
 
 CREATE TABLE `dtrans_votedata` (
   `uid` int(11) NOT NULL default '0',
@@ -219,4 +219,4 @@ CREATE TABLE `dtrans_votedata` (
   `date` int(10) NOT NULL default '0',
   `id_soft` int(11) NOT NULL,
   KEY `uid` (`uid`,`ip`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;

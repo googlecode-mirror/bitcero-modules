@@ -35,7 +35,7 @@ $xoopsOption['template_main'] = 'dtrans_mydownloads.html';
 $xoopsOption['module_subpage'] = 'mydowns';
 include 'header.php';
 	
-DTFunctionsHandler::makeHeader();
+DTFunctions::makeHeader();
 
 //Navegadot de páginas
 $sql = "SELECT COUNT(*) FROM ".$db->prefix('dtrans_software'). " WHERE uid=".($xoopsUser ? $xoopsUser->uid() : 0);
@@ -84,7 +84,7 @@ while ($rows = $db->fetchArray($result)){
 	$item = new DTSoftware();
 	$item->assignVars($rows);
 	
-	$rtn = DTFunctionsHandler::createItemData($item);
+	$rtn = DTFunctions::createItemData($item);
 	$rtn['modified'] = formatTimestamp($rows['modified'], 's');	
 	$tpl->append('items', $rtn);	
 }

@@ -35,5 +35,5 @@ $tpl->assign('dtrans_url', DT_URL);
 // Xoops Module Header
 $xmh = '<link rel="stylesheet" type="text/css" media="screen" href="'.DT_URL.'/styles/main.css" />';
 
-DTFunctionsHandler::checkAlert();
+DTFunctions::checkAlert();
 ?>

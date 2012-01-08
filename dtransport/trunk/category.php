@@ -50,7 +50,7 @@ $xoopsOption['template_main'] = 'dtrans_category.html';
 $xoopsOption['module_subpage'] = 'category';
 include 'header.php';
 
-DTFunctionsHandler::makeHeader();
+DTFunctions::makeHeader();
 $category = new DTCategory($id);
 
 // Descargas en esta categoría
@@ -71,7 +71,7 @@ if ($pactual>$tpages){
     $start = ($pactual - 1) * $limit;
 }
 
-DTFunctionsHandler::createNavigation($num, $mc['xpage'], $pactual);	
+DTFunctions::createNavigation($num, $mc['xpage'], $pactual);	
 
 $start = $page * $limit;
 
@@ -108,7 +108,7 @@ $result = $db->queryF($sql);
 while ($row = $db->fetchArray($result)){
 	$item = new DTSoftware();
 	$item->assignVars($row);
-	$tpl->append('recents', DTFunctionsHandler::createItemData($item));
+	$tpl->append('recents', DTFunctions::createItemData($item));
 }
 
 // Descargas del Día
@@ -127,7 +127,7 @@ if ($mc['dadydowncat'] && $page<1){
 		$slink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/' :  $link .'/item.php?id='.$item->id();
 		$dlink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/download/' :  $link .'/item.php?id='.$item->id().'/download';
 		$tpl->append('daily', array('id'=>$item->id(),'name'=>$item->name(),'desc'=>$item->shortdesc(),
-				'votes'=>$item->votes(),'rating'=>DTFunctionsHandler::createRatingGraph($item->votes(), $item->rating()),
+				'votes'=>$item->votes(),'rating'=>DTFunctions::createRatingGraph($item->votes(), $item->rating()),
 				'img'=>$item->image(),'link'=>$slink, 'dlink'=>$dlink));
 	}
 }
@@ -146,7 +146,7 @@ if ($mc['featured_categos'] && $page<1){
 		$slink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/' :  $link .'/item.php?id='.$item->id();
 		$dlink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/download/' :  $link .'/item.php?id='.$item->id().'/download';
 		$tpl->append('marked', array('id'=>$item->id(),'name'=>$item->name(),'desc'=>$item->shortdesc(),
-				'votes'=>$item->votes(),'rating'=>DTFunctionsHandler::createRatingGraph($item->votes(), $item->rating()),
+				'votes'=>$item->votes(),'rating'=>DTFunctions::createRatingGraph($item->votes(), $item->rating()),
 				'img'=>$item->image(),'link'=>$slink, 'dlink'=>$dlink));
 	}
 }
@@ -182,7 +182,7 @@ function dtShowCategos(){\n
 $tpl->assign('show_cats', $mc['showcats']);
 if ($mc['showcats']){
 	$categos = array();
-	DTFunctionsHandler::getCategos($categos, 0, $category->id(), array(), true);
+	DTFunctions::getCategos($categos, 0, $category->id(), array(), true);
 	$i = 0;
 	foreach ($categos as $row){
 		$cat =& $row['object'];
@@ -207,7 +207,7 @@ $link = DT_URL.'/'.($mc['urlmode'] ? 'category/'.$category->id() : 'category.php
 $tpl->assign('category', array('id'=>$category->id(),'name'=>$category->name(),'link'=>$link));
 
 // LOcalización
-$loc = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ".DTFunctionsHandler::getCatLocation($category);
+$loc = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ".DTFunctions::getCatLocation($category);
 $tpl->assign('dt_location', $loc);
 
 include 'footer.php';

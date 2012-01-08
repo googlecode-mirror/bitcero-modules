@@ -36,7 +36,7 @@ class DTFunctions
 		global $tpl, $mc, $xoopsUser;
 		
 		$tpl->assign('lang_mine', _MS_DT_MINE);
-		if (DTFunctionsHandler::canSubmit()){
+		if (DTFunctions::canSubmit()){
 			$tpl->assign('lang_submit', _MS_DT_SUBMIT);
 		}
 		$tpl->assign('lang_search', _MS_DT_SEARCH);
@@ -94,7 +94,7 @@ class DTFunctions
 			$rate = (($rating/$votes)*6);
 		}
 		
-		$rtn = DTFunctionsHandler::ratingStars($rate);
+		$rtn = DTFunctions::ratingStars($rate);
 		
 		return $rtn;
 		
@@ -145,7 +145,7 @@ class DTFunctions
 				}
 				$categos[] = $rtn;
 			}
-			DTFunctionsHandler::getCategos($categos, $jumps + 1, $row['id_cat'], $exclude, $asobj, $active);
+			DTFunctions::getCategos($categos, $jumps + 1, $row['id_cat'], $exclude, $asobj, $active);
 		}
 		
 		return true;
@@ -172,7 +172,7 @@ class DTFunctions
 		$path = '';
 		
 		if ($categos[$index]['jumps']>0){
-			$path = DTFunctionsHandler::creatPath($categos, $index-1, $obj);
+			$path = DTFunctions::creatPath($categos, $index-1, $obj);
 		}
 		
 		return $path.'/'.$cat->nameId();
@@ -199,7 +199,7 @@ class DTFunctions
 		$data['name'] = $item->name();
 		$data['desc'] = $item->shortdesc();
 		$data['votes'] = $item->votes();
-		$data['siterate'] = DTFunctionsHandler::ratingStars($item->siteRating()*6);
+		$data['siterate'] = DTFunctions::ratingStars($item->siteRating()*6);
 		$data['rating'] = @number_format($item->rating()/$item->votes(), 1);
 		$data['img'] = $item->image();
 		$data['created'] = formatTimestamp($item->created(),'s');
@@ -300,7 +300,7 @@ class DTFunctions
 		$rtn = '';
 		if ($cat->parent()!=0){
 			$parent = new DTCategory($cat->parent());
-			$rtn = DTFunctionsHandler::getCatLocation($parent);
+			$rtn = DTFunctions::getCatLocation($parent);
 		}
 		
 		$link = DT_URL.'/'.($mc['urlmode'] ? "category/".$cat->id() : "category.php?id=".$cat->id());

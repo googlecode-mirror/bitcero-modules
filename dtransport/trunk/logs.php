@@ -40,7 +40,7 @@ function logs($edit=0){
 	$xoopsOption['module_subpage'] = 'logs';
 
 	include('header.php');
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 
 	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;

@@ -39,7 +39,7 @@ function screens($edit=0){
 	$xoopsOption['template_main'] = 'dtrans_screens.html';
 	$xoopsOption['module_subpage'] = 'screens';
 	include('header.php');
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 
 	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;

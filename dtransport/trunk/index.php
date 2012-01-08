@@ -31,7 +31,7 @@ $xoopsOption['module_subpage'] = 'index';
 
 include 'header.php';
 
-DTFunctionsHandler::makeHeader();
+DTFunctions::makeHeader();
 
 $tpl->assign('show_daydowns', $mc['daydownload']);
 $link = DT_URL;
@@ -47,7 +47,7 @@ if ($mc['daydownload']){
 		$slink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/' :  $link .'/item.php?id='.$item->id();
 		$dlink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/download/' :  $link .'/item.php?id='.$item->id().'/download';
 		$tpl->append('daily', array('id'=>$item->id(),'name'=>$item->name(),'desc'=>$item->shortdesc(),
-				'votes'=>$item->votes(),'rating'=>DTFunctionsHandler::createRatingGraph($item->votes(), $item->rating()),
+				'votes'=>$item->votes(),'rating'=>DTFunctions::createRatingGraph($item->votes(), $item->rating()),
 				'img'=>$item->image(),'link'=>$slink, 'dlink'=>$dlink));
 	}
 }
@@ -65,7 +65,7 @@ if ($mc['dest_download']){
 		$slink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/' :  $link .'/item.php?id='.$item->id();
 		$dlink = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/download/' :  $link .'/item.php?id='.$item->id().'/download';
 		$tpl->append('marked', array('id'=>$item->id(),'name'=>$item->name(),'desc'=>$item->shortdesc(),
-				'votes'=>$item->votes(),'rating'=>DTFunctionsHandler::createRatingGraph($item->votes(), $item->rating()),
+				'votes'=>$item->votes(),'rating'=>DTFunctions::createRatingGraph($item->votes(), $item->rating()),
 				'img'=>$item->image(),'link'=>$slink, 'dlink'=>$dlink));
 	}
 }
@@ -76,14 +76,14 @@ $result = $db->query($sql);
 while ($row = $db->fetchArray($result)){
 	$item = new DTSoftware();
 	$item->assignVars($row);
-	$tpl->append('recents', DTFunctionsHandler::createItemData($item));
+	$tpl->append('recents', DTFunctions::createItemData($item));
 }
 
 // Categorías
 $tpl->assign('show_cats', $mc['showcats']);
 if ($mc['showcats']){
 	$categos = array();
-	DTFunctionsHandler::getCategos($categos, 0, 0, array(), true);
+	DTFunctions::getCategos($categos, 0, 0, array(), true);
 	$i = 0;
 	foreach ($categos as $row){
 		$cat =& $row['object'];

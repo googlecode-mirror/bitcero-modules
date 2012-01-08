@@ -81,7 +81,7 @@ function formItems($edit=0){
 
 
 	include ('header.php');
-	DTFunctionsHandler::makeHeader();
+	DTFunctions::makeHeader();
 	
 
 	$form=new RMForm($edit ? _MS_DT_EDITSW : _MS_DT_CREASW,'frmsw','submit.php');
@@ -94,7 +94,7 @@ function formItems($edit=0){
 	$ele=new RMSelect(_MS_DT_CATEGO,'category');
 	$ele->addOption(0,_SELECT, $edit ? 0 : 1);
 	$categos = array();
-	DTFunctionsHandler::getCategos($categos, 0, 0, array(), true,1);
+	DTFunctions::getCategos($categos, 0, 0, array(), true,1);
 	foreach ($categos as $k){
 		$cat =& $k['object'];
 		$ele->addOption($cat->id(),str_repeat('--', $k['jumps']).' '.$cat->name(),$edit ? ($cat->id()==$item->category() ? 1 : 0) : 0);		

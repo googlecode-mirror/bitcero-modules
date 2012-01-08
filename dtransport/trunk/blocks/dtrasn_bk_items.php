@@ -123,7 +123,7 @@ function dt_block_items_edit($options, &$form){
     // Categoría
     include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtfunctions.class.php';
     $categos = array();
-    DTFunctionsHandler::getCategos(&$categos, 0, 0, array(), false, 1);
+    DTFunctions::getCategos(&$categos, 0, 0, array(), false, 1);
     $ele = new RMSelect(_BK_DT_CAT, 'options[11]', false, $options[11]);
     $ele->addOption(0, _BK_DT_CATALL);
     foreach ($categos as $cat){
