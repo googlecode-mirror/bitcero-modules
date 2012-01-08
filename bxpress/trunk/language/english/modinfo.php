@@ -8,6 +8,14 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+if (!function_exists("__")){
+    function __($text, $d){
+        return $text;
+    }
+}
+
+if(function_exists("load_mod_locale")) load_mod_locale("bxpress");
+
 # Opciones de configuración del módulo
 define('_MI_BX_CNFTITLE',__('Forum Title','bxpress'));
 define('_MI_BX_CNFTITLE_DESC', __('This title will be show in the Home page and in special sections.','bxpress'));
