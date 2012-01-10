@@ -1,67 +1,60 @@
-<div class="even">
-<form name="frmnav" method="POST" action="items.php" style="margin: 0; padding: 0;">
-	<table width="100%">
-	<tr>
-		<td><{$lang_showing}></td>
-		<td>
-			<{$lang_result}>
-			<input type="text" name="limit" value="<{$limit}>" size="3" />
-			<input type="submit" class="formButton" value="<{$lang_submit}>" />
-		</td>
-		<td><{$itemsNavPage}></td>
-	<tr>
-	</table>
-	<input type="hidden" name="search" value="<{$search}>"/>
-	<input type="hidden" name="cat" value="<{$cat}>"/>
-	<input type="hidden" name="type" value="<{$type}>"/>
-</form>
+<h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo $loc; ?></h1>
+
+<form name="frmItems" id="frm-items" method="POST" action="items.php">
+<div class="dt_table">
+    <div class="dt_row">
+        <div class="dt_cell">
+            <?php _e('Search download:','dtransport'); ?>
+            <input type="text" name="search" value="<?php echo $search; ?>" size="15" />
+            <input type="submit" value="<?php _e('Search Now!','dtransport'); ?>" /> 
+        </div>
+        <div class="dt_cell">
+            <?php _e('Category:','dtransport'); ?>
+            <select name="cat" onchange="submit()">
+                <option value="0"><?php _e('Select...','dtransport'); ?></option>
+                <?php foreach($categories as $cat): ?>
+                    <option value="<?php echo $cat['id']; ?>"<?php if($cat['id']==$catid): ?> selected="selected"<?php endif; ?>><?php echo $cat['name']; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="dt_cell">
+            <?php echo $navpage; ?>
+        </div>
+    </div>
 </div>
 
-<form name="frm1" method="POST" action="items.php">
 <table width="100%" class="outer" cellspacing="1">
-	<tr class="foot even">
-		<td colspan="3">
-			<{$lang_search}> 
-			<input type="text" name="search" value="<{$search}>" size="15" />
-			<input type="submit" value="<{$lang_search}>" class="formButton" /> 
-		</td>
-		<td colspan="2">
-			<{$lang_cat}> 
-			<select name="cat" onchange="submit()">
-				<option value="0"><{$lang_select}></option>
-				<{foreach item=catego from=$categos}>
-					<option value="<{$catego.id}>" <{if $catego.id==$cat}>selected<{/if}>><{$catego.name}></option>
-				<{/foreach}>
-			</select>
-		</td>
-		<td colspan="5" align="right">
-			<{$lang_legend}> <img src="../images/itemedit.png" alt="<{$lang_edit}>" align="absmiddle" /> <{$lang_edit}> 
-			| <img src="../images/itemdelete.png" alt="<{$lang_del}>" align="absmiddle" /> <{$lang_del}> 
-			| <img src="../images/screen16.png" alt="<{$lang_screens}>" align="absmiddle" /> <{$lang_screens}> 
-			| <img src="../images/features16.png" alt="<{$lang_features}>" align="absmiddle" /> <{$lang_features}> 
-			| <img src="../images/down16.png" alt="<{$lang_files}>" align="absmiddle" /> <{$lang_files}> 
-			| <img src="../images/logs16.png" alt="<{$lang_logs}>" align="absmiddle" /> <{$lang_logs}> 
-		</td>
-	</tr>
-	<tr>
-		<th colspan="10"><{$lang_exists}></th>
-	</tr>
+    <thead>
 	<tr class="head" align="center">
-		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frm1','checkAll')"/></td>
-		<td width="20"><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=id_soft&amp;mode=<{if $sort=='id_soft'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_id}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=name&amp;mode=<{if $sort=='name'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_name}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=id_cat&amp;mode=<{if $sort=='id_cat'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_cat}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=secure&amp;mode=<{if $sort=='secure'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_secure}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=approved&amp;mode=<{if $sort=='approved'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_approved}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=screens&amp;mode=<{if $sort=='screens'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_screens}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=mark&amp;mode=<{if $sort=='mark'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_outs}></a></td>
-		<td><a href="./items.php?pag=<{$page}>&amp;limit=<{$limit}>&amp;search=<{$search}>&amp;sort=daily&amp;mode=<{if $sort=='daily'}><{if $mode==1}>0<{else}>1<{/if}><{else}>0<{/if}>&amp;type=<{$type}>"><{$lang_daily}></a></td>
-		<td><{$lang_options}></td>
+		<th width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frm1','checkAll')"/></th>
+		<th width="20"><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=id_soft&amp;mode=<?php if($sort=='id_soft'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('ID','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=name&amp;mode=<?php if($sort=='name'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Name','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=id_cat&amp;mode=<?php if($sort=='id_cat'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Category','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=secure&amp;mode=<?php if($sort=='secure'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Tipo','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=approved&amp;mode=<?php if($sort=='approved'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Approved','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=screens&amp;mode=<?php if($sort=='screens'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Screenshots','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=mark&amp;mode=<?php if($sort=='mark'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Featured','dtransport'); ?></a></th>
+		<th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=daily&amp;mode=<?php if($sort=='daily'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Daily','dtransport'); ?></a></th>
 	</tr>
-	<{foreach item=item from=$items}>
-	<tr class="<{cycle values='even,odd'}>" align="center">
-		<td><input type="checkbox" name="items[]" value="<{$item.id}>" /></td>
-		<td align="center"><strong><{$item.id}></strong></td>
+    </thead>
+    <tfoot>
+    <tr class="head" align="center">
+        <th width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frm1','checkAll')"/></th>
+        <th width="20"><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=id_soft&amp;mode=<?php if($sort=='id_soft'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('ID','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=name&amp;mode=<?php if($sort=='name'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Name','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=id_cat&amp;mode=<?php if($sort=='id_cat'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Category','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=secure&amp;mode=<?php if($sort=='secure'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Tipo','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=approved&amp;mode=<?php if($sort=='approved'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Approved','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=screens&amp;mode=<?php if($sort=='screens'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Screenshots','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=mark&amp;mode=<?php if($sort=='mark'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Featured','dtransport'); ?></a></th>
+        <th><a href="./items.php?pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;sort=daily&amp;mode=<?php if($sort=='daily'): ?><?php if($mode==1): ?>0<?php else: ?>1<?php endif; ?><?php else: ?>0<?php endif; ?>&amp;type=<?php echo $type; ?>"><?php _e('Daily','dtransport'); ?></a></th>
+    </tr>
+    </tfoot>
+    <tbody>
+	<?php foreach($items as $item): ?>
+	<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center">
+		<td><input type="checkbox" name="ids[]" value="<?php echo $item['id']; ?>" id="item-<?php echo $item['id']; ?>" /></td>
+		<td align="center"><strong><?php echo $item['id']; ?></strong></td>
 		<td align="left"><{if !$type && $item.approved}>
 			<a href="<{$item.link}>"><{$item.name}></a>
 			<{else}>
@@ -88,10 +81,9 @@
 		&nbsp;<a href="./logs.php?item=<{$item.id}>" title="<{$lang_logs}>"><img src="../images/logs16.png" alt="<{$lang_logs}>" /></a>
 		<{/if}>		
 		</td>
-		
 	</tr>
-	<{/foreach}>
-	<{if $type!=edit}>
+	<?php endforeach; ?>
+    </tbody>
 	<tr class="foot">
 		<td align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
 		<td colspan="9">
@@ -101,9 +93,8 @@
 			<input type="submit" value="<{$lang_downdaily}>" class="formButton" onclick="document.forms['frm1'].op.value='daily';" />
 		</td>
 	</tr>
-	<{/if}>
-
 </table>
+
 <{$token}>
 <input type="hidden" name="op" />
 <input type="hidden" name="pag" value="<{$pag}>"/>

@@ -12,42 +12,23 @@ define('RMCLOCATION','items');
 include ('header.php');
 
 /**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl;
-    $page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-    $search = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-    $sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_soft';
-    $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
-    $cat=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
-
-
-    $tpl->append('xoopsOptions', array('link' => './items.php', 'title' => _AS_DT_ITEMS, 'icon' => '../images/soft16.png'));
-    $tpl->append('xoopsOptions', array('link' => './items.php?type=wait', 'title' => _AS_DT_ITEMSWAIT, 'icon' => '../images/wait16.png'));
-    $tpl->append('xoopsOptions', array('link' => './items.php?type=edit', 'title' => _AS_DT_ITEMSEDIT, 'icon' => '../images/edit16.png'));
-    $tpl->append('xoopsOptions', array('link' => './items.php?op=new&pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat, 'title' => _AS_DT_NEWITEM, 'icon' => '../images/add.png'));
-}
-
-
-/**
 * @desc Muestra todos lo elementos registrados
 **/
 function showItems(){
+    define('RMCSUBLOCATION','items');
 	global $xoopsModule;
 	
-	$search=isset($_REQUEST['search']) ? $myts->addSlashes($_REQUEST['search']) : '';
-	$sort=isset($_REQUEST['sort']) ? $myts->addSlashes($_REQUEST['sort']) : 'id_soft';
-	$mode=isset($_REQUEST['mode']) ? intval($_REQUEST['mode']) : 0;
+	$search= rmc_server_var($_REQUEST,'search','');
+	$sort = rmc_server_var($_REQUEST,'sort','id_soft');
+	$mode = rmc_server_var($_REQUEST,'mode',0);
 	$sort = $sort=='' ? 'id_soft' : $sort;
-	$catid=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
-	$type=isset($_REQUEST['type']) ? $_REQUEST['type'] : '';
+	$catid = rmc_server_var($_REQUEST,'cat',0);
+	$type = rmc_server_var($_REQUEST,'type','');
 	
 	//Barra de Navegación
     $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT COUNT(*) FROM ".($type=='edit' ? $db->prefix('dtrans_software_edited') : $db->prefix('dtrans_software'));
-	$sql.=$catid ? " WHERE id_cat=$catid" : '';
+	$sql.=$catid ? " WHERE id_cat='$catid'" : '';
 	$sql.=$type=='wait' ? ($catid ? " AND approved=0" : " WHERE approved=0") : "";
 	$sql1='';
 	if ($search){
@@ -67,29 +48,13 @@ function showItems(){
 			
 	list($num)=$db->fetchRow($db->queryF($sql.$sql1.$sql2));
 	
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$limit = $limit<=0 ? 15 : $limit;
-
-	if ($page > 0){ $page -= 1; }
-    	$start = $page * $limit;
-    	$tpages = (int)($num / $limit);
-    	if($num % $limit > 0) $tpages++;
-    	$pactual = $page + 1;
-    	if ($pactual>$tpages){
-    	    $rest = $pactual - $tpages;
-    	    $pactual = $pactual - $rest + 1;
-    	    $start = ($pactual - 1) * $limit;
-    	}
-	
+	$page = rmc_server_var($_REQUEST,'page',1);
+    $limit = 15;
     
-    	if ($tpages > 1) {
-    	    $nav = new XoopsPageNav($num, $limit, $start, 'pag', 'limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$catid.'&type='.$type, 0);
-    	    $tpl->assign('itemsNavPage', $nav->renderNav(4, 1));
-    	}
-
-	$showmax = $start + $limit;
-	$showmax = $showmax > $num ? $num : $showmax;
+    $nav = new RMPageNav($num, $limit, $page);
+    $nav->target_url("items.php?search=$search&amp;sort=$sort&amp;mode=$mode&amp;cat=$catid&amp;type=$type&page={PAGE_NUM}");
+    $navpage = $nav->render(false, true);
+    $start = $nav->start();
 	//Fin de barra de navegación
 	
 	$catego=new DTCategory($catid);
@@ -111,10 +76,19 @@ function showItems(){
 		$slink = $mc['urlmode'] ? $link.'item/'.$sw->nameId().'/' : $link.'item.php?id='.$sw->id();
 		$cat = new DTCategory($sw->category());
 
-		$items = array('id'=>($type=='edit' ? $sw->software() : $sw->id()),'name'=>$sw->name(),'screens'=>$sw->screensCount(),
-		'image'=>$sw->image(),'secure'=>$sw->secure(),'approved'=>$sw->approved(),'uname'=>$sw->uname(),
-		'date'=>($sw->created()<=$sw->modified() ? formatTimestamp($sw->modified(), 's') : formatTimestamp($sw->created(), 's')),
-		'link'=>$slink,'mark'=>$sw->mark(),'daily'=>$sw->daily(),'category'=>$cat->name());
+		$items = array(
+            'id'=>($type=='edit' ? $sw->software() : $sw->id()),
+            'name'=>$sw->name(),
+            'screens'=>$sw->screensCount(),
+		    'image'=>$sw->image(),
+            'secure'=>$sw->secure(),
+            'approved'=>$sw->approved(),
+            'uname'=>$sw->uname(),
+		    'date'=>($sw->created()<=$sw->modified() ? formatTimestamp($sw->modified(), 's') : formatTimestamp($sw->created(), 's')),
+		    'link'=>$slink,
+            'mark'=>$sw->mark(),
+            'daily'=>$sw->daily(),
+            'category'=>$cat->name());
 	}
 
 
@@ -122,26 +96,24 @@ function showItems(){
 	$categories = array();
 	DTFunctions::getCategos($categos, 0, 0, array(), true);
 	foreach ($categos as $k){
-		$cat =& $k['object'];
-		$categories = array('id'=>$cat->id(),'name'=>str_repeat('--', $k['jumps']).' '.$cat->name());	
+		$cat = $k['object'];
+		$categories[] = array('id'=>$cat->id(),'name'=>str_repeat('--', $k['jumps']).' '.$cat->name());	
 	}
 	
 	switch ($type){
 		case 'wait':
-			$loc = _AS_DT_ITEMSWAIT;
-			$exist = _AS_DT_EXISTSWAIT;
-		break;
+			$loc = __('Pending Downloads','dtransport');
+		    break;
 		case 'edit':
-			$loc = _AS_DT_ITEMSEDIT;
-			$exist = _AS_DT_EXISTSEDIT;
-		break;
+			$loc = __('Edited Downloads','dtransport');
+		    break;
 		default:
-			$loc = _AS_DT_ITEMS;
-			$exist = _AS_DT_EXISTS;
-
+			$loc = __('Downloads Management','dtransport');
+            break;
 	}
 
 	DTFunctions::toolbar();
+    RMTemplate::get()->add_style('admin.css','dtransport');
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".$loc);
 	xoops_cp_header();
     
@@ -149,7 +121,6 @@ function showItems(){
     
 	xoops_cp_footer();	
 	
-
 }
 
 
