@@ -19,6 +19,7 @@ class RMPageNav
     private $displayed = false;
     private $rendered = '';
     private $template = '';
+    private $start = 0;
     
     /**
     * @desc Constructor
@@ -78,6 +79,13 @@ class RMPageNav
     }
     
     /**
+    * Get start number
+    */
+    public function start(){
+        return $this->start;
+    }
+    
+    /**
      * Set the template to use with render
      * @param string Path to template file
      */
@@ -131,6 +139,7 @@ class RMPageNav
 		//echo "$start>($total_pages - $steps) ? ($total_pages - $steps)+1 : $start;"; die();
 		$start = $start>=($total_pages - $steps) && $start!=1 ? ($total_pages - $steps)+1 : $start;
 		$start = $start<1 ? 1 : $start;
+        $this->start = $start;
 		
 		$end = $start+($steps-1);
 		$end = $end > $total_pages ? $total_pages : $end;
