@@ -95,7 +95,7 @@
 	</tr>
 </table>
 
-<{$token}>
+<?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input type="hidden" name="op" />
 <input type="hidden" name="pag" value="<{$pag}>"/>
 <input type="hidden" name="limit" value="<{$limit}>"/>

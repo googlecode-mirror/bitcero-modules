@@ -16,7 +16,7 @@ include ('header.php');
 **/
 function showItems(){
     define('RMCSUBLOCATION','items');
-	global $xoopsModule;
+	global $xoopsModule, $xoopsSecurity;
 	
 	$search= rmc_server_var($_REQUEST,'search','');
 	$sort = rmc_server_var($_REQUEST,'sort','id_soft');
