@@ -1,0 +1,25 @@
+.description{
+    font-size: 0.9em;
+    color: #666;
+    line-height: 130%;
+    padding: 0 0 5px 0;
+}
+.dt_el_list{
+    overflow: auto;
+    height: 150px;
+    border: 1px solid #CCC;
+    padding: 4px;
+}
+.dt_el_list ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.dt_el_list ul li{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor: pointer;
+}
+.dt_el_list ul li:hover{
+    background: #f2f2f2;
+}
