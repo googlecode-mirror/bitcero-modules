@@ -256,6 +256,8 @@ class RMForm
             $this->_fields[] = $ret;
         }
         
+        return $element;
+        
     }
     
     public function elements(){
@@ -389,7 +391,7 @@ class RMForm
          */
         $form =& $this;
         ob_start();
-        include RMTemplate::get_template('forms.php','rmcommon');
+        include RMTemplate::get_template('forms.php','module','rmcommon');
         return ob_get_clean();
         
     }
@@ -417,17 +419,16 @@ class RMForm
                 'name'=>$element->getName()
             );
             
-            if (is_a($element, 'EXMEditor')){
+            if (is_a($element, 'RMFormEditor')){
                 if ($element->getType()=='tiny'){
                     $callmethod = 'tinyMCE.triggerSave(); ';
-                    $form['js'] = $this->tinyJs($this->editores);
                 }
             }
             
         }
         
         if ($this->_addtoken){
-            $form['fields'][] = array('type'=>'EXMHidden','content'=>$GLOBALS['xoopsSecurity']->getTokenHTML(),
+            $form['fields'][] = array('type'=>'RMFormHidden','content'=>$GLOBALS['xoopsSecurity']->getTokenHTML(),
                     'caption'=>'','desc'=>'');
         }
         
@@ -443,7 +444,7 @@ class RMForm
         $rtn .= ">";
         $form['title'] = $this->_title;
         $form['tag'] = $rtn;
-        $form['lang_req'] = _RMS_CF_REQUIREDT;
+        $form['lang_req'] = __('Fields marked with (*) are required.','rmcommon');
         
         return $form;
         

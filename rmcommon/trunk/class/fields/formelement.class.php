@@ -28,6 +28,7 @@ abstract class RMFormElement
 	 */
 	public function setName($name){
 		$this->_name = trim($name);
+        return $this;
 	}
 	/**
 	 * Obtiene el nombre de un elemento espec?fico en el formulario
@@ -43,9 +44,11 @@ abstract class RMFormElement
 	 */
 	public function setClass($class){
 		$this->_class = $class;
+        return $this;
 	}
 	public function addClass($class){
 		$this->_class .= " $class";
+        return $this;
 	}
 	/**
 	 * Recupera el nombre de clase de un elemento espe?fico del formulario
@@ -61,6 +64,7 @@ abstract class RMFormElement
 	 */
 	public function setCaption($caption){
 		$this->_caption = trim($caption);
+        return $this;
 	}
 	/**
 	 * Recuepera el texto de la etiqueta de un elemento espec?fico
@@ -78,6 +82,7 @@ abstract class RMFormElement
 	 */
 	public function setDescription($desc){
 		$this->_description = $desc;
+        return $this;
 	}
 	/**
 	 * Recupera el texto descriptivo del elemento del formulario
@@ -95,6 +100,7 @@ abstract class RMFormElement
 	 */
 	public function setExtra($extra){
 		$this->_extra = $extra;
+        return $this;
 	}
 	/**
 	 * Recuepera la informaci?n extra del elemento
@@ -108,6 +114,7 @@ abstract class RMFormElement
 	*/
 	public function setForm($name){
 		$this->_formname = $name;
+        return $this;
 	}
 	public function getForm(){
 		return $this->_formname;
