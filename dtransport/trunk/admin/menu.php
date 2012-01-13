@@ -35,7 +35,7 @@ $adminmenu[] = array(
         array('title'=>__('All downloads','dtransport'),'link'=>'items.php','selected'=>'items'),
         array('title'=>__('Pending','dtransport'),'link'=>'items.php?type=wait','selected'=>'itemswait'),
         array('title'=>__('Edited','dtransport'),'link'=>'items.php?type=edit','selected'=>'itemsedited'),
-        array('title'=>__('New Download','dtransport'),'link'=>'items.php?action=new','selected'=>'itemsedited')
+        array('title'=>__('New Download','dtransport'),'link'=>'items.php?action=new','selected'=>'newitem')
     )
 );
 
