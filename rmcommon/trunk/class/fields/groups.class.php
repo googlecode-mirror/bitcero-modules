@@ -147,23 +147,17 @@ class RMFormGroups extends RMFormElement
 		$name = $this->getName();
 
 		if ($this->_showtype){
-			$rtn = "<table cellspacing='2' cellpadding='3' border='0'>";
-			$rtn .= "<tr><td><label><input type='$typeinput' name='$name' id='$name' value='0'";
+			$rtn = "<ul class='groups_field_list ".str_replace("[]",'', $name)."_groups'>";
+			$rtn .= "<li><label><input type='$typeinput' name='$name' id='$name' value='0'";
 			if (is_array($this->_select)){
 				if (in_array(0, $this->_select)){
 					$rtn .= " checked='checked'";
 				}
 			}
-			$rtn .= ">".__('All','rmcommon')."</label></td>";
-			$col++;
+			$rtn .= ">".__('All','rmcommon')."</label></li>";
 			while ($row = $db->fetchArray($result)){
 				
-				if ($col>$this->_cols){
-					$rtn .= "</tr><tr>";
-					$col = 1;
-				}
-				
-				$rtn .= "<td align='left'><label><input type='$typeinput' name='$name' id='$name' value='$row[groupid]'";
+				$rtn .= "<li><label><input type='$typeinput' name='$name' id='$name' value='$row[groupid]'";
 				if (is_array($this->_select)){
 					if (in_array($row['groupid'], $this->_select)){
 						$rtn .= " checked='checked'";
@@ -172,16 +166,15 @@ class RMFormGroups extends RMFormElement
 				$rtn .= ">$row[name]</label>";
 				
 				if ($this->_showdesc){
-					$rtn .= "<br /><span style='font-size: 10px;'>$row[description]</span>";
+					$rtn .= "<br /><span style='font-size: 10px;' class='description'>$row[description]</span>";
 				}
 				
-				$rtn .= "</td>";
+				$rtn .= "</li>";
 				
 				$col++;
 				
 			}
-			$rtn .= "</tr>";
-			$rtn .= "</table>";
+			$rtn .= "</ul>";
 		} else {
 			
 			$rtn = "<select name='$name'";
