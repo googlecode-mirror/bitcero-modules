@@ -94,6 +94,7 @@ function bx_show_form($edit = 0){
     
     bXFunctions::menu_bar();
     RMTemplate::get()->set_help('http://www.redmexico.com.mx/docs/bxpress-forums/foros/standalone/1/#crear-foro');
+    RMTemplate::get()->add_style('admin.css','bxpress');
     xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".($edit ? __('Edit Forum','bxpress') : __('New Forum','bxpress')));
     xoops_cp_header();
     
