@@ -13,7 +13,7 @@
 
 /** Items form **/
 .dt_form{padding: 0 15px;line-height: 140%;}
-.dt_form .dt_cell{padding: 4px 6px; width: 33%;}
+.dt_form .dt_cell{padding: 4px 6px; width: 50%;}
 .dt_form .item{padding-bottom: 8px;}
 .dt_form label{
     display: inline-block;
