@@ -19,8 +19,15 @@ class DtransportRmcommonPreload
         if (defined("RMCSUBLOCATION") && RMCSUBLOCATION=='newitem'){
             include_once '../widgets/dt_items.php';
             
-            $widgets[] = dt_widget_categories();
-            $widgets[] = dt_widget_licences();
+            $action = rmc_server_var($_GET, 'action', '');
+            $edit = $action=='edit'?1:0;
+            
+            $widgets[] = dt_widget_information($edit);
+            $widgets[] = dt_widget_alert($edit);
+            $widgets[] = dt_widget_credits($edit);
+            
+            // Other widgets
+            $widgets = RMEvents::get()->run_event('dtransport.load.items.widgets', $widgets, $action, $edit);
             
         }
         

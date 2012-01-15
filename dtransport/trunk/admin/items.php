@@ -128,7 +128,7 @@ function showItems(){
 * @desc Formulario de Elementos
 **/
 function formItems($edit=0){
-	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig, $rmc_config;
+	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig, $rmc_config, $xoopsSecurity;
 	
     define('RMCSUBLOCATION','newitem');
     
@@ -141,7 +141,7 @@ function formItems($edit=0){
 	$catid  = intval(rmc_server_var($_REQUEST, 'car', 0));
 	$type   = rmc_server_var($_REQUEST, 'type', '');
 
-	$params='?page='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$catid.'&type='.$type;
+	$params='?page='.$page.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$catid.'&type='.$type;
     
 	if ($edit){
 		//Verificamos que el software sea válido
@@ -168,155 +168,68 @@ function formItems($edit=0){
         $sw = new DTSoftware();
         $location = __('New Download Item','dtransport');
     }
-    
-    // CREACIÓN DEL FORMULARIO
-    // -----------------------
-	$form = new RMForm($location,'frmitem','items.php');
-	$form->setExtra("enctype='multipart/form-data'");	
-
-	if ($edit){
-		$form->addElement(new RMFormText(_AS_DT_NAMEID,'nameid',50,150,$edit ? $sw->nameId() : ''));
-	}
 	  
-
-	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->desc('e') : '',$xoopsConfig['editor_type']);
-
-	$form->addElement(new RMFormFile(_AS_DT_IMAGE,'image', 45, $xoopsModuleConfig['image']*1024));
-
-	if ($edit){
-		$img = "<img src='".XOOPS_URL."/uploads/dtransport/ths/".$sw->image()."' border='0' />";
-		$form->addElement(new RMLabel(_AS_DT_IMAGEACT,$img));	
-	}
-	
-	$limits=new RMFormText(_AS_DT_LIMITS,'limits',5,10,$edit ? $sw->limits() : 0);	
-	$form->addElement($limits,true);
-	
-	if ($edit){
-		$form->addElement(new RMFormUserEXM(_AS_DT_USER, 'user', 0,array($sw->uid()), 50));
-	}
-
-	$form->addElement(new RMFormYesno(_AS_DT_SECURE,'secure',$edit ? $sw->secure() : 0));
-	$form->addElement(new RMFormGroups(_AS_DT_GROUPS,'groups',1,1,5,$edit ? $sw->groups() : array(1,2)),true);
-	$form->addElement(new RMFormYesNo(_AS_DT_APPROVED,'approved',$edit ? $sw->approved() : 1));
-	$form->addElement(new RMFormYesNo(_AS_DT_MARK,'mark',$edit ? $sw->mark() : 1));	
-
-	$ele=new RMFormSelect(_AS_DT_RATING,'siterate');
-	$ele->addOption('','');
-	for ($i = 1; $i <= 10; ++$i)
-	{
-		$ele->addOption($i,$i,$edit ? ($i==$sw->rate() ? 1 : 0) : 0);
-	}
-	$form->addElement($ele,true,'noselect:null');
-	
-	//Etiquetas
-	if ($type=='edit'){
-		$fields = $sw->fields();
-		$tags = $fields['tags'];
-	}else{
-		if ($edit){
-			$tags='';
-			foreach ($sw->tags(true) as $tag){			
-				$tags .= $tags=='' ? $tag->tag() : " ".$tag->tag();
-			}
-		}
-	}
-
-	$text = new RMFormText(_AS_DT_TAGS,'tags',50,255,$edit ? $tags : '');
-	$text->setDescription(_AS_DT_DESCTAGS);
-	$form->addElement($text,true);
-	
-	//Licencias
-	$ele=new RMFormSelect(_AS_DT_LICENCES,'licences[]',1,$edit ? ($type=='edit' ? $fields['licences'] : ($sw->licences() ? $sw->licences() : array(0))) : array(0));	
-	$ele->addOption('0', _AS_DT_LICOTHER);
+    $form = new RMForm('','','');
+	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->desc('e') : '',$rmc_config['editor_type']);
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
-	$sql="SELECT * FROM ".$db->prefix('dtrans_licences');
-	$result=$db->queryF($sql);
-	while ($rows=$db->fetchArray($result)){
-		$ele->addOption($rows['id_lic'],$rows['name']);
-	}
-
-	$form->addElement($ele,true);
-
-	//Plataformas
-
-	$ele=new RMFormSelect(_AS_DT_PLATFORMS,'platforms[]',1,$edit ? ($type=='edit' ? $fields['platforms'] : ($sw->platforms() ? $sw->platforms() : array(0))) : array(0));	
-	$ele->addOption('0', _AS_DT_LICOTHER);
-	$sql="SELECT * FROM ".$db->prefix('dtrans_platforms');
-	$result=$db->queryF($sql);
-	while ($rows=$db->fetchArray($result)){
-		$ele->addOption($rows['id_platform'],$rows['name']);
-	}
-
-	$form->addElement($ele,true);
-	
-	// Autor e idioma
-	$form->addElement(new RMFormSubTitle(_AS_DT_OTHER, 1, 'head'));
-	$form->addElement(new RMFormText(_AS_DT_AUTHOR, 'author', 50, 150, $edit ? $sw->author() : ''));
-	$form->addElement(new RMFormText(_AS_DT_AUTHORURL, 'url', 50, 255, $edit ? $sw->url() : ''));
-	$form->addElement(new RMFormText(_AS_DT_LANGS, 'langs', 50, 255, $edit ? $sw->langs() : ''));
-
-	//Alerta de software
-	$form->addElement(new RMFormSubTitle(_AS_DT_ALERT, 1, 'head'));
-
-	$edit ? $alert=$sw->alert() : '';
-	$form->addElement(new RMFormYesNo(_AS_DT_ACTALERT,'alert',$edit ? ($type=='edit' ? ($fields['alert']['limit'] ? 1 : 0) : ($sw->alert() ? 1 : 0)) : 0));
-	$ele2=new RMFormText(_AS_DT_LIMIT,'limitalert',5,10,$edit ? ($type=='edit' ? $fields['alert']['limit'] : $alert ? $alert->limit() : '') : 0);
-	$ele2->setDescription(_AS_DT_DESCLIMIT);
-	$form->addElement($ele2);
-
-	$sel=new RMFormSelect(_AS_DT_MODE,'mode');
-	$sel->addOption(0,_AS_DT_MP,$edit ? ($type=='edit' ? ($fields['alert']['mode']==0 ? 1 : 0) :  ($edit && $alert ? (!$alert->mode()==0 ? 1 : 0) : 0)) : 0);
-	$sel->addOption(1,_AS_DT_EMAIL,$edit ? ($type=='edit' ? ($fields['alert']['mode']==1 ? 1 : 0) :  ($edit && $alert ? (!$alert->mode()==1 ? 1 : 0) : 1)) : 0);
-	
-	$form->addElement($sel);
-
-	if ($type!='edit'){
-		$ele=new RMFormCheck(_OPTIONS);
-		if (!$edit){
-			$ele->addOption(_AS_DT_NEWFILES,'options',1,0);
-		}else{
-			$ele->addOption(_AS_DT_NEWLOG,'options',2,0);
-		}
-	
-		$form->addElement($ele);
-	}
-
-
-	$form->addElement(new RMFormHidden('op',$edit ? ($type=='edit' ? 'savewait' : 'saveedit') : 'save'));
-	$form->addElement(new RMFormHidden('id',$id));
-	$form->addElement(new RMFormHidden('page',$page));
-	$form->addElement(new RMFormHidden('limit',$limit));
-	$form->addElement(new RMFormHidden('search',$search));
-	$form->addElement(new RMFormHidden('sort',$sort));
-	$form->addElement(new RMFormHidden('mode',$mode));
-	$form->addElement(new RMFormHidden('cat',$catid));
-	$form->addElement(new RMFormHidden('type',$type));
-
-	$buttons =new RMFormButtonGroup();
-	
-	if ($type=='edit'){
-		$buttons->addButton('sbt',_AS_DT_ACCEPT,'submit');
-		$buttons->addButton('delete',_AS_DT_DELETE,'button','onclick="document.forms[\'frmitem\'].elements[\'op\'].value=\'delete\'; submit();"');
-	}else{
-		$buttons->addButton('sbt',_SUBMIT,'submit');
-	}
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'items.php'.$params.'\';"');
-
-	$form->addElement($buttons);
-	// Obtenemos todos los campos en una cariable
-    //$the_form = $form->renderForTemplate();
-
-    //-------------------
-    // FIN DEL FORMULARIO
+    //Lista de categorías
+    $categos = array();
+    DTFunctions::getCategos($categos, 0, 0, array(), false);
+    foreach ($categos as $row){
+        $cat = new DTCategory();
+        $cat->assignVars($row);
+        $categories[] = array(
+                    'id'=>$cat->id(),
+                    'name'=>$cat->name(),
+                    'parent'=>$cat->parent(),
+                    'active'=>$cat->active(),
+                    'description' => $cat->desc(),
+                    'indent'=>$row['jumps'],
+                    'selected' => $edit?in_array($cat->id(), $sw->categories()):''
+                );    
+    }
+    unset($categos);
+    
+    // Licencias
+    $sql="SELECT * FROM ".$db->prefix('dtrans_licences');
+    $result=$db->queryF($sql);
+    $lics = array();
+    while($row = $db->fetchArray($result)){
+        $lic = new DTLicense();
+        $lic->assignVars($row);
+        $lics[] = array(
+            'id' => $lic->id(),
+            'name' => $lic->name()
+        );
+    }
+    unset($lic);
+    
+    // Plataformas
+    $sql="SELECT * FROM ".$db->prefix('dtrans_platforms');
+    $result=$db->queryF($sql);
+    $oss = array();
+    while($row = $db->fetchArray($result)){
+        $os = new DTPlatform();
+        $os->assignVars($row);
+        $oss[] = array(
+            'id' => $os->id(),
+            'name' => $os->name()
+        );
+    }
+    unset($os);
+    
+    // Allowed groups
+    $field = new RMFormGroups('','groups',1,1,1,$edit ? $sw->groups() : array(1,2));
+    $groups = $field->render();
+    
     
     RMTemplate::get()->add_style('admin.css','dtransport');
     RMTemplate::get()->add_style('items.css','dtransport');
     DTFunctions::toolbar();
     xoops_cp_location($location);
     xoops_cp_header();
-    $form->display();
     include RMTemplate::get()->get_template('admin/dtrans_formitems.php','module','dtransport');
     
 	xoops_cp_footer();

@@ -9,6 +9,8 @@
     height: 150px;
     border: 1px solid #CCC;
     padding: 4px;
+    color: #666;
+    border-radius: 4px;
 }
 .dt_el_list ul{
     padding: 0;
@@ -23,3 +25,29 @@
 .dt_el_list ul li:hover{
     background: #f2f2f2;
 }
+.dt_el_list ul li label{font-weight: normal;font-size: 1em;}
+.lt_list{
+    height: 100px;
+}
+.widgets_forms{
+    padding: 0 10px;
+}
+.widgets_forms .item{
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+.widgets_forms .item label{
+    display: inline-block;
+    font-weight: bold;
+    padding: 0 0 3px 0;
+    font-size: 1em;
+}
+.widgets_forms input[type='text'],
+.widgets_forms select,
+.widgets_forms textarea,
+.widgets_forms input[type='password']{
+    font-size: 1.1em;
+    border: 1px solid #CCC;
+}
+div.widgets_forms div.item input.fullwidth{width: 205px;}
+.widgets_forms .description{display: block;}
