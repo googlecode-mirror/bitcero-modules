@@ -83,6 +83,29 @@ foreach($files as $file => $v){
 }
 $modversion['config'][1]['default'] = 'en_US';
 $modversion['config'][1]['options'] = $options;
+
+// Update config options
+$fct = isset($_GET['fct']) ? $_GET['fct'] : '';
+$mid = isset($_GET['mod']) ? $_GET['mod'] : '';
+
+$mh = xoops_gethandler('module');
+$mod = $mh->getByDirname('rmcommon');
+
+if($fct=='preferences' && $mid==$mod->mid()){
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+    $sql = "SELECT conf_id FROM ".$db->prefix("config")." WHERE conf_modid=".$mod->mid()." AND conf_name='lang'";
+    
+    list($id) = $db->fetchRow($db->query($sql));
+    if($id>0){
+        $db->queryF("DELETE FROM ".$db->prefix("configoption")." WHERE conf_id=$id");
+        $sql = "INSERT INTO ".$db->prefix("configoption")." (`confop_name`,`confop_value`,`conf_id`) VALUES ";
+        foreach($options as $opt){
+            $sql .= "('$opt','$opt','$id'),";
+        }
+        $db->queryF(rtrim($sql,','));
+    }
+}
 unset($options, $files, $file, $v);
 
 // Images store type
