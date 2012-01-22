@@ -137,7 +137,6 @@ CREATE TABLE `dtrans_software` (
   `version` varchar(50) NOT NULL,
   `shortdesc` varchar(255) NOT NULL,
   `desc` text NOT NULL,
-  `image` varchar(255) NOT NULL,
   `limits` smallint(6) NOT NULL default '0',
   `created` int(10) NOT NULL default '0',
   `modified` int(10) NOT NULL default '0',

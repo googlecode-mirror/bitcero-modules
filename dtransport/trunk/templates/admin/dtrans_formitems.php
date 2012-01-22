@@ -88,8 +88,19 @@
     
     <div class="item">
         <label><?php _e('Download tags','dtransport'); ?></label>
-        <div class="dt_el_list">
-            Hola
+        <div class="dt_el_list list_small">
+            <div class="dt_table">
+                <div class="dt_row">
+                    <div class="dt_cell">
+                        <input type="text" name="tags" id="tags" size="50" class="fullwidth" />
+                        <span class="description"><?php _e('Separate each tag with a comma (,).','dtransport'); ?></span>
+                    </div>
+                    <div class="dt_cell">
+                        <input type="button" id="add-tags" value="<?php _e('Add Tags','dtransport'); ?>" class="" />
+                    </div>
+                </div>
+            </div>
+            <div id="tags-container"></div>
         </div>
     </div>
     <input type="hidden" name="action" value="<?php echo $edit ? ($type=='edit' ? 'savewait' : 'saveedit') : 'save'; ?>" />
