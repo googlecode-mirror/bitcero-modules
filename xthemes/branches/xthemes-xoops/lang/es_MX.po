@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: xThemes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-28 21:51-0600\n"
+"PO-Revision-Date: 2010-07-28 21:52-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: MEXICO\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: D:\\webserver\\htdocs\\xoops24\\modules\\xthemes\n"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:43
+msgid "This is XOOPS standar theme"
+msgstr "Este es un tema XOOPS estándar"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:45
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:103
+msgid "Unknow"
+msgstr "Desconocido"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:46
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:47
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:104
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:105
+msgid "unknow"
+msgstr "desconocido"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:101
+msgid "Not a valid <strong>xThemes</strong> Theme"
+msgstr "No es un tema válido para <strong>xThemes</strong>"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:132
+msgid "This theme cannot be configured by XThemes because is not a valid Theme"
+msgstr "Este tema no puede ser configurado por XThemes porque no es un tema válido"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:135
+msgid "This theme has not configuration options"
+msgstr "Este tema no tiene opciones de configuración"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:188
+#, php-format
+msgid "Theme \"%s\" does not exists!"
+msgstr "¡No existe el tema \"%s\"!"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:191
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:198
+#, php-format
+msgid "Theme \"%s\" is not a valid XThemes theme!"
+msgstr "¡El tema \"%s\" no es un tema válido para xThemes!"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:206
+#, php-format
+msgid "Theme \"%s\" return next errors:"
+msgstr "El tema \"%s\" devolvió los siguientes errores:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:211
+msgid "The theme has not been installed!"
+msgstr "¡El tema no ha sido instalado!"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:227
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:261
+msgid "Theme installed successfully"
+msgstr "Tema instalado satisfactoriamente"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:227
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:261
+msgid "but there was some errors:"
+msgstr "pero hubo algunos errores:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:243
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:246
+#, php-format
+msgid "¡\"%s\" is a xThemes theme!"
+msgstr "¡\"%s\" es un tema para xThemes!"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:251
+msgid "The theme has not been installed¡"
+msgstr "!El tema no hasido instalado¡"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:273
+msgid "This is a not valid theme"
+msgstr "Este no es un tema válido"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:313
+msgid "There was errors during this operation:"
+msgstr "Ocurrieron errores durante esta operación:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/index.php:315
+msgid "Settings updated!"
+msgstr "¡Configuración actualizada!"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/menu.php:14
+#: D:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:89
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:2
+msgid "Dashboard"
+msgstr "Panel de Control"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/menu.php:19
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:15
+msgid "Settings"
+msgstr "Configuraciones"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/menu.php:24
+#: D:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:91
+msgid "Catalog"
+msgstr "Catálogo"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/menu.php:29
+#: D:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:92
+msgid "About"
+msgstr "Acerca"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/include/functions.php:90
+msgid "Theme Settings"
+msgstr "Configuración de Tema"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_form_config.php:1
+#, php-format
+msgid "%s Configuration"
+msgstr "Configuración de %s"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_form_config.php:16
+msgid "Save Configuration"
+msgstr "Guardar Configuración"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_form_config.php:17
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:10
+msgid "Version:"
+msgstr "Versión:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:11
+msgid "Author:"
+msgstr "Autor:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:12
+msgid "Author Email:"
+msgstr "Email del Autor:"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:16
+msgid "Visit Web"
+msgstr "Visitar Web"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:17
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:41
+msgid "More themes"
+msgstr "Mas temas"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:25
+msgid "Other Available Themes"
+msgstr "Otros temas disponibles"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:31
+msgid "by"
+msgstr "por"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:35
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:40
+msgid "Install"
+msgstr "Instalar"
+
+#: D:\webserver\htdocs\xoops24\modules\xthemes/templates/xt_index.php:36
+msgid "Web Site"
+msgstr "Sitio Web"
+
