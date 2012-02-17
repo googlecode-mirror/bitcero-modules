@@ -108,6 +108,13 @@ function show_library(pag){
     $.post('tiny-images.php', params, function(data, status){
         $("#library-content").html(data);
         $("#library-content").removeClass('loading');
+        
+        $(".sizes input[type='radio']").click(function(){
+            var iurl = $(this).val();
+            var iid = $(this).attr('name').replace("size_",'');
+            $("#data-"+iid+" .size_url").html('<span>'+iurl+'</span>');
+        });
+        
     }, 'html');
     
 }

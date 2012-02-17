@@ -1,6 +1,7 @@
 <script type="text/javascript">
 <!--
 	$("#XOOPS_TOKEN_REQUEST").val('<?php echo $token; ?>');
+    var baseurl = "<?php echo XOOPS_URL; ?>";
 -->
 </script>
 <form name="<?php echo $field; ?>_users_form">

@@ -327,3 +327,4 @@ form .outer td.head{
     color: #666;
     font-style: italic;
 }
+.size_url span{background: yellow;padding: 0 2px;}

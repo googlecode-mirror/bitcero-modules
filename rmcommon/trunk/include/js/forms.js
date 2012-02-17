@@ -28,7 +28,7 @@ var usersField = jQuery.extend({
 		}
 		
 		token = $("#XOOPS_TOKEN_REQUEST").val();
-
+        
 		// Update the users container
 		var params = {
 			type: multisel,
@@ -117,14 +117,15 @@ var usersField = jQuery.extend({
 			field: users_field_name,
 			kw: keyword,
 			ord: order,
-			s: sel
+			s: sel,
+            XOOPS_TOKEN_REQUEST: $("#XOOPS_TOKEN_REQUEST").val()
 		}
 		
 		usersField.show_waiting(0, users_field_name);
 		
-		$.get(absurl+'/apps/system/ajax/users.php', params, function(data){
+		$.get(baseurl+'/modules/rmcommon/ajax/users.php', params, function(data){
 			$("#"+users_field_name+"-dialog-search").html(data);
-		});
+		},'html');
 		
 	},
 	
