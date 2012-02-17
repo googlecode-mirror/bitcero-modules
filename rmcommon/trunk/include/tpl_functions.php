@@ -56,7 +56,7 @@ function redirectMsg($url, $msg='', $level=0){
     $i = isset($_SESSION['rmMsg']) ? count($_SESSION['rmMsg']) + 1 : 0;
     $_SESSION['rmMsg'][$i]['text'] = htmlentities($msg);
     $_SESSION['rmMsg'][$i]['level'] = $level;
-    header('location: '.$url);
+    header('location: '.preg_replace("/[&]amp;/i", '&', $url));
     die();
 }
 

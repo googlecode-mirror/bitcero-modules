@@ -42,8 +42,9 @@ class RMFormUser extends RMFormElement
 		$this->width = $width<=0 ? 600 : $width;
 		$this->height = $height<=0 ? 500 : $height;
 		$this->showall = $showall;
-                $this->can_change = $enable;
-		!defined('RM_FRAME_USERS_CREATED') ? define('RM_FRAME_USERS_CREATED', 1) : '';
+        $this->can_change = $enable;
+		
+        !defined('RM_FRAME_USERS_CREATED') ? define('RM_FRAME_USERS_CREATED', 1) : '';
 	}
 	
 	public function button($enable){
@@ -66,6 +67,7 @@ class RMFormUser extends RMFormElement
 		RMTemplate::get()->add_script(RMCURL.'/include/js/forms.js');
 		RMTemplate::get()->add_script(RMCURL.'/include/js/jquery.validate.min.js');
 		RMTemplate::get()->add_style('forms.css','rmcommon');
+        
 		if (function_exists("xoops_cp_header")){
         	RMTemplate::get()->add_style('jquery.css','rmcommon');
 		} else {

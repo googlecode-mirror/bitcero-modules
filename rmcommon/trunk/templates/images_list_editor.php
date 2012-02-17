@@ -73,6 +73,9 @@
             	</td>
             </tr>
             <tr class="even">
+                <td class="size_url" colspan="2" align="center"><span><?php echo $image['url']; ?>/<?php echo $image['file'].'.'.$image['extension']; ?></span></td>
+            </tr>
+            <tr class="odd">
             	<td colspan="2">
             		<a href="javascript:;" class="insert_button" onclick="insert_image(<?php echo $image['id']; ?>,<?php echo $type=='exmcode'?1:0; ?>);"><?php _e('Insert image','rmcommon'); ?></a>
             		<a href="javascript:;"><?php _e('Delete','rmcommon'); ?></a>
