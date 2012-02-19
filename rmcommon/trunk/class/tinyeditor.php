@@ -69,4 +69,3 @@ class TinyEditor
         return $rtn;
     }
 }
-?>
