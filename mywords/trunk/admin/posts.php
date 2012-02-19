@@ -161,8 +161,8 @@ function newForm($edit = 0){
     /*include RMCPATH.'/class/fields/formelement.class.php';
     include RMCPATH.'/class/fields/editor.class.php';*/
     TinyEditor::getInstance()->add_config('elements','content_editor');
-	TinyEditor::getInstance()->add_config('theme_advanced_buttons1', 'bold,italic,strikethrough,|,bullist,numlist,blockquote,|,justifyleft,justifycenter,justifyright,|,link,unlink,|,spellchecker,fullscreen,|,exm_more,exm_adv', true);
-	TinyEditor::getInstance()->add_config('theme_advanced_buttons2','formatselect,underline,justifyfull,forecolor,|,pastetext,pasteword,removeformat,|,media,charmap,|,outdent,indent,|,undo,redo,|,exm_img,exm_icons,exm_page', true);
+	//TinyEditor::getInstance()->add_config('theme_advanced_buttons1', 'bold,italic,strikethrough,|,bullist,numlist,blockquote,|,justifyleft,justifycenter,justifyright,|,link,unlink,|,spellchecker,fullscreen,|,exm_more,exm_adv', true);
+	//TinyEditor::getInstance()->add_config('theme_advanced_buttons2','formatselect,underline,justifyfull,forecolor,|,pastetext,pasteword,removeformat,|,media,charmap,|,outdent,indent,|,undo,redo,|,exm_img,exm_icons,exm_page', true);
     //echo $post->getVar('content'); die();
     $editor = new RMFormEditor('','content','99%','300px', $edit ? $post->getVar('content', $rmc_config['editor_type']!='tiny' ? 'e' : 's') : '');
     
