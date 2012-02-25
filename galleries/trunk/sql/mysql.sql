@@ -53,6 +53,7 @@ CREATE TABLE `gs_sets` (
   `owner` int(11) NOT NULL,
   `uname` varchar(50) NOT NULL,
   `hits` int(11) NOT NULL default '0',
+  `description` text NOT NULL,
   PRIMARY KEY  (`id_set`)
 ) ENGINE=MyISAM ;
 
