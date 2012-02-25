@@ -258,7 +258,7 @@ h4{
 
 div#mw-blocker{
     background: #000;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
@@ -269,7 +269,7 @@ div#mw-blocker{
         -webkit-opacity: 0.8;
 }
 div#mw-blocker-message{
-    position: absolute;
+    position: fixed;
     background: transparent;
     top: 50%;
     left: 50%;

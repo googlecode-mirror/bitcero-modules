@@ -346,6 +346,8 @@ $(document).ready( function($) {
                 $('div#mw-messages-post').slideDown();
                 if(data['token'])
                     $('#XOOPS_TOKEN_REQUEST').val(data['token']);
+                
+                $("#mw-blocker, #mw-blocker-message").fadeOut('fast');
                 return false;
             }
             

@@ -66,6 +66,7 @@ class MWPost extends RMObject
             $this->unsetNew();
             $this->load_meta();
             $this->get_tags();
+            $this->get_categos();
 			return true;
 		} else {
 			return;
