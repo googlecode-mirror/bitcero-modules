@@ -480,6 +480,11 @@ function showSetContent(){
         'avatar'=>RMEvents::get()->run_event('rmcommon.get.avatar', $user->userVar('email'), 0, $user->userVar('user_avatar')),
         'link'=>$user->userURL())
     );
+    
+    $tpl->assign('set', array(
+        'title' => $set->title(),
+        'description' => $set->getVar('description','s')
+    ));
 	
 	// Lenguaje
 	$tpl->assign('lang_bmark', __('Favorites','galleries'));
@@ -490,7 +495,11 @@ function showSetContent(){
 	$tpl->assign('xoops_pagetitle', sprintf(__('Pictures in %s'), $set->title()).' &raquo; '.$mc['section_title']);
 	$tpl->assign('lang_numpics', sprintf(__('Pictures: %s','galleries'), $set->pics()));
 	$tpl->assign('lang_numviews', sprintf(__('Hits: %s'), $set->hits()));
-
+    
+    global $xoTheme;
+    if($set->getVar('description')!=''){
+        $xoTheme->addMeta('meta', 'description', TextCleaner::clean_disabled_tags($set->getVar('description')));
+    }
 
 	//Verificamos la privacidad de las imágenes
 	if ($xoopsUser && $xoopsUser->uid()==$user->uid()){

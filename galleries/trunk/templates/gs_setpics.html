@@ -29,6 +29,13 @@
 				<{/foreach}>
 			</td>
 		</tr>
+        <{if $set.description!=''}>
+            <tr>
+                <td colspan="2">
+                    <{$set.description}>
+                </td>
+            </tr>
+        <{/if}>
 	</table>
 	<div class="gsNavPages">
 		<{$upNavPage}>
