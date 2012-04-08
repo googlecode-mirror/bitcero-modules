@@ -167,6 +167,11 @@ function showImageDetails(){
 			die();
 		}
 	}
+    
+    if($image->desc()!=''){
+        global $xoTheme;
+        $xoTheme->addMeta('meta', 'description', $image->desc());
+    }
 	
 	$xoopsOption['template_main'] = 'gs_imgdetails.html';
 	$xoopsOption['module_subpage'] = 'picsdetails';
