@@ -61,9 +61,16 @@ class TinyEditor
                     $configs = ''; $i = 0;
                     foreach ($this->configuration as $name => $value){
                         $i++;
-                        $configs .= $name.' : "'.$value.'"'.($i==count($this->configuration) ? '' : ',')."\n"; 
+                        $configs .= $name.' : "'.$value.'"'.($i>count($this->configuration) ? '' : ',')."\n"; 
                     }
-                    $rtn .= $configs . '});
+                    $rtn .= $configs . '
+					setup: function(ed){
+						ed.onKeyUp.add(function(ed, e){
+							if (tinyMCE.activeEditor.isDirty())
+								ed.save();
+						});
+					}
+					});
                 </script>';
         
         return $rtn;

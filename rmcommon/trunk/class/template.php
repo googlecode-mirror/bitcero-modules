@@ -270,7 +270,7 @@ class RMTemplate
    
             if (strpos($url, "?")>1){
                 if (strpos($url, 'ver=')===FALSE){
-                    $url .= "&ver=".RMCVERSION;
+                    $url .= "&amp;ver=".RMCVERSION;
                 }
             } else {
                 $url .= "?ver=".RMCVERSION;
@@ -292,7 +292,7 @@ class RMTemplate
         $url = XOOPS_URL.'/modules/'.$element.'/'.$subfolder.'/js/'.$file;
         if (strpos($url, "?")>1){
             if (strpos($url, 'ver=')===FALSE){
-                $url .= "&ver=".RMCVERSION;
+                $url .= "&amp;ver=".RMCVERSION;
             }
         } else {
             $url .= "?ver=".RMCVERSION;
@@ -322,7 +322,7 @@ class RMTemplate
         
         if (strpos($url, "?")>1){
             if (strpos($url, 'ver=')===FALSE){
-                $url .= "&ver=".RMCVERSION;
+                $url .= "&amp;ver=".RMCVERSION;
              }
         } else {
             $url .= "?ver=".RMCVERSION;
@@ -395,7 +395,7 @@ class RMTemplate
         
 		if (strpos($url, "?")>1){
 		    if (strpos($url, 'ver=')===FALSE){
-				$url .= "&ver=".RMCVERSION;
+				$url .= "&amp;ver=".RMCVERSION;
 		 	}
         } else {
 		    $url .= "?ver=".RMCVERSION;
@@ -441,7 +441,7 @@ class RMTemplate
         
         if (strpos($url, "?")>1){
             if (strpos($url, 'ver=')===FALSE){
-                $url .= "&ver=".RMCVERSION;
+                $url .= "&amp;ver=".RMCVERSION;
              }
         } else {
             $url .= "?ver=".RMCVERSION;
@@ -475,7 +475,7 @@ class RMTemplate
         
 		if (strpos($url, "?")>1){
 		    if (strpos($url, 'ver=')===FALSE){
-				$url .= "&ver=".RMCVERSION;
+				$url .= "&amp;ver=".RMCVERSION;
 		 	}
         } else {
 		    $url .= "?ver=".RMCVERSION;
