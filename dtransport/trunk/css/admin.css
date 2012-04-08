@@ -1,6 +1,6 @@
 .dt_table{display: table;width:100%;}
 .dt_row{display: table-row;}
-.dt_cell{display: table-cell;padding: 4px;}
+.dt_cell{display: table-cell;padding: 4px; vertical-align: top;}
 .width-300{width:300px;padding: 0 20px 0 0;}
 .form_add_cat label{display:block;padding: 4px 0;font-weight: bold;cursor:pointer;}
 .form_add_cat input[type='text'],
@@ -40,3 +40,31 @@
 .dt_form input.title{font-size: 1.7em;}
 .dt_form .description{display: block; font-size: 0.9em; color: #666;padding: 4px 0;}
 .dt_form .required{}
+
+/** Licences Form **/
+form h3{
+    margin-top: 0;
+}
+label.captions{
+    display: block;
+    padding: 3px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+.width-300 .input{
+    width: 95%;
+    padding: 4px;
+    font-size: 1.5em;
+    border: 1px solid #CCC;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+.width-300 .description{
+    font-size: 0.9em;
+    color: #666;
+    line-height: 140%;
+    margin-bottom: 10px;
+    margin-top: -5px;
+    display: block;
+    font-style: italic;
+}

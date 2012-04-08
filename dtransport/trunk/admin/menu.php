@@ -74,7 +74,7 @@ $adminmenu[] = array(
 //Licencias
 $adminmenu[] = array(
     'title' => __('Licenses','dtransport'),
-    'link' => "/admin/licenses.php",
+    'link' => "admin/licenses.php",
     'icon' => "../images/license.png",
     'location' => 'licenses'
 );
