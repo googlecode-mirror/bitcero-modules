@@ -1,3 +1,8 @@
+function tiny_refresh(e){
+	
+	alert(e.type);
+	
+}
 
 var switchEditors = {
 
@@ -90,10 +95,10 @@ var switchEditors = {
 		mode = mode || this.mode || '';
 
 		var ed = tinyMCE.get(id) || false;
-		var qt = this.I('quicktags');
-		var H = this.I('edButtonHTML');
-		var P = this.I('edButtonPreview');
-		var ta = this.I(id);
+		var qt = $('#ed-cont-'+id+' .quicktags');
+		var H = $('#ed-cont-'+id+' .edButtonHTML');
+		var P = $('#ed-cont-'+id+' .edButtonPreview');
+		var ta = $("#"+id);
 
 		if ( 'tinymce' == mode ) {
 
@@ -101,15 +106,15 @@ var switchEditors = {
 				return false;
 
 			this.mode = 'html';
-			ta.style.color = '#fff';
+			ta.css('color','#fff');
 
-			P.className = 'active';
-			H.className = '';
+			P.addClass('active');
+			H.removeClass('active');
 			edCloseAllTags(id); // :-(
 
-			qt.style.display = 'none';
+			qt.hide();
 
-			ta.value = this.esautop(ta.value);
+			ta.val(this.esautop(ta.val()));
 
 			if ( ed ) ed.show();
 			else tinyMCE.execCommand("mceAddControl", false, id);
@@ -119,16 +124,16 @@ var switchEditors = {
 				return false;
 
 			this.mode = 'tinymce';
-			H.className = 'active';
-			P.className = '';
+			H.addClass('active');
+			P.removeClass('active');
 
-			ta.style.height = ed.getContentAreaContainer().offsetHeight + 6 + 'px';
+			ta.css('height', ed.getContentAreaContainer().offsetHeight + 6 + 'px');
 
 			ed.hide();
-			qt.style.display = 'block';
-            qt.style.width = ta.style.width;
+			qt.css('display','block');
+            qt.css('width', ta.css('width'));
 
-			ta.style.color = '';
+			ta.css('color','');
 
 		}
 		return false;

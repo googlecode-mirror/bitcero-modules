@@ -1,8 +1,8 @@
-#es-editor{
+.es-editor{
     overflow: hidden;
     height: 30px;
 }
-#es-editor #edButtonHTML, #es-editor #edButtonPreview{
+.es-editor .edButtonHTML, .es-editor .edButtonPreview{
     display: block;
     height: 18px;
     margin: 5px 0 0 5px;
@@ -22,25 +22,25 @@
     border-color: #E1E1E1;
     color: #999;
 }
-#es-editor #edButtonPreview {
+.es-editor .edButtonPreview {
     margin-left: 5px;
 }
-#es-editor #edButtonHTML{
+.es-editor .edButtonHTML{
     margin-left: 15px;
 }
-a#edButtonHTML:hover, a#edButtonPreview:hover{
+a.edButtonHTML:hover, a.edButtonPreview:hover{
     text-decoration: none;
 }
-#es-editor a#edButtonHTML.active{
+.es-editor a.edButtonHTML.active{
     background-color: #E1E1E1;
     color: #333;
 }
-#es-editor a#edButtonPreview.active{
+.es-editor a.edButtonPreview.active{
     background-color: #E1E1E1;
     color: #333;
 }
 
-#quicktags{
+.quicktags{
     background: #DFDFDF url(../images/ed-bg.png) repeat-x top;
     padding: 3px;
     -moz-border-radius: 5px 5px 0 0;
@@ -50,12 +50,12 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     -khtml-border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    margin-bottom: -1px;
+    margin-bottom: -2px;
 	display: none;
     border: 1px solid #CCC;
     border-bottom: 0;
 }
-#quicktags input{
+div.quicktags input{
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
@@ -64,28 +64,22 @@ a#edButtonHTML:hover, a#edButtonPreview:hover{
     background-position: left top;
     background-repeat: repeat-x;
     padding: 4px;
-    font-size: 0.85em;
+    font-size: 0.9em;
     color: #333;
     border: 1px solid #CCC;
     margin: 1px;
     font-family: Tahoma, Arial, Helvetica, sans-serif;
     text-shadow: none;
 }
-#ed-container textarea{
+div.ed-container textarea{
     font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.05em;
 	color: #333;
 	padding: 10px 3px;
     background: #FFF;
     border: 1px solid #E1E1E1;
-	-moz-border-radius: 0 0 5px 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -khtml-border-bottom-right-radius: 5px;
-    -khtml-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+	border-radius: 0 0 5px 5px;
 }
-#ed-container textarea:focus{
+.ed-container textarea:focus{
 	border-color: #e1e1e1;
 }

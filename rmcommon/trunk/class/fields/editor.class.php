@@ -140,17 +140,17 @@ class RMFormEditor extends RMFormElement
 		global $rmc_config, $xoopsUser;
 		TinyEditor::getInstance()->add_config('elements',$this->getName(), true);
 		RMTemplate::get()->add_xoops_style('mce_editor.css','rmcommon');
-		RMTemplate::get()->add_script(RMCURL."/include/js/editor.js");
-		RMTemplate::get()->add_script(RMCURL."/include/js/quicktags.js");
+		RMTemplate::get()->add_local_script('editor.js','rmcommon','include');
+		RMTemplate::get()->add_local_script('quicktags.js','rmcommon','include');
 		RMTemplate::get()->add_head(TinyEditor::getInstance()->get_js());
 		$rtn = "\n
-		<div id=\"ed-container\" style=\"width: $this->_width\">
-        <div id=\"es-editor\" style=\"width: $this->_width;\">
-        <a id=\"edButtonHTML\" class=\"\" onclick=\"switchEditors.go('".$this->getName()."', 'html');\">HTML</a>
-        <a id=\"edButtonPreview\" class=\"active\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
+		<div class=\"ed-container\" id=\"ed-cont-".$this->getName()."\" style=\"width: $this->_width\">
+        <div class=\"es-editor\" style=\"width: $this->_width;\">
+        <a class=\"edButtonHTML\" onclick=\"switchEditors.go('".$this->getName()."', 'html');\">HTML</a>
+        <a class=\"edButtonPreview\" onclick=\"switchEditors.go('".$this->getName()."', 'tinymce');\">Visual</a>
         </div>
-        <div id=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
-        <textarea id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
+        <div class=\"quicktags\"><script type=\"text/javascript\">edToolbar('".$this->getName()."')</script></div>
+        <textarea onchange=\"tinyMCE.activeEditor.save();\" id='".$this->getName()."' name='".$this->getName()."' style='width: 99%; height: ".$this->_height.";' class='".$this->getClass()."'>".$this->_default."</textarea></div>";
 		return $rtn;
 	}
 	
