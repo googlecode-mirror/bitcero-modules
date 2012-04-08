@@ -104,14 +104,38 @@ function dt_widget_information($edit=0){
     
 }
 
+/**
+ * Muestra las opciones adicionales para la descarga creada
+ */
+function dt_widget_options($edit = 0){
+    
+    $widget['title'] = __('Download Options','dtransport');
+    $widget['icon'] = '../images/options.png';
+    
+    ob_start();
+    ?>
+    <div id="dt-down-opts">
+        <ul>
+            <li><a href="#tab-alert" class="selected" style="background-image: url(../images/alert.png);">Alerts</a></li>
+            <li><a href="#tab-credits" style="background-image: url(../images/author.png);">Author</a></li>
+        </ul>
+        <?php echo dt_widget_alert($edit); ?>
+        <?php echo dt_widget_credits($edit); ?>
+    </div>
+    <?php
+    $widget['content'] = ob_get_clean();
+    
+    return $widget;
+    
+}
 
 /**
 * Presenta las opciones para configurar la alerta
 */
 function dt_widget_alert($edit=0){
     
-    $widget['title'] = __('Inactivity Alert','dtransport');
-    $widget['icon'] = '../images/alert.png';
+    //$widget['title'] = __('Inactivity Alert','dtransport');
+    //$widget['icon'] = '../images/alert.png';
     
     // Alerta
     $field = new RMFormYesNo('','alert',$edit ? ($type=='edit' ? ($fields['alert']['limit'] ? 1 : 0) : ($sw->alert() ? 1 : 0)) : 0);
@@ -120,7 +144,7 @@ function dt_widget_alert($edit=0){
     unset($field);
     ob_start();
     ?>
-    <div class="widgets_forms">
+    <div id="tab-alert" class="widgets_forms">
     <form name="frmInfo" id="frm-information" method="post" action="items.php">
         <div class="item">
         <div class="dt_table">
@@ -147,8 +171,9 @@ function dt_widget_alert($edit=0){
     </form>
     </div>
     <?php
-    $widget['content'] = ob_get_clean();
-    return $widget;
+    //$widget['content'] = ob_get_clean();
+    $content = ob_get_clean();
+    return $content;
     
 }
 
@@ -158,8 +183,8 @@ function dt_widget_alert($edit=0){
 function dt_widget_credits($edit=0){
     global $xoopsUser;
     
-    $widget['title'] = __('Author Information','dtransport');
-    $widget['icon'] = '../images/author.png';
+    //$widget['title'] = __('Author Information','dtransport');
+    //$widget['icon'] = '../images/author.png';
     
     $field = new RMFormUser('', 'user', 0,$edit?array($sw->uid()):$xoopsUser->uid(), 50);
     $user = $field->render();
@@ -167,7 +192,7 @@ function dt_widget_credits($edit=0){
     
     ob_start();
     ?>
-    <div class="widgets_forms">
+    <div id="tab-credits" class="widgets_forms">
         <div class="item">
             <label><?php _e('Published by','dtransport'); ?></label>
             <?php echo $user; ?>
@@ -190,7 +215,7 @@ function dt_widget_credits($edit=0){
         </div>
     </div>
     <?php
-    $widget['content'] = ob_get_clean();
-    return $widget;
+    $content = ob_get_clean();
+    return $content;
     
 }

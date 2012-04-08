@@ -1,3 +1,6 @@
+<script type="text/javascript">
+    <?php include XOOPS_ROOT_PATH.'/modules/dtransport/include/js_strings.php'; ?>
+</script>
 <h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo $location; ?></h1>
 
 <div class="descriptions">
@@ -18,8 +21,8 @@
         <span class="description"><?php _e('This is a small description that will be used as an advance of the item.','dtransport'); ?></span>
     </div>
     
-    <div class="item">
-        <label for="desc"><?php _e('Full description','dtransport'); ?></label>
+    <div class="item dt_f_editor">
+        <label for="desc" class="label_desc"><?php _e('Download description','dtransport'); ?></label>
         <?php 
             echo $ed->render();
         ?>
@@ -32,9 +35,9 @@
         <div class="dt_row">
             <div class="dt_cell">
                 <div class="item">
-                    <label><?php _e('Categories','dtransport'); ?></label>
+                    <label class="dt_lcats"><?php _e('Categories','dtransport'); ?></label>
                     <div class="dt_el_list">
-                        <ul>
+                        <ul class="dt_categories">
                         <?php foreach($categories as $cat): ?>
                             <li style="padding-left: <?php echo ($cat['indent']*10); ?>px;<?php if($cat['indent']==0): ?> color: #333;<?php endif; ?>"><label><input type="checkbox" name="catids[]" id="cat-id-<?php echo $cat['id']; ?>"<?php echo $cat['selected']; ?> /> <?php echo $cat['name']; ?></label></li>
                         <?php endforeach; ?>
@@ -45,9 +48,9 @@
             </div>
             <div class="dt_cell">
                 <div class="item">
-                    <label><?php echo _e('Licences','dtransport'); ?></label>
+                    <label class="dt_llics"><?php echo _e('Licences','dtransport'); ?></label>
                     <div class="dt_el_list">
-                    <ul>
+                    <ul class="dt_licences">
                     <li><label><input type="checkbox" name="lics[]" id="lic-0" value="0" /> <?php _e('Other license','dtransport'); ?></label></li>
                     <?php foreach($lics as $lic): ?>
                     <li><label><input type="checkbox" name="lics[]" id="lic-<?php echo $lic['id']; ?>" value="<?php echo $lic['id']; ?>" /> <?php echo $lic['name']; ?></label></li>
@@ -62,10 +65,10 @@
         <div class="dt_row">
             <div class="dt_cell">
                 <div class="item">
-                    <label><?php echo _e('Platforms','dtransport'); ?></label>
+                    <label class="dt_lplats"><?php echo _e('Platforms','dtransport'); ?></label>
                     <div class="dt_el_list">
-                    <ul>
-                    <li><label><input type="checkbox" name="platforms[]" id="os-0" value="0" /> <?php _e('Other platform','dtransport'); ?></label></li>
+                    <ul class="dt_plats">
+                    <li><label><input type="checkbox" name="platforms[]" id="os-0" value="0" checked="checked" /> <?php _e('Other platform','dtransport'); ?></label></li>
                     <?php foreach($oss as $os): ?>
                     <li><label><input type="checkbox" name="platforms[]" id="lic-<?php echo $os['id']; ?>" value="<?php echo $os['id']; ?>" /> <?php echo $os['name']; ?></label></li>
                     <?php endforeach; ?>
@@ -76,7 +79,7 @@
             </div>
             <div class="dt_cell">
                 <div class="item">
-                    <label><?php _e('Allowed groups','dtransport'); ?></label>
+                    <label class="dt_lgroups"><?php _e('Allowed groups','dtransport'); ?></label>
                     <div class="dt_el_list">
                         <?php echo $groups; ?>
                     </div>
@@ -113,4 +116,14 @@
     <input type="hidden" name="type" value="<?php echo $type; ?>" />
     <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
+</div>
+<div id="down-blocker">
+    
+</div>
+<div id="down-loader">
+    <img src="../images/219.gif" title="<?php _e('Saving data...','dtransport'); ?>" width="64" height="64" /><br />
+    <span></span>
+</div>
+<div id="down-commands">
+    <a href="#" id="save-data"><?php echo $edit ? __('Save Changes','dtransport') : __('Save Download','dtransport'); ?></a>
 </div>

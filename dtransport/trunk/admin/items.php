@@ -171,6 +171,7 @@ function formItems($edit=0){
 	  
     $form = new RMForm('','','');
 	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->desc('e') : '',$rmc_config['editor_type']);
+	$ed->addClass('required');
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
@@ -227,6 +228,10 @@ function formItems($edit=0){
     
     RMTemplate::get()->add_style('admin.css','dtransport');
     RMTemplate::get()->add_style('items.css','dtransport');
+	
+	RMTemplate::get()->add_local_script('itemsform.js', 'dtransport');
+	RMTemplate::get()->add_local_script('jquery.validate.min.js', 'rmcommon', 'include');
+	
     DTFunctions::toolbar();
     xoops_cp_location($location);
     xoops_cp_header();
