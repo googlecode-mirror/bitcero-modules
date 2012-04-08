@@ -54,6 +54,9 @@ $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
 $modversion['hasMain'] = 1;
+$mc = RMUtilities::module_config('mywords');
+$modversion['sub'][0]['name'] = __('Submit Article','mywords');
+$modversion['sub'][0]['url'] = $mc['permalinks']>1 ? "submit/" : 'submit.php';
 
 // Archivo SQL
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
