@@ -445,5 +445,17 @@ class MWFunctions
 		return $ret;
 		
     }
+    
+    /**
+    * Verify if a user is a registered editor
+    */
+    public function is_editor($uid=0){
+        if ($uid<=0) return false;
+        
+        $editor = new MWEditor();
+        $editor->from_user($uid);
+        return !$editor->isNew();
+        
+    }
 	
 }
