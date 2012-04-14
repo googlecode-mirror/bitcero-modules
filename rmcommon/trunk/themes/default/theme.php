@@ -122,7 +122,7 @@ foreach ($this->tpl_head as $head){
     <!-- Contenido -->
     <div id="rmc-center-content" class="<?php echo $left_widgets || $this->get_menus() ? 'reduce_left ' : ''; ?><?php echo $right_widgets ? 'reduce_right' : '' ?>">
         <?php foreach($rmc_messages as $message): ?>
-            <div class="<?php if($message['level']): ?>errorMsg<?php else: ?>infoMsg<?php endif; ?>">
+            <div class="<?php if($message['level']>0): ?>errorMsg<?php else: ?>infoMsg<?php endif; ?>">
                 <span class="msg-close"></span>
                 <?php echo html_entity_decode($message['text']); ?>
             </div>

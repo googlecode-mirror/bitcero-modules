@@ -152,7 +152,7 @@ class RMTemplate
 		
 		$where = $type=='module' ? 'modules/'.$module : ($type=='plugin' ? $module.'/'.$plugin : 'modules/rmcommon');
         
-		$lpath = RMCPATH.'/themes/'.$theme.'/templates/'.$where.'/'.$file;
+		$lpath = RMCPATH.'/themes/'.$theme.'/'.$where.'/'.$file;
 
 		if (!is_dir(RMCPATH.'/themes/'.$theme)){
 			$theme = 'default';
@@ -276,7 +276,7 @@ class RMTemplate
                 $url .= "?ver=".RMCVERSION;
             }
             
-            $id = crc32($url);
+            $id = crc32($url.$type);
             if (isset($this->tpl_scripts[$id])) return;
             
             $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type);
@@ -298,7 +298,7 @@ class RMTemplate
             $url .= "?ver=".RMCVERSION;
         }
         
-        $id = crc32($url);
+        $id = crc32($url.$type.$more);
         
         if (isset($this->tpl_scripts[$id])) return;
         
@@ -329,6 +329,43 @@ class RMTemplate
         }
         
         $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more);
+        
+    }
+	
+	public function add_theme_script($script, $theme='', $subfolder='', $type='text/javascript', $more=''){
+        global $xoopsConfig, $rmc_config;
+
+		if(defined('XOOPS_CPFUNC_LOADED')){
+			
+			$theme = $theme=='' ? $rmc_config['theme'] : $theme;
+			$file = RMCPATH.'/themes/'.$theme.'/js/'.($subfolder!=''?$subfolder.'/':'').$script;
+			$url = str_replace(RMCPATH, RMCURL, $file);
+			
+		} else {
+
+			$theme = $theme=='' ? $xoopsConfig['theme_set'] :$theme;	
+			$file = XOOPS_THEME_PATH.'/'.$theme.'/js/'.($subfolder!=''?$subfolder.'/':'').$script;
+			$url = str_replace(XOOPS_THEME_PATH, XOOPS_THEME_URL, $file);
+		
+		}
+		
+		$id = crc32($script.$theme.$subfolder.$type.$more);
+			
+		if(!file_exists($file)) return;
+			
+		if (strpos($url, "?")>1){
+			if (strpos($url, 'ver=')===FALSE){
+				$url .= "&amp;ver=".RMCVERSION;
+			}
+		} else {
+			$url .= "?ver=".RMCVERSION;
+		}
+			 
+		$this->tpl_scripts[$id] = array(
+			'url'=>$url,
+			'type'=>$type,
+			'more'=>$more
+		);
         
     }
     /**
@@ -371,7 +408,7 @@ class RMTemplate
     public function add_style($sheet, $element='rmcommon', $subfolder='', $media='all', $more='', $front = false){
         global $rmc_config, $xoopsConfig;
         
-		$id = crc32($sheet.$element.$subfolder);
+		$id = crc32($sheet.$element.$subfolder.$media.$more);
 		
 		if (isset($this->tpl_styles[$id])) return;
 
@@ -428,31 +465,40 @@ class RMTemplate
     * @param string Another <style> tag attribs
     */
     public function add_theme_style($sheet, $theme='', $subfolder='', $media='all', $more=''){
-        global $xoopsConfig;
-        
-        if($theme=='')
-            $theme = $xoopsConfig['theme_set'];
-            
-        $file = XOOPS_THEME_PATH.'/'.$theme.'/css/'.($subfolder!=''?$subfolder.'/':'').$sheet;
-        
-        if(!file_exists($file)) return;
-        
-        $url = str_replace(XOOPS_THEME_PATH, XOOPS_THEME_URL, $file);
-        
-        if (strpos($url, "?")>1){
-            if (strpos($url, 'ver=')===FALSE){
-                $url .= "&amp;ver=".RMCVERSION;
-             }
-        } else {
-            $url .= "?ver=".RMCVERSION;
-        }
-         
-         $this->tpl_styles[$id] = array(
-             'url'=>$url,
-            'rel'=>'stylesheet',
-            'media'=>$media,
-            'more'=>$more
-         );
+        global $xoopsConfig, $rmc_config;
+
+		if(defined('XOOPS_CPFUNC_LOADED')){
+			
+			$theme = $theme=='' ? $rmc_config['theme'] : $theme;
+			$file = RMCPATH.'/themes/'.$theme.'/css/'.($subfolder!=''?$subfolder.'/':'').$sheet;
+			$url = str_replace(RMCPATH, RMCURL, $file);
+			
+		} else {
+
+			$theme = $theme=='' ? $xoopsConfig['theme_set'] :$theme;	
+			$file = XOOPS_THEME_PATH.'/'.$theme.'/css/'.($subfolder!=''?$subfolder.'/':'').$sheet;
+			$url = str_replace(XOOPS_THEME_PATH, XOOPS_THEME_URL, $file);
+		
+		}
+		
+		$id = crc32($sheet.$theme.$subfolder.$media.$more);
+			
+		if(!file_exists($file)) return;
+			
+		if (strpos($url, "?")>1){
+			if (strpos($url, 'ver=')===FALSE){
+				$url .= "&amp;ver=".RMCVERSION;
+			}
+		} else {
+			$url .= "?ver=".RMCVERSION;
+		}
+			 
+		$this->tpl_styles[$id] = array(
+			'url'=>$url,
+			'rel'=>'stylesheet',
+			'media'=>$media,
+			'more'=>$more
+		);
         
     }
     

@@ -50,9 +50,10 @@ function xoops_cp_location($location){
  * Función para mostrar un mensaje de error en determinadas pginas
  * @param string $url Pgina en la que se mostrar el error
  * @param string $msg Mensaje de Error
- * @param int $level 0 = Informacin, 1 = Error
+ * @param int $level Indicates the level of the message (error, info, warn, etc.) You can use the constants RMMSG_INFO, RMMSG_WARN... or you can specify your own level number
+ * @param string $icon URL for an icon to show in message. This value is used by templates.
  */
-function redirectMsg($url, $msg='', $level=0){
+function redirectMsg($url, $msg='', $level=5, $icon=''){
     $i = isset($_SESSION['rmMsg']) ? count($_SESSION['rmMsg']) + 1 : 0;
     $_SESSION['rmMsg'][$i]['text'] = htmlentities($msg);
     $_SESSION['rmMsg'][$i]['level'] = $level;
