@@ -65,7 +65,7 @@ input[type='submit']:hover {
 	background-color:#27424e;
     text-shadow:1px 1px 0px #090f12;
 }
-.buttonGreen{
+.buttonGreen, input.buttonGreen{
 	-moz-box-shadow:inset 0px 1px 0px 0px #c7e1aa;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #c7e1aa;
 	box-shadow:inset 0px 1px 0px 0px #c7e1aa;
@@ -77,7 +77,7 @@ input[type='submit']:hover {
 	color:#344222;
 	text-shadow:1px 1px 0px #a8c980;
 }
-.buttonGreen:hover {
+.buttonGreen:hover, input.buttonGreen:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #669c29), color-stop(1, #8ec154) );
 	background:-moz-linear-gradient( center top, #669c29 5%, #8ec154 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#669c29', endColorstr='#8ec154');
@@ -85,7 +85,7 @@ input[type='submit']:hover {
     color: #FFF;
     text-shadow: 1px 1px 0 #344222;
 }
-.buttonBlue{
+.buttonBlue, input.buttonBlue{
     -moz-box-shadow:inset 0px 1px 0px 0px #bfdbf3;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #bfdbf3;
 	box-shadow:inset 0px 1px 0px 0px #bfdbf3;
@@ -97,13 +97,13 @@ input[type='submit']:hover {
 	color:#163c61;
 	text-shadow:1px 1px 0px #99bddb;
 }
-.buttonBlue:hover{
+.buttonBlue:hover, input.buttonBlue:hover{
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #528ece), color-stop(1, #7db6e5) );
 	background:-moz-linear-gradient( center top, #528ece 5%, #7db6e5 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#528ece', endColorstr='#7db6e5');
 	background-color:#528ece;
 }
-.buttonBlack{
+.buttonBlack, input.buttonBlack{
     -moz-box-shadow:inset 0px 1px 0px 0px #a7a7a7;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #a7a7a7;
 	box-shadow:inset 0px 1px 0px 0px #a7a7a7;
@@ -115,14 +115,14 @@ input[type='submit']:hover {
 	color:#fff;
 	text-shadow:-1px -1px 0px #000000;
 }
-.buttonBlack:hover{
+.buttonBlack:hover, input.buttonBlack:hover{
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #070707), color-stop(1, #4b4b4b) );
 	background:-moz-linear-gradient( center top, #070707 5%, #4b4b4b 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#070707', endColorstr='#4b4b4b');
 	background-color:#070707;
     text-shadow:1px 1px 0px #000000;
 }
-.buttonGray {
+.buttonGray, input.buttonGray{
 	-moz-box-shadow:inset 0px 1px 0px 0px #b1b5ba;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #b1b5ba;
 	box-shadow:inset 0px 1px 0px 0px #b1b5ba;
@@ -134,14 +134,14 @@ input[type='submit']:hover {
 	color:#fff;
 	text-shadow:-1px -1px 0px #242024;
 }
-.buttonGray:hover {
+.buttonGray:hover, input.buttonGray:hover{
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #2f363d), color-stop(1, #616972) );
 	background:-moz-linear-gradient( center top, #2f363d 5%, #616972 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2f363d', endColorstr='#616972');
 	background-color:#2f363d;
     text-shadow:1px 1px 0px #242024;
 }
-.buttonDarkRed {
+.buttonDarkRed, input.buttonDarkRed {
 	-moz-box-shadow:inset 0px 1px 0px 0px #dd8d81;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #dd8d81;
 	box-shadow:inset 0px 1px 0px 0px #dd8d81;
@@ -153,14 +153,14 @@ input[type='submit']:hover {
 	color:#fff;
 	text-shadow:-1px -1px 0px #330505;
 }
-.buttonDarkRed:hover {
+.buttonDarkRed:hover, input.buttonDarkRed:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6a0500), color-stop(1, #b81a02) );
 	background:-moz-linear-gradient( center top, #6a0500 5%, #b81a02 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6a0500', endColorstr='#b81a02');
 	background-color:#6a0500;
     text-shadow:1px 1px 0px #330505;
 }
-.buttonRed {
+.buttonRed, input.buttonRed {
 	-moz-box-shadow:inset 0px 1px 0px 0px #fda6aa;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #fda6aa;
 	box-shadow:inset 0px 1px 0px 0px #fda6aa;
@@ -172,13 +172,13 @@ input[type='submit']:hover {
 	color:#4d060b;
 	text-shadow:1px 1px 0px #ed979c;
 }
-.buttonRed:hover {
+.buttonRed:hover, input.buttonRed:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d9060d), color-stop(1, #f94a50) );
 	background:-moz-linear-gradient( center top, #d9060d 5%, #f94a50 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9060d', endColorstr='#f94a50');
 	background-color:#d9060d;
 }
-.buttonOrange {
+.buttonOrange, input.buttonOrange {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffcb90;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffcb90;
 	box-shadow:inset 0px 1px 0px 0px #ffcb90;
@@ -190,13 +190,13 @@ input[type='submit']:hover {
 	color:#471f01;
 	text-shadow:1px 1px 0px #f0bb90;
 }
-.buttonOrange:hover {
+.buttonOrange:hover, input.buttonOrange:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f57003), color-stop(1, #fe9620) );
 	background:-moz-linear-gradient( center top, #f57003 5%, #fe9620 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f57003', endColorstr='#fe9620');
 	background-color:#f57003;
 }
-.buttonPurple {
+.buttonPurple, input.buttonPurple {
 	-moz-box-shadow:inset 0px 1px 0px 0px #dea7c9;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #dea7c9;
 	box-shadow:inset 0px 1px 0px 0px #dea7c9;
@@ -208,14 +208,14 @@ input[type='submit']:hover {
 	color:#ffffff;
 	text-shadow:-1px -1px 0px #421727;
 }
-.buttonPurple:hover {
+.buttonPurple:hover, input.buttonPurple:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #74224f), color-stop(1, #b94e92) );
 	background:-moz-linear-gradient( center top, #74224f 5%, #b94e92 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74224f', endColorstr='#b94e92');
 	background-color:#74224f;
     text-shadow:1px 1px 0px #421727;
 }
-.buttonDarkBlue {
+.buttonDarkBlue, input.buttonDarkBlue {
 	-moz-box-shadow:inset 0px 1px 0px 0px #a1b2c9;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #a1b2c9;
 	box-shadow:inset 0px 1px 0px 0px #a1b2c9;
@@ -227,7 +227,7 @@ input[type='submit']:hover {
 	color:#ffffff;
 	text-shadow:-1px -1px 0px #080f1a;
 }
-.buttonDarkBlue:hover {
+.buttonDarkBlue:hover, input.buttonDarkBlue:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1b2e4c), color-stop(1, #426390) );
 	background:-moz-linear-gradient( center top, #1b2e4c 5%, #426390 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1b2e4c', endColorstr='#426390');

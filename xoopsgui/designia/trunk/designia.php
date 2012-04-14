@@ -41,11 +41,7 @@
             });
         </script>
         
-        <style type="text/css">
-            .dark_bg{background-color: #<?php echo $dConfig['topbar']; ?>;}
-            header#des-header{background: #<?php echo $dConfig['logobg']; ?>;}
-            #des-menu-nav{background: #<?php echo $dConfig['menubar']; ?>;border-top: 1px solid #<?php echo $dConfig['menubar_top']; ?>;border-bottom: 1px solid #<?php echo $dConfig['menubar_bottom']; ?>;}
-        </style>
+        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main-designia.php" />
     </head>
     <body>
         <nav id="des-vertical" class="dark_bg dark_clear_text">
