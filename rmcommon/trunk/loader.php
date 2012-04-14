@@ -14,6 +14,14 @@ define('ABSURL', XOOPS_URL);
 define('ABSPATH', XOOPS_ROOT_PATH);
 define('RMCVERSION','2.0.75');
 
+// Message Levels
+define('RMMSG_INFO', 0);
+define('RMMSG_WARN', 1);
+define('RMMSG_SUCCESS', 2);
+define('RMMSG_SAVED', 3);
+define('RMMSG_ERROR', 4);
+define('RMMSG_OTHER', 5);
+
 ob_start('cu_render_output');
 
 /**
@@ -144,6 +152,9 @@ if (empty($plugins) || !is_array($plugins)){
     }
 
 }
+
+// Load GUI theme events
+RMEvents::get()->load_extra_preloads(RMCPATH.'/themes/'.$rmc_config['theme'], ucfirst($rmc_config['theme']));
 
 unset($plugins);
 unset($file);

@@ -147,7 +147,7 @@ class RMPageNav
                 if($this->template!='' && is_file($this->template)){
                     include $this->template;
                 } else {
-                    include RMTemplate::get_template('navigation_pages.php', 'module', 'rmcommon');
+                    include RMTemplate::get()->get_template('navigation_pages.php', 'module', 'rmcommon');
                 }
 		
 		$this->displayed = true;
