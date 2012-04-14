@@ -1,0 +1,71 @@
+div.rmc_pages_navigation_container{
+    padding: 3px 0;
+    overflow: hidden;
+}
+div.rmc_pages_navigation_container ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+div.rmc_pages_navigation_container ul li{
+	float: left;
+	margin: 0 2px;
+	line-height: 1.2em;
+}
+div.rmc_pages_navigation_container ul li.pages_caption{
+	padding: 4px 6px;
+}
+div.rmc_pages_navigation_container ul li.showing{
+	padding: 4px 6px;
+}
+div.rmc_pages_navigation_container ul li.pages{
+	-moz-box-shadow:inset 0px 1px 0px 0px #fcfcfc;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fcfcfc;
+	box-shadow:inset 0px 1px 0px 0px #fcfcfc;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f8f8f8), color-stop(1, #e6e6e6) );
+	background:-moz-linear-gradient( center top, #f8f8f8 5%, #e6e6e6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#e6e6e6');
+	background-color:#f8f8f8;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #aaaaaa;
+	display:inline-block;
+	font-size:10px;
+	font-weight:bold;
+	text-transform: uppercase;
+}
+div.rmc_pages_navigation_container ul li.pages a{
+	padding:4px 8px;
+	display: block;
+	color:#333333;
+	text-shadow:1px 1px 0px #ffffff;
+	text-decoration:none;
+}
+div.rmc_pages_navigation_container ul li.pages:hover,
+div.rmc_pages_navigation_container ul li.current_page{
+	-moz-box-shadow:inset 0px 1px 0px 0px #61676d;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #61676d;
+	box-shadow:inset 0px 1px 0px 0px #61676d;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #394148), color-stop(1, #394148) );
+	background:-moz-linear-gradient( center top, #394148 5%, #394148 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#394148', endColorstr='#394148');
+	background-color:#394148;
+	border:1px solid #21272d;
+}
+div.rmc_pages_navigation_container ul li.pages:hover a{
+    color:#ffffff;
+    text-shadow:1px 1px 0px #21272d;
+    text-decoration: none;
+}
+div.rmc_pages_navigation_container ul li.current_page{
+	padding: 4px 8px;
+	color:#ffffff;
+    text-shadow:1px 1px 0px #21272d;
+    text-decoration: none;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	font-size:10px;
+	font-weight:bold;
+}

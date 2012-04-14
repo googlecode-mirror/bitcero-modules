@@ -1,0 +1,8 @@
+.set_table{display: table; width: 100%;}
+.set_row{display: table-row;}
+.set_cell{display: table-cell; padding: 5px 15px;}
+.set_cell h3{padding: 0 0 5px 0; border-bottom: 1px solid #ccc;}
+label.opt_caption{display: block; font-weight: bold; padding: 3px 0; margin-top: 5px;}
+input.single{width: 90%;}
+span.opt_desc{display: block;font-size: 10px;color:#666;}
+.colorshow{display: inline-block; width: 30px; border: 1px solid #000; height: 17px;margin: 0;padding: 5px 0;}

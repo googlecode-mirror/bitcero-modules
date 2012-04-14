@@ -1,0 +1,27 @@
+span.rmc_options{
+	display: inline-block;
+	font-size: 0.9em;
+	padding: 4px;
+	visibility: hidden;
+	background: #ebebeb;
+	border-radius: 2px;
+	margin: 5px 0;
+}
+span.rmc_options a{
+	color: #666;
+	text-shadow: 1px 1px 0 #fff;
+}
+.even:hover span.rmc_options, .odd:hover span.rmc_options{
+	visibility: visible;
+}
+div.rmc_bulkactions{
+	padding: 4px 0;
+	overflow: hidden;
+}
+div.rmc_bulkactions div.rmc_pages_navigation_container{
+	float: right;
+}
+.descriptions{
+	padding: 8px 0;
+	color: #666;
+}
