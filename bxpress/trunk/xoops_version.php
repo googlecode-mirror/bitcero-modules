@@ -32,7 +32,7 @@ $modversion['description'] = __('A simple forums module for XOOPS and common uti
 $modversion['rmversion'] = array('number'=>1,'revision'=>0,'status'=>-2,'name'=>__('bXpress','bxpress'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.3';
-$modversion['icon32'] = 'images/forum32.png';
+$modversion['icon32'] = 'images/forum48.png';
 $modversion['icon24'] = 'images/forum.png';
 $modversion['icon16'] = 'images/forum16.png';
 $modversion['author'] = "BitC3R0";
