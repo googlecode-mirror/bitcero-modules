@@ -1,19 +1,10 @@
 $(document).ready(function(){
     var selector;
     
-    $(".selector").each(function(index){
-        $("#"+$(this).attr("id")+'-color').css('background', '#'+$(this).val());
-    });
-    
-    $("input.selector").ColorPicker({
-        onBeforeShow: function(){
-            selector = $(this);
-            $(this).ColorPickerSetColor($(this).val());
-        },
-        onChange: function(hsb, hex, rgb){
-            $(selector).val(hex);
-            $("#"+$(selector).attr("id")+'-color').css('background', '#'+hex);
-        }
+    editAreaLoader.init({
+        id : "editor"		// textarea id
+        ,syntax: "css"			// syntax to be uses for highgliting
+        ,start_highlight: true		// to display with highlight mode on start-up
     });
     
 });

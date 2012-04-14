@@ -13,6 +13,10 @@ global $xoopsUser, $xoopsSecurity;
 define('DESIGNIA_PATH', RMCPATH.'/themes/designia');
 define('DESIGNIA_URL', RMCURL.'/themes/designia');
 
+if(!file_exists(XOOPS_CACHE_PATH.'/designia.css')){
+    file_put_contents(XOOPS_CACHE_PATH.'/designia.css',file_get_contents(RMCPATH.'/themes/designia/css/main.css'));
+}
+
 include_once DESIGNIA_PATH.'/class/designiafunctions.class.php';
 
 // Cookies
