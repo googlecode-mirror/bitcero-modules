@@ -127,7 +127,7 @@ function saveCatego($edit = 0){
     }
     
     if($title==''){
-        redirectMsg('categos.php?'.$q, __('Please provide a name for this category!','bxpress'), 1);
+        redirectMsg('categos.php?'.$q, __('Please provide a name for this category!','bxpress'), RMMSG_ERROR);
         die();
     }
     
