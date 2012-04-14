@@ -32,6 +32,7 @@ $modversion['version'] = 3.0;
 $modversion['rmversion'] = array('number'=>3,'revision'=>039,'status'=>0,'name'=>'MyGalleries');
 $modversion['description'] = __('Module to publish and manage photo galleries in XOOPS using Common Utilities', 'galleries');
 $modversion['icon32'] = 'images/icon32.png';
+$modversion['icon48'] = 'images/browse_set.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['icon16'] = 'images/images.png';
 $modversion['author'] = "BitC3R0";
