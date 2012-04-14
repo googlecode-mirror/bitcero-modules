@@ -1,0 +1,103 @@
+/** Messages **/
+.des_sys_message{
+    position: relative;
+    padding: 15px 10px;
+    margin: 12px 0 20px;
+    width: auto;
+    padding-left: 55px;
+    font-style: normal;
+    font-size: 13px;
+    background: #ffedc1;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 0 #ebebeb;
+    -moz-box-shadow: 1px 1px 0 #ebebeb;
+    box-shadow: 1px 1px 0 #ebebeb; 
+    margin: 12px 50px;
+}
+.msgtype_0{ /* Information */
+    background: url(../images/info_32.png) no-repeat 8px 6px #C7E3F9;
+    background: url(../images/info_32.png) no-repeat 8px 6px,-moz-linear-gradient(top,#C7E3F9 0,#AECEE8 100%);
+    background: url(../images/info_32.png) no-repeat 8px 6px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#C7E3F9),color-stop(100%,#AECEE8));
+    background: url(../images/info_32.png) no-repeat 8px 6px,-webkit-linear-gradient(top,#C7E3F9 0,#AECEE8 100%);
+    background: url(../images/info_32.png) no-repeat 8px 6px,-o-linear-gradient(top,#C7E3F9 0,#AECEE8 100%);
+    background: url(../images/info_32.png) no-repeat 8px 6px,-ms-linear-gradient(top,#C7E3F9 0,#AECEE8 100%);
+    background: url(../images/info_32.png) no-repeat 8px 6px,linear-gradient(top,#C7E3F9 0,#AECEE8 100%);
+    border: 1px solid #70A2C9;
+    border-color: #70A2C9 #5F9BC9;
+    color: #333;
+    text-shadow: 1px 1px 1px #E2F6FA;
+}
+.msgtype_1{ /* Alert */
+    background: url(../images/warning_32.png) no-repeat 8px 6px #FFEDC1;
+    background: url(../images/warning_32.png) no-repeat 8px 6px,-moz-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/warning_32.png) no-repeat 8px 6px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#FFEDC1),color-stop(100%,#FCDE8D));
+    background: url(../images/warning_32.png) no-repeat 8px 6px,-webkit-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/warning_32.png) no-repeat 8px 6px,-o-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/warning_32.png) no-repeat 8px 6px,-ms-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/warning_32.png) no-repeat 8px 6px,linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    border: 1px solid #f0a860;
+    color: #333;
+    text-shadow: 1px 1px 1px #FFEDC1;
+}
+.msgtype_2{/* Success */
+    background: url(../images/ok_32.png) no-repeat 8px 9px #CDEB8E;
+    background: url(../images/ok_32.png) no-repeat 8px 9px,-moz-linear-gradient(top,#CDEB8E 0,#A5C956 100%);
+    background: url(../images/ok_32.png) no-repeat 8px 9px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#CDEB8E),color-stop(100%,#A5C956));
+    background: url(../images/ok_32.png) no-repeat 8px 9px,-webkit-linear-gradient(top,#CDEB8E 0,#A5C956 100%);
+    background: url(../images/ok_32.png) no-repeat 8px 9px,-o-linear-gradient(top,#CDEB8E 0,#A5C956 100%);
+    background: url(../images/ok_32.png) no-repeat 8px 9px,-ms-linear-gradient(top,#CDEB8E 0,#A5C956 100%);
+    background: url(../images/ok_32.png) no-repeat 8px 9px,linear-gradient(top,#CDEB8E 0,#A5C956 100%);
+    border: 1px solid #87AE33;
+    color: #3F4B25;
+    text-shadow: 1px 1px 1px #D5EAA8;
+}
+.msgtype_3{ /* Saved */
+    background: url(../images/save_32.png) no-repeat 8px 6px #B5D8FA;
+    background: url(../images/save_32.png) no-repeat 8px 6px,-moz-linear-gradient(top,#B5D8FA 0,#8CB9DB 100%);
+    background: url(../images/save_32.png) no-repeat 8px 6px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#B5D8FA),color-stop(100%,#8CB9DB));
+    background: url(../images/save_32.png) no-repeat 8px 6px,-webkit-linear-gradient(top,#B5D8FA 0,#8CB9DB 100%);
+    background: url(../images/save_32.png) no-repeat 8px 6px,-o-linear-gradient(top,#B5D8FA 0,#8CB9DB 100%);
+    background: url(../images/save_32.png) no-repeat 8px 6px,-ms-linear-gradient(top,#B5D8FA 0,#8CB9DB 100%);
+    background: url(../images/save_32.png) no-repeat 8px 6px,linear-gradient(top,#B5D8FA 0,#8CB9DB 100%);
+    border: 1px solid cornflowerBlue;
+    color: #36414B;
+    text-shadow: 1px 1px 1px #E2F6FA;
+}
+.msgtype_4{/* Error */
+    background: url(../images/error_32.png) no-repeat 8px 6px #F7E9ED;
+    background: url(../images/error_32.png) no-repeat 8px 6px,-moz-linear-gradient(top,#F7E9ED 0,#EFC8C9 100%);
+    background: url(../images/error_32.png) no-repeat 8px 6px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7E9ED),color-stop(100%,#EFC8C9));
+    background: url(../images/error_32.png) no-repeat 8px 6px,-webkit-linear-gradient(top,#F7E9ED 0,#EFC8C9 100%);
+    background: url(../images/error_32.png) no-repeat 8px 6px,-o-linear-gradient(top,#F7E9ED 0,#EFC8C9 100%);
+    background: url(../images/error_32.png) no-repeat 8px 6px,-ms-linear-gradient(top,#F7E9ED 0,#EFC8C9 100%);
+    background: url(../images/error_32.png) no-repeat 8px 6px,linear-gradient(top,#F7E9ED 0,#EFC8C9 100%);
+    border: 1px solid #C17579;
+    color: #9E2E31;
+    text-shadow: 1px 1px 1px #FFAEBC;
+}
+.msgtype_5{/* Other */
+    background: url(../images/msg_32.png) no-repeat 8px 6px #FFEDC1;
+    background: url(../images/msg_32.png) no-repeat 8px 6px,-moz-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/msg_32.png) no-repeat 8px 6px,-webkit-gradient(linear,left top,left bottom,color-stop(0%,#FFEDC1),color-stop(100%,#FCDE8D));
+    background: url(../images/msg_32.png) no-repeat 8px 6px,-webkit-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/msg_32.png) no-repeat 8px 6px,-o-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/msg_32.png) no-repeat 8px 6px,-ms-linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    background: url(../images/msg_32.png) no-repeat 8px 6px,linear-gradient(top,#FFEDC1 0,#FCDE8D 100%);
+    border: 1px solid #f0a860;
+    color: orangeRed;
+    text-shadow: 1px 1px 1px #FFEDC1;
+}
+.des_sys_message .msg-close {
+    background: url(../images/close.png) center 0;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.des_sys_message .msg-close:hover{
+    background-position: center -33px;
+}
