@@ -8,6 +8,6 @@ class MywordsDesigniaPreload
                         <img src="'.RMCURL.'/themes/designia/images/blog.png" alt="Blog" />
                         <p>Blog</p>
                     </a>
-                <li>';
+                </li>';
     }
 }
