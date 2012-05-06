@@ -149,6 +149,8 @@ function show_rm_blocks()
         var lang_positions = "'.__('Show Positions','rmcommon').'";
         var lang_blocks = "'.__('Show Blocks','rmcommon').'";</script>');
     
+    RMFunctions::create_toolbar();
+    
     xoops_cp_header();
     
     // Available Widgets
