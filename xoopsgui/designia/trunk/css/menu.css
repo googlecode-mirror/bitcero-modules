@@ -32,18 +32,15 @@
 	left:			-50px;
 	top:			28px; /* match top ul list item height */
 	z-index:		99;
-    background: #2a2a2a;
 }
 ul.menu-menu li:hover li ul,
 ul.menu-menu li.sfHover li ul {
 	top:			-999em;
-    background: #2a2a2a;
 }
 ul.menu-menu li li:hover ul,
 ul.menu-menu li li.sfHover ul {
 	left:			0; /* match ul width */
 	top:			0;
-    background: #2a2a2a;
 }
 ul.menu-menu li li:hover li ul,
 ul.menu-menu li li.sfHover li ul {
@@ -104,7 +101,6 @@ li.sfHover > a > .sf-sub-indicator {
 .menu-menu ul li:hover > a > .sf-sub-indicator,
 .menu-menu ul li.sfHover > a > .sf-sub-indicator {
 	background-position: -10px 0; /* arrow hovers for modern browsers*/
-    background-color: #0E3243;
 }
 
 /*** shadows for all but IE6 ***/

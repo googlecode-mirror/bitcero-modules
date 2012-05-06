@@ -24,7 +24,6 @@
         ?>
         
         <title><?php if($this->get_var('xoops_pagetitle')!=''): ?><?php echo $this->get_var('xoops_pagetitle'); ?> - <?php endif; ?><?php echo isset($xoopsModule) ? $xoopsModule->getInfo('name').' - ' : ''; ?><?php echo $xoopsConfig['sitename']; ?></title>
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main.css" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/menu.css" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.mCustomScrollbar.css" />
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/hoverIntent.js"></script>
@@ -34,10 +33,13 @@
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.tablesorter.min.js"></script>
         <script type="text/javascript">
             var designia_url = '<?php echo $rm_theme_url; ?>';
             $(document).ready(function(){
                 $("ul.menu-menu").superfish();
+                $("table.outer").addClass('tablesorter');
+                $(".outer").tablesorter();
             });
         </script>
         
@@ -97,8 +99,8 @@
                         <div id="des-userinfo">
                             <p id="usr-name"><?php echo sprintf(__('Welcome back %s','designia'), $xoopsUser->getVar('name')); ?></p>
                             <p>
-                                <a href="<?php echo XOOPS_URL; ?>"><?php _e('View Site','designia'); ?></a>
-                                <a href="<?php echo XOOPS_URL; ?>"><?php _e('Preferences','designia'); ?></a>
+                                <a href="<?php echo XOOPS_URL; ?>" target="viewsite"><?php _e('View Site','designia'); ?></a>
+                                <a href="<?php echo RMCURL; ?>/?designia=settings"><?php _e('Preferences','designia'); ?></a>
                                 <a href="<?php echo XOOPS_URL; ?>"><?php _e('Log out','designia'); ?></a>
                             </p>
                         </div>
@@ -270,7 +272,7 @@
                         <div id="des-rblocks">
                             <?php foreach($right_widgets as $widget): ?>
                             <div class="des_widget_wrapper">
-                                <div class="des_widget_title dark_bg overlay_bg dark_border dark_clear_text"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
+                                <div class="des_widget_title dark_bg overlay_bg"><span<?php echo isset($widget['icon']) && $widget['icon']!='' ? ' style="background-image: url('.$widget['icon'].'); padding-left: 26px;"' : ''; ?>><?php echo $widget['title']; ?></span></div>
                                 <div class="des_widget_content"><?php echo $widget['content']; ?></div>
                             </div>
                             <?php endforeach; ?>
@@ -287,7 +289,7 @@
             <?php echo sprintf(__('Powered by %s.','designia'), '<a href="http://xoops.org">'.XOOPS_VERSION.'</a>'); ?>
             <?php echo sprintf(__('Reloaded by %s.','designia'), '<a href="http://www.redmexico.com.mx/w/common-utilities/">'.RMUtilities::get()->getVersion(true, 'rmcommon').'</a>'); ?>
             <br />
-            <?php echo sprintf(__('Skinned by %s.','designia'), '<strong>Designia Theme</strong>'); ?>
+            <?php echo sprintf(__('Using %s.','designia'), '<strong>Designia Theme</strong>'); ?>
         </div>
         <!--// Footer -->
         

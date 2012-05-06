@@ -1,3 +1,4 @@
+<?php load_theme_locale('designia','',true); ?>
 <div class="rmc_pages_navigation_container">
 	<ul>
 		<?php if($showing): ?><li class="showing"><?php echo $showing_legend; ?></li><?php endif; ?>

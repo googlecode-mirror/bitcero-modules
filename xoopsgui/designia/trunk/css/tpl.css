@@ -1,0 +1,49 @@
+body{
+    background: url(../images/mainbg.png);
+    color: #000;
+}
+/* General links colors */
+a:link,a:visited,a:active{
+    color: #0E3243;
+    text-decoration: none;
+}
+/* Links color when mouse hover */
+a:hover{color: #1C6182; text-decoration: underline;}
+/* Page titles */
+h1.rmc_titles{
+    background: #ccc url(../images/navoverlay.png) repeat-x top;
+    padding: 10px;
+    font-size: 14px;
+    color: #444;
+    text-shadow: 1px 1px 0 #ebebeb;
+    margin: -11px -11px 10px -11px;
+    border: 1px solid #999;
+    border-radius: 3px 3px 0 0;
+    font-weight: normal;
+    position: relative;
+}
+h1.rmc_titles span{
+    position: absolute;
+    top: 2px; right: 1px;
+    height: 30px; width: 32px;
+}
+
+/* Dark background */
+.dark_bg{
+    background-color: #2F363D;
+}
+/* Logo background */
+#des-header{
+    background: #325169;
+}
+/* Menu bar background color */
+#des-menu-nav{
+    background: #394148;
+    border-top: 1px solid #61676d;
+    border-bottom: 1px solid #21272d;
+}
+/* Top navigation bar */
+nav#des-nav{
+    border-top: 1px solid #21272D;
+    border-bottom: 1px solid #21272D;
+}

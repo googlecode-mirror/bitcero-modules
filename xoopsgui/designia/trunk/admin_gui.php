@@ -8,14 +8,12 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
+load_theme_locale('designia','',true);
+
 global $xoopsUser, $xoopsSecurity;
 
 define('DESIGNIA_PATH', RMCPATH.'/themes/designia');
 define('DESIGNIA_URL', RMCURL.'/themes/designia');
-
-if(!file_exists(XOOPS_CACHE_PATH.'/designia.css')){
-    file_put_contents(XOOPS_CACHE_PATH.'/designia.css',file_get_contents(RMCPATH.'/themes/designia/css/main.css'));
-}
 
 include_once DESIGNIA_PATH.'/class/designiafunctions.class.php';
 
@@ -48,6 +46,11 @@ include 'ajax/modules.php';
 
 // Designia preferences
 $dConfig = include(XOOPS_CACHE_PATH.'/designia.php');
+
+//if(!file_exists(XOOPS_CACHE_PATH.'/designia.css')){
+    $csstpl = $dConfig['scheme']!='custom' ? $dConfig['scheme'] : 'main.css';
+    file_put_contents(XOOPS_CACHE_PATH.'/designia.css',file_get_contents(RMCPATH.'/themes/designia/css/'.$csstpl));
+//}
 
 // Display theme
 include_once 'designia.php';

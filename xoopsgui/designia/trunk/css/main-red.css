@@ -6,8 +6,6 @@
 @import url('reset.css');
 @import url('form-and-buttons.css');
 @import url('system-messages.css');
-@import url('tsort.css');
-@import url('colors.css');
 
 header, nav, footer, article {display:block;}
 article {float:right; width:79%;}
@@ -25,12 +23,23 @@ body{
     line-height: 150%;
 }
 
+/* Dark background */
+.dark_bg{
+    background-color: #452827;
+}
+
+.overlay_bg{background-image: url(../images/navoverlay.png);background-repeat: repeat-x; background-position: top;}
+.dark_border{border: 1px solid #0E3243;}
+.dark_clear_text{color: #CCC;text-shadow: 1px 1px 0 #000;}
+
 /* Link colors */
 a:link,a:visited,a:active{
+    color: #0E3243;
     text-decoration: none;
 }
 /* Link color when mouse hover */
 a:hover{
+    color: #1C6182;
     text-decoration: underline;
 }
 
@@ -55,9 +64,13 @@ ul{
 
 /* Page titles */
 h1.rmc_titles{
+    background: #ccc url(../images/navoverlay.png) repeat-x top;
     padding: 10px;
     font-size: 14px;
+    color: #444;
+    text-shadow: 1px 1px 0 #ebebeb;
     margin: -11px -11px 10px -11px;
+    border: 1px solid #999;
     border-radius: 3px 3px 0 0;
     font-weight: normal;
     position: relative;
@@ -70,6 +83,7 @@ h1.rmc_titles span{
 
 /* Logo header */
 header#des-header{
+    background: #452827;
     margin: 0;
     padding: 0 50px;
     overflow: hidden;
@@ -78,6 +92,8 @@ header#des-header h1.des_logo{margin: 10px 0 0 0;}
 
 /* -- Top navigation bar -- */
 nav#des-nav{
+    border-top: 1px solid #2B1717;
+    border-bottom: 1px solid #2B1717;
     height: 60px;
     padding: 10px 0;
 }
@@ -100,11 +116,14 @@ nav#des-nav ul li:last-child{margin-right: 0;}
 
 /* Current user information */
 nav#des-nav ul li.user{
+    background: #452827;
     border-radius: 2px;
+    border: 1px solid #2B1717;
     padding: 5px;
     min-width: 240px;
+    box-shadow: 1px 1px 0 #725452;
 }
-nav#des-nav ul li.user img{margin: 0 5px 0 0; padding: 0; float: left; border-radius: 3px; box-shadow: 1px 1px 0px #666; width: 50px; height: 50px;}
+nav#des-nav ul li.user img{margin: 0 5px 0 0; padding: 0; float: left; border-radius: 3px; box-shadow: 1px 1px 0px #666;width: 50px; height: 50px;}
 nav#des-nav ul li.nav_item{
     text-align: center;
 }
@@ -114,37 +133,46 @@ nav#des-nav ul li.nav_item a{
     height: 50px;
     min-width: 50px;
     font-size: 0.85em;
+    color: #888;
     text-decoration: none;
+    text-shadow: 1px 1px 0 #2a2a2a;
     border-radius: 3px;
     text-align: center;
 }
 nav#des-nav ul li.nav_item a:hover,
 nav#des-nav ul li.nav_item a.select{
+    background: #452827;
+    border: 1px solid #2B1717;
     padding: 5px;
+    box-shadow: 1px 1px 0 #725452;
 }
 #des-userinfo a:link,
 #des-userinfo  a:visited,
 #des-userinfo  a:active{
+    color: #8d8d8d;
+    text-shadow: 1px 1px 0 #191919;
     text-decoration: none;
 }
 #des-userinfo p#usr-name{
+    color: #83AB24;
     font-size: 0.9em;
 }
 #des-userinfo p{
     font-size: 0.8em;
     width: 100%;
-    text-align: center;
-    margin-top: 10px;
 }
 #des-userinfo p a{
-    display: inline-block;
-    margin: 0 5px;
+    display: block;
+    float: left;
+    margin-right: 10px;
 }
 #des-userinfo p a:last-child{margin-right: 0;}
 
 /* -- Modules Navigation -- */
 #des-nav-modules{
+    border-bottom: 1px solid #666;
     display: none;
+    background: #ccc url(../images/bggrad.png) repeat-x top;
 }
 #des-nav-modules div.mod-wrapper{
     margin: 0 50px;
@@ -158,13 +186,17 @@ nav#des-nav ul li.nav_item a.select{
 #des-nav-modules ul li{
     float: left;
     text-align: center;
+    color: #666;
     padding: 10px;
     border-radius: 3px;
     margin: 0 5px;
     cursor: pointer;
 }
 #des-nav-modules ul li:hover{
+    background: #DFDFDF url(../images/bggrad.png) repeat-x top;
+    border: 1px solid #999;
     padding: 9px;
+    box-shadow: 1px 1px 0 #dfdfdf;
 }
 #des-nav-modules ul li .image{
     display: block;
@@ -177,11 +209,21 @@ nav#des-nav ul li.nav_item a.select{
 }
 #des-nav-modules ul li .image span{display: none;}#des-nav-modules ul li a .name{
     display: block;
+    color: #666; text-shadow: 1px 1px 0 #ebebeb;
 }
 #des-nav-modules ul li a:hover{text-decoration: none;}
-#des-nav-modules ul li:hover a{}
+#des-nav-modules ul li:hover a{
+    color: #536173;
+    text-shadow: 1px 1px 0 #E1E4EA;
+}
 
 /* -- Menu bar -- */
+#des-menu-nav{
+    box-shadow: 0 1px 0 #dadada;
+    background: #394148;
+    border-top: 1px solid #61676d;
+    border-bottom: 1px solid #2B1717;
+}
 #des-menu-nav ul{
     padding: 0;
     margin: 0 50px;
@@ -190,28 +232,44 @@ nav#des-nav ul li.nav_item a.select{
 #des-menu-nav ul li{
     float: left;
     margin:0;
+    border-right: 1px solid #666;
 }
 #des-menu-nav ul li:first-child{margin-left: 0;}
 #des-menu-nav ul li:last-child{margin-right: 0;}
 #des-menu-nav ul li a{
+    color: #83AB24;
     display: block;
     padding: 8px 24px 8px 24px;
     text-decoration: none;
     font-size: 0.95em;
+    text-shadow: 1px 1px 0 #2a2a2a;
+    border-right: 1px solid #2a2a2a;
     background-position: 4px;
     background-repeat: no-repeat;
 }
-#des-menu-nav ul li a:hover{}
+#des-menu-nav ul li a:hover{background-color: #2a2a2a;}
 
 #des-menu-nav ul li ul li{
     border-right: 0;
 }
 #des-menu-nav ul li ul li a{
     border-right: 0;
+    color: #999;
     background-color: transparent;
+    border-bottom: 1px dotted #333;
     background-position: 4px;
     background-repeat: no-repeat;
     padding: 7px 8px 7px 24px;
+}
+#des-menu-nav ul li ul li:first-child a{
+    border-radius: 0 4px 0 0;
+}
+#des-menu-nav ul li ul li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+#des-menu-nav ul li ul li a:hover{
+    background-color: #0E3243;
+    color: #999;
 }
 #des-menu-nav ul li ul li ul{
     left: 150px;
@@ -220,9 +278,12 @@ nav#des-nav ul li.nav_item a.select{
 
 /* -- Toolbar -- */
 #des-toolbar{
+    background: #0E3243 url(../images/navoverlay.png) repeat-x top;
     margin: 10px 50px;
     border-radius: 4px;
+    border: 1px solid #0E3243;
     font-size: 0.9em;
+    box-shadow: 1px 1px 0 #ebebeb;
 }
 #des-toolbar ul{
     list-style: none;
@@ -232,13 +293,17 @@ nav#des-nav ul li.nav_item a.select{
 }
 #des-toolbar ul li{
     float: left;
+    border-right: 1px solid #7D9099;
 }
 #des-toolbar ul li a{
     display: block;
     padding: 8px 12px 8px 20px;
     background-repeat: no-repeat;
     background-position: 5px;
+    border-right: 1px solid #2A4551;
+    color: #9FAEB5;
     text-decoration: none;
+    text-shadow: 1px 1px 0 #091D26;
 }
 #des-toolbar ul li:first-child{
     border-radius: 4px 0 0 4px;
@@ -246,9 +311,9 @@ nav#des-nav ul li.nav_item a.select{
 #des-toolbar ul li:last-child{
     border-radius: 0 4px 4px 0;
 }
-#des-toolbar ul li:hover{}
-#des-toolbar ul li:hover a{}
-#des-toolbar ul li.selected{}
+#des-toolbar ul li:hover{background: #000 url(../images/navoverlay.png) repeat-x top;}
+#des-toolbar ul li:hover a{color: #999; text-shadow: 1px 1px 0 #000;}
+#des-toolbar ul li.selected{background: #000 url(../images/navoverlay.png) repeat-x top;}
 
 /* -- Content -- */
 #des-content-wrapper{
@@ -262,10 +327,13 @@ nav#des-nav ul li.nav_item a.select{
     display: table-row;
 }
 #des-content{
+    background: #FFF;
     border-radius: 4px;
     padding: 10px;
+    border: 1px solid #ccc;
     display: table-cell;
     vertical-align: top;
+    box-shadow: 1px 1px 0px #ebebeb, -1px -1px 0px #ebebeb, 1px -1px 0px #ebebeb, -1px 1px 0px #ebebeb;
 }
 
 /* -- Widgets -- */
@@ -284,6 +352,7 @@ nav#des-nav ul li.nav_item a.select{
     vertical-align: top;
 }
 .des_widget_wrapper{
+    border: 1px solid #ebebeb;
     margin-bottom: 10px;
     border-radius: 4px;
 }
@@ -298,31 +367,37 @@ nav#des-nav ul li.nav_item a.select{
     font-size: 1.1em;
 }
 .des_widget_content{
+    background: #FFF;
     padding: 10px;
     border-radius: 0 0 4px 4px;
+    border: 1px solid #ccc;
     border-top: 0;
 }
 
 /* -- Footer -- */
 #des-footer{
     margin: 20px 50px;
+    color: #666;
+    text-shadow: 1px 1px 0 #ebebeb;
+    border-top: 1px solid #999;
+    box-shadow: inset 0 1px 0 #ebebeb;
     padding: 10px 0;
     font-size: 0.9em;
     line-height: 2em;
 }
-#des-footer a{font-weight: bold;}
+#des-footer a{font-weight: bold; color: #333;}
 
 /** General **/
 .clearer{
     clear: both;
 }
-.outer{
-    width: 100%;
-    border-collapse: collapse;
-}
+.outer{width: 100%;border: 1px solid #ccc;border-collapse: collapse;}
 th, .th{
-    padding: 8px;
+    background: #0E3243 url(../images/navoverlay.png) repeat-x center -2px;
     font-size: 13px;
+    color: #ccc;
+    text-shadow: 1px 1px 0 #222;
+    padding: 8px;
     font-weight: normal;
 }
 th a:link,
@@ -330,32 +405,38 @@ th a:visited,
 th a:active,
 .th a:link,
 .th a:visited,
-.th a:active{}
-.outer tr:nth-child(even) td{background: #f2f2f2;}
-.outer tr:nth-child(odd) td{background: #fff;}
+.th a:active{color: #ccc;}
+.outer tr:nth-child(even){background: #f2f2f2;}
+.outer tr:nth-child(odd){background: #fff;}
 .outer tr td{
     padding: 5px;
+    border-right: 1px solid #ccc;
 }
 .outer tr td:last-child{border-right: 0;}
-
+.outer tr:hover{background: #ebebeb;}
 .outer .foot{
+    background-color: #ebebeb;
     font-size: 0.7em;
 }
 .outer tr.foot td, .outer .foot{
     padding: 6px;
+    border-top: 1px solid #CCC;
+    background: #ebebeb;
 }
 .outer div.head,
 .outer tr.head,
 .outer td.head{
+    background: #ebebeb;
     font-weight: bold;
+    text-shadow: 1px 1px 0 #FFF;
     font-size: 0.9em;
 }
 .outer tr.head td,
-.outer div.head{}
+.outer div.head{background: #ebebeb url(../images/navoverlay.png) repeat-x top; border-bottom: 1px solid #CCC;}
 .outer .even, .outer .odd{padding: 5px;}
-/*form .outer tr:nth-child(even){background: transparent;}
-form .outer tr:nth-child(odd){background: transparent;}*/
-form .outer .head span.caption-text span{font-size: 0.9em;}
+form .outer tr:nth-child(even){background: transparent;}
+form .outer tr:nth-child(odd){background: transparent;}
+form .outer .head span.caption-text span{color: #666; font-size: 0.9em;}
 form .outer td.head{max-width: 250px;}
 
 /**--------**/
@@ -389,9 +470,6 @@ form .outer td.head{max-width: 250px;}
     left: -10px;
 }
 .des_reduced #des-menu-nav ul li ul li ul{left: 190px;}
-.des_foot_reduced{
-    margin: 20px 10px;
-}
 nav#des-vertical ul{
     list-style: none;
     margin: 0;
@@ -410,33 +488,49 @@ nav#des-vertical ul li a{
     padding: 6px;
     min-width: 48px;
     font-size: 0.7em;
+    color: #888;
     text-decoration: none;
+    text-shadow: 1px 1px 0 #2a2a2a;
     border-radius: 3px;
     text-align: center;
 }
 nav#des-vertical ul li a:hover,
 nav#des-vertical ul li a.select{
+    background: #2F363D;
+    border: 1px solid #0A212C;
     padding: 5px;
+    box-shadow: 1px 1px 0 #666B70;
 }
 .des_reduced #des-header h1{float: left;}
 #des-header .header_user{
     padding: 5px;
+    background: #223848;
     width: 250px;
     float: right;
     margin: 10px;
+    border: 1px solid #111C24;
     border-radius: 3px;
+    box-shadow: 1px 1px 0 #3F6683;
     display: none;
 }
 #des-header .header_user img{
     float: left;
     margin: 0 5px 0 0;
+    border: 1px solid #666;
+    border-bottom: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
     border-radius: 3px;
 }
 #des-header .header_user #usr-name{
+    color: #83AB24;
     display: block;
     margin-bottom: 5px;
+    text-shadow: 1px 1px 0 #111C24;
 }
-#des-header .header_user #des-userinfo a{}
+#des-header .header_user #des-userinfo a{
+    color: #999;
+    text-shadow: 1px 1px 0 #111C24;
+}
 #des-header .header_user #des-userinfo a:hover{
     color: #ccc;
 }
