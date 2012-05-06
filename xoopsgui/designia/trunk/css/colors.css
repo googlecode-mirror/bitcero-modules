@@ -1,0 +1,250 @@
+/* Dark background */
+.dark_bg{
+    background-color: #27424e;
+}
+.overlay_bg{background-image: url(../images/navoverlay.png);background-repeat: repeat-x; background-position: top;}
+.dark_border{border: 1px solid #0E3243;}
+.dark_clear_text{color: #333;text-shadow: 1px 1px 0 #000;}
+
+/* Links */
+a:link,a:visited,a:active{
+    color: #C74017;
+}
+a:hover{
+    color: #1C6182;
+}
+
+/* Header **/
+header#des-header{
+    background: #27424e;
+}
+
+/* Top navigation */
+nav#des-nav{
+    border-top: 1px solid #15242B;
+    border-bottom: 1px solid #45581D;
+}
+nav#des-nav ul li.user{
+    background: #27424e;
+    border: 1px solid #15242B;
+    box-shadow: 1px 1px 0 #67828D;
+}
+nav#des-nav ul li.nav_item a{
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
+nav#des-nav ul li.nav_item a:hover,
+nav#des-nav ul li.nav_item a.select{
+    background: #27424e;
+    border: 1px solid #15242B;
+    box-shadow: 1px 1px 0 #67828D;
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
+#des-userinfo a:link,
+#des-userinfo  a:visited,
+#des-userinfo  a:active{
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
+#des-userinfo p#usr-name{
+    color: #95B942;
+    text-shadow: 1px 1px 0 #191919;
+}
+
+/* Menu bar */
+.menu-menu li.sfHover{
+    background-color: #C74017;
+}
+.menu-menu li.sfHover ul {
+	background: #27424e;
+    border: 1px solid #333;
+    box-shadow: 2px 2px 5px #000;
+}
+ul.menu-menu li.sfHover li ul {
+	background: #27424e;
+}
+ul.menu-menu li li.sfHover ul {
+	background: #27424e;
+}
+.menu-menu ul li.sfHover > a > .sf-sub-indicator {
+	background-color: #C74017;
+}
+#des-menu-nav{
+    box-shadow: 0 1px 0 #dadada;
+    background: #C74017;
+    border-top: 1px solid #E85F37;
+    border-bottom: 1px solid #84290F;
+}
+#des-menu-nav ul li{
+    border-right: 1px solid #E85F37;
+}
+#des-menu-nav ul li a{
+    color: #fff;
+    text-shadow: 1px 1px 0 #84290F;
+    border-right: 1px solid #84290F;
+}
+#des-menu-nav ul li a:hover{
+    background-color: #27424e;
+    color: #95B942;
+    text-shadow: 1px 1px 0 #15242B;
+}
+#des-menu-nav ul li ul li a{
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #000;
+    border-bottom: 1px solid #355A6A;
+}
+#des-menu-nav ul li ul li a:hover{
+    background-color: #C74017;
+    color: #FFF;
+    text-shadow: 1px 1px 0 #84290F;
+}
+.menu-menu li.sfHover a{color: #FFF;}
+
+/* Toolbar */
+#des-toolbar{
+    background: #27424e url(../images/navoverlay.png) repeat-x top;
+    border: 1px solid #15242B;
+    box-shadow: 1px 1px 0 #ebebeb;
+}
+#des-toolbar ul li{
+    border-right: 1px solid #8A989E;
+}
+#des-toolbar ul li a{
+    color: #d0dadd;
+    border-right: 1px solid #27424e;
+    text-shadow: 1px 1px 0 #15242B;
+}
+#des-toolbar ul li:hover{background: #27424e;}
+#des-toolbar ul li:hover a{color: #FFF; text-shadow: 1px 1px 0 #0A4512; border-top: 1px solid #596D76;}
+#des-toolbar ul li.selected{background: #27424e;}
+#des-toolbar ul li.selected a{
+    color: #95B942;
+    text-shadow: 1px 1px 0 #000;
+    border-top: 1px solid #596D76;
+}
+
+/* Content */
+#des-content{
+    box-shadow: 1px 1px 0px #ebebeb, -1px -1px 0px #ebebeb, 1px -1px 0px #ebebeb, -1px 1px 0px #ebebeb;
+    border: 1px solid #ccc;
+    background: #FFF;
+}
+.des_widget_wrapper{
+    border: 1px solid #ebebeb;
+}
+h1.rmc_titles{
+    background: #95B942 url(../images/overlay.png) repeat-x top;
+    color: #FFF;
+    text-shadow: 1px 1px 0 #526624;
+    border: 1px solid #6D8831;
+}
+#des-footer{
+    color: #666;
+    text-shadow: 1px 1px 0 #ebebeb;
+    border-top: 1px solid #999;
+    box-shadow: inset 0 1px 0 #ebebeb;
+}
+#des-footer a{color: #333;}
+
+/* Modules */
+#des-nav-modules{
+    border-bottom: 1px solid #666;
+    background: #ccc url(../images/bggrad.png) repeat-x top;
+}
+#des-nav-modules ul li{
+    color: #666;
+}
+#des-nav-modules ul li:hover{
+    background: #DFDFDF url(../images/bggrad.png) repeat-x top;
+    border: 1px solid #999;
+    box-shadow: 1px 1px 0 #dfdfdf;
+}
+#des-nav-modules ul li .image span{display: none;}#des-nav-modules ul li a .name{
+    color: #666; text-shadow: 1px 1px 0 #ebebeb;
+}
+#des-nav-modules ul li:hover a{
+    color: #536173;
+    text-shadow: 1px 1px 0 #E1E4EA;
+}
+.des_widget_title{
+    color: #FFF;
+    text-shadow: 1px 1px 0 #15242B;
+    border: 1px solid #15242B;
+}
+.des_widget_content{
+    background: #FFF;
+    border: 1px solid #ccc;
+}
+
+/* Tables */
+.outer{
+    border: 1px solid #ccc;
+}
+th, .th{
+    -moz-box-shadow:inset 0px 1px 0px 0px #a2acb0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a2acb0;
+	box-shadow:inset 0px 1px 0px 0px #a2acb0;
+    background-color:#5c7580;
+	border:1px solid #37464D;
+	color:#FFF;
+	text-shadow:1px 1px 0px #090f12;
+}
+th a:link,
+th a:visited,
+th a:active,
+.th a:link,
+.th a:visited,
+.th a:active{color: #ccc;}
+.outer tr td{
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.outer .foot{
+    background-color: #ebebeb;
+}
+.outer tr.foot td, .outer .foot{
+    border-top: 1px solid #CCC;
+    background: #ebebeb;
+}
+.outer td.head{
+    background: #ebebeb;
+    text-shadow: 1px 1px 0 #FFF;
+}
+.outer div.head, tr.head td{
+    background: #ccc;
+    border-bottom: 1px solid #CCC;
+}
+form .outer .head span.caption-text span{color: #666;}
+
+/* Vertical Nav */
+nav#des-vertical ul li a{
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
+nav#des-vertical ul li a:hover,
+nav#des-vertical ul li a.select{
+    background: #27424e;
+    border: 1px solid #15242B;
+    box-shadow: 1px 1px 0 #67828D;
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
+#des-header .header_user{
+    background: #27424e url(../images/navoverlay.png) repeat-x top;
+    border: 1px solid #15242B;
+    box-shadow: 1px 1px 0 #385F70;
+}
+#des-header .header_user img{
+    border: 1px solid #15242B;
+    border-bottom: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+#des-header .header_user #usr-name{
+    color: #FFF;
+    text-shadow: 1px 1px 0 #27424e;
+}
+#des-header .header_user #des-userinfo a{
+    color: #95AAB3;
+    text-shadow: 1px 1px 0 #15242B;
+}
