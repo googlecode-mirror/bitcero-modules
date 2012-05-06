@@ -131,7 +131,7 @@ foreach ($this->tpl_head as $head){
     </div>
     <!-- // -->
 </div>
-<div id="rmc-footer">
+<div id="rmc-footer" class="des_foot_reduced">
 	<div class="by_redmexico">
 		Theme powered by <a href="http://redmexico.com.mx">Red México</a>.<br />
 	</div>
