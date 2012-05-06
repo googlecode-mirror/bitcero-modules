@@ -33,6 +33,7 @@
 	<input type="button" value="<?php _e('Apply', 'mywords'); ?>" onclick="submit();" />
 </div>
 <table border="0" cellspacing="1" cellpadding="0" class="outer" style="margin: 5px 0;">
+	<thead>
   <tr class="head" align="center">
   	<th align="center" width="30"><input type="checkbox" name="checkall" id="checkall" value="1" onclick='$("#form-posts").toggleCheckboxes(":not(#checkall)");' /></th>
     <th align="left" width="30%"><?php _e('Post','mywords'); ?></th>
@@ -42,6 +43,8 @@
     <th><img src="../images/commi.png" alt="" /></th>
 	<th><?php _e('Date','mywords'); ?></th>
   </tr>
+	</thead>
+	<tbody>
   <?php if(empty($posts)): ?>
   <tr class="even">
   	<td colspan="7" align="center" class="error"><?php _e('No posts where found','mywords'); ?></td>
@@ -91,6 +94,7 @@
     <td align="center"><?php echo $post['date']; ?></td>
   </tr>
   <?php endforeach; ?>
+	</tbody>
 </table>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 <input type="hidden" name="page" value="<?php echo $page; ?>" />
