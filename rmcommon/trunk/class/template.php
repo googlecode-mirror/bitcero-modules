@@ -51,7 +51,7 @@ class RMTemplate
     /**
     * Help link
     */
-    private $help_link = '';
+    private $help_link = array();
 
     /**
      * At this moment this method do nothing
@@ -207,7 +207,7 @@ class RMTemplate
     public function set_help($link){
         //trigger_error(__('RMTemplate::set_help is deprecated. Use add_help instead.','rmcommon'), E_USER_WARNING);
         //$this->add_help($caption, $link);
-        $this->help_link = $link;
+        $this->add_help(__('Help','rmcommon'),$link);
     }
     
     public function help(){
