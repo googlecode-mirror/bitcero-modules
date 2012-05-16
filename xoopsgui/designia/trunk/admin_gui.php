@@ -47,10 +47,5 @@ include 'ajax/modules.php';
 // Designia preferences
 $dConfig = include(XOOPS_CACHE_PATH.'/designia.php');
 
-//if(!file_exists(XOOPS_CACHE_PATH.'/designia.css')){
-    $csstpl = $dConfig['scheme']!='custom' ? $dConfig['scheme'] : 'main.css';
-    file_put_contents(XOOPS_CACHE_PATH.'/designia.css',file_get_contents(RMCPATH.'/themes/designia/css/'.$csstpl));
-//}
-
 // Display theme
 include_once 'designia.php';

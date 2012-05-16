@@ -29,11 +29,13 @@
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/hoverIntent.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/superfish.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/supersubs.js"></script>
+        <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.window.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/designia.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.tablesorter.min.js"></script>
+
         <script type="text/javascript">
             var designia_url = '<?php echo $rm_theme_url; ?>';
             $(document).ready(function(){
@@ -43,7 +45,9 @@
             });
         </script>
         
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main-designia.php" />
+        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main.css" />
+        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/<?php echo $dConfig['scheme']; ?>" />
+        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.window.css" />
     </head>
     <body>
         <nav id="des-vertical" class="dark_bg dark_clear_text">
@@ -222,6 +226,29 @@
                         </ul>
                     </li>
                     <?php endforeach; ?>
+                    <?php endif; ?>
+                    
+                    <li>
+                        <a style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/designia.png);" href="#"><?php _e('Designia','designia'); ?></a>
+                        <ul>
+                            <li class=nav_item>
+                                <a href="<?php echo RMCURL; ?>/?designia=settings" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/colors.png);"><?php _e('Settings','designia'); ?></a>
+                                <a href="#" id="designia-about" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/info.png);"><?php _e('About theme','designia'); ?></a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <?php if($this->help()): ?>
+                    <li>
+                        <a href="#" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);"><?php _e('Help','designia'); ?></a>
+                        <ul>
+                            <?php foreach($this->help() as $help): ?>
+                            <li class=nav_item>
+                            <a href="<?php echo $help['link']; ?>" class="help_button rm_help_button" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);" target="_blank" title="<?php echo $help['caption']; ?>"><?php echo $help['caption']; ?></a>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
                     <?php endif; ?>
                     
                 </ul>

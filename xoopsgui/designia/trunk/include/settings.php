@@ -13,11 +13,19 @@ global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig, $rmc_config;
 include XOOPS_ROOT_PATH.'/include/cp_header.php';
 require_once XOOPS_ROOT_PATH.'/modules/rmcommon/admin_loader.php';
 
+if(rmc_server_var($_POST, 'action', '')!=''){
+    
+    $settings = "<?php\n\nreturn array(\n'logo' => '".rmc_server_var($_POST, 'logo_url', RMCURL.'/themes/designia/images/logo.png')."',\n'scheme' => '".rmc_server_var($_POST, 'scheme', 'colors')."'\n);";
+    file_put_contents(XOOPS_CACHE_PATH.'/designia.php', $settings);
+    redirectMsg(RMCURL, __('Settings saved successfully!','designia'), RMMSG_SUCCESS);
+    die();
+    
+}
+
 RMTemplate::get()->add_theme_style('settings.css','designia');
 RMTemplate::get()->add_local_script('colorpicker.js', 'rmcommon', 'include');
 RMTemplate::get()->add_style('colorpicker.css', 'rmcommon');
 RMTemplate::get()->add_theme_script('settings.js', 'designia');
-RMTemplate::get()->add_theme_script('edit_area/edit_area_full.js','designia');
 
 RMTemplate::get()->assign('xoops_pagetitle', __('Designia Options','designia'));
 
@@ -34,13 +42,35 @@ xoops_cp_header();
         <div class="set_cell">
             <h3><?php _e('Basic Theme Options','designia'); ?></h3>
             
-            <label class=opt_caption><?php _e('Logo URL:','designia'); ?></label>
-            <input type="text" class="single" name="logo_url" value="<?php echo $dConfig['logo']; ?>" id="logo-url" />
-            <span class="opt_desc"><?php _e('Provide a URL for an image to be used as logo for theme.','designia'); ?></span>
-            
-            <h2><?php _e('Edit CSS styles','designia'); ?></h2>
-            <form name="edForm" method="post" action="<?php echo RMCURL; ?>">
-                <textarea id="editor" rows=5 cols=45><?php include XOOPS_CACHE_PATH.'/designia.css'; ?></textarea>
+            <form name="edForm" method="post" action="<?php echo RMCURL; ?>/?designia=settings">
+                <label class=opt_caption for="logo_url"><?php _e('Logo URL:','designia'); ?></label>
+                <input type="text" class="single" name="logo_url" value="<?php echo $dConfig['logo']; ?>" id="logo-url" />
+                <span class="opt_desc"><?php _e('Provide a URL for an image to be used as logo for theme.','designia'); ?></span>
+                
+                <label class=opt_caption><?php _e('Color scheme:','designia'); ?></label>
+                <table class="screens">
+                    <tr>
+                <?php
+                    $path = RMCPATH.'/themes/designia';
+                    $handle = opendir($path.'/css');
+                    while (false !== ($file = readdir($handle))) {
+                        if (!is_file($path.'/css/' . $file) || substr($file, 0, 6)!='colors')
+                            continue;
+                            
+                ?>
+                <td align=center>
+                    <label>
+                        <img src="<?php echo RMCURL.'/themes/designia'; ?>/images/shots/<?php echo str_replace(".css", "", $file); ?>.jpg" />
+                        <br />
+                        <input type="radio" name="scheme" value="<?php echo $file; ?>"<?php echo $file==$dConfig['scheme'] ? ' checked="checked"' : ''; ?> /></label></td>
+                <?php
+                    
+                    }
+                    closedir($handle);
+                ?>
+                    </tr>
+                </table>
+                
                 <input type="hidden" name="action" value="save_settings" />
                 <input type="hidden" name="designia" value="settings" />
                 <input type="submit" value="<?php _e('Guardar Cambios','designia'); ?>" class="buttonGreen" />

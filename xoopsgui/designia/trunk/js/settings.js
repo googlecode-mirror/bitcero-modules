@@ -1,12 +1,6 @@
 $(document).ready(function(){
     var selector;
-    
-    editAreaLoader.init({
-        id : "editor"		// textarea id
-        ,syntax: "css"			// syntax to be uses for highgliting
-        ,start_highlight: true		// to display with highlight mode on start-up
-    });
-    
+   
 });
 
 function brighten(color, percent) {
