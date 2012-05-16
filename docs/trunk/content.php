@@ -182,8 +182,8 @@ function rd_section_forpdf($all = 0){
     // This options only works when pdfmyurl is enabled on topdf plugin
     $options = array(
         '--filename'=>$res->getVar('title').'.pdf',
-        '--header-left'=>'Prueba de Generación de documento',
-        '--header-right'=>'Impreso desde aqui',
+        '--header-left'=>$res->getVar('title'),
+        '--header-right'=>$xoopsConfig['sitename'],
         '--header-line'=>'1'        
     );
     
