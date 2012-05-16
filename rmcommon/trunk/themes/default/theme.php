@@ -50,7 +50,7 @@ foreach ($this->tpl_head as $head){
 <?php if($this->get_toolbar()): ?>
 	<div id="rmc-toolbar">
         <?php if($this->help()): ?>
-            <a href="<?php echo $this->help(); ?>" class="help_button rm_help_button" target="_blank" title="<?php echo sprintf(__('%s Help','defaultTheme'), $xoopsModule->name()); ?>">
+            <a href="<?php echo $this->help(1); ?>" class="help_button rm_help_button" target="_blank" title="<?php echo sprintf(__('%s Help','defaultTheme'), $xoopsModule->name()); ?>">
                 <span style="background-image: url(<?php echo RMTHEMEURL; ?>/images/help.png);"><?php _e('Help','rmcommon'); ?></span></a>
         <?php endif; ?>
 		<?php foreach($this->get_toolbar() as $menu): ?>

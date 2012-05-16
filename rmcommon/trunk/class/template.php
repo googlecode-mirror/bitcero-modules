@@ -210,8 +210,11 @@ class RMTemplate
         $this->add_help(__('Help','rmcommon'),$link);
     }
     
-    public function help(){
-        return $this->help_link;
+    public function help($single = 0){
+        if($single)
+			return $this->help_link[0]['link'];
+		else
+			return $this->help_link;
     }
     
     public function add_help($caption, $link){
