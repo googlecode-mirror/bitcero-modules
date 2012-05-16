@@ -1,0 +1,177 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Designia Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-05 17:50-0600\n"
+"PO-Revision-Date: 2012-05-05 20:16-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\cu\\modules\\rmcommon\\themes\\designia\n"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:50
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:51
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:107
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:108
+msgid "Dashboard"
+msgstr "Panel"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:56
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:57
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:113
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:114
+msgid "Modules"
+msgstr "Módulos"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:62
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:63
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:119
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:120
+msgid "Plugins"
+msgstr "Plugins"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:68
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:69
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:125
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:126
+msgid "Blocks"
+msgstr "Bloques"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:74
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:75
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:131
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:132
+msgid "Comments"
+msgstr "Comentarios"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:80
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:81
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:137
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:138
+msgid "XOOPS"
+msgstr "XOOPS"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:97
+#, php-format
+msgid "Welcome back %s"
+msgstr "Bienvenido %s"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:99
+msgid "View Site"
+msgstr "Ver Sitio"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:100
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:101
+msgid "Log out"
+msgstr "Salir"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:171
+msgid "System"
+msgstr "Sistema"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:232
+msgid "Close message box"
+msgstr "Cerrar mensaje"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:286
+#, php-format
+msgid "Powered by %s."
+msgstr "Alimentado por %s."
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:287
+#, php-format
+msgid "Reloaded by %s."
+msgstr "Recargado por %s."
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/designia.php:289
+#, php-format
+msgid "Using %s."
+msgstr "Usando %s."
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/class/designiafunctions.class.php:45
+msgid "Settings"
+msgstr "Opciones"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/class/designiafunctions.class.php:91
+msgid "Options"
+msgstr "Opciones"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:22
+msgid "Designia Options"
+msgstr "Opciones del Tema"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:30
+msgid "Designia Theme Settings"
+msgstr "Configuración de Designia Theme"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:35
+msgid "Basic Theme Options"
+msgstr "Opciones Básicas del Tema"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:37
+msgid "Logo URL:"
+msgstr "URL del logo:"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:39
+msgid "Provide a URL for an image to be used as logo for theme."
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:41
+msgid "Edit CSS styles"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/include/settings.php:46
+msgid "Guardar Cambios"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:4
+msgid "Pages:"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:6
+msgid "First Page"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:6
+msgid "First"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:10
+msgid "Previous Page"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:10
+msgid "Previous"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:19
+#, php-format
+msgid "Page %u"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:26
+msgid "Next Page"
+msgstr "Página Siguiente"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:26
+msgid "Next"
+msgstr "Siguiente"
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:30
+msgid "Last Page"
+msgstr ""
+
+#: C:\wamp\www\cu\modules\rmcommon\themes\designia/modules/rmcommon/navigation_pages.php:30
+msgid "Last"
+msgstr ""
+

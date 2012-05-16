@@ -82,7 +82,7 @@ class DesigniaFunctions
                 'link' => strpos($menu['link'], 'http://')!==FALSE && strpos($menu['link'], 'ftp://')!==FALSE ? $menu['link'] : XOOPS_URL.'/modules/'.$mod->getVar('dirname','n').'/'.$menu['link'],
                 'icon' => isset($menu['icon']) ? (strpos($menu['icon'], 'http://')!==FALSE ? $menu['icon'] : XOOPS_URL.'/modules/'.$mod->dirname().'/'.$menu['icon']) : '',
                 'location' => isset($menu['location']) ? $menu['location'] : '',
-                'options' => isset($menu['options']) ? ($menu['options']) : null
+                'options' => isset($menu['options']) ? self::moduleSubmenu($menu['options'], $mod) : null
             );
         }
         
@@ -95,6 +95,21 @@ class DesigniaFunctions
         }
         
         return $return_menu;
+        
+    }
+    
+    /**
+     * Prepare menu options
+     */
+    public function moduleSubmenu($submenu, $mod){
+        
+        if(!is_array($submenu)) return array();
+        
+        foreach($submenu as $i => $menu){
+            $submenu[$i]['link'] = strpos($menu['link'], 'http://')!==FALSE && strpos($menu['link'], 'ftp://')!==FALSE ? $menu['link'] : XOOPS_URL.'/modules/'.$mod->getVar('dirname','n').'/'.$menu['link'];
+        }
+        
+        return $submenu;
         
     }
     

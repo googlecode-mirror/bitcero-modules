@@ -25,6 +25,30 @@ $(document).ready(function(){
         return false;
     });
     
+    $("#designia-about").click(function(){
+        
+        $('body').append("<div id='designia-blocker'></div>");
+        $("#designia-blocker").fadeIn('fast');
+        
+        $('body').append('<div id="des-about-content"></div>');
+        
+        $("#designia-blocker").click(function(){
+            $("#des-about-content").fadeOut('fast');
+            $(this).fadeOut('fast', function(){
+                $("#designia-blocker").remove();
+                $("#des-about-content").remove();
+            });
+        });
+        
+        $.get(designia_url+'/ajax/about.php', {}, function(data){
+            
+            $("#des-about-content").html(data);
+            $("#des-about-content").fadeIn('fast');
+            
+        }, 'html');
+        
+    });
+    
     $(window).resize(function(){
         var nav = $("#des-nav ul");
         var documentWidth = $(document).width()-100;
@@ -64,5 +88,23 @@ $(document).ready(function(){
     $(window).resize();
     
     $(".rmc_options:not(#table-blocks .rmc_options)").before("<br />");
+    
+    $("a.rm_help_button").click(function(){
+        
+        $.window({
+            title: $(this).attr('title'),
+            headerClass: "th bg_dark",
+            url: $(this).attr('href'),
+            width: 500,
+            minWidth: 500,
+            height: 600,
+            resizable: true,
+            maximizable: false,
+            minimizable: false,
+            y: 10,
+            x: $(window).width()-510
+        });
+        return false;
+    });
     
 });

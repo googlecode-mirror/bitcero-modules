@@ -13,11 +13,9 @@ class DesigniaRmcommonPreload
     public function eventRmcommonXoopsCommonEnd(){
 		global $xoopsConfig;
               
-		$url = RMFunctions::current_url();
-		$p = parse_url($url);
-		parse_str($p['query']);
-        
-        if(!isset($designia)) return;
+		$designia = rmc_server_var($_REQUEST, 'designia', '');
+		
+		if($designia=='') return;
 		
 		switch($designia){
 			case 'settings':

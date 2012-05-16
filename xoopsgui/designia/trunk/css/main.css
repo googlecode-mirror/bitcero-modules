@@ -7,7 +7,6 @@
 @import url('form-and-buttons.css');
 @import url('system-messages.css');
 @import url('tsort.css');
-@import url('colors.css');
 
 header, nav, footer, article {display:block;}
 article {float:right; width:79%;}
@@ -243,9 +242,9 @@ nav#des-nav ul li.nav_item a.select{
 #des-toolbar ul li:first-child{
     border-radius: 4px 0 0 4px;
 }
-#des-toolbar ul li:last-child{
+/*#des-toolbar ul li:last-child{
     border-radius: 0 4px 4px 0;
-}
+}*/
 #des-toolbar ul li:hover{}
 #des-toolbar ul li:hover a{}
 #des-toolbar ul li.selected{}
@@ -441,3 +440,57 @@ nav#des-vertical ul li a.select{
     color: #ccc;
 }
 .news_item h3{font-size: 13px;}
+
+#designia-blocker{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.8;
+}
+#des-about-content{
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #000;
+}
+#des-about-content .des-about-content{
+    padding: 10px;
+    overflow: hidden;
+}
+#des-about-content img.logo{
+    float: right;
+    margin: -5px -5px 0 0;
+}
+#des-about-content .clear{
+    clear: both;
+    height: 1px;
+}
+#des-about-content .ab_caption{
+    display: block;
+    font-weight: bold;
+    padding: 4px 0 0 0;
+}
+#des-about-content .ab_data{
+    display: block;
+    padding: 3px;
+    border: 1px solid #ebebeb;
+    color: #666;
+    font-size: 0.9em;
+    border-radius: 3px;
+}
+#des-about-content .ab_info{
+    display: block;
+    padding: 4px 0;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
