@@ -316,7 +316,7 @@ class RMTemplate
         }
 
         $theme_file = $themepath.'/js/'.$element.($element!='' ? '/' : '').($subfolder!='' ? $subfolder.'/' : '').$file;
-
+	
         if (is_file($theme_file)){
             $url = $themeurl.'/js/'.($element!='' ? $element.'/' : '').($subfolder!='' ? $subfolder.'/' : '').$file;
         } else {
