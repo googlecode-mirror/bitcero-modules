@@ -63,7 +63,7 @@ nav#des-nav ul li.nav_item a.select{
 .menu-menu li.sfHover ul {
 	background: #1d5c83;
     border: 1px solid #14405a;
-    box-shadow: 2px 2px 5px #000;
+    box-shadow: 1px 1px 0px #ebebeb;
 }
 ul.menu-menu li.sfHover li ul {
 	background: #1d5c83;
@@ -255,4 +255,17 @@ nav#des-vertical ul li a.select{
 #des-header .header_user #des-userinfo a{
     color: #95AAB3;
     text-shadow: 1px 1px 0 #15242B;
+}
+
+/** Modules **/
+#des-mods-container .even div,#des-mods-container .odd div{
+	border-bottom: 1px solid #ebebeb;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.rmc_item_module{
+	border-bottom: 1px solid #ebebeb;
+}
+.rmc_item_module .descriptions{
+	color: #000;
 }

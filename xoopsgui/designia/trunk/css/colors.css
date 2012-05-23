@@ -63,7 +63,7 @@ nav#des-nav ul li.nav_item a.select{
 .menu-menu li.sfHover ul {
 	background: #27424e;
     border: 1px solid #333;
-    box-shadow: 2px 2px 5px #000;
+    box-shadow: 1px 1px 0px #ebebeb;
 }
 ul.menu-menu li.sfHover li ul {
 	background: #27424e;
