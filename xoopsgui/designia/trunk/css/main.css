@@ -330,28 +330,28 @@ th a:active,
 .th a:link,
 .th a:visited,
 .th a:active{}
-.outer tr:nth-child(even) td{background: #f2f2f2;}
-.outer tr:nth-child(odd) td{background: #fff;}
+table tr:nth-child(even) td{background: #f2f2f2; padding: 5px;}
+table tr:nth-child(odd) td{background: #fff; padding: 5px;}
 .outer tr td{
     padding: 5px;
 }
 .outer tr td:last-child{border-right: 0;}
 
-.outer .foot{
+table .foot{
     font-size: 0.7em;
 }
-.outer tr.foot td, .outer .foot{
+table tr.foot td, table .foot{
     padding: 6px;
 }
-.outer div.head,
-.outer tr.head,
-.outer td.head{
+div.head,
+tr.head,
+td.head{
     font-weight: bold;
     font-size: 0.9em;
 }
-.outer tr.head td,
-.outer div.head{}
-.outer .even, .outer .odd{padding: 5px;}
+tr.head td,
+div.head{}
+.even, .odd{padding: 5px;}
 /*form .outer tr:nth-child(even){background: transparent;}
 form .outer tr:nth-child(odd){background: transparent;}*/
 form .outer .head span.caption-text span{font-size: 0.9em;}

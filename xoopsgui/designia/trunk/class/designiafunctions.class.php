@@ -138,4 +138,19 @@ class DesigniaFunctions
         }
         
     }
+
+    /**
+     * Insert extra headers in theme
+     */
+    public function extra_headers(){
+        global $xoopsModule;
+
+        if($xoopsModule->dirname()=='rmcommon'
+            && RMCLOCATION=='modules'
+            && rmc_server_var($_REQUEST, 'action', '')==''){
+
+            include DESIGNIA_PATH.'/include/sorter.inc';
+
+        }
+    }
 }
