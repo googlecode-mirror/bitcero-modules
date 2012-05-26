@@ -48,6 +48,9 @@
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main.css" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/<?php echo $dConfig['scheme']; ?>" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.window.css" />
+
+        <?php DesigniaFunctions::extra_headers(); ?>
+
     </head>
     <body>
         <nav id="des-vertical" class="dark_bg dark_clear_text">

@@ -1,8 +1,10 @@
 $(document).ready(function(){
+
 	$("a.show").click(function(){
 		
 		var id = $(this).attr("id").replace("show-",'');
-		
+
+        $("#module-"+id).hide();
 		position = $("#module-"+id).position();
 		$("#data-display").hide();
 		$("#data-display").css({'top':position.top+'px','left':position.left+'px'});

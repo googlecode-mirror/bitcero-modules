@@ -14,22 +14,57 @@
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>
 
-<div id="des-mods-container">
-	<?php foreach($modules as $mod): ?>
-	<div class="rmc_item_module<?php echo !$mod['active'] ? ' inactive' : ''; ?> <?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['id']; ?>">
-		<div class="mod_image">
-			<a href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>javascript:;<?php endif; ?>" title="<?php echo $mod['realname']; ?>" style="background: url(<?php echo $mod['image']; ?>) no-repeat center;"><span class="rounded">&nbsp;</span></a>
-		</div>
+<table class="tablesorter" id="des-mods-container">
+    <thead>
+    <tr>
+        <th class="logo"><?php _e('Logo','designia'); ?></th>
+        <th align="left"><?php _e('Module','designia'); ?></th>
+        <th><?php _e('Options','designia'); ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach($modules as $mod): ?>
+    <tr class="<?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['id']; ?>" valign="middle">
+        <td class="logo" align="center">
+            <a href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>javascript:;<?php endif; ?>" title="<?php echo $mod['realname']; ?>" style="background: url(<?php echo $mod['image']; ?>) no-repeat center;"><span class="rounded">&nbsp;</span></a>
+        </td>
+        <td>
+            <?php if($mod['active']): ?>
+            <span class="name"><a href="<?php echo $mod['link']; ?>"><?php echo $mod['name']; ?></a></span>
+            <?php else: ?>
+            <span class="name"><?php echo $mod['name']; ?></span>
+            <?php endif; ?>
+            <span class=descriptions><?php echo $mod['description']; ?></span>
+            <div class="data">
+                <span><?php echo sprintf(__('Version: <strong>%s</strong>', 'rmcommon'), $mod['version']); ?></span>
+                <span><?php echo sprintf(__('Updated: %s', 'rmcommon'), $mod['updated']); ?></span>
+                <?php if($mod['author_mail']!=''): ?>
+                <span><?php echo sprintf(__('Author: <strong>%s</strong>', 'rmcommon'), '<a href="mailto:'.$mod['author_mail'].'">'.$mod['author'].'</a>'); ?></span>
+                <?php else: ?>
+                <span><?php echo sprintf(__('Author: <strong>%s</strong>', 'rmcommon'), $mod['author']); ?></span>
+                <?php endif; ?>
+                <?php if($mod['author_web']!=''): ?>
+                <span><?php echo sprintf(__('Web site: <strong>%s</strong>', 'rmcommon'), '<a href="'.$mod['author:url'].'">'.$mod['author_web'].'</a>'); ?></span>
+                <?php endif; ?>
+                <span><?php echo sprintf(__('License: <strong>%s</strong>', 'rmcommon'), $mod['license']); ?></span>
+            </div>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<div>
+
+	<div class="rmc_item_module<?php echo !$mod['active'] ? ' inactive' : ''; ?> " >
 		<div class="mod_data">
-			<?php if($mod['active']): ?>
-			<span class="name"><a href="<?php echo $mod['link']; ?>"><?php echo strlen($mod['name'])>20 ? substr($mod['name'], 0, 20) : $mod['name']; ?></a></span>
-			<?php else: ?>
-			<span class="name"><?php echo $mod['name']; ?></span>
-			<?php endif; ?>
-			<span class=descriptions><?php echo $mod['description']; ?></span>
+
+
 			<span class="data">
-				<span><?php echo sprintf(__('Version: %s', 'rmcommon'), $mod['version']); ?></span>
-				<span><?php echo sprintf(__('Updated: %s', 'rmcommon'), $mod['updated']); ?></span>
+
 			</span>
 		</div>
 		<div class="options">
@@ -44,24 +79,22 @@
 				<?php _e('Rename','rmcommon'); ?>
 			</a>
 		</div>
+        <!--<input type="checkbox" name="ids[]" id="item-<?php echo $mod['id']; ?>" value="<?php echo $mod['id']; ?>" />-->
+        <div class="data_storage">
+            <span class="version"><?php echo $mod['version']; ?></span>
+            <span class="dirname"><?php echo $mod['dirname']; ?></span>
+            <span class="author"><?php echo $mod['author']; ?></span>
+            <span class="authormail"><?php echo $mod['author_mail']; ?></span>
+            <span class="authorweb"><?php echo $mod['author_web']; ?></span>
+            <span class="authorurl"><?php echo $mod['author_url']; ?></span>
+            <span class="name"><?php echo $mod['name']; ?></span>
+            <span class="realname"><a href="<?php echo $mod['admin_link']; ?>"><?php echo $mod['realname']; ?></a></span>
+            <span class="description"><?php echo $mod['description']; ?></span>
+            <span class="license"><?php echo $mod['license']; ?></span>
+            <span class="active"><?php echo $mod['active']; ?></span>
+        </div>
 	</div>
-	<div class="rmc_item_module<?php echo !$mod['active'] ? ' inactive' : ''; ?> <?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['id']; ?>">
-		<!--<input type="checkbox" name="ids[]" id="item-<?php echo $mod['id']; ?>" value="<?php echo $mod['id']; ?>" />-->
-		<div class="data_storage">
-			<span class="version"><?php echo $mod['version']; ?></span>
-			<span class="dirname"><?php echo $mod['dirname']; ?></span>
-			<span class="author"><?php echo $mod['author']; ?></span>
-			<span class="authormail"><?php echo $mod['author_mail']; ?></span>
-			<span class="authorweb"><?php echo $mod['author_web']; ?></span>
-			<span class="authorurl"><?php echo $mod['author_url']; ?></span>
-			<span class="name"><?php echo $mod['name']; ?></span>
-			<span class="realname"><a href="<?php echo $mod['admin_link']; ?>"><?php echo $mod['realname']; ?></a></span>
-			<span class="description"><?php echo $mod['description']; ?></span>
-			<span class="license"><?php echo $mod['license']; ?></span>
-			<span class="active"><?php echo $mod['active']; ?></span>
-		</div>
-	</div>
-	<?php endforeach; ?>
+
 </div>
 
 	

@@ -18,10 +18,10 @@
 	width: 40px;
 	margin: 0 5px 0 0px;
 	border: 1px solid #666;
-	-moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+	-moz-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
     cursor: pointer;
 }
 .rmc_mod_img span{
@@ -29,10 +29,10 @@
 	height: 38px;
 	width: 38px;
 	border: 1px solid #fff;
-	-moz-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+	-moz-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
 .rmc_available_options{
 	display: block;
@@ -44,17 +44,31 @@
 
 /** Modules Content **/
 #des-mods-container{
-	display: table;
 	width: 100%;
 }
-.rmc_item_module{
-	display: table-row;
+#des-mods-container .logo a{
+    height: 48px;
+    width: 48px;
+    display: block;
 }
-.rmc_item_module .descriptions{
-	line-height: 150%;
-	padding: 0 0 3px 0;
+#des-mods-container .name{
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#des-mods-container .descriptions{
+	line-height: 120%;
 	display: block;
-	margin-top: 3px;
+    font-size: 0.9em;
+}
+#des-mods-container .data{
+    font-size: 0.9em;
+    line-height: 110%;
+    color: #666;
+}
+#des-mods-container .data span{
+    display: block;
+    padding: 1px 0;
 }
 .inactive{
     background: #FFF;
@@ -66,6 +80,7 @@
 	padding: 10px;
 	margin: 0;
 	vertical-align: middle;
+    border-bottom: 1px dashed #dddddd;
 }
 .mod_image a{
 	display: block;
@@ -84,6 +99,7 @@
 	display: table-cell;
 	padding: 4px 4px 4px 10px;
 	line-height: 130%;
+    border-bottom: 1px dashed #dddddd;
 }
 .mod_data .name{
 	display: block;
@@ -93,19 +109,26 @@
 	font-weight: bold;
 	padding: 0;
 }
+.mod_data .descriptions{
+    color: #353535;
+    font-size: 0.9em;
+}
 .mod_data .data{
-	color: #666;
-	font-size: 0.90em;
+	color: #757575;
+	font-size: 0.85em;
 	display: block;
 }
 .mod_data .data span{
-	display: block;
+	display: inline-block;
+    margin-right: 10px;
 }
+.mod_data .data span:first-child{border-right: 1px solid #ebebeb; padding-right: 10px;}
 .rmc_item_module .options{
 	font-size: 0.85em;
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
+    border-bottom: 1px dashed #dddddd;
 }
 .rmc_item_module .options a{
 	text-align: center;
