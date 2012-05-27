@@ -1,4 +1,4 @@
-<h1 class="rmc_titles"><?php _e('Modules Management','rmcommon'); ?></h1>
+<h1 class="rmc_titles" xmlns="http://www.w3.org/1999/html"><?php _e('Modules Management','rmcommon'); ?></h1>
 <script type="text/javascript">
 <!--
     var message = "<?php _e('Do you really want to uninstall selected module?','rmcommon'); ?>";
@@ -17,128 +17,81 @@
 <table class="tablesorter" id="des-mods-container">
     <thead>
     <tr>
-        <th class="logo"><?php _e('Logo','designia'); ?></th>
-        <th align="left"><?php _e('Module','designia'); ?></th>
-        <th><?php _e('Options','designia'); ?></th>
+        <th class="logo"><?php _e('Image','designia'); ?></th>
+        <th><?php _e('Name','designia'); ?></th>
+        <th><?php _e('Version','designia'); ?></th>
+        <th><?php _e('Author','designia'); ?></th>
+        <th colspan="4"><?php _e('Options','designia'); ?></th>
     </tr>
     </thead>
+    <tfoot>
+    <tr>
+        <th class="logo"><?php _e('Image','designia'); ?></th>
+        <th><?php _e('Name','designia'); ?></th>
+        <th><?php _e('Version','designia'); ?></th>
+        <th><?php _e('Author','designia'); ?></th>
+        <th colspan="4"><?php _e('Options','designia'); ?></th>
+    </tr>
+    </tfoot>
     <tbody>
     <?php foreach($modules as $mod): ?>
-    <tr class="<?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['id']; ?>" valign="middle">
-        <td class="logo" align="center">
-            <a href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>javascript:;<?php endif; ?>" title="<?php echo $mod['realname']; ?>" style="background: url(<?php echo $mod['image']; ?>) no-repeat center;"><span class="rounded">&nbsp;</span></a>
+    <tr class="<?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['dirname']; ?>" valign="middle" align="center">
+        <td class="logo">
+            <a href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>#<?php endif; ?>" title="<?php echo $mod['realname']; ?>"><img src="<?php echo $mod['image']; ?>" alt="<?php echo $mod['name']; ?>" /></a>
         </td>
-        <td>
+        <td class="name" align="left">
             <?php if($mod['active']): ?>
-            <span class="name"><a href="<?php echo $mod['link']; ?>"><?php echo $mod['name']; ?></a></span>
+            <a href="<?php echo $mod['link']; ?>"><?php echo $mod['name']; ?></a>
             <?php else: ?>
-            <span class="name"><?php echo $mod['name']; ?></span>
+            <?php echo $mod['name']; ?>
             <?php endif; ?>
+            <a href="#" class="rename"><?php _e('Edit','rmcommon'); ?></a>
             <span class=descriptions><?php echo $mod['description']; ?></span>
-            <div class="data">
-                <span><?php echo sprintf(__('Version: <strong>%s</strong>', 'rmcommon'), $mod['version']); ?></span>
-                <span><?php echo sprintf(__('Updated: %s', 'rmcommon'), $mod['updated']); ?></span>
-                <?php if($mod['author_mail']!=''): ?>
-                <span><?php echo sprintf(__('Author: <strong>%s</strong>', 'rmcommon'), '<a href="mailto:'.$mod['author_mail'].'">'.$mod['author'].'</a>'); ?></span>
-                <?php else: ?>
-                <span><?php echo sprintf(__('Author: <strong>%s</strong>', 'rmcommon'), $mod['author']); ?></span>
-                <?php endif; ?>
-                <?php if($mod['author_web']!=''): ?>
-                <span><?php echo sprintf(__('Web site: <strong>%s</strong>', 'rmcommon'), '<a href="'.$mod['author:url'].'">'.$mod['author_web'].'</a>'); ?></span>
-                <?php endif; ?>
-                <span><?php echo sprintf(__('License: <strong>%s</strong>', 'rmcommon'), $mod['license']); ?></span>
-            </div>
         </td>
-        <td>
-
+        <td nowrap="nowrap">
+            <?php echo $mod['version']; ?>
+        </td>
+        <td class="author">
+            <?php if($mod['author_mail']!=''): ?>
+            <a href="mailto:<?php echo $mod['author_mail']; ?>"><?php echo $mod['author']; ?></a>
+            <?php else: ?>
+            <?php echo $mod['author']; ?>
+            <?php endif; ?>
+        </td>
+        <td class="actions">
+            <a href="#" class="data_button" title="<?php _e('Show Information','designia'); ?>">
+                <img src="<?php echo RMCURL; ?>/themes/designia/images/data.png" alt="<?php _e('Show Information','rmcommon'); ?>" />
+            </a>
+        </td>
+        <td class="actions">
+            <a href="#" class="update_button" title="<?php _e('Update','rmcommon'); ?>">
+                <img src="<?php echo RMCURL; ?>/themes/designia/images/update.png" alt="<?php _e('Update','rmcommon'); ?>" />
+            </a>
+        </td>
+        <?php if($mod['active']): ?>
+        <td class="actions">
+            <a href="#" class="disable_button" title="<?php _e('Disable','rmcommon'); ?>">
+                <img src="<?php echo RMCURL; ?>/themes/designia/images/disable.png" alt="<?php _e('Disable','rmcommon'); ?>" />
+            </a>
+        </td>
+            <?php endif; ?>
+        <?php if(!$mod['active']): ?>
+        <td class="actions">
+            <a href="#" class="enable_button" title="<?php _e('Enable','rmcommon'); ?>">
+                <img src="<?php echo RMCURL; ?>/themes/designia/images/enable.png" alt="<?php _e('Enable','rmcommon'); ?>" />
+            </a>
+        </td>
+        <?php endif; ?>
+        <td class="actions">
+            <a href="#" class="uninstall_button" title="<?php _e('Uninstall','rmcommon'); ?>">
+                <img src="<?php echo RMCURL; ?>/themes/designia/images/uninstall.png" alt="<?php _e('Uninstall','rmcommon'); ?>" />
+            </a>
         </td>
     </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
 
-<div>
-
-	<div class="rmc_item_module<?php echo !$mod['active'] ? ' inactive' : ''; ?> " >
-		<div class="mod_data">
-
-
-			<span class="data">
-
-			</span>
-		</div>
-		<div class="options">
-			<a href="javascript:;" class="show" id="show-<?php echo $mod['id']; ?>">
-				<img src="<?php echo RMCURL; ?>/themes/designia/images/view.png" alt="<?php _e('Show','rmcommon'); ?>" />
-				<?php _e('Show','rmcommon'); ?>
-			</a>
-		</div>
-		<div class=options>
-			<a href="javascript:;" class="rename" id="rename-<?php echo $mod['id']; ?>">
-				<img src="<?php echo RMCURL; ?>/themes/designia/images/rename.png" alt="<?php _e('Rename','rmcommon'); ?>" />
-				<?php _e('Rename','rmcommon'); ?>
-			</a>
-		</div>
-        <!--<input type="checkbox" name="ids[]" id="item-<?php echo $mod['id']; ?>" value="<?php echo $mod['id']; ?>" />-->
-        <div class="data_storage">
-            <span class="version"><?php echo $mod['version']; ?></span>
-            <span class="dirname"><?php echo $mod['dirname']; ?></span>
-            <span class="author"><?php echo $mod['author']; ?></span>
-            <span class="authormail"><?php echo $mod['author_mail']; ?></span>
-            <span class="authorweb"><?php echo $mod['author_web']; ?></span>
-            <span class="authorurl"><?php echo $mod['author_url']; ?></span>
-            <span class="name"><?php echo $mod['name']; ?></span>
-            <span class="realname"><a href="<?php echo $mod['admin_link']; ?>"><?php echo $mod['realname']; ?></a></span>
-            <span class="description"><?php echo $mod['description']; ?></span>
-            <span class="license"><?php echo $mod['license']; ?></span>
-            <span class="active"><?php echo $mod['active']; ?></span>
-        </div>
-	</div>
-
-</div>
-
-	
-
-<!-- Module data displayed -->
-<div id="data-display" class="rounded">
-	<div class="data_head">
-		<div class="mod_image"></div>
-		<span class="name"></span>
-	</div>
-	<div class="data_description"></div>
-	<div class="data_values">
-		<table cellspacing="0" border="0">
-			<tr>
-				<td><strong><?php _e('Version:','rmcommon'); ?></strong></td>
-				<td class="version"></td>
-			</tr>
-			<tr>
-				<td><strong><?php _e('Author:','rmcommon'); ?></strong></td>
-				<td class="author"></td>
-			</tr>
-			<tr>
-				<td><strong><?php _e('Web:','rmcommon'); ?></strong></td>
-				<td class="web"></td>
-			</tr>
-			<tr>
-				<td><strong><?php _e('License:','rmcommon'); ?></strong></td>
-				<td class="license"></td>
-			</tr>
-			<tr>
-				<td><strong><?php _e('Name:','rmcommon'); ?></strong></td>
-				<td class="name"></td>
-			</tr>
-		</table>
-	</div>
-    <div class="data_buttons">
-        <a href="javascript:;" class="update_button"><?php _e('Update','rmcommon'); ?></a>
-        <a href="javascript:;" class="uninstall_button" id=""><?php _e('Uninstall','rmcommon'); ?></a>
-        <a href="javascript:;" class="disable_button"><?php _e('Disable','rmcommon'); ?></a>
-        <a href="javascript:;" class="enable_button" style="display: none;"><?php _e('Enable','rmcommon'); ?></a>
-        <a href="#" onclick="$('#data-display').slideUp('fast');">Close</a>
-        <input type="hidden" id="the-id" value="" />
-    </div>
-</div>
 <div id="rename-blocker"></div>
 <div id="rename">
 	<input type="text" size="50" id="rename-name" value="" />

@@ -2,9 +2,9 @@
     $(document).ready(function(){
         $("#des-mods-container").tablesorter({
             headers: {
+                5: {sorter: false},
                 0: {sorter: false},
-                2: {sorter: false},
-                3: {sorter: false}
+                4: {sorter: false}
             }
         });
     });

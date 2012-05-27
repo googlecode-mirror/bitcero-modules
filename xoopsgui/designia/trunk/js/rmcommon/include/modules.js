@@ -72,42 +72,42 @@ $(document).ready(function(){
     });
     
     $("a.uninstall_button").click(function(){
-        
-       var dir = $("#the-id").val();
-       if (dir=='system') return;
-       
-       if (!confirm(message)) return;
-       
-       $("#mod-action").val("uninstall_module");
-       $("#mod-dir").val(dir);
-       $("#form-modules").submit();
+
+        var dir = $(this).parent().parent().attr('id').replace("module-",'');
+        if (dir=='system') return;
+
+        if (!confirm(message)) return;
+
+        $("#mod-action").val("uninstall_module");
+        $("#mod-dir").val(dir);
+        $("#form-modules").submit();
     });
     
     $("a.update_button").click(function(){
-        var dir = $("#the-id").val();
-       if (!confirm(message_upd)) return;
+        var dir = $(this).parent().parent().attr('id').replace("module-",'');
+        if (!confirm(message_upd)) return;
        
-       $("#mod-action").val("update_module");
-       $("#mod-dir").val(dir);
-       $("#form-modules").submit();
+        $("#mod-action").val("update_module");
+        $("#mod-dir").val(dir);
+        $("#form-modules").submit();
     });
     
     $("a.disable_button").click(function(){
-        var dir = $("#the-id").val();
+        var dir = $(this).parent().parent().attr('id').replace("module-",'');
        
-       if (!confirm(message_dis)) return;
+        if (!confirm(message_dis)) return;
        
-       $("#mod-action").val("disable_module");
-       $("#mod-dir").val(dir);
-       $("#form-modules").submit();
+        $("#mod-action").val("disable_module");
+        $("#mod-dir").val(dir);
+        $("#form-modules").submit();
     });
     
     $("a.enable_button").click(function(){
-        var dir = $("#the-id").val();
+        var dir = $(this).parent().parent().attr('id').replace("module-",'');
        
-       $("#mod-action").val("enable_module");
-       $("#mod-dir").val(dir);
-       $("#form-modules").submit();
+        $("#mod-action").val("enable_module");
+        $("#mod-dir").val(dir);
+        $("#form-modules").submit();
     });
     
     $("a.rename").click(function(){
