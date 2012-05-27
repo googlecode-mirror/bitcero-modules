@@ -1,3 +1,11 @@
+/** Table **/
+.tablesorter{
+    border: 1px solid #CCC;
+}
+.tablesorter tr td{
+    border-bottom: 1px solid #CCC;
+}
+
 /** Modules Widget **/
 .rmc_modules_widget{
 	
@@ -46,190 +54,65 @@
 #des-mods-container{
 	width: 100%;
 }
-#des-mods-container .logo a{
-    height: 48px;
-    width: 48px;
+#des-mods-container .logo img{
+
+    width: 32px;
     display: block;
 }
-#des-mods-container .name{
-    display: block;
-    font-size: 1.2em;
+#des-mods-container .name a{
     font-weight: bold;
+    font-size: 1.1em;
+}
+#des-mods-container .name a.rename{
+    font-size: 0.7em;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: #ebebeb url(../../images/edit.png) no-repeat 2px;
+    display: inline-block;
+    padding: 3px 3px 3px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    line-height: 100%;
+    margin-left: 5px;
+    box-shadow: inset -1px -1px 5px #fff;
 }
 #des-mods-container .descriptions{
 	line-height: 120%;
 	display: block;
     font-size: 0.9em;
+    margin: 0;
+    padding: 2px 0;
 }
-#des-mods-container .data{
+#des-mods-container .author{
     font-size: 0.9em;
-    line-height: 110%;
     color: #666;
-}
-#des-mods-container .data span{
-    display: block;
-    padding: 1px 0;
 }
 .inactive{
     background: #FFF;
     border:1px dashed #ccc;
 }
-.rmc_item_module .mod_image{
-	display: table-cell;
-	width: 52px;
-	padding: 10px;
-	margin: 0;
-	vertical-align: middle;
-    border-bottom: 1px dashed #dddddd;
-}
-.mod_image a{
-	display: block;
-	width: 48px;
-	height: 48px;
-}
-.mod_image a span{
-	display: block;
-	width: 46px;
-	height: 46px;
-}
-.mod_image a:hover{
-	border: 1px solid #333;
-}
-.rmc_item_module .mod_data{
-	display: table-cell;
-	padding: 4px 4px 4px 10px;
-	line-height: 130%;
-    border-bottom: 1px dashed #dddddd;
-}
-.mod_data .name{
-	display: block;
-	font-size: 1.2em;
-	font-family: georgia, times, serif;
-    color: #333;
-	font-weight: bold;
-	padding: 0;
-}
-.mod_data .descriptions{
-    color: #353535;
-    font-size: 0.9em;
-}
-.mod_data .data{
-	color: #757575;
-	font-size: 0.85em;
-	display: block;
-}
-.mod_data .data span{
-	display: inline-block;
-    margin-right: 10px;
-}
-.mod_data .data span:first-child{border-right: 1px solid #ebebeb; padding-right: 10px;}
-.rmc_item_module .options{
-	font-size: 0.85em;
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-    border-bottom: 1px dashed #dddddd;
-}
-.rmc_item_module .options a{
-	text-align: center;
-	display: block;
-}
-.rmc_item_module .options a img{
-	display: block;
-	text-align: center;
-	margin: 0 auto 3px auto;
-}
 .rmc_item_module .data_storage{
 	display: none;
 }
-#data-display{
-	display: none;
-	position: absolute;
-	width: 250px;
-	background: #fff;
-	border: 1px solid  #999;
-	box-shadow: 5px 5px 1px #ccc;
-	-moz-box-shadow: 5px 5px 1px #ccc;
-	-webkit-box-shadow: 5px 5px 1px #ccc;
+
+tr.even td.actions,
+tr.odd td.actions
+{
+    background: #ebebeb;
+    border-left: 1px solid #ccc;
+    box-shadow: inset 1px 1px 3px #FFF;
 }
-#data-display .mod_image{
-	float: left;
-	margin: 0 5px 0 0;
+tr.even td.actions:hover,
+tr.odd td.actions:hover
+{
+    background: #e1e1e1;
+    border-left: 1px solid #ccc;
+    box-shadow: inset 1px 1px 3px #FFF;
 }
-#data-display .data_head{
-	background: #e8e8e8;
-	padding: 5px;
-	border-bottom: 1px solid #999;
-	-moz-border-radius: 5px 5px 0 0;
-    -khtml-border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
+.tablesorter tbody tr:last-child td{
+    border-bottom: 0;
 }
-#data-display .data_head .name{
-	font-family: georgia, times, serif;
-	font-size: 1.2em;
-	display: block;
-	padding: 5px 0 0 0;
-}
-#data-display .data_head .mod_image a{
-	display: block;
-	width: 32px;
-	height: 32px;
-	border: 1px solid #ccc;
-}
-#data-display .data_head .mod_image a span{
-	display: block;
-	width: 30px;
-	height: 30px;
-	border: 1px solid #FFF;
-}
-#data-display .data_description{
-	background: #f4f4f4;
-	padding: 5px;
-	border-top: 1px solid #FFF;
-	border-bottom: 1px solid #CCC;
-	color: #666;
-	font-size: 0.9em;
-}
-#data-display .data_values{
-	padding: 10px 5px 10px 10px;
-    border-bottom: 1px solid #CCC;
-}
-#data-display .data_values a{
-	text-decoration: underline;
-}
-#data-display .data_values table td{
-	padding: 3px;
-	vertical-align: top;
-}
-#data-display .data_values table tr td:first-child{
-	color: #666;
-}
-#data-display .data_buttons{
-    padding: 5px;
-    background: #EAF3FA;
-    border-top: 1px solid #FFF;
-    -moz-border-radius: 0 0 5px 5px;
-    -khtml-border-radius: 0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px;
-    border-radius: 0 0 5px 5px;
-    font-size: 0.9em;
-    overflow: hidden;
-}
-#data-display .data_buttons a{
-    display: block;
-    padding: 0 3px;
-    float: left;
-    border-right: 1px solid #B8D8EF;
-    border-left: 1px solid #FFF;
-}
-#data-display .data_buttons a:first-child{
-    border-left: 0;
-}
-#data-display .data_buttons a:last-child{
-    border-right: 0;
-}
+
 .mod_preinstall_container{
     overflow: hidden;
 }
@@ -243,7 +126,7 @@
     display: block;
     width: 16px;
     height: 16px;
-    background: url(../images/down.png) no-repeat center;
+    background: url(../../images/asc.gif) no-repeat center;
     text-decoration: none;
 }
 .mod_preinstall_container .th a:hover{
