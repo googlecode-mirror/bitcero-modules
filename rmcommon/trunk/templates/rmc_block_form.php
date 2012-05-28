@@ -22,6 +22,7 @@
                 <label for="bk-weight" class="options"><?php _e('Block weight','rmcommon'); ?></label>
                 <input type="text" name="bk_weight" id="bk-weight" value="<?php echo $block->getVar('weight'); ?>" />
             </div>
+            <div class="clearer"></div>
             <div class="left">
                 <label for="bk-visible" class="options"><?php _e('Visible','rmcommon'); ?></label>
                 <label style="display: inline;"><input type="radio" value="1" name="bk_visible" id="bk-visible" <?php echo $block->getVar('visible')==1?'checked="checked"':''; ?>/> <?php _e('Yes','rmcommon'); ?></label>
@@ -43,6 +44,7 @@
                     <option value="2592000"><?php _e('1 month','rmcommon'); ?></option>
                 </select>
             </div>
+            <div class="clearer"></div>
             <label for="bk-canvas" class="options"><?php _e('Visible in','rmcommon'); ?></label>
             <?php echo $canvas->render(); ?>
             <div class="clear">&nbsp;</div>

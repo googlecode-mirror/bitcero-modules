@@ -18,7 +18,7 @@
 <div class="rmc_item_module rounded<?php echo !$mod['active'] ? ' inactive' : ''; ?>" id="module-<?php echo $mod['id']; ?>">
 	<!--<input type="checkbox" name="ids[]" id="item-<?php echo $mod['id']; ?>" value="<?php echo $mod['id']; ?>" />-->
 	<div class="mod_image">
-		<a class="rounded" href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>javascript:;<?php endif; ?>" title="<?php echo $mod['realname']; ?>" style="background: url(<?php echo $mod['image']; ?>) no-repeat center;"><span class="rounded">&nbsp;</span></a>
+		<a class="rounded" href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>javascript:;<?php endif; ?>" title="<?php echo $mod['realname']; ?>" style="background: url(<?php echo $mod['icon']; ?>) no-repeat center;"><span class="rounded">&nbsp;</span></a>
 	</div>
 	<div class="mod_data">
         <?php if($mod['active']): ?>
