@@ -48,6 +48,10 @@
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main.css" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/<?php echo $dConfig['scheme']; ?>" />
         <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.window.css" />
+        <?php global $xoopsLogger;
+        if($xoopsLogger->activated): ?>
+        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/debugger.css" />
+        <?php endif; ?>
 
         <?php DesigniaFunctions::extra_headers(); ?>
 
@@ -334,6 +338,9 @@
             <?php echo sprintf(__('Reloaded by %s.','designia'), '<a href="http://www.redmexico.com.mx/w/common-utilities/">'.RMUtilities::get()->getVersion(true, 'rmcommon').'</a>'); ?>
             <br />
             <?php echo sprintf(__('Using %s.','designia'), '<strong>Designia Theme</strong>'); ?>
+
+            <!--{xo-logger-output}-->
+
         </div>
         <!--// Footer -->
         
