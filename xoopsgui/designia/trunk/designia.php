@@ -241,15 +241,29 @@
                         </ul>
                     </li>
                     
-                    <?php if($this->help()): ?>
+                    <?php if($this->help() || $xoopsModule->getInfo('social')): ?>
                     <li>
                         <a href="#" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);"><?php _e('Help','designia'); ?></a>
                         <ul>
-                            <?php foreach($this->help() as $help): ?>
-                            <li class=nav_item>
-                            <a href="<?php echo $help['link']; ?>" class="help_button rm_help_button" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);" target="_blank" title="<?php echo $help['caption']; ?>"><?php echo $help['caption']; ?></a>
-                            </li>
-                            <?php endforeach; ?>
+                            <?php if($this->help()): ?>
+                                <?php foreach($this->help() as $help): ?>
+                                <li class=nav_item>
+                                <a href="<?php echo $help['link']; ?>" class="help_button rm_help_button" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);" target="_blank" title="<?php echo $help['caption']; ?>"><?php echo $help['caption']; ?></a>
+                                </li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <?php if($xoopsModule->getInfo('social')): ?>
+                                <li>
+                                    <a href="#" onclick="return false;"><?php _e('Social Links','designia'); ?></a>
+                                        <ul>
+                                            <?php foreach($xoopsModule->getInfo('social') as $net): ?>
+                                            <li class="nav_item">
+                                                <a href="<?php echo $net['url']; ?>" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/social/<?php echo $net['type']; ?>.png);"><?php echo $net['title']; ?></a>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                     <?php endif; ?>
