@@ -65,7 +65,8 @@ function show_modules_list(){
             'realname'        => $mod->getInfo('name'),
             'version'        => $mod->getInfo('rmnative') ? RMUtilities::format_version($mod->getInfo('rmversion')) : $mod->getInfo('version'),
             'description'    => $mod->getInfo('description'),
-            'image'            => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.($mod->getInfo('icon48') ? $mod->getInfo('icon48') : $mod->getInfo('image')),
+            'icon'            => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.($mod->getInfo('icon48') ? $mod->getInfo('icon48') : $mod->getInfo('image')),
+            'image'         => XOOPS_URL.'/modules/'.$mod->getVar('dirname').'/'.$mod->getInfo('image'),
             'link'            => $main_link,
             'admin_link'    => $admin_link,
             'updated'        => formatTimestamp($mod->getVar('last_update'), 's'),
@@ -75,7 +76,8 @@ function show_modules_list(){
             'author_url'    => $mod->getInfo('authorurl'),
             'license'        => $mod->getInfo('license'),
             'dirname'        => $mod->getInfo('dirname'),
-            'active'        => $mod->getVar('isactive')
+            'active'        => $mod->getVar('isactive'),
+            'help'        => $mod->getInfo('help')
         );
     }
     

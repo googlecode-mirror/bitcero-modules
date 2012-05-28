@@ -199,12 +199,11 @@ float: left;
 #form-window{
     display: none;
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    margin-left: -250px;
-    width: 500px;
-    min-width: 600px;
-    max-height: 400px;
+    margin-left: -300px;
+    width: 600px;
+    max-height: 500px;
     background: #fff;
     border: 2px solid #999;
     padding: 1px;
@@ -222,7 +221,7 @@ float: left;
 }
 #block-config-form .close{
     display: block;
-    float: left;
+    float: right;
     width: 24px;
     height: 24px;
     background: url(../images/closeb.png) no-repeat center;
@@ -273,8 +272,10 @@ label.options{
 .bk_tab{
     border: 1px solid #CCC;
     padding: 5px;
+    overflow: auto;
     border-radius: 0 5px 5px 5px;
-    -moz-border-radius: 0 5px 5px 5px;    
+    -moz-border-radius: 0 5px 5px 5px;
+    max-height: 480px;
 }
 #custom-content,
 #block-permissions{
@@ -291,6 +292,13 @@ label.options{
 .bk_buttons{
     padding: 4px 0;
     text-align: left;
+    overflow: hidden;
+}
+.bk_buttons input[type='button']{
+    float: right;
+}
+.bk_buttons input[type='submit']{
+    float: left;
 }
 .subpages_container .sub_item label{
     color: #999;

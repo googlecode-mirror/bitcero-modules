@@ -50,8 +50,8 @@ var blocksAjax = {
             
             $("#form-window").html(data.content);
             $("#tr-"+id).addClass("bk_hightlight");
-            $("#form-window").css("margin-top", "-"+$("#form-window").height()/2+"px");
-            $("#form-window").show("fast", function(){
+            //$("#form-window").css("margin-top", "-"+$("#form-window").height()/2+"px");
+            $("#form-window").fadeIn("fast", function(){
             });
             
             blocksAjax.eventChange();

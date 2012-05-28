@@ -24,7 +24,7 @@ $modversion['authormail'] = "i.bitcero@gmail.com";
 $modversion['authorweb'] = "Red México";
 $modversion['authorurl'] = "http://redmexico.com.mx";
 $modversion['credits'] = "Red México, BitC3R0";
-$modversion['help'] = "";
+$modversion['help'] = "http://www.redmexico.com.mx/docs/common-utilities/";
 $modversion['license'] = "GPL 2";
 $modversion['official'] = 0;
 $modversion['image'] = "images/logo.png";
@@ -37,6 +37,11 @@ $modversion['rmversion'] = array('number'=>2,'revision'=>143,'status'=>-2,'name'
 $modversion['onUninstall'] = 'include/install.php';
 $modversion['onInstall'] = 'include/install.php';
 $modversion['onUpdate'] = 'include/install.php';
+
+$modversion['social'][0] = array('title' => __('BitCERO Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
+$modversion['social'][1] = array('title' => __('BitCERO LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
+$modversion['social'][2] = array('title' => __('Red México Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
+$modversion['social'][3] = array('title' => __('Red México Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
 
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "index.php";
