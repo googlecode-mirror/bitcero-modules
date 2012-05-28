@@ -1,66 +1,4 @@
 $(document).ready(function(){
-
-	$("a.show").click(function(){
-		
-		var id = $(this).attr("id").replace("show-",'');
-
-        $("#module-"+id).hide();
-		position = $("#module-"+id).position();
-		$("#data-display").hide();
-		$("#data-display").css({'top':position.top+'px','left':position.left+'px'});
-		
-		// Fill data
-		var data = "#data-display";
-		var source = "#module-"+id;
-		
-		$(data+" .data_head .mod_image").html($(source+" .mod_image").html());
-		$(data+" .data_head .name").html($(source+" .data_storage .realname").html());
-		$(data+" .data_description").html($(source+" .data_storage .description").html());
-		$(data+" table td.version").html($(source+" .data_storage .version").html());
-		
-		var author = '';
-
-		if ($(source+" .data_storage .authormail").html()!='')
-			author = '<a href="mailto:'+$(source+" .data_storage .authormail").html()+'">'+$(source+" .data_storage .author").html()+'</a>';
-		else
-			author = $(source+" .data_storage .author").html();
-		
-		var web = '';
-
-		if ($(source+" .data_storage .authorurl").html()!='')
-			web = '<a href="mailto:'+$(source+" .data_storage .authorurl").html()+'">'+$(source+" .data_storage .authorweb").html()+'</a>';
-		else
-			web = $(source+" .data_storage .authorweb").html();
-		
-		$(data+" table td.author").html(author);
-		$(data+" table td.web").html(web);
-		$(data+" table td.license").html($(source+" .data_storage .license").html());
-		$(data+" table td.name").html($(source+" .data_storage .name").html());
-        dir = $(source+" .data_storage .dirname").html();
-        if (dir=='system'){
-            $(data+" .data_buttons .uninstall_button").css("display",'none');
-        } else {
-            $(data+" .data_buttons .uninstall_button").css('display','');
-        }
-        
-        $("#the-id").val($(source+" .data_storage .dirname").html());
-        
-        var active = $(source+" .data_storage .active").html()
-        if (active==1){
-            $(data+" .data_buttons .enable_button").hide();
-            if (dir!='system')
-                $(data+" .data_buttons .disable_button").show();
-            else
-                $(data+" .data_buttons .disable_button").hide();
-        } else {
-            $(data+" .data_buttons .enable_button").show();
-            $(data+" .data_buttons .disable_button").hide();
-        }
-		
-		$("#data-display").slideDown(200);
-		
-	});
-    
     
     $(".mod_preinstall_container .th a").click(function(){
         var id = $(this).attr("id").replace("down-",'');
@@ -81,6 +19,8 @@ $(document).ready(function(){
         $("#mod-action").val("uninstall_module");
         $("#mod-dir").val(dir);
         $("#form-modules").submit();
+
+        return false;
     });
     
     $("a.update_button").click(function(){
@@ -228,8 +168,10 @@ $(document).ready(function(){
 
                     $("#"+dir+" .hidden_data .name").html(params.name);
 
-                    if($("#"+id+" .hidden_data .adminlink").html()!='')
+                    if($("#"+dir+" .hidden_data .adminlink").html()!='' && $("#"+dir+" .hidden_data .active").html()=='1')
                         ele.html('<a href="'+$("#"+dir+" .hidden_data .adminlink").html()+'">'+$("#"+dir+" .hidden_data .name").html()+'</a>');
+                    else
+                        ele.html($("#"+dir+" .hidden_data .name").html());
 
                     ele.fadeIn('fast', function(){
                         $("#"+dir+" .rename").fadeIn('fast');

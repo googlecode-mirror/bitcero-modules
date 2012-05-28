@@ -117,9 +117,10 @@
     font-size: 0.9em;
     color: #666;
 }
-.inactive{
-    background: #FFF;
-    border:1px dashed #ccc;
+.inactive td{
+    border-bottom:1px dashed #ccc;
+    font-style: italic;
+    color: #666;
 }
 .rmc_item_module .data_storage{
 	display: none;

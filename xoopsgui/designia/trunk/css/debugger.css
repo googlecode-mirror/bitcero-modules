@@ -1,0 +1,23 @@
+#xo-logger-output table{
+    box-shadow: 1px 1px 1px #FFF;
+    border: 1px solid #999;
+}
+#xo-logger-output table,
+#xo-logger-output table tr td,
+#xo-logger-output table tr th{
+    width: 900px;
+    margin: 10px auto;
+}
+#xo-logger-tabs{
+    text-align: center;
+}
+#xo-logger-tabs a{
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid #999;
+    box-shadow: inset 1px 1px 1px #ebebeb, 1px 1px 1px #ebebeb;
+    background: #ccc;
+}
+#xo-logger-tabs a:hover{
+    background-color: #dcdcdc;
+}

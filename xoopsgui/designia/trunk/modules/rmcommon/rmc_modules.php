@@ -36,14 +36,14 @@
     </tfoot>
     <tbody>
     <?php foreach($modules as $mod): ?>
-    <tr class="<?php echo tpl_cycle("even,odd"); ?>" id="module-<?php echo $mod['dirname']; ?>" valign="middle" align="center">
+    <tr class="<?php echo tpl_cycle("even,odd"); ?><?php echo $mod['active'] ? '' : ' inactive'; ?>" id="module-<?php echo $mod['dirname']; ?>" valign="middle" align="center">
         <td class="logo">
             <a href="<?php if($mod['active']): ?><?php echo $mod['admin_link']; ?><?php else: ?>#<?php endif; ?>" title="<?php echo $mod['realname']; ?>"><img src="<?php echo $mod['icon']; ?>" alt="<?php echo $mod['name']; ?>" /></a>
         </td>
         <td class="name" align="left">
             <span class="the_name">
             <?php if($mod['active']): ?>
-            <a href="<?php echo $mod['link']; ?>"><?php echo $mod['name']; ?></a>
+            <a href="<?php echo $mod['admin_link']; ?>"><?php echo $mod['name']; ?></a>
             <?php else: ?>
             <?php echo $mod['name']; ?>
             <?php endif; ?>
@@ -76,6 +76,7 @@
                 <span class="url"><?php echo $mod['author_url']; ?></span>
                 <span class="license"><?php echo $mod['license']; ?></span>
                 <span class="help"><?php echo $mod['help']; ?></span>
+                <span class="active"><?php echo $mod['active']; ?></span>
             </span>
         </td>
         <td class="actions">
@@ -90,9 +91,13 @@
         </td>
         <?php if($mod['active']): ?>
         <td class="actions">
+            <?php if($mod['dirname']!='system'): ?>
             <a href="#" class="disable_button" title="<?php _e('Disable','rmcommon'); ?>">
                 <img src="<?php echo RMCURL; ?>/themes/designia/images/disable.png" alt="<?php _e('Disable','rmcommon'); ?>" />
             </a>
+            <?php else: ?>
+            <img src="<?php echo RMCURL; ?>/themes/designia/images/disable.png" alt="<?php _e('Disable','rmcommon'); ?>" />
+            <?php endif; ?>
         </td>
             <?php endif; ?>
         <?php if(!$mod['active']): ?>
@@ -103,9 +108,13 @@
         </td>
         <?php endif; ?>
         <td class="actions">
+            <?php if($mod['dirname']!='system'): ?>
             <a href="#" class="uninstall_button" title="<?php _e('Uninstall','rmcommon'); ?>">
                 <img src="<?php echo RMCURL; ?>/themes/designia/images/uninstall.png" alt="<?php _e('Uninstall','rmcommon'); ?>" />
             </a>
+            <?php else: ?>
+            <img src="<?php echo RMCURL; ?>/themes/designia/images/uninstall.png" alt="<?php _e('Uninstall','rmcommon'); ?>" />
+            <?php endif; ?>
         </td>
     </tr>
     <?php endforeach; ?>

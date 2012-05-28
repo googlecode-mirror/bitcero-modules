@@ -494,3 +494,8 @@ nav#des-vertical ul li a.select{
     color: #666;
     margin-top: 10px;
 }
+
+#frmconfig .table_form td{
+    background: #FFF;
+}
+#frmconfig .table_form tr td:first-child{border-right: 1px dotted #ccc;}
