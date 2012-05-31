@@ -499,3 +499,6 @@ nav#des-vertical ul li a.select{
     background: #FFF;
 }
 #frmconfig .table_form tr td:first-child{border-right: 1px dotted #ccc;}
+.xoops-form-element-help{
+    font-weight: normal;
+}
