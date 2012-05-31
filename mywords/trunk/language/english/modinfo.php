@@ -57,6 +57,8 @@ define('_MI_MW_DEFIMG_DESC', __('When the "graphic" mode is enabled in the "Rece
 define('_MI_MW_FILESIZE', __('Maximum file size', 'mywords'));
 
 define('_MI_MW_SHOWBOOKMARKS', __('Show social bookmarks', 'mywords'));
+define('_MI_MW_DEFIMAGE', __('Category to store default images', 'mywords'));
+define('_MI_MW_DEFIMAGED', sprintf(__('Select a category created in Common Utilities %s to store images. Remember create a custom sizes called "thumbnail, medium and large" for selected category.', 'mywords'), '<a href="'.RMCURL.'/images.php">'.__('image manager','mywords').'</a>'));
 
 // BLOQUES
 define('_MI_MW_BKCATEGOS', __('Categories', 'mywords'));

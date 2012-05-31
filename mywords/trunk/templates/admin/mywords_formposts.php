@@ -106,6 +106,7 @@
 <input type="hidden" name="op" id="mw-op" value="<?php echo $edit ? 'saveedit' : 'save'; ?>" />
 <?php if($edit): ?>
 <input type="hidden" name="id" id="mw-id" value="<?php echo $post->id(); ?>" />
+<input type="hidden" name="image" id="mw-image" value="" />
 <?php endif; ?>
 </form>
 <?php if($edit && $post->getVar('toping')): ?>

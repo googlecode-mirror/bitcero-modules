@@ -282,3 +282,24 @@ div#mw-blocker-message{
     text-align: center;
     display:none;
 }
+
+#mywd-default-text,#mywd-default-thumb{
+    display: none;
+}
+#mywd-default-text span{
+    display: block;
+    padding: 4px 4px 4px 30px;
+    background: url(../images/working.gif) no-repeat left;
+    margin: 10px 0;
+}
+#mywd-default-thumb{margin: 10px 0; text-align: center;}
+#mywd-default-thumb img{
+    border: 1px solid #CCC;
+    padding: 1px;
+    max-width: 180px;
+}
+
+.uploadifyQueue{
+    width: 100%;
+}
+.uploadifyQueue .uploadifyQueueItem{width: 200px;}

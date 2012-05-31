@@ -1,3 +1,42 @@
+var defimg = 0;
+var defurl = '';
+function send_resize(params){
+
+    $.get(defurl, {data: params, img: defimg, action: 'resize'}, function(data){
+
+        if (data['error']){
+            $("#resizer-bar span.message").html('<span>'+data['message']+'</span>');
+            resize_image(params);
+            return;
+        }
+
+        var img = '<img src="'+data['file']+'" alt="" title="'+data['title']+'" />';
+
+        $("#mywd-default-text").fadeOut('fast', function(){
+            $("#mywd-default-thumb").append(img);
+            $("#mywd-default-thumb").fadeIn('fast');
+            $("#mw-image").val(defimg);
+        });
+
+    }, "json");
+
+}
+
+function resize_image(params){
+
+    if(defimg<=0)
+        return false;
+
+    $("#mywd-default-thumb").fadeOut('fast', function(){
+        $(this).html('');
+        $("#mywd-default-text").fadeIn('fast', function(){
+            send_resize(params);
+        });
+    });
+
+
+}
+
 function in_array(val,array){
 	var a=false;
 	for (var i=0;i<array.length;i++){
