@@ -47,7 +47,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><h1 class=""><?php _e('Images Configurations','rmcommon'); ?></h1></td>
+			<td colspan="2"><h1 class=""><?php _e('Custom Sizes','rmcommon'); ?></h1></td>
 		</tr>
 		<tr>
 			<td colspan="2" id="sizes-container-all">

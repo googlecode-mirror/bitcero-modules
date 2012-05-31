@@ -457,7 +457,8 @@ function resize_images(){
     $upurl = XOOPS_UPLOAD_URL.'/'.date('Y', $image->getVar('date')).'/'.date('m',time());;
     $width = 0;
     $tfile = '';
-    
+
+    $ret['sizes'] = array();
     foreach ($sizes as $size){
         
         if ($size['width']<=0 && $size['height']<=0) continue;
@@ -465,6 +466,9 @@ function resize_images(){
         $fd = pathinfo($updir.'/'.$image->getVar('file'));
         
         $name = $updir.'/sizes/'.$fd['filename'].'_'.$size['width'].'x'.$size['height'].'.'.$fd['extension'];
+
+        $ret['sizes'][$size['name']] = str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $name);;
+
         $sizer = new RMImageResizer($updir.'/'.$image->getVar('file'), $name);
         
         switch($size['type']){
@@ -479,7 +483,7 @@ function resize_images(){
                 }                
                 break;
         }
-        
+
         if($size['width']<=$width || $width==0){
             $width = $size['width'];
             $tfile = str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $name);
