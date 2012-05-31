@@ -20,6 +20,9 @@ class MywordsRmcommonPreload
 	    if (defined("RMCSUBLOCATION") && RMCSUBLOCATION=='new_post'){
 			include_once '../widgets/widget_publish.php';
 			$widgets[] = mw_widget_publish();
+
+            include_once '../widgets/widget_image.php';
+            $widgets[] = mw_widget_image();
 			
 			include_once '../widgets/widget_categories.php';
 			$widgets[] = mw_widget_categories();

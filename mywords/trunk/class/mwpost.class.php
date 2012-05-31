@@ -442,6 +442,19 @@ class MWPost extends RMObject
         return $this->trackbacks;
         
     }
+
+    /**
+     * Get the default image according to specified size
+     * @param string Size name to get
+     * @return string
+     */
+    public function getImage($size='thumbnail'){
+
+        if($this->getVar('image')<=0) return false;
+        $func = new RMFunctions();
+        $image = $func->get_image($this->getVar('image'), $size);
+        return $image;
+    }
 	
 	/**
 	 * Actualizamos los valores en la base de datos

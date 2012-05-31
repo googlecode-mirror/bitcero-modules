@@ -48,6 +48,12 @@ $modversion['rmnative'] = 1;
 $modversion['rmversion'] = array('number'=>2,'revision'=>101,'status'=>0,'name'=>'MyWords');
 $modversion['onInstall'] = 'include/install.php';
 
+// Social links
+$modversion['social'][0] = array('title' => __('BitCERO Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
+$modversion['social'][1] = array('title' => __('BitCERO LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
+$modversion['social'][2] = array('title' => __('Red México Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
+$modversion['social'][3] = array('title' => __('Red México Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
+
 // Admin things
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
@@ -162,6 +168,54 @@ $modversion['config'][7]['description'] = '';
 $modversion['config'][7]['formtype'] = 'yesno';
 $modversion['config'][7]['valuetype'] = 'int';
 $modversion['config'][7]['default'] = 1;
+
+// Default image
+$modversion['config'][8]['name'] = 'defimg';
+$modversion['config'][8]['title'] = '_MI_MW_DEFIMAGE';
+$modversion['config'][8]['description'] = '_MI_MW_DEFIMAGED';
+$modversion['config'][8]['formtype'] = 'select';
+$modversion['config'][8]['valuetype'] = 'int';
+$modversion['config'][8]['default'] = 0;
+
+$mwi = rmc_server_var($_GET, 'mod', 0);
+$fct = rmc_server_var($_GET, 'fct', '');
+
+if($fct=='preferences'){
+
+    $mod = RMFunctions::get()->load_module('mywords');
+    if($mwi==$mod->mid()){
+
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." WHERE status='open' ORDER BY name ASC";
+
+        $result = $db->query($sql);
+        $categories = array();
+
+        $sql = "SELECT conf_id FROM ".$db->prefix("config")." WHERE conf_modid=".$mod->mid()." AND conf_name='defimg'";
+        list($id) = $db->fetchRow($db->query($sql));
+
+        global $xoopsUser;
+
+        if($id>0){
+            $db->queryF("DELETE FROM ".$db->prefix("configoption")." WHERE conf_id=$id");
+            while ($row = $db->fetchArray($result)){
+                $cat = new RMImageCategory();
+                $cat->assignVars($row);
+
+                if (!$cat->user_allowed_toupload($xoopsUser)) continue;
+
+                $sql = "INSERT INTO ".$db->prefix("configoption")." (`confop_name`,`confop_value`,`conf_id`) VALUES ('".__('Select...','mywords')."','0','$id'),";
+                $sql .= "('".$cat->getVar('name')."','".$cat->id()."','$id'),";
+
+                $db->queryF(rtrim($sql,','));
+
+            }
+        }
+
+        $modversion['config'][8]['options'] = $categories;
+
+    }
+}
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";
