@@ -503,5 +503,39 @@ class RMFunctions
         return $plugins;
         
     }
+
+    /**
+     * Get an image from image manager
+     * @param $id int Image id
+     * @param string Size name from category
+     */
+    function get_image($id, $size=''){
+
+        if($id<=0) return false;
+
+        $img = new RMImage($id);
+
+        if($img->isNew()) return false;
+
+        $cat = new RMImageCategory($img->getVar('cat'));
+
+        $sizes = $cat->getVar('sizes');
+
+        foreach($sizes as $s){
+            if($s['name'] == $size)
+                break;
+        }
+
+        $date = explode('-', date('d-m-Y'));
+        $file = XOOPS_UPLOAD_URL.'/'.$date[2].'/'.$date[1].'/';
+        if($size==''){
+            $file .= $img->getVar('file');
+            return $file;
+        }
+
+        $file .= 'sizes/'.substr($img->getVar('file'), 0, -4).'_'.$s['width'].'x'.$s['height'].substr($img->getVar('file'), -4);
+        return $file;
+
+    }
 	
 }

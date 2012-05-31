@@ -30,7 +30,7 @@ $data = explode("|", $data); // [0] = referer, [1] = session_id(), [2] = user, [
 
 $xoopsUser = new XoopsUser($data[0]);
 
-if (!isset($data[1]) || $data[1]!=RMCURL.'/images.php'){
+if (!isset($data[1]) || strpos($data[1], RMCURL)===FALSE){
 	error(__('You are not allowed to do this action','rmcommon'));
 }
 
