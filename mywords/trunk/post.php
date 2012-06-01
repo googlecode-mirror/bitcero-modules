@@ -118,7 +118,8 @@ $post_arr = array(
     'tags'  => $tags_list,
     'trackback' => $post->getVar('pingstatus') ? MWFunctions::get_url(true).$post->id() : '',
     'meta'  => $post->get_meta('', false),
-    'time' => $post->getVar('pubdate')
+    'time' => $post->getVar('pubdate'),
+    'image'             => $post->getImage($xoopsModuleConfig['post_imgs_size'])
 );
 
 // Plugins?
@@ -174,7 +175,8 @@ $xoopsTpl->assign('lang_numcoms', sprintf(__('%u Comments', 'mywords'), $post->g
 $xoopsTpl->assign('lang_numtracks', sprintf(__('%u trackbacks', 'mywords'), count($trackbacks)));
 $xoopsTpl->assign('lang_trackback', __('Trackback','mywords'));
 $xoopsTpl->assign('lang_homemw',__('Main Page','mywords'));
- 
+$xoopsTpl->assign('enable_images', $xoopsModuleConfig['post_imgs']);
+
 //Trackback
 if ($post->getVar('pingstatus')){
     $tb = new MWTrackback($xoopsConfig['sitename'], $editor->getVar('name'));

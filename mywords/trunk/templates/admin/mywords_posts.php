@@ -41,13 +41,26 @@
     <th align="left"><?php _e('Categories','mywords'); ?></th>
     <th align="left"><?php _e('Tags','mywords'); ?></th>
     <th><img src="../images/commi.png" alt="" /></th>
+    <th><img src="../images/reads.png" alt="" /></th>
 	<th><?php _e('Date','mywords'); ?></th>
   </tr>
 	</thead>
+    <tfoot>
+    <tr class="head" align="center">
+        <th align="center" width="30"><input type="checkbox" name="checkall2" id="checkall2" value="1" onclick='$("#form-posts").toggleCheckboxes(":not(#checkall2)");' /></th>
+        <th align="left" width="30%"><?php _e('Post','mywords'); ?></th>
+        <th><?php _e('Author','mywords'); ?></th>
+        <th align="left"><?php _e('Categories','mywords'); ?></th>
+        <th align="left"><?php _e('Tags','mywords'); ?></th>
+        <th><img src="../images/commi.png" alt="" /></th>
+        <th><img src="../images/reads.png" alt="" /></th>
+        <th><?php _e('Date','mywords'); ?></th>
+    </tr>
+    </tfoot>
 	<tbody>
   <?php if(empty($posts)): ?>
   <tr class="even">
-  	<td colspan="7" align="center" class="error"><?php _e('No posts where found','mywords'); ?></td>
+  	<td colspan="8" align="center" class="error"><?php _e('No posts where found','mywords'); ?></td>
   </tr>
   <?php endif; ?>
   <?php foreach($posts as $post): ?>
@@ -91,6 +104,7 @@
     <td align="center">
 		<?php echo $post['comments']; ?>
 	</td>
+    <td align="center"><?php echo $post['reads']; ?></td>
     <td align="center"><?php echo $post['date']; ?></td>
   </tr>
   <?php endforeach; ?>

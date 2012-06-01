@@ -54,6 +54,12 @@ define('_MI_MW_BIMGSIZE_DESC', __('The specified image in the article will be re
 define('_MI_MW_DEFIMG', __('Default Image for the articles in blocks', 'mywords'));
 define('_MI_MW_DEFIMG_DESC', __('When the "graphic" mode is enabled in the "Recent Articles" blocks, this image will be used when there is not a specified one for the article', 'mywords'));
 
+// Images
+define('_MI_MW_ENABLELISTIMAGES', __('Enable images in posts list','mywords'));
+define('_MI_MW_LISTIMAGESSIZE', __('Size of images of posts list','mywords'));
+define('_MI_MW_ENABLEPOSTIMAGES', __('Enable images in post','mywords'));
+define('_MI_MW_POSTIMAGESSIZE', __('Size of images of post','mywords'));
+
 define('_MI_MW_FILESIZE', __('Maximum file size', 'mywords'));
 
 define('_MI_MW_SHOWBOOKMARKS', __('Show social bookmarks', 'mywords'));

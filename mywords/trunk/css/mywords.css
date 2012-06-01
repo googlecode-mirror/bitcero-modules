@@ -19,8 +19,8 @@
 }
 .mwitem .mwtext{
     line-height: 150%;
-    display: block;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 .mwitem .mwcontinue{
     display: block;
@@ -108,4 +108,18 @@ h3.tracks_title{
 #trackbacks-list .tb_item p{
     background: url(../images/quotes.png) no-repeat left top;
     padding: 0 0 0 40px;
+}
+
+/* Images */
+.post_image{
+    float: left;
+    margin: 18px 7px 7px 0;
+    padding: 1px;
+    border: 1px solid #CCC;
+}
+.full_post_image{
+    display: block;
+    margin: 5px auto;
+    padding: 1px;
+    border: 1px solid #CCC;
 }
