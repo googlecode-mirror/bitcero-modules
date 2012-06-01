@@ -290,7 +290,7 @@
             <nav id="des-toolbar">
                 <ul>
                 <?php foreach($this->get_toolbar() as $menu): ?>
-                    <li<?php echo $menu['location']==RMCLOCATION ? ' class = "selected"' : ''; ?>>
+                    <li<?php echo $menu['location']==RMCSUBLOCATION ? ' class = "selected"' : ($menu['location']==RMCLOCATION ? ' class="selected"' : ''); ?>>
                         <a href="<?php echo $menu['link']; ?>"<?php if($menu['icon']): ?> style="background-image: url(<?php echo $menu['icon']; ?>); padding-left: 24px"<?php endif; ?>><?php echo $menu['title']; ?></a>
                     </li>
                 <?php endforeach; ?>
