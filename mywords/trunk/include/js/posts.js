@@ -13,7 +13,7 @@ function send_resize(params){
         var img = '<img src="'+data['file']+'" alt="" title="'+data['title']+'" />';
 
         $("#mywd-default-text").fadeOut('fast', function(){
-            $("#mywd-default-thumb").append(img);
+            $("#mywd-default-thumb a").before(img);
             $("#mywd-default-thumb").fadeIn('fast');
             $("#mw-image").val(defimg);
         });
@@ -28,7 +28,7 @@ function resize_image(params){
         return false;
 
     $("#mywd-default-thumb").fadeOut('fast', function(){
-        $(this).html('');
+        $("#mywd-default-thumb img").remove();
         $("#mywd-default-text").fadeIn('fast', function(){
             send_resize(params);
         });
@@ -66,7 +66,13 @@ $(document).ready( function($) {
 
     var total_tags = 0;
     var tip_tag_visible = false;
-    
+
+    $(".del_def_img").click(function(){
+        $("#mywd-default-thumb img").remove();
+        $("#mywd-default-thumb").fadeOut('fast');
+        $("#mw-image").val("");
+    });
+
     $("#publish-submit").click(function() {
         if ($("#status option[value='publish']").val()==undefined){
             $("#status").html($("#status").html() + "<option value='publish'><?php _e('Published','mywords'); ?></option>");

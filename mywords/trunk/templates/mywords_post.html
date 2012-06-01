@@ -24,6 +24,9 @@
         </div>
     <{/if}>
     <div class="mwtext">
+        <{if $enable_images}>
+        <img src="<{$post.image}>" alt="<{$post.title}>" class="full_post_image" />
+        <{/if}>
         <{$post.text}>
     </div>
     <div class="mwfoot">

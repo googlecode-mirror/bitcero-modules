@@ -298,6 +298,9 @@ div#mw-blocker-message{
     padding: 1px;
     max-width: 180px;
 }
+#mywd-default-thumb a{
+    display: block;
+}
 
 .uploadifyQueue{
     width: 100%;

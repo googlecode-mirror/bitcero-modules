@@ -38,6 +38,7 @@ function showPosts($aprovado = -1){
 	}	
 	
 	if (isset($status) && $status!=''){
+        define('RMCSUBLOCATION',$status);
 		$sql .= $and ? " AND a.status='$status'" : " WHERE status='$status'";
         $and = true;
 	}
@@ -92,7 +93,8 @@ function showPosts($aprovado = -1){
 			'link'=>$postlink,
 			'status'=>$post->getVar('status'),
 			'categories'=>$post->get_categories_names(true, ',', true, 'admin'),
-			'tags'=>$post->tags(false)
+			'tags'=>$post->tags(false),
+            'reads'=>$post->getVar('reads')
 		);
 	}
 	

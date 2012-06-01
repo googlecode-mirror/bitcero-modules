@@ -118,7 +118,7 @@ $modversion['config'][1]['description'] = '_MI_MW_PERMA_DESC';
 $modversion['config'][1]['formtype'] = 'select';
 $modversion['config'][1]['valuetype'] = 'int';
 $modversion['config'][1]['default'] = 1;
-$modversion['config'][1]['options'] = array(__('Default','admin_mywords')=>1, __('Based on date and name','admin_mywords')=>2, __('Numeric format','admin_mywords')=>3);
+$modversion['config'][1]['options'] = array(__('Default','mywords')=>1, __('Based on date and name','mywords')=>2, __('Numeric format','mywords')=>3);
 
 $modversion['config'][2]['name'] = 'basepath';
 $modversion['config'][2]['title'] = '_MI_MW_BASEPATH';
@@ -180,6 +180,7 @@ $modversion['config'][8]['default'] = 0;
 $mwi = rmc_server_var($_GET, 'mod', 0);
 $fct = rmc_server_var($_GET, 'fct', '');
 
+
 if($fct=='preferences'){
 
     $mod = RMFunctions::get()->load_module('mywords');
@@ -216,6 +217,40 @@ if($fct=='preferences'){
 
     }
 }
+
+// Enable images in posts
+$modversion['config'][9]['name'] = 'list_post_imgs';
+$modversion['config'][9]['title'] = '_MI_MW_ENABLELISTIMAGES';
+$modversion['config'][9]['description'] = '';
+$modversion['config'][9]['formtype'] = 'yesno';
+$modversion['config'][9]['valuetype'] = 'int';
+$modversion['config'][9]['default'] = 1;
+
+// Image size for posts list
+$modversion['config'][10]['name'] = 'list_post_imgs_size';
+$modversion['config'][10]['title'] = '_MI_MW_LISTIMAGESSIZE';
+$modversion['config'][10]['description'] = '';
+$modversion['config'][10]['formtype'] = 'select';
+$modversion['config'][10]['valuetype'] = 'text';
+$modversion['config'][10]['default'] = 'thumbnail';
+$modversion['config'][10]['options'] = array(__('Thumbnail','mywords')=>'thumbnail', __('Medium','mywords')=>'medium', __('Large','mywords')=>'large');
+
+// Enable images in posts
+$modversion['config'][11]['name'] = 'post_imgs';
+$modversion['config'][11]['title'] = '_MI_MW_ENABLEPOSTIMAGES';
+$modversion['config'][11]['description'] = '';
+$modversion['config'][11]['formtype'] = 'yesno';
+$modversion['config'][11]['valuetype'] = 'int';
+$modversion['config'][11]['default'] = 1;
+
+// Image size for posts list
+$modversion['config'][12]['name'] = 'post_imgs_size';
+$modversion['config'][12]['title'] = '_MI_MW_POSTIMAGESSIZE';
+$modversion['config'][12]['description'] = '';
+$modversion['config'][12]['formtype'] = 'select';
+$modversion['config'][12]['valuetype'] = 'text';
+$modversion['config'][12]['default'] = 'large';
+$modversion['config'][12]['options'] = array(__('Thumbnail','mywords')=>'thumbnail', __('Medium','mywords')=>'medium', __('Large','mywords')=>'large');
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";

@@ -68,7 +68,8 @@ while ($row = $db->fetchArray($result)){
         'alink'				=>$alink,
         'edit'              => $xoopsUser && ($xoopsUser->isAdmin() || $author->getVar('uid')==$xoopsUser->uid()),
         'tags'              => $post->tags(false),
-        'meta'              => $post->get_meta('', false)
+        'meta'              => $post->get_meta('', false),
+        'image'             => $post->getImage($xoopsModuleConfig['list_post_imgs_size'])
     ));
     
 }
@@ -76,3 +77,4 @@ while ($row = $db->fetchArray($result)){
 $xoopsTpl->assign('lang_editpost', __('Edit Post','mywords'));
 $xoopsTpl->assign('lang_postedin', __('Posted in:','mywords'));
 $xoopsTpl->assign('lang_taggedas', __('Tagged as:','mywords'));
+$xoopsTpl->assign('enable_images', $xoopsModuleConfig['list_post_imgs']);

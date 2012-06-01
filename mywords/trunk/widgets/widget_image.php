@@ -23,13 +23,13 @@ function mw_widget_image(){
 
     $id = rmc_server_var($_REQUEST,'id',0);
     if($id<=0){
-        $w['content'] = '<div class="mw_permainfo">'.__('You must save this post before to assign to it a default image..','mywords').'</div>';
+        $w['content'] = '<div class="mw_permainfo">'.__('You must save this post before assign it a default image..','mywords').'</div>';
         return $w;
     }
 
     $post = new MWPost($id);
     if($post->isNew()){
-        $w['content'] = '<div class="mw_permainfo">'.__('You must save this post before to assign to it a default image..','mywords').'</div>';
+        $w['content'] = '<div class="mw_permainfo">'.__('You must save this post before assign it a default image..','mywords').'</div>';
         return $w;
     }
 
@@ -86,6 +86,7 @@ function mw_widget_image(){
         <?php if($post->getVar('image')>=0): ?>
             <img src="<?php echo $post->getImage('thumbnail'); ?>" alt="<?php $post->getVar('title'); ?>" />
         <?php endif; ?>
+        <a href="#" class="del_def_img">Delete</a>
     </div>
     <div id="mywd-default-text">
         <span><?php _e('Creating image...','mywords'); ?></span>
