@@ -526,7 +526,7 @@ class RMFunctions
                 break;
         }
 
-        $date = explode('-', date('d-m-Y'));
+        $date = explode('-', date('d-m-Y', $img->getVar('date')));
         $file = XOOPS_UPLOAD_URL.'/'.$date[2].'/'.$date[1].'/';
         if($size==''){
             $file .= $img->getVar('file');
