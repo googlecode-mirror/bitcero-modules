@@ -33,7 +33,7 @@ $modversion['icon16'] = "images/rmc16.png";
 $modversion['icon24'] = 'images/rmc24.png';
 $modversion['icon48'] = 'images/icon48.png';
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>143,'status'=>-2,'name'=>'Common Utilities');
+$modversion['rmversion'] = array('number'=>2,'revision'=>152,'status'=>-2,'name'=>'Common Utilities');
 $modversion['onUninstall'] = 'include/install.php';
 $modversion['onInstall'] = 'include/install.php';
 $modversion['onUpdate'] = 'include/install.php';
@@ -78,7 +78,7 @@ $modversion['config'][1]['valuetype'] = 'text';
 
 $files = XoopsLists::getFileListAsArray(XOOPS_ROOT_PATH.'/modules/rmcommon/lang', '');
 $options = array();
-$options['en_US'] = 'en_US';
+$options['en_US'] = 'en';
 foreach($files as $file => $v){
     
     if(substr($file, -3)!='.mo') continue;
@@ -86,7 +86,7 @@ foreach($files as $file => $v){
     $options[substr($file, 0, -3)] = substr($file, 0, -3);
     
 }
-$modversion['config'][1]['default'] = 'en_US';
+$modversion['config'][1]['default'] = 'en';
 $modversion['config'][1]['options'] = $options;
 
 // Update config options
@@ -245,7 +245,7 @@ $modversion['config'][19]['title'] = '_MI_RMC_ADMTHEME';
 $modversion['config'][19]['description'] = '';
 $modversion['config'][19]['formtype'] = 'select';
 $modversion['config'][19]['valuetype'] = 'text';
-$modversion['config'][19]['default'] = 'default';
+$modversion['config'][19]['default'] = 'designia';
 
 $dirs = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH.'/modules/rmcommon/themes', '');
 $options = array();
