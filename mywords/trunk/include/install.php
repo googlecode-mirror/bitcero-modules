@@ -22,3 +22,11 @@ function xoops_module_pre_install_mywords(&$mod){
     return true;
     
 }
+
+function xoops_module_update_mywords($mod, $pre){
+
+    global $xoopsDB;
+
+    return $xoopsDB->queryF("ALTER TABLE  `".$xoopsDB->prefix('mw_posts')."` ADD  `image` INT NOT NULL DEFAULT '0'");
+
+}
