@@ -168,7 +168,7 @@ class table {
 		
 		if ($result->numRows() > 0) {
 			while ($row = $result->fetchRow()) {
-				$t =& new table($this->db, $this->table);
+				$t = new table($this->db, $this->table);
 				$t->find($row[$this->primary_key]);
 				$all[] = $t;
 			}

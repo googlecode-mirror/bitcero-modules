@@ -176,7 +176,7 @@ class flickr {
 		if ($hit_flickr) {
 			// whether or not to use curl for request
 			if ($useCURL) {
-				$c = &new curl($request);
+				$c = new curl($request);
 				$c->setopt(CURLOPT_FOLLOWLOCATION, true);
 				$xml = $c->exec();
 				$error = $c->hasError();
@@ -1377,7 +1377,7 @@ class flickr {
 		$this->_cache_type 		= 'db';
 		$this->_cache_expire 	= $expire_seconds;
 		
-		$this->_db =& new MySQL($host, $db_user, $db_pass, $db_name);
+		$this->_db = new MySQL($host, $db_user, $db_pass, $db_name);
 		$this->_db->query("
 							CREATE TABLE IF NOT EXISTS $this->_cache_table (
 								`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
@@ -1398,7 +1398,7 @@ class flickr {
 			if ($this->_db->isError()) {
 				echo $this->_db->getErrorMsg();
 			}
-			$this->_cache =& new table($this->_db, $this->_cache_table);
+			$this->_cache = new table($this->_db, $this->_cache_table);
 		}
 	}
 	
