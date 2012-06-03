@@ -11,7 +11,7 @@
 require_once XOOPS_ROOT_PATH.'/header.php';
 
 $mc =& $xoopsModuleConfig;
-$db =& Database::getInstance();
+$db =& XoopsDatabaseFactory::getDatabaseConnection();
 $tpl =& $xoopsTpl;
 $myts =& MyTextSanitizer::getInstance();
 

@@ -14,7 +14,7 @@ class ShopImage extends RMObject
 
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("shop_images");
 		$this->setNew();
 		$this->initVarsFromTable();

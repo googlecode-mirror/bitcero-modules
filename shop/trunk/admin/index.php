@@ -16,7 +16,7 @@ RMTemplate::get()->add_local_script('dashmain.js', 'shop');
 RMTemplate::get()->add_style('admin.css', 'shop');
 RMTemplate::get()->add_style('dashboard.css', 'shop');
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // Products count
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("shop_products");

@@ -17,7 +17,7 @@ require 'header.php';
 function shop_show_products(){
     global $xoopsModuleConfig, $xoopsConfig, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $page = rmc_server_var($_REQUEST,'page', 1);
     $limit = 15;
@@ -213,7 +213,7 @@ function shop_save_product($edit=0){
     /**
      * Comprobamos que no exista otra página con el mismo título
      */
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("shop_products")." WHERE nameid='$nameid'";
     
     $sql .= $edit ? " AND id_product<>".$product->id() : '';
@@ -382,7 +382,7 @@ function shop_show_images(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $sql = "SELECT * FROM ".$db->prefix('shop_images')." WHERE product='".$product->id()."'";
     $result = $db->query($sql);

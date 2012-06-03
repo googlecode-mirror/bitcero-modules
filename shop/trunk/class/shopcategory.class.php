@@ -12,7 +12,7 @@ class ShopCategory extends RMObject
 {
     
     function __construct($id=''){
-        $this->db =& Database::getInstance();
+        $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("shop_categories");
         $this->setNew();
         $this->initVarsFromTable();

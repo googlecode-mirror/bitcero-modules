@@ -17,7 +17,7 @@ define('TC_URL', XOOPS_URL.'/modules/'.$xoopsModule->dirname());
 $mc =& $xoopsModuleConfig;
 $myts =& MyTextSanitizer::getInstance();
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 # Asignamos las variables básicas a SMARTY
 $tpl = RMTemplate::get();
 $tpl->assign('tc_url',TC_URL);

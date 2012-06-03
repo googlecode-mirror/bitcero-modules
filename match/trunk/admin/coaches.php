@@ -15,7 +15,7 @@ function m_show_roster(){
     
     global $xoopsModule, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $id = rmc_server_var($_REQUEST, 'id', 0);
     if($id>0){
@@ -244,7 +244,7 @@ function m_save_coach($edit){
         $coach = new MCHCoach();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Check if work exists already
     if ($edit){
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_coaches")." WHERE name='$name' and team='$team' and id_coach<>'$id'";
@@ -353,7 +353,7 @@ function m_delete_coaches(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $errors = '';
     foreach ($ids as $k){

@@ -14,7 +14,7 @@ class MCHTeam extends RMObject
     
     public function __construct($id=null){
         
-        $this->db =& Database::getInstance();
+        $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("mch_teams");
         $this->setNew();
         $this->initVarsFromTable();
@@ -66,7 +66,7 @@ class MCHTeam extends RMObject
     */
     public function get_players($obj = false){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_players")." WHERE team=".$this->id();
         $result = $db->query($sql);
         if($db->getRowsNum($result)<=0) return;
@@ -92,7 +92,7 @@ class MCHTeam extends RMObject
     */
     public function get_coaches($obj = false){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_coaches")." WHERE team=".$this->id();
         $result = $db->query($sql);
         if($db->getRowsNum($result)<=0) return;

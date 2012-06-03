@@ -43,7 +43,7 @@ class MFWork extends MFObject
 	
 	function MFWork($id=null){
 		
-		$this->db = Database::getInstance();
+		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		if (is_null($id)){ return; }
 		

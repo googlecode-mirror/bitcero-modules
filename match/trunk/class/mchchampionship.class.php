@@ -13,7 +13,7 @@ class MCHChampionship extends RMObject
 {
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("mch_champs");
 		$this->setNew();
 		$this->initVarsFromTable();

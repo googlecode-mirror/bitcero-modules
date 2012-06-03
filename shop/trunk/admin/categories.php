@@ -167,7 +167,7 @@ function shop_save_category($edit = 0){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $query = '';
     foreach ($_POST as $k => $v){
@@ -245,7 +245,7 @@ function shop_delete_category(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT * FROM ".$db->prefix("shop_categories")." WHERE id_cat IN (".implode(",", $cats).")";
     $result = $db->query($sql);
     

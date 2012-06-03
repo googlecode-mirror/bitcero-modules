@@ -15,7 +15,7 @@ class ShopProduct extends RMObject
     private $lcats = array();
     
     function __construct($id=null){
-        $this->db =& Database::getInstance();
+        $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->myts =& MyTextSanitizer::getInstance();
         $this->_dbtable = $this->db->prefix("shop_products");
         $this->setNew();

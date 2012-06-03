@@ -15,7 +15,7 @@ class QPCategory extends RMObject
 {
 	
 	function __construct($id=''){
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("qpages_categos");
 		$this->setNew();
 		$this->initVarsFromTable();

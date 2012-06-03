@@ -114,7 +114,7 @@ function m_save_category($edit = 0){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     if ($edit){
         //Verificamos si la categoría es válida
@@ -214,7 +214,7 @@ function m_delete_category(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $errors = '';
     foreach ($ids as $k){

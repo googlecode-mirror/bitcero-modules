@@ -11,7 +11,7 @@
 $xoopsOption['template_main'] = 'shop_index.html';
 include 'header.php';
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 $sql = "SELECT COUNT(*) FROM ".$db->prefix("shop_products");
 list($num) = $db->fetchRow($db->query($sql));

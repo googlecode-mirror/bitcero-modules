@@ -15,7 +15,7 @@ function qpagesBlockCategos(){
 	include_once XOOPS_ROOT_PATH.'/modules/qpages/include/general.func.php';
 	
 	$mc =& RMUtilities::module_config('qpages');
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
     
     if (!defined('QP_URL'))
         define('QP_URL',XOOPS_URL.($mc['links'] ? $mc['basepath'] : '/modules/qpages'));
@@ -47,7 +47,7 @@ function qpagesBlockPages($options){
 
     include_once XOOPS_ROOT_PATH.'/modules/qpages/class/qppage.class.php';
     
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$mc =& RMUtilities::module_config('qpages');
     
     if (!defined('QP_URL'))

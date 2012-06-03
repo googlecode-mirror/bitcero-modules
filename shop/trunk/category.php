@@ -11,7 +11,7 @@
 $xoopsOption['template_main'] = 'shop_category.html';
 include 'header.php';
 
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 $tbl1 = $db->prefix("shop_categories");
 $tbl2 = $db->prefix("shop_catprods");

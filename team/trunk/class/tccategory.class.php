@@ -15,7 +15,7 @@ class TCCategory extends RMObject
 	
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("coach_categos");
 		$this->setNew();
 		$this->initVarsFromTable();

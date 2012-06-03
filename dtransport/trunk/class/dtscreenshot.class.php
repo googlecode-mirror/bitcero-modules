@@ -32,7 +32,7 @@ class DTScreenshot extends EXMObject
 
 	function __construct($id=null){
 
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("dtrans_screens");
 		$this->setNew();
 		$this->initVarsFromTable();

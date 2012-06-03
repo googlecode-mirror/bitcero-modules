@@ -39,7 +39,7 @@
 
 function rmmf_bk_recent($options){
 
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$myts =& MyTextSanitizer::getInstance();
 	
 	include_once XOOPS_ROOT_PATH.'/modules/rmmf/blocks/functions.php';
@@ -72,7 +72,7 @@ function rmmf_bk_recent_edit($options){
  * Mostramos los comentarios de los clientes
  **/
 function rmmf_bk_comments($options){
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$myts =& MyTextSanitizer::getInstance();
 	$result = $db->query("SELECT * FROM ".$db->prefix("rmmf_works")." ORDER BY id_w DESC LIMIT 0,$options[0]");
 	$block = array();
@@ -97,7 +97,7 @@ function rmmf_bk_comments_edit($options){
  */
 function rmmf_bk_featured($options){
 
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$myts =& MyTextSanitizer::getInstance();
 	
 	include_once XOOPS_ROOT_PATH.'/modules/rmmf/blocks/functions.php';
@@ -129,7 +129,7 @@ function rmmf_bk_featured_edit($options){
 // Bloque para moistrar trabajos aleatorias
 function rmmf_bk_random($options){
 	$myts =& MyTextSanitizer::getInstance();
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	include_once XOOPS_ROOT_PATH.'/modules/rmmf/blocks/functions.php';
 	$dir = rmmf_get_config('storedir');
 	if (substr($dir, strlen($dir) - 1, 1)!='/'){

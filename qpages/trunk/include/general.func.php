@@ -13,7 +13,7 @@
  */
 function qpArrayCategos(&$ret,$saltos=0,$parent=0, $exclude=null){
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$result = $db->query("SELECT * FROM ".$db->prefix("qpages_categos")." WHERE parent='$parent' ORDER BY `id_cat`");
 	
@@ -40,7 +40,7 @@ function getHomePage($page){
 	global $xoopsOption, $xoopsConfig;
 	require_once XOOPS_ROOT_PATH.'/mainfile.php';
 	
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$result = $db->query("SELECT * FROM ".$db->prefix("qpages_pages")." WHERE titulo_amigo='$page'");
 	if ($db->getRowsNum($result)<=0) return;
@@ -81,7 +81,7 @@ function getHomePage($page){
 }
 
 function qp_get_metas(){
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$result = $db->query("SELECT name FROM ".$db->prefix("qpages_meta")." GROUP BY name");
 	$ret = array();
 	while($row = $db->fetchArray($result)){

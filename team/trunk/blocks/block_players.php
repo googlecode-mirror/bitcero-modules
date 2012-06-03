@@ -40,7 +40,7 @@ function tc_block_players($options){
 		$mc =& $util->moduleConfig('team');
 	}
 	
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$sql = "SELECT * FROM ".$db->prefix("coach_players");
 	if ($options[0]>0){
@@ -73,7 +73,7 @@ function tc_block_players_edit($options, &$form){
 	// Equipos
 	$ele = new RMSelect(_BK_TC_TEAM, 'options[0]');
 	$ele->addOption(0,_BK_TC_ALLTEAM, $options[0]>0 ? 0 : 1);
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$result = $db->query("SELECT * FROM ".$db->prefix("coach_teams")." ORDER BY name");
 	while ($row = $db->fetchArray($result)){
 		$team = new TCTeam();

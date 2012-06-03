@@ -21,7 +21,7 @@ function qpages_search($qa, $andor, $limit, $offset, $userid){
 	include_once XOOPS_ROOT_PATH.'/modules/qpages/class/qppage.class.php';
 	
 	$mc = RMUtilities::module_config('qpages');
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$sql = "SELECT * FROM ".$db->prefix("qpages_pages");
 	$adds = '';
