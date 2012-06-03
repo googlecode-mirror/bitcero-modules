@@ -29,7 +29,7 @@
 function dt_com_update($item, $total){
 	include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtsoftware.class.php';
 	
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "UPDATE ".$db->prefix("dtrans_software")." SET comments='$total' WHERE id_soft='$item'";
 	$db->queryF($sql);
 }

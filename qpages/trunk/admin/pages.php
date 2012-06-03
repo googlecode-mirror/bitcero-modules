@@ -21,7 +21,7 @@ function showPages($acceso = -1){
     $acceso = rmc_server_var($_REQUEST, 'acceso', -1);
     $cat = rmc_server_var($_REQUEST, 'cat', '');
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("qpages_pages");
 	if ($acceso>=0){
@@ -333,7 +333,7 @@ function savePage($edit=0){
 	/**
 	 * Comprobamos que no exista otra página con el mismo título
 	 */
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "SELECT COUNT(*) FROM ".$db->prefix("qpages_pages")." WHERE titulo_amigo='$titulo_amigo'";
     
     $sql .= $edit ? " AND id_page<>".$page->getID() : '';
@@ -464,7 +464,7 @@ function approveBulk($acceso){
 		die();
 	}
 	
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "UPDATE ".$db->prefix("qpages_pages")." SET acceso='$acceso' WHERE ";
 	$cond = implode(",", $ids);
 	
@@ -489,7 +489,7 @@ function linkedPages(){
 		die();
 	}
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	$sql = "SELECT * FROM ".$db->prefix("qpages_pages")." WHERE id_page IN (";
 	$sql .= implode(',', $ids).')';

@@ -13,7 +13,7 @@ class MCHRoleItem extends RMObject
 {
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("mch_role");
 		$this->setNew();
 		$this->initVarsFromTable();

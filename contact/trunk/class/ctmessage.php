@@ -13,7 +13,7 @@ class CTMessage extends RMObject
 {
     public function __construct($id=null){
         
-        $this->db =& Database::getInstance();
+        $this->db =& XoopsDatabaseFactory::getDatabaseConnection();
         $this->_dbtable = $this->db->prefix("contactme");
         $this->setNew();
         $this->initVarsFromTable();

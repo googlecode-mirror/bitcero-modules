@@ -15,7 +15,7 @@ class TCTeam extends RMObject
 	private $_coachsid = array();
 	
 	public function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("coach_teams");
 		$this->setNew();
 		$this->initVarsFromTable();

@@ -13,7 +13,7 @@ class MCHScoreItem extends RMObject
 {
 	public function __construct($id=null){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("mch_score");
 		$this->setNew();
 		$this->initVarsFromTable();

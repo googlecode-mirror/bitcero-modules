@@ -25,7 +25,7 @@ class QPPage extends RMObject
 	 * @param string $int Titulo amigable del post
 	 */
 	function __construct($id=null){
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->myts =& MyTextSanitizer::getInstance();
 		$this->_dbtable = $this->db->prefix("qpages_pages");
 		$this->setNew();

@@ -33,7 +33,7 @@ class MCHFunctions
     */
     public function categories_tree(&$categories, $parent = 0, $indent = 0, $include_subs = true, $exclude=0, $order="id_cat DESC"){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql = "SELECT * FROM ".$db->prefix("mch_categories")." WHERE parent='$parent' ORDER BY $order";
         $result = $db->query($sql);
@@ -61,7 +61,7 @@ class MCHFunctions
     public function page_from_item($id, $w=''){
         global $xoopsModuleConfig;
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         if($w=='team'){
             $tb = $db->prefix('mch_teams');
@@ -100,7 +100,7 @@ class MCHFunctions
     */
     public function all_teams($o = false, $q=''){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_teams").($q!=''?" WHERE $q":'')." ORDER BY `name`,category";
         $result = $db->query($sql);
         
@@ -182,7 +182,7 @@ class MCHFunctions
     */
     public function all_fields($obj = false){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_fields")." ORDER BY `name`";
         $result = $db->query($sql);
         
@@ -213,7 +213,7 @@ class MCHFunctions
     */
     public function all_championships(){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_champs")." ORDER BY start DESC";
         $result = $db->query($sql);
         
@@ -244,7 +244,7 @@ class MCHFunctions
     */
     public function current_championship(){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_champs")." WHERE `current`=1 and `end`>=".time();
         $result = $db->query($sql);
         
@@ -261,7 +261,7 @@ class MCHFunctions
     
     public function last_championship(){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_champs")." ORDER BY id_champ DESC LIMIT 0,1";
         $result = $db->query($sql);
         
@@ -324,7 +324,7 @@ class MCHFunctions
         $i = 0;
         $ret = array();
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $ts = $db->prefix("mch_score");
         $tr = $db->prefix("mch_role");
         
@@ -383,7 +383,7 @@ class MCHFunctions
             $champ = new MCHChampionship($c);            
         }
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_role")." WHERE champ='".$champ->id()."' AND time>=".time();
         if($cat>0) $sql .= " AND category='".$cat."'";
         if($team>0) $sql .= " AND (local=$team OR visitor=$team)";
@@ -441,7 +441,7 @@ class MCHFunctions
 
         if(!is_object($champ)) $champ = self::last_championship();
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $tbr = $db->prefix("mch_role");
         $tbs = $db->prefix("mch_score");
@@ -491,7 +491,7 @@ class MCHFunctions
     */
     public function first_category(){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $sql = "SELECT * FROM ".$db->prefix("mch_categories")." ORDER BY id_cat LIMIT 0,1";
         $result = $db->query($sql);
         if($db->getRowsNum($result)<=0) return false;

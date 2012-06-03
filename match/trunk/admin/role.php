@@ -19,7 +19,7 @@ function m_show_roleplay(){
     $team = rmc_server_var($_REQUEST,'team',0);
     $sday = rmc_server_var($_REQUEST,'sday',0);
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $champs = MCHFunctions::all_championships();
     
@@ -213,7 +213,7 @@ function m_save_roleitem($edit=0){
         $item = new MCHRoleItem();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Check if work exists already
     if ($edit){
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_role")." WHERE time='$time' AND champ='".$champ."' AND id_role<>'$id' AND (local='".$local."' OR visitor='".$visitor."')";

@@ -14,7 +14,7 @@ class DTAlert extends RMObject
 
 	function __construct($id=null, $field=0){
 		
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		$this->_dbtable = $this->db->prefix("dtrans_alerts");
 		$this->setNew();
 		$this->initVarsFromTable();

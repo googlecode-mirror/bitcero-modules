@@ -15,7 +15,7 @@ function shop_bk_products_show($options){
     include_once XOOPS_ROOT_PATH.'/modules/shop/class/shopproduct.class.php';
     include_once XOOPS_ROOT_PATH.'/modules/shop/class/shopfunctions.php';
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $limit = $options[2]>0?$options[2]:5;
     $ord = $options[0]<=0?' `created` DESC':'RAND()';
     

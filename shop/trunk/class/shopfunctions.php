@@ -22,7 +22,7 @@ class ShopFunctions
     */
     public function categos_list(&$categories, $parent = 0, $indent = 0, $include_subs = true, $exclude=0, $order="id_cat DESC"){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         
         $sql = "SELECT * FROM ".$db->prefix("shop_categories")." WHERE parent='$parent' ORDER BY $order";
         $result = $db->query($sql);
@@ -77,7 +77,7 @@ class ShopFunctions
     */
     public function default_category_id(){
         
-        $db = Database::getInstance();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $result = $db->query("SELECT id_cat FROM ".$db->prefix("shop_categories")." WHERE id_cat='1'");
         if ($db->getRowsNum($result)<=0) return false;
         

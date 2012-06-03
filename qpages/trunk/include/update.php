@@ -27,7 +27,7 @@
 // @author: BitC3R0
 
 function xoops_module_update_qpages(&$mod){
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	// Actualizamos tablas
 	$db->queryF("ALTER TABLE ".$db->prefix('qpages_pages')." ADD `porder` INT(6) NOT NULL DEFAULT '0';");
 	$db->queryF("ALTER TABLE ".$db->prefix('qpages_pages')." ADD `type` TINYINT(1) NOT NULL DEFAULT '0';");

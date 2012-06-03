@@ -18,7 +18,7 @@ function m_show_championships(){
     $page = $page<=0 ? 1 : $page;
     $limit = 15;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Barra de Navegación
     $sql = "SELECT COUNT(*) FROM ".$db->prefix('mch_champs');
@@ -119,7 +119,7 @@ function m_save_championship($edit = 0){
         $champ = new MCHChampionship();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Check if work exists already
     if ($edit){
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_champs")." WHERE name='$name' and id_champ<>'$id'";
@@ -238,7 +238,7 @@ function m_delete_championships(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $errors = '';
     foreach ($ids as $k){
@@ -284,7 +284,7 @@ function m_set_current(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     $db->queryF("UPDATE ".$db->prefix("mch_champs")." SET current='0'");
     
     if($db->queryF("UPDATE ".$db->prefix("mch_champs")." SET current='1' WHERE id_champ=$id")){

@@ -13,7 +13,7 @@ class DTCategory extends RMObject
 		
 	function __construct($id=null){
 
-		$this->db =& Database::getInstance();
+		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();
 		
 		$this->_dbtable = $this->db->prefix("dtrans_categos");
 				

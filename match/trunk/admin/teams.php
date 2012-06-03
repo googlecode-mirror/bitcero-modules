@@ -15,7 +15,7 @@ function m_show_teams(){
     
     global $xoopsModule, $xoopsSecurity;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $id = rmc_server_var($_REQUEST, 'id', 0);
     if($id>0){
@@ -215,7 +215,7 @@ function m_save_team($edit = 0){
         $team = new MCHTeam();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Check if work exists already
     if ($edit){
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_teams")." WHERE name='$name' and category='$category' and id_team<>'$id'";
@@ -323,7 +323,7 @@ function m_delete_teams(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $errors = '';
     foreach ($ids as $k){

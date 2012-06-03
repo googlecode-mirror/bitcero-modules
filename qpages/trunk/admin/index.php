@@ -18,7 +18,7 @@ RMTemplate::get()->add_head('<script type="text/javascript">var xoops_url="'.XOO
 xoops_cp_header();
 
 // Get data for statistics
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $sql = "SELECT * FROM ".$db->prefix("qpages_pages")." WHERE acceso=1 ORDER BY lecturas DESC LIMIT 0, 5";
 $result = $db->query($sql);
 $labels = "chxt=x,y&chxl=0:";

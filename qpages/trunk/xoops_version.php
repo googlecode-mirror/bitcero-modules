@@ -33,7 +33,7 @@ $modversion['adminmenu'] = "admin/menu.php";
 
 // Menu Principal
 $modversion['hasMain'] = 1;
-$db =& Database::getInstance();
+$db =& XoopsDatabaseFactory::getDatabaseConnection();
 global $mc;
 if (isset($xoopsModule) && $xoopsModule->dirname()=='qpages'){
 $result = $db->query("SELECT titulo, titulo_amigo, id_page FROM ".$db->prefix("qpages_pages")." WHERE acceso='1' AND menu='1' ORDER BY titulo");

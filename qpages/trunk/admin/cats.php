@@ -23,7 +23,7 @@ function showCategos(){
 	qpArrayCategos($row);
 	
 	$categories = array();
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	foreach ($row as $k){
 		$catego = new QPCategory($k['id_cat']);
 		$catego->update();
@@ -122,7 +122,7 @@ function saveCatego($edit = 0){
 	
 	$nombre_amigo = TextCleaner::getInstance()->sweetstring($nombre);
 	
-	$db = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 	# Verificamos que no exista la categoría
 	$result = $db->query("SELECT COUNT(*) FROM ".$db->prefix("qpages_categos")." WHERE parent='$parent'".($edit ? " AND id_cat<>$id" : '')." AND (nombre='$nombre' OR nombre_amigo='$nombre_amigo')");

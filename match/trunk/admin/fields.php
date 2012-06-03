@@ -18,7 +18,7 @@ function m_show_fields(){
     $page = $page<=0 ? 1 : $page;
     $limit = 15;
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Barra de Navegación
     $sql = "SELECT COUNT(*) FROM ".$db->prefix('mch_fields');
@@ -111,7 +111,7 @@ function m_save_field($edit = 0){
         $field = new MCHField();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
     // Check if work exists already
     if ($edit){
         $sql = "SELECT COUNT(*) FROM ".$db->prefix("mch_fields")." WHERE name='$name' and id_field<>'$id'";
@@ -226,7 +226,7 @@ function m_delete_fields(){
         die();
     }
     
-    $db = Database::getInstance();
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
     $errors = '';
     foreach ($ids as $k){

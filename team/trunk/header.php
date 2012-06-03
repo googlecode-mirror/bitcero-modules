@@ -13,7 +13,7 @@ include '../../header.php';
 $mc =& $xoopsModuleConfig;
 $util =& RMUtilities::get();
 $myts =& MyTextSanitizer::getInstance();
-$db = Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 $tpl = $xoopsTpl;
 
 // Constantes

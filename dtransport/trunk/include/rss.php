@@ -62,7 +62,7 @@ function &dtrans_rssfeed($limit, &$more){
 function &dtrans_rssshow($limit){
 	global $util, $mc;
 	
-	$db =& Database::getInstance();
+	$db =& XoopsDatabaseFactory::getDatabaseConnection();
 	include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtsoftware.class.php';
 	
 	foreach ($_GET as $k => $v){

@@ -124,7 +124,7 @@ class DTFunctions
 	* @return array
 	*/
 	public function getCategos(&$categos, $jumps = 0, $parent = 0, $exclude = array(), $asobj = false, $active=2){
-		$db = Database::getInstance();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		if (!is_array($exclude)) $exclude = array($exclude);		
 		$result = $db->query("SELECT * FROM ".$db->prefix("dtrans_categos")." WHERE parent='$parent' ".($active ? ($active==2 ? "" : " AND active=1") : " AND active=0 ")." ORDER BY `id_cat`");
