@@ -74,7 +74,24 @@ class RMFunctions
 	* Create the module toolbar. This function must be called only from rmcommon module administration
 	*/
 	public function create_toolbar(){
-		
+
+        if(RMCLOCATION=='users'){
+
+            RMTemplate::get()->add_tool(__('Users List','rmcommon'), 'users.php', 'images/users.png', 'allusers');
+            RMTemplate::get()->add_tool(__('Add User','rmcommon'), 'users.php?action=new', 'images/user_add.png', 'newuser');
+
+        } elseif(RMCLOCATION=='imgmanager'){
+
+            RMTemplate::get()->add_tool(__('Categories List','rmcommon'), 'images.php?action=showcats', 'images/category.png', 'showcategories');
+            RMTemplate::get()->add_tool(__('Add Category','rmcommon'), 'images.php?action=newcat', 'images/category_add.png', 'newcategory');
+            $cat = rmc_server_var($_REQUEST,'category',0);
+            if($cat>0){
+                RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php?category='.$cat, 'images/image.png', 'showimages');
+            }
+            RMTemplate::get()->add_tool(__('Add Images','rmcommon'), 'images.php?action=new'.($cat>0?"&amp;category=$cat":''), 'images/image_add.png', 'addimages');
+
+        } else {
+
             RMTemplate::get()->add_tool(__('Dashboard','rmcommon'), 'index.php', 'images/dashboard.png', 'dashboard');
             RMTemplate::get()->add_tool(__('Modules','rmcommon'), 'modules.php', 'images/modules.png', 'modules');
             RMTemplate::get()->add_tool(__('Blocks','rmcommon'), 'blocks.php', 'images/blocks.png', 'blocks');
@@ -82,8 +99,10 @@ class RMFunctions
             RMTemplate::get()->add_tool(__('Images','rmcommon'), 'images.php', 'images/images.png', 'imgmanager');
             RMTemplate::get()->add_tool(__('Comments','rmcommon'), 'comments.php', 'images/comments.png', 'comments');
             RMTemplate::get()->add_tool(__('Plugins','rmcommon'), 'plugins.php', 'images/plugin.png', 'plugins');
+
+        }
         
-            RMEvents::get()->run_event('rmcommon.create.toolbar');
+        RMEvents::get()->run_event('rmcommon.create.toolbar');
 		
 	}
     
