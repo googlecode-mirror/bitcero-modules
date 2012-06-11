@@ -73,7 +73,7 @@ xoops_cp_header();
                 
                 <input type="hidden" name="action" value="save_settings" />
                 <input type="hidden" name="designia" value="settings" />
-                <input type="submit" value="<?php _e('Guardar Cambios','designia'); ?>" class="buttonGreen" />
+                <input type="submit" value="<?php _e('Save Changes','designia'); ?>" class="buttonGreen" />
             </form>
             </div>
         <div class="set_cell">
