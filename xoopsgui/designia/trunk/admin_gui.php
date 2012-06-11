@@ -47,5 +47,10 @@ include 'ajax/modules.php';
 // Designia preferences
 $dConfig = include(XOOPS_CACHE_PATH.'/designia.php');
 
+if(!isset($dConfig['logo']) || !isset($dConfig['scheme'])){
+    $dConfig['logo'] = XOOPS_URL.'/modules/rmcommon/themes/designia/images/logo.png';
+    $dConfig['scheme'] = 'colors.css';
+}
+
 // Display theme
 include_once 'designia.php';
