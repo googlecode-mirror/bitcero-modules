@@ -50,10 +50,10 @@ $modversion['onInstall'] = 'include/install.php';
 $modversion['onUpdate'] = 'include/install.php';
 
 // Social links
-$modversion['social'][0] = array('title' => __('BitCERO Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
-$modversion['social'][1] = array('title' => __('BitCERO LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
-$modversion['social'][2] = array('title' => __('Red México Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
-$modversion['social'][3] = array('title' => __('Red México Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
+$modversion['social'][0] = array('title' => __('Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
+$modversion['social'][1] = array('title' => __('LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
+$modversion['social'][2] = array('title' => __('Red México on Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
+$modversion['social'][3] = array('title' => __('Red México on Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
