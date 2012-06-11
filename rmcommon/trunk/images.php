@@ -22,6 +22,8 @@ define('RMCLOCATION','imgmanager');
 */
 function show_images(){
 	global $xoopsModule, $xoopsModuleConfig;
+
+    define('RMCSUBLOCATION','showimages');
 	
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	
@@ -120,7 +122,9 @@ function show_images(){
 
 function images_form($edit = 0){
 	global $xoopsModule, $xoopsModuleConfig, $xoopsSecurity, $xoopsUser, $rmc_config;
-    
+
+    define('RMCSUBLOCATION','addimages');
+
 	$category = rmc_server_var($_GET, 'category', 0);
 	$cat = new RMImageCategory($category);
 	
@@ -193,6 +197,8 @@ function images_form($edit = 0){
 
 function show_categories(){
     global $xoopsModule, $xoopsModuleConfig, $xoopsConfig, $xoopsSecurity;
+
+    define('RMCSUBLOCATION','showcategories');
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "SELECT COUNT(*) FROM ".$db->prefix("rmc_img_cats");
@@ -249,7 +255,7 @@ function show_categories(){
 * Show form to create categories
 */
 function new_category($edit = 0){
-	define('RMSUBLOCATION','rmc_imgnewcat');
+	define('RMCSUBLOCATION','newcategory');
 	
 	extract($_GET);
 	
