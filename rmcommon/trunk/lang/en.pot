@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Common Utilities 2.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-03 00:56-0600\n"
-"PO-Revision-Date: 2012-01-03 00:56-0600\n"
+"POT-Creation-Date: 2012-06-10 20:17-0600\n"
+"PO-Revision-Date: 2012-06-10 20:17-0600\n"
 "Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
 "Language-Team: Red Mexico <i.bitcero@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,2716 +14,4216 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: MEXICO\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: c:\\wamp\\www\\cu\\modules\\rmcommon\n"
+"X-Poedit-SearchPath-0: E:\\exm and modules\\rmcommon releases\\rmcommon-2.1.52\\rmcommon\n"
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:133
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:29
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:133
+#: releases\rmcommon-2.1.52\rmcommon/menu.php:29
 msgid "Blocks"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:141
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:141
 msgid "Internal blocks manager is currenlty disabled!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:145
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:145
 msgid "Do you really wish to delete selected items?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:146
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:146
 msgid "Select at least one item to delete it!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:147
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:147
 msgid "Save"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:148
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:288
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:469
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:229
-#: c:\wamp\www\cu\modules\rmcommon/users.php:303
-#: c:\wamp\www\cu\modules\rmcommon/users.php:418
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:148
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:287
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:469
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:229
+#: releases\rmcommon-2.1.52\rmcommon/users.php:303
+#: releases\rmcommon-2.1.52\rmcommon/users.php:418
 msgid "Cancel"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:149
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:149
 msgid "Show Positions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:150
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:150
 msgid "Show Blocks"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:191
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:245
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:275
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:306
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:28
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:193
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:247
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:277
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:308
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:28
 msgid "You are not allowed to do this action!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:199
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:201
 msgid "Please provide a name and tag for this new position!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:207
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:209
 msgid "You must specify a valid position ID!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:211
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:213
 msgid "Specified position does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:229
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:231
 msgid "Already exists another position with same name or same tag!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:232
-#: c:\wamp\www\cu\modules\rmcommon/images.php:394
-#: c:\wamp\www\cu\modules\rmcommon/users.php:377
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:234
+#: releases\rmcommon-2.1.52\rmcommon/images.php:400
+#: releases\rmcommon-2.1.52\rmcommon/users.php:377
 msgid "Database updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:234
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:236
 msgid "Errors ocurred while trying to save data"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:252
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:254
 msgid "Select at least a block!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:260
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:297
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:328
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:262
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:299
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:330
 msgid "Database updated successfully"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:262
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:264
 msgid "Errors ocurred while trying to do this action"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:282
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:284
 msgid "You must select at least one block!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:295
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:326
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:297
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:328
 msgid "There was some errors:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks.php:313
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks.php:315
 msgid "You must select at least one position!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:106
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:227
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:105
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:226
 msgid "Unknow"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:115
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:114
 #, php-format
 msgid "Posted on %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:132
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:131
 msgid "Do you really want to delete this comment?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:147
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:168
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:146
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:168
 msgid "Invalid operation"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:159
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:198
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:309
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:158
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:197
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:308
 msgid "Sorry, session token expired!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:164
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:203
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:163
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:202
 msgid "Unrecognized data!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:175
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:174
 msgid "Comments updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:180
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:179
 msgid "Errors occurrs while trying to update comments!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:233
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:232
 msgid "Comments deleted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:247
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:246
 msgid "Sorry, comment id is not valid"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:253
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:252
 msgid "Sorry, comment does not found"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:265
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:207
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:264
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:207
 msgid "Edit Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:266
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:208
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:265
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:208
 msgid "In reply to"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:267
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:209
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:266
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:209
 msgid "Posted date"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:268
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:210
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:267
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:210
 msgid "Module"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:269
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:268
 msgid "IP"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:272
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:214
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:271
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:214
 msgid "Poster"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:275
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:219
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:274
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:219
 msgid "Status"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:276
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:220
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:275
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:220
 msgid "Approved"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:277
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:221
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:276
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:221
 msgid "Unapproved"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:280
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:225
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:279
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:225
 msgid "Content"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:287
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:228
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:286
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:228
 msgid "Update Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:314
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:313
 msgid "Comment ID not specified!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:320
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:186
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:273
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:319
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:186
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:273
 msgid "Specified comment does not exist!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:355
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:315
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:354
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:315
 msgid "Comment updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/comments.php:357
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:317
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/comments.php:356
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:317
 msgid "Errros ocurrs while trying to update comment!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:31
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/images.php:33
 msgid "There are not categories yet! Please create one in order to add images."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:128
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:132
 #, php-format
 msgid "Category %s is closed. Please, select another category."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:143
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:147
 msgid "All Images (*.jpg, *.png, *.gif)"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:145
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:149
 msgid "Browse Images..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:154
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:158
 msgid "Uploaded successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:259
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:265
 msgid "You must specify a category id to edit!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:266
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:272
 msgid "The specified category does not exist!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:314
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:320
 msgid "Specify a valid category id"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:320
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:326
 msgid "Specified category does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:329
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:335
 msgid "Please specify a category name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:345
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:351
 msgid "You must create one size for this category at least!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:352
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:358
 msgid "There is already a category with the same name!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:364
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:370
 msgid "Category updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:366
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:372
 msgid "There were some erros while trying to save this category."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:382
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:388
 msgid "Specify one category at least to change status!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:397
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:403
 msgid "There were some erros while updating database:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:422
-#: c:\wamp\www\cu\modules\rmcommon/images.php:433
-#: c:\wamp\www\cu\modules\rmcommon/images.php:437
-#: c:\wamp\www\cu\modules\rmcommon/images.php:441
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:428
+#: releases\rmcommon-2.1.52\rmcommon/images.php:439
+#: releases\rmcommon-2.1.52\rmcommon/images.php:443
+#: releases\rmcommon-2.1.52\rmcommon/images.php:447
 msgid "Unauthorized!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:426
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:432
 msgid "Invalid image!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:446
-#: c:\wamp\www\cu\modules\rmcommon/images.php:514
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:452
+#: releases\rmcommon-2.1.52\rmcommon/images.php:524
 msgid "Image not found!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:452
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:458
 msgid "Unauthorized"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:490
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:500
 #, php-format
 msgid "%s done!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:508
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:518
 msgid "Invalid image ID"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:579
-#: c:\wamp\www\cu\modules\rmcommon/images.php:728
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:32
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:589
+#: releases\rmcommon-2.1.52\rmcommon/images.php:738
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:32
 msgid "Operation not allowed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:584
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:594
 msgid "Image ID not provided!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:589
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:599
 msgid "You must  provide a title for this image"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:595
-#: c:\wamp\www\cu\modules\rmcommon/images.php:686
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:605
+#: releases\rmcommon-2.1.52\rmcommon/images.php:696
 msgid "Image not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:601
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:611
 msgid "Category not exist!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:614
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:624
 msgid "the image could not be updated!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:620
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:630
 msgid "Image updated succesfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:662
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:672
 msgid "Image updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:676
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:686
 msgid "Please, speciy an image at least!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:712
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:722
 msgid "Errors ocurred during images deletion!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:714
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:724
 msgid "Images deleted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:733
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:743
 msgid "Category ID not provided"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:739
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:749
 msgid "Category not found"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:772
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:782
 msgid "Category deleted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/images.php:774
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/images.php:784
 msgid "Errors ocurred while deleting the category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/index.php:99
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/index.php:83
+msgid "Dashboard Help"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/index.php:99
 msgid "Theme changed successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/index.php:102
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/index.php:102
 msgid "Theme could not be changed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/index.php:107
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/index.php:107
 msgid "Specified theme does not exist!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/loader.php:162
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/loader.php:173
 msgid "Sorry, Red Mexico Common Utilities has not been installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:15
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:15
 msgid "Dashboard"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:22
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:22
 msgid "Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:36
-#: c:\wamp\www\cu\modules\rmcommon/users.php:406
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:36
+#: releases\rmcommon-2.1.52\rmcommon/users.php:406
 msgid "Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:41
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:41
 msgid "All users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:42
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:42
 msgid "New user"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:47
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:60
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:47
+#: releases\rmcommon-2.1.52\rmcommon/menu.php:60
 msgid "Images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:52
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:52
 msgid "Categories"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:56
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:56
 msgid "New category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:64
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:64
 msgid "Add images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:72
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:296
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:72
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:364
 msgid "Comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/menu.php:79
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/menu.php:79
 msgid "Plugins"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:108
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:110
 msgid "Modules Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:127
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:129
 msgid "Specified module is not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:134
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:170
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:136
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:172
 #, php-format
 msgid "%s is already installed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:140
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:142
 msgid "Sepecified module is not a valid Xoops Module!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:163
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:217
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:652
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:698
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:165
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:219
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:654
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:700
 msgid "Sorry, this operation could not be completed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:202
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:204
 #, php-format
 msgid "Installation log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:224
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:660
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:705
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:226
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:662
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:707
 #, php-format
 msgid "Module %s is not installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:249
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:251
 #, php-format
 msgid "Uninstall log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:277
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:279
 #, php-format
 msgid "Could not update %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:281
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:283
 #, php-format
 msgid "Updating module %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:296
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:298
 msgid "Updating templates..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:316
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:318
 #, php-format
 msgid "Template %s could not be inserted!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:319
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:321
 #, php-format
 msgid "Template %s inserted to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:322
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:391
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:324
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:393
 #, php-format
 msgid "ERROR: Could not recompile template %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:324
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:393
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:452
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:326
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:395
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:454
 #, php-format
 msgid "Template %s recompiled"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:330
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:332
 #, php-format
 msgid "ERROR: Could not delete old template %s. Aborting update of this file."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:335
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:337
 msgid "Rebuilding blocks..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:366
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:368
 #, php-format
 msgid "ERROR: Could not update %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:368
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:370
 #, php-format
 msgid "Block %s updated."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:368
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:457
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:469
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:370
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:428
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:430
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:459
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:471
 #, php-format
 msgid "Block ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:386
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:388
 #, php-format
 msgid "ERROR: Could not update %s template."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:388
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:390
 #, php-format
 msgid "Template %s updated."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:408
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:410
 #, php-format
 msgid "ERROR: Could not create %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:428
 msgid "ERROR: Could not add block access right"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:426
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:428
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:430
 #, php-format
 msgid "Group ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:428
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:430
 msgid "Added block access right"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:444
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:446
 #, php-format
 msgid "ERROR: Could not insert template %s to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:447
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:449
 #, php-format
 msgid "Template %s added to the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:450
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:452
 #, php-format
 msgid "ERROR: Template %s recompile failed"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:457
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:459
 #, php-format
 msgid "Block %s created"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:469
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:471
 #, php-format
 msgid "ERROR: Could not delete block %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:478
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:480
 msgid "ERROR: Could not remove deprecated block template."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:480
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:482
 #, php-format
 msgid "Block template %s deprecated"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:499
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:501
 msgid "Deleting module config options..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:502
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:504
 msgid "ERROR: Could not delete config data from the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:502
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:509
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:504
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:511
 #, php-format
 msgid "Config ID: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:509
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:511
 msgid "Config data deleted from the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:601
 msgid "Config option added"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:601
 msgid "Name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:599
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:601
 msgid "Value:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:606
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:608
 #, php-format
 msgid "Config %s added to the database"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:608
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:610
 #, php-format
 msgid "ERROR: Could not insert config %s to the database."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:623
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:625
 #, php-format
 msgid "Failed to execute %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:625
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:627
 #, php-format
 msgid "%s executed successfully."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:633
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:635
 #, php-format
 msgid "Module %s updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:683
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:685
 #, php-format
 msgid "Update log for %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:714
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:716
 #, php-format
 msgid "Module %s could not be disabled!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:720
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:722
 #, php-format
 msgid "Module %s successfully disabled!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:731
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:733
 msgid "Sorry, you don't have access to this page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:732
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:734
 msgid "Click here to refresh"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:791
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:793
 msgid "Install"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:792
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:794
 msgid "More info"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:795
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:797
 msgid "Version:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:801
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:803
 msgid "Author:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:825
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:827
 msgid "You can not rename modules. Session token not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:839
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:841
 msgid "Data provided is not valid"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:852
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:854
 msgid "Module name could not be changed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/modules.php:862
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/modules.php:864
 msgid "Module name changed successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:92
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:128
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:160
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:191
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:224
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:488
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:92
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:128
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:160
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:191
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:224
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:488
 msgid "You must specify a existing plugin"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:99
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:99
 msgid "Specified plugin is installed already!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:104
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:104
 #, php-format
 msgid "%s is not a valid plugin!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:109
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:109
 msgid "Plugin could not be installed, please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:114
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:114
 msgid "The plugin has been inserted on database, but erros ocurred on this process."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:120
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:120
 msgid "Plugin installed succesfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:135
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:167
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:198
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:231
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:495
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:135
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:167
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:198
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:231
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:495
 msgid "Specified plugin is not installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:141
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:141
 msgid "Plugin could not be uninstalled, please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:146
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:146
 msgid "The plugin has been deleted from database, but erros ocurred on this process."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:152
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:152
 msgid "Plugin uninstalled succesfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:172
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:205
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:172
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:205
 msgid "Plugin could not be updated, please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:177
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:210
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:177
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:210
 msgid "The database has been updated, but erros ocurred on this process."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:183
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:183
 msgid "Plugin updated succesfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:216
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:216
 msgid "Plugin status changed succesfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:236
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:500
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:236
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:500
 msgid "Specified plugin is not active!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:243
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:243
 #, php-format
 msgid "%s configuration"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:359
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:365
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:371
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:377
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:359
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:365
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:371
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:377
 msgid "None"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:451
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:451
 msgid "Visual Editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:452
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:452
 msgid "EXMCode Editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:453
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:453
 msgid "Simple Editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:454
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:454
 msgid "HTML Editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:468
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:468
 msgid "Save Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:505
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:291
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:505
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:291
 msgid "Session token expired!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/plugins.php:521
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/plugins.php:521
 msgid "Settings updated!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:21
 msgid "Sorry, comments has been disabled by administrator"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:57
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:57
 msgid "You must provide your name and email in order to can post comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:62
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:62
 msgid "Sorry, you are not allowed to post comments!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:69
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:69
 msgid "There are not params to save!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:76
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:76
 msgid "Object type missing!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:83
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:83
 msgid "Object name missing!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:90
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:90
 msgid "You must write a message!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:143
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:143
 msgid "Comment could not be posted!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:163
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:163
 msgid "Comment posted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:174
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:193
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:257
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:262
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:174
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:193
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:257
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:262
 msgid "You are not allowed to edit this comment!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:180
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:267
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:180
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:267
 msgid "Please specify a comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:251
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:251
 msgid "Invalid Operation"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/post_comment.php:284
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/post_comment.php:284
 msgid "You must provide a text for comment!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/rss.php:18
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/rss.php:18
 msgid "RSS Center"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/rss.php:38
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/rss.php:38
 msgid "Choose an option to see its feed"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/rss.php:43
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/rss.php:43
 msgid "This module does not support rss feeds"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:177
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:177
 msgid "You have not selected any user!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:178
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:178
 msgid "Dou you really wish to delete selected users?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:189
-#: c:\wamp\www\cu\modules\rmcommon/users.php:261
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:189
+#: releases\rmcommon-2.1.52\rmcommon/users.php:261
 msgid "Users Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:251
-#: c:\wamp\www\cu\modules\rmcommon/users.php:334
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:251
+#: releases\rmcommon-2.1.52\rmcommon/users.php:334
 msgid "The specified user is not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:256
-#: c:\wamp\www\cu\modules\rmcommon/users.php:340
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:256
+#: releases\rmcommon-2.1.52\rmcommon/users.php:340
 msgid "The specified user does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:261
-#: c:\wamp\www\cu\modules\rmcommon/users.php:264
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:261
+#: releases\rmcommon-2.1.52\rmcommon/users.php:264
 msgid "Editing User"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:267
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:267
 msgid "Username"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:268
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:268
 msgid "This field also will be the user login name."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:271
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:271
 msgid "Full name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:272
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:272
 msgid "This field must contain firstname and lastname."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:275
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:275
 msgid "Email address"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:278
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:278
 msgid "New password"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:279
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:279
 msgid "The password should be at least eight characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! \" ? $ % ^ &"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:280
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:280
 msgid "Repeat Password"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:281
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:281
 msgid "Type password again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:284
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:284
 msgid "URL (Blog or personal website)"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:287
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:287
 msgid "Time zone"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:290
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:290
 msgid "Assign to groups"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:302
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:302
 msgid "Edit User"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:328
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:328
 msgid "Sorry, you don't have permission to add users."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:349
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:349
 msgid "Please fill all required fields and try again!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:355
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:355
 msgid "Passwords doesn't match. Please chek them."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:379
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:379
 msgid "The users could not be saved. Please try again!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:396
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:396
 msgid "You must select one user at least. Please click on \"Add Users\" and select as many users as you wish."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:401
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:401
 msgid "Sending email to users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:404
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:404
 msgid "Send Email to Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:407
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:407
 msgid "Please note that the maximun users number that you can select depends of the limit of emails that you can send accourding to your email server policies (or hosting account policies)."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:409
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:409
 msgid "Message subject"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:410
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:410
 msgid "Subject must be descriptive."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:411
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:411
 msgid "Message type"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:412
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:412
 msgid "HTML"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:413
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:413
 msgid "Plain Text"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:414
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:414
 msgid "Message content"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:417
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:417
 msgid "Send E-Mail"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:448
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:448
 msgid "There was errors while sending this emails"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:455
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:455
 msgid "Message sent successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:473
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:473
 msgid "No users has been selected"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:484
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:484
 msgid "Users "
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:486
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:486
 msgid "Users could not be "
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:513
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:513
 #, php-format
 msgid "Admin user cannot be deleted: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:515
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:515
 #, php-format
 msgid "User cannot be deleted: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/users.php:525
+#: E:\exm
+#: and modules\rmcommon releases\rmcommon-2.1.52\rmcommon/users.php:525
 msgid "Users deleted successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/xoops_version.php:297
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:41
+msgid "Twitter"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:42
+msgid "LinkedIn"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:43
+msgid "Red México Twitter"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:44
+msgid "Red México Facebook"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/xoops_version.php:365
 msgid "Show comments from internal comments system"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:49
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:146
-#: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:20
-#: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:40
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:49
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:146
+#: releases\rmcommon-2.1.52\rmcommon/ajax/users.php:20
+#: releases\rmcommon-2.1.52\rmcommon/ajax/users.php:40
 msgid "Sorry, you are not allowed to view this page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:56
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:56
 msgid "The block specified seems to be invalid. Please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:64
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:64
 msgid "The specified module does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:83
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:83
 msgid "The specified block does not exists, please verify your selection."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:117
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:117
 #, php-format
 msgid "Block could not be created due to: %s. Please try again!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:132
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:132
 msgid "Block added successfully! Please configure it."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:154
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:154
 msgid "The block that you specified seems to be invalid. Please try again"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:159
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:159
 msgid "The block that you specified does not exists!. Please try again"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:193
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:235
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:193
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:235
 msgid "Session token expired. Please try again."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:198
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:198
 msgid "You must provide a block ID!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:204
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:204
 msgid "Specified block does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:222
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:222
 msgid "Block updated successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:245
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:245
 msgid "Specified position is not valid!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:250
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:250
 msgid "You must fill name and tag input fields!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:256
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:256
 msgid "Specified block position does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:266
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:266
 msgid "Already exists another block position with same name or tag!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:275
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:310
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:275
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:310
 msgid "Changes saved successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:278
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:278
 msgid "Changes could not be saved!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:296
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:296
 msgid "No items has been specified!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/blocks.php:307
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/blocks.php:307
 msgid "Blocks order saved successfully!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/ajax/users.php:94
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/ajax/users.php:94
 msgid "All"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/api/editors/tinymce/plugins/exmsystem/editor_plugin.php:71
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/api/editors/tinymce/plugins/exmsystem/editor_plugin.php:71
 msgid "Insert Image"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:126
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:126
 msgid "Number of Comments:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:128
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:128
 msgid "Show module name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:129
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:132
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:135
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:138
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:129
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:132
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:135
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:138
 msgid "Yes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:130
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:133
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:136
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:139
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:130
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:133
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:136
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:139
 msgid "No"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:131
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:131
 msgid "Show item name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:134
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:134
 msgid "Show user name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/blocks/comments.php:137
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/blocks/comments.php:137
 msgid "Show date:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/flashuploader.php:32
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/flashuploader.php:32
 msgid "All Files"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/flashuploader.php:35
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/flashuploader.php:35
 msgid "Select Files"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:258
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/form.class.php:447
+msgid "Fields marked with (*) are required."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:80
+msgid "Users List"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:81
+msgid "Add User"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:85
+msgid "Categories List"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:86
+msgid "Add Category"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:91
+msgid "Add Images"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:277
 msgid "Edit"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:299
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:318
 msgid "Name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:303
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:322
 msgid "Web site"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:304
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:323
 msgid "Your comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:305
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:324
 msgid "Submit Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:306
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:325
 msgid "Submit a comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:326
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:345
 msgid "Please specify your name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:327
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:346
 msgid "Please specify a valid email"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:328
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:347
 msgid "Please write a message"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/functions.php:329
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/functions.php:348
 msgid "Please enter a valid URL"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/internalblock.php:329
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/internalblock.php:329
 msgid "The configuration file for this block does not exists!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/internalblock.php:336
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/internalblock.php:336
 msgid "There was a problem trying to show the configuration options for this block!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/pagenav.php:118
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/pagenav.php:126
 #, php-format
 msgid "Showing <strong>%u</strong> to <strong>%u</strong> of <strong>%u</strong>."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:47
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/template.php:210
+msgid "Help"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:47
 msgid "You must provide a valid time and format value to use RMTimeFormatter::format() method"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:93
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:93
 msgid "Sunday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:94
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:94
 msgid "Monday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:95
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:95
 msgid "Tuesday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:96
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:96
 msgid "Wednesday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:97
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:97
 msgid "Thursday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:98
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:98
 msgid "Friday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:99
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:99
 msgid "Saturday"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:111
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:111
 msgid "January"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:112
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:112
 msgid "February"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:113
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:113
 msgid "March"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:114
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:114
 msgid "April"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:115
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:115
 msgid "May"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:116
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:116
 msgid "June"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:117
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:117
 msgid "July"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:118
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:118
 msgid "August"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:119
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:119
 msgid "September"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:120
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:120
 msgid "October"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:121
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:121
 msgid "November"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/timeformatter.php:122
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/timeformatter.php:122
 msgid "December"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/utilities.php:271
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/utilities.php:271
 #, php-format
 msgid "%s bytes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/utilities.php:273
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/utilities.php:273
 #, php-format
 msgid "%s Kb"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/utilities.php:275
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/utilities.php:275
 #, php-format
 msgid "%s MB"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/utilities.php:277
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/utilities.php:277
 #, php-format
 msgid "%s GB"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/date.class.php:93
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/date.class.php:93
 msgid "Choose Time"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:82
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/formuser.class.php:84
 msgid "All Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:112
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/formuser.class.php:113
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/formuser.class.php:114
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/formuser.class.php:115
 msgid "Search Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/modules.class.php:145
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/modules.class.php:145
 msgid "Inner pages"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:114
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/textoptions.class.php:114
 msgid "Allow HTML"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:116
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/textoptions.class.php:116
 msgid "Allow Xoops Code"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:118
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/textoptions.class.php:118
 msgid "Allow Smilies"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:120
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/textoptions.class.php:120
 msgid "Allow break lines"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/class/fields/textoptions.class.php:122
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/class/fields/textoptions.class.php:122
 msgid "Do images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/right_widgets.php:14
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/right_widgets.php:14
 msgid "Available Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:110
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/tiny-images.php:110
 msgid "Sorry, unauthorized operation!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:122
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/tiny-images.php:122
 msgid "You must select a category before"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/tiny-images.php:200
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/tiny-images.php:200
 msgid "File URL"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:34
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:34
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:38
 msgid "You are not allowed to do this action"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:42
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:42
 msgid "Sorry, category has not been specified!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:47
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:47
 msgid "Sorry, the specified category has not been found!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:51
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:51
 msgid "Sorry, the specified category is closed!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:55
 msgid "Sorry, you can not upload images!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/include/upload.php:98
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/include/upload.php:98
 msgid "File could not be inserted to database!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:15
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:15
 msgid "Language to use"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:16
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:16
 msgid "Arrange images by date"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:17
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:17
 msgid "Select the default editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:20
 msgid "XoopsCode Editor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:22
 msgid "Limit for image categories list."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:23
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:23
 msgid "Image manager: number of images per page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:24
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:24
 msgid "Secret Key"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:25
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:25
 msgid "Provide a secret key used to encrypt information."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:26
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:26
 msgid "Admin theme"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:28
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:28
 msgid "Allow HTMl in text"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:29
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:29
 msgid "Allow smilies in text"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:30
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:30
 msgid "Allow XoopsCode"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:31
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:31
 msgid "Allow images in text"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:32
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:32
 msgid "Auto add line breaks in text"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:34
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:34
 msgid "Modules number on dashboard"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:37
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:37
 msgid "Enable comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:38
 msgid "Allow anonymous users to post comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:39
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:39
 msgid "Automatically approve comments by registered users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:40
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:40
 msgid "Automatically approve comments by anonymous users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:41
 msgid "Allow users to edit their comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:42
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:42
 msgid "Time limit to edit a comment (in hours)."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:45
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:45
 msgid "Image for RSS feeds"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:48
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:48
 msgid "Mailer method"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:49
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:49
 msgid "Common Utilities will use this method to send emails."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:50
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:50
 msgid "PHP Mail()"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:51
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:51
 msgid "SMTP"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:52
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:52
 msgid "Sendmail"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:53
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:53
 msgid "SMTP server to use"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:54
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:54
 msgid "Specify the server through with the emails will be sent."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:55
 msgid "SMTP encryption"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:56
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:56
 msgid "For SSL or TLS encryption to work, your PHP installation must have appropriate OpenSSL transports wrappers."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:58
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:58
 msgid "SSL"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:59
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:59
 msgid "TLS"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:60
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:60
 msgid "SMTP server port"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:61
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:61
 msgid "Note that you must to write the appropriate port based on your encryption type selection."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:62
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:62
 msgid "SMTP username"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:63
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:63
 msgid "SMTP password"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:64
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:64
 msgid "Sendmail path"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:65
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:65
 msgid "Input the command for sendmail, including the correct command line flags. The default to use is \"/usr/sbin/sendmail -bs\" if this is not specified."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:68
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:68
 msgid "Enable RSS Center"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:69
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:69
 msgid "Enable internal blocks manager"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:76
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:76
 msgid "New Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:77
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:77
 msgid "New Image"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/language/english/modinfo.php:78
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/language/english/modinfo.php:78
 msgid "Create Images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:1
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:1
 msgid "Create New Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:7
 msgid "Category Name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:13
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:13
 msgid "Category Status:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:16
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:16
 msgid "Inactive"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:17
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:17
 msgid "Active"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:22
 msgid "Groups that can upload images:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:30
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:30
 msgid "Groups that can use this category:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:38
 msgid "Maximum file size:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:43
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:43
 msgid "Bytes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:44
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:44
 msgid "Kilobytes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:45
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:45
 msgid "Megabytes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:50
-msgid "Images Configurations"
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:50
+msgid "Custom Sizes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:55
 msgid "This configurations stablish the sizes in wich images will be created."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:56
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:56
 msgid "You can specify all sizes that you wish according to your needs."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:63
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:91
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:63
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:91
 msgid "Size name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:65
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:93
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:65
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:93
 msgid "Delete"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:72
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:100
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:72
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:100
 msgid "Width:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:74
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:102
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:74
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:102
 msgid "Height:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:80
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:108
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:80
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:108
 msgid "Scale"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:81
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:109
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:81
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:109
 msgid "Crop"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:82
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:110
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:82
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:110
 msgid "No Resize"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:115
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:115
 msgid "New Size"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/categories_form.php:121
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/categories_form.php:121
 msgid "Update Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:9
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:9
 msgid "Upload Files"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:10
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:10
 msgid "From URL"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:11
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:11
 msgid "From Library"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:17
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:89
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:17
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:89
 msgid "Select the category where you wish to upload images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:19
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:91
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:19
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:91
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:7
 msgid "Select..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:35
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:32
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:35
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:32
 msgid "Resizing images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:40
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:36
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:40
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:36
 msgid "Please, do not close the window until resizing process has finished!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:49
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:49
 msgid "Image URL"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:53
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:24
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:34
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:53
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:24
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:34
 msgid "Title:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:57
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:57
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:38
 msgid "Alternative text:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:61
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:56
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:61
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:56
 msgid "Alignment:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:65
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:59
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:65
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:59
 msgid "Left"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:66
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:60
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:66
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:60
 msgid "Center"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:67
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:61
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:67
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:61
 msgid "Right"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/editor_image.php:71
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/editor_image.php:71
 msgid "Link:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/forms.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/forms.php:41
 msgid "This is a required field. Please fill it!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:11
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:12
 msgid "Selected:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:22
 msgid "Insert Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:28
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:29
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:3
 msgid "Search:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:29
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:30
 msgid "Show:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:30
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:31
 msgid "Sort by:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:32
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:169
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:178
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:33
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:169
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:178
 msgid "ID"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:33
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:34
 msgid "Registered"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:36
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:37
 msgid "Go!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/form_users.php:44
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/form_users.php:45
 msgid "Existing Users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:7
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:6
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:14
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:117
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:7
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:6
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:14
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:117
 msgid "Bulk Actions..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:9
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:9
 msgid "Close Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:10
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:10
 msgid "Open Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:12
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:10
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:87
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:147
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:163
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:214
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:20
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:122
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:12
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:10
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:87
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:147
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:163
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:214
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:5
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:20
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:122
 msgid "Apply"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:19
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:19
 msgid "Sizes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:20
 msgid "Groups"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:25
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:25
 msgid "There are not categories yet! You must create at least one category in order to create images."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:35
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:44
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:35
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:44
 msgid "Do you really want to delete &quot;"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:36
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:36
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:41
 msgid "open"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:54
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:54
 msgid "Upload:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_categories.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_categories.php:55
 msgid "Access:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:2
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:2
 msgid "Edit Image"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:20
 msgid "Original Size"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:28
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:28
 msgid "Category:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:38
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:42
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:38
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:42
 msgid "Description:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_edit.php:43
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_edit.php:43
 msgid "Update Image!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:1
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:50
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:1
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:50
 msgid "Images Manager"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:8
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:8
 msgid "Update thumbnails"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:21
 msgid "File"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:22
 msgid "Details"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:23
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:43
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:53
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:23
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:43
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:53
 msgid "Author"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:24
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:24
 msgid "Date"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_images.php:29
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_images.php:29
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:6
 msgid "There are not images yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:20
 msgid "Show"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:29
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:29
 msgid "Hide"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:46
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:46
 msgid "Link URL:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:65
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:65
 msgid "Image size:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:71
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:71
 msgid "Original"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_list_editor.php:77
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_list_editor.php:80
 msgid "Insert image"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:2
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:2
 msgid "Upload Images"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:5
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:5
 msgid "Select Category:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:12
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:12
 msgid "Change Category"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:19
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:19
 msgid "Upload"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:20
 msgid "Clear All"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:38
 msgid "Done! Click to continue..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/images_uploadimages.php:39
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/images_uploadimages.php:39
 msgid "Done! Show images..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:4
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:4
 msgid "Pages:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:6
 msgid "First Page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:10
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:10
 msgid "Previous Page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:21
 #, php-format
 msgid "Page %u"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:30
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:30
 msgid "Next Page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/navigation_pages.php:34
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/navigation_pages.php:34
 msgid "Last Page"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:1
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:1
 msgid "Blocks Administration"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:7
 msgid "All modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:13
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:13
 msgid "All positions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:20
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:20
 msgid "All blocks..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:21
 msgid "Hidden blocks..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:22
 msgid "Visible blocks..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:27
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:27
 msgid "Add New Block"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:59
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:59
 msgid "Input a name to identify this position (<em>eg. Left blocks</em>)"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:60
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:60
 msgid "Tag Name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:62
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:62
 msgid "Specify a name for the smarty tag to use in templates (eg. left_blocks). This tag will be used as Smarty tag (eg. &lt;{$left_blocks}&gt)."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:63
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:63
 msgid "Add Position"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:67
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:67
 msgid "How to implement blocks"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:82
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:142
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:158
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:209
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:82
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:142
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:158
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:209
 msgid "Bulk actions..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:83
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:143
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:159
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:210
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:26
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:83
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:143
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:159
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:210
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:27
 msgid "Visible"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:84
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:144
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:160
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:211
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:84
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:144
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:160
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:211
 msgid "Hidden"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:89
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:89
 msgid "Sort Blocks"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:97
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:107
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:97
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:107
 msgid "Block"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:99
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:109
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:99
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:109
 msgid "Position"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:101
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:111
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:101
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:111
 msgid "Order"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:117
-msgid "There are not blocks configured with this options."
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:117
+msgid "There are not blocks configured with these options."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:127
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:127
 msgid "Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:171
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:180
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:171
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:180
 msgid "Smarty Tag"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:224
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:232
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:224
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:232
 msgid "Save Order"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:225
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:233
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:225
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:233
 msgid "Saving..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:240
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:240
 msgid "Loading"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_blocks.php:240
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_blocks.php:240
 msgid "Loading data..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:3
 #, php-format
 msgid "%s settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:6
 msgid "General Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:7
 msgid "Custom Options"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:8
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:8
 msgid "Permissions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:11
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:11
 msgid "Block Title"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:14
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:14
 msgid "Block position"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:22
 msgid "Block weight"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:31
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:32
 msgid "Cache lifetime"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:33
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:34
 msgid "No Cache"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:34
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:35
 msgid "30 seconds"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:35
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:36
 msgid "1 minute"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:36
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:37
 msgid "5 minutes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:37
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:38
 msgid "30 minutes"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:38
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:39
 msgid "1 hour"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:39
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:40
 msgid "5 hours"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:40
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:41
 msgid "1 day"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:42
 msgid "3 days"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:42
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:43
 msgid "1 week"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:43
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:44
 msgid "1 month"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:46
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:48
 msgid "Visible in"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:57
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_block_form.php:59
 msgid "Read Permissions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_block_form.php:63
-msgid "Guardar"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:5
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:5
 msgid "You need something to search!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:9
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:9
 msgid "Comments Manager"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:15
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:118
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:15
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:118
 msgid "Set unapproved"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:16
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:119
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:16
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:119
 msgid "Set approved"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:17
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:17
 msgid "Mark as SPAM"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:18
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:120
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:18
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:120
 msgid "Delete comments"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:21
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:21
 msgid "View all"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:34
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:36
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:99
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:34
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:36
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:99
 msgid "SPAM"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:44
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:54
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:44
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:54
 msgid "Comment"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:63
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:63
 msgid "There are not comments yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:79
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:79
 msgid "Unnaprove"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:81
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:81
 msgid "Approve"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_comments.php:84
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_comments.php:84
 msgid "Spam"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:6
 msgid "Installed Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:12
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:30
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:12
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:30
 msgid "If you wish to manage or install new modules please go to Modules Management."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:13
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:31
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:13
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:31
 msgid "Modules management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:42
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:42
 msgid "System Tools"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:47
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:47
 msgid "Configure Common Utilities"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:55
 msgid "Comments Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:58
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:58
 msgid "Plugins Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:63
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:63
 msgid "XOOPS Modules"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_dashboard.php:88
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_dashboard.php:88
 msgid "Recent News"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mods_installed.php:6
 #, php-format
 msgid "Version: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mods_installed.php:7
 msgid "Update"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mods_installed.php:9
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mods_installed.php:9
 msgid "View"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:4
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:4
 msgid "Do you really want to uninstall selected module?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:5
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:5
 msgid "Do you really want to update selected module?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:6
 msgid "Do you really want to disable selected module?"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:7
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:7
 msgid "New name must be different from current name!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:31
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:31
 #, php-format
 msgid "Updated: %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:72
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:72
 msgid "Web:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:76
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:109
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:76
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:109
 msgid "License:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:87
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:87
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:41
 msgid "Uninstall"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:88
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:43
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:88
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:43
 msgid "Disable"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:89
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:45
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:89
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:45
 msgid "Enable"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:96
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:96
 msgid "Change name:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_modules.php:98
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_modules.php:98
 msgid "Rename"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:3
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:14
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_log.php:3
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_log.php:14
 msgid "Go to Modules Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:6
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_log.php:17
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_log.php:6
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_log.php:17
 #, php-format
 msgid "%s Control Panel"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:1
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:1
 #, php-format
 msgid "Install %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:3
 msgid "This module will make next changes in Xoops system. Please review in a detailed way all them in order to decide if you really wish to install this module"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:10
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:10
 msgid "Module Templates"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:23
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:23
 msgid "Database Tables"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:36
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:36
 msgid "Option settings to insert"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:50
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:50
 msgid "Bloks to insert"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:67
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:67
 #, php-format
 msgid "%s Details"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:96
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:96
 msgid "Author Web:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:105
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:105
 msgid "Credits:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:113
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:113
 msgid "Help:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:115
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:115
 msgid "Click here"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_mod_preinstall.php:119
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_mod_preinstall.php:119
 msgid "Install Now"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:1
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:1
 msgid "Plugins Manager"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:3
 msgid "Plugins allows to Common Utilities to improve its features and capabilities. Following is a list with existing plugins, installed and available to install."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:6
 msgid "Installed Plugins"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:11
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:20
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:81
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:89
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:11
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:20
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:81
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:89
 msgid "Description"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:12
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:21
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:82
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:90
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:12
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:21
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:82
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:90
 msgid "Version"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:29
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:29
 msgid "There are not plugins installed yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:76
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:76
 msgid "Available Plugins"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:88
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:88
 msgid "Name and Description"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:97
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:97
 msgid "There are not available plugins yet!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_plugins.php:106
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_plugins.php:106
 msgid "Visit Web site"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_rss_center.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_rss_center.php:3
 #, php-format
 msgid "All %s RSS feeds are listed below. Click an option for feed."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_rss_center.php:9
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_rss_center.php:9
 msgid "URL:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:13
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:13
 msgid "Go Now!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:16
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:16
 msgid "Advanced Search"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:22
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:22
 msgid "Email:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:23
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:23
 msgid "Web site:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:24
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:24
 msgid "Country/Location:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:32
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:32
 msgid "Registered between:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:33
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:33
 msgid "Last login between:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:34
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:34
 msgid "Posts between:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:37
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:38
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:41
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:37
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:38
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:41
 msgid "and"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:46
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:46
 msgid "Mail:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:47
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:47
 msgid "Status:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:48
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:48
 msgid "Search method:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:54
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:54
 msgid "Users that accept mail"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:55
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:55
 msgid "Users that do'nt accept mail"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:61
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:61
 msgid "Active users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:62
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:62
 msgid "Inactive users"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:72
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:72
 msgid "Search Now!"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:78
-msgid "All this options are optional and will be additional to basic search keyword."
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:78
+msgid "All these options are optional and will be additional to basic search keyword."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:91
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:187
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:91
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:187
 msgid "Order by:"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:96
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:120
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:131
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:192
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:96
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:120
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:131
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:192
 msgid "Email"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:98
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:194
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:98
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:194
 msgid "Sort"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:103
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:199
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:103
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:199
 msgid "Activate"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:104
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:200
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:104
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:200
 msgid "Deactivate"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:105
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:201
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:105
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:201
 msgid "Send email"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:140
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:140
 msgid "There are not any user registered with for this filter."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:161
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:161
 msgid "Send Email"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/rmc_users.php:166
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/rmc_users.php:166
 #, php-format
 msgid "Send email to %s"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_bknew.php:4
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_bknew.php:4
 msgid "Select block..."
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_bknew.php:12
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_bknew.php:12
 msgid "Add Block"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:3
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_posnew.php:3
 msgid "Position Name"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:6
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_posnew.php:6
 msgid "Position tag"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:12
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_posnew.php:12
 msgid "Existing positions"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/templates/widgets/rmc_aw_posnew.php:15
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/templates/widgets/rmc_aw_posnew.php:15
 msgid "edit"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:43
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/theme.php:43
 msgid "Visit Site"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:44
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/theme.php:44
 msgid "Welcome,"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:45
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/theme.php:45
 msgid "Logout"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:46
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:54
-msgid "Help"
-msgstr ""
-
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/theme.php:53
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/theme.php:53
 #, php-format
 msgid "%s Help"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:66
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:66
 msgid "Management"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:105
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:105
 msgid "Users Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:109
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:109
 msgid "Metas and Footer"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:113
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:113
 msgid "Words Censor"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:117
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:117
 msgid "Searchs Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:121
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:121
 msgid "Mail Settings"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:125
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:125
 msgid "Authentication"
 msgstr ""
 
-#: c:\wamp\www\cu\modules\rmcommon/themes/default/widgets/mods_and_settings.php:142
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/default/widgets/mods_and_settings.php:142
 msgid "Modules Settings"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:94
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:95
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:151
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:152
+msgid "XOOPS"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:111
+#, php-format
+msgid "Welcome back %s"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:113
+msgid "View Site"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:114
+msgid "Preferences"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:115
+msgid "Log out"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:185
+msgid "System"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:239
+msgid "Designia"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:243
+msgid "About theme"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:261
+msgid "Social Links"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:283
+msgid "Close message box"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:337
+#, php-format
+msgid "Powered by %s."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:338
+#, php-format
+msgid "Reloaded by %s."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/designia.php:340
+#, php-format
+msgid "Using %s."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:21
+msgid "About Designia Theme"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:26
+msgid "Red México on Facebook"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:28
+msgid "Designia Theme for Common Utilities"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:30
+msgid "Name and Version:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:32
+msgid "Running on:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:34
+msgid "Powered by:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/ajax/about.php:37
+#, php-format
+msgid "Designia Theme has been created by %s spacially for Common Utilities. You can find more XOOPS content in our Website or by following on my twitter account."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/class/designiafunctions.class.php:91
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:25
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:34
+msgid "Options"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:20
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:30
+msgid "Designia Options"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:38
+msgid "Designia Theme Settings"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:43
+msgid "Basic Theme Options"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:46
+msgid "Logo URL:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:48
+msgid "Provide a URL for an image to be used as logo for theme."
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:50
+msgid "Color scheme:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/include/settings.php:76
+msgid "Guardar Cambios"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/navigation_pages.php:7
+msgid "First"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/navigation_pages.php:11
+msgid "Previous"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/navigation_pages.php:27
+msgid "Next"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/navigation_pages.php:31
+msgid "Last"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:8
+msgid "You must provide a new name!"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:21
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:30
+msgid "Image"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:83
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:84
+msgid "Show Information"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:126
+msgid "Module Information"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:136
+msgid "Current Version:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:137
+msgid "Directory:"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:144
+msgid "Author(s):"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:148
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:149
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:157
+msgid "Not provided"
+msgstr ""
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\rmcommon/themes/designia/modules/rmcommon/rmc_modules.php:161
+msgid "Close Window"
 msgstr ""
 
