@@ -91,8 +91,8 @@
                 </li>
                 <li class=nav_item>
                     <a href="http://xoops.org" target="_blank">
-                        <img src="<?php echo $rm_theme_url; ?>/images/xoops.png" alt="<?php _e('XOOPS','designia'); ?>" />
-                        <p><?php _e('XOOPS','designia'); ?></p>
+                        <img src="<?php echo $rm_theme_url; ?>/images/xoops.png" alt="<?php _e('XOOPS','rmcommon'); ?>" />
+                        <p><?php _e('XOOPS','rmcommon'); ?></p>
                     </a>
                 </li>
                 <?php RMEvents::get()->run_event('designia.get.nav.items'); ?>
@@ -110,9 +110,9 @@
                         <div id="des-userinfo">
                             <p id="usr-name"><?php echo sprintf(__('Welcome back %s','designia'), $xoopsUser->getVar('name')); ?></p>
                             <p>
-                                <a href="<?php echo XOOPS_URL; ?>" target="viewsite"><?php _e('View Site','designia'); ?></a>
-                                <a href="<?php echo RMCURL; ?>/?designia=settings"><?php _e('Preferences','designia'); ?></a>
-                                <a href="<?php echo XOOPS_URL; ?>"><?php _e('Log out','designia'); ?></a>
+                                <a href="<?php echo XOOPS_URL; ?>" target="viewsite"><?php _e('View Site','rmcommon'); ?></a>
+                                <a href="<?php echo RMCURL; ?>/?designia=settings"><?php _e('Preferences','rmcommon'); ?></a>
+                                <a href="<?php echo XOOPS_URL; ?>"><?php _e('Log out','rmcommon'); ?></a>
                             </p>
                         </div>
                     </li>
@@ -148,8 +148,8 @@
                     </li>
                     <li class=nav_item>
                         <a href="http://xoops.org" target="_blank">
-                            <img src="<?php echo $rm_theme_url; ?>/images/xoops.png" alt="<?php _e('XOOPS','designia'); ?>" />
-                            <p><?php _e('XOOPS','designia'); ?></p>
+                            <img src="<?php echo $rm_theme_url; ?>/images/xoops.png" alt="<?php _e('XOOPS','rmcommon'); ?>" />
+                            <p><?php _e('XOOPS','rmcommon'); ?></p>
                         </a>
                     </li>
                     <?php RMEvents::get()->run_event('designia.get.nav.items'); ?>
@@ -182,7 +182,7 @@
                     </li>
                     <?php if($xoopsModule->dirname()!='system'): ?>
                     <li>
-                        <a style="background-image: url(<?php echo RMTHEMEURL; ?>/images/system.png);" href="<?php echo XOOPS_URL; ?>/modules/system/"><?php _e('System','designia'); ?></a>
+                        <a style="background-image: url(<?php echo RMTHEMEURL; ?>/images/system.png);" href="<?php echo XOOPS_URL; ?>/modules/system/"><?php _e('System','rmcommon'); ?></a>
                         <ul>
                             <?php foreach($system_menu as $menu): ?>
                             <li class=nav_item>
@@ -236,18 +236,18 @@
                     <?php endif; ?>
                     
                     <li>
-                        <a style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/designia.png);" href="#"><?php _e('Designia','designia'); ?></a>
+                        <a style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/designia.png);" href="#"><?php _e('Designia','rmcommon'); ?></a>
                         <ul>
                             <li class=nav_item>
-                                <a href="<?php echo RMCURL; ?>/?designia=settings" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/colors.png);"><?php _e('Settings','designia'); ?></a>
-                                <a href="#" id="designia-about" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/info.png);"><?php _e('About theme','designia'); ?></a>
+                                <a href="<?php echo RMCURL; ?>/?designia=settings" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/colors.png);"><?php _e('Settings','rmcommon'); ?></a>
+                                <a href="#" id="designia-about" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/info.png);"><?php _e('About theme','rmcommon'); ?></a>
                             </li>
                         </ul>
                     </li>
                     
                     <?php if($this->help() || $xoopsModule->getInfo('social')): ?>
                     <li>
-                        <a href="#" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);"><?php _e('Help','designia'); ?></a>
+                        <a href="#" style="background-image: url(<?php echo DESIGNIA_URL; ?>/images/help.png);"><?php _e('Help','rmcommon'); ?></a>
                         <ul>
                             <?php if($this->help()): ?>
                                 <?php foreach($this->help() as $help): ?>
@@ -258,7 +258,7 @@
                             <?php endif; ?>
                             <?php if($xoopsModule->getInfo('social')): ?>
                                 <li>
-                                    <a href="#" onclick="return false;"><?php _e('Social Links','designia'); ?></a>
+                                    <a href="#" onclick="return false;"><?php _e('Social Links','rmcommon'); ?></a>
                                         <ul>
                                             <?php foreach($xoopsModule->getInfo('social') as $net): ?>
                                             <li class="nav_item">
@@ -280,7 +280,7 @@
             <!-- System messages -->
             <?php foreach($rmc_messages as $message): ?>
             <div class="des_sys_message msgtype_<?php echo $message['level']; ?>"<?php if($message['level']>4 && $message['icon']!=''): ?> style="background-image: url(<?php echo $message['icon']; ?>);<?php endif; ?>>
-                <span class="msg-close" title="<?php _e('Close message box','designia'); ?>"></span>
+                <span class="msg-close" title="<?php _e('Close message box','rmcommon'); ?>"></span>
                 <?php echo html_entity_decode($message['text']); ?>
             </div>
             <?php endforeach; ?>
