@@ -1,0 +1,484 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Designia Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-10 20:34-0600\n"
+"PO-Revision-Date: 2012-06-10 20:38-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: E:\\exm and modules\\rmcommon releases\\rmcommon-2.1.52\\designia\n"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:64
+#: releases\rmcommon-2.1.52\designia/designia.php:65
+#: releases\rmcommon-2.1.52\designia/designia.php:121
+#: releases\rmcommon-2.1.52\designia/designia.php:122
+msgid "Dashboard"
+msgstr "Panel de Control"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:70
+#: releases\rmcommon-2.1.52\designia/designia.php:71
+#: releases\rmcommon-2.1.52\designia/designia.php:127
+#: releases\rmcommon-2.1.52\designia/designia.php:128
+msgid "Modules"
+msgstr "Módulos"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:76
+#: releases\rmcommon-2.1.52\designia/designia.php:77
+#: releases\rmcommon-2.1.52\designia/designia.php:133
+#: releases\rmcommon-2.1.52\designia/designia.php:134
+msgid "Plugins"
+msgstr "Plugins"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:82
+#: releases\rmcommon-2.1.52\designia/designia.php:83
+#: releases\rmcommon-2.1.52\designia/designia.php:139
+#: releases\rmcommon-2.1.52\designia/designia.php:140
+msgid "Blocks"
+msgstr "Bloques"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:88
+#: releases\rmcommon-2.1.52\designia/designia.php:89
+#: releases\rmcommon-2.1.52\designia/designia.php:145
+#: releases\rmcommon-2.1.52\designia/designia.php:146
+msgid "Comments"
+msgstr "Comentarios"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:94
+#: releases\rmcommon-2.1.52\designia/designia.php:95
+#: releases\rmcommon-2.1.52\designia/designia.php:151
+#: releases\rmcommon-2.1.52\designia/designia.php:152
+msgid "XOOPS"
+msgstr "XOOPS"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:111
+#, php-format
+msgid "Welcome back %s"
+msgstr "Bienvenido %s"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:113
+msgid "View Site"
+msgstr "Ver Sitio"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:114
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:115
+msgid "Log out"
+msgstr "Salir"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:185
+msgid "System"
+msgstr "Sistema"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:239
+msgid "Designia"
+msgstr "Designia"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:242
+#: releases\rmcommon-2.1.52\designia/class/designiafunctions.class.php:45
+msgid "Settings"
+msgstr "Opciones"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:243
+msgid "About theme"
+msgstr "Acerca del tema"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:250
+msgid "Help"
+msgstr "Ayuda"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:261
+msgid "Social Links"
+msgstr "Links Sociales"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:283
+msgid "Close message box"
+msgstr "Cerrar cuadro de mensaje"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:337
+#, php-format
+msgid "Powered by %s."
+msgstr "Impulsado por %s"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:338
+#, php-format
+msgid "Reloaded by %s."
+msgstr "Recargado por %s"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/designia.php:340
+#, php-format
+msgid "Using %s."
+msgstr "Usando %s"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:21
+msgid "About Designia Theme"
+msgstr "Acerca de Designia"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:26
+msgid "Red México on Facebook"
+msgstr "Red México en Facebook"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:28
+msgid "Designia Theme for Common Utilities"
+msgstr "Designia Theme para Common Utilities"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:30
+msgid "Name and Version:"
+msgstr "Nombre y Versión:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:32
+msgid "Running on:"
+msgstr "Corriendo sobre:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:34
+msgid "Powered by:"
+msgstr "Impulsado por:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/ajax/about.php:37
+#, php-format
+msgid "Designia Theme has been created by %s spacially for Common Utilities. You can find more XOOPS content in our Website or by following on my twitter account."
+msgstr "Designia Theme ha sido creado por %s especialmente para Common Utilities. Puedes encontrar mas contenido XOOPS en nuestro sitio Web o siguiéndome en mu cuenta Twitter."
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/class/designiafunctions.class.php:91
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:25
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:34
+msgid "Options"
+msgstr "Opciones"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:20
+msgid "Settings saved successfully!"
+msgstr "¡Configuraciones almacenadas correctamente!"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:30
+msgid "Designia Options"
+msgstr "Opciones Designia"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:38
+msgid "Designia Theme Settings"
+msgstr "Opciones del Tema"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:43
+msgid "Basic Theme Options"
+msgstr "Opciones básicas del tema"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:46
+msgid "Logo URL:"
+msgstr "URL para el logotipo:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:48
+msgid "Provide a URL for an image to be used as logo for theme."
+msgstr "Proporciona una URL para la imágen que será utilizada como logotipo en el tema."
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:50
+msgid "Color scheme:"
+msgstr "Esquema de colores:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/include/settings.php:76
+msgid "Save Changes"
+msgstr "Guardar Cambios"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:5
+msgid "Pages:"
+msgstr "Páginas:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:7
+msgid "First Page"
+msgstr "Primera Página"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:7
+msgid "First"
+msgstr "Primera"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:11
+msgid "Previous Page"
+msgstr "Página Anterior"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:11
+msgid "Previous"
+msgstr "Anterior"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:20
+#, php-format
+msgid "Page %u"
+msgstr "Página %u"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:27
+msgid "Next Page"
+msgstr "Página Siguiente"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:27
+msgid "Next"
+msgstr "Siguiente"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:31
+msgid "Last Page"
+msgstr "Última Página"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/navigation_pages.php:31
+msgid "Last"
+msgstr "Última"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:1
+msgid "Modules Management"
+msgstr "Administración de Módulos"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:4
+msgid "Do you really want to uninstall selected module?"
+msgstr "¿Realmente deseas desintalar el módulo seleccionado¿"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:5
+msgid "Do you really want to update selected module?"
+msgstr "¿Realmente deseas actualizar el módulo seleccionado?"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:6
+msgid "Do you really want to disable selected module?"
+msgstr "¿Realmente deseas desactivar el módulo seleccionado?"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:7
+msgid "New name must be different from current name!"
+msgstr "¡El nombre nombre debe ser diferente del nombre actual!"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:8
+msgid "You must provide a new name!"
+msgstr "¡Debes porporcionar un nombre nuevo!"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:21
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:30
+msgid "Image"
+msgstr "Imagen"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:22
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:31
+msgid "Name"
+msgstr "Nombre"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:23
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:32
+msgid "Version"
+msgstr "Versión"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:24
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:33
+msgid "Author"
+msgstr "Autor"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:51
+msgid "Edit"
+msgstr "Editar"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:83
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:84
+msgid "Show Information"
+msgstr "Mostrar Información"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:88
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:89
+msgid "Update"
+msgstr "Actualizar"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:95
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:96
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:99
+msgid "Disable"
+msgstr "Desactivar"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:105
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:106
+msgid "Enable"
+msgstr "Activar"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:112
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:113
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:116
+msgid "Uninstall"
+msgstr "Desinstalar"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:126
+msgid "Module Information"
+msgstr "Información del Módulo"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:136
+msgid "Current Version:"
+msgstr "Versión Actual:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:137
+msgid "Directory:"
+msgstr "Directorio:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:144
+msgid "Author(s):"
+msgstr "Autor(es):"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:145
+msgid "Web site:"
+msgstr "Sitio Web:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:148
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:149
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:157
+msgid "Not provided"
+msgstr "No proporcionado"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:152
+msgid "License:"
+msgstr "Licnecia:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:153
+msgid "Help:"
+msgstr "Ayuda:"
+
+#: E:\exm
+#: and modules\rmcommon
+#: releases\rmcommon-2.1.52\designia/modules/rmcommon/rmc_modules.php:161
+msgid "Close Window"
+msgstr "Cerrar Ventana"
+
