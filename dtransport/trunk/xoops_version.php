@@ -12,8 +12,8 @@ include_once 'include/xv-header.php';
 
 $modversion['name'] = "D-Transport";
 $modversion['description'] = __('Module for create a donwloads section in XOOPS','dtransport');
-$modversion['version'] = "1.0";
-$modversion['rmversion'] = array('number'=>1,'revision'=>0,'status'=>-2,'name'=>'D-Transport');
+$modversion['version'] = "2.0";
+$modversion['rmversion'] = array('number'=>2,'revision'=>0,'status'=>-2,'name'=>'D-Transport');
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['icon48'] = "images/logo.png";
@@ -33,10 +33,10 @@ $modversion['updatable'] = 1;
 $modversion['updateurl'] = 'http://redmexico.com.mx/modules/vcontrol/check.php?id=4';
 
 // Social links
-$modversion['social'][0] = array('title' => __('BitCERO Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
-$modversion['social'][1] = array('title' => __('BitCERO LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
-$modversion['social'][2] = array('title' => __('Red México Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
-$modversion['social'][3] = array('title' => __('Red México Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
+$modversion['social'][0] = array('title' => __('Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
+$modversion['social'][1] = array('title' => __('LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
+$modversion['social'][2] = array('title' => __('Red México on Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
+$modversion['social'][3] = array('title' => __('Red México on Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
 
 // Administración
 $modversion['hasAdmin'] = 1;
@@ -110,6 +110,25 @@ $modversion['templates'][] = array('file' => 'dtrans_screens.html','description'
 $modversion['templates'][] = array('file' => 'dtrans_files.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createlogs.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createfeatures.html', 'description' => '');
+
+// Permalinks
+$modversion['config'][] = array(
+    'name' => 'permalinks',
+    'title' => '_MI_DT_PERMALINK',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => 0,
+    'options' => array('_MI_DT_MODEDEF' => 0, '_MI_DT_MODESHORT' => 1)
+);
+$modversion['config'][] = array(
+    'name' => 'htbase',
+    'title' => '_MI_DT_HTBASE',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '/modules/dtransport'
+);
 
 //Título
 $modversion['config'][] = array(

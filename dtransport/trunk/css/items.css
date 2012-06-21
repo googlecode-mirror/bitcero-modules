@@ -53,6 +53,25 @@ div.widgets_forms div.item input.fullwidth{width: 205px;}
 .widgets_forms .description{display: block;}
 .dt_el_list{height: auto; max-height: 150px;}
 
+#tags-container{
+    padding: 4px;
+}
+#tags-container span.tag{
+    display: inline-block;
+    padding: 4px 4px 4px 24px;
+    border: 1px solid #CCC;
+    background: url(../images/tag.png) no-repeat 4px;
+    margin: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#tags-container span.tag:hover{
+    background-color: #ebebeb;
+}
+.tag_legend{
+    font-size: 0.9em;
+}
+
 /** Widget options **/
 #dt-down-opts{
     
@@ -120,6 +139,61 @@ form#frm-items label.error_field{
     border-bottom: 1px dashed #C40821;
     display: inline-block;
 }
+#item-permalink{
+    display: none;
+}
+#item-permalink label{
+    font-size: 0.9em;
+}
+#item-permalink .permalink{
+    display: inline-block;
+    padding: 2px 0;
+    color: #666;
+    position: relative;
+}
+#item-permalink .permalink > span{
+    background: #fff5b8;
+    display: inline-block;
+    cursor: pointer;
+}
+#item-permalink .permalink em{
+    font-style: normal;
+}
+#item-permalink .permalink span.editing{
+    background: #FFF;
+    border: 1px solid #CCC;
+    box-shadow: inset 0 1px 3px #ebebeb;
+    padding: 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+#item-permalink .permalink span.editing input{
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 4px;
+    font-size: 1em;
+    margin: 0;
+    width: 100px;
+}
+#item-permalink .permalink span.editing span{
+    padding: 4px;
+    display: inline-block;
+    height: 16px; width: 16px;
+    float: right;
+    box-shadow: inset 2px 2px 15px #fff;
+}
+#item-permalink .permalink span.editing span[rel='ok']{
+    background: #ebebeb url(../images/ok.png) no-repeat center;
+    border-left: 1px solid #FFF;
+    border-radius: 0 3px 3px 0;
+}
+#item-permalink .permalink span.editing span[rel='cancel']{
+    background: #ebebeb url(../images/no.png) no-repeat center;
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+}
+
 
 /* Blocker */
 #down-blocker{

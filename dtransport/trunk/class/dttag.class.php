@@ -27,7 +27,7 @@
 
 
 
-class DTTag extends EXMObject
+class DTTag extends RMObject
 {
 
 	
@@ -45,7 +45,7 @@ class DTTag extends EXMObject
 			if (!$this->loadValues($id)) return;
 			$this->unsetNew();
 		}else{
-			$this->primary="tag";
+			$this->primary="tagid";
 			if ($this->loadValues($id)) $this->unsetNew();
 			$this->primary="id_tag";
 		}

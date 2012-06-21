@@ -63,32 +63,34 @@ function showItems(){
 	$sql.=$type=='wait' ? ($catid ? " AND approved=0" : " WHERE approved=0") : "";
 	$sql2.=" LIMIT $start,$limit";
 	$result=$db->queryF($sql.$sql1.$sql2);
-	$link = XOOPS_URL.'/modules/dtransport/';
     $items = array();
+
+    $timeFormat = new RMTimeFormatter(0, '%m%-%d%-%Y%');
+
 	while ($rows=$db->fetchArray($result)){
 		if ($type=='edit'){
 			$sw = new DTSoftwareEdited();
 		}else{
 			$sw = new DTSoftware();
 		}
-		$sw->assignVars($rows);		
+		$sw->assignVars($rows);
+        $img = new RMImage($sw->getVar('image'));
+        $user = new XoopsUser($sw->getVar('uid'));
 
-		$slink = $mc['urlmode'] ? $link.'item/'.$sw->nameId().'/' : $link.'item.php?id='.$sw->id();
-		$cat = new DTCategory($sw->category());
-
-		$items = array(
+		$items[] = array(
             'id'=>($type=='edit' ? $sw->software() : $sw->id()),
-            'name'=>$sw->name(),
-            'screens'=>$sw->screensCount(),
-		    'image'=>$sw->image(),
-            'secure'=>$sw->secure(),
-            'approved'=>$sw->approved(),
-            'uname'=>$sw->uname(),
-		    'date'=>($sw->created()<=$sw->modified() ? formatTimestamp($sw->modified(), 's') : formatTimestamp($sw->created(), 's')),
-		    'link'=>$slink,
-            'mark'=>$sw->mark(),
-            'daily'=>$sw->daily(),
-            'category'=>$cat->name());
+            'name'=>$sw->getVar('name'),
+            'screens'=>$sw->getVar('screens'),
+		    'image'=>$img->get_smallest(),
+            'secure'=>$sw->getVar('secure'),
+            'approved'=>$sw->getVar('approved'),
+            'uname'=>$user->getVar('uname'),
+            'created' => $timeFormat->format($sw->getVar('created')),
+		    'modified'=>$timeFormat->format($sw->getVar('modified')),
+		    'link'=> $sw->permalink(),
+            'featured'=>$sw->getVar('featured'),
+            'daily'=>$sw->getVar('daily'),
+        );
 	}
 
 
@@ -141,6 +143,8 @@ function formItems($edit=0){
 	$catid  = intval(rmc_server_var($_REQUEST, 'car', 0));
 	$type   = rmc_server_var($_REQUEST, 'type', '');
 
+    $ev = RMEvents::get();
+
 	$params='?page='.$page.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$catid.'&type='.$type;
     
 	if ($edit){
@@ -170,13 +174,14 @@ function formItems($edit=0){
     }
 	  
     $form = new RMForm('','','');
-	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->desc('e') : '',$rmc_config['editor_type']);
+	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->getVar('desc', 'e') : '',$rmc_config['editor_type']);
 	$ed->addClass('required');
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     //Lista de categorías
     $categos = array();
+    $swcats = $sw->categories();
     DTFunctions::getCategos($categos, 0, 0, array(), false);
     foreach ($categos as $row){
         $cat = new DTCategory();
@@ -188,7 +193,7 @@ function formItems($edit=0){
                     'active'=>$cat->active(),
                     'description' => $cat->desc(),
                     'indent'=>$row['jumps'],
-                    'selected' => $edit?in_array($cat->id(), $sw->categories()):''
+                    'selected' => $edit?in_array($cat->id(), $swcats):''
                 );    
     }
     unset($categos);
@@ -197,12 +202,18 @@ function formItems($edit=0){
     $sql="SELECT * FROM ".$db->prefix('dtrans_licences');
     $result=$db->queryF($sql);
     $lics = array();
+    $lics[] = array(
+        'id' => 0,
+        'name' => __('Other license','dtransport'),
+        'selected' => !$edit||in_array(0, $sw->licences())?1:0
+    );
     while($row = $db->fetchArray($result)){
         $lic = new DTLicense();
         $lic->assignVars($row);
         $lics[] = array(
             'id' => $lic->id(),
-            'name' => $lic->name()
+            'name' => $lic->name(),
+            'selected' => $edit?in_array($lic->id(), $sw->licences()):''
         );
     }
     unset($lic);
@@ -211,19 +222,33 @@ function formItems($edit=0){
     $sql="SELECT * FROM ".$db->prefix('dtrans_platforms');
     $result=$db->queryF($sql);
     $oss = array();
+    $oss[] = array(
+        'id' => 0,
+        'name' => __('Other platform','dtransport'),
+        'selected' => !$edit||in_array(0, $sw->platforms())?1:0
+    );
     while($row = $db->fetchArray($result)){
         $os = new DTPlatform();
         $os->assignVars($row);
         $oss[] = array(
             'id' => $os->id(),
-            'name' => $os->name()
+            'name' => $os->name(),
+            'selected' => $edit?in_array($os->id(), $sw->platforms()):''
         );
     }
     unset($os);
     
     // Allowed groups
-    $field = new RMFormGroups('','groups',1,1,1,$edit ? $sw->groups() : array(1,2));
+    $field = new RMFormGroups('','groups',1,1,1,$edit ? $sw->getVar('groups') : array(1,2));
     $groups = $field->render();
+
+    // Tags
+    $ftags = $sw->tags(true);
+    $tags = array();
+    foreach($ftags as $tag){
+        $tags[] = $tag->getVar('tag');
+    }
+    unset($ftags);
     
     
     RMTemplate::get()->add_style('admin.css','dtransport');

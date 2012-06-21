@@ -17,22 +17,21 @@ function dt_widget_information($edit=0){
     $widget['title'] = __('Download Information','dtransport');
     $widget['icon'] = '../images/item.png';
     
-    $action = rmc_server_var($_GET, 'action', '');
-    if($action=='edit')
+    if($edit)
         $sw = new DTSoftware(rmc_server_var($_GET, 'id', 0));
     else
         $sw = new DTSoftware();
         
     // Featured download
-    $field = new RMFormYesNo('','mark',$edit ? $sw->mark() : 1);
+    $field = new RMFormYesNo('','mark',$edit ? $sw->getVar('featured') : 1);
     $featured = $field->render();
     
     // Descarga segura
-    $field = new RMFormYesno('','secure',$edit ? $sw->secure() : 0);
+    $field = new RMFormYesno('','secure',$edit ? $sw->getVar('secure') : 0);
     $secure = $field->render();
     
     // Approved
-    $field = new RMFormYesNo('','approved',$edit ? $sw->approved() : 1);
+    $field = new RMFormYesNo('','approved',$edit ? $sw->getVar('approved') : 1);
     $approved = $field->render();
     
     unset($field);
@@ -43,17 +42,17 @@ function dt_widget_information($edit=0){
     <form name="frmInfo" id="frm-information" method="post" action="items.php">
         <div class="item">
             <label for="version"><?php _e('Current Version','dtransport'); ?></label><br />
-            <input type="text" name="version" id="version" value="<?php echo $edit ? $sw->version() : ''; ?>" size="20" class="required fullwidth" />
+            <input type="text" name="version" id="version" value="<?php echo $edit ? $sw->getVar('version') : ''; ?>" size="20" class="required fullwidth" />
             <span class="description"><?php _e('Indicate the current version of this item.','dtransport'); ?></span>
         </div>
         <div class="item">
             <label for="limits"><?php _e('Downloads limit per user','dtransport'); ?></label><br />
-            <input type="text" name="limits" id="limits" value="<?php echo $edit ? $sw->limits() : '0'; ?>" size="20" class="required fullwidth" />
+            <input type="text" name="limits" id="limits" value="<?php echo $edit ? $sw->getVar('limits') : '0'; ?>" size="20" class="required fullwidth" />
             <span class="description"><?php _e('Users could download this item only this times. Leave 0 for unlimited times.','dtransport'); ?></span>
         </div>
         <div class="item">
             <label for="langs"><?php _e('Available languages','dtransport'); ?></label><br />
-            <input type="text" name="langs" id="langs" value="<?php echo $edit ? $sw->langs() : 'English'; ?>" size="20" class="required fullwidth" />
+            <input type="text" name="langs" id="langs" value="<?php echo $edit ? $sw->getVar('langs') : 'English'; ?>" size="20" class="required fullwidth" />
             <span class="description"><?php _e('Specify every language separated by comma.','dtransport'); ?></span>
         </div>
         <div class="item">
@@ -65,7 +64,7 @@ function dt_widget_information($edit=0){
                     <div class="dt_cell">
                         <select name="siterate" id="siterate" class="required fullwidth">
                             <?php for($i=0;$i<=10;$i++): ?>
-                            <option value="<?php echo $i; ?>"<?php echo $sw->rate()==$i?' selected="selected"':''; ?>><?php echo $i; ?></option>
+                            <option value="<?php echo $i; ?>"<?php echo $sw->getVar('siterate')==$i?' selected="selected"':''; ?>><?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
                     </div>
@@ -105,6 +104,47 @@ function dt_widget_information($edit=0){
 }
 
 /**
+ * Show fields for default image
+ */
+function dt_widget_defimg($edit = 0){
+
+    $id     = intval(rmc_server_var($_REQUEST, 'id', 0));
+    $type   = rmc_server_var($_REQUEST, 'type', '');
+    $action   = rmc_server_var($_REQUEST, 'action', '');
+
+    $widget = array();
+    $widget['title'] = __('Default Image','dtransport');
+    $widget['icon'] = '../images/shots.png';
+    $util = new RMUtilities();
+
+    if ($edit){
+        //Verificamos que el software sea válido
+        if ($id<=0)
+            $params = '';
+
+        //Verificamos que el software exista
+        if ($type=='edit')
+            $sw = new DTSoftwareEdited($id);
+        else
+            $sw=new DTSoftware($id);
+
+        if ($sw->isNew())
+            $params = '';
+        else
+            $params = $sw->getVar('image');
+
+    } else {
+        $params = '';
+    }
+
+    $widget['content'] = '<form name="frmDefimage" id="frm-defimage" method="post">';
+    $widget['content'] .= $util->image_manager('image', $params);
+    $widget['content'] .= '</form>';
+    return $widget;
+
+}
+
+/**
  * Muestra las opciones adicionales para la descarga creada
  */
 function dt_widget_options($edit = 0){
@@ -136,6 +176,10 @@ function dt_widget_alert($edit=0){
     
     //$widget['title'] = __('Inactivity Alert','dtransport');
     //$widget['icon'] = '../images/alert.png';
+    if($edit)
+        $sw = new DTSoftware(rmc_server_var($_GET, 'id', 0));
+    else
+        $sw = new DTSoftware();
     
     // Alerta
     $field = new RMFormYesNo('','alert',$edit ? ($type=='edit' ? ($fields['alert']['limit'] ? 1 : 0) : ($sw->alert() ? 1 : 0)) : 0);
@@ -145,7 +189,7 @@ function dt_widget_alert($edit=0){
     ob_start();
     ?>
     <div id="tab-alert" class="widgets_forms">
-    <form name="frmInfo" id="frm-information" method="post" action="items.php">
+    <form name="frmAlert" id="frm-alert" method="post" action="items.php">
         <div class="item">
         <div class="dt_table">
             <div class="dt_row">
@@ -185,13 +229,19 @@ function dt_widget_credits($edit=0){
     
     //$widget['title'] = __('Author Information','dtransport');
     //$widget['icon'] = '../images/author.png';
+    if($edit)
+        $sw = new DTSoftware(rmc_server_var($_GET, 'id', 0));
+    else
+        $sw = new DTSoftware();
+
     
-    $field = new RMFormUser('', 'user', 0,$edit?array($sw->uid()):$xoopsUser->uid(), 50);
+    $field = new RMFormUser('', 'user', 0,$edit?array($sw->getVar('uid')):$xoopsUser->uid(), 50);
     $user = $field->render();
     unset($field);
     
     ob_start();
     ?>
+    <form name="frmCredits" id="frm-credits" method="post">
     <div id="tab-credits" class="widgets_forms">
         <div class="item">
             <label><?php _e('Published by','dtransport'); ?></label>
@@ -199,21 +249,22 @@ function dt_widget_credits($edit=0){
         </div>
         <div class="item">
             <label for="author"><?php _e('Author name','dtransport'); ?></label>
-            <input type="text" name="author" id="author" value="<?php echo $edit ? $sw->author() : ''; ?>" class="fullwidth" />
+            <input type="text" name="author" id="author" value="<?php echo $edit ? $sw->getVar('author_name') : ''; ?>" class="fullwidth" />
         </div>
         <div class="item">
             <label for="url"><?php _e('Author URL','dtransport'); ?></label>
-            <input type="text" name="url" id="url" value="<?php echo $edit ? $sw->url() : ''; ?>" class="fullwidth" />
+            <input type="text" name="url" id="url" value="<?php echo $edit ? $sw->getVar('author_url') : ''; ?>" class="fullwidth" />
         </div>
         <div class="item">
             <label for="email"><?php _e('Author Email','dtransport'); ?></label>
-            <input type="text" name="email" id="email" value="<?php echo $edit ? $sw->email() : $xoopsUser->email(); ?>" class="fullwidth" />
+            <input type="text" name="email" id="email" value="<?php echo $edit ? $sw->getVar('author_email') : $xoopsUser->email(); ?>" class="fullwidth" />
             <span class="description"><?php _e('This email will not be visible for users','dtransport'); ?></span>
         </div>
         <div class="item">
-            <input type="checkbox" name="contact" id="contact" value="1" /> <?php _e('Author can be contacted','dtransport'); ?>
+            <input type="checkbox" name="contact" id="contact" value="1"<?php echo $sw->getVar('author_contact')?' checked="checked"':''; ?> /> <?php _e('Author can be contacted','dtransport'); ?>
         </div>
     </div>
+    </form>
     <?php
     $content = ob_get_clean();
     return $content;
