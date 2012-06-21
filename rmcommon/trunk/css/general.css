@@ -18,3 +18,17 @@ div.rmc_bulkactions div.rmc_pages_navigation_container{
 	padding: 8px 0;
 	color: #666;
 }
+/* IMAGE MANAGER */
+.image_manager_launcher{
+    background-image: url(../images/images.png);
+    background-repeat: no-repeat;
+    background-position: 4px;
+    padding-left: 24px;
+}
+.imgmgr_container{
+    width: 700px;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    margin-left: -350px;
+}

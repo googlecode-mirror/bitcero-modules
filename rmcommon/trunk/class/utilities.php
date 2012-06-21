@@ -301,5 +301,38 @@ class RMUtilities
 		closedir($dir);
 		@rmdir($path);
 	}
+
+    /**
+     * Muestra los controles para lanzar el administrador de imágenes
+     * desde cualqueir punto
+     * @param string Element name for inputs
+     */
+    public function image_manager($name, $default=''){
+
+        if($default!=''){
+            $img = new RMImage();
+            $img->load_from_params($default);
+        }
+
+        $ret = '<div id="'.$name.'-container" class="rmimage_conainter">';
+        $ret .= '<div class="thumbnail">';
+        if($default!='' && !$img->isNew()){
+            $ret .= '<a href="'.$img->url().'" target="_blank"><img src="'.$img->get_smallest().'" /></a>';
+            $ret .= '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$default.'" />';
+            $ret .= '<br /><a href="#" class="removeButton removeButton-'.$name.'">'.__('Remove Image','rmcommon').'</a>';
+        } else {
+            $ret .= '<input type="hidden" name="'.$name.'" id="'.$name.'" value="" />';
+        }
+        $ret .= '</div>';
+        $ret .= '<span class="image_manager_launcher button buttonGreen">'.__('Image manager...','rmcommon').'</span>';
+        $ret .= '</div>';
+
+        $tpl = RMTemplate::get();
+
+        $tpl->add_head_script('var imgmgr_title = "'.__('Image Manager','rmcommon').'"'."\n".'var mgrURL = "'.RMCURL.'/include/tiny-images.php";');
+        $tpl->add_local_script('image_mgr_launcher.js', 'rmcommon', 'include');
+
+        return $ret;
+    }
 		
 }
