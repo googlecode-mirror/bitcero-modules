@@ -21,8 +21,9 @@ class DtransportRmcommonPreload
             
             $action = rmc_server_var($_GET, 'action', '');
             $edit = $action=='edit'?1:0;
-            
+
             $widgets[] = dt_widget_information($edit);
+            $widgets[] = dt_widget_defimg($edit);
             $widgets[] = dt_widget_options($edit);
             //$widgets[] = dt_widget_alert($edit);
             //$widgets[] = dt_widget_credits($edit);

@@ -21,6 +21,9 @@ class DTSoftware extends RMObject
 	private $_features = array();
 	private $_file = null;
 	private $_logs = array();
+    // Categories
+    private $_categories = array();
+    private $_catobjs = array();
 	private $_fields = array();
 
 	function __construct($id=null){
@@ -36,7 +39,6 @@ class DTSoftware extends RMObject
 		if ($id==null) return;
 		
 		if (is_numeric($id)){
-			
 			if (!$this->loadValues($id)) return;
 			$this->unsetNew();
 		}else{
@@ -54,134 +56,8 @@ class DTSoftware extends RMObject
 
 
 	/**
-	* @desc Nombre del elemento
-	**/	
-	public function name(){
-		return $this->getVar('name');
-	}
-
-	public function setName($name){
-		return $this->setVar('name',$name);
-	}
-	
-	/**
-	* @desc Obtiene la versión del elemento
-	*/
-	public function version(){
-		return $this->getVar('version');
-	}
-	public function setVersion($version){
-		return $this->setVar('version', $version);
-	}
-
-	/**
-	* @desc Descripción corta del elemento
-	**/
-	public function shortdesc($format='s'){
-		return $this->getVar('shortdesc', $format);
-	}
-
-	public function setShortDesc($shortdesc){
-		return $this->setVar('shortdesc',$shortdesc);
-	}
-
-	public function desc($format = 's'){
-		return $this->getVar('desc', $format);
-	}
-
-	public function setDesc($desc){
-		return $this->setVar('desc',$desc);
-	}
-
-	/**
-	* @desc Opcional Nombre del archivo de imagen del elemento
-	**/
-	public function image(){
-		return $this->getVar('image');
-	}
-
-	public function setImage($image){
-		return $this->setVar('image',$image);
-	}
-
-	/**
-	* @desc Limite de descargas por usuario. = significa ilimitado
-	**/
-	public function limits(){
-		return $this->getVar('limits');
-	}
-
-	public function setLimits($limits){
-		return $this->setVar('limits',$limits);
-	}
-
-	/**
-	* @desc Fecha de creacion
-	**/
-	public function created(){
-		return $this->getVar('created');
-	}
-
-	public function setCreated($created){
-		return $this->setVar('created',$created);
-	}
-	
-	/**
-	* @desc Fecha de modificación
-	**/
-	public function modified(){
-		return $this->getVar('modified');
-	}
-
-	public function setModified($modified){
-		return $this->setVar('modified',$modified);
-	}
-
-	/**
-	* @desc Id de usuario que crea el archivo
-	**/
-	public function uid(){
-		return $this->getVar('uid');
-	}
-
-
-	public function setUid($uid){
-		return $this->setVar('uid',$uid);
-	}
-
-	/**
-	* @desc Nombre de usuario que crea el archivo
-	**/
-	public function uname(){
-		return $this->getVar('uname');
-	}
-
-	public function setUname($uname){
-		return $this->setVar('uname',$uname);
-	}
-
-	/**
-	* @desc Establece si se trata de una descarga segura(1)
-	* o de un archivo de libre acceso(2)
-	**/
-	public function secure(){
-		return $this->getVar('secure');
-	}
-
-	public function setSecure($secure){
-		return $this->setVar('secure',$secure);
-	}
-
-	/**
 	* @desc Grupos con permiso de acceso al elemento
 	**/
-	public function groups(){
-		return $this->getVar('groups');
-	}
-
-	public function setGroups($groups){
-		return $this->setVar('groups',$groups);
-	}
 	public function canDownload($gid){
 		
 		if (!is_array($gid) && $gid==XOOPS_GROUP_ADMIN) return true;
@@ -202,12 +78,6 @@ class DTSoftware extends RMObject
 	/**
 	* @desc Numero de comentarios
 	*/
-	public function comments(){
-		return $this->getVar('comments');
-	}
-	public function setComments($value){
-		return $this->setVar('comments', $value);
-	}
 	public function addComment(){
 		$sql = "UPDATE ".$this->db->prefix("dtrans_software")." SET comments=comments+1 WHERE id_soft='".$this->id()."'";
 		if (!$this->db->queryF($sql)){
@@ -217,149 +87,11 @@ class DTSoftware extends RMObject
 			return true;
 		}
 	}
-	
-	/**
-	* @desc Autor
-	*/
-	public function author(){
-		return $this->getVar('author');
-	}
-	public function setAuthor($value){
-		return $this->setVar('author', $value);
-	}
-	public function url(){
-		return $this->getVar('url');
-	}
-	public function setUrl($value){
-		return $this->setVar('url', $value);
-	}
-	/**
-	* @desc Lenguajes
-	*/
-	public function langs(){
-		return $this->getVar('langs');
-	}
-	public function setLangs($value){
-		return $this->setVar('langs', $value);
-	}
 
-	/**
-	* @desc Número de veces que se descarga un archivo
-	**/
-	public function hits(){
-		return $this->getVar('hits');
-	}
-	public function setHits($hits){
-		return $this->setVar('hits',$hits);
-	}
 	public function addHit(){
 		$sql = "UPDATE ".$this->db->prefix("dtrans_software")." SET hits=hits+1 WHERE id_soft='".$this->id()."'";
 		return $this->db->queryF($sql);
 	}
-
-	/**
-	* @desc Número de votos que ha recibido un elemento
-	**/
-	public function votes(){
-		return $this->getVar('votes');
-	}
-
-	public function setVotes($votes){
-
-		return $this->setVar('votes',$votes);
-	}
-
-	/**
-	* @desc Suma de las calificaciones de los votos
-	* que ha recibido un elemento
-	**/
-	public function rating(){
-		return $this->getVar('rating');
-	}
-
-	public function setRating($rating){
-		return $this->setVar('rating',$rating);
-	}
-	
-	/**
-	* @desc Devuelve el rating del sitio
-	*/
-	public function siteRating(){
-		return $this->getVar('siterate');
-	}
-	public function setSiteRating($value){
-		$this->setVar('site_rate', $value);
-	}
-	
-	/**
-	* @desc Elemento aprobado
-	**/
-	public function approved(){
-		return $this->getVar('approved');
-	}
-
-	public function setApproved($approved){
-		return $this->setVar('approved',$approved);
-	}
-
-	public function nameId(){
-		return $this->getVar('nameid');
-	}
-
-	/**
-	* @desc Nombre corto del elemento
-	**/
-	public function setNameId($nameid){
-		return $this->setVar('nameid',$nameid);
-	}
-
-	
-	/**
-	* @desc Descarga destacada
-	**/
-	public function mark(){
-		return $this->getVar('mark');
-	}
-
-	public function setMark($mark){
-		return $this->setVar('mark',$mark);
-	}
-	
-	
-	/**
-	* @desc Descarga diaria
-	**/
-	public function daily(){
-		return $this->getVar('daily');
-	}
-
-	public function setDaily($daily){
-		return $this->setVar('daily',$daily);
-	}
-
-	
-	/**
-	*@desc Categoria del elemento
-	**/	
-	public function category(){
-		return $this->getVar('id_cat');
-	}
-
-	public function setCategory($cat){
-		return $this->setVar('id_cat',$cat);
-	}
-
-	/**
-	* @desc 
-	**/
-	public function rate(){
-		return $this->getVar('siterate');
-	}
-
-	public function setRate($rate){
-		return $this->setVar('siterate',$rate);
-	}
-
 
 	public function addVote($rate){
 		if ($this->isNew()) return;
@@ -367,19 +99,6 @@ class DTSoftware extends RMObject
 		$this->setRating($this->rating()+$rate);
 	}
 
-
-
-
-	
-	/**
-	* @desc Devuelve el número de Pantallas
-	*/
-	public function screensCount(){
-		return $this->getVar('screens');
-	}
-	public function setScreensCount($value){
-		return $this->setVar('screens', $value);
-	}
 	public function incrementScreens(){
 		$sql = "UPDATE ".$this->_dbtable." SET screens=screens+1 WHERE id_soft='".$this->id()."'";
 		return $this->db->queryF($sql);
@@ -421,7 +140,7 @@ class DTSoftware extends RMObject
 	
 
 	public function setTags($tags){
-		$this->tags=$tags;
+		$this->_tags=$tags;
 	}
 	
 	/**
@@ -483,8 +202,8 @@ class DTSoftware extends RMObject
 		if (!is_a($this->_alert, 'DTAlert')){
 			$sql="SELECT * FROM ".$this->db->prefix('dtrans_alerts')." WHERE id_soft=".$this->id();
 			$result=$this->db->queryF($sql);
+            $this->_alert = new DTAlert();
 			if ($this->db->getRowsNum($result)<=0) return;
-			$this->_alert = new DTAlert();
 			$this->_alert->assignVars($this->db->fetchArray($result));
 		}
 		
@@ -495,7 +214,7 @@ class DTSoftware extends RMObject
 	/**
 	* @desc Obtiene valor para determinar si se crea la alerta para el software
 	**/
-	public function createAlert($alert){
+	public function createAlert(){
 		$this->_alert = new DTAlert($this->id());
 	}
 	
@@ -556,6 +275,48 @@ class DTSoftware extends RMObject
 
 	}
 
+    /**
+     * Set the categories assigned to this download
+     * @param array Categories ids
+     */
+    public function setCategories($cats){
+        $this->_categories = $cats;
+    }
+    /**
+     * Get the categories from database
+     * @param bool determines if function returns DTCategories objects or array with ids
+     * @return array
+     */
+    public function categories($obj = false){
+        $tbl1 = $this->db->prefix("dtrans_catsoft");
+        $tbl2 = $this->db->prefix("dtrans_categos");
+
+        if(!empty($this->_categories) && !$obj)
+            return $this->_categories;
+        elseif(!empty($this->_catobjs) && $obj)
+            return $this->_catobjs;
+
+
+        $sql = "SELECT b.* FROM $tbl1 a, $tbl2 b WHERE a.soft='".$this->id()."' AND b.id_cat=a.cat";
+        $result = $this->db->query($sql);
+
+        if($obj) $ret = array();
+
+        while($row = $this->db->fetchArray($result)){
+
+            $this->_categories[] = $row['id_cat'];
+            if($obj){
+                $cat = new DTCategory();
+                $cat->assignVars($row);
+                $this->_catobjs[$row['id_cat']] = $cat;
+            }
+
+        }
+
+        return $obj?$this->_catobjs:$this->_categories;
+
+
+    }
 
 	/**
 	* @des Establece las plataformas del software
@@ -718,8 +479,26 @@ class DTSoftware extends RMObject
 
 	}
 
+    /**
+     * Get the permalink for item
+     */
+    public function permalink($edit = 0){
 
+        $util = RMUtilities::get();
+        $mc = $util->module_config('dtransport');
 
+        if($mc['permalinks']){
+            if($edit)
+                $link = XOOPS_URL.$mc['htbase'].'/<span><em>'.$this->getVar('nameid').'</em></span>/';
+            else
+                $link = XOOPS_URL.$mc['htbase'].'/'.$this->getVar('nameid').'/';
+        } else {
+            $link = XOOPS_URL.'/modules/dtransport/item.php?id='.$this->id();
+        }
+
+        return $link;
+
+    }
 
 	/**
 	* @desc Almacena las etiquetas del elemento
@@ -727,14 +506,29 @@ class DTSoftware extends RMObject
 	private function saveTags(){
 		$sql ="DELETE FROM ".$this->db->prefix('dtrans_softtag')." WHERE id_soft=".$this->id();
 		$this->db->queryF($sql);
-		
+
+        $tc = TextCleaner::getInstance();
+        $tags = array();
+
+        foreach($this->_tags as $tag){
+            $ot = new DTTag($tc->sweetstring($tag));
+            if($ot->isNew()){
+                $ot->setVar('tag', $tag);
+                $ot->setVar('tagid', $tc->sweetstring($tag));
+                $ot->save();
+            }
+            $tags[] = $ot->id();
+        }
+
+        if(empty($tags)) return;
+
 		$sql = "INSERT INTO ".$this->db->prefix('dtrans_softtag')." (`id_soft`,`id_tag`) VALUES ";
+
 		$sql1='';	
-		foreach ($this->tags as $k){
-			$sql1.= $sql1=="" ? "('".$this->id()."','$k')" : ",('".$this->ID()."','$k')";
+		foreach ($tags as $k){
+			$sql1.= $sql1=="" ? "('".$this->id()."','$k')" : ",('".$this->id()."','$k')";
 		}
-				
-	
+
 		if ($this->db->queryF($sql.$sql1)){
 			return true;
 		}
@@ -805,15 +599,34 @@ class DTSoftware extends RMObject
 		return true;
 	}
 
+    /**
+     * Save categories
+     */
+    public function saveCategories(){
+
+        $sql ="DELETE FROM ".$this->db->prefix('dtrans_catsoft')." WHERE soft=".$this->id();
+        $this->db->queryF($sql);
+
+        $sql = "INSERT INTO ".$this->db->prefix('dtrans_catsoft')." (`cat`,`soft`) VALUES ";
+        $sql1='';
+        foreach ($this->_categories as $k){
+            $sql1.= $sql1=="" ? "('$k','".$this->id()."')" : ",('$k','".$this->id()."')";
+        }
+
+        if (!$this->db->queryF($sql.$sql1)){
+            $this->addError($this->db->error());
+            return false;
+        }
+
+        return true;
+
+    }
+
 	
 	/**
 	* @desc Almacena los datos del elemento
-	* @param bool Guardar etiquetas
-	* @param bool Guardar alerta
-	* @param bool Guardar Licencias
-	* @param bool Guardar Plataformas
 	*/
-	public function save($tags = false, $alert = false, $lics = false, $os = false){
+	public function save(){
 
 		$ret = false;
 
@@ -828,22 +641,24 @@ class DTSoftware extends RMObject
 		
 		
 		// Etiquetas
-		if ($tags) $this->saveTags();
+		$this->saveTags();
 		// ALerta
-		if ($alert){
+		if ($this->_alert){
 			$this->_alert->setSoftware($this->id());
 			if (!$this->saveAlert()){
 				$this->addError($this->errors());
 			}
 		}
 		// Licnecias
-		if ($lics) $this->saveLics();
+		$this->saveLics();
 		// Plataformas
-		if ($os) $this->savePlatforms();
-		
+		$this->savePlatforms();
+		// Categories
+        $this->saveCategories();
 				
 		if ($this->errors()!='') return false;
 		return true;
+
 	}
 
 	public function delete(){

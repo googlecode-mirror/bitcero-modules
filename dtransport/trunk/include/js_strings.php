@@ -12,6 +12,7 @@
 var DT_ERROR = 'error';
 var DT_OK = 'ok';
 var DT_MSG = '';
+var DT_URL = '<?php echo XOOPS_URL; ?>/modules/dtransport';
 
 var jsLang = {
     'checkForm': '<?php _e('Verifying form fields...','dtransport'); ?>',
