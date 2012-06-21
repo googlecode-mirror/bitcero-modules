@@ -9,7 +9,7 @@
 	<a href="#" class="select" id="a-upload" onclick="show_upload(); return false;"><?php _e('Upload Files','rmcommon'); ?></a>
 	<a href="#" id="a-fromurl" onclick="return false;"><?php _e('From URL','rmcommon'); ?></a>
 	<a href="#" id="a-library" onclick="show_library(); return false;"><?php _e('From Library','rmcommon'); ?></a>
-        <?php echo RMEvents::get()->run_event('rmcommon.imgmgr.editor.options', ''); ?>
+    <?php echo RMEvents::get()->run_event('rmcommon.imgmgr.editor.options', ''); ?>
 </div>
 <div id="upload-container" class="container">
     <div class="categories_selector">
@@ -24,6 +24,8 @@
         </select>
         <input type="hidden" name="type" value="<?php echo $type; ?>" />
         <input type="hidden" name="name" value="<?php echo $en; ?>" />
+            <input type="hidden" name="target" value="<?php echo $target; ?>" />
+            <input type="hidden" name="idcontainer" value="<?php echo $container; ?>" />
         </form>
     </div>
     <?php if (!$cat->isNew()): ?>
@@ -100,8 +102,17 @@
         
     </div>
 </div>
+
 <input type="hidden" name="type" id="type" value="<?php echo $type; ?>" />
 <input type="hidden" name="name" id="name" value="<?php echo $en; ?>" />
+<input type="hidden" name="target" id="target" value="<?php echo $target; ?>" />
+<input type="hidden" name="idcontainer" id="idcontainer" value="<?php echo $container; ?>" />
+<span id="parameters">
+<?php
+    $ev = RMEvents::get();
+    $ev->run_event('rmcommon.imgwin.parameter');
+?>
+</span>
 
 <!-- Options from other elements -->
 <?php RMEvents::get()->run_event('rmcommon.imgmgr.editor.containers',''); ?>

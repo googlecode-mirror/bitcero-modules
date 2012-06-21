@@ -24,6 +24,7 @@ class RMTemplate
     * Stores the scripts information to include in theme
     */
     public $tpl_scripts = array();
+    public $tpl_hscripts = array();
     /**
     * Stores all styles for HEAD section
     */
@@ -284,6 +285,34 @@ class RMTemplate
             
             $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type);
     }
+
+    /**
+     * Add a script to head of page
+     * This method must be used when a script between <script> tags need to be added to head
+     */
+    public function add_head_script($script){
+        $this->tpl_hscripts[] = $script;
+    }
+
+    /**
+     * Get all head scripts
+     */
+    public function head_scripts(){
+
+        $ret = '<script type="text/javascript">'."\n";
+
+        foreach($this->tpl_hscripts as $script){
+
+            $ret .= $script."\n";
+            $ret .= "//".str_repeat("-",20)."\n";
+
+        }
+
+        $ret .= '</script>';
+
+        return $ret;
+
+    }
     
     /**
     * This function add a scritp directly from an element
@@ -385,6 +414,7 @@ class RMTemplate
     public function get_scripts(){
         return $this->tpl_scripts;
     }
+
     /**
    	* Clear all scripts stores
    	*/

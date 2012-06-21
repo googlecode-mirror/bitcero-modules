@@ -16,6 +16,8 @@
 foreach ($this->tpl_scripts as $script){
 	echo '<script type="'.$script['type'].'" src="'.$script['url'].'"></script>'."\n";
 }
+
+echo $this->head_scripts();
 		
 foreach ($this->tpl_styles as $style){
 	echo '<link rel="stylesheet" type="text/css" media="'.$style['media'].'" href="'.$style['url'].'"'.($style['more']!=''?' '.$style['more']:'').' />'."\n";

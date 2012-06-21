@@ -45,7 +45,7 @@ function resize_image(params){
         $("#bar-indicator").html('100%');
         $("#bar-indicator").animate({
             width: '100%'
-        }, 1000);
+        }, 100);
         current = 0;
         total = 0;
         ids = new Array();
@@ -60,7 +60,7 @@ function resize_image(params){
     send_resize(ids[current], params);
     $("#bar-indicator").animate({
         width: percent*(current)+'%'
-    }, 1000);
+    }, 100);
     //$("#bar-indicator").css('width', percent*(current+1)+'%');
     $("#bar-indicator").html(Math.round(percent*current+1)+'%');
     current++;
@@ -99,7 +99,10 @@ function show_library(pag){
         url: window.parent.location.href,
         page: pag,
         type: $("#type").val(),
-        name: $("#name").val()
+        name: $("#name").val(),
+        target: $("#target").val(),
+        idcontainer: $("#idcontainer").val(),
+        custom: $("#parameters input").serialize()
     }
     
     $("#library-content").html('');
@@ -135,7 +138,7 @@ function hide_image_data(id){
     
 }
 
-function insert_image(id,t){
+function insert_image(id,t,target,container){
 
     if(t){
         
@@ -176,7 +179,7 @@ function insert_image(id,t){
         return;
     }
 	
-    ed = tinyMCEPopup.editor;
+
 	
 	var html = '';
 	var ext = $("#extension_"+id).val();
@@ -189,13 +192,29 @@ function insert_image(id,t){
 	// Image
 	html += '<img src="';
 	var sizes = $("input[name='size_"+id+"']");
+    var th = ''; var pw = 0;
     for(i=0;i<sizes.length;i++){
+
+        if(pw==0){
+            pw = $(sizes[i]).attr('rel');
+            th = $(sizes[i]).val();
+        } else {
+            if ($(sizes[i]).attr('rel')<pw){
+                pw = $(sizes[i]).attr('rel');
+                th = $(sizes[i]).val();
+            }
+        }
+
         if(!$(sizes[i]).attr('checked')) continue;
         
         // File URL
+        if(target=='container'){
+            var sizeid = i;
+            var imgcontainer = $(sizes[i]).val();
+        }
         html += $(sizes[i]).val() + '"';
     }
-    
+
     // Alignment
     var align = $("input[name='align_"+id+"']");
     for(i=0;i<align.length;i++){
@@ -210,7 +229,18 @@ function insert_image(id,t){
     if ($("#image-link-"+id).val()!=''){
 		html += '</a>';
 	}
-    
+
+    if(target!=undefined && target=='container'){
+         //window.parent.$("#"+container+" .thumbnail").hide();
+        window.parent.$("#"+container+"-container .thumbnail").html('<a href="'+imgcontainer+'" target="_blank"><img src="'+th+'" /></a><input type="hidden" name="'+container+'" id="'+container+'" value="'+id+':'+sizeid+'" /><br /><a href="#" class="removeButton removeButton-'+container+'">Remove Image</a>');
+
+        window.parent.$("#blocker-"+container).click();
+
+        return;
+
+    }
+
+    ed = tinyMCEPopup.editor;
 	ed.execCommand("mceInsertContent", true, html);
 	tinyMCEPopup.close();
 }

@@ -27,6 +27,10 @@ $cat = new RMImageCategory($category);
 $type = rmc_server_var($_REQUEST, 'type', 'tiny');
 $en = rmc_server_var($_REQUEST, 'name', '');
 
+// Check if target is different from editor
+$target = rmc_server_var($_REQUEST, 'target', '');
+$container = rmc_server_var($_REQUEST, 'idcontainer', '');
+
 if ($action==''){
 	
 	RMTemplate::get()->add_local_script('jquery.min.js', 'rmcommon', 'include');
@@ -38,8 +42,8 @@ if ($action==''){
         $uploader->add_setting('scriptData', array(
             'action'=>'upload',
             'category'=>$cat->id(),
-            'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true))
-        );
+            'rmsecurity'=>TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)
+        ));
         $uploader->add_setting('multi', true);
         $uploader->add_setting('fileExt', '*.jpg;*.png;*.gif');
         $uploader->add_setting('fileDesc', __('All Images (*.jpg, *.png, *.gif)','rmcommon'));
@@ -74,7 +78,7 @@ if ($action==''){
                 \$('#gen-thumbnails').show();
                     
                 var increments = 1/total*100;
-                url = '".RMCURL."/images.php';
+                url = '".RMCURL."/images.php".($target!=''?"?taget=$target&amp;id=$container":'')."';
                     
                 params = '".TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)."';
                 resize_image(params);
@@ -92,18 +96,18 @@ if ($action==''){
     RMTemplate::get()->add_style('imgmgr.css', 'rmcommon');
     RMTemplate::get()->add_style('pagenav.css', 'rmcommon');
     RMTemplate::get()->add_style('editor_img.css', 'rmcommon');
-    if($type=='tiny'){
+    if($type=='tiny' && $target!='container'){
         RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce_popup.js');
-    } else {
+    } elseif($target!='container') {
         RMTemplate::get()->add_head('<script type="text/javascript">var exmPopup = window.parent.'.$en.';</script>');
     }
 
-    RMEvents::get()->run_event('rmcommon.loading_editorimages', '');
+    RMEvents::get()->run_event('rmcommon.loading.editorimages', '');
 
     include RMTemplate::get()->get_template('editor_image.php', 'module', 'rmcommon');
 
 } elseif($action=='load-images'){
-    
+
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     if (!$xoopsSecurity->check()){
