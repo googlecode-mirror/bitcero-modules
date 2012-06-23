@@ -1,5 +1,5 @@
 <?php
-// $Id: search.php 38 2008-03-03 22:09:46Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

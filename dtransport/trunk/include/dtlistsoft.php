@@ -1,5 +1,5 @@
 <?php
-// $Id: dtlistsoft.php 13 2008-01-23 15:23:41Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // http://www.redmexico.com.mx

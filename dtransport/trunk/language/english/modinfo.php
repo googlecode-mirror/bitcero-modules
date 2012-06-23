@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php 44 2008-04-08 17:26:52Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

@@ -1,5 +1,5 @@
 <?php
-// $Id: rss.php 49 2009-02-11 12:01:08Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

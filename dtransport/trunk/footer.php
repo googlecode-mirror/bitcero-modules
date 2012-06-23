@@ -1,5 +1,5 @@
 <?php
-// $Id: footer.php 12 2008-01-23 14:54:06Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

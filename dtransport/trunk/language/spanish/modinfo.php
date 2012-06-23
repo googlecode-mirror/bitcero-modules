@@ -1,5 +1,5 @@
 <?php
-// $Id: modinfo.php 41 2008-04-04 17:44:28Z ginis $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

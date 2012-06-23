@@ -1,5 +1,5 @@
 <?php
-// $Id: screens.php 30 2008-02-16 19:52:54Z ginis $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // http://www.redmexico.com.mx

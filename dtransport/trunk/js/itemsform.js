@@ -53,6 +53,13 @@ $(document).ready(function(){
     $("#frm-items #name").change(function(){
         $("#frm-items #name").keyup();
     });
+
+    $("#cancel-data").click(function(){
+
+        document.location.href="items.php";
+        return false;
+
+    });
     
     $("#save-data").click(function(){
         
@@ -77,7 +84,7 @@ $(document).ready(function(){
                 params += '&'+$("#frm-alert").serialize();
                 params += '&'+$("#frm-credits").serialize();
 
-                $.post(DT_URL+"/admin/items-ajax.php", params, function(data){
+                $.post(DT_URL+"/ajax/items-ajax.php", params, function(data){
 
                     dt_message(data.message, data.error==1?DT_ERROR:DT_OK);
 
@@ -157,7 +164,7 @@ $(document).ready(function(){
                 action: 'permaname'
             };
 
-            $.post(DT_URL+"/admin/items-ajax.php", params, function(data){
+            $.post(DT_URL+"/ajax/items-ajax.php", params, function(data){
 
                 if(data.error==1){
                     alert(data.message);
