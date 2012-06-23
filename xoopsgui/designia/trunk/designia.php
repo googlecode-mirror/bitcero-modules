@@ -15,6 +15,8 @@
         foreach ($this->tpl_scripts as $script){
             echo '<script type="'.$script['type'].'" src="'.$script['url'].'"></script>'."\n";
         }
+
+        echo $this->head_scripts();
         
         foreach ($this->tpl_head as $head){
             echo $head."\n";
@@ -24,8 +26,6 @@
         ?>
         
         <title><?php if($this->get_var('xoops_pagetitle')!=''): ?><?php echo $this->get_var('xoops_pagetitle'); ?> - <?php endif; ?><?php echo isset($xoopsModule) ? $xoopsModule->getInfo('name').' - ' : ''; ?><?php echo $xoopsConfig['sitename']; ?></title>
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/menu.css" />
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.mCustomScrollbar.css" />
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/hoverIntent.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/superfish.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/supersubs.js"></script>
@@ -44,14 +44,6 @@
                 $(".outer").tablesorter();
             });
         </script>
-        
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/main.css" />
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/<?php echo $dConfig['scheme']; ?>" />
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/jquery.window.css" />
-        <?php global $xoopsLogger;
-        if($xoopsLogger->activated): ?>
-        <link rel=stylesheet type="text/css" media=all href="<?php echo $rm_theme_url; ?>/css/debugger.css" />
-        <?php endif; ?>
 
         <?php DesigniaFunctions::extra_headers(); ?>
 

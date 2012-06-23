@@ -87,7 +87,7 @@ $(document).ready(function(){
     
     $(window).resize();
     
-    $(".rmc_options:not(#table-blocks .rmc_options)").before("<br />");
+    $(".rmc_options:not(#table-blocks .rmc_options)").before('<br class="littlejump" />');
     
     $("a.rm_help_button").click(function(){
         

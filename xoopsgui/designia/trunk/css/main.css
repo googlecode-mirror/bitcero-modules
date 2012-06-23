@@ -502,3 +502,6 @@ nav#des-vertical ul li a.select{
 .xoops-form-element-help{
     font-weight: normal;
 }
+br.littlejump{
+    line-height: 5%;
+}

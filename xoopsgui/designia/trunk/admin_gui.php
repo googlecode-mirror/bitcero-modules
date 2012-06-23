@@ -52,5 +52,17 @@ if(!isset($dConfig['logo']) || !isset($dConfig['scheme'])){
     $dConfig['scheme'] = 'colors.css';
 }
 
+$this->add_theme_style('menu.css','designia');
+$this->add_theme_style('jquery.mCustomScrollbar.css','designia');
+$this->add_theme_style('main.css','designia');
+$this->add_theme_style($dConfig['scheme'],'designia');
+$this->add_theme_style($dConfig['scheme'],'designia');
+$this->add_theme_style('jquery.window.css','designia');
+
+global $xoopsLogger;
+if($xoopsLogger->activated):
+    $this->add_theme_style('debugger.css','designia');
+endif;
+
 // Display theme
 include_once 'designia.php';
