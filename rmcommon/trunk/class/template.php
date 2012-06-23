@@ -567,6 +567,7 @@ class RMTemplate
    	* Get all styles stored in class
    	*/
     public function get_styles(){
+
         return $this->tpl_styles;
     }
     /**

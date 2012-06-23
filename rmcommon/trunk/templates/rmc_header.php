@@ -4,7 +4,8 @@ $tpl = RMTemplate::get();
 
 $scripts = '';
 $tscript = '';
-foreach ($tpl->tpl_scripts as $script){
+$temp = $tpl->get_scripts();
+foreach ($temp as $script){
     if(strpos($script['url'], 'jquery.min.js')!==FALSE || strpos($script['url'], 'jquery-ui.min.js')){
         $tscript .= '<script type="'.$script['type'].'" src="'.$script['url'].'"></script>'."\n";
     } else {
@@ -15,8 +16,9 @@ foreach ($tpl->tpl_scripts as $script){
 $scripts = $tscript.$scripts;
 unset($tscript);
 
-$styles = '';        
-foreach ($tpl->tpl_styles as $style){
+$styles = '';
+$temp = $tpl->get_styles();
+foreach ($temp as $style){
     $styles .= '<link rel="stylesheet" type="text/css" media="'.$style['media'].'" href="'.$style['url'].'"'.($style['more']!=''?' '.$style['more']:'').' />'."\n";
 }
 

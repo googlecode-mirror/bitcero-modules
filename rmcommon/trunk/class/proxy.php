@@ -10,6 +10,7 @@
 
 include_once '../../../mainfile.php';
 
+
 global $xoopsLogger, $xoopsConfig;
 $xoopsLogger->renderingEnabled = false;
 error_reporting(0);
@@ -29,6 +30,7 @@ class RMProxy
 	}
 	
 	function get(){
+
 		global $exmConfig;
 		// Creamos la petición
 		$hdrs = array(
@@ -41,6 +43,7 @@ class RMProxy
 		
 		$context = stream_context_create($hdrs);
 		$content = file_get_contents(urldecode($this->url), false, $context);
+
 		header("Content-Type: $this->type");
 
 		return $content;
