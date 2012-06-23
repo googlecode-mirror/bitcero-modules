@@ -2,26 +2,11 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Módulo para la administración de descargas
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage download files in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 define('RMCLOCATION','files');
 include ('header.php');
@@ -574,86 +559,6 @@ function deleteFiles(){
 		xoops_cp_footer();
 
 	}
-
-}
-
-
-/**
-* @desc Almacena los datos del grupo en la base de datos
-**/
-function saveGroups($edit=0){
-	global $db,$util;
-
-	foreach ($_POST as $k=>$v){
-		$$k=$v;
-	}
-
-	if (!$util->validateToken()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_SESSINVALID, 1);
-		die();
-	}
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-
-	if ($edit){
-		//Verificamos si grupo es válido
-		if ($id<=0){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPVALID,1);
-			die();
-		}
-
-		//Verificamos si el grupo existe
-		$group=new DTFileGroup($id);
-		if ($group->isNew()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPEXIST,1);
-			die();
-		}
-
-		//Verificamos si existe el nombre del grupo
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix('dtrans_groups')." WHERE name='".$name."' AND id_soft=".$item." AND id_group<>".$group->id();
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRNAMEGROUP,1);
-			die();
-		}
-	
-	}else{
-
-
-		//Verificamos si existe el nombre del grupo
-		$sql = "SELECT COUNT(*) FROM ".$db->prefix('dtrans_groups')." WHERE name='".$name."' AND id_soft=".$item;
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRNAMEGROUP,1);
-			die();
-		}
-		
-		$group = new DTFileGroup();
-	}
-
-	$group->setName($name);
-	$group->setSoftware($item);
-
-
-	if (!$group->save()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBERROR,1);
-		die();
-	}else{
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
-
 
 }
 

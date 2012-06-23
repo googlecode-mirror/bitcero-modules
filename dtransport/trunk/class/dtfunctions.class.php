@@ -394,5 +394,34 @@ class DTFunctions
 		
 
 	}
+
+    /**
+     * Send a message in json format
+     * @param string Message to be sent
+     * @param int Indicates if message is an error
+     * @param int Indicates if token must be sent
+     */
+    public function dt_send_message($message, $e = 0, $t = 1){
+        global $xoopsSecurity;
+
+        if($e){
+            $data = array(
+                'message' => $message,
+                'error' => 1,
+                'token' => $t?$xoopsSecurity->createToken():''
+            );
+        } else {
+
+            $data = array(
+                'error' => 0,
+                'token' => $t?$xoopsSecurity->createToken():'',
+            );
+            $data = array_merge($data, $message);
+        }
+
+        echo json_encode($data);
+        die();
+
+    }
 	
 }

@@ -2,19 +2,25 @@
 <div class="even">
 <a href="javascript:;" onclick="centerWindow(openWithSelfMain('<?php echo XOOPS_URL; ?>/modules/dtransport/include/dtlistsoft.php?parent=<?php echo $parent; ?>','listsoft',500,300,true),500,300);"><{$lang_listsoft}></a>
 
+<?php if($item>0): ?>
+
 <div class="dt_table">
     <div class="dt_row">
         <div class="dt_cell dt_group_form">
-            <h3><?php _e('Add group of files','dtransport'); ?></h3>
-            <label for="group-name"><?php _e('Group name:','dtransport'); ?></label>
-            <input type="text" name="name" id="group-name" value="" />
-            <input type="button" class="buttonBlue" value="<?php _e('Create Group','dtransport'); ?>" />
-            <div class="descriptions">
-                <?php _e('Groups allows to organize different files according to specific features.'); ?>
-            </div>
+            <form name="frmNewGroup" id="form-new-group" method="post" action="../ajax/files-ajax.php">
+                <h3><?php _e('Add group of files','dtransport'); ?></h3>
+                <label for="group-name"><?php _e('Group name:','dtransport'); ?></label>
+                <input type="text" name="name" id="group-name" value="" />
+                <input type="button" class="buttonBlue" id="create-group" value="<?php _e('Create Group','dtransport'); ?>" />
+                <div class="descriptions">
+                    <?php _e('Groups allows to organize different files according to specific features.'); ?>
+                </div>
+                <input type="hidden" name="action" value="save-group" />
+                <input type="hidden" name="item" value="<?php echo $item; ?>" />
+            </form>
         </div>
         <div class="dt_cell">
-            <?php if($item>0): ?>
+
             <form name="frmfiles" method="POST" action="files.php">
             <table class="outer" width="100%" cellspacing="1">
                 <tr class="head" align="center">
