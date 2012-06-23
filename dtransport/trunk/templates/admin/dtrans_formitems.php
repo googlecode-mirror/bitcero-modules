@@ -1,6 +1,3 @@
-<script type="text/javascript">
-    <?php include XOOPS_ROOT_PATH.'/modules/dtransport/include/js_strings.php'; ?>
-</script>
 <h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo $location; ?></h1>
 
 <div class="descriptions">
@@ -138,4 +135,5 @@
 </div>
 <div id="down-commands"<?php echo $edit?' style="display: block;"':''; ?>>
     <a href="#" id="save-data"><?php echo $edit ? __('Save Changes','dtransport') : __('Save Download','dtransport'); ?></a>
+    <a href="#" id="cancel-data"><?php _e('Cancel','dtransport') ?></a>
 </div>

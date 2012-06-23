@@ -1,5 +1,5 @@
 <?php
-// $Id: dtrasn_bk_items.php 48 2009-02-09 01:25:02Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

@@ -87,13 +87,19 @@ function dt_widget_information($edit=0){
                 </div>
                 <div class="dt_row">
                     <div class="dt_cell">
-                        <label for="secure"><?php _e('Secure:','dtransport'); ?></label>
+                        <label for="secure"><?php _e('Protected:','dtransport'); ?></label>
                     </div>
                     <div class="dt_cell">
                         <?php echo $secure; ?>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="item">
+            <label for="password"><?php _e('Download password','dtransport'); ?></label><br />
+            <input type="password" name="password" id="password" value="<?php echo $edit ? $sw->getVar('password') : ''; ?>" size="20" class="required fullwidth" />
+            <span class="description"><?php _e('If you specify a password for this item, users must know it in order to download files belonging to it.','dtransport'); ?></span>
+            <span class="description"><?php _e('If a password is provided for this item, the protected status will set to on automatically.','dtransport'); ?></span>
         </div>
     </form>
     </div>

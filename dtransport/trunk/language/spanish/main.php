@@ -1,5 +1,5 @@
 <?php
-// $Id: main.php 39 2008-03-03 22:13:59Z ginis $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

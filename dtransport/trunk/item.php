@@ -1,5 +1,5 @@
 <?php
-// $Id: item.php 45 2008-06-03 02:16:18Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

@@ -1,5 +1,5 @@
 <?php
-// $Id: dtfilegroup.class.php 24 2008-02-07 15:45:24Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // CopyRight  2007 - 2008. Red México

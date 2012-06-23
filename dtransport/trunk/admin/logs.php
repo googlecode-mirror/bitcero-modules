@@ -1,5 +1,5 @@
 <?php
-// $Id: logs.php 37 2008-03-03 18:46:45Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

@@ -19,14 +19,22 @@ class DTFunctions
     public function toolbar(){
         
         RMTemplate::get()->add_tool(__('Dashboard','dtransport'), 'index.php', '../images/dashboard.png', 'dashboard');
-        RMTemplate::get()->add_tool(__('Categories','dtransport'), 'categories.php', '../images/categories.png', 'categories');
-        RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
-        RMTemplate::get()->add_tool(__('Screenshots','dtransport'), 'screens.php', '../images/shots.png', 'screenshots');
-        RMTemplate::get()->add_tool(__('Features','dtransport'), 'features.php', '../images/features.png', 'features');
-        RMTemplate::get()->add_tool(__('Files','dtransport'), 'files.php', '../images/files.png', 'files');
-        RMTemplate::get()->add_tool(__('Logs','dtransport'), 'logs.php', '../images/logs.png', 'logs');
-        RMTemplate::get()->add_tool(__('Licences','dtransport'), 'licenses.php', '../images/license.png', 'licenses');
-        RMTemplate::get()->add_tool(__('Platforms','dtransport'), 'platforms.php', '../images/os.png', 'platforms');
+
+        if(RMCLOCATION=='items'){
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('New Download','dtransport'), 'items.php?action=new', '../images/new.png', 'newitem');
+            RMTemplate::get()->add_tool(__('Waiting','dtransport'), 'items.php?type=wait', '../images/wait.png', 'itemswaiting');
+            RMTemplate::get()->add_tool(__('Edited','dtransport'), 'items.php?type=edit', '../images/edited.png', 'itemsedited');
+        } else {
+            RMTemplate::get()->add_tool(__('Categories','dtransport'), 'categories.php', '../images/categories.png', 'categories');
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Screenshots','dtransport'), 'screens.php', '../images/shots.png', 'screenshots');
+            RMTemplate::get()->add_tool(__('Features','dtransport'), 'features.php', '../images/features.png', 'features');
+            RMTemplate::get()->add_tool(__('Files','dtransport'), 'files.php', '../images/files.png', 'files');
+            RMTemplate::get()->add_tool(__('Logs','dtransport'), 'logs.php', '../images/logs.png', 'logs');
+            RMTemplate::get()->add_tool(__('Licences','dtransport'), 'licenses.php', '../images/license.png', 'licenses');
+            RMTemplate::get()->add_tool(__('Platforms','dtransport'), 'platforms.php', '../images/os.png', 'platforms');
+        }
         
     }
 	/**

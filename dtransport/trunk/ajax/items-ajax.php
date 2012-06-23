@@ -8,7 +8,7 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-include 'header.php';
+include '../admin/header.php';
 
 global $xoopsLogger;
 error_reporting(0);
@@ -105,7 +105,8 @@ function dt_save_download($edit = 0){
     if(!$edit) $down->setVar('created', time());
     $down->setVar('modified', time());
     $down->setVar('uid', $user);
-    $down->setVar('secure', $secure);
+    $down->setVar('password', $password);
+    $down->setVar('secure', $password!='' ? 1 : $secure);
     $down->setVar('groups', $groups);
     $down->setVar('approved', $approved);
     $down->setVar('featured', $mark);
@@ -166,6 +167,7 @@ function dt_save_download($edit = 0){
  * Change the name used in permalinks
  */
 function dt_change_nameid(){
+
     global $xoopsSecurity;
 
     if(!$xoopsSecurity->check())
@@ -208,6 +210,38 @@ function dt_change_nameid(){
 
 }
 
+/**
+ * Change secure status for items
+ */
+function dt_change_data($type, $value=0){
+    global $xoopsSecurity;
+
+    if(!$xoopsSecurity->check())
+        dt_send_message(__('Session token not valid!','dtransport'),1,0);
+
+    $id = rmc_server_var($_POST, 'id', 0);
+    if($id<=0)
+        dt_send_message(__('No item ID has been provided!','dtransport'), 1, 1);
+
+    $sw = new DTSoftware($id);
+    if($sw->isNew())
+        dt_send_message(__('Provided item ID is not valid!','dtransport'), 1, 1);
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $sql = "UPDATE ".$db->prefix("dtrans_software")." SET $type=$value WHERE id_soft=$id";
+    if(!$db->queryF($sql))
+        dt_send_message(__('Data could not be changed!','dtransport').'<br />'.$db->error(), 1, 1);
+
+    dt_send_message(array(
+        'message'=>__('Data changed successfully!','dtransport'),
+        'value'=>$value,
+        'name'=>$sw->getVar('name'),
+        'id'=>$sw->id(),
+        'link'=>$sw->permalink()
+    ), 0, 1);
+
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -220,5 +254,29 @@ switch($action){
         break;
     case 'permaname':
         dt_change_nameid();
+        break;
+    case 'lock':
+        dt_change_data('secure',1);
+        break;
+    case 'unlock':
+        dt_change_data('secure',0);
+        break;
+    case 'approved':
+        dt_change_data('approved',1);
+        break;
+    case 'unapproved':
+        dt_change_data('approved', 0);
+        break;
+    case 'featured':
+        dt_change_data('featured', 1);
+        break;
+    case 'unfeatured':
+        dt_change_data('featured', 0);
+        break;
+    case 'daily':
+        dt_change_data('daily', 1);
+        break;
+    case 'undaily':
+        dt_change_data('daily', 0);
         break;
 }

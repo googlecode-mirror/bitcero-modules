@@ -37,7 +37,6 @@ if (!file_exists($mc['directory_insecure'])){
 	}
 }
 
-
 /**
 * Verificamos la existencia de directorio de descargas seguras
 **/
@@ -46,3 +45,9 @@ if (!file_exists($mc['directory_secure'])){
 		showMessage(sprintf(_AS_DT_NOTDIRSECURE,$mc['directory_secure']));
 	}
 }
+
+// Constants
+define('DT_PATH', XOOPS_ROOT_PATH.'/modules/dtransport');
+define('DT_URL', XOOPS_URL.'/modules/dtransport');
+
+$tpl = RMTemplate::get();

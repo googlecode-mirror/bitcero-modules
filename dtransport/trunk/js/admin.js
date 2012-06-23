@@ -11,8 +11,9 @@ $(document).ready(function(){
         $("#bulk-top").val($(this).val());
         
     });
-       
-    $("#frm-add").validate();
+
+    if($("#frm-add").length>0)
+        $("#frm-add").validate();
     
 });
 
@@ -40,12 +41,12 @@ function before_submit(form){
     }
     
     if (!go){
-        alert(dt_select_message);
+        alert(jsLang.noSelectMsg);
         return false;
     }
     
     if ($("#bulk-top").val()=='delete'){
-        if (confirm(dt_message))
+        if (confirm(jsLang.confirmDeletion))
             $("#"+form).submit();
     } else {
         $("#"+form).submit();

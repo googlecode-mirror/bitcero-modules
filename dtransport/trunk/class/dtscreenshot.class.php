@@ -1,5 +1,5 @@
 <?php
-// $Id: dtscreenshot.class.php 19 2008-01-24 23:10:54Z ginis $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // CopyRight  2007 - 2008. Red México

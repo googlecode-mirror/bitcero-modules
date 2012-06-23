@@ -1,5 +1,5 @@
 <?php
-// $Id: header.php 42 2008-04-04 17:45:09Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas

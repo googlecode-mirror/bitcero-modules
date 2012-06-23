@@ -20,7 +20,7 @@ function showItems(){
 	
 	$search= rmc_server_var($_REQUEST,'search','');
 	$sort = rmc_server_var($_REQUEST,'sort','id_soft');
-	$mode = rmc_server_var($_REQUEST,'mode',0);
+	$mode = rmc_server_var($_REQUEST,'mode',1);
 	$sort = $sort=='' ? 'id_soft' : $sort;
 	$catid = rmc_server_var($_REQUEST,'cat',0);
 	$type = rmc_server_var($_REQUEST,'type','');
@@ -90,6 +90,7 @@ function showItems(){
 		    'link'=> $sw->permalink(),
             'featured'=>$sw->getVar('featured'),
             'daily'=>$sw->getVar('daily'),
+            'password'=>$sw->getVar('password')!=''
         );
 	}
 
@@ -115,7 +116,15 @@ function showItems(){
 	}
 
 	DTFunctions::toolbar();
-    RMTemplate::get()->add_style('admin.css','dtransport');
+
+    $tpl = RMTemplate::get();
+    $tpl->add_style('admin.css','dtransport');
+    $tpl->add_local_script('admin.js','dtransport');
+    $tpl->add_local_script('items.js','dtransport');
+    $tpl->add_local_script('jquery.checkboxes.js','rmcommon','include');
+
+    include DT_PATH.'/include/js_strings.php';
+
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".$loc);
 	xoops_cp_header();
     
@@ -256,6 +265,7 @@ function formItems($edit=0){
 	
 	RMTemplate::get()->add_local_script('itemsform.js', 'dtransport');
 	RMTemplate::get()->add_local_script('jquery.validate.min.js', 'rmcommon', 'include');
+    include DT_PATH.'/include/js_strings.php';
 	
     DTFunctions::toolbar();
     xoops_cp_location($location);
@@ -263,303 +273,6 @@ function formItems($edit=0){
     include RMTemplate::get()->get_template('admin/dtrans_formitems.php','module','dtransport');
     
 	xoops_cp_footer();
-
-}
-
-/**
-* @desc Almacena el elemento en la base de datos
-**/
-function saveItems($edit=0){
-	global $xoopsUser,$xoopsModuleConfig,$util,$db,$xoopsConfig, $myts;
-	$ids=array();
-	$platforms = array();
-	foreach ($_POST as $k=>$v){
-		$$k=$v;
-	}
-
-	$params='pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat.'&type='.$type;
-
-	if (!$util->validateToken()){
-		if (!$edit){
-			redirectMsg('./items.php?op=new&'.$params,_AS_DT_SESSINVALID, 1);
-			die();
-		}else{
-			redirectMsg('./items.php?op=edit&'.$params,_AS_DT_SESSINVALID, 1);
-			die();
-		}
-	}
-
-	if ($edit){
-		//Verificamos que el software sea válido
-		if ($id<=0){
-			redirectMsg('./items.php?'.$params,_AS_DT_ERR_ITEMVALID,1);
-			die();
-		}
-
-		//Verificamos que el software exista
-		$sw=new DTSoftware($id);
-		if ($sw->isNew()){
-			redirectMsg('./items.php?'.$params,_AS_DT_ERR_ITEMEXIST,1);
-			die();
-		}
-
-		//Comprueba que el título del elemento no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_software')." WHERE name='$name' AND id_soft<>'".$id."'";
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./items.php?op=edit&id='.$id.'&.'.$params,_AS_DT_ERRNAME,1);	
-			die();
-		}
-		
-		if ($nameid){
-
-			$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_software')." WHERE nameid='$nameid' AND id_soft<>'".$id."'";
-			list($num)=$db->fetchRow($db->queryF($sql));
-			if ($num>0){
-				redirectMsg('./items.php?op=edit&id='.$id.'&.'.$params,_AS_DT_ERRNAMEID,1);	
-				die();
-			}
-
-		}
-
-	}else{
-		//Comprueba que el título del elemento no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_software')." WHERE name='$name'";
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./items.php?op=new&'.$params,_AS_DT_ERRNAME,1);	
-			die();
-		}
-		$sw=new DTSoftware();
-	}
-
-		
-
-	//Genera $nameid Nombre identificador
-	$found=false; 
-	$i = 0;
-	if ($name!=$sw->name() || empty($nameid)){
-		do{
-			$nameid = $util->sweetstring($name).($found ? $i : '');
-        		$sql = "SELECT COUNT(*) FROM ".$db->prefix('dtrans_software'). " WHERE nameid = '$nameid'";
-        		list ($num) =$db->fetchRow($db->queryF($sql));
-        		if ($num>0){
-        			$found =true;
-        		    $i++;
-        		}else{
-        			$found=false;
-        		}
-		}while ($found==true);
-	}
-	
-	$sw->setName($name);
-	$sw->setShortDesc($myts->displayTarea($shortdesc, 0, 0, 0, 0, 1));
-	$sw->setDesc($desc);
-	$sw->setLimits($limits);
-	if ($sw->isNew()){
-		$sw->setUid($xoopsUser->uid());
-		$sw->setUname($xoopsUser->uname());
-		$sw->setModified(time());
-		$sw->setCreated(time());
-	}else{
-		$user=new XoopsUser($user);
-		$sw->setUid($user->uid());
-		$sw->setUname($user->uname());
-		$sw->setModified(time());
-	}
-	$sw->setSecure($secure);
-	$sw->setGroups($groups);
-	$type=='edit' ? $sw->setApproved(1) : $sw->setApproved($approved);
-	$sw->setNameId($nameid);
-	$sw->setMark($mark);
-	$sw->setCategory($category);
-	$sw->setRate($siterate);
-	$sw->setVersion($version);
-	$sw->setAuthor($author);
-	$sw->setUrl(formatUrl($url));
-	$sw->setLangs($langs);
-	$sw->setVar('dohtml', isset($dohtml) ? 1 : 0);
-	$sw->setVar('doxcode', isset($doxcode) ? 1 : 0);
-	$sw->setVar('dobr', isset($dobr) ? 1 : 0);
-	$sw->setVar('dosmiley', isset($dosmiley) ? 1 : 0);
-	$sw->setVar('doimage', isset($doimage) ? 1 : 0);
-
-	$tgs=explode(" ",$tags);
-	if (count($tgs)>$xoopsModuleConfig['limit_tags']){
-		$tgs=array_slice($tgs,0,$xoopsModuleConfig['limit_tags']);
-	}	
-
-	foreach ($tgs as $k){
-		$v=trim($k);
-		if ($v=="" || (strlen($v)<$xoopsModuleConfig['caracter_tags'])){
-			continue;
-		}
-		$tag = new DTTag($v);
-		if (!$tag->isNew()){
-			$ids[]=$tag->id();
-			continue;
-		}		
-		
-		$tag->setTag($v);
-		$tag->save();
-		$ids[]=$tag->id();
-	}	
-	$sw->setTags($ids);
-	
-	//Alerta
-	$sw->createAlert($alert);
-	$sw->setLimit($limitalert);
-	$sw->setMode($mode);
-
-	//Licencias
-	$sw->setLicences($licences);
-	
-	//Plataformas
-	$sw->setPlatforms($platforms);
-
-	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = XOOPS_UPLOAD_PATH.'/dtransport/';
-	$folderths = XOOPS_UPLOAD_PATH.'/dtransport/ths';
-	if ($edit){
-		if ($type=='edit'){
-			$swedit = new DTSoftwareEdited($id);
-			if ($swedit->image()==$sw->image()){
-				$filename=$sw->image();	
-			}else{
-				$filename=$swedit->image();
-				@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$sw->image());
-				@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$sw->image());	
-				
-			}
-		}else{
-			$filename=$sw->image();
-		}
-	}
-	else{
-		$filename = '';
-	}
-	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['image']*1024);//tamaño
-	
-	if ($up->fetchMedia('image')){
-
-	
-		if (!$up->upload()){
-			if ($sw->isNew()){
-				redirectMsg('./items.php?op=new&'.$params,$up->getErrors(), 1);
-				die();
-			}else{
-				redirectMsg('./items.php?op=edit&'.$params,$up->getErrors(), 1);
-				die();
-			}
-		}
-					
-		if ($edit && $sw->image()!=''){
-			@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$sw->image());
-			@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$sw->image());
-		}
-
-		$filename = $up->getSavedFileName();
-		$fullpath = $up->getSavedDestination();
-		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
-		switch ($xoopsModuleConfig['redim_image']){
-			case 0:
-				//Recortar miniatura
-				$redim->resizeWidth($xoopsModuleConfig['size_image']);
-				$redim->setTargetFile($folderths."/$filename");				
-				$redim->resizeAndCrop($xoopsModuleConfig['size_ths'],$xoopsModuleConfig['size_ths']);
-				
-			break;	
-			case 1: 
-				//Recortar imagen grande
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($xoopsModuleConfig['size_ths']);
-				$redim->setTargetFile($fullpath);
-				$redim->resizeAndCrop($xoopsModuleConfig['size_image'],$xoopsModuleConfig['size_image']);				
-			break;
-			case 2:
-				//Recortar ambas
-				$redim->resizeAndCrop($xoopsModuleConfig['size_image'],$xoopsModuleConfig['size_image']);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeAndCrop($xoopsModuleConfig['size_ths'],$xoopsModuleConfig['size_ths']);
-			break;
-			case 3:
-				//Redimensionar
-				$redim->resizeWidth($xoopsModuleConfig['size_image']);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($xoopsModuleConfig['size_ths']);
-			break;			
-		}
-
-	}
-
-	$sw->setImage($filename);
-
-	if (!$sw->save(true, $alert, true, true)){
-		redirectMsg('./items.php',_AS_DT_DBERROR."<br />".$sw->errors(),1);		
-		die();
-	}else{
-		
-		//Notificamos al usuario que su edición a sido aceptada
-		if ($type=='edit'){
-
-			$xu = new XoopsUser($sw->uid());
-			$xoopsMailer =& getMailer();
-			$xoopsMailer->usePM();
-			$xoopsMailer->setTemplate('edit_downloadaccept.tpl');
-			$xoopsMailer->assign('SITENAME', $xoopsConfig['sitename']);
-			$xoopsMailer->assign('ADMINMAIL', $xoopsConfig['adminmail']);
-			$xoopsMailer->assign('SITEURL', XOOPS_URL."/");
-			$xoopsMailer->assign('DOWNLOAD', $sw->name());
-			$xoopsMailer->assign('LINK_RESOURCE',XOOPS_URL."/modules/dtransport/submit.php?op=edit&id=".$sw->id());
-			$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/dtransport/language/".$xoopsConfig['language']."/mail_template/");
-			$xoopsMailer->setToUsers($xu);
-			$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
-			$xoopsMailer->setFromName($xoopsConfig['sitename']);
-			$xoopsMailer->setSubject(sprintf(_AS_DT_SUBJECT,$sw->name()));
-			if (!$xoopsMailer->send(true)){
-				redirectMsg(XOOPS_URL.'/modules/dtransport/admin/items.php?type=edit',$xoopsMailer->getErrors(),1);
-			}
-
-
-		}
-	
-		$sw = new DTSoftwareEdited($id);
-		$sw->delete();
-
-		
-
-		if ($options==1){
-			redirectMsg('./files.php?item='.$sw->id(),_AS_DT_DBOK,0);
-			die();
-		}
-		if ($options==2){
-			redirectMsg('./logs.php?item='.$sw->id(),_AS_DT_DBOK,0);
-			die();
-
-		}
-		
-		//Buscamos la página donde se encuentra el software que almacenamos
-		$sql="SELECT id_soft FROM ".$db->prefix('dtrans_software')." ORDER BY $sort".($mode ? " DESC " : " ASC ");
-		$result=$db->query($sql);
-		$num = $db->getRowsNum($result);
-		$i=1;
-		while ($rows=$db->fetchArray($result)){
-			if ($rows['id_soft']==$sw->id()){
-				$page=ceil($i / $limit);
-				break;
-			}
-			$i++;	
-		}
-
-		
-		redirectMsg('./items.php?pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat,_AS_DT_DBOK,0);
-		die();
-	}
-
 
 }
 
@@ -695,180 +408,43 @@ function deleteItems(){
 /**
 * @desc Permite aprobar o no un elemento
 **/
-function approvedItems($app=0){
-	global $util,$db;
+function dt_change_status($data, $value=0){
+    global $xoopsSecurity;
 
-	$items = isset($_REQUEST['items']) ? $_REQUEST['items'] : array();
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$sort=isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_soft';
-	$mode=isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
-	$cat=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$params='pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat;
+	$ids = rmc_server_var($_POST, 'ids', array());
+	$page = rmc_server_var($_POST, 'page', 1);
+    $limit = rmc_server_var($_POST, 'limit', 15);
+	$search = rmc_server_var($_POST, 'search', '');
+	$sort = rmc_server_var($_POST, 'sort', 'id_soft');
+	$mode = rmc_server_var($_POST, 'mode', 0);
+	$cat = rmc_server_var($_POST, 'cat', 0);
 
-	if (!$util->validateToken()){
-		redirectMsg('./items.php?'.$params,_AS_DT_SESSINVALID, 1);
+	$params='page='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat;
+
+	if (!$xoopsSecurity->check()){
+		redirectMsg('./items.php?'.$params, __('Session token expired!','dtransport'), RMMSG_ERROR);
 		die();
 	}
 
 	//Verificamos si se proporciono algún elemento
-	if (!is_array($items) || empty($items)){
-		redirectMsg('./items.php?'.$params,_AS_DT_NOTID,1);
+	if (!is_array($ids) || empty($ids)){
+		redirectMsg('./items.php?'.$params, __('You must select at least one item to modify!','dtransport'), RMMSG_WARN);
 		die();
 	}
 
-	$errors='';
-	foreach ($items as $k){
-		
-		//Verificamos si software es válido
-		if ($k<=0){
-			$errors.=sprintf(_AS_DT_ERRNOTVALID,$k);
-			continue;
-		}		
+	$sql = "UPDATE ".$db->prefix("dtrans_software")." SET $data=$value WHERE id_soft IN (".implode(",",$ids).")";
 
-		//Verificamos si software existe
-		$sw=new DTSoftware($k);
-		if ($sw->isNew()){
-			$errors.=sprintf(_AS_DT_ERRNOTEXIST,$k);
-			continue;
-		}
-		
-		$sql="UPDATE ".$db->prefix('dtrans_software')." SET approved=$app WHERE id_soft=$k";
-		$result=$db->queryF($sql);		
-		if (!$result){
-			$errors.=sprintf(_AS_DT_ERRNOTSAVE,$k);
-		}
-
-	}
-
-	if ($errors!=''){
-		redirectMsg('./items.php?'.$params,_AS_DT_ERRORS.$errors,1);
+	if (!$db->queryF($sql)){
+		redirectMsg('./items.php?'.$params,__('Errors ocurred while trying to update database!','dtransport').'<br />'.$errors, RMMSG_ERROR);
 		die();
 	}else{
-		redirectMsg('./items.php?'.$params,_AS_DT_DBOK,0);
+		redirectMsg('./items.php?'.$params, __('Database updated successfully!','dtransport'), RMMSG_SUCCESS);
 		die();
 	}
 	
 }
-
-/**
-* @desc Marca una descarga como destacada
-**/
-function markItems(){
-
-	$items=isset($_REQUEST['items']) ? $_REQUEST['items'] : null;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$sort=isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_soft';
-	$mode=isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;	
-	$cat=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
-
-	$params='pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat;
-
-
-	//Verificamos si se proporcionó algun software
-	if (!is_array($items) || empty($items)){
-		redirectMsg('./items.php?'.$params,_AS_DT_NOTID,1);
-		die();
-	}
-
-	$errors='';
-	foreach ($items as $k){
-		
-		//Verificamos si software es válido
-		if ($k<=0){
-			$errors.=sprintf(_AS_DT_ERRNOTVALID,$k);
-			continue;
-		}		
-
-		//Verificamos si software existe
-		$sw=new DTSoftware($k);
-		if ($sw->isNew()){
-			$errors.=sprintf(_AS_DT_ERRNOTEXIST,$k);
-			continue;
-		}
-		
-		$sw->setMark(!$sw->mark());
-		if (!$sw->save()){
-			$errors.=sprintf(_AS_DT_ERRNOTSAVE,$k);
-		}
-
-	}
-
-
-	if ($errors!=''){
-		redirectMsg('./items.php?'.$params,_AS_DT_ERRORS.$errors,1);
-		die();
-	}else{
-		redirectMsg('./items.php?'.$params,_AS_DT_DBOK,0);
-		die();
-	}
-	
-
-
-}
-
-/**
-* @desc Marca una descarga como diaria
-**/
-function dailyItems(){
-
-	$items=isset($_REQUEST['items']) ? $_REQUEST['items'] : null;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    $limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$sort=isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_soft';
-	$mode=isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
-	$cat=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
-
-	$params='pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat;
-
-
-	//Verificamos si se proporcionó algun software
-	if (!is_array($items) || empty($items)){
-		redirectMsg('./items.php?'.$params,_AS_DT_NOTID,1);
-		die();
-	}
-
-	$errors='';
-	foreach ($items as $k){
-		
-		//Verificamos si software es válido
-		if ($k<=0){
-			$errors.=sprintf(_AS_DT_ERRNOTVALID,$k);
-			continue;
-		}		
-
-		//Verificamos si software existe
-		$sw=new DTSoftware($k);
-		if ($sw->isNew()){
-			$errors.=sprintf(_AS_DT_ERRNOTEXIST,$k);
-			continue;
-		}
-		
-		$sw->setDaily(!$sw->daily());
-		if (!$sw->save()){
-			$errors.= $sw->errors()."<br />";
-		}
-
-	}
-
-
-	if ($errors!=''){
-		redirectMsg('./items.php?'.$params,_AS_DT_ERRORS.$errors,1);
-		die();
-	}else{
-		redirectMsg('./items.php?'.$params,_AS_DT_DBOK,0);
-		die();
-	}
-	
-
-
-}
-
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -878,32 +454,35 @@ switch ($action){
 	    break;
 	case 'edit':
 		formItems(1);
-	break;
-	case 'save':
-		saveItems();
-	break;
-	case 'saveedit':
-		saveItems(1);
-	break;
-	case 'savewait':
-		saveItems(1);
-	break;
+	    break;
 	case 'delete':
 		deleteItems();
-	break;
-	case 'approve':
-		approvedItems(1);
-	break;
-	case 'noapprove':
-		approvedItems();
-	break;
-	case 'mark':
-		markItems();
-	break;
-	case 'daily':
-		dailyItems();
-	break;
+	    break;
+	case 'bulk_approve':
+		dt_change_status('approve',1);
+	    break;
+	case 'bulk_unapproved':
+		dt_change_status('approve',0);
+	    break;
+	case 'bulk_featured':
+		dt_change_status('featured',1);
+	    break;
+    case 'bulk_unfeatured':
+        dt_change_status('featured', 0);
+        break;
+	case 'bulk_daily':
+		dt_change_status('daily', 1);
+	    break;
+    case 'bulk_undaily':
+        dt_change_status('daily', 0);
+        break;
+    case 'bulk_secure':
+        dt_change_status('secure',1);
+        break;
+    case 'bulk_nosecure':
+        dt_change_status('secure', 0);
+        break;
 	default:
 		showItems();
-
+        break;
 }

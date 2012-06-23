@@ -1,5 +1,5 @@
 <?php
-// $Id: files.php 37 2008-03-03 18:46:45Z BitC3R0 $
+// $Id$
 // --------------------------------------------------------------
 // D-Transport
 // Módulo para la administración de descargas
@@ -23,36 +23,28 @@
 // --------------------------------------------------------------
 // @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','files');
+define('RMCLOCATION','files');
 include ('header.php');
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(DTSoftware $item = null){
-    global $tpl;
-	
-	if ($item){
-		$tpl->append('xoopsOptions', array('link' => './items.php', 'title' => _AS_DT_SOFTWARE, 'icon' => '../images/soft16.png'));
-	}
-    $tpl->append('xoopsOptions', array('link' => './files.php?item='.($item ? $item->id() : ''), 'title' => _AS_DT_FILES, 'icon' => '../images/down16.png'));
-    if ($item){
-	    $tpl->append('xoopsOptions', array('link' => './files.php?op=new&item='.$item->id(), 'title' => _AS_DT_NEWFILE, 'icon' => '../images/add.png'));
-    }
-}
 
 /**
 * @desc Visualiza todos los archivos de un software
 **/
 function showFiles(){
-	global $db,$adminTemplate,$tpl,$util,$xoopsModule;
+    global $xoopsModule, $xoopsSecurity, $tpl;
 
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	$edit=isset($_REQUEST['edit']) ? intval($_REQUEST['edit']) : 0;
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	
+	$item = rmc_server_var($_REQUEST, 'item', 0);
+	$edit = rmc_server_var($_REQUEST, 'edit', 0);
+	$id = rmc_server_var($_REQUEST, 'id', 0);
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
 	if ($item>0){
 		$sw=new DTSoftware($item);
+
+        if($sw->isNew())
+            redirectMsg('items.php', __('Specified item does not exists!','dtransport'), RMMSG_WARN);
+
+        $files = array(); // Files data container
 
 		//Archivos sin grupo
 		$sql="SELECT * FROM ".$db->prefix('dtrans_files')." WHERE id_soft=$item AND `group`=0";
@@ -61,8 +53,16 @@ function showFiles(){
 			$fl=new DTFile();
 			$fl->assignVars($rows);
 
-			$tpl->append('files',array('id'=>$fl->id(),'file'=>$fl->file(),'downs'=>$fl->hits(),'group'=>$fl->group(),
-			'default'=>$fl->isDefault(),'remote'=>$fl->remote(),'type'=>'files', 'title'=>$fl->title()));
+			$files[] = array(
+                'id'=>$fl->id(),
+                'file'=>$fl->file(),
+                'downs'=>$fl->hits(),
+                'group'=>$fl->group(),
+			    'default'=>$fl->isDefault(),
+                'remote'=>$fl->remote(),
+                'type'=>'files',
+                'title'=>$fl->title()
+            );
 			
 		}
 		
@@ -72,7 +72,11 @@ function showFiles(){
 		foreach ($groups as $k){
 			$gr = new DTFileGroup($k);		
 
-			$tpl->append('files',array('id'=>$gr->id(),'file'=>$gr->name(),'type'=>'group'));
+			$files[] = array(
+                'id'=>$gr->id(),
+                'file'=>$gr->name(),
+                'type'=>'group'
+            );
 
 			$sql="SELECT * FROM ".$db->prefix('dtrans_files')." WHERE id_soft=$item AND `group`=$k";
 			$result=$db->queryF($sql);
@@ -80,13 +84,22 @@ function showFiles(){
 				$fl=new DTFile();
 				$fl->assignVars($rows);
 
-				$tpl->append('files',array('id'=>$fl->id(),'file'=>$fl->file(),'downs'=>$fl->hits(),'group'=>$fl->group(),
-				'default'=>$fl->isDefault(),'remote'=>$fl->remote(),'type'=>'files', 'title'=>$fl->title()));
+				$files[] = array(
+                    'id'=>$fl->id(),
+                    'file'=>$fl->file(),
+                    'downs'=>$fl->hits(),
+                    'group'=>$fl->group(),
+				    'default'=>$fl->isDefault(),
+                    'remote'=>$fl->remote(),
+                    'type'=>'files',
+                    'title'=>$fl->title()
+                );
 			
 			}
 		
 		}
 		
+        $groups = array();
 
 		//Lista de grupos
 		$sql ="SELECT * FROM ".$db->prefix('dtrans_groups')." WHERE id_soft=$item";
@@ -95,12 +108,13 @@ function showFiles(){
 			$group=new DTFileGroup();
 			$group->assignVars($rows);
 
-			$tpl->append('groups',array('id'=>$group->id(),'name'=>$group->name()));
+			$groups[] = array(
+                'id'=>$group->id(),
+                'name'=>$group->name()
+            );
 
 		}
-		
-		
-		$tpl->assign('lang_exist',sprintf(_AS_DT_EXIST,$sw->name()));
+
 		
 		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_FILES);
 		
@@ -110,28 +124,6 @@ function showFiles(){
 		
 	}
 	
-	$tpl->assign('lang_id',_AS_DT_ID);
-	$tpl->assign('lang_remote',_AS_DT_REMOTE);
-	$tpl->assign('lang_group',_AS_DT_GROUP);
-	$tpl->assign('lang_file',_AS_DT_FILE);
-	$tpl->assign('lang_downs',_AS_DT_DOWNS);
-	$tpl->assign('lang_default',_AS_DT_DEFAULTFILE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_selectitem',_AS_DT_SELECTITEM);
-	$tpl->assign('lang_listsoft',_AS_DT_LSOFT);
-	$tpl->assign('item',$item);
-	$tpl->assign('parent','files');
-	$tpl->assign('lang_select',_SELECT);
-	$tpl->assign('lang_save',_AS_DT_SAVE);
-	$tpl->assign('token',$util->getTokenHTML());
-	
-	optionsBar(isset($sw) ? $sw : null);
-	$adminTemplate = 'admin/dtrans_files.html';
-	xoops_cp_header();
-
-
 	//Creamos formulario para crear grupos
 
 	if ($edit){
@@ -150,20 +142,29 @@ function showFiles(){
 	}
 
 	$form = new RMForm(_AS_DT_NEWGROUP,'frmgroup','files.php');
-	$form->addElement(new RMText(_AS_DT_NAME,'name',50,100,$edit ? $group->name() : ''));
+	$form->addElement(new RMFormText(_AS_DT_NAME,'name',50,100,$edit ? $group->name() : ''));
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveeditgr' : 'savegroup'));
-	$form->addElement(new RMHidden('item',$item));
-	$form->addElement(new RMHidden('id',$id));
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveeditgr' : 'savegroup'));
+	$form->addElement(new RMFormHidden('item',$item));
+	$form->addElement(new RMFormHidden('id',$id));
 
-	$buttons =new RMButtonGroup();
+	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'files.php?item='.$item.'\';"');
 
 	$form->addElement($buttons);
+
+    // Title
+    if($item>0)
+        $title = sprintf(__('Files for "%s"','dtransport'), $sw->getVar('name'));
+    else
+        $title = __('Existing Files','dtransport');
+
+    DTFunctions::toolbar();
+    $tpl->add_style('admin.css','dtransport');
+    xoops_cp_header();
 	
-	$tpl->assign('form_group',$form->render());
-	
+    include $tpl->get_template('admin/dtrans_files.php', 'module', 'dtransport');
 
 	xoops_cp_footer();
 }
