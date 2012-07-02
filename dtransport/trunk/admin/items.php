@@ -15,7 +15,7 @@ include ('header.php');
 * @desc Muestra todos lo elementos registrados
 **/
 function showItems(){
-    define('RMCSUBLOCATION','items');
+    define('RMCSUBLOCATION','downitems');
 	global $xoopsModule, $xoopsSecurity;
 	
 	$search= rmc_server_var($_REQUEST,'search','');

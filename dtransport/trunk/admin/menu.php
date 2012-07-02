@@ -58,7 +58,7 @@ $adminmenu[] = array(
 //Archivos
 $adminmenu[] = array(
     'title' => __('Files','dtransport'),
-    'link' => "admin/files.php",
+    'link' => "admin/files.php".(rmc_server_var($_REQUEST, 'item', 0)>0?'?item='.rmc_server_var($_REQUEST, 'item', 0) : ''),
     'icon' => "../images/files.png",
     'location' => 'files'
 );

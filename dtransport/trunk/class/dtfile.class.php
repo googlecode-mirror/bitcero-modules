@@ -1,31 +1,14 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// D-Transport
-// CopyRight  2007 - 2008. Red México
-// Autor: gina
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Red México Common Utilities
+// A framework for Red México Modules
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright:  2007 - 2008. Red México
-// @author: gina
 
-class DTFile extends EXMObject
+class DTFile extends RMObject
 {
 
 	function __construct($id=null){
@@ -171,10 +154,8 @@ class DTFile extends EXMObject
 	public function delete(){
 		global $xoopsModuleConfig;
 
-		@unlink($xoopsModuleConfig['directory_insecure']."/".$this->file());
 		return $this->deleteFromTable();
 	}
 
 
 }
-?>

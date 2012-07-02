@@ -25,7 +25,16 @@ var jsLang = {
     normal: '<?php _e('Normal','dtransport'); ?>',
     secure: '<?php _e('Protected','dtransport'); ?>',
     noSelectMsg: '<?php _e('Before to run this action, you must select at least one item!','dtransport'); ?>',
-    confirmDeletion: '<?php _e('Do you really want to delete selected items?','dtransport'); ?>'
+    confirmDeletion: '<?php _e('Do you really want to delete selected items?','dtransport'); ?>',
+    groupName: '<?php _e('Provide a group name!','dtransport'); ?>',
+    deleteFile: '<?php _e('Do you really want to delete this file? You will not be able to recover it!','dtransport'); ?>',
+    noFile: '<?php _e('Before to save details select a file!','dtransport'); ?>',
+    noURL: '<?php _e('Before to save details provide a file URL!','dtransport'); ?>',
+    noTitle: '<?php _e('You must provide a title for this file','dtransport'); ?>',
+    edit: '<?php _e('Edit','dtransport'); ?>',
+    delete: '<?php _e('Delete','dtransport'); ?>',
+    updateGroup: '<?php _e('Update Group','dtransport'); ?>',
+    createGroup: '<?php _e('Create Group','dtransport'); ?>'
 };
 
 <?php

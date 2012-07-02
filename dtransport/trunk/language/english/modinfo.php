@@ -131,10 +131,10 @@ define('_MI_DT_DESCSIZE',__('Tamaño de imagen en Kilobytes','dtransport'));
 
 //Archivo de descarga
 define('_MI_DT_SIZEFILE',__('Tamaño de archivo de descarga','dtransport'));
-define('_MI_DT_DESCSIZEFILE',__('Especifique el tamaño del archivo en Kilobytes','dtransport'));
+define('_MI_DT_DESCSIZEFILE',__('Especifique el tamaño del archivo en Megabytes','dtransport'));
 
 //Tipo de archivo
-define('_MI_DT_TYPEFILE',__('Tipo de archivo de descarga','dtransport'));
+define('_MI_DT_TYPEFILE',__('Extensiones de archivos permitidas','dtransport'));
 define('_MI_DT_DESCTYPEFILE',__('Separe cada extensión con una "|" ','dtransport'));
 
 //Aprobar ediciones

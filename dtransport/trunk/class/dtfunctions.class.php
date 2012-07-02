@@ -17,14 +17,22 @@ class DTFunctions
      * Create the toolbar for module
      */
     public function toolbar(){
-        
+
+        $item = rmc_server_var($_REQUEST, 'item', '');
         RMTemplate::get()->add_tool(__('Dashboard','dtransport'), 'index.php', '../images/dashboard.png', 'dashboard');
 
         if(RMCLOCATION=='items'){
-            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'downitems');
             RMTemplate::get()->add_tool(__('New Download','dtransport'), 'items.php?action=new', '../images/new.png', 'newitem');
             RMTemplate::get()->add_tool(__('Waiting','dtransport'), 'items.php?type=wait', '../images/wait.png', 'itemswaiting');
             RMTemplate::get()->add_tool(__('Edited','dtransport'), 'items.php?type=edit', '../images/edited.png', 'itemsedited');
+        } elseif(RMCLOCATION=='files'){
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Files','dtransport'), 'files.php?item='.$item, '../images/files.png', 'fileslist');
+            RMTemplate::get()->add_tool(__('Add file','dtransport'), 'files.php?action=new&amp;item='.$item, '../images/newfile.png', 'newfile');
+        } elseif(RMCLOCATION=='screens'){
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Screenshots','dtransport'), 'screens.php'.($item>0?'?item='.$item:''), '../images/shots.png', 'screenshots');
         } else {
             RMTemplate::get()->add_tool(__('Categories','dtransport'), 'categories.php', '../images/categories.png', 'categories');
             RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');

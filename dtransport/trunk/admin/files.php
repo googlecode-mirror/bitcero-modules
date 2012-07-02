@@ -17,13 +17,17 @@ include ('header.php');
 function showFiles(){
     global $xoopsModule, $xoopsSecurity, $tpl;
 
+    define("RMCSUBLOCATION",'fileslist');
+
 	$item = rmc_server_var($_REQUEST, 'item', 0);
 	$edit = rmc_server_var($_REQUEST, 'edit', 0);
 	$id = rmc_server_var($_REQUEST, 'id', 0);
 
     $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	if ($item>0){
+    if($item<=0)
+        redirectMsg('items.php', __('Before to view files, you must specify a download item!','dtransport'), RMMSG_INFO);
+
 		$sw=new DTSoftware($item);
 
         if($sw->isNew())
@@ -54,6 +58,7 @@ function showFiles(){
 
 		//Grupos pertenecientes al software
 		$groups=$sw->filegroups();
+
 		foreach ($groups as $k){
 			$gr = new DTFileGroup($k);		
 
@@ -101,52 +106,21 @@ function showFiles(){
 		}
 
 		
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_FILES);
-		
-	} else {
-		
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_DT_FILES);
-		
-	}
-	
-	//Creamos formulario para crear grupos
+		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".__('Download Items','dtransport')."</a> &raquo; ".__('Files Management','dtransport'));
 
-	if ($edit){
-		//Verificamos si grupo es válido
-		if ($id<=0){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPVALID,1);
-			die();
-		}
-
-		//Verificamos si el grupo existe
-		$group=new DTFileGroup($id);
-		if ($group->isNew()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPEXIST,1);
-			die();
-		}
-	}
-
-	$form = new RMForm(_AS_DT_NEWGROUP,'frmgroup','files.php');
-	$form->addElement(new RMFormText(_AS_DT_NAME,'name',50,100,$edit ? $group->name() : ''));
-
-	$form->addElement(new RMFormHidden('op',$edit ? 'saveeditgr' : 'savegroup'));
-	$form->addElement(new RMFormHidden('item',$item));
-	$form->addElement(new RMFormHidden('id',$id));
-
-	$buttons =new RMFormButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'files.php?item='.$item.'\';"');
-
-	$form->addElement($buttons);
-
-    // Title
-    if($item>0)
-        $title = sprintf(__('Files for "%s"','dtransport'), $sw->getVar('name'));
-    else
-        $title = __('Existing Files','dtransport');
+	// Title
+    $title = sprintf(__('Files for "%s"','dtransport'), $sw->getVar('name'));
+    $tpl->assign('xoops_pagetitle', $title);
 
     DTFunctions::toolbar();
     $tpl->add_style('admin.css','dtransport');
+
+    include DT_PATH.'/include/js_strings.php';
+
+    $tpl->add_local_script('admin.js', 'dtransport');
+    $tpl->add_local_script('files.js', 'dtransport');
+    $tpl->add_local_script('jquery.checkboxes.js','rmcommon','include');
+
     xoops_cp_header();
 	
     include $tpl->get_template('admin/dtrans_files.php', 'module', 'dtransport');
@@ -160,626 +134,222 @@ function showFiles(){
 * @desc Formulario de archivos
 **/
 function formFiles($edit=0){
-	global $xoopsConfig,$xoopsModule,$db,$xoopsModuleConfig;
+	global $tpl, $xoopsModule, $xoopsModuleConfig, $xoopsUser, $xoopsSecurity;
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
+    define("RMCSUBLOCATION",'newfile');
+
+	$id = rmc_server_var($_GET, 'id', 0);
+	$item = rmc_server_var($_GET, 'item', 0);
 
 
 	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
+	if ($item<=0)
+		redirectMsg('files.php', __('No download item ID has been provided!','dtransport'), RMMSG_WARN);
+
 	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
+	$sw = new DTSoftware($item);
+	if ($sw->isNew())
+		redirectMsg('files.php', __('Specified download item does not exists!','dtransport'), RMMSG_ERROR);
+
+    $file_exists = true;
 	
 	if ($edit){
 		//Verificamos si archivo es válido
-		if ($id<=0){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRFILEVALID,1);//erroe
-			die();
-		}
-	
+		if ($id<=0)
+			redirectMsg('./files.php?item='.$item, __('No file ID has been specified!','dtransport'), RMMSG_WARN);
+
 		//Verificamos si existe archivo
 		$fl = new DTFile($id);
-		if ($fl->isNew()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRFILEEXIST,1);
-			die();
-		}
+		if ($fl->isNew())
+			redirectMsg('files.php?item='.$item, __('Specified file does not exists!','dtransport'), RMMSG_ERROR);
+
+        if($sw->getVar('secure'))
+            $dir = $xoopsModuleConfig['directory_secure'];
+        else
+            $dir = $xoopsModuleConfig['directory_insecure'];
+
+        if(!$fl->remote()){
+
+            if(!is_file($dir.'/'.$fl->file())){
+                $file_exists = false;
+                showMessage(sprintf(__('File %s does not exists! You need to upload this file again.','dtransport'), $dir .'/'.$fl->file()), RMMSG_WARN);
+            }
+
+
+        }
+
 	}	
 
-	optionsBar($sw);
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; <a href='?item=".$sw->id()."'>"._AS_DT_FILES."</a> &raquo; ".($edit ? _AS_DT_EDITFILE : _AS_DT_NEWFILE));
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='items.php'>".$sw->getVar('name')."</a> &raquo; <a href='files.php?item=".$sw->id()."'>".__('Files','dtransport')."</a> &raquo; ".($edit ? __('Edit file','dtransport') : __('New file','dtransport')));
+    $tpl->assign('xoops_pagetitle', $xoopsModule->name()." &raquo; ".$sw->getVar('name')." &raquo; ".__('Files','dtransport')." &raquo; ".($edit ? __('Edit file','dtransport') : __('New file','dtransport')));
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+    $func = new DTFunctions();
+    $func->toolbar();
+    $rmf = RMFunctions::get();
+    $rmu = RMUtilities::get();
+
+    // Uploader
+    $tc = TextCleaner::getInstance();
+    $uploader = new RMFlashUploader('dtfiles-uploader', DT_URL.'/ajax/upload.php');
+    $token = $xoopsSecurity->createToken();
+    $uploader->add_setting('onUploadStart', 'function(file){
+        $("#dtfiles-uploader").uploadify("settings", "formData", {
+            action: "upload",
+            item: $("#item").val(),
+            XOOPS_TOKEN_REQUEST: $("#XOOPS_TOKEN_REQUEST").val(),
+            data: "'.$tc->encrypt($_SERVER['HTTP_USER_AGENT'].'|'.session_id().'|'.$xoopsUser->uid().'|'.$rmf->current_url()).'"
+        });
+    }');
+    $uploader->add_setting('multi', false);
+    $uploader->add_setting('fileExt', '*.'.implode(";*.",$xoopsModuleConfig['type_file']));
+    $uploader->add_setting('fileDesc', __('Allowed files ('.implode(";*.",$xoopsModuleConfig['type_file']).')','rmcommon'));
+    $uploader->add_setting('sizeLimit', $xoopsModuleConfig['size_file']*1024*1024);
+    $uploader->add_setting('buttonText', __('Select File...','rmcommon'));
+    $uploader->add_setting('queueSizeLimit', 1);
+    $uploader->add_setting('auto', true);
+    $uploader->add_setting('onUploadSuccess',"function(file, resp, data){
+            eval('ret = '+resp);
+            if (ret.error==1){
+                \$('.dt-errors').html(ret.message).slideDown('fast');
+                upload_error = 1;
+            } else {
+                upload_error = 0;
+                getFilesToken();
+                \$('#dtfiles-preview .name').html(ret.file);
+                \$('#dtfiles-preview .size').html(ret.size);
+                \$('#size').val(ret.fullsize);
+                \$('#dtfiles-preview .type').html(ret.type);
+                \$('#dtfiles-preview .secure').html(ret.secure);
+            }
+            return true;
+        }");
+    $uploader->add_setting('onQueueComplete', "function(event, data){
+            if(upload_error==1) return;
+            \$('.dt-errors').slideUp('fast');
+            \$('#dtfiles-uploader').fadeOut('fast');
+            \$('#dtfiles-preview').fadeIn('fast');
+        }");
+    $uploader->add_setting('onSelectOnce', "function(event, data){
+            \$('#upload-errors').html('');
+        }");
+    if($edit && $file_exists){
+        $uploader->add_setting('onInit', 'function(instance){
+            $("#dtfiles-uploader").hide();
+        }');
+    }
+
+    $groups = array();
+
+    //Lista de grupos
+    $sql ="SELECT * FROM ".$db->prefix('dtrans_groups')." WHERE id_soft=$item";
+    $result=$db->queryF($sql);
+    while($rows=$db->fetchArray($result)){
+        $group=new DTFileGroup();
+        $group->assignVars($rows);
+
+        $groups[] = array(
+            'id'=>$group->id(),
+            'name'=>$group->name()
+        );
+
+    }
+
+    $tpl->add_head($uploader->render());
+    $tpl->add_style('admin.css','dtransport');
+    $tpl->add_style('files.css','dtransport');
+
+    $tpl->add_local_script('admin.js','dtransport');
+    $tpl->add_local_script('files.js','dtransport');
+    $tpl->add_head_script('var upload_error = 0;');
+
+    include DT_PATH.'/include/js_strings.php';
+
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? sprintf(_AS_DT_EDITFILES,$sw->name()) : sprintf(_AS_DT_NEWFILES,$sw->name()),'frmfile','files.php');
-	$form->setExtra("enctype='multipart/form-data'");	
-
-	//Obtenemos las extensiones permitidas
-	$ext='';
-	foreach ($xoopsModuleConfig['type_file'] as $k){
-		$ext.= $ext=='' ? '' : ',';
-		$ext.=$k;
-	}
-
-	//Tamaño de archivo
-	$size = formatBytesSize($xoopsModuleConfig['size_file']*1024);
-	
-	//Archivo
-	if ($sw->secure()){
-		$f = new RMText(_AS_DT_FILE,'file',50,255,$edit ? $fl->file() : '');
-		$f->setDescription(sprintf(_AS_DT_DESCTYPEFILE,$ext,$size));
-		$form->addElement($f,true);
-		$ele = new RMText(_AS_DT_FILETITLE, 'title', 50, 100, $edit ? $fl->title() : '');
-		$ele->setDescription(_AS_DT_FILETITLE_DESC);
-		$form->addElement($ele);
-	}else{
-		$f = new RMFile(_AS_DT_FILE,'files',45,$xoopsModuleConfig['size_file']*1024);
-		$f->setDescription(sprintf(_AS_DT_DESCTYPEFILE,$ext,$size));
-		$form->addElement($f);
-		if ($edit && file_exists($xoopsModuleConfig['directory_insecure']."/".$fl->file())){
-			$form->addElement(new RMLabel(_AS_DT_NAMEFILE,$fl->file()));
-
-		}
-		$form->addElement(new RMText(_AS_DT_FILEURL,'url',50,255,$edit && !file_exists($xoopsModuleConfig['directory_insecure']."/".$fl->file()) ? $fl->file() : ''));
-		$ele = new RMText(_AS_DT_FILETITLE, 'title', 50, 100, $edit ? $fl->title() : '');
-		$ele->setDescription(_AS_DT_FILETITLE_DESC);
-		$form->addElement($ele);
-		$ele=new RMText(_AS_DT_SIZE,'size',11,11,$edit ? $fl->size() : '');
-		$ele->setDescription(_AS_DT_DESCSIZE);
-		$form->addElement($ele);
-	}
-
-	
-	$form->addElement(new RMYesno(_AS_DT_DEFAULT,'default',$edit ? $fl->isDefault() : 0));
-
-
-	$ele = new RMSelect(_AS_DT_GROUP,'group');
-	$ele->addOption(0,_SELECT);
-	
-	//Lista de grupos
-	$sql = "SELECT * FROM ".$db->prefix('dtrans_groups')." WHERE id_soft=".$item;
-	$result = $db->queryF($sql);
-	while ($rows=$db->fetchArray($result)){
-		$ele->addOption($rows['id_group'],$rows['name'],$edit ? ($rows['id_group']==$fl->group() ? 1 : 0) : 0);		
-	}
-
-	$form->addElement($ele);
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit': 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('item',$item));
-
-	$buttons =new RMButtonGroup();
-	$buttons->addButton('sbt',_SUBMIT,'submit');
-	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'files.php?item='.$item.'\';"');
-
-	$form->addElement($buttons);
-	
-
-	$form->display();
+    include $tpl->get_template("admin/dtrans_filesform.php", 'module','dtransport');
 
 	xoops_cp_footer();
 
 }
-
-
-/**
-* @desc Almacena información del archivo en la base de datos
-**/
-function saveFiles($edit=0){
-	global $db,$xoopsModuleConfig,$util;
-
-	foreach ($_POST as $k=>$v){
-		$$k=$v;
-	}
-
-	if (!$util->validateToken()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_SESSINVALID, 1);
-		die();
-	}
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-
-	if ($edit){
-		//Verificamos si archivo es válido
-		if ($id<=0){
-			redirectMsg('./files.php?id='.$id.'&item='.$item.'&op=edit',_AS_DT_ERRFILEVALID,1);
-			die();
-		}
-
-		//Verificamos si existe archivo
-		$fl = new DTFile($id);
-		if ($fl->isNew()){
-			redirectMsg('./files.php?id='.$id.'&item='.$item.'&op=edit',_AS_DT_ERRFILEEXIST,1);
-			die();
-		}
-
-	}else{
-
-		$fl=new DTFile();
-
-	}
-
-	if (!$sw->secure()){
-		
-		//Archivo
-		include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-		$up = new RMUploader(false);
-		$folder = $xoopsModuleConfig['directory_insecure'];//ruta
-		$filename = '';
-		$config=array();
-		foreach ($xoopsModuleConfig['type_file'] as $k)
-		{
-			$config[]=$up->getMIME($k);	
-		}
-
-		$up->prepareUpload($folder, $config, $xoopsModuleConfig['size_file']*1024);
-		
-		if ($up->fetchMedia('files')){
-		
-			if (!$up->upload()){
-				if ($fl->isNew()){
-					redirectMsg('./files.php?op=new&id='.$id.'&item='.$item,$up->getErrors(),1);
-					die();
-				}else{
-					redirectMsg('./files.php?op=edit&id='.$id.'&item='.$item,$up->getErrors(),1);
-					die();				
-				}
-			}	
-
-			if ($edit && $fl->file()!=''){
-				@unlink($xoopsModuleConfig['directory_insecure']."/".$fl->file());
-			}
-
-			$filename = $up->getSavedFileName();
-			$fullpath = $up->getSavedDestination();	
-			$fl->setFile($filename);
-			$fl->setSize($up->mediaSize);
-			$fl->setMime($up->mediaType);
-		}else{
-			if ($url){
-
-				//Verificamos el tipo de extension del archivo
-				$type = pathinfo($url);
-				/*if ($type && !in_array($type['extension'],$xoopsModuleConfig['type_file'])){
-					if ($fl->isNew()){
-						redirectMsg('./files.php?op=new&id='.$id.'&item='.$item,sprintf(_AS_DT_ERRNOTEXT,$type['extension']),1);	
-						die();
-					}else{
-						redirectMsg('./files.php?id='.$id.'&item='.$item.'&op=edit',sprintf(_AS_DT_ERRNOTEXT,$type['extension']),1);
-						die();	
-					}
-				}*/
-
-				if ($edit && $fl->file()!=''){
-					@unlink($xoopsModuleConfig['directory_insecure']."/".$fl->file());
-				}
-				$fl->setRemote(1);
-				$fl->setFile($url);
-				if (!$size){
-					if ($fl->isNew()){
-						redirectMsg('./files.php?op=new&item='.$item,_AS_DT_ERRSIZE,1);	
-						die();
-					}else{
-						redirectMsg('./files.php?op=edit&id='.$id.'&item='.$item,_AS_DT_ERRSIZE,1);
-						die();	
-					}
-				}
-				$fl->setSize($size);
-
-			}
-		}
-	}else{
-
-		//Verificamos el tipo de extension del archivo
-		$type=explode(".",$file); 
-		if (!in_array(end($type),$xoopsModuleConfig['type_file'])){
-			if ($fl->isNew()){
-				redirectMsg('./files.php?op=new&item='.$item,sprintf(_AS_DT_ERRNOTEXT,end($type)),1);	
-				die();
-			}else{
-				redirectMsg('./files.php?id='.$id.'&item='.$item.'&op=edit',sprintf(_AS_DT_ERRNOTEXT,end($type)),1);
-				die();	
-			}
-		}
-		
-		//Verificamos si el archivo existe en el directorio de descargas seguras
-		if (!file_exists($xoopsModuleConfig['directory_secure']."/".$file)){
-			if ($fl->isNew()){
-				redirectMsg('./files.php?op=new&id='.$id.'&item='.$item,sprintf(_AS_DT_ERRNOEXISTFILE,$xoopsModuleConfig['directory_secure']),1);	
-				die();
-			}else{
-				redirectMsg('./files.php?id='.$id.'&item='.$item.'&op=edit',sprintf(_AS_DT_ERRNOEXISTFILE,$xoopsModuleConfig['directory_secure']),1);	
-				die();	
-			}
-
-		}
-		
-		$up = new RMUploader(false);
-		$fl->setSize(fileSize($xoopsModuleConfig['directory_secure']."/".$file));
-		$fl->setMime($up->getMIME(end($type)));
-		
-	}
-	
-	
-	//Modificamos todos los archivos a default=0
-	if ($default){
-		$sql="UPDATE ".$db->prefix('dtrans_files')." SET `default`=0 WHERE id_soft=$item";
-		$result=$db->queryF($sql);
-	}
-	
-	$fl->setSoftware($item);
-	$sw->secure() ? $fl->setFile($file) : '';
-	$fl->setdefault($default);
-	$fl->setGroup($group);
-	$fl->setDate(time());
-	$fl->setTitle(trim($title));
-
-	if (!$fl->save()){
-		if ($fl->isNew()){
-			redirectMsg('./files.php?op=new&item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}else{
-			redirectMsg('./files.php?op=edit&id='.$id.'&item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}
-	
-	}else{
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
-
-}
-
-
-/**
-* @desc Elimina de la base de datos el archivo especificado
-**/
-function deleteFiles(){
-	global $xoopsModule,$util,$xoopsModuleConfig;
-
-	$ids=isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	$ok=isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-
-	//Verificamos si nos proporcionaron algun archivo
-	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./files.php?item='.$item,_AS_DT_NOTFILE,1);
-		die();	
-	}
-	
-	$num=0;
-	if (!is_array($ids)){
-		$file=new DTFile($ids);
-		$ids=array($ids);
-		$num=1;
-	}
-
-
-	if ($ok){
-
-		if (!$util->validateToken()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_SESSINVALID, 1);
-			die();
-		}	
-	
-		
-		$errors='';
-		$files='';
-		foreach ($ids as $k){
-			
-
-			//Verificamos si el archivo es válido
-			if ($k<=0){
-				$errors.=sprintf(_AS_DT_ERRFILEVAL,$k);
-				continue;
-			}
-
-			//Verificamos si el archivo existe
-			$fl=new DTFile($k);
-			if ($fl->isNew()){
-				$errors.=sprintf(_AS_DT_ERRFILEEX,$k);
-				continue;
-			}
-
-			$secure=$sw->secure();
-			$file=$fl->file();
-			if (!$fl->delete()){
-				$errors.=sprintf(_AS_DT_ERRFILEDEL,$k);
-			}else{
-				if ($secure){
-					$files.=$file."<br />";
-				}
-			}
-		
-		}	
-
-		
-		if ($errors!=''){
-			redirectMsg('./files.php?item='.$item,_AS_DT_ERRORS.$errors,1);
-			die();
-		}else{
-			if ($files){
-				redirectMsg('./files.php?item='.$item,_AS_DT_DBOK.sprintf(_AS_DT_DELSECURE,$files,$xoopsModuleConfig['directory_secure']),0);
-			}
-			
-			redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-			die();
-		}
-
-	}else{
-		
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_DELETEFILE);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id[]'] = $ids;
-		$hiddens['item'] = $item;
-		$hiddens['op'] = 'delete';
-
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'files.php?item='.$item.'\';"';
-		
-		$util->msgBox($hiddens, 'files.php', ($num ? sprintf(_AS_DT_DELETECONF,$file->file()) : _AS_DT_DELCONF). '<br /><br />' ._AS_DT_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
-	}
-
-}
-
-
-/**
-* @desc Modifica el grupo al que pertenece cada archivo
-**/
-function updateGroups(){
-	global $util;
-
-	$groups=isset($_REQUEST['groups']) ? $_REQUEST['groups'] : array();
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-
-
-	if (!$util->validateToken()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_SESSINVALID, 1);
-		die();
-	}
-
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-	
-	$errors='';
-	foreach($groups as $k=>$v){
-	
-		//Verificamos si el archivo es válido
-		if ($k<=0){
-			$errors.=sprintf(_AS_DT_ERRVALID,$k);
-			continue;
-		}
-
-		//Verificamos si el archivo existe
-		$fl = new DTFile($k);
-		if ($fl->isNew()){
-			$errors.=sprintf(_AS_DT_ERREXIST,$k);
-			continue;
-		}
-
-		$fl->setGroup($v);
-
-		if (!$fl->save()){
-			$errors.=sprintf(_AS_DT_ERRUPDATE,$k);
-		}
-	}
-	if ($errors!=''){
-		redirectMsg('./files.php?item='.$item,_AS_DT_ERRORS.$errors,1);
-		die();
-	}else{
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
-
-
-}
-
-
-/**
-* @desc Modifica el archivo por defecto del software
-**/
-function defaultFile(){
-	global $db,$util;	
-
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-	
-	
-	$sql="UPDATE ".$db->prefix('dtrans_files')." SET `default`=0 WHERE id_soft=$item AND id_file<>$id";
-	$result=$db->queryF($sql);
-
-	//Verificamos si archivo es válido
-	if ($id<=0){
-		redirectMsg('./files.php?item='.$item,_AS_DT_ERRFILEVALID,1);
-		die();
-	}
-
-	//Verificamos si existe archivo
-	$fl=new DTFile($id);
-	if ($fl->isNew()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_ERRFILEEXIST,1);
-		die();
-	}	
-
-	
-	$fl->setDefault(1);
-	if (!$fl->save()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBERROR,1);
-		die();
-	}else{
-		redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
-
-}
-
 
 /**
 * @desc Elimina el grupo especificado
 **/
 function deleteGroups(){
 
-	global $xoopsModule,$util;
+	global $xoopsModule,$util, $xoopsSecurity;
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	$ok=isset($_POST['ok']) ? intval($_POST['ok']) : 0;
+	$id = rmc_server_var($_REQUEST, 'id', array());
+	$item = rmc_server_var($_REQUEST, 'item', 0);
+
+    if (!$xoopsSecurity->check()){
+        redirectMsg('files.php?item='.$item, __('Session token invalid!','dtransport'), RMMSG_WARN);
+        die();
+    }
 
 	//Verificamos si el software es válido
 	if ($item<=0){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMVALID,1);
+		redirectMsg('files.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
 		die();
 	}
 	
 	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
+	$sw = new DTSoftware($item);
 	if ($sw->isNew()){
-		redirectMsg('./files.php',_AS_DT_ERR_ITEMEXIST,1);
+		redirectMsg('files.php', __('Specified download item does not exists!','dtransport'), RMMSG_WARN);
 		die();
 	}
 
 	//Verificamos si grupo es válido
 	if ($id<=0){
-		redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPVALID,1);
+		redirectMsg('files.php?item='.$item, __('Group id not provided!','dtransport'), RMMSG_ERROR);
 		die();
 	}
 
 	//Verificamos si el grupo existe
-	$group=new DTFileGroup($id);
+	$group = new DTFileGroup($id);
 	if ($group->isNew()){
-		redirectMsg('./files.php?item='.$item,_AS_DT_ERRGROUPEXIST,1);
+		redirectMsg('files.php?item='.$item, __('Specified group does not exists!','dtransport'), RMMSG_ERROR);
 		die();
 	}
-	
-	if  ($ok){
-	
-		if (!$util->validateToken()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_SESSINVALID, 1);
-			die();
-		}
 
-		if (!$group->delete()){
-			redirectMsg('./files.php?item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}else{
-			redirectMsg('./files.php?item='.$item,_AS_DT_DBOK,0);
-			die();
-		}	
-
+	if (!$group->delete()){
+		redirectMsg('files.php?item='.$item, sprintf(__('Group %s could not be deleted!','dtransport'), '<strong>'.$group->name().'</strong>').'<br />'.$group->errors(),1);
+		die();
 	}else{
-
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_DELETEGROUP);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$hiddens['item'] = $item;
-		$hiddens['op'] = 'deletegroup';
-
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'files.php?item='.$item.'\';"';
-		
-		$util->msgBox($hiddens, 'files.php', sprintf(_AS_DT_DELETECONFG, $group->name()). '<br /><br />' ._AS_DT_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
+		redirectMsg('files.php?item='.$item, sprintf(__('Group %s deleted successfully!','dtransport'), '<strong>'.$group->name().'</strong>'),0);
+		die();
 	}
-
-
 
 }
 
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-switch ($op){
+
+$action = rmc_server_var($_REQUEST, 'action', '');
+
+switch ($action){
 	case 'new':
 		formFiles();
-	break;
+	    break;
 	case 'edit':
 		formFiles(1);
-	break;
+	    break;
 	case 'save':
 		saveFiles();
-	break;
+	    break;
 	case 'saveedit':
 		saveFiles(1);
-	break;
+	    break;
 	case 'savegroup':
 		saveGroups();
-	break;
+	    break;
 	case 'saveeditgr':
 		saveGroups(1);
-	break;
+	    break;
 	case 'updategroup':
 		updateGroups(1);
-	break;
+	    break;
 	case 'delete':
 		deleteFiles();
 	break;
@@ -788,9 +358,9 @@ switch ($op){
 	break;
 	case 'default':
 		defaultFile();
-	break;
+	    break;
 	default:
 		showFiles();
 
 }
-?>
+

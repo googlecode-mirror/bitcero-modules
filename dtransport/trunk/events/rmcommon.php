@@ -35,4 +35,14 @@ class DtransportRmcommonPreload
         
         return $widgets;
     }
+
+    /**
+     * Add new mimetypes
+     */
+    public function eventRmcommonGetMimeTypes($types){
+
+        if(in_array("rar", $types)) return $types;
+        $types['rar'] = 'application/rar';
+        return $types;
+    }
 }

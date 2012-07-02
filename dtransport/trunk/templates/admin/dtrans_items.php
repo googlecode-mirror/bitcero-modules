@@ -90,20 +90,20 @@
 		<td align="center"><?php echo $item['screens']; ?></td>
 		<td><input type="checkbox" class="featured" id="featured-<?php echo $item['id']; ?>" name="featured<?php echo $item['id']; ?>"<?php echo $item['featured']?' checked="checked"':''; ?> /></td>
 		<td><input type="checkbox" class="daily" id="daily-<?php echo $item['id']; ?>" name="daily<?php echo $item['id']; ?>"<?php echo $item['daily']?' checked="checked"':''; ?> /></td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;">
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;">
             <a href="./items.php?action=edit&amp;id=<?php echo $item['id']; ?>&amp;pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;cat=<?php echo $cat; ?>&amp;type=<?php echo $type; ?>" style="background: url(../images/edit.png) no-repeat center;" title="<?php _e('Edit','dtransport'); ?>"><span><?php _e('Edit','dtransport'); ?></span></a>
         </td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;">
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;">
             <a href="./items.php?action=delete&amp;id=<?php echo $item['id']; ?>&amp;pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;cat=<?php echo $cat; ?>&amp;type=<?php echo $type; ?>" style="background: url(../images/trash.png) no-repeat center;" title="<?php _e('Delete','dtransport'); ?>"><span><?php _e('Delete','dtransport'); ?></span></a>
         </td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;">
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;">
             <a href="#" class="<?php if(!$item['password']): echo $item['secure'] ? 'unlock' : 'lock'; endif; ?>" style="<?php if($item['password']): ?>opacity: .30;-moz-opacity: .30;filter:alpha(opacity:30);<?php endif; ?>background: url(../images/<?php echo $item['secure']?'unlock.png':'lock.png'; ?>) no-repeat center;" title="<?php $item['secure'] ? _e('Not protected download','dtransport') : _e('Protected download','dtransport'); ?>"><span><?php $item['secure'] ? _e('Unlock','dtransport') : _e('Lock','dtransport'); ?></span></a>
         </td>
         <?php if($type!='edit'): ?>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;"><a href="./screens.php?item=<?php echo $item['id']; ?>" style="background: url(../images/images.png) no-repeat center;" title="<?php _e('Images','dtransport'); ?>"><span><?php _e('Images','dtransport'); ?></span></a></td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;"><a href="./features.php?item=<?php echo $item['id']; ?>" style="background: url(../images/features.png) no-repeat center;" title="<?php _e('Features','dtransport'); ?>"><span><?php _e('Features','dtransport'); ?></span></a></td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;"><a href="files.php?item=<?php echo $item['id']; ?>" style="background: url(../images/files.png) no-repeat center;" title="<?php _e('Files','dtransport'); ?>"><span><?php _e('Files','dtransport'); ?></span></a></td>
-        <td class="dt_item_opts" style="padding: 2px; vertical-align: middle; background: #ebebeb;"><a href="./logs.php?item=<?php echo $item['id']; ?>" style="background: url(../images/logs.png) no-repeat center;" title="<?php _e('Logs','dtransport'); ?>"><span><?php _e('Logs','dtransport'); ?></span></a></td>
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;"><a href="./screens.php?item=<?php echo $item['id']; ?>" style="background: url(../images/shots.png) no-repeat center;" title="<?php _e('Images','dtransport'); ?>"><span><?php _e('Images','dtransport'); ?></span></a></td>
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;"><a href="./features.php?item=<?php echo $item['id']; ?>" style="background: url(../images/features.png) no-repeat center;" title="<?php _e('Features','dtransport'); ?>"><span><?php _e('Features','dtransport'); ?></span></a></td>
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;"><a href="files.php?item=<?php echo $item['id']; ?>" style="background: url(../images/files.png) no-repeat center;" title="<?php _e('Files','dtransport'); ?>"><span><?php _e('Files','dtransport'); ?></span></a></td>
+        <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;"><a href="logs.php?item=<?php echo $item['id']; ?>" style="background: url(../images/logs.png) no-repeat center;" title="<?php _e('Logs','dtransport'); ?>"><span><?php _e('Logs','dtransport'); ?></span></a></td>
         <?php endif; ?>
 	</tr>
 	<?php endforeach; ?>
