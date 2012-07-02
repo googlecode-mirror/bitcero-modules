@@ -136,7 +136,7 @@ function images_form($edit = 0){
     /*$upload = new RMFlashUploader('images', 'images.php');*/
     if (!$cat->isNew()){
         $uploader = new RMFlashUploader('files-container', RMCURL.'/include/upload.php');
-        $uploader->add_setting('scriptData', array(
+        $uploader->add_setting('formData', array(
         	'action'=>'upload',
         	'category'=>$cat->id(),
         	// Need better code
@@ -148,7 +148,7 @@ function images_form($edit = 0){
         $uploader->add_setting('sizeLimit', $cat->getVar('filesize') * $cat->getVar('sizeunit'));
         $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
         $uploader->add_setting('queueSizeLimit', 100);
-        $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
+        $uploader->add_setting('onUploadSuccess',"function(file, resp, data){
             eval('ret = '+resp);
             if (ret.error){
                 \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
@@ -159,7 +159,7 @@ function images_form($edit = 0){
             }
             return true;
         }");
-        $uploader->add_setting('onAllComplete', "function(event, data){
+        $uploader->add_setting('onQueueComplete', "function(event, data){
         	
         	if(total<=0) return;
         	

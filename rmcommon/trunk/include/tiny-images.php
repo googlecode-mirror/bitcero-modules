@@ -51,12 +51,13 @@ if ($action==''){
         $uploader->add_setting('buttonText', __('Browse Images...','rmcommon'));
         $uploader->add_setting('queueSizeLimit', 100);
         $uploader->add_setting('auto', true);
-        $uploader->add_setting('onSelect', "function(event, qid, file){
-        	if (queuefiles[qid]) return false;
-        	queuefiles[qid] = true;
+        $uploader->add_setting('onSelect', "function(file){
+        	if (queuefiles[file]) return false;
+        	queuefiles[file] = true;
+        	\$('#upload-errors').html('');
         	return true;
         }");
-        $uploader->add_setting('onComplete',"function(event, id, file, resp, data){
+        $uploader->add_setting('onUploadSuccess',"function(file, resp, data){
             eval('ret = '+resp);
             if (ret.error){
                 \$('#upload-errors').append('<span class=\"failed\"><strong>'+file.name+'</strong>: '+ret.message+'</span>');
@@ -67,7 +68,7 @@ if ($action==''){
             }
             return true;
         }");
-        $uploader->add_setting('onAllComplete', "function(event, data){
+        $uploader->add_setting('onQueueComplete', "function(event, data){
             if(total<=0) return;
                 \$('.categories_selector').hide('slow');
                 \$('#upload-errors').hide('slow');
@@ -83,9 +84,6 @@ if ($action==''){
                 params = '".TextCleaner::getInstance()->encrypt($xoopsUser->uid().'|'.RMCURL.'/images.php'.'|'.$xoopsSecurity->createToken(), true)."';
                 resize_image(params);
                     
-        }");
-        $uploader->add_setting('onSelectOnce', "function(event, data){
-            \$('#upload-errors').html('');
         }");
         
         RMTemplate::get()->add_head($uploader->render());

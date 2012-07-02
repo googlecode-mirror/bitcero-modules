@@ -23,42 +23,52 @@ class RMFlashUploader
     public function __construct($name, $url, $settings = array()){
         // Generate settings for uploadify
         $this->settings = array(
-            'uploader' => RMCURL.'/include/uploadify.swf',
-            'script' => $url,
-            'cancelImg' => RMCURL.'/images/cancel.png',
-            'scriptData' => array(),
-            'multi' => false,
-            'fileExt' => '*.*',
-            'fileDesc' => __('All Files','rmcommon'),
-            'sizeLimit' => 524288,
-            'queueSizeLimit' => 10,
-            'buttonText' => __('Select Files','rmcommon'),
-            'checkScript' => '',
-            'fileDataName' => 'Filedata',
-            'method' => 'POST',
-            'scriptAccess' => 'sameDomain',
-            'folder' => '',
-            'queueID' => '',
-            'auto' => false,
-            'simUploadLimit' => 1,
-            'buttonImg' => '',
-            'hideButton' => false,
-            'rollover' => false,
-            'width' => 110,
-            'height' => 30,
-            'wmode' => 'opaque',
-            'onInit' => '',
-            'onSelect' => '',
-            'onSelectOnce' => '',
-            'onCancel' => '',
-            'onClearQueue' => '',
-            'onQueueFull' => '',
-            'onError' => '',
-            'onOpen' => '',
-            'onProgress' => '',
-            'onComplete' => '',
-            'onAllComplete' => '',
-            'onCheck' => ''
+            'swf'                   => RMCURL.'/include/uploadify.swf',
+            'uploader'              => $url,
+            'auto'                  => false,
+            'buttonClass'           => '',
+            'buttonCursor'          => 'hand',
+            'buttonImage'           => null,
+            'buttonText'            => __('Select Files','rmcommon'),
+            'checkExisting'         => false,
+            'debug'                 => false,
+            'fileObjName'           => 'Filedata',
+            'fileSizeLimit'         => '512KB',
+            'fileTypeDesc'          => __('All Files','rmcommon'),
+            'fileTypeExts'          => '*.*',
+            'formData'              => array(),
+            'height'                => 30,
+            'method'                => 'post',
+            'multi'                 => true,
+            'overrideEvents'        => '',
+            'preventCaching'        => true,
+            'progressData'          => 'percentage',
+            'queueID'               => false,
+            'queueSizeLimit'        => 100,
+            'removeCompleted'       => true,
+            'removeTimeout'         => 2,
+            'requeueErrors'         => false,
+            'successTimeout'        => 30,
+            'uploadLimit'           => 999,
+            'width'                 => 120,
+            'onCancel'              => '',
+            'onClearQueue'          => '',
+            'onDestroy'             => '',
+            'onDialogClose'         => '',
+            'onDialogOpen'          => '',
+            'onDisable'             => '',
+            'onEnable'              => '',
+            'onFallback'            => '',
+            'onInit'                => '',
+            'onQueueComplete'       => '',
+            'onSelect'              => '',
+            'onSelectError'         => '',
+            'onSWFReady'            => '',
+            'onUploadComplete'      => '',
+            'onUploadError'         => '',
+            'onUploadProgress'      => '',
+            'onUploadStart'         => '',
+            'onUploadSuccess'       => ''
         );
         
         foreach ($settings as $key => $value){
@@ -71,7 +81,24 @@ class RMFlashUploader
     }
     
     public function add_setting($name, $value){
-    	
+
+        $convert = array(
+            'scriptData'    => 'formData',
+            'onComplete'    => 'onUploadComplete',
+            'onAllComplete' => 'onQueueComplete',
+            'fileExt'       => 'fileTypeExts',
+            'fileDesc'      => 'fileTypeDesc',
+            'buttonImg'     => 'buttonImage',
+            'fileDataName'  => 'fileObjName',
+            'checkScript'   => 'checkExisting',
+            'sizeLimit'     => 'fileSizeLimit',
+            'onOpen'        => 'onDialogOpen',
+            'onError'       => 'onUploadError',
+            'onProgress'    => 'onUploadProgress'
+        );
+
+        if(isset($convert[$name])) $name = $convert[$name];
+
         if (!isset($this->settings[$name])) return false;
         $this->settings[$name] = $value;
         return true;

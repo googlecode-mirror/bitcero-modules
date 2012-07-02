@@ -24,6 +24,8 @@ class RMFileUploader extends XoopsMediaUploader
         
         //$this->XoopsMediaUploader($dir, $allowedtypes, $maxsize);
         $this->extensionToMime = include $GLOBALS['xoops']->path('include/mimetypes.inc.php');
+        $ev = RMEvents::get();
+        $this->extensionToMime =$ev->run_event('rmcommon.get.mime.types', $this->extensionToMime);
         if (!is_array($this->extensionToMime)) {
             $this->extensionToMime = array();
             return false;
