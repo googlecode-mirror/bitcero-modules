@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+    $(".dt_item_opts a").height($(".dt_item_opts").height()-4);
+
     $("a.lock,a.unlock").on('click', function(){
 
         block_screen(1);
@@ -100,30 +103,3 @@ $(document).ready(function(){
 
 });
 
-// Usefull functions
-
-function dt_show_error(data){
-    $("#status-bar").html(data.message+'<input type="button" id="cancel-changes" onclick="block_screen(0); $(this).parent().slideUp();" value="'+jsLang.cancel+'" />');
-    $("#status-bar").css('background','#991006');
-
-    if(data.token=='')
-        window.location.href = 'items.php';
-
-    $("#XOOPS_TOKEN_REQUEST").val(data.token);
-}
-
-function block_screen(block,bg){
-
-    if(block==1){
-        $('body').append("<div id='items-blocker'></div>");
-        $("#items-blocker").fadeIn('fast');
-    } else {
-        $("#items-blocker").slideUp('fast', function(){
-            $("#status-bar").slideUp('fast', function(){
-                $("#status-bar").css('background', bg);
-                $("#items-blocker").remove();
-            });
-        });
-    }
-
-}

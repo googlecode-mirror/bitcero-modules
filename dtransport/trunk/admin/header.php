@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 
-include '../../../include/cp_header.php';
+include_once '../../../include/cp_header.php';
 
 
 /**
@@ -51,3 +51,4 @@ define('DT_PATH', XOOPS_ROOT_PATH.'/modules/dtransport');
 define('DT_URL', XOOPS_URL.'/modules/dtransport');
 
 $tpl = RMTemplate::get();
+$functions = new DTFunctions();

@@ -1,4 +1,4 @@
-<h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo sprintf(__('Categories Management','dtransport')); ?></h1>
+<h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Categories Management','dtransport'); ?></h1>
 
 <div class="dt_table">
     <div class="dt_row">

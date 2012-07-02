@@ -2,84 +2,84 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage download files in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','screens');
+define('RMCLOCATION','screens');
 include ('header.php');
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl,$xoopsModuleConfig;
-    $item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-    $sw = new DTSoftware($item);
-	
-    $tpl->append('xoopsOptions', array('link' => './screens.php?item='.$item, 'title' => _AS_DT_SCREENS, 'icon' => '../images/screen16.png'));
-    if ($item && $xoopsModuleConfig['limit_screen']>$sw->screensCount()){
-	    $tpl->append('xoopsOptions', array('link' => './screens.php?op=new&item='.$item, 'title' => _AS_DT_NEWSCREEN, 'icon' => '../images/add.png'));
-    }
-}
 
 /**
 * @des Visualiza todas las pantallas existentes
 **/
 function showScreens(){
-	global $adminTemplate,$xoopsModule,$db,$tpl,$util;
-	
-	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
+	global $xoopsModule, $xoopsSecurity,
+           $tpl,
+           $functions,
+           $xoopsModule,
+           $xoopsModuleConfig,
+           $xoopsUser;
 
-	$sw=new DTSoftware($item);
+    define('RMCSUBLOCATION','screenshots');
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $tc = TextCleaner::getInstance();
+	
+	$item = rmc_server_var($_REQUEST, 'item', 0);
+
+    if($item<=0)
+        redirectMsg('items.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
+
+
+	$sw = new DTSoftware($item);
+
 	$sql = "SELECT * FROM ".$db->prefix('dtrans_screens')." WHERE id_soft=$item";
-	$result=$db->queryF($sql);
+	$result = $db->queryF($sql);
+
 	while ($rows=$db->fetchArray($result)){
 		$sc = new DTScreenshot();
 		$sc->assignVars($rows);
 		
-		$tpl->append('screens',array('id'=>$sc->id(),'title'=>$sc->title(),
-		'desc'=>substr($util->filterTags($sc->desc()),0,80)."...",'software'=>$sw->name()));		
+		$screens[] = array(
+            'id'=>$sc->id(),
+            'title'=>$sc->title(),
+		    'desc'=>substr($tc->clean_disabled_tags($sc->desc()),0,80)."...",
+            'image' => XOOPS_UPLOAD_URL.'/screenshots/'.date('Y', $sc->date()).'/'.date('m', $sc->date()).'/ths/'.$sc->image()
+        );
 
 
 	}
 
-	
-	$sw = new DTSoftware($item);
-	$tpl->assign('lang_exists',sprintf(_AS_DT_EXISTITEM,$sw->name()));
-	$tpl->assign('lang_id',_AS_DT_ID);
-	$tpl->assign('lang_title',_AS_DT_TITLE);
-	$tpl->assign('lang_desc',_AS_DT_DESC);
-	$tpl->assign('lang_software',_AS_DT_ITEM);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('item',$item);
-	$tpl->assign('lang_selectitem',_AS_DT_SELECTITEM);
-	$tpl->assign('lang_listsoft',_AS_DT_LSOFT);
-	$tpl->assign('parent','screens');
+    // CSS Styles
+    $tpl->add_style('admin.css','dtransport');
+    $tpl->add_style('screens.css','dtransport');
+    $tpl->add_style('uploadify.css', 'rmcommon');
 
+    // Javascripts
+    $tpl->add_local_script('swfobject.js', 'rmcommon', 'include');
+    $tpl->add_local_script('jquery.uploadify.js', 'rmcommon', 'include');
+    $tpl->add_local_script('screens.js','dtransport');
 
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_SCREENS);
-	$adminTemplate = 'admin/dtrans_screens.html';
+    $tc = TextCleaner::getInstance();
+    $rmf = RMFunctions::get();
+
+    ob_start();
+    include DT_PATH.'/js/screenshots.js';
+    $script = ob_get_clean();
+    $tpl->add_head_script($script);
+
+	$functions->toolbar();
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='items.php'>".__('Downloads','dtransport')."</a> &raquo; ".__('Screenshots Management','dtransport'));
+
+    $tpl->assign('xoops_pagetitle', sprintf(__("%s Screenshots",'dtransport'), $sw->getVar('name')));
+    include DT_PATH.'/include/js_strings.php';
+
 	xoops_cp_header();
+
+    include $tpl->get_template('admin/dtrans_screens.php', 'module', 'dtransport');
+
 	xoops_cp_footer();
 
 }
@@ -106,7 +106,7 @@ function formScreens($edit=0){
 	}
 
 	//Verificamos el limite de pantallas a almacenar
-	if ($xoopsModuleConfig['limit_screen']<=$sw->screensCount()){
+	if ($xoopsModuleConfig['limit_screen']<=$sw->getVar('screens')){
 		redirectMsg('./screens.php?item='.$item,_AS_DT_ERRCOUNT,1);
 		die();
 
@@ -129,29 +129,29 @@ function formScreens($edit=0){
 
 	}
 	
-	optionsBar($sw);
+
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; ".($edit ? _AS_DT_EDITSCREEN : _AS_DT_NEWSCREEN));
 	xoops_cp_header();
 
-	$form = new RMForm($edit ? sprintf(_AS_DT_EDITSCREENS,$sw->name()) : sprintf(_AS_DT_NEWSCREENS,$sw->name()),'frmscreen','screens.php');
+	$form = new RMForm($edit ? sprintf(_AS_DT_EDITSCREENS,$sw->getVar('name')) : sprintf(_AS_DT_NEWSCREENS,$sw->getVar('name')),'frmscreen','screens.php');
 	$form->setExtra("enctype='multipart/form-data'");	
 	
-	$form->addElement(new RMLabel(_AS_DT_ITEM,$sw->name()));
+	$form->addElement(new RMFormLabel(_AS_DT_ITEM,$sw->getVar('name')));
 
 	
-	$form->addElement(new RMText(_AS_DT_TITLE,'title',50,100,$edit ? $sc->title() : ''),true);
-	$form->addElement(new RMEditor(_AS_DT_DESC,'desc','100%','100px',$edit ? $sc->desc() :'','textarea'));
-	$form->addElement(new RMFile(_AS_DT_IMAGE,'image',45, $xoopsModuleConfig['image']*1024),$edit ? '':true);
+	$form->addElement(new RMFormText(_AS_DT_TITLE,'title',50,100,$edit ? $sc->title() : ''),true);
+	$form->addElement(new RMFormEditor(_AS_DT_DESC,'desc','100%','100px',$edit ? $sc->desc() :'','textarea'));
+	$form->addElement(new RMFormFile(_AS_DT_IMAGE,'image',45, $xoopsModuleConfig['image']*1024),$edit ? '':true);
 	
 	if ($edit){
 		$img = "<img src='".XOOPS_URL."/uploads/dtransport/ths/".$sc->image()."' border='0' />";
-		$form->addElement(new RMLabel(_AS_DT_IMAGEACT,$img));	
+		$form->addElement(new RMFormLabel(_AS_DT_IMAGEACT,$img));
 	}	
 
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('item',$item));
-	$buttons =new RMButtonGroup();
+	$form->addElement(new RMFormHidden('op',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('item',$item));
+	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'screens.php?item='.$item.'\';"');
 
@@ -454,4 +454,3 @@ switch ($op){
 		showScreens();
 	
 }
-?>

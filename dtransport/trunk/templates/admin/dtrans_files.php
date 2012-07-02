@@ -21,18 +21,31 @@
         </div>
         <div class="dt_cell">
 
-            <form name="frmfiles" method="POST" action="files.php">
-            <table class="outer" width="100%" cellspacing="1">
+            <form name="frmfiles" id="frm-files" method="POST" action="files.php">
+            <table class="outer notsortable" width="100%" cellspacing="1" id="table-files">
+                <thead>
                 <tr class="head" align="center">
-                    <th width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmfiles','checkAll')" /></th>
                     <th width="20"><?php _e('ID','dtransport'); ?></th>
                     <th><?php _e('File','dtransport'); ?></th>
                     <th><?php _e('Hits','dtransport'); ?></th>
                     <th><?php _e('External','dtransport'); ?></th>
                     <th><?php _e('Group','dtransport'); ?></th>
-                    <th><?php _e('Main file','dtransport'); ?></th>
+                    <th><?php _e('Default','dtransport'); ?></th>
                     <th><?php _e('Options','dtransport'); ?></th>
                 </tr>
+                </thead>
+                <tfoot>
+                <tr class="head" align="center">
+                    <th width="20"><?php _e('ID','dtransport'); ?></th>
+                    <th><?php _e('File','dtransport'); ?></th>
+                    <th><?php _e('Hits','dtransport'); ?></th>
+                    <th><?php _e('External','dtransport'); ?></th>
+                    <th><?php _e('Group','dtransport'); ?></th>
+                    <th><?php _e('Default','dtransport'); ?></th>
+                    <th><?php _e('Options','dtransport'); ?></th>
+                </tr>
+                </tfoot>
+                <tbody>
                 <?php if(empty($files)): ?>
                 <tr class="even">
                     <td colspan="8"><?php _e('There are not files with specified parameters currently!','dtransport'); ?></td>
@@ -40,44 +53,46 @@
                 <?php endif; ?>
                 <?php foreach($files as $file): ?>
                 <?php if($file['type']=='group'): ?>
-                    <tr class="head">
-                        <td colspan="7"><{$file.file}></td>
-                        <td align="center"><a href="./files.php?item=<{$item}>&amp;edit=1&amp;id=<{$file.id}>"><{$lang_edit}></a> &bull; <a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=deletegroup"><{$lang_del}></a></td>
+                    <tr class="head" id="group-<?php echo $file['id']; ?>">
+                        <td colspan="6"><?php echo $file['file']; ?></td>
+                        <td align="center">
+                            <a href="#" class="editgroup"><?php _e('Edit','dtransport'); ?></a> |
+                            <a href="files.php?item=<?php echo $item; ?>&amp;id=<?php echo $file['id']; ?>&amp;action=deletegroup" class="deletegroup"><?php _e('Delete','dtransport'); ?></a>
+                        </td>
                     </tr>
                 <?php else: ?>
-                <tr class="<{cycle values='even,odd'}>" align="center">
-                    <td><input type="checkbox" name="id[]" value="<{$file.id}>" /></td>
-                    <td><strong><{$file.id}></strong></td>
-                    <td align="left"><{$file.title}></td>
-                    <td><{$file.downs}></td>
-                    <td><{if $file.remote}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></td>
+                <tr class="<?php echo tpl_cycle('even,odd'); ?>" align="center">
+                    <td style="display: none;"><input type="checkbox" name="id[]" id="item-<?php echo $file['id']; ?>" value="<?php echo $file['id']; ?>" /></td>
+                    <td><strong><?php echo $file['id']; ?></strong></td>
+                    <td align="left"><?php echo $file['title']; ?></td>
+                    <td><?php echo $file['downs']; ?></td>
+                    <td><?php if($file['remote']): ?><img src="../images/ok.png"/><?php else: ?><img src="../images/no.png"/><?php endif; ?></td>
                     <td>
-                        <select name="groups[<{$file.id}>]">
-                            <option value="0"><{$lang_select}></option>
-                            <{foreach item=group from=$groups}>
-                                <option value="<{$group.id}>" <{if $group.id==$file.group}>selected<{/if}>><{$group.name}></option>
-                            <{/foreach}>
+                        <select name="groups[<?php echo $file['id']; ?>]" class="group-selector">
+                            <option value="0"><?php _e('Select group...','dtransport'); ?></option>
+                            <?php foreach($groups as $group): ?>
+                                <option value="<?php echo $group['id']; ?>" <?php if($group['id']==$file['group']): ?>selected<?php endif; ?>><?php echo $group['name']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </td>
-                    <td><a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=default"><{if $file.default}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></a></td>
-                    <td><a href="./files.php?op=edit&amp;id=<{$file.id}>&amp;item=<{$item}>"><{$lang_edit}></a> &bull; <a href="./files.php?op=delete&amp;id=<{$file.id}>&item=<{$item}>"><{$lang_del}></a></td>
+                    <td><a href="./files.php?item=<?php echo $item; ?>&amp;id=<?php echo $file['id']; ?>&amp;action=default"><?php if($file['default']): ?><img src="../images/ok.png"/><?php else: ?><img src="../images/no.png" /><?php endif; ?></a></td>
+                    <td>
+                        <a href="./files.php?action=edit&amp;id=<?php echo $file['id']; ?>&amp;item=<?php echo $item; ?>"><?php _e('Edit','dtransport'); ?></a> |
+                        <a href="#" class="delete-file"><?php _e('Delete','dtransport'); ?></a>
+                    </td>
                 </tr>
                 <?php endif; ?>
                 <?php endforeach; ?>
-                <tr class="foot">
-                    <td width="20" align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
-                    <td colspan="7"><input type="submit" value="<{$lang_save}>" class="formButtonOk" onclick="document.forms['frmfiles'].elements['op'].value='updategroup';" />
-                    <input type="submit" value="<{$lang_del}>" class="formButton" onclick="document.forms['frmfiles'].elements['op'].value='delete'" />
-            </td>
-                </tr>
+                </tbody>
             </table>
             <?php echo $xoopsSecurity->getTokenHTML(); ?>
-            <input type="hidden" name="op" />
-            <input type="hidden" name="item" value="<{$item}>" />
+            <input type="hidden" name="item" id="item" value="<?php echo $item; ?>" />
             </form>
         </div>
     </div>
 </div>
-<?php else: ?>
-	<strong><{$lang_selectitem}></strong>
 <?php endif; ?>
+
+<div id="status-bar">
+    <?php _e('Applying changes, please wait a second...','dtransport'); ?>
+</div>

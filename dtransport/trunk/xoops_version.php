@@ -325,8 +325,8 @@ $modversion['config'][] = array(
     'size' => 10,
     'title' => '_MI_DT_THS',
     'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 100
+    'valuetype' => 'text',
+    'default' => '150:150:crop'
 );
 
 //Imagen grande
@@ -336,8 +336,8 @@ $modversion['config'][] = array(
     'size' => 10,
     'title' => '_MI_DT_IMAGE',
     'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 400
+    'valuetype' => 'text',
+    'default' => '700:450:resize'
 );
 
 //Tipo de redimension
