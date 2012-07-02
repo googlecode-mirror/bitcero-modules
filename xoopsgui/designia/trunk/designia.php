@@ -40,8 +40,12 @@
             var designia_url = '<?php echo $rm_theme_url; ?>';
             $(document).ready(function(){
                 $("ul.menu-menu").superfish();
-                $("table.outer").addClass('tablesorter');
-                $(".outer").tablesorter();
+                $("table.outer").each(function(i){
+                    if(!$(this).hasClass('notsortable')){
+                        $(this).addClass('tablesorter');
+                        $(this).tablesorter();
+                    }
+                });
             });
         </script>
 
@@ -104,7 +108,7 @@
                             <p>
                                 <a href="<?php echo XOOPS_URL; ?>" target="viewsite"><?php _e('View Site','rmcommon'); ?></a>
                                 <a href="<?php echo RMCURL; ?>/?designia=settings"><?php _e('Preferences','rmcommon'); ?></a>
-                                <a href="<?php echo XOOPS_URL; ?>"><?php _e('Log out','rmcommon'); ?></a>
+                                <a href="<?php echo XOOPS_URL; ?>/user.php?op=logout"><?php _e('Log out','rmcommon'); ?></a>
                             </p>
                         </div>
                     </li>
