@@ -2,51 +2,29 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Módulo para la administración de descargas
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage download files in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','logs');
+define('RMCLOCATION','logs');
 include ('header.php');
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl;
-    $item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0; 
-
-    $tpl->append('xoopsOptions', array('link' => './logs.php?item='.$item, 'title' => _AS_DT_LOGS, 'icon' => '../images/logs16.png'));
-    if ($item){
-	    $tpl->append('xoopsOptions', array('link' => './logs.php?op=new&item='.$item, 'title' => _AS_DT_NEWLOG, 'icon' => '../images/add.png'));
-    }
-}
 
 /**
 * @desc Visualiza todos los logs existentes para un determinado software
 **/
 function showLogs(){
-	global $db,$tpl,$adminTemplate,$util,$xoopsConfig,$xoopsModule;
+	global $tpl,$xoopsConfig,$xoopsModule, $functions, $xoopsSecurity;
+
+    define('RMCSUBLOCATION','itemlogs');
 
 	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
 	$sw=new DTSoftware($item);
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    $tc = TextCleaner::getInstance();
+    $tf = new RMTimeFormatter(0, __('%m%-%d%-%Y%','dtransport'));
 
 	$sql ="SELECT * FROM ".$db->prefix('dtrans_logs')." WHERE id_soft=$item";
 	$result=$db->queryF($sql);
@@ -54,30 +32,29 @@ function showLogs(){
 		$log = new DTLog();
 		$log->assignVars($rows);
 
-		$tpl->append('logs',array('id'=>$log->id(),'title'=>$log->title(),'log'=>substr($util->filterTags($log->log()),0,80)."...",
-		'date'=>date($xoopsConfig['datestring'],$log->date())));
+		$logs[] = array(
+            'id'=>$log->id(),
+            'title'=>$log->title(),
+            'log'=>$tc->truncate($tc->clean_disabled_tags($log->log()),80),
+		    'date'=>$tf->format($log->date())
+        );
 	
 	}
 
-	$tpl->assign('lang_exist',sprintf(_AS_DT_EXIST,$sw->name()));
-	$tpl->assign('lang_id',_AS_DT_ID);
-	$tpl->assign('lang_title',_AS_DT_TITLE);
-	$tpl->assign('lang_log',_AS_DT_LOG);
-	$tpl->assign('lang_date',_AS_DT_DATE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_listsoft',_AS_DT_LSOFT);
-	$tpl->assign('lang_selectitem',_AS_DT_SELECTITEM);
-	$tpl->assign('item',$item);
-	$tpl->assign('parent','logs');
-	$tpl->assign('token',$util->getTokenHTML());
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".sprintf(_AS_DT_SW,$sw->getVar('name'))."</a> &raquo; "._AS_DT_LOGS);
+    $functions->toolbar();
 
+    $tpl->add_style('admin.css','dtransport');
 
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".sprintf(_AS_DT_SW,$sw->name())."</a> &raquo; "._AS_DT_LOGS);
-	$adminTemplate = 'admin/dtrans_logs.html';
+    $tpl->add_local_script('admin.js','dtransport');
+    $tpl->add_local_script('jquery.checkboxes.js','rmcommon','include');
+
+    include DT_PATH.'/include/js_strings.php';
+
 	xoops_cp_header();
+
+    include $tpl->get_template('admin/dtrans_logs.php','module','dtransport');
+
 	xoops_cp_footer();
 
 }
@@ -86,70 +63,52 @@ function showLogs(){
 /**
 * @desc Formulario de Logs
 **/
-function formLogs($edit=0){
+function dt_form_logs($edit=0){
 	global $xoopsModule,$xoopsConfig;
 
-	$id=isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
+    define('RMCSUBLOCATION','newlog');
+
+	$id = rmc_server_var($_GET, 'id', 0);
+	$item = rmc_server_var($_GET, 'item', 0);
 
 	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
+	if ($item<=0)
+		redirectMsg('items.php', __('Download item ID has not been provided!','dtransport'), RMMSG_WARN);
+
 	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
+	$sw = new DTSoftware($item);
+	if ($sw->isNew())
+		redirectMsg('items.php', __('Specified download item does not exists!','dtransport'),1);
 
 	if ($edit){
 		//Verificamos si log es válido
-		if ($id<=0){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_ERRLOGVALID,1);
-			die();
-		}
+		if ($id<=0)
+			redirectMsg('logs.php?item='.$item, __('Log item ID has not been provided!','dtransport'), RMMSG_WARN);
 
 		//Verificamos si log existe
-		$log=new DTLog($id);
-		if ($log->isNew()){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_ERRLOGEXIST,1);
-			die();
-		}
+		$log = new DTLog($id);
+		if ($log->isNew())
+			redirectMsg('logs.php?item='.$item, __('Specified item log does not exists!','dtranport'),1);
 
 	}
 	
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".sprintf(_AS_DT_SW,$sw->name())."</a> &raquo; ".($edit ? _AS_DT_EDITLOG : _AS_DT_NEWLOG));
+	$dtf = new DTFunctions();
+    $dtf->toolbar();
+
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".sprintf(__('"%s" Logs','dtransport'),$sw->getVar('name'))."</a> &raquo; ".($edit ? __('Edit Log','dtransport') : __('New Log','dtransport')));
 	xoops_cp_header();
 
-	$form =new RMForm($edit ? sprintf(_AS_DT_EDITLOGS,$sw->name()) : sprintf(_AS_DT_NEWLOGS,$sw->name()),'frmlog','logs.php');
+	$form =new RMForm($edit ? sprintf(__('Edit Change Log of "%s"','dtransport'), $sw->getVar('name')) : sprintf(__('New Log for "%s"','dtransport'),$sw->getVar('name')),'frmlog','logs.php');
 
-	$form->addElement(new RMLabel(_AS_DT_SOFTWARE,$sw->name()));
-	$form->addElement(new RMText(_AS_DT_TITLE,'title',50,100,$edit ? $log->title() : ''),true);
-	$form->addElement(new RMEditor(_AS_DT_LOG,'log','90%','350px',$edit ? $log->getVar('log','e') : '',$xoopsConfig['editor_type']),true);
-	if ($edit){
-		$dohtml = $log->getVar('dohtml');
-		$dobr = $log->getVar('dobr');
-		$doimage = $log->getVar('doimage');
-		$dosmiley = $log->getVar('dosmiley');
-		$doxcode = $log->getVar('doxcode');
-	} else {
-		$dohtml = 1;
-		$dobr = 0;
-		$doimage = 0;
-		$dosmiley = 0;
-		$doxcode = 0;
-	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	$form->addElement(new RMFormLabel(__('Download Item','dtransport'),$sw->getVar('name')));
+	$form->addElement(new RMFormText(__('Log title','dtransport'),'title',50,100,$edit ? $log->title() : ''),true);
+	$form->addElement(new RMFormEditor(__('Log content','dtransport'),'log','90%','350px',$edit ? $log->getVar('log','e') : ''),true);
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('item',$item));
-	$form->addElement(new RMHidden('id',$id));
+	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('item',$item));
+	$form->addElement(new RMFormHidden('id',$id));
 
-	$buttons =new RMButtonGroup();
+	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'logs.php?item='.$item.'\';"');
 
@@ -164,74 +123,54 @@ function formLogs($edit=0){
 /**
 * @desc Almacena los datos del log en la base de datos
 **/
-function saveLogs($edit=0){
+function dt_save_log($edit=0){
+    global $xoopsSecurity;
 
-	global $util;
-
+    $query = '';
 	foreach($_POST as $k=>$v){
 		$$k=$v;
+        if($k=='XOOPS_TOKEN_REQUEST'||$k='action') continue;
+        $query = $query==''?$k.'='.urlencode($v):"&$k=".urlencode($v);
 	}
 
+    //Verificamos si el software es válido
+    if ($item<=0)
+        redirectMsg('items.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
 
-	if (!$util->validateToken()){
-		redirectMsg('./logs.php?item='.$item,_AS_DT_SESSINVALID, 1);
-		die();
-	}
+    //Verificamos si existe el software
+    $sw = new DTSoftware($item);
+    if ($sw->isNew())
+        redirectMsg('items.php', __('Specified download item does not exists!','dtransport'), RMMSG_WARN);
 
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
+	if (!$xoopsSecurity->check())
+		redirectMsg('logs.php?item='.$item, __('Session token not valid!','dtransport'), RMMSG_ERROR);
 
 	if ($edit){
-		//Verificamos si log es válido
-		if ($id<=0){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_ERRLOGVALID,1);
-			die();
-		}
 
-		//Verificamos si log existe
-		$lg=new DTLog($id);
-		if ($lg->isNew()){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_ERRLOGEXIST,1);
-			die();
-		}
+        $action = 'action=edit';
+
+		// Edición del registro
+		if ($id<=0)
+			redirectMsg('logs.php?item='.$item, __('Item log ID not provided!','dtransport'),1);
+
+		$lg = new DTLog($id);
+		if ($lg->isNew())
+			redirectMsg('logs.php?item='.$item, __('Specified log does not exists!','dtransport'),1);
 
 	}else{
-		$lg=new DTLog();
+        $action = 'action=new';
+        $lg = new DTLog();
 	}
 	
 	$lg->setSoftware($item);
 	$lg->setTitle($title);
 	$lg->setLog($log);
 	$lg->setDate(time());
-	$lg->setVar('dohtml', isset($dohtml) ? 1 : 0);
-	$lg->setVar('doxcode', isset($doxcode) ? 1 : 0);
-	$lg->setVar('dobr', isset($dobr) ? 1 : 0);
-	$lg->setVar('dosmiley', isset($dosmiley) ? 1 : 0);
-	$lg->setVar('doimage', isset($doimage) ? 1 : 0);
 
-	if (!$lg->save()){
-		if ($lg->isNew()){
-			redirectMsg('./logs.php?op=new&id='.$id.'item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}else{
-			redirectMsg('./logs.php?op=edit&id='.$id.'item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}
-	}else{
-		redirectMsg('./logs.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
-
+	if (!$lg->save())
+		redirectMsg('logs.php?'.$query.'&'.$action, __('Item log could not be saved!','dtransport').'<br />'.$lg->error(), RMMSG_ERROR);
+	else
+		redirectMsg('logs.php?item='.$item, __('Database updated successfully!','dtransport'), RMMSG_SAVED);
 
 }
 
@@ -239,126 +178,59 @@ function saveLogs($edit=0){
 /**
 * @desc Elimina el Log especificado
 **/
-function deleteLogs(){
-	global $xoopsModule,$util;
+function dt_delete_log(){
+	global $xoopsModule,$xoopsSecurity;
 
-	$ids=isset($_REQUEST['id']) ? $_REQUEST['id'] : null;
-	$item=isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	$ok=isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-
+	$ids = rmc_server_var($_POST, 'ids', array());
+    $item = rmc_server_var($_POST, 'item', 0);
 	
 	//Verificamos si el software es válido
-	if ($item<=0){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	
-	//Verificamos si existe el software
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./logs.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
+    if ($item<=0)
+        redirectMsg('items.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
+
+    //Verificamos si existe el software
+    $sw = new DTSoftware($item);
+    if ($sw->isNew())
+        redirectMsg('items.php', __('Specified download item does not exists!','dtransport'), RMMSG_WARN);
 
 	//Verificamos si nos proporcionaron algun log
-	if (!is_array($ids) && $ids<=0){
-		redirectMsg('./logs.php?item='.$item,_AS_DT_NOTLOG,1);
-		die();	
-	}
-
-	$num=0;
-	if (!is_array($ids)){
-		$log=new DTLog($ids);
-		$ids=array($ids);
-		$num=1;
-	}
+	if (empty($ids))
+		redirectMsg('logs.php?item='.$item, __('You must select at least one log!','dtransport'), RMMSG_ERROR);
 
 	
-	if ($ok){
+    if (!$xoopsSecurity->check())
+        redirectMsg('logs.php?item='.$item, __('Session token invalid!','dtransport'), RMMSG_ERROR);
 
-		if (!$util->validateToken()){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_SESSINVALID, 1);
-			die();
-		}
-		
-		$errors='';
-		foreach ($ids as $k){
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+	$sql = "DELETE FROM ".$db->prefix("dtrans_logs")." WHERE id_log IN(".implode(",",$ids).");";
 
-			
-			//Verificamos si log es válido
-			if ($k<=0){
-				$errors.=sprintf(_AS_DT_ERRLOGVAL,$k);
-				continue;
-			}
-
-			//Verificamos si log existe
-			$lg=new DTLog($k);
-			if ($lg->isNew()){
-				$errors.=sprintf(_AS_DT_ERRLOGEX,$k);
-				continue;
-			}
-
-			if (!$lg->delete()){
-				$errors.=sprintf(_AS_DT_ERRLOGDEL,$k);
-			}
-
-		}
-
-		
-		if ($errors!=''){
-			redirectMsg('./logs.php?item='.$item,_AS_DT_ERRORS.$errors,1);
-			die();
-		}else{
-			redirectMsg('./logs.php?item='.$item,_AS_DT_DBOK,0);
-			die();
-		}
-		
-	}else{
-
-
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".sprintf(_AS_DT_SW,$sw->name())."</a> &raquo; "._AS_DT_DELETELOG);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id[]'] = $ids;
-		$hiddens['item'] = $item;
-		$hiddens['op'] = 'delete';
-
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'logs.php?item='.$item.'\';"';
-		
-		$util->msgBox($hiddens, 'logs.php', ($num ? sprintf(_AS_DT_DELETECONF,$log->title()) : _AS_DT_DELCONF). '<br /><br />' ._AS_DT_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-	}
-
-
+    if($db->queryF($sql))
+        redirectMsg('logs.php?item='.$item, __('Item logs deleted successfully!','dtransport'), RMMSG_SUCCESS);
+    else
+        redirectMsg('logs.php?item='.$item, __('Logs could not be deleted!','dtransport').'<br />'.$db->error(), RMMSG_ERROR);
 
 }
 
 
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-switch ($op){
+$action = rmc_server_var($_REQUEST, 'action', '');
+
+switch ($action){
 	case 'new':
-		formLogs();
-	break;
+		dt_form_logs();
+	    break;
 	case 'edit':
-		formLogs(1);
-	break;
+		dt_form_logs(1);
+	    break;
 	case 'save':
-		saveLogs();
-	break;
+		dt_save_log();
+	    break;
 	case 'saveedit':
-		saveLogs(1);
-	break;
+		dt_save_log(1);
+	    break;
 	case 'delete':
-		deleteLogs();
-	break;
+		dt_delete_log();
+	    break;
 	default:
 		showLogs();
 }
-?>
+

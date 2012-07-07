@@ -7,3 +7,7 @@
 #table-screens img{
     width: 60px;
 }
+#editor{
+    background: #f2f2f2;
+    border-top: 1px solid #ccc;
+}

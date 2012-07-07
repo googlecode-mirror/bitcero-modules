@@ -30,11 +30,15 @@ var jsLang = {
     deleteFile: '<?php _e('Do you really want to delete this file? You will not be able to recover it!','dtransport'); ?>',
     noFile: '<?php _e('Before to save details select a file!','dtransport'); ?>',
     noURL: '<?php _e('Before to save details provide a file URL!','dtransport'); ?>',
-    noTitle: '<?php _e('You must provide a title for this file','dtransport'); ?>',
+    noTitle: '<?php _e('You must provide a title for this item','dtransport'); ?>',
     edit: '<?php _e('Edit','dtransport'); ?>',
     delete: '<?php _e('Delete','dtransport'); ?>',
     updateGroup: '<?php _e('Update Group','dtransport'); ?>',
-    createGroup: '<?php _e('Create Group','dtransport'); ?>'
+    createGroup: '<?php _e('Create Group','dtransport'); ?>',
+    saveData: '<?php _e('Save Changes','dtransport'); ?>',
+    titleField: '<?php _e('Title:','dtransport'); ?>',
+    descField: '<?php _e('Description:','dtransport'); ?>',
+    deleteScreen: '<?php _e('Do you really want to delete this screenshot?','dtransport'); ?>'
 };
 
 <?php

@@ -33,6 +33,14 @@ class DTFunctions
         } elseif(RMCLOCATION=='screens'){
             RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
             RMTemplate::get()->add_tool(__('Screenshots','dtransport'), 'screens.php'.($item>0?'?item='.$item:''), '../images/shots.png', 'screenshots');
+        } elseif(RMCLOCATION=='logs'){
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Item Logs','dtransport'), 'logs.php'.($item>0?'?item='.$item:''), '../images/logs.png', 'itemlogs');
+            RMTemplate::get()->add_tool(__('Add Log','dtransport'), 'logs.php?action=new&amp;item='.$item, '../images/addlog.png', 'newlog');
+        } elseif(RMCLOCATION=='features'){
+            RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');
+            RMTemplate::get()->add_tool(__('Features','dtransport'), 'features.php'.($item>0?'?item='.$item:''), '../images/features.png', 'showfeatures');
+            RMTemplate::get()->add_tool(__('Add Feature','dtransport'), 'features.php?action=new&amp;item='.$item, '../images/addfeature.png', 'newfeature');
         } else {
             RMTemplate::get()->add_tool(__('Categories','dtransport'), 'categories.php', '../images/categories.png', 'categories');
             RMTemplate::get()->add_tool(__('Downloads','dtransport'), 'items.php', '../images/item.png', 'items');

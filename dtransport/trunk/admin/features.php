@@ -2,93 +2,61 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Módulo para la administración de descargas
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage download files in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','features');
+define('RMCLOCATION','features');
 include ('header.php');
-
-/**
-* @desc Muestra la barra de menus
-*/
-function optionsBar(){
-    global $tpl;
-
-    $item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	
-    $tpl->append('xoopsOptions', array('link' => './features.php?item='.$item, 'title' => _AS_DT_FEATURES, 'icon' => '../images/features16.png'));
-    if ($item){
-	$tpl->append('xoopsOptions', array('link' => './features.php?op=new&item='.$item, 'title' => _AS_DT_NEWFEATURE, 'icon' => '../images/add.png'));
-    }
-}
-
 
 /**
 * @desc Visualiza las caracteríticas existentes de un elemento especificado
 **/
-function showFeatures(){
-	global $xoopsModule,$adminTemplate,$tpl,$db,$util,$xoopsModuleConfig;
+function dt_show_features(){
+	global $xoopsModule,$tpl, $functions;
 
+    define('RMCSUBLOCATION','showfeatures');
 
-	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
+	$item = rmc_server_var($_REQUEST, 'item', 0);
 
-	$sw=new DTSoftware($item);
+	$sw = new DTSoftware($item);
 	
-	if ($sw->isNew() && $item>0){
-		redirectMsg('features.php', _AS_DT_ERR_ITEMEXIST, 1);
-		die();
-	}
-	
+	if ($sw->isNew() && $item>0)
+		redirectMsg('items.php', __('Specified download item does not exists!','dtransport'), RMMSG_WARN);
 
-	$sql = "SELECT * FROM ".$db->prefix('dtrans_features')." WHERE id_soft=$item ";
-	$result = $db->queryF($sql);
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+	$sql = "SELECT * FROM ".$db->prefix('dtrans_features')." WHERE id_soft=$item";
+	$result = $db->query($sql);
+
+    $features = array();
+    $tf = new RMTimeFormatter(0,"%T%-%d%-%Y%  %h%:%i%");
+
 	while ($rows=$db->fetchArray($result)){
 		$ft = new DTFeature();
 		$ft->assignVars($rows);
 
-		$tpl->append('features',array('id'=>$ft->id(),'title'=>$ft->title(),'created'=>formatTimestamp($ft->created(), 's'),
-				'modified'=>formatTimestamp($ft->modified(), 's'), 'software'=>$sw->name()));
+		$features[] = array(
+            'id'=>$ft->id(),
+            'title'=>$ft->title(),
+            'created'=>$tf->format($ft->created()),
+            'modified'=>$tf->format($ft->modified()),
+            'software'=>$sw->getVar('name')
+        );
 	
 	}
 
-	$tpl->assign('item',$item);
-	$tpl->assign('lang_exists',sprintf(_AS_DT_EXISTS,$sw->name()));
-	$tpl->assign('lang_id',_AS_DT_ID);
-	$tpl->assign('lang_title',_AS_DT_TITLE);
-	$tpl->assign('lang_modified',_AS_DT_MODIFIED);
-	$tpl->assign('lang_new', _AS_DT_NEW);
-	$tpl->assign('lang_created',_AS_DT_CREATED);
-	$tpl->assign('lang_featnew',_AS_DT_FEATNEW);
-	$tpl->assign('lang_software',_AS_DT_SOFTWARE);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('lang_selectitem',_AS_DT_SELECTITEM);
-	$tpl->assign('lang_listsoft',_AS_DT_LSOFT);
-	$tpl->assign('parent','features');
+    $functions->toolbar();
+    $tpl->assign('xoops_pagetitle', sprintf(__('Features of "%s"','dtransport'), $sw->getVar('name')));
 
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; "._AS_DT_FEATURES);
-	$adminTemplate = 'admin/dtrans_features.html';
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".__('Downloads','dtransport')."</a> &raquo; ".__('Features','dtransport'));
+
 	xoops_cp_header();
+
+    include $tpl->get_template('admin/dtrans_features.php','module','dtransport');
+
 	xoops_cp_footer();
 
 }
@@ -96,75 +64,54 @@ function showFeatures(){
 /**
 * @desc Formulario de características
 **/
-function formfeatures($edit=0){
-	global $db,$xoopsModule,$xoopsConfig;
+function dt_form_features($edit=0){
+	global $db,$xoopsModule,$xoopsConfig, $functions;
 
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
+    define('RMCSUBLOCATION','newfeature');
+
+	$id = rmc_server_var($_REQUEST, 'id', 0);
+	$item = rmc_server_var($_REQUEST, 'item', 0);
 
 	//Verificamos que el software sea válido
-	if ($item<=0){
-		redirectMsg('./features.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
+	if ($item<=0)
+		redirectMsg('items.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
+
 	//Verificamos que el software exista
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./features.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-
-
+	$sw = new DTSoftware($item);
+	if ($sw->isNew())
+		redirectMsg('items.php', __('Specified download item does not exists!','dtransport'), RMMSG_ERROR);
 
 	if ($edit){
-		//Verificamos que característica sea válida
-		if ($id<=0){
-			redirectMsg('./features.php?item='.$item,_AS_DT_ERRFEATVALID,1);
-			die();
-		}
+
+		if ($id<=0)
+			redirectMsg('features.php?item='.$item, __('Feature ID not specified!','dtransport'), RMMSG_WARN);
 
 		//Verificamos que la característica exista
 		$ft = new DTFeature($id);
-		if ($ft->isNew()){
-			redirectMsg('./features.php?item='.$item,_AS_DT_ERRFEATEXIST,1);
-			die();
-		}
+		if ($ft->isNew())
+			redirectMsg('features.php?item='.$item, __('Specified feature does not exists!','dtransport'), RMMSG_ERROR);
 
 	}
 
-	optionsBar();
-	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>"._AS_DT_SW."</a> &raquo; ".($edit ? _AS_DT_EDITFEATURE : _AS_DT_NEWFEATURE));
+	$functions->toolbar();
+
+	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='items.php'>".__('Downloads','dtransport')."</a> &raquo; ".($edit ? __('Edit Feature','dtransport') : __('New Feature','dtransport')));
 	xoops_cp_header();
 	
-	$form = new RMForm($edit ? sprintf(_AS_DT_EDITFEATURES,$sw->name()) : sprintf(_AS_DT_NEWFEATURES,$sw->name()),'frmfeat','features.php');
+	$form = new RMForm($edit ? sprintf(__('Editing feature of "%s"','dtransport'),$sw->getVar('name')) : sprintf(__('New feature for "%s"','dtransport'),$sw->getVar('name')),'frmfeat','features.php');
 
-	$sw = new DTSoftware($item);
-	$form->addElement(new RMLabel(_AS_DT_SOFTWARE,$sw->name()));
+	$form->addElement(new RMFormLabel(__('Download item','dtransport'),$sw->getVar('name')));
 	
 
-	$form->addElement(new RMText(_AS_DT_TITLE,'title',50,200,$edit ? $ft->title() : ''),true);
-	$form->addElement(new RMText(_AS_DT_SHORTNAME, 'nameid', 50, 200, $edit ? $ft->nameId() : ''));
-	$form->addElement(new RMEditor(_AS_DT_CONTENT,'content','90%','350px',$edit ? $ft->content() : '',$xoopsConfig['editor_type']),true);
-	if ($edit){
-		$dohtml = $ft->getVar('dohtml');
-		$dobr = $ft->getVar('dobr');
-		$doimage = $ft->getVar('doimage');
-		$dosmiley = $ft->getVar('dosmiley');
-		$doxcode = $ft->getVar('doxcode');
-	} else {
-		$dohtml = 1;
-		$dobr = 0;
-		$doimage = 0;
-		$dosmiley = 0;
-		$doxcode = 0;
-	}
-	$form->addElement(new RMTextOptions(_OPTIONS, $dohtml, $doxcode, $doimage, $dosmiley, $dobr));
+	$form->addElement(new RMFormText(__('Feature title','dtransport'),'title',50,200,$edit ? $ft->title() : ''),true);
+	$form->addElement(new RMFormText(__('Short name','dtransport'), 'nameid', 50, 200, $edit ? $ft->nameId() : ''));
+	$form->addElement(new RMFormEditor(__('Feature content','dtransport'),'content','90%','350px',$edit ? $ft->content() : ''),true);
+
+	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
+	$form->addElement(new RMFormHidden('id',$id));
+	$form->addElement(new RMFormHidden('item',$item));
 	
-	$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-	$form->addElement(new RMHidden('id',$id));
-	$form->addElement(new RMHidden('item',$item));
-	
-	$buttons =new RMButtonGroup();
+	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'features.php?item='.$item.'\';"');
 
@@ -182,109 +129,60 @@ function formfeatures($edit=0){
 /**
 * @desc Almacena la característica en la base de datos
 **/
-function saveFeatures($edit=0){
-	global $util,$db;
+function dt_save_features($edit=0){
+	global $xoopsSecurity;
 
+    $query = '';
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
+        if($k=='XOOPS_TOKEN_REQUEST' || $k=='action') continue;
+
+        $query = $query=='' ? $k.'='.urlencode($v) : '&'.$k.'='.urlencode($v);
+
 	}
 
-	if (!$util->validateToken()){
-		if (!$edit){
-			redirectMsg('./features.php?op=new&item='.$item,_AS_DT_SESSINVALID, 1);
-			die();
-		}else{
-			redirectMsg('./features.php?op=edit&id='.$id.'&item='.$item,_AS_DT_SESSINVALID, 1);
-			die();
-		}
-	}
+	if (!$xoopsSecurity->check())
+	    redirectMsg('features.php?action='.($edit ? 'edit&id='.$id : 'new').'&item='.$item, __('Session token not valid!','dtransport'), RMMSG_ERROR);
 
-	//Verificamos que el software sea válido
-	if ($item<=0){
-		redirectMsg('./features.php',_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
-	//Verificamos que el software exista
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirectMsg('./features.php',_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
+    //Verificamos que el software sea válido
+    if ($item<=0)
+        redirectMsg('items.php', __('Download item ID not provided!','dtransport'), RMMSG_WARN);
 
+    //Verificamos que el software exista
+    $sw = new DTSoftware($item);
+    if ($sw->isNew())
+        redirectMsg('items.php', __('Specified download item does not exists!','dtransport'), RMMSG_ERROR);
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($edit){
-		//Verificamos que característica sea válida
-		if ($id<=0){
-			redirectMsg('./features.php?item='.$item,_AS_DT_ERRFEATVALID,1);
-			die();
-		}
 
-		//Verificamos que la característica exista
-		$ft = new DTFeature($id);
-		if ($ft->isNew()){
-			redirectMsg('./features.php?item='.$item,_AS_DT_ERRFEATEXIST,1);
-			die();
-		}
+        if ($id<=0)
+            redirectMsg('features.php?item='.$item, __('Feature ID not specified!','dtransport'), RMMSG_WARN);
 
-		//Comprueba que el título de la característica no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_features')." WHERE title='$title' AND id_feat<>".$ft->id()." AND id_soft=".$ft->software();
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./features.php?op=edit&id='.$id.'&item='.$item,_AS_DT_ERRNAME,1);	
-			die();
-		}
-		
-		if ($nameid){
-
-			$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_features')." WHERE nameid='$nameid' AND id_feat<>'".$id."'";
-			list($num)=$db->fetchRow($db->queryF($sql));
-			if ($num>0){
-				unset($nameid);
-			}
-
-		}
-
+        //Verificamos que la característica exista
+        $ft = new DTFeature($id);
+        if ($ft->isNew())
+            redirectMsg('features.php?item='.$item, __('Specified feature does not exists!','dtransport'), RMMSG_ERROR);
 
 	}else{
-		//Comprueba que el título de la característica no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_features')." WHERE title='$title' AND id_soft=".$sw->id();
-		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirectMsg('./features.php?op=new&item='.$item,_AS_DT_ERRNAME,1);	
-			die();
-		}
-		
-		if ($nameid){
-
-			$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_features')." WHERE nameid='$nameid' AND id_soft<>'".$sw->id()."'";
-			list($num)=$db->fetchRow($db->queryF($sql));
-			if ($num>0){
-				unset($nameid);
-			}
-
-		}
 
 		$ft = new DTFeature();
 
 	}
 
+    $tc = TextCleaner::getInstance();
 
-	$found=false; 
-	$i = 0;
-	if ($title!=$ft->title() && empty($nameid)){
-		do{
-    			$nameid = $util->sweetstring($title).($found ? $i : '');
-        		$sql = "SELECT COUNT(*) FROM ".$db->prefix('dtrans_features'). " WHERE nameid = '$nameid'";
-        		list ($num) =$db->fetchRow($db->queryF($sql));
-        		if ($num>0){
-        			$found =true;
-        		    $i++;
-        		}else{
-        			$found=false;
-        		}
-		}while ($found==true);
-	}
+    if(trim($nameid)=='')
+        $nameid = $tc->sweetstring($title);
+    else
+        $nameid = $tc->sweetstring($nameid);
 
+    //Comprueba que el título de la característica no exista
+    $sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_features')." WHERE (title='$title' OR nameid='$nameid' AND id_feat<>".$ft->id()." AND id_soft=".$item;
+    list($num) = $db->fetchRow($db->queryF($sql));
+    if ($num>0)
+        redirectMsg('features.php?'.$query.($edit ? '&action=edit' : '&action=new'), __('Another feature with same title already exists!','dtransport'), RMMSG_WARN);
 
 	$ft->setSoftware($item);
 	$ft->setTitle($title);
@@ -292,27 +190,12 @@ function saveFeatures($edit=0){
 	if (!$edit) $ft->setCreated(time());
 	$ft->setModified(time());
 	$ft->setNameId($nameid);
-	
-	$ft->setVar('dohtml', isset($dohtml) ? 1 : 0);
-	$ft->setVar('doxcode', isset($doxcode) ? 1 : 0);
-	$ft->setVar('dobr', isset($dobr) ? 1 : 0);
-	$ft->setVar('dosmiley', isset($dosmiley) ? 1 : 0);
-	$ft->setVar('doimage', isset($doimage) ? 1 : 0);
 
-	if (!$ft->save()){
-		if ($ft->isNew()){
-			redirectMsg('./features.php?op=new&item='.$item,_AS_DT_DBERROR,1);
-			die();
-		}else{
-			redirectMsg('./features.php?op=edit&item='.$item,_AS_DT_DBERROR,1);
-			die();			
-		}
-	}else{
-		redirectMsg('./features.php?item='.$item,_AS_DT_DBOK,0);
-		die();
-	}
+	if (!$ft->save())
+		redirectMsg('features.php?'.$query.($edit ? '&action=edit' : '&action=new'), __('Feature could not be saved!','dtransport').'<br />'.$ft->errors(),1);
 
 
+	redirectMsg('./features.php?item='.$item,_AS_DT_DBOK,0);
 
 }
 
@@ -467,21 +350,21 @@ function newFeatures(){
 
 
 
+$action = rmc_server_var($_REQUEST, 'action', '');
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-switch ($op){
+switch ($action){
 	case 'new':
-		formFeatures();
-	break;
+		dt_form_features();
+	    break;
 	case 'edit':
-		formFeatures(1);
-	break;
+		dt_form_features(1);
+	    break;
 	case 'save':
-		saveFeatures();
-	break;
+		dt_save_features();
+	    break;
 	case 'saveedit':
-		saveFeatures(1);
-	break;
+		dt_save_features(1);
+	    break;
 	case 'delete':
 		deleteFeatures();
 	break;
@@ -489,11 +372,6 @@ switch ($op){
 		newFeatures();
 	break;
 	default:
-		showFeatures();
+		dt_show_features();
 }
 
-
-
-
-
-?>

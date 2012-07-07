@@ -113,9 +113,10 @@ class DTScreenshot extends RMObject
 	}
 
 	public function delete(){
-			
-		@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$this->image());
-		@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$this->image());
+
+        $file = XOOPS_UPLOAD_PATH.'/screenshots/'.date('Y', $this->date()).'/'.date('m',$this->date());
+		@unlink($file.'/ths/'.$this->image());
+		@unlink($file.'/'.$this->image());
 		
 		$sw=new DTSoftware($this->software());
 		$sw->decrementScreens();	

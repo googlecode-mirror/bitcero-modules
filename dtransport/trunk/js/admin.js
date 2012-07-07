@@ -31,7 +31,9 @@ function dt_check_delete(id, form){
 }
 
 function before_submit(form){
-    
+
+    if($("#bulk-top").val()=='') return false;
+
     var eles = $("#"+form+" input[name='ids[]']");
     var go = false;
 
