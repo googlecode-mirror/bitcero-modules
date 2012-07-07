@@ -48,7 +48,7 @@ $(document).ready(function(){
 
             if(data.action=='create'){
                 var html = '<tr class="head" id="group-'+data.id+'">';
-                html += '<td colspan="7">'+data.name+'</td>';
+                html += '<td colspan="6">'+data.name+'</td>';
                 html += '<td align="center"><a href="files.php?item='+data.item+'&amp;edit=1&amp;id='+data.id+'">'+jsLang.edit+'</a> |';
                 html += '<a href="files.php?item='+data.item+'&amp;id='+data.id+'&amp;action=deletegroup" class="deletegroup">'+jsLang.delete+'</a></td></tr>';
                 $("#table-files tbody").append(html);

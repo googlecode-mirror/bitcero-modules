@@ -148,10 +148,87 @@ function dt_get_information(){
         $func->dt_send_message(__('Session token not valid!','dtransport'), 1, 0);
 
     $id = rmc_server_var($_GET, 'id', 0);
+    $sc = new DTScreenshot($id);
+    if($sc->isNew())
+        $func->dt_send_message(__('Specified screenshot does not exists!','dtransport'), 1, 1);
 
+    $ret = array(
+        'title' => $sc->title(),
+        'description' => $sc->desc(),
+        'id' => $sc->id()
+    );
 
+    $func->dt_send_message($ret, 0, 1);
 
 }
+
+function dt_save_screen_info(){
+    global $xoopsSecurity, $xoopsConfig, $xoopsModule, $xoopsUser;
+
+    $rmf = RMFunctions::get();
+    $xoopsModule = $rmf->load_module('dtransport');
+
+    include_once '../../../include/cp_header.php';
+
+    $func = new DTFunctions();
+
+    if(!$xoopsSecurity->check())
+        $func->dt_send_message(__('Session token not valid!','dtransport'), 1, 0);
+
+    $id = rmc_server_var($_POST, 'id', 0);
+    $sc = new DTScreenshot($id);
+    if($sc->isNew())
+        $func->dt_send_message(__('Specified screenshot does not exists!','dtransport'), 1, 1);
+
+    $title = rmc_server_var($_POST, 'title', '');
+    $desc = rmc_server_var($_POST, 'desc', '');
+
+    if($title=='')
+        $func->dt_send_message(__('You must provide a title for this screenshot!','dtransport'), 1, 1);
+
+    $sc->setTitle($title);
+    $sc->setDesc($desc);
+
+    if(!$sc->save())
+        $func->dt_send_message(__('Screenshot changes could not be saved!','dtransport').'<br />'.$sc->errors(), 1, 1);
+
+    $ret = array(
+        'title' => $sc->title(),
+        'description' => $sc->desc(),
+        'id' => $sc->id()
+    );
+
+    $func->dt_send_message($ret, 0, 1);
+}
+
+function dt_delete_screen(){
+    global $xoopsSecurity, $xoopsConfig, $xoopsModule, $xoopsUser;
+
+    $rmf = RMFunctions::get();
+    $xoopsModule = $rmf->load_module('dtransport');
+
+    include_once '../../../include/cp_header.php';
+
+    $func = new DTFunctions();
+
+    if(!$xoopsSecurity->check())
+        $func->dt_send_message(__('Session token not valid!','dtransport'), 1, 0);
+
+    $id = rmc_server_var($_POST, 'id', 0);
+    $sc = new DTScreenshot($id);
+    if($sc->isNew())
+        $func->dt_send_message(__('Specified screenshot does not exists!','dtransport'), 1, 1);
+
+    if(!$sc->delete())
+        $func->dt_send_message(__('Screenshot could not be deleted!','dtransport').'<br />'.$sc->errors(), 1, 1);
+
+    $ret = array(
+        'id' => $sc->id()
+    );
+
+    $func->dt_send_message($ret, 0, 1);
+}
+
 
 $action = rmc_server_var($_REQUEST, 'action', '');
 
@@ -161,5 +238,11 @@ switch($action){
         break;
     case 'get-info':
         dt_get_information();
+        break;
+    case 'save-screen-data':
+        dt_save_screen_info();
+        break;
+    case 'delete-screen':
+        dt_delete_screen();
         break;
 }

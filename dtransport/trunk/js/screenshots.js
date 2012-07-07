@@ -45,19 +45,18 @@ $(document).ready(function(){
                 if($("#table-screens .head").length>0)
                     $("#table-screens .head").remove();
 
-                var html = '<tr class="even" id="image-'+ret.id+'" align="center" style="display: none;">';
-                html += '<td><input type="checkbox" name="ids[]" value="'+ret.id+'" id="item-'+ret.id+'" /></td>';
+                var html = '<tr class="even" id="screen-'+ret.id+'" align="center" style="display: none;">';
                 html += '<td><strong>'+ret.id+'</strong></td>';
                 html += '<td><a href="'+ret.dir+'/'+ret.image+'" target="_blank"><img src="'+ret.dir+'/ths/'+ret.image+'" /></a></td>';
-                html += '<td align="left"><strong>'+ret.image+'</strong><br class="littlejump" />';
+                html += '<td align="left"><strong>'+ret.image+'</strong>';
                 html += ' <span class="rmc_options">';
-                html += '<a href="#" class="edit-screen">'+jsLang.edit+'</a>  |';
-                html += '<a href="#" class="delete-screen">'+jsLang.delete+'</a></span>';
+                html += '<a href="#" class="edit-screen" id="edit-'+ret.id+'">'+jsLang.edit+'</a>  |';
+                html += '<a href="#" class="delete-screen" id="delete-'+ret.id+'">'+jsLang.delete+'</a></span>';
                 html += '</td><td>&nbsp;</td>';
                 html += '</tr>';
                 $("#table-screens tbody").prepend(html);
-                $("#image-"+ret.id).fadeIn('fast', function(){
-                    $("#image-"+ret.id+" td").effect('highlight', {}, 1000);
+                $("#screen-"+ret.id).fadeIn('fast', function(){
+                    $("#screen-"+ret.id+" td").effect('highlight', {}, 1000);
                 });
 
             }

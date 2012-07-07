@@ -89,6 +89,7 @@ $modversion['tables'][13] = 'dtrans_alerts';
 $modversion['tables'][14] = 'dtrans_licsoft';
 $modversion['tables'][15] = 'dtrans_platsoft';
 $modversion['tables'][16] = 'dtrans_categos';
+$modversion['tables'][17] = 'dtrans_meta';
 
 // Front Section Templates
 $modversion['templates'][] = array('file' => 'dtrans_index.html','description' => '');

@@ -1,4 +1,4 @@
-<h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php echo sprintf(__('Platforms Management','dtransport')); ?></h1>
+<h1 class="rmc_titles dt_titles"><span style="background-position: left -32px;">&nbsp;</span><?php _e('Platforms Management','dtransport'); ?></h1>
 <script type="text/javascript">
     $(document).ready(function(){
         $("#form-new-platform").validate({
