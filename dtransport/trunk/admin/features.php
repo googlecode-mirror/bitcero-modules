@@ -51,6 +51,12 @@ function dt_show_features(){
     $functions->toolbar();
     $tpl->assign('xoops_pagetitle', sprintf(__('Features of "%s"','dtransport'), $sw->getVar('name')));
 
+    // Styles
+    $tpl->add_style('admin.css','dtransport');
+
+    // scripts
+    $tpl->add_local_script('admin.js','dtransport');
+
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".__('Downloads','dtransport')."</a> &raquo; ".__('Features','dtransport'));
 
 	xoops_cp_header();
@@ -65,7 +71,7 @@ function dt_show_features(){
 * @desc Formulario de características
 **/
 function dt_form_features($edit=0){
-	global $db,$xoopsModule,$xoopsConfig, $functions;
+	global $xoopsModule,$xoopsConfig, $functions;
 
     define('RMCSUBLOCATION','newfeature');
 
