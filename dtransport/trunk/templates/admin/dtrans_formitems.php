@@ -113,6 +113,11 @@
         </div>
     </div>
 
+    <!-- Meta values -->
+    <div class="item">
+        <label><?php _e('Custom fields','dtransport'); ?></label>
+        <?php echo $functions->meta_form('down', $edit ? $sw->id() : ''); ?>
+    </div>
     <!-- Meta -->
 
 

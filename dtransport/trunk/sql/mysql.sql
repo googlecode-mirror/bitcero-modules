@@ -178,6 +178,7 @@ CREATE TABLE `dtrans_votedata` (
 
 CREATE TABLE  `dtrans_meta` (
 `id_meta` INT NOT NULL AUTO_INCREMENT ,
+`id_element` INT NOT NULL DEFAULT '0',
 `type` VARCHAR( 5 ) NOT NULL ,
 `name` VARCHAR( 50 ) NOT NULL ,
 `value` TEXT NOT NULL ,

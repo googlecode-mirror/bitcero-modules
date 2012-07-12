@@ -22,37 +22,35 @@
 </div>
 <{/if}>
 
-<div id="dtMarkedDowns" class="dtMargin10">
-	<{if $show_marked}>
-	<div id="dtMarked">
-	<h2><{$lang_marked}></h2>
-	<ul>
-		<{foreach item=item from=$marked}>
-			<li><a href="<{$item.link}>"><{$item.name}></a><br /><{$item.desc}></li>
-		<{/foreach}>
-	</ul>
-	</div>
-	<{/if}>
-	<!-- //Etiquetas Populares -->
-	<{if $active_tags}>
-	<div class="dtShadow dtTagsPopular">
-		<div class="border">
-		<h2><{$lang_tagspopular}></h2>
-		<{foreach item=tag from=$tags}>
-			<a href="<{$tag.link}>" style="font-size: <{$tag.size}>px;" title="<{$lang_hits}><{$tag.hit}>"><{$tag.tag}></a>
-		<{/foreach}>
-		</div>
-		<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-	</div>
-	<{/if}>
-	<!-- //Etiquetas Populares -->
-</div>
+<{if $show_featured}>
+<{include file="db:dtrans_featlist.html"}>
+<{/if}>
 
 
 <!-- Descargas Recientes -->
-<div class="dtShadow dtMargin10">
-<h2><{$lang_recents}></h2>
+<div id="dt-home-tabs">
+    <ul>
+        <li class="selected"><{$lang_recents}></li>
+        <li><{$lang_bestrated}></li>
+        <li><{$lang_updated}></li>
+    </ul>
+</div>
+
+<div id="dt-recents" class="dt_tabs_container">
+    <div class="dt_table">
+        <{foreach item=item from=$recent_items}>
+        <div class="dt_row">
+            <div class="dt_cell">
+                <span class="category"><{$item.category}></span>
+            </div>
+            <div class="dt_cell">
+
+            </div>
+        </div>
+        <{/foreach}>
+    </div>
+</div>
+
 <table class="dtOuter" cellpadding="0" cellspacing="0" border="0">
 	<tr class="head dtHead">
 		<td>&nbsp;</td>
@@ -67,7 +65,7 @@
 </table>
 <img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
 <img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-</div>
+
 <!-- /Descargas Recientes -->
 
 <!-- Categorías -->

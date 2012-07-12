@@ -1,543 +1,89 @@
-div#dtHeader{
-	padding: 0;
-	margin-bottom: 0px;;
+/** 
+ * $Id$
+ * --------------------------------------------------------------
+ * D-Transport
+ * Manage files for download in XOOPS
+ * Author: Eduardo Cortés <i.bitcero@gmail.com>
+ * Email: i.bitcero@gmail.com
+ * License: GPL 2.0
+ * --------------------------------------------------------------
+ */
+
+.dt_table{display: table; width: 100%;}
+.dt_row{ display: table-row;}
+.dt_cell{display: table-cell; vertical-align: top;}
+
+/* Featured downloads box */
+#dt-featured-downloads{
+    overflow: hidden;
+    line-height: 150%;
 }
-div#dtHeader h1{
-	margin: 0 0 5px 0;
-	font-size: 20px;
+#dt-featured-downloads h2{
+    font-size: 1.1em;
+    font-weight: normal;
+    padding: 4px;
+    margin: 0;
+    background: #ebebeb;
 }
-h1 em{
-	color: #FF6600;
-	font-size: 0.8em;
+#dt-featured-downloads ul{list-style: none; display: table;}
+#dt-featured-downloads ul li{overflow: hidden; margin-bottom: 5px;}
+#dt-featured-downloads ul li img.dt_picture{width: 100px;}
+#dt-featured-downloads ul li .image{width: 100px; padding: 5px 5px 5px 0;}
+#dt-featured-downloads ul li span.name{display: block; font-weight: bold;}
+#dt-featured-downloads ul li span.category{display: block; margin-bottom: 5px; border-bottom: 1px dotted #ccc; padding: 0 0 4px 0;}
+#dt-featured-downloads .data{padding: 5px 0 5px 5px;}
+#dt-featured-downloads .data .description{
+    padding: 0; margin: 5px 0 0 0;
 }
-.dtNoMargin{
-	margin: 0;
+#dt-featured-downloads div.options{
+    width: 120px;
+    padding: 0 0 0 10px;
+    text-align: center;
 }
-h2.dtGroupsTitle{
-	font-size: 14px;
-	background: url(../images/folder.png) no-repeat left;
-	padding: 0 0 0 26px;
-	margin: 0 0 5px 0;
-	color: #FF4400;
-}
-div#dtHeader div.dtHeadBar{
-	overflow: hidden;
-	background: #F4FAFE url(../images/bghead.png) repeat-x bottom;
-	border: 1px solid #89B6CC;
-	*height: 63px;
-}
-div.dtHeadBar div.dtMine{
-	padding: 5px;
-	float: left;
-}
-div.dtHeadBar div.dtSearch{
-	float: right;
-	padding: 5px;
-	text-align: center;
-}
-div.dtSearch input.dtSearchText{
-	font-size: 20px;
-	font-weight: bold;
-	color: #ccc;
-	width: 150px;
-	height: 28px;
-	border: 1px solid #9BC53D;
-}
-div.dtSearch input.dtSearchText:focus{
-	color: #999;
-}
-div.dtSearch input.dtSearchButton{
-	background: url(../images/bgbutton.png) no-repeat center;
-	height: 34px;
-	width: 105px;
-	color: #FFF;
-	font-size: 18px;
-	font-weight: bold;
-	position: relative;
-	top: 1px;
-	border: 0;
+#dt-featured-downloads div.options a{
+    display: inline-block;
+    padding: 6px 15px 8px 33px;
+    text-align: center;
+    background-color: #009900;
+    background-image: url(../images/bgoverlay.png), url(../images/download.png);
+    background-repeat: repeat-x, no-repeat;
+    background-position: center, 10px;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 1px 1px #136F13;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px #ccc;
 }
 
-/** Descargas del día **/
-div#dtDayDowns{
-	padding: 0;
-}
-div#dtDayDowns h2{
-	margin: 0 0 5px 0;
-	padding: 0;
-	font-size: 16px;
-	color: #999;
-}
-div#dtDayDowns div.dtListDay{
-	padding: 4px;
-	border: 1px solid #7FA4C0;
-	background-color: #FFF;
-}
-div.dtListDay div.dtDailyItem{
-	overflow: hidden;
-	padding: 4px;
-	border-bottom: 1px dashed #CCC;
-}
-div.dtDailyItem img.dtDailyImg{
-	float: left; margin: 0 5px 5px 0;
-}
-div.dtDailyItem a.dtDailyName{
-	font-size: 16px;
-	font-weight: bold;
-}
-div.dtDailyItem span{
-	font-size: 14px; 
-	color: #666;
-	display: block;
-}
-div.dtDailyItem div.dtDownload{
-	float: right;
-	width: 100px;
-	text-align: center;
-}
-div.dtDownload a{
-	background: url(../images/downarrow.png) no-repeat left;
-	padding: 2px 2px 2px 18px;
-	position: relative;
-	top: 10px;
-}
-div.dtRating{
-	width: 60px;
-	background: url(../images/stargray.gif) repeat-x left;
-	height: 12px;
-	padding: 0;
-	text-align: left;
-}
-div.dtRating div.dtRateStars{
-	background: url(../images/star.gif) repeat-x left;
-	max-width: 60px;
-	font-size: 2px;
-	height: 12px;
-}
-
-/** Etiquetas Populares **/
-div.dtTagsPopular{
-	margin-left: 46%;
-	text-align: center;
-}
-div.dtTagsPopular a{
-	padding-right: 10px;
-	font-weight: bold;
-}
-div.dtTagsPopular h2{
-	text-align: left;
-}
-div.dtTagsPopular div.border{
-	border:1px solid #BED0E4;
-	padding:6px;
-}
-/** Descargas Destacadas **/
-div#dtMarkedDowns{
-	margin-top: 10px;
-	display: block;
-	overflow: hidden;
-}
-div#dtMarkedDowns h2{
-	margin: 0 0 10px 0;
-	border-bottom: 1px solid #CCC;
-	padding: 0 0 5px 0;
-	color: #999;
-}
-div#dtMarked{
-	float:left;
-	width: 45%;
-	
-}
-div#dtMarked ul{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-div#dtMarked ul li{
-	padding: 2px 2px 2px 20px;
-	list-style: none;
-	background: url(../images/downarrow.png) no-repeat left 6px;
-	color: #666;
-	font-size: 12px;
-	margin-bottom: 5px;
-}
-div#dtMarked a{
-	font-size: 14px;
-	font-weight: bold;
-}
-
-/** Tabla de Lista de Descargas **/
-.dtOuter{
-	border: 1px solid #BED0E4;
-	border-bottom: 0;
-	width: 100%;
-	*width: 98%;
-}
-tr.dtHead td{
-	background-color: #FDF5C6;
-	border-bottom: 1px solid #BED0E4;
-	padding: 6px;
-	font-size: 1.2em;
-}
-.dtHead a{
-	font-weight: normal;
-	font-size: 0.9em;
-}
-.dtHead td.dtFirstDt{
-	background: #FFF url(../images/arrowbig.png) no-repeat right;
-	padding: 2px 16px 2px 4px;
-}
-tr.dtEven td, .dtEven{
-	padding: 20px 5px 20px 5px;
-	background-color: #FFF;
-	border-bottom: 1px solid #BED0E4;
-	font-size: 12px;
-}
-tr.dtOdd td, .dtOdd{
-	padding: 20px 5px 20px 5px;
-	border-bottom: 1px solid #BED0E4;
-	background-color: #EFF8FD;
-	font-size: 12px;
-}
-a.dtListName{
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 8px;
-}
-.dtOdd span, .dtEven span{
-	display: block;
-	margin-top: 8px;
-	font-size: 10px;
-	font-family: Verdana, Arial, helvetica, sans-serif;
-}
-.dtOdd p.desc, .dtEven p.desc{
-	padding: 0;
-	margin: 5px 0 0 0;
-}
-td.dtListRating{
-	color: #333;
-}
-td.dtListRating span.dtListRateUsers{
-	padding: 2px 4px 2px 4px;
-	border: 1px solid #CCC;
-	display: block;
-	width: 40px;
-	font-weight: bold;
-	color: #FF9900;
-	font-size: 14px;
-	background-color: #FFF;
-}
-.dtOuter a.download{
-	background: url(../images/downarrow.png) no-repeat left;
-	padding: 2px 2px 2px 20px;
-	display: block;
-	margin-bottom: 2px;
-}
-.dtOuter a.screens{
-	background: url(../images/screens.gif) no-repeat left;
-	padding: 2px 2px 2px 20px;
-	display: block;
-}
-.even h3, .odd h3{
-	margin: 0 0 3px 0;
-	font-size: 14px;
-}
-a.dtCurrentOrder{
-	background: url(../images/arrow.gif) no-repeat left;
-	padding: 0 0 0 15px;
-	color: #001293;
-	font-weight: bold;
-}
-div.dtShowing{
-	padding: 4px;
-	font-weight; bold;
-	text-align: right;
-	font-size: 1.1em;
-}
-div#dtNavigationPages{
-	padding: 4px;
-	text-align: center;
-	font-size: 1.25em;
-	margin: 10px;
-	color: #BED0E4;
-}
-div#dtNavigationPages a{
-	padding: 1px 4px 1px 4px;
-	margin: 0;
-	border: 1px solid #fff;
-}
-div#dtNavigationPages a:hover{
-	background-color: #D6E6ED;
-	border: 1px solid #AFCEDC;
-}
-div#dtNavigationPages a img{
-	border: 0;
-}
-div#dtNavigationPages span.dtCurrentPage{
-	padding: 0 4px 0 4px;
-	background-color: #0129C9;
-	color: #FFF;
-	font-weight: bold;
-}
-a#dtViewCats{
-	float: left;
-	background: url(../images/adown.png) no-repeat right;
-	padding: 2px 18px 2px 2px;
-}
-div#dtCategosListH{
-	display: none;
-}
-div#dtCategosList{
-	margin: 0;
-	background-color: #EEF1F2;
-	padding: 8px;
-	border: 1px solid #7FA4C0;
-}
-div#dtCategosList h4{
-	margin: 0 0 2px 0;
-}
-div#dtLocationBar{
-	padding: 4px;
-	font-size: 1.1em;
-}
-tr.dtFeatured td, .dtFeatured{
-	background-color: #FFF;
-}
-h1 span{
-	color: #999;
-}
-
-/* Detalles del Elemento */
-ul#dtItemOptions{
-	list-style: none;
-	border-bottom: 1px solid #7FA4C0;
-	padding: 2px 2px 0 3px;
-	overflow: hidden;
-	margin: 0;
-}
-ul#dtItemOptions li{
-	float: left;
-	font-size: 11px;
-	font-weight: bold;
-	margin: 0;
-	padding: 2px 2px 2px 8px;
-	border-right:  1px solid #7FA4C0;
-}
-ul#dtItemOptions li.first{
-	border-left: 1px solid #7FA4C0;
-}
-ul#dtItemOptions li:hover{
-	background: url(../images/bgitemoption.png) repeat-x bottom;
-}
-ul#dtItemOptions li.current{
-	background: url(../images/bgcurrent.png) repeat-x bottom;
-	text-transform: uppercase;
-}
-ul#dtItemOptions li.current a{
-	color: #1D307A;
-}
-ul#dtItemOptions li a{
-	padding: 3px 4px 3px 22px;
-	display: block;
-}
-ul#dtItemOptions li a.general{
-	background: url(../images/data.png) no-repeat left;
-}
-ul#dtItemOptions li a.pantallas{
-	background: url(../images/screens.gif) no-repeat left;
-}
-ul#dtItemOptions li a.comments{
-	background: url(../images/comments.png) no-repeat left;
-}
-ul#dtItemOptions li a.features{
-	background: url(../images/featlist.png) no-repeat left;
-}
-ul#dtItemOptions li a.logs{
-	background: url(../images/logs16.png) no-repeat left;
-}
-div#dtItemDetails{
-	float: left;
-}
-div#dtImageItem{
-	
-}
-ul#dtListDetails{
-	list-style-image: url(../images/bullet_blue.png);
-	font-size: 13px;
-}
-ul#dtListDetails li{
-	list-style-image: url(../images/bullet_blue.png);
-	color: #666;
-	margin: 4px;
-	overflow: hidden;
-}
-ul#dtListDetails strong{
-	display: block;
-	float: left;
-	width: 100px;
-	color: #000;
-}
-a.dtDownLink{
-	font-size: 18px;
-	font-weight: bold;
-	background: url(../images/download.png) no-repeat left;
-	padding: 8px 2px 12px 36px;
-	/*display: block;*/
-	margin: 0 0 30px 30px;
-}
-div#dtItemDesc{
-	padding: 8px;
-	border: 1px solid #7FA4C0;
-	font-size: 12px;
-	background: #FFF;
-	background-color: #FFF;
-}
-div#dtItemDesc div.dtItemHead{
-	background: url(../images/bghead.png) repeat-x bottom;
-	height: 100px;
-	border: 1px solid #7FA4C0;
-}
-div#dtItemDesc div.dtItemHead table{
-	height: 100px;
-}
-div#dtItemDesc div.dtItemHead h2{
-	font-size: 18px;
-	font-weight: bold;
-	margin: 0;
-}
-div#dtItemDesc div.dtItemHead em{
-	color: #677689;
-}
-div.dtShadow{
-	background: url(../images/shadow.png) repeat-x bottom;
-	padding: 0 0 20px 0;
-	width: auto;
-}
-.dtMargin10{
-	margin: 10px;
-}
-img.dtShadowLeft{
-	margin: 0;
-	float: left;
-}
-img.dtShadowRight{
-	margin: 0;
-	float: right;
-}
-div.dtDownOpine{
-	border-top: 1px dashed #CCC;
-	padding: 10px;
-	text-align: center;
-	font-size: 18px;
-	font-weight: bold;
-}
-div.dtDownOpine a.download{
-	background: url(../images/download.png) no-repeat left;
-	padding: 5px 4px 5px 36px;
-	
-}
-div.dtDownOpine a.comment{
-	background: url(../images/comment.png) no-repeat left;
-	padding: 5px 4px 5px 36px;
-}
-div.dtBorder{
-	border: 1px solid #7FA4C0;
-	padding: 10px;
-}
-a.downfile{
-	font-weight: bold;
-	background: url(../images/download16.png) no-repeat left;
-	padding: 4px 4px 4px 20px;
-}
-.filesOuter{
-	background-color: #B0D6FF;
-}
-tr.filesEven td, .filesEven, tr.filesOdd td, .filesOdd{
-	background: #FFF;
-	border-bottom: 0px solid #B0D6FF;
-	padding: 4px;
-}
-tr.filesHead td, .filesHead{
-	/*background-color: #DBEEFD;*/
-	background: #FFF url(../images/shadow.png) repeat-x top;
-	border: 0;
-	/*border-bottom: 1px solid #B0D6FF;*/
-	color: #0062CE;
-}
-
-/** LIsta de Características **/
-sup{
-	color: #FF6600;
-	font-weight: bold;
-	/*font-style: italic;*/
-	font-size: 0.5em;
-}
-ul.dtFeatList li{
-	font-size: 13px;
-	margin: 3px;
-}
-ul#dtFeatList li em{
-	color: #538521;
-}
-div.dtFeaturesLogs{
-	overflow: hidden;
-	margin: 10px;
-}
-ul.dtFeaturesList{
-	list-style-image: url(../images/miniarrow.gif);
-}
-ul.dtFeaturesList li{
-	list-style-image: url(../images/miniarrow.gif);
-	font-size: 14px;
-	font-weight: bold;
-}
-ul.dtFeaturesList li em{
-	font-weight: normal;
-	font-size: 11px;
-	color: #666;
-}
-
-/** Imágenes **/
-div.dtMoreImages{
-	/*border: 1px solid #7FA4C0;*/
-	padding: 8px;
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
-}
-a.dtScreen img{
-	margin: 10px 30px 10px 30px;
-	background: url(../images/bgimages.png) no-repeat bottom center;
-	padding: 0 0 20px 0;
-}
-h1.dtH1Title{
-	border-bottom: 1px solid #7FA4C0;
-}
-h1.dtH1Title span{
-	color: #00B9FF;
-}
-h3.dtRelatedTitle{
-	margin: 0px;
-	font-size: 14px;
-}
-div.dtOthersItems{
-	text-align:center;
-	width: auto;
-	margin: auto;
-	overflow: hidden;
-	color: #666;
-	border: 1px solid #7FA4C0;
-}
-div.dtOthersItems a{
-	text-decoration: none;
-	padding: 20px;	
-	margin: 10px;
-	display: block;
-	float: left;
-	
-}
-div.dtOthersItems h4{
-	font-size: 14px;
-	margin: 5px 0 0 0;
-	color: #FF4400;
+/* Home tabs */
+#dt-home-tabs{
+    padding: 10px 10px 0 10px;
+    background: #ebebeb;
+    border-top: 2px solid #666;
+    overflow: hidden;
+}
+#dt-home-tabs ul{
+    list-style: none;
+    padding: 0;
+}
+#dt-home-tabs ul li{
+    float: left;
+    background: #666;
+    padding: 8px;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 7px 4px 0 0;
+}
+#dt-home-tabs ul li:hover{
+    background: #009900;
+}
+#dt-home-tabs ul li.selected{
+    background: #FFF;
+    color: #000;
+    padding: 12px 10px 12px 10px;
+    margin-top: 0;
+    margin-bottom: -1px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #999;
 }

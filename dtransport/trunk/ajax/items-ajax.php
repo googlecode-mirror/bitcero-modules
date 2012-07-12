@@ -49,7 +49,7 @@ function dt_send_message($message, $e = 0, $t = 1){
  * @param int Indicates if edit or create a download
  */
 function dt_save_download($edit = 0){
-    global $xoopsSecurity;
+    global $xoopsSecurity, $functions;
 
     foreach($_POST as $k => $v){
         ${$k} = $v;
@@ -151,6 +151,8 @@ function dt_save_download($edit = 0){
         dt_send_message(__('Item could not be saved!','dtransport').'<br />'.$down->errors(), 1, 1);
     elseif(!$down->save() && !$down->isNew())
         dt_send_message(__('Item saved but with some errors!','dtransport').'<br />'.$down->errors(), 1, 1);
+
+    $functions->save_meta('down', $down->id());
 
     $ev->run_event('dtransport.item.saved', $down);
 

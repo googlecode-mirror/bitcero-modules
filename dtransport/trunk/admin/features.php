@@ -56,6 +56,7 @@ function dt_show_features(){
 
     // scripts
     $tpl->add_local_script('admin.js','dtransport');
+    $tpl->add_local_script('jquery.checkboxes.js','rmcommon', 'include');
 
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='./items.php'>".__('Downloads','dtransport')."</a> &raquo; ".__('Features','dtransport'));
 
@@ -71,7 +72,7 @@ function dt_show_features(){
 * @desc Formulario de características
 **/
 function dt_form_features($edit=0){
-	global $xoopsModule,$xoopsConfig, $functions;
+	global $xoopsModule,$xoopsConfig, $functions, $tpl;
 
     define('RMCSUBLOCATION','newfeature');
 
@@ -101,6 +102,12 @@ function dt_form_features($edit=0){
 
 	$functions->toolbar();
 
+    //styles
+    $tpl->add_style('admin.css', 'dtransport');
+
+    //scripts
+    include_once DT_PATH.'/include/js_strings.php';
+
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; <a href='items.php'>".__('Downloads','dtransport')."</a> &raquo; ".($edit ? __('Edit Feature','dtransport') : __('New Feature','dtransport')));
 	xoops_cp_header();
 	
@@ -113,6 +120,8 @@ function dt_form_features($edit=0){
 	$form->addElement(new RMFormText(__('Short name','dtransport'), 'nameid', 50, 200, $edit ? $ft->nameId() : ''));
 	$form->addElement(new RMFormEditor(__('Feature content','dtransport'),'content','90%','350px',$edit ? $ft->content() : ''),true);
 
+    $functions->meta_form('feat', $ft->id(), $form);
+
 	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
 	$form->addElement(new RMFormHidden('id',$id));
 	$form->addElement(new RMFormHidden('item',$item));
@@ -120,6 +129,7 @@ function dt_form_features($edit=0){
 	$buttons =new RMFormButtonGroup();
 	$buttons->addButton('sbt',_SUBMIT,'submit');
 	$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'features.php?item='.$item.'\';"');
+
 
 	$form->addElement($buttons);
 			
@@ -136,7 +146,7 @@ function dt_form_features($edit=0){
 * @desc Almacena la característica en la base de datos
 **/
 function dt_save_features($edit=0){
-	global $xoopsSecurity;
+	global $xoopsSecurity, $functions;
 
     $query = '';
 	foreach ($_POST as $k=>$v){
@@ -200,8 +210,10 @@ function dt_save_features($edit=0){
 	if (!$ft->save())
 		redirectMsg('features.php?'.$query.($edit ? '&action=edit' : '&action=new'), __('Feature could not be saved!','dtransport').'<br />'.$ft->errors(),1);
 
+    if(!$functions->save_meta('feat', $ft->id()))
+        redirectMsg('features.php?item='.$item, __('Feature saved correctly, however custom fields could not be stored in database!','dtransport'), RMMSG_INFO);
 
-	redirectMsg('./features.php?item='.$item,_AS_DT_DBOK,0);
+	redirectMsg('features.php?item='.$item, __('Featured saved successfully!','dtransport'), RMMSG_SAVED);
 
 }
 

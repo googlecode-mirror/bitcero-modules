@@ -139,7 +139,7 @@ function showItems(){
 * @desc Formulario de Elementos
 **/
 function formItems($edit=0){
-	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig, $rmc_config, $xoopsSecurity;
+	global $xoopsModule,$xoopsConfig,$xoopsModuleConfig, $rmc_config, $xoopsSecurity, $functions;
 	
     define('RMCSUBLOCATION','newitem');
     
