@@ -7,12 +7,12 @@
                 <a href="<{$item.link}>"><img src="<{$item.image}>" alt="<{$item.name}>" class="dt_picture" /></a>
             </div>
             <div class="dt_cell data">
-                <span class="category"><{$lang_incatego|sprintf:$item.category}></span>
+                <span class="category"><{$lang_incatego|sprintf:$item.categorylink:$item.category}></span>
                 <span class="name"><a href="<{$item.link}>"><{$item.name}></a></span>
                 <div class="dt_table" style="width: 99%;">
                     <div class="dt_row">
                         <div class="dt_cell">
-                            <p class="description"><{$item.desc}></p>
+                            <p class="description"><{$item.description}></p>
                         </div>
                         <div class="dt_cell options">
                             <a href="<{$item.link}>"><{$lang_download}></a>

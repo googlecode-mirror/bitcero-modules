@@ -132,8 +132,10 @@ class DTFunctions
 	* @return string
 	*/
 	public function ratingStars($rate){
-		$rtn = '<div class="dtRating">
-					<div class="dtRateStars" style="width: '.$rate.'px;">
+        global $xoopsConfig;
+
+		$rtn = '<div class="dt-rating" title="'.sprintf(__('%s rating: %s','dtransport'), $xoopsConfig['sitename'], $rate/6).'">
+					<div class="dt-rate-stars" style="width: '.$rate.'px;">
 					&nbsp;
 					</div>
 				</div>';
@@ -180,6 +182,9 @@ class DTFunctions
 
     /**
      * Get IDs from a category tree
+     * @param array Array where ids will be stored
+     * @param int Id of category where the search will start
+     * @param bool Only select categories active or inactive
      */
     public function categoryTreeId(&$ids, $parent = 0, $active = true){
         $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -193,6 +198,26 @@ class DTFunctions
         }
 
         return true;
+    }
+
+    /**
+     * Get the path for a category
+     */
+    public function category_path($id){
+
+        if($id<=0)
+            return false;
+
+        $cat = new DTCategory($id);
+
+        $path[] = $cat->nameId();
+
+        if($cat->parent()<=0){return $path;}
+
+        $path = array_merge($path, $this->category_path($cat->parent()));
+
+        return $path;
+
     }
 
 	/**
@@ -210,8 +235,9 @@ class DTFunctions
 		$data['dlink'] = $item->permalink(0, 'download'); 	// Vinculo de descarga
 		$data['id'] = $item->id();
 		$data['name'] = $item->getVar('name');
-		$data['desc'] = $item->getVar('shortdesc');
+		$data['description'] = $item->getVar('shortdesc');
 		$data['votes'] = $item->getVar('votes');
+        $data['comments'] = $item->getVar('comments');
 		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate')*6);
 		$data['rating'] = @number_format($item->getVar('raring')/$item->getVar('votes'), 1);
 
@@ -521,7 +547,7 @@ class DTFunctions
         // Descargas destacadas
         if($assign){
             $xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtransport'));
-            $xoopsTpl->assign('lang_incatego', __('In %s','dtransport'));
+            $xoopsTpl->assign('lang_incatego', __('In <a href="%s">%s</a>','dtransport'));
             $xoopsTpl->assign('show_featured', $mc['dest_download']);
         }
 
@@ -534,19 +560,27 @@ class DTFunctions
             $categos = array();
             $this->categoryTreeId($categos, $cat);
 
-            $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
-            JOIN ".$db->prefix("dtrans_categos")." AS c WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND featured=1 AND c.id_cat=b.cat GROUP BY b.soft
-            ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+            $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat
+                    FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+                    JOIN ".$db->prefix("dtrans_categos")." AS c
+                    WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND featured=1 AND c.id_cat=b.cat
+                    GROUP BY b.soft
+                    ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
         } else {
-            $sql = "SELECT a.*, c.name as namecat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b JOIN
-            ".$db->prefix("dtrans_categos")." AS c WHERE a.approved='1' AND a.featured='1' AND a.id_soft=b.soft AND c.id_cat=b.cat GROUP BY b.soft ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+            $sql = "SELECT a.*, c.name as namecat, c.id_cat
+                    FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+                    JOIN ".$db->prefix("dtrans_categos")." AS c
+                    WHERE a.approved='1' AND a.featured='1' AND a.id_soft=b.soft AND c.id_cat=b.cat
+                    GROUP BY b.soft
+                    ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
         }
 
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)){
             $item = new DTSoftware();
             $item->assignVars($row);
-            $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat']));
+            $ocat = new DTCategory($row['id_cat']);
+            $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat'], 'categorylink'=>$ocat->permalink()));
         }
 
         if($assign)
@@ -564,18 +598,36 @@ class DTFunctions
         $items = array();
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
+        if($assign){
+            $xoopsTpl->assign('lang_comments', __('%u Comments','dtransport'));
+        }
+
         if($cat>0){
-            $sql = "SELECT a.*, b.*, c.name AS namecat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
-            JOIN ".$db->prefix("dtrans_categos")." AS c WHERE b.cat=$cat AND a.id_soft=b.soft AND a.approved=1 ORDER BY a.created DESC LIMIT 0,$mc[limit_recents]";
+
+            // Categories under current category
+            $categos = array();
+            $this->categoryTreeId($categos, $cat);
+
+            $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+                    JOIN ".$db->prefix("dtrans_categos")." AS c
+                    WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND c.id_cat=b.cat
+                    GROUP BY b.soft
+                    ORDER BY a.created DESC LIMIT 0,$mc[limit_recents]";
         } else {
-            $sql = "SELECT * FROM ".$db->prefix("dtrans_software")." WHERE approved='1' ORDER BY modified DESC LIMIT 0,".($mc['limit_recents']>0 ? $mc['limit_recents'] : '10');
+            $sql = "SELECT a.*, c.name as namecat, c.id_cat
+                    FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+                    JOIN ".$db->prefix("dtrans_categos")." AS c
+                    WHERE approved='1' AND a.id_soft=b.soft AND c.id_cat=b.cat
+                    GROUP BY b.soft
+                    ORDER BY modified DESC LIMIT 0,".($mc['limit_recents']>0 ? $mc['limit_recents'] : '10');
         }
 
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)){
             $item = new DTSoftware();
             $item->assignVars($row);
-            $items[] = $this->createItemData($item);
+            $ocat = new DTCategory($row['id_cat']);
+            $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat'], 'categorylink'=>$ocat->permalink()));
         }
 
         if($assign)

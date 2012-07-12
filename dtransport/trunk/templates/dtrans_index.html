@@ -42,6 +42,13 @@
         <div class="dt_row">
             <div class="dt_cell">
                 <span class="category"><{$item.category}></span>
+                <span class="name"><a href="<{$item.link}>"><{$item.name}></a></span>
+                <p class="description"><{$item.description}></p>
+                <span class="ratecoms">
+                    <{$item.siterate}>
+                    <img src="<{$dt_url}>/images/comments.png" alt="" title="<{$lang_comments|sprintf:$item.comments}>" />
+                    <{$item.comments}> b
+                </span>
             </div>
             <div class="dt_cell">
 

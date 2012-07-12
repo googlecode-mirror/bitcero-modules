@@ -87,3 +87,15 @@
     border-radius: 2px;
     box-shadow: 0 0 2px #999;
 }
+
+/* rating */
+.dt-rating{
+    height: 12px;
+    width: 60px;
+    background: url(../images/stargray.png) repeat-x left;
+    display: inline-block;
+}
+.dt-rating .dt-rate-stars{
+    height: 12px;
+    background: url(../images/star.png) repeat-x left;
+}

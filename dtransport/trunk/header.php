@@ -15,7 +15,7 @@ $mc = $xoopsModuleConfig;
 // Constantes del Módulo
 define('DT_PATH',XOOPS_ROOT_PATH.'/modules/dtransport');
 define('DT_URL',XOOPS_URL.'/modules/dtransport');
-$xoopsTpl->assign('dtrans_url', DT_URL);
+$xoopsTpl->assign('dt_url', DT_URL);
 
 // Xoops Module Header
 $dtfunc = new DTFunctions();
