@@ -2,7 +2,7 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Manage download files in XOOPS
+// Manage files for download in XOOPS
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
@@ -481,8 +481,10 @@ class DTSoftware extends RMObject
 
     /**
      * Get the permalink for item
+     * @param int Determines if returned link will be formated to edition
+     * @param string Indicate the type of permalink that will be returned (link, download)
      */
-    public function permalink($edit = 0){
+    public function permalink($edit = 0, $type='link'){
 
         $util = RMUtilities::get();
         $mc = $util->module_config('dtransport');
@@ -490,10 +492,15 @@ class DTSoftware extends RMObject
         if($mc['permalinks']){
             if($edit)
                 $link = XOOPS_URL.$mc['htbase'].'/<span><em>'.$this->getVar('nameid').'</em></span>/';
-            else
+            elseif($type!='download')
                 $link = XOOPS_URL.$mc['htbase'].'/'.$this->getVar('nameid').'/';
+            else
+                $link = XOOPS_URL.$mc['htbase'].'/download/'.$this->getVar('nameid').'/';
         } else {
-            $link = XOOPS_URL.'/modules/dtransport/item.php?id='.$this->id();
+            if($type!='download')
+                $link = XOOPS_URL.'/modules/dtransport/item.php?id='.$this->id();
+            else
+                $link = XOOPS_URL.'/modules/dtransport/getfile.php?id='.$this->id();
         }
 
         return $link;

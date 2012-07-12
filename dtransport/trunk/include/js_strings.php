@@ -38,7 +38,10 @@ var jsLang = {
     saveData: '<?php _e('Save Changes','dtransport'); ?>',
     titleField: '<?php _e('Title:','dtransport'); ?>',
     descField: '<?php _e('Description:','dtransport'); ?>',
-    deleteScreen: '<?php _e('Do you really want to delete this screenshot?','dtransport'); ?>'
+    deleteScreen: '<?php _e('Do you really want to delete this screenshot?','dtransport'); ?>',
+    deleteField: '<?php _e('Delete Field','dtransport'); ?>',
+    alreadyName: '<?php _e('There is another field with same name.','dtransport'); ?>',
+    errorName: '<?php _e('You must specify a name for this custom field!','dtransport'); ?>'
 };
 
 <?php

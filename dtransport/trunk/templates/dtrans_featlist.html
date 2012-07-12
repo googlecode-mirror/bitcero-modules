@@ -1,0 +1,26 @@
+<div id="dt-featured-downloads">
+    <h2><{$lang_featured}></h2>
+    <ul class="dt_table">
+        <{foreach item=item from=$featured_items}>
+        <li class="dt_row">
+            <div class="dt_cell image">
+                <a href="<{$item.link}>"><img src="<{$item.image}>" alt="<{$item.name}>" class="dt_picture" /></a>
+            </div>
+            <div class="dt_cell data">
+                <span class="category"><{$lang_incatego|sprintf:$item.category}></span>
+                <span class="name"><a href="<{$item.link}>"><{$item.name}></a></span>
+                <div class="dt_table" style="width: 99%;">
+                    <div class="dt_row">
+                        <div class="dt_cell">
+                            <p class="description"><{$item.desc}></p>
+                        </div>
+                        <div class="dt_cell options">
+                            <a href="<{$item.link}>"><{$lang_download}></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <{/foreach}>
+    </ul>
+</div>

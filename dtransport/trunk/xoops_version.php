@@ -111,6 +111,7 @@ $modversion['templates'][] = array('file' => 'dtrans_screens.html','description'
 $modversion['templates'][] = array('file' => 'dtrans_files.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createlogs.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createfeatures.html', 'description' => '');
+$modversion['templates'][] = array('file' => 'dtrans_featlist.html', 'description' => __('Template to show the featured items list','dtransport'));
 
 // Permalinks
 $modversion['config'][] = array(
@@ -267,17 +268,6 @@ $modversion['config'][] = array(
     'default' => 10
 );
 
-//Modo para descargas destacadas
-$modversion['config'][] = array(
-    'name' => 'mode_download',
-    'title' => '_MI_DT_MODEDOWN',
-    'description' => '_MI_DT_DESCMODEDOWN',
-    'formtype' => 'select',
-    'valuetype' => 'int',
-    'default' => 0,
-    'options' => array(_MI_DT_RECENT=>0,_MI_DT_RANDOM=>1)
-);
-
 //Activar descargas del dia
 $modversion['config'][] = array(
     'name' => 'daydownload',
@@ -341,18 +331,6 @@ $modversion['config'][] = array(
     'default' => '700:450:resize'
 );
 
-//Tipo de redimension
-$modversion['config'][] = array(
-    'name' => 'redim_image',
-    'description' => '',
-    'size' => 10,
-    'title' => '_MI_DT_REDIMIMAGE',
-    'formtype' => 'select',
-    'valuetype' => 'int',
-    'default' => 0,
-    'options' => array('_MI_DT_CROPTHS'=>0,'_MI_DT_CROPBIG'=>1,'_MI_DT_CROPBOTH'=>2,'_MI_DT_REDIM'=>3)
-);
-
 //Tamaño del archivo de imagen
 $modversion['config'][] = array(
     'name' => 'image',
@@ -405,16 +383,6 @@ $modversion['config'][] = array(
     'default' => 1
 );
 
-// Manejo de URLS
-$modversion['config'][] = array(
-    'name' => 'urlmode',
-    'title' => '_MI_DT_URLMODE',
-    'description' => '',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 0
-);
-
 //Limite de descargas recientes
 $modversion['config'][] = array(
     'name' => 'limit_recents',
@@ -456,39 +424,6 @@ $modversion['config'][] = array(
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 1
-);
-
-// Descargas por Página
-$modversion['config'][] = array(
-    'name' => 'xpage',
-    'title' => '_MI_DT_XPAGE',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 10,
-    'size' => 5
-);
-
-// Tamaño de Screenshot miniatura
-$modversion['config'][] = array(
-    'name' => 'thscreen',
-    'title' => '_MI_DT_SCREENTH',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 100,
-    'size' => 5
-);
-
-// Tamaño de Screenshot normal
-$modversion['config'][] = array(
-    'name' => 'nscreen',
-    'title' => '_MI_DT_SCREENN',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 400,
-    'size' => 5
 );
 
 //Mostrar Etiquetas

@@ -2,7 +2,7 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Manage download files in XOOPS
+// Manage files for download in XOOPS
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
@@ -84,6 +84,17 @@ class DTCategory extends RMObject
 	public function setNameId($nameid){
 		return $this->setVar('nameid',$nameid);
 	}
+
+    public function permalink(){
+        $util = RMUtilities::get();
+        $mc = $util->module_config('dtransport');
+
+        if($mc['permalinks'])
+            return XOOPS_URL.'/'.trim($mc['htbase'],'/').'/category/'.$this->id();
+        else
+            return XOOPS_URL.'/modules/dtransport/category.php?id='.$this->id();
+
+    }
 	
 
 	public function save(){

@@ -2,7 +2,7 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Manage download files in XOOPS
+// Manage files for download in XOOPS
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
@@ -57,29 +57,32 @@ class DTFunctions
 	* @desc Crea la cabecera del módulo
 	*/
 	public function makeHeader(){
-		global $tpl, $mc, $xoopsUser;
+		global $xoopsTpl, $xoopsUser;
+
+        $func = RMUtilities::get();
+        $mc = $func->module_config('dtransport');
 		
-		$tpl->assign('lang_mine', _MS_DT_MINE);
+		$xoopsTpl->assign('lang_mine', _MS_DT_MINE);
 		if (DTFunctions::canSubmit()){
-			$tpl->assign('lang_submit', _MS_DT_SUBMIT);
+			$xoopsTpl->assign('lang_submit', _MS_DT_SUBMIT);
 		}
-		$tpl->assign('lang_search', _MS_DT_SEARCH);
-		$tpl->assign('lang_recents', _MS_DT_RECENTS);
-		$tpl->assign('lang_popular', _MS_DT_POPULAR);
-		$tpl->assign('lang_bestrate', _MS_DT_BESTRATE);
-		$tpl->assign('dtrans_title', $mc['title']);
+		$xoopsTpl->assign('lang_search', _MS_DT_SEARCH);
+		$xoopsTpl->assign('lang_recents', _MS_DT_RECENTS);
+		$xoopsTpl->assign('lang_popular', _MS_DT_POPULAR);
+		$xoopsTpl->assign('lang_bestrate', _MS_DT_BESTRATE);
+		$xoopsTpl->assign('dtrans_title', $mc['title']);
 		
 		// Enlaces
-		if ($mc['urlmode']){
-			$tpl->assign('mine_link', DT_URL.'/mine/');
-			$tpl->assign('recents_link', DT_URL.'/recents/');
-			$tpl->assign('popular_link', DT_URL.'/popular/');
-			$tpl->assign('rated_link', DT_URL.'/rated/');
+		if ($mc['permalinks']){
+			$xoopsTpl->assign('mine_link', DT_URL.'/mine/');
+			$xoopsTpl->assign('recents_link', DT_URL.'/recents/');
+			$xoopsTpl->assign('popular_link', DT_URL.'/popular/');
+			$xoopsTpl->assign('rated_link', DT_URL.'/rated/');
 		} else {
-			$tpl->assign('mine_link', DT_URL.'/mydownloads.php');
-			$tpl->assign('recents_link', DT_URL.'/search.php?order=created');
-			$tpl->assign('popular_link', DT_URL.'/search.php?order=popular');
-			$tpl->assign('rated_link', DT_URL.'/search.php?order=rateuser');
+			$xoopsTpl->assign('mine_link', DT_URL.'/mydownloads.php');
+			$xoopsTpl->assign('recents_link', DT_URL.'/search.php?order=created');
+			$xoopsTpl->assign('popular_link', DT_URL.'/search.php?order=popular');
+			$xoopsTpl->assign('rated_link', DT_URL.'/search.php?order=rateuser');
 		}
 	}
 	
@@ -174,35 +177,24 @@ class DTFunctions
 		
 		return true;
 	}
-	
-	/**
-	* @desc Genera la ruta para la URL de una categoría
-	* @param array Array de Categorías
-	* @param int Indice del array que contiene a la categoría
-	* @param bool Indica si el array contiene objetos
-	* return string
-	*/
-	function creatPath(&$categos, $index, $obj = false){
-		
-		if (!isset($categos[$index])) return '';
-		
-		if ($obj){
-			$cat = &$categos[$index]['object'];
-		} else {
-			$cat = new DTCategory();
-			$cat->assignVars($categos[$index]);
-		}
-		
-		$path = '';
-		
-		if ($categos[$index]['jumps']>0){
-			$path = DTFunctions::creatPath($categos, $index-1, $obj);
-		}
-		
-		return $path.'/'.$cat->nameId();
-		
-	}
-	
+
+    /**
+     * Get IDs from a category tree
+     */
+    public function categoryTreeId(&$ids, $parent = 0, $active = true){
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+        $result = $db->query("SELECT id_cat FROM ".$db->prefix("dtrans_categos")." WHERE parent='$parent' ".($active ? ($active==2 ? "" : " AND active=1") : " AND active=0 ")." ORDER BY `id_cat`");
+
+        if($parent>0) $ids[] = $parent;
+        while (list($idcat) = $db->fetchRow($result)){
+            //$ids[] = $idcat;
+            $this->categoryTreeId($ids, $idcat, $active);
+        }
+
+        return true;
+    }
+
 	/**
 	* @desc Genera un array con los datos de un elemento específico
 	* @param object {@link DTSoftware()}
@@ -211,32 +203,33 @@ class DTFunctions
 	public function createItemData(DTSoftware &$item){
 		global $mc, $xoopsUser;
 		
-		$link = $mc['urlmode'] ? DT_URL .'/item/'.$item->nameId().'/' :  DT_URL .'/item.php?id='.$item->id();
-		$dlink = $link . ($mc['urlmode'] ? 'download/' :  '/download');
-		$slink = $link . ($mc['urlmode'] ? 'screens/' :  '/screens');
-		
+	    $rmfunc = RMFunctions::get();
+
 		$data = array();
-		$data['link'] = $link;		// Vinculo para detalles
-		$data['dlink'] = $dlink; 	// Vinculo de descarga
-		$data['slink'] = $slink;	// Vinculo para imágenes
+		$data['link'] = $item->permalink();		// Vinculo para detalles
+		$data['dlink'] = $item->permalink(0, 'download'); 	// Vinculo de descarga
 		$data['id'] = $item->id();
-		$data['name'] = $item->name();
-		$data['desc'] = $item->shortdesc();
-		$data['votes'] = $item->votes();
-		$data['siterate'] = DTFunctions::ratingStars($item->siteRating()*6);
-		$data['rating'] = @number_format($item->rating()/$item->votes(), 1);
-		$data['img'] = $item->image();
-		$data['created'] = formatTimestamp($item->created(),'s');
-		if ($item->created()<$item->modified()){
-			$data['modified'] = formatTimestamp($item->modified(), 's');
+		$data['name'] = $item->getVar('name');
+		$data['desc'] = $item->getVar('shortdesc');
+		$data['votes'] = $item->getVar('votes');
+		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate')*6);
+		$data['rating'] = @number_format($item->getVar('raring')/$item->getVar('votes'), 1);
+
+        // Image
+        $img = new RMImage();
+        $img->load_from_params($item->getVar('image'));
+		$data['image'] = $img->get_smallest();
+		$data['created'] = formatTimestamp($item->getVar('created'),'s');
+		if ($item->getVar('created')<$item->getVar('modified')){
+			$data['modified'] = formatTimestamp($item->getVar('modified'), 's');
 		}
-		$data['is_new'] = $item->created()>(time()-($mc['new']*86400));
-		$data['is_updated'] = $data['is_new'] ? false : $item->modified()>(time()-($mc['update']*86400));
-		$data['approved'] = $item->approved();
-		$data['downs'] = $item->hits();
-		$data['screens'] = $item->screensCount();
-		$data['featured'] = $item->mark();
-		$data['nameid'] = $item->nameId();
+		$data['is_new'] = $item->getVar('created')>(time()-($mc['new']*86400));
+		$data['is_updated'] = $data['is_new'] ? false : $item->getVar('modified')>(time()-($mc['update']*86400));
+		$data['approved'] = $item->getVar('approved');
+		$data['downs'] = $item->getVar('hits');
+		$data['screens'] = $item->getVar('screens');
+		$data['featured'] = $item->getVar('featured');
+		$data['nameid'] = $item->getVar('nameid');
 		$data['candownload'] = $item->canDownload($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS);
 		
 		// Licencias
@@ -339,7 +332,9 @@ class DTFunctions
 	**/
 	function checkAlert(){
 
-		global $xoopsModuleConfig,$db,$xoopsConfig, $mc;
+		global $xoopsModuleConfig,$db,$xoopsConfig;
+
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
 	
 		$file = XOOPS_ROOT_PATH."/cache/alerts.php";
 
@@ -356,10 +351,10 @@ class DTFunctions
 				//Obtenemos los datos de la descarga
 				$sw = new DTSoftware($alert->software());
 				
-				if (!$sw->approved()) continue;
+				if (!$sw->getVar('approved')) continue;
 
 				if (!$alert->lastActivity()){
-					if($sw->created()>=time()-$alert->limit()*86400){
+					if($sw->getVar('created')>=time()-$alert->limit()*86400){
 						continue;
 					}
 				}
@@ -437,6 +432,156 @@ class DTFunctions
 
         echo json_encode($data);
         die();
+
+    }
+
+    /**
+     * Show the meta values for a specific element
+     * @param string Element type
+     * @param object
+     */
+    public function meta_form($type, $id = 0, RMForm &$form = null){
+
+        $tpl = RMTemplate::get();
+
+        // Get existing metas
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $sql = "SELECT `name` FROM ".$db->prefix("dtrans_meta")." WHERE type='$type'";
+        $result = $db->query($sql);
+
+        $metaNames = array();
+        $metas = array();
+
+        while($row = $db->fetchArray($result)){
+            $metaNames[] = $row['name'];
+        }
+
+        if($id>0){
+            $sql = "SELECT * FROM ".$db->prefix("dtrans_meta")." WHERE type='$type' AND id_element='$id'";
+            $result = $db->query($sql);
+
+            while($row = $db->fetchArray($result)){
+                $metas[] = $row;
+            }
+        }
+
+        $tpl->add_style('metas.css', 'dtransport');
+        $tpl->add_local_script('metas.js', 'dtransport');
+        include_once DT_PATH.'/include/js_strings.php';
+
+        ob_start();
+        include $tpl->get_template("admin/dtrans_metas.php", 'module', 'dtransport');
+        $metas = ob_get_clean();
+
+        if($form){
+
+            $form->addElement(new RMFormLabel(__('Custom Fields','dtransport'), $metas))->setDescription(__('Custom fields allows you to add extra information to elements, tah can be used on templates, plugins or another elements.','dtransport'));
+            return true;
+
+        }
+
+        return $metas;
+
+    }
+
+    /**
+     * Save meta data for elements
+     */
+    public function save_meta($type, $id){
+
+        $metas = rmc_server_var($_REQUEST, 'dtMetas', array());
+
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+        $db->queryF("DELETE FROM ".$db->prefix("dtrans_meta")." WHERE `type`='$type' AND id_element=$id");
+
+        if(empty($metas)) return false;
+
+        $sql = "INSERT INTO ".$db->prefix("dtrans_meta")." (`type`,`id_element`,`name`,`value`) VALUES ";
+        foreach($metas as $meta){
+            $sql .= "('$type','$id','$meta[name]','$meta[value]'),";
+        }
+
+        $sql = rtrim($sql, ',');
+
+        return $db->queryF($sql);
+
+    }
+
+    /**
+     * Get featured items
+     * @param int Allows to select items from a specific category
+     * @param bool Determines if items will be assigned to a smarty variable
+     * @param string Smarty varibale name. Useful when assign is true
+     * @return array
+     */
+    public function featured_items($cat = 0, $assign = true, $var = 'featured_items'){
+        global $xoopsTpl, $mc;
+
+        // Descargas destacadas
+        if($assign){
+            $xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtransport'));
+            $xoopsTpl->assign('lang_incatego', __('In %s','dtransport'));
+            $xoopsTpl->assign('show_featured', $mc['dest_download']);
+        }
+
+        $items = array();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+        if($cat>0){
+
+            // Categories under current category
+            $categos = array();
+            $this->categoryTreeId($categos, $cat);
+
+            $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+            JOIN ".$db->prefix("dtrans_categos")." AS c WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND featured=1 AND c.id_cat=b.cat GROUP BY b.soft
+            ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+        } else {
+            $sql = "SELECT a.*, c.name as namecat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b JOIN
+            ".$db->prefix("dtrans_categos")." AS c WHERE a.approved='1' AND a.featured='1' AND a.id_soft=b.soft AND c.id_cat=b.cat GROUP BY b.soft ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+        }
+
+        $result = $db->query($sql);
+        while ($row = $db->fetchArray($result)){
+            $item = new DTSoftware();
+            $item->assignVars($row);
+            $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat']));
+        }
+
+        if($assign)
+            $xoopsTpl->assign($var, $items);
+
+        return $items;
+    }
+
+    /**
+     * Get recent items
+     */
+    public function recent_items($cat = 0, $assign = true, $var = 'recent_items'){
+        global $xoopsTpl, $mc;
+
+        $items = array();
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+        if($cat>0){
+            $sql = "SELECT a.*, b.*, c.name AS namecat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
+            JOIN ".$db->prefix("dtrans_categos")." AS c WHERE b.cat=$cat AND a.id_soft=b.soft AND a.approved=1 ORDER BY a.created DESC LIMIT 0,$mc[limit_recents]";
+        } else {
+            $sql = "SELECT * FROM ".$db->prefix("dtrans_software")." WHERE approved='1' ORDER BY modified DESC LIMIT 0,".($mc['limit_recents']>0 ? $mc['limit_recents'] : '10');
+        }
+
+        $result = $db->query($sql);
+        while ($row = $db->fetchArray($result)){
+            $item = new DTSoftware();
+            $item->assignVars($row);
+            $items[] = $this->createItemData($item);
+        }
+
+        if($assign)
+            $xoopsTpl->assign($var, $items);
+
+        return $items;
 
     }
 	
