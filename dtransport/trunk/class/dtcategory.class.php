@@ -89,10 +89,20 @@ class DTCategory extends RMObject
         $util = RMUtilities::get();
         $mc = $util->module_config('dtransport');
 
-        if($mc['permalinks'])
-            return XOOPS_URL.'/'.trim($mc['htbase'],'/').'/category/'.$this->id();
-        else
+        if(!$mc['permalinks']){
             return XOOPS_URL.'/modules/dtransport/category.php?id='.$this->id();
+        }
+
+        if($this->parent()<=0){
+            return XOOPS_URL.'/'.trim($mc['htbase'],'/').'/category/'.$this->nameId().'/';
+        }
+
+        $func = new DTFunctions();
+        $path[] = $this->nameId();
+        $path = array_merge($path, $func->category_path($this->parent()));
+
+        $path = array_reverse($path, true);
+        return XOOPS_URL.'/'.trim($mc['htbase'],'/').'/category/'.implode("/", $path).'/';
 
     }
 	
