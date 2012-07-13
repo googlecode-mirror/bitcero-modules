@@ -12,6 +12,24 @@
 .dt_table{display: table; width: 100%;}
 .dt_row{ display: table-row;}
 .dt_cell{display: table-cell; vertical-align: top;}
+a.dt_button{
+    display: inline-block;
+    padding: 6px 15px 8px 33px;
+    text-align: center;
+    background-color: #009900;
+    background-image: url(../images/bgoverlay.png), url(../images/download.png);
+    background-repeat: repeat-x, no-repeat;
+    background-position: center, 10px;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 1px 1px #005700;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px #ccc;
+
+}
+a.dt_button:hover{
+    background-color: #ff4100;
+}
 
 /* Featured downloads box */
 #dt-featured-downloads{
@@ -32,28 +50,9 @@
 #dt-featured-downloads ul li span.name{display: block; font-weight: bold;}
 #dt-featured-downloads ul li span.category{display: block; margin-bottom: 5px; border-bottom: 1px dotted #ccc; padding: 0 0 4px 0;}
 #dt-featured-downloads .data{padding: 5px 0 5px 5px;}
-#dt-featured-downloads .data .description{
-    padding: 0; margin: 5px 0 0 0;
-}
-#dt-featured-downloads div.options{
-    width: 120px;
-    padding: 0 0 0 10px;
-    text-align: center;
-}
-#dt-featured-downloads div.options a{
-    display: inline-block;
-    padding: 6px 15px 8px 33px;
-    text-align: center;
-    background-color: #009900;
-    background-image: url(../images/bgoverlay.png), url(../images/download.png);
-    background-repeat: repeat-x, no-repeat;
-    background-position: center, 10px;
-    color: #FFF;
-    font-weight: bold;
-    text-shadow: 0 1px 1px #136F13;
-    border-radius: 4px;
-    box-shadow: 0 2px 2px #ccc;
-}
+#dt-featured-downloads .data .description{padding: 0; margin: 5px 0 0 0;}
+#dt-featured-downloads div.options{width: 120px;padding: 0 0 0 10px;text-align: center;}
+#dt-featured-downloads div.options .langs{font-size: 0.85em; display: block; padding: 4px 0;}
 
 /* Home tabs */
 #dt-home-tabs{
@@ -99,3 +98,13 @@
     height: 12px;
     background: url(../images/star.png) repeat-x left;
 }
+
+/* Recent items */
+#dt-recents .dt_row:nth-child(even) .dt_cell{background: #f2f2f2;}
+#dt-recents .dt_row .dt_cell{padding: 10px; border-bottom: 1px dotted #ccc;}
+#dt-recents .dt_row .dt_cell:last-child{text-align: center; padding-top: 10px;}
+#dt-recents{margin: 10px 0; line-height: 130%;}
+#dt-recents .category{display: block; font-size: 0.8em; color: #666;}
+#dt-recents .name{font-size: 1.1em; font-weight: bold; display: block;}
+#dt-recents .ratecoms{display: block; font-size: 0.85em;}
+#dt-recents .langs{font-size: 0.85em; display: block; padding: 3px; text-align: center;}

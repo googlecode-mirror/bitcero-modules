@@ -240,7 +240,7 @@ class DTFunctions
         $data['comments'] = $item->getVar('comments');
 		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate')*6);
 		$data['rating'] = @number_format($item->getVar('raring')/$item->getVar('votes'), 1);
-
+        $data['language'] = $item->getVar('langs');
         // Image
         $img = new RMImage();
         $img->load_from_params($item->getVar('image'));

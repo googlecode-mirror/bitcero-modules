@@ -47,11 +47,12 @@
                 <span class="ratecoms">
                     <{$item.siterate}>
                     <img src="<{$dt_url}>/images/comments.png" alt="" title="<{$lang_comments|sprintf:$item.comments}>" />
-                    <{$item.comments}> b
+                    <span><{$item.comments}></span>
                 </span>
             </div>
             <div class="dt_cell">
-
+                <a href="<{$item.link}>" class="dt_button"><{$lang_download}></a>
+                <span class="langs"><{$item.language}></span>
             </div>
         </div>
         <{/foreach}>
