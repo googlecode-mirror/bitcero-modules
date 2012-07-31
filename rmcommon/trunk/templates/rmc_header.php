@@ -26,3 +26,5 @@ $heads = '';
 foreach ($tpl->tpl_head as $head){
     $heads .= $head."\n";
 }
+
+$heads .= $tpl->head_scripts();
