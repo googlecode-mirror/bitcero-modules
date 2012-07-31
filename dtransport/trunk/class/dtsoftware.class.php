@@ -68,7 +68,7 @@ class DTSoftware extends RMObject
 		if (in_array(XOOPS_GROUP_ADMIN, $gid)) return true;
 		
 		foreach ($gid as $g){
-			if (in_array($g, $this->groups())) return true;
+			if (in_array($g, $this->getVar('groups'))) return true;
 		}
 		
 		return false;
@@ -120,14 +120,14 @@ class DTSoftware extends RMObject
 		
 		if (empty($this->_tags) || ($asobj && !is_a($this->_tags[0], 'DTTag'))){
 			$this->_tags = array();
-			$sql="SELECT b.* FROM $tbl1 a, $tbl2 b WHERE a.id_soft='".$this->id()."' AND b.id_tag=a.id_tag";
+			$sql="SELECT b.* FROM $tbl1 AS a, $tbl2 AS b WHERE a.id_soft='".$this->id()."' AND b.id_tag=a.id_tag ORDER BY b.hits DESC";
 			$result=$this->db->queryF($sql);
 			while ($rows=$this->db->fetchArray($result)){
 				if ($asobj){
 					$tmp = new DTTag();
 					$tmp->assignVars($rows);
 				} else {
-					$tmp = $rows['id_tag'];
+					$tmp = $rows;
 				}
 				
 				$this->_tags[]=$tmp;
@@ -416,7 +416,7 @@ class DTSoftware extends RMObject
 		
 		if (empty($this->_screens) || ($asobj && !is_a($this->_screens[0], 'DTScreenshot'))){
 			$this->_screens = array();
-			$sql = "SELECT * FROM ".$this->db->prefix("dtrans_screens")." WHERE id_soft='".$this->id()."' ORDER BY modified DESC";
+			$sql = "SELECT * FROM ".$this->db->prefix("dtrans_screens")." WHERE id_soft='".$this->id()."' ORDER BY date DESC";
 			$result = $this->db->query($sql);
 			while ($row = $this->db->fetchArray($result)){
 				if ($asobj){
@@ -441,15 +441,14 @@ class DTSoftware extends RMObject
 		global $xoopsUser;
 		$id = $id_or_ip;
 		
-		if ($id==''){
+		if ($id=='')
 			$id = $xoopsUser ? $xoopsUser->uid() :  $_SERVER['REMOTE_ADDR'];
-		}
 		
-		if (is_int($id)){
+		if (is_int($id))
 			$sql = "SELECT COUNT(*) FROM ".$this->db->prefix("dtrans_downs")." WHERE uid='".$id."' AND id_soft='".$this->id()."'";
-		} else {
+		else
 			$sql = "SELECT COUNT(*) FROM ".$this->db->prefix("dtrans_downs")." WHERE ip='".$id."' AND id_soft='".$this->id()."'";
-		}
+
 		$result = $this->db->query($sql);
 		list($num) = $this->db->fetchRow($result);
 		return $num;
@@ -482,23 +481,28 @@ class DTSoftware extends RMObject
     /**
      * Get the permalink for item
      * @param int Determines if returned link will be formated to edition
-     * @param string Indicate the type of permalink that will be returned (link, download)
+     * @param string Indicate the type of permalink that will be returned (empty, download, screens, features, logs)
+     * @return string
      */
-    public function permalink($edit = 0, $type='link'){
+    public function permalink($edit = 0, $type=''){
 
         $util = RMUtilities::get();
         $mc = $util->module_config('dtransport');
+        $allowed = array('download','screens','features','logs');
 
         if($mc['permalinks']){
+
             if($edit)
-                $link = XOOPS_URL.$mc['htbase'].'/<span><em>'.$this->getVar('nameid').'</em></span>/';
-            elseif($type!='download')
-                $link = XOOPS_URL.$mc['htbase'].'/'.$this->getVar('nameid').'/';
+                $link = XOOPS_URL.'/'.trim($mc['htbase'],'/').'/<span><em>'.$this->getVar('nameid').'</em></span>/';
+            elseif($type=='' || in_array($type, $allowed))
+                $link = XOOPS_URL.'/'.trim($mc['htbase'],'/').'/'.$this->getVar('nameid').'/'.($type!='' ? $type.'/' : '');
             else
-                $link = XOOPS_URL.$mc['htbase'].'/download/'.$this->getVar('nameid').'/';
+                $link = XOOPS_URL.'/'.trim($mc['htbase'],'/').'/'.$this->getVar('nameid').'/';
+
         } else {
-            if($type!='download')
-                $link = XOOPS_URL.'/modules/dtransport/item.php?id='.$this->id();
+
+            if($type=='' || in_array($type, $allowed))
+                $link = XOOPS_URL.'/modules/dtransport/item.php?id='.$this->id().($type!='' ? '&amp;action='.$type : '');
             else
                 $link = XOOPS_URL.'/modules/dtransport/getfile.php?id='.$this->id();
         }

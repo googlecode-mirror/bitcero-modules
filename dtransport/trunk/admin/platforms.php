@@ -90,6 +90,9 @@ function savePlatforms($edit=0){
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
 
+    $tc = TextCleaner::getInstance();
+    $nameid = $tc->sweetstring($name);
+
 	if ($edit){
 
 		//Verificamos si plataforma es válida
@@ -106,7 +109,7 @@ function savePlatforms($edit=0){
 		}
 
 		//Comprueba que la plataforma no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_platforms')." WHERE name='$name' AND id_platform<>".$plat->id();
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_platforms')." WHERE (name='$name' OR nameid='$nameid') AND id_platform<>".$plat->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('platforms.php', __('Another platform with same name already exists!','dtransport'),1);	
@@ -117,7 +120,7 @@ function savePlatforms($edit=0){
 	}else{
 
 		//Comprueba que la plataforma no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_platforms')." WHERE name='$name' ";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_platforms')." WHERE name='$name' OR nameid='$nameid'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('platforms.php', __('Another platform with same name already exists!','dtransport'),1);	
@@ -129,6 +132,7 @@ function savePlatforms($edit=0){
 	}
     
 	$plat->setName($name);
+    $plat->setNameId($nameid);
 
 	if (!$plat->save()){
 		redirectMsg('platforms.php', __('Database could not be updated!','dtransport').'<br />'.$plat->errors(),1);

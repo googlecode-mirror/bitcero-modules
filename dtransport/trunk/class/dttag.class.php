@@ -64,6 +64,14 @@ class DTTag extends RMObject
 		return $this->setVar('tag',$tag);
 	}
 
+    public function tagId(){
+        return $this->getVar('tagid');
+    }
+
+    public function setTagId($val){
+        return $this->setVar('tagid',$val);
+    }
+
 	public function hit(){
 		return $this->getVar('hits');
 	}
@@ -71,6 +79,17 @@ class DTTag extends RMObject
 	public function setHit($hit){
 		return $this->setVar('hits',$hit);
 	}
+
+    public function permalink(){
+        $rmu = RMUtilities::get();
+        $mc = $rmu->module_config('dtransport');
+
+        if($mc['permalinks']){
+            return XOOPS_URL.'/'.trim($mc['htbase'], '/').'/tag/'.$this->tagId().'/';
+        } else {
+            return XOOPS_URL.'/modules/dtransport/index.php?p=tag&amp;id='.$this->id();
+        }
+    }
 
 		
 	public function save(){

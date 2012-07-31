@@ -2,34 +2,11 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Módulo para la administración de descargas
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage files for download in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
-
-define('DT_LOCATION','download');
-include '../../mainfile.php';
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-define('DT_URL',XOOPS_URL.'/modules/dtransport');
-define('DT_PATH',XOOPS_ROOT_PATH.'/modules/dtransport');
 
 if ($id<=0){
 	header('location: '.DT_URL);
@@ -37,35 +14,68 @@ if ($id<=0){
 }
 
 $file = new DTFile($id);
-if ($file->isNew()){
-	redirect_header(DT_URL, 2, _MS_DT_NOFILE);
-	die();
-}
+if ($file->isNew() && $mc['permalinks'])
+	$dtfunc->error_404();
+elseif($file->isNew())
+    redirect_header(DT_URL, 1, __('File not found!','dtransport'));
 
 $item = new DTSoftware($file->software());
-if ($item->isNew() || !$item->approved()){
-	redirect_header(DT_URL,2,_MS_DT_NOITEM);
-	die();
+if ($item->isNew() || !$item->getVar('approved')){
+	if($mc['permalinks'])
+        $dtfunc->error_404();
+    else
+        redirect_header(DT_URL, 1, __('Software does not exists!','dtransport'));
 }
 
-$mc =& $xoopsModuleConfig;
-$link = DT_URL.($mc['urlmode'] ? '/item/'.$item->nameId().'/' : 'item.php?id='.$item->id());
-
-if (!$item->canDownload($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS)){
-	redirect_header(DT_URL,2,_MS_DT_NODOWN);
-	die();
-}
+if (!$item->canDownload($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS))
+	redirect_header($item->permalink(),1, __('Sorry, you don\'t have permission to download this file!','dtransport'));
 
 // Comprobamos los límites
-if ($item->limits()>0){
-	if ($item->downloadsCount()>=$item->limit()){
-		redirect_header($link,2,_MS_DT_DOWNLIMIT);
-		die();
-	}
+if ($item->getVar('limits')>0)
+	if ($item->downloadsCount()>=$item->getVar('limits'))
+		redirect_header($item->permalink(), 1, __('You have reached your download limit for this file!','dtransport'));
+
+// Verificamos si la descarga se debe realizar
+$token = isset($_SESSION['dttoken']) ? $_SESSION['dttoken'] : '';
+
+if($token=='' || !$xoopsSecurity->validateToken($token)){
+
+    $_SESSION['dttoken'] = $xoopsSecurity->createToken();
+    $xoopsOption['template_main'] = 'dtrans_getfile.html';
+    $xoopsOption['module_subpage'] = 'getfile';
+
+    include 'header.php';
+
+    $img = new RMImage();
+    $img->load_from_params($item->getVar('image'));
+
+    $xoopsTpl->assign('item', array(
+        'title' => $item->getVar('name'),
+        'image' => $img->get_smallest(),
+        'link' => $item->permalink()
+    ));
+
+    $xoopsTpl->assign('lang_message', sprintf(__('Your %s download will start shortly...', 'dtransport'), '<a href="'.$item->permalink().'">'.$item->getVar('name').'</a>'));
+    $xoopsTpl->assign('lang_problems', sprintf(__('Problems with the download? Please %s to download immediately.', 'dtransport'), '<a href="'.$file->permalink().'">'.__('use this link','dtransport').'</a>'));
+
+    $tpl->add_style('main.css', 'dtransport');
+
+    $tpl->add_local_script('main.js', 'dtransport');
+    $tpl->add_head_script('var down_message = "'.sprintf(__('Your %s download will start in {x} seconds...', 'dtransport'), '<a href=\''.$item->permalink().'\'>'.$item->getVar('name').'</a>').'";');
+    $tpl->add_head_script('var timeCounter = '.$mc['pause'].";\nvar dlink = '".$file->permalink()."';");
+
+    $dtfunc->makeHeader();
+
+    include 'footer.php';
+
+    die();
+
 }
 
+unset($_SESSION['dttoken']);
+
 // Comprobamos si el archivo es seguro o no
-if (!$item->secure()){
+if (!$item->getVar('secure')){
 	// Comprobamos si es un archivo remoto o uno local	
 	if ($file->remote()){
 		// Almacenamos las estadísticas
@@ -81,20 +91,17 @@ if (!$item->secure()){
 		header('location: '.$file->file());
 		die();
 	} else {
-		$dir = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $mc['directory_insecure']);
+
+        $dir = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $mc['directory_insecure']);
 		$dir = str_replace("\\","/",$dir);
-		if (substr($dir, strlen($dir)-1, 1)=='/'){
-			$dir = substr($dir, 0, strlen($dir)-1);
-		}
-		$path = $mc['directory_insecure'];
+		$dir = rtrim($dir, '/');
+
+        $path = $mc['directory_insecure'];
 		$path = str_replace("\\", "/", $path);
-		if (substr($path, strlen($path)-1, 1)=='/'){
-			$path = substr($path, 0, strlen($path)-1);
-		}
-		if (!file_exists($path.'/'.$file->file())){
-			redirect_header(DT_URL.'/report.php?item='.$item->id()."&amp;error=0", 2, _MS_DT_NOEXISTSFILE);
-			die();
-		}
+		$path = rtrim($path, '/');
+
+		if (!file_exists($path.'/'.$file->file()))
+			redirect_header(DT_URL.'/report.php?item='.$item->id()."&amp;error=0", 2, __('We\'re sorry but specified file does not exists!','dtransport'));
 		
 		$st = new DTStatistics();
 		$st->setDate(time());
@@ -103,9 +110,13 @@ if (!$item->secure()){
 		$st->setUid($xoopsUser ? $xoopsUser->uid() : 0);
 		$st->setIp($_SERVER['REMOTE_ADDR']);
 		$st->save();
-		$alert = new DTAlert();
-		$alert->setLastActivity(time());
-		$alert->save();
+
+		$alert = new DTAlert($item->id());
+        if(!$alert->isNew()){
+		    $alert->setLastActivity(time());
+		    $alert->save();
+        }
+
 		$item->addHit();
 		$file->addHit();
 		header('location: '.$dir.'/'.$file->file());
@@ -117,13 +128,10 @@ if (!$item->secure()){
 // Enviamos una descarga segura
 $path = $mc['directory_secure'];
 $path = str_replace("\\", "/", $path);
-if (substr($path, strlen($path)-1, 1)=='/'){
-	$path = substr($path, 0, strlen($path)-1);
-}
-if (!file_exists($path.'/'.$file->file())){
-	redirect_header(DT_URL.'/report.php?item='.$item->id()."&amp;error=0", 2, _MS_DT_NOEXISTSFILE);
-	die();
-}
+$path = rtrim($path, '/');
+
+if (!file_exists($path.'/'.$file->file()))
+	redirect_header(DT_URL.'/report.php?item='.$item->id()."&amp;error=0", 2, __('We\'re sorry but selected file does not exists!','dtransport'));
 
 $st = new DTStatistics();
 $st->setDate(time());
@@ -132,9 +140,13 @@ $st->setSoftware($item->id());
 $st->setUid($xoopsUser ? $xoopsUser->uid() : 0);
 $st->setIp($_SERVER['REMOTE_ADDR']);
 $st->save();
-$alert = new DTAlert();
-$alert->setLastActivity(time());
-$alert->save();
+
+$alert = new DTAlert($item->id());
+if(!$alert->isNew()){
+    $alert->setLastActivity(time());
+    $alert->save();
+}
+
 $item->addHit();
 $file->addHit();
 header('Content-type: '.$file->mime());
@@ -145,4 +157,3 @@ header('Content-Lenght: '.filesize($path.'/'.$file->file()));
 header('Last-Modified: '.gmdate("D, d M Y H:i:s",filemtime($path.'/'.$file->file())).'GMT');
 readfile($path.'/'.$file->file());
 die();
-?>

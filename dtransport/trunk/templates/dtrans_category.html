@@ -1,109 +1,35 @@
 <{include file="db:dtrans_header.html"}>
-<div id="dtLocationBar">
-	<{$dt_location}>
-</div>
-<{if $show_daydowns && $day_num>0}>
-<div class="dtShadow">
-<div id="dtDayDowns">
-	<h2><{$lang_daydown}></h2>
-	<div class="dtListDay">
-		<{foreach item=item from=$daily}>
-			<div class="dtDailyItem">
-				<div class="dtDownload"><{$item.rating}><br />
-				<a href="<{$item.dlink}>"><{$lang_download}></a></div>
-				<{if $item.img!=''}><img src="<{$xoops_url}>/uploads/dtransport/ths/<{$item.img}>" class="dtDailyImg" alt="<{$item.name}>" /><{/if}>
-				<a class="dtDailyName" href="<{$item.link}>"><{$item.name}></a>
-				<span><{$item.desc}></span><br />
-				<a href="<{$item.link}>"><{$lang_readmore}></a>
-			</div>
-		<{/foreach}>
-	</div>
-</div>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-</div>
+
+<{if $featured_items}>
+<{include file="db:dtrans_featlist.html"}>
 <{/if}>
 
-<{if $show_marked && $marked_count>0}>
-<div id="dtMarkedDowns" class="dtMargin10">
-	<h2><{$lang_marked}></h2>
-	<ul id="dtMarked">
-		<{foreach item=item from=$marked}>
-			<li><a href="<{$item.link}>"><{$item.name}></a><br /><{$item.desc}></li>
-		<{/foreach}>
-	</ul>
+<div class="dt_items_container" class="dt_items_list">
+    <h2><{$lang_in}></h2>
+    <div class="dt_table">
+        <{foreach item=item from=$download_items}>
+        <{include file="db:dtrans_listitem.html"}>
+        <{/foreach}>
+    </div>
+</div>
+
+<{if $pagenav!=''}><{$pagenav}><{/if}>
+
+<!-- Descargas del día -->
+<{if $daily_items}>
+<div id="daily-items">
+    <h2><{$lang_daydown}></h2>
+    <div class="dt_table">
+        <div class="dt_row">
+            <{foreach item=item from=$daily_items}>
+            <div class="dt_cell day_item" style="width: <{$daily_width}>%;">
+                <a href="<{$item.link}>" title="<{$item.name}>"><img src="<{$item.image}>" alt="<{$item.name}>" /></a>
+                <a href="<{$item.link}>" class="dt_button_small"><{$lang_download}></a><br />
+                <a href="<{$item.link}>"><{$item.name}></a><br />
+                <{$item.siterate}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
 </div>
 <{/if}>
-
-<h2><{$lang_in}></h2>
-<div class="dtShowing">
-	<a id="dtViewCats" href="javascript:;" onclick="dtShowCategos();"><{$lang_categos}></a>
-	<{$lang_showing}>
-</div>
-<div class="dtShadow dtMargin10" id="dtCategosListH">
-<div id="dtCategosList">
-	<!-- Categorías -->
-	<h3><{$lang_subcategos}></h3>
-	<table cellspacing="1" width="100%" cellpadding="3">
-	<tr>
-	<{assign var="ci" value=1}>
-	<{foreach item=cat from=$categos key=i}>
-		<{if $i>0 && $cat.jumps==0}><{assign var="ci" value=$ci+1}><{/if}>
-		<{if $ci>2}>
-			</tr><tr>
-			<{assign var="ci" value=1}>
-		<{/if}>
-		<{if $i>0 && $cat.jumps==0}></td><{/if}>
-		<{if $cat.jumps==0}><td width="33%" valign="top"><h4><a href="<{$cat.link}>"><{$cat.name}></a></h4><{elseif $cat.jumps==1}>&bull; <a href="<{$cat.link}>"><{$cat.name}></a><{/if}>
-	<{/foreach}>
-	</tr>
-	</table>
-	<!-- /Categorías -->
-</div>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-</div>
-
-<div class="dtShadow dtMargin10">
-<table class="dtOuter" cellpadding="0" cellspacing="0" border="0">
-	<tr class="head dtHead">
-		<td class="dtFirstDt" nowrap="nowrap"><{$lang_orderby}></td>
-		<td><{$lang_info}><br />
-		<a href="<{$category.link}>/<{$pag}>/name"<{if $order=='name'}> class="dtCurrentOrder"<{/if}>><{$lang_name}></a>
-		| <a href="<{$category.link}>/<{$pag}>/created"<{if $order=='created'}> class="dtCurrentOrder"<{/if}>><{$lang_corder}></a> |
-		<a href="<{$category.link}>/<{$pag}>/modified"<{if $order=='modified'}> class="dtCurrentOrder"<{/if}>><{$lang_morder}></a></td>
-		<td align="center"><{$lang_downs}></td>
-		<td align="center" nowrap="nowrap"><{$lang_rate}><br />
-		<a href="<{$category.link}>/<{$pag}>/rateown"<{if $order=='rateown'}> class="dtCurrentOrder"<{/if}>><{$xoops_sitename}></a> |
-		<a href="<{$category.link}>/<{$pag}>/rateuser"<{if $order=='rateuser'}> class="dtCurrentOrder"<{/if}>><{$lang_users}></a></td>
-		<td>&nbsp;</td>
-	</tr>
-	<{foreach item=item from=$recents}>
-		<{include file="db:dtrans_listitem.html"}>
-	<{/foreach}>
-</table>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-</div>
-
-<!-- Barra de Navegación -->
-<div id="dtNavigationPages">
-<{assign var='ip' value=1}>
-<{foreach item=page from=$dtNavPages}>
-	<{if $page.id=='previous'}>
-		<a href="<{$category.link}>/<{$page.num}>/<{$order}>"><img src="<{$dtrans_url}>/images/prev.png" align="absmiddle" /></a>
-	<{elseif $page.id=='next'}>
-		<a href="<{$category.link}>/<{$page.num}>/<{$order}>"><img src="<{$dtrans_url}>/images/next.png" align="absmiddle" /></a>
-	<{elseif $page.id=='first'}>
-		<a href="<{$category.link}>/<{$page.num}>/<{$order}>"><img src="<{$dtrans_url}>/images/first.png" align="absmiddle" /></a>
-	<{elseif $page.id=='last'}>
-		<a href="<{$category.link}>/<{$page.num}>/<{$order}>"><img src="<{$dtrans_url}>/images/last.png" align="absmiddle" /></a>
-	<{elseif $pag==$page.id}>
-		<span class="dtCurrentPage"><{$page.id}></span>
-	<{else}>
-		<a href="<{$category.link}>/<{$page.num}>/<{$order}>"><{$page.id}></a>
-	<{/if}>
-	<{if $ip<=$dtTotalPages+1}>|<{/if}>
-	<{assign var="ip" value=$ip+1}>
-<{/foreach}>
-</div>

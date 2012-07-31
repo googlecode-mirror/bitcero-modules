@@ -1,8 +1,8 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Red México Common Utilities
-// A framework for Red México Modules
+// D-Transport
+// Manage files for download in XOOPS
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
@@ -28,7 +28,6 @@ class DTFile extends RMObject
 
 	
 	}
-
 
 	public function id(){
 		return $this->getVar('id_file');
@@ -140,6 +139,17 @@ class DTFile extends RMObject
 	public function setTitle($title){
 		return $this->setVar('title', $title);
 	}
+
+    public function permalink(){
+        $rmu = RMUtilities::get();
+        $mc = $rmu->module_config('dtransport');
+
+        if($mc['permalinks']){
+            return XOOPS_URL.'/'.trim($mc['htbase'],'/').'/download/'.$this->id().'/';
+        } else {
+            return XOOPS_URL.'/modules/dtransport/?p=download&amp;id='.$this->id();
+        }
+    }
 
 	public function save(){
 		if ($this->isNew()){

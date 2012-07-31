@@ -27,31 +27,11 @@
 define('_MI_DT_NAME',__('D-Transport','dtransport'));
 define('_MI_DT_DESC',__('Módulo para la administración de archivos descargables en EXM','dtransport'));
 
-//Menu
-define('_MI_DT_INIT',__('Inicio','dtransport'));
-define('_MI_DT_CATEGOS',__('Categorías','dtransport'));
-define('_MI_DT_ITEMS',__('Descargas','dtransport'));
-define('_MI_DT_ITEMSP',__('Descargas Pendientes','dtransport'));
-define('_MI_DT_ITEMSEDIT',__('Descargas Editadas','dtransport'));
-define('_MI_DT_SCREENS',__('Pantallas','dtransport'));
-define('_MI_DT_FEATURES',__('Características','dtransport'));
-define('_MI_DT_FILES',__('Archivos','dtransport'));
-define('_MI_DT_LOGS',__('Logs','dtransport'));
-define('_MI_DT_LICENCES',__('Licencias','dtransport'));
-define('_MI_DT_PLATFORMS',__('Plataformas','dtransport'));
-
-// Menu Frontal
-define('_MI_DT_SEND',__('Enviar Descarga','dtransport'));
-
 // Permalinks
 define('_MI_DT_PERMALINK',__('Permalinks mode:','dtransport'));
 define('_MI_DT_MODEDEF',__('PHP default','dtransport'));
 define('_MI_DT_MODESHORT',__('Based on name','dtransport'));
 define('_MI_DT_HTBASE',__('Permalinks base path:','dtransport'));
-
-//Titulo
-define('_MI_DT_TITLE',__('Título de Encabezado','dtransport'));
-define('_MI_DT_DESCTITLE',__('Este título se mostrará como encabezado en las páginas del módulo','dtransport'));
 
 //Permitir envío de descargas
 define('_MI_DT_SENDDOWN',__('Permitir envío de descargas','dtransport'));
@@ -121,13 +101,6 @@ define('_MI_DT_THS',__('Tamaño de Imagen Miniatura','dtransport'));
 define('_MI_DT_DESCTHS',__('Especifique el tamaño de la imagen en pixeles','dtransport'));
 define('_MI_DT_IMAGE',__('Tamaño de Imagen Grande','dtransport'));
 define('_MI_DT_DESCIMAGE',__('Especifique el tamaño en pixeles de las imágenes','dtransport'));
-define('_MI_DT_REDIMIMAGE',__('Tipo de Redimensión','dtransport'));
-define('_MI_DT_CROPTHS',__('Recortar miniatura','dtransport'));
-define('_MI_DT_CROPBIG',__('Recortar imagen grande','dtransport'));
-define('_MI_DT_CROPBOTH',__('Recortar ambas','dtransport'));
-define('_MI_DT_REDIM',__('Redimensionar','dtransport'));
-define('_MI_DT_FILE',__('Tamaño de archivo de imagen','dtransport'));
-define('_MI_DT_DESCSIZE',__('Tamaño de imagen en Kilobytes','dtransport'));
 
 //Archivo de descarga
 define('_MI_DT_SIZEFILE',__('Tamaño de archivo de descarga','dtransport'));
@@ -205,6 +178,10 @@ define('_MI_DT_BLOCKITEMS_DESC',__('Bloque para presentar un listado de descarga
 
 define('_MI_DT_BLOCKTAGS',__('Búsquedas Populares','dtransport'));
 define('_MI_DT_BLOCKTAGS_DESC',__('Presenta una lista de palabras mas búscadas en D-Transport','dtransport'));
+
+//
+define ('_MI_DT_PAUSE', __('Time before to start downloads','dtransport'));
+define ('_MI_DT_PAUSED', __('This value must be specified in seconds. If you wish to start download immediately then set this value to "0".','dtransport'));
 
 // Sindicación
 define('_MI_DT_RSSNAME',__('Sindicación de Descargas','dtransport'));

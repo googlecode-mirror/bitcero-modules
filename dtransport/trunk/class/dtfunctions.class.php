@@ -56,34 +56,64 @@ class DTFunctions
 	/**
 	* @desc Crea la cabecera del módulo
 	*/
-	public function makeHeader(){
+	public function makeHeader($title=''){
 		global $xoopsTpl, $xoopsUser;
 
         $func = RMUtilities::get();
         $mc = $func->module_config('dtransport');
-		
-		$xoopsTpl->assign('lang_mine', _MS_DT_MINE);
-		if (DTFunctions::canSubmit()){
-			$xoopsTpl->assign('lang_submit', _MS_DT_SUBMIT);
-		}
-		$xoopsTpl->assign('lang_search', _MS_DT_SEARCH);
-		$xoopsTpl->assign('lang_recents', _MS_DT_RECENTS);
-		$xoopsTpl->assign('lang_popular', _MS_DT_POPULAR);
-		$xoopsTpl->assign('lang_bestrate', _MS_DT_BESTRATE);
-		$xoopsTpl->assign('dtrans_title', $mc['title']);
-		
-		// Enlaces
-		if ($mc['permalinks']){
-			$xoopsTpl->assign('mine_link', DT_URL.'/mine/');
-			$xoopsTpl->assign('recents_link', DT_URL.'/recents/');
-			$xoopsTpl->assign('popular_link', DT_URL.'/popular/');
-			$xoopsTpl->assign('rated_link', DT_URL.'/rated/');
-		} else {
-			$xoopsTpl->assign('mine_link', DT_URL.'/mydownloads.php');
-			$xoopsTpl->assign('recents_link', DT_URL.'/search.php?order=created');
-			$xoopsTpl->assign('popular_link', DT_URL.'/search.php?order=popular');
-			$xoopsTpl->assign('rated_link', DT_URL.'/search.php?order=rateuser');
-		}
+
+        $xoopsTpl->assign('dt_header_title', $title);
+
+        $header = array(
+            'lang' => array(
+                'search' => __('Search Downloads','dtransport')
+            ),
+            'cansubmit' => $this->canSubmit(),
+            'searchlink' => $mc['permalinks'] ? DT_URL.'/'.trim($mc['htbase'], '/').'/search/' : DT_URL.'/?p=search'
+        );
+
+        $header['links'][] = array(
+            'title' => __('Downloads','dtransport'),
+            'link' => DT_URL
+        );
+
+        $header['links'][] = array(
+            'title' => __('My Downloads','dtransport'),
+            'link' => $mc['permalinks'] ? DT_URL.'/mine/' : DT_URL.'/?p=explore&amp;f=mine'
+        );
+
+        if ($this->canSubmit()){
+            $header['links'][] = array(
+                'title' => __('Submit Download','dtransport'),
+                'link' => $mc['permalinks'] ? DT_URL.'/submit/' : DT_URL.'/?p=explore&amp;f=submit'
+            );
+        }
+
+        $header['links'][] = array(
+            'title' => __('Recent Downloads','dtransport'),
+            'link' => $mc['permalinks'] ? DT_URL.'/recent/' : DT_URL.'/?p=explore&amp;f=recent'
+        );
+
+        $header['links'][] = array(
+            'title' => __('Popular Downloads','dtransport'),
+            'link' => $mc['permalinks'] ? DT_URL.'/popular/' : DT_URL.'/?p=explore&amp;f=popular'
+        );
+
+        $header['links'][] = array(
+            'title' => __('Best Rated','dtransport'),
+            'link' => $mc['permalinks'] ? DT_URL.'/rated/' : DT_URL.'/?p=explore&amp;f=rated'
+        );
+
+        $ev = RMEvents::get();
+        $header = $ev->run_event("dtransport.make.header", $header);
+
+        $xoopsTpl->assign('header', $header);
+
+        $tpl = RMTemplate::get();
+        $tpl->add_xoops_style('main.css','dtransport');
+
+        return true;
+
 	}
 	
 	/**
@@ -134,6 +164,8 @@ class DTFunctions
 	public function ratingStars($rate){
         global $xoopsConfig;
 
+        $rate = $rate*7.5;
+
 		$rtn = '<div class="dt-rating" title="'.sprintf(__('%s rating: %s','dtransport'), $xoopsConfig['sitename'], $rate/6).'">
 					<div class="dt-rate-stars" style="width: '.$rate.'px;">
 					&nbsp;
@@ -152,7 +184,7 @@ class DTFunctions
 	* @param int Especifica si se buscaran catagorias inactivas(0), activas(1), todas(2)
 	* @return array
 	*/
-	public function getCategos(&$categos, $jumps = 0, $parent = 0, $exclude = array(), $asobj = false, $active=2){
+	public function getCategos(&$categos, $jumps = 0, $parent = 0, $exclude = array(), $asobj = false, $active=1){
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 		
 		if (!is_array($exclude)) $exclude = array($exclude);		
@@ -160,17 +192,20 @@ class DTFunctions
 		
 		
 		while ($row = $db->fetchArray($result)){
+
 			if (is_array($exclude) && (in_array($row['parent'], $exclude) || in_array($row['id_cat'], $exclude))){
 				$exclude[] = $row['id_cat'];
 			} else {
-				$rtn = array();
+                $cat = new DTCategory();
+                $cat->assignVars($row);
+                $rtn = array();
 				if ($asobj){
-					$rtn['object'] = new DTCategory();
-					$rtn['object']->assignVars($row);
+					$rtn['object'] = $cat;
 					$rtn['jumps'] = $jumps;
 				} else {
 					$rtn = $row;
 					$rtn['jumps'] = $jumps;
+                    $rtn['link'] = $cat->permalink();
 				}
 				$categos[] = $rtn;
 			}
@@ -238,7 +273,7 @@ class DTFunctions
 		$data['description'] = $item->getVar('shortdesc');
 		$data['votes'] = $item->getVar('votes');
         $data['comments'] = $item->getVar('comments');
-		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate')*6);
+		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate'));
 		$data['rating'] = @number_format($item->getVar('raring')/$item->getVar('votes'), 1);
         $data['language'] = $item->getVar('langs');
         // Image
@@ -332,25 +367,6 @@ class DTFunctions
         
         $tpl->assign('dtTotalPages', $tpages);
         
-	}
-	
-	/**
-	* @desc Obtiene la localización de una categoría
-	*/
-	public function getCatLocation(DTCategory &$cat){
-		global $mc;
-		
-		$rtn = '';
-		if ($cat->parent()!=0){
-			$parent = new DTCategory($cat->parent());
-			$rtn = DTFunctions::getCatLocation($parent);
-		}
-		
-		$link = DT_URL.'/'.($mc['urlmode'] ? "category/".$cat->id() : "category.php?id=".$cat->id());
-		
-		$rtn .= ($rtn !='' ? " &raquo; " : "")."<a href='$link'>".$cat->name()."</a>";
-		return $rtn;
-		
 	}
 	
 	/**
@@ -521,7 +537,7 @@ class DTFunctions
 
         $db->queryF("DELETE FROM ".$db->prefix("dtrans_meta")." WHERE `type`='$type' AND id_element=$id");
 
-        if(empty($metas)) return false;
+        if(empty($metas)) return true;
 
         $sql = "INSERT INTO ".$db->prefix("dtrans_meta")." (`type`,`id_element`,`name`,`value`) VALUES ";
         foreach($metas as $meta){
@@ -537,25 +553,44 @@ class DTFunctions
     /**
      * Get featured items
      * @param int Allows to select items from a specific category
-     * @param bool Determines if items will be assigned to a smarty variable
      * @param string Smarty varibale name. Useful when assign is true
+     * @param string Type of items (all, featured, recent, daily, rated, updated
      * @return array
      */
-    public function featured_items($cat = 0, $assign = true, $var = 'featured_items'){
+    public function get_items($cat = 0, $type='all', $limit=10){
         global $xoopsTpl, $mc;
-
-        // Descargas destacadas
-        if($assign){
-            $xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtransport'));
-            $xoopsTpl->assign('lang_incatego', __('In <a href="%s">%s</a>','dtransport'));
-            $xoopsTpl->assign('show_featured', $mc['dest_download']);
-        }
 
         $items = array();
         $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-        if($cat>0){
+        switch($type){
+            case 'featured':
+                $filter = "a.approved=1 AND a.featured=1";
+                $order = "ORDER BY RAND()";
+                break;
+            case 'recent':
+                $filter = "a.approved=1";
+                $order = "ORDER BY a.created DESC";
+                break;
+            case 'daily':
+                $filter = "a.approved=1 AND a.daily=1";
+                $order = "ORDER BY RAND()";
+                break;
+            case 'rated':
+                $filter = "a.approved=1";
+                $order = "ORDER BY a.rating DESC";
+                break;
+            case 'updated':
+                $filter = "a.approved=1";
+                $order = "ORDER BY a.modified DESC";
+                break;
+            default:
+                $filter = '';
+                $order = "ORDER BY created DESC";
+                break;
+        }
 
+        if($cat>0){
             // Categories under current category
             $categos = array();
             $this->categoryTreeId($categos, $cat);
@@ -563,16 +598,16 @@ class DTFunctions
             $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat
                     FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
                     JOIN ".$db->prefix("dtrans_categos")." AS c
-                    WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND featured=1 AND c.id_cat=b.cat
+                    WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND $filter AND c.id_cat=b.cat
                     GROUP BY b.soft
-                    ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+                    $order LIMIT 0,$limit";
         } else {
             $sql = "SELECT a.*, c.name as namecat, c.id_cat
                     FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
                     JOIN ".$db->prefix("dtrans_categos")." AS c
-                    WHERE a.approved='1' AND a.featured='1' AND a.id_soft=b.soft AND c.id_cat=b.cat
+                    WHERE $filter AND a.id_soft=b.soft AND c.id_cat=b.cat
                     GROUP BY b.soft
-                    ORDER BY RAND() LIMIT 0,$mc[limit_destdown]";
+                    $order LIMIT 0,$limit";
         }
 
         $result = $db->query($sql);
@@ -582,59 +617,52 @@ class DTFunctions
             $ocat = new DTCategory($row['id_cat']);
             $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat'], 'categorylink'=>$ocat->permalink()));
         }
-
-        if($assign)
-            $xoopsTpl->assign($var, $items);
 
         return $items;
     }
 
     /**
-     * Get recent items
+     * Get items by tag(s)
      */
-    public function recent_items($cat = 0, $assign = true, $var = 'recent_items'){
-        global $xoopsTpl, $mc;
+    public function items_by_tags($tags, $exclude=0, $order='RAND()', $start=0, $limit=10){
 
-        $items = array();
+        if(!is_array($tags) AND $tags<=0)
+            return;
+
+        if(!is_array($tags))
+            $tags = array($tags);
+
         $db = XoopsDatabaseFactory::getDatabaseConnection();
-
-        if($assign){
-            $xoopsTpl->assign('lang_comments', __('%u Comments','dtransport'));
-        }
-
-        if($cat>0){
-
-            // Categories under current category
-            $categos = array();
-            $this->categoryTreeId($categos, $cat);
-
-            $sql = "SELECT a.*, b.*, c.name AS namecat, c.id_cat FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
-                    JOIN ".$db->prefix("dtrans_categos")." AS c
-                    WHERE b.cat IN(".implode(",",$categos).") AND a.id_soft=b.soft AND a.approved=1 AND c.id_cat=b.cat
-                    GROUP BY b.soft
-                    ORDER BY a.created DESC LIMIT 0,$mc[limit_recents]";
-        } else {
-            $sql = "SELECT a.*, c.name as namecat, c.id_cat
-                    FROM ".$db->prefix("dtrans_software")." AS a, ".$db->prefix("dtrans_catsoft")." AS b
-                    JOIN ".$db->prefix("dtrans_categos")." AS c
-                    WHERE approved='1' AND a.id_soft=b.soft AND c.id_cat=b.cat
-                    GROUP BY b.soft
-                    ORDER BY modified DESC LIMIT 0,".($mc['limit_recents']>0 ? $mc['limit_recents'] : '10');
-        }
+        $tagst = $db->prefix('dtrans_softtag');
+        $softt = $db->prefix('dtrans_software');
+        $sql = "SELECT s.* FROM $softt AS s, $tagst AS t WHERE t.id_tag IN (".implode(",", $tags).") AND t.id_soft!=$exclude AND s.id_soft=t.id_soft GROUP BY t.id_soft ORDER BY $order LIMIT $start, $limit";
 
         $result = $db->query($sql);
+        $items = array();
         while ($row = $db->fetchArray($result)){
             $item = new DTSoftware();
             $item->assignVars($row);
-            $ocat = new DTCategory($row['id_cat']);
-            $items[] = array_merge($this->createItemData($item), array('category'=>$row['namecat'],'categoryid'=>$row['id_cat'], 'categorylink'=>$ocat->permalink()));
+            $items[] = $this->createItemData($item);
         }
-
-        if($assign)
-            $xoopsTpl->assign($var, $items);
 
         return $items;
 
     }
-	
+
+    /**
+     * Envia un encabezado statuis 404 al navegador
+     */
+    /**
+     * Generate an 404 error
+     */
+    function error_404(){
+        header("HTTP/1.0 404 Not Found");
+        if (substr(php_sapi_name(), 0, 3) == 'cgi')
+            header('Status: 404 Not Found', TRUE);
+        else
+            header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
+
+        echo "<h1>".__('ERROR 404. Document not Found','docs')."</h1>";
+        die();
+    }
 }

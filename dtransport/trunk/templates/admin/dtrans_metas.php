@@ -11,7 +11,7 @@
             <select name="selname" id="meta-sel-name">
                 <option value=""><?php _e('Select field...','dtransport'); ?></option>
                 <?php foreach($metaNames as $meta): ?>
-                <option value="<?php echo $meta['name']; ?>"><?php echo $meta['name']; ?></option>
+                <option value="<?php echo $meta; ?>"><?php echo $meta; ?></option>
                 <?php endforeach; ?>
             </select>
             <a href="#" id="new-meta-name" style="display: block;"><?php _e('New Field','dtransport'); ?></a>

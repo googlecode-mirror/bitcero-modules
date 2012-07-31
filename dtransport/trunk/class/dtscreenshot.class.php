@@ -10,7 +10,11 @@
 
 class DTScreenshot extends RMObject
 {
-	
+
+    /**
+     * @param string Stores the base url for screenshot
+     */
+    private $url = '';
 
 	function __construct($id=null){
 
@@ -27,7 +31,8 @@ class DTScreenshot extends RMObject
 			$this->unsetNew();
 		}
 
-	
+        $this->url = XOOPS_UPLOAD_URL.'/screenshots/'.date('Y', $this->date()).'/'.date('m',$this->date()).'/';
+
 	}
 
 
@@ -62,6 +67,8 @@ class DTScreenshot extends RMObject
 		return $this->setVar('image',$image);
 	}
 
+
+
 	/**
 	* @desc Número de accesos a la imagen
 	**/
@@ -94,6 +101,15 @@ class DTScreenshot extends RMObject
 	public function setSoftware($software){
 		return $this->setVar('id_soft',$software);
 	}
+
+    public function url($type = ''){
+
+        if($this->url=='')
+            $this->url = XOOPS_UPLOAD_URL.'/screenshots/'.date('Y', $this->date()).'/'.date('m',$this->date()).'/';
+
+        return $this->url.($type=='ths' ? 'ths/' : '').$this->image();
+
+    }
 
 	
 	public function save(){
