@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset=utf-8>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+        <!-- link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' -->
         <?php
         
         !defined('RMCLOCATION') ? define('RMCLOCATION', '') : true;
@@ -32,7 +32,6 @@
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.window.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/designia.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="<?php echo $rm_theme_url; ?>/js/jquery.tablesorter.min.js"></script>
 
