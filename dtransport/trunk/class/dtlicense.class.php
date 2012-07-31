@@ -40,6 +40,14 @@ class DTLicense extends RMObject
 		return $this->setVar('name',$name);
 	}
 
+    public function nameId(){
+        return $this->getVar('nameid');
+    }
+
+    public function setNameId($val){
+        return $this->setVar('nameid',$val);
+    }
+
 	public function link(){
 		return $this->getVar('link');
 	}
@@ -55,7 +63,17 @@ class DTLicense extends RMObject
 	public function setType($type){
 		return $this->setVar('type',$type);
 	}
-	
+
+    public function permalink(){
+        $rmu = RMUtilities::get();
+        $mc = $rmu->module_config('dtransport');
+
+        if($mc['permalinks']){
+            return XOOPS_URL.'/'.trim($mc['htbase'], '/').'/license/'.$this->nameId().'/';
+        } else {
+            return XOOPS_URL.'/modules/dtransport/index.php?p=license&amp;id='.$this->id();
+        }
+    }
 
 	public function save(){
 		if ($this->isNew()){

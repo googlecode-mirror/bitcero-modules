@@ -26,7 +26,7 @@
 /**
 * @desc Clase para el manejo de estadísticas
 */
-class DTStatistics extends EXMObject
+class DTStatistics extends RMObject
 {
 	function __construct($id = null){
 		$this->db =& XoopsDatabaseFactory::getDatabaseConnection();

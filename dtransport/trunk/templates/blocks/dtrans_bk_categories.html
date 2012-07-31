@@ -1,0 +1,5 @@
+<ul class="dt_cats_block">
+<{foreach item=cat from=$block.categories}>
+    <li style="padding-left: <{$cat.jumps*5}>px;<{if $cat.jumps==0}> font-weight: bold;<{/if}>"><a href="<{$cat.link}>"><{$cat.name}></a></li>
+<{/foreach}>
+</ul>

@@ -9,6 +9,7 @@
 // --------------------------------------------------------------
 
 // Cadenas para el encabezado
+/*
 define('_MS_DT_MINE',__('Mis Descargas','dtransport'));
 define('_MS_DT_SUBMIT',__('Enviar Descarga','dtransport'));
 define('_MS_DT_SEARCH',__('Buscar','dtransport'));
@@ -379,3 +380,4 @@ switch(DT_LOCATION){
 		break;
 		
 }
+*/

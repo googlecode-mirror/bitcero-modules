@@ -41,7 +41,25 @@ class DTPlatform extends RMObject
 	public function setName($name){
 		return $this->setVar('name',$name);
 	}
-	
+
+    public function nameId(){
+        return $this->getVar('nameid');
+    }
+
+    public function setNameId($val){
+        return $this->setVar('nameid',$val);
+    }
+
+    public function permalink(){
+        $rmu = RMUtilities::get();
+        $mc = $rmu->module_config('dtransport');
+
+        if($mc['permalinks']){
+            return XOOPS_URL.'/'.trim($mc['htbase'], '/').'/platform/'.$this->nameId().'/';
+        } else {
+            return XOOPS_URL.'/modules/dtransport/index.php?p=platform&amp;id='.$this->id();
+        }
+    }
 
 	public function save(){
 		if ($this->isNew()){

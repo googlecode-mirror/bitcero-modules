@@ -133,6 +133,9 @@ function saveLicences($edit=0){
 		die();
 	}
 
+    $tc = TextCleaner::getInstance();
+    $nameid = $tc->sweetstring($name);
+
     $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($edit){
@@ -150,7 +153,7 @@ function saveLicences($edit=0){
 		}
 
 		//Comprueba que la licencia no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_licences')." WHERE name='$name' AND id_lic<>".$lc->id();
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_licences')." WHERE (name='$name' OR nameid='$nameid') AND id_lic<>".$lc->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('licenses.php?action=edit&id='.$id."&name=$name&url=$url", __('Another licence with same name already exists!','dtransport'),1);	
@@ -161,7 +164,7 @@ function saveLicences($edit=0){
 	}else{
 
 		//Comprueba que la licencia no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_licences')." WHERE name='$name'";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_licences')." WHERE name='$name' OR nameid='$nameid'";
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0){
 			redirectMsg('licenses.php', __('Another licence with same name already exists!','dtransport'),1);	
@@ -172,6 +175,7 @@ function saveLicences($edit=0){
 	}
 
 	$lc->setName($name);
+    $lc->setNameId($nameid);
 	//Verificamos si se proporcionó una url correcta
 	$lc->setLink($url);
 	$lc->setType($type);

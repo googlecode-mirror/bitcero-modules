@@ -1,48 +1,232 @@
 <{include file="db:dtrans_header.html"}>
-<div id="dtLocationBar">
-	<{$dt_location}>
-</div>
-<!-- Nombre del Elemento -->
-<h1>
+
+<h1 class="dt_item_name" xmlns="http://www.w3.org/1999/html">
 	<{$item.name}> <span><{$item.version}></span>
 	<{if $item.new}>
-		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" alt="<{$lang_new}>" align="top" />
+		<sup><{$lang_new}></sup>
 	<{elseif $item.updated}>
-		<img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" alt="<{$lang_updateda}>" align="top" />
+        <sup><{$lang_updated}></sup>
 	<{/if}>
 </h1>
-<!-- // Nombre -->
-
-<!-- Opciones de Navegación del Elemento -->
-<div class="dtShadow dtMargin10">
-<ul id="dtItemOptions">
-	<li class="first<{if $dtrans_option=='details'}> current<{/if}>"><a class="general" href="<{$item.link}>"><{$lang_generald}></a></li>
-	<{if $screens_count>0}><li<{if $dtrans_option=='images'}> class="current"<{/if}>><a class="pantallas" href="<{$item.slink}>"><{$lang_screensnum}></a></li><{/if}>
-	<li<{if $dtrans_option=='comments'}> class="current"<{/if}>><a class="comments" href="<{$item.clink}>"><{$lang_comsnum}></a></li>
-	<{if $features_count>0}><li<{if $dtrans_option=='features'}> class="current"<{/if}>><a class="features" href="<{$item.flink}>"><{$lang_featuresnum}></a></li><{/if}>
-	<{if $logs_count>0}><li<{if $dtrans_option=='logs'}> class="current"<{/if}>><a class="logs" href="<{$item.llink}>"><{$lang_logsnum}></a></li><{/if}>
-</ul>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+<div id="dt-categos">
+    <ul>
+        <li><strong><{$lang_published}></strong></li>
+        <{foreach item=cat from=$item.categories}>
+        <li><a href="<{$cat.link}>"><{$cat.name}></a></li>
+        <{/foreach}>
+    </ul>
 </div>
-<!-- // Opciones de Navegación -->
+<div class="dt_general_data">
+    <div class="dt_table">
+        <div class="dt_row">
+            <div class="dt_cell">
+                <a href="<{$item.image}>" target="_blank" class="item-images"><img src="<{$item.thumbnail}>" alt="<{$item.name}>" /></a>
+            </div>
+            <div class="dt_cell">
+                <div class="dt_table dt_item_details">
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_author}></div>
+                        <div class="dt_cell"><a href="<{$item.author.url}>"><{$item.author.name}></a></div>
+                    </div>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_version}></div>
+                        <div class="dt_cell"><{$item.version}></div>
+                    </div>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_createdon}></div>
+                        <div class="dt_cell"><{$item.created}></div>
+                    </div>
+                    <{if $item.updated}>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_updatedon}></div>
+                        <div class="dt_cell"><{$item.update}></div>
+                    </div>
+                    <{/if}>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_langs}></div>
+                        <div class="dt_cell"><{$item.langs}></div>
+                    </div>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_platforms}></div>
+                        <div class="dt_cell">
+                            <{foreach item=os from=$item.platforms}>
+                            <span><a href="<{$os.link}>"><{$os.name}></a></span>
+                            <{/foreach}>
+                        </div>
+                    </div>
+                    <div class="dt_row">
+                        <div class="dt_cell"><{$lang_license}></div>
+                        <div class="dt_cell">
+                            <{foreach item=lic from=$item.licenses}>
+                            <span><a href="<{$lic.link}>"><{$lic.name}></a></span>
+                            <{/foreach}>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dt_cell ratings">
+                <label><{$lang_siterate}></label>
+                <div class="dt-rating-coint"><{$item.siterate}></div>
 
-<{if $dtrans_option=='details'}>
-	<{include file="db:dtrans_itemdetails.html"}>
-<{elseif $dtrans_option=='images'}>
-	<{include file="db:dtrans_itemscreens.html"}>
-<{elseif $dtrans_option=='features'}>
-	<{include file="db:dtrans_features.html"}>
-<{elseif $dtrans_option=='logs'}>
-	<{include file="db:dtrans_logs.html"}>
-<{elseif $dtrans_option=='comments'}>
-	<{include file="db:dtrans_comments.html"}>
+                <label><{$lang_rateuser}></label>
+                <div class="dt-rating-coint"><span><{$item.rating}></span> / <span><{$lang_votes|sprintf:$item.votes}></span></div><br /><br />
+                <{if $item.download}>
+                <a href="<{$item.download}>" class="dt_button"><{$lang_downnow}></a>
+                <{/if}>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="head"><{$lang_screenshots}></div>
+<div id="dt-screens-row">
+    <div class="dt_scroller">
+        <div class="container">
+            <div style="width: <{$screens_count*56}>px;">
+            <{foreach item=img from=$item.screens}>
+            <a href="<{$img.image}>" rel="screenshots" class="item-images"><img src="<{$img.ths}>" alt="<{$img.title}>" /></a>
+            <{/foreach}>
+            </div>
+        </div>
+        <img src="<{$dt_img_url}>/images/left.png" alt="<{$lang_backward}>" class="dt_backward control" />
+        <img src="<{$dt_img_url}>/images/right.png" alt="<{$lang_forward}>" class="dt_forward control" />
+    </div>
+</div>
+<div id="dt-tags">
+    <ul>
+        <li><strong><{$lang_tags}></strong></li>
+        <{foreach item=tag from=$item.tags}>
+        <li><a href="<{$tag.link}>"><{$tag.name}></a></li>
+        <{/foreach}>
+    </ul>
+</div>
+
+<div id="dt-home-tabs">
+    <ul>
+        <li class="details selected"><{$lang_details}></li>
+        <li class="options"><{$lang_downopts}></li>
+        <li class="logs"><{$lang_logs}></li>
+    </ul>
+</div>
+
+<!-- Item Details -->
+<div id="dt-item-details">
+    <{$item.description}>
+
+    <div id="dt-item-features">
+        <h3><{$lang_features}></h3>
+        <div class="dt_table">
+            <div class="dt_row">
+                <{assign var=col value=1}>
+                <{foreach item=feat from=$item.features}>
+                <{if $col>=3}><{assign var=col value=1}></div><div class="dt_row"><{/if}>
+                <div class="dt_cell">
+                    <h5><a href="<{$xoops_url}>/d/feature/<{$feat.id}>/"><{$feat.title}></a></h5>
+                    <{$feat.content|truncate:200:'...':true}>
+                </div>
+                <{assign var=col value=$col+1}>
+                <{/foreach}>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="dt-item-options">
+    <p><{$lang_choose}></p>
+    <{foreach item=group from=$item.filegroups}>
+    <{if $group.files}>
+    <h5><{$group.name}></h5>
+    <div class="dt_table">
+        <div class="dt_row head">
+            <div class="dt_cell">
+                <{$lang_title}>
+            </div>
+            <div class="dt_cell">
+                <{$lang_size}>
+            </div>
+            <div class="dt_cell">
+                <{$lang_hits}>
+            </div>
+            <div class="dt_cell">
+                &nbsp;
+            </div>
+        </div>
+        <{foreach item=file from=$group.files}>
+        <div class="dt_row">
+            <div class="dt_cell">
+                <a href="<{$file.link}>"><{$file.title}></a>
+            </div>
+            <div class="dt_cell">
+                <{$file.size}>
+            </div>
+            <div class="dt_cell">
+                <{$file.hits}>
+            </div>
+            <div class="dt_cell">
+                <a href="<{$file.link}>">Download</a>
+            </div>
+        </div>
+        <{/foreach}>
+    </div>
+    <{/if}>
+    <{/foreach}>
+</div>
+
+<div id="dt-item-logs">
+    <ul>
+    <{foreach item=log from=$item.logs}>
+        <li>
+            <h5><{$log.title}></h5>
+            <{$log.content}>
+        </li>
+    <{/foreach}>
+    </ul>
+</div>
+
+<!-- Descargas relacionadas -->
+<{if $related_items}>
+<div class="related_items">
+    <h2><{$lang_related}></h2>
+    <div class="dt_table">
+        <div class="dt_row">
+            <{assign var="cols" value=1}>
+            <{foreach item=item from=$related_items}>
+                <{if $cols>2}>
+                <{assign var="cols" value=1}>
+                </div>
+                <div class="dt_row">
+                <{/if}>
+                <div class="dt_cell">
+                    <a href="<{$item.link}>"><img src="<{$item.image}>" alt="<{$item.name}>" /></a>
+                </div>
+                <div class="dt_cell">
+                    <strong><a href="<{$item.link}>"><{$item.name}></a></strong><br />
+                    <a href="<{$item.link}>" class="dt_button_small"><{$lang_download}></a><br />
+                    <p><{$item.description}></p>
+                    <{$item.siterate}>
+                </div>
+                <{assign var="cols" value=$cols+1}>
+            <{/foreach}>
+        </div>
+    </div>
+</div>
 <{/if}>
 
-
-<!-- Enlces Descargar Opinar -->
-<div class="dtDownOpine dtMargin10">
-	<{if $can_download}><a href="<{$item.dlink}>" class="download"><{$lang_download}></a><{/if}>
-	<a href="<{$item.clink}>" class="comment"><{$lang_comment}></a>
+<!-- Descargas del día -->
+<{if $daily_items}>
+<div id="daily-items">
+    <h2><{$lang_daydown}></h2>
+    <div class="dt_table">
+        <div class="dt_row">
+            <{foreach item=item from=$daily_items}>
+            <div class="dt_cell day_item" style="width: <{$daily_width}>%;">
+                <a href="<{$item.link}>" title="<{$item.name}>"><img src="<{$item.image}>" alt="<{$item.name}>" /></a>
+                <a href="<{$item.link}>" class="dt_button_small"><{$lang_download}></a><br />
+                <a href="<{$item.link}>"><{$item.name}></a><br />
+                <{$item.siterate}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
 </div>
-<!-- // Enlaces descargar opinar -->
+<{/if}>

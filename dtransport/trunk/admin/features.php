@@ -120,7 +120,7 @@ function dt_form_features($edit=0){
 	$form->addElement(new RMFormText(__('Short name','dtransport'), 'nameid', 50, 200, $edit ? $ft->nameId() : ''));
 	$form->addElement(new RMFormEditor(__('Feature content','dtransport'),'content','90%','350px',$edit ? $ft->content() : ''),true);
 
-    $functions->meta_form('feat', $ft->id(), $form);
+    $functions->meta_form('feat', $edit ? $ft->id() : 0, $form);
 
 	$form->addElement(new RMFormHidden('action',$edit ? 'saveedit' : 'save'));
 	$form->addElement(new RMFormHidden('id',$id));
@@ -138,9 +138,6 @@ function dt_form_features($edit=0){
 
 	xoops_cp_footer();
 }
-
-
-
 
 /**
 * @desc Almacena la característica en la base de datos

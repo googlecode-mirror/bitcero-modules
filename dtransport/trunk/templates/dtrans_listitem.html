@@ -1,33 +1,16 @@
-	<tr align="center" class="<{cycle values="even dtEven, odd dtOdd"}><{if $item.featured}> dtFeatured<{/if}>">
-			<td>
-			<{if $item.img!=''}><img src="<{$item.img}>" alt="<{$item.name}>" /><{else}>&nbsp;<{/if}>
-			</td>
-			<td align="left">
-				<a href="<{$item.link}>" class="dtListName"><{$item.name}></a>
-				<{if $item.is_new}><img src="<{$dtrans_url}>/images/<{$xoops_language}>/new.png" align="top" alt="New!" /><{elseif $item.is_updated}><img src="<{$dtrans_url}>/images/<{$xoops_language}>/updated.png" align="top" alt="Updated!" /><{/if}>
-				<{if $item.featured}><img src="<{$dtrans_url}>/images/<{$xoops_language}>/featured.png" alt="Featured" align="top" /> <{/if}><br />
-				<p class="desc"><{$item.desc}></p>
-				<span>
-					<strong><{$lang_lic}></strong> <{$item.lics}><br />
-					<strong><{$lang_os}></strong> <{$item.os}><br />
-					<strong><{$lang_created}></strong> <{$item.created}>
-					<{if $item.modified!=''}>
-						<br /><strong><{$lang_modified}></strong> <{$item.modified}>
-					<{/if}>
-				</span>
-			</td>
-			<td>
-				<{$lang_total}><br />
-				<strong><{$item.downs}></strong>
-			</td>
-			<td class="dtListRating">
-			<{$lang_ratesite}><br /><{$item.siterate}><br />
-			<{$lang_rateusers}><br />
-			<span class="dtListRateUsers" style="color: #<{if $item.rating>7}>99CC00<{elseif $item.rating>4}>FFCC00<{else}>FF3300<{/if}>"><{$item.rating}></span></td>
-			<td align="left">
-				<{if $item.candownload}><a href="<{$item.dlink}>" class="download"><{$lang_download}></a><{/if}>
-				<{if $item.screens>0}>
-					<a href="<{$item.slink}>" class="screens"><{$lang_screens}></a>
-				<{/if}>
-			</td>
-		</tr>
+<div class="dt_row">
+    <div class="dt_cell">
+        <span class="category"><{$item.category}></span>
+        <span class="name"><a href="<{$item.link}>"><{$item.name}></a></span>
+        <p class="description"><{$item.description}></p>
+                <span class="ratecoms">
+                    <{$item.siterate}>
+                    <img src="<{$dt_img_url}>/images/comments.png" alt="" title="<{$lang_comments|sprintf:$item.comments}>" />
+                    <span><{$item.comments}></span>
+                </span>
+    </div>
+    <div class="dt_cell">
+        <a href="<{$item.link}>" class="dt_button"><{$lang_download}></a>
+        <span class="langs"><{$item.language}></span>
+    </div>
+</div>

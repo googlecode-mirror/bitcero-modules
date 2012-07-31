@@ -1,80 +1,63 @@
 <{include file="db:dtrans_header.html"}>
 
-<{if $show_daydowns}>
-<div class="dtShadow dtMargin10">
-<h2><{$lang_daydown}></h2>
-<div id="dtDayDowns">
-	<div class="dtListDay">
-		<{foreach item=item from=$daily}>
-			<div class="dtDailyItem">
-				<div class="dtDownload"><{$item.rating}><br />
-				<a href="<{$item.dlink}>"><{$lang_download}></a></div>
-				<{if $item.img!=''}><img src="<{$xoops_url}>/uploads/dtransport/ths/<{$item.img}>" class="dtDailyImg" alt="<{$item.name}>" /><{/if}>
-				<a class="dtDailyName" href="<{$item.link}>"><{$item.name}></a>
-				<span><{$item.desc}></span><br />
-				<a href="<{$item.link}>"><{$lang_readmore}></a>
-			</div>
-		<{/foreach}>
-	</div>
-</div>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
-</div>
-<{/if}>
-
-<{if $show_featured}>
+<{if $featured_items}>
 <{include file="db:dtrans_featlist.html"}>
 <{/if}>
 
-
-<!-- Descargas Recientes -->
 <div id="dt-home-tabs">
     <ul>
-        <li class="selected"><{$lang_recents}></li>
-        <li><{$lang_bestrated}></li>
-        <li><{$lang_updated}></li>
+        <li class="recents selected"><{$lang_recents}></li>
+        <li class="rated"><{$lang_bestrated}></li>
+        <li class="updated"><{$lang_updated}></li>
     </ul>
 </div>
 
-<div id="dt-recents" class="dt_tabs_container">
+<!-- Descargas Recientes -->
+<div id="recents-items" class="dt_items_container">
     <div class="dt_table">
         <{foreach item=item from=$recent_items}>
-        <div class="dt_row">
-            <div class="dt_cell">
-                <span class="category"><{$item.category}></span>
-                <span class="name"><a href="<{$item.link}>"><{$item.name}></a></span>
-                <p class="description"><{$item.description}></p>
-                <span class="ratecoms">
-                    <{$item.siterate}>
-                    <img src="<{$dt_url}>/images/comments.png" alt="" title="<{$lang_comments|sprintf:$item.comments}>" />
-                    <span><{$item.comments}></span>
-                </span>
-            </div>
-            <div class="dt_cell">
-                <a href="<{$item.link}>" class="dt_button"><{$lang_download}></a>
-                <span class="langs"><{$item.language}></span>
-            </div>
-        </div>
+        <{include file="db:dtrans_listitem.html"}>
         <{/foreach}>
     </div>
 </div>
 
-<table class="dtOuter" cellpadding="0" cellspacing="0" border="0">
-	<tr class="head dtHead">
-		<td>&nbsp;</td>
-		<td><{$lang_info}></td>
-		<td align="center"><{$lang_downs}></td>
-		<td align="center"><{$lang_rate}></td>
-		<td>&nbsp;</td>
-	</tr>
-	<{foreach item=item from=$recents}>
-		<{include file="db:dtrans_listitem.html"}>
-	<{/foreach}>
-</table>
-<img src="<{$dtrans_url}>/images/shadowleft.png" alt="" class="dtShadowLeft" />
-<img src="<{$dtrans_url}>/images/shadowright.png" alt="" class="dtShadowRight" />
+<!-- Mejor valoradas -->
+<div id="rated-items" class="dt_items_container">
+    <div class="dt_table">
+        <{foreach item=item from=$rated_items}>
+        <{include file="db:dtrans_listitem.html"}>
+        <{/foreach}>
+    </div>
+</div>
 
-<!-- /Descargas Recientes -->
+<!-- Actualizadas recientemente -->
+<div id="updated-items" class="dt_items_container">
+    <div class="dt_table">
+        <{foreach item=item from=$updated_items}>
+        <{include file="db:dtrans_listitem.html"}>
+        <{/foreach}>
+    </div>
+</div>
+
+<!-- Descargas del día -->
+<{if $daily_items}>
+<div id="daily-items">
+    <h2><{$lang_daydown}></h2>
+    <div class="dt_table">
+        <div class="dt_row">
+            <{foreach item=item from=$daily_items}>
+            <div class="dt_cell day_item" style="width: <{$daily_width}>%;">
+                <a href="<{$item.link}>" title="<{$item.name}>"><img src="<{$item.image}>" alt="<{$item.name}>" /></a>
+                <a href="<{$item.link}>" class="dt_button_small"><{$lang_download}></a><br />
+                <a href="<{$item.link}>"><{$item.name}></a><br />
+                <{$item.siterate}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+</div>
+<{/if}>
+
 
 <!-- Categorías -->
 <h2><{$lang_categos}></h2>

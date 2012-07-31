@@ -13,14 +13,12 @@ include '../../header.php';
 $mc = $xoopsModuleConfig;
 
 // Constantes del Módulo
-define('DT_PATH',XOOPS_ROOT_PATH.'/modules/dtransport');
-define('DT_URL',XOOPS_URL.'/modules/dtransport');
 $xoopsTpl->assign('dt_url', DT_URL);
-
-// Xoops Module Header
-$dtfunc = new DTFunctions();
+$xoopsTpl->assign('dt_img_url', XOOPS_URL.'/modules/dtransport');
 
 $dtfunc->checkAlert();
 
 $tpl = RMTemplate::get();
+
+$tpl->add_local_script('downloads.js', 'dtransport');
 

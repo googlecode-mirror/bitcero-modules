@@ -27,26 +27,56 @@ a.dt_button{
     box-shadow: 0 2px 2px #ccc;
 
 }
-a.dt_button:hover{
-    background-color: #ff4100;
+a.dt_button:hover{background-color: #ff4100;}
+a.dt_button_small{
+    display: inline-block;
+    padding: 6px 10px 6px 20px;
+    background-color: #ebebeb;
+    background-image: url(../images/bgoverlay.png), url(../images/download_small.png);
+    background-repeat: repeat-x, no-repeat;
+    background-position: center, 4px;
+    font-size: 0.9em;
+    color: #4d4d4d;
+    border-radius: 3px;
 }
+a.dt_button_small:hover{
+    background-color: #009900;
+    background-image: url(../images/bgoverlay.png), url(../images/download_small_white.png);
+    color: #fff;
+}
+
+/* HEADER */
+#dt-header{margin-bottom: 10px; overflow: hidden;}
+#dt-header form{margin: 0; padding: 0;}
+#dt-header form input{margin: 0;}
+#dt-header h1{margin: 0; float: left; border: 0;}
+#dt-header div{float: right; padding: 4px 0 0 0;}
+#dt-header ul{padding: 0; margin: 0; clear: both; border: 1px solid #ccc; background: #f2f2f2; overflow: hidden;}
+#dt-header ul li{list-style: none; float: left; margin-right: 2px; border-right: 1px solid #FFF;}
+#dt-header ul li a{display: block; padding: 8px 4px; border-right: 1px solid #CCC;}
 
 /* Featured downloads box */
 #dt-featured-downloads{
     overflow: hidden;
     line-height: 150%;
+    background: rgba(248, 255, 129, 0.12);
 }
-#dt-featured-downloads h2{
+#dt-featured-downloads h2,
+#daily-items h2,
+.dt_items_container h2,
+.related_items h2{
     font-size: 1.1em;
     font-weight: normal;
     padding: 4px;
     margin: 0;
     background: #ebebeb;
 }
-#dt-featured-downloads ul{list-style: none; display: table;}
+#dt-featured-downloads h2{background: rgba(255, 217, 73, 0.61); border-top: 2px solid rgb(188, 160, 56);}
+.dt_items_container h2{border-top: 2px solid #666;}
+#dt-featured-downloads ul{list-style: none; display: table; }
 #dt-featured-downloads ul li{overflow: hidden; margin-bottom: 5px;}
 #dt-featured-downloads ul li img.dt_picture{width: 100px;}
-#dt-featured-downloads ul li .image{width: 100px; padding: 5px 5px 5px 0;}
+#dt-featured-downloads ul li .image{width: 100px; padding: 5px 5px 5px 10px;}
 #dt-featured-downloads ul li span.name{display: block; font-weight: bold;}
 #dt-featured-downloads ul li span.category{display: block; margin-bottom: 5px; border-bottom: 1px dotted #ccc; padding: 0 0 4px 0;}
 #dt-featured-downloads .data{padding: 5px 0 5px 5px;}
@@ -60,6 +90,8 @@ a.dt_button:hover{
     background: #ebebeb;
     border-top: 2px solid #666;
     overflow: hidden;
+    margin-top: 10px;
+    box-shadow: inset 0 -1px 0px #CCC;
 }
 #dt-home-tabs ul{
     list-style: none;
@@ -84,27 +116,114 @@ a.dt_button:hover{
     margin-top: 0;
     margin-bottom: -1px;
     border-radius: 2px;
-    box-shadow: 0 0 2px #999;
+    box-shadow: -1px -1px 0px #ccc,1px -1px 0px #ccc;
 }
 
 /* rating */
 .dt-rating{
-    height: 12px;
-    width: 60px;
+    height: 15px;
+    width: 75px;
     background: url(../images/stargray.png) repeat-x left;
     display: inline-block;
 }
 .dt-rating .dt-rate-stars{
-    height: 12px;
+    height: 15px;
     background: url(../images/star.png) repeat-x left;
 }
 
-/* Recent items */
-#dt-recents .dt_row:nth-child(even) .dt_cell{background: #f2f2f2;}
-#dt-recents .dt_row .dt_cell{padding: 10px; border-bottom: 1px dotted #ccc;}
-#dt-recents .dt_row .dt_cell:last-child{text-align: center; padding-top: 10px;}
-#dt-recents{margin: 10px 0; line-height: 130%;}
-#dt-recents .category{display: block; font-size: 0.8em; color: #666;}
-#dt-recents .name{font-size: 1.1em; font-weight: bold; display: block;}
-#dt-recents .ratecoms{display: block; font-size: 0.85em;}
-#dt-recents .langs{font-size: 0.85em; display: block; padding: 3px; text-align: center;}
+/* Items list */
+.dt_items_container{margin-top: 10px;}
+.dt_items_container .dt_row:nth-child(even) .dt_cell{background: #f2f2f2;}
+.dt_items_container .dt_row .dt_cell{padding: 10px; border-bottom: 1px dotted #ccc;}
+.dt_items_container .dt_row .dt_cell:last-child{text-align: center; padding-top: 10px;}
+.dt_items_container{margin: 10px 0; line-height: 130%;}
+.dt_items_container .category{display: block; font-size: 0.8em; color: #666;}
+.dt_items_container .name{font-size: 1.1em; font-weight: bold; display: block;}
+.dt_items_container .ratecoms{display: block; font-size: 0.85em;}
+.dt_items_container .langs{font-size: 0.85em; display: block; padding: 3px; text-align: center;}
+.dt_items_container p{margin: 5px 0;}
+
+/* Day downloads */
+#daily-items,
+.related_items{margin: 10px 0; border-top: 2px solid #666;}
+#daily-items h2{background-color: #ebebeb;}
+#daily-items .day_item{padding: 10px; background: #fff;text-align: center;}
+#daily-items .day_item img{width: 80px; padding: 1px; border: 1px solid #CCC; display: block; margin: 0 auto;}
+#daily-items .day_item a:nth-child(n+3){display: inline-block; padding: 3px 0;font-weight: bold;}
+#daily-items .day_item a.dt_button_small{margin-top: 5px;}
+
+/* Home */
+#rated-items, #updated-items{display: none;}
+
+/* ITEM DETAILS */
+h1.dt_item_name{background: #fff; border-top: 2px solid #666; padding: 4px;margin-bottom: 0; border-bottom: 0;}
+h1.dt_item_name span{color: #000; font-weight: normal;}
+h1.dt_item_name sup{font-size: 0.5em;font-weight: normal;text-transform: uppercase;color: #ff3a11;}
+.dt_general_data{background: #f2f2f2;padding: 20px;}
+.dt_general_data .dt_cell{padding: 4px;}
+.ratings{text-align: center; line-height: 140%; font-size: 0.85em;}
+.ratings .dt-rating-coint{display: inline-block; width: 75px; border: 1px solid #CCC; padding: 4px; background-color: #FFF; border-radius: 3px; margin-bottom: 5px;}
+.ratings .dt-rating-coint span:first-child{font-weight: bold; color: #ff3a11;}
+.ratings .dt-rating-coint span:last-child{font-weight: bold; font-size: 0.7em;}
+.ratings label{font-weight: bold; display: block; padding: 4px;}
+.ratings .dt_button{text-transform: uppercase;}
+
+div.head{background: #ccc;color: #000; font-size: 0.8em; font-weight: bold;text-transform: uppercase;padding:4px;}
+#dt-screens-row{background: #ebebeb; padding: 7px; border-top: 1px solid #ccc; box-shadow: inset 0px 1px 1px #fff; height: 74px; }
+#dt-screens-row div.dt_scroller div div img{width: 70px; float: left; padding: 1px; border: 1px solid #999; margin-right: 2px;}
+#dt-screens-row div.dt_scroller{position:relative; padding: 0 20px;}
+#dt-screens-row div.dt_scroller div.container{overflow: hidden; width: auto; position: relative; display: block; height: 74px;}
+#dt-screens-row div.dt_scroller div{position: absolute;left: 0px; right: 0px; overflow: hidden;}
+#dt-screens-row div.dt_scroller img.control{position: absolute; top: 0; opacity: 0.2; cursor: pointer; top: 50%; margin-top: -27px;}
+#dt-screens-row div.dt_scroller img.dt_backward{left: 0;}
+#dt-screens-row div.dt_scroller img.dt_forward{right: 0;}
+
+/* Description and features */
+#dt-item-details{margin-top: 10px;}
+#dt-item-features h3{margin: 0 0 10px 0; padding: 0 0 5px 0; border-bottom: 1px solid #CCC;}
+#dt-item-features h5{margin: 0 0 5px 0; padding: 0 0 3px 0; border-bottom: 1px solid #CCC;}
+#dt-item-features .dt_row .dt_cell:first-child{padding: 0 10px 0 0;}
+#dt-item-features .dt_row .dt_cell:last-child{padding: 0 0 0 10px;}
+/* Download options */
+#dt-item-options{display: none;}
+#dt-item-options .dt_cell{padding: 4px 10px; text-align: center; border-bottom: 1px dotted #ccc;}
+#dt-item-options .dt_cell:first-child{text-align: left; font-weight: bold;}
+#dt-item-options h5{text-shadow: 1px 1px 1px #ccc; margin: 10px 0 10px 0; font-size: 1em; border-bottom: 1px solid #ccc; padding: 0 0 4px 0;}
+#dt-item-options .dt_row .dt_cell:nth-child(n+2){width: 100px;}
+#dt-item-options .dt_row .dt_cell:nth-child(2),
+#dt-item-options .dt_row .dt_cell:nth-child(3){font-size: 0.9em;}
+
+/* Logs */
+#dt-item-logs{display: none;}
+#dt-item-logs ul{list-style: none; padding: 0; margin: 0;}
+#dt-item-logs ul li{list-style: none;}
+#dt-item-logs ul h5{margin: 10px 0; font-size: 1.05em; border-bottom: 1px solid #ccc; padding: 0 0 4px 0;}
+#dt-item-logs ul li ul{padding: 0 0 0 20px; margin-left: 10px;}
+#dt-item-logs ul li ul li{padding: 2px 0; list-style: disc;}
+
+/* Tags */
+#dt-tags,#dt-categos{background: #dedede; overflow: hidden; padding: 0;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;box-shadow: inset 0 1px 1px #ebebeb; font-size: 0.9em;}
+#dt-tags ul,#dt-categos ul{list-style: none; padding: 0; margin: 0;}
+#dt-tags ul li,#dt-categos ul li{float: left; list-style: none; padding: 0px; border-right: 1px solid #ebebeb; margin: 0;}
+#dt-tags ul li:first-child strong{display: block; padding: 6px 4px 6px 24px; border-right: 1px solid #ccc; background: url(../images/tag.png) no-repeat 4px;}
+#dt-categos ul li:first-child strong{display: block; padding: 6px 4px 6px 24px; border-right: 1px solid #ccc; background: url(../images/categories.png) no-repeat 4px;}
+#dt-tags ul li a,#dt-categos ul li a{display: block; padding: 6px 4px; border-right: 1px solid #ccc; margin: 0;}
+
+/* Related downloads */
+.related_items{font-size: 0.9em; line-height: 140%;}
+.related_items .dt_row .dt_cell{border-bottom: 1px dotted #ccc;}
+.related_items .dt_row .dt_cell:nth-child(odd){padding: 10px 0;}
+.related_items .dt_row .dt_cell:nth-child(odd){width: 62px;}
+.related_items .dt_row .dt_cell:nth-child(even){width: 45%;}
+.related_items .dt_row .dt_cell:nth-child(odd) img{width: 60px; padding: 1px; border: 1px solid #999;}
+.related_items .dt_row .dt_cell:nth-child(2){padding: 10px; border-right: 1px dotted #ccc;}
+.related_items .dt_row .dt_cell:nth-child(3){padding-left: 10px;}
+.related_items .dt_row .dt_cell:nth-child(4){padding: 10px 0 10px 10px;}
+.related_items .dt_row .dt_cell:nth-child(even) a:nth-child(1){font-size: 1.1em; display: inline-block; margin-bottom: 5px;}
+.related_items .dt_row .dt_cell:nth-child(even) p{margin: 5px 0;}
+
+/* Get file */
+#will-start{margin: 10px; background: #f2f2f2; padding: 20px; overflow: hidden;}
+#will-start img{width: 80px; float: left; margin: 0 10px 0 0; padding: 1px; border: 1px solid #ccc;}
+#will-start .message{display: block; font-size: 1.3em; margin: 10px 0;}
+#will-start .problems{display: block;}

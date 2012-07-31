@@ -2,7 +2,7 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Manage download files in XOOPS
+// Manage files for download in XOOPS
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
@@ -97,21 +97,15 @@ $modversion['templates'][] = array('file' => 'dtrans_header.html','description' 
 $modversion['templates'][] = array('file' => 'dtrans_listitem.html','description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_category.html','description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_item.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_itemscreens.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_itemdetails.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_features.html', 'description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_logs.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_comments.html', 'description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_download.html', 'description' => '');
+$modversion['templates'][] = array('file' => 'dtrans_getfile.html','description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_search.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_tags.html','description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_submit.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_mydownloads.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_screens.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_files.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createlogs.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_createfeatures.html', 'description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_featlist.html', 'description' => __('Template to show the featured items list','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_featlist.html', 'description' => __('Template to show the featured items list.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_listitems.html', 'description' => __('Template to show the list for selected items.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_explore.html', 'description' => __('Shows the items according to exploring parameters.','dtransport'));
 
 // Permalinks
 $modversion['config'][] = array(
@@ -123,6 +117,7 @@ $modversion['config'][] = array(
     'default' => 0,
     'options' => array('_MI_DT_MODEDEF' => 0, '_MI_DT_MODESHORT' => 1)
 );
+
 $modversion['config'][] = array(
     'name' => 'htbase',
     'title' => '_MI_DT_HTBASE',
@@ -132,15 +127,13 @@ $modversion['config'][] = array(
     'default' => '/modules/dtransport'
 );
 
-//Título
 $modversion['config'][] = array(
-    'name' => 'title',
-    'title' => '_MI_DT_TITLE',
-    'description' => '_MI_DT_DESCTITLE',
+    'name' => 'xpage',
+    'title' => '_MI_DT_XPAGE',
+    'description' => '',
     'formtype' => 'textbox',
-    'valuetype' => 'text',
-    'size' => 50,
-    'default' => ''
+    'valuetype' => 'int',
+    'default' => '10'
 );
 
 //Permitir envío de descargas
@@ -533,6 +526,16 @@ $modversion['config'][] = array(
     'size' => 5
 );
 
+// Retardo para iniciar descargas
+$modversion['config'][] = array(
+    'name' => 'pause',
+    'title' => '_MI_DT_PAUSE',
+    'description' => '_MI_DT_PAUSED',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 5
+);
+
 // Comentarios
 $modversion['hasComments'] = 1;
 $modversion['comments']['pageName'] = 'item.php';
@@ -566,6 +569,16 @@ $modversion['blocks'][] = array(
     'edit_func' => "dt_block_tags_edit",
     'template' => 'dtrans_bk_tags.html',
     'options' => array(100, 30, 1, 10, "Arial, Helvetica, sans-serif")
+);
+
+$modversion['blocks'][] = array(
+    'file' => 'dtrans_bk_categories.php',
+    'name' => __('Categories','dtransport'),
+    'description' => __('Show the categories tree for D-Transport','dtransport'),
+    'show_func' => "dt_block_categories",
+    'edit_func' => "dt_block_categories_edit",
+    'template' => 'dtrans_bk_categories.html',
+    'options' => array(0)
 );
 
 // Busqueda
