@@ -84,7 +84,7 @@ class RMImage extends RMObject
      */
     public function url($size=0){
 
-        if($size<=0 && $this->selected_size>0)
+        if($size<0 && $this->selected_size>0)
             $size = $this->selected_size;
 
         if($this->isNew()) return false;
@@ -113,9 +113,9 @@ class RMImage extends RMObject
         $this->get_sizes_data();
         $ps = 0; // Previous size
         $small = 0;
+        
         foreach($this->sizes as $k => $size){
             $ps = $ps==0?$size['width']:$ps;
-
             if($size['width']<$ps){
                 $ps = $size['width'];
                 $small = $k;
@@ -125,6 +125,23 @@ class RMImage extends RMObject
 
         return $this->url($small);
 
+    }
+    
+    /**
+    * Get all image versions with url
+    * @return array
+    */
+    public function get_all_versions(){
+        
+        if($this->isNew()) return false;
+        
+        $this->get_sizes_data();
+        $ret = array();
+        foreach($this->sizes as $k => $size){
+            $ret[$size['name']] = $this->url($k);
+        }
+        
+        return $ret;
     }
     
     public function save(){
