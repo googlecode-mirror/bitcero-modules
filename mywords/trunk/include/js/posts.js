@@ -378,6 +378,7 @@ $(document).ready( function($) {
         params += "&"+$("form#mw-post-publish-form").serialize();
         params += "&"+$("form#mw-post-categos-form").serialize();
         params += "&"+$("form#mw-post-tags-form").serialize();
+        params += "&"+$("form#frm-defimage").serialize();
         
         var blocker = '<div id="mw-blocker"></div><div id="mw-blocker-message"><img src="../images/wait.gif" alt="" /><br /><?php _e("Saving post...","mywords"); ?></div>';
         $("body").append(blocker);
