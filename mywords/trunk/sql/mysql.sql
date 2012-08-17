@@ -48,7 +48,7 @@ CREATE TABLE `mw_posts` (
   `reads` int(11) NOT NULL,
   `toping` TEXT NOT NULL,
   `pinged` TEXT NOT NULL,
-  `image` int(11) NOT NULL,
+  `image` varchar(20) NOT NULL,
   PRIMARY KEY  (`id_post`),
   KEY `shortname` (`shortname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
