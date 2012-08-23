@@ -31,24 +31,31 @@ div#bxpressOptions a.reply{
     font-size: 0.9em;
     font-weight: normal;
     text-align: right;
+    color: #999;
 }
 .bx_post_content{
     overflow: hidden;
     display: table;
     width: 100%;
     border-spacing: 1px;
+    border: 1px solid #CCC;
 }
 .bx_row{
     display: table-row;
 }
 .bx_post_content .bx_post_user{
     display: table-cell;
-    font-size: 0.9em;
     width: 150px;
+    font-size: 0.85em;
+    background: #ebebeb;
+    border-right: 1px solid #CCC;
+    padding: 4px;
 }
 .bx_post_content .bx_post_text{
     display: table-cell;
     padding: 0 10px;
+    background: #fff;
+    border-radius: 0 4px 4px 0;
 }
 dt, dd{
 	margin: 0;
