@@ -24,7 +24,7 @@ $xoopsLogger->activated = false;
             var t = this, tbId = ed.getParam('exmsystem_adv_toolbar','toolbar2');
             var moreHTML = '<img src="' + url + '/img/trans.gif" class="mceEXMmore mceItemNoResize" title="'+ed.getLang('exmsystem.exm_more_alt')+'" />';
             var nextpageHTML = '<img src="' + url + '/img/trans.gif" class="mceEXMnextpage mceItemNoResize" title="'+ed.getLang('exmsystem.exm_page_alt')+'" />';
-        
+            
             /*if ( getUserSetting('hidetb', '0') == '1' )
                     ed.settings.exmsystem_adv_hidden = 0;*/
             

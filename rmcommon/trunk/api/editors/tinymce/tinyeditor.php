@@ -46,7 +46,6 @@ class TinyEditor
     }
     
     public function remove_config($name){
-        
         if (empty($this->configuration)) return;
         
         unset($this->configuration[$name]);
@@ -54,7 +53,7 @@ class TinyEditor
     }
     
     public function get_js(){
-        global $exmConfig;
+
         $rtn = '<script language="javascript" type="text/javascript" src="'.RMCURL.'/api/editors/tinymce/tiny_mce.js"></script>
                 <script language="javascript" type="text/javascript">
                     tinyMCE.init({';
