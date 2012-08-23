@@ -234,7 +234,7 @@ switch($op){
                     }
                 }
 		
-		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', '90%', '400px', isset($quote) ? $quote : '', $type), true);
+		$form->addElement(new RMFormEditor(__('Post','bxpress'), 'msg', 'auto', '400px', isset($quote) ? $quote : ''), true);
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){

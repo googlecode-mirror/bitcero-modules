@@ -1,7 +1,7 @@
 <{include file="db:bxpress_header.html"}>
 <{include file="db:bxpress_announcements.html"}>
 <{foreach item=catego from=$categos}>
-<table class="outer" cellspacing="1" width="100%" style="margin-bottom: 10px;">
+<table class="outer bx_table" cellspacing="1" width="100%" style="margin-bottom: 10px;">
     <tr>
         <th colspan="5"><{$catego.title}></th>
     </tr>
@@ -13,7 +13,7 @@
     </tr>
     <{foreach item=forum from=$catego.forums}>
         <tr>
-        	<td width="26" align="center" valign="top" class="even"><img src="images/normal<{if $forum.last.new}>withnew<{/if}>.png" alt="" /></td>
+        	<td width="26" align="center" valign="top" class="even"><img src="<{$xoops_url}>/modules/bxpress/images/normal<{if $forum.last.new}>withnew<{/if}>.png" alt="" /></td>
             <td class="even"><strong><a href="<{$forum.link}>"><{$forum.name}></a></strong><br /><{$forum.desc}></td>
             <td align="center" class="odd" style="border-left: 1px solid #DADADA; border-right: 1px solid #DADADA;"><{$forum.topics}></td>
             <td align="center" class="odd" style="border-right: 1px solid #DADADA;"><{$forum.posts}></td>
