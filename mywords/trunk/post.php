@@ -109,18 +109,23 @@ $nav->target_url($post->permalink().($mc['permalinks']>1 ? 'page/{PAGE_NUM}/' : 
 $xoopsTpl->assign('post_navbar', $nav->render(true));
 
 // Post data
+
 $post_arr = array(
-    'id'    => $post->id(),
-    'title'    => $post->getVar('title'),
+    'id'        => $post->id(),
+    'title'     => $post->getVar('title'),
     'published' => sprintf(__('%s by %s','mywords'), MWFunctions::format_time($post->getVar('pubdate')), date('H:i',$post->getVar('pubdate')),'<a href="'.$editor->permalink().'">'.(isset($editor) ? $editor->getVar('name') : __('Anonymous','mywords'))."</a>"),
-    'text'    => $post->content(false, $page),
-    'cats'  => $post->get_categories_names(),
-    'tags'  => $tags_list,
+    'text'      => $post->content(false, $page),
+    'cats'      => $post->get_categories_names(),
+    'tags'      => $tags_list,
     'trackback' => $post->getVar('pingstatus') ? MWFunctions::get_url(true).$post->id() : '',
-    'meta'  => $post->get_meta('', false),
-    'time' => $post->getVar('pubdate'),
-    'image'             => $post->getImage($xoopsModuleConfig['post_imgs_size'])
+    'meta'      => $post->get_meta('', false),
+    'time'      => $post->getVar('pubdate'),
+    'image'     => $post->getImage($xoopsModuleConfig['post_imgs_size']),
+    'author'    => $editor->getVar('name'),
+    'alink'     => $editor->permalink()
 );
+
+
 
 // Plugins?
 $post_arr = RMEvents::get()->run_event('mywords.view.post', $post_arr, $post);
