@@ -369,6 +369,16 @@ $modversion['blocks'][] = array(
     'options' => "5|1|1|1|1"
 );
 
+$modversion['blocks'][] = array(
+    'file' => "custom.php",
+    'name' => __('Custom Block','rmcommon'),
+    'description' => __('Allows to create a block with custom content.','rmcommon'),
+    'show_func' => "rmc_bkcustom_show",
+    'edit_func' => "rmc_bkcustom_edit",
+    'template' => 'rmc_bk_custom.html',
+    'options' => ""
+);
+
 $amod = xoops_getActiveModules();
 if(in_array("rmcommon",$amod)){
     $plugins = RMFunctions::installed_plugins();

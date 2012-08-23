@@ -1,7 +1,7 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Red M�xico Common Utilities
+// Red México Common Utilities
 // A framework for Red México Modules
 // Author: Eduardo Cortes <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
@@ -122,7 +122,13 @@ function rmc_bkcomments_show($options){
 
 function rmc_bkcomments_edit($options){
     
-    $form = '</td></tr>';
+    $form = '';
+    
+    if(defined('RMCLOCATION')){
+        $form .= '<table><tr><td></td><td>';
+    }
+    
+    $form .= '</td></tr>';
     $form .= '<tr><td class="head">'.__('Number of Comments:','rmcommon').'</td><td class="odd">';
     $form .= '<input type="text" size="5" name="options[0]" value="'.$options[0].'" />';
     $form .= '<tr><td class="head">'.__('Show module name:','rmcommon').'</td><td class="odd">';
@@ -137,6 +143,10 @@ function rmc_bkcomments_edit($options){
     $form .= '<tr><td class="head">'.__('Show date:','rmcommon').'</td><td class="odd">';
     $form .= '<label><input type="radio" name="options[4]" value="1"'.($options[4]==1?' checked="checked"':'').' />'.__('Yes','rmcommon').'</label>';
     $form .= '<label><input type="radio" name="options[4]" value="0"'.($options[4]==0?' checked="checked"':'').' />'.__('No','rmcommon').'</label>';
+    
+    if(defined('RMCLOCATION')){
+        $form .= '</td></tr></table>';
+    }
     
     return $form;
     
