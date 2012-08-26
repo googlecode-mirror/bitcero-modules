@@ -314,7 +314,7 @@ class RMUtilities
             $img->load_from_params($default);
         }
 
-        $ret = '<div id="'.$name.'-container" class="rmimage_conainter">';
+        $ret = '<div id="'.$name.'-container" class="rmimage_container">';
         $ret .= '<div class="thumbnail">';
         if($default!='' && !$img->isNew()){
             $ret .= '<a href="'.$img->url().'" target="_blank"><img src="'.$img->get_smallest().'" /></a>';

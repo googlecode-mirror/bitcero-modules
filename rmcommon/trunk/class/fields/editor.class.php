@@ -142,7 +142,9 @@ class RMFormEditor extends RMFormElement
 		RMTemplate::get()->add_xoops_style('mce_editor.css','rmcommon');
 		RMTemplate::get()->add_local_script('editor.js','rmcommon','include');
 		RMTemplate::get()->add_local_script('quicktags.js','rmcommon','include');
-		RMTemplate::get()->add_head(TinyEditor::getInstance()->get_js());
+        RMTemplate::get()->add_script(RMCURL.'/api/editors/tinymce/tiny_mce.js');
+		RMTemplate::get()->add_head_script(TinyEditor::getInstance()->get_js());
+        
 		$rtn = "\n
 		<div class=\"ed-container\" id=\"ed-cont-".$this->getName()."\" style=\"width: $this->_width\">
         <div class=\"es-editor\" style=\"width: $this->_width;\">

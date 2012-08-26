@@ -31,6 +31,7 @@ include_once RMCPATH.'/class/fields/avatar.class.php';
 include_once RMCPATH.'/class/fields/textoptions.class.php';
 include_once RMCPATH.'/class/fields/formuser.class.php';
 include_once RMCPATH.'/class/fields/date.class.php';
+include_once RMCPATH.'/class/fields/formimage.class.php';
 include_once RMCPATH.'/api/editors/tinymce/tinyeditor.php';
 
 /**
@@ -475,7 +476,7 @@ class RMForm
      */
     public function display($js=true){
     	$form =& $this;
-	include RMTemplate::get_template('forms.php','rmcommon');
+	    include RMTemplate::get_template('forms.php','rmcommon');
         //echo $this->render($js);
     }
     /**

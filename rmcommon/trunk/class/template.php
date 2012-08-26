@@ -298,7 +298,6 @@ class RMTemplate
      * Get all head scripts
      */
     public function head_scripts(){
-
         $ret = '<script type="text/javascript">'."\n";
 
         foreach($this->tpl_hscripts as $script){

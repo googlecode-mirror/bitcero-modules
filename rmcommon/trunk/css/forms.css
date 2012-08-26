@@ -214,3 +214,64 @@ div.form_container label.hidden{
     background: #222;
     color: #666;
 }
+
+/* Images launcher */
+.rmimage_conainter{
+    text-align: center;
+}
+.rmimage_conainter img{
+    padding: 1px;
+    border: 1px solid #ccc;
+}
+
+.mgr_blocker{
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    background: #FFF;
+    top: 0; left: 0; right: 0; bottom: 0;
+    position: fixed;
+    display: none;
+}
+.imgmgr_container{
+    width: 750px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -350px;
+    border: 1px solid #999;
+    border-top: 0;
+    display: none;
+}
+.imgmgr_container .th{
+    border: 0;
+    position: relative;
+}
+.imgmgr_container .th span{
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 10px;
+    background: url(../../images/closeb.png) no-repeat center;
+    cursor: pointer;
+}
+.imgmgr_container iframe{
+    width: 100%;
+    margin: 0;
+}
+
+/* IMages Field */
+.rmimage_container{
+    padding: 10px;
+}
+.rmimage_container .thumbnail{
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.rmimage_container .thumbnail img{
+    padding: 1px;
+    border: 1px solid #CCC;
+}
