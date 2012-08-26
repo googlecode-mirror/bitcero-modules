@@ -56,9 +56,12 @@ class RMImage extends RMObject
         if(intval($p[0])<=0) return false;
 
         if($this->loadValues(intval($p[0]))) $this->unsetNew();
-
         $this->selected_size = intval($p[1]);
-        return true;
+        
+        $params[2] = $params[2]!='' ? urldecode($params[2]) : '';
+        $params[3] = $params[3]!='' ? urldecode($params[3]) : '';
+        
+        return $params;
 
     }
 
@@ -82,7 +85,7 @@ class RMImage extends RMObject
      * @param int Specific size to construct the url
      * @return string
      */
-    public function url($size=0){
+    public function url($size=-1){
 
         if($size<0 && $this->selected_size>0)
             $size = $this->selected_size;
@@ -90,7 +93,7 @@ class RMImage extends RMObject
         if($this->isNew()) return false;
 
         $this->get_sizes_data();
-
+        
         $url = XOOPS_UPLOAD_URL.'/'.date('Y', $this->getVar('date')).'/'.date('m',$this->getVar('date')).'/';
         if($size>=count($this->sizes)){
             $url .= $this->getVar('file');
@@ -101,7 +104,6 @@ class RMImage extends RMObject
 
         $url .= 'sizes/'.$info['filename'].'_'.$this->sizes[$size]['width'].'x'.(isset($this->sizes[$size]['height'])?$this->sizes[$size]['height']:'');
         $url .= '.'.$info['extension'];
-
         return $url;
 
     }

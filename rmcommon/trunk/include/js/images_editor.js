@@ -232,7 +232,7 @@ function insert_image(id,t,target,container){
 
     if(target!=undefined && target=='container'){
          //window.parent.$("#"+container+" .thumbnail").hide();
-        window.parent.$("#"+container+"-container .thumbnail").html('<a href="'+imgcontainer+'" target="_blank"><img src="'+th+'" /></a><input type="hidden" name="'+container+'" id="'+container+'" value="'+id+':'+sizeid+'" /><br /><a href="#" class="removeButton removeButton-'+container+'">Remove Image</a>');
+        window.parent.$("#"+container+"-container .thumbnail").html('<a href="'+imgcontainer+'" target="_blank"><img src="'+th+'" /></a><input type="hidden" name="'+container+'" id="'+container+'" value="'+id+':'+sizeid+':'+encodeURIComponent($("#image-link-"+id).val())+':'+encodeURIComponent($("#image-name-"+id).val())+'" /><br /><a href="#" class="removeButton removeButton-'+container+'">Remove Image</a>');
 
         window.parent.$("#blocker-"+container).click();
 

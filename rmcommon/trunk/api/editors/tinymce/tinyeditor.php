@@ -53,10 +53,8 @@ class TinyEditor
     }
     
     public function get_js(){
-
-        $rtn = '<script language="javascript" type="text/javascript" src="'.RMCURL.'/api/editors/tinymce/tiny_mce.js"></script>
-                <script language="javascript" type="text/javascript">
-                    tinyMCE.init({';
+        
+        $rtn = 'tinyMCE.init({';
                     $configs = ''; $i = 0;
                     foreach ($this->configuration as $name => $value){
                         $i++;
@@ -69,8 +67,7 @@ class TinyEditor
 								ed.save();
 						});
 					}
-					});
-                </script>';
+					});';
         
         return $rtn;
     }

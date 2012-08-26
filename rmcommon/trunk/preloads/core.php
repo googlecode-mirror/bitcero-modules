@@ -84,18 +84,18 @@ class RmcommonCorePreload extends XoopsPreloadItem
         // Blocks
         $blocks =& $params[2];
         
-	$blocks = RMEvents::get()->run_event('rmcommon.retrieve.xoops.blocks', $blocks, $xpb, $tpl);
+	    $blocks = RMEvents::get()->run_event('rmcommon.retrieve.xoops.blocks', $blocks, $xpb, $tpl);
         	
     }
-	
+
     public function eventCoreIncludeFunctionsRedirectheader($params){
 		
         // 0 = URL
-	// 1 = Time
-	// 2 = Message
-	// 3 = Add redirect
-	// 4 = Allow external link
-	RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
+	    // 1 = Time
+	    // 2 = Message
+	    // 3 = Add redirect
+	    // 4 = Allow external link
+	    RMEvents::get()->run_event('rmcommon.redirect.header', $params[0], $params[1], $params[2], $params[3], $params[4]);
         if(!defined('XOOPS_CPFUNC_LOADED')) return;
         
         redirectMsg($params[0], $params[2]);

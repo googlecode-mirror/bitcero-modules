@@ -149,7 +149,7 @@ class RMFormSubTitle extends RMFormElement
 	 * @return string
 	 */
 	function render(){
-            if($type>0){
+            if($this->_type>0){
                 $rtn = "<h2 class='form_subtitle ".$this->getClass()."'>".$this->getCaption()."</h2>";
             } else {
                 $rtn = "<span class='".$this->getClass()."'>".$this->getCaption()."</span>";
