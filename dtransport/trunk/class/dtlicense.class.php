@@ -24,7 +24,13 @@ class DTLicense extends RMObject
 			
 			if (!$this->loadValues($id)) return;
 			$this->unsetNew();
-		}
+		} else {
+            
+            $this->primary="nameid";
+            if ($this->loadValues($id)) $this->unsetNew();
+            $this->primary="id_lic";
+            
+        }
 
 	}
 

@@ -33,7 +33,7 @@ function dt_upload_screenshots(){
     $mc = $rmu->module_config('dtransport');
 
     $tc = TextCleaner::getInstance();
-
+    
     $data = explode("|", $tc->decrypt($data));
 
     $db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -42,7 +42,7 @@ function dt_upload_screenshots(){
 
     $_SERVER['HTTP_USER_AGENT'] = trim($data[0]);
 
-    if(!$xoopsSecurity->check())
+    if(!$xoopsSecurity->check(false))
         error(__('Session token not valid!','dtransport'));
 
     if($item<=0)
@@ -124,7 +124,7 @@ function dt_upload_screenshots(){
     $ret = array(
         'image'  => $uploader->getSavedFileName(),
         'dir'   => str_replace(XOOPS_UPLOAD_PATH, XOOPS_UPLOAD_URL, $dir),
-        'token' => $data[4],
+        'token' => $xoopsSecurity->createToken(),
         'type'  => $uploader->getMediaType(),
         'error' => 0,
         'id'    => $img->id()

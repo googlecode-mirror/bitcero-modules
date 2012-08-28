@@ -35,7 +35,8 @@ $(document).ready(function(){
             //$('#dt-errors .error').fadeOut('fast');
         },
         'onUploadSuccess': function(file, resp, data){
-
+            
+            alert(resp);
             eval('ret = '+resp);
             if (ret.error==1){
                 $('#dt-errors').append('<div class="error">'+ret.message+'</div>').fadeIn('fast');
@@ -58,6 +59,7 @@ $(document).ready(function(){
                 $("#screen-"+ret.id).fadeIn('fast', function(){
                     $("#screen-"+ret.id+" td").effect('highlight', {}, 1000);
                 });
+                alert(ret.token);
 
             }
             return true;

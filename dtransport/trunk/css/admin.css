@@ -130,3 +130,11 @@ td.dt_item_opts a:hover{
     width: 270px;
     margin-bottom: 5px;
 }
+.items tr.deletion td{
+    color: #666;
+    background-color: #FFF5EA;
+    font-style: italic;
+}
+.items tr.deletion td a{
+    color: #000;
+}

@@ -13,8 +13,6 @@ require '../../mainfile.php';
 
 $mc = $xoopsModuleConfig;
 
-$mc = $xoopsModuleConfig;
-
 // Constantes del Módulo
 define('DT_PATH',XOOPS_ROOT_PATH.'/modules/dtransport');
 define('DT_URL',$mc['permalinks'] ? XOOPS_URL.'/'.trim($mc['htbase'], "/") : XOOPS_URL.'/modules/dtransport');
@@ -57,6 +55,7 @@ if($mc['permalinks']){
         require_once 'home.php';
         die();
     }
+
     switch($params[0]){
         case 'category':
 
@@ -110,6 +109,92 @@ if($mc['permalinks']){
 
             require 'explore.php';
 
+            break;
+            
+        case 'tag':
+            
+            $tag = $params[1];
+            $page = 1;
+            
+            if(count($params)>4)
+                $dtfunc->error_404();
+                
+            if(isset($params[2])){
+                $params = array_slice($params, 2);
+
+                if($params[0]!='page' || !is_numeric($params[1]))
+                    $dtfunc->error_404();
+
+                $page = $params[3];
+            }
+            
+            require 'tags.php';
+            
+            break;
+            
+        case 'platform':
+            
+            $os = $params[1];
+            if(count($params)>4)
+                $dtfunc->error_404();
+                
+            if(isset($params[2])){
+                $params = array_slice($params, 2);
+
+                if($params[0]!='page' || !is_numeric($params[1]))
+                    $dtfunc->error_404();
+
+                $page = $params[3];
+            }
+            
+            require 'platforms.php';
+            
+            break;
+        
+        case 'license':
+        
+            $lic = $params[1];
+            if(count($params)>4)
+                $dtfunc->error_404();
+                
+            if(isset($params[2])){
+                $params = array_slice($params, 2);
+
+                if($params[0]!='page' || !is_numeric($params[1]))
+                    $dtfunc->error_404();
+
+                $page = $params[3];
+            }
+            
+            require 'licenses.php';
+            break;
+            
+        case 'submit':
+            
+            if(count($params)>3)
+                $dtfunc->error_404();
+            
+            $action = isset($params[1]) ? $params[1] : rmc_server_var($_REQUEST, 'action', '');
+            $id = isset($params[2]) ? $params[2] : rmc_server_var($_REQUEST, 'id', 0);
+                
+            require 'submit.php';
+            
+            break;
+        
+        case 'cp':
+            
+            if(count($params)>5)
+                $dtfunc->error_404();
+            
+            $action = '';
+            $page = isset($params[1]) && $params[1]=='page' ? $params[2] : 1;
+            
+            if(isset($params[1]) && $params[1]!='page'){
+                $action = $params[1];
+                $id = $params[2];
+            }
+            require 'cpanel.php';
+            
             break;
 
         default:

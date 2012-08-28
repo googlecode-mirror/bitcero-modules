@@ -23,7 +23,7 @@ if(!isset($explore) || !in_array($explore, $accepted)){
 }
 
 // Comprobamos el usuario
-if(!$xoopsUser)
+if(!$xoopsUser && $explore=='mine')
     redirect_header(DT_URL, 1, __('You are not authorized to view this section!','dtransport'));
 
 $titles = array(
@@ -38,7 +38,7 @@ $titles = $ev->run_event('dtransport.exploring.titles', $titles);
 include 'header.php';
 
 // Preparamos la consulta SQL
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("dtrans_software")." WHERE approved=1";
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("dtrans_software")." WHERE approved=1 AND delete=0";
 switch($explore){
     case 'mine':
         $sql .= " AND uid=".$xoopsUser->uid()." ORDER BY `created`,`modified` DESC";
@@ -87,11 +87,11 @@ while($row = $db->fetchArray($result)){
     $xoopsTpl->append('items', $dtfunc->createItemData($item));
 }
 
-if($mc['dest_download'])
+if($mc['inner_dest_download'])
     $xoopsTpl->assign('featured_items', $dtfunc->get_items(0, 'featured', $mc['limit_destdown']));
 
 // Descargas el día
-if($mc['daydownload']){
+if($mc['inner_daydownload']){
     $xoopsTpl->assign('lang_daydown', __('<strong>Day</strong> Downloads','dtransport'));
     $xoopsTpl->assign('daily_items', $dtfunc->get_items(0, 'daily', $mc['limit_daydownload']));
     $xoopsTpl->assign('daily_width', floor(100/($mc['limit_daydownload'])));

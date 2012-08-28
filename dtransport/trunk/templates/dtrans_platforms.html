@@ -1,0 +1,35 @@
+<{include file="db:dtrans_header.html"}>
+
+<{if $featured_items}>
+<{include file="db:dtrans_featlist.html"}>
+<{/if}>
+
+<div class="dt_items_container" class="dt_items_list">
+    <h2><{$lang_in}></h2>
+    <div class="dt_table">
+        <{foreach item=item from=$download_items}>
+        <{include file="db:dtrans_listitem.html"}>
+        <{/foreach}>
+    </div>
+</div>
+
+<{if $pagenav!=''}><{$pagenav}><{/if}>
+
+<!-- Descargas del día -->
+<{if $daily_items}>
+<div id="daily-items">
+    <h2><{$lang_daydown}></h2>
+    <div class="dt_table">
+        <div class="dt_row">
+            <{foreach item=item from=$daily_items}>
+            <div class="dt_cell day_item" style="width: <{$daily_width}>%;">
+                <a href="<{$item.link}>" title="<{$item.name}>"><img src="<{$item.image}>" alt="<{$item.name}>" /></a>
+                <a href="<{$item.link}>" class="dt_button_small"><{$lang_download}></a><br />
+                <a href="<{$item.link}>"><{$item.name}></a><br />
+                <{$item.siterate}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+</div>
+<{/if}>

@@ -19,13 +19,19 @@ if ($item->isNew() || !$item->getVar('approved')){
 	die();
 }
 
+if($item->getVar('delete'))
+    redirect_header(DT_URL, 2, __('This item is not available for download at this moment!','dtransport'));
+
 // Download default file
 if($action=='download'){
 
     $file = $item->file();
+    if(!$file)
+        redirect_header($item->permalink(), 0, __('Internal Error! Please try again later','dtransport'));
+    
     header("location: ".$file->permalink());
     die();
-
+    
 }
 
 	$xoopsOption['template_main'] = 'dtrans_item.html';
@@ -202,7 +208,7 @@ if($action=='download'){
     // Desargas relacionadas
     if($mc['active_relatsoft']){
         $xoopsTpl->assign('lang_related',__('<strong>Related</strong> Downloads','dtransport'));
-        $xoopsTpl->assign('related_items', $dtfunc->items_by_tags($relatedTags, $item->id(), 'RAND()', 0, $mc['limit_relatsoft']));
+        $xoopsTpl->assign('related_items', $dtfunc->items_by($relatedTags, 'tags', $item->id(), 'RAND()', 0, $mc['limit_relatsoft']));
     }
 
 	// Lenguaje

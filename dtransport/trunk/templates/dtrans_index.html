@@ -60,19 +60,10 @@
 
 
 <!-- Categorías -->
-<h2><{$lang_categos}></h2>
-<table class="outer" cellspacing="1" width="100%">
-<tr class="even">
-<{assign var="ci" value=1}>
+<h4><{$lang_categos}></h4>
+<ul id="dt-categories-list">
 <{foreach item=cat from=$categos key=i}>
-	<{if $i>0 && $cat.jumps==0}><{assign var="ci" value=$ci+1}><{/if}>
-	<{if $ci>2}>
-		</tr><tr class="<{cycle values="odd,even"}>">
-		<{assign var="ci" value=1}>
-	<{/if}>
-	<{if $i>0 && $cat.jumps==0}></td><{/if}>
-	<{if $cat.jumps==0}><td width="33%" valign="top"><h3><a href="<{$cat.link}>"><{$cat.name}></a></h3><{elseif $cat.jumps==1}>&bull; <a href="<{$cat.link}>"><{$cat.name}></a><{/if}>
+    <li<{if $cat.jumps>0}> style="padding-left: <{$cat.jumps*10}>px;"<{/if}>><a href="<{$cat.link}>"><{$cat.name}></a></li>
 <{/foreach}>
-</tr>
-</table>
-<!-- /Categorías -->
+</ul>
+

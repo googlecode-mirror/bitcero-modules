@@ -243,7 +243,7 @@ class DTSoftware extends RMObject
 	* @param array $licences Arreglo de ids de licencias
 	**/
 	public function setLicences($licences){
-		$this->licences=$licences;
+		$this->_licences=$licences;
 		
 	}
 	/**
@@ -522,6 +522,8 @@ class DTSoftware extends RMObject
         $tags = array();
 
         foreach($this->_tags as $tag){
+            if(is_array($tag))
+                $tag = $tag['tag'];
             $ot = new DTTag($tc->sweetstring($tag));
             if($ot->isNew()){
                 $ot->setVar('tag', $tag);
@@ -572,9 +574,12 @@ class DTSoftware extends RMObject
 		$sql ="DELETE FROM ".$this->db->prefix('dtrans_licsoft')." WHERE id_soft=".$this->id();
 		$this->db->queryF($sql);
 		
+        if(empty($this->_licences))
+            return true;
+        
 		$sql = "INSERT INTO ".$this->db->prefix('dtrans_licsoft')." (`id_soft`,`id_lic`) VALUES ";
 		$sql1='';	
-		foreach ($this->licences as $k){
+		foreach ($this->_licences as $k){
 			$sql1.= $sql1=="" ? "('".$this->id()."','$k')" : ",('".$this->id()."','$k')";
 		}
 		
@@ -592,10 +597,11 @@ class DTSoftware extends RMObject
 	*/
 	private function savePlatforms(){
 		
-		if (empty($this->_platforms)) return;
 		$sql ="DELETE FROM ".$this->db->prefix('dtrans_platsoft')." WHERE id_soft=".$this->id();
 		$this->db->queryF($sql);
-		
+
+        if (empty($this->_platforms)) return true;
+        
 		$sql = "INSERT INTO ".$this->db->prefix('dtrans_platsoft')." (`id_soft`,`id_platform`) VALUES ";
 		$sql1='';	
 		foreach ($this->_platforms as $k){
@@ -617,13 +623,15 @@ class DTSoftware extends RMObject
 
         $sql ="DELETE FROM ".$this->db->prefix('dtrans_catsoft')." WHERE soft=".$this->id();
         $this->db->queryF($sql);
-
+        
+        if (empty($this->_categories)) return true;
+        
         $sql = "INSERT INTO ".$this->db->prefix('dtrans_catsoft')." (`cat`,`soft`) VALUES ";
         $sql1='';
         foreach ($this->_categories as $k){
             $sql1.= $sql1=="" ? "('$k','".$this->id()."')" : ",('$k','".$this->id()."')";
         }
-
+        
         if (!$this->db->queryF($sql.$sql1)){
             $this->addError($this->db->error());
             return false;

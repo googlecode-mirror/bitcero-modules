@@ -1,0 +1,36 @@
+<{include file="db:dtrans_header.html"}>
+
+<div class="dt_outer">
+    <div class="dt_row">
+        <div class="th"><{$lang_id}></div>
+        <div class="th"><{$lang_name}></div>
+        <div class="th"><{$lang_protected}></div>
+        <div class="th"><{$lang_approved}></div>
+        <div class="th"><{$lang_hits}></div>
+    </div>
+    <{foreach item=item from=$items}>
+    <div class="dt_row<{if $item.deletion}> deletion<{/if}> <{cycle values="even,odd"}>">
+        <div><{$item.id}></div>
+        <div>
+            <{if $item.deletion}>
+            <{$item.name}> <em>(<{$lang_todelete}>)</em>
+            <span class="dt_options">
+                <strong><a href="<{$item.links.canceldel}>"><{$lang_canceldel}></a></strong>
+            </span>
+            <{else}>
+            <strong><a href="<{$item.links.permalink}>"><{$item.name}></a></strong>
+            <span class="dt_options">
+                <a href="<{$item.links.edit}>"><{$lang_edit}></a> |
+                <a href="<{$item.links.delete}>"><{$lang_delete}></a> |
+                <a href="<{$item.links.screens}>"><{$lang_screens}></a> |
+                <a href="<{$item.links.features}>"><{$lang_features}></a> |
+                <a href="<{$item.links.logs}>"><{$lang_logs}></a>
+            </span>
+            <{/if}>
+        </div>
+        <div><{if $item.protected}>&#10004;<{else}>&#10006;<{/if}></div>
+        <div><{if $item.approved}>&#10004;<{else}>&#10006;<{/if}></div>
+        <div><{$item.hits}></div>
+    </div>
+    <{/foreach}>
+</div>

@@ -55,7 +55,7 @@ if($mc['permalinks']){
 // Descargas en esta categoría
 $tbls = $db->prefix("dtrans_software");
 $tblc = $db->prefix("dtrans_catsoft");
-$sql = "SELECT COUNT(*) FROM $tbls as s, $tblc as c WHERE c.cat='".$category->id()."' AND s.id_soft=c.soft AND s.approved=1";
+$sql = "SELECT COUNT(*) FROM $tbls as s, $tblc as c WHERE c.cat='".$category->id()."' AND s.id_soft=c.soft AND s.approved=1 AND s.delete=0";
 list($num) = $db->fetchRow($db->query($sql));
 
 $limit = $mc['xpage'];
@@ -89,13 +89,13 @@ while ($row = $db->fetchArray($result)){
 	$xoopsTpl->append('download_items', array_merge($dtfunc->createItemData($item), array('category'=>$category->name())));
 }
 
-if($mc['dest_download']){
+if($mc['inner_dest_download']){
     $xoopsTpl->assign('featured_items', $dtfunc->get_items($category->id(), 'featured', $mc['limit_destdown']));
     $xoopsTpl->assign('lang_incatego', __('In <a href="%s">%s</a>','dtransport'));
 }
 
 // Descargas el día
-if($mc['dadydowncat']){
+if($mc['inner_daydownload']){
     $xoopsTpl->assign('daily_items', $dtfunc->get_items($category->id(), 'daily', $mc['limit_daydownload']));
     $xoopsTpl->assign('daily_width', floor(100/($mc['limit_daydownload'])));
     $xoopsTpl->assign('lang_daydown', __('<strong>Day</strong> Downloads','dtransport'));
@@ -111,11 +111,8 @@ $tpl->add_xoops_style('main.css','dtransport');
 
 // Datos de la categoría
 $xoopsTpl->assign('category', array('id'=>$category->id(),'name'=>$category->name(),'link'=>$category->permalink()));
-$dtfunc->makeHeader(sprintf(__('Downloads in "%s"','dtransport'), $category->name()));
-
-// LOcalización
-$loc = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";//DTFunctions::getCatLocation($category);
-$xoopsTpl->assign('dt_location', $loc);
+$xoopsTpl->assign('xoops_pagetitle', sprintf(__('Downloads in "%s"','dtransport'), $category->name()));
+$dtfunc->makeHeader();
 
 include 'footer.php';
 

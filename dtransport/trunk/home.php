@@ -76,20 +76,6 @@ $xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtra
 $xoopsTpl->assign('lang_incatego', __('In <a href="%s">%s</a>','dtransport'));
 $xoopsTpl->assign('lang_download', __('Download','dtransport'));
 
-$xoopsTpl->assign('lang_info', _MS_DT_INFO);
-$xoopsTpl->assign('lang_downs', _MS_DT_DOWNS);
-$xoopsTpl->assign('lang_rate', _MS_DT_RATE);
-$xoopsTpl->assign('lang_lic', _MS_DT_LIC);
-$xoopsTpl->assign('lang_readmore', _MS_DT_READMORE);
-$xoopsTpl->assign('lang_os', _MS_DT_OS);
-$xoopsTpl->assign('lang_created', _MS_DT_CREATED);
-$xoopsTpl->assign('lang_modified', _MS_DT_MODIFIED);
-$xoopsTpl->assign('lang_total', _MS_DT_TOTAL);
-$xoopsTpl->assign('lang_rateusers', _MS_DT_USERS);
-$xoopsTpl->assign('lang_screens', _MS_DT_SCREENS);
 $xoopsTpl->assign('lang_ratesite', $xoopsConfig['sitename']);
-$xoopsTpl->assign('lang_categos', _MS_DT_CATEGOS);
-$xoopsTpl->assign('lang_tagspopular',_MS_DT_TAGSPOPULAR);
-$xoopsTpl->assign('active_tags',$mc['active_tags']);
-$xoopsTpl->assign('lang_hits',_MS_DT_HITS);
+$xoopsTpl->assign('lang_categos', __('Categories','dtransport'));
 include 'footer.php';

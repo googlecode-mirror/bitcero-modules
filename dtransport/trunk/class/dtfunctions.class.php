@@ -79,7 +79,7 @@ class DTFunctions
 
         $header['links'][] = array(
             'title' => __('My Downloads','dtransport'),
-            'link' => $mc['permalinks'] ? DT_URL.'/mine/' : DT_URL.'/?p=explore&amp;f=mine'
+            'link' => $mc['permalinks'] ? DT_URL.'/cp/' : DT_URL.'/?p=cpanel'
         );
 
         if ($this->canSubmit()){
@@ -565,27 +565,27 @@ class DTFunctions
 
         switch($type){
             case 'featured':
-                $filter = "a.approved=1 AND a.featured=1";
+                $filter = "a.approved=1 AND a.featured=1 AND s.delete=0";
                 $order = "ORDER BY RAND()";
                 break;
             case 'recent':
-                $filter = "a.approved=1";
+                $filter = "a.approved=1 AND s.delete=0";
                 $order = "ORDER BY a.created DESC";
                 break;
             case 'daily':
-                $filter = "a.approved=1 AND a.daily=1";
+                $filter = "a.approved=1 AND a.daily=1 AND s.delete=0";
                 $order = "ORDER BY RAND()";
                 break;
             case 'rated':
-                $filter = "a.approved=1";
+                $filter = "a.approved=1 AND s.delete=0";
                 $order = "ORDER BY a.rating DESC";
                 break;
             case 'updated':
-                $filter = "a.approved=1";
+                $filter = "a.approved=1 AND s.delete=0";
                 $order = "ORDER BY a.modified DESC";
                 break;
             default:
-                $filter = '';
+                $filter = 's.delete=0';
                 $order = "ORDER BY created DESC";
                 break;
         }
@@ -624,25 +624,67 @@ class DTFunctions
     /**
      * Get items by tag(s)
      */
-    public function items_by_tags($tags, $exclude=0, $order='RAND()', $start=0, $limit=10){
+    public function items_by($elements, $by, $exclude=0, $type = 'all', $start=0, $limit=10){
 
-        if(!is_array($tags) AND $tags<=0)
+        if(!is_array($elements) AND $elements<=0)
             return;
 
-        if(!is_array($tags))
-            $tags = array($tags);
+        if(!is_array($elements))
+            $elements = array($elements);
+            
+        switch($type){
+            case 'featured':
+                $filter = "s.approved=1 AND s.featured=1 AND s.delete=0";
+                $order = "ORDER BY RAND()";
+                break;
+            case 'recent':
+                $filter = "s.approved=1 AND s.delete=0";
+                $order = "ORDER BY s.created DESC";
+                break;
+            case 'daily':
+                $filter = "s.approved=1 AND s.daily=1 AND s.delete=0";
+                $order = "ORDER BY RAND()";
+                break;
+            case 'rated':
+                $filter = "s.approved=1 AND s.delete=0";
+                $order = "ORDER BY s.rating DESC";
+                break;
+            case 'updated':
+                $filter = "s.approved=1 AND s.delete=0";
+                $order = "ORDER BY s.modified DESC";
+                break;
+            default:
+                $filter = 's.approved=1 AND s.delete=0';
+                $order = "ORDER BY created DESC";
+                break;
+        }
 
         $db = XoopsDatabaseFactory::getDatabaseConnection();
-        $tagst = $db->prefix('dtrans_softtag');
         $softt = $db->prefix('dtrans_software');
-        $sql = "SELECT s.* FROM $softt AS s, $tagst AS t WHERE t.id_tag IN (".implode(",", $tags).") AND t.id_soft!=$exclude AND s.id_soft=t.id_soft GROUP BY t.id_soft ORDER BY $order LIMIT $start, $limit";
+        
+        switch($by){
+            case 'tags':
+                $byt = $db->prefix('dtrans_softtag');
+                $sql = "SELECT s.* FROM $softt AS s, $byt AS t WHERE t.id_tag IN (".implode(",", $elements).") AND t.id_soft!=$exclude AND s.id_soft=t.id_soft AND $filter GROUP BY t.id_soft $order LIMIT $start, $limit";
+                break;
+            case 'platforms':
+                $byt = $db->prefix('dtrans_platsoft');
+                $sql = "SELECT s.* FROM $softt AS s, $byt AS t WHERE t.id_platform IN (".implode(",", $elements).") AND t.id_soft!=$exclude AND s.id_soft=t.id_soft AND $filter GROUP BY t.id_soft $order LIMIT $start, $limit";
+                break;
+            case 'licenses':
+                $byt = $db->prefix('dtrans_licsoft');
+                $sql = "SELECT s.* FROM $softt AS s, $byt AS t WHERE t.id_lic IN (".implode(",", $elements).") AND t.id_soft!=$exclude AND s.id_soft=t.id_soft AND $filter GROUP BY t.id_soft $order LIMIT $start, $limit";
+                break;
+        }
 
         $result = $db->query($sql);
         $items = array();
         while ($row = $db->fetchArray($result)){
             $item = new DTSoftware();
             $item->assignVars($row);
-            $items[] = $this->createItemData($item);
+            $cats = $item->categories(true);
+            $cat = $cats[array_rand($cats, 1)];
+            $items[] = array_merge($this->createItemData($item), array('category'=>$cat->name(),'categoryid'=>$cat->id(), 'categorylink'=>$cat->permalink()));
         }
 
         return $items;

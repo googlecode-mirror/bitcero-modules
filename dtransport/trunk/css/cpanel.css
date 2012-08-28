@@ -1,0 +1,37 @@
+.dt_outer{
+    display: table;
+    width: 100%;
+}
+.dt_row{
+    display: table-row;
+}
+.dt_row > .th{
+    display: table-cell;
+    padding: 4px;
+    font-weight: bold;
+    border-bottom: 1px solid #666;
+}
+.dt_row > div{
+    display: table-cell;
+    padding: 3px;
+    border-bottom: 1px dotted #ccc;
+    text-align: center;
+    vertical-align: top;
+}
+.dt_row > div span.dt_options{
+    display: block;
+    padding: 3px 0;
+    font-size: 0.9em;
+}
+.dt_row > div span.dt_options a{
+    color: #CE6700;
+}
+.deletion{
+    background: #f2f2f2;
+}
+.deletion em{color: #666;}
+.dt_row > div > img{
+    width: 60px;
+    padding: 1px;
+    border: 1px solid #CCC;
+}
