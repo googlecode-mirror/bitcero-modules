@@ -26,7 +26,7 @@
 function dtransSearch($queryarray, $andor, $limit, $offset, $userid){
 	global $db, $myts;
     
-	include_once (XOOPS_ROOT_PATH."/modules/dtransport/class/dtsoftware.class.php");
+	/*include_once (XOOPS_ROOT_PATH."/modules/dtransport/class/dtsoftware.class.php");
 
     $util =& RMUtils::getInstance();
     $mc = $util->moduleConfig('dtransport');
@@ -63,6 +63,5 @@ function dtransSearch($queryarray, $andor, $limit, $offset, $userid){
         $ret[] = $rtn;
     }
     
-    return $ret;
+    return $ret;*/
 }
-?>

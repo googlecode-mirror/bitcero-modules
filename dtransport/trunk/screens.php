@@ -2,151 +2,118 @@
 // $Id$
 // --------------------------------------------------------------
 // D-Transport
-// Módulo para la administración de descargas
-// http://www.redmexico.com.mx
-// http://www.exmsystem.com
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// Manage files for download in XOOPS
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
-define('DT_LOCATION','screens');
-include '../../mainfile.php';
+defined('XOOPS_MAINFILE_INCLUDED') or die("Not allowed");
 
-$mc=& $xoopsModuleConfig;
-
+$xoopsOption['template_main'] = 'dtrans_screens.html';
+$xoopsOption['module_subpage'] = 'cp-screens';
 
 /**
 * @desc Visualiza las pantallas del software y 
 * el formulario de creación de pantallas
 **/
-function screens($edit=0){
-	global $xoopsOption,$db,$tpl,$xoopsUser,$mc;
+function dt_screens($edit=0){
+	global $xoopsOption,$db,$tpl,$xoopsTpl,$xoopsUser,$mc, $dtfunc, $page, $item, $xoopsConfig, $xoopsModuleConfig,$screen;
 	
-	$xoopsOption['template_main'] = 'dtrans_screens.html';
-	$xoopsOption['module_subpage'] = 'screens';
 	include('header.php');
-	DTFunctions::makeHeader();
+	$dtfunc->makeHeader(sprintf(__('Screenshots for "%s"','dtransport'), $item->getVar('name')));
 
-	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-
-	//Verificamos si el software es válido
-	if ($item<=0){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERRIDITEM);
-		die();
-
-	}
-	
-	//Veirificamos si el software existe
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERRITEMEXIST);
-		die();
-	}
-
-
-	//Verificamos si el usuario es el propietario de la descarga
-	if ($xoopsUser->uid()!=$sw->uid()){
-		redirect_header(XOOPS_URL."/modules/dtransport/",2,_MS_DT_ERRUSER);
-		die();
-	}
-
-
-	$sql = "SELECT * FROM ".$db->prefix('dtrans_screens')." WHERE id_soft=$item";
+    $tc = TextCleaner::getInstance();
+    
+	$sql = "SELECT * FROM ".$db->prefix('dtrans_screens')." WHERE id_soft=".$item->id();
 	$result=$db->queryF($sql);
 	while ($rows=$db->fetchArray($result)){
 		$sc = new DTScreenshot();
 		$sc->assignVars($rows);
 		
-		$tpl->append('screens',array('id'=>$sc->id(),'title'=>$sc->title(),
-		'desc'=>substr($util->filterTags($sc->desc()),0,80)."...",'software'=>$sw->name()));		
+		$xoopsTpl->append('screens',array(
+            'id'=>$sc->id(),
+            'title'=>$sc->title(),
+		    'desc'=> $tc->clean_disabled_tags($sc->desc()),
+            'software'=>$item->getVar('name'),
+            'image' => $sc->url('ths'),
+            'links' => array(
+                'edit' => DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->getVar('nameid').'/edit/'.$sc->id().'/' : '/?p=cpanel&amp;id='.$item->id().'&amp;action=screens&amp;screen='.$sc->id()),
+                'delete' => DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->getVar('nameid').'/delete/'.$sc->id().'/' : '/?p=cpanel&amp;id='.$item->id().'&amp;action=delete&amp;screen='.$sc->id())
+            )
+        ));
 	}
 
-	
-	$sw = new DTSoftware($item);
-	$tpl->assign('lang_exists',sprintf(_MS_DT_EXISTITEM,$sw->name()));
-	$tpl->assign('lang_id',_MS_DT_ID);
-	$tpl->assign('lang_title',_MS_DT_TITLE);
-	$tpl->assign('lang_desc',_MS_DT_DESC);
-	$tpl->assign('lang_software',_MS_DT_ITEM);
-	$tpl->assign('lang_options',_OPTIONS);
-	$tpl->assign('lang_edit',_EDIT);
-	$tpl->assign('lang_del',_DELETE);
-	$tpl->assign('item',$item);
-	$tpl->assign('parent','screens');
-	$tpl->assign('lang_deletescreen',_MS_DT_DELETESCREEN);
-	$tpl->assign('lang_deletescreens',_MS_DT_DELETESCREENS);
-
-	
 	//Formulario de pantallas
 	if ($edit){
 		//Verificamos si la pantalla es válida
-		if ($id<=0){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_ERRID);
-			die();
-
-		}
+		if ($screen<=0)
+			redirect_header(DT_URL.($mc['permalinks']?'/screens/'.$item->getVar('nameid'):'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Invalid screen','dtransport'));
 
 		//Verificamos si la pantalla existe
-		$sc = new DTScreenshot($id);
-		if ($sc->isNew()){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_ERREXIST);
-			die();
-		}
-
+		$sc = new DTScreenshot($screen);
+		if ($sc->isNew())
+			redirect_header(DT_URL.($mc['permalinks']?'/screens/'.$item->getVar('nameid'):'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Invalid screen','dtransport'));
 
 	}
 	
-	if ($edit || $mc['limit_screen']>$sw->screensCount()){	
-
-		$form = new RMForm($edit ? sprintf(_MS_DT_EDITSCREENS,$sw->name()) : sprintf(_MS_DT_NEWSCREENS,$sw->name()),'frmscreen','screens.php');
+	if ($edit || $mc['limit_screen']>$item->getVar('screens')){	
+        
+        if($edit)
+            $faction = DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id().'/save/'.$sc->id().'/':'');
+        else
+           $faction = DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id().'/save/0/':'');
+        
+		$form = new RMForm($edit ? sprintf(__('Edit Screenshot of %s','dtransport'),$item->getVar('name')) : sprintf(__('Add screen for %s','dtransport'),$item->getVar('name')),'frmscreen', $faction);
 		$form->setExtra("enctype='multipart/form-data'");	
 	
-		$form->addElement(new RMLabel(_MS_DT_ITEM,$sw->name()));
+		$form->addElement(new RMFormLabel(__('Download item','dtransport'),$item->getVar('name')));
 
 	
-		$form->addElement(new RMText(_MS_DT_TITLE,'title',50,100,$edit ? $sc->title() : ''),true);
-		$form->addElement(new RMEditor(_MS_DT_DESC,'desc','100%','100px',$edit ? $sc->desc() :'','textarea'));
-		$form->addElement(new RMFile(_MS_DT_IMAGE,'image',45, $xoopsModuleConfig['image']*1024),$edit ? '':true);
+		$form->addElement(new RMFormText(__('Title','dtransport'),'title',50,100,$edit ? $sc->title() : ''),true);
+		$form->addElement(new RMFormEditor(__('Description','dtransport'),'desc','auto','100px',$edit ? $sc->desc() :'','simple'));
+		$form->addElement(new RMFormFile(__('Image file','dtransport'),'image',45, $xoopsModuleConfig['image']*1024),$edit ? '':true);
 	
 		if ($edit){
-			$img = "<img src='".XOOPS_URL."/uploads/dtransport/ths/".$sc->image()."' border='0' />";
-			$form->addElement(new RMLabel(_MS_DT_IMAGEACT,$img));	
+			$img = "<img src='".$sc->url('ths')."' border='0' />";
+			$form->addElement(new RMFormLabel(__('Current image','dtransport'),$img));	
 		}	
 
-		$form->addElement(new RMHidden('op',$edit ? 'saveedit' : 'save'));
-		$form->addElement(new RMHidden('id',$id));
-		$form->addElement(new RMHidden('item',$item));
-		$buttons =new RMButtonGroup();
-		$buttons->addButton('sbt',_SUBMIT,'submit');
-		$buttons->addButton('cancel',_CANCEL,'button', 'onclick="window.location=\'screens.php?item='.$item.'\';"');
+        $form->addElement(new RMFormHidden('p','cpanel'));
+		$form->addElement(new RMFormHidden('action', 'screens'));
+        $form->addElement(new RMFormHidden('id',$item->id()));
+        $form->addElement(new RMFormHidden('op', 'save'));
+		$form->addElement(new RMFormHidden('screen', $edit ? $sc->id() : 0));
+		$buttons =new RMFormButtonGroup();
+		$buttons->addButton('sbt',$edit ? __('Save Changes','dtransport') : __('Save Screenshot','dtransport'),'submit');
+		$buttons->addButton('cancel',__('Cancel','dtransport'),'button', 'onclick="window.location=\''.DT_URL.($mc['permalinks']?'/cp/screens/'.$item->getVar('nameid').'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()).'\';"');
 
 		$form->addElement($buttons);
 	
-		$tpl->assign('formscreens',$form->render());
+		$xoopsTpl->assign('formscreens',$form->render());
 
 	}
+    
+    $tpl->add_xoops_style('cpanel.css','dtransport');
+    $tpl->add_head_script('$(document).ready(function(){
+        
+        $("a.delete").click(function(){
+            if(!confirm("'.__('Do you really want to delete selected images?','dtransport').'")) return false;
+        });
+        
+    });');
+    
+    $xoopsTpl->assign('lang_id',__('ID','dtransport'));
+    $xoopsTpl->assign('lang_title', __('Title','dtransport'));
+    $xoopsTpl->assign('lang_desc', __('Description','dtransport'));
+    $xoopsTpl->assign('lang_opts', __('Options','dtransport'));
+    $xoopsTpl->assign('lang_edit', __('Edit','dtransport'));
+    $xoopsTpl->assign('lang_delete', __('Delete','dtransport'));
+    $xoopsTpl->assign('lang_image', __('Image','dtransport'));
+    $xoopsTpl->assign('lang_deletescreen',_MS_DT_DELETESCREEN);
+    $xoopsTpl->assign('lang_deletescreens',_MS_DT_DELETESCREENS);
+    $xoopsTpl->assign('edit', $edit);
 
-
-	// Ubicación Actual
-	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; <a href='".DT_URL."/mydownloads.php'>";
-	$location .= _MS_DT_MYDOWNS."</a> &raquo; "._MS_DT_SCREEN;
-	$tpl->assign('dt_location', $location);
-	
 	include ('footer.php');
 
 }
@@ -155,152 +122,117 @@ function screens($edit=0){
 /**
 * @desc almacena la informacion de la pantalla en la base de datos
 **/
-function saveScreens($edit=0){
-	global $db,$xoopsModuleConfig,$util;	
-
+function dt_save_screens($edit=0){
+	global $item, $xoopsModuleConfig, $screen, $mc;	
+    
 	foreach ($_POST as $k=>$v){
 		$$k=$v;
 	}
-
-	//Verificamos que el software sea válido
-	if ($item<=0){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERRIDITEM);
-		die();
-	}
-	//Verificamos que el software exista
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERR_ITEMEXIST);
-		die();
-	}
-
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ($edit){
-		
-		//Verificamos si pantalla es válida
-		if ($id<=0){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_ERRID);
-			die();
-		}
 
 		//Verificamos que la pantalla exista
-		$sc=new DTScreenshot($id);
-		if ($sc->isNew()){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_ERREXIST);
-			die();
-		}
+		$sc=new DTScreenshot($screen);
+		if ($sc->isNew())
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Specified screenshot is not valid!','dtransport'));
 
 		//Comprueba que el título de la pantalla no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_screens')." WHERE title='$title' AND id_soft=".$item."id_screen<>".$sc->id();
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_screens')." WHERE title='$title' AND id_soft=".$item->id()." AND id_screen!=".$sc->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item&id=$id&op=edit",1,_MS_DT_ERRNAME);	
-			die();
-		}
+		if ($num>0)
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/edit/'.$sc->id():'/?p=cpanel&amp;action=screens&amp;id='.$item->id().'&amp;op=edit&amp;screen'.$sc->id()),1, __('Already exist another screenshot with the same name!','dtransport'));	
 
 	}else{
 
 		//Comprueba que el título de la pantalla no exista
-		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_screens')." WHERE title='$title' AND id_soft=$item";
+		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_screens')." WHERE title='$title' AND id_soft=".$item->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
-		if ($num>0){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_ERRNAME);	
-			die();
-		}
-		$sc=new DTScreenshot();
+		if ($num>0)
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Already exist another screenshot with same name!','dtransport'));
+		
+        $sc=new DTScreenshot();
 
 	}
 
 	$sc->setTitle($title);
-	$sc->setDesc(substr($desc, 0, 255));
-	$sc->setModified(time());
-	$sc->setSoftware($item);
+	$sc->setDesc($desc);
+	$sc->setDate(time());
+	$sc->setSoftware($item->id());
 	
-	//Imagen
-	include_once XOOPS_ROOT_PATH.'/rmcommon/uploader.class.php';
-	$up = new RMUploader(true);
-	$folder = XOOPS_UPLOAD_PATH.'/dtransport';
-	$folderths = XOOPS_UPLOAD_PATH.'/dtransport/ths';
-	if ($edit){
-		$filename=$sc->image();
-	}
-	else{
-		$filename = '';
-	}
+	//Cargamos la imagen
+    // Directorio de almacenamiento
+    
+    if(isset($_FILES['image']) && $_FILES['image']['name']!=''){
+        
+        $dir = XOOPS_UPLOAD_PATH.'/screenshots';
+        
+        // Eliminamos la imagen existente
+        if($edit){
+            $dir .= '/'.date('Y', $sc->date()).'/'.date('m', $sc->date());
+            unlink($dir.'/'.$sc->image());
+            unlink($dir.'/ths/'.$sc->image());
+            $dir = XOOPS_UPLOAD_PATH.'/screenshots';
+        }
+        
+        if (!is_dir($dir))
+            mkdir($dir, 511);
+
+        $dir .= '/'.date('Y', time());
+        if (!is_dir($dir))
+            mkdir($dir, 511);
+
+        $dir .= '/'.date('m',time());
+        if (!is_dir($dir))
+            mkdir($dir, 511);
+
+        if (!is_dir($dir.'/ths'))
+            mkdir($dir.'/ths', 511);
+
+        if(!is_dir($dir))
+            redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Image could not be upload due to an internal error!','dtransport'));
+        
+	    include RMCPATH.'/class/uploader.php';
+	    $uploader = new RMFileUploader($dir, $mc['image']*1024, array('jpg','gif','png'));
+	    $err = array();
+        if (!$uploader->fetchMedia('image'))
+            redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Image could not be upload due to an internal error!','dtransport'));
+        
+        if (!$uploader->upload())
+            redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Image could not be upload due to an internal error!','dtransport'));
+            
+        $sc->setImage($uploader->getSavedFileName());
+        
+        // Resize image
+        $thumb = explode(":",$mc['size_ths']);
+        $big = explode(":",$mc['size_image']);
+        $sizer = new RMImageResizer($dir.'/'.$sc->getVar('image'), $dir.'/ths/'.$sc->getVar('image'));
+
+        // Thumbnail
+        if(!isset($thumb[2]) || $thumb[2]=='crop'){
+            $sizer->resizeAndCrop($thumb[0], $thumb[1]);
+        } else {
+            $sizer->resizeWidthOrHeight($thumb[0], $thumb[1]);
+        }
+
+        // Full size image
+        $sizer->setTargetFile($dir.'/'.$sc->image());
+        if(!isset($big[2]) || $big[2]=='crop'){
+            $sizer->resizeAndCrop($big[0], $big[1]);
+        } else {
+            $sizer->resizeWidthOrHeight($big[0], $big[1]);
+        }
+    }
 	
-	$up->prepareUpload($folder, array($up->getMIME('jpg'),$up->getMIME('png'),$up->getMIME('gif')), $xoopsModuleConfig['image']*1024);//tamaño
-
-	if ($up->fetchMedia('image')){
-
-	
-		if (!$up->upload()){
-			if ($sc->isNew()){
-				redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",2,$up->getErrors());
-				die();
-			}else{
-				redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item&id=$id&op=edit",2,$up->getErrors());
-				die();
-			}
-		}
-					
-		if ($edit && $sc->image()!=''){
-			@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$sc->image());
-			@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$sc->image());
-		}
-
-		$filename = $up->getSavedFileName();
-		$fullpath = $up->getSavedDestination();
-		// Redimensionamos la imagen
-		$redim = new RMImageControl($fullpath, $fullpath);
-		switch ($xoopsModuleConfig['redim_image']){
-			case 0:
-				//Recortar miniatura
-				$redim->resizeWidth($xoopsModuleConfig['nscreen']);
-				$redim->setTargetFile($folderths."/$filename");				
-				$redim->resizeAndCrop($xoopsModuleConfig['thscreen'],$xoopsModuleConfig['thscreen']);
-				
-			break;	
-			case 1: 
-				//Recortar imagen grande
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($xoopsModuleConfig['thscreen']);
-				$redim->setTargetFile($fullpath);
-				$redim->resizeAndCrop($xoopsModuleConfig['nscreen'],$xoopsModuleConfig['nscreen']);				
-			break;
-			case 2:
-				//Recortar ambas
-				$redim->resizeAndCrop($xoopsModuleConfig['nscreen'],$xoopsModuleConfig['nscreen']);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeAndCrop($xoopsModuleConfig['thscreen'],$xoopsModuleConfig['thscreen']);
-			break;
-			case 3:
-				//Redimensionar
-				$redim->resizeWidth($xoopsModuleConfig['nscreen']);
-				$redim->setTargetFile($folderths."/$filename");
-				$redim->resizeWidth($xoopsModuleConfig['thscreen']);
-			break;			
-		}
-		
-	}	
-
-
-	$sc->setImage($filename);
-		
-		
 	if (!$sc->save()){
-		if ($sc->isNew()){
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_DBERROR);
-			die();
-		 }else{
-			redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item&id=$id&op=edit",1,_MS_DT_DBERROR);
-			die();
-		}
-	}else{
-		redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_DBOK);
-		die();
-	}
-
-
+		if ($sc->isNew())
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Already exist another screenshot with the same name!','dtransport'));    
+		 else
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/edit/'.$sc->id():'/?p=cpanel&amp;action=screens&amp;id='.$item->id().'&amp;op=edit&amp;screen'.$sc->id()),1, __('Already exist another screenshot with the same name!','dtransport'));    
+			
+	}else
+		redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Screenshot saved successfully!','dtransport'));    
 
 }
 
@@ -371,25 +303,3 @@ function deleteScreens(){
 
 
 }
-
-
-$op=isset($_REQUEST['op']) ? $_REQUEST['op'] : '';
-switch ($op){
-	case 'edit':
-		screens(1);
-	break;
-	case 'save':
-		saveScreens();
-	break;
-	case 'saveedit':
-		saveScreens(1);
-	break;
-	case 'delete':
-		deleteScreens();
-	break;
-	default:
-		screens();
-}
-
-
-?>

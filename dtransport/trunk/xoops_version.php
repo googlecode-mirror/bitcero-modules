@@ -63,7 +63,7 @@ if (isset($xoopsModule) && $xoopsModule->dirname()=='dtransport'){
 		}
 		
 		if ($showsend){
-			$modversion['sub'][0]['name'] = _MI_DT_SEND;
+			$modversion['sub'][0]['name'] = __('Submit Download','dtransport');
 			$modversion['sub'][0]['url'] = 'submit.php';
 		}
 		
@@ -101,11 +101,12 @@ $modversion['templates'][] = array('file' => 'dtrans_getfile.html','description'
 $modversion['templates'][] = array('file' => 'dtrans_search.html', 'description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_tags.html','description' => '');
 $modversion['templates'][] = array('file' => 'dtrans_submit.html','description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_createlogs.html', 'description' => '');
-$modversion['templates'][] = array('file' => 'dtrans_createfeatures.html', 'description' => '');
+$modversion['templates'][] = array('file' => 'dtrans_cp.html','description' => 'Show administrative options for users');
 $modversion['templates'][] = array('file' => 'dtrans_featlist.html', 'description' => __('Template to show the featured items list.','dtransport'));
 $modversion['templates'][] = array('file' => 'dtrans_listitems.html', 'description' => __('Template to show the list for selected items.','dtransport'));
 $modversion['templates'][] = array('file' => 'dtrans_explore.html', 'description' => __('Shows the items according to exploring parameters.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_platforms.html', 'description' => __('Shows the items that belong to a specific platform.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_screens.html', 'description' => __('Show screenshots for a download item in control panel.','dtransport'));
 
 // Permalinks
 $modversion['config'][] = array(
@@ -156,6 +157,16 @@ $modversion['config'][] = array(
     'default' => array(XOOPS_GROUP_ADMIN,XOOPS_GROUP_USERS)
 );
 
+//Activar notificadciones
+$modversion['config'][] = array(
+    'name' => 'active_notify',
+    'title' => '_MI_DT_ACTIVENOT',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
 //Grupos que serán notificados de descargas enviadas
 $modversion['config'][] = array(
     'name' => 'groups_notif',
@@ -171,7 +182,7 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'approve_register',
     'title' => '_MI_DT_APPREG',
-    'description' => '_MI_DT_DESCAPPREG',
+    'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 0
@@ -181,7 +192,27 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'approve_anonymous',
     'title' => '_MI_DT_APPANONIM',
-    'description' => '_MI_DT_DESCAPPANONIM',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
+// Habilitar creación de descargas seguras
+$modversion['config'][] = array(
+    'name' => 'secure_public',
+    'title' => '_MI_DT_SECURE',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
+// Habilitar creación de descargas con contraseñas
+$modversion['config'][] = array(
+    'name' => 'pass_public',
+    'title' => '_MI_DT_PASSWORD',
+    'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
     'default' => 0
@@ -191,7 +222,7 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'limit_screen',
     'title' => '_MI_DT_LIMITSCREEN',
-    'description' => '_MI_DT_DESCLIMITSCREEN',
+    'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'size' => 10,
@@ -234,27 +265,26 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'dest_download',
     'title' => '_MI_DT_DESTDOWN',
-    'description' => '_MI_DT_DESCDESTDOWN',
+    'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
-    'default' => 0
+    'default' => 1
 );
 
-// Descargas destacadas en Categorías
 $modversion['config'][] = array(
-    'name' => 'featured_categos',
-    'title' => '_MI_DT_FEATCAT',
-    'description' => '_MI_DT_FEATCATDESC',
+    'name' => 'inner_dest_download',
+    'title' => '_MI_DT_INDESTDOWN',
+    'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
-    'default' => 0
+    'default' => 1
 );
 
 //Limite de descargas destacadas
 $modversion['config'][] = array(
     'name' => 'limit_destdown',
     'title' => '_MI_DT_LIMITDEST',
-    'description' => '_MI_DT_DESCLIMITDEST',
+    'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'size' => 10,
@@ -265,47 +295,37 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'daydownload',
     'title' => '_MI_DT_ACTIVEDOWN',
-    'description' => '_MI_DT_DESCACTIVEDOWN',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 0
-);
-
-//Activar descargas del dia en categorías
-$modversion['config'][] = array(
-    'name' => 'dadydowncat',
-    'title' => '_MI_DT_DAYDOWNCAT',
     'description' => '',
     'formtype' => 'yesno',
     'valuetype' => 'int',
-    'default' => 0
+    'default' => 1
+);
+
+//Activar descargas del dia
+$modversion['config'][] = array(
+    'name' => 'inner_daydownload',
+    'title' => '_MI_DT_INACTIVEDOWN',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1
 );
 
 //Limite de descargas del dia
 $modversion['config'][] = array(
     'name' => 'limit_daydownload',
     'title' => '_MI_DT_LIMITDOWN',
-    'description' => '_MI_DT_DESCLIMITDOWN',
+    'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'size' => 10,
     'default' => 10
 );
 
-//Activar notificadciones
-$modversion['config'][] = array(
-    'name' => 'active_notify',
-    'title' => '_MI_DT_ACTIVENOT',
-    'description' => '',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 0
-);
-
 //imagen miniatura
 $modversion['config'][] = array(
     'name' => 'size_ths',
-    'description' => '_MI_DT_DESCTHS',
+    'description' => '_MI_DT_DESCIMGSIZE',
     'size' => 10,
     'title' => '_MI_DT_THS',
     'formtype' => 'textbox',
@@ -316,7 +336,7 @@ $modversion['config'][] = array(
 //Imagen grande
 $modversion['config'][] = array(
     'name' => 'size_image',
-    'description' => '_MI_DT_DESCIMAGE',
+    'description' => '_MI_DT_DESCIMGSIZE',
     'size' => 10,
     'title' => '_MI_DT_IMAGE',
     'formtype' => 'textbox',
@@ -338,7 +358,7 @@ $modversion['config'][] = array(
 //Tamaño de archivo de descarga
 $modversion['config'][] = array(
     'name' => 'size_file',
-    'description' => '_MI_DT_DESCSIZEFILE',
+    'description' => '',
     'size' => 10,
     'title' => '_MI_DT_SIZEFILE',
     'formtype' => 'textbox',
@@ -390,7 +410,7 @@ $modversion['config'][] = array(
 //Dias para considerar elemento como nuevo
 $modversion['config'][] = array(
     'name' => 'new',
-    'description' => '_MI_DT_DESCNEWFEAT',
+    'description' => '',
     'size' => 10,
     'title' => '_MI_DT_NEWFEAT',
     'formtype' => 'textbox',
@@ -401,7 +421,7 @@ $modversion['config'][] = array(
 // Dias para ocnsiderar un elemento como actualizado
 $modversion['config'][] = array(
     'name' => 'update',
-    'description' => '_MI_DT_DESCUPDITEM',
+    'description' => '',
     'size' => 10,
     'title' => '_MI_DT_UPDITEM',
     'formtype' => 'textbox',
@@ -419,27 +439,6 @@ $modversion['config'][] = array(
     'default' => 1
 );
 
-//Mostrar Etiquetas
-$modversion['config'][] = array(
-    'name' => 'active_tags',
-    'title' => '_MI_DT_ACTIVETAGS',
-    'description' => '',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 1
-);
-
-//Limite de Etiquetas
-$modversion['config'][] = array(
-    'name' => 'limit_tags',
-    'title' => '_MI_DT_TOTAL_TAGS',
-    'description' => '',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 20,
-    'size' => 5
-);
-
 //Mostrar programas relacionados
 $modversion['config'][] = array(
     'name' => 'active_relatsoft',
@@ -454,53 +453,10 @@ $modversion['config'][] = array(
 $modversion['config'][] = array(
     'name' => 'limit_relatsoft',
     'title' => '_MI_DT_LIMITRELATSOFT',
-    'description' => '_MI_DT_DESC_LIMITRELATSOFT',
+    'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 5,
-    'size' => 5
-);
-
-//Mostrar Otros programas de la categoría
-$modversion['config'][] = array(
-    'name' => 'active_othersw',
-    'title' => '_MI_DT_ACTOTHERSW',
-    'description' => '_MI_DT_DESCOTHERSW',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 1
-);
-
-//Limite de otros programas
-$modversion['config'][] = array(
-    'name' => 'limit_othersw',
-    'title' => '_MI_DT_LIMITOTHERSW',
-    'description' => '_MI_DT_DESC_LIMITOTHERSW',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 5,
-    'size' => 5
-);
-
-//Tamaño máximo de fuente para etiquetas
-$modversion['config'][] = array(
-    'name' => 'size_fonttags',
-    'title' => '_MI_DT_SIZEFONTTAGS',
-    'description' => '_MI_DT_DESCSIZEFONTTAGS',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 30,
-    'size' => 5
-);
-
-//Limite de Etiquetas Populares
-$modversion['config'][] = array(
-    'name' => 'limit_tagspopular',
-    'title' => '_MI_DT_TOTAL_TAGSPOP',
-    'description' => '_MI_DT_DESC_TOTAL_TAGSPOP',
-    'formtype' => 'textbox',
-    'valuetype' => 'int',
-    'default' => 100,
     'size' => 5
 );
 
@@ -515,11 +471,42 @@ $modversion['config'][] = array(
     'size' => 5
 );
 
+// Enable alerts for inactivity
+$modversion['config'][] = array(
+    'name' => 'alerts',
+    'title' => '_MI_DT_ENABLEALERTS',
+    'description' => '',
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 0
+);
+
+// Dias de inactividad
+$modversion['config'][] = array(
+    'name' => 'alert_days',
+    'title' => '_MI_DT_ALERTDAYS',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => 30
+);
+
+// Modo de alertas
+$modversion['config'][] = array(
+    'name' => 'alert_mode',
+    'title' => '_MI_DT_ALERTMODE',
+    'description' => '',
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => 0,
+    'options' => array(__('Private message','dtransport') => 0, __('Email','dtransport') => 1)
+);
+
 //Horas de comprobación de alertas
 $modversion['config'][] = array(
     'name' => 'hrs_alerts',
     'title' => '_MI_DT_HRSALERTS',
-    'description' => '_MI_DT_DESCHRSALERTS',
+    'description' => '',
     'formtype' => 'textbox',
     'valuetype' => 'int',
     'default' => 24,
@@ -589,14 +576,13 @@ $modversion['search']['func'] = "dtransSearch";
 //Páginas del módulo
 $modversion['subpages']['index'] =  __('Home Page','dtransport');
 $modversion['subpages']['category'] = __('Categories','dtransport');
-$modversion['subpages']['features'] = __('Features','dtransport');
 $modversion['subpages']['files'] = __('Files','dtransport');
 $modversion['subpages']['item'] = __('Item details','dtransport');
-$modversion['subpages']['logs'] = __('Logs','dtransport');
 $modversion['subpages']['mydowns'] = __('My Downloads','dtransport');
-$modversion['subpages']['screens'] = __('Screenshots','dtransport');
 $modversion['subpages']['download'] = __('Download file','dtransport');
 $modversion['subpages']['tags'] = __('Tags','dtransport');
 $modversion['subpages']['submit'] = __('Submit download','dtransport');
 $modversion['subpages']['search'] = __('Search','dtransport');
 $modversion['subpages']['comments'] = __('Comments','dtransport');
+$modversion['subpages']['cp-list'] = __('Control Panel','dtransport');
+$modversion['subpages']['cp-screens'] = __('Screenshots Management','dtransport');

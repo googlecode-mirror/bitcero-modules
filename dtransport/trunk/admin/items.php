@@ -90,7 +90,8 @@ function showItems(){
 		    'link'=> $sw->permalink(),
             'featured'=>$sw->getVar('featured'),
             'daily'=>$sw->getVar('daily'),
-            'password'=>$sw->getVar('password')!=''
+            'password'=>$sw->getVar('password')!='',
+            'deletion' => $sw->getVar('delete')
         );
 	}
 

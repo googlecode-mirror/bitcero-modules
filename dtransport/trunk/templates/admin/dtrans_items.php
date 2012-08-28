@@ -70,7 +70,7 @@
     </tfoot>
     <tbody>
 	<?php foreach($items as $item): ?>
-	<tr class="<?php echo tpl_cycle("even,odd"); ?>" align="center" valign="top" id="row-<?php echo $item['id']; ?>">
+	<tr class="<?php echo tpl_cycle("even,odd"); ?><?php if($item['deletion']) echo ' deletion'; ?>" align="center" valign="top" id="row-<?php echo $item['id']; ?>">
 		<td><input type="checkbox" name="ids[]" value="<?php echo $item['id']; ?>" id="item-<?php echo $item['id']; ?>" /></td>
 		<td align="center"><strong><?php echo $item['id']; ?></strong></td>
 		<td align="left">
@@ -80,6 +80,7 @@
 			<?php else: ?>
 				<?php echo $item['name']; ?>
 			<?php endif; ?>
+            <?php if($item['deletion']): _e('(Deletion requested)','dtransport'); endif; ?>
             </span>
 			<span style="display:block; font-size: 0.9em; margin-top: 4px; color: #999;">
 				<?php echo sprintf(__('Last modification on %s by %s','dtransport'), $item['modified'], $item['uname']); ?>
