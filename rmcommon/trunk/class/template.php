@@ -271,7 +271,7 @@ class RMTemplate
     * @return null
     */
     public function add_script($url,$type='text/javascript'){
-   
+            
             if (strpos($url, "?")>1){
                 if (strpos($url, 'ver=')===FALSE){
                     $url .= "&amp;ver=".RMCVERSION;
@@ -359,7 +359,7 @@ class RMTemplate
             $url .= "?ver=".RMCVERSION;
         }
         
-        $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more);
+        $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more,'dir'=>'modules-'.$element.($subfolder!=''?'-'.str_replace("/",'-',$subfolder):''));
         
     }
 	
@@ -395,7 +395,8 @@ class RMTemplate
 		$this->tpl_scripts[$id] = array(
 			'url'=>$url,
 			'type'=>$type,
-			'more'=>$more
+			'more'=>$more,
+            'dir'=>'theme-'.$theme
 		);
         
     }
