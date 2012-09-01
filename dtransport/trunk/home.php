@@ -49,26 +49,6 @@ if ($mc['showcats']){
     }
 }
 
-//Búsqueda populares
-$sql="SELECT MAX(hits) FROM ".$db->prefix('dtrans_tags');
-list($maxhit)=$db->fetchRow($db->query($sql));
-$sql="SELECT * FROM ".$db->prefix('dtrans_tags')." LIMIT 0,".$mc['limit_tagspopular'];
-$result=$db->query($sql);
-$sz=$mc['size_fonttags']/$maxhit;
-while ($row = $db->fetchArray($result)){
-    $tag=new DTTag();
-    $tag->assignVars($row);
-    $link=XOOPS_URL."/modules/dtransport/".($mc['permalinks'] ? "tag/".$tag->tag() : "tags.php?id=".$tag->tag());
-
-    $size=intval($tag->hit()*$sz);
-    if ($size<10){
-        $size=10;
-    }
-
-    $xoopsTpl->append('tags',array('id'=>$tag->id(),'tag'=>$tag->tag(),'hit'=>$tag->hit(),'link'=>$link,'size'=>$size));
-
-}
-
 $xoopsTpl->assign('lang_recents', __('New Downloads','dtransport'));
 $xoopsTpl->assign('lang_bestrated', __('Best Rated','dtransport'));
 $xoopsTpl->assign('lang_updated', __('Updated','dtransport'));

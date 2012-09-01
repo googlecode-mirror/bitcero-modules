@@ -57,8 +57,8 @@ class DTLog extends RMObject
 	/**
 	* @desc Contenido del log
 	**/
-	public function log(){
-		return $this->getVar('log');
+	public function log($type='s'){
+		return $this->getVar('log', $type);
 	}
 
 	public function setLog($log){

@@ -35,7 +35,7 @@
         <option value="bulk_undaily"><?php _e('Not daily','dtransport'); ?></option>
         <option value="bulk_secure"><?php _e('Protected','dtransport'); ?></option>
         <option value="bulk_nosecure"><?php _e('Not protected','dtransport'); ?></option>
-        <option value="bulk_delete"><?php _e('Delete','dtransport'); ?></option>
+        <option value="delete"><?php _e('Delete','dtransport'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','dtransport'); ?>" onclick="before_submit('frm-items');" />
 
@@ -57,7 +57,7 @@
     </thead>
     <tfoot>
     <tr class="head" align="center">
-        <th width="20"><input type="checkbox" id="checkall2" onclick="$('#frm-items').toggleCheckboxes(':not(#checkall,.featured,.approved,.daily)');" /></th>
+        <th width="20"><input type="checkbox" id="checkall2" onclick="$('#frm-items').toggleCheckboxes(':not(#checkall2,.featured,.approved,.daily)');" /></th>
         <th width="20"><?php _e('ID','dtransport'); ?></th>
         <th><?php _e('Name','dtransport'); ?></th>
         <th><?php _e('Tipo','dtransport'); ?></th>
@@ -95,7 +95,7 @@
             <a href="./items.php?action=edit&amp;id=<?php echo $item['id']; ?>&amp;pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;cat=<?php echo $cat; ?>&amp;type=<?php echo $type; ?>" style="background: url(../images/edit.png) no-repeat center;" title="<?php _e('Edit','dtransport'); ?>"><span><?php _e('Edit','dtransport'); ?></span></a>
         </td>
         <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;">
-            <a href="./items.php?action=delete&amp;id=<?php echo $item['id']; ?>&amp;pag=<?php echo $page; ?>&amp;search=<?php echo $search; ?>&amp;cat=<?php echo $cat; ?>&amp;type=<?php echo $type; ?>" style="background: url(../images/trash.png) no-repeat center;" title="<?php _e('Delete','dtransport'); ?>"><span><?php _e('Delete','dtransport'); ?></span></a>
+            <a href="#" onclick="dt_check_delete(<?php echo $item['id']; ?>, 'frm-items');" style="background: url(../images/trash.png) no-repeat center;" title="<?php _e('Delete','dtransport'); ?>"><span><?php _e('Delete','dtransport'); ?></span></a>
         </td>
         <td class="dt_item_opts" style="padding: 0px; vertical-align: middle; background: #ebebeb;">
             <a href="#" class="<?php if(!$item['password']): echo $item['secure'] ? 'unlock' : 'lock'; endif; ?>" style="<?php if($item['password']): ?>opacity: .30;-moz-opacity: .30;filter:alpha(opacity:30);<?php endif; ?>background: url(../images/<?php echo $item['secure']?'unlock.png':'lock.png'; ?>) no-repeat center;" title="<?php $item['secure'] ? _e('Not protected download','dtransport') : _e('Protected download','dtransport'); ?>"><span><?php $item['secure'] ? _e('Unlock','dtransport') : _e('Lock','dtransport'); ?></span></a>

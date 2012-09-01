@@ -72,8 +72,9 @@ if($mc['permalinks']){
             if(count($params)>2)
                 $dtfunc->error_404();
 
-            $id = $params[1];
+            $feature = $params[1];
             require 'features.php';
+            dt_return_feature();
             break;
 
         case 'download':

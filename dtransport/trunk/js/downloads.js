@@ -26,4 +26,9 @@ $(document).ready(function(){
         }
 
     });
+    
+    $(".show-form").click(function(){
+        $("#dt-forms").slideToggle();
+    });
+    
 });

@@ -16,7 +16,7 @@
                 <th><?php _e('Title','dtransport'); ?></th>
                 <th><?php _e('Created','dtransport'); ?></th>
                 <th><?php _e('Modified','dtransport'); ?></th>
-                <th><{$lang_options}></th>
+                <th><?php _e('Options','dtransport'); ?></th>
             </tr>
         </thead>
         <tfoot>
@@ -26,7 +26,7 @@
                 <th><?php _e('Title','dtransport'); ?></th>
                 <th><?php _e('Created','dtransport'); ?></th>
                 <th><?php _e('Modified','dtransport'); ?></th>
-                <th><{$lang_options}></th>
+                <th><?php _e('Options','dtransport'); ?></th>
             </tr>
         </tfoot>
         <tbody>
@@ -37,7 +37,7 @@
             <?php endif; ?>
             <?php foreach($features as $feature): ?>
             <tr class="<{cycle values='even,odd'}>">
-                <td><input type="checkbox" name="ids[]" id="item-<?php echo $feature['id']; ?>" value="<?php echo $feature['id']; ?>" /></td>
+                <td align="center"><input type="checkbox" name="ids[]" id="item-<?php echo $feature['id']; ?>" value="<?php echo $feature['id']; ?>" /></td>
                 <td align="center" width="20"><strong><?php echo $feature['id']; ?></strong></td>
                 <td><?php echo $feature['title']; ?></td>
                 <td align="center"><?php echo $feature['created']; ?></td>

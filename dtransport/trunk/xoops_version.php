@@ -107,6 +107,10 @@ $modversion['templates'][] = array('file' => 'dtrans_listitems.html', 'descripti
 $modversion['templates'][] = array('file' => 'dtrans_explore.html', 'description' => __('Shows the items according to exploring parameters.','dtransport'));
 $modversion['templates'][] = array('file' => 'dtrans_platforms.html', 'description' => __('Shows the items that belong to a specific platform.','dtransport'));
 $modversion['templates'][] = array('file' => 'dtrans_screens.html', 'description' => __('Show screenshots for a download item in control panel.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_features.html', 'description' => __('Show features list for a download item in control panel.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_logs.html', 'description' => __('Show logs list for a download item in control panel.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_files.html', 'description' => __('Show files list for a download item in control panel.','dtransport'));
+$modversion['templates'][] = array('file' => 'dtrans_cpheader.html', 'description' => __('Show the header for Users Control Panel.','dtransport'));
 
 // Permalinks
 $modversion['config'][] = array(

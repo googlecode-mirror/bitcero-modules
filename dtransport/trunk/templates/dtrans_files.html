@@ -1,60 +1,41 @@
-<{include file="db:dtrans_header.html"}>
-<div id="dtLocationBar">
-	<{$dt_location}>
+<{include file="db:dtrans_cpheader.html"}>
+
+<a href="#" class="show-form add-file"><{$lang_addfile}></a>
+
+<div id="dt-forms"<{if !$edit}> style="display: none;"<{/if}>>
+<{$file_form}>
 </div>
-<form name="frmfiles" method="POST" action="files.php">
-<table class="outer" width="100%" cellspacing="1">
-	<tr>
-		<th colspan="6"><{$lang_exist}></th>
-		<th><a href="javascript:;" onclick="formGroup();"><{$lang_creategroup}></a></th>
-		<th><a href="javascript:;" onclick="formFile();"><{$lang_createfile}></a></th>
-	</tr>
-	<tr class="head" align="center">
-		<td width="20"><input type="checkbox" name="checkAll" onclick="xoopsCheckAll('frmfiles','checkAll')" /></td>
-		<td width="20"><{$lang_id}></td>
-		<td><{$lang_file}></td>	
-		<td><{$lang_downs}></td>
-		<td><{$lang_remote}></td>
-		<td><{$lang_group}></td>
-		<td><{$lang_default}></td>
-		<td><{$lang_options}></td>
-	</tr>
-	<{foreach item=file from=$files}>
-	<{if $file.type==group}>
-		<tr class="head">
-			<td colspan="7"><{$file.title}></td>
-			<td align="center"><a href="./files.php?item=<{$item}>&amp;op=editg&amp;id=<{$file.id}>"><{$lang_edit}></a> &bull; <a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=deletegroup" onclick="return confirm('<{$lang_deletegr}>');"><{$lang_del}></a></td>
-		</tr>	
-	<{else}>
-	<tr class="<{cycle values='even,odd'}>" align="center">
-		<td><input type="checkbox" name="id[]" value="<{$file.id}>" /></td>
-		<td><strong><{$file.id}></strong></td>
-		<td align="left"><{$file.title}></td>
-		<td><{$file.downs}></td>
-		<td><{if $file.remote}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></td>
-		<td>
-			<select name="groups[<{$file.id}>]">
-				<option value="0"><{$lang_select}></option>
-				<{foreach item=group from=$groups}>
-					<option value="<{$group.id}>" <{if $group.id==$file.group}>selected<{/if}>><{$group.name}></option>
-				<{/foreach}>
-			</select>
-		</td>
-		<td><a href="./files.php?item=<{$item}>&amp;id=<{$file.id}>&amp;op=default"><{if $file.default}><img src="<{$xoops_url}>/modules/dtransport/images/ok.png"/><{else}><img src="<{$xoops_url}>/modules/dtransport/images/no.png"/><{/if}></a></td>
-		<td><a href="./files.php?op=edit&amp;id=<{$file.id}>&amp;item=<{$item}>"><{$lang_edit}></a> &bull; <a href="./files.php?op=delete&amp;id=<{$file.id}>&item=<{$item}>" onclick="return confirm('<{$lang_deletefile}>');"><{$lang_del}></a></td>
-	</tr>
-	<{/if}>
-	<{/foreach}>
-	<tr class="foot">
-		<td width="20" align="right"><img src="<{$xoops_url}>/images/root.gif" border="0" /></td>
-		<td colspan="7"><input type="submit" value="<{$lang_save}>" class="formButton" onclick="document.forms['frmfiles'].elements['op'].value='updategroup';" />
-		<input type="submit" value="<{$lang_del}>" class="formButton" onclick="document.forms['frmfiles'].elements['op'].value='delete'; return confirm('<{$lang_deletefiles}>');" />
-</td>
-	</tr>
-</table>
-<input type="hidden" name="op" />
-<input type="hidden" name="item" value="<{$item}>" />
-</form><br />
+
+<div class="dt_outer">
+    <div class="dt_row">
+        <div class="th"><{$lang_id}></div>        
+        <div class="th" style="text-align: left;"><{$lang_title}></div>
+        <div class="th"><{$lang_group}></div>
+        <div class="th"><{$lang_remote}></div>
+        <div class="th"><{$lang_size}></div>
+        <div class="th"><{$lang_hits}></div>
+        <div class="th"><{$lang_date}></div>
+    </div>
+    <{foreach item=file from=$files}>
+    <div class="dt_row">
+        <div><{$file.id}></div>
+        <div style="text-align: left;">
+            <strong><{$file.title}></strong>
+            <span class="dt_options">
+                <a href="<{$file.links.edit}>"><{$lang_edit}></a> |
+                <a href="<{$file.links.delete}>" class="delete"><{$lang_delete}></a>
+            </span>
+        </div>
+        <div><{$file.group}></div>
+        <div><{$file.remote}></div>
+        <div><{$file.size}></div>
+        <div><{$file.hits}></div>
+        <div><{$file.date}></div>
+    </div>
+    <{/foreach}>
+</div>
+
+<br />
 <div id="dtFormGroup" style="<{if $editg}>display: block;<{else}>display: none;<{/if}>">
 	<{$form_group}>
 </div>

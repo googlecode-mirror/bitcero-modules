@@ -1,0 +1,31 @@
+<{include file="db:dtrans_cpheader.html"}>
+
+<a href="#" class="show-form add-log"><{$lang_addlog}></a>
+
+<div id="dt-forms"<{if !$edit}> style="display: none;"<{/if}>>
+<{$log_form}>
+</div>
+
+<div class="dt_outer">
+    <div class="dt_row">
+        <div class="th"><{$lang_id}></div>
+        <div class="th" style="text-align: left;"><{$lang_title}></div>
+        <div class="th"><{$lang_created}></div>
+        <div class="th"><{$lang_options}></div>
+    </div>
+    <{foreach item=lg from=$logs}>
+    <div class="dt_row">
+        <div><{$lg.id}></div>
+        <div style="text-align: left;">
+            <{$lg.title}>
+        </div>
+        <div><{$lg.date}></div>
+        <div>
+            <span class="dt_options">
+                <a href="<{$lg.links.edit}>"><{$lang_edit}></a> |
+                <a href="<{$lg.links.delete}>" class="delete"><{$lang_delete}></a>
+            </span>
+        </div>
+    </div>
+    <{/foreach}>
+</div>

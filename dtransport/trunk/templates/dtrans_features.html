@@ -1,0 +1,28 @@
+<{include file="db:dtrans_cpheader.html"}>
+
+<a href="#" class="show-form add-feat"><{$lang_addfeat}></a>
+
+<div id="dt-forms"<{if !$edit}> style="display: none;"<{/if}>>
+<{$feat_form}>
+</div>
+
+<div class="dt_outer">
+    <div class="dt_row">
+        <div class="th"><{$lang_id}></div>
+        <div class="th" style="text-align: left;"><{$lang_title}></div>
+        <div class="th" style="text-align: left;"><{$lang_content}></div>
+    </div>
+    <{foreach item=feat from=$features}>
+    <div class="dt_row">
+        <div><{$feat.id}></div>
+        <div style="text-align: left;">
+            <a href="<{$feat.links.permalink}>"><{$feat.title}></a>
+            <span class="dt_options">
+                <a href="<{$feat.links.edit}>"><{$lang_edit}></a> |
+                <a href="<{$feat.links.delete}>" class="delete"><{$lang_delete}></a>
+            </span>
+        </div>
+        <div style="text-align: left;"><{$feat.content}></div>
+    </div>
+    <{/foreach}>
+</div>

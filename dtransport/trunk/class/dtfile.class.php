@@ -150,7 +150,7 @@ class DTFile extends RMObject
             return XOOPS_URL.'/modules/dtransport/?p=download&amp;id='.$this->id();
         }
     }
-
+    
 	public function save(){
 		if ($this->isNew()){
 			return $this->saveToTable();
@@ -161,9 +161,23 @@ class DTFile extends RMObject
 
 	}
 
-	public function delete(){
+	public function delete(DTSoftware $sw = null){
 		global $xoopsModuleConfig;
-
+        
+        if($this->remote())
+            return $this->deleteFromTable();
+        
+        if(!is_a($sw, 'DTSoftware'))
+            $sw = new DTSoftware($this->software());
+        
+        $rmu = RMUtilities::get();
+        $mc = $rmu->module_config('dtransport');
+        
+        if($sw->getVar('secure'))
+            unlink(rtrim($mc['directory_secure'],'/').'/'.$this->file());
+        else
+            unlink(rtrim($mc['directory_insecure'],'/').'/'.$this->file());
+        
 		return $this->deleteFromTable();
 	}
 

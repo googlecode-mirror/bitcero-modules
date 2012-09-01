@@ -174,7 +174,8 @@ if($action=='download'){
             'title'=>$feature->title(),
             'updated'=>$updated,
             'nameid'=>$feature->nameid(),
-            'content' => $feature->content()
+            'content' => $feature->content(),
+            'link' => $feature->permalink()
         );
     }
     unset($chars, $feature);

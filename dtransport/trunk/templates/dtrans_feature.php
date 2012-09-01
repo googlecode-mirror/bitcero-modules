@@ -1,3 +1,5 @@
-<h2><?php echo $feat->title(); ?></h2>
+<h2><?php echo $ft->title(); ?></h2>
 
-<?php echo $feat->content(); ?>
+<div class="dt_feature_content">
+<?php echo $ft->content(); ?>
+</div>

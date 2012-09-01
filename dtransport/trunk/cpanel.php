@@ -9,7 +9,7 @@
 // --------------------------------------------------------------
 
 if(!$xoopsUser)
-    redirect_header(DT_URL, 1, __('Please login before to access this page!','dtransport'));
+    redirect_header(XOOPS_URL.'/user.php?xoops_redirect='.urlencode(str_replace(XOOPS_URL, '', DT_URL).($mc['permalinks']?'/cp/':'/?p=cpanel')), 1, __('Please login before to access this page!','dtransport'));
 
 if(!$mc['send_download']){
     header('Location: '.DT_URL);
@@ -45,11 +45,89 @@ switch($action){
         switch($op){
             case 'save':
                 dt_save_screens($screen>0?1:0);
-                break;                
+                break;
+            case 'delete':
+                dt_delete_screen();
+                break;              
             default:
                 dt_screens($op=='edit'&&$screen>0 ? 1 : 0);
                 break;
         }
+        break;
+    
+    case 'features':
+        
+        $op = '';
+        if(count($params)>=4){
+            $params = array_slice($params, 3);
+            $op = $params[0];
+            $feature = $params[1];
+        }
+        
+        require 'features.php';
+        
+        switch($op){
+            case 'save':
+                dt_save_feature($feature>0?1:0);
+                break;
+            case 'delete':
+                dt_delete_feature();
+                break;
+            default:
+                dt_show_features($op=='edit'&&$feature>0 ? 1 : 0);
+                break;
+        }
+        
+        break;
+    
+    case 'logs':
+        
+        $op = '';
+        if(count($params)>=4){
+            $params = array_slice($params, 3);
+            $op = $params[0];
+            $log = $params[1];
+        }
+        
+        require 'logs.php';
+        
+        switch($op){
+            case 'save':
+                dt_save_log($log>0?1:0);
+                break;
+            case 'delete':
+                dt_delete_log();
+                break;
+            default:
+                dt_show_logs($op=='edit'&&$log>0 ? 1 : 0);
+                break;
+        }
+        
+        break;
+    
+    case 'files':
+        
+        $op = '';
+        if(count($params)>=4){
+            $params = array_slice($params, 3);
+            $op = $params[0];
+            $file = $params[1];
+        }
+        
+        require 'files.php';
+        
+        switch($op){
+            case 'save':
+                dt_save_file($file>0?1:0);
+                break;
+            case 'delete':
+                dt_delete_file();
+                break;
+            default:
+                dt_show_files($op=='edit'&&$file>0 ? 1 : 0);
+                break;
+        }
+        
         break;
     
     case 'delete':
@@ -119,6 +197,7 @@ switch($action){
                     'permalink' => $item->permalink(),
                     'edit' => $mc['permalinks'] ? DT_URL.'/submit/edit/'.$item->id() : '/?p=submit&amp;action=edit&amp;id='.$item->id(),
                     'delete' => $mc['permalinks'] ? DT_URL.'/cp/delete/'.$item->id() : '/?p=cpanel&amp;action=delete&amp;id='.$item->id(),
+                    'files' => $mc['permalinks'] ? DT_URL.'/cp/files/'.$item->id() : '/?p=cpanel&amp;action=files&amp;id='.$item->id(),
                     'features' => $mc['permalinks'] ? DT_URL.'/cp/features/'.$item->id() : '/?p=cpanel&amp;action=features&amp;id='.$item->id(),
                     'logs' => $mc['permalinks'] ? DT_URL.'/cp/logs/'.$item->id() : '/?p=cpanel&amp;action=logs&amp;id='.$item->id(),
                     'screens' => $mc['permalinks'] ? DT_URL.'/cp/screens/'.$item->id() : '/?p=cpanel&amp;action=screens&amp;id='.$item->id(),
@@ -144,6 +223,7 @@ switch($action){
         $xoopsTpl->assign('lang_edit', __('Edit','dtransport'));
         $xoopsTpl->assign('lang_delete', __('Delete','dtransport'));
         $xoopsTpl->assign('lang_todelete', __('Waiting Deletion','dtransport'));
+        $xoopsTpl->assign('lang_files', __('Files','dtransport'));
         $xoopsTpl->assign('lang_features', __('Features','dtransport'));
         $xoopsTpl->assign('lang_logs', __('Logs','dtransport'));
         $xoopsTpl->assign('lang_screens', __('Screenshots','dtransport'));
