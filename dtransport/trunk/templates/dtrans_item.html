@@ -120,7 +120,7 @@
                 <{foreach item=feat from=$item.features}>
                 <{if $col>=3}><{assign var=col value=1}></div><div class="dt_row"><{/if}>
                 <div class="dt_cell">
-                    <h5><a href="<{$xoops_url}>/d/feature/<{$feat.id}>/"><{$feat.title}></a></h5>
+                    <h6><a href="<{$feat.link}>" rel="dt-features" title="<{$feat.title}>"><{$feat.title}></a></h6>
                     <{$feat.content|truncate:200:'...':true}>
                 </div>
                 <{assign var=col value=$col+1}>

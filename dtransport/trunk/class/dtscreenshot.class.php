@@ -110,6 +110,13 @@ class DTScreenshot extends RMObject
         return $this->url.($type=='ths' ? 'ths/' : '').$this->image();
 
     }
+    
+    public function path($type=''){
+        
+        $path = str_replace(XOOPS_URL, XOOPS_ROOT_PATH, $this->url($type));
+        return $path;
+        
+    }
 
 	
 	public function save(){
@@ -130,9 +137,8 @@ class DTScreenshot extends RMObject
 
 	public function delete(){
 
-        $file = XOOPS_UPLOAD_PATH.'/screenshots/'.date('Y', $this->date()).'/'.date('m',$this->date());
-		@unlink($file.'/ths/'.$this->image());
-		@unlink($file.'/'.$this->image());
+		@unlink($this->path());
+		@unlink($this->path('ths'));
 		
 		$sw=new DTSoftware($this->software());
 		$sw->decrementScreens();	

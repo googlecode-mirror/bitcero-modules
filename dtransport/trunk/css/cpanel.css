@@ -10,13 +10,22 @@
     padding: 4px;
     font-weight: bold;
     border-bottom: 1px solid #666;
+    border-right: 0;
+    border-left: 0;
 }
 .dt_row > div{
     display: table-cell;
     padding: 3px;
     border-bottom: 1px dotted #ccc;
+    border-right: 1px dotted #ccc;
     text-align: center;
     vertical-align: top;
+}
+.dt_row > div:first-child{
+    border-left: 1px dotted #CCC;
+}
+.dt_row > div.th:first-child{
+    border-left: 0;
 }
 .dt_row > div span.dt_options{
     display: block;
@@ -34,4 +43,49 @@
     width: 60px;
     padding: 1px;
     border: 1px solid #CCC;
+}
+
+ul#dt-cp-header{
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: #ebebeb;
+    border: 1px solid #CCC;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+ul#dt-cp-header > li{
+    float: left;
+    margin: 0;
+    border-right: 1px solid #CCC;
+}
+ul#dt-cp-header li > a{
+    padding: 6px 12px;
+    border-left: 1px solid #f2f2f2;
+    margin: 0;
+    display: block;
+}
+ul#dt-cp-header > li:last-child{
+    border-right: 0;
+}
+ul#dt-cp-header > li:last-child a{
+    border-right: 0;
+}
+ul#dt-cp-header li > a:hover{
+    background: #ccc;
+    color: #000;
+    border-left: 1px solid #ccc;
+}
+a.show-form{
+    display: inline-block;
+    padding: 4px 10px 4px 20px;
+    margin-bottom: 10px;
+}
+a.add-feat{
+    background: url(../images/addfeature.png) no-repeat left;
+}
+a.add-log{
+    background: url(../images/addlog.png) no-repeat left;
+}
+a.add-file{
+    background: url(../images/newfile.png) no-repeat left;
 }

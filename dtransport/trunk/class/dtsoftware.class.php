@@ -697,7 +697,7 @@ class DTSoftware extends RMObject
 		if (!$result){
 			return false;
 		}
-
+        
 		//Eliminar pantallas
 		$sql="SELECT * FROM ".$this->db->prefix('dtrans_screens')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
@@ -706,16 +706,16 @@ class DTSoftware extends RMObject
 			$sc->assignVars($rows);			
 			$sc->delete();
 		}
-			
+		
 		//Eliminar Archivos
 		$sql="SELECT * FROM ".$this->db->prefix('dtrans_files')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
 		while ($rows=$this->db->fetchArray($result)){
 			$file=new DTFile();
 			$file->assignVars($rows);			
-			$file->delete();
+			$file->delete($this);
 		}
-
+        
 		//Eliminar Logs
 		$sql="DELETE FROM ".$this->db->prefix('dtrans_logs')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
@@ -723,7 +723,7 @@ class DTSoftware extends RMObject
 		if (!$result){
 			return false;
 		}
-
+        
 		//Eliminar grupo
 		$sql="DELETE FROM ".$this->db->prefix('dtrans_groups')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
@@ -732,7 +732,6 @@ class DTSoftware extends RMObject
 			return false;
 		}		
 
-
 		//Eliminar relación de licencias
 		$sql="DELETE FROM ".$this->db->prefix('dtrans_licsoft')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
@@ -740,7 +739,7 @@ class DTSoftware extends RMObject
 		if (!$result){
 			return false;
 		}
-
+        
 		//Eliminar relación de plataformas
 		$sql="DELETE FROM ".$this->db->prefix('dtrans_platsoft')." WHERE id_soft=".$this->id();
 		$result = $this->db->queryF($sql);
@@ -756,10 +755,6 @@ class DTSoftware extends RMObject
 		if (!$result){
 			return false;
 		}
-		
-		
-		@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$this->image());
-		@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$this->image());
 
 		return $this->deleteFromTable();
 	}

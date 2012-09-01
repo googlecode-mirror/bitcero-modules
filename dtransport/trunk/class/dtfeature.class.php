@@ -51,8 +51,8 @@ class DTFeature extends RMObject
 		return $this->setVar('title',$title);
 	}
 
-	public function content(){
-		return $this->getVar('content');
+	public function content($type='s'){
+		return $this->getVar('content',$type);
 	}
 
 	public function setContent($content){
@@ -91,6 +91,18 @@ class DTFeature extends RMObject
 	public function setNameId($nameid){
 		return $this->setVar('nameid',$nameid);
 	}
+    
+    /**
+    * Obtiene el enlace directo a la característica
+    */
+    public function permalink(){
+        $util = RMUtilities::get();
+        $mc = $util->module_config('dtransport');
+        if($mc['permalinks'])
+            return DT_URL.'/feature/'.$this->id().'/';
+        else
+            return DT_URL.'/?p=feature&amp;id='.$this->id();
+    }
 
 	public function save(){
 		if ($this->isNew()){

@@ -14,7 +14,7 @@ include ('header.php');
 /**
 * @desc Muestra todos lo elementos registrados
 **/
-function showItems(){
+function dt_show_items(){
     define('RMCSUBLOCATION','downitems');
 	global $xoopsModule, $xoopsSecurity;
 	
@@ -280,130 +280,70 @@ function formItems($edit=0){
 /**
 * desc Elimina de la base de datos los elementos
 **/
-function deleteItems(){
-	global $xoopsModule,$util,$xoopsModuleConfig,$xoopsConfig;
+function dt_delete_items(){
+	global $xoopsModuleConfig,$xoopsConfig, $xoopsModule, $xoopsSecurity, $rmc_config, $xoopsUser;
 
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-	$ok = isset($_POST['ok']) ? intval($_POST['ok']) : 0;
-	$page = isset($_REQUEST['pag']) ? $_REQUEST['pag'] : '';
-    	$limit = isset($_REQUEST['limit']) ? intval($_REQUEST['limit']) : 15;
-	$search=isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
-	$sort=isset($_REQUEST['sort']) ? $_REQUEST['sort'] : 'id_soft';
-	$mode=isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 0;
-	$cat=isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) : 0;
-	$type=isset($_REQUEST['type']) ? $_REQUEST['type'] : '';
+	$ids = rmc_server_var($_POST, 'ids', array());
+	$page = rmc_server_var($_POST, 'page', 1);
+	$search = rmc_server_var($_POST, 'search', '');
+	$sort = rmc_server_var($_POST, 'sort', 'id_soft');
+	$mode = rmc_server_var($_POST, 'mode', 1);
+	$cat = rmc_server_var($_POST, 'cat', 0);
+	$type = rmc_server_var($_POST, 'type', '');
 	
-	$params='?pag='.$page.'&limit='.$limit.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat.'&type='.$type;
+	$params='?pag='.$page.'&search='.$search.'&sort='.$sort.'&mode='.$mode.'&cat='.$cat.'&type='.$type;
 
 	//Verificamos que el software sea válido
-	if ($id<=0){
-		redirectMsg('./items.php'.$params,_AS_DT_ERR_ITEMVALID,1);
-		die();
-	}
+	if (!is_array($ids) && $ids<=0)
+		redirectMsg('items.php'.$params, __('You must select at least one download item to delete!','dtransport'), RMMSG_WARN);
+        
+    if(!is_array($ids))
+        $ids = array($ids);
 
-	//Verificamos que el software exista
-	if ($type=='edit'){
-		$sw = new DTSoftwareEdited($id);
-	}else{
-		$sw=new DTSoftware($id);
-	}
-	if ($sw->isNew()){
-		redirectMsg('./items.php'.$params,_AS_DT_ERR_ITEMEXIST,1);
-		die();
-	}
-
-	if ($ok){
-
-		if (!$util->validateToken()){
-		
-			redirectMsg('./items.php'.$params,_AS_DT_SESSINVALID, 1);
-			die();
-		
-		}
-		
-
-		$secure=$sw->secure();
+	if (!$xoopsSecurity->check())
+	    redirectMsg('items.php'.$params, __('Session token expired!','dtransport'), RMMSG_ERROR);
+    
+    $errors = '';
+    
+    $mailer = new RMMailer('text/html');
+    $etpl = DT_PATH.'/lang/deletion_'.$rmc_config['lang'].'.php';
+    if (!file_exists($etpl))
+        $etpl = DT_PATH.'/lang/deletion_en.php';
+    $mailer->template($etpl);
+    $mailer->assign('siteurl', XOOPS_URL);
+    $mailer->assign('dturl', $xoopsModuleConfig['permalinks'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'],'/') : DT_URL);
+    $mailer->assign('downcp', $xoopsModuleConfig['permalinks'] ? XOOPS_URL.'/'.trim($xoopsModuleConfig['htbase'],'/').'/cp/' : DT_URL.'/?p=cpanel');
+    $mailer->assign('dtname', $xoopsModule->name());
+    $mailer->assign('sitename', $xoopsConfig['sitename']);
+    
+    foreach($ids as $id){
+        $sw = new DTSoftware($id);
+        
+        if($sw->isNew()) continue;
+        
+        if(!$sw->delete()){
+            $errors .= $sw->errors();
+            continue;
+        }
+        
+        $xu = new XoopsUser($sw->getVar('uid'));
+        $mailer->add_users(array($xu));
+        $mailer->assign('uname', $xu->name()!='' ? $xu->name() : $xu->uname());
+        $mailer->assign('download', $sw->getVar('name'));
+        $mailer->assign('email', $xu->getVar('email'));
+        $mailer->assign('method', $xu->getVar('notify_method'));
+        $mailer->set_subject(sprintf(__('Your download %s has been deleted!','dtransport'), $sw->getVar('name')));
+        if($xu->getVar('notify_method')==1){
+            $mailer->set_from_xuser($xoopsUser);
+            $mailer->send_pm();
+        }else
+            $mailer->send();
+    }
 	
-		if ($type=='edit'){
-			$item = new DTSoftware($id);
-			if ($item->image()!=$sw->image()){			
-		
-				@unlink(XOOPS_UPLOAD_PATH.'/dtransport/'.$sw->image());
-				@unlink(XOOPS_UPLOAD_PATH.'/dtransport/ths/'.$sw->image());
-			}
-		}
-		if (!$sw->delete()){
-			redirectMsg('./items.php'.$params,_AS_DT_DBERROR,1);
-			die();
-		}else{
-			
-			
-			//Notificamos al usuario que su edición a sido rechazada
-			if ($type=='edit'){
-
-				$sw = new DTSoftware($id);
-
-				$xu = new XoopsUser($sw->uid());
-				$xoopsMailer =& getMailer();
-				$xoopsMailer->usePM();
-				$xoopsMailer->setTemplate('edit_downloaddelete.tpl');
-				$xoopsMailer->assign('SITENAME', $xoopsConfig['sitename']);
-				$xoopsMailer->assign('ADMINMAIL', $xoopsConfig['adminmail']);
-				$xoopsMailer->assign('SITEURL', XOOPS_URL."/");
-				$xoopsMailer->assign('DOWNLOAD', $sw->name());
-				$xoopsMailer->setTemplateDir(XOOPS_ROOT_PATH."/modules/dtransport/language/".$xoopsConfig['language']."/mail_template/");
-				$xoopsMailer->setToUsers($xu);
-				$xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
-				$xoopsMailer->setFromName($xoopsConfig['sitename']);
-				$xoopsMailer->setSubject(sprintf(_AS_DT_SUBJECTDEL,$sw->name()));
-				if (!$xoopsMailer->send(true)){
-					redirectMsg(XOOPS_URL.'/modules/dtransport/admin/items.php?type=edit',$xoopsMailer->getErrors(),1);
-				}
-
-				
-			}
-
-			if ($secure){
-				redirectMsg('./items.php'.$params,_AS_DT_DBOK.sprintf(_AS_DT_DELSECURE,$xoopsModuleConfig['directory_secure']),0);
-				die();
-			}
-
-
-
-			redirectMsg('./items.php'.$params,_AS_DT_DBOK,0);
-			die();
-			
-		}
-
-
-	}else{
-		
-		optionsBar();
-		xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; "._AS_DT_ITEMS);
-		xoops_cp_header();
-
-		$hiddens['ok'] = 1;
-		$hiddens['id'] = $id;
-		$hiddens['op'] = 'delete';
-		$hiddens['pag'] = $page;
-		$hiddens['limit'] = $limit;
-		$hiddens['cat'] = $cat;
-		$hiddens['type'] = $type;
-
-		$buttons['sbt']['type'] = 'submit';
-		$buttons['sbt']['value'] = _DELETE;
-		$buttons['cancel']['type'] = 'button';
-		$buttons['cancel']['value'] = _CANCEL;
-		$buttons['cancel']['extra'] = 'onclick="window.location=\'items.php'.$params.'\';"';
-		
-		$util->msgBox($hiddens, 'items.php', sprintf(_AS_DT_DELETECONF, $sw->name()). '<br /><br />' ._AS_DT_ALLPERM, XOOPS_ALERT_ICON, $buttons, true, '400px');
-	
-		xoops_cp_footer();
-
-	
-	}
-
-
+    if($errors!='')
+        redirectMsg('items.php'.$params, __('Errors ocurred while trying to delete selected downloads!','dtransport').'<br />'.$errors, RMMSG_ERROR);
+        
+    redirectMsg('items.php'.$params, __('Downloads deleted successfully!','dtransport'), RMMSG_SUCCESS);
 }
 
 /**
@@ -457,7 +397,7 @@ switch ($action){
 		formItems(1);
 	    break;
 	case 'delete':
-		deleteItems();
+		dt_delete_items();
 	    break;
 	case 'bulk_approve':
 		dt_change_status('approve',1);
@@ -484,6 +424,6 @@ switch ($action){
         dt_change_status('secure', 0);
         break;
 	default:
-		showItems();
+		dt_show_items();
         break;
 }

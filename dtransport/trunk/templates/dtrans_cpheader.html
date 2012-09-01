@@ -1,0 +1,9 @@
+<ul id="dt-cp-header">
+    <{foreach item=link from=$header_elements.links}>
+    <li><a href="<{$link.link}>"><{$link.title}></a></li>
+    <{/foreach}>
+</ul>
+
+<{if $header_elements.title!=''}>
+    <h3><{$header_elements.title}></h3>
+<{/if}>

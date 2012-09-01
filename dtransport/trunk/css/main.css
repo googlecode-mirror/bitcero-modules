@@ -51,7 +51,7 @@ a.dt_button_small:hover{
 #dt-header form input{margin: 0;}
 #dt-header h1{margin: 0; float: left; border: 0;}
 #dt-header div{float: right; padding: 4px 0 0 0;}
-#dt-header ul{padding: 0; margin: 0; clear: both; border: 1px solid #ccc; background: #f2f2f2; overflow: hidden;}
+#dt-header ul{padding: 0; margin: 0; clear: both; border: 1px solid #ccc; background: #f2f2f2; overflow: hidden; font-size: 0.75em; text-transform: uppercase;}
 #dt-header ul li{list-style: none; float: left; margin-right: 2px; border-right: 1px solid #FFF;}
 #dt-header ul li a{display: block; padding: 8px 4px; border-right: 1px solid #CCC;}
 

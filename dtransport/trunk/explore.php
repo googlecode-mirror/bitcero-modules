@@ -38,7 +38,7 @@ $titles = $ev->run_event('dtransport.exploring.titles', $titles);
 include 'header.php';
 
 // Preparamos la consulta SQL
-$sql = "SELECT COUNT(*) FROM ".$db->prefix("dtrans_software")." WHERE approved=1 AND delete=0";
+$sql = "SELECT COUNT(*) FROM ".$db->prefix("dtrans_software")." WHERE approved=1 AND `delete`=0";
 switch($explore){
     case 'mine':
         $sql .= " AND uid=".$xoopsUser->uid()." ORDER BY `created`,`modified` DESC";

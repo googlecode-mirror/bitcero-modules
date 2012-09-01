@@ -21,7 +21,7 @@ function dt_screens($edit=0){
 	global $xoopsOption,$db,$tpl,$xoopsTpl,$xoopsUser,$mc, $dtfunc, $page, $item, $xoopsConfig, $xoopsModuleConfig,$screen;
 	
 	include('header.php');
-	$dtfunc->makeHeader(sprintf(__('Screenshots for "%s"','dtransport'), $item->getVar('name')));
+	$dtfunc->cpHeader($item, sprintf(__('Screenshots for "%s"','dtransport'), $item->getVar('name')));
 
     $tc = TextCleaner::getInstance();
     
@@ -240,66 +240,17 @@ function dt_save_screens($edit=0){
 /**
 * @desc Elmina las pantallas de la base de datos
 **/
-function deleteScreens(){
+function dt_delete_screen(){
+    global $mc, $item, $screen, $tpl, $xoopsTpl;
+    
+    $sc = new DTScreenshot($screen);
+    
+    if($sc->isNew())
+        redirect_header(DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id() : '/?p=cpanel&amp;action=screens&amp;id='.$item->id()), 1, __('Specified screenshot is not valid!','dtransport'));
 
-	$ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
-	$item = isset($_REQUEST['item']) ? intval($_REQUEST['item']) : 0;	
-
-	//Verificamos que el software sea válido
-	if ($item<=0){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERRIDITEM);
-		die();
-	}
-	//Verificamos que el software exista
-	$sw=new DTSoftware($item);
-	if ($sw->isNew()){
-		redirect_header(XOOPS_URL."/modules/dtransport/mydownloads.php",1,_MS_DT_ERR_ITEMEXIST);
-		die();
-	}
-
-	//Verificamos si nos proporcionaron alguna pantalla
-	if (!is_array($ids) && $ids<=0){
-		redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",2,_MS_DT_NOTSCREEN);
-		die();	
-	}
-
-	
-	if (!is_array($ids)){
-		$ids=array($ids);
-	}
-
-
-	$errors='';
-	foreach ($ids as $k){
-		//Verificamos si pantalla es válida
-		if ($k<=0){
-			$errors.=sprintf(_MS_DT_ERRSCVAL,$k);
-			continue;				
-		}
-		//Verificamos que la pantalla exista
-		$sc=new DTScreenshot($k);
-		if ($sc->isNew()){
-			$errors.=sprintf(_MS_DT_ERRSCEX,$k);
-			continue;
-		}
-	
-		if (!$sc->delete()){
-			$errors.=sprintf(_MS_DT_ERRSCDEL,$k);
-		}
-
-	}
-
-
-
-	if ($errors!=''){
-		redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",3,_MS_DT_DBERROR."<br />".$errors);
-		die();	
-	}else{
-		redirect_header(XOOPS_URL."/modules/dtransport/screens.php?item=$item",1,_MS_DT_DBOK);
-		die();	
-	}
-
-	
-
+	if(!$sc->delete())
+        redirect_header(DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id() : '/?p=cpanel&amp;action=screens&amp;id='.$item->id()), 1, __('Screenshot could not be deleted! Please try again.','dtransport'));
+    
+    redirect_header(DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id() : '/?p=cpanel&amp;action=screens&amp;id='.$item->id()), 1, __('Screenshot deleted successfully!','dtransport'));
 
 }

@@ -115,6 +115,45 @@ class DTFunctions
         return true;
 
 	}
+    
+    /**
+    * Create the header for control panel
+    */
+    public function cpHeader($item=null, $title=''){
+        global $xoopsTpl, $mc;
+        
+        $links[] = array(
+            'title' => __('My Downloads','dtransport'),
+            'link'  => DT_URL.($mc['permalinks'] ? '/cp/' : '/?p=cpanel')
+        );
+        
+        if($item){
+            
+            $links[] = array(
+                'title' => __('Files','dtransport'),
+                'link'  => DT_URL.($mc['permalinks'] ? '/cp/files/'.$item->id().'/' : '/?p=cpanel&amp;action=files&amp;id='.$item->id())
+            );
+            
+            $links[] = array(
+                'title' => __('Screenshots','dtransport'),
+                'link'  => DT_URL.($mc['permalinks'] ? '/cp/screens/'.$item->id().'/' : '/?p=cpanel&amp;action=screens&amp;id='.$item->id())
+            );
+            
+            $links[] = array(
+                'title' => __('Features','dtransport'),
+                'link'  => DT_URL.($mc['permalinks'] ? '/cp/features/'.$item->id().'/' : '/?p=cpanel&amp;action=features&amp;id='.$item->id())
+            );
+            
+            $links[] = array(
+                'title' => __('Logs','dtransport'),
+                'link'  => DT_URL.($mc['permalinks'] ? '/cp/logs/'.$item->id().'/' : '/?p=cpanel&amp;action=logs&amp;id='.$item->id())
+            );
+            
+        }
+        
+        $xoopsTpl->assign('header_elements',array('title'=>$title, 'links'=>$links));
+        
+    }
 	
 	/**
 	* @desc Comprueba si el usuario actual tiene permisos de envio
@@ -565,27 +604,27 @@ class DTFunctions
 
         switch($type){
             case 'featured':
-                $filter = "a.approved=1 AND a.featured=1 AND s.delete=0";
+                $filter = "a.approved=1 AND a.featured=1 AND a.delete=0";
                 $order = "ORDER BY RAND()";
                 break;
             case 'recent':
-                $filter = "a.approved=1 AND s.delete=0";
+                $filter = "a.approved=1 AND a.delete=0";
                 $order = "ORDER BY a.created DESC";
                 break;
             case 'daily':
-                $filter = "a.approved=1 AND a.daily=1 AND s.delete=0";
+                $filter = "a.approved=1 AND a.daily=1 AND a.delete=0";
                 $order = "ORDER BY RAND()";
                 break;
             case 'rated':
-                $filter = "a.approved=1 AND s.delete=0";
+                $filter = "a.approved=1 AND a.delete=0";
                 $order = "ORDER BY a.rating DESC";
                 break;
             case 'updated':
-                $filter = "a.approved=1 AND s.delete=0";
+                $filter = "a.approved=1 AND a.delete=0";
                 $order = "ORDER BY a.modified DESC";
                 break;
             default:
-                $filter = 's.delete=0';
+                $filter = 'a.delete=0';
                 $order = "ORDER BY created DESC";
                 break;
         }
