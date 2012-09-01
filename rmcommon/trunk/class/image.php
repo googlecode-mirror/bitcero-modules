@@ -157,6 +157,15 @@ class RMImage extends RMObject
     }
     
     public function delete(){
+        $path = XOOPS_UPLOAD_PATH.'/'.date('Y', $this->getVar('date')).'/'.date('m',$this->getVar('date')).'/';
+        $sizes = $this->get_sizes_data();
+        
+        $info = pathinfo($this->getVar('file'));
+        foreach($sizes as $size){
+            unlink($path.'sizes/'.$info['filename'].'_'.$this->sizes[$size]['width'].'x'.(isset($this->sizes[$size]['height'])?$this->sizes[$size]['height']:'').'.'.$info['extension']);
+        }
+        unlink($path.$this->getVar('file'));
+        
 		return $this->deleteFromTable();
     }
 	
