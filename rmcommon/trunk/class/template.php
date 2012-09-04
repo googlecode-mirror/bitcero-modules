@@ -271,7 +271,7 @@ class RMTemplate
     * @return null
     */
     public function add_script($url,$type='text/javascript'){
-            
+            if($url=='') return;
             if (strpos($url, "?")>1){
                 if (strpos($url, 'ver=')===FALSE){
                     $url .= "&amp;ver=".RMCVERSION;
@@ -321,6 +321,7 @@ class RMTemplate
         
         // Id for element
         $url = XOOPS_URL.'/modules/'.$element.'/'.$subfolder.'/js/'.$file;
+        
         if (strpos($url, "?")>1){
             if (strpos($url, 'ver=')===FALSE){
                 $url .= "&amp;ver=".RMCVERSION;
@@ -412,6 +413,8 @@ class RMTemplate
    	* Get all scripts stored in class
    	*/
     public function get_scripts(){
+        $ev = RMEvents::get();
+        $this->tpl_scripts = $ev->run_event('rmcommon.get.scripts',$this->tpl_scripts);
         return $this->tpl_scripts;
     }
 
@@ -567,7 +570,8 @@ class RMTemplate
    	* Get all styles stored in class
    	*/
     public function get_styles(){
-
+        $ev = RMEvents::get();
+        $this->tpl_styles = $ev->run_event('rmcommon.get.styles',$this->tpl_styles);
         return $this->tpl_styles;
     }
     /**
