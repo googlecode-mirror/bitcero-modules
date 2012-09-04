@@ -146,6 +146,21 @@ class RMImage extends RMObject
         return $ret;
     }
     
+    public function get_version($name){
+        
+        if($this->isNew()) return false;
+        
+        $this->get_sizes_data();
+        $ret = array();
+        foreach($this->sizes as $k => $size){
+            if($size['name'] == $name)
+                return $this->url($k);
+        }
+        
+        return '';
+        
+    }
+    
     public function save(){
         
         if ($this->isNew()){
