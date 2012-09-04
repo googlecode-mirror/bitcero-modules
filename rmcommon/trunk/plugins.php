@@ -518,6 +518,15 @@ function save_settings_rm_plugin(){
         
     }
     
+    $events = RMEvents::get();
+    /**
+    * Evnet params
+    * 1: Options as array
+    * 2: PLugin dir name
+    * 3: Plugin object
+    */
+    $events->run_event('rmcommon.save.plugin.settings', $options, $plugin->getVar('dir'), $plugin);
+    
     redirectMsg('plugins.php', __('Settings updated!','rmcommon'), 0);
     
 }
