@@ -18,7 +18,7 @@ class MinifierCUPlugin extends RMIPlugin
         $this->info = array(
             'name'            => __('Minifier Plugin', 'minifier'),
             'description'    => __('This plugin allows to minify scripts and stylesheets automatically.','lightbox'),
-            'version'        => '0.0.0.0',
+            'version'        => '0.1.0.0',
             'author'        => 'Eduardo Cortés',
             'email'            => 'i.bitcero@gmail.com',
             'web'            => 'http://www.redmexico.com.mx',
