@@ -57,13 +57,3 @@
     </div>
 </div>
 <{/if}>
-
-
-<!-- Categorías -->
-<h4><{$lang_categos}></h4>
-<ul id="dt-categories-list">
-<{foreach item=cat from=$categos key=i}>
-    <li<{if $cat.jumps>0}> style="padding-left: <{$cat.jumps*10}>px;"<{/if}>><a href="<{$cat.link}>"><{$cat.name}></a></li>
-<{/foreach}>
-</ul>
-

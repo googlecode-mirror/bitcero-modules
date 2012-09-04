@@ -11,39 +11,58 @@
 function dt_block_items($options){
 	global $db, $xoopsModule;
 	
-	if ($xoopsModule && $xoopsModule->dirname()=='dtransport'){
-		global $xoopsModuleConfig;
-		$mc =& $xoopsModuleConfig;
-	} else {
-		$util =& RMUtils::getInstance();
-		$mc =& $util->moduleConfig('dtransport');
-	}
-	
 	include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtsoftware.class.php';
 	include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtfunctions.class.php';
+    
+    $tpl = RMTemplate::get();
+    $tpl->add_xoops_style('blocks.css','dtransport');
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+    
+    $tbls = $db->prefix("dtrans_software");
+    $tblc = $db->prefix("dtrans_catsoft");
+    
+    if($options[1]>0){
+        
+        $sql = "SELECT s.* FROM $tbls as s, $tblc as c WHERE c.cat='".$options[1]."' AND s.id_soft=c.soft AND s.approved=1 AND s.`delete`=0";
+        
+    } else {
+        
+        $sql = "SELECT s.* FROM $tbls as s WHERE s.`approved`=1 AND s.`delete`=0 ";
+        
+    }
 	
-	$sql = "SELECT * FROM ".$db->prefix("dtrans_software")." WHERE approved='1' ";
-	
-	if ($options[10]>0){
-		$sql .= "AND uid='$options[10]' ";
+	if (trim($options[10])!=''){
+        $user = new RMUser(trim($options[10]));
+        if($user->isNew()) return;
+		$sql .= " AND s.uid='".$user->id()."' ";
 	}
     
     if ($options[11]>0) $sql .= "AND id_cat='$options[11]'";
 	
-	$sql .= " ORDER BY";
 	switch ($options[0]){
-		case 0:
-			$sql .= " modified DESC, created DESC";
+        case 'all':
+            $sql .= ' ORDER BY RAND() ';
+            break;
+		case 'recent':
+			$sql .= " ORDER BY s.modified DESC, created DESC ";
 			break;
-		case 1:
-			$sql .= " hits DESC";
+		case 'popular':
+			$sql .= " ORDER BY s.hits DESC ";
 			break;
-		case 2:
-			$sql .= " `rating`/`votes` DESC";
+		case 'rated':
+			$sql .= " ORDER BY s.`rating`/s.`votes` DESC ";
 			break;
+        case 'featured':
+            $sql .= " AND featured=1 ORDER BY RAND() ";
+            break;
+        case 'daily':
+            $sql = " AND daily=1 ORDER BY RAND() ";
+            break;
 	}
 	
-	$sql .= " LIMIT 0, $options[1]";
+    $options[2] = $options[2]>0 ? $options[2] : 5;
+	$sql .= " LIMIT 0, $options[2]";
 	
 	$result = $db->query($sql);
 	$block = array();
@@ -51,90 +70,107 @@ function dt_block_items($options){
 		$item = new DTSoftware();
 		$item->assignVars($row);
 		$rtn = array();
-		$rtn['title'] = $item->name();
-		if ($options[2]) $rtn['img'] = $item->image()!='' ? XOOPS_URL.'/uploads/dtransport/ths/'.$item->image() : '';
-		if ($options[3]) $rtn['desc'] = $item->shortdesc();
-		if ($options[4]) $rtn['hits'] = $item->hits();
-		if ($options[5]) $rtn['urate'] = @number_format($item->rating()/$item->votes(), 1);
-		if ($options[6]){
-			if ($item->votes()<=0 || $item->rating()<=0){
-				$rate = 0;
-			} else {
-				$rate = (($item->rating()/$item->votes())*6);
-			}
-			$rtn['srate'] = '<div style="width: 60px; background: url('.XOOPS_URL.'/modules/dtransport/images/stargray.gif) repeat-x left; height: 12px; padding: 0; text-align: left;">
-					<div style="width: '.$rate.'px; background: url('.XOOPS_URL.'/modules/dtransport/images/star.gif) repeat-x left; max-width: 60px; font-size: 2px; height: 12px;">
-					&nbsp;
-					</div>
-				</div>';
-		}
-        $link = XOOPS_URL.'/modules/dtransport';
+		$rtn['name'] = $item->getVar('name');
+        
+        if($options[3]){
+            $img = new RMImage();
+            $img->load_from_params($item->getVar('image'));
+            $rtn['image'] = $img->get_version($options[11]);
+        }
+        
+		if ($options[4]) $rtn['description'] = $item->getVar('shortdesc');
+		if ($options[5]) $rtn['hits'] = sprintf(__('Downloaded %s times.','dtransport'), '<strong>'.$item->getVar('hits').'</strong>');
+		if ($options[6]) $rtn['urate'] = @number_format($item->getVar('rate')/$item->getVar('votes'), 1);
 		if ($options[7]){
-			$rtn['dlink'] = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/download/' :  $link .'/down.php?id='.$item->id();
+			$rtn['siterate'] = DTFunctions::ratingStars($item->getVar('siterate'));
 		}
-		if($options[9]) $rtn['user'] = $item->uname();
-		$rtn['link'] = $mc['urlmode'] ? $link .'/item/'.$item->nameId().'/' :  $link .'/item.php?id='.$item->id();
+        $rtn['link'] = $item->permalink();
+		if($options[9]) $rtn['author'] = array('name'=>$item->getVar('author_name'),'url'=>$item->getVar('author_url'));
 		$block['downs'][] = $rtn;
 	}
 	
-	$block['showimg'] = $options[2];
-	$block['showdesc'] = $options[3];
-	$block['showhits'] = $options[4];
-	$block['showurate'] = $options[5];
-	$block['showsrate'] = $options[6];
-	$block['showdlink'] = $options[7];
-	$block['showuser'] = $options[9];
-	$block['downlang'] = _BK_DT_DOWNTEXT;
-	$block['showtitles'] = $options[8];
-	$block['langtitle'] = _BK_DT_TITLETEXT;
+	$block['showbutton'] = $options[8];
+	$block['downlang'] = __('Download','dtransport');
+    $block['lang_urate'] = __('User rating: %s','dtransport');
+	$block['lang_author'] = __('Author: %s','dtransport');
 	$block['langhits'] = _BK_DT_HITSTEXT;
 	$block['langurate'] = _BK_DT_URATETEXT;
-	$block['langsrate'] = _BK_DT_SRATETEXT;
 	$block['languser'] = _BK_DT_USERBY;
 	
 	return $block;
 
 }
 
-function dt_block_items_edit($options, &$form){
+function dt_block_items_edit($options){
 	
-	$form->addElement(new RMSubTitle(_AS_BKM_BOPTIONS,1));
+	include_once RMCPATH.'/class/form.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtcategory.class.php';
+    include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtfunctions.class.php';
+    
+    $dtfunc = new DTFunctions();
+    $elements = array();
 	
-	$ele = new RMSelect(_BK_DT_TYPE, 'options[0]', 0, array($options[0]));
-	$ele->addOption(0, _BK_DT_TYPE0);
-	$ele->addOption(1, _BK_DT_TYPE1);
-	$ele->addOption(2, _BK_DT_TYPE2);
-	$form->addElement($ele);
+	$ele = new RMFormSelect(__('Donwloads type','dtransport'), 'options[0]', 0, array($options[0]));
+    $ele->addOption('all', __('All downloads','dtransport'));
+	$ele->addOption('recent', __('Recent downloads','dtransport'));
+	$ele->addOption('popular', __('Popular downloads','dtransport'));
+    $ele->addOption('rated', __('Best rated downloads','dtransport'));
+    $ele->addOption('featured', __('Featured download','dtransport'));
+	$ele->addOption('daily', __('Daily downloads','dtransport'));
+	
+    $elements[] = array('title' => $ele->getCaption(), 'content' =>$ele->render());
+    
     // Categoría
     include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtfunctions.class.php';
     $categos = array();
-    DTFunctions::getCategos(&$categos, 0, 0, array(), false, 1);
-    $ele = new RMSelect(_BK_DT_CAT, 'options[11]', false, $options[11]);
-    $ele->addOption(0, _BK_DT_CATALL);
+    $dtfunc->getCategos($categos, 0, 0, array(), false, 1);
+    $ele = new RMFormSelect(__('Downloads from category','dtransport'), 'options[1]', false, $options[1]);
+    $ele->addOption(0, __('All categories','dtransport'));
     foreach ($categos as $cat){
-        $ele->addOption($cat['id_cat'], $cat['name']);
+        $ele->addOption($cat['id_cat'], str_repeat("&#151;", $cat['jumps']).' '.$cat['name']);
     }
-    $form->addElement($ele);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
     
 	// Numero de Descargas
-	$form->addElement(new RMText(_BK_DT_NUM, 'options[1]', 5, 2, $options[1]), true, 'num');
+	$ele = new RMFormText(__('Items limit','dtransport'), 'options[2]', 5, 2, $options[2]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar imágen
-	$form->addElement(new RMYesNo(_BK_DT_IMG, 'options[2]', $options[2]));
+    $ele = new RMFormYesNo(__('Show image','dtransport'), 'options[3]', $options[3]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
+    // Tamaño de imágen utilizado
+	$ele = new RMFormText(__('Image size','dtransport'), 'options[11]', 20, 100, $options[11]);
+    $ele->setDescription(__('This name must match with a size configured previously in image manager.','dtransport'));
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Descripción
-	$form->addElement(new RMYesNo(_BK_DT_DESC, 'options[3]', $options[3]));
+	$ele = new RMFormYesNo(__('Show description','dtransport'), 'options[4]', $options[4]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Hits
-	$form->addElement(new RMYesNo(_BK_DT_HITS, 'options[4]', $options[4]));
+	$ele = new RMFormYesNo(__('Show hits','dtransport'), 'options[5]', $options[5]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Ratig de Usuarios
-	$form->addElement(new RMYesNo(_BK_DT_URATE, 'options[5]', $options[5]));
+	$ele = new RMFormYesNo(__('Show user rating','dtransport'), 'options[6]', $options[6]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Rating del Sitio
-	$form->addElement(new RMYesNo(_BK_DT_SRATE, 'options[6]', $options[6]));
+	$ele = new RMFormYesNo(__('Show site rating','dtransport'), 'options[7]', $options[7]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Enlace de descarga
-	$form->addElement(new RMYesNo(_BK_DT_DOWN, 'options[7]', $options[7]));
-	// MOstrar títulos de la tabla
-	$form->addElement(new RMYesNo(_BK_DT_TITLES, 'options[8]',$options[8]));
+	$ele = new RMFormYesNo(__('Show download link','dtransport'), 'options[8]', $options[8]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
 	// Mostrar Nombre de Usuario
-	$form->addElement(new RMYesNo(_BK_DT_SHOWUSER, 'options[9]', $options[9]));
-	$form->addElement(new RMFormUserEXM(_BK_DT_ONLYUSER, 'options[10]', false, array($options[10]), 50, 600, 300, 1));
+	$ele = new RMFormYesNo(__('Show author','dtransport'), 'options[9]', $options[9]);
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render());
+    // Descargas de usuario
+	$ele = new RMFormText(__('Show downloads from a single user','dtransport'), 'options[10]', 10, 100, $options[10]);
+    $ele->setDescription(__('You can specify a user name or a integer id of the user.','dtransport'));
+    $elements[] = array('title' => $ele->getCaption(), 'content' => $ele->render(), 'description' => $ele->getDescription());
+    
+    $form = '<table class="outer">';
+    foreach($elements as $ele){
+        
+        $form .= '<tr><td>'.$ele['title'].($ele['description']!='' ? '<span class="description">'.$ele['description'].'</span>':'').'</td><td>'.$ele['content'].'</td></tr>';
+        
+    }
+    $form .= '</table>';
 	
 	return $form;
 	

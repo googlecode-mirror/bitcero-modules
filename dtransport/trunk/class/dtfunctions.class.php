@@ -65,9 +65,6 @@ class DTFunctions
         $xoopsTpl->assign('dt_header_title', $title);
 
         $header = array(
-            'lang' => array(
-                'search' => __('Search Downloads','dtransport')
-            ),
             'cansubmit' => $this->canSubmit(),
             'searchlink' => $mc['permalinks'] ? DT_URL.'/'.trim($mc['htbase'], '/').'/search/' : DT_URL.'/?p=search'
         );
@@ -313,7 +310,7 @@ class DTFunctions
 		$data['votes'] = $item->getVar('votes');
         $data['comments'] = $item->getVar('comments');
 		$data['siterate'] = DTFunctions::ratingStars($item->getVar('siterate'));
-		$data['rating'] = @number_format($item->getVar('raring')/$item->getVar('votes'), 1);
+		$data['rating'] = @number_format($item->getVar('rating')/$item->getVar('votes'), 1);
         $data['language'] = $item->getVar('langs');
         // Image
         $img = new RMImage();
