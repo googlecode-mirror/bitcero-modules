@@ -360,7 +360,7 @@ class RMTemplate
             $url .= "?ver=".RMCVERSION;
         }
         
-        $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more,'dir'=>'modules-'.$element.($subfolder!=''?'-'.str_replace("/",'-',$subfolder):''));
+        $this->tpl_scripts[$id] = array('url'=>$url,'type'=>$type, 'more'=>$more);
         
     }
 	
@@ -396,8 +396,7 @@ class RMTemplate
 		$this->tpl_scripts[$id] = array(
 			'url'=>$url,
 			'type'=>$type,
-			'more'=>$more,
-            'dir'=>'theme-'.$theme
+			'more'=>$more
 		);
         
     }
