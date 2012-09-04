@@ -548,7 +548,7 @@ $modversion['blocks'][] = array(
     'show_func' => "dt_block_items",
     'edit_func' => "dt_block_items_edit",
     'template' => 'dtrans_bk_items.html',
-    'options' => array(0, 10, 0, 0, 0, 0, 0, 0, 0, 0)
+    'options' => array('all', 0, 5, 1, 1, 1, 0, 0, 1, 0, 0,'thumbnail')
 );
 
 // Búsquedas Populares

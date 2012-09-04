@@ -9,7 +9,54 @@
 // --------------------------------------------------------------
 
 function dt_block_categories($options){
+    include_once XOOPS_ROOT_PATH.'/modules/dtransport/class/dtcategory.class.php';
+    $rmu = RMUtilities::get();
+    $rmf = RMFunctions::get();
+    $mc = $rmu->module_config('dtransport');
+    
+    $url = $rmf->current_url();
 
+    $rpath = parse_url($url);
+    $xpath = parse_url(XOOPS_URL);
+    
+    if($mc['permalinks']){
+        $params = trim(str_replace($xpath['path'].'/'.trim($mc['htbase'], '/'), '', rtrim($rpath['path'], "/")), '/');
+        $search = array('category','publisher','recents','popular','rated','updated');
+
+        if($params=='')
+            $params = array();
+        else
+            $params = explode("/", trim($params));
+        
+        if(!empty($params) && $params[0]=='category'){
+        
+            $db = XoopsDatabaseFactory::getDatabaseConnection();
+            $params = explode("page", implode("/", array_slice($params, 1)));
+            $path = explode("/", $params[0]);
+            foreach ($path as $k){
+
+                if ($k=='') continue;
+
+                $category = new DTCategory();
+                $sql = "SELECT * FROM ".$db->prefix("dtrans_categos")." WHERE nameid='$k' AND parent='$idp'";
+                $result = $db->query($sql);
+
+                if ($db->getRowsNum($result)>0){
+                    $row = $db->fetchArray($result);
+                    $idp = $row['id_cat'];
+                    $category->assignVars($row);
+                } else {
+                    $dtfunc->error_404();
+                }
+
+            }
+        
+        } else {
+            $category = new DTCategory();
+        }
+        
+    }
+    
     $tpl = RMTemplate::get();
     $tpl->add_xoops_style('blocks.css','dtransport');
 
@@ -17,7 +64,7 @@ function dt_block_categories($options){
     $categories = array();
     $dtfunc = new DTFunctions();
 
-    $dtfunc->getCategos($categories, 0, 0, array(), false, 1);
+    $dtfunc->getCategos($categories, 0, $category->id(), array(), false, 1);
 
     $block = array();
     foreach($categories as $cat){
@@ -27,6 +74,9 @@ function dt_block_categories($options){
         $block['categories'][] = $cat;
 
     }
+    
+    if(!$category->isNew())
+        $block['parent'] = array('name' => $category->name(), 'link' => $category->permalink());
 
     return $block;
 

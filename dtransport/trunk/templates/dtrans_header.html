@@ -2,12 +2,6 @@
     <{if $dt_header_title}>
     <h2><{$dt_header_title}></h2>
     <{/if}>
-    <div>
-        <form name="frmSearch" method="get" action="<{$headerlink}>" style="margin: 0 0 4px 0; padding: 0;">
-            <input type="text" name="keyw" value="<{$keyw}>" />
-            <input type="submit" value="<{$header.lang.search}>" />
-        </form>
-    </div>
     <ul>
         <{foreach item=link from=$header.links}>
         <li><a href="<{$link.link}>"><{$link.title}></a></li>

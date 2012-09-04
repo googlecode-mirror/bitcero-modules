@@ -35,20 +35,6 @@ if($mc['daydownload']){
     $xoopsTpl->assign('daily_width', floor(100/($mc['limit_daydownload'])));
 }
 
-// Categorías
-$xoopsTpl->assign('show_cats', $mc['showcats']);
-if ($mc['showcats']){
-    $categos = array();
-    $dtfunc->getCategos($categos, 0, 0, array(), true);
-    $i = 0;
-    foreach ($categos as $row){
-        $cat =& $row['object'];
-        $link = $cat->permalink();
-        $xoopsTpl->append('categos', array('id'=>$cat->id(), 'name'=>$cat->name(), 'jumps'=>$row['jumps'],'link'=>$link));
-        $i++;
-    }
-}
-
 $xoopsTpl->assign('lang_recents', __('New Downloads','dtransport'));
 $xoopsTpl->assign('lang_bestrated', __('Best Rated','dtransport'));
 $xoopsTpl->assign('lang_updated', __('Updated','dtransport'));

@@ -63,7 +63,7 @@ $limit = $limit<=0 ? 10 : $limit;
 
 $tpages = ceil($num / $limit);
 
-if ($tpages<$page){
+if ($tpages<$page && $tpages>0){
     header('location: '.$category->permalink());
     die();
 }
@@ -104,7 +104,7 @@ if($mc['inner_daydownload']){
 $xoopsTpl->assign('xoops_pagetitle', $category->name() . " &raquo; " . $xoopsModule->name());
 $xoopsTpl->assign('lang_in', sprintf(__('<strong>Downloads in</strong> %s','dtransport'), $category->name()));
 
-$xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtransport'));
+$xoopsTpl->assign('lang_featured',sprintf(__('<strong>%s</strong> Featured Downloads','dtransport'), $category->name()));
 $xoopsTpl->assign('lang_download', __('Download','dtransport'));
 
 $tpl->add_xoops_style('main.css','dtransport');

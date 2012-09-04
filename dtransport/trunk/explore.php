@@ -101,6 +101,7 @@ if($mc['inner_daydownload']){
 $xoopsTpl->assign('lang_featured',__('<strong>Featured</strong> Downloads','dtransport'));
 $xoopsTpl->assign('lang_download', __('Download','dtransport'));
 $xoopsTpl->assign('lang_in', __('<strong>Available</strong> Downloads','dtransport'));
+$xoopsTpl->assign('xoops_pagetitle', $titles[$explore]);
 
 $dtfunc->makeHeader($titles[$explore]);
 
