@@ -275,7 +275,7 @@ label.options{
     overflow: auto;
     border-radius: 0 5px 5px 5px;
     -moz-border-radius: 0 5px 5px 5px;
-    max-height: 480px;
+    max-height: 350px;
 }
 #custom-content,
 #block-permissions{
