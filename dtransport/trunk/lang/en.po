@@ -1,0 +1,3033 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: D-Transport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-04 19:20-0600\n"
+"PO-Revision-Date: 2012-09-04 19:21-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Xoops Mexico <xoopsmexico@gmail.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\xm\\modules\\dtransport\n"
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:21
+msgid "Category not specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:46
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:81
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:152
+msgid "Specified category does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:94
+#: C:\wamp\www\xm\modules\dtransport/home.php:42
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:68
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:68
+#: C:\wamp\www\xm\modules\dtransport/tags.php:72
+#, php-format
+msgid "In <a href=\"%s\">%s</a>"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:101
+#: C:\wamp\www\xm\modules\dtransport/explore.php:95
+#: C:\wamp\www\xm\modules\dtransport/home.php:33
+#: C:\wamp\www\xm\modules\dtransport/item.php:206
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:76
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:76
+#: C:\wamp\www\xm\modules\dtransport/tags.php:80
+msgid "<strong>Day</strong> Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:105
+#, php-format
+msgid "<strong>Downloads in</strong> %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:107
+#, php-format
+msgid "<strong>%s</strong> Featured Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:108
+#: C:\wamp\www\xm\modules\dtransport/explore.php:102
+#: C:\wamp\www\xm\modules\dtransport/home.php:43
+#: C:\wamp\www\xm\modules\dtransport/item.php:229
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:79
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:79
+#: C:\wamp\www\xm\modules\dtransport/tags.php:83
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:93
+msgid "Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/category.php:114
+#, php-format
+msgid "Downloads in \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:12
+msgid "Please login before to access this page!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:22
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:27
+#: C:\wamp\www\xm\modules\dtransport/submit.php:37
+#: C:\wamp\www\xm\modules\dtransport/submit.php:42
+#: C:\wamp\www\xm\modules\dtransport/submit.php:208
+#: C:\wamp\www\xm\modules\dtransport/submit.php:213
+msgid "Item not found. Please try again!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:30
+#: C:\wamp\www\xm\modules\dtransport/submit.php:54
+#: C:\wamp\www\xm\modules\dtransport/submit.php:225
+msgid "You can not edit this download item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:141
+#, php-format
+msgid ""
+"Item marked to deletion successfully! From now and on, \"%s\" will be "
+"unavailable for download while administrators delete it."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:143
+msgid "Item could not be marked to deletion! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:155
+msgid "Item restored successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:157
+msgid "Item could not be restored! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:166
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:591
+msgid "Control Panel"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:216
+#: C:\wamp\www\xm\modules\dtransport/features.php:91
+#: C:\wamp\www\xm\modules\dtransport/files.php:130
+#: C:\wamp\www\xm\modules\dtransport/logs.php:88
+#: C:\wamp\www\xm\modules\dtransport/screens.php:106
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:42
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:51
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:15
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:25
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:28
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:39
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:48
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:61
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:47
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:15
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:24
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:40
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:47
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:14
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:22
+msgid "ID"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:217
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:49
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:62
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:48
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:41
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:48
+msgid "Name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:218
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:26
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:36
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:77
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:89
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:124
+msgid "Protected"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:219
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:30
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:51
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:64
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:118
+msgid "Approved"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:220
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:17
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:27
+msgid "Created"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:221
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:18
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:28
+msgid "Modified"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:222
+#: C:\wamp\www\xm\modules\dtransport/files.php:135
+#: C:\wamp\www\xm\modules\dtransport/item.php:242
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:30
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:41
+msgid "Hits"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:223
+#: C:\wamp\www\xm\modules\dtransport/features.php:94
+#: C:\wamp\www\xm\modules\dtransport/files.php:137
+#: C:\wamp\www\xm\modules\dtransport/logs.php:92
+#: C:\wamp\www\xm\modules\dtransport/screens.php:110
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:34
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:65
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:46
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:59
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:80
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:95
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:65
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:43
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:64
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:41
+msgid "Edit"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:224
+#: C:\wamp\www\xm\modules\dtransport/features.php:95
+#: C:\wamp\www\xm\modules\dtransport/files.php:138
+#: C:\wamp\www\xm\modules\dtransport/logs.php:93
+#: C:\wamp\www\xm\modules\dtransport/screens.php:111
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:35
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:34
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:66
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:82
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:47
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:60
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:81
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:38
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:98
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:126
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:40
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:66
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:76
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:44
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:32
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:65
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:76
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:42
+msgid "Delete"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:225
+msgid "Waiting Deletion"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:226
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:583
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:183
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:184
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:60
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:31
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:49
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:130
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:158
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:106
+msgid "Files"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:227
+#: C:\wamp\www\xm\modules\dtransport/item.php:236
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:61
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:52
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:42
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:48
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:140
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:157
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:105
+msgid "Features"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:228
+#: C:\wamp\www\xm\modules\dtransport/item.php:235
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:68
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:50
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:145
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:160
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:107
+msgid "Logs"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:229
+#: C:\wamp\www\xm\modules\dtransport/item.php:230
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:44
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:35
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:47
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:135
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:162
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:52
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:65
+msgid "Screenshots"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/cpanel.php:230
+msgid "Cancel Deletion"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:22
+msgid "Invalid parameters"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:27
+msgid "You are not authorized to view this section!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:30
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:585
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:78
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:123
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:161
+msgid "My Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:31
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:90
+msgid "Recent Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:32
+msgid "Most Downloaded"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:33
+msgid "Best Rated Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:34
+#, php-format
+msgid "Downloads of %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:101
+#: C:\wamp\www\xm\modules\dtransport/home.php:41
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:69
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:69
+#: C:\wamp\www\xm\modules\dtransport/tags.php:73
+msgid "<strong>Featured</strong> Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/explore.php:103
+msgid "<strong>Available</strong> Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:23
+#, php-format
+msgid "%s Features"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:29
+#: C:\wamp\www\xm\modules\dtransport/features.php:122
+#: C:\wamp\www\xm\modules\dtransport/files.php:29
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:99
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:179
+msgid "Specified feature does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:57
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:114
+#, php-format
+msgid "Editing feature of \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:57
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:114
+#, php-format
+msgid "New feature for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:59
+#: C:\wamp\www\xm\modules\dtransport/files.php:75
+#: C:\wamp\www\xm\modules\dtransport/logs.php:59
+#: C:\wamp\www\xm\modules\dtransport/screens.php:70
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:116
+msgid "Download item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:62
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:119
+msgid "Feature title"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:63
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:120
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:10
+msgid "Short name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:64
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:121
+msgid "Feature content"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:86
+msgid "Do you really want to delete selected feature?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:92
+#: C:\wamp\www\xm\modules\dtransport/files.php:131
+#: C:\wamp\www\xm\modules\dtransport/item.php:240
+#: C:\wamp\www\xm\modules\dtransport/logs.php:89
+#: C:\wamp\www\xm\modules\dtransport/screens.php:73
+#: C:\wamp\www\xm\modules\dtransport/screens.php:107
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:16
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:26
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:16
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:24
+msgid "Title"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:93
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:18
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:27
+msgid "Content"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:96
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:43
+msgid "Add Feature"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:141
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:198
+msgid "Another feature with same title already exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:151
+msgid "Feature could not be saved! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:154
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:211
+msgid ""
+"Feature saved correctly, however custom fields could not be stored in "
+"database!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:156
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:213
+msgid "Featured saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:169
+msgid "Specified feature is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:172
+msgid "Feature could not be deleted! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/features.php:174
+msgid "Feature deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:23
+#, php-format
+msgid "%s files"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:72
+#, php-format
+msgid "Editing file of \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:72
+#, php-format
+msgid "New file for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:77
+msgid "File title"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:94
+#: C:\wamp\www\xm\modules\dtransport/files.php:132
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:32
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:43
+msgid "Group"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:95
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:72
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:28
+msgid "Select group..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:100
+msgid "Default file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:101
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:23
+msgid "Remote file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:102
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:29
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:40
+msgid "File"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:104
+msgid "Current file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:105
+msgid "File URL"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:105
+msgid "Used only when remote file is activated."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:113
+#: C:\wamp\www\xm\modules\dtransport/screens.php:88
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:107
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:38
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:38
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:145
+msgid "Save Changes"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:113
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:38
+msgid "Save File"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:114
+#: C:\wamp\www\xm\modules\dtransport/screens.php:89
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:116
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:108
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:24
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:39
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:146
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:9
+msgid "Cancel"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:125
+msgid "Do you really want to delete selected file?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:133
+msgid "Remote"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:134
+#: C:\wamp\www\xm\modules\dtransport/item.php:241
+msgid "Size"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:136
+#: C:\wamp\www\xm\modules\dtransport/logs.php:90
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:17
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:26
+msgid "Date"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:139
+msgid "Add File"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:164
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:164
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:110
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:175
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:233
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:267
+msgid "Specified file does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:178
+#: C:\wamp\www\xm\modules\dtransport/logs.php:134
+msgid "Another log with same title already exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:184
+msgid "You must provide a file to upload!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:186
+msgid "You must provide a file URL when remote type is activated!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:205
+#: C:\wamp\www\xm\modules\dtransport/files.php:208
+msgid "File could not be uploaded!, Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:224
+msgid "File could not be saved! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:229
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:213
+msgid "File saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:242
+msgid "Specified file is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:245
+msgid "File could not be deleted! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/files.php:255
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:286
+msgid "File deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:20
+msgid "File not found!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:27
+msgid "Software does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:31
+msgid "Sorry, you don't have permission to download this file!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:36
+msgid "You have reached your download limit for this file!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:58
+#, php-format
+msgid "Your %s download will start shortly..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:59
+#, php-format
+msgid "Problems with the download? Please %s to download immediately."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:59
+msgid "use this link"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:64
+#, php-format
+msgid "Your %s download will start in {x} seconds..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:104
+msgid "We're sorry but specified file does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/getfile.php:134
+msgid "We're sorry but selected file does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/home.php:38
+msgid "New Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/home.php:39
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:100
+msgid "Best Rated"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/home.php:40
+#: C:\wamp\www\xm\modules\dtransport/item.php:217
+msgid "Updated"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/home.php:46
+#: C:\wamp\www\xm\modules\dtransport/submit.php:239
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:567
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:582
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:54
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:22
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:45
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:156
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:40
+msgid "Categories"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:18
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:34
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:41
+msgid "Specified item does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:23
+msgid "This item is not available for download at this moment!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:30
+msgid "Internal Error! Please try again later"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:211
+msgid "<strong>Related</strong> Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:216
+msgid "New"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:218
+msgid "Author:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:219
+msgid "Version:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:220
+msgid "Created on:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:221
+msgid "Updated on:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:222
+msgid "Languages:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:223
+msgid "Supported platforms:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:224
+msgid "License:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:225
+#, php-format
+msgid "%s rate"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:226
+msgid "Users rating"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:227
+#, php-format
+msgid "%u votes"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:228
+msgid "Download Now!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:231
+msgid "Tags:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:232
+msgid "Published on:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:233
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:158
+msgid "Download Options"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:234
+msgid "Details"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/item.php:237
+msgid ""
+"You can choose between next download options if you prefer another file type "
+"or another location."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:15
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:15
+msgid "Platform not specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:64
+#, php-format
+msgid "Downloads licensed as %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/licenses.php:80
+#, php-format
+msgid "<strong>Downloads</strong> licenced as \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:23
+#, php-format
+msgid "%s Logs"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:29
+#: C:\wamp\www\xm\modules\dtransport/logs.php:120
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:158
+msgid "Specified log does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:57
+#, php-format
+msgid "Editing log of \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:57
+#, php-format
+msgid "New log for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:62
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:104
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:16
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:25
+msgid "Log title"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:63
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:105
+msgid "Log content"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:83
+msgid "Do you really want to delete selected log?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:91
+#: C:\wamp\www\xm\modules\dtransport/screens.php:109
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:19
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:29
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:34
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:45
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:55
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:68
+msgid "Options"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:94
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:39
+msgid "Add Log"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:142
+msgid "Log could not be saved! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:144
+msgid "Log saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:157
+msgid "Specified log is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:160
+msgid "Log could not be deleted! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/logs.php:162
+msgid "Log deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:64
+#, php-format
+msgid "Downloads for %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/platforms.php:80
+#, php-format
+msgid "<strong>Downloads</strong> for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:24
+#, php-format
+msgid "Screenshots for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:51
+#: C:\wamp\www\xm\modules\dtransport/screens.php:56
+msgid "Invalid screen"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:67
+#, php-format
+msgid "Edit Screenshot of %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:67
+#, php-format
+msgid "Add screen for %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:74
+#: C:\wamp\www\xm\modules\dtransport/screens.php:108
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:97
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:12
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:44
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:53
+msgid "Description"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:75
+msgid "Image file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:79
+msgid "Current image"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:88
+msgid "Save Screenshot"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:101
+msgid "Do you really want to delete selected images?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:112
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:15
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:23
+msgid "Image"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:139
+#: C:\wamp\www\xm\modules\dtransport/screens.php:249
+msgid "Specified screenshot is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:145
+#: C:\wamp\www\xm\modules\dtransport/screens.php:230
+#: C:\wamp\www\xm\modules\dtransport/screens.php:232
+msgid "Already exist another screenshot with the same name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:153
+msgid "Already exist another screenshot with same name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:194
+#: C:\wamp\www\xm\modules\dtransport/screens.php:200
+#: C:\wamp\www\xm\modules\dtransport/screens.php:203
+msgid "Image could not be upload due to an internal error!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:235
+msgid "Screenshot saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:252
+msgid "Screenshot could not be deleted! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/screens.php:254
+msgid "Screenshot deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:12
+msgid "Operation not allowed!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:19
+msgid "You have not authorization to create download items"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:69
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:144
+msgid "Another item with same name already exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:134
+msgid "Download item could not be saved! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:190
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:163
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:210
+msgid "Changes saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:190
+msgid "Download item created successfully"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:232
+msgid "Editing Download Item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:232
+msgid "Create New Download Item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:235
+msgid "Download name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:236
+msgid "Download version"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:240
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:14
+msgid "Select..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:251
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:21
+msgid "Short description"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:252
+msgid "Full description"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:253
+msgid "Default image"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:262
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:587
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:163
+msgid "Tags"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:262
+msgid "Separate each tag with comma (,)."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:265
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:76
+msgid "Licenses"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:266
+#: C:\wamp\www\xm\modules\dtransport/submit.php:277
+msgid "Other"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:276
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:84
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:52
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:69
+msgid "Platforms"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:287
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:82
+msgid "Allowed groups"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:291
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:101
+msgid "Protected download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:291
+msgid ""
+"Protected downloads will be stored in a secure directory and only can not be "
+"download directly."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:295
+msgid "Password for this download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:295
+msgid "Only users than knows the password will download this item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:298
+msgid "Author Information"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:299
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:257
+msgid "Author name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:300
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:261
+msgid "Author URL"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:301
+msgid "Author email"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:302
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:270
+msgid "Author can be contacted"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/submit.php:303
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:54
+msgid "Available languages"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/tags.php:15
+msgid "Tag not specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/tags.php:68
+#: C:\wamp\www\xm\modules\dtransport/tags.php:84
+#, php-format
+msgid "Downloads tagged as \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:14
+msgid "Module for create a donwloads section in XOOPS"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:36
+msgid "Twitter"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:37
+msgid "LinkedIn"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:38
+msgid "Red México on Twitter"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:39
+msgid "Red México on Facebook"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:66
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:84
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:164
+msgid "Submit Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:105
+msgid "Template to show the featured items list."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:106
+msgid "Template to show the list for selected items."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:107
+msgid "Shows the items according to exploring parameters."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:108
+msgid "Shows the items that belong to a specific platform."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:109
+msgid "Show screenshots for a download item in control panel."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:110
+msgid "Show features list for a download item in control panel."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:111
+msgid "Show logs list for a download item in control panel."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:112
+msgid "Show files list for a download item in control panel."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:113
+msgid "Show the header for Users Control Panel."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:506
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:218
+msgid "Private message"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:506
+msgid "Email"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:546
+msgid "Downloads list"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:547
+msgid "This block show the downloads list"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:557
+msgid "Popular searches"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:558
+msgid "Show a list of downloads for popular searches"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:568
+msgid "Show the categories tree for D-Transport"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:581
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:155
+msgid "Home Page"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:584
+msgid "Item details"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:586
+msgid "Download file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:588
+msgid "Submit download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:589
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:165
+msgid "Search"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:590
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:167
+msgid "Comments"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/xoops_version.php:592
+#: C:\wamp\www\xm\modules\dtransport/admin/screens.php:74
+msgid "Screenshots Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:46
+msgid "Do you really want to delete selected categories"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:47
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:277
+msgid "Select at least one category to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:76
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:147
+msgid "Specified category is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:87
+msgid "Edit category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:87
+msgid "New category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:90
+msgid "Edit Category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:90
+msgid "New Category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:91
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:8
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:43
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:52
+msgid "Category name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:94
+msgid "Category short name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:100
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:14
+msgid "Root category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:101
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:16
+msgid "Select category..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:109
+msgid "Active category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:115
+msgid "Submit"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:139
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:233
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:304
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:368
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:132
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:212
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:176
+msgid "Session token expired!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:159
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:177
+msgid "Already exists another category with same name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:166
+msgid "Already exists another category with same short name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:210
+msgid "Category could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:213
+msgid "Category saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:230
+msgid "You must select at least one category to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:239
+#, php-format
+msgid "Category ID \"%s\" is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:246
+#, php-format
+msgid "Category \"%s\" does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:251
+#, php-format
+msgid "Category \"%s\" could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:257
+msgid "There was errors trying to delete categories"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:260
+msgid "Categories deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:285
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:138
+msgid "Database could not be updated!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/categories.php:287
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:384
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:173
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:75
+msgid "Database updated successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:27
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:89
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:167
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:152
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:301
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:177
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:81
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:143
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:194
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:55
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:49
+msgid "Specified download item does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:52
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:1
+#, php-format
+msgid "Features of \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:61
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:111
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:30
+#: C:\wamp\www\xm\modules\dtransport/admin/screens.php:74
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:25
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:30
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:34
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:37
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:41
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:46
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:73
+msgid "Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:84
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:162
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:294
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:138
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:189
+#: C:\wamp\www\xm\modules\dtransport/admin/screens.php:33
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:49
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:43
+msgid "Download item ID not provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:94
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:174
+msgid "Feature ID not specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:111
+msgid "Edit Feature"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:111
+msgid "New Feature"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:158
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:146
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:32
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:155
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:225
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:260
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:60
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:222
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:46
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:148
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:176
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:215
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:40
+msgid "Session token not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/features.php:208
+msgid "Feature could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:29
+msgid "Before to view files, you must specify a download item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:109
+msgid "Download Items"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:109
+msgid "Files Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:112
+#, php-format
+msgid "Files for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:147
+msgid "No download item ID has been provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:159
+msgid "No file ID has been specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:175
+#, php-format
+msgid "File %s does not exists! You need to upload this file again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:183
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:184
+msgid "Edit file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:183
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:184
+msgid "New file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:207
+msgid "Allowed files ("
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:209
+msgid "Select File..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:288
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:202
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:98
+msgid "Session token invalid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:307
+msgid "Group id not provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:314
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:51
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:238
+msgid "Specified group does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:319
+#, php-format
+msgid "Group %s could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/files.php:322
+#, php-format
+msgid "Group %s deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:109
+msgid "Pending Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:112
+msgid "Edited Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:115
+msgid "Downloads Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:163
+msgid "Download item has not been specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:170
+msgid "Verifying edited item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:173
+msgid "Editing download item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:183
+msgid "New Download Item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:217
+msgid "Other license"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:237
+msgid "Other platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:298
+msgid "You must select at least one download item to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:335
+#, php-format
+msgid "Your download %s has been deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:344
+msgid "Errors ocurred while trying to delete selected downloads!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:346
+msgid "Downloads deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:374
+msgid "You must select at least one item to modify!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/items.php:381
+msgid "Errors ocurred while trying to update database!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:46
+msgid "Do you really want to delete selected licenses"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:47
+msgid "Select at least one licence to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:52
+msgid "Licences Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:75
+msgid "You must provide a valid licencse ID!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:82
+msgid "Specified licence ID does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:90
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:93
+msgid "Edit Licence"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:90
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:93
+msgid "New Licence"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:94
+msgid "Licence name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:95
+msgid "Licence reference URL"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:97
+msgid "Licence type"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:98
+msgid "Open source licence"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:99
+msgid "Restrictive licence"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:144
+msgid "You must provide a licence identifier in order to edit its data"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:151
+msgid "Specified licence does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:159
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:170
+msgid "Another licence with same name already exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:185
+msgid "Licence could not be saved! Please try again"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:189
+msgid "License saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:207
+msgid "No licenses has been specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:221
+#, php-format
+msgid "Specified ID for licence does not exists: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:228
+#, php-format
+msgid "Sepecified licence does not exists: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:233
+#, php-format
+msgid "Licence \"%s\" could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:239
+msgid "Errors ocurred whilke trying to delete licenses:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/licenses.php:241
+msgid "Licences deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:27
+msgid "%m%-%d%-%Y%"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:76
+msgid "Download item ID has not been provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:86
+msgid "Log item ID has not been provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:91
+msgid "Specified item log does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:98
+#, php-format
+msgid "\"%s\" Logs"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:98
+msgid "Edit Log"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:98
+msgid "New Log"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:101
+#, php-format
+msgid "Edit Change Log of \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:101
+#, php-format
+msgid "New Log for \"%s\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:103
+msgid "Download Item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:154
+msgid "Item log ID not provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:171
+msgid "Item log could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:198
+msgid "You must select at least one log!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:208
+msgid "Item logs deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/logs.php:210
+msgid "Logs could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:14
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:22
+msgid "Dashboard"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:35
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:114
+msgid "All downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:36
+msgid "Pending"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:37
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:28
+msgid "Edited"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/menu.php:38
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:26
+msgid "New Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:42
+msgid "You must specified a valid platform ID!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:49
+msgid "Sepecified platform does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:61
+msgid "Do you really want to delete selected platforms"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:62
+msgid "Select at least one platform to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:67
+msgid "Edit Platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:67
+msgid "New Platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:100
+msgid "You must specify a valid platform ID!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:107
+msgid "Specified platform does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:115
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:126
+msgid "Another platform with same name already exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:141
+msgid "Platform saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:161
+msgid "You must select at least one platform to delete!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:166
+msgid "Session token expired"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:174
+#, php-format
+msgid "Invalid platform ID: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:181
+#, php-format
+msgid "Does nto exists platform with ID %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:186
+#, php-format
+msgid "Platform \"%s\" could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:192
+msgid "Errors ocurred while trying to delete platforms:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/platforms.php:194
+msgid "Platforms deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/admin/screens.php:76
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:1
+#, php-format
+msgid "%s Screenshots"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:36
+msgid "Download item ID has not been specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:46
+msgid "A group ID has not been specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:67
+msgid "Another group with same name exists already!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:83
+msgid "Database could not be updated"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:113
+#, php-format
+msgid "File %s could not be deleted! Please try again."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:116
+#, php-format
+msgid "File %s was deleted successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:129
+msgid "Identifier could not be verified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:137
+msgid "Critical error!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:139
+msgid "Verified"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:159
+msgid "Item download ID not provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:164
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:271
+msgid "Specified item download does nto exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:170
+msgid "File ID has not been provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:206
+msgid "File could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:214
+#, php-format
+msgid "File %s saved successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:242
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:274
+msgid "This file seems not belong to specified download item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:247
+msgid "File reasigned successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:249
+msgid "File could not be reasigned!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/files-ajax.php:277
+msgid "File could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:64
+msgid "Name must be specified!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:67
+msgid ""
+"A short description and full description must be specified for this download!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:70
+msgid "Select a category to assign this download!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:73
+msgid "A license must be selected at least!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:76
+msgid "A platform must be selected at least!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:79
+msgid "A group must be selected at least!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:84
+msgid "You must specified a download item to be edited!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:88
+msgid "Sepecified download item does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:151
+msgid "Item could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:153
+msgid "Item saved but with some errors!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:163
+msgid "Item created successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:180
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:226
+msgid "No item ID has been provided!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:184
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:230
+msgid "Provided item ID is not valid!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:188
+msgid "Please provide new permalink name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:200
+msgid ""
+"Another item with same permalink name already exists! Please provide another "
+"one."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:205
+msgid "New name could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:235
+msgid "Data could not be changed!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/items-ajax.php:238
+msgid "Data changed successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:20
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:21
+msgid "Error:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:58
+msgid "You have reached the limit screens number for this download item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:77
+msgid "Directory for store screenshots does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:101
+msgid "Screenshot could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:153
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:181
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:220
+msgid "Specified screenshot does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:187
+msgid "You must provide a title for this screenshot!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:193
+msgid "Screenshot changes could not be saved!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload-screens.php:223
+msgid "Screenshot could not be deleted!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:55
+msgid "Directory for protected downloads does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:61
+msgid "Directory for downloads does not exists!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:83
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:12
+msgid "Protected Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/ajax/upload.php:83
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:12
+msgid "Normal Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:95
+msgid "Show categories levels:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:99
+msgid "All levels"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:100
+msgid "1 level"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:101
+msgid "2 levels"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:102
+msgid "3 levels"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:103
+msgid "4 levels"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrans_bk_categories.php:104
+msgid "5 levels"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:82
+#, php-format
+msgid "Downloaded %s times."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:94
+#, php-format
+msgid "User rating: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:95
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:113
+msgid "Donwloads type"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:115
+msgid "Recent downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:116
+msgid "Popular downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:117
+msgid "Best rated downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:118
+msgid "Featured download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:119
+msgid "Daily downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:127
+msgid "Downloads from category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:128
+msgid "All categories"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:135
+msgid "Items limit"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:138
+msgid "Show image"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:141
+msgid "Image size"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:142
+msgid ""
+"This name must match with a size configured previously in image manager."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:145
+msgid "Show description"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:148
+msgid "Show hits"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:151
+msgid "Show user rating"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:154
+msgid "Show site rating"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:157
+msgid "Show download link"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:160
+msgid "Show author"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:163
+msgid "Show downloads from a single user"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/blocks/dtrasn_bk_items.php:164
+msgid "You can specify a user name or a integer id of the user."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:27
+msgid "Waiting"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:32
+msgid "Add file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:38
+msgid "Item Logs"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:51
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:53
+msgid "Licences"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:95
+msgid "Popular Downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:205
+#, php-format
+msgid "%s rating: %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:556
+msgid "Custom Fields"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:556
+msgid ""
+"Custom fields allows you to add extra information to elements, tah can be "
+"used on templates, plugins or another elements."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/class/dtfunctions.class.php:743
+msgid "ERROR 404. Document not Found"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:19
+msgid "Verifying form fields..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:20
+msgid ""
+"There are some errors in form fields. Please verify those fields marked with "
+"red color"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:21
+msgid "Form fields verified successfully!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:22
+msgid "Saving Download..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:23
+msgid "Applying changes. Please wait a second..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:25
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:89
+msgid "Normal"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:27
+msgid "Before to run this action, you must select at least one item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:28
+msgid "Do you really want to delete selected items?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:29
+msgid "Provide a group name!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:30
+msgid ""
+"Do you really want to delete this file? You will not be able to recover it!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:31
+msgid "Before to save details select a file!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:32
+msgid "Before to save details provide a file URL!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:33
+msgid "You must provide a title for this item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:36
+msgid "Update Group"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:37
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:14
+msgid "Create Group"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:39
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:24
+msgid "Title:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:40
+msgid "Description:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:41
+msgid "Do you really want to delete this screenshot?"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:42
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:41
+msgid "Delete Field"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:43
+msgid "There is another field with same name."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/include/js_strings.php:44
+msgid "You must specify a name for this custom field!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:27
+msgid "D-Transport"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:28
+msgid "Módulo para la administración de archivos descargables en EXM"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:31
+msgid "Permalinks mode:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:32
+msgid "PHP default"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:33
+msgid "Based on name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:34
+msgid "Permalinks base path:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:37
+msgid "Allow downloads submission"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:38
+msgid ""
+"Allows to users submit new download items from public section of module."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:41
+msgid "Groups than can submit new downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:44
+msgid "Groups to be notified for new submitted downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:47
+msgid "Approve submited downloads for registered users"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:50
+msgid "Approve submited downloads for anonymous users"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:53
+msgid "Maximum number of screenshots by download item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:56
+msgid "Secure directory"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:57
+msgid ""
+"Specify the directory where secure download files will be stored. It is "
+"recomended that this directory will located outside from public directory."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:60
+msgid "General directory"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:61
+msgid ""
+"Specify the directory where general files will be stored. This directory "
+"will exists within your public html directory."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:64
+msgid "Allow votes from anonymous users"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:67
+msgid "Show featured downloads list in home page"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:68
+msgid "Show featured downloads list at inner pages"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:71
+msgid "Limit number of featured downloads in list"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:74
+msgid "Show daily downloads list in home page"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:75
+msgid "Show daily downloads list at inner pages"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:78
+msgid "Limit number od daily downloads in list"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:81
+msgid "Enable notification for new downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:84
+msgid "Thumbnail image format"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:85
+msgid "Specify this value with format \"width:height:crop|resize\""
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:86
+msgid "Big image format"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:89
+msgid "Size of image file in Kilobytes"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:90
+msgid "Size of files for download in MB"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:93
+msgid "Allowed file extensions"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:94
+msgid "Separate each extensión with \"|\"."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:97
+msgid "Approve editions to existing downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:100
+msgid "Notify for editions"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:103
+msgid "Limit number of downloads for home lists"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:106
+msgid "Number of days during downloads will consider as new"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:107
+msgid ""
+"Number of days during downloads will consider as updated after its edition"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:110
+msgid "Show categories in home page and categories page"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:113
+msgid "Results per page"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:116
+msgid "Show related items"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:119
+msgid "Number of items in related items list"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:122
+msgid "Minimum length of tags, in characters"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:125
+msgid "Lista de Descargas"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:126
+msgid "Bloque para presentar un listado de descargas"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:128
+msgid "Búsquedas Populares"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:129
+msgid "Presenta una lista de palabras mas búscadas en D-Transport"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:132
+msgid "Enable alerts for inactivity"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:133
+msgid "Days without inactivity before to send an alert"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:134
+msgid "Message type for alerts"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:136
+msgid "Allow creation of protected downloads for users"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:137
+msgid "Allow creation of downloads with password for all publishers"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:140
+msgid "Time before to start downloads"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:141
+msgid ""
+"This value must be specified in seconds. If you wish to start download "
+"immediately then set this value to \"0\"."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:142
+msgid "Interval in hours to send alerts for inactivity"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:145
+msgid "Sindicación de Descargas"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:146
+msgid "Opciones para la sindicación de descargas"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:147
+msgid "Descargas Recientes"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:148
+msgid "Muestra las descargas agregadas recientemente."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:149
+msgid "Descargas Populares"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:150
+msgid "Muestra lo mas descargado."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:151
+msgid "Descargas Mejor Valoradas"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:152
+msgid "Descargas mejor valoradas por los usuarios."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:159
+msgid "Item Details"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/language/english/modinfo.php:166
+msgid "Download File"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:1
+msgid "Categories Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:6
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:21
+msgid "Add Category"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:31
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:79
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:6
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:55
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:29
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:117
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:39
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:75
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:6
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:55
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:31
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:75
+msgid "Bulk actions..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:32
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:80
+msgid "Activate"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:33
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:81
+msgid "Deactivate"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:36
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:84
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:9
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:58
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:40
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:128
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:42
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:78
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:9
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:58
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:34
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:78
+msgid "Apply"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:45
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_categos.php:54
+msgid "Active"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:7
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:56
+msgid "Delete Features"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_features.php:35
+msgid "There are not features created for this download item"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:11
+msgid "Add group of files"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:12
+msgid "Group name:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:16
+msgid ""
+"Groups allows to organize different files according to specific features."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:31
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:42
+msgid "External"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:33
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:44
+msgid "Default"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:51
+msgid "There are not files with specified parameters currently!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_files.php:97
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:53
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:139
+msgid "Applying changes, please wait a second..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:1
+#, php-format
+msgid "New file in %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:8
+msgid "Delete File"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:21
+msgid "File Details"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:22
+msgid "Fill the next fields to create the new file."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:26
+msgid "Group:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:34
+msgid "File URL:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_filesform.php:37
+msgid "This is the default file"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:4
+msgid ""
+"Use next fields to create or change de information of the download item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:10
+msgid "Item name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:12
+msgid ""
+"Specify a name that identifies this download. This name must be unique and "
+"different of other downloads."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:16
+msgid "Item permalink:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:23
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:31
+msgid ""
+"This is a small description that will be used as an advance of the item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:27
+msgid "Download description"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:48
+msgid "Select the categories that you want to assign to this item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:61
+msgid "Select the licenses that you want to assign to this item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:77
+msgid "Select that platforms over this item can be used."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:86
+msgid "Only users that belong to selected groups, could donwload this item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:93
+msgid "Download tags"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:99
+msgid "Separate each tag with a comma (,)."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:102
+msgid "Add Tags"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:112
+msgid "Click on any tag to delete it."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:118
+msgid "Custom fields"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:141
+msgid "Saving data..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_formitems.php:145
+msgid "Save Download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:7
+msgid "Search download:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:9
+msgid "Search Now!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:12
+msgid "Category:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:31
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:119
+msgid "Not approved"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:32
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:53
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:66
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:120
+msgid "Featured"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:33
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:121
+msgid "Not featured"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:34
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:54
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:67
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:122
+msgid "Daily"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:35
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:123
+msgid "Not daily"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:37
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:125
+msgid "Not protected"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:50
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:63
+msgid "Tipo"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:77
+msgid "Protected with password"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:83
+msgid "(Deletion requested)"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:86
+#, php-format
+msgid "Last modification on %s by %s"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:101
+msgid "Not protected download"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:101
+msgid "Unlock"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:101
+msgid "Lock"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_items.php:104
+msgid "Images"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:1
+msgid "Licenses Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:6
+msgid "Please specify a name for this license"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:7
+msgid "Please, specify an URL for this license"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:18
+msgid "License name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:21
+msgid "License URL"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:23
+msgid ""
+"This URL will be used to give a reference to users that need to know more "
+"about specified license."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:25
+msgid "License type"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:26
+msgid "Open source license"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:27
+msgid "Restrictive license"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:30
+msgid "Add License"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:49
+msgid "URL"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_licenses.php:54
+msgid "There are not licenses created yet!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:1
+#, php-format
+msgid "\"%s\" Change Log"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:7
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:56
+msgid "Delete Logs"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_logs.php:33
+msgid "There are not logs for this download item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:3
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:34
+msgid "Field name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:4
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:35
+msgid "Field value"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:12
+msgid "Select field..."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:17
+msgid "New Field"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:23
+msgid "You must specify a value for this custom field!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_metas.php:28
+msgid "Add Meta"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:1
+msgid "Platforms Management"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:6
+msgid "Please specify a name for this platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:17
+msgid "Platform name"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:21
+msgid "Save Platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:21
+msgid "Add Platform"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_platforms.php:54
+msgid "There are not platforms created yet!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:17
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:25
+msgid "Descripcion"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/templates/admin/dtrans_screens.php:31
+msgid "There are not screenshots created for this download item!"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:17
+msgid "Download Information"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:44
+msgid "Current Version"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:46
+msgid "Indicate the current version of this item."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:49
+msgid "Downloads limit per user"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:51
+msgid ""
+"Users could download this item only this times. Leave 0 for unlimited times."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:56
+msgid "Specify every language separated by comma."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:62
+msgid "Site Rating:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:74
+msgid "Approved:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:82
+msgid "Featured:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:90
+msgid "Protected:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:99
+msgid "Download password"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:101
+msgid ""
+"If you specify a password for this item, users must know it in order to "
+"download files belonging to it."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:102
+msgid ""
+"If a password is provided for this item, the protected status will set to on "
+"automatically."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:122
+msgid "Default Image"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:203
+msgid "Enable alerts:"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:212
+msgid "Limit of days"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:214
+msgid ""
+"Maximum number of days that an item can be without downloads before to send "
+"an alert to author."
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:217
+msgid "Alert mode"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:219
+msgid "Email message"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:253
+msgid "Published by"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:265
+msgid "Author Email"
+msgstr ""
+
+#: C:\wamp\www\xm\modules\dtransport/widgets/dt_items.php:267
+msgid "This email will not be visible for users"
+msgstr ""
