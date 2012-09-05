@@ -13,7 +13,7 @@ include_once 'include/xv-header.php';
 $modversion['name'] = "D-Transport";
 $modversion['description'] = __('Module for create a donwloads section in XOOPS','dtransport');
 $modversion['version'] = "2.0";
-$modversion['rmversion'] = array('number'=>2,'revision'=>0,'status'=>-2,'name'=>'D-Transport');
+$modversion['rmversion'] = array('number'=>2,'revision'=>10,'status'=>-2,'name'=>'D-Transport');
 $modversion['icon32'] = 'images/icon32.png';
 $modversion['icon24'] = 'images/icon24.png';
 $modversion['icon48'] = "images/logo.png";
