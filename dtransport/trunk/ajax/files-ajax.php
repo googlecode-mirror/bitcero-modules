@@ -95,7 +95,7 @@ function dt_delete_hfile(){
     $secure = rmc_server_var($_POST, 'secure', 0);
 
     if(!$xoopsSecurity->check())
-        $functions->dt_send_message(__('Session token invalid!','dtransport'), 1, 0);
+        $functions->dt_send_message(__('Session token not valid!','dtransport'), 1, 0);
 
     $rmu = RMUtilities::get();
     $mc = $rmu->module_config('dtransport');

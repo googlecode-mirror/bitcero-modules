@@ -7,7 +7,7 @@ CREATE TABLE `dtrans_alerts` (
   `alerted` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_alert`),
   KEY `id_soft` (`id_soft`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `dtrans_categos` (
   `id_cat` int(11) NOT NULL AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE `dtrans_downs` (
   PRIMARY KEY (`id_down`),
   KEY `uid` (`uid`,`id_soft`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE `dtrans_features` (
   `id_feat` int(11) NOT NULL AUTO_INCREMENT,
@@ -76,6 +76,7 @@ CREATE TABLE `dtrans_groups` (
 CREATE TABLE `dtrans_licences` (
   `id_lic` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
+  `nameid` varchar(150) NOT NULL,
   `desc` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id_lic`)
@@ -97,11 +98,19 @@ CREATE TABLE `dtrans_logs` (
   KEY `id_soft` (`id_soft`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+CREATE TABLE `dtrans_meta` (
+  `id_meta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_element` int(11) NOT NULL DEFAULT '0',
+  `type` varchar(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id_meta`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
 CREATE TABLE `dtrans_platforms` (
   `id_platform` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
-  `desc` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL,
+  `nameid` varchar(150) NOT NULL,
   PRIMARY KEY (`id_platform`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
@@ -134,7 +143,7 @@ CREATE TABLE `dtrans_software` (
   `version` varchar(50) NOT NULL,
   `shortdesc` varchar(255) NOT NULL,
   `desc` text NOT NULL,
-  `image` varchar(30) NOT NULL,
+  `image` varchar(200) NOT NULL,
   `limits` smallint(6) NOT NULL DEFAULT '0',
   `created` int(10) NOT NULL DEFAULT '0',
   `modified` int(10) NOT NULL DEFAULT '0',
@@ -157,6 +166,7 @@ CREATE TABLE `dtrans_software` (
   `author_email` varchar(100) NOT NULL,
   `author_contact` tinyint(1) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `delete` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_soft`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
@@ -175,12 +185,3 @@ CREATE TABLE `dtrans_votedata` (
   `id_soft` int(11) NOT NULL,
   KEY `uid` (`uid`,`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE  `dtrans_meta` (
-`id_meta` INT NOT NULL AUTO_INCREMENT ,
-`id_element` INT NOT NULL DEFAULT '0',
-`type` VARCHAR( 5 ) NOT NULL ,
-`name` VARCHAR( 50 ) NOT NULL ,
-`value` TEXT NOT NULL ,
-PRIMARY KEY (  `id_meta` )
-) ENGINE = MYISAM ;
