@@ -29,7 +29,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('bxpress');
 
 $modversion['name'] = __('bXpress','bxpress');
 $modversion['description'] = __('A simple forums module for XOOPS and common utilities.','bxpress');
-$modversion['rmversion'] = array('number'=>1,'revision'=>0,'status'=>-2,'name'=>__('bXpress','bxpress'));
+$modversion['rmversion'] = array('number'=>1,'revision'=>15,'status'=>-2,'name'=>__('bXpress','bxpress'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.3';
 $modversion['icon32'] = 'images/forum48.png';
@@ -51,8 +51,8 @@ $modversion['onInstall'] = 'include/install.php';
 // Social links
 $modversion['social'][0] = array('title' => __('BitCERO Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/bitcero/');
 $modversion['social'][1] = array('title' => __('BitCERO LinkedIn', 'rmcommon'),'type' => 'linkedin','url' => 'http://www.linkedin.com/bitcero/');
-$modversion['social'][2] = array('title' => __('Red México Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/redmexico/');
-$modversion['social'][3] = array('title' => __('Red México Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/redmexico/');
+$modversion['social'][2] = array('title' => __('Xoops Mexico Twitter', 'rmcommon'),'type' => 'twitter','url' => 'http://www.twitter.com/xoopsmexico/');
+$modversion['social'][3] = array('title' => __('Xoops Mexico Facebook', 'rmcommon'),'type' => 'facebook','url' => 'http://www.facebook.com/XoopsMexico/');
 
 // Admin things
 $modversion['hasAdmin'] = 1;
@@ -334,11 +334,11 @@ $modversion['config'][] = array(
 // Notificaciones
 $modversion['hasNotification'] = 1;
 $modversion['notification']['lookup_file'] = 'include/notification.php';
-$modversion['notification']['lookup_func'] = 'bbNotifications';
+$modversion['notification']['lookup_func'] = 'bxNotifications';
 
 $modversion['notification']['category'][1]['name'] = 'forum';
 $modversion['notification']['category'][1]['title'] = __('Forums','bxpress');
-$modversion['notification']['category'][1]['description'] = __('Notifications related with forums','bxpress');
+$modversion['notification']['category'][1]['description'] = __('Notifications related to forums','bxpress');
 $modversion['notification']['category'][1]['subscribe_from'] = 'forum.php';
 $modversion['notification']['category'][1]['item_name'] = 'id';
 $modversion['notification']['category'][1]['allow_bookmark'] = 1;
@@ -361,15 +361,17 @@ $modversion['notification']['event'][1]['name'] = 'newtopic';
 $modversion['notification']['event'][1]['category'] = 'forum';
 $modversion['notification']['event'][1]['title'] = __('New Added Topic','bxpress');
 $modversion['notification']['event'][1]['caption'] = __('Notify when a new topic is created in this forum','bxpress');
-$modversion['notification']['event'][1]['description'] = __('Envía una notificación cuando un nuevo tema se crea en un foro determinado','bxpress');
+$modversion['notification']['event'][1]['description'] = __('Sends a notification when a new topic is created in a given forum.','bxpress');
+$modversion['notification']['event'][1]['mail_template_dir'] = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 $modversion['notification']['event'][1]['mail_template'] = 'new_topic';
 $modversion['notification']['event'][1]['mail_subject'] = __('New Topic Added','bxpress');
 
 $modversion['notification']['event'][2]['name'] = 'newpost';
 $modversion['notification']['event'][2]['category'] = 'topic';
 $modversion['notification']['event'][2]['title'] = __('New Post sent','bxpress');
-$modversion['notification']['event'][2]['caption'] = __('Notify when a new post is send in this topic','bxpress');
-$modversion['notification']['event'][2]['description'] = __('Send a notification when a new topic is sent on a topic','bxpress');
+$modversion['notification']['event'][2]['caption'] = __('Notify when a new post is sent in this topic','bxpress');
+$modversion['notification']['event'][2]['description'] = __('Send a notification when a new post is sent on a topic','bxpress');
+$modversion['notification']['event'][2]['mail_template_dir'] = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 $modversion['notification']['event'][2]['mail_template'] = 'new_post';
 $modversion['notification']['event'][2]['mail_subject'] = __('A new post has been sent','bxpress');
 
@@ -378,6 +380,7 @@ $modversion['notification']['event'][3]['category'] = 'any_forum';
 $modversion['notification']['event'][3]['title'] = __('New post in any forum','bxpress');
 $modversion['notification']['event'][3]['caption'] = __('Notify when a new topic is sent in any forum','bxpress');
 $modversion['notification']['event'][3]['description'] = __('Send a notification when a new topic is sent in any forum','bxpress');
+$modversion['notification']['event'][3]['mail_template_dir'] = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 $modversion['notification']['event'][3]['mail_template'] = 'new_postanyforum';
 $modversion['notification']['event'][3]['mail_subject'] = __('New topic sent','bxpress');
 
@@ -386,6 +389,7 @@ $modversion['notification']['event'][4]['category'] = 'forum';
 $modversion['notification']['event'][4]['title'] = __('New topic in forum','bxpress');
 $modversion['notification']['event'][4]['caption'] = __('Notify when a new topic is sent in this forum','bxpress');
 $modversion['notification']['event'][4]['description'] = __('Sent a notification when a new topic is sent to this forum','bxpress');
+$modversion['notification']['event'][4]['mail_template_dir'] = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 $modversion['notification']['event'][4]['mail_template'] = 'new_postforum';
 $modversion['notification']['event'][4]['mail_subject'] = __('New topic sent','bxpress');
 

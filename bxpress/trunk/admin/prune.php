@@ -55,7 +55,7 @@ function prune(){
 	
 	
 	$buttons= new RMFormButtonGroup();
-	$buttons->addButton('sbt', __('Prune Now!'), 'submit', 'onclick="return confirm(\''.__('Do you really wish to delete the topics? \nThis action will delte the data permanently.','bxpress').'\');"');
+	$buttons->addButton('sbt', __('Prune Now!'), 'submit', 'onclick="return confirm(\''.__('Do you really wish to delete the topics? \nThis action will delete the data permanently.','bxpress').'\');"');
 	$buttons->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="history.go(-1);"');
 	
 	$form->addElement($buttons);

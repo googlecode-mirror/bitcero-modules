@@ -259,8 +259,10 @@ class bXFunctions
 	* @param int edit indica si es la edición de un mensaje o un nuevo tema no aprobado
 	**/
 	public function notifyAdmin($moderators,BBForum &$forum, BBTopic &$topic, BBPost &$post,$edit=0){
-		global $db, $xoopsModule, $xoopsConfig;
-	
+		global $db, $xoopsModule, $rmc_config;
+	    
+        $bxf = bXFunctions::get();
+        
 		$mhand = new XoopsMemberHandler($db);
 		$configCat = new XoopsConfigCategory('mailer', 'mailer');
 		$config =& $configCat->getConfigs(3);
@@ -268,16 +270,16 @@ class bXFunctions
 		$users = $moderators;
 		
 		if (!$edit){
-			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template/admin_notify.tpl')){
-				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template';
+			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG.'/admin_notify.tpl')){
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 			} else {
-				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/spanish/mail_template';
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/lang/en';
 			}
 		}else{
-			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template/admin_notify_post.tpl')){
-				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/'.$xoopsConfig['language'].'/mail_template';
+			if (file_exists(XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG.'/admin_notify_post.tpl')){
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/lang/'.RMCLANG;
 			} else {
-				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/language/spanish/mail_template';
+				$tpldir = XOOPS_ROOT_PATH.'/modules/bxpress/lang/en';
 			}
 		}
 	
@@ -288,10 +290,10 @@ class bXFunctions
 			$xoopsMailer->setFromName($config['fromname']);
 			$xoopsMailer->setTemplateDir($tpldir);
 			if (!$edit){
-				$xoopsMailer->setSubject(sprintf(_AS_EXMBB_ADMSUBJECT, $forum->name()));
+				$xoopsMailer->setSubject(sprintf(__('New topic created','bxpress'), $forum->name()));
 				$xoopsMailer->setTemplate('admin_notify.tpl');
 			}else{
-				$xoopsMailer->setSubject(sprintf(_AS_EXMBB_ADMSUBJECTPOST, $topic->title()));
+				$xoopsMailer->setSubject(sprintf(__('A unapproved message has been edited','dtransport'), $topic->title()));
 				$xoopsMailer->setTemplate('admin_notify_post.tpl');
 			}
 		
@@ -300,9 +302,9 @@ class bXFunctions
 			$xoopsMailer->assign('TOPIC_UNAME', $topic->posterName());
 			$xoopsMailer->assign('TOPIC_NAME', $topic->title());
 			$xoopsMailer->assign('TOPIC_APPROVED', $topic->approved() ? _YES : _NO);
-			$xoopsMailer->assign('TOPIC_LINK', XOOPS_URL.'/modules/bxpress/moderate.php?id='.$forum->id());
+			$xoopsMailer->assign('TOPIC_LINK', $bxf->url().'/moderate.php?id='.$forum->id());
 			$xoopsMailer->assign('POST_UNAME',$post->uname());
-			$xoopsMailer->assign('POST_LINK',XOOPS_URL.'/modules/bxpress/topic.php?pid='.$post->id()."#p".$post->id());
+			$xoopsMailer->assign('POST_LINK',$post->permalink());
 
 			$user = new XoopsUser($k);
 			$xoopsMailer->setToUsers($user);

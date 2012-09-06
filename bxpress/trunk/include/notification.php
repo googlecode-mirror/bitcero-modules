@@ -1,28 +1,12 @@
 <?php
 // $Id$
 // --------------------------------------------------------------
-// Foros EXMBB
-// Módulo para el manejo de Foros en EXM
-// Autor: BitC3R0
-// http://www.redmexico.com.mx
-// http://www.xoopsmexico.net
-// --------------------------------------------
-// This program is free software; you can redistribute it and/or
-// modify it under the terms of the GNU General Public License as
-// published by the Free Software Foundation; either version 2 of
-// the License, or (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public
-// License along with this program; if not, write to the Free
-// Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
-// MA 02111-1307 USA
+// bXpress
+// A simple forums module for XOOPS and Common Utilities
+// Author: Eduardo Cortés <i.bitcero@gmail.com>
+// Email: i.bitcero@gmail.com
+// License: GPL 2.0
 // --------------------------------------------------------------
-// @copyright: 2007 - 2008 Red México
 
 /**
 * @desc Genera los datos para el envio de las notificaciones
@@ -32,24 +16,25 @@
 * @param array Parámetros adicionales
 * @return string
 */
-function bbNotifications($category,$id,$event,$params=array()){
+function bxNotifications($category,$id,$event,$params=array()){
 
+    $bxf = bXFunctions::get();
 	
 	if ($category=='forum'){
 		//Notificación de nuevo tema en foro
 		if ($event=='newtopic'){
-			$forum=new BBForum($id);
+			$forum=new bXForum($id);
 			$info['name']=$forum->name();
-			$info['url']=XOOPS_URL."/modules/exmbb/topic.php?id=$params[topic]";
+			$info['url']= $bxf->url()."/topic.php?id=$params[topic]";
 			//$info['desc']=$param['topic'];
 			return $info;		
 		}
 		
 		//Notificación de nuevo mensaje en foro
 		if ($event=='postforum'){
-			$forum=new BBForum($id);
+			$forum=new bXForum($id);
 			$info['name']=$forum->name();
-			$info['url']=XOOPS_URL."/modules/exmbb/topic.php?pid=$params[post]#p$params[post]";
+			$info['url']=$bxf->url()."/topic.php?pid=$params[post]#p$params[post]";
 			//$info['desc']=$param['topic'];
 			return $info;		
 		}
@@ -57,9 +42,9 @@ function bbNotifications($category,$id,$event,$params=array()){
 
 	//Notificación de nuevo mensaje en tema
 	if ($category=='topic'){
-		$topic=new BBTopic($id);
+		$topic=new bXTopic($id);
 		$info['name']=$topic->title();
-		$info['url']=XOOPS_URL."/modules/exmbb/topic.php?pid=$params[post]#p$params[post]";
+		$info['url']=$bxf->url()."/topic.php?pid=$params[post]#p$params[post]";
 		//$info['desc']=$param['topic'];
 		
 		return $info;
@@ -68,9 +53,9 @@ function bbNotifications($category,$id,$event,$params=array()){
 
 	//Notificación de mensaje en cualquier foro
 	if ($category=='any_forum'){
-		$forum=new BBForum($params['forum']);
+		$forum=new bXForum($params['forum']);
 		$info['name']=$forum->name();
-		$info['url']=XOOPS_URL."/modules/exmbb/topic.php?pid=$params[post]#p$params[post]";
+		$info['url']=$bxf->url()."/topic.php?pid=$params[post]#p$params[post]";
 		//$info['desc']=$param['topic'];
 		return $info;
 
@@ -79,4 +64,3 @@ function bbNotifications($category,$id,$event,$params=array()){
 	
 	
 }
-?>
