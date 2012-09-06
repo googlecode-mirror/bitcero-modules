@@ -95,7 +95,7 @@ function mark_read($read=1){
     $show = rmc_server_var($_POST, 'show', array());
     
     if(empty($ids))
-        redirectMsg('reports.php?show='.$show, __('Select at leat one report!','bxpress'), 1);
+        redirectMsg('reports.php?show='.$show, __('Select at least one report!','bxpress'), 1);
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     $sql = "UPDATE ".$db->prefix("bxpress_report")." SET zapped='$read', zappedby='".$xoopsUser->uid()."', zappedtime='".time()."' WHERE report_id IN (".implode(",",$ids).")";

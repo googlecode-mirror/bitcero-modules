@@ -213,7 +213,7 @@ switch($op){
 		
 		// Adjuntar Archivos
 		if ($forum->attachments() && $forum->isAllowed($xoopsUser ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS, 'attach')){
-			$forma = new RMForm('<a name="attachments"></a>'.__('Archivos Adjuntos','bxpress'), 'frmAttach', 'edit.php');
+			$forma = new RMForm('<a name="attachments"></a>'.__('Attached Files','bxpress'), 'frmAttach', 'edit.php');
 			$forma->addElement(new RMFormSubTitle(sprintf(__('You can upload new files to this post. You have a limit of <strong>%s</strong> attachment per post.','bxpress'), $xoopsModuleConfig['attachlimit']), 1, 'even'));
 			if ($post->totalAttachments()<$xoopsModuleConfig['attachlimit']){
 				$ele = new RMFormFile(__('Attach File:','bxpress'), 'attach', 45, $xoopsModuleConfig['maxfilesize'] * 1024);

@@ -24,7 +24,7 @@ define('_MI_BX_URLMODED', __('By enabling this option, bXpress will be capable t
 define('_MI_BX_BASEPATH', __('Base path for URL rewriting','bxpress'));
 
 define('_MI_RMF_CNFSTOREFILES', __('Directory for the file storage','bxpress'));
-define('_MI_RMF_CNFSTOREFILES_DESC', __('In this folder will be stored the posts attachments and the categories images','bxpress'));
+define('_MI_RMF_CNFSTOREFILES_DESC', __('In this folder will be stored the posts attachments.','bxpress'));
 
 define('_MI_BX_CNFMAXFILESIZE','Maximum allowed size for the sent files (en KB)');
 define('_MI_BX_CNFMAXFILESIZE_DESC','The files sent in the forums will be limited to this size, bigger file sizes will be ignored.');
@@ -49,12 +49,11 @@ define('_MI_BX_PERPAGE', __('Post Number per Page','bxpress'));
 define('_MI_BX_PERPAGE_DESC', __('This value can be configured individually for every user.','bxpress'));
 define('_MI_BX_TPERPAGE', __('Topics Number per Page','bxpress'));
 define('_MI_BX_DATES', __('Date Format','bxpress'));
-define('_MI_BX_ATTACHLIMIT', __('Límite de Archivos Adjuntos por Mensaje','bxpress'));
+define('_MI_BX_ATTACHLIMIT', __('Limit post attachments','bxpress'));
 define('_MI_BX_ATTACHDIR', __('Directory to storage the attachment','bxpress'));
-define('_MI_BX_ATTACHDIR_DESC', __('This directory must exist in the server and must have vidor y writing permisions.','bxpress'));
+define('_MI_BX_ATTACHDIR_DESC', __('This directory must exist in the server and must have read and writing permisions.','bxpress'));
 define('_MI_BX_STICKY', __('Activate Sticky Posts','bxpress'));
-define('_MI_BX_STICKY_DESC', __('This option will create topics like "sticky". The sticky topics always will appear in the first positions.<br />
-							 Even when this option is disabled with the administrators and moderators will create sticky posts.','bxpress'));
+define('_MI_BX_STICKY_DESC', __('By enabling this option, bXpress could create topics like "sticky". The sticky topics always will appear in the first positions. Even when this option is disabled with the administrators and moderators will create sticky posts.','bxpress'));
 define('_MI_BX_STICKYPOSTS', __('Required post number for a user to publish sticky topics','bxpress'));
 define('_MI_BX_ANNOUNCEMENTS', __('Activate announcements in the module','bxpress'));
 define('_MI_BX_ANNOUNCEMENTSMAX',__('Maximum number of announcements to show','bxpress'));
