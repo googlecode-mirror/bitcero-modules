@@ -192,11 +192,10 @@ if ($post->getVar('pingstatus')){
 
 $description = $post->get_meta('description', false);
 if($description==''){
-    $description = strip_tags($post->content());
-
-    $description = substr($description, 0, 150);
+    $tc = TextCleaner::getInstance();
+    $description = $tc->truncate(strip_tags($post->content()), 150);
 }
-$xoTheme->addMeta('meta', 'description', $description);
+$xoopsTpl->assign('xoops_meta_description', $description);
 
 $keywords = $post->get_meta('keywords', false);
 if($keywords==''){
@@ -210,7 +209,7 @@ if($keywords==''){
     }
     unset($description);
 }
-$xoTheme->addMeta('meta', 'keywords', $keywords);
+$xoopsTpl->assign('xoops_meta_keywords', $keywords);
 
 // Send pings?
 $pings = $post->getVar('toping');
