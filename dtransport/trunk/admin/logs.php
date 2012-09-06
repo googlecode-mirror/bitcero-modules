@@ -199,7 +199,7 @@ function dt_delete_log(){
 
 	
     if (!$xoopsSecurity->check())
-        redirectMsg('logs.php?item='.$item, __('Session token invalid!','dtransport'), RMMSG_ERROR);
+        redirectMsg('logs.php?item='.$item, __('Session token not valid!','dtransport'), RMMSG_ERROR);
 
     $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$sql = "DELETE FROM ".$db->prefix("dtrans_logs")." WHERE id_log IN(".implode(",",$ids).");";

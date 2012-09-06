@@ -204,7 +204,7 @@ function formFiles($edit=0){
     }');
     $uploader->add_setting('multi', false);
     $uploader->add_setting('fileExt', '*.'.implode(";*.",$xoopsModuleConfig['type_file']));
-    $uploader->add_setting('fileDesc', __('Allowed files ('.implode(";*.",$xoopsModuleConfig['type_file']).')','rmcommon'));
+    $uploader->add_setting('fileDesc', sprintf(__('Allowed files (%s)', 'dtransport'), implode(";*.",$xoopsModuleConfig['type_file']).')'));
     $uploader->add_setting('sizeLimit', $xoopsModuleConfig['size_file']*1024*1024);
     $uploader->add_setting('buttonText', __('Select File...','rmcommon'));
     $uploader->add_setting('queueSizeLimit', 1);
@@ -285,7 +285,7 @@ function deleteGroups(){
 	$item = rmc_server_var($_REQUEST, 'item', 0);
 
     if (!$xoopsSecurity->check()){
-        redirectMsg('files.php?item='.$item, __('Session token invalid!','dtransport'), RMMSG_WARN);
+        redirectMsg('files.php?item='.$item, __('Session token not valid!','dtransport'), RMMSG_WARN);
         die();
     }
 

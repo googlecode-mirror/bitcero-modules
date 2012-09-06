@@ -150,7 +150,7 @@ function dt_save_screens($edit=0){
 		$sql="SELECT COUNT(*) FROM ".$db->prefix('dtrans_screens')." WHERE title='$title' AND id_soft=".$item->id();
 		list($num)=$db->fetchRow($db->queryF($sql));
 		if ($num>0)
-			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Already exist another screenshot with same name!','dtransport'));
+			redirect_header(DT_URL.($mc['permalinks']?'/cp/screens/'.$item->id().'/':'/?p=cpanel&amp;action=screens&amp;id='.$item->id()),1, __('Already exist another screenshot with the same name!','dtransport'));
 		
         $sc=new DTScreenshot();
 
