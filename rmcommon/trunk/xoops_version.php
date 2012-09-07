@@ -374,9 +374,8 @@ $modversion['blocks'][] = array(
     'name' => __('Custom Block','rmcommon'),
     'description' => __('Allows to create a block with custom content.','rmcommon'),
     'show_func' => "rmc_bkcustom_show",
-    'edit_func' => "rmc_bkcustom_edit",
     'template' => 'rmc_bk_custom.html',
-    'options' => ""
+    'type' => 'custom'
 );
 
 $amod = xoops_getActiveModules();

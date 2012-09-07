@@ -202,6 +202,7 @@ class RMBlocksFunctions
             $xoopsLogger->addBlock($bobj->getVar('name'), true, $bcachetime);
             $block['content'] = $template->fetch($tplName, $cacheid);
         }
+
         $template->setCompileId();
         return $block;
     }

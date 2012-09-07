@@ -100,7 +100,7 @@ function insertBlock(){
     $block->setVar('element_type', $bk['plugin']==1 ? 'plugin' : 'module');
     $block->setVar('canvas', $canvas);
     $block->setVar('visible', 0);
-    $block->setVar('type', 'normal');
+    $block->setVar('type', $bk['type']);
     $block->setVar('isactive', 1);
     $block->setVar('dirname', isset($bk['dir']) ? $bk['dir'] : $mod);
     $block->setVar('file', $bk['file']);
@@ -211,6 +211,10 @@ function save_block_config(){
     $block->setVar('weight', $bk_weight);
     $block->setVar('visible', $bk_visible);
     $block->setVar('bcachetime', $bk_cache);
+    if(isset($bk_content)){
+        $block->setVar('content', $bk_content);
+        $block->setVar('content_type', $bk_ctype);
+    }
     
     // Set modules
     $block->sections($bk_mod);
