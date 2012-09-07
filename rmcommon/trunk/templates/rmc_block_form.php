@@ -4,7 +4,7 @@
     <div class="content">
         <div class="bk_tab_titles">
             <span id="tab-general" class="selected"><?php _e('General Settings','rmcommon'); ?></span>
-            <?php if($block_options): ?><span id="tab-custom"><?php _e('Custom Options','rmcommon'); ?></span><?php endif; ?>
+            <?php if($block_options || $block->getVar('type')=='custom'): ?><span id="tab-custom"><?php _e('Custom Options','rmcommon'); ?></span><?php endif; ?>
             <span id="tab-permissions" class=""><?php _e('Permissions','rmcommon'); ?></span>
         </div>
         <div class="bk_tab" id="general-content">
@@ -49,9 +49,19 @@
             <?php echo $canvas->render(); ?>
             <div class="clear">&nbsp;</div>
         </div>
-        <?php if($block_options): ?>
+        <?php if($block_options || $block->getVar('type')=='custom'): ?>
         <div class="bk_tab" id="custom-content">
-            <?php echo $block_options; ?>
+            <?php echo $block_options; ?> 
+            <?php if($block->getVar('type')=='custom'): ?>
+            <textarea cols="45" rows="10" name="bk_content" id="bk-content" style="width: 97%; height: 300px;"><?php echo htmlspecialchars($block->getVar('content')); ?></textarea>
+            <label for="c-type"><?php _e('Content type:','rmcommon'); ?></label>
+            <select name="bk_ctype" id="c-type">
+                <option value="TEXT"<?php echo $block->getVar('content_type')=='TEXT' ? ' selected="selected"' : ''; ?>><?php _e('Formatted text','rmcommon'); ?></option>
+                <option value="HTML"<?php echo $block->getVar('content_type')=='HTML' ? ' selected="selected"' : ''; ?>><?php _e('HTML block','rmcommon'); ?></option>
+                <option value="PHP"<?php echo $block->getVar('content_type')=='PHP' ? ' selected="selected"' : ''; ?>><?php _e('PHP block','rmcommon'); ?></option>
+                <option value="XOOPS"<?php echo $block->getVar('content_type')=='XOOPS' ? ' selected="selected"' : ''; ?>><?php _e('XOOPS code','rmcommon'); ?></option>
+            </select>
+            <?php endif; ?>
         </div>
         <?php endif; ?>
         

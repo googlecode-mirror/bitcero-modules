@@ -191,20 +191,20 @@ class RMInternalBlock extends RMObject
         
         switch ( $format ) {
             case 'S':
-                if ( $c_type == 'H' ) {
+                if ( $c_type == 'HTML' ) {
                     return str_replace('{X_SITEURL}', XOOPS_URL.'/', $this->getVar('content', 'N'));
-                } elseif ( $c_type == 'P' ) {
+                } elseif ( $c_type == 'PHP' ) {
                     ob_start();
                     echo eval($this->getVar('content', 'N'));
                     $content = ob_get_contents();
                     ob_end_clean();
                     return str_replace('{X_SITEURL}', XOOPS_URL.'/', $content);
-                } elseif ( $c_type == 'S' ) {
-                    $myts =& MyTextSanitizer::getInstance();
-                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 1));
+                } elseif ( $c_type == 'XOOPS' ) {
+                    $tc = TextCleaner::getInstance();
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $tc->to_display($this->getVar('content', 'N'), 1, 1));
                 } else {
-                    $myts =& MyTextSanitizer::getInstance();
-                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $myts->displayTarea($this->getVar('content', 'N'), 1, 0));
+                    $tc = TextCleaner::getInstance();
+                    return str_replace('{X_SITEURL}', XOOPS_URL.'/', $tc->to_display($this->getVar('content', 'N'), 1, 0));
                 }
                 break;
             case 'E':
@@ -263,7 +263,7 @@ class RMInternalBlock extends RMObject
                 return false;
             }
         }
-
+        
         return $block;
     }
     
