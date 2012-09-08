@@ -38,10 +38,12 @@ CREATE TABLE `shop_products` (
   `nameid` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `price` decimal(6,2) NOT NULL,
+  `buy` varchar(255) NOT NULL,
   `type` tinyint(1) NOT NULL,
   `available` tinyint(1) NOT NULL,
   `image` varchar(200) NOT NULL,
   `created` int(10) NOT NULL,
   `modified` int(10) NOT NULL,
+  `hits` int(11) NOT NULL,
   PRIMARY KEY (`id_product`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

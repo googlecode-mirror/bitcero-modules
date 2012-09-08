@@ -67,6 +67,7 @@ function shop_show_products(){
     
     RMTemplate::get()->add_style('admin.css', 'shop');
     RMTemplate::get()->add_local_script('admin.js', 'shop');
+    RMTemplate::get()->add_local_script('jquery.checkboxes.js', 'rmcommon', 'include');
     RMTemplate::get()->add_head('<script type="text/javascript">
     var shop_select_message = "'.__('Select at least one product in order to run this action!','shop').'";
     var shop_message = "'.__('Do you really wish to delete selected products?','shop').'";
@@ -118,6 +119,7 @@ function shop_new_product($edit = 0){
     $form->addElement(new RMFormText(__('Name','shop'), 'name', 50, 200, $edit ? $product->getVar('name') : ''), true);
     $form->addElement(new RMFormEditor(__('Description','shop'),'description','100%', '250px', $edit ? $product->getVar("description",'e') : '', $xoopsModuleConfig['editor']), true);
     $form->addElement(new RMFormText(__('Price','shop'), 'price', 10, 100, $edit ? $product->getVar('price') : ''));
+    $form->addElement(new RMFormText(__('Buy link','shop'), 'buy', 50, 255, $edit ? $product->getVar('buy') : 'http://'));
     
     $categories = array();
     ShopFunctions::categos_list($categories);
@@ -231,6 +233,7 @@ function shop_save_product($edit=0){
     $product->setVar('nameid', $nameid);
     $product->setVar('description', $description);
     $product->setVar('price', $price);
+    $product->setVar('buy', $buy!='' && $buy!='http://' ? $buy : '');
     $product->setVar('type', $type);
     $product->setVar('available', $available);
     
@@ -717,6 +720,69 @@ function shop_delete_images(){
     }
 }
 
+function shop_generate_thumbs(){
+
+    global $xoopsSecurity, $xoopsModule, $xoopsModuleConfig;
+
+    $ids = rmc_server_var($_POST, 'ids', 0);
+    $page = rmc_server_var($_POST, 'page', 1);
+    $bname = rmc_server_var($_POST, 'bname', '');
+    
+    $ruta = "page=$page&bname=$bname";
+
+    //Verificamos que nos hayan proporcionado un trabajo para eliminar
+    if (!is_array($ids)){
+        redirectMsg('products.php?'.$ruta, __('You must select one product at least!','shop'),1);
+        die();
+    }
+
+     if (!$xoopsSecurity->check()){
+        redirectMsg('products.php?'.$ruta, __('Session token expired!','shop'), 1);
+        die();
+     }
+     
+     //Obtenemos el tamaño de la imagen
+    $thSize = explode("|", $xoopsModuleConfig['thssize']);
+    $imgSize = explode("|", $xoopsModuleConfig['imgsize']);
+
+     $errors = '';
+     foreach ($ids as $k){
+        //Verificamos si el trabajo es válido
+        if ($k<=0){
+            $errors.=sprintf(__('Product ID "%s" is not valid!','shop'), $k);
+            continue;
+        }
+
+        //Verificamos si el trabajo existe
+        $product = new ShopProduct($k);
+        if ($product->isNew()){
+            $errors.=sprintf(__('Product with ID "%s" does not exists!','shop'), $k);
+            continue;
+        }
+        
+        // Redimensionamos la imagen
+        $path = XOOPS_UPLOAD_PATH.'/minishop/';
+        $redim = new RMImageResizer($path.$product->getVar('image'), $path.'ths/'.$product->getVar('image'));
+        
+        if($xoopsModuleConfig['thsredim']){
+            $redim->resizeAndCrop($thSize[0],$thSize[1]);
+        } else {
+            $redim->resizeWidthOrHeight($thSize[0],$thSize[1]);
+        }
+        
+        
+     }
+    
+    if ($errors!=''){
+        redirectMsg('products.php?'.$ruta,__('Errors ocurred while trying to regenerate thumbnails','shop').'<br />'.$errors,1);
+        die();
+    }else{
+        redirectMsg('products.php?'.$ruta,__('Thumbnails regenerated successfully!','shop'),0);
+        die();
+    }
+
+}
+
 
 
 $action = rmc_server_var($_REQUEST, 'action', '');
@@ -761,6 +827,10 @@ switch($action){
     
     case 'deleteimages':
         shop_delete_images();
+        break;
+    
+    case 'rethumb':
+        shop_generate_thumbs();
         break;
            
     default:

@@ -10,7 +10,7 @@
                 <a href="<{$prod.link}>" title="<{$prod.name}>"><img src="<{$prod.image}>" alt="<{$prod.name}>" /></a>
                 <a href="<{$prod.link}>" class="name"><{$prod.name}></a>
                 <span class="stock <{if $prod.stock}>instock<{else}>nostock<{/if}>"><{if $prod.stock}><{$lang_instock}><{else}><{$lang_outstock}><{/if}></span>
-                <span class="price"><{$prod.price}></span>
+                <{if $prod.price!=''}><span class="price"><{$prod.price}></span><{/if}>
                 <span class="date"><{if $prod.updated!=''}><{$prod.updated}><{else}><{$prod.created}><{/if}></span>
             </div>
         </div>

@@ -8,8 +8,9 @@
         <option value="delete"><?php _e('Delete','shop'); ?></option>
         <option value="unavailable"><?php _e('Out of stock','shop'); ?></option>
         <option value="available"><?php _e('In stock','shop'); ?></option>
+        <option value="rethumb"><?php _e('Regenerate thumbnails','shop'); ?></option>
     </select>
-    <input type="button" class="button" value="<?php _e('Apply','shop'); ?>" />
+    <input type="button" class="button" value="<?php _e('Apply','shop'); ?>" onclick="before_submit('frm-prods');" />
     &nbsp; &nbsp; &nbsp;
     <?php _e('Search:','shop'); ?>
     <input type="text" size="20" name="bname" value="<?php echo $bname; ?>" />
@@ -21,7 +22,7 @@
 <table class="outer" width="100%">
     <thead>
     <tr>
-        <th width="20"><input type="checkbox" name="checkall" id="checkall" onclick='$("#tblCats").toggleCheckboxes(":not(#checkall)");' /></th>
+        <th width="20"><input type="checkbox" name="checkall" id="checkall" onclick='$("#frm-prods").toggleCheckboxes(":not(#checkall)");' /></th>
         <th width="50"><img src="../images/image.gif" alt="" /></th>
         <th><?php _e('Name','shop'); ?></th>
         <th><?php _e('Price', 'shop'); ?></th>
@@ -33,7 +34,7 @@
     </thead>
     <tfoot>
     <tr>
-        <th width="20"><input type="checkbox" name="checkall" id="checkall" onclick='$("#tblCats").toggleCheckboxes(":not(#checkall)");' /></th>
+        <th width="20"><input type="checkbox" name="checkall2" id="checkall2" onclick='$("#frm-prods").toggleCheckboxes(":not(#checkall2)");' /></th>
         <th width="50"><img src="../images/image.gif" alt="" /></th>
         <th align="left"><?php _e('Name','shop'); ?></th>
         <th><?php _e('Price', 'shop'); ?></th>
@@ -77,8 +78,9 @@
         <option value="delete"><?php _e('Delete','shop'); ?></option>
         <option value="unavailable"><?php _e('Out of stock','shop'); ?></option>
         <option value="available"><?php _e('In stock','shop'); ?></option>
+        <option value="rethumb"><?php _e('Regenerate thumbnails','shop'); ?></option>
     </select>
-    <input type="button" class="button" value="<?php _e('Apply','shop'); ?>" />
+    <input type="button" class="button" value="<?php _e('Apply','shop'); ?>" onclick="before_submit('frm-prods');" />
 </div>
 <input name="page" type="hidden" value="<?php echo $page; ?>" />
 <?php echo $xoopsSecurity->getTokenHTML(); ?>

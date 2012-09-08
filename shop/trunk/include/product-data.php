@@ -9,17 +9,20 @@
 // --------------------------------------------------------------
 
 $tf = new RMTimeFormatter(0, '%d%/%M%/%Y%');
+$var = isset($var) ? $var : 'products';
 
 while($row = $db->fetchArray($result)){
     
     $product = new ShopProduct();
     $product->assignVars($row);
+    $sf = new ShopFunctions();
     
-    $xoopsTpl->append('products', array(
+    $xoopsTpl->append($var, array(
         'id' => $product->id(),
         'name' => $product->getVar('name'),
         'nameid' => $product->getVar('nameid'),
-        'price' => sprintf(__('Price: <strong>%s</strong>','shop'), sprintf($xoopsModuleConfig['format'], number_format($product->getVar('price'), 2))),
+        'price' => $product->getVar('price')>0 ? sprintf(__('Price: <strong>%s</strong>','shop'), sprintf($xoopsModuleConfig['format'], number_format($product->getVar('price'), 2))) : '',
+        'buy' => $sf->get_buy_link($product),
         'type' => $product->getVar('type'),
         'stock' => $product->getVar('available'),
         'image' => SHOP_UPURL.'/ths/'.$product->getVar('image'),

@@ -17,13 +17,15 @@ if($product->isNew()){
 $xoopsOption['template_main'] = 'shop_product.html';
 include 'header.php';
 
-$tf = new RMTimeFormatter(0, '%d%/%M%/%Y%');
+$tf = new RMTimeFormatter(0, '%d%/%T%/%Y%');
+$sf = new ShopFunctions();
 
 // Product data
 $xoopsTpl->assign('product', array(
     'name' => $product->getVar('name'),
     'description' => $product->getVar('description'),
-    'price' => sprintf(__('Price: <strong>%s</strong>','shop'), sprintf($xoopsModuleConfig['format'], number_format($product->getVar('price'), 2))),
+    'price' => $product->getVar('price')>0 ? sprintf(__('Price: <strong>%s</strong>','shop'), sprintf($xoopsModuleConfig['format'], number_format($product->getVar('price'), 2))) : '',
+    'buy' => $sf->get_buy_link($product),
     'type' => $product->getVar('type'),
     'stock' => $product->getVar('available'),
     'image' => $product->getVar('image'),
@@ -33,6 +35,9 @@ $xoopsTpl->assign('product', array(
     'metas' => $product->get_meta(),
     'images' => $product->get_images()
 ));
+
+$product->setVar('hits', $product->getVar('hits')+1);
+$product->save();
 
 $options = array(
     '<a href="'.ShopFunctions::get_url().($xoopsModuleConfig['urlmode']?'contact/'.$product->getVar('nameid').'/':'?contact='.$product->id()).'">'.__('Request Information','shop').'</a>'
@@ -45,6 +50,7 @@ $xoopsTpl->assign('product_details', 1);
 $xoopsTpl->assign('xoops_pagetitle', $product->getVar('name').' &raquo; '.$xoopsModuleConfig['modtitle']);
 $xoopsTpl->assign('lang_instock', __('In stock','shop'));
 $xoopsTpl->assign('lang_outstock', __('Out of stock','shop'));
+$xoopsTpl->assign('lang_buy', __('Buy Now!','shop'));
 
 RMTemplate::get()->add_style('main.css', 'shop');
 
