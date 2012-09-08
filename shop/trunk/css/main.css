@@ -39,21 +39,28 @@
 }
 .stock{
     padding: 2px 5px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    font-size: 0.7em;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 0.9em;
     font-weight: bold;
     text-transform: uppercase;
     text-shadow: 1px 1px 1px #000;
+    display: inline-block;
 }
 .instock{
-    background: #f00;
+    background: #8EBC23;
     color: #FFF;
 }
 .nostock{
-    background: #666;
+    background: #f00;
     color: #FFF;
 }
+.buy{
+    background: #0082C7;
+    color: #FFF;
+}
+.buy:hover{color: #FFF;}
 .shop_clearer{
     clear: both;
     margin: 10px 0;
@@ -67,9 +74,8 @@
 }
 .shop_product_data .prod_image{
     padding: 1px;
-    border: 1px solid #CCC;
     display: block;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 10px auto;
 }
 .shop_product_data .prod_name{
     font-size: 2em;
@@ -77,13 +83,12 @@
 }
 .shop_product_data ul.prod_details{
     list-style: none;
-    font-size: 0.9em;
     overflow: hidden;
-    border-bottom: 1px dotted #CCC;
+    border: 1px dotted #CCC;
 }
 .shop_product_data ul.prod_details li{
     float: left;
-    padding: 2px 10px;
+    padding: 4px 10px;
     border-right: 1px dotted #CCC;
 }
 .shop_product_data ul.prod_details li:last-child{
@@ -98,7 +103,6 @@
 }
 .shop_product_data .prod_thumbs{
     text-align: center;
-    background: #000;
     padding: 5px;
     bottom: 0;
     left: 0;

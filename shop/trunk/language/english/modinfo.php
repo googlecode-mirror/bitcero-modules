@@ -34,3 +34,8 @@ define('_MI_MS_HOMEPRODS',__('Home page listing type','shop'));
 define('_MI_MS_CURFOR',__('Currency format','shop'));
 define('_MI_MS_CURFORD',__('You can specify the currency format based on PHP sprintf() function (eg. $%s will format $5.00).','shop'));
 define('_MI_MS_EMAIL',__('Email to send messages','shop'));
+define('_MI_MS_BULINK',__('Buy link when its not been specified in product details','shop'));
+define('_MI_MS_BULINKD',__('This link will be used in all products that not have a custom buy link. You can use templates: {NAME}, {ID} and {PRICE}','shop'));
+define('_MI_MS_HRECENTS',__('Number of recent products in home page','shop'));
+define('_MI_MS_HPOP',__('Number of popular products in home page','shop'));
+define('_MI_MS_HRANDOM',__('Number of random products in home page','shop'));

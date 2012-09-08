@@ -207,6 +207,39 @@ $modversion['config'][] = array(
     'valuetype' => 'text',
     'default' => $xoopsConfig['adminmail']
 );
+$modversion['config'][] = array(
+    'name' => 'buylink',
+    'title' => '_MI_MS_BULINK',
+    'description' => '_MI_MS_BULINKD',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => ''
+);
+$modversion['config'][] = array(
+    'name' => 'recents',
+    'title' => '_MI_MS_HRECENTS',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '6'
+);
+$modversion['config'][] = array(
+    'name' => 'populars',
+    'title' => '_MI_MS_HPOP',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '6'
+);
+$modversion['config'][] = array(
+    'name' => 'random',
+    'title' => '_MI_MS_HRANDOM',
+    'description' => '',
+    'formtype' => 'textbox',
+    'valuetype' => 'int',
+    'default' => '6'
+);
+
 
 // Blocks
 $modversion['blocks'][] = array(

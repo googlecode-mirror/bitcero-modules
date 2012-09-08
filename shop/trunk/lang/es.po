@@ -1,0 +1,1053 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MiniShop\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-07 19:19-0600\n"
+"PO-Revision-Date: 2012-09-07 19:20-0600\n"
+"Last-Translator: Eduardo Cortés <i.bitcero@gmail.com>\n"
+"Language-Team: Red México <i.bitcero@gmail.com>\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Bookmarks: -1,142,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Poedit-SearchPath-0: c:\\wamp\\www\\cu\\modules\\shop\n"
+
+#: c:\wamp\www\cu\modules\shop/category.php:36
+msgid "Specified category could not be found"
+msgstr "La categoría especificada no pudo ser encontrada"
+
+#: c:\wamp\www\cu\modules\shop/category.php:42
+#, php-format
+msgid "Products in &#8216;%s&#8217; Category"
+msgstr "Productos en la categoría &#8216;%s&#8217;"
+
+#: c:\wamp\www\cu\modules\shop/category.php:73
+#: c:\wamp\www\cu\modules\shop/main.php:48
+#: c:\wamp\www\cu\modules\shop/product.php:51
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:69
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:10
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:80
+msgid "In stock"
+msgstr "En stock"
+
+#: c:\wamp\www\cu\modules\shop/category.php:74
+#: c:\wamp\www\cu\modules\shop/main.php:49
+#: c:\wamp\www\cu\modules\shop/product.php:52
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:70
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:9
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:79
+msgid "Out of stock"
+msgstr "Sin stock"
+
+#: c:\wamp\www\cu\modules\shop/category.php:75
+#: c:\wamp\www\cu\modules\shop/contact.php:82
+#: c:\wamp\www\cu\modules\shop/main.php:50
+msgid "Select category..."
+msgstr "Seleccionar categoría..."
+
+#: c:\wamp\www\cu\modules\shop/contact.php:29
+#: c:\wamp\www\cu\modules\shop/admin/products.php:207
+msgid "Please fill al required data!"
+msgstr "¡Por favor llene todos los campos necesarios!"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:35
+msgid "Please check the security words and write it correctly!"
+msgstr ""
+"¡Por favor verifique que las plabaras de seguridad esten escritas "
+"correctamente!"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:41
+#, php-format
+msgid ""
+"A user has requested more information about the product %s. User message "
+"below."
+msgstr ""
+"Un usuario ha solicitado mas información acerca del producto %s. El mensaje "
+"se muestra a continuación."
+
+#: c:\wamp\www\cu\modules\shop/contact.php:41
+msgid "Message sent with MiniShop"
+msgstr "Mensaje enviado con MiniShop"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:45
+#, php-format
+msgid "Information request about product %s"
+msgstr "Solicitud acerca del producto %s"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:47
+msgid "Message could not be delivered. Please try again."
+msgstr "El mensaje no pudo ser entregado. Por favor intente de nuevo."
+
+#: c:\wamp\www\cu\modules\shop/contact.php:51
+msgid "Your message has been sent successfully!"
+msgstr "¡Su mensaje ha sido enviado satisfactoriamente!"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:65
+#: c:\wamp\www\cu\modules\shop/product.php:27
+#: c:\wamp\www\cu\modules\shop/include/product-data.php:24
+#, php-format
+msgid "Price: <strong>%s</strong>"
+msgstr "Precio: <strong>%s</strong>"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:69
+#: c:\wamp\www\cu\modules\shop/product.php:32
+#: c:\wamp\www\cu\modules\shop/include/product-data.php:29
+#, php-format
+msgid "Since: <strong>%s</strong>"
+msgstr "Desde: <strong>%s</strong>"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:70
+#: c:\wamp\www\cu\modules\shop/product.php:33
+#: c:\wamp\www\cu\modules\shop/include/product-data.php:30
+#, php-format
+msgid "Updated: <strong>%s</strong>"
+msgstr "Actualizado: <strong>%s</strong>"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:83
+#, php-format
+msgid "Requesting information about %s"
+msgstr "Solicitando información acerca de %s"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:84
+#, php-format
+msgid "Request Information for %s"
+msgstr "Solicitar información para %s"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:86
+msgid "Your Name:"
+msgstr "Su Nombre:"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:87
+msgid "Your Email:"
+msgstr "Su Email:"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:88
+msgid "Product:"
+msgstr "Producto:"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:89
+msgid "Message:"
+msgstr "Mensaje:"
+
+#: c:\wamp\www\cu\modules\shop/contact.php:90
+msgid "Send Message"
+msgstr "Enviar Mensaje"
+
+#: c:\wamp\www\cu\modules\shop/main.php:51
+msgid "Most Desired"
+msgstr "Lo Mas Deseado"
+
+#: c:\wamp\www\cu\modules\shop/main.php:52
+msgid "Recent Products"
+msgstr "Productos Recientes"
+
+#: c:\wamp\www\cu\modules\shop/main.php:53
+msgid "Random Products"
+msgstr "Productos aleatorios"
+
+#: c:\wamp\www\cu\modules\shop/product.php:43
+msgid "Request Information"
+msgstr "Solicitar Información"
+
+#: c:\wamp\www\cu\modules\shop/product.php:53
+msgid "Buy Now!"
+msgstr "Comprar"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:14
+msgid "Module to create and manage online catalogs"
+msgstr "Módulo para crear y administrar catálogos en línea"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:146
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:165
+msgid "Resize"
+msgstr "Redimensionar"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:146
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:165
+msgid "Crop to fit width and height"
+msgstr "Recortar para justar ancho y alto"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:176
+msgid "Sort by date"
+msgstr "Ordenar por fecha"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:176
+msgid "Sort by name"
+msgstr "Ordenar por nombre"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:247
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:33
+#: c:\wamp\www\cu\modules\shop/include/toolbar.php:13
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:57
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:66
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:1
+msgid "Products"
+msgstr "Productos"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:248
+msgid "Show products according to multiple options"
+msgstr "Mostrar los productos de acuerdo a múltiples opciones"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:257
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:92
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:22
+#: c:\wamp\www\cu\modules\shop/admin/products.php:137
+#: c:\wamp\www\cu\modules\shop/include/toolbar.php:12
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:2
+msgid "Categories"
+msgstr "Categorías"
+
+#: c:\wamp\www\cu\modules\shop/xoops_version.php:258
+msgid "Show categeries tree for minishop"
+msgstr "Mostrar el árbol de categorías para minishop"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:75
+#, php-format
+msgid "Do you really want to delete \"%s\""
+msgstr "¿Realmente desea eliminar \"%s\""
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:98
+msgid "Categories Management"
+msgstr "Administración de Categorías"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:115
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:183
+msgid "You must specify a valid category"
+msgstr "Debe especificar una categoría válida"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:122
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:189
+msgid "Specified category not exists!"
+msgstr "¡La categoría especificada no existe!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:127
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:133
+msgid "Edit Category"
+msgstr "Editar Categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:133
+msgid "New Category"
+msgstr "Nueva Categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:135
+msgid "Category name"
+msgstr "Nombre de la categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:136
+msgid "Category slug"
+msgstr "Nombre corto"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:137
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:27
+msgid "Category description"
+msgstr "Descripción de la categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:138
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:17
+msgid "Category Parent"
+msgstr "Categoría Principal"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:149
+msgid "Update Category"
+msgstr "Actualizar Categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:150
+#: c:\wamp\www\cu\modules\shop/admin/products.php:159
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:9
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:43
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:166
+msgid "Sorry, session token expired!"
+msgstr "Lo sentimos ¡el identificador de la sesión ha caducado!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:197
+msgid "Please specify a name for this category!"
+msgstr "¡Por favor especifique un nombre para esta categoría!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:208
+msgid "There is already a category with the same name!"
+msgstr "¡Ya existe una categoría con el mismo nombre!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:222
+msgid "Category created succesfully!"
+msgstr "¡Categoría creada satisfactoriamente!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:224
+msgid "There was an error!"
+msgstr "¡Hubo un error!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:239
+msgid "You must select one category at least!"
+msgstr "¡Debe seleccionar al menos una categoría!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:244
+#: c:\wamp\www\cu\modules\shop/admin/products.php:187
+#: c:\wamp\www\cu\modules\shop/admin/products.php:330
+#: c:\wamp\www\cu\modules\shop/admin/products.php:519
+#: c:\wamp\www\cu\modules\shop/admin/products.php:638
+#: c:\wamp\www\cu\modules\shop/admin/products.php:689
+#: c:\wamp\www\cu\modules\shop/admin/products.php:740
+msgid "Session token expired!"
+msgstr "¡El identificador de sesión ha caducado!"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:256
+#, php-format
+msgid "Category \"%s\" could not be deleted"
+msgstr "La categoría \"%s\" no pudo ser eliminada"
+
+#: c:\wamp\www\cu\modules\shop/admin/categories.php:260
+msgid "Database updated!"
+msgstr "¡Base de datos actualizada!"
+
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:15
+#: c:\wamp\www\cu\modules\shop/include/toolbar.php:11
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:1
+msgid "Dashboard"
+msgstr "Tablero"
+
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:27
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:38
+msgid "List all"
+msgstr "Listar todo"
+
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:28
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:5
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:36
+msgid "Add Category"
+msgstr "Agregar categoría"
+
+#: c:\wamp\www\cu\modules\shop/admin/menu.php:39
+msgid "Add Product"
+msgstr "Agregar Producto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:58
+#: c:\wamp\www\cu\modules\shop/admin/products.php:141
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:51
+msgid "Digital"
+msgstr "Digital"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:58
+#: c:\wamp\www\cu\modules\shop/admin/products.php:140
+msgid "Normal"
+msgstr "Normal"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:72
+msgid "Select at least one product in order to run this action!"
+msgstr "¡Seleccione al menos un producto para poder ejecutar esta acción!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:73
+msgid "Do you really wish to delete selected products?"
+msgstr "¿Realmente desea eliminar los productos seleccionados?"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:96
+msgid "You must provide a valid product ID!"
+msgstr "¡Debe proporcionar un ID válido de producto!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:102
+#: c:\wamp\www\cu\modules\shop/admin/products.php:199
+#: c:\wamp\www\cu\modules\shop/admin/products.php:384
+#: c:\wamp\www\cu\modules\shop/admin/products.php:447
+#: c:\wamp\www\cu\modules\shop/admin/products.php:526
+msgid "Specified product does not exists!"
+msgstr "¡El producto especificado no existe!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:109
+#, php-format
+msgid "Editing %s"
+msgstr "Editando %s"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:109
+#: c:\wamp\www\cu\modules\shop/admin/products.php:113
+#: c:\wamp\www\cu\modules\shop/admin/products.php:160
+msgid "Create Product"
+msgstr "Crear Producto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:113
+#, php-format
+msgid "Edit \"%s\""
+msgstr "Editar \"%s\""
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:117
+msgid "Edit Product"
+msgstr "Editar Producto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:117
+msgid "New Product"
+msgstr "Nuevo Producto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:119
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:54
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:63
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:27
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:39
+msgid "Name"
+msgstr "Nombre"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:120
+#: c:\wamp\www\cu\modules\shop/admin/products.php:482
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:55
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:64
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:19
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:28
+msgid "Description"
+msgstr "Descripción"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:121
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:28
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:40
+msgid "Price"
+msgstr "Precio"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:122
+msgid "Buy link"
+msgstr "Enlace para compra"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:139
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:29
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:41
+msgid "Type"
+msgstr "Tipo"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:144
+msgid "Available"
+msgstr "Disponible"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:145
+msgid "Default image"
+msgstr "Imágen por defecto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:147
+msgid "Current Image"
+msgstr "Imágen Actual"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:156
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products_form.php:3
+msgid "Custom Fields"
+msgstr "Campos Personalizados"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:160
+msgid "Save Changes"
+msgstr "Guardar Cambios"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:193
+msgid "Product ID has not been provided"
+msgstr "El ID de producto no ha sido proporcionado"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:226
+msgid "Another product with same name already exists!"
+msgstr "¡Ya existe otro producto con el mismo nombre!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:302
+#: c:\wamp\www\cu\modules\shop/admin/products.php:613
+msgid "Database updated successfully!"
+msgstr "¡Base de datos actualizada satisfactoriamente!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:304
+msgid "Errors ocurred while trying to update database"
+msgstr "Ocurrieron errores al intentar actualizar la base de datos"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:325
+#: c:\wamp\www\cu\modules\shop/admin/products.php:735
+msgid "You must select one product at least!"
+msgstr "¡Debe seleccionar al menos un producto!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:338
+#: c:\wamp\www\cu\modules\shop/admin/products.php:752
+#, php-format
+msgid "Product ID \"%s\" is not valid!"
+msgstr "¡El ID de producto \"%s\" no es válido!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:345
+#: c:\wamp\www\cu\modules\shop/admin/products.php:759
+#, php-format
+msgid "Product with ID \"%s\" does not exists!"
+msgstr "¡El producto con ID \"%s\" no existe!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:350
+#, php-format
+msgid "Product \"%s\" could not be deleted!"
+msgstr "¡El producto \"%s\" no pudo ser eliminado!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:355
+msgid "Errors ocurred while trying to delete products"
+msgstr "Ocurrieron errores al intentar eiminar productos"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:358
+msgid "Prodducts deleted successfully!"
+msgstr "¡Productos eliminados satisfactoriamente!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:377
+msgid "Provided product ID is not valid!"
+msgstr "¡El ID de producto proporcionado no es válido!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:411
+#: c:\wamp\www\cu\modules\shop/admin/products.php:469
+#: c:\wamp\www\cu\modules\shop/admin/products.php:470
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:1
+msgid "Product Images"
+msgstr "Imágenes del Producto"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:415
+msgid "Do you really want to delete selected images?"
+msgstr "¿Realmente desea eliminar las imágenes seleccionadas?"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:416
+msgid "You must select an image before to execute this action!"
+msgstr "¡Debes seleccionar una imagen antes de ejecutar esta acción!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:440
+#: c:\wamp\www\cu\modules\shop/admin/products.php:514
+msgid "You must specify a product ID!"
+msgstr "¡Debes especificar ID del producto!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:455
+#: c:\wamp\www\cu\modules\shop/admin/products.php:533
+msgid "You must specify an image ID!"
+msgstr "¡Debes specificar ID dela imagen!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:462
+#: c:\wamp\www\cu\modules\shop/admin/products.php:540
+msgid "Specified image does not exists!"
+msgstr "¡La imagen especificada no existe!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:470
+#: c:\wamp\www\cu\modules\shop/admin/products.php:473
+msgid "Edit Image"
+msgstr "Editar Imagen"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:470
+#: c:\wamp\www\cu\modules\shop/admin/products.php:473
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:82
+msgid "Add Image"
+msgstr "Agregar Imagen"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:476
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:18
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:27
+msgid "Title"
+msgstr "Título"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:477
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:73
+msgid "Image file"
+msgstr "Archivo de Imagen"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:479
+msgid "Current image file"
+msgstr "Archivo de Imagen Actual"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:610
+msgid "Errors ocurred while trying to save the image"
+msgstr "Ocurrieron algunos errores al intentar guardar la imagen"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:633
+#: c:\wamp\www\cu\modules\shop/admin/products.php:684
+msgid "You must select an image to delete!"
+msgstr "¡Debes seleccionar una imagen para eliminar!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:646
+#: c:\wamp\www\cu\modules\shop/admin/products.php:697
+#, php-format
+msgid "Image ID \"%s\" is not valid!"
+msgstr "¡ID de la imagen \"%s\" no es valido!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:653
+#: c:\wamp\www\cu\modules\shop/admin/products.php:704
+#, php-format
+msgid "Image with ID \"%s\" does not exists!"
+msgstr "¡Imagen con ID \"%s\" no existe!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:658
+#: c:\wamp\www\cu\modules\shop/admin/products.php:709
+#, php-format
+msgid "Image \"%s\" could not be deleted!"
+msgstr "¡Imagen \"%s\" no pudo ser eliminada!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:663
+#: c:\wamp\www\cu\modules\shop/admin/products.php:715
+msgid "Errors ocurred while trying to delete images"
+msgstr "Ocurrieron algunos errores al tratar de eliminar imágenes"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:666
+#: c:\wamp\www\cu\modules\shop/admin/products.php:718
+msgid "Images deleted successfully!"
+msgstr "¡Imagenes eliminadas exitosamente!"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:777
+msgid "Errors ocurred while trying to regenerate thumbnails"
+msgstr "Ocurrieron algunos errores al tratar de eliminar imágenes"
+
+#: c:\wamp\www\cu\modules\shop/admin/products.php:780
+msgid "Thumbnails regenerated successfully!"
+msgstr "¡Imagenes eliminadas exitosamente!"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:81
+msgid "Block Options"
+msgstr "Opciones de bloque"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:82
+msgid "Listing type:"
+msgstr "Tipo de listado:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:83
+msgid "Recent products"
+msgstr "Productos Recientes"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:84
+msgid "Random products"
+msgstr "Productos aleatorios"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:85
+msgid "From category:"
+msgstr "De la categoria:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:87
+msgid "All categories"
+msgstr "Todas las categorias"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:101
+msgid "Number of products:"
+msgstr "Número de productos:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:103
+msgid "Show images:"
+msgstr "Mostrar imágenes:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:104
+msgid "Yes"
+msgstr "Si"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:105
+msgid "No"
+msgstr "No"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:107
+msgid "Image width:"
+msgstr "Ancho de la imagen:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:109
+msgid "Image height:"
+msgstr "Alto de la Imagen:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:111
+msgid "Display mode:"
+msgstr "Modo de presentación:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:112
+msgid "Grid"
+msgstr "Cuadrícula"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:113
+msgid "List"
+msgstr "Lista"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:114
+msgid "Data to show:"
+msgstr "Datos para mostrar:"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:115
+msgid "Product name"
+msgstr "Nombre del producto"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:116
+msgid "Product price"
+msgstr "Precio del producto"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:117
+msgid "Product type"
+msgstr "Tipo de producto"
+
+#: c:\wamp\www\cu\modules\shop/blocks/shop_bk_products.php:118
+msgid "Product availability"
+msgstr "Disponibilidad del producto"
+
+#: c:\wamp\www\cu\modules\shop/class/shopfunctions.php:162
+msgid "ERROR 404. Document not Found"
+msgstr "ERROR 404. Documento no Encontrado"
+
+#: c:\wamp\www\cu\modules\shop/include/widgets.php:14
+msgid "Product Information"
+msgstr "Información del Producto"
+
+#: c:\wamp\www\cu\modules\shop/include/widgets.php:30
+msgid "Product Image"
+msgstr "Imágen del Producto"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:13
+msgid "Section Title"
+msgstr "Título de la Sección"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:14
+msgid "Show module header"
+msgstr "Mostrar encabezado del producto"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:15
+msgid "Enable friendly URLs"
+msgstr "Habilitar URLs amigables"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:16
+msgid ""
+"Define the way in wich MiniShop will be format the products and categories "
+"URLs. Friendly URLs needs mod_rewrite or equivalent system."
+msgstr ""
+"Define la manera en la que MiniShop formateara las URLs de los productos y "
+"categorias. URLs amigables necesita mod_rewrite or equivalent system."
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:17
+msgid "Base path for friendly URLs"
+msgstr "Ruta base para URLs amigables"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:18
+msgid "Editor type for products from"
+msgstr "Tipo de editor para el formulario de productos"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:19
+msgid "Visual Editor"
+msgstr "Editor Visual"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:20
+msgid "HTML Editor"
+msgstr "Editor HTML"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:21
+msgid "XoopsCode Editor"
+msgstr "Editor Xoops"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:22
+msgid "Simple Editor"
+msgstr "Editor Sencillo"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:23
+msgid "Image max file size"
+msgstr "Máximo del tamaño de archivos de la imagen"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:24
+msgid "Specify this value in KB"
+msgstr "Especificar este valor en KB"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:25
+msgid "Image size"
+msgstr "Tamaño de la imagen"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:26
+msgid "Specify the normal image size in pixels using format \"width|height\"."
+msgstr ""
+"Especificar el tamaño normal de la imagen usando el formato \"width|height\""
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:27
+msgid "Resizing method for normal images"
+msgstr "Método de redimensión para imagenes normales"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:28
+msgid "Thumbnail size"
+msgstr "Tamaño de la miniatura"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:29
+msgid ""
+"Specify the thumbnail image size in pixels using format \"width|height\"."
+msgstr ""
+"Especificar el tamaño de la imagen miniatura usando el formato \"width|height"
+"\""
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:30
+msgid "Resizing method for thumbnail images"
+msgstr "Método de redimensión para imagenes miniatura"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:31
+msgid "Products per page"
+msgstr "Productos por página"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:32
+msgid "Columns for catalog"
+msgstr "Columnas por cátalogo"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:33
+msgid "Home page listing type"
+msgstr "Tipo de listado de la página de inicio"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:34
+msgid "Currency format"
+msgstr "Formato actual"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:35
+#, php-format
+msgid ""
+"You can specify the currency format based on PHP sprintf() function (eg. $%s "
+"will format $5.00)."
+msgstr ""
+"Puedes especificar el formato de moneda basado en PHP sprint()function(eg.$"
+"%s will format $5.00)."
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:36
+msgid "Email to send messages"
+msgstr "Email para enviar mensages"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:37
+msgid "Buy link when its not been specified in product details"
+msgstr ""
+"Enlace de compra cuando no se ha especificado en los detalles del producto"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:38
+msgid ""
+"This link will be used in all products that not have a custom buy link. You "
+"can use templates: {NAME}, {ID} and {PRICE}"
+msgstr ""
+"Este enlace será utilizado en todos los productos que no tengan un enlace de "
+"compra. Puedes utilizar las plantillas {NAME}, {ID} y {PRICE}."
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:39
+msgid "Number of recent products in home page"
+msgstr "Número de productos recientes en la página principal"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:40
+msgid "Number of popular products in home page"
+msgstr "Número de productos populares en la página inicial"
+
+#: c:\wamp\www\cu\modules\shop/language/english/modinfo.php:41
+msgid "Number of random products in home page"
+msgstr "Número de productos aleatorios en la página principal"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:8
+msgid "Category Name"
+msgstr "Nombre de la Categoría"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:12
+msgid "Category Slug"
+msgstr "Nombre Corto"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:14
+msgid ""
+"The “slug” is the URL-friendly version of the name. It is usually all "
+"lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+"El \"acceso\" es la versión amigable del nombre. Es usualmente en minusculas "
+"y tiene letras, numeros, y guiones."
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:19
+msgid "None"
+msgstr "Ninguno"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:24
+msgid ""
+"Categories, unlike tags, can have a hierarchy. You might have a Jazz "
+"category, and under that have children categories for Bebop and Big Band. "
+"Totally optional."
+msgstr ""
+"Categorias, a diferencia de las etiquetas, pueden tener una jerarquía. Es "
+"posible que haya una categoria Jazz, y debajo de esta que haya categorias "
+"hijas llaamadas Bebop y Big Band. Totalmente Opcional."
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:46
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:93
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:7
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:77
+msgid "Bulk actions"
+msgstr "Acciones en lote"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:47
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:82
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:94
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:8
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:46
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:57
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:8
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:61
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:78
+msgid "Delete"
+msgstr "eliminar"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:49
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:96
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:10
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:59
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:13
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:83
+msgid "Apply"
+msgstr "Aplicar"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:56
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:65
+msgid "Slug"
+msgstr "Acceso"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:71
+msgid "There are not categories registered yet!"
+msgstr "¡Aún no hay categorias registradas!"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_categories.php:80
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:25
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:45
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:60
+msgid "Edit"
+msgstr "Editar"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:5
+msgid "Quick Overview"
+msgstr "Información Rápida"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:7
+msgid "Products registered:"
+msgstr "Productos registrados:"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:8
+msgid "Manage products"
+msgstr "Administración de productos"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:11
+msgid "Categories created:"
+msgstr "Categorias creadas:"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:12
+msgid "Manage categories"
+msgstr "Administración de categorias"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:15
+msgid "Latest products:"
+msgstr "Productos Nuevos:"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:20
+msgid "There are not products yet!"
+msgstr "¡Aún no hay productos!"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:34
+msgid "MiniShop Information"
+msgstr "Informacióm de MiniShop"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:37
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:46
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:54
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:44
+msgid "Recent MiniShop News"
+msgstr "Noticias recientes de MiniShop"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_dashboard.php:52
+msgid "About MiniShop"
+msgstr "Acerca de MiniShop"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:7
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:56
+msgid "Bulk actions..."
+msgstr "Acciones en lote..."
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:16
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:25
+msgid "ID"
+msgstr "ID"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:17
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:26
+msgid "Image"
+msgstr "Imagen"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:34
+msgid "There are not images for this product yet!"
+msgstr "¡Aún no hay imágenes para este producto!"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:69
+msgid "Add image"
+msgstr "Agregar Imagen"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:71
+msgid "Image title"
+msgstr "Título de la Imagen"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_images.php:75
+msgid "Image description"
+msgstr "Descripción de la Imagen"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:11
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:81
+msgid "Regenerate thumbnails"
+msgstr "Generar miniaturas"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:15
+msgid "Search:"
+msgstr "Búsqueda:"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:17
+msgid "Search"
+msgstr "Búsqueda"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:19
+msgid "Show all"
+msgstr "Mostrar todo"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:30
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:42
+msgid "In Stock"
+msgstr "En Stock"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:31
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:43
+msgid "Created"
+msgstr "Creado"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:32
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:44
+msgid "Modified"
+msgstr "Modificado"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:50
+msgid "There are not products created yet!"
+msgstr "¡Aún no hay productos creados!"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products.php:62
+msgid "Images"
+msgstr "Imágenes"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products_form.php:17
+msgid "Add Custom Field"
+msgstr "Campo personalizado"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products_form.php:20
+msgid "Name:"
+msgstr "Nombre:"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products_form.php:29
+msgid "Add New"
+msgstr "Agregar reciente"
+
+#: c:\wamp\www\cu\modules\shop/templates/admin/shop_products_form.php:35
+msgid "Value:"
+msgstr "Valor:"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:5
+msgid "+ Files"
+msgstr "+ Archivos"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:8
+msgid "Upload"
+msgstr "Cargar"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:27
+msgid "Error:"
+msgstr "Error:"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:28
+msgid "File is too big"
+msgstr "El archivo es demasiado grande"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:30
+msgid "File is too small"
+msgstr "El archivo es demasiado pequeño"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:32
+msgid "Filetype not allowed"
+msgstr "Tipo de archivo no permitido"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:34
+msgid "Max number of files exceeded"
+msgstr "Mäximo de archivos excedido"
+
+#: c:\wamp\www\cu\modules\shop/templates/widgets/shop_w_updform.php:41
+msgid "Start"
+msgstr "Iniciar"

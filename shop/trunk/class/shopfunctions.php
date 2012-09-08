@@ -163,6 +163,25 @@ class ShopFunctions
         die();
     }
     
+    /**
+    * Genera e enlace para compra del producto
+    */
+    public function get_buy_link($prod){
+        global $xoopsModuleConfig;
+        
+        if($prod->getVar('buy')!=''){
+            return $prod->getVar('buy');
+        }
+        
+        $link = $xoopsModuleConfig['buylink'];
+        if($link=='') return '';
+        
+        $search = array('{NAME}','{ID}','{PRICE}');
+        $replace = array($prod->getVar('name'), $prod->id(), $prod->getVar('price'));
+        $link = str_replace($search, $replace, $link);
+        return $link;
+        
+    }
 }
 
 function shop_dashed(&$item, $key){

@@ -26,8 +26,16 @@ $nav = new RMPageNav($num, $limit, $page, 5);
 $nav->target_url(ShopFunctions::get_url().($xoopsModuleConfig['urlmode'] ? 'page/{PAGE_NUM}/' : '?page={PAGE_NUM}'));
 $xoopsTpl->assign('pagenav', $nav->render(false));
 
-$result = $db->query("SELECT * FROM ".$db->prefix("shop_products")." ORDER BY ".($xoopsModuleConfig['sort']?' `name`':' id_product DESC')." LIMIT $start,$limit");
+$result = $db->query("SELECT * FROM ".$db->prefix("shop_products")." ORDER BY id_product DESC LIMIT $start,".$xoopsModuleConfig['recents']);
+$var = 'recents';
+include 'include/product-data.php';
 
+$result = $db->query("SELECT * FROM ".$db->prefix("shop_products")." ORDER BY hits DESC LIMIT $start,".$xoopsModuleConfig['populars']);
+$var = 'popular';
+include 'include/product-data.php';
+
+$result = $db->query("SELECT * FROM ".$db->prefix("shop_products")." ORDER BY RAND() LIMIT $start,".$xoopsModuleConfig['random']);
+$var = 'random';
 include 'include/product-data.php';
 
 $categories = array();
@@ -40,6 +48,9 @@ $xoopsTpl->assign('columns', $xoopsModuleConfig['columns']);
 $xoopsTpl->assign('lang_instock', __('In stock','shop'));
 $xoopsTpl->assign('lang_outstock', __('Out of stock','shop'));
 $xoopsTpl->assign('lang_selcat', __('Select category...','shop'));
+$xoopsTpl->assign('lang_popular', __('Most Desired','shop'));
+$xoopsTpl->assign('lang_recents', __('Recent Products','shop'));
+$xoopsTpl->assign('lang_random', __('Random Products','shop'));
 $xoopsTpl->assign('xoops_pagetitle', $xoopsModuleConfig['modtitle']);
 
 RMTemplate::get()->add_style('main.css', 'shop');

@@ -1,6 +1,20 @@
 <{include file="db:shop_header.html"}>
 
-<!-- Products -->
+<h3 class="prod_title"><{$lang_popular}></h3>
+<!-- Popular -->
+<{assign var="products" value=$popular}>
+<{include file="db:shop_prodsgrid.html"}>
+<!-- End products -->
+<div class="prod_sep"></div>
+<h3 class="prod_title"><{$lang_recents}></h3>
+<!-- recents -->
+<{assign var="products" value=$recents}>
+<{include file="db:shop_prodsgrid.html"}>
+<!-- End products -->
+<div class="prod_sep"></div>
+<h3 class="prod_title"><{$lang_random}></h3>
+<!-- recents -->
+<{assign var="products" value=$random}>
 <{include file="db:shop_prodsgrid.html"}>
 <!-- End products -->
 

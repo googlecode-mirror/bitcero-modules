@@ -12,8 +12,11 @@
         </div>
     </div>
     <ul class="prod_details">
-        <li><{$product.price}></li>
+        <{if $product.price!=''}><li><{$product.price}></li><{/if}>
         <li><span class="stock <{if $product.stock}>instock<{else}>nostock<{/if}>"><{if $product.stock}><{$lang_instock}><{else}><{$lang_outstock}><{/if}></span></li>
+        <{if $product.buy!=''}>
+        <li><a href="<{$product.buy}>" class="stock buy"><{$lang_buy}></a></li>
+        <{/if}>
         <li><{if $product.updated!=''}><{$product.updated}><{else}><{$product.created}><{/if}></li>
         <{foreach item=opt from=$options}>
         <li><{$opt}></li>
