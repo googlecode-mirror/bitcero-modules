@@ -175,7 +175,8 @@ if($action=='download'){
             'updated'=>$updated,
             'nameid'=>$feature->nameid(),
             'content' => $feature->content(),
-            'link' => $feature->permalink()
+            'link' => $feature->permalink(),
+            'metas' => $dtfunc->get_metas('feat', $feature->id())
         );
     }
     unset($chars, $feature);
@@ -192,6 +193,8 @@ if($action=='download'){
         );
     }
     unset($logs, $log);
+    
+    $data['metas'] = $dtfunc->get_metas('down', $item->id());
 
 	$xoopsTpl->assign('item', $data);
 
@@ -251,6 +254,9 @@ if($action=='download'){
 
     $tpl->add_xoops_style('main.css','dtransport');
     $tpl->add_local_script('main.js','dtransport');
+    
+    $metas = $data['metas'];
+    $rmf->add_keywords_description(isset($metas['description']) ? $metas['description'] : $item->getVar('shortdesc'), isset($metas['keywords']) ? $metas['keywords'] : '');
 
     // Lightbox plugins
     if($rmf->plugin_installed("lightbox")){

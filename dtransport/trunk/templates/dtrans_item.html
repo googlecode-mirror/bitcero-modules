@@ -103,15 +103,16 @@
 <div id="dt-home-tabs">
     <ul>
         <li class="details selected"><{$lang_details}></li>
-        <li class="options"><{$lang_downopts}></li>
-        <li class="logs"><{$lang_logs}></li>
+        <{if $item.filegroups}><li class="options"><{$lang_downopts}></li><{/if}>
+        <{if $item.logs}><li class="logs"><{$lang_logs}></li><{/if}>
     </ul>
 </div>
 
 <!-- Item Details -->
 <div id="dt-item-details">
     <{$item.description}>
-
+    
+    <{if $item.features}>
     <div id="dt-item-features">
         <h3><{$lang_features}></h3>
         <div class="dt_table">
@@ -128,6 +129,7 @@
             </div>
         </div>
     </div>
+    <{/if}>
 
 </div>
 
