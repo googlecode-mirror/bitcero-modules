@@ -341,6 +341,8 @@ class DTFunctions
 			$data['os'] .= $data['os']=='' ? $os->name() : ', '.$os->name();
 		}
 		
+        $data['metas'] = $this->get_metas('down', $item->id());
+        
 		return $data;
 		
 	}
@@ -512,6 +514,25 @@ class DTFunctions
         die();
 
     }
+    
+    /**
+    * Obtiene los campos personalizados de un elemento
+    */
+    public function get_metas($type, $id, $all = false){
+        // Get existing metas
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
+        $sql = "SELECT * FROM ".$db->prefix("dtrans_meta")." WHERE type='$type' AND id_element='$id'";
+        $result = $db->query($sql);
+
+        while($row = $db->fetchArray($result)){
+            if($all)
+                $metas[] = $row;
+            else
+                $metas[$row['name']] = $row['value'];
+        }
+        
+        return $metas;
+    }
 
     /**
      * Show the meta values for a specific element
@@ -531,7 +552,8 @@ class DTFunctions
         $metas = array();
 
         while($row = $db->fetchArray($result)){
-            $metaNames[] = $row['name'];
+            if(!in_array($row['name'], $metaNames))
+                $metaNames[] = $row['name'];
         }
 
         if($id>0){

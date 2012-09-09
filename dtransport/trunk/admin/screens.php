@@ -15,14 +15,19 @@ include ('header.php');
 * @des Visualiza todas las pantallas existentes
 **/
 function showScreens(){
-	global $xoopsModule, $xoopsSecurity,
-           $tpl,
-           $functions,
-           $xoopsModule,
-           $xoopsModuleConfig,
-           $xoopsUser;
+	global $xoopsModule,
+            $xoopsSecurity,
+            $tpl,
+            $functions,
+            $xoopsModule,
+            $xoopsModuleConfig,
+            $xoopsUser,
+            $xoopsConfig;
 
     define('RMCSUBLOCATION','screenshots');
+    
+    if($xoopsConfig['closesite'])
+        showMessage(__('Screenshop uploader does not work when site is closed. Before to start uploding, please change this configuration.','rmcommon'), RMMSG_WARN);
 
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     $tc = TextCleaner::getInstance();

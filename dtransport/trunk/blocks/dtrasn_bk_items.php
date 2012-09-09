@@ -17,6 +17,8 @@ function dt_block_items($options){
     $tpl = RMTemplate::get();
     $tpl->add_xoops_style('blocks.css','dtransport');
     
+    $dtfunc = new DTFunctions();
+    
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     $tbls = $db->prefix("dtrans_software");
@@ -32,7 +34,7 @@ function dt_block_items($options){
         
     }
 	
-	if (trim($options[10])!=''){
+	if (trim($options[10])>0){
         $user = new RMUser(trim($options[10]));
         if($user->isNew()) return;
 		$sql .= " AND s.uid='".$user->id()."' ";
@@ -71,6 +73,7 @@ function dt_block_items($options){
 		$item->assignVars($row);
 		$rtn = array();
 		$rtn['name'] = $item->getVar('name');
+        $rtn['version'] = $item->getVar('version');
         
         if($options[3]){
             $img = new RMImage();
@@ -85,6 +88,7 @@ function dt_block_items($options){
 			$rtn['siterate'] = DTFunctions::ratingStars($item->getVar('siterate'));
 		}
         $rtn['link'] = $item->permalink();
+        $rtn['metas'] = $dtfunc->get_metas('down', $item->id());
 		if($options[9]) $rtn['author'] = array('name'=>$item->getVar('author_name'),'url'=>$item->getVar('author_url'));
 		$block['downs'][] = $rtn;
 	}
