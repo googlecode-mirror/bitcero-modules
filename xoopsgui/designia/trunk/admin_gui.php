@@ -47,10 +47,11 @@ include 'ajax/modules.php';
 // Designia preferences
 $dConfig = include(XOOPS_CACHE_PATH.'/designia.php');
 
-if($dConfig['logo']=='' || $dConfig['scheme']==''){
+if($dConfig['logo']=='')
     $dConfig['logo'] = XOOPS_URL.'/modules/rmcommon/themes/designia/images/logo.png';
+
+if($dConfig['scheme']=='')
     $dConfig['scheme'] = 'colors.css';
-}
 
 $this->add_theme_style('menu.css','designia');
 $this->add_theme_style('jquery.mCustomScrollbar.css','designia');
