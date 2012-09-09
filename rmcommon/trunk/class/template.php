@@ -53,7 +53,10 @@ class RMTemplate
     * Help link
     */
     private $help_link = array();
-
+    /**
+    * Metas
+    */
+    private $metas = array();
     /**
      * At this moment this method do nothing
      * Maybe later i will add some functionality... i must to think ;)
@@ -687,6 +690,18 @@ class RMTemplate
     
     public function get_toolbar(){
 		return $this->toolbar;
+    }
+    
+    /**
+    * Add metas to head
+    */
+    public function add_meta($name, $content){
+        
+        $this->metas[$name] = $content;
+        
+    }
+    public function get_metas(){
+        return $this->metas;
     }
     
 }

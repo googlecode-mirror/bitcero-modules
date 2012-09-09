@@ -556,5 +556,37 @@ class RMFunctions
         return $file;
 
     }
+    
+    /**
+    * Add keywords and description metas
+    * @param string Description for meta content
+    * @param string Keywords for meta content. If hti svalue is empty then will generate from description
+    * @param int Limit of keywrods to generate
+    */
+    public function add_keywords_description($description, $keywords='', $limit=50){
+        
+        if($description=='') return;
+        
+        $tpl = RMTemplate::get();
+        $tpl->add_meta('description', $description);
+        if($keywords!=''){
+            $tpl->add_meta('keywords', $keywords);
+            return;
+        }
+        
+        $description = preg_replace("/[^[[:alnum:]]]|[\.,:]/",'', $description);
+        $description = preg_replace("/[[:space:]][[:alnum:]]{0,4}[[:space:]]/",' ',$description);
+        
+        $words = explode(" ", $description);
+        asort($words);
+        $keys = array_rand($words, $limit>count($words) ? count($words) : $limit);
+        
+        foreach($keys as $id){
+            $keywords .= $keywords=='' ? $words[$id] : ', '.$words[$id];
+        }
+        
+        $tpl->add_meta('keywords', $keywords);
+        
+    }
 	
 }

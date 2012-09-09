@@ -96,6 +96,26 @@ function cu_render_output($output){
     $rtn .= $styles;
     $rtn .= $heads;
     
+    $find = array();
+    $repl = array();
+    foreach($metas as $name => $content){
+        
+        $str = "<meta\s+name=['\"]??".$name."['\"]??\s+content=['\"]??(.+)['\"]??\s*\/?>";
+        if(preg_match($str, $page)){
+            $find[] = $str;
+            $str = "meta name=\"$name\" content=\"$content\" />\n";
+            $repl[] = $str;
+        } else {
+            
+            $rtn .= "\n<meta name=\"$name\" content=\"$content\" />";
+            
+        }
+        
+    }
+    
+    if(!empty($find))
+        $page = preg_replace($find, $repl, $page);
+    
     $pos = strpos($page, "<!-- RMTemplateHeader -->");
     if($pos!==FALSE){
         $page = str_replace('<!-- RMTemplateHeader -->', $rtn, $page);
