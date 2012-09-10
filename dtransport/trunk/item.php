@@ -247,7 +247,7 @@ if($action=='download'){
 	$xoopsTpl->assign('xoops_pagetitle', $item->getVar('name').($item->getVar('version')!='' ? " ".$item->getVar('version') : '')." &raquo; ".$xoopsModule->name());
 
 	// Ubicación Actual
-	$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
+	//$location = "<strong>"._MS_DT_YOUREHERE."</strong> <a href='".DT_URL."'>".$xoopsModule->name()."</a> &raquo; ";
 
 	$location .= " &raquo; <strong>".$item->getVar('name')."</strong>";
 	$xoopsTpl->assign('dt_location', $location);
@@ -265,6 +265,11 @@ if($action=='download'){
         $lightbox->add_element("#dt-item-features a");
         $lightbox->render();
     }
+    
+    // Comments
+    $rmf->get_comments('dtransport','item='.$item->id(), 'module', 0, null, true);
+    // Comments form
+    RMFunctions::comments_form('dtransport', 'item='.$item->id(), 'module', DT_PATH.'/class/dtransportcontroller.php');
 
 	include 'footer.php';
 
