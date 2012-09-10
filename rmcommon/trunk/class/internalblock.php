@@ -258,7 +258,7 @@ class RMInternalBlock extends RMObject
         } else {
             
             // Bloque Personalizado. Solo devolvemos el contenido
-            $block['content'] = $this->getContent("S",$this->getVar("c_type"));
+            $block['content'] = $this->getContent("S",$this->getVar("content_type"));
             if (empty($block['content'])) {
                 return false;
             }
