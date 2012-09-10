@@ -190,26 +190,10 @@ if ($post->getVar('pingstatus')){
     );
 }
 
+$rmf = RMFunctions::get();
 $description = $post->get_meta('description', false);
-if($description==''){
-    $tc = TextCleaner::getInstance();
-    $description = $tc->truncate(strip_tags($post->content()), 150);
-}
-$xoopsTpl->assign('xoops_meta_description', $description);
-
 $keywords = $post->get_meta('keywords', false);
-if($keywords==''){
-    $description = preg_replace('[\.|\,|\;|\:\=]', '', preg_replace("[\n|\r|\n\r]", ' ', strip_tags($post->content())));
-    $description = explode(" ", $description);
-    $keys = array_rand($description, 50);
-
-    foreach($keys as $id){
-        if(strlen($description[$id])<5) continue;
-        $keywords .= $keywords=='' ? $description[$id] : ', '.$description[$id];
-    }
-    unset($description);
-}
-$xoopsTpl->assign('xoops_meta_keywords', $keywords);
+$rmf->add_keywords_description($description!='' ? $description : $post->content(true), $keywords!='' ? $keywords : '');
 
 // Send pings?
 $pings = $post->getVar('toping');
