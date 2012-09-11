@@ -112,7 +112,6 @@ class RMEvents
         $pre = $event_name;
         $event_name = strtolower(str_replace('.', '', $event_name));        
         $args = func_get_args();
-        
         if (!isset($this->_events[$event_name])) return $value;
         
         $xoopsLogger = XoopsLogger::getInstance();
