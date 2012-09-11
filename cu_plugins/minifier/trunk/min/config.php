@@ -11,6 +11,7 @@ define('XOOPS_CACHE_PATH', XOOPS_VAR_PATH.'/caches/xoops_cache');
 
 if(is_file(XOOPS_CACHE_PATH.'/minifier/config.php'))
     require XOOPS_CACHE_PATH.'/minifier/config.php';
+
 /**
  * To allow debug mode output, you must set this option to true.
  *
