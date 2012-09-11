@@ -138,17 +138,25 @@ class BoosterCUPlugin extends RMIPlugin
     public function is_excluded($path){
         
         if ($path=='') return false;
-        
+        $path = str_replace(XOOPS_URL, '', $path);
         if (strstr($path, '/modules/rmcommon/'))
-        	return true;
+            return true;
         
         $prevent = $this->get_config('prevent');
         
         foreach($prevent as $url){
-			if (strlen($url) > 0 && strstr($path, trim($url)))
-				return true;
-			
+            
+            if(substr($url, -1)=='*'){
+                $turl = substr($path, 0, strlen($path)-1);
+                echo $tpath;
+                if (strlen($turl) > 0 && strstr($path, trim($turl)))
+                    return true;
+            } else {
+                if (strlen($url) > 0 && $path == $url)
+                    return true;
+            }            
         }
+        
         return false;
     }
     
