@@ -53,13 +53,13 @@ class BoosterPluginRmcommonPreload
     * This event init the cache engine
     */
     public function eventRmcommonPluginsLoaded($plugins){
-		global $xoopsConfig;
+        global $xoopsConfig;
         
-		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/booster/booster-plugin.php';
-		$plugin = new boosterCUPlugin();
-		
-		if (!$plugin->get_config('enabled'))
-			return $plugins;
+        include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/booster/booster-plugin.php';
+        $plugin = new boosterCUPlugin();
+        
+        if (!$plugin->get_config('enabled'))
+            return $plugins;
         
         /**
         * Re order the plugins array beacouse a lot of problems
@@ -75,8 +75,8 @@ class BoosterPluginRmcommonPreload
             
         }
         
-		include_once XOOPS_ROOT_PATH.'/modules/rmcommon/class/functions.php';
-		$url = RMFunctions::current_url();
+        include_once XOOPS_ROOT_PATH.'/modules/rmcommon/class/functions.php';
+        $url = RMFunctions::current_url();
         
         $path = parse_url($url);
         // Pages to exclude
@@ -85,38 +85,36 @@ class BoosterPluginRmcommonPreload
         if ($plugin->is_excluded($url))
             return $plugins;
 
-		if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
-			mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
-	
-		$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['booster_session'].$xoopsConfig['language']);
-		if (!file_exists($file.'.html'))
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$xoopsConfig['language']);
-		
-		if (file_exists($file.'.html')){
-			
+        if(!is_dir(XOOPS_CACHE_PATH.'/booster/files'))
+            mkdir(XOOPS_CACHE_PATH.'/booster/files', 511);
+    
+        $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$_COOKIE['booster_session']);
+        
+        if (file_exists($file.'.html')){
+            
             $time = time() - filemtime($file.'.html');
-			
+            
             if($time>=$plugin->get_config('time')){
                 unlink($file.'.html');
                 unlink($file.'.meta');
                 return $plugins;
             }
 
-			ob_end_clean();
-			echo file_get_contents($file.'.html');
-			$plugin->delete_expired();
+            ob_end_clean();
+            echo file_get_contents($file.'.html');
+            $plugin->delete_expired();
             die();
-		}
+        }
 
         return $plugins;
-		
+        
     }
     
     /**
     * This event save the current page if is neccesary
     */
     public function eventRmcommonEndFlush($output){
-		global $xoopsUser, $xoopsConfig;
+        global $xoopsUser, $xoopsConfig;
 
         $plugin = RMFunctions::load_plugin('booster');
         
@@ -124,38 +122,38 @@ class BoosterPluginRmcommonPreload
             return $output;
         
         if (defined('BOOSTER_NOTSAVE'))
-        	return $output;
+            return $output;
 
-		$url = RMFunctions::current_url();
+        $url = RMFunctions::current_url();
         
         $path = parse_url($url);
         
         if ($plugin->is_excluded($url))
-        	return $output;
-			
-		if ($xoopsUser){
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.session_id().$xoopsConfig['language']);
-			setcookie('booster_session', session_id(), 0, '/');
-		} else {
-			$file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$xoopsConfig['language']);
-		}
+            return $output;
+            
+        if ($xoopsUser){
+            $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.session_id().'|'.$xoopsConfig['language']);
+            setcookie('booster_session', session_id().'|'.$xoopsConfig['language'], 0, '/');
+        } else {
+            $file = XOOPS_CACHE_PATH.'/booster/files/'.md5($url.$xoopsConfig['language']);
+        }
         $data = array(
             'uri' => $url,
             'created' => time(),
             'language' => $xoopsConfig['language']
         );
-		
-		$pos = strpos($output, '<div id="xo-logger-output">');
-		if ($pos!==FALSE)
-			file_put_contents($file.'.html', substr($output, 0, $pos));
-		else
-			file_put_contents($file.'.html', $output);
-			
+        
+        $pos = strpos($output, '<div id="xo-logger-output">');
+        if ($pos!==FALSE)
+            file_put_contents($file.'.html', substr($output, 0, $pos).'<!-- Cached by Booster -->');
+        else
+            file_put_contents($file.'.html', $output.'<!-- Cached by Booster -->');
+            
         file_put_contents($file.'.meta', json_encode($data));
-		
-		$plugin->delete_expired();
-		return $output;
-		
+        
+        $plugin->delete_expired();
+        return $output;
+        
     }
     
     public function eventRmcommonCommentSaved($com, $ret){
@@ -170,9 +168,9 @@ class BoosterPluginRmcommonPreload
     
     
     public function eventRmcommonRedirectHeader($url, $time, $message, $addredir, $allowext){
-		
-		define('BOOSTER_NOTSAVE', 1);
-		
+        
+        define('BOOSTER_NOTSAVE', 1);
+        
     }
     
 }
