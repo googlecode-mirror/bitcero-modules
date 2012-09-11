@@ -69,7 +69,7 @@ class RecaptchaCUPlugin extends RMIPlugin
                                         $_POST["recaptcha_challenge_field"],
                                         $_POST["recaptcha_response_field"]);
 
-        return $resp;
+        return $resp->is_valid;
     }
     
 }
