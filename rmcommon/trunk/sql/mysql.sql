@@ -72,6 +72,7 @@ CREATE TABLE `rmc_blocks` (
   `visible` tinyint(1) unsigned NOT NULL default '0',
   `type` varchar(6)   NOT NULL,
   `content_type` varchar(20)   NOT NULL,
+  `content` text NOT NULL,
   `isactive` tinyint(1) unsigned NOT NULL default '0',
   `dirname` varchar(50)   NOT NULL default '',
   `file` varchar(150)   NOT NULL,
