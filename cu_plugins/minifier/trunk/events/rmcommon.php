@@ -19,7 +19,7 @@ class MinifierPluginRmcommonPreload
             mkdir(XOOPS_CACHE_PATH.'/minifier', 511);
         
         $file = XOOPS_CACHE_PATH.'/minifier/config.php';
-        file_put_contents($file, '');
+        file_put_contents($file, '<?php'."\n");
         foreach($options as $name => $value){
             
             if(substr($name, 0, 8)=='options_'){
