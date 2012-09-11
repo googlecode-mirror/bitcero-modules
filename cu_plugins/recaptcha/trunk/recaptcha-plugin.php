@@ -19,7 +19,7 @@ class RecaptchaCUPlugin extends RMIPlugin
 		$this->info = array(
 			'name'			=> __('Recaptcha Plugin', 'recaptcha'),
 			'description'	=> __('Plugin to insert a recaptcha field on comments and other forms','recaptcha'),
-			'version'		=> '1.0.25.0',
+			'version'		=> '1.0.0.0',
 			'author'		=> 'Eduardo Cortés',
 			'email'			=> 'i.bitcero@gmail.com',
 			'web'			=> 'http://redmexico.com.mx',
