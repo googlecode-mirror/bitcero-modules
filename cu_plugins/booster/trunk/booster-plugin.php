@@ -21,7 +21,7 @@ class BoosterCUPlugin extends RMIPlugin
 	        $this->info = array(
 	            'name'            => __('Xoops Booster', 'booster'),
 	            'description'    => __('Plugin to speed up your Xoops Web site by reducing load times.','booster'),
-	            'version'        => '1.0.1.15',
+	            'version'        => '1.0.1.20',
 	            'author'        => 'Eduardo Cortés',
 	            'email'            => 'i.bitcero@gmail.com',
 	            'web'            => 'http://redmexico.com.mx',
