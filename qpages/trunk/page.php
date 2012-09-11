@@ -20,12 +20,11 @@ load_mod_locale('qpages');
 
 $xoopsOption['template_main'] = 'qpages_page.html';
 $xoopsOption['module_subpage'] = 'page';
-require 'header.php';
 
 if (isset($_REQUEST['page'])){
-	$nombre = explode('/',$_REQUEST['page']);
+    $nombre = explode('/',$_REQUEST['page']);
 } else {
-	$nombre = explode('/',$request);
+    $nombre = explode('/',$request);
 }
 
 $nombre[0] = TextCleaner::sweetstring($nombre[0]);
@@ -61,6 +60,8 @@ if ($page->type()){
 }
 
 $catego = new QPCategory($page->getCategory());
+
+require 'header.php';
 
 // Asignamos datos de la categoría
 $tpl->assign('qpcategory', array('id'=>$catego->getID(),'name'=>$catego->getName(),'nameid'=>$catego->getFriendName()));
