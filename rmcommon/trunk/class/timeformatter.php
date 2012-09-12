@@ -40,8 +40,6 @@ class RMTimeFormatter
     
     public function format($time=0, $format=''){
 
-        //echo date("M-d-Y H:i:s", time()); die();
-
         $time = $time<=0 ? $this->time : $time;
         $format = $format=='' ? $this->format : $format;
         
