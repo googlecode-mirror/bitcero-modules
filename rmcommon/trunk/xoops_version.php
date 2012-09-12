@@ -373,8 +373,7 @@ $modversion['blocks'][] = array(
     'file' => "custom.php",
     'name' => __('Custom Block','rmcommon'),
     'description' => __('Allows to create a block with custom content.','rmcommon'),
-    'show_func' => "rmc_bkcustom_show",
-    'template' => 'rmc_bk_custom.html',
+    'show_func' => "",
     'type' => 'custom'
 );
 
