@@ -72,8 +72,6 @@ if($token=='' || !$xoopsSecurity->validateToken($token)){
 
 }
 
-unset($_SESSION['dttoken']);
-
 // Comprobamos si el archivo es seguro o no
 if (!$item->getVar('secure')){
 	// Comprobamos si es un archivo remoto o uno local	
@@ -88,6 +86,7 @@ if (!$item->getVar('secure')){
 		$st->save();
 		$item->addHit();
 		$file->addHit();
+        unset($_SESSION['dttoken']);
 		header('location: '.$file->file());
 		die();
 	} else {
@@ -119,6 +118,7 @@ if (!$item->getVar('secure')){
 
 		$item->addHit();
 		$file->addHit();
+        unset($_SESSION['dttoken']);
 		header('location: '.$dir.'/'.$file->file());
 		die();
 	}
@@ -146,7 +146,7 @@ if(!$alert->isNew()){
     $alert->setLastActivity(time());
     $alert->save();
 }
-
+unset($_SESSION['dttoken']);
 $item->addHit();
 $file->addHit();
 header('Content-type: '.$file->mime());
