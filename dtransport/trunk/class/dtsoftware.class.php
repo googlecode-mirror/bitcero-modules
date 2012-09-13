@@ -64,7 +64,7 @@ class DTSoftware extends RMObject
 		
 		$gid = !is_array($gid) ? array($gid) : $gid;
 		
-		if (in_array(0, $gid)) return true;
+		if (in_array(0, $this->getVar('groups'))) return true;
 		if (in_array(XOOPS_GROUP_ADMIN, $gid)) return true;
 		
 		foreach ($gid as $g){
@@ -177,7 +177,7 @@ class DTSoftware extends RMObject
 		
 		if (empty($this->_groups) || ($asobj && !is_a($this->_groups[0], 'DTFileGroup'))){
 			$this->_groups = array();
-			$sql="SELECT * FROM ".$this->db->prefix('dtrans_groups')." WHERE id_soft=".$this->id()." ORDER BY id_group ASC";
+			$sql="SELECT * FROM ".$this->db->prefix('dtrans_groups')." WHERE id_soft=".$this->id()." ORDER BY id_group DESC";
 			$result=$this->db->queryF($sql);
 			while ($rows=$this->db->fetchArray($result)){
 				if ($asobj){
