@@ -50,42 +50,8 @@ function xoops_module_update_rmcommon($mod, $prev){
     $db = XoopsDatabaseFactory::getDatabaseConnection();
     
     // Add tables to database
-    $sql = "CREATE TABLE IF NOT EXISTS `".$db->prefix("rmc_blocks")."` (
-          `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-          `element` varchar(50) NOT NULL,
-          `element_type` varchar(20) NOT NULL,
-          `options` text NOT NULL,
-          `name` varchar(150) NOT NULL DEFAULT '',
-          `description` varchar(255) NOT NULL,
-          `canvas` tinyint(1) unsigned NOT NULL DEFAULT '0',
-          `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-          `visible` tinyint(1) unsigned NOT NULL DEFAULT '0',
-          `type` varchar(6) NOT NULL,
-          `content_type` varchar(20) NOT NULL,
-          `isactive` tinyint(1) unsigned NOT NULL DEFAULT '0',
-          `dirname` varchar(50) NOT NULL DEFAULT '',
-          `file` varchar(150) NOT NULL,
-          `show_func` varchar(50) NOT NULL DEFAULT '',
-          `edit_func` varchar(50) NOT NULL DEFAULT '',
-          `template` varchar(150) NOT NULL,
-          `bcachetime` int(10) NOT NULL,
-          PRIMARY KEY (`bid`),
-          KEY `element` (`element`),
-          KEY `visible` (`visible`)
-        ) ENGINE=MyISAM;";
+    $sql = "ALTER TABLE `".$db->prefix("rmc_blocks")."` ADD `content` TEXT NOT NULL AFTER `content_type`";
 
-    $db->queryF($sql);
+    return $db->queryF($sql);
     
-    $sql = "CREATE TABLE IF NOT EXISTS `".$db->prefix('rmc_blocks_positions')."` (
-          `id_position` int(11) NOT NULL AUTO_INCREMENT,
-          `name` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-          `tag` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-          `active` tinyint(1) NOT NULL DEFAULT '1',
-          PRIMARY KEY (`id_position`),
-          UNIQUE KEY `tag` (`tag`)
-        ) ENGINE=MyISAM;";
-    
-    $db->queryF($sql);
-    
-    return true;
 }
