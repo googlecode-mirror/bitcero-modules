@@ -56,7 +56,8 @@ define('_MI_MW_DEFIMG_DESC', __('When the "graphic" mode is enabled in the "Rece
 
 // Images
 define('_MI_MW_ENABLELISTIMAGES', __('Enable images in posts list','mywords'));
-define('_MI_MW_LISTIMAGESSIZE', __('Size of images of posts list','mywords'));
+define('_MI_MW_LISTIMAGESSIZE', __('Size of images to use in posts list','mywords'));
+define('_MI_MW_LISTIMAGESSIZED', sprintf(__('You must specify a custom size name created for a category in %s of %s.','mywords'), '<a href="'.RMCURL.'/images.php">'.__('Images Manager','mywords').'</a>', '<a href="'.RMCURL.'">'.__('Common Utilities','mywords').'</a>'));
 define('_MI_MW_ENABLEPOSTIMAGES', __('Enable images in post','mywords'));
 define('_MI_MW_POSTIMAGESSIZE', __('Size of images of post','mywords'));
 

@@ -118,5 +118,3 @@ function &mywords_rssshow($limit){
 	return $ret;
 	
 }
-
-?>

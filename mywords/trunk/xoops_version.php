@@ -45,7 +45,7 @@ $modversion['dirname'] = "mywords";
 $modversion['icon48'] = "images/icon48.png";
 $modversion['icon16'] = "images/icon16.png";
 $modversion['rmnative'] = 1;
-$modversion['rmversion'] = array('number'=>2,'revision'=>110,'status'=>0,'name'=>'MyWords');
+$modversion['rmversion'] = array('number'=>2,'revision'=>115,'status'=>0,'name'=>'MyWords');
 $modversion['onInstall'] = 'include/install.php';
 $modversion['onUpdate'] = 'include/install.php';
 
@@ -170,88 +170,37 @@ $modversion['config'][7]['formtype'] = 'yesno';
 $modversion['config'][7]['valuetype'] = 'int';
 $modversion['config'][7]['default'] = 1;
 
-// Default image
-$modversion['config'][8]['name'] = 'defimg';
-$modversion['config'][8]['title'] = '_MI_MW_DEFIMAGE';
-$modversion['config'][8]['description'] = '_MI_MW_DEFIMAGED';
-$modversion['config'][8]['formtype'] = 'select';
+// Enable images in posts
+$modversion['config'][8]['name'] = 'list_post_imgs';
+$modversion['config'][8]['title'] = '_MI_MW_ENABLELISTIMAGES';
+$modversion['config'][8]['description'] = '';
+$modversion['config'][8]['formtype'] = 'yesno';
 $modversion['config'][8]['valuetype'] = 'int';
-$modversion['config'][8]['default'] = 0;
-
-$mwi = rmc_server_var($_GET, 'mod', 0);
-$fct = rmc_server_var($_GET, 'fct', '');
-
-
-if($fct=='preferences'){
-
-    $mod = RMFunctions::get()->load_module('mywords');
-    if($mwi==$mod->mid()){
-
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
-        $sql = "SELECT * FROM ".$db->prefix("rmc_img_cats")." WHERE status='open' ORDER BY name ASC";
-
-        $result = $db->query($sql);
-        $categories = array();
-
-        $sql = "SELECT conf_id FROM ".$db->prefix("config")." WHERE conf_modid=".$mod->mid()." AND conf_name='defimg'";
-        list($id) = $db->fetchRow($db->query($sql));
-
-        global $xoopsUser;
-
-        if($id>0){
-            $db->queryF("DELETE FROM ".$db->prefix("configoption")." WHERE conf_id=$id");
-            while ($row = $db->fetchArray($result)){
-                $cat = new RMImageCategory();
-                $cat->assignVars($row);
-
-                if (!$cat->user_allowed_toupload($xoopsUser)) continue;
-
-                $sql = "INSERT INTO ".$db->prefix("configoption")." (`confop_name`,`confop_value`,`conf_id`) VALUES ('".__('Select...','mywords')."','0','$id'),";
-                $sql .= "('".$cat->getVar('name')."','".$cat->id()."','$id'),";
-
-                $db->queryF(rtrim($sql,','));
-
-            }
-        }
-
-        $modversion['config'][8]['options'] = $categories;
-
-    }
-}
-
-// Enable images in posts
-$modversion['config'][9]['name'] = 'list_post_imgs';
-$modversion['config'][9]['title'] = '_MI_MW_ENABLELISTIMAGES';
-$modversion['config'][9]['description'] = '';
-$modversion['config'][9]['formtype'] = 'yesno';
-$modversion['config'][9]['valuetype'] = 'int';
-$modversion['config'][9]['default'] = 1;
+$modversion['config'][8]['default'] = 1;
 
 // Image size for posts list
-$modversion['config'][10]['name'] = 'list_post_imgs_size';
-$modversion['config'][10]['title'] = '_MI_MW_LISTIMAGESSIZE';
+$modversion['config'][9]['name'] = 'list_post_imgs_size';
+$modversion['config'][9]['title'] = '_MI_MW_LISTIMAGESSIZE';
+$modversion['config'][9]['description'] = '_MI_MW_LISTIMAGESSIZED';
+$modversion['config'][9]['formtype'] = 'textbox';
+$modversion['config'][9]['valuetype'] = 'text';
+$modversion['config'][9]['default'] = 'thumbnail';
+
+// Enable images in posts
+$modversion['config'][10]['name'] = 'post_imgs';
+$modversion['config'][10]['title'] = '_MI_MW_ENABLEPOSTIMAGES';
 $modversion['config'][10]['description'] = '';
-$modversion['config'][10]['formtype'] = 'select';
-$modversion['config'][10]['valuetype'] = 'text';
-$modversion['config'][10]['default'] = 'thumbnail';
-$modversion['config'][10]['options'] = array(__('Thumbnail','mywords')=>'thumbnail', __('Medium','mywords')=>'medium', __('Large','mywords')=>'large');
-
-// Enable images in posts
-$modversion['config'][11]['name'] = 'post_imgs';
-$modversion['config'][11]['title'] = '_MI_MW_ENABLEPOSTIMAGES';
-$modversion['config'][11]['description'] = '';
-$modversion['config'][11]['formtype'] = 'yesno';
-$modversion['config'][11]['valuetype'] = 'int';
-$modversion['config'][11]['default'] = 1;
+$modversion['config'][10]['formtype'] = 'yesno';
+$modversion['config'][10]['valuetype'] = 'int';
+$modversion['config'][10]['default'] = 1;
 
 // Image size for posts list
-$modversion['config'][12]['name'] = 'post_imgs_size';
-$modversion['config'][12]['title'] = '_MI_MW_POSTIMAGESSIZE';
-$modversion['config'][12]['description'] = '';
-$modversion['config'][12]['formtype'] = 'select';
-$modversion['config'][12]['valuetype'] = 'text';
-$modversion['config'][12]['default'] = 'large';
-$modversion['config'][12]['options'] = array(__('Thumbnail','mywords')=>'thumbnail', __('Medium','mywords')=>'medium', __('Large','mywords')=>'large');
+$modversion['config'][11]['name'] = 'post_imgs_size';
+$modversion['config'][11]['title'] = '_MI_MW_POSTIMAGESSIZE';
+$modversion['config'][11]['description'] = '_MI_MW_LISTIMAGESSIZED';
+$modversion['config'][11]['formtype'] = 'textbox';
+$modversion['config'][11]['valuetype'] = 'text';
+$modversion['config'][11]['default'] = 'large';
 
 // Bloque Categorias
 $modversion['blocks'][1]['file'] = "block.cats.php";
