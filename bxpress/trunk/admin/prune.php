@@ -22,8 +22,10 @@ function prune(){
         
 	xoops_cp_location("<a href='./'>".$xoopsModule->name()."</a> &raquo; ".__('Prune Posts','bxpress'));
 	xoops_cp_header();
-        
-        $db = XoopsDatabaseFactory::getDatabaseConnection();
+    
+    bXFunctions::menu_bar();
+    
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
 	$form=new RMForm(__('Prune Posts','bxpress'),'frmprune','prune.php');
 	
 	//Lista de foros
@@ -53,7 +55,6 @@ function prune(){
 	//Temas fijos
 	$form->addElement(new RMFormYesno(__('Delete Sticky Topics','bxpress'),'fixed'));
 	
-	
 	$buttons= new RMFormButtonGroup();
 	$buttons->addButton('sbt', __('Prune Now!'), 'submit', 'onclick="return confirm(\''.__('Do you really wish to delete the topics? \nThis action will delete the data permanently.','bxpress').'\');"');
 	$buttons->addButton('cancel', __('Cancel','bxpress'), 'button', 'onclick="history.go(-1);"');
@@ -63,12 +64,8 @@ function prune(){
 	$form->addElement(new RMFormHidden('action','deltopics'));
 
 	$form->display();
-	
-	
-	
-   
+	   
 	xoops_cp_footer();
-
 
 }
 

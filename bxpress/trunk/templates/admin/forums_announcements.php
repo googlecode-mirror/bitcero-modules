@@ -11,7 +11,8 @@
         </select>
         <input type="button" id="the-op-top" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-announ');" />
         &nbsp; &nbsp;
-        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+        <a href="announcements.php"><?php _e('Show All','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="announcements.php?action=new"><?php _e('New Announcement','bxpress'); ?></a>
     </div>
 <table class="outer" cellspacing="1" width="100%">
     <thead>
@@ -65,7 +66,8 @@
         </select>
         <input type="button" id="the-op-bottom" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-announ');" />
         &nbsp; &nbsp;
-        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="announcements.php?action=new"><?php _e('New Announcement','bxpress'); ?></a>
     </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
 </form>

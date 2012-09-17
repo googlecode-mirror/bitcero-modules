@@ -29,7 +29,7 @@ if(function_exists("load_mod_locale")) load_mod_locale('bxpress');
 
 $modversion['name'] = __('bXpress','bxpress');
 $modversion['description'] = __('A simple forums module for XOOPS and common utilities.','bxpress');
-$modversion['rmversion'] = array('number'=>1,'revision'=>15,'status'=>-2,'name'=>__('bXpress','bxpress'));
+$modversion['rmversion'] = array('number'=>1,'revision'=>17,'status'=>-2,'name'=>__('bXpress','bxpress'));
 $modversion['rmnative'] = 1;
 $modversion['version'] = '1.3';
 $modversion['icon32'] = 'images/forum48.png';

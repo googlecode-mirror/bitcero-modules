@@ -10,6 +10,8 @@
         <option value="delete"><?php _e('Delete','bxpress'); ?></option>
     </select>
     <input type="button" id="the-op-top" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-forums');" />
+    &nbsp; &nbsp;
+    <a href="forums.php?action=new"><?php _e('New Forum','dtransport'); ?></a>    
 </div>
 <!--//-->
 <table class="outer" cellspacing="1" cellpadding="0" width="100%">
@@ -74,6 +76,8 @@
         <option value="delete"><?php _e('Delete','bxpress'); ?></option>
     </select>
     <input type="button" id="the-op-bottom" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-forums');" />
+    &nbsp; &nbsp;
+    <a href="forums.php?action=new"><?php _e('New Forum','dtransport'); ?></a>   
 </div>
 <!--//-->
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
