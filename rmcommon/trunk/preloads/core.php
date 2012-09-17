@@ -120,5 +120,37 @@ class RmcommonCorePreload extends XoopsPreloadItem
         $xoopsTpl->plugins_dir[] = RMCPATH.'/include';
         
     }
+    
+    /**
+    * Next methods will add subpage to xoopsOption
+    */
+    public function eventCoreIndexStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'home-page';
+    }
+    public function eventCoreEdituserStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'edit-user';
+    }
+    public function eventCoreReadpmsgStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'readpm';
+    }
+    public function eventCoreRegisterStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'register';
+    }
+    public function eventCoreUserStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'user';
+    }
+    public function eventCoreUserinfoStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'profile';
+    }
+    public function eventCoreViewpmsgStart(){
+        global $xoopsOption;
+        $xoopsOption['module_subpage'] = 'pm';
+    }
 	
 }

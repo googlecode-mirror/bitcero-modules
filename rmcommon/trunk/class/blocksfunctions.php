@@ -71,15 +71,16 @@ class RMBlocksFunctions
         }
         
         $startMod = ( $xoopsConfig['startpage'] == '--' ) ? 'system' : $xoopsConfig['startpage'];
-	if ( @is_object( $xoopsModule ) ) {
+	    if ( @is_object( $xoopsModule ) ) {
             list( $mid, $dirname ) = array( $xoopsModule->getVar('mid'), $xoopsModule->getVar('dirname') );
             $isStart = ( substr( $_SERVER['PHP_SELF'], -9 ) == 'index.php' && $xoopsConfig['startpage'] == $dirname );
-	} else {
-            list( $mid, $dirname ) = array( 0, 'system' );
+	    } else {
+            $sys = RMFunctions::load_module('system');
+            list( $mid, $dirname ) = array( $sys->getVar('mid'), 'system' );
             $isStart = !@empty( $GLOBALS['xoopsOption']['show_cblock'] );
-	}
+	    }
 
-	$groups = @is_object( $xoopsUser ) ? $xoopsUser->getGroups() : array( XOOPS_GROUP_ANONYMOUS );
+	    $groups = @is_object( $xoopsUser ) ? $xoopsUser->getGroups() : array( XOOPS_GROUP_ANONYMOUS );
         
         $subpage = isset($xoopsOption['module_subpage']) ? $xoopsOption['module_subpage'] : '';
         $barray = array(); // Array of retrieved blocks
@@ -146,7 +147,6 @@ class RMBlocksFunctions
             $sql .= ' AND b.bid IN ('.implode(',', $blockids).')';
             $sql .= ' ORDER BY '.$orderby;
             $result = $db->query($sql);
-            //echo $sql; die();
             while ( $myrow = $db->fetchArray($result) ) {
                 $block = new RMInternalBlock();
                 $block->assignVars($myrow);
