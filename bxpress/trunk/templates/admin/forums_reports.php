@@ -14,7 +14,9 @@
         </select>
         <input type="button" id="the-op-top" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-reports');" />
         &nbsp; &nbsp;
-        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+        <a href="reports.php"><?php _e('Show All','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="reports.php?show=1"><?php _e('Read','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="reports.php?show=2"><?php _e('Not read','bxpress'); ?></a>
     </div>
 <table class="outer" width="100%" cellspacing="1">
     <thead>
@@ -72,7 +74,9 @@
         </select>
         <input type="button" id="the-op-bottom" value="<?php _e('Apply','bxpress'); ?>" onclick="before_submit('frm-reports');" />
         &nbsp; &nbsp;
-        <a href="resources.php"><?php _e('Show All','bxpress'); ?></a>
+        <a href="reports.php"><?php _e('Show All','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="reports.php?show=1"><?php _e('Read','bxpress'); ?></a> &nbsp; | &nbsp;
+        <a href="reports.php?show=2"><?php _e('Not read','bxpress'); ?></a>
     </div>
 <?php echo $xoopsSecurity->getTokenHTML(); ?>
     <input type="hidden" name="show" value="<?php echo $show; ?>" />
