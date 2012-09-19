@@ -364,7 +364,7 @@ class DTSoftware extends RMObject
 		
 		if (empty($this->_features) || ($asobj && !is_a($this->_features[0], 'DTFeature'))){
 			$this->_features = array();
-			$sql = "SELECT * FROM ".$this->db->prefix("dtrans_features")." WHERE id_soft='".$this->id()."' ORDER BY modified DESC";
+			$sql = "SELECT * FROM ".$this->db->prefix("dtrans_features")." WHERE id_soft='".$this->id()."' ORDER BY created ASC";
 			$result = $this->db->query($sql);
 			while ($row = $this->db->fetchArray($result)){
 				if ($asobj){
