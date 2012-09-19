@@ -55,6 +55,8 @@ class BoosterPluginRmcommonPreload
     public function eventRmcommonPluginsLoaded($plugins){
         global $xoopsConfig;
         
+        $start = microtime(true);
+        
         include_once XOOPS_ROOT_PATH.'/modules/rmcommon/plugins/booster/booster-plugin.php';
         $plugin = new boosterCUPlugin();
         
@@ -102,6 +104,8 @@ class BoosterPluginRmcommonPreload
 
             ob_end_clean();
             echo file_get_contents($file.'.html');
+            $end = microtime(true);
+            echo '<!-- booster: '.($end - $start).' ms -->';
             $plugin->delete_expired();
             die();
         }
