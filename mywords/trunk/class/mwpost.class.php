@@ -390,15 +390,18 @@ class MWPost extends RMObject
 	public function user_allowed($uid=null){
 		global $xoopsUser;
 		
+        if(!$xoopsUser){
+            $owner = false;
+        } else {
+            $user = $uid!=null ? $uid : $xoopsUser->uid();
+            $editor = new MWEditor($this->getVar('author'));
+            $owner = $user==$editor->getVar('uid');
+        }
+        
+        if ($owner) return true;
+        
 		if ($this->getVar('status')!='publish') return false;
 		if ($this->getVar('visibility')=='public') return true;
-		if ($this->getVar('visibility')=='private'){
-			
-			$user = $uid!=null ? $uid : $xoopsUser->uid();
-			$editor = new MWEditor($this->getVar('author'));
-			if ($user==$editor->getVar('uid')) return true;
-			
-		}
         
         if ($this->getVar('visibility')=='password'){
             
