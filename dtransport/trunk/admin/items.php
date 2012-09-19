@@ -184,7 +184,7 @@ function formItems($edit=0){
     }
 	  
     $form = new RMForm('','','');
-	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->getVar('desc', 'e') : '',$rmc_config['editor_type']);
+	$ed = new RMFormEditor('','desc','99%','300px',$edit ? $sw->getVar('desc', $rmc_config['editor_type']!='tiny' ? 'e' : 's') : '',$rmc_config['editor_type']);
 	$ed->addClass('required');
     
     $db = XoopsDatabaseFactory::getDatabaseConnection();

@@ -266,3 +266,14 @@ div.head{background: #ccc;color: #000; font-size: 0.8em; font-weight: bold;text-
 #will-start img{width: 80px; float: left; margin: 0 10px 0 0; padding: 1px; border: 1px solid #ccc;}
 #will-start .message{display: block; font-size: 1.3em; margin: 10px 0;}
 #will-start .problems{display: block;}
+
+/* NO approved */
+.dt_noapproved_msg{
+    padding: 10px;
+    background: #FFFFE1;
+    border: 1px solid #FFEAA6;
+    border-radius: 5px;
+    color: #C47A24;
+    text-align: center;
+    margin-bottom: 10px;
+}

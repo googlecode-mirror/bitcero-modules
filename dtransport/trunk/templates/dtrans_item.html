@@ -1,5 +1,11 @@
 <{include file="db:dtrans_header.html"}>
 
+<{if !$item.approved}>
+<div class="dt_noapproved_msg">
+    <{$lang_noapproved}>
+</div>
+<{/if}>
+
 <h1 class="dt_item_name" xmlns="http://www.w3.org/1999/html">
 	<{$item.name}> <span><{$item.version}></span>
 	<{if $item.new}>

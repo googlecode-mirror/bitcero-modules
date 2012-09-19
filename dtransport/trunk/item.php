@@ -14,7 +14,14 @@ if ($id==''){
 }
 
 $item = new DTSoftware($id);
-if ($item->isNew() || !$item->getVar('approved')){
+
+if($item->getVar('approved')){
+    $canview = true;
+} else {
+    $canview = $xoopsUser->isAdmin() || ($xoopsUser->uid()==$item->getVar('uid'));
+}
+
+if ($item->isNew() || !$canview){
 	redirect_header(DT_URL, 2, __('Specified item does not exists!','dtransport'));
 	die();
 }
@@ -195,6 +202,8 @@ if($action=='download'){
     unset($logs, $log);
     
     $data['metas'] = $dtfunc->get_metas('down', $item->id());
+    
+    $data['approved'] = $item->getVar('approved');
 
 	$xoopsTpl->assign('item', $data);
 
@@ -213,6 +222,10 @@ if($action=='download'){
     if($mc['active_relatsoft']){
         $xoopsTpl->assign('lang_related',__('<strong>Related</strong> Downloads','dtransport'));
         $xoopsTpl->assign('related_items', $dtfunc->items_by($relatedTags, 'tags', $item->id(), 'RAND()', 0, $mc['limit_relatsoft']));
+    }
+    
+    if(!$item->getVar('approved')){
+        $xoopsTpl->assign('lang_noapproved', __('This item has not been approved yet! You can view this information but other users can not.','dtransport'));
     }
 
 	// Lenguaje
