@@ -27,6 +27,6 @@ function xoops_module_update_mywords($mod, $pre){
 
     global $xoopsDB;
 
-    return $xoopsDB->queryF("ALTER TABLE  `".$xoopsDB->prefix('mw_posts')."` ADD  `image` INT NOT NULL DEFAULT '0'");
+    return $xoopsDB->queryF("ALTER TABLE ".$xoopsDB->prefix("`mw_posts`")." CHANGE `image` `image` TEXT NOT NULL DEFAULT ''");
 
 }
