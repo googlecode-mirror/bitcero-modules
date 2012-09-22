@@ -568,7 +568,9 @@ class RMFunctions
         if($description=='') return;
         
         $tpl = RMTemplate::get();
-        $tpl->add_meta('description', $description);
+        $tc = TextCleaner::getInstance();
+        $description = strip_tags($description);
+        $tpl->add_meta('description', $tc->truncate($description, 255));
         if($keywords!=''){
             $tpl->add_meta('keywords', $keywords);
             return;
