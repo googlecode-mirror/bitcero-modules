@@ -1,28 +1,15 @@
 <?php
 // $Id: rmcommon.php 594 2011-02-07 20:58:31Z i.bitcero $
 // --------------------------------------------------------------
-// Recaptcha plugin for Common Utilities
-// Allows to integrate recaptcha in comments or forms
+// AYAH plugin for Common Utilities
+// Allows to integrate AYAH with Common Utilities
 // Author: Eduardo Cortés <i.bitcero@gmail.com>
 // Email: i.bitcero@gmail.com
 // License: GPL 2.0
 // --------------------------------------------------------------
 
 class AyahPluginRmcommonPreload
-{
-    
-    private function set_config(){
-        
-        $config = RMFunctions::get()->plugin_settings('ayah', true);
-        
-        if(!defined('AYAH_PUBLISHER_KEY'))
-            define( 'AYAH_PUBLISHER_KEY', $config['publisher']);
-        
-        if(!defined('AYAH_SCORING_KEY'))
-            define( 'AYAH_SCORING_KEY', $config['scoring']);
-        
-    }
-    
+{    
     public function eventRmcommonCommentsForm($form, $module, $params, $type){
         global $xoopsUser;
         
@@ -44,22 +31,10 @@ class AyahPluginRmcommonPreload
         
         $config = RMFunctions::get()->plugin_settings('recaptcha', true);
         
-        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $form;
+        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return;
         
         $field = self::get_html();
         return $field;
-    }
-    
-    private function get_html(){
-        
-        $config = RMFunctions::get()->plugin_settings('ayah', true);
-        self::set_config();
-        require_once(RMCPATH.'/plugins/ayah/include/ayah.php');
-        $ayah = new AYAH();
-        
-        $ayah->debug_mode($config['debug']);
-        
-        return $ayah->getPublisherHTML();
     }
     
     public function eventRmcommonCommentPostdata($ret){
@@ -67,7 +42,7 @@ class AyahPluginRmcommonPreload
         
         $config = RMFunctions::get()->plugin_settings('ayah', true);
         
-        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return;
+        if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $ret;
         
         self::set_config();
         
@@ -86,7 +61,7 @@ class AyahPluginRmcommonPreload
     public function eventRmcommonCaptchaCheck($value){
         global $xoopsUser;
         
-        $config = RMFunctions::get()->plugin_settings('recaptcha', true);
+        $config = RMFunctions::get()->plugin_settings('ayah', true);
         
         if ($xoopsUser && $xoopsUser->isAdmin() && !$config['show']) return $value;
         
@@ -100,8 +75,28 @@ class AyahPluginRmcommonPreload
         return $resp;
     }
     
-    public function eventRmcommonModulesMenu($menu){
-        return $menu;
+    private function set_config(){
+        
+        $config = RMFunctions::get()->plugin_settings('ayah', true);
+        
+        if(!defined('AYAH_PUBLISHER_KEY'))
+            define( 'AYAH_PUBLISHER_KEY', $config['publisher']);
+        
+        if(!defined('AYAH_SCORING_KEY'))
+            define( 'AYAH_SCORING_KEY', $config['scoring']);
+        
+    }
+    
+    private function get_html(){
+        
+        $config = RMFunctions::get()->plugin_settings('ayah', true);
+        self::set_config();
+        require_once(RMCPATH.'/plugins/ayah/include/ayah.php');
+        $ayah = new AYAH();
+        
+        $ayah->debug_mode($config['debug']);
+        
+        return $ayah->getPublisherHTML();
     }
           
 }
