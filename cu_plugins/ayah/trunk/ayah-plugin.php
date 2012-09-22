@@ -19,7 +19,7 @@ class AyahCUPlugin extends RMIPlugin
         $this->info = array(
             'name'            => __('AYAH Plugin', 'ayah'),
             'description'    => __('Plugin to insert a "Are You A Human" field on comments and other forms','ayah'),
-            'version'        => '0.0.1.0',
+            'version'        => '0.1.0.0',
             'author'        => 'Eduardo Cortés',
             'email'            => 'i.bitcero@gmail.com',
             'web'            => 'http://www.xoopsmexico.net',
