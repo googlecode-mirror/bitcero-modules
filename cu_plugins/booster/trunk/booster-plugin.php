@@ -147,8 +147,7 @@ class BoosterCUPlugin extends RMIPlugin
         foreach($prevent as $url){
             
             if(substr($url, -1)=='*'){
-                $turl = substr($path, 0, strlen($path)-1);
-                echo $tpath;
+                $turl = substr($url, 0, strlen($url)-1);
                 if (strlen($turl) > 0 && strstr($path, trim($turl)))
                     return true;
             } else {
