@@ -67,10 +67,11 @@ $work_data = array(
 	'rating'=>PWFunctions::rating($work->rating()),
 	'views'=>$work->views(),
     'metas'=>$work->get_metas(),
-    'public'=>$work->isPublic()
+    'public'=>$work->isPublic(),
+    'link' => $work->link()
 );
 
-$work_data = RMEvents::get()->run_event('works.work.data',$work_data, $work);
+$work_data = RMEvents::get()->run_event('works.work.data<{$work.l}',$work_data, $work);
 
 $xoopsTpl->assign('work', $work_data);
 
