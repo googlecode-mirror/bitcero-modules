@@ -299,6 +299,8 @@ class DTFunctions
 	public function createItemData(DTSoftware &$item){
 		global $mc, $xoopsUser;
 		
+        if(!$mc)
+            $mc = RMUtilities::module_config('dtransport');
 	    $rmfunc = RMFunctions::get();
 
 		$data = array();
